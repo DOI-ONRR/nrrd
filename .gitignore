@@ -1,0 +1,16 @@
+# Project dependencies
+.cache
+node_modules
+yarn-error.log
+yarn.lock
+
+# Build directory
+/public
+.DS_Store
+_site
+
+# vscode
+/.vscode
+launch.json
+.vscode
+downloads/disbursements/~$disbursements.xlsx
