@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
     "dependencies": {
+	"typescript": "^2.8.0",
 	"eslint-plugin-flowtype": "^2.0",
 	"@typescript-eslint/eslint-plugin": "^1.11.0",
 	"@typescript-eslint/parser": "^1.11.0",
