@@ -4,7 +4,10 @@
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "dependencies": {
+    "dependencies": {
+	"eslint-plugin-flowtype": "^2.0",
+	"@typescript-eslint/eslint-plugin": "^1.11.0",
+	"@typescript-eslint/parser": "^1.11.0",
     "gatsby": "^2.16.1",
     "gatsby-image": "^2.2.29",
     "gatsby-plugin-manifest": "^2.2.23",
@@ -25,7 +28,8 @@
     "gatsby"
   ],
   "license": "MIT",
-  "scripts": {
+    "scripts": {
+	"clean": "gatsby clean",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
