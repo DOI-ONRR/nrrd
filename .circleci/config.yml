@@ -20,12 +20,6 @@ jobs:
       - run:
           name: Run tests
           command: npm test
-  test:
-     requires: build
-      # Your test configuration goes here.
-     # Ruby - https://circleci.com/docs/2.0/language-ruby/
-      # Python - https://circleci.com/docs/2.0/language-python/
-    #  JS - https://circleci.com/docs/2.0/language-javascript/
 
   deploy:
     docker:
@@ -47,19 +41,19 @@ jobs:
 workflows:
   test:
     jobs:
-      - test:
+      - build:
           filters:
             branches:
               ignore: master
   deploy:
     jobs:
-      - test:
+      - build:
           filters:
             branches:
               only: master
       - deploy:
           requires:
-            - test
+            - build
           filters:
             branches:
               only: master
