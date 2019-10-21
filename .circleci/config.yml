@@ -36,7 +36,7 @@ jobs:
             cf api https://api.fr.cloud.gov
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE"
-            cf zero-downtime-push "$APP_NAME" -p '.' -f ./manifest.yml
+            cf push "$APP_NAME" -p '.' -f ./manifest.yml
 
 workflows:
   test:
