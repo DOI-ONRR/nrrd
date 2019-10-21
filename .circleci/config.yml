@@ -20,12 +20,12 @@ jobs:
       - run:
           name: Run tests
           command: npm test
-   test:
+  test:
      requires: build
-    # Your test configuration goes here.
-    # Ruby - https://circleci.com/docs/2.0/language-ruby/
-    # Python - https://circleci.com/docs/2.0/language-python/
-    # JS - https://circleci.com/docs/2.0/language-javascript/
+      # Your test configuration goes here.
+     # Ruby - https://circleci.com/docs/2.0/language-ruby/
+      # Python - https://circleci.com/docs/2.0/language-python/
+    #  JS - https://circleci.com/docs/2.0/language-javascript/
 
   deploy:
     docker:
