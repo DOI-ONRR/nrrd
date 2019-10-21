@@ -20,9 +20,46 @@ jobs:
       - run:
           name: Run tests
           command: npm test
+   test:
+     requires: build
+    # Your test configuration goes here.
+    # Ruby - https://circleci.com/docs/2.0/language-ruby/
+    # Python - https://circleci.com/docs/2.0/language-python/
+    # JS - https://circleci.com/docs/2.0/language-javascript/
+
+  deploy:
+    docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: governmentpaas/cf-cli:latest
+
+    steps:
+      - checkout
+      - run:
+          name: deploy to cloud.gov
+          command: |
+            # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+            # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+            cf api https://api.fr.cloud.gov
+            cf auth "$CF_USERNAME" "$CF_PASSWORD"
+            cf target -o "$CF_ORG" -s "$CF_SPACE"
+            cf zero-downtime-push "$APP_NAME" -p '.' -f path/to/manifest.yml
 
 workflows:
-  version: 2
-  commit:
+  test:
     jobs:
-      - build
+      - test:
+          filters:
+            branches:
+              ignore: master
+  deploy:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
