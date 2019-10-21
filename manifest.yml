@@ -2,6 +2,4 @@
 applications:
 - name: beta
   path: ./public
-  buildpacks:
-   - staticfile_buildpack
   memory: 256M
