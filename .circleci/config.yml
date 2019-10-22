@@ -66,10 +66,6 @@ workflows:
               ignore: master
   deploy:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore: master
       - deploy:
           filters:
             branches:
