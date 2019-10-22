@@ -70,11 +70,11 @@ jobs:
       - run:
           name: clean up
           command: |
-	    MERGED=`git branch -a --merged  | grep remotes | grep -vw HEAD | grep -vw dev | grep -vw master | cut -d '/' -f 3 `
-	    for i in $MERGED
-	    do
-	    echo $i
-	    done   
+            MERGED=`git branch -a --merged  | grep remotes | grep -vw HEAD | grep -vw dev | grep -vw master | cut -d '/' -f 3 `
+            for i in $MERGED
+            do
+            echo $i
+            done   
 deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
