@@ -23,8 +23,8 @@ jobs:
       - run:
           name: deploy to cloud.gov
           command: |
-	    BRANCH=`git rev-parse --abbrev-ref HEAD`
-	    echo $BRANCH
+            BRANCH=`git rev-parse --abbrev-ref HEAD`
+            echo $BRANCH
 	  
   dev:
     docker:
