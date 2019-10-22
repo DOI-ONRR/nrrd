@@ -24,8 +24,7 @@ jobs:
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: governmentpaas/cf-cli:latest
-
+      - image: circleci/node:12.2.0
     steps:
       - checkout
       - restore_cache:
