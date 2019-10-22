@@ -106,7 +106,7 @@ workflows:
 
   dev:
     jobs:
-      - deploy:
+      - dev:
           filters:
             branches:
               only: dev
