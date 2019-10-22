@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/node:12.2.0
-    working_direcory: ~/circleci-build
     steps:
       - checkout
       - restore_cache:
@@ -21,21 +20,29 @@ jobs:
       - run:
           name: Run tests
           command: npm test
-      - persist_to_workspace:
-          root: .
-          paths: .
 
   deploy:
-    #docker:
+    docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-     # - image: circleci/node:12.2.0
-    machine:
-      enabled: true     
-    working_direcory: ~/circleci-build
-    
+      - image: circleci/node:12.2.0
     steps:
-      - attach_workspace:
-        at: ~/circleci-build
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: Run tests
+          command: npm test
+
       - run:
           name: deploy to cloud.gov
           command: |
