@@ -67,16 +67,14 @@ jobs:
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE"
             cf push dev-onrr -f ./manifest.yml
-     - run:
-         name: clean up
-	 command: |
+      - run:
+          name: clean up
+	  command: |
 	    MERGED=`git branch -a --merged  | grep remotes | grep -vw HEAD | grep -vw dev | grep -vw master | cut -d '/' -f 3 `
 	    for i in $MERGED
-	     do
-	     echo $i
-	     done
-	     
-            
+	    do
+	    echo $i
+	    done   
 deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
