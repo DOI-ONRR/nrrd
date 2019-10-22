@@ -27,7 +27,7 @@ jobs:
       - image: governmentpaas/cf-cli:latest
 
     steps:
-      
+      - build
       - run:
           name: deploy to cloud.gov
           command: |
@@ -37,7 +37,7 @@ jobs:
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE"
             pwd && ls -l
-            cf push -p "."  -f ./manifest.yml
+            cf push -f ./manifest.yml
 
 workflows:
   test:
