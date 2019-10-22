@@ -20,6 +20,12 @@ jobs:
       - run:
           name: Run tests
           command: npm test
+      - run:
+          name: deploy to cloud.gov
+	  command: |
+	    BRANCH=`git rev-parse --abbrev-ref HEAD`
+	    echo $BRANCH
+	  
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
