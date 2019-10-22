@@ -54,7 +54,6 @@ jobs:
       - run:
           name: Run tests
           command: npm test
-
       - run:
           name: deploy to cloud.gov
           command: |
