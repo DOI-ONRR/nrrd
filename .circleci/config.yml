@@ -26,7 +26,7 @@ jobs:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.2.0
     steps:
-      - build
+      build
       - run:
           name: deploy to cloud.gov
           command: |
