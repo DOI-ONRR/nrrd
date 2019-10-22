@@ -22,7 +22,7 @@ jobs:
           command: npm test
       - run:
           name: deploy to cloud.gov
-	  command: |
+          command: |
 	    BRANCH=`git rev-parse --abbrev-ref HEAD`
 	    echo $BRANCH
 	  
