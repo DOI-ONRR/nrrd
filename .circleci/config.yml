@@ -1,8 +1,13 @@
 version: 2.1
 jobs:
   build:
+
     docker:
-      - image: circleci/node:12.2.0
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: governmentpaas/cf-cli:latest
+#    docker:
+#          - image: circleci/node:12.2.0
+
     steps:
       - checkout
       - restore_cache:
@@ -22,12 +27,7 @@ jobs:
           command: npm test
 
   deploy:
-    docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: governmentpaas/cf-cli:latest
-
     steps:
-      - build
       - run:
           name: deploy to cloud.gov
           command: |
