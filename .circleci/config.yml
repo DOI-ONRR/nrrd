@@ -55,7 +55,7 @@ jobs:
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE"
 
-            cf push -name "onrr" -f ./manifest.yml
+            cf push -n onrr -f ./manifest.yml
 
 workflows:
   test:
