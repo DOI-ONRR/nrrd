@@ -26,23 +26,7 @@ jobs:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.2.0
     steps:
-      - checkout
-      - restore_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install node dependencies
-          command: npm install
-      - save_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Build gatsby
-          command: npm run build
-      - run:
-          name: Run tests
-          command: npm test
-
+      - build
       - run:
           name: deploy to cloud.gov
           command: |
@@ -55,7 +39,7 @@ jobs:
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE"
 
-            cf push -f ./manifest.yml
+            cf push -name "onrr" -f ./manifest.yml
 
 workflows:
   test:
@@ -66,10 +50,6 @@ workflows:
               ignore: master
   deploy:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore: master
       - deploy:
           filters:
             branches:
