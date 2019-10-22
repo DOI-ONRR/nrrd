@@ -25,7 +25,6 @@ jobs:
           command: |
             BRANCH=`git rev-parse --abbrev-ref HEAD`
             echo $BRANCH
-	  
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
