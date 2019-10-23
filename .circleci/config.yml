@@ -75,10 +75,10 @@ jobs:
             do
               
               if [[ $MERGED == *$PREVIEW* ]]; then
-                echo "cf delete $PREVIEW"
-                echo "cf delete-route app.cloud.gov --hostname $PREVIEW"
-                cf delete $PREVIEW
-                cf delete-route app.cloud.gov --hostname $PREVIEW
+                echo "cf delete -f $PREVIEW"
+                echo "cf delete-route -f app.cloud.gov --hostname $PREVIEW"
+                cf delete -f $PREVIEW
+                cf delete-route -f app.cloud.gov --hostname $PREVIEW
               fi
             done
   deploy:
