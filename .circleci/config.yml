@@ -70,10 +70,15 @@ jobs:
           name: clean up
           command: |
             MERGED=`git branch -a --merged  | grep remotes | grep -vw HEAD | grep -vw dev | grep -vw master | cut -d '/' -f 3 `
-	    PREVIEWS=`cf apps | grep started | grep -v dev-onrr | grep -v onrr | cut -d " " -f 1`
-	    for PREVIEW in $PREVIEWS
-	    
-	    
+            PREVIEWS=`cf apps | grep started | grep -v dev-onrr | grep -v onrr | cut -d " " -f 1`
+            for PREVIEW in $PREVIEWS
+            do
+              REMOVE=`echo $PREVIEW | grep $MERGED`
+              if [ ! -z "$REMOVE" ]; then
+                echo "cf delete $REMOVE"
+                echo "cf delete-route app.cloud.gov --hostname $REMOVE"
+              fi
+            done
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -129,3 +134,5 @@ workflows:
           filters:
             branches:
               only: dev
+
+              
