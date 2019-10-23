@@ -73,10 +73,12 @@ jobs:
             PREVIEWS=`cf apps | grep started | grep -v dev-onrr | grep -v onrr | cut -d " " -f 1`
             for PREVIEW in $PREVIEWS
             do
-              REMOVE=`echo $PREVIEW | grep $MERGED`
-              if [ ! -z "$REMOVE" ]; then
-                echo "cf delete $REMOVE"
-                echo "cf delete-route app.cloud.gov --hostname $REMOVE"
+              
+              if [[ $MERGED == *$PREVIEW* ]]; then
+                echo "cf delete $PREVIEW"
+                echo "cf delete-route app.cloud.gov --hostname $PREVIEW"
+                cf delete $PREVIEW
+                cf delete-route app.cloud.gov --hostname $PREVIEW
               fi
             done
   deploy:
