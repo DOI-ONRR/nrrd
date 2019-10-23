@@ -117,7 +117,7 @@ jobs:
             cf push onrr -f ./manifest.yml
 
 workflows:
-  test:
+  preview:
     jobs:
       - build:
           filters:
