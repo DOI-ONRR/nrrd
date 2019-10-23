@@ -73,6 +73,7 @@ jobs:
             for i in $MERGED
             do
             echo $i
+	    echo DWGH
             done   
   deploy:
     docker:
