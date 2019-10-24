@@ -144,6 +144,8 @@ jobs:
                 echo "cf delete-route -f app.cloud.gov --hostname $PREVIEW"
                 cf delete -f $PREVIEW
                 cf delete-route -f app.cloud.gov --hostname $PREVIEW
+              else
+                echo "No previews to delete"
               fi
             done
             exit 0
