@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   accessibility:
-      docker:
+    docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.2.0
     steps:
@@ -22,7 +22,7 @@ jobs:
           name: Accessibility tests
           command: npm test
   performance:
-      docker:
+    docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.2.0
     steps:
@@ -43,7 +43,7 @@ jobs:
           name: Performance tests
           command: npm test
   quick:
-      docker:
+    docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.2.0
     steps:
