@@ -1,5 +1,70 @@
 version: 2.1
 jobs:
+  accessibility:
+      docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.2.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: Accessibility tests
+          command: npm test
+  performance:
+      docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.2.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: Performance tests
+          command: npm test
+  quick:
+      docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.2.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: quick performance and accessibilty testing
+          command: npm test
+              
+
   build:
     docker:
       - image: circleci/node:12.2.0
@@ -117,6 +182,19 @@ jobs:
             cf push onrr -f ./manifest.yml
 
 workflows:
+  audits:
+    jobs:
+      - performance:
+          filters:
+            branches:
+                only: dev
+      - accessibility:
+          filters:
+            branches:
+              only: dev
+      - quick:
+          
+                
   preview:
     jobs:
       - build:
