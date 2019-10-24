@@ -135,7 +135,7 @@ jobs:
           name: clean up
           command: |
             MERGED=`git branch -a --merged  | grep remotes | grep -vw HEAD | grep -vw dev | grep -vw master | cut -d '/' -f 3 `
-            PREVIEWS=`cf apps | grep started | grep -v dev-onrr | grep -v onrr | cut -d " " -f 1`
+            PREVIEWS=`cf apps | grep started | grep -v onrr | cut -d " " -f 1`
             for PREVIEW in $PREVIEWS
             do
               
@@ -198,7 +198,9 @@ workflows:
       - quick:
           filters:
             branches:
-              ignore: master
+              ignore:
+                - master
+                - dev
           
                 
   preview:
