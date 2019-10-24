@@ -135,8 +135,7 @@ jobs:
           name: clean up
           command: |
             MERGED=`git branch -a --merged  | grep remotes | grep -vw HEAD | grep -vw dev | grep -vw master | cut -d '/' -f 3 `
-            PREVIEWS=`cf apps | grep started | grep -v onrr | cut -d " " -f 1`
-            echo "Find >$PREVIEW< in >$MERGED<"
+            PREVIEWS=`cf apps | grep started  | cut -d " " -f 1`
             for PREVIEW in $PREVIEWS
             do
 
