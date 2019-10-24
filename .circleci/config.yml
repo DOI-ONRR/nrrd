@@ -138,7 +138,7 @@ jobs:
             PREVIEWS=`cf apps | grep started | grep -v onrr | cut -d " " -f 1`
             for PREVIEW in $PREVIEWS
             do
-              
+              echo "Find $PREVIEW in $MERGED"
               if [[ $MERGED == *$PREVIEW* ]]; then
                 echo "cf delete -f $PREVIEW"
                 echo "cf delete-route -f app.cloud.gov --hostname $PREVIEW"
