@@ -136,9 +136,10 @@ jobs:
           command: |
             MERGED=`git branch -a --merged  | grep remotes | grep -vw HEAD | grep -vw dev | grep -vw master | cut -d '/' -f 3 `
             PREVIEWS=`cf apps | grep started | grep -v onrr | cut -d " " -f 1`
+            echo "Find >$PREVIEW< in >$MERGED<"
             for PREVIEW in $PREVIEWS
             do
-              echo "Find $PREVIEW in $MERGED"
+
               if [[ $MERGED == *$PREVIEW* ]]; then
                 echo "cf delete -f $PREVIEW"
                 echo "cf delete-route -f app.cloud.gov --hostname $PREVIEW"
