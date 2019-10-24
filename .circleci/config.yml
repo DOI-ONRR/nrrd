@@ -193,6 +193,9 @@ workflows:
             branches:
               only: dev
       - quick:
+          filters:
+            branches:
+              ignore: master
           
                 
   preview:
