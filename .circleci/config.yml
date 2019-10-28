@@ -88,8 +88,8 @@ jobs:
       - run:
           name: deploy to cloud.gov
           command: |
+            PREVIEWS=`cf apps | grep started  | cut -d " " -f 1`
             BRANCH=`git rev-parse --abbrev-ref HEAD`
-            echo $BRANCH
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
             sudo dpkg -i cf-cli_amd64.deb	  
             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
@@ -134,21 +134,7 @@ jobs:
       - run:
           name: clean up
           command: |
-            MERGED=`git branch -a --merged  | grep remotes | grep -vw HEAD | grep -vw dev | grep -vw master | cut -d '/' -f 3 `
-            PREVIEWS=`cf apps | grep started  | cut -d " " -f 1`
-            for PREVIEW in $PREVIEWS
-            do
-
-              if [[ $MERGED == *$PREVIEW* ]]; then
-                echo "cf delete -f $PREVIEW"
-                echo "cf delete-route -f app.cloud.gov --hostname $PREVIEW"
-                cf delete -f $PREVIEW
-                cf delete-route -f app.cloud.gov --hostname $PREVIEW
-              else
-                echo "No previews to delete"
-              fi
-            done
-            exit 0
+            ./.circleci/cleanup.sh
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.

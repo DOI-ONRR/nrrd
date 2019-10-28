@@ -1,7 +1,7 @@
 ---
 applications:
-- name: beta
+- name: onrr
   path: ./public
   buildpacks:
    - staticfile_buildpack
-  memory: 256M
+  memory: 80M
