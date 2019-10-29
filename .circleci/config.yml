@@ -134,6 +134,7 @@ jobs:
       - run:
           name: clean up
           command: |
+            which cf
             ./.circleci/cleanup.sh
   deploy:
     docker:
