@@ -86,7 +86,7 @@ jobs:
           name: Run tests
           command: npm test
       - run:
-          name: deploy to cloud.gov
+          name: deploy preview to cloud.gov
           command: |
             PREVIEWS=`cf apps | grep started  | cut -d " " -f 1`
             BRANCH=`git rev-parse --abbrev-ref HEAD`
@@ -132,11 +132,6 @@ jobs:
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE"
             cf push dev-onrr -f ./manifest.yml
-      - run:
-          name: clean up
-          command: |
-            which cf
-            ./.circleci/cleanup.sh
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
