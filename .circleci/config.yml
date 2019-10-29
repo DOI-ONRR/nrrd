@@ -65,7 +65,7 @@ jobs:
           command: npm test
               
 
-  build:
+  preview:
     docker:
       - image: circleci/node:12.2.0
     steps:
@@ -91,7 +91,8 @@ jobs:
             PREVIEWS=`cf apps | grep started  | cut -d " " -f 1`
             BRANCH=`git rev-parse --abbrev-ref HEAD`
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb	  
+            sudo dpkg -i cf-cli_amd64.deb
+            which cf 
             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
             cf api https://api.fr.cloud.gov
@@ -159,7 +160,7 @@ jobs:
           command: npm test
 
       - run:
-          name: deploy to cloud.gov
+          name: deploy preview to cloud.gov
           command: |
             pwd && ls -l	
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
@@ -192,7 +193,7 @@ workflows:
                 
   preview:
     jobs:
-      - build:
+      - preview:
           filters:
             branches:
               ignore:
