@@ -24,6 +24,7 @@ do
      
 done
 echo $count
+
 if [ "$count" -gt 4 ]
 then
     echo "cf delete -f $CANDIDATE"
