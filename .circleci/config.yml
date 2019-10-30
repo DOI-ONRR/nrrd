@@ -88,16 +88,10 @@ jobs:
       - run:
           name: deploy preview to cloud.gov
           command: |
-            BRANCH=`git rev-parse --abbrev-ref HEAD`
+
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
             sudo dpkg -i cf-cli_amd64.deb
-            #PREVIEWS=`cf apps | grep started  | cut -d " " -f 1`
-            # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
-            # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
-            cf api https://api.fr.cloud.gov
-            cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o "$CF_ORG" -s "$CF_SPACE"
-            cf push $BRANCH -f ./manifest.yml   
+            bash .circleci/preview.sh
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -131,6 +125,12 @@ jobs:
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE"
             cf push dev-onrr -f ./manifest.yml
+        - run:
+          name: clean up
+          command: |
+            which cf
+            bash ./.circleci/cleanup.sh
+
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
