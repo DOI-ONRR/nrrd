@@ -1,5 +1,7 @@
 #!/bin/bash
-
+cf api https://api.fr.cloud.gov
+cf auth "$CF_USERNAME" "$CF_PASSWORD"
+cf target -o "$CF_ORG" -s "$CF_SPACE"
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 #curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
 #sudo dpkg -i cf-cli_amd64.deb
@@ -35,13 +37,9 @@ fi
 ## Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
 ## $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
 
-echo 'cf api https://api.fr.cloud.gov'
-echo 'cf auth "$CF_USERNAME" "$CF_PASSWORD"'
-echo 'cf target -o "$CF_ORG" -s "$CF_SPACE"'
+
+
 echo "cf push $BRANCH -f ./manifest.yml "
 
-cf api https://api.fr.cloud.gov
-cf auth "$CF_USERNAME" "$CF_PASSWORD"
-cf target -o "$CF_ORG" -s "$CF_SPACE"
 cf push $BRANCH -f ./manifest.yml   
 
