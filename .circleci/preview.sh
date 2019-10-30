@@ -40,6 +40,5 @@ fi
 
 
 echo "cf push $BRANCH -f ./manifest.yml "
-
 cf push $BRANCH -f ./manifest.yml   
 
