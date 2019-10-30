@@ -1,6 +1,6 @@
 #!/bin/bash
-BRANCH=$1
-#BRANCH=`git rev-parse --abbrev-ref HEAD`
+
+BRANCH=`git rev-parse --abbrev-ref HEAD`
 #curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
 #sudo dpkg -i cf-cli_amd64.deb
 PREVIEWS=`cf apps | grep started  | cut -d " " -f 1`
