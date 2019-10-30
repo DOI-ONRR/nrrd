@@ -124,7 +124,7 @@ jobs:
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
             cf target -o "$CF_ORG" -s "$CF_SPACE"
             cf push dev-onrr -f ./manifest.yml
-        - run:
+      - run:
           name: clean up
           command: |
             which cf
