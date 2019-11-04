@@ -1,3 +1,6 @@
+const fetch=require('isomorphic-fetch')
+const {createHttpLink} = require("apollo-link-http")
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -27,6 +30,22 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+	resolve: `gatsby-source-graphql`,
+	options: {
+	    typeName: `hasura`,
+	    fieldName: `onrr`,
+	    createLink: () => {
+		return createHttpLink({
+		    uri: 'http://ec2-18-191-111-214.us-east-2.compute.amazonaws.com/v1/graphql',
+		    headers: {
+			'x-hasura-admin-secret': 'qUbNGe1ogKcmCDw0XxIAiUbhQEjpGm19'
+		    },
+		    fetch
+		})
+	    }
+	}
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

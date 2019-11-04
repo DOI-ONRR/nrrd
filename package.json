@@ -4,11 +4,13 @@
   "version": "0.1.0",
   "author": "Mojo Nichols <mojo.nichols",
   "dependencies": {
-    "typescript": "^2.8.0",
-    "eslint-plugin-flowtype": "^2.0",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
     "acorn": "^6.1.1",
+    "apollo-boost": "^0.4.4",
+    "apollo-link": "^1.2.13",
+    "apollo-link-http": "^1.5.16",
+    "eslint-plugin-flowtype": "^2.0",
     "gatsby": "^2.16.1",
     "gatsby-image": "^2.2.29",
     "gatsby-plugin-manifest": "^2.2.23",
@@ -16,11 +18,13 @@
     "gatsby-plugin-react-helmet": "^3.1.13",
     "gatsby-plugin-sharp": "^2.2.31",
     "gatsby-source-filesystem": "^2.1.33",
+    "gatsby-source-graphql": "^2.1.21",
     "gatsby-transformer-sharp": "^2.2.23",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "typescript": "^2.8.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
