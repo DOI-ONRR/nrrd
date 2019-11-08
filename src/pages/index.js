@@ -8,7 +8,7 @@ import SEO from "../components/seo"
 import { graphql } from 'gatsby';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-
+import { MapSection } from '../components/sections/MapSection'
 
 export const STATIC_QUERY=graphql`
 {  onrr {   
@@ -40,7 +40,29 @@ const IndexPage = ({
     return (
     
   <Layout>
-    <SEO title="Home" />
+	    <SEO title="Home" />
+	    {/*	    <MapSection 
+	info="Federal revenue by state and offshore region for fiscal year 2019"
+	states={this.props.data.states_data.states}
+	offshore_regions={this.props.data.offshore_data.offshore_regions}
+	mapFeatures="states"
+	mapTitle="Revenue"
+	mapJson="/maps/land/us-topology.json"
+	mapOffshoreJson="/maps/offshore/offshore.json"
+	mapJsonObject={{us:mapJson, offshore:mapOffshoreJson}}
+	onClick={ (d,i) => {
+	    let state=fipsAbbrev[d.id] || d.id;
+	    let url="/explore/"+state
+	    if(state.match(/offshore/)) {
+		url="/explore/"+state;
+	    }
+	    url=withPrefixGatsby(url);
+	    window.location.href = url;
+	    
+	} }
+	    />
+	     */}
+	    
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
 	<p>Now go build something great.</p>
