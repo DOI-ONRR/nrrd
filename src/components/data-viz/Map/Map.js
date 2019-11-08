@@ -5,7 +5,7 @@ import * as d3 from 'd3'
 import * as topojson from 'topojson-client'
 //import utils from '../../../js/utils'
 //import { , withPrefix } from '../../utils/temp-link'
-import styles from './Map.module.scss'
+//import styles from './Map.module.scss'
 
 /**
 *  Map  a component for rendering maps dynamically from  data
@@ -86,7 +86,7 @@ const Map = (props) => {
      
  })  //use effect
   return (
-	  <div className={styles.map} ref={elemRef} >
+	  <div className={ 'map' /*styles.map*/} ref={elemRef} >
           </div>
 	  
 
@@ -117,11 +117,12 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick) => {
   	  .translate([width/2, height/2])    // translate to center of screen
 	  .scale([width]);          // scale things down so see entire US
     //const path = d3.geoPath();
-    projection.scale=function(_) {
+/*    projection.scale=function(_) {
 	if (!arguments.length) return lower48.scale();
 	lower48.scale(_), alaska.scale(_ * 0.70), hawaii.scale(_);
 	return albersUsa.translate(lower48.translate());
     };
+*/
     const path = d3.geoPath(projection);
 
     console.debug(projection.scale);
@@ -309,9 +310,9 @@ const legend = (g,title,data,color,labels) => {
     const width = 200;
     const height= 20;
     let sorted=data.values.sort((a,b)=>a-b);
-    let lowest=utils.formatToSigFig_Dollar(Math.floor(sorted[0]),3);
-    let median=utils.formatToSigFig_Dollar(Math.floor(sorted[Math.floor(sorted.length/2)]),3);
-    let highest=utils.formatToSigFig_Dollar(Math.floor(sorted[sorted.length-1]),3);
+    let lowest=0 //utils.formatToSigFig_Dollar(Math.floor(sorted[0]),3);
+    let median=5 //utils.formatToSigFig_Dollar(Math.floor(sorted[Math.floor(sorted.length/2)]),3);
+    let highest=12000 //utils.formatToSigFig_Dollar(Math.floor(sorted[sorted.length-1]),3);
     for(let ii=0;ii<sorted.length; ii++) {
 	g.append("rect")
 	    .attr("x",ii*width/sorted.length)

@@ -6,7 +6,7 @@ import { useStaticQuery, graphql, withPrefix } from "gatsby"
 import Link from 'gatsby-link'
 //import LocationSelector from '../../selectors/LocationSelector'
 //import Select from '../../selectors/Select'
-import styles from './MapSection.module.scss'
+//import styles from './MapSection.module.scss'
 import Map from '../../data-viz/Map' 
 
 /**
@@ -66,13 +66,13 @@ query DisbursementSummaryQuery {
     let mapJsonObject=props.mapJsonObject;
     let offshore_regions =props.offshore_regions || []
 return (
-    <section className={styles.root}>
-      <div className={styles.container }>
-	<div className={styles.containerLeft}>
+    <section className={'root' /*styles.root*/}>
+      <div className={'container' /*styles.container*/ }>
+	<div className={'containerLeft' /*styles.containerLeft*/}>
 	  <h3>{props.title}</h3>
 	  <p>{props.info}</p>
 	</div>
-	<div className={styles.containerRight}>
+	<div className={'containerRigth' /* styles.containerRight */}>
 	{/*<LocationSelector
 	    default='Choose location'
             label="Explore a state or offshore region:" 
@@ -90,7 +90,7 @@ return (
 	   
 	  
 	</div>
-	<div className={styles.containerBottom}><Map mapFeatures={props.mapFeatures} mapData={data} offshoreData={offshore_data} mapJson={mapJson} mapOffshoreJson={offshoreJson} mapJsonObject={mapJsonObject} colorScheme={props.mapColor} offshoreColorScheme={props.offshoreMapColor} mapTitle={props.mapTitle} onClick={onClick} /> </div>
+	<div className={'containerBottom' /*styles.containerBottom*/}><Map mapFeatures={props.mapFeatures} mapData={data} offshoreData={offshore_data} mapJson={mapJson} mapOffshoreJson={offshoreJson} mapJsonObject={mapJsonObject} colorScheme={props.mapColor} offshoreColorScheme={props.offshoreMapColor} mapTitle={props.mapTitle} onClick={onClick} /> </div>
 	
 	
 	
@@ -281,9 +281,12 @@ const state_fips={
   "WV": "54",
   "WY": "56"
 }
-    
+
+
 const county_fips= {
-"Baldwin":"01003",
+}
+
+    /*"Baldwin":"01003",
 "Bibb":"01007",
 "Blount":"01009",
 "Clarke":"01025",
@@ -555,6 +558,6 @@ const county_fips= {
 "Uinta":"56041",
 "Weston":"56045"
 }
-
+*/
 
 
