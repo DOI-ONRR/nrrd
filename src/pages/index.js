@@ -18,7 +18,8 @@ import Box from '@material-ui/core/Box'
 import { graphql } from 'gatsby';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-
+//import { MapSection } from '../components/sections/MapSection'
+import { useApolloClient } from "@apollo/react-hooks";
 
 export const STATIC_QUERY=graphql`
 {  onrr {   
@@ -33,9 +34,17 @@ const APOLLO_QUERY=gql`
  commodity(distinct_on: fund_type) {
     fund_type
   }
+  foo @client
+
 
 }`
 
+const STATE_QUERY=gql`
+{
+foo @client
+}`
+
+const filter=false;
 const useStyles = makeStyles(theme => ({
   section: {
     marginTop: theme.spacing(0)
@@ -56,6 +65,13 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+const FooBar = () => {
+    
+    const { data, client } = useQuery(STATE_QUERY)
+    console.debug(data)
+    console.debug(client)
+    return(<div><div>FOO</div><div>{data && data.foo}</div></div>);
+}
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -93,11 +109,23 @@ const IndexPage = ({
     }
 }) => {
     console.debug(commodity);
-    const { loading, error, data } = useQuery(APOLLO_QUERY);
+    const { loading, error, data, client } = useQuery(APOLLO_QUERY);
     console.debug(data);
     const classes = useStyles()
     const theme = useTheme();
 
+    const onLink = (e, fund) => {
+	console.debug(e);
+	e.preventDefault();
+	client.writeData({ data: { foo: fund } })
+
+    
+
+    }
+
+    
+
+    
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -128,7 +156,7 @@ const IndexPage = ({
     <Container maxWidth="lg">
       <h3 className="h3-bar">&nbsp;</h3>
       <Typography className={classes.heroContent} variant="h5">
-      When companies extract energy and mineral resources on property leased from the federal government and Native Americans, they pay bonuses, rent, and royalties. The Office of Natural Resources Revenue (ONRR) collects and disburses revenue from federal lands and waters to different agencies, funds, and local governments for public use. All revenue collected from extraction on Native American lands is disbursed to Native American tribes, nations, or individuals.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </Typography>
     </Container>
     <Container maxWidth="lg">

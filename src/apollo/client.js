@@ -7,4 +7,5 @@ export const client = new ApolloClient({
 			'x-hasura-admin-secret': 'qUbNGe1ogKcmCDw0XxIAiUbhQEjpGm19'
 		    },
     fetch,
+    resolvers: {}
 });
