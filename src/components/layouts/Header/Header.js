@@ -1,15 +1,14 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { Fragment } from "react"
+import { isIE } from 'react-device-detect'
 
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
 
+import { BrowserBanner } from '../BrowserBanner'
 import { Search } from '../../utils/Search'
 
 import NRRDLogo from '../../../img/NRRD-logo.svg'
@@ -46,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.common.black
   },
   headerImage: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
     marginBottom: theme.spacing(0),
     width: '325px',
     [theme.breakpoints.down('sm')]: {
@@ -89,7 +88,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& li': {
       position: 'relative',
-      top: theme.spacing(0)
+      top: theme.spacing(1.5)
     },
     '& li:last-child': {
       position: 'relative',
@@ -98,10 +97,10 @@ const useStyles = makeStyles(theme => ({
   },
   bottom: {
     '& li > a': {
-      fontSize: theme.typography.h6.fontSize
+      fontSize: theme.typograph
     },
     '& li.active a': {
-      fontWeight: theme.typography.fontWeightBold
+      fontWeight: theme.typography.button.fontSize
     },
     '& li:last-child a': {
       marginRight: theme.spacing(0)
@@ -113,82 +112,85 @@ const Header = ({ siteTitle }) => {
   const classes = useStyles()
 
   return (
-    <AppBar position="fixed" className={classes.root}>
-      <Toolbar className={classes.toolbar}>
-        {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton> */}
-        <Typography variant="h6" className={classes.title}>
-          <Link to="/">
-            <img
-              className={classes.headerImage}
-              src={NRRDLogo}
-              alt="US Department of the Interior Natural Resources Revenue Data"
-            />
-          </Link>
-        </Typography>
-        <div className={classes.headerRight}>
-          <nav className={`${ classes.headerRight } ${ classes.top }`}>
-            <ul>
-              <li>
-                <a
-                  href="#"
-                  className={classes.menuLink}
-                  alt="this is the glossary drawer"
-                >
-                  Glossary
-                </a>
-              </li>
-              <li>
-                <Link className={classes.menuLink} to="/downloads/">
-                  Download data{' '}
-                </Link>
-              </li>
-              <li>
-                <Search />
-              </li>
-            </ul>
-          </nav>
-          <nav className={`${ classes.headerRight } ${ classes.bottom }`}>
+    <Fragment>
+      {isIE && <BrowserBanner />}
+      <AppBar position="static" className={classes.root}>
+        <Toolbar className={classes.toolbar}>
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton> */}
+          <Typography variant="h6" className={classes.title}>
+            <Link to="/">
+              <img
+                className={classes.headerImage}
+                src={NRRDLogo}
+                alt="US Department of the Interior Natural Resources Revenue Data"
+              />
+            </Link>
+          </Typography>
+          <div className={classes.headerRight}>
+            <nav className={`${ classes.headerRight } ${ classes.top }`}>
               <ul>
                 <li>
-                  <Link 
-                    className={classes.menuLink} 
-                    to="/"
-                    activeStyle={{ backgroun: "pink" }}
-                    partiallyActive={true}>
-                      Home
+                  <a
+                    href="#"
+                    className={classes.menuLink}
+                    alt="this is the glossary drawer"
+                  >
+                    Glossary
+                  </a>
+                </li>
+                <li>
+                  <Link className={classes.menuLink} to="/downloads/">
+                    Download data{' '}
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    className={classes.menuLink} 
-                    to="/how-it-works/"
-                    partiallyActive={true}>
-                      How it works
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    className={classes.menuLink} 
-                    to="/explore/"
-                    partiallyActive={true}>
-                      Explore data
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    className={classes.menuLink} 
-                    to="/about/"
-                    partiallyActive={true}>
-                      About{' '}
-                  </Link>
+                  <Search />
                 </li>
               </ul>
             </nav>
-            </div>
-      </Toolbar>
-    </AppBar>
+            <nav className={`${ classes.headerRight } ${ classes.bottom }`}>
+                <ul>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/"
+                      activeStyle={{ backgroun: "pink" }}
+                      partiallyActive={true}>
+                        Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/how-it-works/"
+                      partiallyActive={true}>
+                        How it works
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/explore/"
+                      partiallyActive={true}>
+                        Explore data
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/about/"
+                      partiallyActive={true}>
+                        About{' '}
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+              </div>
+        </Toolbar>
+      </AppBar>
+    </Fragment>
   )
 }
 

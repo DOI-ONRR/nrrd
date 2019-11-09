@@ -27,13 +27,16 @@
     "gatsby-transformer-sharp": "^2.2.23",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
+    "react-device-detect": "^1.9.10",
     "react-dom": "^16.10.2",
     "react-helmet": "^5.2.1",
+    "react-swipeable-views": "^0.13.3",
     "typescript": "^2.8.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.5.2",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "svg-react-loader": "^0.4.6"
   },
   "keywords": [
     "gatsby"

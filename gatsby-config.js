@@ -16,7 +16,18 @@ const config = {
     description: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
     version: 'v5.4.7',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
-    author: ''
+    author: '',
+    dataRetrieval: {
+      name: 'Data Retrieval',
+      email: 'onrrdatarequests@onrr.gov'
+    },
+    informationDataManagement: {
+      name: 'Information and Data Management',
+      street: '1849 C Street NW MS 5134',
+      city: 'Washington, D.C.',
+      zip: '20240',
+      email: 'nrrd@onrr.gov'
+    }
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
