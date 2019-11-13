@@ -7,6 +7,7 @@ import DefaultLayout from "../components/layouts/DefaultLayout"
 import { WhatsNew } from '../components/sections/WhatsNew'
 import Image from "../components/image"
 import SEO from "../components/seo"
+import { GlossaryTerm } from '../components/utils/GlossaryTerm'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -66,12 +67,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const FooBar = () => {
-    
-    const { data, client } = useQuery(STATE_QUERY)
-    console.debug(data)
-    console.debug(client)
-    return(<div><div>FOO</div><div>{data && data.foo}</div></div>);
+
+  const { data, client } = useQuery(STATE_QUERY)
+  console.debug(data)
+  console.debug(client)
+  return(<div><div>FooBar</div><div>{data && data.foo}</div></div>);
 }
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -115,12 +117,9 @@ const IndexPage = ({
     const theme = useTheme();
 
     const onLink = (e, fund) => {
-	console.debug(e);
-	e.preventDefault();
-	client.writeData({ data: { foo: fund } })
-
-    
-
+      console.debug(e);
+      e.preventDefault();
+      client.writeData({ data: { foo: fund } })
     }
 
     
@@ -154,9 +153,19 @@ const IndexPage = ({
       ]}
     />
     <Container maxWidth="lg">
-      <h3 className="h3-bar">&nbsp;</h3>
+      <span className={classes.greenBar} />
       <Typography className={classes.heroContent} variant="h5">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        When companies extract energy and mineral resources on property
+        leased from the federal government and Native Americans, they pay{' '}
+        <GlossaryTerm termKey="Bonus">bonuses</GlossaryTerm>,{' '}
+        <GlossaryTerm>rent</GlossaryTerm>, and{' '}
+        <GlossaryTerm termKey="Royalty">royalties</GlossaryTerm>. The
+        Office of Natural Resources Revenue (ONRR) collects and{' '}
+        <GlossaryTerm termKey="disbursement">disburses</GlossaryTerm>{' '}
+        revenue from federal lands and waters to different agencies,
+        funds, and local governments for public use. All revenue collected
+        from extraction on Native American lands is disbursed to Native
+        American tribes, nations, or individuals.
       </Typography>
     </Container>
     <Container maxWidth="lg">
@@ -199,18 +208,20 @@ const IndexPage = ({
     <Container className={classes.fluid} maxWidth={false}>
       <WhatsNew />
     </Container>
-    {/* <Container maxWidth="lg">
+    <Container maxWidth="lg">
+      <FooBar />
       {commodity.map((item,i)=>{
-        return  (<p key={i}>{item.fund_type}</p>)
+        return  (<p key={i}><button onClick={(e)=>{onLink(e,item.fund_type)}} >{item.fund_type}</button></p>)
       })}
       {loading && <p>Loading data...</p>}
       {error && <p>Error: ${error.message}</p>}
       {data && data.commodity &&
-      data.commodity.map((fund,y)=>(<span key={y}>{fund.fund_type}</span>))
+        data.commodity.map((fund,y)=>(<span onClick={onLink} key={y}>{fund.fund_type}</span>))
       }
-    </Container> */}
+    </Container>
 
   </DefaultLayout>
   )
 }
+
 export default IndexPage

@@ -7,8 +7,8 @@ import logo from '../../../img/us-flag-small.png'
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#f0f6fa',
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0.5),
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     fontFamily: theme.typography.fontFamily,

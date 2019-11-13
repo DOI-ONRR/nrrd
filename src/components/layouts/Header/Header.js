@@ -1,12 +1,18 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React, { Fragment } from "react"
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import React, { Fragment, useState, useReducer } from 'react'
 import { isIE } from 'react-device-detect'
+import GlossaryReducer from '../../../state/reducers/glossary'
 
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import MenuIcon from '@material-ui/icons/Menu'
+import CloseIcon from '@material-ui/icons/Close'
+import Hidden from '@material-ui/core/Hidden'
+import Drawer from '@material-ui/core/Drawer'
 
 import { BrowserBanner } from '../BrowserBanner'
 import { Search } from '../../utils/Search'
@@ -20,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     backgroundColor: theme.palette.common.white,
     color: theme.palette.common.black,
-    // borderBottom: '2px solid #cde3c3',
+    borderBottom: '2px solid #cde3c3',
     maxHeight: '130px'
   },
   menuLink: {
@@ -32,7 +38,27 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.common.black
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(0),
+    cursor: 'pointer'
+  },
+  mobileMenu: {
+    padding: theme.spacing(2),
+    '& ul': {
+      listStyle: 'none',
+      margin: theme.spacing(0)
+    },
+    '& li:first-child': {
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(4)
+    },
+    '& a:hover': {
+      textDecoration: 'underline',
+      cursor: 'pointer'
+    }
+  },
+  mobileMenuCloseButton: {
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(2)
   },
   title: {
     flexGrow: 1,
@@ -108,17 +134,36 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+const initialState = {
+  glossaryTerm: '',
+  glossaryOpen: false
+}
+
 const Header = ({ siteTitle }) => {
   const classes = useStyles()
+
+  const [state, dispatch] = React.useReducer(GlossaryReducer, initialState)
+
+  const handleChange = (term) => {
+    dispatch({
+      type: 'GLOSSARY_TERM_SELECTED',
+      glossaryTerm: term
+    })
+  }
+
+  const toggleDrawer = (side, open) => event => {
+    // if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    //   return;
+    // }
+
+    // setState({ ...state, [side]: open });
+  };
 
   return (
     <Fragment>
       {isIE && <BrowserBanner />}
       <AppBar position="static" className={classes.root}>
         <Toolbar className={classes.toolbar}>
-          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
           <Typography variant="h6" className={classes.title}>
             <Link to="/">
               <img
@@ -128,14 +173,16 @@ const Header = ({ siteTitle }) => {
               />
             </Link>
           </Typography>
-          <div className={classes.headerRight}>
-            <nav className={`${ classes.headerRight } ${ classes.top }`}>
+          <Hidden only={['xs', 'sm']}>
+            <div className={classes.headerRight}>
+              <nav className={`${ classes.headerRight } ${ classes.top }`}>
               <ul>
                 <li>
                   <a
                     href="#"
                     className={classes.menuLink}
                     alt="this is the glossary drawer"
+                    onClick={() => handleChange()}
                   >
                     Glossary
                   </a>
@@ -150,7 +197,7 @@ const Header = ({ siteTitle }) => {
                 </li>
               </ul>
             </nav>
-            <nav className={`${ classes.headerRight } ${ classes.bottom }`}>
+              <nav className={`${ classes.headerRight } ${ classes.bottom }`}>
                 <ul>
                   <li>
                     <Link 
@@ -186,8 +233,73 @@ const Header = ({ siteTitle }) => {
                     </Link>
                   </li>
                 </ul>
+            </nav>
+            </div>
+          </Hidden>
+          
+          <Hidden mdUp>
+            <IconButton edge="start" onClick={toggleDrawer('right', true)} className={classes.menuButton} color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+            <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
+              <CloseIcon className={classes.mobileMenuCloseButton} onClick={toggleDrawer('right', false)} />
+              <nav className={`${ classes.mobileMenu }`}>
+                <ul>
+                  <li>
+                    <Search />
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/"
+                      activeStyle={{ backgroun: "pink" }}
+                      partiallyActive={true}>
+                        Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/how-it-works/"
+                      partiallyActive={true}>
+                        How it works
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/explore/"
+                      partiallyActive={true}>
+                        Explore data
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/about/"
+                      partiallyActive={true}>
+                        About{' '}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className={classes.menuLink} to="/downloads/">
+                      Download data{' '}
+                    </Link>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className={classes.menuLink}
+                      alt="this is the glossary drawer"
+                    >
+                      Glossary
+                    </a>
+                  </li>
+                </ul>
               </nav>
-              </div>
+            </Drawer>
+          </Hidden>
+          
         </Toolbar>
       </AppBar>
     </Fragment>

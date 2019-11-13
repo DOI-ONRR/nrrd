@@ -5,18 +5,19 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { Fragment } from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql, withPrefix } from "gatsby"
-import SEO from "../../seo"
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
+import { useStaticQuery, graphql, withPrefix } from 'gatsby'
+import SEO from '../../seo'
 import { makeStyles } from '@material-ui/core/styles'
 
 
-import { Banner } from "../Banner"
-import { Header } from "../Header"
+import { Banner } from '../Banner'
+import { Header } from '../Header'
 import { Footer } from '../Footer'
 
-import "./DefaultLayout.css"
+import './DefaultLayout.css'
+import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
 
 // Render Meta Image with Prefix SVG
 function renderMetaImage () {
@@ -79,6 +80,20 @@ const useStyles = makeStyles(theme => ({
 const DefaultLayout = ({ children }) => {
   const classes = useStyles()
 
+  const initialState = {}
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'glossaryTerm':
+        return {
+          ...state, 
+          glossaryTerm: ''
+        }
+      default: 
+        return state
+    }
+  }
+
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -91,45 +106,52 @@ const DefaultLayout = ({ children }) => {
 
   return (
     <Fragment>
-      <SEO
-        htmlAttributes={{ lang: 'en' }}
-        meta={[
-          { name: 'google-site-verification', content: 'OxyG3U-Vtui-uK6wHUeOw83OgdfcfxvsWWZcb5x7aZ0' },
-          // Mobile Specific Metas
-          { name: 'HandheldFriendly', content: 'True' },
-          { name: 'MobileOptimized', content: '320' },
+        <SEO
+          htmlAttributes={{ lang: 'en' }}
+          meta={[
+            { name: 'google-site-verification', content: 'OxyG3U-Vtui-uK6wHUeOw83OgdfcfxvsWWZcb5x7aZ0' },
+            // Mobile Specific Metas
+            { name: 'HandheldFriendly', content: 'True' },
+            { name: 'MobileOptimized', content: '320' },
 
-          // type
-          { name: 'og:type', content: 'website' },
+            // type
+            { name: 'og:type', content: 'website' },
 
-          // title
-          { name: 'og:title', content: 'Home | Natural Resources Revenue Data' },
-          { name: 'twitter:title', content: 'Home | Natural Resources Revenue Data' },
+            // title
+            { name: 'og:title', content: 'Home | Natural Resources Revenue Data' },
+            { name: 'twitter:title', content: 'Home | Natural Resources Revenue Data' },
 
-          // img
-          { name: 'og:image', content: renderMetaImage() },
-          { name: 'twitter:card', content: 'summary_large_image' },
-          { name: 'twitter:image', content: renderMetaImage() },
+            // img
+            { name: 'og:image', content: renderMetaImage() },
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:image', content: renderMetaImage() },
 
-          // description
-          { name: 'og:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
-          { name: 'twitter:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
-        ]}
-      ></SEO>
-      <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
-      <Banner />
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: `100%`,
-          padding: `0`,
-          paddingTop: 0,
-        }}
-      >
-        <main>{children}</main>
-      </div>
-      <Footer version={data && data.site.siteMetadata.version} />
+            // description
+            { name: 'og:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
+            { name: 'twitter:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
+          ]}
+        ></SEO>
+
+        <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+
+        <Banner />
+
+        <Header siteTitle={data.site.siteMetadata.title} />
+        
+        <GlossaryDrawer />
+
+        <div
+          style={{
+            margin: `0 auto`,
+            maxWidth: `100%`,
+            padding: `0`,
+            paddingTop: 0,
+          }}
+        >
+          <main>{children}</main>
+        </div>
+
+        <Footer version={data && data.site.siteMetadata.version} />
     </Fragment>
   )
 }
