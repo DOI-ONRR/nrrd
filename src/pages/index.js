@@ -11,6 +11,7 @@ import { GlossaryTerm } from '../components/utils/GlossaryTerm'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
@@ -60,9 +61,13 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(5),
+    paddingBottom: theme.spacing(4),
     fontWeight: 300,
-    marginTop: 0
+    marginTop: 0,
+    marginBottom: theme.spacing(4)
+  },
+  paperRoot: {
+    background: theme.palette.secondary.main
   }
 }))
 
@@ -121,9 +126,6 @@ const IndexPage = ({
       e.preventDefault();
       client.writeData({ data: { foo: fund } })
     }
-
-    
-
     
     const [value, setValue] = React.useState(0);
 
@@ -136,7 +138,7 @@ const IndexPage = ({
     }
 
     return (
-    
+  
   <DefaultLayout>
     <SEO
       title="Home | Natural Resources Revenue Data"
@@ -168,8 +170,10 @@ const IndexPage = ({
         American tribes, nations, or individuals.
       </Typography>
     </Container>
+
     <Container maxWidth="lg">
-      <Tabs
+      <Paper square className={classes.paperRoot}>
+        <Tabs
           value={value}
           onChange={handleChange}
           indicatorColor="primary"
@@ -177,12 +181,14 @@ const IndexPage = ({
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Revenue" {...a11yProps(0)} />
-          <Tab label="Disbursments" {...a11yProps(1)} />
-          <Tab label="Production" {...a11yProps(2)} />
-          <Tab label="Data by State" {...a11yProps(3)} />
+          <Tab className={classes.tabLabel} label="Revenue" {...a11yProps(0)} />
+          <Tab className={classes.tabLabel} label="Disbursments" {...a11yProps(1)} />
+          <Tab className={classes.tabLabel} label="Production" {...a11yProps(2)} />
+          <Tab className={classes.tabLabel} label="Data by State" {...a11yProps(3)} />
         </Tabs>
-        <SwipeableViews
+      </Paper>
+     
+      <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
@@ -208,7 +214,7 @@ const IndexPage = ({
     <Container className={classes.fluid} maxWidth={false}>
       <WhatsNew />
     </Container>
-    <Container maxWidth="lg">
+    {/* <Container maxWidth="lg">
       <FooBar />
       {commodity.map((item,i)=>{
         return  (<p key={i}><button onClick={(e)=>{onLink(e,item.fund_type)}} >{item.fund_type}</button></p>)
@@ -218,7 +224,7 @@ const IndexPage = ({
       {data && data.commodity &&
         data.commodity.map((fund,y)=>(<span onClick={onLink} key={y}>{fund.fund_type}</span>))
       }
-    </Container>
+    </Container> */}
 
   </DefaultLayout>
   )

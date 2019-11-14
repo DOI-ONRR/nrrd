@@ -1,7 +1,25 @@
-import React from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
-import { client } from './client';
+import React from 'react'
+import { ApolloProvider } from '@apollo/react-hooks'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { client } from './client'
+
+import { GlossaryProvider } from '../../src/glossaryContext'
+
+// https://react-theming.github.io/create-mui-theme/
+// https://material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=5c737f&secondary.color=cde3c3
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#5c737f' },
+    secondary: { main: '#cde3c3' }
+  }
+})
 
 export const wrapRootElement = ({ element }) => (
-  <ApolloProvider client={client}>{element}</ApolloProvider>
+  <ThemeProvider theme={theme}>
+    <ApolloProvider client={client}>
+      <GlossaryProvider>
+        {element}
+      </GlossaryProvider>
+    </ApolloProvider>
+  </ThemeProvider>
 );
