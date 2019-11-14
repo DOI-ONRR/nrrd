@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
   heroContent: {
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(5),
     fontWeight: 300,
     marginTop: 0

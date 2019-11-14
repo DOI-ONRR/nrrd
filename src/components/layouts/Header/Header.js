@@ -1,8 +1,8 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
-import React, { Fragment, useState, useReducer } from 'react'
+import React, { Fragment, useState, useContext } from 'react'
 import { isIE } from 'react-device-detect'
-import GlossaryReducer from '../../../state/reducers/glossary'
+import { GlossaryContext } from '../../../glossaryContext'
 
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -16,6 +16,7 @@ import Drawer from '@material-ui/core/Drawer'
 
 import { BrowserBanner } from '../BrowserBanner'
 import { Search } from '../../utils/Search'
+
 
 import NRRDLogo from '../../../img/NRRD-logo.svg'
 
@@ -35,7 +36,11 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(2),
     cursor: 'pointer',
     textDecoration: 'none',
-    color: theme.palette.common.black
+    color: theme.palette.common.black,
+    fontWeight: 400
+  },
+  menuActiveLink: {
+    fontWeight: 600
   },
   menuButton: {
     marginRight: theme.spacing(0),
@@ -134,30 +139,23 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const initialState = {
-  glossaryTerm: '',
-  glossaryOpen: false
-}
 
-const Header = ({ siteTitle }) => {
+const Header = props => {
   const classes = useStyles()
 
-  const [state, dispatch] = React.useReducer(GlossaryReducer, initialState)
+  const [state, setState ] = useState({
+    right: false
+  })
 
-  const handleChange = (term) => {
-    dispatch({
-      type: 'GLOSSARY_TERM_SELECTED',
-      glossaryTerm: term
-    })
+  const { dispatch } = useContext(GlossaryContext)
+
+  const toggleMobileDrawer = (side, open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [side]: open });
   }
-
-  const toggleDrawer = (side, open) => event => {
-    // if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-    //   return;
-    // }
-
-    // setState({ ...state, [side]: open });
-  };
 
   return (
     <Fragment>
@@ -182,7 +180,7 @@ const Header = ({ siteTitle }) => {
                     href="#"
                     className={classes.menuLink}
                     alt="this is the glossary drawer"
-                    onClick={() => handleChange()}
+                    onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: true })}
                   >
                     Glossary
                   </a>
@@ -203,7 +201,7 @@ const Header = ({ siteTitle }) => {
                     <Link 
                       className={classes.menuLink} 
                       to="/"
-                      activeStyle={{ backgroun: "pink" }}
+                      activeClassName={classes.menuActiveLink}
                       partiallyActive={true}>
                         Home
                     </Link>
@@ -212,6 +210,7 @@ const Header = ({ siteTitle }) => {
                     <Link 
                       className={classes.menuLink} 
                       to="/how-it-works/"
+                      activeClassName={classes.menuActiveLink}
                       partiallyActive={true}>
                         How it works
                     </Link>
@@ -220,6 +219,7 @@ const Header = ({ siteTitle }) => {
                     <Link 
                       className={classes.menuLink} 
                       to="/explore/"
+                      activeClassName={classes.menuActiveLink}
                       partiallyActive={true}>
                         Explore data
                     </Link>
@@ -228,6 +228,7 @@ const Header = ({ siteTitle }) => {
                     <Link 
                       className={classes.menuLink} 
                       to="/about/"
+                      activeClassName={classes.menuActiveLink}
                       partiallyActive={true}>
                         About{' '}
                     </Link>
@@ -238,11 +239,11 @@ const Header = ({ siteTitle }) => {
           </Hidden>
           
           <Hidden mdUp>
-            <IconButton edge="start" onClick={toggleDrawer('right', true)} className={classes.menuButton} color="inherit" aria-label="menu">
+            <IconButton edge="start" onClick={toggleMobileDrawer('right', true)} className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
-            <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
-              <CloseIcon className={classes.mobileMenuCloseButton} onClick={toggleDrawer('right', false)} />
+            <Drawer anchor="right" open={state.right} onClose={toggleMobileDrawer('right', false)}>
+              <CloseIcon className={classes.mobileMenuCloseButton} onClick={toggleMobileDrawer('right', false)} />
               <nav className={`${ classes.mobileMenu }`}>
                 <ul>
                   <li>
@@ -291,6 +292,7 @@ const Header = ({ siteTitle }) => {
                       href="#"
                       className={classes.menuLink}
                       alt="this is the glossary drawer"
+                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: true })}
                     >
                       Glossary
                     </a>

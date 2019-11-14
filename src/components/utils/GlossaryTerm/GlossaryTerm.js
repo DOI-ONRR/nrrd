@@ -34,11 +34,10 @@ const GlossaryTerm = ({ termKey, termkey, children, glossaryTermSelected, glossa
 
   return (
     <Fragment>
-      <span className={classes.term}>A Glossary Term</span><GlossaryIcon className={classes.iconQuestion} />
-      {/* <span className={classes.term} title="Click to define" tabIndex="0"
+      <span className={classes.term} title="Click to define" tabIndex="0"
       onClick={() => glossaryTermSelected(getTerm())}>
       {children}<GlossaryIcon className={classes.iconQuestion} />
-      </span> */}
+      </span>
     </Fragment>
   )
 }

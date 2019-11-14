@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useReducer, useContext, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
@@ -9,6 +9,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import TextField from '@material-ui/core/TextField'
+
+import { GlossaryContext } from '../../../glossaryContext'
 
 import GlossaryIcon from '-!svg-react-loader!../../../img/svg/icon-question-circle.svg'
 
@@ -42,28 +44,36 @@ const useStyles = makeStyles(theme => ({
 const GlossaryDrawer = props => {
 
   const classes = useStyles()
-  const [state, setState] = useState({
-    right: false,
-    glossaryTerm: props.glossaryTerm || '',
-    toggleHidden: true,
-    showTerm: true
-  })
+  const { state, dispatch } = useContext(GlossaryContext)
+
+  console.log('glossary state: ', state)
+  // const [state, setState] = useState({
+  //   right: false,
+  //   glossaryTerm: props.glossaryTerm || '',
+  //   toggleHidden: true,
+  //   showTerm: true
+  // })
 
   let filteredTerms = filterGlossaryTerms(state.glossaryTerm)
 
+  const handleClose = () => {
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: false })
+  }
+
   const handleClickAway = () => {
-    setState({ ...state, right: false })
+    // setState({ ...state, right: false })
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: true})
   }
 
   const handleChange = event => {
-    setState({ ...state, glossaryTerm: event.target.value })
+    // setState({ ...state, glossaryTerm: event.target.value })
   }
 
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
-    setState({ ...state, [side]: open })
+    // setState({ ...state, [side]: open })
   }
 
   const glossaryList = side => (
@@ -80,9 +90,9 @@ const GlossaryDrawer = props => {
           margin="normal"
           variant="outlined"
           placeholder="e.g. Fossil fuel"
-          value={state.glossaryTerm}
+          // value={state.glossaryTerm}
           onChange={handleChange}
-          tabIndex={state.toggleHidden && -1}
+          // tabIndex={state.toggleHidden && -1}
         />
       </div>
       
@@ -105,17 +115,10 @@ const GlossaryDrawer = props => {
     </div>
   )
 
-  useEffect(() => {
-    if (props.glossaryOpen) {
-      setState({ right: true })
-      props.glossaryTermSelected('', false)
-    }
-  }, [props.glossaryOpen])
-
   return (
     <Fragment>
       <ClickAwayListener onClickAway={handleClickAway}>
-        <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
+        <Drawer anchor="right" open={state.glossaryOpen} onClose={handleClose}>
           {glossaryList('right')}
         </Drawer>
       </ClickAwayListener>

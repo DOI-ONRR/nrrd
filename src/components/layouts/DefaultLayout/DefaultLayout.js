@@ -19,6 +19,8 @@ import { Footer } from '../Footer'
 import './DefaultLayout.css'
 import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
 
+import { GlossaryProvider } from '../../../glossaryContext'
+
 // Render Meta Image with Prefix SVG
 function renderMetaImage () {
   return withPrefix('/img/unfurl_image.png')
@@ -30,6 +32,10 @@ const useStyles = makeStyles(theme => ({
       background: (theme.paletteType === 'light') ? '#000' : '#fff',
       margin: 0,
       fontFamily: theme.typography.fontFamily
+    },
+    a: {
+      color: '#1478a6',
+      textDecoration: 'underline'
     }
   },
   root: {
@@ -80,20 +86,6 @@ const useStyles = makeStyles(theme => ({
 const DefaultLayout = ({ children }) => {
   const classes = useStyles()
 
-  const initialState = {}
-
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case 'glossaryTerm':
-        return {
-          ...state, 
-          glossaryTerm: ''
-        }
-      default: 
-        return state
-    }
-  }
-
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -106,52 +98,56 @@ const DefaultLayout = ({ children }) => {
 
   return (
     <Fragment>
-        <SEO
-          htmlAttributes={{ lang: 'en' }}
-          meta={[
-            { name: 'google-site-verification', content: 'OxyG3U-Vtui-uK6wHUeOw83OgdfcfxvsWWZcb5x7aZ0' },
-            // Mobile Specific Metas
-            { name: 'HandheldFriendly', content: 'True' },
-            { name: 'MobileOptimized', content: '320' },
+        <GlossaryProvider>
+          <SEO
+            htmlAttributes={{ lang: 'en' }}
+            meta={[
+              { name: 'google-site-verification', content: 'OxyG3U-Vtui-uK6wHUeOw83OgdfcfxvsWWZcb5x7aZ0' },
+              // Mobile Specific Metas
+              { name: 'HandheldFriendly', content: 'True' },
+              { name: 'MobileOptimized', content: '320' },
 
-            // type
-            { name: 'og:type', content: 'website' },
+              // type
+              { name: 'og:type', content: 'website' },
 
-            // title
-            { name: 'og:title', content: 'Home | Natural Resources Revenue Data' },
-            { name: 'twitter:title', content: 'Home | Natural Resources Revenue Data' },
+              // title
+              { name: 'og:title', content: 'Home | Natural Resources Revenue Data' },
+              { name: 'twitter:title', content: 'Home | Natural Resources Revenue Data' },
 
-            // img
-            { name: 'og:image', content: renderMetaImage() },
-            { name: 'twitter:card', content: 'summary_large_image' },
-            { name: 'twitter:image', content: renderMetaImage() },
+              // img
+              { name: 'og:image', content: renderMetaImage() },
+              { name: 'twitter:card', content: 'summary_large_image' },
+              { name: 'twitter:image', content: renderMetaImage() },
 
-            // description
-            { name: 'og:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
-            { name: 'twitter:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
-          ]}
-        ></SEO>
+              // description
+              { name: 'og:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
+              { name: 'twitter:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
+            ]}
+          ></SEO>
 
-        <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+          <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
 
-        <Banner />
+          <Banner />
 
-        <Header siteTitle={data.site.siteMetadata.title} />
-        
-        <GlossaryDrawer />
+          <Header siteTitle={data.site.siteMetadata.title} />
+          
+          
+            <GlossaryDrawer />
+          
 
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: `100%`,
-            padding: `0`,
-            paddingTop: 0,
-          }}
-        >
-          <main>{children}</main>
-        </div>
+          <div
+            style={{
+              margin: `0 auto`,
+              maxWidth: `100%`,
+              padding: `0`,
+              paddingTop: 0,
+            }}
+          >
+            <main>{children}</main>
+          </div>
 
-        <Footer version={data && data.site.siteMetadata.version} />
+          <Footer version={data && data.site.siteMetadata.version} />
+        </GlossaryProvider>
     </Fragment>
   )
 }
