@@ -47,6 +47,8 @@ foo @client
 }`
 
 const filter=false;
+
+// IndexPage Styles
 const useStyles = makeStyles(theme => ({
   section: {
     marginTop: theme.spacing(0)
@@ -60,19 +62,18 @@ const useStyles = makeStyles(theme => ({
   heroContent: {
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     fontWeight: 300,
-    marginTop: 0,
-    marginBottom: theme.spacing(4)
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(8)
   },
   paperRoot: {
-    background: theme.palette.secondary.main
+    background: theme.palette.secondary.light
   }
 }))
 
 const FooBar = () => {
-
   const { data, client } = useQuery(STATE_QUERY)
   console.debug(data)
   console.debug(client)

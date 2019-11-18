@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
 
 import DefaultLayout from "../../components/layouts/DefaultLayout"
 import SEO from "../../components/seo"
@@ -36,12 +37,27 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(3),
     paddingRight: theme.spacing(3)
   },
-  heroGridRight: {
-    padding: theme.spacing(3)
+  heroCard: {
+    padding: theme.spacing(3),
+    '& ul': {
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(4),
+      marginLeft: 0,
+      marginRight: 0,
+      listStyle: 'none'
+    }
   },
   heroTitle: {
     fontSize: '2.125rem',
     marginBottom: theme.spacing(2)
+  },
+  mainContent: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4)
+  },
+  paperRoot: {
+    padding: theme.spacing(4),
+    background: theme.palette.common.white
   }
 }))
 
@@ -62,7 +78,7 @@ const AboutPage = () => {
       <Container className={classes.pageSectionTop} maxWidth={false}>
         <Container maxWidth="lg">
           <Grid container>
-            <Grid item xs={8} className={classes.heroGridLeft}>
+            <Grid item md={7} className={classes.heroGridLeft}>
               <Typography variant="h1" className={classes.heroTitle}>About this site</Typography>
               <Typography variant="body1">
                 The United States is a major developer of natural resources. The Department of the Interior (DOI) collects billions of dollars in annual revenue from companies that lease <GlossaryTerm termKey="federal land">federal lands and waters</GlossaryTerm> in order to develop oil, gas, or mineral resources. These revenues are <Link to="/explore/#federal-disbursements">disbursed</Link> to the U.S. Treasury, other federal agencies, states, Native American tribes, and individual Native American mineral owners.
@@ -71,28 +87,30 @@ const AboutPage = () => {
                 This site provides data and contextual information about how natural resources and their revenues are managed in the U.S.
               </Typography>
             </Grid>
-            <Grid item xs={4} className={classes.heroGridRight}>
-              <Typography variant="h4">
-                Understand natural resource management on federal land
-              </Typography>
-              <ul className="list-bullet ribbon-card-top-list">
-                <li><Link to="/how-it-works/ownership/">Land ownership</Link></li>
-                <li><Link to="/how-it-works/#laws">Laws and regulations</Link></li>
-                <li><Link to="/how-it-works/#process">Oil, gas, minerals, and renewable energy</Link></li>
-                <li><Link to="/how-it-works/audits-and-assurances/">Audits and assurances</Link></li>
-              </ul>
-              <Link to="/how-it-works/" className="button-primary">
-                <Button variant="contained" color="primary" className={classes.button}>
-                  How it works
-                </Button>
-              </Link>
+            <Grid item md={5} className={classes.heroCard}>
+              <Paper className={classes.paperRoot}>
+                <Typography variant="h5">
+                  Understand natural resource management on federal land
+                </Typography>
+                <ul className="list-bullet ribbon-card-top-list">
+                  <li><Link to="/how-it-works/ownership/">Land ownership</Link></li>
+                  <li><Link to="/how-it-works/#laws">Laws and regulations</Link></li>
+                  <li><Link to="/how-it-works/#process">Oil, gas, minerals, and renewable energy</Link></li>
+                  <li><Link to="/how-it-works/audits-and-assurances/">Audits and assurances</Link></li>
+                </ul>
+                <Link to="/how-it-works/" className="button-primary">
+                  <Button variant="contained" color="primary" className={classes.button}>
+                    How it works
+                  </Button>
+                </Link>
+              </Paper>
             </Grid>
           </Grid>
         </Container>
       </Container>
     </main>
     
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" className={classes.mainContent}>
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <h2 id="whos-involved">Who’s involved</h2>

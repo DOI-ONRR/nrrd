@@ -1,11 +1,11 @@
 import React from 'react'
 
 import lazy from 'lazy.js'
-import GlossaryIcon from '-!svg-react-loader!../../img/svg/icon-question-circle.svg'
+import GlossaryIcon from '-!svg-react-loader!../../../img/svg/icon-question-circle.svg'
 
 import GLOSSARY_TERMS from '../../../data/terms.yml'
 
-import utils from '../../js/utils'
+import utils from '../../../js/utils'
 
 class GlossaryItem extends React.Component {
   state = {

@@ -1,11 +1,12 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useCallback } from 'react'
 
 const reducer = (state, action) => {
-  switch (action.type) {
+  const { type, payload } = action
+  switch (type) {
     case 'GLOSSARY_TERM_SELECTED':
-      return { ...state, glossaryTerm: action.glossaryTerm, glossaryOpen: action.glossaryOpen }
+      return ({ ...state, glossaryTerm: action.glossaryTerm, glossaryOpen: action.glossaryOpen })
     default:
-      return { ...state }
+      return state
   }
 }
 

@@ -10,7 +10,17 @@ import { GlossaryProvider } from '../../src/glossaryContext'
 const theme = createMuiTheme({
   palette: {
     primary: { main: '#5c737f' },
-    secondary: { main: '#cde3c3' }
+    secondary: { main: '#f0f6fa' }
+  },
+  typography: {
+    h1: {
+      fontSize: '2.125rem',
+      fontWeight: '400'
+    },
+    h2: {
+      fontSize: '2rem',
+      fontWeight: '400'
+    }
   }
 })
 

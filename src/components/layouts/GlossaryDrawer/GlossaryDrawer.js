@@ -1,4 +1,4 @@
-import React, { Fragment, useReducer, useContext, useEffect } from 'react'
+import React, { Fragment, useState, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
@@ -9,6 +9,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import TextField from '@material-ui/core/TextField'
+import CloseIcon from '@material-ui/icons/Close'
 
 import { GlossaryContext } from '../../../glossaryContext'
 
@@ -20,10 +21,15 @@ console.log('GLOSSARY_TERMS: ', GLOSSARY_TERMS)
 
 const useStyles = makeStyles(theme => ({
   list: {
-    width: 250,
+    width: '300px',
   },
   fullList: {
     width: 'auto',
+  },
+  mobileMenuCloseButton: {
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+    cursor: 'pointer'
   },
   glossaryIcon: {
     width: '30px',
@@ -41,18 +47,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const GlossaryDrawer = props => {
+const GlossaryDrawer = () => {
 
   const classes = useStyles()
   const { state, dispatch } = useContext(GlossaryContext)
 
-  console.log('glossary state: ', state)
-  // const [state, setState] = useState({
-  //   right: false,
-  //   glossaryTerm: props.glossaryTerm || '',
-  //   toggleHidden: true,
-  //   showTerm: true
-  // })
+  console.log('state: ', state)
 
   let filteredTerms = filterGlossaryTerms(state.glossaryTerm)
 
@@ -60,20 +60,8 @@ const GlossaryDrawer = props => {
     dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: false })
   }
 
-  const handleClickAway = () => {
-    // setState({ ...state, right: false })
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: true})
-  }
-
   const handleChange = event => {
-    // setState({ ...state, glossaryTerm: event.target.value })
-  }
-
-  const toggleDrawer = (side, open) => event => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return
-    }
-    // setState({ ...state, [side]: open })
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: event.target.value, glossaryOpen: true })
   }
 
   const glossaryList = side => (
@@ -90,9 +78,9 @@ const GlossaryDrawer = props => {
           margin="normal"
           variant="outlined"
           placeholder="e.g. Fossil fuel"
-          // value={state.glossaryTerm}
+          value={state.glossaryTerm}
           onChange={handleChange}
-          // tabIndex={state.toggleHidden && -1}
+          tabIndex={state.toggleHidden && -1}
         />
       </div>
       
@@ -117,11 +105,10 @@ const GlossaryDrawer = props => {
 
   return (
     <Fragment>
-      <ClickAwayListener onClickAway={handleClickAway}>
-        <Drawer anchor="right" open={state.glossaryOpen} onClose={handleClose}>
-          {glossaryList('right')}
-        </Drawer>
-      </ClickAwayListener>
+      <Drawer anchor="right" open={state.glossaryOpen} onClose={handleClose}>
+        <CloseIcon className={classes.mobileMenuCloseButton} onClick={handleClose} />
+        {glossaryList('right')}
+      </Drawer>
     </Fragment>
   )
 }

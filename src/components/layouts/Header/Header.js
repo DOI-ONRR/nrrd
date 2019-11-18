@@ -20,9 +20,11 @@ import { Search } from '../../utils/Search'
 
 import NRRDLogo from '../../../img/NRRD-logo.svg'
 
+// Header Styles
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    maxHeight: '130px'
   },
   toolbar: {
     backgroundColor: theme.palette.common.white,
@@ -143,11 +145,10 @@ const useStyles = makeStyles(theme => ({
 const Header = props => {
   const classes = useStyles()
 
+  const { dispatch } = useContext(GlossaryContext)
   const [state, setState ] = useState({
     right: false
   })
-
-  const { dispatch } = useContext(GlossaryContext)
 
   const toggleMobileDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {

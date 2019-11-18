@@ -32,8 +32,9 @@ const useStyles = makeStyles(theme => ({
     },
     a: {
       color: '#1478a6',
-      textDecoration: 'underline'
-    }
+      textDecoration: 'underline',
+      cursor: 'pointer'
+    },
   },
   root: {
     paddingTop: theme.spacing(2),
@@ -43,6 +44,21 @@ const useStyles = makeStyles(theme => ({
       paddingLeft: theme.spacing(0),
       paddingRight: theme.spacing(0)
     }
+  },
+  site: {
+    display: 'flex',
+    minHeight: '100vh',
+    flexDirection: 'column',
+  },
+  siteContent: {
+    margin: '0',
+    maxWidth: '100%',
+    padding: '0',
+    paddingTop: '0',
+    flexGrow: 1
+  },
+  header: {
+    maxHeight: '130px'
   },
   skipNav: {
     position: 'absolute',
@@ -120,29 +136,23 @@ const DefaultLayout = ({ children }) => {
           { name: 'twitter:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
         ]}
       ></SEO>
+        <div className={classes.site}>
+          <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
 
-      <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+          <Banner />
 
-      <Banner />
+          <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
+        
+        
+          <GlossaryDrawer />
+        
 
-      <Header siteTitle={data.site.siteMetadata.title} />
-      
-      
-        <GlossaryDrawer />
-      
+          <div className={classes.siteContent}>
+            <main>{children}</main>
+          </div>
 
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: `100%`,
-          padding: `0`,
-          paddingTop: 0,
-        }}
-      >
-        <main>{children}</main>
-      </div>
-
-      <Footer version={data && data.site.siteMetadata.version} />
+          <Footer version={data && data.site.siteMetadata.version} />
+        </div>
     </Fragment>
   )
 }
