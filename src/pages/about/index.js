@@ -51,6 +51,15 @@ const useStyles = makeStyles(theme => ({
     fontSize: '2.125rem',
     marginBottom: theme.spacing(2)
   },
+  link: {
+    textDecoration: 'underline',
+    '&:hover': {
+      textDecoration: 'none'
+    }
+  },
+  buttonLink: {
+    textDecoration: 'none'
+  },
   mainContent: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4)
@@ -93,12 +102,12 @@ const AboutPage = () => {
                   Understand natural resource management on federal land
                 </Typography>
                 <ul className="list-bullet ribbon-card-top-list">
-                  <li><Link to="/how-it-works/ownership/">Land ownership</Link></li>
-                  <li><Link to="/how-it-works/#laws">Laws and regulations</Link></li>
-                  <li><Link to="/how-it-works/#process">Oil, gas, minerals, and renewable energy</Link></li>
-                  <li><Link to="/how-it-works/audits-and-assurances/">Audits and assurances</Link></li>
+                  <li><Link to="/how-it-works/ownership/" className={classes.link}>Land ownership</Link></li>
+                  <li><Link to="/how-it-works/#laws" className={classes.link}>Laws and regulations</Link></li>
+                  <li><Link to="/how-it-works/#process" className={classes.link}>Oil, gas, minerals, and renewable energy</Link></li>
+                  <li><Link to="/how-it-works/audits-and-assurances/" className={classes.link}>Audits and assurances</Link></li>
                 </ul>
-                <Link to="/how-it-works/" className="button-primary">
+                <Link to="/how-it-works/" className={classes.buttonLink}>
                   <Button variant="contained" color="primary" className={classes.button}>
                     How it works
                   </Button>

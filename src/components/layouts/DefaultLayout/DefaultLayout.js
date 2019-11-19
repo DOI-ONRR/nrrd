@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
       color: '#1478a6',
       textDecoration: 'underline',
       cursor: 'pointer'
-    },
+    }
   },
   root: {
     paddingTop: theme.spacing(2),
