@@ -18,8 +18,10 @@ const config = {
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
     author: ''
   },
-  plugins: [
-    `gatsby-plugin-react-helmet`,
+    plugins: [
+	`gatsby-theme-apollo`,
+	
+	`gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -48,9 +50,9 @@ const config = {
 	    fieldName: `onrr`,
 	    createLink: () => {
 		return createHttpLink({
-		    uri: 'http://ec2-18-191-111-214.us-east-2.compute.amazonaws.com/v1/graphql',
+		    uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
 		    headers: {
-			'x-hasura-admin-secret': 'qUbNGe1ogKcmCDw0XxIAiUbhQEjpGm19'
+			'x-hasura-admin-secret': process.env.HASURA_GRAPHQL_ADMIN_SECRET
 		    },
 		    fetch
 		})

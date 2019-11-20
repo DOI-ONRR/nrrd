@@ -55,7 +55,16 @@ const main = () => {
 	
 }
 
-
+const revenue_summary = () => {
+let view=`
+-- drop view fiscal_revenue_summary
+create view  fiscal_revenue_summary as 
+select land_category,  fiscal_year, case when land_category = 'Offshore' then  offshore_planning_area else state end as state_or_area, sum(revenue) 
+from revenue natural join period natural join location 
+where period='Fiscal Year'
+group by state_or_area, land_category, fiscal_year,  state order by   fiscal_year, state
+;q
+}
     
 
 const yearly_calendar_revenue = () => {

@@ -6,7 +6,7 @@ import * as topojson from 'topojson-client'
 //import utils from '../../../js/utils'
 //import { , withPrefix } from '../../utils/temp-link'
 //import styles from './Map.module.scss'
-
+import { makeStyles } from '@material-ui/core/styles'
 /**
 *  Map  a component for rendering maps dynamically from  data
 *
@@ -25,12 +25,15 @@ const Map = (props) => {
     const mapJsonObject=props.mapJsonObject;
 
     const mapFeatures=props.mapFeatures || "counties";
-    const mapData=props.mapData.concat(props.offshoreData) || [];  
+    let mapData=props.mapData || [];
+    //mapData=props.offshoreData && mapData.concat(props.offshoreData);
     const elemRef = useRef(null);
     const colorScheme=props.colorScheme || "green" ;
     const offshoreColorScheme=props.offshoreColorScheme || colorScheme;
     const mapTitle=props.mapTitle;
     const onClick=props.onClick || function (d,i) {console.debug("Default onClick function", d,i)};
+    const styles=useStyles();
+
     useEffect( () => {
 	console.debug("DWGHE1 SDFSDFSDFSDFSDFSDF");
 	console.debug(mapJsonObject);
@@ -40,14 +43,16 @@ const Map = (props) => {
 	    console.debug(mapJson);
 	    let promise = d3.json(mapJson)
 		.then( us => {
+		    console.debug(us);
 		    let states = get_states(us);
 		    let data=observable_data(mapData);
 		    data.title=mapTitle;
 		    //	     let p= get_data().then((data)=>{3
 		    //		 chart(elemRef.current, us,mapFeatures,data);
 		    //	     });
-
+		    elemRef.current.innerHTML='';
 		    let svg=chart(elemRef.current, us,mapFeatures,data, colorScheme,onClick);
+
 		    let propmise2=d3.json(mapOffshoreJson)
 			.then( offshore => {
 			    
@@ -64,7 +69,6 @@ const Map = (props) => {
 			    }
 			     
 			})
-		    //
 		});
 	    
 	} else {
@@ -86,7 +90,8 @@ const Map = (props) => {
      
  })  //use effect
   return (
-	  <div className={ 'map' /*styles.map*/} ref={elemRef} >
+	  <div className={ styles.map} ref={elemRef} >
+	  <span >THE MAP COMPONENT</span>
           </div>
 	  
 
@@ -145,9 +150,10 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick) => {
 	color=d3.scaleSequentialQuantile(data.values, t => d3.interpolateGreens(t));
     }
     let format = d => { if(isNaN(d)) {return "" } else {return "$" + d3.format(",.0f")(d);} } 
-  
+
+
     const svg = d3.select(node).append('svg')
-      .style("width", width)
+	  .style("width", width)
 	  .style("height", height)
 	  .attr("fill", "#E0E2E3")
 	  .attr("viewBox", '0 0 '+width+' '+height);
@@ -341,7 +347,7 @@ const legend = (g,title,data,color,labels) => {
 }
 
 /**
-*  The function that mimics Observable Map() funtcion to allow minimal change to prototype. 
+*  The function that mimics ObservableMap() funtcion to allow minimal change to prototype. 
 *
 *  @param {array[][]}  d - two diminational array of data
 *  @return {object} returns an object with values as an array keys as an array and a get accessor for getting the data
@@ -350,7 +356,8 @@ const legend = (g,title,data,color,labels) => {
 
 
 const observable_data = (d)=> {
-//    let data= await d3.csv("https://raw.githubusercontent.com/rentry/rentry.github.io/master/data/revenue-test.csv", ({id, rate}) => [id, +rate]).then( (d) => {
+    //    let data= await d3.csv("https://raw.githubusercontent.com/rentry/rentry.github.io/master/data/revenue-test.csv", ({id, rate}) => [id, +rate]).then( (d) => {
+    console.debug(d);
 	let r={values:[],title:"", keyValues: {} }
 	for(let ii=0; ii< d.length; ii++) {
 	    r.values.push(d[ii][1]);
@@ -393,3 +400,15 @@ const get_states = (us)=> {
 }
 
 
+const useStyles = makeStyles(theme => (
+    {
+	map: {
+	    display:'block',
+	    top:0,		    
+	    left:0,
+	    width: '100%',
+	    height: '100%',
+	    order:'3'
+	    
+    }
+    }))

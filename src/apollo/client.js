@@ -1,11 +1,16 @@
-import ApolloClient from 'apollo-boost';
+
 import fetch from 'isomorphic-fetch';
+import {ApolloClient, HttpLink, InMemoryCache} from '@apollo/client';
 
 export const client = new ApolloClient({
-    uri: 'http://ec2-18-191-111-214.us-east-2.compute.amazonaws.com/v1/graphql',
-    headers: {
-			'x-hasura-admin-secret': 'qUbNGe1ogKcmCDw0XxIAiUbhQEjpGm19'
-		    },
-    fetch,
-    resolvers: {}
+
+    cache: new InMemoryCache(),
+    link: new HttpLink({
+	uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
+	headers: {
+	    'x-hasura-admin-secret': "intentionally wrong secret"
+	},
+	fetch,
+	resolvers: {}
+    })
 });
