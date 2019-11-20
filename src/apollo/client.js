@@ -8,7 +8,7 @@ export const client = new ApolloClient({
     link: new HttpLink({
 	uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
 	headers: {
-	    'x-hasura-admin-secret': "intentionally wrong secret"
+	    'x-hasura-admin-secret': "Admin password for hasura-onrr is secret # adn that is 112019"
 	},
 	fetch,
 	resolvers: {}
