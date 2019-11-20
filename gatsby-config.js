@@ -18,7 +18,7 @@ const config = {
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
     author: '',
     dataRetrieval: {
-      name: 'Data Retrieval',
+      name: 'Data Specialists',
       email: 'onrrdatarequests@onrr.gov'
     },
     informationDataManagement: {

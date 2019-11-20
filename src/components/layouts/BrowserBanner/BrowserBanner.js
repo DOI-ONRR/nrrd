@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles =  makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     border: '1px solid _green',
     margin: '0 0 1rem 0',
