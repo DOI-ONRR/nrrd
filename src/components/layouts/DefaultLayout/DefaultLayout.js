@@ -9,7 +9,9 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql, withPrefix } from 'gatsby'
 import SEO from '../../seo'
+
 import { makeStyles } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 import { Banner } from '../Banner'
 import { Header } from '../Header'
@@ -53,8 +55,8 @@ const useStyles = makeStyles(theme => ({
   siteContent: {
     margin: '0',
     maxWidth: '100%',
-    padding: '0',
-    paddingTop: '0',
+    paddingTop: theme.spacing(0),
+    paddingBottom: theme.spacing(0),
     flexGrow: 1
   },
   header: {
@@ -111,6 +113,7 @@ const DefaultLayout = ({ children }) => {
 
   return (
     <Fragment>
+      {/* <CssBaseline /> */}
       <SEO
         htmlAttributes={{ lang: 'en' }}
         meta={[

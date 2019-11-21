@@ -25,11 +25,11 @@ const theme = createMuiTheme({
 })
 
 export const wrapRootElement = ({ element }) => (
-  <ThemeProvider theme={theme}>
     <ApolloProvider client={client}>
-      <GlossaryProvider>
-        {element}
-      </GlossaryProvider>
+      <ThemeProvider theme={theme}>
+        <GlossaryProvider>
+          {element}
+        </GlossaryProvider>
+      </ThemeProvider>
     </ApolloProvider>
-  </ThemeProvider>
 );
