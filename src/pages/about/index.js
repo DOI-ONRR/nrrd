@@ -7,6 +7,9 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
 
 import DefaultLayout from "../../components/layouts/DefaultLayout"
 import SEO from "../../components/seo"
@@ -71,6 +74,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
+const ListItemLink = (props) => {
+  return <ListItem button component="a" {...props} />
+}
+
 const AboutPage = () => {
   const classes = useStyles()
 
@@ -101,14 +108,22 @@ const AboutPage = () => {
                 <Typography variant="h5">
                   Understand natural resource management on federal land
                 </Typography>
-                <ul className="list-bullet ribbon-card-top-list">
-                  <li><Link to="/how-it-works/ownership/" className={classes.link}>Land ownership</Link></li>
-                  <li><Link to="/how-it-works/#laws" className={classes.link}>Laws and regulations</Link></li>
-                  <li><Link to="/how-it-works/#process" className={classes.link}>Oil, gas, minerals, and renewable energy</Link></li>
-                  <li><Link to="/how-it-works/audits-and-assurances/" className={classes.link}>Audits and assurances</Link></li>
-                </ul>
+                <List component="nav" aria-label="secondary mailbox folders">
+                  <ListItemLink href="/how-it-works/ownership/">
+                    <ListItemText primary="Land Ownership" />
+                  </ListItemLink>
+                  <ListItemLink href="/how-it-works/#laws">
+                    <ListItemText primary="Laws and regulations" />
+                  </ListItemLink>
+                  <ListItemLink href="/how-it-works/#process">
+                    <ListItemText primary="Oil, gas, minerals, and renewable energy" />
+                  </ListItemLink>
+                  <ListItemLink href="/how-it-works/audits-and-assurances/">
+                    <ListItemText primary="Audits and assurances" />
+                  </ListItemLink>
+                </List>
                 <Link to="/how-it-works/" className={classes.buttonLink}>
-                  <Button variant="contained" color="primary" className={classes.button}>
+                  <Button>
                     How it works
                   </Button>
                 </Link>

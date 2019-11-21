@@ -17,7 +17,7 @@ import { Banner } from '../Banner'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
 
-import './DefaultLayout.css'
+// import './DefaultLayout.css'
 import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
 
 // Render Meta Image with Prefix SVG
@@ -36,6 +36,9 @@ const useStyles = makeStyles(theme => ({
       color: '#1478a6',
       textDecoration: 'underline',
       cursor: 'pointer'
+    },
+    img: {
+      maxWidth: `100%`
     }
   },
   root: {
@@ -113,7 +116,7 @@ const DefaultLayout = ({ children }) => {
 
   return (
     <Fragment>
-      {/* <CssBaseline /> */}
+      <CssBaseline />
       <SEO
         htmlAttributes={{ lang: 'en' }}
         meta={[

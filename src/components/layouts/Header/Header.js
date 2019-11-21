@@ -71,9 +71,6 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     color: theme.palette.common.black
   },
-  button: {
-    color: theme.palette.common.black
-  },
   link: {
     color: theme.palette.common.black
   },
@@ -91,11 +88,11 @@ const useStyles = makeStyles(theme => ({
     marginRight: '0',
     fontFamily: theme.typography.fontFamily,
     listStyle: 'none',
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(0),
     '& li > a': {
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(2),
-      paddingTop: theme.spacing(2),
+      paddingTop: theme.spacing(0),
       cursor: 'pointer',
       textDecoration: 'none',
       color: theme.palette.common.black
@@ -121,7 +118,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& li': {
       position: 'relative',
-      top: theme.spacing(1.5)
+      top: theme.spacing(0)
     },
     '& li:last-child': {
       position: 'relative',
@@ -130,7 +127,7 @@ const useStyles = makeStyles(theme => ({
   },
   bottom: {
     '& li > a': {
-      fontSize: theme.typograph
+      fontSize: `1.2rem`
     },
     '& li.active a': {
       fontWeight: theme.typography.button.fontSize
