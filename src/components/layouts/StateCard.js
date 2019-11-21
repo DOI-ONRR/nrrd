@@ -25,7 +25,12 @@ const useStyles = makeStyles({
 	
       width: 275,
       margin: "10px"
-  },
+    },
+    close: {
+	position: 'absolute',
+	right: '10px'
+    },
+    
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -60,17 +65,22 @@ export default function StateCard(props) {
     const closeCard= (item)=>{
 	console.debug("CLOOOOOOOOOOOOOOSE",item);
 	console.debug(props);
+	props.closeCard(props.fips)
 	
     }
 
     let state=props.abbrev
     const { loading, error, data } = useQuery(APOLLO_QUERY,{ variables: { state }});
     let sparkData=[];
+    let sparkMin=203;
+    let sparkMax=219;
     if(data) {
 	console.debug("foo");
 	console.debug(data)
 	sparkData=data.fiscal_revenue_summary.map((item,i)=>[item.fiscal_year, item.sum]);
 	console.debug(sparkData);
+	sparkMin=sparkData[0][0];
+	sparkMax=sparkData[sparkData.length-1][0];
     }
     return (
 	   <Card className={classes.card}>
@@ -80,17 +90,19 @@ export default function StateCard(props) {
 		     <MenuIcon />
 		   </IconButton>
 		   <Typography variant="h6" color="inherit">
-		     {props.abbrev}
+		     {props.name}
 		   </Typography>
-		   <CloseIcon onClick={(e,i)=>{closeCard(i)}}/>
+	    <CloseIcon  className={classes.close} onClick={(e,i)=>{console.debug("eeeee", e); console.debug(i); closeCard(i)}}/>
 		 </Toolbar>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-		{props.name}
-              </Typography>
-        <Typography variant="h5" component="h2">
-	    {props.fips} 
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+	    
+	{/*<Typography variant="h5" component="h2">
+	    {props.name}
+            </Typography>*/}
+	    
+	    <Typography className={classes.title} color="textSecondary" gutterBottom>
+	    Trend ({sparkMin} - {sparkMax} )
+            </Typography>
+            <Typography className={classes.pos} color="textSecondary">
 	    {sparkData && <Sparkline data={sparkData} />}
         </Typography>
         <Typography variant="body2" component="p">

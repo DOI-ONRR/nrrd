@@ -30,6 +30,7 @@ fiscal_revenue_summary( where: {fiscal_year: {_eq: $year}}) {
     state_or_area
     sum
   }
+
 }
 `
 
@@ -57,16 +58,29 @@ const ExploreData = () => {
      const onLink = (state) => {
 	 console.debug(state);
 
-	 setCards((cards)=>{cards.push({fips: state.properties.FIPS, abbrev: state.properties.abbr, name: state.properties.name}); return cards});
-	setCount(count=>count+1);
-	console.debug("CARDS:",cards);
-	console.debug("COUNT:",count);
+	 setCards((cards)=>{
+	     if(cards.filter((item) =>( item.fips==state.properties.FIPS)).length ==0) { 
+
+		 cards.push({fips: state.properties.FIPS, abbrev: state.properties.abbr, name: state.properties.name});
+	     }
+	     return cards
+	 });
+	 setCount(count=>count+1);
+	 console.debug("CARDS:",cards);
+	 console.debug("COUNT:",count);
 
     }
     const onYear = (selected) => {
 	setYear(selected);
     }
+
+    const closeCard = (fips) => {
 	
+	setCards((cards)=>{ return cards.filter((item)=> item.fips !== fips ) })
+    }
+	    
+	    
+    
     const { loading, error, data } = useQuery(APOLLO_QUERY,{ variables: { year }});
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
@@ -93,7 +107,7 @@ const ExploreData = () => {
 		<div className={classes.mapContainer}>		  
 		<Container className={classes.cardContainer}>
 		{cards.map((state,i) =>{ console.debug("FIPS",state.fips)
-					 return <StateCard key={i} fips={state.fips} abbrev={state.abbrev} name={state.name}  />})}
+					 return <StateCard key={i} fips={state.fips} abbrev={state.abbrev} name={state.name} closeCard={(fips)=>{closeCard(fips)}} />})}
 	    
 	    </Container>
 		
@@ -162,6 +176,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: '5rem'
   },
     mapContainer: {
+	position:'relative',
 	minWidth:'280px',
 	flexBasis:'100%',		    
 	height: '600px',
