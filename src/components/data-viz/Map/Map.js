@@ -35,15 +35,10 @@ const Map = (props) => {
     const styles=useStyles();
 
     useEffect( () => {
-	console.debug("DWGHE1 SDFSDFSDFSDFSDFSDF");
-	console.debug(mapJsonObject);
 
 	if(typeof(mapJsonObject) != "object") {
-	    console.debug("DWGH string  SDFSDFSDFSDFSDFSDF");
-	    console.debug(mapJson);
 	    let promise = d3.json(mapJson)
 		.then( us => {
-		    console.debug(us);
 		    let states = get_states(us);
 		    let data=observable_data(mapData);
 		    data.title=mapTitle;
@@ -77,8 +72,6 @@ const Map = (props) => {
 	    let states = get_states(us);
 	    let data=observable_data(mapData);
 	    data.title=mapTitle;
-	    console.debug("DWGH SDFSDFSDFSDFSDFSDF");
-	    console.debug(mapJsonObject);
 	    let svg=chart(elemRef.current, us,mapFeatures,data, colorScheme,onClick);
 	    for(let region in  offshore.objects ) {
 		offshore_chart(svg,offshore,region,data, offshoreColorScheme ,onClick);
@@ -130,7 +123,6 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick) => {
 */
     const path = d3.geoPath(projection);
 
-    console.debug(projection.scale);
     let color = ()=>{};
     // switch quick and dirty to let users change color beter to use d3.interpolateRGB??
     switch(colorScheme) {
@@ -357,7 +349,6 @@ const legend = (g,title,data,color,labels) => {
 
 const observable_data = (d)=> {
     //    let data= await d3.csv("https://raw.githubusercontent.com/rentry/rentry.github.io/master/data/revenue-test.csv", ({id, rate}) => [id, +rate]).then( (d) => {
-    console.debug(d);
 	let r={values:[],title:"", keyValues: {} }
 	for(let ii=0; ii< d.length; ii++) {
 	    r.values.push(d[ii][1]);

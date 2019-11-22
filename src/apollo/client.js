@@ -14,3 +14,4 @@ export const client = new ApolloClient({
 	resolvers: {}
     })
 });
+

@@ -21,7 +21,7 @@ export const STATIC_QUERY=graphql`
   }
 }`
 
-const APOLLO_QUERY=gql`
+const FISCAL_REVENUE_QUERY=gql`
 query FiscalRevenue($year: Int!) {
 
 
@@ -30,7 +30,14 @@ fiscal_revenue_summary( where: {fiscal_year: {_eq: $year}}) {
     state_or_area
     sum
   }
+ 
+}
 
+`
+
+const CACHE_QUERY = gql`
+{
+selectedYear @client
 }
 `
 
@@ -47,16 +54,22 @@ fiscal_revenue_summary(order_by: {fiscal_year: desc, state_or_area: asc}, where:
 
 
 const ExploreData = () => {
-   // console.debug(commodity);
     
     const classes = useStyles()
     const [cards, setCards]=useState([]);
     const [year, setYear]=useState(2018);
     const [count, setCount]=useState(0);
+    const {cache, client} = useQuery(CACHE_QUERY);
+    client.writeData({ data: { selectedYear: 2018 } })
+    console.debug("==============================================================================++++++GOTCACHE?")
+    console.debug(cache);
+    if(cache) {
 
-    console.debug(year);
+	console.debug(cache)
+
+    }
+    
      const onLink = (state) => {
-	 console.debug(state);
 
 	 setCards((cards)=>{
 	     if(cards.filter((item) =>( item.fips==state.properties.FIPS)).length ==0) { 
@@ -72,6 +85,8 @@ const ExploreData = () => {
     }
     const onYear = (selected) => {
 	setYear(selected);
+	 client.writeData({ data: { selectedYear: selected } })
+
     }
 
     const closeCard = (fips) => {
@@ -81,12 +96,12 @@ const ExploreData = () => {
 	    
 	    
     
-    const { loading, error, data } = useQuery(APOLLO_QUERY,{ variables: { year }});
+    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY,{ variables: { year }});
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
     if(data) {
 	let mapData=data.fiscal_revenue_summary.map( (item,i)=> [item.state_or_area, item.sum] );
-	console.debug(mapData)
+	console.debug(data.fiscal_revenue_summary[0]);
 	return (
 		<Container maxWidth="lg">
 		<Typography id="discrete-slider" gutterBottom>
@@ -98,7 +113,7 @@ const ExploreData = () => {
         valueLabelDisplay="auto"
         step={1}
             marks
-	    onChange={(e,yr)=>{ console.debug(yr); onYear(yr)}}
+	    onChange={(e,yr)=>{ onYear(yr)}}
         min={2008}
         max={2019}
       />
@@ -106,18 +121,13 @@ const ExploreData = () => {
 
 		<div className={classes.mapContainer}>		  
 		<Container className={classes.cardContainer}>
-		{cards.map((state,i) =>{ console.debug("FIPS",state.fips)
-					 return <StateCard key={i} fips={state.fips} abbrev={state.abbrev} name={state.name} closeCard={(fips)=>{closeCard(fips)}} />})}
+		{cards.map((state,i) =>{ return <StateCard key={i} fips={state.fips} abbrev={state.abbrev} name={state.name} closeCard={(fips)=>{closeCard(fips)}} />})}
 	    
 	    </Container>
 		
 		<Map mapFeatures='states'
 	    mapData={mapData}
 	    onClick={(d,fips,foo,bar) => {
-		console.debug("MAP CLICKED");
-		console.debug(d)
-		console.debug(fips)
-		console.debug(foo,bar)
 		onLink(d)
 		
 	    }}		     />

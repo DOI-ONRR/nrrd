@@ -145,7 +145,7 @@ const IndexPage = () => {
           <Tab className={classes.tabLabel} label="Revenue" {...a11yProps(0)} />
           <Tab className={classes.tabLabel} label="Disbursments" {...a11yProps(1)} />
           <Tab className={classes.tabLabel} label="Production" {...a11yProps(2)} />
-          <Tab className={classes.tabLabel} label="Explore Data" {...a11yProps(3)} />
+          <Tab className={classes.tabLabel} label="Explore Data " {...a11yProps(3)} />
         </Tabs>
       </Paper>
      

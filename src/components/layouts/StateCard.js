@@ -63,8 +63,6 @@ export default function StateCard(props) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
     const closeCard= (item)=>{
-	console.debug("CLOOOOOOOOOOOOOOSE",item);
-	console.debug(props);
 	props.closeCard(props.fips)
 	
     }
@@ -75,10 +73,8 @@ export default function StateCard(props) {
     let sparkMin=203;
     let sparkMax=219;
     if(data) {
-	console.debug("foo");
-	console.debug(data)
+
 	sparkData=data.fiscal_revenue_summary.map((item,i)=>[item.fiscal_year, item.sum]);
-	console.debug(sparkData);
 	sparkMin=sparkData[0][0];
 	sparkMax=sparkData[sparkData.length-1][0];
     }
@@ -92,7 +88,7 @@ export default function StateCard(props) {
 		   <Typography variant="h6" color="inherit">
 		     {props.name}
 		   </Typography>
-	    <CloseIcon  className={classes.close} onClick={(e,i)=>{console.debug("eeeee", e); console.debug(i); closeCard(i)}}/>
+	    <CloseIcon  className={classes.close} onClick={(e,i)=>{ closeCard(i)}}/>
 		 </Toolbar>
 	    
 	{/*<Typography variant="h5" component="h2">
@@ -102,9 +98,8 @@ export default function StateCard(props) {
 	    <Typography className={classes.title} color="textSecondary" gutterBottom>
 	    Trend ({sparkMin} - {sparkMax} )
             </Typography>
-            <Typography className={classes.pos} color="textSecondary">
+
 	    {sparkData && <Sparkline data={sparkData} />}
-        </Typography>
         <Typography variant="body2" component="p">
 	    
         </Typography>
