@@ -12,12 +12,12 @@ import DownloadIcon from '-!svg-react-loader!../../../img/svg/icon-download-base
 
 const useStyles = makeStyles(theme => ({
   root: {
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
+    paddingTop: theme.spacing(5),
+    paddingBottom: theme.spacing(5),
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     backgroundColor: '#323c42',
-    color: '#d3dfe6' // TODO: clean up styling
+    color: theme.palette.primary.contrastText
   },
   footer: {
     '& p': {
@@ -64,10 +64,10 @@ const Footer = props => {
     <footer className={`${ classes.root } ${ classes.footer }`}>
       <Container maxWidth="lg">
         <Grid container spacing={2}>
-          <Grid item xs={2}>
+          <Grid item xs={1}>
             <a href="https://doi.gov"><img className={classes.footerImage} src={logo} alt="Department of the Interior logo" /></a>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <Typography>
               <Box mb={2}>
                 Built in the open
@@ -75,7 +75,7 @@ const Footer = props => {
               <Box mb={2}>
                 This site (<Link to={`https://github.com/onrr/doi-extractives-data/releases/${data.site.siteMetadata.version}`} className={classes.footerLink}>{data.site.siteMetadata.version}</Link>) is powered by <Link className={classes.footerLink} to="/downloads" className={classes.footerLink}>open data</Link> and <Link className={classes.footerLink} to="https://github.com/ONRR/doi-extractives-data/">source code</Link>. We welcome contributions and comments on <Link className={classes.footerLink} to="https://github.com/ONRR/doi-extractives-data/issues/new">GitHub</Link>. We write about how we work on this site on <Link className={classes.footerLink} to="/blog" className={classes.footerLink}>our team's blog</Link>.
               </Box>
-              <Box fontSize={14}>
+              <Box>
                 <Link to="https://www.doi.gov/" className={classes.footerLink}>Department of the Interior</Link> | <Link to="https://www.doi.gov/privacy" className={classes.footerLink}>Privacy Policy</Link> | <Link to="https://www.doi.gov/foia" className={classes.footerLink}>FOIA</Link> | <Link to="https://www.usa.gov/" className={classes.footerLink}>USA.gov</Link>
               </Box>
             </Typography>
