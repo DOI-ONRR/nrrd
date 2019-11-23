@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery } from 'gatsby'
+import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography'
 
 import DefaultLayout from '../components/layouts/DefaultLayout'
 
-// import hastReactRenderer from '../js/hast-react-renderer'
+import hastReactRenderer from '../js/hast-react-renderer'
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,21 +21,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const DownloadsTemplate = props => {
+const DownloadsTemplate = (props) => {
+  console.log('props: ', props)
   const classes = useStyles()
+
   let title = props.pageContext.markdown.frontmatter.title || 'Natural Resources Revenue Data'
 
   console.log('props: ', props)
-
-  // const data = useStaticQuery(graphql`
-  //   query SiteContactQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
 
   return (
     <DefaultLayout>
@@ -52,7 +44,7 @@ const DownloadsTemplate = props => {
         <Container maxWidth="lg">
           <Grid container>
             <Grid item md={9}>
-              <div dangerouslySetInnerHTML={{ __html: props.pageContext.markdown.htmlAst }} />
+              {hastReactRenderer(props.pageContext.markdown.htmlAst)}
               {/* <p>Do you have questions about the data or need data that isn't here?
 
 						    Contact our { CONTACT_INFO.data_retrieval.name } at <a href={'mailto:' + CONTACT_INFO.data_retrieval.email}>{CONTACT_INFO.data_retrieval.email }</a>.</p> */}

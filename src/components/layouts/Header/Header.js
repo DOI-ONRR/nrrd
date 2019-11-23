@@ -118,7 +118,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& li': {
       position: 'relative',
-      top: theme.spacing(0)
+      top: theme.spacing(-1)
     },
     '& li:last-child': {
       position: 'relative',

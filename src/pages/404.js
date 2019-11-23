@@ -1,3 +1,4 @@
+import React from 'react'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import DefaultLayout from '../components/layouts/DefaultLayout'
@@ -5,7 +6,7 @@ import SEO from '../components/seo'
 import Rig404 from '-!svg-react-loader!../img/svg/rig-404.svg'
 import { classicNameResolver } from 'typescript'
 
-export const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     color: '#000',
     backgroundColor: '#d3dfe6',
@@ -16,7 +17,7 @@ export const useStyles = makeStyles(theme => ({
   },
 }))
 
-export const NotFoundPage = () => {
+const NotFoundPage = () => {
   const classes = useStyles()
   return (
     <DefaultLayout>
