@@ -27,7 +27,11 @@ const config = {
       city: 'Washington, D.C.',
       zip: '20240',
       email: 'nrrd@onrr.gov'
-    }
+    },
+      hasura: {
+	  admin_secret:  "Admin password for hasura-onrr is secret # adn that is 112019"
+      }
+      
   },
 	plugins: [
 	    `gatsby-theme-apollo`,
@@ -79,9 +83,10 @@ const config = {
 		return createHttpLink({
 		    uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
 		    headers: {
-			'x-hasura-admin-secret': process.env.HASURA_GRAPHQL_ADMIN_SECRET
+			'x-hasura-admin-secret': "Admin password for hasura-onrr is secret # adn that is 112019"
 		    },
-		    fetch
+		    fetch,
+		    resolvers: {}
 		})
 	    }
 	}

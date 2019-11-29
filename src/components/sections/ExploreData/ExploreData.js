@@ -30,7 +30,6 @@ fiscal_revenue_summary( where: {fiscal_year: {_eq: $year}}) {
     state_or_area
     sum
   }
- 
 }
 
 `
@@ -51,6 +50,33 @@ fiscal_revenue_summary(order_by: {fiscal_year: desc, state_or_area: asc}, where:
 */
 
 //const filter=false;
+const FooBar = (props) => {
+    
+
+	const { data, client } = useQuery(CACHE_QUERY)
+    console.debug(data)
+    console.debug("==============================================================================++++++GOTCACHE?")
+    
+    //    console.debug(client)
+    //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY);
+    let year=2018;
+    if(data) {
+	year=data.selectedYear
+    }
+    return(  <Slider
+	     defaultValue={year}
+	     aria-labelledby="discrete-slider"
+	     valueLabelDisplay="auto"
+	     step={1}
+	     marks
+	     onChange={(e,yr)=>{ props.onYear(yr)}}
+	     min={2008}
+	     max={2019}
+	     />
+       )
+	
+    //return(<div><div>FOO</div><div>{data && data.selectedYear}</div></div>);
+}
 
 
 const ExploreData = () => {
@@ -59,15 +85,14 @@ const ExploreData = () => {
     const [cards, setCards]=useState([]);
     const [year, setYear]=useState(2018);
     const [count, setCount]=useState(0);
-    const {cache, client} = useQuery(CACHE_QUERY);
-    client.writeData({ data: { selectedYear: 2018 } })
-    console.debug("==============================================================================++++++GOTCACHE?")
-    console.debug(cache);
-    if(cache) {
+   // const {cache, client} = useQuery(CACHE_QUERY);
+   // client.writeData({ data: { selectedYear: 2014 } })
+   // console.debug(cache);
+    //    if(cache) {
 
-	console.debug(cache)
+    //	console.debug(cache)
 
-    }
+    //}
     
      const onLink = (state) => {
 
@@ -84,8 +109,11 @@ const ExploreData = () => {
 
     }
     const onYear = (selected) => {
+	
+	client.writeData({ data: { selectedYear: selected } })
+	
 	setYear(selected);
-	 client.writeData({ data: { selectedYear: selected } })
+
 
     }
 
@@ -96,27 +124,18 @@ const ExploreData = () => {
 	    
 	    
     
-    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY,{ variables: { year }});
+    const { loading, error, data, client} = useQuery(FISCAL_REVENUE_QUERY,{ variables: { year }});
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
     if(data) {
 	let mapData=data.fiscal_revenue_summary.map( (item,i)=> [item.state_or_area, item.sum] );
-	console.debug(data.fiscal_revenue_summary[0]);
+	console.debug('DWGH=======================================================', client);
 	return (
 		<Container maxWidth="lg">
 		<Typography id="discrete-slider" gutterBottom>
         Years
-      </Typography>
-      <Slider
-        defaultValue={2018}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
-        step={1}
-            marks
-	    onChange={(e,yr)=>{ onYear(yr)}}
-        min={2008}
-        max={2019}
-      />
+	    </Typography>
+		<FooBar onYear={(selected)=>{onYear(selected)}} />
 	    
 
 		<div className={classes.mapContainer}>		  
