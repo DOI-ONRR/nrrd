@@ -61,7 +61,7 @@ const Footer = props => {
   `)
 
   return (
-    <footer className={`${ classes.root } ${ classes.footer }`}>
+    <footer className={`${classes.root} ${classes.footer}`}>
       <Container maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={1}>
@@ -92,15 +92,6 @@ const Footer = props => {
                 <Link className={classes.footerLink} to={'mailto:' + data.site.siteMetadata.informationDataManagement.email}>{ data.site.siteMetadata.informationDataManagement.email }</Link>
                 </Box>
             </Typography>
-            {/* <p className="footer-para_callout">
-              <Link to="/downloads/" className={classes.footerLink}>Download data <DownloadIcon className={classes.footerIcon} /></Link>
-            </p>
-            <p className="footer-para footer-para-small">
-              Office of Natural Resources Revenue, { data.site.siteMetadata.informationDataManagement.name }<br/>
-              { data.site.siteMetadata.informationDataManagement.street }<br/>
-              { data.site.siteMetadata.informationDataManagement.city } { data.site.siteMetadata.informationDataManagement.zip }<br/>
-              <a className={classes.footerLink} href={'mailto:' + data.site.siteMetadata.informationDataManagement.email}>{ data.site.siteMetadata.informationDataManagement.email }</a>
-            </p> */}
           </Grid>
         </Grid>
       </Container>
