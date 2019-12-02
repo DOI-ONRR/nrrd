@@ -39,8 +39,6 @@ const GlossaryTerm = ({ termKey, children }) => {
     return children
   }
 
-  console.log('getTerm: ', getTerm())
-
   return (
     <Fragment>
       <span className={classes.glossaryTerm} title="Click to define" tabIndex="0"

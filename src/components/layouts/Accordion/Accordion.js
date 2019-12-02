@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 const Accordion = (props) => {
   const classes = useStyles()
-  const [expanded, setExpanded] = React.useState(false)
+  const [expanded, setExpanded] = useState(false)
   let { id, children, text } = props
 
   text = (typeof text === 'string') ? text.split(',') : text

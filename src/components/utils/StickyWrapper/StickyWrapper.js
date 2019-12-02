@@ -4,12 +4,8 @@ import PropTypes from 'prop-types'
 
 import Sticky from 'react-stickynode'
 
-import { makeStyles } from '@material-ui/core/styles'
 // import styles from './StickyWrapper.module.scss'
 
-const useStyles = makeStyles(theme => ({
-  root: {}
-}))
 
 /***
  * This component wraps the react-stickynode implementation. If this library ever breaks or becomes obsolete

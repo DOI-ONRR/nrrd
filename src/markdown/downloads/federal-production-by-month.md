@@ -18,7 +18,7 @@ tag:
 <custom-link to="/downloads/" className="breadcrumb link-charlie">Downloads</custom-link> /
 # Production by Month
 
-> This dataset contains monthly production volumes on federal lands and waters and Native American lands. We have monthly production data from January 2008 through the most recently available month, which is usually 3-4 months prior to the current month.
+This dataset contains monthly production volumes on federal lands and waters and Native American lands. We have monthly production data from January 2008 through the most recently available month, which is usually 3-4 months prior to the current month.
 
 <p class="downloads-download_links-intro">Download production data by month:
   <ul class="downloads-download_links list-unstyled">

@@ -8,12 +8,21 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
 import DefaultLayout from '../components/layouts/DefaultLayout'
-
+import { PageToc } from '../components/navigation/PageToc'
 import hastReactRenderer from '../js/hast-react-renderer'
 
 
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {
+    '& ul.list-unstyled': {
+      listStyle: `none`,
+      padding: 0,
+      margin: 0
+    },
+    '& .list-sections li': {
+      paddingBottom: `1.25em`
+    }
+  },
   mainContent: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4)
@@ -21,17 +30,16 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const DownloadsTemplate = (props) => {
-  console.log('props: ', props)
+const DownloadsTemplate = ( props ) => {
+
   const classes = useStyles()
+  const data = props.data
 
   let title = props.pageContext.markdown.frontmatter.title || 'Natural Resources Revenue Data'
 
-  console.log('props: ', props)
-
   return (
     <DefaultLayout>
-      <main className={classes.mainContent}>
+      <main className={`${classes.root} ${classes.mainContent}`}>
         <SEO
           title={title}
           meta={[
@@ -43,14 +51,14 @@ const DownloadsTemplate = (props) => {
         />
         <Container maxWidth="lg">
           <Grid container>
+            <Grid item md={3}>
+              <PageToc scrollOffset={190}/>
+            </Grid>
             <Grid item md={9}>
               {hastReactRenderer(props.pageContext.markdown.htmlAst)}
-              {/* <p>Do you have questions about the data or need data that isn't here?
+              <p>Do you have questions about the data or need data that isn't here?
 
-						    Contact our { CONTACT_INFO.data_retrieval.name } at <a href={'mailto:' + CONTACT_INFO.data_retrieval.email}>{CONTACT_INFO.data_retrieval.email }</a>.</p> */}
-            </Grid>
-            <Grid item md={3}>
-              Side Menu
+						  Contact our { data.site.siteMetadata.dataRetrieval.name } at <a href={'mailto:' + data.site.siteMetadata.dataRetrieval.email}>{data.site.siteMetadata.dataRetrieval.email }</a>.</p>
             </Grid>
           </Grid>
         </Container>
@@ -58,5 +66,26 @@ const DownloadsTemplate = (props) => {
     </DefaultLayout>
   )
 }
+
+export const query = graphql`
+  query DownloadsPageQuery {
+    site {
+      siteMetadata {
+        title
+        dataRetrieval {
+          name
+          email
+        }
+        informationDataManagement {
+          name
+          street
+          city
+          zip 
+          email
+        }
+      }
+    }
+  }
+`
 
 export default DownloadsTemplate

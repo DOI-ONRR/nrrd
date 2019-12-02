@@ -1,73 +1,115 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // import ReactDOM from 'react-dom'
+
 import PropTypes from 'prop-types'
-import { useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Hidden from '@material-ui/core/Hidden'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+
 // import MediaQuery from 'react-responsive'
 
 import utils from '../../../js/utils'
 
-import { makeStyles } from '@material-ui/core/styles'
 // import styles from './PageToc.module.scss'
 
 import { StickyWrapper } from '../../utils/StickyWrapper'
+import { get } from 'https'
 
-const useStyles = makeStyles(theme => ({
-	root: {}
-}))
 
 const TOC_SUB_ATTRB = 'data-toc-sub'
 const TOC_EXCLUDE_ATTRB = 'data-toc-exclude'
 const TOC_DISPLAY_AS_ATTRB = 'data-toc-display-as'
 
+const useStyles = makeStyles(theme => ({
+	root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+    paddingRight: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    '& nav > ul': {
+      listStyle: `none`,
+      padding: 0
+    },
+    '& nav > ul > li': {
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1)
+    }
+  },
+  tocContainer: {
+    padding: theme.spacing(2)
+  },
+  tocItem: {
+    '& a': {
+      textDecoration:  `none`
+    }
+  },
+  tocSub: {
+    display: `none`,
+    borderLeft: `2px solid #cde3c3`,
+  },
+  tocSubItemActive: {}
+}))
+
+
 /**
  * This component assumes a single main tag for the page and a single h1 element (which is the title for the menu).
  * The table of contents will be built with h2 and nested h3 elements.
  */
-// TODO: convert this class to functional component
-class PageToc extends React.Component {
-	state = {
-	  displayTitle: this.props.displayTitle,
-	  expanded: false,
-	  scrollOffset: parseInt(this.props.scrollOffset) || 0,
-	}
+const PageToc = props => {
+  const classes = useStyles()
 
-	isScrolling
+  const [toc, setState] = useState({
+    displayTitle: '',
+    expanded: false,
+    mobileActive: false,
+    scrollOffset: parseInt(props.scrollOffset) || 0,
+    items: [],
+  })
 
-	componentDidMount () {
-	  this.createToc()
-	}
+  let isScrolling
 
-	/* Get the on scroll nav list after updating the component. */
-	componentDidUpdate () {
-	  let tocLinks = document.querySelectorAll('#page-toc-nav ul li a')
+  useEffect(() => {
+    createToc()
+    
+    let tocLinks = document.querySelectorAll('#page-toc-nav ul li a')
 
-	  if (tocLinks) {
-	    // Listen for scroll events
-	    window.addEventListener('scroll', this.stopScrolling.bind(this, tocLinks), false)
-	  }
-	}
 
-	componentWillUnmount () {
-	  window.removeEventListener('scroll', this.stopScrolling)
-	}
+    if (tocLinks) {
+      // Listen for scroll events
+      window.addEventListener('scroll', stopScrolling(tocLinks), false)
+      
+      return () => {
+        window.removeEventListener('scroll', stopScrolling())
+      } 
+    }
 
-	stopScrolling (tocLinks) {
+	 
+  }, [])
+
+  const handleClick = () => {
+    if(toc.mobileActive) {
+      setState({ ...toc, [toc.expanded]: !toc.expanded })
+    }
+  }
+
+  const stopScrolling = (tocLinks) => {
 	  // Clear our timeout throughout the scroll
-	  window.clearTimeout(this.isScrolling)
+	  window.clearTimeout(isScrolling)
 
 	  // Set a timeout to run after scrolling ends
-	  this.isScrolling = setTimeout(function () {
+	  isScrolling = setTimeout(function () {
 	    // Run the callback
-	    this.handleScroll(tocLinks)
-	  }.bind(this), 66)
-	}
+	    handleScroll(tocLinks)
+    }, 66)
+  }
+  
+  const handleScroll = (tocLinks) => {
 
-	handleScroll (tocLinks) {
-		const classes = useStyles()
 	  let fromTop = window.scrollY
-	  let activeItemDistance = 10000
+    let activeItemDistance = 10000
 
 	  tocLinks.forEach((link, index) => {
 	    let section = document.querySelector((link.hash || 'body'))
@@ -77,7 +119,7 @@ class PageToc extends React.Component {
 
 	    let computedMarginTop = parseInt(window.getComputedStyle(section).marginTop) || 0
 
-	    let itemCalcPos = (section.offsetTop - computedMarginTop) + this.state.scrollOffset - dataTocOffset
+	    let itemCalcPos = (section.offsetTop - computedMarginTop) + toc.scrollOffset - dataTocOffset
 
 	    if (itemCalcPos <= fromTop) {
 	    	if (link.getAttribute('data-toc-type') === 'sub') {
@@ -102,108 +144,96 @@ class PageToc extends React.Component {
 	  })
 	}
 
-	createToc () {
-		const classes = useStyles()
+  const createToc = () => {
 	  let mainElem = document.getElementsByTagName('main')
-	  let tocState = {
-	    displayTitle: this.state.displayTitle,
-	  }
 
-	  if (tocState.displayTitle === undefined && this.props.shouldDisplayTitle) {
+	  if (toc.displayTitle === undefined && props.shouldDisplayTitle) {
 	    let h1Elem = mainElem && mainElem[0].querySelector('h1')
-	    tocState.displayTitle = h1Elem && h1Elem.innerText
+	    toc.displayTitle = h1Elem && h1Elem.innerText
 	  }
 
 	  let allTocElems = mainElem && Array.from(mainElem[0].querySelectorAll('h2,h3'))
 
-	  let excludeClassNames = (typeof this.props.excludeClassNames === 'string') ? this.props.excludeClassNames.split(',') : this.props.excludeClassNames
+	  let excludeClassNames = (typeof props.excludeClassNames === 'string') ? props.excludeClassNames.split(',') : props.excludeClassNames
 	  excludeClassNames = excludeClassNames || []
 	  excludeClassNames.push(classes.displayTitle)
 
-	  tocState.tocItems = elementArrayToTocArray(allTocElems, excludeClassNames, this.state.scrollOffset)
+	  toc.items = elementArrayToTocArray(allTocElems, excludeClassNames, toc.scrollOffset)
 
-	  this.setState({ ...tocState, mobileActive: (document.documentElement.clientWidth <= parseInt(classes._portraitTabletBreakpointDown)) })
+	  setState({ ...toc, [toc.mobileActive]: (document.documentElement.clientWidth <= parseInt(classes._portraitTabletBreakpointDown)) })
 	}
 
-	handleClick () {
-	  if (this.state.mobileActive) {
-	    this.setState({ expanded: !this.state.expanded })
-	  }
-	}
+  return (
+    <div className={classes.root}>
+      <StickyWrapper bottomBoundary={props.bottomBoundary} innerZ="1000">
+        <Paper className={classes.tocContainer}>
+          <Hidden mdDown>
+            {toc.displayTitle
+              ? <h3 className={classes.displayTitle + ' state-page-nav-title'}>{toc.displayTitle}</h3>
+              :	<div />
+            }
+          </Hidden>
+          <Hidden mdUp>
+            <button id='page-toc-toggle'
+              is="aria-toggle"
+              aria-controls="page-toc-nav"
+              aria-expanded={toc.expanded}
+              type="button"
+              class={classes.tocButton}
+              onClick={handleClick}>
+              <div className="">
+                <span className="">{toc.displayTitle || 'Table of contents'}</span>
+                <span className={`${classes.tocButtonIcon} ${classes.tocButtonIconDown}`}>
+                  <icon className="icon icon-chevron-sm-down"></icon>
+                </span>
+                <span className={`${classes.tocButtonIcon} ${classes.tocButtonIconUp}`}>
+                  <icon className="icon icon-chevron-sm-up"></icon>
+                </span>
+              </div>
+            </button>
+          </Hidden>
 
-	render () {
-		const classes = useStyles()
-		const theme = useTheme()
-		const matches = useMediaQuery(theme => theme.breakpoints.up('sm'))
-	  return (
-	    <div className={classes.root}>
-	      <StickyWrapper bottomBoundary={this.props.bottomBoundary} innerZ="1000">
-	        <div className={classes.tocContainer}>
-	          <Hidden mdUp>
-	            {this.state.displayTitle
-	              ? <h3 className={classes.displayTitle + ' state-page-nav-title'}>{this.state.displayTitle}</h3>
-	              :								<div />
-	            }
-	          </Hidden>
-	          <Hidden mdDown>
-	            <button id='page-toc-toggle'
-	              is="aria-toggle"
-	              aria-controls="page-toc-nav"
-	              aria-expanded={this.state.expanded}
-	              type="button"
-	              class={classes.tocButton}
-	              onClick={this.handleClick.bind(this)}>
-	              <div className="">
-	                <span className="">{this.state.displayTitle || 'Table of contents'}</span>
-	                <span className={classes.tocButtonIcon + ' ' + classes.tocButtonIconDown}>
-	                  <icon className="icon icon-chevron-sm-down"></icon>
-	                </span>
-	                <span className={classes.tocButtonIcon + ' ' + classes.tocButtonIconUp}>
-	                  <icon className="icon icon-chevron-sm-up"></icon>
-	                </span>
-	              </div>
-	            </button>
-	          </Hidden>
-
-	          {this.state.tocItems &&
-							<nav id="page-toc-nav" aria-hidden={(!this.state.expanded && this.state.mobileActive)}>
-							  <ul className={classes.toc}>
-							    <li className={classes.tocItem}><a className={classes.tocItemActive} href="#" onClick={this.handleClick.bind(this)}>Top</a></li>
-							    {
-							      this.state.tocItems.map((tocItem, index) => {
-							        return (
-							          <li className={classes.tocItem} key={tocItem.id + '-toc-item'}>
-							            <a href={'#' + tocItem.id} onClick={this.handleClick.bind(this)}>
-							              { (tocItem.getAttribute('alt') || tocItem.innerText) }
-							            </a>
-							            {tocItem[TOC_SUB_ATTRB] &&
-														<ul className={classes.tocSub}>
-														  {
-														    tocItem[TOC_SUB_ATTRB].map((tocSubItem, subIndex) => {
-														      return (
-														        <li className={classes.tocSubItem} key={subIndex + tocSubItem.id + '-toc-sub-item'}>
-														          <a data-toc-type="sub" href={'#' + tocSubItem.id} onClick={this.handleClick.bind(this)}>
-														            { (tocSubItem.getAttribute('alt') || tocSubItem.innerText) }
-														          </a>
-														        </li>
-														      )
-														    })
-														  }
-														</ul>
-							            }
-							          </li>
-							        )
-							      })
-							    }
-							  </ul>
-							</nav>
-	          }
-	        </div>
-	      </StickyWrapper>
-	    </div>
-	  )
-	}
+          {toc.items &&
+            <nav id="page-toc-nav" aria-hidden={(!toc.expanded && toc.mobileActive)}>
+              <ul className={classes.toc}>
+                <li className={classes.tocItem}><a className={classes.tocItemActive} href="#" onClick={handleClick}>Top</a></li>
+                {
+                  toc.items.map((tocItem, index) => {
+                    return (
+                      <li className={classes.tocItem} key={`${tocItem.id}-toc-item`}>
+                        <a href={`#${tocItem.id}`} onClick={handleClick}>
+                          { (tocItem.getAttribute('alt') || tocItem.innerText) }
+                        </a>
+                        {tocItem[TOC_SUB_ATTRB] &&
+                          <ul className={classes.tocSub}>
+                            {
+                              tocItem[TOC_SUB_ATTRB].map((tocSubItem, subIndex) => {
+                                return (
+                                  <li className={classes.tocSubItem} key={`${subIndex}${tocSubItem.id}-toc-sub-item`}>
+                                    <a data-toc-type="sub" href={`#${tocSubItem.id}`} onClick={handleClick}>
+                                      { (tocSubItem.getAttribute('alt') || tocSubItem.innerText) }
+                                    </a>
+                                  </li>
+                                )
+                              })
+                            }
+                          </ul>
+                        }
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </nav>
+          }
+        </Paper>
+      </StickyWrapper>
+    </div>
+  )
 }
+
+export default PageToc
+
 
 PageToc.propTypes = {
   /** Can pass a default title or it will be resolved by the H1 tag
@@ -225,8 +255,6 @@ PageToc.defaultProps = {
   bottomBoundary: 'main',
   shouldDisplayTitle: false,
 }
-
-export default PageToc
 
 const elemCalcPos = (elem, offset) => {
   // You can add an offset number to a element to have the toc menu item activate earlier/later
