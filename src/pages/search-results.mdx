@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import SEO from '../components/seo'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import { Index } from 'elasticlunr'
@@ -20,6 +20,10 @@ export const useStyles = makeStyles(theme => ({
   mainContent: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(2)
+  },
+  searchResultsContainer: {
+    minHeight: `500px`,
+    maxWidth: `100%`
   }
 }))
 
@@ -49,7 +53,6 @@ export const SearchResults = () => {
   )
   return (
     <DefaultLayout>
-    <Fragment>
       <SEO
         title="Search Results | Natural Resources Revenue Data"
         meta={[
@@ -74,8 +77,7 @@ export const SearchResults = () => {
           </div>
         </section>
       </Container>
-    </Fragment>
-  </DefaultLayout>
+    </DefaultLayout>
   )
 }
 

@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     },
     img: {
       maxWidth: `100%`
-    }
+    },
   },
   root: {
     paddingTop: theme.spacing(2),

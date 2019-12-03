@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#323c42',
     color: theme.palette.primary.contrastText
   },
-  footer: {
+  footerContainer: {
     '& p': {
       color: theme.palette.primary.contrastText
     }
@@ -61,11 +61,11 @@ const Footer = props => {
   `)
 
   return (
-    <footer className={`${classes.root} ${classes.footer}`}>
+    <footer className={`${classes.root} ${classes.footerContainer}`}>
       <Container maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={1}>
-            <a href="https://doi.gov"><img className={classes.footerImage} src={logo} alt="Department of the Interior logo" /></a>
+            <a href="https://doi.gov"><img src={logo} className={classes.footerImage} alt="Department of the Interior logo" /></a>
           </Grid>
           <Grid item xs={6}>
             <Typography>

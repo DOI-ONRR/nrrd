@@ -51,10 +51,10 @@ const DownloadsTemplate = ( props ) => {
         />
         <Container maxWidth="lg">
           <Grid container>
-            <Grid item md={3}>
+            <Grid item xs={12} sm={3}>
               <PageToc scrollOffset={190}/>
             </Grid>
-            <Grid item md={9}>
+            <Grid item xs={12} sm={9}>
               {hastReactRenderer(props.pageContext.markdown.htmlAst)}
               <p>Do you have questions about the data or need data that isn't here?
 
