@@ -52,11 +52,16 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     '& ul': {
       listStyle: 'none',
-      margin: theme.spacing(0)
+      margin: theme.spacing(0),
+      padding: theme.spacing(0)
     },
     '& li:first-child': {
       marginTop: theme.spacing(2),
       marginBottom: theme.spacing(4)
+    },
+    '& li': {
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1)
     },
     '& a:hover': {
       textDecoration: 'underline',
@@ -172,27 +177,27 @@ const Header = props => {
           <Hidden only={['xs', 'sm']}>
             <div className={classes.headerRight}>
               <nav className={`${ classes.headerRight } ${ classes.top }`}>
-              <ul>
-                <li>
-                  <a
-                    href="#"
-                    className={classes.menuLink}
-                    alt="this is the glossary drawer"
-                    onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: true })}
-                  >
-                    Glossary
-                  </a>
-                </li>
-                <li>
-                  <Link className={classes.menuLink} to="/downloads/">
-                    Download data{' '}
-                  </Link>
-                </li>
-                <li>
-                  <Search />
-                </li>
-              </ul>
-            </nav>
+                <ul>
+                  <li>
+                    <a
+                      href="#"
+                      className={classes.menuLink}
+                      alt="this is the glossary drawer"
+                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: true })}
+                    >
+                      Glossary
+                    </a>
+                  </li>
+                  <li>
+                    <Link className={classes.menuLink} to="/downloads/">
+                      Download data{' '}
+                    </Link>
+                  </li>
+                  <li>
+                    <Search />
+                  </li>
+                </ul>
+              </nav>
               <nav className={`${ classes.headerRight } ${ classes.bottom }`}>
                 <ul>
                   <li>

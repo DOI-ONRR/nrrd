@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     paddingRight: theme.spacing(2),
     paddingTop: theme.spacing(2),
+    fontSize: `1.1rem`,
     '& nav > ul': {
       listStyle: `none`,
       padding: 0
@@ -51,7 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
   tocItem: {
     '& a': {
-      textDecoration:  `none`
+      textDecoration:  `none`,
     }
   },
   tocSub: {
@@ -68,7 +69,7 @@ const useStyles = makeStyles(theme => ({
     '& ul': {
       display: `block`,
       listStyle: `none`,
-      paddingLeft: theme.spacing(2),
+      paddingLeft: theme.spacing(1),
       marginTop: theme.spacing(2),
       fontWeight: `normal`
     }
@@ -91,7 +92,10 @@ const useStyles = makeStyles(theme => ({
     outline: `none`
   },
   tocButtonIcon: {
-    float: `right`
+    float: `right`,
+    '& svg[aria-hidden=true]': {
+      display: `block`
+    }
   },
   '@media (max-width: 767px)': {
     root: {
@@ -121,11 +125,6 @@ const PageToc = props => {
     mobileActive: false
   })
 
-  const theme = useTheme()
-  const matchesMobile = useMediaQuery(theme.breakpoints.up('md'))
-
-  let tocLinks = document.querySelectorAll('#page-toc-nav ul li a')
-
   const handler = useCallback(
     () => {
       let tocLinks = document.querySelectorAll('#page-toc-nav ul li a')
@@ -136,7 +135,7 @@ const PageToc = props => {
     [setToc]
   )
 
-  let isScrolling
+  // let isScrolling
 
   useEffect(() => {
     createToc()
@@ -144,23 +143,23 @@ const PageToc = props => {
 
 
   const handleClick = () => {
-    setToc({ ...toc, expanded: !toc.expanded })
-    // if(toc.mobileActive) {
-    //   setToc({ ...toc, expanded: 'blah' })
-    // }
+    // setToc({ ...toc, expanded: !toc.expanded })
+    if(toc.mobileActive) {
+      setToc({ ...toc, expanded: !toc.expanded })
+    }
   }
 
-  const stopScrolling = (tocLinks) => {
-    console.log('stopScrolling: ', tocLinks)
-	  // Clear our timeout throughout the scroll
-	  window.clearTimeout(isScrolling)
+  // const stopScrolling = (tocLinks) => {
+  //   console.log('stopScrolling: ', tocLinks)
+	//   // Clear our timeout throughout the scroll
+	//   window.clearTimeout(isScrolling)
 
-	  // Set a timeout to run after scrolling ends
-	  isScrolling = setTimeout(function () {
-	    // Run the callback
-	    handleScroll(tocLinks)
-    }, 66)
-  }
+	//   // Set a timeout to run after scrolling ends
+	//   isScrolling = setTimeout(function () {
+	//     // Run the callback
+	//     handleScroll(tocLinks)
+  //   }, 66)
+  // }
 
   useEventListener('scroll', handler)
   
@@ -173,9 +172,7 @@ const PageToc = props => {
 	    let section = document.querySelector((link.hash || 'body'))
 
 	    // You can add an offset number to a element to have the toc menu item activate earlier/later
-      let dataTocOffset = parseInt(section.getAttribute('data-toc-offset')) || 0
-      
-      console.log('dataTocOffset: ', dataTocOffset)
+      let dataTocOffset = parseInt(section.getAttribute('data-toc-offset')) || 275
 
 	    let computedMarginTop = parseInt(window.getComputedStyle(section).marginTop) || 0
 
@@ -220,7 +217,7 @@ const PageToc = props => {
 
 	  toc.items = elementArrayToTocArray(allTocElems, excludeClassNames, toc.scrollOffset)
 
-	  setToc({ ...toc, mobileActive: (document.documentElement.clientWidth <= 768) })
+	  setToc({ ...toc, mobileActive: (document.documentElement.clientWidth <= 767) })
 	}
 
   return (
@@ -241,15 +238,10 @@ const PageToc = props => {
               type="button"
               class={classes.tocButton}
               onClick={handleClick}>
-              <div className="">
-                <span className="">{toc.displayTitle || 'Table of contents'}</span>
-                <span className={`${classes.tocButtonIcon}`}>
-                  { toc.expanded ? <ExpandMoreIcon /> : <ExpandLessIcon /> }
-                </span>
-                {/* <span className={`${classes.tocButtonIcon} ${classes.tocButtonIconUp}`}>
-                  <CloseIcon />
-                </span> */}
-              </div>
+              <span className="">{toc.displayTitle || 'Table of contents'}</span>
+              <span className={`${classes.tocButtonIcon}`}>
+                { toc.expanded ? <ExpandMoreIcon /> : <ExpandLessIcon /> }
+              </span>
             </button>
           </Hidden>
 

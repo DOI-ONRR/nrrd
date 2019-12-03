@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme => ({
   },
   footerIcon: {
     fill: theme.palette.common.white
-  }
+  },
+
 }))
 
 const Footer = props => {
@@ -64,10 +65,10 @@ const Footer = props => {
     <footer className={`${classes.root} ${classes.footerContainer}`}>
       <Container maxWidth="lg">
         <Grid container spacing={2}>
-          <Grid item xs={1}>
+          <Grid item xs={12} sm={1}>
             <a href="https://doi.gov"><img src={logo} className={classes.footerImage} alt="Department of the Interior logo" /></a>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <Typography>
               <Box mb={2}>
                 Built in the open
@@ -80,7 +81,7 @@ const Footer = props => {
               </Box>
             </Typography>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={12} sm={5}>
             <Typography>
                 <Box mb={2}>
                   <Link to="/downloads/" className={classes.footerLink}>Download data <DownloadIcon className={classes.footerIcon} /></Link>
