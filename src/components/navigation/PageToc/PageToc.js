@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback } from 'react'
 
 import PropTypes from 'prop-types'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Hidden from '@material-ui/core/Hidden'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -30,7 +29,6 @@ const useStyles = makeStyles(theme => ({
 	root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
     paddingRight: theme.spacing(2),
     paddingTop: theme.spacing(2),
     fontSize: `1.1rem`,
@@ -49,6 +47,7 @@ const useStyles = makeStyles(theme => ({
   tocContainer: {
     padding: theme.spacing(2),
     marginRight: theme.spacing(2),
+    backgroundColor: theme.palette.common.white
   },
   tocItem: {
     '& a': {
@@ -62,6 +61,10 @@ const useStyles = makeStyles(theme => ({
       color: `#323c42`,
       fontSize: '1rem',
 	    lineHeight: '1.2',
+    },
+    '& li': {
+      paddingTop: theme.spacing(.5),
+      paddingBottom: theme.spacing(.5)
     }
   },
   tocItemActive: {
@@ -172,7 +175,7 @@ const PageToc = props => {
 	    let section = document.querySelector((link.hash || 'body'))
 
 	    // You can add an offset number to a element to have the toc menu item activate earlier/later
-      let dataTocOffset = parseInt(section.getAttribute('data-toc-offset')) || 275
+      let dataTocOffset = parseInt(section.getAttribute('data-toc-offset')) || 250
 
 	    let computedMarginTop = parseInt(window.getComputedStyle(section).marginTop) || 0
 

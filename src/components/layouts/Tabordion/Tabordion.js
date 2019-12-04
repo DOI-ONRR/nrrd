@@ -90,20 +90,36 @@ const Tabordion = () => {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <h3>Revenue</h3>
-          <p>The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.</p>
+          <Typography variant="h2">
+            Revenue
+          </Typography>
+          <Typography variant="body1">
+            The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
+          </Typography>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <h3>Disbursements</h3>
-          <p>The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.</p>
+          <Typography variant="h2">
+            Disbursements
+          </Typography>
+          <Typography variant="body1">
+            The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.
+          </Typography>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <h3>Production</h3> 
-          <p>The volume of major commodities extracted on federal lands and waters and Native American lands.</p>
+          <Typography variant="h2">
+            Production
+          </Typography>
+          <Typography variant="body1">
+           The volume of major commodities extracted on federal lands and waters and Native American lands.
+          </Typography>
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
-          <h3>Data by State</h3>
-          <p>Select a state for detailed production, revenue, and disbursements data.</p>
+          <Typography variant="h2">
+            Data by State
+          </Typography>
+          <Typography variant="body1">
+            Select a state for detailed production, revenue, and disbursements data.
+          </Typography>
         </TabPanel>
       </SwipeableViews>
     </Container>

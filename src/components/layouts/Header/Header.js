@@ -202,10 +202,9 @@ const Header = props => {
                 <ul>
                   <li>
                     <Link 
-                      className={classes.menuLink} 
+                      className={classes.menuLink}
                       to="/"
-                      activeClassName={classes.menuActiveLink}
-                      partiallyActive={true}>
+                      activeClassName={classes.menuActiveLink}>
                         Home
                     </Link>
                   </li>
@@ -213,8 +212,7 @@ const Header = props => {
                     <Link 
                       className={classes.menuLink} 
                       to="/how-it-works/"
-                      activeClassName={classes.menuActiveLink}
-                      partiallyActive={true}>
+                      activeClassName={classes.menuActiveLink}>
                         How it works
                     </Link>
                   </li>
@@ -222,18 +220,16 @@ const Header = props => {
                     <Link 
                       className={classes.menuLink} 
                       to="/explore/"
-                      activeClassName={classes.menuActiveLink}
-                      partiallyActive={true}>
+                      activeClassName={classes.menuActiveLink}>
                         Explore data
                     </Link>
                   </li>
                   <li>
-                    <Link 
+                    <Link
                       className={classes.menuLink} 
                       to="/about/"
-                      activeClassName={classes.menuActiveLink}
-                      partiallyActive={true}>
-                        About{' '}
+                      activeClassName={classes.menuActiveLink}>
+                        About
                     </Link>
                   </li>
                 </ul>

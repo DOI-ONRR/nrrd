@@ -1,12 +1,7 @@
 // https://usehooks.com/
 import { useEffect, useRef } from 'react';
 
-let element
-if(typeof window !== 'undefined') {
-  element = window
-}
-
-export default function useEventListener(eventName, handler, element) {
+export default function useEventListener(eventName, handler, element = typeof window !== 'undefined' && window) {
   // Create a ref that stores handler
   const savedHandler = useRef();
 

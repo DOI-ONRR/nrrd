@@ -2,6 +2,7 @@ import React from 'react'
 import SEO from '../components/seo'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 
 import DefaultLayout from '../components/layouts/DefaultLayout'
 
@@ -22,9 +23,9 @@ const DefaultTemplate = props => {
         />
         <Grid container>
             <Grid item md={9}>
-              <article className="container-left-9">
+              <Box component="article">
                 {hastReactRenderer(this.props.pageContext.markdown.htmlAst)}
-              </article>
+              </Box>
             </Grid>
             <Grid item md={3}>
               <PageToc scrollOffset={190}/>

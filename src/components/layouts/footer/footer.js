@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
+import Divider from '@material-ui/core/Divider'
 
 import logo from '../../../img/DOI-2x.png'
 import DownloadIcon from '-!svg-react-loader!../../../img/svg/icon-download-base.svg'
@@ -86,6 +87,7 @@ const Footer = props => {
                 <Box mb={2}>
                   <Link to="/downloads/" className={classes.footerLink}>Download data <DownloadIcon className={classes.footerIcon} /></Link>
                 </Box>
+                <Divider variant="fullwidth" light="true" />
                 <Box>
                   Office of Natural Resources Revenue, { data.site.siteMetadata.informationDataManagement.name }<br/>
                 { data.site.siteMetadata.informationDataManagement.street }<br/>
