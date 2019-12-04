@@ -32,6 +32,9 @@ const useStyles = makeStyles({
     width: 285,
     margin: "10px"
   },
+  cardHeader: {
+    padding: `4px 16px 0`
+  },
   close: {
     position: "relative",
     top: `10px`,
@@ -186,6 +189,7 @@ const StateCard = props => {
             }}
           />
         }
+        className={classes.cardHeader}
       >
         <Typography variant="h6" color="inherit">
           {props.name}
@@ -201,9 +205,9 @@ const StateCard = props => {
         <Grid container>
           <Grid item xs={7}>
             <Typography variant="caption">
-              Trend ({sparkMin} - {sparkMax})
+              <Box>Trend ({sparkMin} - {sparkMax})</Box>
             </Typography>
-            <Box component="span" mb={2}>
+            <Box component="span">
               {sparkData && (
                 <Sparkline data={sparkData} highlightIndex={highlightIndex} />
               )}
@@ -211,8 +215,8 @@ const StateCard = props => {
           </Grid>
           <Grid item xs={5} style={{ textAlign: `right`}}>
             <Typography variant="caption">
-              FY{year} 
-              { utils.formatToSigFig_Dollar(Math.floor(total),3) }
+              <Box>FY{year}</Box> 
+              <Box>{ utils.formatToSigFig_Dollar(Math.floor(total),3) }</Box>
             </Typography>
           </Grid>
         </Grid>
