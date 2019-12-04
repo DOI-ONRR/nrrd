@@ -3,15 +3,15 @@ import * as d3 from 'd3'
 //import styles from './Sparkline.module.scss'
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
-    sparkline: {
-	strokeWidth: '1px',
-	stroke: '#5c737f',
-	fill: 'none'
-    },
+  sparkline: {
+    strokeWidth: '1px',
+    stroke: '#5c737f',
+    fill: 'none',
+  },
 
-    sparkcircle: {
-	fill: '#DB812C'
-    }
+  sparkcircle: {
+    fill: '#DB812C'
+  }
     
 });
 
@@ -36,7 +36,7 @@ const Sparkline = (props) => {
   useEffect(() => {
 
 		    
-      let width = 85
+      let width = 70
     let height = 20
     let x = d3.scaleLinear().range([0, width - 3])
     let y = d3.scaleLinear().range([height - 4, 0])

@@ -147,12 +147,12 @@ const ExploreData = () => {
       <Fragment>
         <Grid container className={classes.root} spacing={2}>
           <Grid item sm={12} md={6}>
-            <Box mt={2}>
+            <Box mt={2} mb={5}>
               <Typography variant="h4">Fiscal Year {year} Revenue</Typography>
             </Box>
           </Grid>
           <Grid item sm={12} md={6}>
-            <Box mt={4}>
+            <Box mt={4} mb={5}>
               {/* Year Slider */}
               <FooBar
                 onYear={selected => {
