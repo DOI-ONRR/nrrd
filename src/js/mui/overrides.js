@@ -66,5 +66,9 @@ module.exports = Object.freeze({
       minWidth: `25px`,
       color: `#000`
     }
+  },
+  // https://material-ui.com/api/icon/
+  MuiIcon: {
+    colorSecondary: `#fff`
   }
 })

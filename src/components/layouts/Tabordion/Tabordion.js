@@ -11,13 +11,7 @@ import Tab from "@material-ui/core/Tab"
 import { makeStyles, useTheme } from "@material-ui/styles"
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    
-    marginBottom: theme.spacing(10)
-  },
-  paper: {
-    background: theme.palette.secondary.light,
-  }
+  root: {}
 }))
 
 function TabPanel(props) {
@@ -67,61 +61,61 @@ const Tabordion = () => {
   
   return (
     <Container maxWidth="lg" className={classes.root}>
-
-      <Paper square className={classes.paper}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+      <Box component="div" mb={15}>
+        <Paper square className={classes.paper}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+            aria-label="full width tabs example"
+          >
+            <Tab label="Revenue" {...a11yProps(0)} />
+            <Tab label="Disbursments" {...a11yProps(1)} />
+            <Tab label="Production" {...a11yProps(2)} />
+            <Tab label="Data by State" {...a11yProps(3)} />
+          </Tabs>
+        </Paper>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
         >
-          <Tab label="Revenue" {...a11yProps(0)} />
-          <Tab label="Disbursments" {...a11yProps(1)} />
-          <Tab label="Production" {...a11yProps(2)} />
-          <Tab label="Data by State" {...a11yProps(3)} />
-        </Tabs>
-      </Paper>
-     
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <Typography variant="h2">
-            Revenue
-          </Typography>
-          <Typography variant="body1">
-            The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
-          </Typography>
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          <Typography variant="h2">
-            Disbursements
-          </Typography>
-          <Typography variant="body1">
-            The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.
-          </Typography>
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          <Typography variant="h2">
-            Production
-          </Typography>
-          <Typography variant="body1">
-           The volume of major commodities extracted on federal lands and waters and Native American lands.
-          </Typography>
-        </TabPanel>
-        <TabPanel value={value} index={3} dir={theme.direction}>
-          <Typography variant="h2">
-            Data by State
-          </Typography>
-          <Typography variant="body1">
-            Select a state for detailed production, revenue, and disbursements data.
-          </Typography>
-        </TabPanel>
-      </SwipeableViews>
+          <TabPanel value={value} index={0} dir={theme.direction}>
+            <Typography variant="h2">
+              Revenue
+            </Typography>
+            <Typography variant="body1">
+              The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
+            </Typography>
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            <Typography variant="h2">
+              Disbursements
+            </Typography>
+            <Typography variant="body1">
+              The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.
+            </Typography>
+          </TabPanel>
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            <Typography variant="h2">
+              Production
+            </Typography>
+            <Typography variant="body1">
+            The volume of major commodities extracted on federal lands and waters and Native American lands.
+            </Typography>
+          </TabPanel>
+          <TabPanel value={value} index={3} dir={theme.direction}>
+            <Typography variant="h2">
+              Data by State
+            </Typography>
+            <Typography variant="body1">
+              Select a state for detailed production, revenue, and disbursements data.
+            </Typography>
+          </TabPanel>
+        </SwipeableViews>
+      </Box>
     </Container>
   )
 }

@@ -7,10 +7,7 @@ import Box from "@material-ui/core/Box"
 import { GlossaryTerm } from "../../utils/GlossaryTerm"
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(8)
-  }
+  root: {}
 }))
 
 const HomeHero = () => {
@@ -19,7 +16,7 @@ const HomeHero = () => {
   return (
     <Container className={classes.root} maxWidth="lg">
       <Typography variant="h5">
-        <Box>
+        <Box pt={5} pb={10}>
           When companies extract energy and mineral resources on property
           leased from the federal government and Native Americans, they pay{' '}
           <GlossaryTerm termKey="Bonus">bonuses</GlossaryTerm>,{' '}
