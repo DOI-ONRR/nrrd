@@ -215,7 +215,7 @@ const StateCard = props => {
           </Grid>
           <Grid item xs={5} style={{ textAlign: `right`}}>
             <Typography variant="caption">
-              <Box>FY{year}</Box> 
+              <Box>{year}</Box> 
               <Box>{ utils.formatToSigFig_Dollar(Math.floor(total),3) }</Box>
             </Typography>
           </Grid>
