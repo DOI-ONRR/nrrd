@@ -167,8 +167,7 @@ const IndexPage = () => {
           <p>The volume of major commodities extracted on federal lands and waters and Native American lands.</p>
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
-            <h3>Explore Data</h3>
-	    <ExploreData />
+	        <ExploreData />
           <p>Select a state for detailed production, revenue, and disbursements data.</p>
         </TabPanel>
       </SwipeableViews>

@@ -1,43 +1,45 @@
-import React, { useState}  from "react"
+import React, { Fragment, useState } from "react"
 //import { Link } from "gatsby"
 
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
-import Slider from '@material-ui/core/Slider';
+import { makeStyles } from "@material-ui/core/styles"
+import Container from "@material-ui/core/Container"
+import Typography from "@material-ui/core/Typography"
+import Slider from "@material-ui/core/Slider"
+import Paper from "@material-ui/core/Paper"
+import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
 
-import { graphql } from 'gatsby';
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { graphql } from "gatsby"
+import { useQuery } from "@apollo/react-hooks"
+import gql from "graphql-tag"
 
-import  Map  from '../../data-viz/Map'
-import StateCard from '../../layouts/StateCard'
+import Map from "../../data-viz/Map"
+import StateCard from "../../layouts/StateCard"
 
-export const STATIC_QUERY=graphql`
-{  onrr {   
-    commodity(distinct_on: fund_type) {
-         fund_type
-    } 
+export const STATIC_QUERY = graphql`
+  {
+    onrr {
+      commodity(distinct_on: fund_type) {
+        fund_type
+      }
+    }
   }
-}`
+`
 
-const FISCAL_REVENUE_QUERY=gql`
-query FiscalRevenue($year: Int!) {
-
-
-fiscal_revenue_summary( where: {fiscal_year: {_eq: $year}}) {
-    fiscal_year
-    state_or_area
-    sum
+const FISCAL_REVENUE_QUERY = gql`
+  query FiscalRevenue($year: Int!) {
+    fiscal_revenue_summary(where: { fiscal_year: { _eq: $year } }) {
+      fiscal_year
+      state_or_area
+      sum
+    }
   }
-}
-
 `
 
 const CACHE_QUERY = gql`
-{
-selectedYear @client
-}
+  {
+    selectedYear @client
+  }
 `
 
 /*
@@ -49,112 +51,153 @@ fiscal_revenue_summary(order_by: {fiscal_year: desc, state_or_area: asc}, where:
 }`
 */
 
-//const filter=false;
-const FooBar = (props) => {
-    
+//const filter=false
+const FooBar = props => {
+  const classes = useStyles()
+  const { data, client } = useQuery(CACHE_QUERY)
+  console.debug(data)
+  console.debug(
+    "==============================================================================++++++GOTCACHE?"
+  )
 
-	const { data, client } = useQuery(CACHE_QUERY)
-    console.debug(data)
-    console.debug("==============================================================================++++++GOTCACHE?")
-    
-    //    console.debug(client)
-    //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY);
-    let year=2018;
-    if(data) {
-	year=data.selectedYear
-    }
-    return(  <Slider
-	     defaultValue={year}
-	     aria-labelledby="discrete-slider"
-	     valueLabelDisplay="auto"
-	     step={1}
-	     marks
-	     onChange={(e,yr)=>{ props.onYear(yr)}}
-	     min={2008}
-	     max={2019}
-	     />
-       )
-	
-    //return(<div><div>FOO</div><div>{data && data.selectedYear}</div></div>);
+  //    console.debug(client)
+  //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY)
+  let year = 2018
+  if (data) {
+    year = data.selectedYear
+  }
+  return (
+    <Slider
+      defaultValue={year}
+      aria-labelledby="discrete-slider"
+      valueLabelDisplay="auto"
+      step={1}
+      valueLabelDisplay="on"
+      marks={[{ value: 2008, label: "2008" }, { value: 2019, label: "2019" }]}
+      onChange={(e, yr) => {
+        props.onYear(yr)
+      }}
+      min={2008}
+      max={2019}
+      className={classes.sliderRoot}
+    />
+  )
+
+  //return(<div><div>FOO</div><div>{data && data.selectedYear}</div></div>)
 }
 
-
 const ExploreData = () => {
-    
-    const classes = useStyles()
-    const [cards, setCards]=useState([]);
-    const [year, setYear]=useState(2018);
-    const [count, setCount]=useState(0);
-   // const {cache, client} = useQuery(CACHE_QUERY);
-   // client.writeData({ data: { selectedYear: 2014 } })
-   // console.debug(cache);
-    //    if(cache) {
+  const classes = useStyles()
+  const [cards, setCards] = useState([])
+  const [year, setYear] = useState(2018)
+  const [count, setCount] = useState(0)
+  // const {cache, client} = useQuery(CACHE_QUERY)
+  // client.writeData({ data: { selectedYear: 2014 } })
+  // console.debug(cache)
+  //    if(cache) {
 
-    //	console.debug(cache)
+  //	console.debug(cache)
 
-    //}
-    
-     const onLink = (state) => {
+  //}
 
-	 setCards((cards)=>{
-	     if(cards.filter((item) =>( item.fips==state.properties.FIPS)).length ==0) { 
+  const onLink = state => {
+    setCards(cards => {
+      if (
+        cards.filter(item => item.fips == state.properties.FIPS).length == 0
+      ) {
+        cards.push({
+          fips: state.properties.FIPS,
+          abbrev: state.properties.abbr,
+          name: state.properties.name
+        })
+      }
+      return cards
+    })
+    setCount(count => count + 1)
+    console.debug("CARDS:", cards)
+    console.debug("COUNT:", count)
+  }
+  const onYear = selected => {
+    client.writeData({ data: { selectedYear: selected } })
 
-		 cards.push({fips: state.properties.FIPS, abbrev: state.properties.abbr, name: state.properties.name});
-	     }
-	     return cards
-	 });
-	 setCount(count=>count+1);
-	 console.debug("CARDS:",cards);
-	 console.debug("COUNT:",count);
+    setYear(selected)
+  }
 
-    }
-    const onYear = (selected) => {
-	
-	client.writeData({ data: { selectedYear: selected } })
-	
-	setYear(selected);
+  const closeCard = fips => {
+    setCards(cards => {
+      return cards.filter(item => item.fips !== fips)
+    })
+  }
 
+  const { loading, error, data, client } = useQuery(FISCAL_REVENUE_QUERY, {
+    variables: { year }
+  })
+  if (loading) return "Loading..."
+  if (error) return `Error! ${error.message}`
+  if (data) {
+    let mapData = data.fiscal_revenue_summary.map((item, i) => [
+      item.state_or_area,
+      item.sum
+    ])
+    console.debug(
+      "DWGH=======================================================",
+      client
+    )
+    return (
+      <Fragment>
+        <Grid container className={classes.root} spacing={2}>
+          <Grid item sm={12} md={6}>
+            <Box mt={2}>
+              <Typography variant="h4">Fiscal Year {year} Revenue</Typography>
+            </Box>
+          </Grid>
+          <Grid item sm={12} md={6}>
+            <Box mt={4}>
+              {/* Year Slider */}
+              <FooBar
+                onYear={selected => {
+                onYear(selected)
+                  }}
+                />
+              {/* <Typography id="discrete-slider" gutterBottom>
+                Years
+              </Typography> */}
+            </Box>
+          </Grid>
+        </Grid>
 
-    }
+        <Container maxWidth="lg">
 
-    const closeCard = (fips) => {
-	
-	setCards((cards)=>{ return cards.filter((item)=> item.fips !== fips ) })
-    }
-	    
-	    
-    
-    const { loading, error, data, client} = useQuery(FISCAL_REVENUE_QUERY,{ variables: { year }});
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
-    if(data) {
-	let mapData=data.fiscal_revenue_summary.map( (item,i)=> [item.state_or_area, item.sum] );
-	console.debug('DWGH=======================================================', client);
-	return (
-		<Container maxWidth="lg">
-		<Typography id="discrete-slider" gutterBottom>
-        Years
-	    </Typography>
-		<FooBar onYear={(selected)=>{onYear(selected)}} />
-	    
+        <div className={classes.mapContainer}>
+          <Container className={classes.cardContainer}>
+            {cards.map((state, i) => {
+              return (
+                <StateCard
+                  key={i}
+                  fips={state.fips}
+                  abbrev={state.abbrev}
+                  name={state.name}
+                  closeCard={fips => {
+                    closeCard(fips)
+                  }}
+                />
+              )
+            })}
+          </Container>
 
-		<div className={classes.mapContainer}>		  
-		<Container className={classes.cardContainer}>
-		{cards.map((state,i) =>{ return <StateCard key={i} fips={state.fips} abbrev={state.abbrev} name={state.name} closeCard={(fips)=>{closeCard(fips)}} />})}
-	    
-	    </Container>
-		
-		<Map mapFeatures='states'
-	    mapData={mapData}
-	    onClick={(d,fips,foo,bar) => {
-		onLink(d)
-		
-	    }}		     />
-		</div>
-	    </Container>
-	)
-    }	
-    /*
+          <Map
+            mapFeatures="states"
+            mapData={mapData}
+            onClick={(d, fips, foo, bar) => {
+              onLink(d)
+            }}
+          />
+        </div>
+      </Container>
+      </Fragment>
+    )
+  }
+  /*
     return (
     
   <DefaultLayout>
@@ -183,11 +226,10 @@ const ExploreData = () => {
 }
 export default ExploreData
 
-
 const useStyles = makeStyles(theme => ({
   section: {
-      marginTop: theme.spacing(2),
-      height: '600px'
+    marginTop: theme.spacing(2),
+    height: "600px"
   },
   fluid: {
     marginLeft: theme.spacing(0),
@@ -199,25 +241,26 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
 
-     paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(5),
     fontWeight: 300,
-    marginTop: '5rem'
+    marginTop: "5rem"
   },
-    mapContainer: {
-	position:'relative',
-	minWidth:'280px',
-	flexBasis:'100%',		    
-	height: '600px',
-	    order:'3'
-	    
-    },
-    
-    cardContainer: {
-	width:'280px',
-	position:'absolute',
-	right: '20px'
-	
-    }
-    
+  mapContainer: {
+    position: "relative",
+    minWidth: "280px",
+    flexBasis: "100%",
+    height: "600px",
+    order: "3"
+  },
+
+  cardContainer: {
+    width: "280px",
+    position: "absolute",
+    right: "20px"
+  },
+
+  sliderRoot: {
+    width: `100%`
+  }
 }))
