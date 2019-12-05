@@ -240,7 +240,7 @@ const StateCard = props => {
         </Grid>
 
         <Grid container>
-          <Grid item xs={12}>
+          <Grid item xs={12} zeroMinWidth>
             <Typography variant="subtitle2" style={{ fontWeight: `bold`, marginBottom: 10 }}>
               Top Commodities
             </Typography>

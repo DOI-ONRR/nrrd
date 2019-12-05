@@ -70,5 +70,11 @@ module.exports = Object.freeze({
   // https://material-ui.com/api/icon/
   MuiIcon: {
     colorSecondary: `#fff`
+  },
+  // https://material-ui.com/api/slider/
+  MuiSlider: {
+    valueLabel: {
+      color: primary.main
+    }
   }
 })
