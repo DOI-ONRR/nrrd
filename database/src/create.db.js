@@ -251,3 +251,36 @@ group by fiscal_year;
 
 
 main();
+
+/* for  updating location manual
+
+
+
+update location set offshore_planning_area_code='ALA'  where offshore_planning_area=    'Aleutian Arc';
+update location set offshore_planning_area_code='ALB'  where offshore_planning_area=    'Aleutian Basin';
+update location set offshore_planning_area_code='BFT'  where offshore_planning_area=    'Beaufort Sea';
+update location set offshore_planning_area_code='BOW'   whe  re offshore_planning_area=    'Bowers Basin';
+update location set offshore_planning_area_code='CHU'  where offshore_planning_area=    'Chukchi Sea';
+update location set offshore_planning_area_code='COK'  where offshore_planning_area=    'Cook Inlet';
+update location set offshore_planning_area_code='GEO'  where offshore_planning_area=    'St. George Basin';
+update location set offshore_planning_area_code='GOA'  where offshore_planning_area=    'Gulf of Alaska';
+update location set offshore_planning_area_code='HOP'  where offshore_planning_area=    'Hope Basin';
+update location set offshore_planning_area_code='KOD'  where offshore_planning_area=    'Kodiak';
+update location set offshore_planning_area_code='MAT'  where offshore_planning_area=    'St. Matthew-Hall';
+update location set offshore_planning_area_code='NAL'  where offshore_planning_area=    'North Aleutian Basin';
+update location set offshore_planning_area_code='NAV'  where offshore_planning_area=    'Navarin Basin';
+update location set offshore_planning_area_code='NOR'  where offshore_planning_area=    'Norton Basin';
+update location set offshore_planning_area_code='SHU'  where offshore_planning_area=    'Shumagin';
+update location set offshore_planning_area_code='FLS'  where offshore_planning_area=    'Florida Straits';
+update location set offshore_planning_area_code='MDA'  where offshore_planning_area=    'Mid Atlantic';
+update location set offshore_planning_area_code='NOA'  where offshore_planning_area=    'North Atlantic';
+update location set offshore_planning_area_code='SOA'  where offshore_planning_area=    'South Atlantic';
+update location set offshore_planning_area_code='WGM'  where offshore_planning_area=    'Western Gulf of Mexico';
+update location set offshore_planning_area_code='CGM'  where offshore_planning_area=    'Central Gulf of Mexico';
+update location set offshore_planning_area_code='EGM'  where offshore_planning_area=    'Eastern Gulf of Mexico';
+update location set offshore_planning_area_code='CEC'  where offshore_planning_area=    'Central California';
+update location set offshore_planning_area_code='NOC'  where offshore_planning_area=    'Northern California';
+update location set offshore_planning_area_code='SOC'  where offshore_planning_area=    'Southern California';
+update location set offshore_planning_area_code='WAO'  where offshore_planning_area=    'Washington-Oregon';
+
+*/

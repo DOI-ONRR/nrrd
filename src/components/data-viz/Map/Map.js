@@ -3,9 +3,10 @@ import React, { useEffect, useRef }  from 'react'
 
 import * as d3 from 'd3'
 import * as topojson from 'topojson-client'
-//import utils from '../../../js/utils'
+import utils from '../../../js/utils'
 //import { , withPrefix } from '../../utils/temp-link'
 //import styles from './Map.module.scss'
+import Grow from '@material-ui/core/Grow';
 import { makeStyles } from '@material-ui/core/styles'
 /**
 *  Map  a component for rendering maps dynamically from  data
@@ -82,10 +83,16 @@ const Map = (props) => {
 	   
      
  })  //use effect
-  return (
-	  <div className={ styles.map} ref={elemRef} >
-	  <span >THE MAP COMPONENT</span>
-          </div>
+    return (
+	    <Grow
+            in={true}
+	style={{ transformOrigin: '100 0 0' }}
+        timeout={ 3000 }
+            >
+	    <div className={ styles.map} ref={elemRef} >
+	    <span >THE MAP COMPONENT</span>
+            </div>
+	    </Grow>
 	  
 
   )
@@ -150,7 +157,10 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick) => {
 	  .attr("fill", "#E0E2E3")
 	  .attr("viewBox", '0 0 '+width+' '+height);
 
-  svg.append("g")
+    console.debug("=================================================================data")
+
+    console.debug(data);
+    svg.append("g")
 	.attr("transform", "translate(30,30)")
 	.call(legend,data.title, data, color,true);
 //return svg.node();
@@ -235,9 +245,9 @@ const offshore_chart = (node,offshore, region ,data, colorScheme,onClick) => {
 
     let svg=d3.select(node);
     svg.append("g")
-    
-	.selectAll("path")
+    	.selectAll("path")
 	.data(topojson.feature(offshore, offshore.objects[region]).features)
+
 	.join("path")
 	.attr("fill", d => color(data.get(d.id)))
     	.attr("fill-opacity", .9)
@@ -246,8 +256,7 @@ const offshore_chart = (node,offshore, region ,data, colorScheme,onClick) => {
         .attr('vector-effect', 'non-scaling-stroke')
 	.on("click", (d,i) => {onClick(d,i)} )
 	.on("mouseover", function(d,i) {   // ES6 function find the this node is alluding me
-
-		d3.select(this)
+	    d3.select(this)
 		.style('fill-opacity', .7)
 		.style("cursor", "pointer");
 	})
@@ -258,14 +267,14 @@ const offshore_chart = (node,offshore, region ,data, colorScheme,onClick) => {
 	)
 	.append("title")
 	.text(d => `${d.properties.name}  ${format(data.get(d.id))}`);
-   
+    
+    
     svg.append("path")
 	.datum(topojson.mesh(offshore, offshore.objects[region], (a, b) => a !== b))
 	.attr("fill", "none")
 	.attr("stroke", "#9FA0A1")
 	.attr("stroke-linejoin", "round")
 	.attr("d", path);
-    
     return svg.node();
     
 
@@ -308,9 +317,10 @@ const legend = (g,title,data,color,labels) => {
     const width = 200;
     const height= 20;
     let sorted=data.values.sort((a,b)=>a-b);
-    let lowest=0 //utils.formatToSigFig_Dollar(Math.floor(sorted[0]),3);
-    let median=5 //utils.formatToSigFig_Dollar(Math.floor(sorted[Math.floor(sorted.length/2)]),3);
-    let highest=12000 //utils.formatToSigFig_Dollar(Math.floor(sorted[sorted.length-1]),3);
+   
+    let lowest=utils.formatToSigFig_Dollar(Math.floor(sorted[0]),3);
+    let median=utils.formatToSigFig_Dollar(Math.floor(sorted[Math.floor(sorted.length/2)]),3);
+    let highest=utils.formatToSigFig_Dollar(Math.floor(sorted[sorted.length-1]),3);
     for(let ii=0;ii<sorted.length; ii++) {
 	g.append("rect")
 	    .attr("x",ii*width/sorted.length)

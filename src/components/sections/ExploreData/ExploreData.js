@@ -8,6 +8,7 @@ import Slider from "@material-ui/core/Slider"
 import Paper from "@material-ui/core/Paper"
 import Grid from "@material-ui/core/Grid"
 import Box from "@material-ui/core/Box"
+import Fade from '@material-ui/core/Fade';
 
 import { graphql } from "gatsby"
 import { useQuery } from "@apollo/react-hooks"
@@ -62,7 +63,7 @@ const FooBar = props => {
 
   //    console.debug(client)
   //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY)
-  let year = 2018
+  let year = 2019
   if (data) {
     year = data.selectedYear
   }
@@ -73,11 +74,11 @@ const FooBar = props => {
       valueLabelDisplay="auto"
       step={1}
       valueLabelDisplay="on"
-      marks={[{ value: 2008, label: "2008" }, { value: 2019, label: "2019" }]}
+      marks={[{ value: 2003, label: "2003" }, { value: 2019, label: "2019" }]}
       onChange={(e, yr) => {
         props.onYear(yr)
       }}
-      min={2008}
+      min={2003}
       max={2019}
       className={classes.sliderRoot}
     />
@@ -143,22 +144,28 @@ const ExploreData = () => {
       "DWGH=======================================================",
       client
     )
+      let timeout=500;
     return (
-      <Fragment>
+	    <Fragment>
         <Grid container className={classes.root} spacing={2}>
           <Grid item sm={12} md={6}>
             <Box mt={2} mb={5}>
-              <Typography variant="h4">Fiscal Year {year} Revenue</Typography>
+	    <Fade in={true} timeout={timeout} >
+            <Typography variant="h4">Fiscal Year {year} Revenue</Typography>
+	    </Fade>
             </Box>
           </Grid>
           <Grid item sm={12} md={6}>
             <Box mt={4} mb={5}>
               {/* Year Slider */}
-              <FooBar
+	    <Fade in={true} timeout={timeout} >
+
+            <FooBar
                 onYear={selected => {
                 onYear(selected)
                   }}
-                />
+            />
+	    </Fade>
               {/* <Typography id="discrete-slider" gutterBottom>
                 Years
               </Typography> */}
@@ -167,7 +174,7 @@ const ExploreData = () => {
         </Grid>
 
         <Container maxWidth="lg">
-
+	    <Fade in={true} timeout={timeout} >
         <div className={classes.mapContainer}>
           <Container className={classes.cardContainer}>
             {cards.map((state, i) => {
@@ -192,8 +199,10 @@ const ExploreData = () => {
               onLink(d)
             }}
           />
-        </div>
-      </Container>
+            </div>
+	    </Fade>
+	    </Container>
+
       </Fragment>
     )
   }
