@@ -3,10 +3,11 @@ import React, { useEffect, useRef }  from 'react'
 
 import * as d3 from 'd3'
 import * as topojson from 'topojson-client'
-//import utils from '../../../js/utils'
+import utils from '../../../js/utils'
 //import { , withPrefix } from '../../utils/temp-link'
 //import styles from './Map.module.scss'
-
+import Grow from '@material-ui/core/Grow';
+import { makeStyles } from '@material-ui/core/styles'
 /**
 *  Map  a component for rendering maps dynamically from  data
 *
@@ -25,19 +26,18 @@ const Map = (props) => {
     const mapJsonObject=props.mapJsonObject;
 
     const mapFeatures=props.mapFeatures || "counties";
-    const mapData=props.mapData.concat(props.offshoreData) || [];  
+    let mapData=props.mapData || [];
+    //mapData=props.offshoreData && mapData.concat(props.offshoreData);
     const elemRef = useRef(null);
     const colorScheme=props.colorScheme || "green" ;
     const offshoreColorScheme=props.offshoreColorScheme || colorScheme;
     const mapTitle=props.mapTitle;
     const onClick=props.onClick || function (d,i) {console.debug("Default onClick function", d,i)};
+    const styles=useStyles();
+
     useEffect( () => {
-	console.debug("DWGHE1 SDFSDFSDFSDFSDFSDF");
-	console.debug(mapJsonObject);
 
 	if(typeof(mapJsonObject) != "object") {
-	    console.debug("DWGH string  SDFSDFSDFSDFSDFSDF");
-	    console.debug(mapJson);
 	    let promise = d3.json(mapJson)
 		.then( us => {
 		    let states = get_states(us);
@@ -46,8 +46,9 @@ const Map = (props) => {
 		    //	     let p= get_data().then((data)=>{3
 		    //		 chart(elemRef.current, us,mapFeatures,data);
 		    //	     });
-
+		    elemRef.current.innerHTML='';
 		    let svg=chart(elemRef.current, us,mapFeatures,data, colorScheme,onClick);
+
 		    let propmise2=d3.json(mapOffshoreJson)
 			.then( offshore => {
 			    
@@ -64,7 +65,6 @@ const Map = (props) => {
 			    }
 			     
 			})
-		    //
 		});
 	    
 	} else {
@@ -73,8 +73,6 @@ const Map = (props) => {
 	    let states = get_states(us);
 	    let data=observable_data(mapData);
 	    data.title=mapTitle;
-	    console.debug("DWGH SDFSDFSDFSDFSDFSDF");
-	    console.debug(mapJsonObject);
 	    let svg=chart(elemRef.current, us,mapFeatures,data, colorScheme,onClick);
 	    for(let region in  offshore.objects ) {
 		offshore_chart(svg,offshore,region,data, offshoreColorScheme ,onClick);
@@ -85,9 +83,16 @@ const Map = (props) => {
 	   
      
  })  //use effect
-  return (
-	  <div className={ 'map' /*styles.map*/} ref={elemRef} >
-          </div>
+    return (
+	    <Grow
+            in={true}
+	style={{ transformOrigin: '100 0 0' }}
+        timeout={ 3000 }
+            >
+	    <div className={ styles.map} ref={elemRef} >
+	    <span >THE MAP COMPONENT</span>
+            </div>
+	    </Grow>
 	  
 
   )
@@ -125,7 +130,6 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick) => {
 */
     const path = d3.geoPath(projection);
 
-    console.debug(projection.scale);
     let color = ()=>{};
     // switch quick and dirty to let users change color beter to use d3.interpolateRGB??
     switch(colorScheme) {
@@ -145,14 +149,18 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick) => {
 	color=d3.scaleSequentialQuantile(data.values, t => d3.interpolateGreens(t));
     }
     let format = d => { if(isNaN(d)) {return "" } else {return "$" + d3.format(",.0f")(d);} } 
-  
+
+
     const svg = d3.select(node).append('svg')
-      .style("width", width)
+	  .style("width", width)
 	  .style("height", height)
 	  .attr("fill", "#E0E2E3")
 	  .attr("viewBox", '0 0 '+width+' '+height);
 
-  svg.append("g")
+    console.debug("=================================================================data")
+
+    console.debug(data);
+    svg.append("g")
 	.attr("transform", "translate(30,30)")
 	.call(legend,data.title, data, color,true);
 //return svg.node();
@@ -237,9 +245,9 @@ const offshore_chart = (node,offshore, region ,data, colorScheme,onClick) => {
 
     let svg=d3.select(node);
     svg.append("g")
-    
-	.selectAll("path")
+    	.selectAll("path")
 	.data(topojson.feature(offshore, offshore.objects[region]).features)
+
 	.join("path")
 	.attr("fill", d => color(data.get(d.id)))
     	.attr("fill-opacity", .9)
@@ -248,8 +256,7 @@ const offshore_chart = (node,offshore, region ,data, colorScheme,onClick) => {
         .attr('vector-effect', 'non-scaling-stroke')
 	.on("click", (d,i) => {onClick(d,i)} )
 	.on("mouseover", function(d,i) {   // ES6 function find the this node is alluding me
-
-		d3.select(this)
+	    d3.select(this)
 		.style('fill-opacity', .7)
 		.style("cursor", "pointer");
 	})
@@ -260,14 +267,14 @@ const offshore_chart = (node,offshore, region ,data, colorScheme,onClick) => {
 	)
 	.append("title")
 	.text(d => `${d.properties.name}  ${format(data.get(d.id))}`);
-   
+    
+    
     svg.append("path")
 	.datum(topojson.mesh(offshore, offshore.objects[region], (a, b) => a !== b))
 	.attr("fill", "none")
 	.attr("stroke", "#9FA0A1")
 	.attr("stroke-linejoin", "round")
 	.attr("d", path);
-    
     return svg.node();
     
 
@@ -310,9 +317,10 @@ const legend = (g,title,data,color,labels) => {
     const width = 200;
     const height= 20;
     let sorted=data.values.sort((a,b)=>a-b);
-    let lowest=0 //utils.formatToSigFig_Dollar(Math.floor(sorted[0]),3);
-    let median=5 //utils.formatToSigFig_Dollar(Math.floor(sorted[Math.floor(sorted.length/2)]),3);
-    let highest=12000 //utils.formatToSigFig_Dollar(Math.floor(sorted[sorted.length-1]),3);
+   
+    let lowest=utils.formatToSigFig_Dollar(Math.floor(sorted[0]),3);
+    let median=utils.formatToSigFig_Dollar(Math.floor(sorted[Math.floor(sorted.length/2)]),3);
+    let highest=utils.formatToSigFig_Dollar(Math.floor(sorted[sorted.length-1]),3);
     for(let ii=0;ii<sorted.length; ii++) {
 	g.append("rect")
 	    .attr("x",ii*width/sorted.length)
@@ -341,7 +349,7 @@ const legend = (g,title,data,color,labels) => {
 }
 
 /**
-*  The function that mimics Observable Map() funtcion to allow minimal change to prototype. 
+*  The function that mimics ObservableMap() funtcion to allow minimal change to prototype. 
 *
 *  @param {array[][]}  d - two diminational array of data
 *  @return {object} returns an object with values as an array keys as an array and a get accessor for getting the data
@@ -350,7 +358,7 @@ const legend = (g,title,data,color,labels) => {
 
 
 const observable_data = (d)=> {
-//    let data= await d3.csv("https://raw.githubusercontent.com/rentry/rentry.github.io/master/data/revenue-test.csv", ({id, rate}) => [id, +rate]).then( (d) => {
+    //    let data= await d3.csv("https://raw.githubusercontent.com/rentry/rentry.github.io/master/data/revenue-test.csv", ({id, rate}) => [id, +rate]).then( (d) => {
 	let r={values:[],title:"", keyValues: {} }
 	for(let ii=0; ii< d.length; ii++) {
 	    r.values.push(d[ii][1]);
@@ -393,3 +401,15 @@ const get_states = (us)=> {
 }
 
 
+const useStyles = makeStyles(theme => (
+    {
+	map: {
+	    display:'block',
+	    top:0,		    
+	    left:0,
+	    width: '100%',
+	    height: '100%',
+	    order:'3'
+	    
+    }
+    }))

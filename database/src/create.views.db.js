@@ -55,8 +55,35 @@ const main = () => {
 	
 }
 
+const revenue_summary = () => {
+let view=`
+drop view fiscal_revenue_summary;
+create view  fiscal_revenue_summary as 
+select land_category,  fiscal_year, case when land_category = 'Offshore' then  offshore_planning_area else state end as state_or_area, sum(revenue), count(distinct(commodity)) as distinct_commodities 
+from revenue natural join period natural join location natural join commodity 
+where period='Fiscal Year'
+group by state_or_area, land_category, fiscal_year order by fiscal_year, state_or_area
+;`
+}
+ 
+const revenue_commodity_summary =() => {
+    let view='
+create view revenue_commodity_summary as
+ select case when land_category = 'Offshore' then  offshore_planning_area else state end as state_or_area  ,fiscal_year, commodity, sum(revenue) as total from revenue natural join location natural join period natural join  commodity  where period='Fiscal Year' group by state_or_area, fiscal_year, commodity order by fiscal_year, state_or_area, total desc;
 
-    
+
+
+`
+}
+const distinct_commodity_summary =() => {
+    let view='
+create view revenue_commodity_summary as
+ select case when land_category = 'Offshore' then  offshore_planning_area else state end as state_or_area  ,fiscal_year,  sum(revenue) as total from revenue natural join location natural join period natural join  commodity  where period='Fiscal Year' group by state_or_area, fiscal_year, commodity order by fiscal_year, state_or_area, total desc;
+
+
+
+`
+}
 
 const yearly_calendar_revenue = () => {
     let view=`

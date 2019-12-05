@@ -1,0 +1,41 @@
+
+cf target -o doi-onrr -s dev  # unnecessary login will prompt you for org ans space
+# Login
+cf login -a api.fr.cloud.gov --sso
+
+#create hasura one time set up doesn't need to be done again.
+cf set-space-role mojo.nichols@onrr.gov doi-onrr dev SpaceDeveloper
+cf create-service aws-rds medium-psql onrr-psql
+cf services
+cf push hasura-onrr -c 'graphql-engine --database-url $DATABASE_URL serve --server-port $PORT' --docker-image hasura/graphql-engine --health-check-type none --no-start
+cf bind-service hasura-onrr  onrr-psql
+cf set-env hasura-onrr HASURA_GRAPHQL_ADMIN_SECRET 'SUPER SECRET PASSWORD THAT IS NOT THIS'
+cf start hasura-onrr
+cf set-env hasura-onrr HASURA_GRAPHQL_ENABLE_CONSOLE true
+cf restage hasura-onrr
+
+
+#create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.  
+myapp_guid=$(cf app --guid hasura-onrr)
+
+tunnel=$(cf curl /v2/apps/$myapp_guid/env | jq -r '[.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .host, .port] | join(":")')
+cf ssh -N -L 7222:$tunnel hasura-onrr
+
+#Leave ssh tunnel running open new terminal
+
+myapp_guid=$(cf app --guid hasura-onrr)
+creds=$(cf curl /v2/apps/$myapp_guid/env | jq -r '[.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .username, .password] | join(":")')
+dbname=$(cf curl /v2/apps/$myapp_guid/env | jq -r '.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .db_name')
+psql postgres://$creds@localhost:7222/$dbname
+
+
+echo $creds   # username:password
+#export DB_USER=<username>
+#export DB_PASSWORD=<password>
+
+export DB_USER=`echo -n $creds | cut -d: -f1`                                           
+export DB_PASSWORD=`echo -n  $creds | cut -d: -f2`
+export DB_DATABASE=$dbname
+export DB_PORT=7222
+export DB_HOST=localhost
+

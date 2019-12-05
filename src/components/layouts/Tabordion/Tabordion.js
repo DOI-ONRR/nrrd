@@ -10,6 +10,8 @@ import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import { makeStyles, useTheme } from "@material-ui/styles"
 
+import ExploreData from "../../sections/ExploreData"
+
 const useStyles = makeStyles(theme => ({
   root: {}
 }))
@@ -107,9 +109,7 @@ const Tabordion = () => {
             </Typography>
           </TabPanel>
           <TabPanel value={value} index={3} dir={theme.direction}>
-            <Typography variant="h2">
-              Data by State
-            </Typography>
+            <ExploreData />
             <Typography variant="body1">
               Select a state for detailed production, revenue, and disbursements data.
             </Typography>

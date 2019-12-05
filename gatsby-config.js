@@ -27,9 +27,14 @@ const config = {
       city: 'Washington, D.C.',
       zip: '20240',
       email: 'nrrd@onrr.gov'
-    }
+    },
+      hasura: {
+	  admin_secret:  "Admin password for hasura-onrr is secret # adn that is 112019"
+      }
+      
   },
   plugins: [
+    `gatsby-theme-apollo`
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-mdx`,
@@ -47,6 +52,7 @@ const config = {
         path: `${ __dirname }/src/markdown/`,
       },
     },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -68,10 +74,29 @@ const config = {
         icon: `src/img/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        // CommonMark mode (default: true)
+	    {
+	
+	resolve: `gatsby-source-graphql`,
+	options: {
+	    typeName: `hasura`,
+	    fieldName: `onrr`,
+	    createLink: () => {
+		return createHttpLink({
+		    uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
+		    headers: {
+			'x-hasura-admin-secret': "Admin password for hasura-onrr is secret # adn that is 112019"
+		    },
+		    fetch,
+		    resolvers: {}
+		})
+	    }
+	}
+	    },
+	    {
+		
+		resolve: `gatsby-transformer-remark`,
+		options: {
+		    // CommonMark mode (default: true)
         commonmark: true,
         // Footnotes mode (default: true)
         footnotes: true,
@@ -102,22 +127,7 @@ const config = {
           node.frontmatter.tags !== 'exempt',
       },
     },
-    {
-	    resolve: `gatsby-source-graphql`,
-      options: {
-          typeName: `hasura`,
-          fieldName: `onrr`,
-          createLink: () => {
-            return createHttpLink({
-                uri: 'http://ec2-18-191-111-214.us-east-2.compute.amazonaws.com/v1/graphql',
-                headers: {
-              'x-hasura-admin-secret': 'qUbNGe1ogKcmCDw0XxIAiUbhQEjpGm19'
-                },
-                fetch
-            })
-          }
-      }
-    },
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
