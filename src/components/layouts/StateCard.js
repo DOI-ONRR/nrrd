@@ -10,10 +10,16 @@ import Grid from "@material-ui/core/Grid"
 import Box from "@material-ui/core/Box"
 import Paper from "@material-ui/core/Paper"
 
-import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar"
-import IconButton from "@material-ui/core/IconButton"
-import MenuIcon from "@material-ui/icons/Menu"
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
+// import AppBar from "@material-ui/core/AppBar"
+// import Toolbar from "@material-ui/core/Toolbar"
+// import IconButton from "@material-ui/core/IconButton"
+// import MenuIcon from "@material-ui/icons/Menu"
 import CloseIcon from "@material-ui/icons/Close"
 
 import Sparkline from "../data-viz/Sparkline"
@@ -55,6 +61,17 @@ const useStyles = makeStyles({
   },
   menuButton: {
     marginRight: "4px"
+  },
+  table: {
+    width: `100%`,
+    marginBottom: 0,
+    '& th': {
+      padding: 5,
+      lineHeight: 1
+    } 
+  },
+  paper: {
+    width: `100%`
   }
 })
 
@@ -169,7 +186,8 @@ const StateCard = props => {
         let s = r.map((row, i) => [row.fiscal_year, row.total])
         return { commodity: com, data: s }
       })
-    console.debug("TOp commodities", top_commodities)
+    let first_top_commodity=top_commodities[0].data[highlightIndex][1];
+    console.debug("first top commodity", first_top_commodity)
     //	let dwgh=top_commodities.map((com,i) => {let r = data.commodity_sparkdata.filter( item=> item.commodity==com) let s=r.map((row,i)=>[row.fiscal_year,row.total]) return {com, s}})
     //	console.debug("TOp commodities dwgh", dwgh)
 
@@ -229,8 +247,42 @@ const StateCard = props => {
           </Grid>
         </Grid>
 
-        <Grid container spacing={2}>
-          {top_commodities &&
+        <Grid container>
+          <Paper className={classes.paper} style={{ marginBottom: 10 }}>
+            <Table className={classes.table} size="small" aria-label="top commodities table">
+              {/* <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell align="right"></TableCell>
+                  <TableCell align="right"></TableCell>
+                </TableRow>
+              </TableHead> */}
+              <TableBody>
+              {top_commodities &&
+                top_commodities.map((row, i) => {
+                  console.log('top commodities: ', row)
+                  return (
+                  <TableRow key={row.name}>
+                    <TableCell component="th" scope="row">
+                      <Typography style={{ fontSize: `.8rem` }}>
+                        {row.commodity}
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="right">
+                      <Sparkline data={row.data} highlightIndex={highlightIndex} />
+                    </TableCell>
+                    <TableCell align="right">
+                      <Typography style={{ fontSize: `.8rem` }}>
+                        { utils.formatToSigFig_Dollar(Math.floor(2000000),3) }
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                )
+              })}
+              </TableBody>
+            </Table>
+          </Paper>
+          {/* {top_commodities &&
             top_commodities.map((row, i) => {
               return (
                 <Grid item xs={4}>
@@ -242,7 +294,7 @@ const StateCard = props => {
                   </Paper>
                 </Grid>
               )
-            })}
+            })} */}
         </Grid>
 
         <Grid container>
