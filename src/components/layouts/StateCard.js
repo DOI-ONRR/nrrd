@@ -187,7 +187,7 @@ const StateCard = props => {
         return { commodity: com, data: s }
       })
     let first_top_commodity=top_commodities[0].data[highlightIndex][1];
-    console.debug("first top commodity", first_top_commodity)
+    console.debug("first top commodity", first_top_commodity);
     //	let dwgh=top_commodities.map((com,i) => {let r = data.commodity_sparkdata.filter( item=> item.commodity==com) let s=r.map((row,i)=>[row.fiscal_year,row.total]) return {com, s}})
     //	console.debug("TOp commodities dwgh", dwgh)
 
@@ -273,7 +273,7 @@ const StateCard = props => {
                     </TableCell>
                     <TableCell align="right">
                       <Typography style={{ fontSize: `.8rem` }}>
-                        { utils.formatToSigFig_Dollar(Math.floor(2000000),3) }
+                        { utils.formatToSigFig_Dollar(Math.floor(top_commodities[i].data[highlightIndex][1]),3) }
                       </Typography>
                     </TableCell>
                   </TableRow>
