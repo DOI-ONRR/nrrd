@@ -1,21 +1,21 @@
-import React, { Fragment, useState } from "react"
+import React, { Fragment, useState } from "react";
 //import { Link } from "gatsby"
 
-import { makeStyles } from "@material-ui/core/styles"
-import Container from "@material-ui/core/Container"
-import Typography from "@material-ui/core/Typography"
-import Slider from "@material-ui/core/Slider"
-import Paper from "@material-ui/core/Paper"
-import Grid from "@material-ui/core/Grid"
-import Box from "@material-ui/core/Box"
-import Fade from '@material-ui/core/Fade';
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
+import Slider from "@material-ui/core/Slider";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Fade from "@material-ui/core/Fade";
 
-import { graphql } from "gatsby"
-import { useQuery } from "@apollo/react-hooks"
-import gql from "graphql-tag"
+import { graphql } from "gatsby";
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
-import Map from "../../data-viz/Map"
-import StateCard from "../../layouts/StateCard"
+import Map from "../../data-viz/Map";
+import StateCard from "../../layouts/StateCard";
 
 export const STATIC_QUERY = graphql`
   {
@@ -25,7 +25,7 @@ export const STATIC_QUERY = graphql`
       }
     }
   }
-`
+`;
 
 const FISCAL_REVENUE_QUERY = gql`
   query FiscalRevenue($year: Int!) {
@@ -35,13 +35,13 @@ const FISCAL_REVENUE_QUERY = gql`
       sum
     }
   }
-`
+`;
 
 const CACHE_QUERY = gql`
   {
     selectedYear @client
   }
-`
+`;
 
 /*
 fiscal_revenue_summary(order_by: {fiscal_year: desc, state_or_area: asc}, where: {fiscal_year: {_eq: 2019}}) {
@@ -54,18 +54,18 @@ fiscal_revenue_summary(order_by: {fiscal_year: desc, state_or_area: asc}, where:
 
 //const filter=false
 const FooBar = props => {
-  const classes = useStyles()
-  const { data, client } = useQuery(CACHE_QUERY)
-  console.debug(data)
+  const classes = useStyles();
+  const { data, client } = useQuery(CACHE_QUERY);
+  console.debug(data);
   console.debug(
     "==============================================================================++++++GOTCACHE?"
-  )
+  );
 
   //    console.debug(client)
   //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY)
-  let year = 2019
+  let year = 2019;
   if (data) {
-    year = data.selectedYear
+    year = data.selectedYear;
   }
   return (
     <Slider
@@ -76,22 +76,22 @@ const FooBar = props => {
       valueLabelDisplay="on"
       marks={[{ value: 2003, label: "2003" }, { value: 2019, label: "2019" }]}
       onChange={(e, yr) => {
-        props.onYear(yr)
+        props.onYear(yr);
       }}
       min={2003}
       max={2019}
       className={classes.sliderRoot}
     />
-  )
+  );
 
   //return(<div><div>FOO</div><div>{data && data.selectedYear}</div></div>)
-}
+};
 
 const ExploreData = () => {
-  const classes = useStyles()
-  const [cards, setCards] = useState([])
-  const [year, setYear] = useState(2018)
-  const [count, setCount] = useState(0)
+  const classes = useStyles();
+  const [cards, setCards] = useState([]);
+  const [year, setYear] = useState(2018);
+  const [count, setCount] = useState(0);
   // const {cache, client} = useQuery(CACHE_QUERY)
   // client.writeData({ data: { selectedYear: 2014 } })
   // console.debug(cache)
@@ -110,62 +110,61 @@ const ExploreData = () => {
           fips: state.properties.FIPS,
           abbrev: state.properties.abbr,
           name: state.properties.name
-        })
+        });
       }
-      return cards
-    })
-    setCount(count => count + 1)
-    console.debug("CARDS:", cards)
-    console.debug("COUNT:", count)
-  }
+      return cards;
+    });
+    setCount(count => count + 1);
+    console.debug("CARDS:", cards);
+    console.debug("COUNT:", count);
+  };
   const onYear = selected => {
-    client.writeData({ data: { selectedYear: selected } })
+    client.writeData({ data: { selectedYear: selected } });
 
-    setYear(selected)
-  }
+    setYear(selected);
+  };
 
   const closeCard = fips => {
     setCards(cards => {
-      return cards.filter(item => item.fips !== fips)
-    })
-  }
+      return cards.filter(item => item.fips !== fips);
+    });
+  };
 
   const { loading, error, data, client } = useQuery(FISCAL_REVENUE_QUERY, {
     variables: { year }
-  })
-  if (loading) return "Loading..."
-  if (error) return `Error! ${error.message}`
+  });
+  if (loading) return "Loading...";
+  if (error) return `Error! ${error.message}`;
   if (data) {
     let mapData = data.fiscal_revenue_summary.map((item, i) => [
       item.state_or_area,
       item.sum
-    ])
+    ]);
     console.debug(
       "DWGH=======================================================",
       client
-    )
-      let timeout=500;
+    );
+    let timeout = 500;
     return (
-	    <Fragment>
+      <Fragment>
         <Grid container className={classes.root} spacing={2}>
           <Grid item sm={12} md={6}>
             <Box mt={2} mb={5}>
-	    <Fade in={true} timeout={timeout} >
-            <Typography variant="h4">Fiscal Year {year} Revenue</Typography>
-	    </Fade>
+              <Fade in={true} timeout={timeout}>
+                <Typography variant="h4">Fiscal Year {year} Revenue</Typography>
+              </Fade>
             </Box>
           </Grid>
           <Grid item sm={12} md={6}>
             <Box mt={4} mb={5}>
               {/* Year Slider */}
-	    <Fade in={true} timeout={timeout} >
-
-            <FooBar
-                onYear={selected => {
-                onYear(selected)
+              <Fade in={true} timeout={timeout}>
+                <FooBar
+                  onYear={selected => {
+                    onYear(selected);
                   }}
-            />
-	    </Fade>
+                />
+              </Fade>
               {/* <Typography id="discrete-slider" gutterBottom>
                 Years
               </Typography> */}
@@ -174,37 +173,36 @@ const ExploreData = () => {
         </Grid>
 
         <Container maxWidth="lg">
-	    <Fade in={true} timeout={timeout} >
-        <div className={classes.mapContainer}>
-          <Container className={classes.cardContainer}>
-            {cards.map((state, i) => {
-              return (
-                <StateCard
-                  key={i}
-                  fips={state.fips}
-                  abbrev={state.abbrev}
-                  name={state.name}
-                  closeCard={fips => {
-                    closeCard(fips)
-                  }}
-                />
-              )
-            })}
-          </Container>
+          <Fade in={true} timeout={timeout}>
+            <div className={classes.mapContainer}>
+              <Container className={classes.cardContainer}>
+                {cards.map((state, i) => {
+                  return (
+                    <StateCard
+                      key={i}
+                      fips={state.fips}
+                      abbrev={state.abbrev}
+                      name={state.name}
+                      closeCard={fips => {
+                        closeCard(fips);
+                      }}
+                    />
+                  );
+                })}
+              </Container>
 
-          <Map
-            mapFeatures="states"
-            mapData={mapData}
-            onClick={(d, fips, foo, bar) => {
-              onLink(d)
-            }}
-          />
+              <Map
+                mapFeatures="states"
+                mapData={mapData}
+                onClick={(d, fips, foo, bar) => {
+                  onLink(d);
+                }}
+              />
             </div>
-	    </Fade>
-	    </Container>
-
+          </Fade>
+        </Container>
       </Fragment>
-    )
+    );
   }
   /*
     return (
@@ -232,8 +230,8 @@ const ExploreData = () => {
 
      )
 */
-}
-export default ExploreData
+};
+export default ExploreData;
 
 const useStyles = makeStyles(theme => ({
   section: {
@@ -272,4 +270,4 @@ const useStyles = makeStyles(theme => ({
   sliderRoot: {
     width: `100%`
   }
-}))
+}));

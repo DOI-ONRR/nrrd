@@ -15,4 +15,4 @@ export const wrapRootElement = ({ element }) => (
         </GlossaryProvider>
       </ThemeProvider>
     </ApolloProvider>
-);
+)
