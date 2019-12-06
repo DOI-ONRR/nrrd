@@ -7,8 +7,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import Typography from '@material-ui/core/Typography'
 
-import AddIcon from '@material-ui/icons/add'
-import RemoveIcon from '@material-ui/icons/remove'
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
 
 // import styles from './DidYouKnow.module.scss'
 
@@ -40,12 +40,13 @@ const DidYouKnow = (props) => {
         {props.intro}
       </Typography>
       <ExpansionPanel expanded={expanded === `panel${ id }`} onChange={handleChange(`panel${ id }`)}>
-        <ExpansionPanelSummary
+	          <ExpansionPanelSummary
           expandIcon={ expanded ? `Less ${<RemoveIcon />}` : `More ${<AddIcon />}` }
           aria-controls={`panel${id}bh-content`}
           id={`panel${id}bh-header`}
         >
         </ExpansionPanelSummary>
+	  
         <ExpansionPanelDetails className={classes.content}>
           <Typography>
             {children}

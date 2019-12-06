@@ -34,6 +34,7 @@ const config = {
       
   },
   plugins: [
+
     `gatsby-theme-apollo`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-material-ui`,
