@@ -3,7 +3,7 @@ jobs:
   accessibility:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.2.0
+      - image: circleci/node:10.6.3
     steps:
       - checkout
       - restore_cache:
@@ -24,7 +24,7 @@ jobs:
   performance:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.2.0
+      - image: circleci/node:10.6.3
     steps:
       - checkout
       - restore_cache:
@@ -45,7 +45,7 @@ jobs:
   quick:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.2.0
+      - image: circleci/node:10.6.3
     steps:
       - checkout
       - restore_cache:
@@ -67,7 +67,7 @@ jobs:
 
   preview:
     docker:
-      - image: circleci/node:12.2.0
+      - image: circleci/node:10.6.3
     steps:
       - checkout
       - restore_cache:
@@ -94,7 +94,7 @@ jobs:
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.2.0
+      - image: circleci/node:10.6.3
     steps:
       - checkout
       - restore_cache:
@@ -133,7 +133,7 @@ jobs:
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.2.0
+      - image: circleci/node:10.6.3
     steps:
       - checkout
       - restore_cache:
