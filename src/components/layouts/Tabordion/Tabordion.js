@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import SwipeableViews from "react-swipeable-views"
 
@@ -8,9 +8,7 @@ import Box from "@material-ui/core/Box"
 import Paper from "@material-ui/core/Paper"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
-import { makeStyles, useTheme } from "@material-ui/styles"
-
-import ExploreData from "../../sections/ExploreData"
+import { makeStyles, useTheme } from "@material-ui/core/styles"
 
 const useStyles = makeStyles(theme => ({
   root: {}
@@ -30,7 +28,7 @@ function TabPanel(props) {
     >
       <Box p={3}>{children}</Box>
     </Typography>
-  );
+  )
 }
 
 TabPanel.propTypes = {
@@ -76,7 +74,6 @@ const Tabordion = () => {
             <Tab label="Revenue" {...a11yProps(0)} />
             <Tab label="Disbursments" {...a11yProps(1)} />
             <Tab label="Production" {...a11yProps(2)} />
-            <Tab label="Data by State" {...a11yProps(3)} />
           </Tabs>
         </Paper>
         <SwipeableViews
@@ -106,12 +103,6 @@ const Tabordion = () => {
             </Typography>
             <Typography variant="body1">
             The volume of major commodities extracted on federal lands and waters and Native American lands.
-            </Typography>
-          </TabPanel>
-          <TabPanel value={value} index={3} dir={theme.direction}>
-            <ExploreData />
-            <Typography variant="body1">
-              Select a state for detailed production, revenue, and disbursements data.
             </Typography>
           </TabPanel>
         </SwipeableViews>
