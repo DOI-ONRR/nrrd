@@ -8,6 +8,18 @@ import utils from '../../../js/utils'
 //import styles from './Map.module.scss'
 import Grow from '@material-ui/core/Grow';
 import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles(theme => ({
+	map: {
+		display:'block',
+		top:0,		    
+		left:0,
+		width: '100%',
+		height: '100%',
+		order:'3'
+		
+	}
+}))
 /**
 *  Map  a component for rendering maps dynamically from  data
 *
@@ -33,7 +45,7 @@ const Map = (props) => {
     const offshoreColorScheme=props.offshoreColorScheme || colorScheme;
     const mapTitle=props.mapTitle;
     const onClick=props.onClick || function (d,i) {console.debug("Default onClick function", d,i)};
-    const styles=useStyles();
+    const classes = useStyles();
 
     useEffect( () => {
 
@@ -85,13 +97,13 @@ const Map = (props) => {
  })  //use effect
     return (
 	    <Grow
-            in={true}
-	style={{ transformOrigin: '100 0 0' }}
-        timeout={ 3000 }
+        in={true}
+				style={{ transformOrigin: '100 0 0' }}
+        timeout={ 900 }
             >
-	    <div className={ styles.map} ref={elemRef} >
-	    <span >THE MAP COMPONENT</span>
-            </div>
+	    	<div className={classes.map} ref={elemRef} >
+	    		<span >THE MAP COMPONENT</span>
+        </div>
 	    </Grow>
 	  
 
@@ -399,17 +411,3 @@ const get_states = (us)=> {
     return r;
 
 }
-
-
-const useStyles = makeStyles(theme => (
-    {
-	map: {
-	    display:'block',
-	    top:0,		    
-	    left:0,
-	    width: '100%',
-	    height: '100%',
-	    order:'3'
-	    
-    }
-    }))

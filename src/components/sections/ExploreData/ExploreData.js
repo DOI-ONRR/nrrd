@@ -52,188 +52,11 @@ fiscal_revenue_summary(order_by: {fiscal_year: desc, state_or_area: asc}, where:
 }`
 */
 
-//const filter=false
-const FooBar = props => {
-  const classes = useStyles();
-  const { data, client } = useQuery(CACHE_QUERY);
-  console.debug(data);
-  console.debug(
-    "==============================================================================++++++GOTCACHE?"
-  );
-
-  //    console.debug(client)
-  //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY)
-  let year = 2019;
-  if (data) {
-    year = data.selectedYear;
-  }
-  return (
-    <Slider
-      defaultValue={year}
-      aria-labelledby="discrete-slider"
-      valueLabelDisplay="auto"
-      step={1}
-      valueLabelDisplay="on"
-      marks={[{ value: 2003, label: "2003" }, { value: 2019, label: "2019" }]}
-      onChange={(e, yr) => {
-        props.onYear(yr);
-      }}
-      min={2003}
-      max={2019}
-      className={classes.sliderRoot}
-    />
-  );
-
-  //return(<div><div>FOO</div><div>{data && data.selectedYear}</div></div>)
-};
-
-const ExploreData = () => {
-  const classes = useStyles();
-  const [cards, setCards] = useState([]);
-  const [year, setYear] = useState(2018);
-  const [count, setCount] = useState(0);
-  // const {cache, client} = useQuery(CACHE_QUERY)
-  // client.writeData({ data: { selectedYear: 2014 } })
-  // console.debug(cache)
-  //    if(cache) {
-
-  //	console.debug(cache)
-
-  //}
-
-  const onLink = state => {
-    setCards(cards => {
-      if (
-        cards.filter(item => item.fips == state.properties.FIPS).length == 0
-      ) {
-        cards.push({
-          fips: state.properties.FIPS,
-          abbrev: state.properties.abbr,
-          name: state.properties.name
-        });
-      }
-      return cards;
-    });
-    setCount(count => count + 1);
-    console.debug("CARDS:", cards);
-    console.debug("COUNT:", count);
-  };
-  const onYear = selected => {
-    client.writeData({ data: { selectedYear: selected } });
-
-    setYear(selected);
-  };
-
-  const closeCard = fips => {
-    setCards(cards => {
-      return cards.filter(item => item.fips !== fips);
-    });
-  };
-
-  const { loading, error, data, client } = useQuery(FISCAL_REVENUE_QUERY, {
-    variables: { year }
-  });
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
-  if (data) {
-    let mapData = data.fiscal_revenue_summary.map((item, i) => [
-      item.state_or_area,
-      item.sum
-    ]);
-    console.debug(
-      "DWGH=======================================================",
-      client
-    );
-    let timeout = 500;
-    return (
-      <Fragment>
-        <Grid container className={classes.root} spacing={2}>
-          <Grid item sm={12} md={6}>
-            <Box mt={2} mb={5}>
-              <Fade in={true} timeout={timeout}>
-                <Typography variant="h4">Fiscal Year {year} Revenue</Typography>
-              </Fade>
-            </Box>
-          </Grid>
-          <Grid item sm={12} md={6}>
-            <Box mt={4} mb={5}>
-              {/* Year Slider */}
-              <Fade in={true} timeout={timeout}>
-                <FooBar
-                  onYear={selected => {
-                    onYear(selected);
-                  }}
-                />
-              </Fade>
-              {/* <Typography id="discrete-slider" gutterBottom>
-                Years
-              </Typography> */}
-            </Box>
-          </Grid>
-        </Grid>
-
-        <Container maxWidth="lg">
-          <Fade in={true} timeout={timeout}>
-            <div className={classes.mapContainer}>
-              <Container className={classes.cardContainer}>
-                {cards.map((state, i) => {
-                  return (
-                    <StateCard
-                      key={i}
-                      fips={state.fips}
-                      abbrev={state.abbrev}
-                      name={state.name}
-                      closeCard={fips => {
-                        closeCard(fips);
-                      }}
-                    />
-                  );
-                })}
-              </Container>
-
-              <Map
-                mapFeatures="states"
-                mapData={mapData}
-                onClick={(d, fips, foo, bar) => {
-                  onLink(d);
-                }}
-              />
-            </div>
-          </Fade>
-        </Container>
-      </Fragment>
-    );
-  }
-  /*
-    return (
-    
-  <DefaultLayout>
-    <SEO title="Home" />
-	    <Container maxWidth="lg">
-	    {console.debug(data)}
-	    <Typography className={classes.heroContent} variant="h5">
-	    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	    </Typography>
-	    -	<section className={classes.root}>
-
-	      <Container className={classes.cardContainer}>
-	    {cards.map((fips,i) =>{ console.debug("FIPS",fips)
-				    return <StateCard key={i} fips={fips}  />})}
-	
-				  </Container>
-
-	    </section>
-	</Container>
-	    
-  </DefaultLayout>
-
-
-     )
-*/
-};
-export default ExploreData;
-
 const useStyles = makeStyles(theme => ({
+  root: {
+    padding: 0,
+    margin: 0,
+  },
   section: {
     marginTop: theme.spacing(2),
     height: "600px"
@@ -253,21 +76,248 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 300,
     marginTop: "5rem"
   },
+  mapWrapper: {
+    position: `relative`,
+    height: 600,
+  },
   mapContainer: {
     position: "relative",
     minWidth: "280px",
     flexBasis: "100%",
     height: "600px",
-    order: "3"
+    order: "3",
   },
-
   cardContainer: {
     width: "280px",
     position: "absolute",
-    right: "20px"
+    right: 0,
+    bottom: 20,
+    height: 500,
+    '& > div:nth-child(2)': {
+      cursor: `pointer`,
+      transform: `translate3d(-10%, 0px, 0px) !important`,
+    },
+    '& > div:nth-child(3)': {
+      cursor: `pointer`,
+      transform: `translate3d(-20%, 0px, 0px) !important`,
+    },
+    '& > div:nth-child(4)': {
+      cursor: `pointer`,
+      transform: `translate3d(-30%, 0px, 0px) !important`,
+    },
+    '& > div:nth-child(5)': {
+      cursor: `pointer`,
+      transform: `translate3d(-40%, 0px, 0px) !important`,
+    },
+    '&:hover': {
+      '& > div:nth-child(2)': {
+        cursor: `pointer`,
+        transform: `translate3d(-100%, 0px, 0px) !important`,
+      },
+      '& > div:nth-child(3)': {
+        cursor: `pointer`,
+        transform: `translate3d(-200%, 0px, 0px) !important`,
+      },
+      '& > div:nth-child(4)': {
+        cursor: `pointer`,
+        transform: `translate3d(-300%, 0px, 0px) !important`,
+      },
+      '& > div:nth-child(5)': {
+        cursor: `pointer`,
+        transform: `translate3d(-400%, 0px, 0px) !important`,
+      },
+    }
   },
-
   sliderRoot: {
-    width: `100%`
+    width: `100%`,
+    position: `relative`,
+    top: -10,
   }
-}));
+}))
+
+//const filter=false
+const FooBar = props => {
+  const classes = useStyles();
+  const { data, client } = useQuery(CACHE_QUERY);
+  console.debug(data);
+  console.debug(
+    "==============================================================================++++++GOTCACHE?"
+  );
+
+  //    console.debug(client)
+  //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY)
+  let year = 2019;
+  if (data) {
+    year = data.selectedYear;
+  }
+  return (
+    <Box className={classes.sliderRoot}>
+      <Grid container spacing={4}>
+        <Grid item>
+          <Typography variant="body2" align="left" color="textSecondary">
+            2003
+          </Typography>
+        </Grid>
+        <Grid item xs>
+          <Slider
+            defaultValue={year}
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="auto"
+            step={1}
+            valueLabelDisplay="on"
+            onChange={(e, yr) => {
+              props.onYear(yr);
+            }}
+            min={2003}
+            max={2019}
+          />
+        </Grid>
+        <Grid item>
+        <Typography variant="body2" align="right" color="textSecondary">
+            2019
+          </Typography>
+        </Grid>
+      </Grid>
+    </Box>
+  )
+
+  //return(<div><div>FOO</div><div>{data && data.selectedYear}</div></div>)
+};
+
+const ExploreData = () => {
+  const classes = useStyles()
+  const [cards, setCards] = useState([])
+  const [year, setYear] = useState(2018)
+  const [count, setCount] = useState(0)
+  // const {cache, client} = useQuery(CACHE_QUERY)
+  // client.writeData({ data: { selectedYear: 2014 } })
+  // console.debug(cache)
+  //    if(cache) {
+
+  //	console.debug(cache)
+
+  //}
+
+  const onLink = state => {
+    setCards(cards => {
+      if (
+        cards.filter(item => item.fips == state.properties.FIPS).length == 0
+      ) {
+        cards.push({
+          fips: state.properties.FIPS,
+          abbrev: state.properties.abbr,
+          name: state.properties.name
+        })
+      }
+      return cards;
+    });
+    setCount(count + 1)
+    console.debug("CARDS:", cards)
+    console.debug("COUNT:", count)
+  }
+
+  const onYear = selected => {
+    client.writeData({ data: { selectedYear: selected } })
+
+    setYear(selected);
+  }
+
+  const closeCard = fips => {
+    setCards(cards => {
+      return cards.filter(item => item.fips !== fips)
+    })
+  }
+
+  const { loading, error, data, client } = useQuery(FISCAL_REVENUE_QUERY, {
+    variables: { year }
+  })
+
+  if (loading) {
+    return "Loading..."
+  }
+
+  if (error) return `Error! ${error.message}`
+
+  if (data) {
+    let mapData = data.fiscal_revenue_summary.map((item, i) => [
+      item.state_or_area,
+      item.sum
+    ]);
+    console.debug(
+      "DWGH=======================================================",
+      client
+    );
+    let timeout = 5000;
+    return (
+      <Fragment>
+        <Container>
+          <Grid container spacing={2}>
+            <Grid item sm={12} md={6}>
+              <Box mt={2} mb={5}>
+                <Typography variant="h2">Fiscal Year {year} Revenue</Typography>
+                <Typography variant="subtitle1">
+                  Select a state for detailed production, revenue, and disbursements data.
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item sm={12} md={6}>
+              <Box mt={4} mb={5}>
+                {/* Year Slider */}
+                  <FooBar
+                    onYear={selected => {
+                      onYear(selected);
+                    }}
+                  />
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+        <Container className={classes.mapWrapper} maxWidth="false">
+          <Grid container>
+            <Grid item md={10}>
+              <Box className={classes.mapContainer}>
+                <Map
+                  mapFeatures="states"
+                  mapData={mapData}
+                  onClick={(d, fips, foo, bar) => {
+                    onLink(d);
+                  }}
+                />
+              </Box>
+            </Grid>
+            <Grid item md={2}>
+              <Box className={classes.cardContainer}>
+                {cards.map((state, i) => {
+                  return (
+                    
+                      <StateCard
+                        key={i}
+                        fips={state.fips}
+                        abbrev={state.abbrev}
+                        name={state.name}
+                        closeCard={fips => {
+                          closeCard(fips);
+                        }}
+                      />
+                    
+                  );
+                })}
+              </Box>
+            </Grid>
+          </Grid>
+      </Container>
+        <Container className={classes.contentWrapper}>
+          <Grid container>
+            <Grid item md={12}>
+              <Typography variant="h1">
+                Explore the data
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
+      </Fragment>
+    )
+  }
+  
+}
+export default ExploreData

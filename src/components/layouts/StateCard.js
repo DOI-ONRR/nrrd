@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import Box from "@material-ui/core/Box"
 import Paper from "@material-ui/core/Paper"
+import Slide from "@material-ui/core/Slide"
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -32,14 +33,17 @@ import utils from "../../js/utils"
 
 const useStyles = makeStyles({
   root: {
-    marginBottom: `20px`
+    marginBottom: `20px`,
   },
   card: {
     width: 285,
-    margin: "10px"
+    margin: "10px",
+    position: `absolute`,
+    right: 0,
+    transform: `translate3d(0, 0px, 0px)`,
   },
   cardHeader: {
-    padding: `4px 16px 0`
+    padding: `16px 16px 0`
   },
   close: {
     position: "relative",
@@ -196,154 +200,106 @@ const StateCard = props => {
   }
 
   return (
-    <Card className={classes.card}>
-      <CardHeader
-        title={props.name}
-        action={
+    <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
+      <Card className={classes.card}>
+        <CardHeader
+          title={props.name}
+          action={
+            <CloseIcon
+              className={classes.close}
+              onClick={(e, i) => {
+                closeCard(i)
+              }}
+            />
+          }
+          className={classes.cardHeader}
+        >
+          <Typography variant="h6" color="inherit">
+            {props.name}
+          </Typography>
           <CloseIcon
             className={classes.close}
             onClick={(e, i) => {
               closeCard(i)
             }}
           />
-        }
-        className={classes.cardHeader}
-      >
-        <Typography variant="h6" color="inherit">
-          {props.name}
-        </Typography>
-        <CloseIcon
-          className={classes.close}
-          onClick={(e, i) => {
-            closeCard(i)
-          }}
-        />
-      </CardHeader>
-      <CardContent>
-        <Grid container>
-          <Grid item xs={7}>
-            <Typography variant="caption">
-              <Box>Trend ({sparkMin} - {sparkMax})</Box>
-            </Typography>
-            <Box component="span">
-              {sparkData && (
-                <Sparkline data={sparkData} highlightIndex={highlightIndex} />
-              )}
-            </Box>
+        </CardHeader>
+        <CardContent>
+          <Grid container>
+            <Grid item xs={7}>
+              <Typography variant="caption">
+                <Box>Trend ({sparkMin} - {sparkMax})</Box>
+              </Typography>
+              <Box component="span">
+                {sparkData && (
+                  <Sparkline data={sparkData} highlightIndex={highlightIndex} />
+                )}
+              </Box>
+            </Grid>
+            <Grid item xs={5} style={{ textAlign: `right`}}>
+              <Typography variant="caption">
+                <Box>{year}</Box> 
+                <Box>{ utils.formatToSigFig_Dollar(Math.floor(total),3) }</Box>
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={5} style={{ textAlign: `right`}}>
-            <Typography variant="caption">
-              <Box>{year}</Box> 
-              <Box>{ utils.formatToSigFig_Dollar(Math.floor(total),3) }</Box>
-            </Typography>
-          </Grid>
-        </Grid>
 
-        <Grid container>
-          <Grid item xs={12} zeroMinWidth>
-            <Typography variant="subtitle2" style={{ fontWeight: `bold`, marginBottom: 10 }}>
-              Top Commodities
-            </Typography>
+          <Grid container>
+            <Grid item xs={12} zeroMinWidth>
+              <Typography variant="subtitle2" style={{ fontWeight: `bold`, marginBottom: 10 }}>
+                Top Commodities
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
 
-        <Grid container>
-          <Paper className={classes.paper} style={{ marginBottom: 10 }}>
-            <Table className={classes.table} size="small" aria-label="top commodities table">
-              {/* <TableHead>
-                <TableRow>
-                  <TableCell></TableCell>
-                  <TableCell align="right"></TableCell>
-                  <TableCell align="right"></TableCell>
-                </TableRow>
-              </TableHead> */}
-              <TableBody>
-              {top_commodities &&
-                top_commodities.map((row, i) => {
-                  console.log('top commodities: ', row)
-                  return (
-                  <TableRow key={row.name}>
-                    <TableCell component="th" scope="row">
-                      <Typography style={{ fontSize: `.8rem` }}>
-                        {row.commodity}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Sparkline data={row.data} highlightIndex={highlightIndex} />
-                    </TableCell>
-                    <TableCell align="right">
-                      <Typography style={{ fontSize: `.8rem` }}>
-                        { utils.formatToSigFig_Dollar(Math.floor(top_commodities[i].data[highlightIndex][1]),3) }
-                      </Typography>
-                    </TableCell>
+          <Grid container>
+            <Paper className={classes.paper} style={{ marginBottom: 10 }}>
+              <Table className={classes.table} size="small" aria-label="top commodities table">
+                {/* <TableHead>
+                  <TableRow>
+                    <TableCell></TableCell>
+                    <TableCell align="right"></TableCell>
+                    <TableCell align="right"></TableCell>
                   </TableRow>
-                )
-              })}
-              </TableBody>
-            </Table>
-          </Paper>
-          {/* {top_commodities &&
-            top_commodities.map((row, i) => {
-              return (
-                <Grid item xs={4}>
-                  <Paper style={{ padding: `5px`, marginBottom: `1rem`}}>
-                    <Typography style={{ fontSize: `.8rem` }}>
-                      {row.commodity}
-                    </Typography>
-                    <Sparkline data={row.data} highlightIndex={highlightIndex} />
-                  </Paper>
-                </Grid>
-              )
-            })} */}
-        </Grid>
-
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography variant="subtitle2" component="span">
-              Total Commodities: {distinct_commodities}
-            </Typography>
+                </TableHead> */}
+                <TableBody>
+                {top_commodities &&
+                  top_commodities.map((row, i) => {
+                    console.log('top commodities: ', row)
+                    return (
+                    <TableRow key={row.name}>
+                      <TableCell component="th" scope="row">
+                        <Typography style={{ fontSize: `.8rem` }}>
+                          {row.commodity}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right">
+                        <Sparkline data={row.data} highlightIndex={highlightIndex} />
+                      </TableCell>
+                      <TableCell align="right">
+                        <Typography style={{ fontSize: `.8rem` }}>
+                          { utils.formatToSigFig_Dollar(Math.floor(top_commodities[i].data[highlightIndex][1]),3) }
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
+                  )
+                })}
+                </TableBody>
+              </Table>
+            </Paper>
           </Grid>
-        </Grid>
 
-      </CardContent>
-    </Card>
+          <Grid container>
+            <Grid item xs={12}>
+              <Typography variant="subtitle2" component="span">
+                Total Commodities: {distinct_commodities}
+              </Typography>
+            </Grid>
+          </Grid>
 
-      //   {/*<Typography variant="h5" component="h2">
-	    // {props.name}
-      //       </Typography>*/}
-
-      //   {/* <Typography
-      //     className={classes.title}
-      //     color="textSecondary"
-      //     gutterBottom
-      //   >
-      //     Trend ({sparkMin} - {sparkMax} )
-      //   </Typography> */}
-
-        
-      //   {/* <Typography variant="body2" component="p">
-      //     <span>
-      //       FY{year} {total}
-      //     </span>
-      //   </Typography> */}
-      //   {/* <Typography variant="body2" component="p">
-      //     <span>Total Commodities {distinct_commodities}</span>
-      //   </Typography> */}
-      //   {/* <Typography>
-      //     {top_commodities &&
-      //       top_commodities.map((row, i) => {
-      //         return (
-      //           <>
-      //             <label>{row.commodity}</label>
-      //             <Sparkline data={row.data} highlightIndex={highlightIndex} />
-      //           </>
-      //         )
-      //       })}
-      //   </Typography> */}
-      
-      // {/* <CardActions>
-      //   <Button size="small">Learn More</Button>
-      // </CardActions> */}
+        </CardContent>
+      </Card>
+    </Slide>
   )
 }
 export default StateCard
