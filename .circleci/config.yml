@@ -93,8 +93,13 @@ jobs:
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
             sudo dpkg -i cf-cli_amd64.deb
             bash .circleci/preview.sh
+
+      # Upload test results
+      
       - store_test_results:
           path: /tmp/test-reports
+   
+>>>>>>> 1233384fdd3ef443f10c5c173a7cca233bc97c4b
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
