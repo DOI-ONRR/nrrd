@@ -88,7 +88,9 @@ jobs:
           name: Run tests
           command: |
             mkdir -p ${TEST_REPORTS}
-            npm test > ${TEST_REPORTS}/preview.test.xml 2>&1
+            echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><pre>" > ${TEST_REPORTS}/preview.test.xml 
+            npm test >> ${TEST_REPORTS}/preview.test.xml 2>&1
+            echo "<pre></note>  >> ${TEST_REPORTS}/preview.test.xml
       - run:
           name: deploy preview to cloud.gov
           command: |
