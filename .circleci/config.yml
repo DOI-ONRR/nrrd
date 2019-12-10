@@ -175,7 +175,7 @@ jobs:
             cf api https://api.fr.cloud.gov
             cf auth "$PROD_CF_USERNAME" "$PROD_CF_PASSWORD"
             cf target -o "$PROD_CF_ORG" -s "$PROD_CF_SPACE"
-            cf push onrr -f ./manifest.yml
+            cf push nrrd -f ./manifest.yml
 
 workflows:
   audits:
