@@ -4,4 +4,4 @@ applications:
   path: ./public
   buildpacks:
    - staticfile_buildpack
-  memory: 1000M
+  memory: 100M
