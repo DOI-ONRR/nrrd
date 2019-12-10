@@ -86,7 +86,9 @@ jobs:
           command: npm run build
       - run:
           name: Run tests
-          command: npm test > ${TEST_REPORTS}/preview.test.xml 2>&1
+          command: |
+            mkdir -p ${TEST_REPORTS}
+            npm test > ${TEST_REPORTS}/preview.test.xml 2>&1
       - run:
           name: deploy preview to cloud.gov
           command: |
