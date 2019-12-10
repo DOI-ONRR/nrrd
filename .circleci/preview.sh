@@ -1,7 +1,7 @@
 #!/bin/bash
 cf api https://api.fr.cloud.gov
-cf auth "$CF_USERNAME" "$CF_PASSWORD"
-cf target -o "$CF_ORG" -s "$CF_SPACE"
+cf auth "$STAGING_CF_USERNAME" "$STAGING_CF_PASSWORD"
+cf target -o "$STAGING_CF_ORG" -s "$STAGING_CF_SPACE"
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 #curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
 #sudo dpkg -i cf-cli_amd64.deb
