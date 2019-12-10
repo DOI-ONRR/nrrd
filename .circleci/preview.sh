@@ -12,7 +12,7 @@ for ii in $PREVIEWS
 do
     echo $ii;
     count=$((count+1))
-    if [ $ii != "onrr" ] && [ $ii != "dev-onrr" ]
+    if [ $ii != "nrrd" ] && [ $ii != "dev-nrrd" ]
     then 
 	CANDIDATE=$ii
 	if [ $ii == $BRANCH ]
