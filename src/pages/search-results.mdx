@@ -11,8 +11,6 @@ import Typography from '@material-ui/core/Typography'
 import { GlossaryTerm } from '../components/utils/GlossaryTerm'
 import { filterTerms } from '../components/utils/Glossary'
 
-import DefaultLayout from '../components/layouts/DefaultLayout'
-
 export const useStyles = makeStyles(theme => ({
   title: {
     marginBottom: theme.spacing(3)
@@ -52,7 +50,7 @@ export const SearchResults = () => {
     filterTerms (queryString)
   )
   return (
-    <DefaultLayout>
+    <Fragment>
       <SEO
         title="Search Results | Natural Resources Revenue Data"
         meta={[
@@ -77,7 +75,7 @@ export const SearchResults = () => {
           </div>
         </section>
       </Container>
-    </DefaultLayout>
+    </Fragment>
   )
 }
 

@@ -1,6 +1,7 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { useStaticQuery, Link } from "gatsby"
 import PropTypes from "prop-types"
+
 import { makeStyles } from "@material-ui/core/styles"
 import Container from "@material-ui/core/Container"
 import Grid from "@material-ui/core/Grid"
@@ -14,7 +15,7 @@ import DownloadIcon from "-!svg-react-loader!../../../img/svg/icon-download-base
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: "#323c42"
+    backgroundColor: `#323c42`
   },
   footerLink: {
     color: theme.palette.common.white
@@ -51,7 +52,7 @@ const Footer = props => {
   `)
 
   return (
-    <footer className={classes.root}>
+    <Box component="footer" className={classes.root}>
       <Container maxWidth="lg">
         <Box component="div" pt={5} pb={10}>
           <Grid container spacing={3}>
@@ -66,12 +67,12 @@ const Footer = props => {
             </Grid>
             <Grid item xs={12} sm={6}>
                 <Box mb={2}>
-                  <Typography style={{ color: `#fff` }} paragraph="true">
+                  <Typography style={{ color: `#fff` }} paragraph>
                     Built in the open
                   </Typography>
                 </Box>
                 <Box mb={2}>
-                  <Typography style={{ color: `#d3dfe6` }} paragraph="true">
+                  <Typography style={{ color: `#d3dfe6` }} paragraph>
                     This site (
                     <MuiLink
                       className={classes.footerLink}
@@ -151,9 +152,9 @@ const Footer = props => {
                     </Link>
                   </Typography>
                 </Box>
-                <Divider variant="fullwidth" light="true" />
+                <Divider light />
                 <Box>
-                  <Typography style={{ color: `#d3dfe6`}} paragraph="true">
+                  <Typography style={{ color: `#d3dfe6`}} paragraph>
                     Office of Natural Resources Revenue,{" "}
                     {data.site.siteMetadata.informationDataManagement.name}
                     <br />
@@ -179,7 +180,7 @@ const Footer = props => {
           </Grid>
         </Box>
       </Container>
-    </footer>
+    </Box>
   )
 }
 
@@ -187,4 +188,5 @@ Footer.propTypes = {
   /** The version of the site release. */
   version: PropTypes.string.isRequired
 }
+
 export default Footer

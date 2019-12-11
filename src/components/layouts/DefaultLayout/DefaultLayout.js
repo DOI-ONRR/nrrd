@@ -7,28 +7,25 @@
 
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql, withPrefix } from 'gatsby'
-import SEO from '../../seo'
+import { useStaticQuery, graphql } from 'gatsby'
 
+import { ThemeProvider } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import Box from '@material-ui/core/Box'
+
+import theme from '../../../js/mui/theme'
 
 import { Banner } from '../Banner'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
 
-// import './DefaultLayout.css'
 import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
-
-// Render Meta Image with Prefix SVG
-function renderMetaImage () {
-  return withPrefix('/img/unfurl_image.png')
-}
 
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
-      background: (theme.paletteType === 'light') ? '#000' : '#fff',
+      background: '#fff',
       margin: 0,
       fontFamily: theme.typography.fontFamily
     },
@@ -109,6 +106,7 @@ const DefaultLayout = ({ children }) => {
       site {
         siteMetadata {
           title
+          version
         }
       }
     }
@@ -116,49 +114,24 @@ const DefaultLayout = ({ children }) => {
 
   return (
     <Fragment>
-      <CssBaseline />
-      <SEO
-        htmlAttributes={{ lang: 'en' }}
-        meta={[
-          { name: 'google-site-verification', content: 'OxyG3U-Vtui-uK6wHUeOw83OgdfcfxvsWWZcb5x7aZ0' },
-          // Mobile Specific Metas
-          { name: 'HandheldFriendly', content: 'True' },
-          { name: 'MobileOptimized', content: '320' },
-
-          // type
-          { name: 'og:type', content: 'website' },
-
-          // title
-          { name: 'og:title', content: 'Home | Natural Resources Revenue Data' },
-          { name: 'twitter:title', content: 'Home | Natural Resources Revenue Data' },
-
-          // img
-          { name: 'og:image', content: renderMetaImage() },
-          { name: 'twitter:card', content: 'summary_large_image' },
-          { name: 'twitter:image', content: renderMetaImage() },
-
-          // description
-          { name: 'og:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
-          { name: 'twitter:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
-        ]}
-      ></SEO>
-        <div className={classes.site}>
+      <ThemeProvider theme={theme}>
+        <Box className={classes.site}>
           <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
 
           <Banner />
 
           <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
         
-        
           <GlossaryDrawer />
         
-
-          <div className={classes.siteContent}>
+          <Box className={classes.siteContent}>
+            <CssBaseline />
             <main>{children}</main>
-          </div>
+          </Box>
 
           <Footer version={data && data.site.siteMetadata.version} />
-        </div>
+        </Box>
+      </ThemeProvider>
     </Fragment>
   )
 }

@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 
 import DefaultLayout from '../components/layouts/DefaultLayout'
@@ -38,8 +39,8 @@ const DownloadsTemplate = ( props ) => {
   let title = props.pageContext.markdown.frontmatter.title || 'Natural Resources Revenue Data'
 
   return (
-    <DefaultLayout>
-      <main className={`${classes.root} ${classes.mainContent}`}>
+    <Fragment>
+      <Box component="main" className={`${classes.root} ${classes.mainContent}`}>
         <SEO
           title={title}
           meta={[
@@ -62,8 +63,8 @@ const DownloadsTemplate = ( props ) => {
             </Grid>
           </Grid>
         </Container>
-      </main>
-    </DefaultLayout>
+      </Box>
+    </Fragment>
   )
 }
 

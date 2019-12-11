@@ -6,19 +6,45 @@ tag:
 - Page
 - Home
 ---
- 
 
-import DefaultLayout from "../components/layouts/DefaultLayout"
+import { Fragment } from 'react'
+import { withPrefix } from 'gatsby'
+import SEO from "../components/seo"
 
 import { HomeHero } from "../components/sections/HomeHero"
 import { Tabordion } from "../components/layouts/Tabordion"
 import { WhatsNew } from "../components/sections/WhatsNew"
 
-<HomeHero />
+export const IndexPage = () => {
+  return (
+    <Fragment>
+      <SEO
+        title="Home | Natural Resources Revenue Data"
+        htmlAttributes={{ lang: 'en' }}
+        meta={[
+          { name: 'google-site-verification', content: 'OxyG3U-Vtui-uK6wHUeOw83OgdfcfxvsWWZcb5x7aZ0' },
+          // Mobile Specific Metas
+          { name: 'HandheldFriendly', content: 'True' },
+          { name: 'MobileOptimized', content: '320' },
+          // type
+          { name: 'og:type', content: 'website' },
+          // title
+          { name: 'og:title', content: 'Home | Natural Resources Revenue Data' },
+          { name: 'twitter:title', content: 'Home | Natural Resources Revenue Data' },
+          // img
+          { name: 'og:image', content: withPrefix('/img/unfurl_image.png') },
+          { name: 'twitter:card', content: 'summary_large_image' },
+          { name: 'twitter:image', content: withPrefix('/img/unfurl_image.png') },
+          // description
+          { name: 'og:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
+          { name: 'twitter:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
+        ]}
+      ></SEO>
+      <HomeHero />
+      <Tabordion />
+      <WhatsNew />
+    </Fragment>
+  )
+}
 
-<Tabordion />
-
-<WhatsNew />
-
-
-export default DefaultLayout
+export default IndexPage

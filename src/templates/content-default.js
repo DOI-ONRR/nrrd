@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import SEO from '../components/seo'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -10,7 +10,7 @@ const DefaultTemplate = props => {
   let title = props.pageContext.markdown.frontmatter.title || 'Natural Resources Revenue Data'
 
   return (
-    <DefaultLayout>
+    <Fragment>
       <Container maxWidth="lg">
         <SEO
           title={title}
@@ -32,7 +32,7 @@ const DefaultTemplate = props => {
             </Grid>
           </Grid>
       </Container>
-    </DefaultLayout>
+    </Fragment>
   )
 }
 

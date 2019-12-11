@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const WhatsNew = props => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Container className={classes.root} maxWidth={false} component="section">
