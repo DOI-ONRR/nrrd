@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { GlossaryContext } from '../../../glossaryContext'
 
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     borderBottom: `1px dotted ${theme.palette.common.black}`,
     cursor: 'pointer',
     '&:hover': {
-      borderBottom: `1px solid${theme.palette.common.black}`,
+      borderBottom: `1px solid ${theme.palette.common.black}`,
     }
   },
   iconQuestion: {
@@ -41,7 +41,7 @@ const GlossaryTerm = ({ termKey, children }) => {
 
   return (
     <Fragment>
-      <span className={classes.glossaryTerm} title="Click to define" tabIndex="0"
+      <span className={classes.glossaryTerm} title="Click to define" tabIndex="0" 
       onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: getTerm(), glossaryOpen: true })}>
         {children} <GlossaryIcon className={classes.iconQuestion} />
       </span>

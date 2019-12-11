@@ -20,7 +20,7 @@ export const useStyles = makeStyles(theme => ({
 export const ExplorePage = () => {
   const classes = useStyles()
   return (
-    <DefaultLayout>
+    <Fragment>
       <SEO
           title="About | Natural Resources Revenue Data"
           meta={[
@@ -33,7 +33,7 @@ export const ExplorePage = () => {
           <ExploreData />
         </Box>
       </Container>
-    </DefaultLayout>
+    </Fragment>
   )
 }
 

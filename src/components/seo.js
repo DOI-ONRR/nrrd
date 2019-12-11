@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, { Fragment } from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql, withPrefix } from "gatsby"
@@ -27,7 +27,8 @@ function SEO({ description, lang, meta, title }) {
   const metaDescription = description || site.siteMetadata.description
 
   return (
-    <Helmet
+    <Fragment>
+      <Helmet
       htmlAttributes={{
         lang,
       }}
@@ -68,7 +69,7 @@ function SEO({ description, lang, meta, title }) {
         },
       ].concat(meta)}
     >
-      <title>Home | Natural Resources Revenue Data</title>
+      {/* <title>Home | Natural Resources Revenue Data</title> */}
       <link rel="icon" type="image/x-icon" href={withPrefix('/img/favicon.ico')} />
       <link rel="icon" type="image/x-icon" href={withPrefix('/img/favicon-16x16.png')} sizes="16x16" />
       <link rel="icon" type="image/x-icon" href={withPrefix('/img/favicon-32x32.png')} sizes="32x32" />
@@ -86,6 +87,7 @@ function SEO({ description, lang, meta, title }) {
         {"(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NCRF98R');"}
       </script>
     </Helmet>
+    </Fragment>
   )
 }
 

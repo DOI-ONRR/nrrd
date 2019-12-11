@@ -63,20 +63,20 @@ const Tabordion = () => {
   return (
     <Container maxWidth="lg" className={classes.root}>
       <Box component="div" mb={15}>
-        <Paper square className={classes.paper}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
-            aria-label="full width tabs example"
-          >
-            <Tab label="Revenue" {...a11yProps(0)} />
-            <Tab label="Disbursments" {...a11yProps(1)} />
-            <Tab label="Production" {...a11yProps(2)} />
-          </Tabs>
-        </Paper>
+
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          aria-label="full width tabs example"
+        >
+          <Tab disableRipple label="Revenue" {...a11yProps(0)} />
+          <Tab disableRipple label="Disbursements" {...a11yProps(1)} />
+          <Tab disableRipple label="Production" {...a11yProps(2)} />
+        </Tabs>
+
         <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={value}
