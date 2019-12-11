@@ -68,6 +68,8 @@ jobs:
   preview:
     docker:
       - image: circleci/node:12.13.0
+    environment:
+      TEST_REPORTS: /tmp/test-reports   
     steps:
       - checkout
       - restore_cache:
@@ -84,13 +86,23 @@ jobs:
           command: npm run build
       - run:
           name: Run tests
-          command: npm test
+          command: |
+            mkdir -p ${TEST_REPORTS}
+            echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><pre>" > ${TEST_REPORTS}/preview.test.xml 
+            npm test >> ${TEST_REPORTS}/preview.test.xml 2>&1
+            echo "<pre></note>"  >> ${TEST_REPORTS}/preview.test.xml
       - run:
           name: deploy preview to cloud.gov
           command: |
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
             sudo dpkg -i cf-cli_amd64.deb
             bash .circleci/preview.sh
+
+      # Upload test results
+      
+      - store_test_results:
+          path: /tmp/test-reports
+   
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -121,9 +133,9 @@ jobs:
             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
             cf api https://api.fr.cloud.gov
-            cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o "$CF_ORG" -s "$CF_SPACE"
-            cf push dev-onrr -f ./manifest.yml
+            cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
+            cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
+            cf push dev-nrrd -f ./manifest.yml
       - run:
           name: clean up
           command: |
@@ -161,9 +173,9 @@ jobs:
             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
             cf api https://api.fr.cloud.gov
-            cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o "$CF_ORG" -s "$CF_SPACE"
-            cf push onrr -f ./manifest.yml
+            cf auth "$PROD_CF_USERNAME" "$PROD_CF_PASSWORD"
+            cf target -o "$PROD_CF_ORG" -s "$PROD_CF_SPACE"
+            cf push nrrd -f ./manifest.yml
 
 workflows:
   audits:
