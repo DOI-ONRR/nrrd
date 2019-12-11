@@ -27,7 +27,10 @@ module.exports = Object.freeze({
       padding: '0 30px',
       boxShadow: '0 2px 5px 2px rgba(0, 0, 0, .2)',
       textTransform: `inherit`,
-      fontSize: `1.2rem`
+      fontSize: `1.2rem`,
+      '&:hover': {
+        textDecoration: `underline`,
+      }
     },
   },
   // https://material-ui.com/components/tabs/#tabs

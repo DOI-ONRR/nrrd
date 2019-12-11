@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -40,7 +40,7 @@ const DownloadsTemplate = ( props ) => {
 
   return (
     <Fragment>
-      <Box component="main" className={`${classes.root} ${classes.mainContent}`}>
+      {/* <Box component="main" className={`${classes.root} ${classes.mainContent}`}>
         <SEO
           title={title}
           meta={[
@@ -63,7 +63,7 @@ const DownloadsTemplate = ( props ) => {
             </Grid>
           </Grid>
         </Container>
-      </Box>
+      </Box> */}
     </Fragment>
   )
 }
