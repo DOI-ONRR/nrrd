@@ -123,7 +123,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& li': {
       position: 'relative',
-      top: theme.spacing(-1)
+      top: theme.spacing(0)
     },
     '& li:last-child': {
       position: 'relative',
@@ -179,6 +179,22 @@ const Header = props => {
               <nav className={`${ classes.headerRight } ${ classes.top }`}>
                 <ul>
                   <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/"
+                      activeClassName={classes.menuActiveLink}>
+                      Home{' '}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/about"
+                      activeClassName={classes.menuActiveLink}>
+                      About{' '}
+                    </Link>
+                  </li>
+                  <li>
                     <a
                       href="#"
                       className={classes.menuLink}
@@ -189,33 +205,12 @@ const Header = props => {
                     </a>
                   </li>
                   <li>
-                    <Link className={classes.menuLink} to="/downloads/">
-                      Download data{' '}
-                    </Link>
-                  </li>
-                  <li>
                     <Search />
                   </li>
                 </ul>
               </nav>
               <nav className={`${ classes.headerRight } ${ classes.bottom }`}>
                 <ul>
-                  <li>
-                    <Link 
-                      className={classes.menuLink}
-                      to="/"
-                      activeClassName={classes.menuActiveLink}>
-                        Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      className={classes.menuLink} 
-                      to="/how-it-works/"
-                      activeClassName={classes.menuActiveLink}>
-                        How it works
-                    </Link>
-                  </li>
                   <li>
                     <Link 
                       className={classes.menuLink} 
@@ -225,11 +220,26 @@ const Header = props => {
                     </Link>
                   </li>
                   <li>
-                    <Link
+                    <Link 
                       className={classes.menuLink} 
-                      to="/about/"
+                      to="/query/"
                       activeClassName={classes.menuActiveLink}>
-                        About
+                        Query data
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className={classes.menuLink} 
+                    to="/downloads/"
+                    activeClassName={classes.menuActiveLink}>
+                      Download data{' '}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/how-it-works/"
+                      activeClassName={classes.menuActiveLink}>
+                        How revenue works
                     </Link>
                   </li>
                 </ul>

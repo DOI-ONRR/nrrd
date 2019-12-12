@@ -76,6 +76,6 @@ module.exports = Object.freeze({
   body2: {},
   buttonText: {},
   captionText: {},
-  overlineText: {}
+  overlineText: {},
 
 })

@@ -40,7 +40,7 @@ const DownloadsTemplate = ( props ) => {
 
   return (
     <Fragment>
-      {/* <Box component="main" className={`${classes.root} ${classes.mainContent}`}>
+      <Box component="main" className={`${classes.root} ${classes.mainContent}`}>
         <SEO
           title={title}
           meta={[
@@ -56,14 +56,17 @@ const DownloadsTemplate = ( props ) => {
               <PageToc scrollOffset={190}/>
             </Grid>
             <Grid item xs={12} sm={9}>
-              {hastReactRenderer(props.pageContext.markdown.htmlAst)}
-              <p>Do you have questions about the data or need data that isn't here?
-
-						  Contact our { data.site.siteMetadata.dataRetrieval.name } at <a href={'mailto:' + data.site.siteMetadata.dataRetrieval.email}>{data.site.siteMetadata.dataRetrieval.email }</a>.</p>
+              <Typography>
+                {hastReactRenderer(props.pageContext.markdown.htmlAst)}
+              </Typography>
+              
+              <Typography variant="body1">
+                Do you have questions about the data or need data that isn't here? Contact our { data.site.siteMetadata.dataRetrieval.name } at <a href={'mailto:' + data.site.siteMetadata.dataRetrieval.email}>{data.site.siteMetadata.dataRetrieval.email }</a>.
+              </Typography>
             </Grid>
           </Grid>
         </Container>
-      </Box> */}
+      </Box>
     </Fragment>
   )
 }

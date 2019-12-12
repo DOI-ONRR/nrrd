@@ -1,18 +1,40 @@
 import React from "react"
+import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import SwipeableViews from "react-swipeable-views"
 
 import Container from "@material-ui/core/Container"
 import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
+import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
-import ExploreData from "../../sections/ExploreData"
+
+import IconMap from '-!svg-react-loader!../../../img/icons/map-dark.svg'
 
 const useStyles = makeStyles(theme => ({
-  root: {}
+  root: {},
+  revenueByLocation: {
+    textAlign: `right`,
+    fontSize: `1.2rem`,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    maxHeight: `57px`,
+    display: `flex`,
+    justifyContent: `flex-end`,
+    borderBottom: `1px solid #435159`,
+    position: `relative`,
+    top: `-6px`,
+  },
+  icon: {
+    marginRight: theme.spacing(1),
+    display: `inline-block`,
+  },
+  svg: {
+    fill: `#1478A6`,
+  }
 }))
 
 function TabPanel(props) {
@@ -62,20 +84,35 @@ const Tabordion = () => {
   
   return (
     <Container maxWidth="lg" className={classes.root}>
-      <Box component="div" mb={15}>
-
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          <Tab disableRipple label="Revenue" {...a11yProps(0)} />
-          <Tab disableRipple label="Disbursements" {...a11yProps(1)} />
-          <Tab disableRipple label="Production" {...a11yProps(2)} />
-        </Tabs>
+      <Box mb={15}>
+        <Grid container spacing={0}>
+          <Grid item xs={8}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              variant="fullWidth"
+              aria-label="full width tabs example"
+            >
+              <Tab disableRipple label="Revenue" {...a11yProps(0)} />
+              <Tab disableRipple label="Disbursements" {...a11yProps(1)} />
+              <Tab disableRipple label="Production" {...a11yProps(2)} />
+            </Tabs>
+          </Grid>
+          <Grid item xs={4}>
+            <Box className={classes.revenueByLocation}>
+              <IconMap className={classes.icon} />
+              <Link 
+                className={classes.menuLink} 
+                to="/explore/"
+                activeClassName={classes.menuActiveLink}>
+                  Revenue by location
+              </Link>
+            </Box>
+          </Grid>
+        </Grid>
+        
 
         <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
