@@ -162,6 +162,7 @@ const StateCard = props => {
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year }
   })
+    
   let sparkData = []
   let sparkMin = 203
   let sparkMax = 219
@@ -169,10 +170,42 @@ const StateCard = props => {
   let distinct_commodities = 0
   let top_commodities = []
   let total = 0
+    if(loading) {
+      return(<Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
+	     <Card className={classes.card}>
+             <CardHeader
+             title={props.name}
+             action={
+		     <CloseIcon
+		 className={classes.close}
+		 onClick={(e, i) => {
+                     closeCard(i)
+              }}
+		     />
+             }
+             className={classes.cardHeader}
+             >
+             <Typography variant="h6" color="inherit">
+             {props.name}
+             </Typography>
+             <CloseIcon
+             className={classes.close}
+             onClick={(e, i) => {
+		 closeCard(i)
+             }}
+             />
+             </CardHeader>
+             <CardContent>
+             <Grid container>
+	     <Typography style={{ fontSize: `.8rem` }}>Loading.... </Typography>
+             </Grid>
+             </CardContent>
+	     </Card>
+	     </Slide>
+	    )
+    }
+  if (data && data.fiscal_revenue_summary.length>0 &&  data.revenue_commodity_summary.length>0 && data.commodity_sparkdata.length>0 ) {
 
-  if (data) {
-    console.debug("fooooooooooooooooooooooooooooooooooooooooooooooooooooooo")
-    console.debug(data)
     sparkData = data.fiscal_revenue_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
@@ -196,9 +229,8 @@ const StateCard = props => {
     //	console.debug("TOp commodities dwgh", dwgh)
 
     sparkMin = sparkData[0][0]
-    sparkMax = sparkData[sparkData.length - 1][0]
-  }
-
+      sparkMax = sparkData[sparkData.length - 1][0]
+  
   return (
     <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
       <Card className={classes.card}>
@@ -274,11 +306,11 @@ const StateCard = props => {
                         </Typography>
                       </TableCell>
                       <TableCell align="right">
-                        <Sparkline data={row.data} highlightIndex={highlightIndex} />
+                        <Sparkline data={row.data} highlightIndex={row.data.findIndex(x => x[0] === year)} />
                       </TableCell>
                       <TableCell align="right">
                         <Typography style={{ fontSize: `.8rem` }}>
-                          { utils.formatToSigFig_Dollar(Math.floor(top_commodities[i].data[highlightIndex][1]),3) }
+                          { utils.formatToSigFig_Dollar(Math.floor(top_commodities[i].data[row.data.findIndex(x => x[0] === year)][1]),3) }
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -301,5 +333,39 @@ const StateCard = props => {
       </Card>
     </Slide>
   )
+  } else {
+      return(<Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
+	     <Card className={classes.card}>
+             <CardHeader
+             title={props.name}
+             action={
+		     <CloseIcon
+		 className={classes.close}
+		 onClick={(e, i) => {
+                     closeCard(i)
+              }}
+		     />
+             }
+             className={classes.cardHeader}
+             >
+             <Typography variant="h6" color="inherit">
+             {props.name}
+             </Typography>
+             <CloseIcon
+             className={classes.close}
+             onClick={(e, i) => {
+		 closeCard(i)
+             }}
+             />
+             </CardHeader>
+             <CardContent>
+             <Grid container>
+	     <Typography style={{ fontSize: `.8rem` }}>{props.name} doesn't have any revenue data for the year {year}.</Typography>
+             </Grid>
+             </CardContent>
+	     </Card>
+	     </Slide>
+	    )
+  }
 }
 export default StateCard
