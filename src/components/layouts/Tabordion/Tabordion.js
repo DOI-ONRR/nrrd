@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import SwipeableViews from "react-swipeable-views"
 
@@ -7,33 +6,18 @@ import Container from "@material-ui/core/Container"
 import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
-import Paper from "@material-ui/core/Paper"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
 
-import IconMap from '-!svg-react-loader!../../../img/icons/map-dark.svg'
+import { RevenueByLocationLink } from "../RevenueByLocationLink"
 
 const useStyles = makeStyles(theme => ({
   root: {},
-  revenueByLocation: {
-    textAlign: `right`,
-    fontSize: `1.2rem`,
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-    maxHeight: `57px`,
-    display: `flex`,
-    justifyContent: `flex-end`,
-    borderBottom: `1px solid #435159`,
+  tabPanelContainer: {
     position: `relative`,
-    top: `-6px`,
-  },
-  icon: {
-    marginRight: theme.spacing(1),
-    display: `inline-block`,
-  },
-  svg: {
-    fill: `#1478A6`,
+    top: `-1px`,
+    borderTop: `1px solid #5c737f`
   }
 }))
 
@@ -85,39 +69,29 @@ const Tabordion = () => {
   return (
     <Container maxWidth="lg" className={classes.root}>
       <Box mb={15}>
-        <Grid container spacing={0}>
-          <Grid item xs={8}>
+        <Grid container spacing={0} styles={{ 'padding-bottom': 0 }}>
+          <Grid item xs={12} md={8}>
             <Tabs
               value={value}
               onChange={handleChange}
               indicatorColor="primary"
               textColor="primary"
               variant="fullWidth"
-              aria-label="full width tabs example"
+              aria-label="Revenue, Disbursements, and Production Tabs"
             >
               <Tab disableRipple label="Revenue" {...a11yProps(0)} />
               <Tab disableRipple label="Disbursements" {...a11yProps(1)} />
               <Tab disableRipple label="Production" {...a11yProps(2)} />
             </Tabs>
           </Grid>
-          <Grid item xs={4}>
-            <Box className={classes.revenueByLocation}>
-              <IconMap className={classes.icon} />
-              <Link 
-                className={classes.menuLink} 
-                to="/explore/"
-                activeClassName={classes.menuActiveLink}>
-                  Revenue by location
-              </Link>
-            </Box>
+          <Grid item xs={12} md={4}>
+            <RevenueByLocationLink />
           </Grid>
         </Grid>
         
 
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={value}
-          onChangeIndex={handleChangeIndex}
+        <Box
+          className={classes.tabPanelContainer}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
             <Typography variant="h2">
@@ -143,7 +117,7 @@ const Tabordion = () => {
             The volume of major commodities extracted on federal lands and waters and Native American lands.
             </Typography>
           </TabPanel>
-        </SwipeableViews>
+        </Box>
       </Box>
     </Container>
   )

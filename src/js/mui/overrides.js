@@ -9,6 +9,12 @@ const {
 console.log('palette::', primary)
 
 module.exports = Object.freeze({
+  // https://material-ui.com/api/app-bar/
+  MuiAppBar: {
+    root: {
+      boxShadow: `0px 2px 4px -1px rgba(0,0,0,0.2), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)`
+    }
+  },
   // https://material-ui.com/components/buttons/
   MuiButton: {
     // Name of the rule
@@ -41,36 +47,47 @@ module.exports = Object.freeze({
         backgroundColor: `white`,
         color: `#435159 !important`,
         textColor: `#435159`,
+        border: `1px solid #435159`,
         borderTop: `5px solid #435159`,
-        borderLeft: `1px solid #435159`,
-        borderRight: `1px solid #435159`,
-        borderBottom: `none`
-      }
+        borderBottom: `none`,
+        zIndex: 20,
+      },
     },
     indicator: {
       backgroundColor: `white`,
-      border: `none`
+      border: `none`,
+    },
+    flexContainer: {
+      '@media (max-width: 425px)': {
+        display: `block`,
+        marginBottom: `1rem`,
+      }
     }
   },
   // https://material-ui.com/api/tab/
   MuiTab: {
     root: {
-      background: `#f0f6fa`
+      background: `#f0f6fa`,
+      borderTop: `5px solid #f0f6fa`,
+      marginLeft: `10px`,
+      color: `#435159`,
+      '@media (max-width: 425px)': {
+        marginLeft: 0,
+        width: `100%`,
+        display: `block`,
+      }
     },
     wrapper: {
       textTransform: `capitalize`,
       fontSize: `1.2rem`,
-      fontWeight: `400`
+      fontWeight: `400`,
     },
-    fullWidth: {
-      borderBottom: `1px solid #435159`
-    }
   },
   // https://material-ui.com/api/divider/
   MuiDivider: {
     light: {
       backgroundColor: `#435159`,
-      margin: `1rem 0`
+      margin: `1rem 0`,
     }
   },
   // https://material-ui.com/api/list/
