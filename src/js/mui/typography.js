@@ -18,7 +18,7 @@ module.exports = Object.freeze({
     color: '#323c42',
     fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
     fontSize: '1rem',
-    color: '#5c737f',
+    color: '#435159',
     fontSize: '1.625rem',
     fontWeight: '600',
     lineHeight: '2.25rem',

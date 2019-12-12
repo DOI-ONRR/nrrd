@@ -32,7 +32,10 @@ const useStyles = makeStyles(theme => ({
     a: {
       color: '#1478a6',
       textDecoration: 'underline',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      '&:hover': {
+        textDecoration: `none`,
+      }
     },
     img: {
       maxWidth: `100%`

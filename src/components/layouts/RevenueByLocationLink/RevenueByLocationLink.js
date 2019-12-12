@@ -5,12 +5,17 @@ import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
 import IconMap from '-!svg-react-loader!../../../img/icons/map-dark.svg'
-import { Typography } from '@material-ui/core'
+import { Typography, ThemeProvider } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    paddingTop: theme.spacing(1)
+    paddingTop: theme.spacing(1),
   },
+  menuLink: {
+    '&:hover': {
+      textDecoration: `none`
+    }
+  }
 }))
 
 const RevenueByLocationLink = () => {

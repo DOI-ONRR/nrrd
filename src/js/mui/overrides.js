@@ -12,16 +12,16 @@ module.exports = Object.freeze({
   // https://material-ui.com/api/app-bar/
   MuiAppBar: {
     root: {
-      boxShadow: `0px 2px 4px -1px rgba(0,0,0,0.2), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)`
+      boxShadow: `0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)`
     }
   },
   // https://material-ui.com/components/buttons/
   MuiButton: {
     // Name of the rule
     root: {
-      backgroundColor: `#1478a6`,
+      backgroundColor: primary.light,
       '&:hover': {
-        backgroundColor: `#1478a6`,
+        backgroundColor: primary.light,
       }
     },
     text: {
@@ -38,6 +38,18 @@ module.exports = Object.freeze({
         textDecoration: `underline`,
       }
     },
+  },
+  // https://material-ui.com/api/link/
+  MuiLink: {
+    root: {
+      color: primary.light,
+    },
+    underlineHover: {
+      textDecoration: `underline`,
+      '&:hover': {
+        textDecoration: `none`
+      }
+    }
   },
   // https://material-ui.com/components/tabs/#tabs
   MuiTabs: {
@@ -71,6 +83,9 @@ module.exports = Object.freeze({
       borderTop: `5px solid #f0f6fa`,
       marginLeft: `10px`,
       color: `#435159`,
+      '& span:hover': {
+        textDecoration: `underline`,
+      },
       '@media (max-width: 425px)': {
         marginLeft: 0,
         width: `100%`,
@@ -93,14 +108,26 @@ module.exports = Object.freeze({
   // https://material-ui.com/api/list/
   MuiList: {
     root: {
-      marginBottom: `1.2rem`
+      marginBottom: `1.2rem`,
+      color: primary.light,
+    }
+  },
+  MuiListItem: {
+    root: {
+      '& a span': {
+        color: primary.light
+      },
+      '& a:hover': {
+        textDecoration: `none`
+      }
     }
   },
   // https://material-ui.com/api/list-item-icon/
   MuiListItemIcon: {
     root: {
-      minWidth: `25px`,
-      color: `#000`
+      minWidth: `18px`,
+      color: `#000`,
+      marginRight: 0,
     }
   },
   // https://material-ui.com/api/icon/

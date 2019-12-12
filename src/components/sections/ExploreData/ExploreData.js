@@ -137,9 +137,9 @@ const useStyles = makeStyles(theme => ({
 
 //const filter=false
 const FooBar = props => {
-  const classes = useStyles();
-  const { data, client } = useQuery(CACHE_QUERY);
-  console.debug(data);
+  const classes = useStyles()
+  const { data, client } = useQuery(CACHE_QUERY)
+  console.debug(data)
   console.debug(
     "==============================================================================++++++GOTCACHE?"
   );
@@ -150,6 +150,7 @@ const FooBar = props => {
   if (data) {
     year = data.selectedYear;
   }
+  
   return (
     <Box className={classes.sliderRoot}>
       <Grid container spacing={4}>

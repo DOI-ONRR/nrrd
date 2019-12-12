@@ -94,20 +94,12 @@ const Map = (props) => {
 	       
 	   
      
- })  //use effect
+ })
     return (
-	    <Grow
-        in={true}
-				style={{ transformOrigin: '100 0 0' }}
-        timeout={ 900 }
-            >
 	    	<div className={classes.map} ref={elemRef} >
-	    		<span >THE MAP COMPONENT</span>
+	    		<span></span>
         </div>
-	    </Grow>
-	  
-
-  )
+  	)
 }
 
 export default Map

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
-import DefaultLayout from '../components/layouts/DefaultLayout'
+// import DefaultLayout from '../components/layouts/DefaultLayout'
 import SEO from '../components/seo'
 import Rig404 from '-!svg-react-loader!../img/svg/rig-404.svg'
 import { classicNameResolver } from 'typescript'
@@ -21,8 +21,8 @@ const NotFoundPage = () => {
   const classes = useStyles()
   return (
     <Fragment>
-      {/* <SEO title="404: Not found" /> */}
-      {/* <Container className={classes.root} maxWidth={false}>
+      <SEO title="404: Not found" />
+      <Container className={classes.root} maxWidth={false}>
         <Container maxWidth="lg">
           <div>
             <Rig404 />
@@ -32,7 +32,7 @@ const NotFoundPage = () => {
             </div>
           </div>
         </Container>
-      </Container> */}
+      </Container>
     </Fragment>
   )
 }
