@@ -143,15 +143,8 @@ const fiscalYearMarks = () => {
 
 //const filter=false
 const FooBar = props => {
-  
-  const classes = useStyles()
-  const { data, client } = useQuery(CACHE_QUERY)
-
-  console.log('Inside FooBar!', data)
-  console.debug(data)
-  console.debug(
-    "==============================================================================++++++GOTCACHE?"
-  );
+  const classes = useStyles();
+  const { data, client } = useQuery(CACHE_QUERY);
 
   //    console.debug(client)
   //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY)
@@ -187,7 +180,7 @@ const FooBar = props => {
 
 const ExploreData = () => {
   const classes = useStyles()
-  const [cards, setCards] = useState([])
+    const [cards, setCards] = useState([{fips: 99, abbrev: 'National', name: 'National', minimizeIcon:true, closeIcon: false}])
   const [year, setYear] = useState(2018)
   const [count, setCount] = useState(0)
   // const {cache, client} = useQuery(CACHE_QUERY)
@@ -207,14 +200,14 @@ const ExploreData = () => {
         cards.push({
           fips: state.properties.FIPS,
           abbrev: state.properties.abbr,
-          name: state.properties.name
+            name: state.properties.name
+	    
         })
       }
       return cards;
     });
     setCount(count + 1)
-    console.debug("CARDS:", cards)
-    console.debug("COUNT:", count)
+
   }
 
   const onYear = selected => {
@@ -229,6 +222,8 @@ const ExploreData = () => {
     })
   }
 
+
+    
   const { loading, error, data, client } = useQuery(FISCAL_REVENUE_QUERY, {
     variables: { year }
   })
@@ -244,10 +239,7 @@ const ExploreData = () => {
       item.state_or_area,
       item.sum
     ]);
-    console.debug(
-      "DWGH=======================================================",
-      client
-    );
+
     let timeout = 5000;
     return (
       <Fragment>
@@ -295,7 +287,9 @@ const ExploreData = () => {
                         key={i}
                         fips={state.fips}
                         abbrev={state.abbrev}
-                        name={state.name}
+                      name={state.name}
+		      minimizeIcon={state.minimizeIcon}
+		      closeIcon={state.closeIcon}
                         closeCard={fips => {
                           closeCard(fips);
                         }}
