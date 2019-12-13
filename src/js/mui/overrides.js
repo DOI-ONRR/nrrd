@@ -139,5 +139,14 @@ module.exports = Object.freeze({
     root: {
       color: `#435159`
     }
+  },
+  // https://material-ui.com/api/table-cell/
+  MuiTableCell: {
+    root: {
+      padding: 0
+    },
+    sizeSmall: {
+      padding: 0
+    }
   }
 })
