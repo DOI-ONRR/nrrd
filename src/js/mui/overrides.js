@@ -137,52 +137,7 @@ module.exports = Object.freeze({
   // https://material-ui.com/api/slider/
   MuiSlider: {
     root: {
-      color: primary.main,
-      height: 8,
-      padding: `7px 0`,
-    },
-    thumb: {
-      height: 40,
-      width: 64,
-      backgroundColor: `#323c42`,
-      color: `#fff`,
-      border: `none`,
-      marginTop: -16,
-      marginLeft: -34,
-      '&:focus,&:hover,&$active': {
-        boxShadow: 'inherit',
-        color: `#fff`,
-      },
-      borderRadius: 0
-    },
-    active: {},
-    valueLabel: {
-      left: 'calc(-50% + 48px)',
-      backgroundColor: `none`,
-      top: 13,
-      '& > span': {
-        backgroundColor: `transparent`,
-        fontWeight: `bold`,
-        color: `#fff !important`,
-        fontSize: `1rem`
-      }
-    },
-    track: {
-      height: 8,
-      borderRadius: 4,
-      backgroundColor: grey['400']
-    },
-    rail: {
-      height: 8,
-      borderRadius: 4,
-    },
-    markLabel: {
-      top: 5,
-      backgroundColor: `none`,
-      color: `#fff`
-    },
-    markLabelActive: {
-      backgroundColor: `none`
+      color: `#435159`
     }
   }
 })
