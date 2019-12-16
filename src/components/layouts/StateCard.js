@@ -10,6 +10,10 @@ import Grid from "@material-ui/core/Grid"
 import Box from "@material-ui/core/Box"
 import Paper from "@material-ui/core/Paper"
 import Slide from "@material-ui/core/Slide"
+import Collapse from '@material-ui/core/Collapse';
+import MinimizeIcon from '@material-ui/icons/Minimize';
+import MaxmizeIcon from '@material-ui/icons/Maximize';
+import IconButton from '@material-ui/core/IconButton';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -37,6 +41,7 @@ const useStyles = makeStyles({
   },
   card: {
     width: 285,
+    minHeight: 365,
     margin: "10px",
     position: `absolute`,
     right: 0,
@@ -81,7 +86,7 @@ const useStyles = makeStyles({
 
 const APOLLO_QUERY = gql`
   query StateTrend($state: String!, $year: Int!) {
-    fiscal_revenue_summary(where: { state_or_area: { _eq: $state } }) {
+    fiscal_revenue_summary(where: { state_or_area: { _eq: $state } }, order_by: {fiscal_year: asc, state_or_area: asc}) {
       fiscal_year
       state_or_area
       sum
@@ -91,6 +96,7 @@ const APOLLO_QUERY = gql`
     revenue_commodity_summary(
       limit: 3
       where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
+      order_by: {fiscal_year: asc, total: desc}
     ) {
       fiscal_year
       commodity
@@ -100,6 +106,7 @@ const APOLLO_QUERY = gql`
 
     commodity_sparkdata: revenue_commodity_summary(
       where: { state_or_area: { _eq: $state } }
+      order_by: {fiscal_year: asc} 
     ) {
       fiscal_year
       commodity
@@ -124,7 +131,7 @@ const CACHE_QUERY = gql`
   }
 `
 
-const Foo = props => {
+const QueryCache = props => {
   const { data, client } = useQuery(CACHE_QUERY)
 
   let year = 2018
@@ -151,17 +158,25 @@ const TopCommodities = (state, commodity) => {
 
 const StateCard = props => {
   const classes = useStyles()
-  const bull = <span className={classes.bullet}>•</span>
-  const closeCard = item => {
-    props.closeCard(props.fips)
+    const bull = <span className={classes.bullet}>•</span>;
+    const [minimized, setMinimized] = React.useState(true);
+    const closeCard = item => {
+	props.closeCard(props.fips)
   }
 
-  let year = Foo()
 
-  let state = props.abbrev
+    const minimizeCard = item => {
+	setMinimized(!minimized);	
+    }
+
+  let year = QueryCache()
+
+    let state = props.abbrev
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year }
   })
+    let  minimizeIcon=Object.is(props.minimizeIcon, undefined) ? false : props.minimizeIcon ;
+    let closeIcon=Object.is(props.closeIcon, undefined) ? true : props.closeIcon ;
   let sparkData = []
   let sparkMin = 203
   let sparkMax = 219
@@ -169,14 +184,55 @@ const StateCard = props => {
   let distinct_commodities = 0
   let top_commodities = []
   let total = 0
+    if(loading) {
+      return(<Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
+	     <Card className={classes.card}>
+             <CardHeader
+             title={props.name}
+             action={<>
+	      {minimizeIcon &&   <MinimizeIcon
+	      className={classes.close}
+              onClick={(e, i) => {
+                  minimizeCard(i)
+              }}
+	      key={state}
+	       />
+	      }
+	      {closeIcon && 
+              <CloseIcon
+              className={classes.close}
+              onClick={(e, i) => {
+                closeCard(i)
+              }}
+               />
+	      }
+		     </>
+		    }
+	     
 
-  if (data) {
-    console.debug("fooooooooooooooooooooooooooooooooooooooooooooooooooooooo")
-    console.debug(data)
+             
+             className={classes.cardHeader}
+             >
+             <Typography variant="h6" color="inherit">
+             {props.name}
+             </Typography>
+             </CardHeader>
+             <CardContent>
+             <Grid container>
+	     <Typography style={{ fontSize: `.8rem` }}>Loading.... </Typography>
+             </Grid>
+             </CardContent>
+	     </Card>
+	     </Slide>
+	    )
+    }
+  if (data && data.fiscal_revenue_summary.length>0 &&  data.revenue_commodity_summary.length>0 && data.commodity_sparkdata.length>0 ) {
+
     sparkData = data.fiscal_revenue_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
     ])
+
     highlightIndex = data.fiscal_revenue_summary.findIndex(
       x => x.fiscal_year === year
     )
@@ -191,40 +247,44 @@ const StateCard = props => {
         return { commodity: com, data: s }
       })
     let first_top_commodity=top_commodities[0].data[highlightIndex][1];
-    console.debug("first top commodity", first_top_commodity);
     //	let dwgh=top_commodities.map((com,i) => {let r = data.commodity_sparkdata.filter( item=> item.commodity==com) let s=r.map((row,i)=>[row.fiscal_year,row.total]) return {com, s}})
-    //	console.debug("TOp commodities dwgh", dwgh)
 
     sparkMin = sparkData[0][0]
-    sparkMax = sparkData[sparkData.length - 1][0]
-  }
+      sparkMax = sparkData[sparkData.length - 1][0]
 
   return (
     <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
       <Card className={classes.card}>
         <CardHeader
           title={props.name}
-          action={
-            <CloseIcon
+      action={<>
+	      {minimizeIcon &&   <MinimizeIcon
+	      className={classes.close}
+              onClick={(e, i) => {
+                  minimizeCard(i)
+              }}
+	      key={state}
+	       />
+	      }
+	      {closeIcon && 
+              <CloseIcon
               className={classes.close}
               onClick={(e, i) => {
                 closeCard(i)
               }}
-            />
+               />
+	      }
+	      </>
           }
           className={classes.cardHeader}
         >
           <Typography variant="h6" color="inherit">
             {props.name}
-          </Typography>
-          <CloseIcon
-            className={classes.close}
-            onClick={(e, i) => {
-              closeCard(i)
-            }}
-          />
+      </Typography>
+      
         </CardHeader>
-        <CardContent>
+          <CardContent>
+	  <Collapse in={minimized} timeout="auto" unmountOnExit>
           <Grid container>
             <Grid item xs={7}>
               <Typography variant="caption">
@@ -274,11 +334,11 @@ const StateCard = props => {
                         </Typography>
                       </TableCell>
                       <TableCell align="right">
-                        <Sparkline data={row.data} highlightIndex={highlightIndex} />
+                        <Sparkline data={row.data} highlightIndex={row.data.findIndex(x => x[0] === year)} />
                       </TableCell>
                       <TableCell align="right">
                         <Typography style={{ fontSize: `.8rem` }}>
-                          { utils.formatToSigFig_Dollar(Math.floor(top_commodities[i].data[highlightIndex][1]),3) }
+                          { utils.formatToSigFig_Dollar(Math.floor(top_commodities[i].data[row.data.findIndex(x => x[0] === year)][1]),3) }
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -296,10 +356,44 @@ const StateCard = props => {
               </Typography>
             </Grid>
           </Grid>
-
+	  </Collapse>
         </CardContent>
       </Card>
     </Slide>
   )
+  } else {
+      return(<Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
+	     <Card className={classes.card}>
+             <CardHeader
+             title={props.name}
+             action={
+		     <CloseIcon
+		 className={classes.close}
+		 onClick={(e, i) => {
+                     closeCard(i)
+              }}
+		     />
+             }
+             className={classes.cardHeader}
+             >
+             <Typography variant="h6" color="inherit">
+             {props.name}
+             </Typography>
+             <CloseIcon
+             className={classes.close}
+             onClick={(e, i) => {
+		 closeCard(i)
+             }}
+             />
+             </CardHeader>
+             <CardContent>
+             <Grid container>
+	     <Typography style={{ fontSize: `.8rem` }}>{props.name} doesn't have any revenue data for the year {year}.</Typography>
+             </Grid>
+             </CardContent>
+	     </Card>
+	     </Slide>
+	    )
+  }
 }
 export default StateCard

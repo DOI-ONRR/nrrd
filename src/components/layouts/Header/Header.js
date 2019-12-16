@@ -42,7 +42,8 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 400
   },
   menuActiveLink: {
-    fontWeight: 600
+    fontWeight: 600,
+    textDecoration: `underline`,
   },
   menuButton: {
     marginRight: theme.spacing(0),
@@ -115,6 +116,8 @@ const useStyles = makeStyles(theme => ({
     fontSize: theme.typography.h4.fontSize
   },
   top: {
+    position: `relative`,
+    top: theme.spacing(-0.5),
     '& li > a': {
       fontSize: theme.typography.button.fontSize,
       paddingRight: theme.spacing(2),
@@ -123,7 +126,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& li': {
       position: 'relative',
-      top: theme.spacing(-1)
+      top: theme.spacing(0)
     },
     '& li:last-child': {
       position: 'relative',
@@ -179,6 +182,22 @@ const Header = props => {
               <nav className={`${ classes.headerRight } ${ classes.top }`}>
                 <ul>
                   <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/"
+                      activeClassName={classes.menuActiveLink}>
+                      Home{' '}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/about"
+                      activeClassName={classes.menuActiveLink}>
+                      About{' '}
+                    </Link>
+                  </li>
+                  <li>
                     <a
                       href="#"
                       className={classes.menuLink}
@@ -189,33 +208,12 @@ const Header = props => {
                     </a>
                   </li>
                   <li>
-                    <Link className={classes.menuLink} to="/downloads/">
-                      Download data{' '}
-                    </Link>
-                  </li>
-                  <li>
                     <Search />
                   </li>
                 </ul>
               </nav>
               <nav className={`${ classes.headerRight } ${ classes.bottom }`}>
                 <ul>
-                  <li>
-                    <Link 
-                      className={classes.menuLink}
-                      to="/"
-                      activeClassName={classes.menuActiveLink}>
-                        Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      className={classes.menuLink} 
-                      to="/how-it-works/"
-                      activeClassName={classes.menuActiveLink}>
-                        How it works
-                    </Link>
-                  </li>
                   <li>
                     <Link 
                       className={classes.menuLink} 
@@ -225,11 +223,26 @@ const Header = props => {
                     </Link>
                   </li>
                   <li>
-                    <Link
+                    <Link 
                       className={classes.menuLink} 
-                      to="/about/"
+                      to="/query-data/"
                       activeClassName={classes.menuActiveLink}>
-                        About
+                        Query data
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className={classes.menuLink} 
+                    to="/downloads/"
+                    activeClassName={classes.menuActiveLink}>
+                      Download data{' '}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/how-it-works/"
+                      activeClassName={classes.menuActiveLink}>
+                        How revenue works
                     </Link>
                   </li>
                 </ul>
@@ -260,14 +273,6 @@ const Header = props => {
                   <li>
                     <Link 
                       className={classes.menuLink} 
-                      to="/how-it-works/"
-                      partiallyActive={true}>
-                        How it works
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      className={classes.menuLink} 
                       to="/explore/"
                       partiallyActive={true}>
                         Explore data
@@ -276,14 +281,30 @@ const Header = props => {
                   <li>
                     <Link 
                       className={classes.menuLink} 
-                      to="/about/"
+                      to="/query-data/"
                       partiallyActive={true}>
-                        About{' '}
+                        Query data
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/how-it-works/"
+                      partiallyActive={true}>
+                        How revenue works
                     </Link>
                   </li>
                   <li>
                     <Link className={classes.menuLink} to="/downloads/">
                       Download data{' '}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      className={classes.menuLink} 
+                      to="/about/"
+                      partiallyActive={true}>
+                        About{' '}
                     </Link>
                   </li>
                   <li>

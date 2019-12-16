@@ -135,14 +135,16 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+const fiscalYearMarks = () => {
+  return Array(17).fill(0).map((e,i) => ( 
+    { label: i+2003, value: i+2003 } 
+  ))
+}
+
 //const filter=false
 const FooBar = props => {
   const classes = useStyles();
   const { data, client } = useQuery(CACHE_QUERY);
-  console.debug(data);
-  console.debug(
-    "==============================================================================++++++GOTCACHE?"
-  );
 
   //    console.debug(client)
   //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY)
@@ -150,32 +152,24 @@ const FooBar = props => {
   if (data) {
     year = data.selectedYear;
   }
+  
   return (
     <Box className={classes.sliderRoot}>
       <Grid container spacing={4}>
-        <Grid item>
-          <Typography variant="body2" align="left" color="textSecondary">
-            2003
-          </Typography>
-        </Grid>
         <Grid item xs>
           <Slider
             defaultValue={year}
             aria-labelledby="discrete-slider"
-            valueLabelDisplay="auto"
+            valueLabelDisplay="on"
             step={1}
             valueLabelDisplay="on"
-            onChange={(e, yr) => {
+            onChangeCommitted={(e, yr) => {
               props.onYear(yr);
             }}
+            marks={fiscalYearMarks()}
             min={2003}
             max={2019}
           />
-        </Grid>
-        <Grid item>
-        <Typography variant="body2" align="right" color="textSecondary">
-            2019
-          </Typography>
         </Grid>
       </Grid>
     </Box>
@@ -186,7 +180,7 @@ const FooBar = props => {
 
 const ExploreData = () => {
   const classes = useStyles()
-  const [cards, setCards] = useState([])
+    const [cards, setCards] = useState([{fips: 99, abbrev: 'National', name: 'National', minimizeIcon:true, closeIcon: false}])
   const [year, setYear] = useState(2018)
   const [count, setCount] = useState(0)
   // const {cache, client} = useQuery(CACHE_QUERY)
@@ -206,14 +200,14 @@ const ExploreData = () => {
         cards.push({
           fips: state.properties.FIPS,
           abbrev: state.properties.abbr,
-          name: state.properties.name
+            name: state.properties.name
+	    
         })
       }
       return cards;
     });
     setCount(count + 1)
-    console.debug("CARDS:", cards)
-    console.debug("COUNT:", count)
+
   }
 
   const onYear = selected => {
@@ -228,6 +222,8 @@ const ExploreData = () => {
     })
   }
 
+
+    
   const { loading, error, data, client } = useQuery(FISCAL_REVENUE_QUERY, {
     variables: { year }
   })
@@ -243,25 +239,22 @@ const ExploreData = () => {
       item.state_or_area,
       item.sum
     ]);
-    console.debug(
-      "DWGH=======================================================",
-      client
-    );
+
     let timeout = 5000;
     return (
       <Fragment>
         <Container>
           <Grid container spacing={2}>
-            <Grid item sm={12} md={6}>
-              <Box mt={2} mb={5}>
+            <Grid item sm={12} md={4}>
+              <Box mt={2} mb={2}>
                 <Typography variant="h2">Fiscal Year {year} Revenue</Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle2">
                   Select a state for detailed production, revenue, and disbursements data.
                 </Typography>
               </Box>
             </Grid>
-            <Grid item sm={12} md={6}>
-              <Box mt={4} mb={5}>
+            <Grid item sm={12} md={8}>
+              <Box mt={6} mb={5}>
                 {/* Year Slider */}
                   <FooBar
                     onYear={selected => {
@@ -294,7 +287,9 @@ const ExploreData = () => {
                         key={i}
                         fips={state.fips}
                         abbrev={state.abbrev}
-                        name={state.name}
+                      name={state.name}
+		      minimizeIcon={state.minimizeIcon}
+		      closeIcon={state.closeIcon}
                         closeCard={fips => {
                           closeCard(fips);
                         }}

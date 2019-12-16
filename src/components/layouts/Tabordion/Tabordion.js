@@ -5,14 +5,20 @@ import SwipeableViews from "react-swipeable-views"
 import Container from "@material-ui/core/Container"
 import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
-import Paper from "@material-ui/core/Paper"
+import Grid from "@material-ui/core/Grid"
 import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
-import ExploreData from "../../sections/ExploreData"
+
+import { RevenueByLocationLink } from "../RevenueByLocationLink"
 
 const useStyles = makeStyles(theme => ({
-  root: {}
+  root: {},
+  tabPanelContainer: {
+    position: `relative`,
+    top: `-1px`,
+    borderTop: `1px solid #5c737f`
+  }
 }))
 
 function TabPanel(props) {
@@ -62,25 +68,30 @@ const Tabordion = () => {
   
   return (
     <Container maxWidth="lg" className={classes.root}>
-      <Box component="div" mb={15}>
+      <Box mb={15}>
+        <Grid container spacing={0} styles={{ 'padding-bottom': 0 }}>
+          <Grid item xs={12} md={8}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              variant="fullWidth"
+              aria-label="Revenue, Disbursements, and Production Tabs"
+            >
+              <Tab disableRipple label="Revenue" {...a11yProps(0)} />
+              <Tab disableRipple label="Disbursements" {...a11yProps(1)} />
+              <Tab disableRipple label="Production" {...a11yProps(2)} />
+            </Tabs>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <RevenueByLocationLink />
+          </Grid>
+        </Grid>
+        
 
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          <Tab disableRipple label="Revenue" {...a11yProps(0)} />
-          <Tab disableRipple label="Disbursements" {...a11yProps(1)} />
-          <Tab disableRipple label="Production" {...a11yProps(2)} />
-        </Tabs>
-
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={value}
-          onChangeIndex={handleChangeIndex}
+        <Box
+          className={classes.tabPanelContainer}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
             <Typography variant="h2">
@@ -106,7 +117,7 @@ const Tabordion = () => {
             The volume of major commodities extracted on federal lands and waters and Native American lands.
             </Typography>
           </TabPanel>
-        </SwipeableViews>
+        </Box>
       </Box>
     </Container>
   )
