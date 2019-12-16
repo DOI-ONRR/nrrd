@@ -273,7 +273,9 @@ const ExploreData = () => {
               <Box className={classes.mapContainer}>
                 <Map
                   mapFeatures="states"
-                  mapData={mapData}
+		  mapData={mapData}
+		  minColor="#CDE3C3"
+		  maxColor="#2F4D26"
                   onClick={(d, fips, foo, bar) => {
                     onLink(d);
                   }}
