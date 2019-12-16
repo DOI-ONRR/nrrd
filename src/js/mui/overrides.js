@@ -44,10 +44,10 @@ module.exports = Object.freeze({
     root: {
       color: primary.light,
     },
-    underlineHover: {
+    underlineAlways: {
       textDecoration: `underline`,
       '&:hover': {
-        textDecoration: `none`
+        textDecoration: `none`,
       }
     }
   },
