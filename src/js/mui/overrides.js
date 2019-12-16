@@ -148,5 +148,24 @@ module.exports = Object.freeze({
     sizeSmall: {
       padding: 0
     }
+  },
+  // https://material-ui.com/api/outlined-input/#outlinedinput-api
+  MuiOutlinedInput: {
+    root: {
+      fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
+      '& > #search-input::-webkit-search-cancel-button': {
+        '-webkit-appearance': `none`,
+        height: 15,
+        width: 15,
+        /*
+        * Base64 encoded custom "X" icon
+        * Natively 30x30, but downscaled for highres screens
+        */
+        backgroundImage: `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAn0lEQVR42u3UMQrDMBBEUZ9WfQqDmm22EaTyjRMHAlM5K+Y7lb0wnUZPIKHlnutOa+25Z4D++MRBX98MD1V/trSppLKHqj9TTBWKcoUqffbUcbBBEhTjBOV4ja4l4OIAZThEOV6jHO8ARXD+gPPvKMABinGOrnu6gTNUawrcQKNCAQ7QeTxORzle3+sDfjJpPCqhJh7GixZq4rHcc9l5A9qZ+WeBhgEuAAAAAElFTkSuQmCC)`,
+        backgroundSize: 15,
+        backgroundRepeat: `no-repeat`,
+        backgroundPosition: `top left`,
+      }
+    },
   }
 })
