@@ -17,6 +17,8 @@ import gql from "graphql-tag";
 import Map from "../../data-viz/Map";
 import StateCard from "../../layouts/StateCard";
 
+// import ApolloStateTest from "../../../components/ApolloStateTest"
+
 export const STATIC_QUERY = graphql`
   {
     onrr {
@@ -142,7 +144,7 @@ const fiscalYearMarks = () => {
 }
 
 //const filter=false
-const FooBar = props => {
+const YearSlider = props => {
   const classes = useStyles();
   const { data, client } = useQuery(CACHE_QUERY);
 
@@ -180,7 +182,7 @@ const FooBar = props => {
 
 const ExploreData = () => {
   const classes = useStyles()
-    const [cards, setCards] = useState([{fips: 99, abbrev: 'National', name: 'National', minimizeIcon:true, closeIcon: false}])
+  const [cards, setCards] = useState([{fips: 99, abbrev: 'National', name: 'National', minimizeIcon:true, closeIcon: false}])
   const [year, setYear] = useState(2018)
   const [count, setCount] = useState(0)
   // const {cache, client} = useQuery(CACHE_QUERY)
@@ -256,7 +258,7 @@ const ExploreData = () => {
             <Grid item sm={12} md={8}>
               <Box mt={6} mb={5}>
                 {/* Year Slider */}
-                  <FooBar
+                  <YearSlider
                     onYear={selected => {
                       onYear(selected);
                     }}
@@ -287,9 +289,9 @@ const ExploreData = () => {
                         key={i}
                         fips={state.fips}
                         abbrev={state.abbrev}
-                      name={state.name}
-		      minimizeIcon={state.minimizeIcon}
-		      closeIcon={state.closeIcon}
+                        name={state.name}
+		                    minimizeIcon={state.minimizeIcon}
+		                    closeIcon={state.closeIcon}
                         closeCard={fips => {
                           closeCard(fips);
                         }}
@@ -307,6 +309,7 @@ const ExploreData = () => {
               <Typography variant="h1">
                 Explore the data
               </Typography>
+              {/* <ApolloStateTest /> */}
             </Grid>
           </Grid>
         </Container>
