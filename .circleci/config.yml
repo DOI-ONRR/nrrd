@@ -19,7 +19,7 @@ jobs:
           name: Build gatsby
           command: npm run build
       - run:
-          name: Accessibility tests
+          name: Perform Lighthouse Audit
           command: npm test
   performance:
     docker:

@@ -39,9 +39,7 @@ const config = {
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(
-          `${__dirname}/src/components/layouts/DefaultLayout`
-        )
+        component: `${__dirname}/src/components/layouts/DefaultLayout`
       }
     },
     {
