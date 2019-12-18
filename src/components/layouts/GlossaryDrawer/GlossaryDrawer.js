@@ -61,11 +61,11 @@ const GlossaryDrawer = () => {
   let filteredTerms = filterGlossaryTerms(state.glossaryTerm)
 
   const handleClose = () => {
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: false })
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false }})
   }
 
   const handleChange = event => {
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: event.target.value, glossaryOpen: true })
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: event.target.value, glossaryOpen: true }})
   }
 
   const glossaryList = side => (

@@ -187,9 +187,6 @@ const ExploreData = () => {
 
   const cards = state.cards
   const year = state.year
-  // const [cards, setCards] = useState([{fips: 99, abbrev: 'National', name: 'National', minimizeIcon:true, closeIcon: false}])
-  // const [year, setYear] = useState(2018)
-  // const [count, setCount] = useState(0)
 
   const onLink = state => {
     if (
@@ -201,15 +198,15 @@ const ExploreData = () => {
         name: state.properties.name
       })
     }
-    return dispatch({ type: 'CARDS', cards: cards })
+    return dispatch({ type: 'CARDS', payload: { cards: cards }})
   }
 
   const onYear = selected => {
-    dispatch({ type: 'YEAR', year: selected })
+    dispatch({ type: 'YEAR', payload: { year: selected }})
   }
 
   const closeCard = fips => {
-    dispatch({ type: 'CARDS', cards: cards.filter(item => item.fips !== fips) })
+    dispatch({ type: 'CARDS', payload: { cards: cards.filter(item => item.fips !== fips) }})
   }
 
   const { loading, error, data, client } = useQuery(FISCAL_REVENUE_QUERY, {

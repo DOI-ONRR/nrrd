@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import clsx from "clsx"
 
@@ -36,6 +36,8 @@ import { useQuery } from "@apollo/react-hooks"
 import gql from "graphql-tag"
 
 import utils from "../../js/utils"
+
+import { StoreContext } from "../../store"
 
 const useStyles = makeStyles({
   root: {
@@ -173,6 +175,8 @@ const TopCommodities = (state, commodity) => {
 
 const StateCard = props => {
   const classes = useStyles()
+  const { state, dispatch } = useContext(StoreContext)
+
   const bull = <span className={classes.bullet}>•</span>
   const [minimized, setMinimized] = React.useState(true)
   const closeCard = item => {
@@ -181,13 +185,20 @@ const StateCard = props => {
 
   const minimizeCard = item => {
     setMinimized(!minimized)
+
+    // pop national card off array
+    if(minimized && state.cards.length > 1) 
+      dispatch({ type: 'CARDS', payload: { cards: state.cards.splice(0, 1) }})
+    else
+      // dispatch({ type: 'CARDS', payload: { cards: state.cards.shift() }})
+    console.log('Nationcard is minimized: ', minimized)
   }
 
   let year = QueryCache()
 
-  let state = props.abbrev
+  // let state = props.abbrev
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year }
+    variables: { state: props.abbrev, year: year }
   })
   let minimizeIcon = Object.is(props.minimizeIcon, undefined)
     ? false
