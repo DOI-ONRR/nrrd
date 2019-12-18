@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField'
 import CloseIcon from '@material-ui/icons/Close'
 
 import { GlossaryContext } from '../../../glossaryContext'
+import { StoreContext } from '../../../store'
 
 import GlossaryIcon from '-!svg-react-loader!../../../img/svg/icon-question-circle.svg'
 
@@ -53,7 +54,7 @@ const useStyles = makeStyles(theme => ({
 const GlossaryDrawer = () => {
 
   const classes = useStyles()
-  const { state, dispatch } = useContext(GlossaryContext)
+  const { state, dispatch } = useContext(StoreContext)
 
   console.log('state: ', state)
 

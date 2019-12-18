@@ -1,23 +1,23 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react"
 //import { Link } from "gatsby"
 
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Fade from "@material-ui/core/Fade";
+import { makeStyles } from "@material-ui/core/styles"
+import Container from "@material-ui/core/Container"
+import Typography from "@material-ui/core/Typography"
+import Slider from "@material-ui/core/Slider"
+import Paper from "@material-ui/core/Paper"
+import Grid from "@material-ui/core/Grid"
+import Box from "@material-ui/core/Box"
+import Fade from "@material-ui/core/Fade"
 
-import { graphql } from "gatsby";
-import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import { graphql } from "gatsby"
+import { useQuery } from "@apollo/react-hooks"
+import gql from "graphql-tag"
 
-import Map from "../../data-viz/Map";
-import StateCard from "../../layouts/StateCard";
+import Map from "../../data-viz/Map"
+import StateCard from "../../layouts/StateCard"
 
-// import ApolloStateTest from "../../../components/ApolloStateTest"
+import { StoreContext } from "../../../store"
 
 export const STATIC_QUERY = graphql`
   {
@@ -27,7 +27,7 @@ export const STATIC_QUERY = graphql`
       }
     }
   }
-`;
+`
 
 const FISCAL_REVENUE_QUERY = gql`
   query FiscalRevenue($year: Int!) {
@@ -37,13 +37,13 @@ const FISCAL_REVENUE_QUERY = gql`
       sum
     }
   }
-`;
+`
 
-const CACHE_QUERY = gql`
-  {
-    selectedYear @client
-  }
-`;
+// const CACHE_QUERY = gql`
+//   {
+//     year @client
+//   }
+// `
 
 /*
 fiscal_revenue_summary(order_by: {fiscal_year: desc, state_or_area: asc}, where: {fiscal_year: {_eq: 2019}}) {
@@ -145,15 +145,16 @@ const fiscalYearMarks = () => {
 
 //const filter=false
 const YearSlider = props => {
-  const classes = useStyles();
-  const { data, client } = useQuery(CACHE_QUERY);
+  const classes = useStyles()
+  const { state, dispatch } = useContext(StoreContext)
+  // const { data, client } = useQuery(CACHE_QUERY)
 
   //    console.debug(client)
   //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY)
-  let year = 2019;
-  if (data) {
-    year = data.selectedYear;
-  }
+  let year = state.year
+  // if (data) {
+  //   year = data.year
+  // }
   
   return (
     <Box className={classes.sliderRoot}>
@@ -166,7 +167,7 @@ const YearSlider = props => {
             step={1}
             valueLabelDisplay="on"
             onChangeCommitted={(e, yr) => {
-              props.onYear(yr);
+              props.onYear(yr)
             }}
             marks={fiscalYearMarks()}
             min={2003}
@@ -177,55 +178,40 @@ const YearSlider = props => {
     </Box>
   )
 
-  //return(<div><div>FOO</div><div>{data && data.selectedYear}</div></div>)
-};
+  //return(<div><div>FOO</div><div>{data && data.year}</div></div>)
+}
 
 const ExploreData = () => {
   const classes = useStyles()
-  const [cards, setCards] = useState([{fips: 99, abbrev: 'National', name: 'National', minimizeIcon:true, closeIcon: false}])
-  const [year, setYear] = useState(2018)
-  const [count, setCount] = useState(0)
-  // const {cache, client} = useQuery(CACHE_QUERY)
-  // client.writeData({ data: { selectedYear: 2014 } })
-  // console.debug(cache)
-  //    if(cache) {
+  const { state, dispatch } = useContext(StoreContext)
 
-  //	console.debug(cache)
-
-  //}
+  const cards = state.cards
+  const year = state.year
+  // const [cards, setCards] = useState([{fips: 99, abbrev: 'National', name: 'National', minimizeIcon:true, closeIcon: false}])
+  // const [year, setYear] = useState(2018)
+  // const [count, setCount] = useState(0)
 
   const onLink = state => {
-    setCards(cards => {
-      if (
-        cards.filter(item => item.fips == state.properties.FIPS).length == 0
-      ) {
-        cards.push({
-          fips: state.properties.FIPS,
-          abbrev: state.properties.abbr,
-            name: state.properties.name
-	    
-        })
-      }
-      return cards;
-    });
-    setCount(count + 1)
-
+    if (
+      cards.filter(item => item.fips == state.properties.FIPS).length == 0
+    ) {
+      cards.push({
+        fips: state.properties.FIPS,
+        abbrev: state.properties.abbr,
+        name: state.properties.name
+      })
+    }
+    return dispatch({ type: 'CARDS', cards: cards })
   }
 
   const onYear = selected => {
-    client.writeData({ data: { selectedYear: selected } })
-
-    setYear(selected);
+    dispatch({ type: 'YEAR', year: selected })
   }
 
   const closeCard = fips => {
-    setCards(cards => {
-      return cards.filter(item => item.fips !== fips)
-    })
+    dispatch({ type: 'CARDS', cards: cards.filter(item => item.fips !== fips) })
   }
 
-
-    
   const { loading, error, data, client } = useQuery(FISCAL_REVENUE_QUERY, {
     variables: { year }
   })
@@ -240,9 +226,9 @@ const ExploreData = () => {
     let mapData = data.fiscal_revenue_summary.map((item, i) => [
       item.state_or_area,
       item.sum
-    ]);
+    ])
 
-    let timeout = 5000;
+    let timeout = 5000
     return (
       <Fragment>
         <Container>
@@ -260,7 +246,7 @@ const ExploreData = () => {
                 {/* Year Slider */}
                   <YearSlider
                     onYear={selected => {
-                      onYear(selected);
+                      onYear(selected)
                     }}
                   />
               </Box>
@@ -275,7 +261,7 @@ const ExploreData = () => {
                   mapFeatures="states"
                   mapData={mapData}
                   onClick={(d, fips, foo, bar) => {
-                    onLink(d);
+                    onLink(d)
                   }}
                 />
               </Box>
@@ -293,11 +279,11 @@ const ExploreData = () => {
 		                    minimizeIcon={state.minimizeIcon}
 		                    closeIcon={state.closeIcon}
                         closeCard={fips => {
-                          closeCard(fips);
+                          closeCard(fips)
                         }}
                       />
                     
-                  );
+                  )
                 })}
               </Box>
             </Grid>
@@ -309,6 +295,7 @@ const ExploreData = () => {
               <Typography variant="h1">
                 Explore the data
               </Typography>
+              {/* <CounterTest /> */}
               {/* <ApolloStateTest /> */}
             </Grid>
           </Grid>
