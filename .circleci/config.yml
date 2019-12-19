@@ -28,6 +28,13 @@ jobs:
             sudo apt-get install -y nodejs npm
             apt-get install chromium
             npm i -g lighthouse
+      - store_test_results:
+          command: |     
+            mkdir -p ${TEST_REPORTS}
+            echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><pre>" > ${TEST_REPORTS}/preview.test.xml 
+            npm test >> ${TEST_REPORTS}/preview.test.xml 2>&1
+            echo "<pre></note>"  >> ${TEST_REPORTS}/preview.test.xml
+  
   quick:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
