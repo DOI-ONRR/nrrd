@@ -18,6 +18,7 @@ import Map from "../../data-viz/Map"
 import StateCard from "../../layouts/StateCard"
 
 import { StoreContext } from "../../../store"
+import { ThemeConsumer } from "styled-components"
 
 export const STATIC_QUERY = graphql`
   {
@@ -63,24 +64,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
     height: "600px"
   },
-  fluid: {
-    marginLeft: theme.spacing(0),
-    marginRight: theme.spacing(0),
-    paddingLeft: theme.spacing(0),
-    paddingRight: theme.spacing(0)
-  },
-  heroContent: {
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(5),
-    fontWeight: 300,
-    marginTop: "5rem"
-  },
   mapWrapper: {
     position: `relative`,
     height: 600,
+    marginBottom: theme.spacing(20),
   },
   mapContainer: {
     position: "relative",
@@ -95,38 +82,58 @@ const useStyles = makeStyles(theme => ({
     right: 0,
     bottom: 20,
     height: 500,
-    '& > div:nth-child(2)': {
+    '& > div': {
       cursor: `pointer`,
+    },
+    '& > div:nth-child(2)': {
       transform: `translate3d(-10%, 0px, 0px) !important`,
     },
     '& > div:nth-child(3)': {
-      cursor: `pointer`,
       transform: `translate3d(-20%, 0px, 0px) !important`,
     },
     '& > div:nth-child(4)': {
-      cursor: `pointer`,
       transform: `translate3d(-30%, 0px, 0px) !important`,
     },
     '& > div:nth-child(5)': {
-      cursor: `pointer`,
       transform: `translate3d(-40%, 0px, 0px) !important`,
     },
+    '& .minimized ~ div:nth-of-type(2)': {
+      transform: `translate3d(0px, 0px, 0px) !important`,
+    },
+    '& .minimized ~ div:nth-of-type(3)': {
+      transform: `translate3d(-10%, 0px, 0px) !important`,
+    },
+    '& .minimized ~ div:nth-of-type(4)': {
+      transform: `translate3d(-20%, 0px, 0px) !important`,
+    },
+    '& .minimized ~ div:nth-of-type(5)': {
+      transform: `translate3d(-30%, 0px, 0px) !important`,
+    },
     '&:hover': {
+      cursor: `pointer`,
       '& > div:nth-child(2)': {
-        cursor: `pointer`,
         transform: `translate3d(-100%, 0px, 0px) !important`,
       },
       '& > div:nth-child(3)': {
-        cursor: `pointer`,
         transform: `translate3d(-200%, 0px, 0px) !important`,
       },
       '& > div:nth-child(4)': {
-        cursor: `pointer`,
         transform: `translate3d(-300%, 0px, 0px) !important`,
       },
       '& > div:nth-child(5)': {
-        cursor: `pointer`,
         transform: `translate3d(-400%, 0px, 0px) !important`,
+      },
+      '& .minimized ~ div:nth-of-type(2)': {
+        transform: `translate3d(0px, 0px, 0px) !important`,
+      },
+      '& .minimized ~ div:nth-of-type(3)': {
+        transform: `translate3d(-100%, 0px, 0px) !important`,
+      },
+      '& .minimized ~ div:nth-of-type(4)': {
+        transform: `translate3d(-200%, 0px, 0px) !important`,
+      },
+      '& .minimized ~ div:nth-of-type(5)': {
+        transform: `translate3d(-300%, 0px, 0px) !important`,
       },
     }
   },
@@ -143,7 +150,7 @@ const fiscalYearMarks = () => {
   ))
 }
 
-//const filter=false
+// YearSlider
 const YearSlider = props => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
@@ -292,8 +299,9 @@ const ExploreData = () => {
               <Typography variant="h1">
                 Explore the data
               </Typography>
-              {/* <CounterTest /> */}
-              {/* <ApolloStateTest /> */}
+              <Typography variant="body1">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </Typography>
             </Grid>
           </Grid>
         </Container>

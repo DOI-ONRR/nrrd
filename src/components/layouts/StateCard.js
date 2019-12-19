@@ -69,7 +69,6 @@ const useStyles = makeStyles({
     right: "10px",
     cursor: `pointer`
   },
-
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -185,13 +184,6 @@ const StateCard = props => {
 
   const minimizeCard = item => {
     setMinimized(!minimized)
-
-    // pop national card off array
-    if(minimized && state.cards.length > 1) 
-      dispatch({ type: 'CARDS', payload: { cards: state.cards.splice(0, 1) }})
-    else
-      // dispatch({ type: 'CARDS', payload: { cards: state.cards.shift() }})
-    console.log('Nationcard is minimized: ', minimized)
   }
 
   let year = QueryCache()
@@ -216,7 +208,7 @@ const StateCard = props => {
   if (loading) {
     return (
       <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
-        <Card className={classes.card}>
+        <Card  className={clsx(classes.card, minimizeIcon && { [`minimized`]: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
             title={props.name}
             action={
@@ -291,7 +283,7 @@ const StateCard = props => {
 
     return (
       <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
-        <Card className={clsx(classes.card, { [classes.cardMinimized]: !minimized })}>
+        <Card className={clsx(classes.card, minimizeIcon && { [`minimized`]: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
             title={props.name}
             action={
@@ -341,7 +333,7 @@ const StateCard = props => {
                 </Grid>
                 <Grid item xs={5} style={{ textAlign: `right` }}>
                   <Typography variant="caption">
-                    <Box>{year}</Box>
+                    <Box>{state.year}</Box>
                     <Box>
                       {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
                     </Box>
