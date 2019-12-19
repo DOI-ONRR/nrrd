@@ -19,7 +19,7 @@ jobs:
           name: Build gatsby
           command: npm run build
       - run:
-          name: Run lighthouse audit
+          name: Install chrome dependencies
           # Lighthouse requires Node 10 LTS (10.13) or later.
           # get chromium (stable)
           # install lighthouse
@@ -28,12 +28,18 @@ jobs:
             sudo apt-get install -y nodejs npm
             apt-get install chromium
             npm i -g lighthouse
-      - store_test_results:
-          command: |     
+      - run: 
+          name: Run lighthouse audits
+          command: npm test
+      - run:
+          name: Run test reports
+          command: |
             mkdir -p ${TEST_REPORTS}
             echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><pre>" > ${TEST_REPORTS}/preview.test.xml 
             npm test >> ${TEST_REPORTS}/preview.test.xml 2>&1
             echo "<pre></note>"  >> ${TEST_REPORTS}/preview.test.xml
+      - store_test_results:
+          path: /tmp/test-reports
   
   quick:
     docker:
