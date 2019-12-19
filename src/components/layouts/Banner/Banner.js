@@ -2,6 +2,7 @@ import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
 import logo from '../../../img/us-flag-small.png'
 
 const useStyles = makeStyles(theme => ({
@@ -28,15 +29,13 @@ const useStyles = makeStyles(theme => ({
 const Banner = () => {
   const classes = useStyles()
   return (
-    <Container className={classes.root} maxWidth={false}>
-      <section>
-        <span>
-          <img
-            className={classes.bannerImage}
-            src={logo} alt="U.S. flag signifying that this is a United States Federal Government website" />
-            An official website of the U.S. government
-        </span>
-      </section>
+    <Container component="section" className={classes.root} maxWidth={false}>
+      <Box component="span">
+        <img
+          className={classes.bannerImage}
+          src={logo} alt="U.S. flag signifying that this is a United States Federal Government website" />
+          An official website of the U.S. government
+      </Box>
     </Container>
   )
 }

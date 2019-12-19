@@ -2,15 +2,17 @@
 
 exports[`Banner renders correctly 1`] = `
 <section
-  className="root"
+  className="MuiContainer-root makeStyles-root-1"
 >
-  <span>
+  <span
+    className="MuiBox-root MuiBox-root-11"
+  >
     <img
       alt="U.S. flag signifying that this is a United States Federal Government website"
-      className="bannerImage"
+      className="makeStyles-bannerImage-2"
       src="test-file-stub"
     />
-     An official website of the U.S. government
+    An official website of the U.S. government
   </span>
 </section>
-`
+`;

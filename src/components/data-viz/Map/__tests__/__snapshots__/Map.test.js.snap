@@ -2,6 +2,8 @@
 
 exports[`Map renders correctly 1`] = `
 <div
-  className="map"
-/>
+  className="makeStyles-map-1"
+>
+  <span />
+</div>
 `;
