@@ -5,9 +5,7 @@ const lighthouse = require('lighthouse')
 // Launch Chrome from node
 const chromeLauncher = require('chrome-launcher')
 
-// https://github.com/18F/federalist-garden-build#variables-exposed-during-builds
-// TODO: currently using prod url, need to get current env branch url dynamically
-const BASEURL = `https://revenuedata.doi.gov/`
+const BASEURL = `https://dev-nrrd.app.cloud.gov/`
 
 // Lighthouse config
 // https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md
