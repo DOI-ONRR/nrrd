@@ -2,7 +2,7 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React, { Fragment, useState, useContext } from 'react'
 import { isIE } from 'react-device-detect'
-import { GlossaryContext } from '../../../glossaryContext'
+import { StoreContext } from '../../../store'
 
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -150,17 +150,17 @@ const useStyles = makeStyles(theme => ({
 const Header = props => {
   const classes = useStyles()
 
-  const { dispatch } = useContext(GlossaryContext)
-  const [state, setState ] = useState({
-    right: false
-  })
+  const { state, dispatch } = useContext(StoreContext)
+  // const [state, setState ] = useState({
+  //   right: false
+  // })
 
   const toggleMobileDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
-    setState({ ...state, [side]: open });
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false }})
   }
 
   return (
@@ -202,7 +202,7 @@ const Header = props => {
                       href="#"
                       className={classes.menuLink}
                       alt="this is the glossary drawer"
-                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: true })}
+                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: true }})}
                     >
                       Glossary
                     </a>
@@ -254,7 +254,7 @@ const Header = props => {
             <IconButton edge="start" onClick={toggleMobileDrawer('right', true)} className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
-            <Drawer anchor="right" open={state.right} onClose={toggleMobileDrawer('right', false)}>
+            <Drawer anchor="right" open={state.glossaryOpen} onClose={toggleMobileDrawer('right', false)}>
               <CloseIcon className={classes.mobileMenuCloseButton} onClick={toggleMobileDrawer('right', false)} />
               <nav className={`${ classes.mobileMenu }`}>
                 <ul>
@@ -312,7 +312,7 @@ const Header = props => {
                       href="#"
                       className={classes.menuLink}
                       alt="this is the glossary drawer"
-                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', glossaryTerm: '', glossaryOpen: true })}
+                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: true }})}
                     >
                       Glossary
                     </a>

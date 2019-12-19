@@ -46,7 +46,9 @@ const Map = (props) => {
     const mapTitle=props.mapTitle;
     const onClick=props.onClick || function (d,i) {console.debug("Default onClick function", d,i)};
     const classes = useStyles();
-
+    const minColor=props.minColor;
+    const maxColor=props.maxColor;
+    
     useEffect( () => {
 
 	if(typeof(mapJsonObject) != "object") {
@@ -59,7 +61,7 @@ const Map = (props) => {
 		    //		 chart(elemRef.current, us,mapFeatures,data);
 		    //	     });
 		    elemRef.current.innerHTML='';
-		    let svg=chart(elemRef.current, us,mapFeatures,data, colorScheme,onClick);
+		    let svg=chart(elemRef.current, us,mapFeatures,data, colorScheme,onClick, minColor,maxColor);
 
 		    let propmise2=d3.json(mapOffshoreJson)
 			.then( offshore => {
@@ -71,7 +73,7 @@ const Map = (props) => {
 		     let ii=0;
 			    for(let region in  offshore.objects ) {
 				if(ii<1) {
-				    offshore_chart(svg,offshore,region,data, offshoreColorScheme ,onClick);
+				    offshore_chart(svg,offshore,region,data, offshoreColorScheme ,onClick, minColor,maxColor);
 				    //ii++;
 				}
 			    }
@@ -117,7 +119,7 @@ export default Map
 *  @param {*} onClick function that determines what to do if area is clicked
 *
 */
-const chart = (node,us,mapFeatures,data, colorScheme,onClick) => {
+const chart = (node,us,mapFeatures,data, colorScheme,onClick, minColor, maxColor) => {
     
     const width = node.scrollWidth;
     const height = node.scrollHeight;
@@ -135,6 +137,7 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick) => {
     const path = d3.geoPath(projection);
 
     let color = ()=>{};
+  
     // switch quick and dirty to let users change color beter to use d3.interpolateRGB??
     switch(colorScheme) {
     case 'blue':
@@ -151,6 +154,11 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick) => {
 	break;
     default:
 	color=d3.scaleSequentialQuantile(data.values, t => d3.interpolateGreens(t));
+    }
+    if(minColor && maxColor) {
+	color = d3.scaleSequentialQuantile()
+	    .interpolator(d3.interpolateRgb(minColor, maxColor))
+	    .domain(data.values.sort());
     }
     let format = d => { if(isNaN(d)) {return "" } else {return "$" + d3.format(",.0f")(d);} } 
 
@@ -212,7 +220,7 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick) => {
 
 
 
-const offshore_chart = (node,offshore, region ,data, colorScheme,onClick) => {
+const offshore_chart = (node,offshore, region ,data, colorScheme,onClick,minColor, maxColor) => {
     const width = node.scrollWidth;
     const height = node.scrollHeight;
     const margin = { top: 0, bottom: 0, right: 0, left: 0};
@@ -244,6 +252,13 @@ const offshore_chart = (node,offshore, region ,data, colorScheme,onClick) => {
     default:
 	color=d3.scaleSequentialQuantile(data.values, t => d3.interpolateGreens(t));
     }
+    if(minColor && maxColor) {
+	color = d3.scaleSequentialQuantile()
+	    .interpolator(d3.interpolateRgb(minColor, maxColor))
+	    .domain(data.values.sort());
+    }
+    
+
     let format = d => { if(isNaN(d)) {return "" } else {return "$" + d3.format(",.0f")(d);} } 
   
 
