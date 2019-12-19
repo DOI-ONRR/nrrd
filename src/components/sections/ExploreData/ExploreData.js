@@ -135,6 +135,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+const fiscalYearMarks = () => {
+  return Array(17).fill(0).map((e,i) => ( 
+    { label: i+2003, value: i+2003 } 
+  ))
+}
+
 //const filter=false
 const FooBar = props => {
   const classes = useStyles();
@@ -146,32 +152,24 @@ const FooBar = props => {
   if (data) {
     year = data.selectedYear;
   }
+  
   return (
     <Box className={classes.sliderRoot}>
       <Grid container spacing={4}>
-        <Grid item>
-          <Typography variant="body2" align="left" color="textSecondary">
-            2003
-          </Typography>
-        </Grid>
         <Grid item xs>
           <Slider
             defaultValue={year}
             aria-labelledby="discrete-slider"
-            valueLabelDisplay="auto"
+            valueLabelDisplay="on"
             step={1}
             valueLabelDisplay="on"
             onChangeCommitted={(e, yr) => {
               props.onYear(yr);
             }}
+            marks={fiscalYearMarks()}
             min={2003}
             max={2019}
           />
-        </Grid>
-        <Grid item>
-        <Typography variant="body2" align="right" color="textSecondary">
-            2019
-          </Typography>
         </Grid>
       </Grid>
     </Box>
@@ -247,16 +245,16 @@ const ExploreData = () => {
       <Fragment>
         <Container>
           <Grid container spacing={2}>
-            <Grid item sm={12} md={6}>
-              <Box mt={2} mb={5}>
+            <Grid item sm={12} md={4}>
+              <Box mt={2} mb={2}>
                 <Typography variant="h2">Fiscal Year {year} Revenue</Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle2">
                   Select a state for detailed production, revenue, and disbursements data.
                 </Typography>
               </Box>
             </Grid>
-            <Grid item sm={12} md={6}>
-              <Box mt={4} mb={5}>
+            <Grid item sm={12} md={8}>
+              <Box mt={6} mb={5}>
                 {/* Year Slider */}
                   <FooBar
                     onYear={selected => {

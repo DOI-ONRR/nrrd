@@ -3,6 +3,7 @@ import { withPrefix } from 'gatsby'
 
 import { makeStyles } from '@material-ui/core/styles'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import SearchIcon from '@material-ui/icons/Search'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 
@@ -38,7 +39,8 @@ const Search = props => {
         <OutlinedInput
           id="search-input"
           margin="dense"
-          title="search input" type="search"
+          title="search input" 
+          type="search"
           className={props.isMobile ? classes.searchBoxMobile : classes.searchBox}
           placeholder={props.isMobile ? '' : 'Search'}
           name="q"

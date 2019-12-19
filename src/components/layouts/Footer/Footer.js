@@ -20,6 +20,13 @@ const useStyles = makeStyles(theme => ({
   footerLink: {
     color: theme.palette.common.white
   },
+  footerDownloadLink: {
+    color: theme.palette.common.white,
+    textDecoration: `none`,
+    '&:hover': {
+      textDecoration: `none`,
+    }
+  },
   footerIcon: {
     fill: theme.palette.common.white,
     top: theme.spacing(2),
@@ -77,6 +84,7 @@ const Footer = props => {
                     <MuiLink
                       className={classes.footerLink}
                       href={`https://github.com/onrr/doi-extractives-data/releases/${data.site.siteMetadata.version}`}
+                      underline="always"
                     >
                       {data.site.siteMetadata.version}
                     </MuiLink>
@@ -91,6 +99,7 @@ const Footer = props => {
                     <MuiLink
                       className={classes.footerLink}
                       href="https://github.com/ONRR/doi-extractives-data/"
+                      underline="always"
                     >
                       source code
                     </MuiLink>
@@ -98,6 +107,7 @@ const Footer = props => {
                     <MuiLink
                       className={classes.footerLink}
                       href="https://github.com/ONRR/doi-extractives-data/issues/new"
+                      underline="always"
                     >
                       GitHub
                     </MuiLink>
@@ -116,6 +126,7 @@ const Footer = props => {
                     <MuiLink
                       href="https://www.doi.gov/"
                       className={classes.footerLink}
+                      underline="hover"
                     >
                       Department of the Interior
                     </MuiLink>{" "}
@@ -123,6 +134,7 @@ const Footer = props => {
                     <MuiLink
                       to="https://www.doi.gov/privacy"
                       className={classes.footerLink}
+                      underline="hover"
                     >
                       Privacy Policy
                     </MuiLink>{" "}
@@ -130,6 +142,7 @@ const Footer = props => {
                     <MuiLink
                       to="https://www.doi.gov/foia"
                       className={classes.footerLink}
+                      underline="hover"
                     >
                       FOIA
                     </MuiLink>{" "}
@@ -137,6 +150,7 @@ const Footer = props => {
                     <MuiLink
                       to="https://www.usa.gov/"
                       className={classes.footerLink}
+                      underline="hover"
                     >
                       USA.gov
                     </MuiLink>
@@ -146,7 +160,7 @@ const Footer = props => {
             <Grid item xs={12} sm={4}>
                 <Box mb={2}>
                   <Typography style={{ color: `#fff`}}>
-                    <Link to="/downloads/" className={classes.footerLink}>
+                    <Link to="/downloads/" className={classes.footerDownloadLink}>
                       Download data{" "}
                       <DownloadIcon className={classes.footerIcon} />
                     </Link>

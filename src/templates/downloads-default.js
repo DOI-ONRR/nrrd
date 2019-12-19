@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -56,10 +56,13 @@ const DownloadsTemplate = ( props ) => {
               <PageToc scrollOffset={190}/>
             </Grid>
             <Grid item xs={12} sm={9}>
-              {hastReactRenderer(props.pageContext.markdown.htmlAst)}
-              <p>Do you have questions about the data or need data that isn't here?
-
-						  Contact our { data.site.siteMetadata.dataRetrieval.name } at <a href={'mailto:' + data.site.siteMetadata.dataRetrieval.email}>{data.site.siteMetadata.dataRetrieval.email }</a>.</p>
+              <Typography>
+                {hastReactRenderer(props.pageContext.markdown.htmlAst)}
+              </Typography>
+              
+              <Typography variant="body1">
+                Do you have questions about the data or need data that isn't here? Contact our { data.site.siteMetadata.dataRetrieval.name } at <a href={'mailto:' + data.site.siteMetadata.dataRetrieval.email}>{data.site.siteMetadata.dataRetrieval.email }</a>.
+              </Typography>
             </Grid>
           </Grid>
         </Container>

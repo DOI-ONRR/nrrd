@@ -3,7 +3,7 @@
 module.exports = Object.freeze({
   primary: {
     main: "#5c737f",
-    light: "rgb(124, 143, 152)",
+    light: "#1478a6",
     dark: "rgb(64, 80, 88)",
     contrastText: "#d3dfe6"
   },

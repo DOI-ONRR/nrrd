@@ -15,7 +15,7 @@ const HomeHero = () => {
 
   return (
     <Container className={classes.root} maxWidth="lg">
-      <Typography variant="h5">
+      <Typography variant="subtitle1">
         <Box pt={5} pb={10}>
           When companies extract energy and mineral resources on property
           leased from the federal government and Native Americans, they pay{' '}

@@ -44,6 +44,9 @@ const useStyles = makeStyles(theme => ({
   },
   glossaryTextField: {
 
+  },
+  heading: {
+    margin: 0
   }
 }))
 
