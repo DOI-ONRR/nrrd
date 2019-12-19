@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  accessibility:
+  lighthouse_audit:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0
@@ -19,29 +19,13 @@ jobs:
           name: Build gatsby
           command: npm run build
       - run:
-          name: Perform Lighthouse Audit
-          command: npm test
-  performance:
-    docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0
-    steps:
-      - checkout
-      - restore_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install node dependencies
-          command: npm install
-      - save_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Build gatsby
-          command: npm run build
-      - run:
-          name: Performance tests
-          command: npm test
+          name: Run tests
+          command: |
+            mkdir -p ${TEST_REPORTS}
+            echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><pre>" > ${TEST_REPORTS}/preview.test.xml 
+            npm test >> ${TEST_REPORTS}/preview.test.xml 2>&1
+            echo "<pre></note>"  >> ${TEST_REPORTS}/preview.test.xml
+  
   quick:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -64,7 +48,6 @@ jobs:
           name: quick performance and accessibilty testing
           command: npm test
               
-
   preview:
     docker:
       - image: circleci/node:12.13.0
@@ -85,8 +68,15 @@ jobs:
           name: Build gatsby
           command: npm run build
       - run:
-          name: Run tests
+          name: Run lighthouse audit
           command: |
+            sudo apt-get update
+            sudo apt-get install lsb-release
+            curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome.deb
+            sudo sed -i ‘s|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox|g’ /opt/google/chrome/google-chrome
+            rm google-chrome.deb
+
             mkdir -p ${TEST_REPORTS}
             echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><pre>" > ${TEST_REPORTS}/preview.test.xml 
             npm test >> ${TEST_REPORTS}/preview.test.xml 2>&1
@@ -180,14 +170,10 @@ jobs:
 workflows:
   audits:
     jobs:
-      - performance:
+      - lighthouse_audit:
           filters:
             branches:
                 only: dev
-      - accessibility:
-          filters:
-            branches:
-              only: dev
       - quick:
           filters:
             branches:
