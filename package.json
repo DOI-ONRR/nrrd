@@ -18,8 +18,10 @@
     "apollo-link": "^1.2.13",
     "apollo-link-http": "^1.5.16",
     "babel-plugin-styled-components": "^1.10.6",
+    "babel-preset-gatsby": "^0.2.26",
     "currency-formatter": "^1.5.5",
     "d3": "^5.12.0",
+    "d3-interpolate": "^1.4.0",
     "elasticlunr": "^0.9.5",
     "eslint-plugin-flowtype": "^2.0",
     "etl": "^0.6.8",
@@ -55,12 +57,16 @@
     "topojson-client": "^3.1.0",
     "typeface-lato": "0.0.75",
     "typescript": "^2.8.0",
-    "url-search-params-polyfill": "^7.0.0",
-    "use-global-hook": "^0.1.12"
+    "url-search-params-polyfill": "^7.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.7.4",
+    "babel-jest": "^24.9.0",
+    "chrome-launcher": "^0.12.0",
+    "jest": "^24.9.0",
+    "lighthouse": "^5.6.0",
     "prettier": "^1.18.2",
+    "react-test-renderer": "^16.12.0",
     "svg-react-loader": "^0.4.6"
   },
   "keywords": [
@@ -74,7 +80,7 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
+    "test": "jest"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import clsx from "clsx"
 
@@ -37,6 +37,8 @@ import gql from "graphql-tag"
 
 import utils from "../../js/utils"
 
+import { StoreContext } from "../../store"
+
 const useStyles = makeStyles({
   root: {
     marginBottom: `20px`
@@ -67,7 +69,6 @@ const useStyles = makeStyles({
     right: "10px",
     cursor: `pointer`
   },
-
   bullet: {
     display: "inline-block",
     margin: "0 2px",
@@ -173,6 +174,8 @@ const TopCommodities = (state, commodity) => {
 
 const StateCard = props => {
   const classes = useStyles()
+  const { state, dispatch } = useContext(StoreContext)
+
   const bull = <span className={classes.bullet}>•</span>
   const [minimized, setMinimized] = React.useState(true)
   const closeCard = item => {
@@ -185,9 +188,9 @@ const StateCard = props => {
 
   let year = QueryCache()
 
-  let state = props.abbrev
+  // let state = props.abbrev
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year }
+    variables: { state: props.abbrev, year: year }
   })
   let minimizeIcon = Object.is(props.minimizeIcon, undefined)
     ? false
@@ -205,7 +208,7 @@ const StateCard = props => {
   if (loading) {
     return (
       <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
-        <Card className={classes.card}>
+        <Card  className={clsx(classes.card, minimizeIcon && { [`minimized`]: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
             title={props.name}
             action={
@@ -280,7 +283,7 @@ const StateCard = props => {
 
     return (
       <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
-        <Card className={clsx(classes.card, { [classes.cardMinimized]: !minimized })}>
+        <Card className={clsx(classes.card, minimizeIcon && { [`minimized`]: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
             title={props.name}
             action={
@@ -330,7 +333,7 @@ const StateCard = props => {
                 </Grid>
                 <Grid item xs={5} style={{ textAlign: `right` }}>
                   <Typography variant="caption">
-                    <Box>{year}</Box>
+                    <Box>{state.year}</Box>
                     <Box>
                       {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
                     </Box>
