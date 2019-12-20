@@ -162,6 +162,11 @@ workflows:
   audits:
     jobs:
       - lighthouse_audit:
+          filters:
+            branches:
+              ignore:
+                - master
+                - dev
       - quick:
           filters:
             branches:
