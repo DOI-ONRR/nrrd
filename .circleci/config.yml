@@ -18,16 +18,6 @@ jobs:
       - run:
           name: Build gatsby
           command: npm run build
-      - run:
-          name: Install chrome dependencies
-          # Lighthouse requires Node 10 LTS (10.13) or later.
-          # get chromium (stable)
-          # install lighthouse
-          command: |
-            curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - &&\
-            sudo apt-get install -y nodejs npm
-            apt-get install chromium
-            npm i -g lighthouse
       - run: 
           name: Run lighthouse audits
           command: npm test
@@ -172,9 +162,6 @@ workflows:
   audits:
     jobs:
       - lighthouse_audit:
-          filters:
-            branches:
-                # only: dev
       - quick:
           filters:
             branches:
