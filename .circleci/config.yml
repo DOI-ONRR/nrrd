@@ -1,6 +1,9 @@
 version: 2.1
+orbs: 
+  lighthouse-check: foo-software/lighthouse-check@0.0.6
 jobs:
   lighthouse_audit:
+    executor: lighthouse-check/default
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0
@@ -18,9 +21,8 @@ jobs:
       - run:
           name: Build gatsby
           command: npm run build
-      - run: 
-          name: Run lighthouse audits
-          command: npm test
+      - lighthouse-check/audit:
+          urls: 'https://dev-nrrd.app.cloud.gov/,https://dev-nrrd.app.cloud.gov/explore/'
       - run:
           name: Run test reports
           command: |
