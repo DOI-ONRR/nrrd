@@ -86,8 +86,8 @@ jobs:
           command: npm run build
       - run:
           name: Run tests
-          #command: |
-            #mkdir -p ${TEST_REPORTS}
+          command: |
+            mkdir -p ${TEST_REPORTS}
             #npm test
  
       - run:
