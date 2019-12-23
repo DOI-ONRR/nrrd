@@ -18,18 +18,26 @@ const useStyles = makeStyles(theme => ({
 		height: '100%',
 		order:'3'
 		
-	}
+	},
+    legend: {
+	display: 'block',
+	top: 0,
+	left: 0,
+	width: '100%',
+	height: '30px',
+	zIndex: 10
+    }
 }))
 /**
-*  Map  a component for rendering maps dynamically from  data
-*
-*  @param {string} [mapJson="https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json"]  mapJson - url to get the topojson used in map. 
-*  @param {string} [mapFeatures=counties] mapFeatures - A switch to view county data or state data
-*  @param {string[][]} mapData - a two dimenstional arrray of fips and data, maybe county or state fips
-*  @param {string} [colorScheme=green] colorScheme current lets you modify color from red to blue green or gray ;
-*  @param {*} onClick function that determines what to do if area is clicked
-*
-*/
+ *  Map  a component for rendering maps dynamically from  data
+ *
+ *  @param {string} [mapJson="https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json"]  mapJson - url to get the topojson used in map. 
+ *  @param {string} [mapFeatures=counties] mapFeatures - A switch to view county data or state data
+ *  @param {string[][]} mapData - a two dimenstional arrray of fips and data, maybe county or state fips
+ *  @param {string} [colorScheme=green] colorScheme current lets you modify color from red to blue green or gray ;
+ *  @param {*} onClick function that determines what to do if area is clicked
+ *
+ */
 const Map = (props) => {
     // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
     //use ONRR topojson file for land
@@ -60,7 +68,8 @@ const Map = (props) => {
 		    //	     let p= get_data().then((data)=>{3
 		    //		 chart(elemRef.current, us,mapFeatures,data);
 		    //	     });
-		    elemRef.current.innerHTML='';
+		    elemRef.current.children[0].innerHTML='';  
+		    elemRef.current.children[1].innerHTML='';
 		    let svg=chart(elemRef.current, us,mapFeatures,data, colorScheme,onClick, minColor,maxColor);
 
 		    let propmise2=d3.json(mapOffshoreJson)
@@ -97,10 +106,11 @@ const Map = (props) => {
 	   
      
  })
-    return (
-	    	<div className={classes.map} ref={elemRef} >
+    return (<div className={classes.map} ref={elemRef} ><div className={classes.legend} ></div>
+	    	<div className={classes.map}  >
 	    		<span></span>
-        </div>
+            </div>
+	    </div>
   	)
 }
 
@@ -119,7 +129,7 @@ export default Map
 *  @param {*} onClick function that determines what to do if area is clicked
 *
 */
-const chart = (node,us,mapFeatures,data, colorScheme,onClick, minColor, maxColor) => {
+const chart = (node,us,mapFeatures,data, colorScheme,onClick, minColor, maxColor,legendNode) => {
     
     const width = node.scrollWidth;
     const height = node.scrollHeight;
@@ -163,7 +173,7 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick, minColor, maxColor
     let format = d => { if(isNaN(d)) {return "" } else {return "$" + d3.format(",.0f")(d);} } 
 
 
-    const svg = d3.select(node).append('svg')
+    const svg = d3.select(node.children[1]).append('svg')
 	  .style("width", width)
 	  .style("height", height)
 	  .attr("fill", "#E0E2E3")
@@ -172,7 +182,8 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick, minColor, maxColor
     console.debug("=================================================================data")
 
     console.debug(data);
-    svg.append("g")
+    const legendSvg = d3.select(node.children[0]).append('svg');
+    legendSvg.append("g")
 	.attr("transform", "translate(30,30)")
 	.call(legend,data.title, data, color,true);
 //return svg.node();

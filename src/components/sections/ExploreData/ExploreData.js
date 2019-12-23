@@ -32,7 +32,7 @@ export const STATIC_QUERY = graphql`
 
 const FISCAL_REVENUE_QUERY = gql`
   query FiscalRevenue($year: Int!) {
-    fiscal_revenue_summary(where: { fiscal_year: { _eq: $year } }) {
+    fiscal_revenue_summary(where: {state_or_area: {_nin: ["National", ""]}, fiscal_year: { _eq: $year } }) {
       fiscal_year
       state_or_area
       sum
