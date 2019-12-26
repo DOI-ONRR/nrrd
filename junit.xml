@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="8" failures="0" time="23.611">
-  <testsuite name="MapSection" errors="0" failures="0" skipped="0" timestamp="2019-12-23T21:00:15" time="2.756" tests="1">
-    <testcase classname="MapSection renders correctly" name="MapSection renders correctly" time="0.098">
+<testsuites name="jest tests" tests="8" failures="0" time="23.802">
+  <testsuite name="Map" errors="0" failures="0" skipped="0" timestamp="2019-12-26T19:22:19" time="2.21" tests="1">
+    <testcase classname="Map renders correctly" name="Map renders correctly" time="0.024">
     </testcase>
   </testsuite>
-  <testsuite name="Map" errors="0" failures="0" skipped="0" timestamp="2019-12-23T21:00:15" time="2.78" tests="1">
-    <testcase classname="Map renders correctly" name="Map renders correctly" time="0.161">
+  <testsuite name="Banner" errors="0" failures="0" skipped="0" timestamp="2019-12-26T19:22:21" time="0.554" tests="1">
+    <testcase classname="Banner renders correctly" name="Banner renders correctly" time="0.053">
     </testcase>
   </testsuite>
-  <testsuite name="Banner" errors="0" failures="0" skipped="0" timestamp="2019-12-23T21:00:18" time="0.519" tests="1">
-    <testcase classname="Banner renders correctly" name="Banner renders correctly" time="0.017">
+  <testsuite name="MapSection" errors="0" failures="0" skipped="0" timestamp="2019-12-26T19:22:19" time="2.978" tests="1">
+    <testcase classname="MapSection renders correctly" name="MapSection renders correctly" time="0.035">
     </testcase>
   </testsuite>
-  <testsuite name="Site Audits via Lighthouse" errors="0" failures="0" skipped="0" timestamp="2019-12-23T21:00:15" time="21.031" tests="5">
-    <testcase classname="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" name="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" time="0.002">
+  <testsuite name="Site Audits via Lighthouse" errors="0" failures="0" skipped="0" timestamp="2019-12-26T19:22:19" time="21.272" tests="5">
+    <testcase classname="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" name="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" time="0.003">
     </testcase>
-    <testcase classname="Site Audits via Lighthouse passes a performance audit through Lighthouse" name="Site Audits via Lighthouse passes a performance audit through Lighthouse" time="0.002">
+    <testcase classname="Site Audits via Lighthouse passes a performance audit through Lighthouse" name="Site Audits via Lighthouse passes a performance audit through Lighthouse" time="0">
     </testcase>
-    <testcase classname="Site Audits via Lighthouse passes a best practice audit through Lighthouse" name="Site Audits via Lighthouse passes a best practice audit through Lighthouse" time="0.001">
+    <testcase classname="Site Audits via Lighthouse passes a best practice audit through Lighthouse" name="Site Audits via Lighthouse passes a best practice audit through Lighthouse" time="0">
     </testcase>
     <testcase classname="Site Audits via Lighthouse passes a SEO audit through Lighthouse" name="Site Audits via Lighthouse passes a SEO audit through Lighthouse" time="0">
     </testcase>
-    <testcase classname="Site Audits via Lighthouse passes PWA(Progress Web App) audit through Lighthouse" name="Site Audits via Lighthouse passes PWA(Progress Web App) audit through Lighthouse" time="0">
+    <testcase classname="Site Audits via Lighthouse passes PWA(Progress Web App) audit through Lighthouse" name="Site Audits via Lighthouse passes PWA(Progress Web App) audit through Lighthouse" time="0.001">
     </testcase>
   </testsuite>
 </testsuites>

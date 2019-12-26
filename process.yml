@@ -1,0 +1,366 @@
+version: 2
+jobs:
+  lighthouse_audit:
+    docker:
+    - image: circleci/node:12.13.0-browsers
+    steps:
+    - checkout
+    - restore_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+    - run:
+        name: Install node dependencies
+        command: npm install
+    - save_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+    - run:
+        name: Build gatsby
+        command: npm run build
+    - run:
+        name: Run test reports with JUnit
+        command: |
+          npm run test --ci --runInBand --reporters=default --reporters=jest-junit --testResultsProcessor="jest-junit"
+        environment:
+          JEST_JUNIT_OUPUT_DIR: reports/junit/js-test-results.xml
+    - store_test_results:
+        path: reports/junit
+    - store_artifacts:
+        path: reports/junit
+  quick:
+    docker:
+    - image: circleci/node:12.13.0
+    steps:
+    - checkout
+    - restore_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+    - run:
+        name: Install node dependencies
+        command: npm install
+    - save_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+    - run:
+        name: Build gatsby
+        command: npm run build
+    - run:
+        name: quick performance and accessibilty testing
+        command: npm test
+  preview:
+    docker:
+    - image: circleci/node:12.13.0
+    environment:
+    - TEST_REPORTS: /tmp/test-reports
+    steps:
+    - checkout
+    - restore_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+    - run:
+        name: Install node dependencies
+        command: npm install
+    - save_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+    - run:
+        name: Build gatsby
+        command: npm run build
+    - run:
+        name: deploy preview to cloud.gov
+        command: |
+          curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+          sudo dpkg -i cf-cli_amd64.deb
+          bash .circleci/preview.sh
+    - store_test_results:
+        path: /tmp/test-reports
+  deploy:
+    docker:
+    - image: circleci/node:12.13.0
+    steps:
+    - checkout
+    - restore_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+    - run:
+        name: Install node dependencies
+        command: npm install
+    - save_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+    - run:
+        name: Build gatsby
+        command: npm run build
+    - run:
+        name: Run tests
+        command: npm test
+    - run:
+        name: deploy preview to cloud.gov
+        command: "pwd && ls -l\t\ncurl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'\nsudo dpkg -i cf-cli_amd64.deb\t  \n# Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.\n# $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.\ncf api https://api.fr.cloud.gov\ncf auth \"$PROD_CF_USERNAME\" \"$PROD_CF_PASSWORD\"\ncf target -o \"$PROD_CF_ORG\" -s \"$PROD_CF_SPACE\"\ncf push nrrd -f ./manifest.yml\n"
+  dev:
+    docker:
+    - image: circleci/node:12.13.0
+    steps:
+    - checkout
+    - restore_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+    - run:
+        name: Install node dependencies
+        command: npm install
+    - save_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+    - run:
+        name: Build gatsby
+        command: npm run build
+    - run:
+        name: Run tests
+        command: npm test
+    - run:
+        name: deploy to cloud.gov
+        command: "pwd && ls -l\t\ncurl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'\nsudo dpkg -i cf-cli_amd64.deb\t  \n# Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.\n# $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.\ncf api https://api.fr.cloud.gov\ncf auth \"$DEV_CF_USERNAME\" \"$DEV_CF_PASSWORD\"\ncf target -o \"$DEV_CF_ORG\" -s \"$DEV_CF_SPACE\"\ncf push dev-nrrd -f ./manifest.yml\n"
+    - run:
+        name: clean up
+        command: |
+          which cf
+          bash ./.circleci/cleanup.sh
+workflows:
+  audits:
+    jobs:
+    - lighthouse_audit:
+        filters:
+          branches:
+            ignore:
+            - master
+            - dev
+    - quick:
+        filters:
+          branches:
+            ignore:
+            - master
+            - dev
+  preview:
+    jobs:
+    - preview:
+        filters:
+          branches:
+            ignore:
+            - master
+            - dev
+  deploy:
+    jobs:
+    - deploy:
+        filters:
+          branches:
+            only: master
+  dev:
+    jobs:
+    - dev:
+        filters:
+          branches:
+            only: dev
+  version: 2
+
+# Original config.yml file:
+# version: 2.1
+# jobs:
+#   lighthouse_audit:
+#     docker:
+#       # - image: circleci/node:9.8.0-browsers
+#       - image: circleci/node:12.13.0-browsers
+#     steps:
+#       - checkout
+#       - restore_cache:
+#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
+#       - run:
+#           name: Install node dependencies
+#           command: npm install
+#       - save_cache:
+#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
+#           paths:
+#             - node_modules
+#       - run:
+#           name: Build gatsby
+#           command: npm run build
+#       # - run: 
+#       #     name: Javascript Linter
+#       #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
+#       - run:
+#           name: Run test reports with JUnit
+#           command: |
+#             npm run test --ci --runInBand --reporters=default --reporters=jest-junit --testResultsProcessor=\"jest-junit\"
+#           environment:
+#             JEST_JUNIT_OUPUT_DIR: \"reports/junit/js-test-results.xml\"
+#       - store_test_results:
+#           path: reports/junit
+#       - store_artifacts:
+#           path: reports/junit
+#   
+#   quick:
+#     docker:
+#       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+#       - image: circleci/node:12.13.0
+#     steps:
+#       - checkout
+#       - restore_cache:
+#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
+#       - run:
+#           name: Install node dependencies
+#           command: npm install
+#       - save_cache:
+#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
+#           paths:
+#             - node_modules
+#       - run:
+#           name: Build gatsby
+#           command: npm run build
+#       - run:
+#           name: quick performance and accessibilty testing
+#           command: npm test
+#               
+#   preview:
+#     docker:
+#       - image: circleci/node:12.13.0
+#     environment:
+#       TEST_REPORTS: /tmp/test-reports   
+#     steps:
+#       - checkout
+#       - restore_cache:
+#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
+#       - run:
+#           name: Install node dependencies
+#           command: npm install
+#       - save_cache:
+#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
+#           paths:
+#             - node_modules
+#       - run:
+#           name: Build gatsby
+#           command: npm run build
+#       - run:
+#           name: deploy preview to cloud.gov
+#           command: |
+#             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+#             sudo dpkg -i cf-cli_amd64.deb
+#             bash .circleci/preview.sh
+# 
+#       # Upload test results
+#       
+#       - store_test_results:
+#           path: /tmp/test-reports
+#    
+#   dev:
+#     docker:
+#       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+#       - image: circleci/node:12.13.0
+#     steps:
+#       - checkout
+#       - restore_cache:
+#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
+#       - run:
+#           name: Install node dependencies
+#           command: npm install
+#       - save_cache:
+#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
+#           paths:
+#             - node_modules
+#       - run:
+#           name: Build gatsby
+#           command: npm run build
+#       - run:
+#           name: Run tests
+#           command: npm test
+#       - run:
+#           name: deploy to cloud.gov
+#           command: |
+#             pwd && ls -l\t
+#             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+#             sudo dpkg -i cf-cli_amd64.deb\t  
+#             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+#             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+#             cf api https://api.fr.cloud.gov
+#             cf auth \"$DEV_CF_USERNAME\" \"$DEV_CF_PASSWORD\"
+#             cf target -o \"$DEV_CF_ORG\" -s \"$DEV_CF_SPACE\"
+#             cf push dev-nrrd -f ./manifest.yml
+#       - run:
+#           name: clean up
+#           command: |
+#             which cf
+#             bash ./.circleci/cleanup.sh
+# 
+#   deploy:
+#     docker:
+#       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+#       - image: circleci/node:12.13.0
+#     steps:
+#       - checkout
+#       - restore_cache:
+#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
+#       - run:
+#           name: Install node dependencies
+#           command: npm install
+#       - save_cache:
+#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
+#           paths:
+#             - node_modules
+#       - run:
+#           name: Build gatsby
+#           command: npm run build
+#       - run:
+#           name: Run tests
+#           command: npm test
+# 
+#       - run:
+#           name: deploy preview to cloud.gov
+#           command: |
+#             pwd && ls -l\t
+#             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+#             sudo dpkg -i cf-cli_amd64.deb\t  
+#             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+#             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+#             cf api https://api.fr.cloud.gov
+#             cf auth \"$PROD_CF_USERNAME\" \"$PROD_CF_PASSWORD\"
+#             cf target -o \"$PROD_CF_ORG\" -s \"$PROD_CF_SPACE\"
+#             cf push nrrd -f ./manifest.yml
+# 
+# workflows:
+#   audits:
+#     jobs:
+#       - lighthouse_audit:
+#           filters:
+#             branches:
+#               ignore:
+#                 - master
+#                 - dev
+#       - quick:
+#           filters:
+#             branches:
+#               ignore:
+#                 - master
+#                 - dev
+#           
+#                 
+#   preview:
+#     jobs:
+#       - preview:
+#           filters:
+#             branches:
+#               ignore:
+#                 - master
+#                 - dev
+#   deploy:
+#     jobs:
+#       - deploy:
+#           filters:
+#             branches:
+#               only: master
+# 
+#   dev:
+#     jobs:
+#       - dev:
+#           filters:
+#             branches:
+#               only: dev
+# 
+#               

@@ -13,5 +13,6 @@ module.exports = {
   },
   testURL: `http://localhost`,
   setupFiles: [`<rootDir>/loadershim.js`],
-  reporters: ['default', 'jest-junit']
+  reporters: ['default', 'jest-junit'],
+  testResultsProcessor: "jest-junit",
 }

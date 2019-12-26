@@ -58,22 +58,22 @@ describe('Site Audits via Lighthouse', () => {
 
   // Accessibility test
   it('passes an accessibility audit through Lighthouse', () => {
-    expect(lh.categories['accessibility'].score).toBeGreaterThanOrEqual(0.9)
+    expect(lh.categories['accessibility'].score).toBeGreaterThanOrEqual(0.7)
   })
 
   // Performance test
   it('passes a performance audit through Lighthouse', () => {
-    expect(lh.categories['performance'].score).toBeGreaterThanOrEqual(0.9)
+    expect(lh.categories['performance'].score).toBeGreaterThanOrEqual(0.7)
   })
 
   // Best Practice test
   it('passes a best practice audit through Lighthouse', () => {
-    expect(lh.categories['best-practices'].score).toBeGreaterThanOrEqual(0.9)
+    expect(lh.categories['best-practices'].score).toBeGreaterThanOrEqual(0.7)
   })
 
   // SEO test
   it('passes a SEO audit through Lighthouse', () => {
-    expect(lh.categories['seo'].score).toBeGreaterThanOrEqual(0.9)
+    expect(lh.categories['seo'].score).toBeGreaterThanOrEqual(0.7)
   })
 
   // Progressive Web App

@@ -2,7 +2,8 @@ version: 2.1
 jobs:
   lighthouse_audit:
     docker:
-      - image: circleci/node:9.8.0-browsers
+      # - image: circleci/node:9.8.0-browsers
+      - image: circleci/node:12.13.0-browsers
     steps:
       - checkout
       - restore_cache:
@@ -17,13 +18,13 @@ jobs:
       - run:
           name: Build gatsby
           command: npm run build
-      - run: 
-          name: Javascript Linter
-          command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
+      # - run: 
+      #     name: Javascript Linter
+      #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
       - run:
           name: Run test reports with JUnit
           command: |
-            npm run test --ci --runInBand --reporters=default --reporters=jest-junit --testResultsProcessor="jest-junit"
+            npm run test --ci --runInBand --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUPUT_DIR: "reports/junit/js-test-results.xml"
       - store_test_results:
