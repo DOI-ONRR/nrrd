@@ -20,13 +20,13 @@ jobs:
     - run:
         name: Run test reports with JUnit
         command: |
-          npm run test --ci --runInBand --reporters=default --reporters=jest-junit --testResultsProcessor="jest-junit"
+          npm run test --ci --runInBand --reporters=default --reporters=jest-junit
         environment:
-          JEST_JUNIT_OUPUT_DIR: reports/junit/js-test-results.xml
+          JEST_JUNIT_OUPUT_DIR: /home/circleci/project/reports/junit/js-test-results.xml
     - store_test_results:
-        path: reports/junit
+        path: /home/circleci/project/reports/junit
     - store_artifacts:
-        path: reports/junit
+        path: /home/circleci/project/reports/junit
   quick:
     docker:
     - image: circleci/node:12.13.0
@@ -44,9 +44,6 @@ jobs:
     - run:
         name: Build gatsby
         command: npm run build
-    - run:
-        name: quick performance and accessibilty testing
-        command: npm test
   preview:
     docker:
     - image: circleci/node:12.13.0
@@ -167,7 +164,6 @@ workflows:
 # jobs:
 #   lighthouse_audit:
 #     docker:
-#       # - image: circleci/node:9.8.0-browsers
 #       - image: circleci/node:12.13.0-browsers
 #     steps:
 #       - checkout
@@ -189,13 +185,13 @@ workflows:
 #       - run:
 #           name: Run test reports with JUnit
 #           command: |
-#             npm run test --ci --runInBand --reporters=default --reporters=jest-junit --testResultsProcessor=\"jest-junit\"
+#             npm run test --ci --runInBand --reporters=default --reporters=jest-junit
 #           environment:
-#             JEST_JUNIT_OUPUT_DIR: \"reports/junit/js-test-results.xml\"
+#             JEST_JUNIT_OUPUT_DIR: \"/home/circleci/project/reports/junit/js-test-results.xml\"
 #       - store_test_results:
-#           path: reports/junit
+#           path: /home/circleci/project/reports/junit
 #       - store_artifacts:
-#           path: reports/junit
+#           path: /home/circleci/project/reports/junit
 #   
 #   quick:
 #     docker:
@@ -215,9 +211,6 @@ workflows:
 #       - run:
 #           name: Build gatsby
 #           command: npm run build
-#       - run:
-#           name: quick performance and accessibilty testing
-#           command: npm test
 #               
 #   preview:
 #     docker:
