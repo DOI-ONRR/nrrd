@@ -2,8 +2,7 @@ version: 2.1
 jobs:
   lighthouse_audit:
     docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0
+      - image: circleci/node:9.8.0-browsers
     steps:
       - checkout
       - restore_cache:
@@ -18,18 +17,19 @@ jobs:
       - run:
           name: Build gatsby
           command: npm run build
+      - run: 
+          name: Javascript Linter
+          command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
       - run:
-          name: Run lighthouse audit
-          command: npm run jest
-      - run:
-          name: Run test reports
+          name: Run test reports with JUnit
           command: |
-            mkdir -p ${TEST_REPORTS}
-            echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><pre>" > ${TEST_REPORTS}/preview.test.xml 
-            npm test >> ${TEST_REPORTS}/preview.test.xml 2>&1
-            echo "<pre></note>"  >> ${TEST_REPORTS}/preview.test.xml
+            npm run test --ci --runInBand --reporters=default --reporters=jest-junit --testResultsProcessor="jest-junit"
+          environment:
+            JEST_JUNIT_OUPUT_DIR: "reports/junit/js-test-results.xml"
       - store_test_results:
-          path: /tmp/test-reports
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
   
   quick:
     docker:

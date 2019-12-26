@@ -1,6 +1,6 @@
 module.exports = {
-  extends: ["standard", "plugin:css-modules/recommended"],
-  plugins: ["standard", "react", "css-modules"],
+  extends: ["standard"],
+  plugins: ["standard", "react"],
   rules: {
     "no-var": "error", // optional, recommended when using es6+
     "no-unused-vars": 1, // recommended
@@ -50,12 +50,12 @@ module.exports = {
 
     "import/no-webpack-loader-syntax": "off",
 
-    "css-modules/no-unused-class": 1,
-    "at-rule-no-unknown": [true, {
-      "ignoreAtRules": [
-        "value"
-      ]
-    }],
+    // "css-modules/no-unused-class": 1, currently using jss solution
+    // "at-rule-no-unknown": [true, {
+    //   "ignoreAtRules": [
+    //     "value"
+    //   ]
+    // }],
   },
   parser: "babel-eslint",
   parserOptions: {
