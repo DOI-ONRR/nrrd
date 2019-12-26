@@ -24,14 +24,14 @@ jobs:
           name: Run test reports with JUnit
           command: |
             mkdir -p test-results/junit
-            echo 'test-results/junit directory succesfully created'
+            echo 'test-results/junit directory succesfully created...'
             npm run test --ci --runInBand --reporters=default --reporters=jest-junit
           environment:
-            JEST_JUNIT_OUPUT_DIR: "test-results/junit/js-test-results.xml"
+            JEST_JUNIT_OUPUT_DIR: "./test-results/junit"
       - store_test_results:
-          path: test-results
+          path: ./test-results/junit
       - store_artifacts:
-          path: test-results/junit
+          path: ./test-results/junit
   
   quick:
     docker:
@@ -164,6 +164,7 @@ workflows:
           filters:
             branches:
               ignore:
+                - preview
                 - master
                 - dev
       - quick:
