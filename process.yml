@@ -20,6 +20,8 @@ jobs:
     - run:
         name: Run test reports with JUnit
         command: |
+          mkdir -p test-results/junit
+          echo 'test-results/junit directory created!!!'
           npm run test --ci --runInBand --reporters=default --reporters=jest-junit
         environment:
           JEST_JUNIT_OUPUT_DIR: test-results/junit/js-test-results.xml
@@ -185,6 +187,8 @@ workflows:
 #       - run:
 #           name: Run test reports with JUnit
 #           command: |
+#             mkdir -p test-results/junit
+#             echo 'test-results/junit directory created!!!'
 #             npm run test --ci --runInBand --reporters=default --reporters=jest-junit
 #           environment:
 #             JEST_JUNIT_OUPUT_DIR: \"test-results/junit/js-test-results.xml\"
