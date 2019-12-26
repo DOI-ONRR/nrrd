@@ -25,11 +25,11 @@ jobs:
           command: |
             npm run test --ci --runInBand --reporters=default --reporters=jest-junit
           environment:
-            JEST_JUNIT_OUPUT_DIR: "/home/circleci/project/reports/junit/js-test-results.xml"
+            JEST_JUNIT_OUPUT_DIR: "test-results/junit/js-test-results.xml"
       - store_test_results:
-          path: /home/circleci/project/reports/junit
+          path: test-results
       - store_artifacts:
-          path: /home/circleci/project/reports/junit
+          path: test-results/junit
   
   quick:
     docker:
