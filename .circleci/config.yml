@@ -166,7 +166,6 @@ workflows:
               ignore:
                 - preview
                 - master
-                - dev
       - quick:
           filters:
             branches:
