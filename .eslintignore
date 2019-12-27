@@ -1,0 +1,8 @@
+/src/img
+*.md
+*.mdx
+*.svg
+*.xlsx
+*.yml
+*.scss
+**/__tests__/*

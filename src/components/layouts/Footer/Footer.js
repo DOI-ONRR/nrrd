@@ -73,122 +73,122 @@ const Footer = props => {
               </a>
             </Grid>
             <Grid item xs={12} sm={6}>
-                <Box mb={2}>
-                  <Typography style={{ color: `#fff` }} paragraph>
+              <Box mb={2}>
+                <Typography style={{ color: `#fff` }} paragraph>
                     Built in the open
-                  </Typography>
-                </Box>
-                <Box mb={2}>
-                  <Typography style={{ color: `#d3dfe6` }} paragraph>
+                </Typography>
+              </Box>
+              <Box mb={2}>
+                <Typography style={{ color: `#d3dfe6` }} paragraph>
                     This site (
-                    <MuiLink
-                      className={classes.footerLink}
-                      href={`https://github.com/onrr/doi-extractives-data/releases/${data.site.siteMetadata.version}`}
-                      underline="always"
-                    >
-                      {data.site.siteMetadata.version}
-                    </MuiLink>
+                  <MuiLink
+                    className={classes.footerLink}
+                    href={`https://github.com/onrr/doi-extractives-data/releases/${ data.site.siteMetadata.version }`}
+                    underline="always"
+                  >
+                    {data.site.siteMetadata.version}
+                  </MuiLink>
                     ) is powered by{" "} 
-                    <Link
-                      className={classes.footerLink}
-                      to="/downloads"
-                    >
+                  <Link
+                    className={classes.footerLink}
+                    to="/downloads"
+                  >
                       open data
-                    </Link>
-                    {" "}and{" "}
-                    <MuiLink
-                      className={classes.footerLink}
-                      href="https://github.com/ONRR/doi-extractives-data/"
-                      underline="always"
-                    >
+                  </Link>
+                  {" "}and{" "}
+                  <MuiLink
+                    className={classes.footerLink}
+                    href="https://github.com/ONRR/doi-extractives-data/"
+                    underline="always"
+                  >
                       source code
-                    </MuiLink>
+                  </MuiLink>
                     . We welcome contributions and comments on{" "}
-                    <MuiLink
-                      className={classes.footerLink}
-                      href="https://github.com/ONRR/doi-extractives-data/issues/new"
-                      underline="always"
-                    >
+                  <MuiLink
+                    className={classes.footerLink}
+                    href="https://github.com/ONRR/doi-extractives-data/issues/new"
+                    underline="always"
+                  >
                       GitHub
-                    </MuiLink>
+                  </MuiLink>
                     . We write about how we work on this site on{" "}
-                    <Link
-                      to="/blog"
-                      className={classes.footerLink}
-                    >
+                  <Link
+                    to="/blog"
+                    className={classes.footerLink}
+                  >
                       our team's blog
-                    </Link>
+                  </Link>
                     .
-                  </Typography>
-                </Box>
-                <Box mt={7}>
-                  <Typography style={{ color: `#fff` }} variant="subtitle2">
-                    <MuiLink
-                      href="https://www.doi.gov/"
-                      className={classes.footerLink}
-                      underline="hover"
-                    >
+                </Typography>
+              </Box>
+              <Box mt={7}>
+                <Typography style={{ color: `#fff` }} variant="subtitle2">
+                  <MuiLink
+                    href="https://www.doi.gov/"
+                    className={classes.footerLink}
+                    underline="hover"
+                  >
                       Department of the Interior
-                    </MuiLink>{" "}
+                  </MuiLink>{" "}
                     |{" "}
-                    <MuiLink
-                      to="https://www.doi.gov/privacy"
-                      className={classes.footerLink}
-                      underline="hover"
-                    >
+                  <MuiLink
+                    to="https://www.doi.gov/privacy"
+                    className={classes.footerLink}
+                    underline="hover"
+                  >
                       Privacy Policy
-                    </MuiLink>{" "}
+                  </MuiLink>{" "}
                     |{" "}
-                    <MuiLink
-                      to="https://www.doi.gov/foia"
-                      className={classes.footerLink}
-                      underline="hover"
-                    >
+                  <MuiLink
+                    to="https://www.doi.gov/foia"
+                    className={classes.footerLink}
+                    underline="hover"
+                  >
                       FOIA
-                    </MuiLink>{" "}
+                  </MuiLink>{" "}
                     |{" "}
-                    <MuiLink
-                      to="https://www.usa.gov/"
-                      className={classes.footerLink}
-                      underline="hover"
-                    >
+                  <MuiLink
+                    to="https://www.usa.gov/"
+                    className={classes.footerLink}
+                    underline="hover"
+                  >
                       USA.gov
-                    </MuiLink>
-                  </Typography>
-                </Box>
+                  </MuiLink>
+                </Typography>
+              </Box>
             </Grid>
             <Grid item xs={12} sm={4}>
-                <Box mb={2}>
-                  <Typography style={{ color: `#fff`}}>
-                    <Link to="/downloads/" className={classes.footerDownloadLink}>
+              <Box mb={2}>
+                <Typography style={{ color: `#fff`}}>
+                  <Link to="/downloads/" className={classes.footerDownloadLink}>
                       Download data{" "}
-                      <DownloadIcon className={classes.footerIcon} />
-                    </Link>
-                  </Typography>
-                </Box>
-                <Divider light />
-                <Box>
-                  <Typography style={{ color: `#d3dfe6`}} paragraph>
+                    <DownloadIcon className={classes.footerIcon} />
+                  </Link>
+                </Typography>
+              </Box>
+              <Divider light />
+              <Box>
+                <Typography style={{ color: `#d3dfe6`}} paragraph>
                     Office of Natural Resources Revenue,{" "}
-                    {data.site.siteMetadata.informationDataManagement.name}
-                    <br />
-                    {data.site.siteMetadata.informationDataManagement.street}
-                    <br />
-                    {data.site.siteMetadata.informationDataManagement.city}{" "}
-                    {data.site.siteMetadata.informationDataManagement.zip}
-                  </Typography>
-                  <Typography style={{ color: `#fff` }} variant="subtitle2">
-                    <MuiLink
-                      className={classes.footerLink}
-                      href={
-                        "mailto:" +
+                  {data.site.siteMetadata.informationDataManagement.name}
+                  <br />
+                  {data.site.siteMetadata.informationDataManagement.street}
+                  <br />
+                  {data.site.siteMetadata.informationDataManagement.city}{" "}
+                  {data.site.siteMetadata.informationDataManagement.zip}
+                </Typography>
+                <Typography style={{ color: `#fff` }} variant="subtitle2">
+                  <MuiLink
+                    className={classes.footerLink}
+                    href={
+                      "mailto:" +
                         data.site.siteMetadata.informationDataManagement.email
-                      }
-                    >
-                      {data.site.siteMetadata.informationDataManagement.email}
-                    </MuiLink>
-                  </Typography>
-                </Box>
+                    }
+                  >
+                    {data.site.siteMetadata.informationDataManagement.email}
+                  </MuiLink>
+                </Typography>
+              </Box>
               
             </Grid>
           </Grid>

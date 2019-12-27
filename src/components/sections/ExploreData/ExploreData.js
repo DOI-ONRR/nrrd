@@ -224,7 +224,7 @@ const ExploreData = () => {
     return "Loading..."
   }
 
-  if (error) return `Error! ${error.message}`
+  if (error) return `Error! ${ error.message }`
 
   if (data) {
     let mapData = data.fiscal_revenue_summary.map((item, i) => [
@@ -248,11 +248,11 @@ const ExploreData = () => {
             <Grid item sm={12} md={8}>
               <Box mt={6} mb={5}>
                 {/* Year Slider */}
-                  <YearSlider
-                    onYear={selected => {
-                      onYear(selected)
-                    }}
-                  />
+                <YearSlider
+                  onYear={selected => {
+                    onYear(selected)
+                  }}
+                />
               </Box>
             </Grid>
           </Grid>
@@ -277,24 +277,24 @@ const ExploreData = () => {
                 {cards.map((state, i) => {
                   return (
                     
-                      <StateCard
-                        key={i}
-                        fips={state.fips}
-                        abbrev={state.abbrev}
-                        name={state.name}
+                    <StateCard
+                      key={i}
+                      fips={state.fips}
+                      abbrev={state.abbrev}
+                      name={state.name}
 		                    minimizeIcon={state.minimizeIcon}
 		                    closeIcon={state.closeIcon}
-                        closeCard={fips => {
-                          closeCard(fips)
-                        }}
-                      />
+                      closeCard={fips => {
+                        closeCard(fips)
+                      }}
+                    />
                     
                   )
                 })}
               </Box>
             </Grid>
           </Grid>
-      </Container>
+        </Container>
         <Container className={classes.contentWrapper}>
           <Grid container>
             <Grid item md={12}>

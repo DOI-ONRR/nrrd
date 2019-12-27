@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const DownloadsTemplate = ( props ) => {
+const DownloadsTemplate = props => {
 
   const classes = useStyles()
   const data = props.data
@@ -40,7 +40,7 @@ const DownloadsTemplate = ( props ) => {
 
   return (
     <Fragment>
-      <Box component="main" className={`${classes.root} ${classes.mainContent}`}>
+      <Box component="main" className={`${ classes.root } ${ classes.mainContent }`}>
         <SEO
           title={title}
           meta={[

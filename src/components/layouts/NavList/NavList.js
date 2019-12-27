@@ -5,11 +5,11 @@ import { makeStyles } from '@material-ui/core/styles'
 // import lazy from 'lazy.js'
 
 const useStyles = makeStyles(theme => ({
-	root: {}
+  root: {}
 }))
 
 const NavList = props => {
-	const classes = useStyles()
+  const classes = useStyles()
   let navItems = (typeof props.navItems === 'string') ? JSON.parse(props.navItems) : props.navItems
   return (
     <ul style={{ 'listStyleType': 'none' }}>

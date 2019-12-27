@@ -22,15 +22,15 @@ const DefaultTemplate = props => {
 
         />
         <Grid container>
-            <Grid item md={9}>
-              <Box component="article">
-                {hastReactRenderer(this.props.pageContext.markdown.htmlAst)}
-              </Box>
-            </Grid>
-            <Grid item md={3}>
-              <PageToc scrollOffset={190}/>
-            </Grid>
+          <Grid item md={9}>
+            <Box component="article">
+              {hastReactRenderer(this.props.pageContext.markdown.htmlAst)}
+            </Box>
           </Grid>
+          <Grid item md={3}>
+            <PageToc scrollOffset={190}/>
+          </Grid>
+        </Grid>
       </Container>
     </Fragment>
   )

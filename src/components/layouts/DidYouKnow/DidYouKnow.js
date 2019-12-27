@@ -20,20 +20,20 @@ const useStyles = makeStyles(theme => ({
   root: {}
 }))
 
-const DidYouKnow = (props) => {
+const DidYouKnow = props => {
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState(false)
   let { id, children, color, text } = props
 
   let headerColorStyle = props.color === `red` ? classes.headingRed : classes.headingRed
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+  const handleChange = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
   }
 
   return (
     <div id={id} className={classes.root}>
-      <Typography variant="h2" id="did-you-know-label" className={`${headerColorStyle} ${classes.heading}` }>
+      <Typography variant="h2" id="did-you-know-label" className={`${ headerColorStyle } ${ classes.heading }` }>
         Did you know?
       </Typography>
       <Typography variant="body2" className={classes.content}>
@@ -41,9 +41,9 @@ const DidYouKnow = (props) => {
       </Typography>
       <ExpansionPanel expanded={expanded === `panel${ id }`} onChange={handleChange(`panel${ id }`)}>
 	          <ExpansionPanelSummary
-          expandIcon={ expanded ? `Less ${<RemoveIcon />}` : `More ${<AddIcon />}` }
-          aria-controls={`panel${id}bh-content`}
-          id={`panel${id}bh-header`}
+          expandIcon={ expanded ? `Less ${ <RemoveIcon /> }` : `More ${ <AddIcon /> }` }
+          aria-controls={`panel${ id }bh-content`}
+          id={`panel${ id }bh-header`}
         >
         </ExpansionPanelSummary>
 	  

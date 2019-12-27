@@ -3,10 +3,10 @@ import React, { useReducer, useCallback } from 'react'
 const reducer = (state, action) => {
   const { type, payload } = action
   switch (type) {
-    case 'GLOSSARY_TERM_SELECTED':
-      return ({ ...state, glossaryTerm: action.glossaryTerm, glossaryOpen: action.glossaryOpen })
-    default:
-      return state
+  case 'GLOSSARY_TERM_SELECTED':
+    return ({ ...state, glossaryTerm: action.glossaryTerm, glossaryOpen: action.glossaryOpen })
+  default:
+    return state
   }
 }
 
@@ -17,7 +17,7 @@ const initialState = {
 
 const GlossaryContext = React.createContext(initialState)
 
-function GlossaryProvider({ children }) {
+function GlossaryProvider ({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (

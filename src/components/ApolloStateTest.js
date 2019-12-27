@@ -58,8 +58,8 @@ const ApolloStateTest = props => {
   
   return (
     <>
-    <div>Apollo State Test: {count}</div>
-    <button onClick={incrementCount}>Click me</button>
+      <div>Apollo State Test: {count}</div>
+      <button onClick={incrementCount}>Click me</button>
     </>
   )
 }

@@ -2,7 +2,7 @@
  * Constants that are used by the application
  **/
 
- module.exports = Object.freeze({
+module.exports = Object.freeze({
   MARKDOWN_DOWNLOADS:
   `allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/downloads/"}}) {
     pages: edges {
@@ -17,4 +17,4 @@
       }
     }
   }`,
- })
+})

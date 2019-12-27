@@ -157,7 +157,7 @@ const Header = props => {
 
   const toggleMobileDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
+      return
     }
 
     dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false }})
@@ -232,8 +232,8 @@ const Header = props => {
                   </li>
                   <li>
                     <Link className={classes.menuLink} 
-                    to="/downloads/"
-                    activeClassName={classes.menuActiveLink}>
+                      to="/downloads/"
+                      activeClassName={classes.menuActiveLink}>
                       Download data{' '}
                     </Link>
                   </li>
@@ -246,7 +246,7 @@ const Header = props => {
                     </Link>
                   </li>
                 </ul>
-            </nav>
+              </nav>
             </div>
           </Hidden>
           

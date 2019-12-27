@@ -12,17 +12,17 @@ const reducer = (state, action) => {
   console.log('payload: ', payload)
   console.log('action: ', action)
   switch (type) {
-    case 'GLOSSARY_TERM_SELECTED':
-      return ({ ...state, glossaryTerm: payload.glossaryTerm, glossaryOpen: payload.glossaryOpen })
-    case 'COUNT':
-      return ({ ...state, count: payload })
-    case 'CARDS': 
-      return ({ ...state, cards: payload.cards })
-    case 'YEAR': 
-      return ({ ...state, year: payload.year })
+  case 'GLOSSARY_TERM_SELECTED':
+    return ({ ...state, glossaryTerm: payload.glossaryTerm, glossaryOpen: payload.glossaryOpen })
+  case 'COUNT':
+    return ({ ...state, count: payload })
+  case 'CARDS': 
+    return ({ ...state, cards: payload.cards })
+  case 'YEAR': 
+    return ({ ...state, year: payload.year })
 
-    default:
-      return state
+  default:
+    return state
   }
 }
 
@@ -36,7 +36,7 @@ const initialState = {
 
 const StoreContext = React.createContext(initialState)
 
-function StoreProvider({ children }) {
+function StoreProvider ({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (

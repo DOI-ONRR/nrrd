@@ -410,7 +410,8 @@ const StateCard = props => {
         </Card>
       </Slide>
     )
-  } else {
+  }
+  else {
     return (
       <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
         <Card className={classes.card}>

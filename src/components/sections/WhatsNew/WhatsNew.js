@@ -1,20 +1,20 @@
-import React from "react";
-import { Link } from "gatsby";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import FiberManualRecordRoundedIcon from "@material-ui/icons/FiberManualRecordRounded";
+import React from "react"
+import { Link } from "gatsby"
+import { makeStyles } from "@material-ui/core/styles"
+import Container from "@material-ui/core/Container"
+import Box from "@material-ui/core/Box"
+import Typography from "@material-ui/core/Typography"
+import List from "@material-ui/core/List"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemText from "@material-ui/core/ListItemText"
+import ListItemIcon from "@material-ui/core/ListItemIcon"
+import FiberManualRecordRoundedIcon from "@material-ui/icons/FiberManualRecordRounded"
 
 const useStyles = makeStyles(theme => ({
   root: {
     background: "#f0f6fa"
   }
-}));
+}))
 
 const WhatsNew = props => {
   const classes = useStyles()
@@ -64,7 +64,7 @@ const WhatsNew = props => {
         </Box>
       </Container>
     </Container>
-  );
-};
+  )
+}
 
-export default WhatsNew;
+export default WhatsNew

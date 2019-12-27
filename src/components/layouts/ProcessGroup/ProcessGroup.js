@@ -8,16 +8,16 @@ import { makeStyles } from '@material-ui/core/styles'
 // import styles from './ProcessGroup.module.scss'
 
 const useStyles = makeStyles(theme => ({
-	root: {}
+  root: {}
 }))
 
 const ProcessGroup = props => {
-	const classes = useStyles()
-	return (
-		<div className={classes.root}>
-        {props.children} 		  
-		</div>
-	)
+  const classes = useStyles()
+  return (
+    <div className={classes.root}>
+      {props.children} 		  
+    </div>
+  )
 }
 
 export default ProcessGroup
@@ -45,8 +45,8 @@ export class ProcessStep extends React.Component {
 
 	render () {
 	  let stepId = this.props.stepId || this.props.stepid
-		let stepName = this.props.stepName || this.props.stepname
-		const classes = useStyles()
+	  let stepName = this.props.stepName || this.props.stepname
+	  const classes = useStyles()
 	  return (
 	    <div className={classes.processStepContainer}>
 	      {stepId &&

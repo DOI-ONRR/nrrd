@@ -21,16 +21,16 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+function TabPanel (props) {
+  const { children, value, index, ...other } = props
 
   return (
     <Typography
       component="div"
       role="tabpanel"
       hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
+      id={`full-width-tabpanel-${ index }`}
+      aria-labelledby={`full-width-tab-${ index }`}
       {...other}
     >
       <Box p={3}>{children}</Box>
@@ -42,13 +42,13 @@ TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
-};
+}
 
-function a11yProps(index) {
+function a11yProps (index) {
   return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  };
+    id: `full-width-tab-${ index }`,
+    'aria-controls': `full-width-tabpanel-${ index }`,
+  }
 }
 
 
@@ -56,7 +56,7 @@ const Tabordion = () => {
   const classes = useStyles()
   const theme = useTheme()
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0)
 
   const handleChange = (event, newValue) => {
     setValue(newValue)

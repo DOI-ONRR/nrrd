@@ -1,4 +1,4 @@
-const filterTerms = (glossaryTerm) => {
+const filterTerms = glossaryTerm => {
   if (glossaryTerm !== undefined && glossaryTerm !== null && glossaryTerm !== '') {
     return (lazy(GLOSSARY_TERMS)
       .filter(function (term) {

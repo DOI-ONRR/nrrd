@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 //import styles from './Sparkline.module.scss'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
   sparkline: {
     strokeWidth: '1px',
@@ -13,30 +13,30 @@ const useStyles = makeStyles({
     fill: '#DB812C'
   }
     
-});
+})
 
-const Sparkline = (props) => {
+const Sparkline = props => {
   const spakeStyles = {
     // stroke: '#5c737f',
     // strokeWidth: 1,
     // fill: 'none',
   }
-    let data=[[0,0]];
-    let highlightIndex=-1;
-    if(props.data.length > 0) {
-	data=props.data
-	highlightIndex=props.highlightIndex || props.data.length-1;
-    }
+  let data=[[0,0]]
+  let highlightIndex=-1
+  if(props.data.length > 0) {
+    data=props.data
+    highlightIndex=props.highlightIndex || props.data.length-1
+  }
     
     
-    console.debug(props);
+  console.debug(props)
   const elemRef = useRef(null)
-    const classes=useStyles();
+  const classes=useStyles()
     
   useEffect(() => {
 
 		    
-      let width = 70
+    let width = 70
     let height = 20
     let x = d3.scaleLinear().range([0, width - 3])
     let y = d3.scaleLinear().range([height - 4, 0])
@@ -70,14 +70,14 @@ const Sparkline = (props) => {
       .attr('class', classes.sparkline)
       .attr('d', line)
 
-      console.debug(data);
-      if(highlightIndex >= 0) {
+    console.debug(data)
+    if(highlightIndex >= 0) {
 	  svg.append('circle')
 	      .attr('class', classes.sparkcircle)
 	      .attr('cx', x(data[highlightIndex][0]))
 	      .attr('cy', y(data[highlightIndex][1]))
 	      .attr('r', 2.3)
-      }
+    }
   })
     
   return (

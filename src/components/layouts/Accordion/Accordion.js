@@ -19,15 +19,15 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Accordion = (props) => {
+const Accordion = props => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(false)
   let { id, children, text } = props
 
   text = (typeof text === 'string') ? text.split(',') : text
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+  const handleChange = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
   }
 
   return (
@@ -35,8 +35,8 @@ const Accordion = (props) => {
       <ExpansionPanel expanded={expanded === `panel${ id }`} onChange={handleChange(`panel${ id }`)}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls={`panel${id}bh-content`}
-          id={`panel${id}bh-header`}
+          aria-controls={`panel${ id }bh-content`}
+          id={`panel${ id }bh-header`}
         >
           <Typography className={classes.heading}>{expanded ? text[1] : text[0]}</Typography>
         </ExpansionPanelSummary>

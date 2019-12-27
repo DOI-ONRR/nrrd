@@ -26,7 +26,7 @@ const TOC_EXCLUDE_ATTRB = 'data-toc-exclude'
 const TOC_DISPLAY_AS_ATTRB = 'data-toc-display-as'
 
 const useStyles = makeStyles(theme => ({
-	root: {
+  root: {
     width: '100%',
     maxWidth: 360,
     paddingRight: theme.spacing(2),
@@ -135,14 +135,14 @@ const PageToc = props => {
         handleScroll(tocLinks)
       }
     },
-    [setToc]
+    [handleScroll]
   )
 
   // let isScrolling
 
   useEffect(() => {
     createToc()
-  }, [])
+  }, [createToc])
 
 
   const handleClick = () => {
@@ -154,19 +154,19 @@ const PageToc = props => {
 
   // const stopScrolling = (tocLinks) => {
   //   console.log('stopScrolling: ', tocLinks)
-	//   // Clear our timeout throughout the scroll
-	//   window.clearTimeout(isScrolling)
+  //   // Clear our timeout throughout the scroll
+  //   window.clearTimeout(isScrolling)
 
-	//   // Set a timeout to run after scrolling ends
-	//   isScrolling = setTimeout(function () {
-	//     // Run the callback
-	//     handleScroll(tocLinks)
+  //   // Set a timeout to run after scrolling ends
+  //   isScrolling = setTimeout(function () {
+  //     // Run the callback
+  //     handleScroll(tocLinks)
   //   }, 66)
   // }
 
   useEventListener('scroll', handler)
   
-  const handleScroll = (tocLinks) => {
+  const handleScroll = tocLinks => {
 
 	  let fromTop = window.scrollY
     let activeItemDistance = 10000
@@ -202,7 +202,7 @@ const PageToc = props => {
 	    	}
 	    }
 	  })
-	}
+  }
 
   const createToc = () => {
 	  let mainElem = document.getElementsByTagName('main')
@@ -221,7 +221,7 @@ const PageToc = props => {
 	  toc.items = elementArrayToTocArray(allTocElems, excludeClassNames, toc.scrollOffset)
 
 	  setToc({ ...toc, mobileActive: (document.documentElement.clientWidth <= 767) })
-	}
+  }
 
   return (
     <div className={classes.root}>
@@ -242,7 +242,7 @@ const PageToc = props => {
               class={classes.tocButton}
               onClick={handleClick}>
               <span className="">{toc.displayTitle || 'Table of contents'}</span>
-              <span className={`${classes.tocButtonIcon}`}>
+              <span className={`${ classes.tocButtonIcon }`}>
                 { toc.expanded ? <ExpandMoreIcon /> : <ExpandLessIcon /> }
               </span>
             </button>
@@ -255,8 +255,8 @@ const PageToc = props => {
                 {
                   toc.items.map((tocItem, index) => {
                     return (
-                      <li className={classes.tocItem} key={`${tocItem.id}-toc-item`}>
-                        <a href={`#${tocItem.id}`} onClick={handleClick}>
+                      <li className={classes.tocItem} key={`${ tocItem.id }-toc-item`}>
+                        <a href={`#${ tocItem.id }`} onClick={handleClick}>
                           { (tocItem.getAttribute('alt') || tocItem.innerText) }
                         </a>
                         {tocItem[TOC_SUB_ATTRB] &&
@@ -264,8 +264,8 @@ const PageToc = props => {
                             {
                               tocItem[TOC_SUB_ATTRB].map((tocSubItem, subIndex) => {
                                 return (
-                                  <li className={classes.tocSubItem} key={`${subIndex}${tocSubItem.id}-toc-sub-item`}>
-                                    <a data-toc-type="sub" href={`#${tocSubItem.id}`} onClick={handleClick}>
+                                  <li className={classes.tocSubItem} key={`${ subIndex }${ tocSubItem.id }-toc-sub-item`}>
+                                    <a data-toc-type="sub" href={`#${ tocSubItem.id }`} onClick={handleClick}>
                                       { (tocSubItem.getAttribute('alt') || tocSubItem.innerText) }
                                     </a>
                                   </li>
