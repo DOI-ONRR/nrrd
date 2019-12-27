@@ -6,7 +6,7 @@ import * as topojson from 'topojson-client'
 import utils from '../../../js/utils'
 //import { , withPrefix } from '../../utils/temp-link'
 //import styles from './Map.module.scss'
-import Grow from '@material-ui/core/Grow';
+
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
@@ -52,9 +52,9 @@ const Map = (props) => {
     useEffect( () => {
 
 	if(typeof(mapJsonObject) != "object") {
-	    let promise = d3.json(mapJson)
-		.then( us => {
-		    let states = get_states(us);
+	  let promise = d3.json(mapJson)
+		promise.then( us => {
+		    // let states = get_states(us);
 		    let data=observable_data(mapData);
 		    data.title=mapTitle;
 		    //	     let p= get_data().then((data)=>{3
@@ -63,10 +63,10 @@ const Map = (props) => {
 		    elemRef.current.innerHTML='';
 		    let svg=chart(elemRef.current, us,mapFeatures,data, colorScheme,onClick, minColor,maxColor);
 
-		    let propmise2=d3.json(mapOffshoreJson)
-			.then( offshore => {
+		    let promise2=d3.json(mapOffshoreJson)
+			promise2.then( offshore => {
 			    
-			    let max=data.values.sort((a,b)=>a-b)[data.values.length-1];
+			    // let max=data.values.sort((a,b)=>a-b)[data.values.length-1];
 			    
 			    
 			    
@@ -84,7 +84,7 @@ const Map = (props) => {
 	} else {
 	    let us=mapJsonObject.us;
 	    let offshore=mapJsonObject.offshore;
-	    let states = get_states(us);
+	    // let states = get_states(us);
 	    let data=observable_data(mapData);
 	    data.title=mapTitle;
 	    let svg=chart(elemRef.current, us,mapFeatures,data, colorScheme,onClick);
@@ -123,7 +123,7 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick, minColor, maxColor
     
     const width = node.scrollWidth;
     const height = node.scrollHeight;
-    const margin = { top: 0, bottom: 0, right: 0, left: 0};
+    // const margin = { top: 0, bottom: 0, right: 0, left: 0};
     const projection=d3.geoAlbersUsa()
   	  .translate([width/2, height/2])    // translate to center of screen
 	  .scale([width]);          // scale things down so see entire US
@@ -177,7 +177,7 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick, minColor, maxColor
 	.call(legend,data.title, data, color,true);
 //return svg.node();
 
-    let states = get_states(us);
+    // let states = get_states(us);
 
     svg.append("g")    
 	.selectAll("path")
@@ -223,7 +223,7 @@ const chart = (node,us,mapFeatures,data, colorScheme,onClick, minColor, maxColor
 const offshore_chart = (node,offshore, region ,data, colorScheme,onClick,minColor, maxColor) => {
     const width = node.scrollWidth;
     const height = node.scrollHeight;
-    const margin = { top: 0, bottom: 0, right: 0, left: 0};
+    // const margin = { top: 0, bottom: 0, right: 0, left: 0};
     let scale=width;
     //    const path = d3.geoPath();
     const projection=d3.geoAlbersUsa()
@@ -397,24 +397,24 @@ const observable_data = (d)=> {
 */
 
 
-const get_states = (us)=> {
-    let r={values: [] , keys: [], keyValues: {}};
-    for(let key in  us.objects.states.geometries) {
-	let state= us.objects.states.geometries[key];
-	let id=state.id;
+// const get_states = (us)=> {
+//     let r={values: [] , keys: [], keyValues: {}};
+//     for(let key in  us.objects.states.geometries) {
+// 	let state= us.objects.states.geometries[key];
+// 	let id=state.id;
 
 
-	let value=state.properties.name;
+// 	let value=state.properties.name;
 
-	r.values.push(value);
-	r.keys.push(id);
-	r.keyValues[id]={id:id,name:value};
+// 	r.values.push(value);
+// 	r.keys.push(id);
+// 	r.keyValues[id]={id:id,name:value};
 	
 	
 
 	
-    }
-    r.get = (id) => { return r.keyValues[id]};
-    return r;
+//     }
+//     r.get = (id) => { return r.keyValues[id]};
+//     return r;
 
-}
+// }

@@ -6,8 +6,6 @@ const {
   text 
 } = require('./palette')
 
-console.log('palette::', primary)
-
 module.exports = Object.freeze({
   // https://material-ui.com/api/app-bar/
   MuiAppBar: {

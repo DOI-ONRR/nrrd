@@ -18,8 +18,6 @@ import GlossaryIcon from '-!svg-react-loader!../../../img/svg/icon-question-circ
 
 import GLOSSARY_TERMS from '../../../data/terms.yml'
 
-console.log('GLOSSARY_TERMS: ', GLOSSARY_TERMS)
-
 const useStyles = makeStyles(theme => ({
   list: {
     width: '300px',
@@ -55,8 +53,6 @@ const GlossaryDrawer = () => {
 
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
-
-  console.log('state: ', state)
 
   let filteredTerms = filterGlossaryTerms(state.glossaryTerm)
 
