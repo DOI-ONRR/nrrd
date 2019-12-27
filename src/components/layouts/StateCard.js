@@ -1,59 +1,60 @@
-import React, { useState, useContext } from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import clsx from "clsx"
+import React, { useContext } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
 
-import Card from "@material-ui/core/Card"
-import CardActions from "@material-ui/core/CardActions"
-import CardContent from "@material-ui/core/CardContent"
-import CardHeader from "@material-ui/core/CardHeader"
-import Button from "@material-ui/core/Button"
-import Typography from "@material-ui/core/Typography"
-import Grid from "@material-ui/core/Grid"
-import Box from "@material-ui/core/Box"
-import Paper from "@material-ui/core/Paper"
-import Slide from "@material-ui/core/Slide"
-import Collapse from "@material-ui/core/Collapse"
-import MinimizeIcon from "@material-ui/icons/Minimize"
-import MaxmizeIcon from "@material-ui/icons/Maximize"
-import IconButton from "@material-ui/core/IconButton"
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardHeader from '@material-ui/core/CardHeader'
+// import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
+import Paper from '@material-ui/core/Paper'
+import Slide from '@material-ui/core/Slide'
+import Collapse from '@material-ui/core/Collapse'
+import MinimizeIcon from '@material-ui/icons/Minimize'
+// import MaxmizeIcon from '@material-ui/icons/Maximize'
 
-import Table from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
+// import CardActions from '@material-ui/core/CardActions'
+// import IconButton from '@material-ui/core/IconButton'
+
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+// import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
 
 // import AppBar from "@material-ui/core/AppBar"
 // import Toolbar from "@material-ui/core/Toolbar"
 // import IconButton from "@material-ui/core/IconButton"
 // import MenuIcon from "@material-ui/icons/Menu"
-import CloseIcon from "@material-ui/icons/Close"
+import CloseIcon from '@material-ui/icons/Close'
 
-import Sparkline from "../data-viz/Sparkline"
+import Sparkline from '../data-viz/Sparkline'
 
-import { graphql } from "gatsby"
-import { useQuery } from "@apollo/react-hooks"
-import gql from "graphql-tag"
+// import { graphql } from 'gatsby'
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 
-import utils from "../../js/utils"
+import utils from '../../js/utils'
 
-import { StoreContext } from "../../store"
+import { StoreContext } from '../../store'
 
 const useStyles = makeStyles({
   root: {
-    marginBottom: `20px`
+    marginBottom: '20px'
   },
   card: {
     width: 285,
     minHeight: 365,
-    margin: "10px",
-    position: `absolute`,
+    margin: '10px',
+    position: 'absolute',
     right: 0,
-    transform: `translate3d(0, 0px, 0px)`,
+    transform: 'translate3d(0, 0px, 0px)',
   },
   cardMinimized: {
-    minHeight: `inherit`,
-    position: `fixed`,
+    minHeight: 'inherit',
+    position: 'fixed',
     bottom: 0,
     width: 140,
     '& .MuiCardContent-root': {
@@ -61,18 +62,18 @@ const useStyles = makeStyles({
     }
   },
   cardHeader: {
-    padding: `16px 16px 0`
+    padding: '16px 16px 0'
   },
   close: {
-    position: "relative",
+    position: 'relative',
     top: 4,
-    right: "10px",
-    cursor: `pointer`
+    right: '10px',
+    cursor: 'pointer'
   },
   bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)'
   },
   title: {
     fontSize: 14
@@ -81,18 +82,18 @@ const useStyles = makeStyles({
     marginBottom: 12
   },
   menuButton: {
-    marginRight: "4px"
+    marginRight: '4px'
   },
   table: {
-    width: `100%`,
+    width: '100%',
     marginBottom: 0,
-    "& th": {
+    '& th': {
       padding: 5,
       lineHeight: 1
     }
   },
   paper: {
-    width: `100%`
+    width: '100%'
   }
 })
 
@@ -129,16 +130,16 @@ const APOLLO_QUERY = gql`
     }
   }
 `
-const COMMODITY_TRENDS = gql`
-  query CommmodityTrend($state: String!, $commodity: String!) {
-    revenue_commodity_summary(
-      where: { commodity: { _eq: $commodity }, state_or_area: { _eq: $state } }
-    ) {
-      fiscal_year
-      total
-    }
-  }
-`
+// const COMMODITY_TRENDS = gql`
+//   query CommmodityTrend($state: String!, $commodity: String!) {
+//     revenue_commodity_summary(
+//       where: { commodity: { _eq: $commodity }, state_or_area: { _eq: $state } }
+//     ) {
+//       fiscal_year
+//       total
+//     }
+//   }
+// `
 
 const CACHE_QUERY = gql`
   {
@@ -148,7 +149,7 @@ const CACHE_QUERY = gql`
 `
 
 const QueryCache = props => {
-  const { data, client } = useQuery(CACHE_QUERY)
+  const { data } = useQuery(CACHE_QUERY)
 
   let year = 2018
   if (data) {
@@ -157,26 +158,26 @@ const QueryCache = props => {
   return year
 }
 
-const TopCommodities = (state, commodity) => {
-  const { loading, error, data } = useQuery(COMMODITY_TRENDS, {
-    variables: { state: state, commodity: commodity }
-  })
+// const TopCommodities = (state, commodity) => {
+//   const { loading, error, data } = useQuery(COMMODITY_TRENDS, {
+//     variables: { state: state, commodity: commodity }
+//   })
 
-  let r = [[]]
-  if (data) {
-    r = data.revenue_commodity_summary.map((item, i) => [
-      item.fiscal_year,
-      item.total
-    ])
-  }
-  return r
-}
+//   let r = [[]]
+//   if (data) {
+//     r = data.revenue_commodity_summary.map((item, i) => [
+//       item.fiscal_year,
+//       item.total
+//     ])
+//   }
+//   return r
+// }
 
 const StateCard = props => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
+  const { state } = useContext(StoreContext)
 
-  const bull = <span className={classes.bullet}>•</span>
+  // const bull = <span className={classes.bullet}>•</span>
   const [minimized, setMinimized] = React.useState(true)
   const closeCard = item => {
     props.closeCard(props.fips)
@@ -186,13 +187,13 @@ const StateCard = props => {
     setMinimized(!minimized)
   }
 
-  let year = QueryCache()
+  const year = QueryCache()
 
   // let state = props.abbrev
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  const { loading, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbrev, year: year }
   })
-  let minimizeIcon = Object.is(props.minimizeIcon, undefined)
+  const minimizeIcon = Object.is(props.minimizeIcon, undefined)
     ? false
     : props.minimizeIcon
   const closeIcon = Object.is(props.closeIcon, undefined)
@@ -208,7 +209,7 @@ const StateCard = props => {
   if (loading) {
     return (
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
-        <Card className={clsx(classes.card, minimizeIcon && { [`minimized`]: !minimized }, { [classes.cardMinimized]: !minimized })}>
+        <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
             title={props.name}
             action={
@@ -241,8 +242,8 @@ const StateCard = props => {
           <Collapse in={minimized} timeout="auto" unmountOnExit>
             <CardContent>
               <Grid container>
-                <Typography style={{ fontSize: `.8rem` }}>
-                  Loading....{" "}
+                <Typography style={{ fontSize: '.8rem' }}>
+                  Loading....{' '}
                 </Typography>
               </Grid>
             </CardContent>
@@ -271,19 +272,20 @@ const StateCard = props => {
     topCommodities = data.revenue_commodity_summary
       .map((item, i) => item.commodity)
       .map((com, i) => {
-        let r = data.commodity_sparkdata.filter(item => item.commodity === com)
-        let s = r.map((row, i) => [row.fiscal_year, row.total])
+        const r = data.commodity_sparkdata.filter(item => item.commodity === com)
+        const s = r.map((row, i) => [row.fiscal_year, row.total])
         return { commodity: com, data: s }
       })
     // let first_top_commodity = topCommodities[0].data[highlightIndex][1]
-    // let dwgh=topCommodities.map((com,i) => {let r = data.commodity_sparkdata.filter( item=> item.commodity==com) let s=r.map((row,i)=>[row.fiscal_year,row.total]) return {com, s}}// )
+    // let dwgh=topCommodities.map((com,i) => {
+    // let r = data.commodity_sparkdata.filter( item=> item.commodity==com) let s=r.map((row,i)=>[row.fiscal_year,row.total]) return {com, s}}// )
 
     sparkMin = sparkData[0][0]
     sparkMax = sparkData[sparkData.length - 1][0]
 
     return (
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
-        <Card className={clsx(classes.card, minimizeIcon && { [`minimized`]: !minimized }, { [classes.cardMinimized]: !minimized })}>
+        <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
             title={props.name}
             action={
@@ -331,7 +333,7 @@ const StateCard = props => {
                     )}
                   </Box>
                 </Grid>
-                <Grid item xs={5} style={{ textAlign: `right` }}>
+                <Grid item xs={5} style={{ textAlign: 'right' }}>
                   <Typography variant="caption">
                     <Box>{state.year}</Box>
                     <Box>
@@ -345,7 +347,7 @@ const StateCard = props => {
                 <Grid item xs={12} zeroMinWidth>
                   <Typography
                     variant="subtitle2"
-                    style={{ fontWeight: `bold`, marginBottom: 10 }}
+                    style={{ fontWeight: 'bold', marginBottom: 10 }}
                   >
                     Top Commodities
                   </Typography>
@@ -365,7 +367,7 @@ const StateCard = props => {
                           return (
                             <TableRow key={i}>
                               <TableCell component="th" scope="row">
-                                <Typography style={{ fontSize: `.8rem` }}>
+                                <Typography style={{ fontSize: '.8rem' }}>
                                   {row.commodity}
                                 </Typography>
                               </TableCell>
@@ -378,7 +380,7 @@ const StateCard = props => {
                                 />
                               </TableCell>
                               <TableCell align="right">
-                                <Typography style={{ fontSize: `.8rem` }}>
+                                <Typography style={{ fontSize: '.8rem' }}>
                                   {utils.formatToSigFig_Dollar(
                                     Math.floor(
                                       // eslint-disable-next-line standard/computed-property-even-spacing
@@ -410,7 +412,8 @@ const StateCard = props => {
         </Card>
       </Slide>
     )
-  } else {
+  }
+  else {
     return (
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
         <Card className={classes.card}>
@@ -438,7 +441,7 @@ const StateCard = props => {
           </CardHeader>
           <CardContent>
             <Grid container>
-              <Typography style={{ fontSize: `.8rem` }}>
+              <Typography style={{ fontSize: '.8rem' }}>
                 {props.name} doesn't have any revenue data for the year {year}.
               </Typography>
             </Grid>

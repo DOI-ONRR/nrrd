@@ -1,45 +1,45 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect, useCallback } from 'react'
 // import ReactDOM from 'react-dom'
 
-import PropTypes from "prop-types"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
-import Hidden from "@material-ui/core/Hidden"
-import Paper from "@material-ui/core/Paper"
-import Typography from "@material-ui/core/Typography"
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import Hidden from '@material-ui/core/Hidden'
+import Paper from '@material-ui/core/Paper'
+// import Typography from '@material-ui/core/Typography'
 
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-import ExpandLessIcon from "@material-ui/icons/ExpandLess"
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 
 // import MediaQuery from 'react-responsive'
 
-import utils from "../../../js/utils"
+import utils from '../../../js/utils'
 
 // import styles from './PageToc.module.scss'
 
-import { StickyWrapper } from "../../utils/StickyWrapper"
-import { get } from "https"
-import useEventListener from "../../../js/use-event-listener"
+import { StickyWrapper } from '../../utils/StickyWrapper'
+// import { get } from 'https'
+import useEventListener from '../../../js/use-event-listener'
 
-const TOC_SUB_ATTRB = "data-toc-sub"
-const TOC_EXCLUDE_ATTRB = "data-toc-exclude"
-const TOC_DISPLAY_AS_ATTRB = "data-toc-display-as"
+const TOC_SUB_ATTRB = 'data-toc-sub'
+const TOC_EXCLUDE_ATTRB = 'data-toc-exclude'
+const TOC_DISPLAY_AS_ATTRB = 'data-toc-display-as'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
     paddingRight: theme.spacing(2),
     paddingTop: theme.spacing(2),
-    fontSize: `1.1rem`,
-    "& nav > ul": {
-      listStyle: `none`,
+    fontSize: '1.1rem',
+    '& nav > ul': {
+      listStyle: 'none',
       padding: 0
     },
-    "& nav > ul > li": {
+    '& nav > ul > li': {
       paddingTop: theme.spacing(1),
       paddingBottom: theme.spacing(1)
     },
-    "& a": {
+    '& a': {
       color: theme.palette.common.black
     }
   },
@@ -49,64 +49,64 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.common.white
   },
   tocItem: {
-    "& a": {
-      textDecoration: `none`
+    '& a': {
+      textDecoration: 'none'
     }
   },
   tocSub: {
-    display: `none`,
-    borderLeft: `2px solid #cde3c3`,
-    "& a": {
-      color: `#323c42`,
-      fontSize: "1rem",
-      lineHeight: "1.2"
+    display: 'none',
+    borderLeft: '2px solid #cde3c3',
+    '& a': {
+      color: '#323c42',
+      fontSize: '1rem',
+      lineHeight: '1.2'
     },
-    "& li": {
+    '& li': {
       paddingTop: theme.spacing(0.5),
       paddingBottom: theme.spacing(0.5)
     }
   },
   tocItemActive: {
-    fontWeight: `bold`,
-    "& ul": {
-      display: `block`,
-      listStyle: `none`,
+    fontWeight: 'bold',
+    '& ul': {
+      display: 'block',
+      listStyle: 'none',
       paddingLeft: theme.spacing(1),
       marginTop: theme.spacing(2),
-      fontWeight: `normal`
+      fontWeight: 'normal'
     }
   },
   tocSubItemActive: {
-    fontWeight: `bold`
+    fontWeight: 'bold'
   },
   tocButton: {
-    backgroundColor: "#fff",
-    borderLeft: `none`,
-    borderRight: `none`,
-    borderTop: `none`,
-    borderBottom: "3px solid #cde3c3",
-    fontSize: "1.125rem",
-    lineHeight: "1.625rem",
-    margin: "0",
-    padding: ".416678rem 0",
-    textAlign: "left",
-    width: "100%",
-    outline: `none`
+    backgroundColor: '#fff',
+    borderLeft: 'none',
+    borderRight: 'none',
+    borderTop: 'none',
+    borderBottom: '3px solid #cde3c3',
+    fontSize: '1.125rem',
+    lineHeight: '1.625rem',
+    margin: '0',
+    padding: '.416678rem 0',
+    textAlign: 'left',
+    width: '100%',
+    outline: 'none'
   },
   tocButtonIcon: {
-    float: `right`,
-    "& svg[aria-hidden=true]": {
-      display: `block`
+    float: 'right',
+    '& svg[aria-hidden=true]': {
+      display: 'block'
     }
   },
-  "@media (max-width: 767px)": {
+  '@media (max-width: 767px)': {
     root: {
-      maxWidth: `100%`,
+      maxWidth: '100%',
       padding: theme.spacing(0)
     },
     tocContainer: {
       marginRight: theme.spacing(0),
-      maxWidth: `100%`
+      maxWidth: '100%'
     }
   }
 }))
@@ -127,7 +127,7 @@ const PageToc = props => {
   })
 
   const handler = useCallback(() => {
-    const tocLinks = document.querySelectorAll("#page-toc-nav ul li a")
+    const tocLinks = document.querySelectorAll('#page-toc-nav ul li a')
     if (tocLinks) {
       handleScroll(tocLinks)
     }
@@ -158,18 +158,18 @@ const PageToc = props => {
   //   }, 66)
   // }
 
-  useEventListener("scroll", handler)
+  useEventListener('scroll', handler)
 
   const handleScroll = tocLinks => {
     const fromTop = window.scrollY
-    const activeItemDistance = 10000
+    // const activeItemDistance = 10000
 
     tocLinks.forEach((link, index) => {
-      const section = document.querySelector(link.hash || "body")
+      const section = document.querySelector(link.hash || 'body')
 
       // You can add an offset number to a element to have the toc menu item activate earlier/later
       const dataTocOffset =
-        parseInt(section.getAttribute("data-toc-offset")) || 250
+        parseInt(section.getAttribute('data-toc-offset')) || 250
 
       const computedMarginTop =
         parseInt(window.getComputedStyle(section).marginTop) || 0
@@ -181,22 +181,23 @@ const PageToc = props => {
         dataTocOffset
 
       if (itemCalcPos <= fromTop) {
-        if (link.getAttribute("data-toc-type") === "sub") {
+        if (link.getAttribute('data-toc-type') === 'sub') {
           const oldCurrent = document.querySelector(
-            "." + classes.tocSubItemActive
+            '.' + classes.tocSubItemActive
           )
           if (oldCurrent) {
             oldCurrent.classList.remove(classes.tocSubItemActive)
           }
           link.parentNode.classList.add(classes.tocSubItemActive)
-        } else {
+        }
+        else {
           const oldSubCurrent = document.querySelector(
-            "." + classes.tocSubItemActive
+            '.' + classes.tocSubItemActive
           )
           if (oldSubCurrent) {
             oldSubCurrent.classList.remove(classes.tocSubItemActive)
           }
-          const oldCurrent = document.querySelector("." + classes.tocItemActive)
+          const oldCurrent = document.querySelector('.' + classes.tocItemActive)
           if (oldCurrent) {
             oldCurrent.classList.remove(classes.tocItemActive)
           }
@@ -207,19 +208,19 @@ const PageToc = props => {
   }
 
   const createToc = () => {
-    const mainElem = document.getElementsByTagName("main")
+    const mainElem = document.getElementsByTagName('main')
 
     if (toc.displayTitle === undefined && props.shouldDisplayTitle) {
-      const h1Elem = mainElem && mainElem[0].querySelector("h1")
+      const h1Elem = mainElem && mainElem[0].querySelector('h1')
       toc.displayTitle = h1Elem && h1Elem.innerText
     }
 
     const allTocElems =
-      mainElem && Array.from(mainElem[0].querySelectorAll("h2,h3"))
+      mainElem && Array.from(mainElem[0].querySelectorAll('h2,h3'))
 
     let excludeClassNames =
-      typeof props.excludeClassNames === "string"
-        ? props.excludeClassNames.split(",")
+      typeof props.excludeClassNames === 'string'
+        ? props.excludeClassNames.split(',')
         : props.excludeClassNames
     excludeClassNames = excludeClassNames || []
     excludeClassNames.push(classes.displayTitle)
@@ -242,7 +243,7 @@ const PageToc = props => {
         <Paper className={classes.tocContainer}>
           <Hidden mdDown>
             {toc.displayTitle ? (
-              <h3 className={classes.displayTitle + " state-page-nav-title"}>
+              <h3 className={classes.displayTitle + ' state-page-nav-title'}>
                 {toc.displayTitle}
               </h3>
             ) : (
@@ -260,9 +261,9 @@ const PageToc = props => {
               onClick={handleClick}
             >
               <span className="">
-                {toc.displayTitle || "Table of contents"}
+                {toc.displayTitle || 'Table of contents'}
               </span>
-              <span className={`${classes.tocButtonIcon}`}>
+              <span className={`${ classes.tocButtonIcon }`}>
                 {toc.expanded ? <ExpandMoreIcon /> : <ExpandLessIcon />}
               </span>
             </button>
@@ -287,10 +288,10 @@ const PageToc = props => {
                   return (
                     <li
                       className={classes.tocItem}
-                      key={`${tocItem.id}-toc-item`}
+                      key={`${ tocItem.id }-toc-item`}
                     >
-                      <a href={`#${tocItem.id}`} onClick={handleClick}>
-                        {tocItem.getAttribute("alt") || tocItem.innerText}
+                      <a href={`#${ tocItem.id }`} onClick={handleClick}>
+                        {tocItem.getAttribute('alt') || tocItem.innerText}
                       </a>
                       {tocItem[TOC_SUB_ATTRB] && (
                         <ul className={classes.tocSub}>
@@ -299,14 +300,14 @@ const PageToc = props => {
                               return (
                                 <li
                                   className={classes.tocSubItem}
-                                  key={`${subIndex}${tocSubItem.id}-toc-sub-item`}
+                                  key={`${ subIndex }${ tocSubItem.id }-toc-sub-item`}
                                 >
                                   <a
                                     data-toc-type="sub"
-                                    href={`#${tocSubItem.id}`}
+                                    href={`#${ tocSubItem.id }`}
                                     onClick={handleClick}
                                   >
-                                    {tocSubItem.getAttribute("alt") ||
+                                    {tocSubItem.getAttribute('alt') ||
                                       tocSubItem.innerText}
                                   </a>
                                 </li>
@@ -346,13 +347,13 @@ PageToc.propTypes = {
 }
 
 PageToc.defaultProps = {
-  bottomBoundary: "main",
+  bottomBoundary: 'main',
   shouldDisplayTitle: false
 }
 
 const elemCalcPos = (elem, offset) => {
   // You can add an offset number to a element to have the toc menu item activate earlier/later
-  const dataTocOffset = parseInt(elem.getAttribute("data-toc-offset")) || 0
+  const dataTocOffset = parseInt(elem.getAttribute('data-toc-offset')) || 0
 
   const computedMarginTop =
     parseInt(window.getComputedStyle(elem).marginTop) || 0
@@ -400,11 +401,12 @@ const elementArrayToTocArray = (elems, excludeClassNames, offset) => {
       if (
         currentElemHierarchyIndex > parseInt(currentTocItem.tagName.slice(-1))
       ) {
-        if (elem.getAttribute(TOC_EXCLUDE_ATTRB) !== "true") {
+        if (elem.getAttribute(TOC_EXCLUDE_ATTRB) !== 'true') {
           addChild(elem, currentTocItem)
         }
-      } else {
-        if (elem.getAttribute(TOC_EXCLUDE_ATTRB) !== "true") {
+      }
+      else {
+        if (elem.getAttribute(TOC_EXCLUDE_ATTRB) !== 'true') {
           createTocItem(elem)
           currentTocItem = elem
 
@@ -421,7 +423,7 @@ const elementArrayToTocArray = (elems, excludeClassNames, offset) => {
 
         const elemOffset = maxElemPos - (scrollMaxY - 20)
         if (elemOffset > 0) {
-          elem.setAttribute("data-toc-offset", elemOffset)
+          elem.setAttribute('data-toc-offset', elemOffset)
         }
       }
     })

@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 const DidYouKnow = props => {
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState(false)
-  const { id, children, color, text } = props
+  const { id, children } = props
 
   const headerColorStyle = props.color === 'red' ? classes.headingRed : classes.headingRed
 

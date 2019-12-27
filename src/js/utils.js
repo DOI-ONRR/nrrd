@@ -5,8 +5,8 @@ import currencyFormatter from 'currency-formatter'
 // Import Display Name Yaml Files
 import commodityNames from '../data/commodity_names.yml'
 
-const extentPercent = 0.05
-const extentMarginOfError = 0.1
+// const extentPercent = 0.05
+// const extentMarginOfError = 0.1
 
 const utils = {
   scrollStop: callback => {
@@ -39,6 +39,7 @@ const utils = {
   formatToSlug: name => {
     return slugify(name, {
       lower: true,
+      // eslint-disable-next-line no-useless-escape
       remove: /[$*_+~.()'"!\:@,?]/g
     }).replace('-and-', '-')
   },
@@ -180,6 +181,7 @@ const utils = {
   },
   compareValues (key, order = 'asc') {
     return function (a, b) {
+      // eslint-disable-next-line no-prototype-builtins
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
         return 0
       }
@@ -208,6 +210,7 @@ export default utils
  * @param {String} str the formatted string
  * @return {String} the string with a specified number of significant figures
  */
+// eslint-disable-next-line no-unused-vars
 const siValue = (function () {
   const suffix = { k: 1000, M: 1000000, G: 1000000000 }
   return function (str) {
@@ -227,29 +230,29 @@ const siValue = (function () {
   }
 })()
 
-const crawlCeil = function (ymax, ceilMax, i) {
-  // When ymax is a value less than 10, the ratio of ceilMax and ymax will never
-  // be less than (1 + extentMarginOfError + extentPercent), and the function will continue
-  // be called in its parent function's while loop.
+// const crawlCeil = function (ymax, ceilMax, i) {
+//   // When ymax is a value less than 10, the ratio of ceilMax and ymax will never
+//   // be less than (1 + extentMarginOfError + extentPercent), and the function will continue
+//   // be called in its parent function's while loop.
 
-  const sigFig = '.' + i + 's'
+//   const sigFig = '.' + i + 's'
 
-  /* var sigFigCeil = +eiti.format.transform(
-    sigFig,
-    eiti.format.siValue
-  )(ceilMax); */
+//   /* var sigFigCeil = +eiti.format.transform(
+//     sigFig,
+//     eiti.format.siValue
+//   )(ceilMax); */
 
-  const sigFigCeil = siValue(d3.format(sigFig)(ceilMax))
+//   const sigFigCeil = siValue(d3.format(sigFig)(ceilMax))
 
-  const ceilIsLargerThanValue = sigFigCeil > +ymax
-  let ceilIsntTooBig =
-    sigFigCeil / +ymax <= 1 + extentMarginOfError + extentPercent
-  if (!ceilIsntTooBig) {
-    ceilIsntTooBig = sigFigCeil - ymax < 10 // Accomodate for small numbers if the difference is smal then this should be acceptable
-  }
-  const justRight = ceilIsLargerThanValue && ceilIsntTooBig
-  return justRight ? sigFig : ''
-}
+//   const ceilIsLargerThanValue = sigFigCeil > +ymax
+//   let ceilIsntTooBig =
+//     sigFigCeil / +ymax <= 1 + extentMarginOfError + extentPercent
+//   if (!ceilIsntTooBig) {
+//     ceilIsntTooBig = sigFigCeil - ymax < 10 // Accomodate for small numbers if the difference is smal then this should be acceptable
+//   }
+//   const justRight = ceilIsLargerThanValue && ceilIsntTooBig
+//   return justRight ? sigFig : ''
+// }
 
 /**
  * This function formats a number as the number of significant digits

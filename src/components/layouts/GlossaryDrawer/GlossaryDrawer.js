@@ -1,7 +1,6 @@
-import React, { Fragment, useState, useContext } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
@@ -53,14 +52,14 @@ const GlossaryDrawer = () => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
 
-  let filteredTerms = filterGlossaryTerms(state.glossaryTerm)
+  const filteredTerms = filterGlossaryTerms(state.glossaryTerm)
 
   const handleClose = () => {
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false }})
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false } })
   }
 
   const handleChange = event => {
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: event.target.value, glossaryOpen: true }})
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: event.target.value, glossaryOpen: true } })
   }
 
   const glossaryList = side => (
@@ -82,7 +81,7 @@ const GlossaryDrawer = () => {
           tabIndex={state.toggleHidden && -1}
         />
       </div>
-      
+
       {(filteredTerms.terms).map((term, index) => (
         <div key={index} aria-hidden={term.show} style={{ display: term.show ? 'block' : 'none' }}>
           <ExpansionPanel term={term.name}>
