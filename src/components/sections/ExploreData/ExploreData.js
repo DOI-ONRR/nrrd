@@ -257,7 +257,7 @@ const ExploreData = () => {
             </Grid>
           </Grid>
         </Container>
-        <Container className={classes.mapWrapper} maxWidth="false">
+        <Container className={classes.mapWrapper} maxWidth={false}>
           <Grid container>
             <Grid item md={10}>
               <Box className={classes.mapContainer}>

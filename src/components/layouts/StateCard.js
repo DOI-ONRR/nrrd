@@ -207,7 +207,7 @@ const StateCard = props => {
   let total = 0
   if (loading) {
     return (
-      <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
+      <Slide direction="left" in={true} mountOnEnter unmountOnExit>
         <Card  className={clsx(classes.card, minimizeIcon && { [`minimized`]: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
             title={props.name}
@@ -282,7 +282,7 @@ const StateCard = props => {
     sparkMax = sparkData[sparkData.length - 1][0]
 
     return (
-      <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
+      <Slide direction="left" in={true} mountOnEnter unmountOnExit>
         <Card className={clsx(classes.card, minimizeIcon && { [`minimized`]: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
             title={props.name}
@@ -362,9 +362,8 @@ const StateCard = props => {
                     <TableBody>
                       {top_commodities &&
                         top_commodities.map((row, i) => {
-                          console.log("top commodities: ", row)
                           return (
-                            <TableRow key={row.name}>
+                            <TableRow key={i}>
                               <TableCell component="th" scope="row">
                                 <Typography style={{ fontSize: `.8rem` }}>
                                   {row.commodity}
