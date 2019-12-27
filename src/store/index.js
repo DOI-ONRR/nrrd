@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from 'react'
+import React, { useReducer } from 'react'
 
 // Define Action Types
 const GLOSSARY_TERM_SELECTED = 'GLOSSARY_TERM_SELECTED'

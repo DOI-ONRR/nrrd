@@ -7,8 +7,8 @@ const GRAPHQL_QUERIES = require(`./src/js/graphql-queries`)
 const CONTENT_DEFAULT_TEMPLATE = path.resolve(`src/templates/content-default.js`)
 const DOWNLOADS_TEMPLATE = path.resolve(`src/templates/downloads-default.js`)
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage, createRedirect } = boundActionCreators
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage, createRedirect } = actions
 
   return Promise.all([
     createDownloadPages(createPage, graphql)

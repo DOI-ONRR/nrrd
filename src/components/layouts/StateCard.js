@@ -105,7 +105,7 @@ const APOLLO_QUERY = gql`
       fiscal_year
       state_or_area
       sum
-      distinct_commodities
+      distinctCommodities
     }
 
     revenue_commodity_summary(
@@ -195,20 +195,20 @@ const StateCard = props => {
   let minimizeIcon = Object.is(props.minimizeIcon, undefined)
     ? false
     : props.minimizeIcon
-  let closeIcon = Object.is(props.closeIcon, undefined)
+  const closeIcon = Object.is(props.closeIcon, undefined)
     ? true
     : props.closeIcon
   let sparkData = []
   let sparkMin = 203
   let sparkMax = 219
   let highlightIndex = 0
-  let distinct_commodities = 0
-  let top_commodities = []
+  let distinctCommodities = 0
+  let topCommodities = []
   let total = 0
   if (loading) {
     return (
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
-        <Card  className={clsx(classes.card, minimizeIcon && { [`minimized`]: !minimized }, { [classes.cardMinimized]: !minimized })}>
+        <Card className={clsx(classes.card, minimizeIcon && { [`minimized`]: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
             title={props.name}
             action={
@@ -266,17 +266,17 @@ const StateCard = props => {
       x => x.fiscal_year === year
     )
     total = data.fiscal_revenue_summary[highlightIndex].sum
-    distinct_commodities =
-      data.fiscal_revenue_summary[highlightIndex].distinct_commodities
-    top_commodities = data.revenue_commodity_summary
+    distinctCommodities =
+      data.fiscal_revenue_summary[highlightIndex].distinctCommodities
+    topCommodities = data.revenue_commodity_summary
       .map((item, i) => item.commodity)
       .map((com, i) => {
-        let r = data.commodity_sparkdata.filter(item => item.commodity == com)
+        let r = data.commodity_sparkdata.filter(item => item.commodity === com)
         let s = r.map((row, i) => [row.fiscal_year, row.total])
         return { commodity: com, data: s }
       })
-    let first_top_commodity = top_commodities[0].data[highlightIndex][1]
-    //	let dwgh=top_commodities.map((com,i) => {let r = data.commodity_sparkdata.filter( item=> item.commodity==com) let s=r.map((row,i)=>[row.fiscal_year,row.total]) return {com, s}})
+    // let first_top_commodity = topCommodities[0].data[highlightIndex][1]
+    // let dwgh=topCommodities.map((com,i) => {let r = data.commodity_sparkdata.filter( item=> item.commodity==com) let s=r.map((row,i)=>[row.fiscal_year,row.total]) return {com, s}}// )
 
     sparkMin = sparkData[0][0]
     sparkMax = sparkData[sparkData.length - 1][0]
@@ -360,8 +360,8 @@ const StateCard = props => {
                     aria-label="top commodities table"
                   >
                     <TableBody>
-                      {top_commodities &&
-                        top_commodities.map((row, i) => {
+                      {topCommodities &&
+                        topCommodities.map((row, i) => {
                           return (
                             <TableRow key={i}>
                               <TableCell component="th" scope="row">
@@ -381,7 +381,8 @@ const StateCard = props => {
                                 <Typography style={{ fontSize: `.8rem` }}>
                                   {utils.formatToSigFig_Dollar(
                                     Math.floor(
-                                      top_commodities[i].data[
+                                      // eslint-disable-next-line standard/computed-property-even-spacing
+                                      topCommodities[i].data[
                                         row.data.findIndex(x => x[0] === year)
                                       ][1]
                                     ),
@@ -400,7 +401,7 @@ const StateCard = props => {
               <Grid container>
                 <Grid item xs={12}>
                   <Typography variant="subtitle2" component="span">
-                    Total Commodities: {distinct_commodities}
+                    Total Commodities: {distinctCommodities}
                   </Typography>
                 </Grid>
               </Grid>
@@ -411,7 +412,7 @@ const StateCard = props => {
     )
   } else {
     return (
-      <Slide direction="left" in={props.fips} mountOnEnter unmountOnExit>
+      <Slide direction="left" in={true} mountOnEnter unmountOnExit>
         <Card className={classes.card}>
           <CardHeader
             title={props.name}

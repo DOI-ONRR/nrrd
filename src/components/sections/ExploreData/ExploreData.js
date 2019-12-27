@@ -5,10 +5,8 @@ import { makeStyles } from "@material-ui/core/styles"
 import Container from "@material-ui/core/Container"
 import Typography from "@material-ui/core/Typography"
 import Slider from "@material-ui/core/Slider"
-import Paper from "@material-ui/core/Paper"
 import Grid from "@material-ui/core/Grid"
 import Box from "@material-ui/core/Box"
-import Fade from "@material-ui/core/Fade"
 
 import { graphql } from "gatsby"
 import { useQuery } from "@apollo/react-hooks"
@@ -18,17 +16,16 @@ import Map from "../../data-viz/Map"
 import StateCard from "../../layouts/StateCard"
 
 import { StoreContext } from "../../../store"
-import { ThemeConsumer } from "styled-components"
 
-export const STATIC_QUERY = graphql`
-  {
-    onrr {
-      commodity(distinct_on: fund_type) {
-        fund_type
-      }
-    }
-  }
-`
+// export const STATIC_QUERY = graphql`
+//   {
+//     onrr {
+//       commodity(distinct_on: fund_type) {
+//         fund_type
+//       }
+//     }
+//   }
+// `
 
 const FISCAL_REVENUE_QUERY = gql`
   query FiscalRevenue($year: Int!) {
@@ -154,11 +151,12 @@ const fiscalYearMarks = () => {
 const YearSlider = props => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
+  const [year, setYear] = useState(state.year)
   // const { data, client } = useQuery(CACHE_QUERY)
 
   //    console.debug(client)
   //    const { loading, error, data} = useQuery(FISCAL_REVENUE_QUERY)
-  let year = state.year
+  
   // if (data) {
   //   year = data.year
   // }
@@ -172,7 +170,6 @@ const YearSlider = props => {
             aria-labelledby="discrete-slider"
             valueLabelDisplay="on"
             step={1}
-            valueLabelDisplay="on"
             onChangeCommitted={(e, yr) => {
               props.onYear(yr)
             }}
@@ -197,7 +194,7 @@ const ExploreData = () => {
 
   const onLink = state => {
     if (
-      cards.filter(item => item.fips == state.properties.FIPS).length == 0
+      cards.filter(item => item.fips === state.properties.FIPS).length === 0
     ) {
       cards.push({
         fips: state.properties.FIPS,

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react"
-import { useStaticQuery, Link } from "gatsby"
+import { useStaticQuery, Link, graphql } from "gatsby"
 import PropTypes from "prop-types"
 
 import { makeStyles } from "@material-ui/core/styles"

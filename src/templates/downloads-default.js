@@ -59,9 +59,9 @@ const DownloadsTemplate = ( props ) => {
               <Box className={classes.downloadsContent}>
                 {hastReactRenderer(props.pageContext.markdown.htmlAst)}
               </Box>
-              
               <Typography variant="body1">
-                Do you have questions about the data or need data that isn't here? Contact our { data.site.siteMetadata.dataRetrieval.name } at <a href={'mailto:' + data.site.siteMetadata.dataRetrieval.email}>{data.site.siteMetadata.dataRetrieval.email }</a>.
+                Do you have questions about the data or need data that isn't here? Contact our { data.site.siteMetadata.dataRetrieval.name }
+                at <a href={'mailto:' + data.site.siteMetadata.dataRetrieval.email}>{data.site.siteMetadata.dataRetrieval.email }</a>.
               </Typography>
             </Grid>
           </Grid>

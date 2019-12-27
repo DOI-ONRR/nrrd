@@ -1,9 +1,9 @@
 // https://material-ui.com/customization/globals/
 const { 
   primary,
-  secondary,
-  grey,
-  text 
+  // secondary,
+  // grey,
+  // text 
 } = require('./palette')
 
 module.exports = Object.freeze({
