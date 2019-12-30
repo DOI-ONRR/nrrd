@@ -9,19 +9,17 @@ tag:
 
 import { Fragment } from 'react'
 import { withPrefix } from 'gatsby'
-import SEO from "../components/seo"
+import SEO from '../components/seo'
 
-import { HomeHero } from "../components/sections/HomeHero"
-import { Tabordion } from "../components/layouts/Tabordion"
-import { WhatsNew } from "../components/sections/WhatsNew"
-import ApolloStateTest from "../components/ApolloStateTest"
-import CounterTest from "../components/CounterTest"
+import { HomeHero } from '../components/sections/HomeHero'
+import { Tabordion, Tab, TabContainer } from '../components/layouts/Tabordion'
+import { WhatsNew } from '../components/sections/WhatsNew'
 
 export const IndexPage = () => {
   return (
     <Fragment>
       <SEO
-        title="Home | Natural Resources Revenue Data"
+        title='Home | Natural Resources Revenue Data'
         htmlAttributes={{ lang: 'en' }}
         meta={[
           { name: 'google-site-verification', content: 'OxyG3U-Vtui-uK6wHUeOw83OgdfcfxvsWWZcb5x7aZ0' },
@@ -43,10 +41,51 @@ export const IndexPage = () => {
         ]}
       ></SEO>
       <HomeHero />
-      <Tabordion />
+      <Tabordion>
+        <Tab 
+          tabId='tab-revenue' 
+          tabName='Revenue' 
+          tabIndex={0}>
+          <TabContainer
+            tabPanelId="tab-container-revenue"
+            tabPanelName="Revenue"
+            tabPanelTitle="Revenue"
+            tabPanelInfo="The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands."
+            tabPanelContentLeft="Content left..."
+            tabPanelContentRight="Content right..."
+            tabPanelContentBottom="Content bottom..."
+          />
+        </Tab>
+        <Tab 
+          tabId='tab-disbursements' 
+          tabName='Disbursements' 
+          tabIndex={1}>
+          <TabContainer
+            tabPanelId="tab-container-disbursements"
+            tabPanelName="Disbursements"
+            tabPanelTitle="Disbursements"
+            tabPanelInfo="The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans."
+            tabPanelContentLeft="Content left..."
+            tabPanelContentRight="Content right..."
+            tabPanelContentBottom="Content bottom..."
+          />
+        </Tab>
+        <Tab 
+          tabId='tab-production' 
+          tabName='Production' 
+          tabIndex={2}>
+          <TabContainer
+            tabPanelId="tab-container-production"
+            tabPanelName="Production"
+            tabPanelTitle="Production"
+            tabPanelInfo="The volume of major commodities extracted on federal lands and waters and Native American lands."
+            tabPanelContentLeft="Content left..."
+            tabPanelContentRight="Content right..."
+            tabPanelContentBottom="Content bottom..."
+          />
+        </Tab>
+      </Tabordion>
       <WhatsNew />
-      {/* <ApolloStateTest /> */}
-      {/* <CounterTest /> */}
     </Fragment>
   )
 }
