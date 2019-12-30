@@ -22,6 +22,8 @@ import { Footer } from '../Footer'
 
 import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
 
+import PatternLibraryLayout from '../PatternLibraryLayout'
+
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
@@ -101,7 +103,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const DefaultLayout = ({ children }) => {
+const DefaultLayout = ({ children, pageContext }) => {
   const classes = useStyles()
 
   const data = useStaticQuery(graphql`
@@ -117,24 +119,28 @@ const DefaultLayout = ({ children }) => {
 
   return (
     <Fragment>
-      <ThemeProvider theme={theme}>
-        <Box className={classes.site}>
-          <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+      {pageContext.layout === 'pattern-library' ?
+        <PatternLibraryLayout>{children}</PatternLibraryLayout>
+        :
+        <ThemeProvider theme={theme}>
+          <Box className={classes.site}>
+            <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
 
-          <Banner />
+            <Banner />
 
-          <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
+            <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
         
-          <GlossaryDrawer />
+            <GlossaryDrawer />
         
-          <Box className={classes.siteContent}>
-            <CssBaseline />
-            <main>{children}</main>
+            <Box className={classes.siteContent}>
+              <CssBaseline />
+              <main>{children}</main>
+            </Box>
+
+            <Footer version={data && data.site.siteMetadata.version} />
           </Box>
-
-          <Footer version={data && data.site.siteMetadata.version} />
-        </Box>
-      </ThemeProvider>
+        </ThemeProvider>
+      }
     </Fragment>
   )
 }

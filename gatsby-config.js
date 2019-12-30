@@ -32,6 +32,7 @@ const config = {
     },
   },
   plugins: [
+    'gatsby-transformer-react-docgen',
     {
       resolve: `gatsby-plugin-layout`,
       options: {
@@ -49,6 +50,13 @@ const config = {
     `gatsby-theme-apollo`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-mdx`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${ __dirname }/src/components`,
+        name: 'components',
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
