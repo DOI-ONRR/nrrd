@@ -10,28 +10,27 @@ import Tabs from "@material-ui/core/Tabs"
 import MuiTab from "@material-ui/core/Tab"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
 
-import { RevenueByLocationLink } from "../RevenueByLocationLink"
-// import TabContainer from "./TabContainer"
+import { RevenueByLocationLink } from '../RevenueByLocationLink'
 
 const useStyles = makeStyles(theme => ({
   root: {},
   tabPanelContainer: {
-    position: `relative`,
-    top: `-1px`,
-    borderTop: `1px solid #5c737f`
+    position: 'relative',
+    top: '-1px',
+    borderTop: '1px solid #5c737f'
   }
 }))
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+function TabPanel (props) {
+  const { children, value, index, ...other } = props
 
   return (
     <Typography
       component="div"
       role="tabpanel"
       hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
+      id={`full-width-tabpanel-${ index }`}
+      aria-labelledby={`full-width-tab-${ index }`}
       {...other}
     >
       <Box p={3}>{children}</Box>
@@ -41,13 +40,12 @@ function TabPanel(props) {
 
 function a11yProps(index) {
   return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  };
+    id: `full-width-tab-${ index }`,
+    'aria-controls': `full-width-tabpanel-${ index }`,
+  }
 }
 
-
-const Tabordion = props => {
+const Tabordion = () => {
   const classes = useStyles()
   const theme = useTheme()
 
@@ -59,10 +57,10 @@ const Tabordion = props => {
     setValue(newValue)
   }
 
-  const handleChangeIndex = index => {
-    setValue(index)
-  }
-  
+  // const handleChangeIndex = index => {
+  //   setValue(index)
+  // }
+
   return (
     <Container maxWidth="lg" className={classes.root}>
       <Box mb={15}>
@@ -87,7 +85,6 @@ const Tabordion = props => {
             <RevenueByLocationLink />
           </Grid>
         </Grid>
-        
 
         <Box
           className={classes.tabPanelContainer}

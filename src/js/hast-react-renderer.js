@@ -1,5 +1,5 @@
 import React from 'react'
-import rehypeReact from 'rehype-react'
+import RehypeReact from 'rehype-react'
 import { Link, withPrefix } from 'gatsby'
 
 /* @TODO Could we use gatsby to get a list of all components and svgs to add to the renderer automatically?
@@ -63,7 +63,7 @@ const SelectWrapper = props => {
   }
 
   return (
-    <select {...mutableProps} onChange={onchangeFunc && (e => onchangeFunc(e))} >
+    <select {...mutableProps} onBlur={onchangeFunc && (e => onchangeFunc(e))} >
       {props.children}
     </select>
   )
@@ -101,7 +101,7 @@ const SvgWrapper = props => {
  * Gatsby's markdown transformer plugin automatically creates and htmlAst attribute
  * We also included in gatsby node a utility to convert frontmatter to hast.
  **/
-const hastReactRenderer = new rehypeReact({
+const hastReactRenderer = new RehypeReact({
   createElement: React.createElement,
   components: { 
     'glossary-term': GlossaryTerm,
@@ -118,7 +118,7 @@ const hastReactRenderer = new rehypeReact({
     'page-toc': PageToc,
     'custom-link': Link,
     'msg-prioritzed-states-svg': MsgPrioritizedStatesSvg,
-    'a': Link,
+    // 'a': Link,
     'accordion-component': Accordion,
     'did-you-know': DidYouKnow,
     'process-group': ProcessGroup,
