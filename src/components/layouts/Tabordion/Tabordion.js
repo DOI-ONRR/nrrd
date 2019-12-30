@@ -1,14 +1,13 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
-import SwipeableViews from "react-swipeable-views"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
-import Container from "@material-ui/core/Container"
-import Typography from "@material-ui/core/Typography"
-import Box from "@material-ui/core/Box"
-import Grid from "@material-ui/core/Grid"
-import Tabs from "@material-ui/core/Tabs"
-import MuiTab from "@material-ui/core/Tab"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
+import Tabs from '@material-ui/core/Tabs'
+import MuiTab from '@material-ui/core/Tab'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import { RevenueByLocationLink } from '../RevenueByLocationLink'
 
@@ -38,14 +37,14 @@ function TabPanel (props) {
   )
 }
 
-function a11yProps(index) {
+function a11yProps (index) {
   return {
     id: `full-width-tab-${ index }`,
     'aria-controls': `full-width-tabpanel-${ index }`,
   }
 }
 
-const Tabordion = () => {
+const Tabordion = props => {
   const classes = useStyles()
   const theme = useTheme()
 
@@ -74,7 +73,7 @@ const Tabordion = () => {
               variant="fullWidth"
               aria-label="Revenue, Disbursements, and Production Tabs"
             >
-              { children && 
+              { children &&
                 children.map((item, index) => (
                   <MuiTab disableRipple key={index} label={item.props.tabName} {...a11yProps(index)} />
                 ))
@@ -96,7 +95,7 @@ const Tabordion = () => {
                   <TabContainer {...child.props.children.props} />
                 </TabPanel>
               )
-            })              
+            })
           }
         </Box>
       </Box>

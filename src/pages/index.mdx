@@ -15,6 +15,8 @@ import { HomeHero } from '../components/sections/HomeHero'
 import { Tabordion, Tab, TabContainer } from '../components/layouts/Tabordion'
 import { WhatsNew } from '../components/sections/WhatsNew'
 
+import ExploreRevenue from '../components/sections/Explore/Revenue'
+
 export const IndexPage = () => {
   return (
     <Fragment>
@@ -53,7 +55,7 @@ export const IndexPage = () => {
             tabPanelInfo="The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands."
             tabPanelContentLeft="Content left..."
             tabPanelContentRight="Content right..."
-            tabPanelContentBottom="Content bottom..."
+            tabPanelContentBottom={<ExploreRevenue />}
           />
         </Tab>
         <Tab 
