@@ -9,6 +9,7 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
+import TotalRevenue from '../../sections/TotalRevenue'
 import { RevenueByLocationLink } from '../RevenueByLocationLink'
 
 const useStyles = makeStyles(theme => ({
@@ -96,7 +97,8 @@ const Tabordion = () => {
             </Typography>
             <Typography variant="body1">
               The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
-            </Typography>
+          </Typography>
+	  <TotalRevenue />
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
             <Typography variant="h2">
