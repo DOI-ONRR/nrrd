@@ -9,6 +9,7 @@ import Tabs from '@material-ui/core/Tabs'
 import MuiTab from '@material-ui/core/Tab'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
+import TotalRevenue from '../../sections/TotalRevenue'
 import { RevenueByLocationLink } from '../RevenueByLocationLink'
 
 const useStyles = makeStyles(theme => ({
