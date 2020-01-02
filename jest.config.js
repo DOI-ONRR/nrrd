@@ -12,5 +12,14 @@ module.exports = {
     __PATH_PREFIX__: ``,
   },
   testURL: `http://localhost`,
-  setupFiles: [`<rootDir>/loadershim.js`]
+  setupFiles: [`<rootDir>/loadershim.js`],
+  reporters: [
+    "default", 
+    [
+      "jest-junit", {
+        "suiteName": "jest tests",
+        "outputDirectory": "./test-results/junit"
+      }
+    ]
+  ],
 }
