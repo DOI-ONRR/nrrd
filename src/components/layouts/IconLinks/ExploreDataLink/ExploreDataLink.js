@@ -13,59 +13,56 @@ import DownloadDataIcon from '-!svg-react-loader!../../../../img/svg/icon-downlo
 
 const useStyles = makeStyles(theme => ({
   root: {
-	},
-	exploreDataLink: {
-		textDecoration: `none`,
-		marginBottom: '1rem',
-		'& svg': {
-			fill: '#1478a6',
-		},
+  },
+  exploreDataLink: {
+    textDecoration: 'none',
+    marginBottom: '1rem',
+    '& svg': {
+      fill: '#1478a6',
+      verticalAlign: 'middle',
+      marginRight: '8px',
+    },
     verticalAlign: 'middle',
-		marginRight: '8px',
-		'& span': {
-			'fontSize': '1rem',
-			'marginRight': '1rem',
-			'verticalAlign': 'baseline'
-		},
-		'&:hover': {
-			textDecoration: 'underline'
-		},
-		'&:active': {
-			textDecoration: 'underline'
-		} 
+    marginRight: '8px',
+    '& span': {
+      fontSize: '1rem',
+      marginRight: '1rem',
+      verticalAlign: 'baseline'
+    },
+    '&:hover': {
+      textDecoration: 'underline'
+    },
+    '&:active': {
+      textDecoration: 'underline'
+    }
   }
 }))
 
-
-const ExploreDataLink = (props) => {
-	const classes = useStyles()
-  const getIcon = (icon)=> {
-		switch(icon) {
-			case 'data':
-					return( <ExploreDataIcon />);
-					break;
-			case 'filter':
-					return( <FilterTableIcon />);
-					break;
-			case 'works':
-					return( <HowWorksIcon />);
-					break;
-			case 'download':
-					return( <DownloadDataIcon />);
-					break;
-			default:
-					return ( <ExploreDataIcon /> );
-			}
+const ExploreDataLink = props => {
+  const classes = useStyles()
+  const getIcon = icon => {
+    switch (icon) {
+    case 'data':
+      return (<ExploreDataIcon />)
+    case 'filter':
+      return (<FilterTableIcon />)
+    case 'works':
+      return (<HowWorksIcon />)
+    case 'download':
+      return (<DownloadDataIcon />)
+    default:
+      return (<ExploreDataIcon />)
+    }
   }
-    
+
   return (
-		<Link to={props.to} className={classes.exploreDataLink}>
-				{getIcon(props.icon)}
-				<span>
-						{props.children === undefined
-					? 'Explore data'
-					: props.children}
-				</span>
+    <Link to={props.to} className={classes.exploreDataLink}>
+      {getIcon(props.icon)}
+      <span>
+        {props.children === undefined
+          ? 'Explore data'
+          : props.children}
+      </span>
 	  </Link>
   )
 }

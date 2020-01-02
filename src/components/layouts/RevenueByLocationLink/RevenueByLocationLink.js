@@ -4,8 +4,8 @@ import { Link } from 'gatsby'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
-import IconMap from '-!svg-react-loader!../../../img/icons/map-dark.svg'
-import { Typography, ThemeProvider } from '@material-ui/core'
+import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
+import { Typography } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   menuLink: {
     '&:hover': {
-      textDecoration: `none`
+      textDecoration: 'none'
     }
   }
 }))
@@ -21,14 +21,14 @@ const useStyles = makeStyles(theme => ({
 const RevenueByLocationLink = () => {
   const classes = useStyles()
   return (
-    <Grid container className={classes.root} spacing={1} direction="row" justify="flex-end" alignItems="right">
+    <Grid container className={classes.root} spacing={1} direction="row" justify="flex-end" alignItems="flex-end">
       <Grid item>
-        <IconMap className={classes.icon} />
+        <IconMap />
       </Grid>
       <Grid item>
         <Typography variant="body1">
-          <Link 
-            className={classes.menuLink} 
+          <Link
+            className={classes.menuLink}
             to="/explore/"
             activeClassName={classes.menuActiveLink}>
               Revenue by location
