@@ -125,7 +125,7 @@ export const TabContainer = props => {
           {props.tabPanelInfo}
         </Typography>
       </Box>
-      <Grid container>
+      <Grid container spacing={4}>
         <Grid item md={8}>
           {props.tabPanelContentLeft}
         </Grid>

@@ -7,12 +7,16 @@ import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles(theme => ({
   root: {},
-  paperRoot: {
-
-  },
   exploreContent: {
     display: 'flex',
     flexWrap: 'wrap',
+    flexDirection: 'column',
+    order: 1,
+  },
+  h3Bar: {
+    borderBottom: '2px solid #cde3c3',
+    marginBottom: '1em',
+    paddingBottom: '.41667rem',
   }
 }))
 
@@ -26,8 +30,7 @@ const useStyles = makeStyles(theme => ({
 const Explore = props => {
   const classes = useStyles()
   return (
-    <Paper className={classes.paperRoot}>
-      <Box component="section" className={classes.root}>
+    <Box component="section" className={classes.root}>
       <Box className={classes.contentHeader}>
         <Typography variant="h3" className={classes.h3Bar}>
           Explore {props.title}
@@ -51,8 +54,6 @@ const Explore = props => {
         </Grid>
       </Grid>
     </Box>
-    </Paper>
-    
   )
 }
 

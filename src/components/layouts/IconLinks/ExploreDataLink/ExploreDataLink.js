@@ -19,6 +19,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '1rem',
     '& svg': {
       fill: '#1478a6',
+      verticalAlign: 'middle',
+      marginRight: '8px',
     },
     verticalAlign: 'middle',
     marginRight: '8px',
