@@ -4,11 +4,10 @@ import { makeStyles } from '@material-ui/core/styles'
 // import DefaultLayout from '../components/layouts/DefaultLayout'
 import SEO from '../components/seo'
 import Rig404 from '-!svg-react-loader!../img/svg/rig-404.svg'
-import { classicNameResolver } from 'typescript'
+// import { classicNameResolver } from 'typescript'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    color: '#000',
     backgroundColor: '#d3dfe6',
     color: '#435159',
     margin: '0',
