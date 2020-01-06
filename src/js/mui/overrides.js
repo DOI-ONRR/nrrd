@@ -146,12 +146,6 @@ module.exports = Object.freeze({
   },
   // https://material-ui.com/api/table-cell/
   MuiTableCell: {
-    // root: {
-    //   padding: 0
-    // },
-    sizeSmall: {
-      padding: 0
-    }
   },
   // https://material-ui.com/api/outlined-input/#outlinedinput-api
   MuiOutlinedInput: {
