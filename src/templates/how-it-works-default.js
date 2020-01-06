@@ -1,7 +1,9 @@
 import React from 'react'
 import SEO from '../components/seo'
+import hastReactRenderer from '../js/hast-react-renderer'
 
-const HowItWorksDefault = () => {
+const HowItWorksDefault = props => {
+  const title = this.props.pageContext.markdown.frontmatter.title || 'Natural Resources Revenue Data'
   return (
     <Fragment>
       <SEO

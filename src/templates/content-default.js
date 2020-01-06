@@ -3,11 +3,10 @@ import SEO from '../components/seo'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
-
-import DefaultLayout from '../components/layouts/DefaultLayout'
+import hastReactRenderer from '../js/hast-react-renderer'
 
 const DefaultTemplate = props => {
-  let title = props.pageContext.markdown.frontmatter.title || 'Natural Resources Revenue Data'
+  const title = props.pageContext.markdown.frontmatter.title || 'Natural Resources Revenue Data'
 
   return (
     <Fragment>
@@ -22,15 +21,15 @@ const DefaultTemplate = props => {
 
         />
         <Grid container>
-            <Grid item md={9}>
-              <Box component="article">
-                {hastReactRenderer(this.props.pageContext.markdown.htmlAst)}
-              </Box>
-            </Grid>
-            <Grid item md={3}>
-              <PageToc scrollOffset={190}/>
-            </Grid>
+          <Grid item md={9}>
+            <Box component="article">
+              {hastReactRenderer(this.props.pageContext.markdown.htmlAst)}
+            </Box>
           </Grid>
+          <Grid item md={3}>
+            <PageToc scrollOffset={190}/>
+          </Grid>
+        </Grid>
       </Container>
     </Fragment>
   )

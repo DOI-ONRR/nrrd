@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import { makeStyles } from '@material-ui/core/styles'
 
 // import GlossaryTerm from '../../utils/glossary-term.js'
-import GlossaryTerm from '../../utils/GlossaryTerm'
+import { GlossaryTerm } from '../../utils/GlossaryTerm'
 
 // import styles from './ArchiveBanner.module.scss'
 import DataArchiveIcon from '-!svg-react-loader!../../../img/svg/icon-archive.svg'
