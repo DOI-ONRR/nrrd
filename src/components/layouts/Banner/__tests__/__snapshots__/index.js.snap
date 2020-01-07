@@ -5,7 +5,7 @@ exports[`Banner renders correctly 1`] = `
   className="MuiContainer-root makeStyles-root-1"
 >
   <span
-    className="MuiBox-root MuiBox-root-11"
+    className="MuiBox-root MuiBox-root-12"
   >
     <img
       alt="U.S. flag signifying that this is a United States Federal Government website"
