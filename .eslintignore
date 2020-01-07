@@ -1,0 +1,10 @@
+/src/img
+/src/styles
+/src/styles/fonts
+*.css
+*.md
+*.scss
+*.svg
+*.xlsx
+*.yml
+**/__tests__/*

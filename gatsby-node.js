@@ -1,14 +1,14 @@
 /* eslint-disable indent */
 
-const path = require(`path`)
-const GRAPHQL_QUERIES = require(`./src/js/graphql-queries`)
+const path = require('path')
+const GRAPHQL_QUERIES = require('./src/js/graphql-queries')
 
 // Page Templates
-const CONTENT_DEFAULT_TEMPLATE = path.resolve(`src/templates/content-default.js`)
-const DOWNLOADS_TEMPLATE = path.resolve(`src/templates/downloads-default.js`)
+const CONTENT_DEFAULT_TEMPLATE = path.resolve('src/templates/content-default.js')
+const DOWNLOADS_TEMPLATE = path.resolve('src/templates/downloads-default.js')
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage, createRedirect } = boundActionCreators
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage } = actions
 
   return Promise.all([
     createDownloadPages(createPage, graphql)
@@ -34,10 +34,9 @@ const getPageTemplate = templateId => {
     case 'offshore-region':
       return OFFSHORE_REGION_TEMPLATE
     }
-  
+
     return CONTENT_DEFAULT_TEMPLATE
 }
-
 
 const createDownloadPages = (createPage, graphql) => {
   const graphQLQueryString = `{${ GRAPHQL_QUERIES.MARKDOWN_DOWNLOADS }}`

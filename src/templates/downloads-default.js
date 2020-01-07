@@ -8,7 +8,6 @@ import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 
-import DefaultLayout from '../components/layouts/DefaultLayout'
 import { PageToc } from '../components/navigation/PageToc'
 import hastReactRenderer from '../js/hast-react-renderer'
 
@@ -27,7 +26,8 @@ const useStyles = makeStyles(theme => ({
   mainContent: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4)
-  }
+  },
+  downloadsContent: theme.typography.body1
 }))
 
 
@@ -56,12 +56,12 @@ const DownloadsTemplate = ( props ) => {
               <PageToc scrollOffset={190}/>
             </Grid>
             <Grid item xs={12} sm={9}>
-              <Typography>
+              <Box className={classes.downloadsContent}>
                 {hastReactRenderer(props.pageContext.markdown.htmlAst)}
-              </Typography>
-              
+              </Box>
               <Typography variant="body1">
-                Do you have questions about the data or need data that isn't here? Contact our { data.site.siteMetadata.dataRetrieval.name } at <a href={'mailto:' + data.site.siteMetadata.dataRetrieval.email}>{data.site.siteMetadata.dataRetrieval.email }</a>.
+                Do you have questions about the data or need data that isn't here? Contact our { data.site.siteMetadata.dataRetrieval.name }
+                at <a href={'mailto:' + data.site.siteMetadata.dataRetrieval.email}>{data.site.siteMetadata.dataRetrieval.email }</a>.
               </Typography>
             </Grid>
           </Grid>

@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from 'react'
+import React, { useReducer } from 'react'
 
 // Define Action Types
 const GLOSSARY_TERM_SELECTED = 'GLOSSARY_TERM_SELECTED'
@@ -8,9 +8,7 @@ export const glossaryTermSelected = (term, doOpen = true) => ({ type: GLOSSARY_T
 
 const reducer = (state, action) => {
   const { type, payload } = action
-  console.log('type: ', type)
-  console.log('payload: ', payload)
-  console.log('action: ', action)
+
   switch (type) {
     case 'GLOSSARY_TERM_SELECTED':
       return ({ ...state, glossaryTerm: payload.glossaryTerm, glossaryOpen: payload.glossaryOpen })
