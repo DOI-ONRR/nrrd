@@ -65,7 +65,6 @@ const RevenueTrends = () => {
     data.revenue_trends.length > 0
   ) {
     // Group data to match what was previously happening with gatsby static query
-    console.debug('data.revenue_trends: ', data.revenue_trends)
     const groupedData = groupBy(data.revenue_trends, 'fiscalYear')
     const fiscalYearData = groupedData.map(item => {
       const newObj = {}
@@ -75,13 +74,10 @@ const RevenueTrends = () => {
       return newObj
     })
 
-    console.debug('fiscalYearData: ', fiscalYearData.slice())
-
     // Get the latest date then subtract 1 year to filter previous year data to compare current year data
     const currentYearDate = new Date(fiscalYearData[0].data[0].fiscalYear.toString())
     const previousYearMaxDate = new Date(fiscalYearData[0].data[0].fiscalYear.toString())
     const currentYearData = (JSON.parse(JSON.stringify(fiscalYearData)).splice(0, 1)).map(calculateRevenueTypeAmountsByYear)[0]
-    // console.debug('currentYearData: ', currentYearData)
     calculateOtherRevenues(currentYearData)
 
     const currentYearTotal = (currentYearData.amountByRevenueType.Royalties +
@@ -92,11 +88,8 @@ const RevenueTrends = () => {
     // If current fiscal year date is September then we have the full year and we should include it in the trend lines
     const beginTrendDataLimit = (currentYearDate.getMonth() === 8) ? 0 : 1
     const trendData = fiscalYearData.splice(beginTrendDataLimit, TREND_LIMIT)
-    console.debug('trendData: ', trendData)
     const previousYearDataIndex = (beginTrendDataLimit === 0) ? 1 : 0
     let previousYearData = JSON.parse(JSON.stringify(trendData))[previousYearDataIndex]
-    console.debug('previousYearData: ', previousYearData)
-    console.debug('previousYearMaxDate: ', previousYearMaxDate)
     previousYearData.data = previousYearData.data.filter(item => monthlyDate(item.month) <= previousYearMaxDate)
 
     previousYearData = [previousYearData].map(calculateRevenueTypeAmountsByYear)[0]
@@ -113,7 +106,7 @@ const RevenueTrends = () => {
     // Sort trend data asc for spark lines
     trendData.sort((a, b) => (a.fiscalYear > b.fiscalYear) ? 1 : -1)
     const sparkLineData = trendData.map(calculateRevenueTypeAmountsByYear)
-    console.debug('sparkLineData: ', sparkLineData)
+
     const royalties = sparkLineData.map(item => ([item.year, item.amountByRevenueType.Royalties]))
     const bonuses = sparkLineData.map(item => ([item.year, item.amountByRevenueType.Bonus]))
     const rents = sparkLineData.map(item => ([item.year, item.amountByRevenueType.Rents]))
