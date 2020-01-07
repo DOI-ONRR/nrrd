@@ -99,7 +99,6 @@ const RevenueTrends = () => {
 
     // Trends
     const trends = aggregateData(data.revenue_trends)
-    console.log('trends: ', trends)
     // const minYear = trends[0].histData[0].year.substring(2)
     // const maxYear = trends[0].histData[trends[0].histData.length - 1].year.substring(2)
 
