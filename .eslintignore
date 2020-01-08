@@ -1,7 +1,8 @@
 /src/img
+/src/styles
+/src/styles/fonts
 *.css
 *.md
-*.mdx
 *.scss
 *.svg
 *.xlsx

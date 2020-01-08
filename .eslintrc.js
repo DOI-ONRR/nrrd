@@ -50,7 +50,7 @@ module.exports = {
 
     "import/no-webpack-loader-syntax": "off",
 
-    // "css-modules/no-unused-class": 1,
+    // "css-modules/no-unused-class": 1, currently using jss solution
     // "at-rule-no-unknown": [true, {
     //   "ignoreAtRules": [
     //     "value"
