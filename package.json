@@ -38,7 +38,6 @@
     "gatsby-source-filesystem": "^2.1.33",
     "gatsby-source-graphql": "^2.1.21",
     "gatsby-theme-apollo": "^3.0.0-beta.0",
-    "gatsby-transformer-remark": "^2.6.35",
     "gatsby-transformer-sharp": "^2.2.23",
     "gatsby-transformer-yaml": "^2.2.16",
     "lazy.js": "^0.5.1",
