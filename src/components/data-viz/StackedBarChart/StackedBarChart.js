@@ -17,25 +17,25 @@ const useStyles = makeStyles(theme => ({
 	width: '100%',
 	height: '200px',
 	fill: '#435159',
-	"&$hover": {
-	    fill: '#086996'
-	}
+
     },
-    hover: {},
+	'& .selected': {
+		fill: '#086996'
+	},
     legend: {
 	display:'block',
 	top:0,		    
 	left:0,
 	width: '100%',
-	height: '200px',
-	fill: '#435159'
+		height: '200px',
+	    fill: '#435159'
     }
 }))
 //7-RevenueTabOnCloud.gov
 const StackedBarChart = (props) => {
     // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
     //use ONRR topojson file for land
-    
+
     const classes = useStyles();
     const data=props.data;
     const selected=props.selected;
@@ -51,7 +51,7 @@ const StackedBarChart = (props) => {
 	let chart= new stackedBarChart(elemRef.current,  data);
 	//chart.selected(selected);
 	chart.draw(data);
-	
+
 	
 	//stackedBarChart.create(elemRef.current,{sortOrder: ["Y1","Y2","Y3", "Y4"]}, data);
     })
@@ -59,8 +59,8 @@ const StackedBarChart = (props) => {
     return (
 	    <div className={classes.chart} ref={elemRef} >
 	    <div className={classes.chart}></div><div className={classes.legend}> </div>
-            </div>
-    )
+        </div>
+  	)
 }
 
 export default StackedBarChart

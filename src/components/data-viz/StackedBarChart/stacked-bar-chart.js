@@ -117,7 +117,7 @@ export default class stackedBarChart {
 	if (selectedElement) {
   	    selectedElement.removeAttribute('selected')
 	}
-
+	element.setAttribute('class','selected')
 	element.setAttribute('selected', true)
 	element.setAttribute('tabindex',1)
 	this.selectedData(data[0].data);
@@ -150,7 +150,7 @@ export default class stackedBarChart {
 	    .attr('height', (self._height - self.marginTop))
 	    .attr('width', self.xScale.bandwidth())
 	    .attr('transform', d => 'translate(' + (self.xScale(Object.keys(d)[0])) + ',0)')
-	    //.attr('selected', (d,i) => i === this.selected())
+	    
 	    .attr('class', 'stacked-bar-chart-bar')
 	    .attr('data-key', d => Object.keys(d)[0])
 	    .attr('tabindex',0)
