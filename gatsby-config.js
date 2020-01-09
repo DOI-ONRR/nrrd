@@ -82,12 +82,18 @@ const config = {
         path: `${ __dirname }/src/markdown/`
       }
     },
-
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
         path: `${ __dirname }/src/img`
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'components',
+        path: `${ __dirname }/src/components`
       }
     },
     'gatsby-transformer-sharp',

@@ -28,35 +28,34 @@ exports.createPages = ({ graphql }) => {
  * @param {*} graphql
  */
 const createComponentsCache = graphql => {
+  console.info('creating components cache index')
   return new Promise((resolve, reject) => {
 	    resolve(
 	      graphql(`
         {
           allComponentMetadata {
-            edges {
-              node {
-                id
-                displayName
+            nodes {
+              id
+              displayName
+              description {
+                text
+              }
+              parent {
+                ... on File {
+                  absolutePath
+                }
+              }
+              props {
+                name
+                type {
+                  name
+                  raw
+                  value
+                }
                 description {
                   text
                 }
-                props {
-                  name
-                  type {
-                    value
-                    raw
-                    name
-                  }
-                  description {
-                    text
-                  }
-                  required
-                }
-                parent {
-                  ... on File {
-                    absolutePath
-                  }
-                }
+                required
               }
             }
           }
@@ -66,10 +65,10 @@ const createComponentsCache = graphql => {
 	          reject(result.errors)
 	        }
 	        else {
-          const allComponents = result.data.allComponentMetadata.edges.map(
-            (edge, i) =>
-              Object.assign({}, edge.node, {
-                filePath: edge.node.parent.absolutePath,
+          const allComponents = result.data.allComponentMetadata.nodes.map(
+            (node, i) =>
+              Object.assign({}, node, {
+                filePath: node.parent.absolutePath,
               })
           )
 
