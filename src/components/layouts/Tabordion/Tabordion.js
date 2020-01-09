@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { navigate } from '@reach/router'
 
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
@@ -50,16 +51,37 @@ const Tabordion = props => {
   const theme = useTheme()
 
   const { children } = props
+  // console.debug('props: ', props)
+  const [selected, setSelected] = useState(props.selected || '')
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
-  const [value, setValue] = useState(0)
+  useEffect(() => {
+    if (props.children && selected) {
+      const childIndex = props.children.findIndex(child => child.props.tabId === selected)
+      switch (childIndex) {
+      case 0:
+        setSelectedIndex(childIndex)
+        break
+      case 1:
+        setSelectedIndex(childIndex)
+        break
+      case 2:
+        setSelectedIndex(childIndex)
+        break
+      default:
+        setSelectedIndex(childIndex)
+        break
+      }
+    }
+  }, setSelectedIndex)
 
   const handleChange = (event, newValue) => {
-    setValue(newValue)
-  }
+    setSelectedIndex(newValue)
 
-  // const handleChangeIndex = index => {
-  //   setValue(index)
-  // }
+    const child = props.children.find(child => child.props.tabIndex === newValue)
+    setSelected(child.props.tabId)
+    navigate(`?tab=${ child.props.tabId }`)
+  }
 
   return (
     <Container maxWidth="lg" className={classes.root}>
@@ -67,7 +89,7 @@ const Tabordion = props => {
         <Grid container spacing={0} styles={{ 'padding-bottom': 0 }}>
           <Grid item xs={12} md={8}>
             <Tabs
-              value={value}
+              value={selectedIndex}
               onChange={handleChange}
               indicatorColor="primary"
               textColor="primary"
@@ -76,7 +98,7 @@ const Tabordion = props => {
             >
               { children &&
                 children.map((item, index) => (
-                  <MuiTab disableRipple key={index} label={item.props.tabName} {...a11yProps(index)} />
+                  <MuiTab disableRipple key={item.props.tabId} label={item.props.tabName} {...a11yProps(item.props.tabId)} />
                 ))
               }
             </Tabs>
@@ -92,7 +114,7 @@ const Tabordion = props => {
           { children &&
             React.Children.map(children, (child, index) => {
               return (
-                <TabPanel value={value} index={index} dir={theme.direction}>
+                <TabPanel value={child.props.tabIndex} index={selectedIndex} dir={theme.direction}>
                   <TabContainer {...child.props.children.props} />
                 </TabPanel>
               )
@@ -106,7 +128,7 @@ const Tabordion = props => {
 
 export const Tab = props => {
   return (
-    <MuiTab disableRipple label={props.name} {...a11yProps(props.tabIndex)} />
+    <MuiTab disableRipple label={props.name} {...a11yProps(props.tabId)} />
   )
 }
 
