@@ -15,9 +15,11 @@ import { HomeHero } from '../components/sections/HomeHero'
 import { Tabordion, Tab, TabContainer } from '../components/layouts/Tabordion'
 import { WhatsNew } from '../components/sections/WhatsNew'
 
-import ExploreRevenue from '../components/sections/Explore/Revenue'
 import TotalRevenue from '../components/sections/TotalRevenue'
 import RevenueTrends from '../components/sections/RevenueTrends'
+import ExploreRevenue from '../components/sections/Explore/Revenue'
+import ExploreDisbursements from '../components/sections/Explore/Disbursements'
+import ExploreProduction from '../components/sections/Explore/Production'
 
 export const IndexPage = () => {
   return (
@@ -71,7 +73,7 @@ export const IndexPage = () => {
             tabPanelInfo="The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans."
             tabPanelContentLeft="Content left..."
             tabPanelContentRight="Content right..."
-            tabPanelContentBottom="Content bottom..."
+            tabPanelContentBottom={<ExploreDisbursements />}
           />
         </Tab>
         <Tab 
@@ -85,7 +87,7 @@ export const IndexPage = () => {
             tabPanelInfo="The volume of major commodities extracted on federal lands and waters and Native American lands."
             tabPanelContentLeft="Content left..."
             tabPanelContentRight="Content right..."
-            tabPanelContentBottom="Content bottom..."
+            tabPanelContentBottom={<ExploreProduction />}
           />
         </Tab>
       </Tabordion>
