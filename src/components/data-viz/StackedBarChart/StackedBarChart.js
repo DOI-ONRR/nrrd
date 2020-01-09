@@ -41,7 +41,7 @@ const StackedBarChart = props => {
     chart.draw(data)
 
     // stackedBarChart.create(elemRef.current,{sortOrder: ["Y1","Y2","Y3", "Y4"]}, data);
-  }, [])
+  }, [elemRef])
 
   return (
 	  <div className={classes.chart} ref={elemRef} ></div>
