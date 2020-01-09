@@ -21,7 +21,10 @@ import ExploreRevenue from '../components/sections/Explore/Revenue'
 import ExploreDisbursements from '../components/sections/Explore/Disbursements'
 import ExploreProduction from '../components/sections/Explore/Production'
 
-export const IndexPage = () => {
+export const IndexPage = props => {
+  const urlParams = new URLSearchParams(props.location.search)
+  const selected = urlParams.get('tab')
+  console.debug('urlParams: ', selected)
   return (
     <Fragment>
       <SEO
@@ -47,13 +50,13 @@ export const IndexPage = () => {
         ]}
       ></SEO>
       <HomeHero />
-      <Tabordion>
+      <Tabordion selected={selected}>
         <Tab 
           tabId='tab-revenue' 
           tabName='Revenue' 
           tabIndex={0}>
           <TabContainer
-            tabPanelId="tab-container-revenue"
+            tabPanelId="tab-revenue"
             tabPanelName="Revenue"
             tabPanelTitle="Revenue"
             tabPanelInfo="The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands."
@@ -67,7 +70,7 @@ export const IndexPage = () => {
           tabName='Disbursements' 
           tabIndex={1}>
           <TabContainer
-            tabPanelId="tab-container-disbursements"
+            tabPanelId="tab-disbursements"
             tabPanelName="Disbursements"
             tabPanelTitle="Disbursements"
             tabPanelInfo="The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans."
@@ -81,7 +84,7 @@ export const IndexPage = () => {
           tabName='Production' 
           tabIndex={2}>
           <TabContainer
-            tabPanelId="tab-container-production"
+            tabPanelId="tab-production"
             tabPanelName="Production"
             tabPanelTitle="Production"
             tabPanelInfo="The volume of major commodities extracted on federal lands and waters and Native American lands."

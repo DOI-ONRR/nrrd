@@ -44,11 +44,12 @@ const StackedBarChart = props => {
   const elemRef = useRef(null)
 
   useEffect(() => {
-    // stackedBarChar(elemRef.current,{}, datas);
-    elemRef.current.children[0].innerHTML = ''
-    elemRef.current.children[1].innerHTML = ''
-    const chart = new BarChart(elemRef.current, data)
-    // chart.selected(selected);
+    console.debug(data)
+    console.debug('StackedBarChart useEffect fired!')
+
+    // stackedBarChar(elemRef.current,{}, data);
+    const chart = new D3StackedBarChart(elemRef.current, data)
+    chart.selected(selected)
     chart.draw(data)
   }, [elemRef])
 
