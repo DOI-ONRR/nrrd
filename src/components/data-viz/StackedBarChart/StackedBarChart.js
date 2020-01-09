@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 // import ReactDOM from 'react-dom'
 
-import * as d3 from 'd3'
-import utils from '../../../js/utils'
+// import utils from '../../../js/utils'
 
-import Grow from '@material-ui/core/Grow'
 import { makeStyles } from '@material-ui/core/styles'
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
-import sBarChart from './stacked-bar-chart.js'
+import BarChart from './stacked-bar-chart.js'
 
 const useStyles = makeStyles(theme => ({
   chart: {
@@ -17,7 +15,10 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '200px',
     fill: '#435159',
-    '& .bars > .stacked-bar-chart-bar': {
+    '& .bars > .bar:hover': {
+      fill: theme.palette.chart.secondary
+    },
+    '& .bars > .active': {
       fill: theme.palette.chart.secondary
     },
   },
@@ -27,7 +28,9 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '200px',
-	  fill: '#435159'
+    '& .legend-rect': {
+      fill: theme.palette.chart.secondary
+    }
   }
 }))
 
@@ -37,17 +40,14 @@ const StackedBarChart = props => {
 
   const classes = useStyles()
   const data = props.data
-  const selected = props.selected
+  //   const selected = props.selected
   const elemRef = useRef(null)
 
   useEffect(() => {
-    console.debug(data)
-    console.debug('________________________________________________')
-
     // stackedBarChar(elemRef.current,{}, datas);
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
-    const chart = new sBarChart(elemRef.current, data)
+    const chart = new BarChart(elemRef.current, data)
     // chart.selected(selected);
     chart.draw(data)
   })

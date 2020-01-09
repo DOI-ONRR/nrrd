@@ -1,14 +1,9 @@
-
 import * as d3 from 'd3'
 
 export default class stackedBarChart {
-    
-
     constructor(node, data) {
-	console.debug(node);
 	this.node=node;
 	this.data=data;
-	console.debug("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", data, data[data.length-1][Object.keys(data[data.length-1])[0]][0])
 	this.selectedData(data[data.length-1][Object.keys(data[data.length-1])[0]][0])
 	this.marginBottom=40;
         this.marginTop=25;
@@ -19,7 +14,6 @@ export default class stackedBarChart {
 	this.maxExtentLineY= 20
 	this._colors = ["b33040", "#d25c4d", "#f2b447", "#d9d574"];
 	this._height=(node.clientHeight > 0) ? node.clientHeight : 400
-	console.debug("**********************************************", this._height);
 	this._width=(node.clientWidth <= 0) ? 300 : node.clientWidth
 	this.xScale = d3.scaleBand()
 	    .domain(this.data.map(d => {
@@ -43,8 +37,7 @@ export default class stackedBarChart {
 	this.chart=d3.select( this.node.children[0]).append('svg')
 	.attr('height', this._height)
 	.attr('width', this._width)
-    console.debug("CHART ____",this.chart);
-        console.debug("CHART C____",this.node.children[0]);
+
 }
 
     colors(value) {
@@ -111,24 +104,24 @@ export default class stackedBarChart {
     }
 
     toggleSelectedBar = (element, data, callBack) => {
-	let selectedElement = element.parentNode.querySelector('[selected=true]')
-	console.debug("Selected =======================================", data);
-	console.debug("All data --------------------------------------", this.data);
+	let selectedElement = d3.selectAll('.active') //element.parentNode.querySelector('[selected=true]')
+	
 	if (selectedElement) {
-  	    selectedElement.removeAttribute('selected')
+  	    selectedElement.attr('selected',false)
+	    selectedElement.attr('class','bar')
 	}
-	element.setAttribute('class','selected')
-	element.setAttribute('selected', true)
-	element.setAttribute('tabindex',1)
+	let activeElement = element.parentNode.parentNode;
+	activeElement.setAttribute('class','active');
+	activeElement.setAttribute('selected', true)
+	activeElement.setAttribute('tabindex',1)
 	this.selectedData(data[0].data);
-	this.draw()
+	this.addLegend()
 	if (callBack) {
   	    callBack(data)
 	}
     }
     
     onSelect(d) {
-	console.debug("Selected =======================================", d);
 	
     }
     
@@ -141,7 +134,6 @@ export default class stackedBarChart {
 	    .keys(this.getOrderedKeys(data))
 	    .offset(d3.stackOffsetNone)
 	let keys=this.getOrderedKeys(data);
-	console.debug("KEEEEEEEY:", keys)
 	this.chart.append('g').
 	    attr('class', 'bars')
 	    .selectAll('g')
@@ -151,7 +143,7 @@ export default class stackedBarChart {
 	    .attr('width', self.xScale.bandwidth())
 	    .attr('transform', d => 'translate(' + (self.xScale(Object.keys(d)[0])) + ',0)')
 	    
-	    .attr('class', 'stacked-bar-chart-bar')
+	    .attr('class', (d,i) => i==self.data.length-1 ? 'active' : 'bar' )
 	    .attr('data-key', d => Object.keys(d)[0])
 	    .attr('tabindex',0)
 	    .selectAll('g')
@@ -279,15 +271,13 @@ export default class stackedBarChart {
 	let self=this;
 	let labels=this.getOrderedKeys(this.data).reverse();
 	let selectedData=this.selectedData()
-	console.debug(this.legend);
 	let legend=undefined;
 	if(this.legend) {
 	    
-	    console.debug(this.legend.selectAll('.legend'));
 	    this.legend.selectAll('.legend').remove()
+	    this.legend.selectAll('.legend-rect').remove()
 	    legend=this.legend;
 	} else {
-	    console.debug("SELECTED------",selectedData);
 	    legend=d3.select( this.node.children[1]).append("svg")
 	    .attr("class", 'legend')
 	    .attr("width",this._width)
@@ -310,7 +300,7 @@ export default class stackedBarChart {
 
 	
 	legend.append("rect")
-	    .attr("class", "legend")
+	    .attr("class", "legend-rect")
 	
 	    .attr("x", 0)
 	    .attr("y",function(d, i) {return 20*(i+1)+5})
@@ -325,7 +315,7 @@ export default class stackedBarChart {
 	    .attr("dy","1em")
 	    .style("text-anchor", "start")
 	    .style("font-size", '11px')
-	    .text(function(d, i) {console.debug(d); return d})
+	    .text(function(d, i) {return d})
 
 	legend.append("text")
 	    .attr("class", "legend")
@@ -410,8 +400,33 @@ export default class stackedBarChart {
 	    .attr('width', this._width)
 	    .attr('x', 0)
     }
+
     
 }
 
 
 
+
+/**
+ * This is a format transform that turns a value
+ * into its si equivalent
+ *
+ * @param {String} str the formatted string
+ * @return {String} the string with a specified number of significant figures
+ */
+const siValue = (function () {
+  let suffix = { k: 1000, M: 1000000, G: 1000000000 }
+  return function (str) {
+    let number
+    str = str.replace(/(\.0+)?([kMG])$/, function (_, zeroes, s) {
+      number = str.replace(s, '').toString() || str
+      return (+number * suffix[s])
+    }).replace(/\.0+$/, '')
+    if (number) {
+      return str.slice(number.length, str.length)
+    }
+    else {
+      return str
+    }
+  }
+})()
