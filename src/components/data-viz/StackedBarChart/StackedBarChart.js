@@ -33,7 +33,7 @@ const StackedBarChart = props => {
 
   useEffect(() => {
     console.debug(data)
-    console.debug('________________________________________________')
+    console.debug('StackedBarChart useEffect fired!')
 
     // stackedBarChar(elemRef.current,{}, data);
     const chart = new D3StackedBarChart(elemRef.current, data)
@@ -41,13 +41,11 @@ const StackedBarChart = props => {
     chart.draw(data)
 
     // stackedBarChart.create(elemRef.current,{sortOrder: ["Y1","Y2","Y3", "Y4"]}, data);
-  })
+  }, [])
 
   return (
-	    <div className={classes.chart} ref={elemRef} >
-
-    </div>
-  	)
+	  <div className={classes.chart} ref={elemRef} ></div>
+  )
 }
 
 export default StackedBarChart

@@ -10,7 +10,6 @@ import Tabs from '@material-ui/core/Tabs'
 import MuiTab from '@material-ui/core/Tab'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
-import TotalRevenue from '../../sections/TotalRevenue'
 import { RevenueByLocationLink } from '../RevenueByLocationLink'
 
 const useStyles = makeStyles(theme => ({
@@ -51,27 +50,13 @@ const Tabordion = props => {
   const theme = useTheme()
 
   const { children } = props
-  // console.debug('props: ', props)
   const [selected, setSelected] = useState(props.selected || '')
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   useEffect(() => {
     if (props.children && selected) {
       const childIndex = props.children.findIndex(child => child.props.tabId === selected)
-      switch (childIndex) {
-      case 0:
-        setSelectedIndex(childIndex)
-        break
-      case 1:
-        setSelectedIndex(childIndex)
-        break
-      case 2:
-        setSelectedIndex(childIndex)
-        break
-      default:
-        setSelectedIndex(childIndex)
-        break
-      }
+      setSelectedIndex(childIndex)
     }
   }, setSelectedIndex)
 
