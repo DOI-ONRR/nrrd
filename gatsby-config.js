@@ -54,7 +54,7 @@ const config = {
     {
       resolve: 'gatsby-plugin-layout',
       options: {
-        component: `${ __dirname }/src/components/layouts/DefaultLayout`
+        component: `${ __dirname }/src/components/layouts/PageLayoutManager`
       }
     },
     {
@@ -70,6 +70,17 @@ const config = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              icon: false,
+              maintainCase: true,
+              removeAccents: true,
+              enableCustomId: true,
+            },
+          },
+        ],
         extensions: ['.mdx', '.md']
       },
     },

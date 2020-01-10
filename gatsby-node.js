@@ -32,7 +32,19 @@ const createComponentsCache = graphql => {
   return new Promise((resolve, reject) => {
 	    resolve(
 	      graphql(`
-        {
+        {  
+          allMdx(filter: {fileAbsolutePath: {glob: "/Development/nrrd/src/components/**/*.mdx"}}) {
+            edges {
+              node {
+                parent {
+                  ... on File {
+                    name
+                    absolutePath
+                  }
+                }
+              }
+            }
+          }
           allComponentMetadata {
             nodes {
               id
@@ -71,8 +83,14 @@ const createComponentsCache = graphql => {
                 filePath: node.parent.absolutePath,
               })
           )
+          const allMdx = result.data.allMdx.edges.map(
+            (node, i) => Object.assign({}, node.node, {
+              displayName: node.node.parent.name,
+              filePath: node.node.parent.absolutePath,
+            })
+          )
 
-          const exportFileContents =
+          let exportFileContents =
               allComponents
                 .reduce((accumulator, { displayName, filePath }) => {
                   accumulator.push(
@@ -81,6 +99,17 @@ const createComponentsCache = graphql => {
                   return accumulator
                 }, [])
                 .join('\n') + '\n'
+
+          exportFileContents = exportFileContents.concat(
+            allMdx
+              .reduce((accumulator, { displayName, filePath }) => {
+                accumulator.push(
+                  `export { default as ${ displayName } } from "${ filePath }"`
+                )
+                return accumulator
+              }, [])
+              .join('\n') + '\n'
+          )
 
           fs.writeFileSync(
             path.join(appRootDir, '.cache/components.js'),
