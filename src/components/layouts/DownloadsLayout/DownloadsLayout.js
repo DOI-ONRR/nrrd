@@ -10,6 +10,7 @@
 
 import DefaultLayout from '../DefaultLayout'
 import ContactUs from '../../content/ContactUs'
+import PageToc from '../../navigation/PageToc'
 import Container from '@material-ui/core/Container'
 
 import React from 'react'
@@ -21,6 +22,7 @@ const DownloadsLayout = ({ children }) => {
       <Container maxWidth="lg">
         {children}
         <ContactUs />
+        <PageToc scrollOffset={190}/>
       </Container>
     </DefaultLayout>
   )
