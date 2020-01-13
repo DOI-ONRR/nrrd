@@ -9,9 +9,10 @@
  */
 
 import DefaultLayout from '../DefaultLayout'
-import ContactUs from '../../content/ContactUs'
+import ContactUs from '../../content-partials/ContactUs'
 import PageToc from '../../navigation/PageToc'
 import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
 
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -20,9 +21,15 @@ const DownloadsLayout = ({ children }) => {
   return (
     <DefaultLayout>
       <Container maxWidth="lg">
-        {children}
-        <ContactUs />
-        <PageToc scrollOffset={190}/>
+        <Grid container>
+          <Grid item xs={12} sm={3}>
+            <PageToc scrollOffset={190}/>
+          </Grid>
+          <Grid item xs={12} sm={9}>
+            {children}
+            <ContactUs />
+          </Grid>
+        </Grid>
       </Container>
     </DefaultLayout>
   )

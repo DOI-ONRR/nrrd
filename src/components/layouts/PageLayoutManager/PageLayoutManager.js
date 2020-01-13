@@ -9,8 +9,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const PageLayoutManager = ({ path, children, ...rest }) => {
-  switch (path) {
-  case '/downloads/':
+
+  if (path.includes('/downloads/')) {
     return <DownloadsLayout>{children}</DownloadsLayout>
   }
 
