@@ -11,18 +11,44 @@ import { Fragment } from 'react'
 import { withPrefix } from 'gatsby'
 import SEO from '../components/seo'
 
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
+
 import { HomeHero } from '../components/sections/HomeHero'
-import { Tabordion, Tab, TabContainer } from '../components/layouts/Tabordion'
+import { Tabordion, Tab, TabPanel } from '../components/layouts/Tabordion'
 import { WhatsNew } from '../components/sections/WhatsNew'
 
-import ExploreRevenue from '../components/sections/Explore/Revenue'
 import TotalRevenue from '../components/sections/TotalRevenue'
 import RevenueTrends from '../components/sections/RevenueTrends'
+import DisbursementTrends from '../components/sections/DisbursementTrends'
+import ExploreRevenue from '../components/sections/Explore/Revenue'
+import ExploreDisbursements from '../components/sections/Explore/Disbursements'
+import ExploreProduction from '../components/sections/Explore/Production'
+
+import { RevenueByLocationLink } from '../components/layouts/RevenueByLocationLink'
+
+export const useStyles = makeStyles(theme => ({
+  revenueByLocation: {
+    position: 'relative',
+    top: 0,
+  },
+  tabordionContainer: {
+    marginTop: -50,
+    '& .MuiTabs-fixed': {
+      marginRight: '350px',
+    }
+  },
+  whatsNewContainer: {
+    background: theme.palette.blue.light,
+  }
+}))
 
 export const IndexPage = props => {
   const urlParams = new URLSearchParams(props.location.search)
   const selected = urlParams.get('tab')
-  console.debug('urlParams: ', selected)
+  const classes = useStyles()
   return (
     <Fragment>
       <SEO
@@ -47,52 +73,69 @@ export const IndexPage = props => {
           { name: 'twitter:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
         ]}
       ></SEO>
-      <HomeHero />
-      <Tabordion selected={selected}>
-        <Tab 
-          tabId='tab-revenue' 
-          tabName='Revenue' 
-          tabIndex={0}>
-          <TabContainer
-            tabPanelId="tab-revenue"
-            tabPanelName="Revenue"
-            tabPanelTitle="Revenue"
-            tabPanelInfo="The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands."
-            tabPanelContentLeft={<TotalRevenue />}
-            tabPanelContentRight={<RevenueTrends />}
-            tabPanelContentBottom={<ExploreRevenue />}
-          />
-        </Tab>
-        <Tab 
-          tabId='tab-disbursements' 
-          tabName='Disbursements' 
-          tabIndex={1}>
-          <TabContainer
-            tabPanelId="tab-disbursements"
-            tabPanelName="Disbursements"
-            tabPanelTitle="Disbursements"
-            tabPanelInfo="The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans."
-            tabPanelContentLeft="Content left..."
-            tabPanelContentRight="Content right..."
-            tabPanelContentBottom="Content bottom..."
-          />
-        </Tab>
-        <Tab 
-          tabId='tab-production' 
-          tabName='Production' 
-          tabIndex={2}>
-          <TabContainer
-            tabPanelId="tab-production"
-            tabPanelName="Production"
-            tabPanelTitle="Production"
-            tabPanelInfo="The volume of major commodities extracted on federal lands and waters and Native American lands."
-            tabPanelContentLeft="Content left..."
-            tabPanelContentRight="Content right..."
-            tabPanelContentBottom="Content bottom..."
-          />
-        </Tab>
-      </Tabordion>
-      <WhatsNew />
+      {/* Home Hero */}
+      <Container maxWidth="lg">
+        <HomeHero />
+      </Container>
+      {/* Tabordion */}
+      <Container maxWidth="lg">
+        <Box mb={15}>
+          <Grid container spacing={0} styles={{ 'padding-bottom': 0 }}>
+            <Grid item xs={12} md={12} className={classes.revenueByLocation}>
+              <RevenueByLocationLink />
+            </Grid>
+            <Grid item xs={12} md={12} className={classes.tabordionContainer}>
+              <Tabordion selected={selected}>
+                <Tab label="Revenue" id="tab-revenue" />
+                <Tab label="Disbursements" id="tab-disbursements" />
+                <Tab label="Production" id="tab-production" />
+                <TabPanel id="tab-panel-revenue">
+                  <Grid container spacing={4}>
+                    <Grid item xs={12} md={8}>
+                      <TotalRevenue />
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <RevenueTrends />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <ExploreRevenue />
+                    </Grid>
+                  </Grid>
+                </TabPanel>
+                <TabPanel id="tab-panel-disbursements">
+                  <Grid container spacing={4}>
+                    <Grid item xs={12} md={8}>
+                      Disbursement content...
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <DisbursementTrends />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <ExploreDisbursements />
+                    </Grid>
+                  </Grid>
+                </TabPanel>
+                <TabPanel id="tab-panel-production">
+                  <Grid container spacing={4}>
+                    <Grid item xs={12}>
+                      Production content...
+                    </Grid>
+                    <Grid item xs={12}>
+                      <ExploreProduction />
+                    </Grid>
+                  </Grid>
+                </TabPanel>
+              </Tabordion>
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
+      {/* Whats New */}
+      <Container maxWidth={false} component="section" className={classes.whatsNewContainer}>
+        <Container maxWidth="lg">
+          <WhatsNew />
+        </Container>
+      </Container>
     </Fragment>
   )
 }
