@@ -33,7 +33,7 @@ const createComponentsCache = graphql => {
 	    resolve(
 	      graphql(`
         {  
-          allMdx(filter: {fileAbsolutePath: {glob: "/Development/nrrd/src/components/**/*.mdx"}}) {
+          allMdx(filter: {fileAbsolutePath: {regex: "/content-partials/"}}) {
             edges {
               node {
                 parent {
