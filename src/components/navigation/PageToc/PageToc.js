@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useLayoutEffect, useCallback } from 'react'
 // import ReactDOM from 'react-dom'
 
 import PropTypes from 'prop-types'
@@ -118,6 +118,8 @@ const useStyles = makeStyles(theme => ({
 const PageToc = props => {
   const classes = useStyles()
 
+  console.log('PageToc', window.location.pathname)
+
   const [toc, setToc] = useState({
     displayTitle: props.displayTitle,
     expanded: false,
@@ -135,10 +137,10 @@ const PageToc = props => {
 
   // let isScrolling
 
-  useEffect(() => {
-    console.log('use effect')
+  useLayoutEffect(() => {
+    console.log('use layout effect')
     createToc()
-  }, [])
+  }, [window.location.pathname])
 
   const handleClick = () => {
     // setToc({ ...toc, expanded: !toc.expanded })

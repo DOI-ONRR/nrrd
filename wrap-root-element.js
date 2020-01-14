@@ -8,7 +8,7 @@ import { StoreProvider } from './src/store'
 
 const mdxComponents = {
   pre: props => <div {...props} />,
-  a: props => (props.href && props.href.includes('http')) ? <a {...props} /> : <Link to={props.href} {...props} />,
+  a: props => (props.href && (props.href.includes('http') || props.href.includes('mailto'))) ? <a {...props} /> : <Link to={props.href} {...props} />,
   ...components
 }
 
