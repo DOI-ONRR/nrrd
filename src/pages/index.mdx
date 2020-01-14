@@ -35,9 +35,15 @@ export const useStyles = makeStyles(theme => ({
     top: 0,
   },
   tabordionContainer: {
-    marginTop: -50,
-    '& .MuiTabs-fixed': {
-      marginRight: '350px',
+    marginTop: 0,
+    '@media (min-width: 767px)': {
+      marginTop: -50,
+      '& .MuiTabs-fixed': {
+        marginRight: '350px',
+      }
+    },
+    '& .MuiTabs-flexContainer': {
+      marginBottom: 0,
     }
   },
   whatsNewContainer: {
@@ -80,7 +86,7 @@ export const IndexPage = props => {
       {/* Tabordion */}
       <Container maxWidth="lg">
         <Box mb={15}>
-          <Grid container spacing={0} styles={{ 'padding-bottom': 0 }}>
+          <Grid container spacing={0}>
             <Grid item xs={12} md={12} className={classes.revenueByLocation}>
               <RevenueByLocationLink />
             </Grid>
