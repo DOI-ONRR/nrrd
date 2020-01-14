@@ -118,8 +118,6 @@ const useStyles = makeStyles(theme => ({
 const PageToc = props => {
   const classes = useStyles()
 
-  console.log('PageToc', window.location.pathname)
-
   const [toc, setToc] = useState({
     displayTitle: props.displayTitle,
     expanded: false,
@@ -138,7 +136,6 @@ const PageToc = props => {
   // let isScrolling
 
   useLayoutEffect(() => {
-    console.log('use layout effect')
     createToc()
   }, [window.location.pathname])
 
