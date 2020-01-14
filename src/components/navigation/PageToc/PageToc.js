@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useLayoutEffect, useCallback } from 'react'
 // import ReactDOM from 'react-dom'
 
 import PropTypes from 'prop-types'
@@ -135,9 +135,9 @@ const PageToc = props => {
 
   // let isScrolling
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     createToc()
-  }, [])
+  }, [window.location.pathname])
 
   const handleClick = () => {
     // setToc({ ...toc, expanded: !toc.expanded })
@@ -166,6 +166,8 @@ const PageToc = props => {
 
     tocLinks.forEach((link, index) => {
       const section = document.querySelector(link.hash || 'body')
+
+      if (!section) return
 
       // You can add an offset number to a element to have the toc menu item activate earlier/later
       const dataTocOffset =
@@ -211,7 +213,7 @@ const PageToc = props => {
     const mainElem = document.getElementsByTagName('main')
 
     if (toc.displayTitle === undefined && props.shouldDisplayTitle) {
-      const h1Elem = mainElem && mainElem[0].querySelector('h1')
+      const h1Elem = mainElem && mainElem[0].querySelector('hh1')
       toc.displayTitle = h1Elem && h1Elem.innerText
     }
 
