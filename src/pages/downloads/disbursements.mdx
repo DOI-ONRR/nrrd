@@ -1,8 +1,6 @@
 ---
 title: Disbursements | Documentation
-title_display: Disbursements
-layout: downloads
-permalink: /downloads/disbursements/
+description:
 tag:
 - Data
 - Downloads
@@ -10,17 +8,16 @@ tag:
 - Disbursements
 ---
 
-<custom-link to="/downloads/" className="breadcrumb link-charlie">Downloads</custom-link> /
-# Disbursements by Year
+[Downloads /](/downloads/)
+
+<h1>{props.pageContext.frontmatter.title}</h1>
 
 Revenue collected from extraction of natural resources on federal and Native American lands that is distributed to various legislated funds, local governments, and federal agencies. This process is called disbursement. We have disbursements data by fiscal year from 2003 to present.
 
 Download fiscal year data:
 
-<ul class="downloads-download_links list-unstyled">
-  <li><excel-link to="/downloads/disbursements/disbursements.xlsx">Fiscal year disbursements (Excel, 84 KB)</excel-link></li>
-  <li><csv-link to="/downloads/csv/disbursements/disbursements.csv">Fiscal year disbursements (csv, 83 KB)</csv-link></li>
-</ul>
+- <DownloadExcelLink to="/downloads/disbursements/disbursements.xlsx">Fiscal year disbursements (Excel, 84 KB)</DownloadExcelLink>
+- <DownloadCsvLink to="/downloads/csv/disbursements/disbursements.csv">Fiscal year disbursements (csv, 83 KB)</DownloadCsvLink>
 
 ## Scope
 
@@ -59,4 +56,4 @@ _County_ The county that received the disbursement in accordance with revenue-sh
 
 _Total_ The total amount disbursed.
 
-## Contact us
+<ContactUs />

@@ -1,7 +1,6 @@
 ---
 title: Revenue by Year | Documentation
-layout: downloads
-permalink: /downloads/federal-revenue-by-location/
+description: 
 tag:
 - Data
 - Downloads
@@ -14,24 +13,21 @@ tag:
 - By location
 ---
 
-<custom-link to="/downloads/" className="breadcrumb link-charlie">Downloads</custom-link> /
-# Revenue by Year
+[Downloads /](/downloads/)
 
-We offer revenue data files for both calendar year and fiscal year. The calendar year datasets is for years 2003-2018, and the fiscal year data set is for years 2003-2019. They are all <glossary-term>accounting year</glossary-term> data.
+<h1>{props.pageContext.frontmatter.title}</h1>
+
+We offer revenue data files for both calendar year and fiscal year. The calendar year datasets is for years 2003-2018, and the fiscal year data set is for years 2003-2019. They are all <GlossaryTerm>accounting year</GlossaryTerm> data.
 
 Download calendar year data (2003-2018):
 
-<ul class="downloads-download_links list-unstyled">
-  <li><excel-link to="/downloads/revenue/calendar_year_revenue.xlsx">Calendar year revenue (Excel, 2.8 MB)</excel-link></li>
-  <li><csv-link to="/downloads/csv/revenue/calendar_year_revenue.csv">Calendar year revenue (csv, 5.4 MB)</csv-link></li>
-</ul>
+- <DownloadExcelLink to="/downloads/revenue/calendar_year_revenue.xlsx">Calendar year revenue (Excel, 2.8 MB)</DownloadExcelLink>
+- <DownloadCsvLink to="/downloads/csv/revenue/calendar_year_revenue.csv">Calendar year revenue (csv, 5.4 MB)</DownloadCsvLink>
 
 Download fiscal year data (2003-2019):
 
-<ul class="downloads-download_links list-unstyled">
-  <li><excel-link to="/downloads/revenue/fiscal_year_revenue.xlsx">Fiscal year revenue (Excel, 3.4 MB)</excel-link></li>
-  <li><csv-link to="/downloads/csv/revenue/fiscal_year_revenue.csv">Fiscal year revenue (csv, 5.2 MB)</csv-link></li>
-</ul>
+- <DownloadExcelLink to="/downloads/revenue/fiscal_year_revenue.xlsx">Fiscal year revenue (Excel, 3.4 MB)</DownloadExcelLink>
+- <DownloadCsvLink to="/downloads/csv/revenue/fiscal_year_revenue.csv">Fiscal year revenue (csv, 5.2 MB)</DownloadCsvLink>
 
 ## Scope
 
@@ -41,26 +37,26 @@ Federal revenue data is available by location, but Native American data is only 
 
 The datasets include data tracked and managed by the Department of the Interior’s Office of Natural Resources Revenue.
 
-<h3 alt="Negative values">Why are some values negative?</h3>
+### Why are some values negative?
 
 Companies can adjust and correct their payments for up to seven years after a transaction takes place. If a company overpays their royalty, rent, or bonus, they are entitled to recoup their overpayment. If the overpayment and recoupment happen in different years, the recoupment will appear as a negative amount in the Office of Natural Resources Revenue's revenue summaries.
 
-<h3 alt="Oil and gas values">Why is there a Gas value, an Oil value and an Oil & Gas value?</h3>
+### Why is there a Gas value, an Oil value and an Oil & Gas value?
 
 “Oil & Gas” is the commodity category used for offshore oil and gas rents and bonuses. At the time of lease sale, it isn’t known whether a lease will produce oil, gas or both oil and gas. After a lease starts producing a commodity (or commodities), the lease owner starts paying royalties. These can then be associated with either oil or gas. Hence, rent and bonus lines of data will be associated with an “Oil & Gas” commodity type, while royalty lines of data will be associated with either “Oil” or “Gas” commodity types.
 
-<h3 alt="Revenue by location and by company"> Why is the calendar year <span style='font-style:italic'>revenue by location national total</span> slightly different than the <span style='font-style:italic'>revenue by company total</span>?</h3>
+### Why is the calendar year _revenue by location national total_ slightly different than the _revenue by company total_?
 
 Our site has two federal revenue datasets. The one on this page is organized by location. [The federal revenue by company dataset](/downloads/federal-revenue-by-company/) is organized by the company that paid the revenue. However, the national revenue totals are slightly different (by about $90 million). This is because the revenue by location dataset excludes revenue from offshore rights-of-way because they don't map to an offshore planning area.
 
-<h3 alt="Geothermal rate details">Note: Geothermal rate details</h3>
+### Note: Geothermal rate details
 
 The fees and rates for revenue from geothermal resources on federal land depend on whether the land is leased competitively or noncompetitively.
 
 Also, different fee rates apply to pre-2005 leases and to direct use facilities:
 
 * For leases signed before the Energy Policy Act of 2005, the lease holder’s reasonable actual transmission and generation costs are deducted from gross proceeds from electricity sales, and the resulting value is multiplied by the lease royalty rate (usually 10%).
-* For <glossary-term>direct use</glossary-term>, the lease holder pays the equivalent value of the least expensive, reasonable alternative energy source. Thermal energy utilized must be measured by lease holder at the inlet and outlet of facility. The resulting value is multiplied by the lease royalty rate of 10%.
+* For <GlossaryTerm>direct use</GlossaryTerm>, the lease holder pays the equivalent value of the least expensive, reasonable alternative energy source. Thermal energy utilized must be measured by lease holder at the inlet and outlet of facility. The resulting value is multiplied by the lease royalty rate of 10%.
 
 The Bureau of Land Management has [more information about geothermal energy on federal lands](https://www.blm.gov/programs/energy-and-minerals/renewable-energy/geothermal-energy).
 
@@ -281,5 +277,4 @@ _Product_ Commodity type is often further broken down into product.
 
 _Revenue_ Total revenue.
 
-
-## Contact us
+<ContactUs />

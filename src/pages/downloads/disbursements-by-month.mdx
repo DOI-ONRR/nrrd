@@ -1,8 +1,6 @@
 ---
-title: Disbursements | Documentation
-title_display: Disbursements by month
-layout: downloads
-permalink: /downloads/federal-disbursements-by-month/
+title: Disbursements by month
+description: 
 tag:
 - Data
 - Downloads
@@ -10,17 +8,16 @@ tag:
 - Disbursements
 ---
 
-<custom-link to="/downloads/" className="breadcrumb link-charlie">Downloads</custom-link> /
-# Disbursements by month
+[Downloads /](/downloads/)
 
-> Revenue collected from extraction of natural resources on federal and Native American lands is distributed to various legislated funds, local governments, and federal agencies. This process is called disbursement. We have disbursements data by month from October 2018 through the most recent month .
+<h1>{props.pageContext.frontmatter.title}</h1>
+
+Revenue collected from extraction of natural resources on federal and Native American lands is distributed to various legislated funds, local governments, and federal agencies. This process is called disbursement. We have disbursements data by month from October 2018 through the most recent month .
 
 Download disbursement by month data:
 
-<ul class="downloads-download_links list-unstyled">
-  <li><excel-link to="/downloads/disbursements/monthly_disbursements.xlsx">Disbursements by month (Excel, 235 KB)</excel-link></li>
-    <li><csv-link to="/downloads/csv/disbursements/monthly_disbursements.csv">Disbursements by month (csv, 343 KB)</csv-link></li>
-</ul>
+- <DownloadExcelLink to="/downloads/disbursements/monthly_disbursements.xlsx">Disbursements by month (Excel, 235 KB)</DownloadExcelLink>
+- <DownloadCsvLink to="/downloads/csv/disbursements/monthly_disbursements.csv">Disbursements by month (csv, 343 KB)</DownloadCsvLink>
 
 ## Scope
 
@@ -57,7 +54,7 @@ _Fund Type_ The type of recipient receiving the disbursement
 
 _Land Category_ Whether the origin of the revenue being disbursed is offshore or onshore
 
-_Disbursement Type_ Disbursement types are guided by revenue-sharing legislation and agreements. For example, <glossary-term>GOMESA</glossary-term> and <glossary-term>8(g)</glossary-term> direct portions of offshore revenue to states, local governments, and designated funds. Disbursements from the production of geothermal energy is also shared with county governments.
+_Disbursement Type_ Disbursement types are guided by revenue-sharing legislation and agreements. For example, <GlossaryTerm>GOMESA</GlossaryTerm> and <GlossaryTerm>8(g)</GlossaryTerm> direct portions of offshore revenue to states, local governments, and designated funds. Disbursements from the production of geothermal energy is also shared with county governments.
 
 _State_ The state that received the disbursement in accordance with revenue-sharing legislation
 
@@ -111,4 +108,4 @@ _Category (dollar)_ Includes the phases of lease payments.
 
 _Disbursement (dollar)_ The amount disbursed.
 
-## Contact us
+<ContactUs />
