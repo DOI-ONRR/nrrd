@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -21,13 +22,13 @@ export const ExplorePage = () => {
   return (
     <Fragment>
       <SEO
-        title="About | Natural Resources Revenue Data"
-        meta={[
-          // title
-          { name: 'og:title', content: 'About | Natural Resources Revenue Data' },
-          { name: 'twitter:title', content: 'About | Natural Resources Revenue Data' },
-        ]} />
-      <Container className={classes.root} maxWidth="false">
+          title="About | Natural Resources Revenue Data"
+          meta={[
+            // title
+            { name: 'og:title', content: 'About | Natural Resources Revenue Data' },
+            { name: 'twitter:title', content: 'About | Natural Resources Revenue Data' },
+          ]} />
+      <Container className={classes.root} maxWidth={false}>
         <Box mt={2}>
           <ExploreData />
         </Box>

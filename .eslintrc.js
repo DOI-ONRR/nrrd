@@ -1,9 +1,6 @@
 module.exports = {
-  globals: {
-    __PATH_PREFIX__: true,
-  },
-  extends: `react-app`,
-  plugins: [`standard`],
+  extends: ["standard"],
+  plugins: ["standard", "react"],
   rules: {
     "no-var": "error", // optional, recommended when using es6+
     "no-unused-vars": 1, // recommended
@@ -53,6 +50,12 @@ module.exports = {
 
     "import/no-webpack-loader-syntax": "off",
 
+    // "css-modules/no-unused-class": 1, currently using jss solution
+    // "at-rule-no-unknown": [true, {
+    //   "ignoreAtRules": [
+    //     "value"
+    //   ]
+    // }],
   },
   parser: "babel-eslint",
   parserOptions: {

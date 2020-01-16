@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
-import React, { Fragment, useState, useContext } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { isIE } from 'react-device-detect'
 import { StoreContext } from '../../../store'
 
@@ -16,7 +16,6 @@ import Drawer from '@material-ui/core/Drawer'
 
 import { BrowserBanner } from '../BrowserBanner'
 import { Search } from '../../utils/Search'
-
 
 import NRRDLogo from '../../../img/NRRD-logo.svg'
 
@@ -43,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   },
   menuActiveLink: {
     fontWeight: 600,
-    textDecoration: `underline`,
+    textDecoration: 'underline',
   },
   menuButton: {
     marginRight: theme.spacing(0),
@@ -116,7 +115,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: theme.typography.h4.fontSize
   },
   top: {
-    position: `relative`,
+    position: 'relative',
     top: theme.spacing(-0.5),
     '& li > a': {
       fontSize: theme.typography.button.fontSize,
@@ -135,7 +134,7 @@ const useStyles = makeStyles(theme => ({
   },
   bottom: {
     '& li > a': {
-      fontSize: `1.2rem`
+      fontSize: '1.2rem'
     },
     '& li.active a': {
       fontWeight: theme.typography.button.fontSize
@@ -145,7 +144,6 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }))
-
 
 const Header = props => {
   const classes = useStyles()
@@ -160,7 +158,7 @@ const Header = props => {
       return
     }
 
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false }})
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false } })
   }
 
   return (
@@ -182,16 +180,16 @@ const Header = props => {
               <nav className={`${ classes.headerRight } ${ classes.top }`}>
                 <ul>
                   <li>
-                    <Link 
-                      className={classes.menuLink} 
+                    <Link
+                      className={classes.menuLink}
                       to="/"
                       activeClassName={classes.menuActiveLink}>
                       Home{' '}
                     </Link>
                   </li>
                   <li>
-                    <Link 
-                      className={classes.menuLink} 
+                    <Link
+                      className={classes.menuLink}
                       to="/about"
                       activeClassName={classes.menuActiveLink}>
                       About{' '}
@@ -202,7 +200,7 @@ const Header = props => {
                       href="#"
                       className={classes.menuLink}
                       alt="this is the glossary drawer"
-                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: true }})}
+                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: true } })}
                     >
                       Glossary
                     </a>
@@ -215,31 +213,31 @@ const Header = props => {
               <nav className={`${ classes.headerRight } ${ classes.bottom }`}>
                 <ul>
                   <li>
-                    <Link 
-                      className={classes.menuLink} 
+                    <Link
+                      className={classes.menuLink}
                       to="/explore/"
                       activeClassName={classes.menuActiveLink}>
                         Explore data
                     </Link>
                   </li>
                   <li>
-                    <Link 
-                      className={classes.menuLink} 
+                    <Link
+                      className={classes.menuLink}
                       to="/query-data/"
                       activeClassName={classes.menuActiveLink}>
                         Query data
                     </Link>
                   </li>
                   <li>
-                    <Link className={classes.menuLink} 
+                    <Link className={classes.menuLink}
                       to="/downloads/"
                       activeClassName={classes.menuActiveLink}>
                       Download data{' '}
                     </Link>
                   </li>
                   <li>
-                    <Link 
-                      className={classes.menuLink} 
+                    <Link
+                      className={classes.menuLink}
                       to="/how-it-works/"
                       activeClassName={classes.menuActiveLink}>
                         How revenue works
@@ -249,7 +247,7 @@ const Header = props => {
               </nav>
             </div>
           </Hidden>
-          
+
           <Hidden mdUp>
             <IconButton edge="start" onClick={toggleMobileDrawer('right', true)} className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
@@ -262,33 +260,33 @@ const Header = props => {
                     <Search />
                   </li>
                   <li>
-                    <Link 
-                      className={classes.menuLink} 
+                    <Link
+                      className={classes.menuLink}
                       to="/"
-                      activeStyle={{ backgroun: "pink" }}
+                      activeStyle={{ backgroun: 'pink' }}
                       partiallyActive={true}>
                         Home
                     </Link>
                   </li>
                   <li>
-                    <Link 
-                      className={classes.menuLink} 
+                    <Link
+                      className={classes.menuLink}
                       to="/explore/"
                       partiallyActive={true}>
                         Explore data
                     </Link>
                   </li>
                   <li>
-                    <Link 
-                      className={classes.menuLink} 
+                    <Link
+                      className={classes.menuLink}
                       to="/query-data/"
                       partiallyActive={true}>
                         Query data
                     </Link>
                   </li>
                   <li>
-                    <Link 
-                      className={classes.menuLink} 
+                    <Link
+                      className={classes.menuLink}
                       to="/how-it-works/"
                       partiallyActive={true}>
                         How revenue works
@@ -300,8 +298,8 @@ const Header = props => {
                     </Link>
                   </li>
                   <li>
-                    <Link 
-                      className={classes.menuLink} 
+                    <Link
+                      className={classes.menuLink}
                       to="/about/"
                       partiallyActive={true}>
                         About{' '}
@@ -312,7 +310,7 @@ const Header = props => {
                       href="#"
                       className={classes.menuLink}
                       alt="this is the glossary drawer"
-                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: true }})}
+                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: true } })}
                     >
                       Glossary
                     </a>
@@ -321,7 +319,7 @@ const Header = props => {
               </nav>
             </Drawer>
           </Hidden>
-          
+
         </Toolbar>
       </AppBar>
     </Fragment>
@@ -333,7 +331,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: `Natural Resources Revenue Data`,
+  siteTitle: 'Natural Resources Revenue Data',
 }
 
 export default Header

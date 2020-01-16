@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
-//import styles from './Sparkline.module.scss'
+// import styles from './Sparkline.module.scss'
 import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
   sparkline: {
@@ -12,35 +12,32 @@ const useStyles = makeStyles({
   sparkcircle: {
     fill: '#DB812C'
   }
-    
+
 })
 
 const Sparkline = props => {
-  const spakeStyles = {
-    // stroke: '#5c737f',
-    // strokeWidth: 1,
-    // fill: 'none',
+  // const spakeStyles = {
+  //   stroke: '#5c737f',
+  //   strokeWidth: 1,
+  //   fill: 'none',
+  // }
+  let data = [[0, 0]]
+  let highlightIndex = -1
+  if (props.data.length > 0) {
+    data = props.data
+    highlightIndex = props.highlightIndex || props.data.length - 1
   }
-  let data=[[0,0]]
-  let highlightIndex=-1
-  if(props.data.length > 0) {
-    data=props.data
-    highlightIndex=props.highlightIndex || props.data.length-1
-  }
-    
-    
+
   console.debug(props)
   const elemRef = useRef(null)
-  const classes=useStyles()
-    
-  useEffect(() => {
+  const classes = useStyles()
 
-		    
-    let width = 70
-    let height = 20
-    let x = d3.scaleLinear().range([0, width - 3])
-    let y = d3.scaleLinear().range([height - 4, 0])
-    let line = d3.line()
+  useEffect(() => {
+    const width = 70
+    const height = 20
+    const x = d3.scaleLinear().range([0, width - 3])
+    const y = d3.scaleLinear().range([height - 4, 0])
+    const line = d3.line()
       .curve(d3.curveBasis)
       .x(function (d) {
         return x(d[0])
@@ -58,7 +55,7 @@ const Sparkline = props => {
 
     d3.select(elemRef.current).selectAll('*').remove()
 
-    let svg = d3.select(elemRef.current)
+    const svg = d3.select(elemRef.current)
       .append('svg')
       .attr('width', width)
       .attr('height', height)
@@ -71,7 +68,7 @@ const Sparkline = props => {
       .attr('d', line)
 
     console.debug(data)
-    if(highlightIndex >= 0) {
+    if (highlightIndex >= 0) {
 	  svg.append('circle')
 	      .attr('class', classes.sparkcircle)
 	      .attr('cx', x(data[highlightIndex][0]))
@@ -79,9 +76,9 @@ const Sparkline = props => {
 	      .attr('r', 2.3)
     }
   })
-    
+
   return (
-    <div  ref={elemRef}></div>
+    <div ref={elemRef}></div>
   )
 }
 

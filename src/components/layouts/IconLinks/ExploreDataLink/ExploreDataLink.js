@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   root: {
   },
   exploreDataLink: {
-    textDecoration: `none`,
+    textDecoration: 'none',
     marginBottom: '1rem',
     '& svg': {
       fill: '#1478a6',
@@ -23,41 +23,36 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: 'middle',
     marginRight: '8px',
     '& span': {
-      'fontSize': '1rem',
-      'marginRight': '1rem',
-      'verticalAlign': 'baseline'
+      fontSize: '1rem',
+      marginRight: '1rem',
+      verticalAlign: 'baseline'
     },
     '&:hover': {
       textDecoration: 'underline'
     },
     '&:active': {
       textDecoration: 'underline'
-    } 
+    }
   }
 }))
-
 
 const ExploreDataLink = props => {
   const classes = useStyles()
   const getIcon = icon => {
-    switch(icon) {
+    switch (icon) {
     case 'data':
-      return( <ExploreDataIcon />)
-      break
+      return (<ExploreDataIcon />)
     case 'filter':
-      return( <FilterTableIcon />)
-      break
+      return (<FilterTableIcon />)
     case 'works':
-      return( <HowWorksIcon />)
-      break
+      return (<HowWorksIcon />)
     case 'download':
-      return( <DownloadDataIcon />)
-      break
+      return (<DownloadDataIcon />)
     default:
-      return ( <ExploreDataIcon /> )
+      return (<ExploreDataIcon />)
     }
   }
-    
+
   return (
     <Link to={props.to} className={classes.exploreDataLink}>
       {getIcon(props.icon)}

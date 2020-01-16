@@ -1,6 +1,5 @@
 import React, { Fragment, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-// import { GlossaryContext } from '../../../glossaryContext'
 import { StoreContext } from '../../../store'
 
 import GlossaryIcon from '-!svg-react-loader!../../../img/svg/icon-question-circle.svg'

@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -23,9 +24,9 @@ const useStyles = makeStyles(theme => ({
 const DidYouKnow = props => {
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState(false)
-  let { id, children, color, text } = props
+  const { id, children } = props
 
-  let headerColorStyle = props.color === `red` ? classes.headingRed : classes.headingRed
+  const headerColorStyle = props.color === 'red' ? classes.headingRed : classes.headingRed
 
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
@@ -46,7 +47,7 @@ const DidYouKnow = props => {
           id={`panel${ id }bh-header`}
         >
         </ExpansionPanelSummary>
-	  
+
         <ExpansionPanelDetails className={classes.content}>
           <Typography>
             {children}

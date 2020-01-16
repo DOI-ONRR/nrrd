@@ -36,11 +36,11 @@
     "gatsby-plugin-offline": "^3.0.16",
     "gatsby-plugin-react-helmet": "^3.1.13",
     "gatsby-plugin-sharp": "^2.3.7",
+    "gatsby-remark-autolink-headers": "^2.1.23",
     "gatsby-source-filesystem": "^2.1.33",
     "gatsby-source-graphql": "^2.1.21",
     "gatsby-theme-apollo": "^3.0.0-beta.0",
     "gatsby-transformer-react-docgen": "^5.0.25",
-    "gatsby-transformer-remark": "^2.6.35",
     "gatsby-transformer-sharp": "^2.2.23",
     "gatsby-transformer-yaml": "^2.2.16",
     "lazy.js": "^0.5.1",
@@ -64,13 +64,19 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.7.4",
+    "app-root-dir": "^1.0.2",
     "babel-jest": "^24.9.0",
     "chrome-launcher": "^0.12.0",
-    "eslint-config-react-app": "^5.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "jest": "^24.9.0",
+    "jest-junit": "^10.0.0",
     "lighthouse": "^5.6.0",
     "react-test-renderer": "^16.12.0",
     "svg-react-loader": "^0.4.6"
@@ -86,7 +92,8 @@
     "format": "eslint --fix 'src/**'",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",

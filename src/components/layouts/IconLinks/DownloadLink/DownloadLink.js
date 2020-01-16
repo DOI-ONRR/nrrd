@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from '@material-ui/core/styles'
+import MuiLink from '@material-ui/core/Link'
 // import Link from '../../../utils/temp-link'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -25,14 +25,14 @@ const DownloadLink = props => {
   const classes = useStyles()
   
   return (
-    <Link to={props.to} className={classes.root}>
+    <MuiLink to={props.to} className={classes.root}>
       <DownloadIcon />
       <span>
         {props.children === undefined
           ? 'Download'
           : props.children}
       </span>
-    </Link>
+    </MuiLink>
   )
 }
 

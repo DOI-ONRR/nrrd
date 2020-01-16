@@ -1,23 +1,22 @@
-import React from "react"
-import PropTypes from "prop-types"
-import SwipeableViews from "react-swipeable-views"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Container from "@material-ui/core/Container"
-import Typography from "@material-ui/core/Typography"
-import Box from "@material-ui/core/Box"
-import Grid from "@material-ui/core/Grid"
-import Tabs from "@material-ui/core/Tabs"
-import Tab from "@material-ui/core/Tab"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 
-import { RevenueByLocationLink } from "../RevenueByLocationLink"
+import { RevenueByLocationLink } from '../RevenueByLocationLink'
 
 const useStyles = makeStyles(theme => ({
   root: {},
   tabPanelContainer: {
-    position: `relative`,
-    top: `-1px`,
-    borderTop: `1px solid #5c737f`
+    position: 'relative',
+    top: '-1px',
+    borderTop: '1px solid #5c737f'
   }
 }))
 
@@ -51,7 +50,6 @@ function a11yProps (index) {
   }
 }
 
-
 const Tabordion = () => {
   const classes = useStyles()
   const theme = useTheme()
@@ -62,10 +60,10 @@ const Tabordion = () => {
     setValue(newValue)
   }
 
-  const handleChangeIndex = index => {
-    setValue(index)
-  }
-  
+  // const handleChangeIndex = index => {
+  //   setValue(index)
+  // }
+
   return (
     <Container maxWidth="lg" className={classes.root}>
       <Box mb={15}>
@@ -88,7 +86,6 @@ const Tabordion = () => {
             <RevenueByLocationLink />
           </Grid>
         </Grid>
-        
 
         <Box
           className={classes.tabPanelContainer}

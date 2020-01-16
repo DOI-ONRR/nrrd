@@ -1,30 +1,30 @@
-import React, { Fragment } from "react"
-import { useStaticQuery, Link } from "gatsby"
-import PropTypes from "prop-types"
+import React from 'react'
+import { useStaticQuery, Link, graphql } from 'gatsby'
+import PropTypes from 'prop-types'
 
-import { makeStyles } from "@material-ui/core/styles"
-import Container from "@material-ui/core/Container"
-import Grid from "@material-ui/core/Grid"
-import Typography from "@material-ui/core/Typography"
-import Box from "@material-ui/core/Box"
-import Divider from "@material-ui/core/Divider"
-import MuiLink from "@material-ui/core/Link"
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+import Divider from '@material-ui/core/Divider'
+import MuiLink from '@material-ui/core/Link'
 
-import logo from "../../../img/DOI-2x.png"
-import DownloadIcon from "-!svg-react-loader!../../../img/svg/icon-download-base.svg"
+import logo from '../../../img/DOI-2x.png'
+import DownloadIcon from '-!svg-react-loader!../../../img/svg/icon-download-base.svg'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: `#323c42`
+    backgroundColor: '#323c42'
   },
   footerLink: {
     color: theme.palette.common.white
   },
   footerDownloadLink: {
     color: theme.palette.common.white,
-    textDecoration: `none`,
+    textDecoration: 'none',
     '&:hover': {
-      textDecoration: `none`,
+      textDecoration: 'none',
     }
   },
   footerIcon: {
@@ -74,12 +74,12 @@ const Footer = props => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box mb={2}>
-                <Typography style={{ color: `#fff` }} paragraph>
+                <Typography style={{ color: '#fff' }} paragraph>
                     Built in the open
                 </Typography>
               </Box>
               <Box mb={2}>
-                <Typography style={{ color: `#d3dfe6` }} paragraph>
+                <Typography style={{ color: '#d3dfe6' }} paragraph>
                     This site (
                   <MuiLink
                     className={classes.footerLink}
@@ -88,14 +88,14 @@ const Footer = props => {
                   >
                     {data.site.siteMetadata.version}
                   </MuiLink>
-                    ) is powered by{" "} 
+                    ) is powered by{' '}
                   <Link
                     className={classes.footerLink}
                     to="/downloads"
                   >
                       open data
                   </Link>
-                  {" "}and{" "}
+                  {' '}and{' '}
                   <MuiLink
                     className={classes.footerLink}
                     href="https://github.com/ONRR/doi-extractives-data/"
@@ -103,7 +103,7 @@ const Footer = props => {
                   >
                       source code
                   </MuiLink>
-                    . We welcome contributions and comments on{" "}
+                    . We welcome contributions and comments on{' '}
                   <MuiLink
                     className={classes.footerLink}
                     href="https://github.com/ONRR/doi-extractives-data/issues/new"
@@ -111,7 +111,7 @@ const Footer = props => {
                   >
                       GitHub
                   </MuiLink>
-                    . We write about how we work on this site on{" "}
+                    . We write about how we work on this site on{' '}
                   <Link
                     to="/blog"
                     className={classes.footerLink}
@@ -122,31 +122,31 @@ const Footer = props => {
                 </Typography>
               </Box>
               <Box mt={7}>
-                <Typography style={{ color: `#fff` }} variant="subtitle2">
+                <Typography style={{ color: '#fff' }} variant="subtitle2">
                   <MuiLink
                     href="https://www.doi.gov/"
                     className={classes.footerLink}
                     underline="hover"
                   >
                       Department of the Interior
-                  </MuiLink>{" "}
-                    |{" "}
+                  </MuiLink>{' '}
+                    |{' '}
                   <MuiLink
                     to="https://www.doi.gov/privacy"
                     className={classes.footerLink}
                     underline="hover"
                   >
                       Privacy Policy
-                  </MuiLink>{" "}
-                    |{" "}
+                  </MuiLink>{' '}
+                    |{' '}
                   <MuiLink
                     to="https://www.doi.gov/foia"
                     className={classes.footerLink}
                     underline="hover"
                   >
                       FOIA
-                  </MuiLink>{" "}
-                    |{" "}
+                  </MuiLink>{' '}
+                    |{' '}
                   <MuiLink
                     to="https://www.usa.gov/"
                     className={classes.footerLink}
@@ -159,29 +159,29 @@ const Footer = props => {
             </Grid>
             <Grid item xs={12} sm={4}>
               <Box mb={2}>
-                <Typography style={{ color: `#fff`}}>
+                <Typography style={{ color: '#fff' }}>
                   <Link to="/downloads/" className={classes.footerDownloadLink}>
-                      Download data{" "}
+                      Download data{' '}
                     <DownloadIcon className={classes.footerIcon} />
                   </Link>
                 </Typography>
               </Box>
               <Divider light />
               <Box>
-                <Typography style={{ color: `#d3dfe6`}} paragraph>
-                    Office of Natural Resources Revenue,{" "}
+                <Typography style={{ color: '#d3dfe6' }} paragraph>
+                    Office of Natural Resources Revenue,{' '}
                   {data.site.siteMetadata.informationDataManagement.name}
                   <br />
                   {data.site.siteMetadata.informationDataManagement.street}
                   <br />
-                  {data.site.siteMetadata.informationDataManagement.city}{" "}
+                  {data.site.siteMetadata.informationDataManagement.city}{' '}
                   {data.site.siteMetadata.informationDataManagement.zip}
                 </Typography>
-                <Typography style={{ color: `#fff` }} variant="subtitle2">
+                <Typography style={{ color: '#fff' }} variant="subtitle2">
                   <MuiLink
                     className={classes.footerLink}
                     href={
-                      "mailto:" +
+                      'mailto:' +
                         data.site.siteMetadata.informationDataManagement.email
                     }
                   >
@@ -189,7 +189,6 @@ const Footer = props => {
                   </MuiLink>
                 </Typography>
               </Box>
-              
             </Grid>
           </Grid>
         </Box>
