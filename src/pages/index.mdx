@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 
 import { HomeHero } from '../components/sections/HomeHero'
 import { Tabordion, Tab, TabPanel } from '../components/layouts/Tabordion'
@@ -97,8 +98,16 @@ export const IndexPage = props => {
                 <Tab label="Production" id="tab-production" />
                 <TabPanel id="tab-panel-revenue">
                   <Grid container spacing={4}>
+                    <Grid item xs={12}>
+                      <Typography variant="h2">
+                        Revenue
+                      </Typography>
+                      <Typography variant="body1">
+                        The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
+                      </Typography>
+                    </Grid>
                     <Grid item xs={12} md={8}>
-                      Total revenue content...
+                      <TotalRevenue />
                     </Grid>
                     <Grid item xs={12} md={4}>
                       <RevenueTrends />
@@ -110,8 +119,15 @@ export const IndexPage = props => {
                 </TabPanel>
                 <TabPanel id="tab-panel-disbursements">
                   <Grid container spacing={4}>
+                    <Grid item xs={12}>
+                      <Typography variant="h2">
+                        Disbursements
+                      </Typography>
+                      <Typography variant="body1">
+                        The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.
+                      </Typography>
+                    </Grid>
                     <Grid item xs={12} md={8}>
-                      Disbursement content...
                     </Grid>
                     <Grid item xs={12} md={4}>
                       <DisbursementTrends />
@@ -124,7 +140,12 @@ export const IndexPage = props => {
                 <TabPanel id="tab-panel-production">
                   <Grid container spacing={4}>
                     <Grid item xs={12}>
-                      Production content...
+                      <Typography variant="h2">
+                        Production
+                      </Typography>
+                      <Typography variant="body1">
+                        The volume of major commodities extracted on federal lands and waters and Native American lands.
+                      </Typography>
                     </Grid>
                     <Grid item xs={12}>
                       <ExploreProduction />

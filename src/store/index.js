@@ -30,6 +30,7 @@ const initialState = {
   glossaryOpen: false,
   glossaryTerm: '',
   year: 2019,
+  period: 'Fiscal Year'
 }
 
 const StoreContext = React.createContext(initialState)
