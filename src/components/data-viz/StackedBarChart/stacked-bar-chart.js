@@ -449,7 +449,7 @@ export default class stackedBarChart {
       })
       .attr('dy', '1em')
       .style('text-anchor', 'start')
-      .style('font-size', '11px')
+      .style('font-size', '12px')
       .text(function (d, i) {
         return labels[labels.length - 1 - i]
       })
@@ -462,7 +462,7 @@ export default class stackedBarChart {
       })
       .attr('dy', '1em')
       .style('text-anchor', 'start')
-      .style('font-size', '11px')
+      .style('font-size', '12px')
       .text(function (d, i) {
         return selectedData[d] || 'error'
       })

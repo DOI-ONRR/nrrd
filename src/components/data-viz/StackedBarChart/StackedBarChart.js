@@ -60,8 +60,8 @@ const StackedBarChart = props => {
     // stackedBarChar(elemRef.current,{}, datas);
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
-  //  const chart2 = new BarChart2(elemRef.current, data2, options)
-//    chart2.draw(data2)
+    //  const chart2 = new BarChart2(elemRef.current, data2, options)
+    //    chart2.draw(data2)
     const chart = new BarChart(elemRef.current, data, options)
     // chart.selected(selected);
     chart.draw(data)
