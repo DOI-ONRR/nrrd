@@ -55,7 +55,12 @@ export const IndexPage = () => {
             tabPanelName="Revenue"
             tabPanelTitle="Revenue"
             tabPanelInfo="The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands."
-            tabPanelContentLeft={<TotalRevenue />}
+            tabPanelContentLeft={<TotalRevenue
+                                   columns={ ['fiscal_year','federal_onshore','federal_offshore','native_american','not_tied_to_a_lease'] }        
+                                   yLabels={[ 'Federal onshore', 'Federal offshore', 'Native American', 'Not Tied to a Lease']}
+                                   xLabels={[ '  \'10','  \'11','  \'12','  \'13','  \'14','  \'15','  \'16','  \'17','  \'18','  \'19']}
+                                   xRotate={0}
+                                   />}
             tabPanelContentRight={<RevenueTrends />}
             tabPanelContentBottom={<ExploreRevenue />}
           />

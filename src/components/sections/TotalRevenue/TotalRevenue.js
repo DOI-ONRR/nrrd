@@ -1,5 +1,10 @@
 import React, { Fragment, useState, useContext } from 'react'
 // import { Link } from "gatsby"
+import { graphql } from 'gatsby'
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+
+
 
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -15,24 +20,56 @@ import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import { StoreContext } from '../../../store'
 import { ThemeConsumer } from 'styled-components'
 
-const TotalRevenue = props => {
-  const data = [
-    {
-      X1: [{ Y1: 11, Y2: 130, Y3: 18, Y4: 20, Y5: 24, Y6: 25, Y7: 27 }
-	       ]
-    },
-    { X2: [{ Y1: 10, Y2: 14, Y3: 16, Y4: 260, Y5: 24, Y6: 25, Y7: 27 }] },
-    { X3: [{ Y1: 11, Y2: 16, Y3: 180, Y4: 22, Y5: 24, Y6: 25, Y7: 27 }] },
-    { X4: [{ Y1: 14, Y2: 16, Y3: 20, Y4: 24, Y5: 240, Y6: 25, Y7: 27 }] },
-    { X5: [{ Y1: 100, Y2: 12, Y3: 15, Y4: 22, Y5: 24, Y6: 25, Y7: 27 }] },
-    { X6: [{ Y1: 13, Y2: 16, Y3: 19, Y4: 25, Y5: 24, Y6: 25, Y7: 270 }] }
-  ]
+const TOTAL_REVENUE_QUERY = gql`
+  query TotalYearlyRevenue($period: String!) {
+  
 
+
+  total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
+    federal_offshore
+    federal_onshore
+    native_american
+    not_tied_to_a_lease
+    fiscal_year
+
+  }
+}
+`
+
+
+
+const TotalRevenue = props => {
+  const { state, dispatch } = useContext(StoreContext)
+  const period = state.period
+  const columns= props.columns || ['fiscal_year','federal_onshore','federal_offshore','native_american','not_tied_to_a_lease']
+
+  const yLabels=props.yLabels || [ 'Federal onshore', 'Federal offshore', 'Native American', 'Not tied to a lease']
+  const xLabels=props.xLabels 
+  const xRotate=props.xRotate || 0
+  let { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY, {
+    variables: { period }
+  })
+  if (loading) {
+    return 'Loading...'
+  }
+
+  if (error) return `Error! ${ error.message }`
+  if(data) {
+    console.debug("DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",data)
+  }
+
+  
   return (
-    <Box>
+      <Box>
       <Grid container spacing={4}>
-        <Grid item xs>
-	        <StackedBarChart data={data} selected={4} />
+      <Grid item xs>
+      <StackedBarChart
+    data={data.total_yearly_revenue}
+    columns={columns}
+    xRotate={xRotate}
+    yLabels={yLabels}
+    xLabels={xLabels}
+    selected={4} />
         </Grid>
       </Grid>
     </Box>
