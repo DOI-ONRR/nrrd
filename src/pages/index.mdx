@@ -11,15 +11,51 @@ import { Fragment } from 'react'
 import { withPrefix } from 'gatsby'
 import SEO from '../components/seo'
 
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+
 import { HomeHero } from '../components/sections/HomeHero'
-import { Tabordion, Tab, TabContainer } from '../components/layouts/Tabordion'
+import { Tabordion, Tab, TabPanel } from '../components/layouts/Tabordion'
 import { WhatsNew } from '../components/sections/WhatsNew'
 
-import ExploreRevenue from '../components/sections/Explore/Revenue'
 import TotalRevenue from '../components/sections/TotalRevenue'
 import RevenueTrends from '../components/sections/RevenueTrends'
+import DisbursementTrends from '../components/sections/DisbursementTrends'
+import ExploreRevenue from '../components/sections/Explore/Revenue'
+import ExploreDisbursements from '../components/sections/Explore/Disbursements'
+import ExploreProduction from '../components/sections/Explore/Production'
 
-export const IndexPage = () => {
+import { RevenueByLocationLink } from '../components/layouts/RevenueByLocationLink'
+
+export const useStyles = makeStyles(theme => ({
+  revenueByLocation: {
+    position: 'relative',
+    top: 0,
+  },
+  tabordionContainer: {
+    marginTop: 0,
+    '@media (min-width: 767px)': {
+      marginTop: -50,
+      '& .MuiTabs-fixed': {
+        marginRight: '350px',
+      }
+    },
+    '& .MuiTabs-flexContainer': {
+      marginBottom: 0,
+    }
+  },
+  whatsNewContainer: {
+    background: theme.palette.blue.light,
+  }
+}))
+
+export const IndexPage = props => {
+  const urlParams = new URLSearchParams(props.location.search)
+  const selected = urlParams.get('tab')
+  const classes = useStyles()
   return (
     <Fragment>
       <SEO
@@ -44,57 +80,89 @@ export const IndexPage = () => {
           { name: 'twitter:description', content: 'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.' },
         ]}
       ></SEO>
-      <HomeHero />
-      <Tabordion>
-        <Tab 
-          tabId='tab-revenue' 
-          tabName='Revenue' 
-          tabIndex={0}>
-          <TabContainer
-            tabPanelId="tab-container-revenue"
-            tabPanelName="Revenue"
-            tabPanelTitle="Revenue"
-            tabPanelInfo="The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands."
-            tabPanelContentLeft={<TotalRevenue
-                                   columns={ ['fiscal_year','federal_onshore','federal_offshore','native_american','not_tied_to_a_lease'] }        
-                                   yLabels={[ 'Federal onshore', 'Federal offshore', 'Native American', 'Not Tied to a Lease']}
-                                   xLabels={[ '  \'10','  \'11','  \'12','  \'13','  \'14','  \'15','  \'16','  \'17','  \'18','  \'19']}
-                                   xRotate={0}
-                                   />}
-            tabPanelContentRight={<RevenueTrends />}
-            tabPanelContentBottom={<ExploreRevenue />}
-          />
-        </Tab>
-        <Tab 
-          tabId='tab-disbursements' 
-          tabName='Disbursements' 
-          tabIndex={1}>
-          <TabContainer
-            tabPanelId="tab-container-disbursements"
-            tabPanelName="Disbursements"
-            tabPanelTitle="Disbursements"
-            tabPanelInfo="The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans."
-            tabPanelContentLeft="Content left..."
-            tabPanelContentRight="Content right..."
-            tabPanelContentBottom="Content bottom..."
-          />
-        </Tab>
-        <Tab 
-          tabId='tab-production' 
-          tabName='Production' 
-          tabIndex={2}>
-          <TabContainer
-            tabPanelId="tab-container-production"
-            tabPanelName="Production"
-            tabPanelTitle="Production"
-            tabPanelInfo="The volume of major commodities extracted on federal lands and waters and Native American lands."
-            tabPanelContentLeft="Content left..."
-            tabPanelContentRight="Content right..."
-            tabPanelContentBottom="Content bottom..."
-          />
-        </Tab>
-      </Tabordion>
-      <WhatsNew />
+      {/* Home Hero */}
+      <Container maxWidth="lg">
+        <HomeHero />
+      </Container>
+      {/* Tabordion */}
+      <Container maxWidth="lg">
+        <Box mb={5}>
+          <Grid container spacing={0}>
+            <Grid item xs={12} md={12} className={classes.revenueByLocation}>
+              <RevenueByLocationLink />
+            </Grid>
+            <Grid item xs={12} md={12} className={classes.tabordionContainer}>
+              <Tabordion selected={selected}>
+                <Tab label="Revenue" id="tab-revenue" />
+                <Tab label="Disbursements" id="tab-disbursements" />
+                <Tab label="Production" id="tab-production" />
+                <TabPanel id="tab-panel-revenue">
+                  <Grid container spacing={4}>
+                    <Grid item xs={12}>
+                      <Typography variant="h2">
+                        Revenue
+                      </Typography>
+                      <Typography variant="body1">
+                        The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} md={8}>
+                      <TotalRevenue />
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <RevenueTrends />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <ExploreRevenue />
+                    </Grid>
+                  </Grid>
+                </TabPanel>
+                <TabPanel id="tab-panel-disbursements">
+                  <Grid container spacing={4}>
+                    <Grid item xs={12}>
+                      <Typography variant="h2">
+                        Disbursements
+                      </Typography>
+                      <Typography variant="body1">
+                        The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} md={8}>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <DisbursementTrends />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <ExploreDisbursements />
+                    </Grid>
+                  </Grid>
+                </TabPanel>
+                <TabPanel id="tab-panel-production">
+                  <Grid container spacing={4}>
+                    <Grid item xs={12}>
+                      <Typography variant="h2">
+                        Production
+                      </Typography>
+                      <Typography variant="body1">
+                        The volume of major commodities extracted on federal lands and waters and Native American lands.
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <ExploreProduction />
+                    </Grid>
+                  </Grid>
+                </TabPanel>
+              </Tabordion>
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
+      {/* Whats New */}
+      <Container maxWidth={false} component="section" className={classes.whatsNewContainer}>
+        <Container maxWidth="lg">
+          <WhatsNew />
+        </Container>
+      </Container>
     </Fragment>
   )
 }

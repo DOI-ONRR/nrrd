@@ -40,6 +40,14 @@ const useStyles = makeStyles(theme => ({
     img: {
       maxWidth: '100%'
     },
+    '.header-bar': {
+      borderWidth: '2px',
+      borderBottom: 'solid',
+      paddingBottom: '.41667rem',
+    },
+    '.header-bar.green': {
+      borderColor: '#cde3c3',
+    }
   },
   root: {
     paddingTop: theme.spacing(2),

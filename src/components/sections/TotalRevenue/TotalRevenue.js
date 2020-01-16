@@ -4,8 +4,6 @@ import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-
-
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
@@ -36,17 +34,15 @@ const TOTAL_REVENUE_QUERY = gql`
 }
 `
 
-
-
 const TotalRevenue = props => {
   const { state, dispatch } = useContext(StoreContext)
   const period = state.period
-  const columns= props.columns || ['fiscal_year','federal_onshore','federal_offshore','native_american','not_tied_to_a_lease']
+  const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american', 'not_tied_to_a_lease']
 
-  const yLabels=props.yLabels || [ 'Federal onshore', 'Federal offshore', 'Native American', 'Not tied to a lease']
-  const xLabels=props.xLabels 
-  const xRotate=props.xRotate || 0
-  let { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY, {
+  const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American', 'Not tied to a lease']
+  const xLabels = props.xLabels
+  const xRotate = props.xRotate || 0
+  const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY, {
     variables: { period }
   })
   if (loading) {
@@ -54,22 +50,24 @@ const TotalRevenue = props => {
   }
 
   if (error) return `Error! ${ error.message }`
-  if(data) {
-    console.debug("DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",data)
+  if (data) {
+    console.debug('DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
   }
 
-  
   return (
-      <Box>
+    <Box>
+      <Typography variant="h3" className="header-bar green">
+          Total Revenue
+      </Typography>
       <Grid container spacing={4}>
-      <Grid item xs>
-      <StackedBarChart
-    data={data.total_yearly_revenue}
-    columns={columns}
-    xRotate={xRotate}
-    yLabels={yLabels}
-    xLabels={xLabels}
-    selected={4} />
+        <Grid item xs>
+          <StackedBarChart
+            data={data.total_yearly_revenue}
+            columns={columns}
+            xRotate={xRotate}
+            yLabels={yLabels}
+            xLabels={xLabels}
+            selected={4} />
         </Grid>
       </Grid>
     </Box>

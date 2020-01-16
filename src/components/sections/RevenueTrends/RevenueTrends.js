@@ -1,5 +1,4 @@
 import React from 'react'
-// import { useStaticQuery, graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -22,8 +21,6 @@ import Sparkline from '../../data-viz/Sparkline'
 import TriangleUpIcon from '-!svg-react-loader!../../../img/svg/arrow-up.svg'
 import TriangleDownIcon from '-!svg-react-loader!../../../img/svg/arrow-down.svg'
 
-// import styles from './RevenueTrends.module.scss'
-
 const TREND_LIMIT = 10
 
 /**
@@ -37,9 +34,9 @@ const APOLLO_QUERY = gql`
     query RevenueTrendsQuery {
       revenue_trends(order_by: {fiscal_year: desc, current_month: desc}) {
         fiscalYear:fiscal_year
-        total
-        trend_type
-        current_month
+        revenue:total
+        revenueType:trend_type
+        month:current_month
       }
     }
   `
@@ -47,124 +44,108 @@ const APOLLO_QUERY = gql`
 const useStyles = makeStyles(theme => ({
   root: {},
   tableContainer: {},
-  table: {},
+  table: {
+    // padding: 0,
+    // '& .MuiTableCell-sizeSmall': {
+    //   padding: '6px 0 6px 0',
+    // },
+    // '& .MuiTableCell-sizeSmall:last-child': {
+    //   paddingRight: 0
+    // },
+    // '& .MuiTableBody-root .MuiTableCell-root': {
+    //   borderBottom: 'none'
+    // }
+  },
+  trendIcon: {
+    position: 'relative',
+    marginRight: 5,
+    top: 5,
+  },
 }))
 
 const RevenueTrends = () => {
   const classes = useStyles()
-  const { loading, data } = useQuery(APOLLO_QUERY)
+  const { loading, error, data } = useQuery(APOLLO_QUERY)
 
-  if (data) {
-    const fiscalYearData = JSON.parse(JSON.stringify(data.revenue_trends)).sort((a, b) => (a.fiscal_year < b.fiscal_year) ? 1 : -1)
-    console.log('fiscalYearData: ', fiscalYearData)
+  if (loading) return null
+  if (error) return `Error! ${ error }`
 
-    const currentMonthly = fiscalYearData.map(obj => ({ ...obj, month: monthLookup(obj.current_month), fiscalMonth: fiscalMonthLookup(obj.current_month), date: monthlyDate(obj) }))
+  if (
+    data &&
+    data.revenue_trends.length > 0
+  ) {
+    // Group data to match what was previously happening with gatsby static query
+    const groupedData = groupBy(data.revenue_trends, 'fiscalYear')
+
+    const fiscalYearData = groupedData.map(item => {
+      const newObj = {}
+      newObj.fiscalYear = item[0].fiscalYear
+      newObj.data = item
+
+      return newObj
+    })
 
     // Get the latest date then subtract 1 year to filter previous year data to compare current year data
-    const currentYearDate = new Date(`${ fiscalYearData[0].fiscalYear }-${ fiscalYearData[0].current_month }-01`)
-    const previousYearMaxDate = new Date(`${ fiscalYearData[0].fiscal_year }-${ fiscalYearData[0].current_month }-01`)
+    const currentMonth = monthLookup(fiscalYearData[0].data[0].month)
+    const currentYear = fiscalYearData[0].data[0].fiscalYear
+    const currentYearDate = new Date(`${ currentMonth }-01-${ currentYear }`)
 
-    previousYearMaxDate.setFullYear(previousYearMaxDate.getUTCFullYear() - 1)
+    // Get previous year
+    const previousYear = currentYear - 1
 
-    const currentYearData = (JSON.parse(JSON.stringify(fiscalYearData)).splice(0, 1)).map(calculateRevenueTypeAmountsByYear)[0]
-    calculateOtherRevenues(currentYearData)
-    // console.log('currentYearData: ', currentYearData)
+    // Trends
+    const trends = aggregateData(data.revenue_trends)
 
-    const currentYearTotal = (currentYearData.amountByRevenueType.Royalties +
-               currentYearData.amountByRevenueType.Bonus +
-               currentYearData.amountByRevenueType.Rents +
-               currentYearData.amountByRevenueType['Other Revenues'])
+    // maxMonth Min/Max Year
+    const maxMonth = currentYearDate.toLocaleString('en-us', { timeZone: 'UTC', month: 'long' })
+    const minYear = trends[0].histData[0][0].substring(2)
+    const maxYear = trends[0].histData[trends[0].histData.length - 1][0].substring(2)
 
-    // If current fiscal year date is September then we have the full year and we should include it in the trend lines
-    const beginTrendDataLimit = (currentYearDate.getMonth() === 8) ? 0 : 1
-    const trendData = fiscalYearData.splice(beginTrendDataLimit, TREND_LIMIT)
-    const minYear = trendData[0].fiscalYear.toString().substring(2)
-    const maxYear = trendData[trendData.length - 1].fiscalYear.toString().substring(2)
-
-    console.log('trendData: ', trendData)
-
-    const maxMonth = getMaxMonth(currentMonthly).toLocaleString(undefined, { month: 'long' })
-    const calendarYear = getMaxMonth(currentMonthly).getFullYear()
-    const currentYear = getCurrentYear(currentMonthly)
-    const previousYear = getPreviousYear(currentMonthly)
-
-    // const previousYearDataIndex = (beginTrendDataLimit === 0) ? 1 : 0
-    // const previousYearData = JSON.parse(JSON.stringify(trendData))[previousYearDataIndex]
-    // console.log('previousYearData: ', previousYearData)
-    // previousYearData = previousYearData.filter(item => new Date(item.node.RevenueDate) <= previousYearMaxDate)
-
-    // previousYearData = [previousYearData].map(calculateRevenueTypeAmountsByYear)[0]
-    // calculateOtherRevenues(previousYearData)
-    // const previousYearTotal = previousYearData.amountByRevenueType.Royalties +
-    //                              previousYearData.amountByRevenueType.Bonus +
-    //                              previousYearData.amountByRevenueType.Rents +
-    //                              previousYearData.amountByRevenueType['Other Revenues']
-
-    const currentfiscalYearText = `FY${ currentYear.toString().substring(2) } so far`
-    const longCurrentText = `${ maxMonth } ${ calendarYear }`
-    const previousfiscalYearText = `from FY ${ previousYear }`
-
-    // Sort trend data asc for spark lines
-    trendData.sort((a, b) => (a.fiscalYear > b.fiscalYear) ? 1 : -1)
-    const sparkLineData = trendData.map(calculateRevenueTypeAmountsByYear)
-
-    const royalties = sparkLineData.map(yearData => ({ year: yearData.year, amount: yearData.amountByRevenueType.Royalties }))
-    const bonuses = sparkLineData.map(yearData => ({ year: yearData.year, amount: yearData.amountByRevenueType.Bonus }))
-    const rents = sparkLineData.map(yearData => ({ year: yearData.year, amount: yearData.amountByRevenueType.Rents }))
-    const otherRevenues = sparkLineData.map(yearData => {
-      calculateOtherRevenues(yearData)
-      return ({ year: yearData.year, amount: yearData.amountByRevenueType['Other Revenues'] })
-    })
-    const totalRevenues = sparkLineData.map(yearData => (
-      {
-        year: yearData.year,
-        amount: (
-          yearData.amountByRevenueType.Royalties +
-               yearData.amountByRevenueType.Bonus +
-               yearData.amountByRevenueType.Rents +
-               yearData.amountByRevenueType['Other Revenues']
-        )
-      })
-    )
+    // Text output
+    const currentFiscalYearText = `FY${ currentYear.toString().substring(2) } so far`
+    const longCurrentYearText = `${ maxMonth } ${ currentYear }`
+    const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
+    const currentTrendText = `FY${ minYear } - FY${ maxYear }`
 
     return (
       <Box component="section" className={classes.root}>
-        <Typography variant="h3" className="h3Bar">
+        <Typography variant="h3" className="header-bar green">
           Revenue trends
         </Typography>
         <Typography variant="body1" paragraph={true}>
-          Includes federal and Native American revenue through {currentYearDate.toLocaleString('en-us', { timeZone: 'UTC', month: 'long' })} {currentYearDate.getUTCFullYear()}
+          Includes federal and Native American revenue through {longCurrentYearText}
         </Typography>
 
         <TableContainer component={Paper} className={classes.tableContainer}>
-          <Table className={classes.table} aria-label="Revenue Trends Table">
+          <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
             <TableHead>
               <TableRow>
-                <TableCell>FY{minYear} - FY{maxYear} trend</TableCell>
-                <TableCell align="right">{currentfiscalYearText}</TableCell>
+                <TableCell><Box fontWeight="bold">{currentTrendText}</Box></TableCell>
+                <TableCell align="right"><Box fontWeight="bold">{currentFiscalYearText}</Box></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow>
-                <TableCell component="th" scope="row">
-                  Royalties
-                </TableCell>
-                <TableCell align="right">
-                  {utils.formatToSigFig_Dollar(currentYearData.amountByRevenueType.Royalties, 3)}
-                </TableCell>
-              </TableRow>
               {
-                trendData.map((trend, index) => (
-                  <TableRow>
+                trends.map((trend, index) => (
+                  <TableRow key={`tableRow${ index }`}>
                     <TableCell component="th" scope="row">
-                      {trend.trend_type}
-                      {/* <Sparkline key={`spark${ index }`} data={trend.histData} /> */}
+                      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
+                        {trend.fund}
+                      </Box>
+                      <Sparkline
+                        key={`sparkline${ index }`}
+                        data={trend.histData} />
                     </TableCell>
                     <TableCell align="right">
-                      {/* <PercentDifference
-                        currentAmount={currentYear.amountByRevenueType.Royalties}
-                        previousAmount={previousYear.amountByRevenueType.Royalties}
-                      />{' ' + previousfiscalYearText} */}
+                      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
+                        {utils.formatToSigFig_Dollar(trend.current, 3)}
+                      </Box>
+                      <Box>
+                        <PercentDifference
+                          currentAmount={trend.current}
+                          previousAmount={trend.previous}
+                        />{' ' + previousFiscalYearText}
+                      </Box>
                     </TableCell>
                   </TableRow>
                 ))
@@ -172,81 +153,6 @@ const RevenueTrends = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        {/* <table className={classes.revenueTable}>
-        <thead>
-          <tr>
-            <th>{'FY' + trendData[0].fiscalYear.slice(2) + ' - ' +
-              'FY' + trendData[trendData.length - 1].fiscalYear.slice(2)} trend</th>
-            <th className={classes.alignRight}>{currentfiscalYearText}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Royalties</td>
-            <td className={classes.alignRight}>{utils.formatToSigFig_Dollar(currentYearData.amountByRevenueType.Royalties, 3)}</td>
-          </tr>
-          <tr>
-            <td><Sparkline data={royalties} /></td>
-            <td className={classes.alignRight}>
-              <PercentDifference
-                currentAmount={currentYearData.amountByRevenueType.Royalties}
-                previousAmount={previousYearData.amountByRevenueType.Royalties}
-              />{' ' + previousfiscalYearText}
-            </td>
-          </tr>
-          <tr>
-            <td>Bonuses</td>
-            <td className={classes.alignRight}>{utils.formatToSigFig_Dollar(currentYearData.amountByRevenueType.Bonus, 3)}</td>
-          </tr>
-          <tr>
-            <td><Sparkline data={bonuses} /></td>
-            <td className={classes.alignRight}>
-              <PercentDifference
-                currentAmount={currentYearData.amountByRevenueType.Bonus}
-                previousAmount={previousYearData.amountByRevenueType.Bonus}
-              />{' ' + previousfiscalYearText}
-            </td>
-          </tr>
-          <tr>
-            <td>Rents</td>
-            <td className={classes.alignRight}>{utils.formatToSigFig_Dollar(currentYearData.amountByRevenueType.Rents, 3)}</td>
-          </tr>
-          <tr>
-            <td><Sparkline data={rents} /></td>
-            <td className={classes.alignRight}>
-              <PercentDifference
-                currentAmount={currentYearData.amountByRevenueType.Rents}
-                previousAmount={previousYearData.amountByRevenueType.Rents}
-              />{' ' + previousfiscalYearText}
-            </td>
-          </tr>
-          <tr>
-            <td>Other revenues</td>
-            <td className={classes.alignRight}>{utils.formatToSigFig_Dollar(currentYearData.amountByRevenueType['Other Revenues'], 3)}</td>
-          </tr>
-          <tr>
-            <td><Sparkline data={otherRevenues} /></td>
-            <td className={classes.alignRight}>
-              <PercentDifference
-                currentAmount={currentYearData.amountByRevenueType['Other Revenues']}
-                previousAmount={previousYearData.amountByRevenueType['Other Revenues']}
-              />{' ' + previousfiscalYearText}
-            </td>
-          </tr>
-          <tr>
-            <td><strong>Total revenues</strong></td>
-            <td className={classes.alignRight}><strong>{utils.formatToSigFig_Dollar(currentYearTotal, 3)}</strong></td>
-          </tr>
-          <tr>
-            <td><Sparkline data={totalRevenues} /></td>
-            <td className={classes.alignRight}>
-              <PercentDifference
-                currentAmount={currentYearTotal}
-                previousAmount={previousYearTotal}
-              />{' ' + previousfiscalYearText}</td>
-          </tr>
-        </tbody>
-      </table> */}
       </Box>
     )
   }
@@ -258,41 +164,6 @@ const RevenueTrends = () => {
 }
 
 export default RevenueTrends
-
-/**
-* getCurrentYear(data) - returns current year
-* @param {object} data item
-**/
-const getCurrentYear = data => {
-  const r = data.reduce((max, p) => p.fiscalYear > max ? p.fiscalYear : max, data[0].fiscalYear)
-  return r
-}
-
-/**
-* getPreviousYear(data) - returns previous year
-* @param {object} data item
-**/
-const getPreviousYear = data => {
-  const r = data.reduce((min, p) => p.fiscalYear < min ? p.fiscalYear : min, data[0].fiscalYear)
-
-  return r
-}
-
-const getMaxMonth = data => {
-  const r = data.reduce((max, p) => p.date > max ? p.date : max, data[0].date)
-
-  return r
-}
-
-const monthlyDate = obj => {
-  let month = monthLookup(obj.current_month)
-  if (month < 10) {
-    month = '0' + month
-  };
-  const year = Math.floor(obj.fiscalYear.toString().substring(1)) + 2000
-  const date = new Date(year + '-' + month + '-02')
-  return date
-}
 
 const monthLookup = month => {
   const monthNumber = {
@@ -308,24 +179,6 @@ const monthLookup = month => {
     October: 10,
     November: 11,
     December: 12
-  }
-
-  return monthNumber[month]
-}
-const fiscalMonthLookup = month => {
-  const monthNumber = {
-    January: 4,
-    February: 5,
-    March: 6,
-    April: 7,
-    May: 8,
-    June: 9,
-    July: 10,
-    August: 11,
-    September: 12,
-    October: 1,
-    November: 2,
-    December: 3
   }
 
   return monthNumber[month]
@@ -350,22 +203,30 @@ const calculateOtherRevenues = data => {
 }
 
 /**
+* Group by defined property and return object with key, value
+* @param array of items to do groupings
+* @prop property field to group by, this will be the key
+*
+*/
+const groupBy = (arr, prop) => {
+  const map = new Map(Array.from(arr, obj => [obj[prop], []]))
+  arr.forEach(obj => map.get(obj[prop]).push(obj))
+  return Array.from(map.values())
+}
+
+/**
 * calculateRevenueTypeAmountsByYear(data,index) - calculates other revenus from other revenues, inspections fees and civil penalties.
 *
 *
 **/
 
 const calculateRevenueTypeAmountsByYear = (yearData, index) => {
-  const fiscalYear = yearData.fiscal_year
-  const arrData = Object.keys(yearData).map(k => {
-    return { [k]: yearData[k] }
-  })
-
-  const sums = arrData.reduce((total, item) => {
-    total[item.trend_type] =
-      (total[item.trend_type] !== undefined)
-        ? total[item.trend_type] + item.total
-        : item.total
+  const fiscalYear = yearData.fiscalYear
+  const sums = yearData.data.reduce((total, item) => {
+    total[item.revenueType] =
+      (total[item.revenueType] !== undefined)
+        ? total[item.revenueType] + item.revenue
+        : item.revenue
 
     return total
   }, {})
@@ -380,16 +241,70 @@ const calculateRevenueTypeAmountsByYear = (yearData, index) => {
 **/
 
 const PercentDifference = ({ currentAmount, previousAmount }) => {
+  const classes = useStyles()
   const percentIncrease = ((currentAmount - previousAmount) / previousAmount) * 100
+
   return (
     <span>
       {percentIncrease > 0
-        ? <TriangleUpIcon viewBox="-20 -15 50 40"/>
-        : <TriangleDownIcon viewBox="-20 -10 50 40"/>
+        ? <TriangleUpIcon className={classes.trendIcon} viewBox="-20 -15 50 40"/>
+        : <TriangleDownIcon className={classes.trendIcon} viewBox="-20 -10 50 40"/>
       }
       <span>
         {utils.round(percentIncrease, 0) + '%'}
       </span>
     </span>
   )
+}
+
+const aggregateData = data => {
+  const r = [
+    { fund: 'Royalties', current: 0, previous: 0, histSum: {}, histData: [] },
+    { fund: 'Bonuses', current: 0, previous: 0, histSum: {}, histData: [] },
+    { fund: 'Rents', current: 0, previous: 0, histSum: {}, histData: [] },
+    { fund: 'Other Revenues', current: 0, previous: 0, histSum: {}, histData: [] },
+    { fund: 'Total Revenues', current: 0, previous: 0, histSum: {}, histData: [], className: 'strong' }
+  ]
+
+  const currentYear = data[0].fiscalYear
+
+  for (let i = 0; i < data.length; i++) {
+    const item = data[i]
+    if (item.revenueType.match(/Royalties/)) {
+      sumData(item, r, 0, currentYear) // sum into Royalties
+    }
+    else if (item.revenueType.match(/Bonus/)) {
+      sumData(item, r, 1, currentYear) // sum into Bonus
+    }
+    else if (item.revenueType.match(/Rents/)) {
+      sumData(item, r, 2, currentYear) // sum into Rents
+    }
+    else {
+      sumData(item, r, 3, currentYear) // sum into Other Revenues
+    }
+    sumData(item, r, 4, currentYear) // sum into Total
+  }
+
+  r.map((row, i) => {
+    let a = []
+    const years = Object.keys(row.histSum).sort()
+    a = years.map((year, i) => ([year, row.histSum[year]]))
+    r[i].histData = a.slice(-10)
+    return a.slice(-10)
+  })
+
+  return r
+}
+
+const sumData = (item, r, index, currentYear) => {
+  const previousYear = currentYear - 1
+  if (item.fiscalYear == currentYear) r[index].current += item.revenue
+  if (item.fiscalYear == previousYear) r[index].previous += item.revenue
+
+  if (r[index].histSum[item.fiscalYear]) {
+    if (!isNaN(Number(item.revenue))) r[index].histSum[item.fiscalYear] += Number(item.revenue)
+  }
+  else {
+    r[index].histSum[item.fiscalYear] = Number(item.revenue)
+  }
 }

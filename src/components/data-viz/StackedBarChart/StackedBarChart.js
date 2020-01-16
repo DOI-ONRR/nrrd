@@ -65,8 +65,7 @@ const StackedBarChart = props => {
     const chart = new BarChart(elemRef.current, data, options)
     // chart.selected(selected);
     chart.draw(data)
-    
-  })
+  }, [elemRef])
 
   return (
 	  <div className={classes.container} ref={elemRef}>

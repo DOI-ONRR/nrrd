@@ -37,7 +37,16 @@ module.exports = Object.freeze({
   },
   chart: {
     primary: '#435159',
-    secondary: '#086996'
-    //secondary: 'darkorange'
-  }
+    secondary: '#086996',
+  },
+  green: {
+    light: '#cde3c3',
+    mid: '#9dbd92',
+    land: '#69995a',
+    default: '#587f4c',
+    dark: '#2f4d26',
+  },
+  blue: {
+    light: '#f0f6fa',
+  },
 })
