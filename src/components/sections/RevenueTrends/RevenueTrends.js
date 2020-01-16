@@ -144,7 +144,7 @@ const RevenueTrends = () => {
                         <PercentDifference
                           currentAmount={trend.current}
                           previousAmount={trend.previous}
-                        />{' ' + previousFiscalYearText}
+                        />{` ${ previousFiscalYearText }`}
                       </Box>
                     </TableCell>
                   </TableRow>
