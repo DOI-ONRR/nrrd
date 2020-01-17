@@ -9,6 +9,7 @@ const CodeBlock = ({ children, className, live, render }) => {
   const language = className.replace(/language-/, '')
 
   if (live) {
+    console.log('asdfsdafads')
     return (
       <div style={{ marginTop: '10px' }}>
         <LiveProvider

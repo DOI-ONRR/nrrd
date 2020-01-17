@@ -1,16 +1,13 @@
 /**
- * Default Layout component that queries for data
- * with Gatsby's useStaticQuery component
+ * Default Layout component
  *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
-
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import { ThemeProvider } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
+
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Box from '@material-ui/core/Box'
 
@@ -21,8 +18,6 @@ import { Header } from '../Header'
 import { Footer } from '../Footer'
 
 import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
-
-import PatternLibraryLayout from '../PatternLibraryLayout'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -36,11 +31,11 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'underline',
       cursor: 'pointer',
       '&:hover': {
-        textDecoration: `none`,
+        textDecoration: 'none',
       }
     },
     img: {
-      maxWidth: `100%`
+      maxWidth: '100%'
     },
   },
   root: {
@@ -103,7 +98,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const DefaultLayout = ({ children, pageContext }) => {
+const DefaultLayout = ({ children }) => {
   const classes = useStyles()
 
   const data = useStaticQuery(graphql`
@@ -118,30 +113,24 @@ const DefaultLayout = ({ children, pageContext }) => {
   `)
 
   return (
-    <Fragment>
-      {pageContext.layout === 'pattern-library' ?
-        <PatternLibraryLayout>{children}</PatternLibraryLayout>
-        :
-        <ThemeProvider theme={theme}>
-          <Box className={classes.site}>
-            <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+    <ThemeProvider theme={theme}>
+      <Box className={classes.site}>
+        <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
 
-            <Banner />
+        <Banner />
 
-            <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
-        
-            <GlossaryDrawer />
-        
-            <Box className={classes.siteContent}>
-              <CssBaseline />
-              <main>{children}</main>
-            </Box>
+        <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
 
-            <Footer version={data && data.site.siteMetadata.version} />
-          </Box>
-        </ThemeProvider>
-      }
-    </Fragment>
+        <GlossaryDrawer />
+
+        <Box className={classes.siteContent}>
+          <CssBaseline />
+          <main>{children}</main>
+        </Box>
+
+        <Footer version={data && data.site.siteMetadata.version} />
+      </Box>
+    </ThemeProvider>
   )
 }
 
