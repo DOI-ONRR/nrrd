@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     top: '-1px',
     borderTop: '1px solid #5c737f',
-    paddingTop: theme.spacing(2)
   }
 }))
 
