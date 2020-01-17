@@ -20,12 +20,14 @@ const PatternLibraryLayout = ({ children }) => (
     render={data => (
       <>
         <Helmet htmlAttributes={{ lang: 'en' }}>
-          <title>{data.site.siteMetadata.title}</title>
+          <title>{'Pattern Library - ' + data.site.siteMetadata.title}</title>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         </Helmet>
-        <Drawer title={data.site.siteMetadata.title + ' Pattern Library'}>
-          {children}
+        <Drawer title={'Pattern Library - ' + data.site.siteMetadata.title}>
+          <main>
+            {children}
+          </main>
         </Drawer>
       </>
     )}

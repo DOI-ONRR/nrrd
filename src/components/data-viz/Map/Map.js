@@ -22,14 +22,13 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 /**
- *  Map  a component for rendering maps dynamically from  data
+ * Map  a component for rendering maps dynamically from  data
  *
- *  @param {string} [mapJson="https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json"]  mapJson - url to get the topojson used in map.
- *  @param {string} [mapFeatures=counties] mapFeatures - A switch to view county data or state data
- *  @param {string[][]} mapData - a two dimenstional arrray of fips and data, maybe county or state fips
- *  @param {string} [colorScheme=green] colorScheme current lets you modify color from red to blue green or gray ;
- *  @param {*} onClick function that determines what to do if area is clicked
- *
+ * @param {string} [mapJson="https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json"]  mapJson - url to get the topojson used in map.
+ * @param {string} [mapFeatures=counties] mapFeatures - A switch to view county data or state data
+ * @param {string[][]} mapData - a two dimenstional arrray of fips and data, maybe county or state fips
+ * @param {string} [colorScheme=green] colorScheme current lets you modify color from red to blue green or gray ;
+ * @param {*} onClick function that determines what to do if area is clicked
  */
 const Map = props => {
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";

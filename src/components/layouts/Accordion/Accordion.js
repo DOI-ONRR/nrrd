@@ -8,24 +8,37 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
-// import styles from './Accordion.module.scss'
-
-// import IconPlus from '-!svg-react-loader!../../../img/icons/icon-circled-plus.svg'
-// import IconMinus from '-!svg-react-loader!../../../img/icons/icon-circled-minus.svg'
-
 const useStyles = makeStyles(theme => ({
   root: {
-    with: `100%`
+    with: '100%'
   }
 }))
-
+/**
+ * Accordions are collapsible panels that provide users with the ability to expand
+ * and collapse content as needed. They can simplify the interface by hiding
+ * content until it is needed.
+ *
+ * With so much data, hiding some is essential. This is especially true for mobile
+ * where some content shown by default in the desktop view becomes hidden.
+ *
+ * This component leverages the material-ui component [Expansion Panels](https://material-ui.com/components/expansion-panels/)
+ */
 const Accordion = props => {
+  /**
+    * This is a method
+    * @public
+    */
   const classes = useStyles()
   const [expanded, setExpanded] = useState(false)
   let { id, children, text } = props
 
   text = (typeof text === 'string') ? text.split(',') : text
 
+  /**
+   * This is a method
+   *
+   * @public
+   */
   const handleChange = panel => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
   }
@@ -49,57 +62,6 @@ const Accordion = props => {
     </div>
   )
 }
-
-// class Accordion extends React.Component {
-//   constructor (props) {
-//     super(props)
-
-//     const expandableId = `${ props.id }-expandable-content`
-//     const { expanded } = props
-//     this.state = {
-//       expandableId,
-//       expanded,
-//     }
-//   }
-
-//   toggle () {
-//     const { expanded } = this.state
-//     this.setState({
-//       expanded: !expanded,
-//     })
-//   }
-
-//   render () {
-//     let { id, children, text } = this.props
-//     const { expandableId, expanded } = this.state
-//     const toggle = () => this.toggle()
-
-//     text = (typeof text === 'string') ? text.split(',') : text
-
-//     return (
-//       <div id={id} className={styles.root}>
-//         <div class={styles.toggle} is="aria-toggle"
-//           aria-controls={expandableId}
-//           aria-expanded={expanded}
-//           type="button"
-//           onClick={toggle}>
-
-//           <span className={styles.plus} >
-//             <IconPlus />
-//             <span>{text[0]}</span>
-//           </span>
-//           <span className={styles.minus} >
-//             <IconMinus />
-//             <span>{text[1]}</span>
-//           </span>
-//         </div>
-//         <div id={expandableId} aria-hidden={!expanded} className={styles.content}>
-//           { children }
-//         </div>
-//       </div>
-//     )
-//   }
-// };
 
 Accordion.propTypes = {
   /** The Id for the element, used to ensure expandable containers have unique Ids. */

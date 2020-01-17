@@ -1,0 +1,69 @@
+---
+title: Component Reference
+---
+import { graphql } from "gatsby"
+import { MDXRenderer } from "gatsby-plugin-mdx"
+
+# Component Reference
+
+<Grid container spacing={2}>
+  <Grid item xs={3}>
+    {
+      props.data.allComponentMetadata.nodes.map( (component, index) => {
+        return (
+          <div key={index}><a href={'#'+component.displayName}>{component.displayName}</a></div>
+        )
+      })
+    }
+  </Grid>
+  <Grid item xs={9}>
+    {
+      props.data.allComponentMetadata.nodes.map( (component, index) => {
+        return (
+          <div key={index} style={{'marginBottom': '10px'}}>
+            <a href='#'>Top</a><h2 id={component.displayName}>{component.displayName}</h2>
+            <p>Path to file: <span style={{color: 'darkGreen'}}>{component.parent.relativePath}</span></p>
+            <MDXRenderer>{component.description.childMdx.body}</MDXRenderer>
+            <PropsTable componentProps={component.childrenComponentProp} />
+          </div>
+        )
+      })
+    }
+  </Grid>
+</Grid>
+
+
+export const COMPONENT_REFERENCE_QUERY = graphql`
+  query {
+    allComponentMetadata(sort: {fields: displayName, order: ASC}) {
+      nodes {
+        displayName
+        description {
+          childMdx {
+            body
+          }
+        }
+        childrenComponentProp {
+          name
+          docblock
+          required
+          parentType {
+            name
+          }
+          type {
+            value
+          }
+          defaultValue {
+            value
+            computed
+          }
+        }
+        parent {
+          ... on File {
+            relativePath
+          }
+        }
+      }
+    }
+  }
+`

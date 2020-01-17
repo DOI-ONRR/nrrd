@@ -3,6 +3,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { MDXProvider } from '@mdx-js/react'
 import * as components from './.cache/components'
 import CodeBlock from './src/components/layouts/CodeBlock/CodeBlock.js'
+import {Grid} from '@material-ui/core'
 import { Link } from 'gatsby'
 import { client } from './src/apollo/client'
 import { StoreProvider } from './src/store'
@@ -10,7 +11,9 @@ import { StoreProvider } from './src/store'
 const mdxComponents = {
   pre: props => <div {...props} />,
   code: CodeBlock,
-  a: props => (props.href && (props.href.includes('http') || props.href.includes('mailto'))) ? <a {...props} /> : <Link to={props.href} {...props} />,
+  Grid,
+  a: props => (props.href &&
+    (props.href.charAt(0) === '#' || props.href.includes('http') || props.href.includes('mailto'))) ? <a {...props} /> : <Link to={props.href} {...props} />,
   ...components
 }
 
