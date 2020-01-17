@@ -1,6 +1,6 @@
 
 import fetch from 'isomorphic-fetch'
-import {ApolloClient, HttpLink, InMemoryCache} from 'apollo-boost'
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost'
 
 export const client = new ApolloClient({
 
@@ -12,4 +12,3 @@ export const client = new ApolloClient({
     resolvers: {}
   })
 })
-

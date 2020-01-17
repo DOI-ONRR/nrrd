@@ -77,7 +77,7 @@ describe('Site Audits via Lighthouse', () => {
   })
 
   // Progressive Web App
-  it('passes PWA(Progress Web App) audit through Lighthouse', () => {
-    expect(lh.categories['pwa'].score).toBeGreaterThanOrEqual(0.7)
-  })
+  // it('passes PWA(Progress Web App) audit through Lighthouse', () => {
+  //   expect(lh.categories['pwa'].score).toBeGreaterThanOrEqual(0.7)
+  // })
 })

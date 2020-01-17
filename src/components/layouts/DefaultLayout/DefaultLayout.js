@@ -37,6 +37,14 @@ const useStyles = makeStyles(theme => ({
     img: {
       maxWidth: '100%'
     },
+    '.header-bar': {
+      borderWidth: '2px',
+      borderBottom: 'solid',
+      paddingBottom: '.41667rem',
+    },
+    '.header-bar.green': {
+      borderColor: '#cde3c3',
+    }
   },
   root: {
     paddingTop: theme.spacing(2),
@@ -113,19 +121,23 @@ const DefaultLayout = ({ children }) => {
   `)
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box className={classes.site}>
-        <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+    <Fragment>
+      <ThemeProvider theme={theme}>
+        <Box className={classes.site}>
+          <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
 
-        <Banner />
+          <Banner />
 
-        <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
+          <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
 
-        <GlossaryDrawer />
+          <GlossaryDrawer />
 
-        <Box className={classes.siteContent}>
-          <CssBaseline />
-          <main>{children}</main>
+          <Box className={classes.siteContent}>
+            <CssBaseline />
+            <Box component="main">{children}</Box>
+          </Box>
+
+          <Footer version={data && data.site.siteMetadata.version} />
         </Box>
 
         <Footer version={data && data.site.siteMetadata.version} />
