@@ -17,6 +17,7 @@ import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 
 import { StoreContext } from '../../../store'
 import { ThemeConsumer } from 'styled-components'
+import utils from '../../../js/utils'
 
 const TOTAL_REVENUE_QUERY = gql`
   query TotalYearlyRevenue($period: String!) {
@@ -59,6 +60,7 @@ const TotalRevenue = props => {
         <Grid item xs>
           <StackedBarChart
             data={data.total_yearly_revenue}
+            legendDataFormatFunc={utils.formatToDollarFloat}
             columns={columns}
             xRotate={xRotate}
             yLabels={yLabels}

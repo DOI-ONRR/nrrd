@@ -20,13 +20,19 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '200px',
-    fill: '#435159',
+    fill: theme.palette.chart.primary,
     '& .bars > .bar:hover': {
       fill: theme.palette.chart.secondary
     },
     '& .bars > .active': {
       fill: theme.palette.chart.secondary
     },
+    '& .maxExtent': {
+      fontSize: theme.typography.chartText,
+    },
+    '& .x-axis > .tick': {
+      fontSize: theme.typography.chartText,
+    }
   },
   legend: {
     display: 'block',
@@ -34,8 +40,9 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '200px',
+    fontSize: theme.typography.chartText,
     '& .legend-rect': {
-      fill: theme.palette.chart.secondary
+      fill: theme.palette.chart.secondary,
     }
   }
 }))
@@ -48,6 +55,7 @@ const StackedBarChart = props => {
 
   const data = props.data
   const options = {}
+  const formatLegendFunc = props.legendDataFormatFunc
   options.columns = props.columns
   options.yLabels = props.yLabels
   options.xLabels = props.xLabels
@@ -62,7 +70,7 @@ const StackedBarChart = props => {
     elemRef.current.children[1].innerHTML = ''
     //  const chart2 = new BarChart2(elemRef.current, data2, options)
     //    chart2.draw(data2)
-    const chart = new BarChart(elemRef.current, data, options)
+    const chart = new BarChart(elemRef.current, data, options, formatLegendFunc)
     // chart.selected(selected);
     chart.draw(data)
   }, [elemRef])
