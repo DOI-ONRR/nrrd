@@ -48,24 +48,19 @@ const Tabtastic = props => {
   const [selected, setSelected] = useState(props.selected || '')
   const [selectedIndex, setSelectedIndex] = useState(0)
 
-  
-
   useEffect(() => {
     if (children && selected) {
-      console.log('children: ', children)
       const childIndex = children.findIndex(child => formatTabLabel(child.props.label.toLowerCase()) === selected)
-      console.log('childIndex: ', childIndex)
       setSelectedIndex(childIndex)
     }
   }, [selected, selectedIndex])
 
+  // format tab label and prepend string, format to replace any blank spaces with dash, then to lower case
   const formatTabLabel = label => {
-    // take label and prepend tab, format to replace any blank spaces with dash, then to lower case
     return `tab-${ label.replace(/\s+/g, '-').toLowerCase() }`
   }
 
   const handleChange = (event, newValue) => {
-    console.log('handleChange: ', newValue)
     setSelectedIndex(newValue)
     const selectedChild = props.children[newValue]
     const formattedLabel = formatTabLabel(selectedChild.props.label)

@@ -68,7 +68,7 @@ module.exports = Object.freeze({
     flexContainer: {
       '@media (max-width: 425px)': {
         display: 'block',
-        marginBottom: '1rem',
+        marginBottom: 0,
       }
     }
   },
