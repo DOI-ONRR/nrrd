@@ -41,6 +41,7 @@ function a11yProps (index) {
 }
 
 const Tabtastic = props => {
+  console.log('Tabtastic props: ', props)
   const classes = useStyles()
 
   const { children } = props
@@ -80,7 +81,7 @@ const Tabtastic = props => {
         aria-label="Revenue, Disbursements, and Production Tabs"
       >
         { children &&
-          children.map((item, index) => (
+          React.Children.map(children, (item, index) => (
             <Tab disableRipple key={index} label={item.props.label} {...a11yProps(index)} index={index} />
           ))
         }
@@ -88,7 +89,9 @@ const Tabtastic = props => {
       <Box className={classes.tabPanelContainer}>
         { children &&
           React.Children.map(children, (child, index) => (
-            <TabPanel key={index} value={selectedIndex} index={index}>{child}</TabPanel>
+            <TabPanel key={index} value={selectedIndex} index={index}>
+              {child.props.children}
+            </TabPanel>
           ))
         }
       </Box>

@@ -2,7 +2,7 @@ import React from 'react'
 import Explore from './Explore'
 import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
 
-const Revenue = props => {
+const Production = props => {
   return (
     <Explore
       title="production"
@@ -36,4 +36,4 @@ const Revenue = props => {
   )
 }
 
-export default Revenue
+export default Production

@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 
 import * as d3 from 'd3'
 import utils from '../../../js/utils'
+import PercentDifference from '../../utils/PercentDifference'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
@@ -55,11 +56,6 @@ const useStyles = makeStyles(theme => ({
     // '& .MuiTableBody-root .MuiTableCell-root': {
     //   borderBottom: 'none'
     // }
-  },
-  trendIcon: {
-    position: 'relative',
-    marginRight: 5,
-    top: 5,
   },
 }))
 
@@ -245,29 +241,6 @@ const calculateRevenueTypeAmountsByYear = (yearData, index) => {
   }, {})
 
   return { year: fiscalYear, amountByRevenueType: sums }
-}
-
-/**
-* PercentDifference({currentAmount,previousAmount}) - calculates other revenus from other revenues, inspections fees and civil penalties.
-*
-*  @return TriangleUpIcon || TriangleDownIcon
-**/
-
-const PercentDifference = ({ currentAmount, previousAmount }) => {
-  const classes = useStyles()
-  const percentIncrease = ((currentAmount - previousAmount) / previousAmount) * 100
-
-  return (
-    <span>
-      {percentIncrease > 0
-        ? <TriangleUpIcon className={classes.trendIcon} viewBox="-20 -15 50 40"/>
-        : <TriangleDownIcon className={classes.trendIcon} viewBox="-20 -10 50 40"/>
-      }
-      <span>
-        {utils.round(percentIncrease, 0) + '%'}
-      </span>
-    </span>
-  )
 }
 
 const aggregateData = data => {
