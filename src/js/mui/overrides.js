@@ -68,7 +68,7 @@ module.exports = Object.freeze({
     flexContainer: {
       '@media (max-width: 425px)': {
         display: 'block',
-        marginBottom: '1rem',
+        marginBottom: 0,
       }
     }
   },
@@ -77,7 +77,8 @@ module.exports = Object.freeze({
     root: {
       background: '#f0f6fa',
       borderTop: '5px solid #f0f6fa',
-      marginLeft: '10px',
+      marginLeft: '5px',
+      marginRight: '5px',
       color: '#435159',
       '& span:hover': {
         textDecoration: 'underline',

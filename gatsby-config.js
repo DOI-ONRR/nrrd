@@ -32,6 +32,7 @@ const config = {
     },
   },
   plugins: [
+    'gatsby-transformer-react-docgen',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -53,7 +54,7 @@ const config = {
     {
       resolve: 'gatsby-plugin-layout',
       options: {
-        component: `${ __dirname }/src/components/layouts/DefaultLayout`
+        component: `${ __dirname }/src/components/layouts/PageLayoutManager`
       }
     },
     {
@@ -66,7 +67,23 @@ const config = {
     },
     'gatsby-theme-apollo',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              icon: false,
+              maintainCase: true,
+              removeAccents: true,
+              enableCustomId: true,
+            },
+          },
+        ],
+        extensions: ['.mdx', '.md']
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -77,16 +94,15 @@ const config = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'markdown-pages',
-        path: `${ __dirname }/src/markdown/`
+        name: 'images',
+        path: `${ __dirname }/src/img`
       }
     },
-
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'images',
-        path: `${ __dirname }/src/img`
+        name: 'components',
+        path: `${ __dirname }/src/components`
       }
     },
     'gatsby-transformer-sharp',
@@ -119,21 +135,6 @@ const config = {
       }
     },
     {
-      resolve: 'gatsby-transformer-remark',
-      options: {
-        // CommonMark mode (default: true)
-        commonmark: true,
-        // Footnotes mode (default: true)
-        footnotes: true,
-        // Pedantic mode (default: true)
-        pedantic: true,
-        // GitHub Flavored Markdown mode (default: true)
-        gfm: true,
-        // Plugins configs
-        plugins: []
-      }
-    },
-    {
       resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
       options: {
         // Fields to index
@@ -141,7 +142,7 @@ const config = {
         // How to resolve each field's value for a supported node type
         resolvers: {
           // For any node of type MarkdownRemark, list how to resolve the fields' values
-          MarkdownRemark: {
+          Mdx: {
             title: node => node.frontmatter.title,
             tags: node => node.frontmatter.tag || node.frontmatter.tags,
             path: node =>
@@ -157,7 +158,7 @@ const config = {
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // 'gatsby-plugin-offline',
+    'gatsby-plugin-offline',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }

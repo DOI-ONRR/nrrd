@@ -4,8 +4,8 @@ import { navigate } from '@reach/router'
 
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
-import MuiTabs from '@material-ui/core/Tabs'
-import MuiTab from '@material-ui/core/Tab'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
@@ -13,11 +13,10 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     top: '-1px',
     borderTop: '1px solid #5c737f',
-    paddingTop: theme.spacing(2)
   }
 }))
 
-function MuiTabPanel (props) {
+function TabPanel (props) {
   const { children, value, index, ...other } = props
 
   return (
@@ -41,45 +40,38 @@ function a11yProps (index) {
   }
 }
 
-const Tabordion = props => {
+const Tabtastic = props => {
   const classes = useStyles()
 
   const { children } = props
-  const [tabs, setTabs] = useState([])
-  const [tabPanels, setTabPanels] = useState([])
   const [selected, setSelected] = useState(props.selected || '')
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   useEffect(() => {
-    children.forEach(element => {
-      if (element.props.mdxType === 'Tab') {
-        setTabs(tabs => tabs.concat(element))
-      }
-      else {
-        setTabPanels(tabPanels => tabPanels.concat(element))
-      }
-    })
-  }, [])
-
-  useEffect(() => {
-    if (props.children && selected) {
-      const childIndex = props.children.findIndex(child => child.props.id === selected)
+    if (children && selected) {
+      const childIndex = children.findIndex(child => formatTabLabel(child.props.label.toLowerCase()) === selected)
       setSelectedIndex(childIndex)
     }
-  }, [selected, setSelectedIndex])
+  }, [selected, selectedIndex])
+
+  // format tab label and prepend string, format to replace any blank spaces with dash, then to lower case
+  const formatTabLabel = label => {
+    return `tab-${ label.replace(/\s+/g, '-').toLowerCase() }`
+  }
 
   const handleChange = (event, newValue) => {
     setSelectedIndex(newValue)
     const selectedChild = props.children[newValue]
+    const formattedLabel = formatTabLabel(selectedChild.props.label)
 
-    setSelected(selectedChild.props.id)
-    navigate(`?tab=${ selectedChild.props.id }`)
+    setSelected(formattedLabel)
+
+    navigate(`?tab=${ formattedLabel }`)
   }
 
   return (
     <Fragment>
-
-      <MuiTabs
+      <Tabs
         value={selectedIndex}
         onChange={handleChange}
         indicatorColor="primary"
@@ -87,18 +79,18 @@ const Tabordion = props => {
         variant="fullWidth"
         aria-label="Revenue, Disbursements, and Production Tabs"
       >
-        { tabs &&
-          tabs.map((item, index) => (
-            <MuiTab disableRipple key={item.props.id} label={item.props.label} {...a11yProps(item.props.id)} index={index} />
+        { children &&
+          React.Children.map(children, (item, index) => (
+            <Tab disableRipple key={index} label={item.props.label} {...a11yProps(index)} index={index} />
           ))
         }
-      </MuiTabs>
-      <Box
-        className={classes.tabPanelContainer}
-      >
-        { tabPanels &&
-          tabPanels.map((item, index) => (
-            <MuiTabPanel key={index} value={selectedIndex} index={index}>{item.props.children}</MuiTabPanel>
+      </Tabs>
+      <Box className={classes.tabPanelContainer}>
+        { children &&
+          React.Children.map(children, (child, index) => (
+            <TabPanel key={index} value={selectedIndex} index={index}>
+              {child.props.children}
+            </TabPanel>
           ))
         }
       </Box>
@@ -106,31 +98,18 @@ const Tabordion = props => {
   )
 }
 
-export const Tab = props => {
-  props.index = 0
+export const TabtasticTab = props => {
   return (
-    <MuiTab disableRipple label={props.label} {...a11yProps(props.id)} index={props.index} />
+    <Box {...props} />
   )
 }
 
-export const TabPanel = props => {
-  return (
-    <MuiTabPanel {...props}>{props.children}</MuiTabPanel>
-  )
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-}
-
-Tab.propTypes = {
-  /** The Id for the element, used to ensure expandable containers have unique Ids. */
-  id: PropTypes.string.isRequired,
+TabtasticTab.propTypes = {
   label: PropTypes.string.isRequired
 }
 
-Tabordion.propTypes = {
+Tabtastic.propTypes = {
   children: PropTypes.node
 }
 
-export default Tabordion
+export default Tabtastic

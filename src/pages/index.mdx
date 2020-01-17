@@ -18,7 +18,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
 import { HomeHero } from '../components/sections/HomeHero'
-import { Tabordion, Tab, TabPanel } from '../components/layouts/Tabordion'
+import { Tabtastic, TabtasticTab } from '../components/layouts/Tabtastic'
 import { WhatsNew } from '../components/sections/WhatsNew'
 
 import TotalRevenue from '../components/sections/TotalRevenue'
@@ -31,21 +31,8 @@ import ExploreProduction from '../components/sections/Explore/Production'
 import { RevenueByLocationLink } from '../components/layouts/RevenueByLocationLink'
 
 export const useStyles = makeStyles(theme => ({
-  revenueByLocation: {
-    position: 'relative',
-    top: 0,
-  },
-  tabordionContainer: {
-    marginTop: 0,
-    '@media (min-width: 767px)': {
-      marginTop: -50,
-      '& .MuiTabs-fixed': {
-        marginRight: '350px',
-      }
-    },
-    '& .MuiTabs-flexContainer': {
-      marginBottom: 0,
-    }
+  revenueByLocationLink: {
+    marginTop: theme.spacing(2.5),
   },
   whatsNewContainer: {
     background: theme.palette.blue.light,
@@ -88,26 +75,25 @@ export const IndexPage = props => {
       <Container maxWidth="lg">
         <Box mb={5}>
           <Grid container spacing={0}>
-            <Grid item xs={12} md={12} className={classes.revenueByLocation}>
-              <RevenueByLocationLink />
-            </Grid>
-            <Grid item xs={12} md={12} className={classes.tabordionContainer}>
-              <Tabordion selected={selected}>
-                <Tab label="Revenue" id="tab-revenue" />
-                <Tab label="Disbursements" id="tab-disbursements" />
-                <Tab label="Production" id="tab-production" />
-                <TabPanel id="tab-panel-revenue">
-                  <Grid container spacing={4}>
-                    <Grid item xs={12}>
+            <Grid item xs={12} md={12}>
+              <Tabtastic selected={selected}>
+                <TabtasticTab label="Revenue">
+                  <Grid container m={0} spacing={4}>
+                    <Grid item sm={12} md={6}>
                       <Typography variant="h2">
                         Revenue
                       </Typography>
+                    </Grid>
+                    <Grid item sm={12} md={6} className={classes.revenueByLocationLink}>
+                      <RevenueByLocationLink />
+                    </Grid>
+                    <Grid item sm={12}>
                       <Typography variant="body1">
                         The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
                       </Typography>
                     </Grid>
                     <Grid item xs={12} md={8}>
-                      <TotalRevenue />
+                      Total revenue content...
                     </Grid>
                     <Grid item xs={12} md={4}>
                       <RevenueTrends />
@@ -116,8 +102,8 @@ export const IndexPage = props => {
                       <ExploreRevenue />
                     </Grid>
                   </Grid>
-                </TabPanel>
-                <TabPanel id="tab-panel-disbursements">
+                </TabtasticTab>
+                <TabtasticTab label="Disbursements">
                   <Grid container spacing={4}>
                     <Grid item xs={12}>
                       <Typography variant="h2">
@@ -136,8 +122,8 @@ export const IndexPage = props => {
                       <ExploreDisbursements />
                     </Grid>
                   </Grid>
-                </TabPanel>
-                <TabPanel id="tab-panel-production">
+                </TabtasticTab>
+                <TabtasticTab label="Production">
                   <Grid container spacing={4}>
                     <Grid item xs={12}>
                       <Typography variant="h2">
@@ -148,11 +134,14 @@ export const IndexPage = props => {
                       </Typography>
                     </Grid>
                     <Grid item xs={12}>
+                      Production content...
+                    </Grid>
+                    <Grid item xs={12}>
                       <ExploreProduction />
                     </Grid>
                   </Grid>
-                </TabPanel>
-              </Tabordion>
+                </TabtasticTab>
+              </Tabtastic>
             </Grid>
           </Grid>
         </Box>

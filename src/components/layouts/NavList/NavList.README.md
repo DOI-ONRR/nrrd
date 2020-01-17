@@ -2,7 +2,7 @@
 title: NavList
 componentName: NavList
 patternCategory: Layouts
-link: [](https://material-ui.com/components/lists/#lists)
+link: https://material-ui.com/components/lists/#lists
 ---
 
 ```
