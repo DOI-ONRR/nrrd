@@ -121,27 +121,25 @@ const DefaultLayout = ({ children }) => {
   `)
 
   return (
-    <Fragment>
-      <ThemeProvider theme={theme}>
-        <Box className={classes.site}>
-          <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+    <ThemeProvider theme={theme}>
+      <Box className={classes.site}>
+        <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
 
-          <Banner />
+        <Banner />
 
-          <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
+        <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
 
-          <GlossaryDrawer />
+        <GlossaryDrawer />
 
-          <Box className={classes.siteContent}>
-            <CssBaseline />
-            <Box component="main">{children}</Box>
-          </Box>
-
-          <Footer version={data && data.site.siteMetadata.version} />
+        <Box className={classes.siteContent}>
+          <CssBaseline />
+          <Box component="main">{children}</Box>
         </Box>
 
         <Footer version={data && data.site.siteMetadata.version} />
       </Box>
+
+      <Footer version={data && data.site.siteMetadata.version} />
     </ThemeProvider>
   )
 }
