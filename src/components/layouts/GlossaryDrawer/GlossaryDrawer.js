@@ -1,7 +1,6 @@
-import React, { Fragment, useState, useContext } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
@@ -11,14 +10,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import TextField from '@material-ui/core/TextField'
 import CloseIcon from '@material-ui/icons/Close'
 
-import { GlossaryContext } from '../../../glossaryContext'
 import { StoreContext } from '../../../store'
 
 import GlossaryIcon from '-!svg-react-loader!../../../img/svg/icon-question-circle.svg'
 
 import GLOSSARY_TERMS from '../../../data/terms.yml'
-
-console.log('GLOSSARY_TERMS: ', GLOSSARY_TERMS)
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -56,16 +52,14 @@ const GlossaryDrawer = () => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
 
-  console.log('state: ', state)
-
-  let filteredTerms = filterGlossaryTerms(state.glossaryTerm)
+  const filteredTerms = filterGlossaryTerms(state.glossaryTerm)
 
   const handleClose = () => {
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false }})
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false } })
   }
 
   const handleChange = event => {
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: event.target.value, glossaryOpen: true }})
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: event.target.value, glossaryOpen: true } })
   }
 
   const glossaryList = side => (
@@ -87,7 +81,7 @@ const GlossaryDrawer = () => {
           tabIndex={state.toggleHidden && -1}
         />
       </div>
-      
+
       {(filteredTerms.terms).map((term, index) => (
         <div key={index} aria-hidden={term.show} style={{ display: term.show ? 'block' : 'none' }}>
           <ExpansionPanel term={term.name}>

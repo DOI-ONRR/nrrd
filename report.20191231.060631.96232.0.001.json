@@ -4,10 +4,10 @@
     "reportVersion": 1,
     "event": "Allocation failed - JavaScript heap out of memory",
     "trigger": "FatalError",
-    "filename": "report.20191212.124847.71224.0.001.json",
-    "dumpEventTime": "2019-12-12T12:48:47Z",
-    "dumpEventTimeStamp": "1576180127831",
-    "processId": 71224,
+    "filename": "report.20191231.060631.96232.0.001.json",
+    "dumpEventTime": "2019-12-31T06:06:31Z",
+    "dumpEventTimeStamp": "1577797591228",
+    "processId": 96232,
     "cwd": "C:\\Users\\louisj\\dev\\nrrd",
     "commandLine": [
       "C:\\Program Files\\nodejs\\node.exe",
@@ -51,63 +51,63 @@
       {
         "model": "Intel(R) Core(TM) i5-6440HQ CPU @ 2.60GHz",
         "speed": 2592,
-        "user": 4034156,
+        "user": 13281843,
         "nice": 0,
-        "sys": 3714796,
-        "idle": 16659406,
-        "irq": 259984
+        "sys": 23581671,
+        "idle": 383598531,
+        "irq": 1866375
       },
       {
         "model": "Intel(R) Core(TM) i5-6440HQ CPU @ 2.60GHz",
         "speed": 2592,
-        "user": 4423859,
+        "user": 15309031,
         "nice": 0,
-        "sys": 3565093,
-        "idle": 16418968,
-        "irq": 57843
+        "sys": 17083468,
+        "idle": 388069109,
+        "irq": 233375
       },
       {
         "model": "Intel(R) Core(TM) i5-6440HQ CPU @ 2.60GHz",
         "speed": 2592,
-        "user": 4917812,
+        "user": 15015406,
         "nice": 0,
-        "sys": 3192765,
-        "idle": 16297343,
-        "irq": 30078
+        "sys": 15098140,
+        "idle": 390348062,
+        "irq": 98156
       },
       {
         "model": "Intel(R) Core(TM) i5-6440HQ CPU @ 2.60GHz",
         "speed": 2592,
-        "user": 5436218,
+        "user": 24022656,
         "nice": 0,
-        "sys": 3460078,
-        "idle": 15511625,
-        "irq": 24687
+        "sys": 37460703,
+        "idle": 358978250,
+        "irq": 100359
       }
     ],
     "networkInterfaces": [
       {
-        "name": "Ethernet",
+        "name": "Local Area Connection* 3",
         "internal": false,
-        "mac": "a4:4c:c8:dc:ac:5b",
-        "address": "fe80::987e:6dc2:fc7c:53d9",
+        "mac": "02:05:85:7f:eb:80",
+        "address": "fe80::5:85ff:fe7f:eb80",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
-        "scopeid": 15
+        "scopeid": 17
       },
       {
-        "name": "Ethernet",
+        "name": "Local Area Connection* 3",
         "internal": false,
-        "mac": "a4:4c:c8:dc:ac:5b",
-        "address": "10.17.134.67",
-        "netmask": "255.255.255.0",
+        "mac": "02:05:85:7f:eb:80",
+        "address": "10.211.120.235",
+        "netmask": "255.255.0.0",
         "family": "IPv4"
       },
       {
         "name": "VirtualBox Host-Only Network",
         "internal": false,
         "mac": "0a:00:27:00:00:10",
-        "address": "fe80::649a:ac34:2d3e:5022",
+        "address": "fe80::800:27ff:fe00:10",
         "netmask": "ffff:ffff:ffff:ffff::",
         "family": "IPv6",
         "scopeid": 16
@@ -117,6 +117,32 @@
         "internal": false,
         "mac": "0a:00:27:00:00:10",
         "address": "192.168.56.1",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "f8:94:c2:93:45:a9",
+        "address": "2601:285:304:b99:fa94:c2ff:fe93:45a9",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "f8:94:c2:93:45:a9",
+        "address": "fe80::fa94:c2ff:fe93:45a9",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 13
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "f8:94:c2:93:45:a9",
+        "address": "192.168.0.34",
         "netmask": "255.255.255.0",
         "family": "IPv4"
       },
@@ -148,91 +174,75 @@
   },
   "nativeStack": [
     {
-      "pc": "0x00007ff7f2721729",
+      "pc": "0x00007ff7577b1729",
       "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10873"
     },
     {
-      "pc": "0x00007ff7f2725b4c",
+      "pc": "0x00007ff7577b5b4c",
       "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+28316"
     },
     {
-      "pc": "0x00007ff7f2724b08",
+      "pc": "0x00007ff7577b4b08",
       "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+24152"
     },
     {
-      "pc": "0x00007ff7f281369b",
+      "pc": "0x00007ff7578a369b",
       "symbol": "v8::base::CPU::has_sse+37723"
     },
     {
-      "pc": "0x00007ff7f30182de",
+      "pc": "0x00007ff7580a82de",
       "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
     },
     {
-      "pc": "0x00007ff7f3000321",
+      "pc": "0x00007ff758090321",
       "symbol": "v8::SharedArrayBuffer::Externalize+833"
     },
     {
-      "pc": "0x00007ff7f2ecdbec",
+      "pc": "0x00007ff757f5dbec",
       "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
     },
     {
-      "pc": "0x00007ff7f2ed8f90",
+      "pc": "0x00007ff757f68f90",
       "symbol": "v8::internal::Heap::ProtectUnprotectedMemoryChunks+1312"
     },
     {
-      "pc": "0x00007ff7f2ed5ac4",
+      "pc": "0x00007ff757f65ac4",
       "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3204"
     },
     {
-      "pc": "0x00007ff7f2ecb353",
+      "pc": "0x00007ff757f5b353",
       "symbol": "v8::internal::Heap::CollectGarbage+1283"
     },
     {
-      "pc": "0x00007ff7f2ec9b24",
+      "pc": "0x00007ff757f59b24",
       "symbol": "v8::internal::Heap::AddRetainedMap+2356"
     },
     {
-      "pc": "0x00007ff7f2eeadf5",
+      "pc": "0x00007ff757f7adf5",
       "symbol": "v8::internal::Factory::NewFillerObject+53"
     },
     {
-      "pc": "0x00007ff7f2c56e19",
+      "pc": "0x00007ff757ce6e19",
       "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+4057"
     },
     {
-      "pc": "0x00007ff7f344404d",
+      "pc": "0x00007ff7584d404d",
       "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+567949"
     },
     {
-      "pc": "0x00007ff7f349c45f",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+929439"
+      "pc": "0x00007ff7584d5151",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+572305"
     },
     {
-      "pc": "0x00007ff7f33c3bdc",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42524"
-    },
-    {
-      "pc": "0x00007ff7f348e719",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+872793"
-    },
-    {
-      "pc": "0x00007ff7f349193b",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+885627"
-    },
-    {
-      "pc": "0x00007ff7f3492fcd",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+891405"
-    },
-    {
-      "pc": "0x000001f8e2c157f4",
+      "pc": "0x00000155853d1baa",
       "symbol": ""
     }
   ],
   "javascriptHeap": {
-    "totalMemory": 2152591360,
-    "totalCommittedMemory": 2152591360,
-    "usedMemory": 2134351072,
-    "availableMemory": 50520768,
+    "totalMemory": 2152685568,
+    "totalCommittedMemory": 2152685568,
+    "usedMemory": 2137075120,
+    "availableMemory": 51786968,
     "memoryLimit": 2197815296,
     "heapSpaces": {
       "read_only_space": {
@@ -243,38 +253,38 @@
         "available": 229576
       },
       "new_space": {
-        "memorySize": 4194304,
-        "committedMemory": 4194304,
-        "capacity": 2094976,
-        "used": 221336,
-        "available": 1873640
+        "memorySize": 2097152,
+        "committedMemory": 2097152,
+        "capacity": 1047488,
+        "used": 210512,
+        "available": 836976
       },
       "old_space": {
-        "memorySize": 410103808,
-        "committedMemory": 410103808,
-        "capacity": 405806280,
-        "used": 404707640,
-        "available": 1098640
+        "memorySize": 1962782720,
+        "committedMemory": 1962782720,
+        "capacity": 1957463064,
+        "used": 1952919864,
+        "available": 4543200
       },
       "code_space": {
-        "memorySize": 5931008,
-        "committedMemory": 5931008,
-        "capacity": 4906496,
-        "used": 4906496,
+        "memorySize": 4620288,
+        "committedMemory": 4620288,
+        "capacity": 3802496,
+        "used": 3802496,
         "available": 0
       },
       "map_space": {
-        "memorySize": 13373440,
-        "committedMemory": 13373440,
-        "capacity": 6325440,
-        "used": 6325440,
+        "memorySize": 8130560,
+        "committedMemory": 8130560,
+        "capacity": 5654560,
+        "used": 5654560,
         "available": 0
       },
       "large_object_space": {
-        "memorySize": 1717772288,
-        "committedMemory": 1717772288,
-        "capacity": 1717290344,
-        "used": 1717290344,
+        "memorySize": 173838336,
+        "committedMemory": 173838336,
+        "capacity": 173587872,
+        "used": 173587872,
         "available": 0
       },
       "code_large_object_space": {
@@ -287,24 +297,24 @@
       "new_large_object_space": {
         "memorySize": 0,
         "committedMemory": 0,
-        "capacity": 2094976,
+        "capacity": 1047488,
         "used": 0,
-        "available": 2094976
+        "available": 1047488
       }
     }
   },
   "resourceUsage": {
-    "userCpuSeconds": 665.843,
-    "kernelCpuSeconds": 161.031,
-    "cpuConsumptionPercent": 7.47829,
-    "maxRss": 2311757824,
+    "userCpuSeconds": 550.218,
+    "kernelCpuSeconds": 275.031,
+    "cpuConsumptionPercent": 1.25804,
+    "maxRss": 3216683008,
     "pageFaults": {
-      "IORequired": 10155254,
+      "IORequired": 5552841,
       "IONotRequired": 0
     },
     "fsActivity": {
-      "reads": 52161,
-      "writes": 997
+      "reads": 40265,
+      "writes": 827
     }
   },
   "libuv": [
@@ -345,7 +355,7 @@
     "NVM_SYMLINK": "C:\\Program Files\\nodejs",
     "OS": "Windows_NT",
     "OneDrive": "C:\\Users\\louisj\\OneDrive",
-    "PATH": "C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\louisj\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\Microsoft MPI\\Bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn;C:\\Program Files\\dotnet;C:\\Program Files\\Git\\cmd;C:\\WINDOWS\\System32\\OpenSSH;C:\\Users\\louisj\\AppData\\Roaming\\nvm;C:\\Program Files\\nodejs;C:\\Program Files\\Internet Explorer;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\nodejs;C:\\Users\\louisj\\.windows-build-tools\\python27;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\Microsoft MPI\\Bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn;C:\\Program Files\\dotnet;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Internet Explorer;C:\\Users\\louisj\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\louisj\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\louisj\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\louisj\\AppData\\Roaming\\nvm;C:\\Program Files\\nodejs;C:\\Users\\louisj\\AppData\\Roaming\\npm",
+    "PATH": "C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\louisj\\bin;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\Microsoft MPI\\Bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn;C:\\Program Files\\dotnet;C:\\WINDOWS\\System32\\OpenSSH;C:\\Users\\louisj\\AppData\\Roaming\\nvm;C:\\Program Files\\nodejs;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\nodejs;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Internet Explorer;C:\\Users\\louisj\\.windows-build-tools\\python27;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\Microsoft MPI\\Bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn;C:\\Program Files\\dotnet;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Internet Explorer;C:\\Users\\louisj\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\louisj\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\louisj\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\louisj\\AppData\\Roaming\\nvm;C:\\Program Files\\nodejs;C:\\Users\\louisj\\AppData\\Roaming\\npm",
     "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC",
     "PLINK_PROTOCOL": "ssh",
     "PROCESSOR_ARCHITECTURE": "AMD64",
@@ -365,11 +375,11 @@
     "SNC_LIB_64": "C:\\Program Files (x86)\\SAP\\SNCEncryption\\x64\\sapsncencryption.dll",
     "SYSTEMDRIVE": "C:",
     "SYSTEMROOT": "C:\\WINDOWS",
-    "TEMP": "C:\\Users\\louisj\\AppData\\Local\\Temp\\2",
+    "TEMP": "C:\\Users\\louisj\\AppData\\Local\\Temp\\4",
     "TERM": "cygwin",
     "TERM_PROGRAM": "vscode",
-    "TERM_PROGRAM_VERSION": "1.40.2",
-    "TMP": "C:\\Users\\louisj\\AppData\\Local\\Temp\\2",
+    "TERM_PROGRAM_VERSION": "1.41.1",
+    "TMP": "C:\\Users\\louisj\\AppData\\Local\\Temp\\4",
     "UATDATA": "C:\\WINDOWS\\CCM\\UATData\\D9F8C395-CAB8-491d-B8AC-179A1FE1BE77",
     "USERDNSDOMAIN": "MMS.DOI.NET",
     "USERDOMAIN": "MMS",
@@ -401,9 +411,9 @@
     "C:\\WINDOWS\\System32\\PSAPI.DLL",
     "C:\\WINDOWS\\System32\\CRYPT32.dll",
     "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
     "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
     "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
-    "C:\\WINDOWS\\System32\\bcrypt.dll",
     "C:\\WINDOWS\\System32\\profapi.dll",
     "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
     "C:\\WINDOWS\\SYSTEM32\\winmmbase.dll",
@@ -423,49 +433,49 @@
     "C:\\Windows\\System32\\rasadhlp.dll",
     "C:\\WINDOWS\\System32\\fwpuclnt.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\sharp.node",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libglib-2.0-0.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libvips-42.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libvips-cpp.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libcairo-2.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libexpat-1.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libglib-2.0-0.dll",
     "C:\\WINDOWS\\System32\\ole32.dll",
     "C:\\WINDOWS\\System32\\SHELL32.dll",
     "C:\\WINDOWS\\System32\\shcore.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libvips-cpp.dll",
     "C:\\WINDOWS\\System32\\windows.storage.dll",
     "C:\\WINDOWS\\System32\\shlwapi.dll",
     "C:\\WINDOWS\\System32\\cryptsp.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libcairo-2.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libgmodule-2.0-0.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libexif-12.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libexpat-1.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libfontconfig-1.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libgif-7.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libgmodule-2.0-0.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libgobject-2.0-0.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libgsf-1-114.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libjpeg-62.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\liblcms2-2.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\liborc-0.4-0.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libpango-1.0-0.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libgsf-1-114.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\liblcms2-2.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libjpeg-62.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libpangoft2-1.0-0.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libpango-1.0-0.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libpng16-16.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\librsvg-2-2.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libtiff-5.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libwebp-7.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libwebpdemux-2.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libwebpmux-3.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libz1.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libintl.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\librsvg-2-2.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libfreetype-6.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libpixman-1-0.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libwebpmux-3.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libwebpdemux-2.dll",
     "C:\\WINDOWS\\SYSTEM32\\MSIMG32.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libz1.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libgcc_s_seh-1.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libffi-6.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libgio-2.0-0.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libxml2-2.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libfribidi-0.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libharfbuzz.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libpixman-1-0.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libcroco-0.6-3.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libgdk_pixbuf-2.0-0.dll",
-    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libpangocairo-1.0-0.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libxml2-2.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libintl.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libiconv-2.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libpangocairo-1.0-0.dll",
+    "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libfribidi-0.dll",
     "\\\\?\\C:\\Users\\louisj\\dev\\nrrd\\node_modules\\sharp\\build\\Release\\libpangowin32-1.0-0.dll",
     "C:\\WINDOWS\\SYSTEM32\\USP10.dll",
     "C:\\WINDOWS\\SYSTEM32\\ntmarta.dll",
