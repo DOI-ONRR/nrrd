@@ -16,4 +16,4 @@ export const onServiceWorkerUpdateReady = () => {
 }
 
 // You can delete this file if you're not using it
-export { wrapRootElement } from './src/apollo/wrap-root-element';
+export { wrapRootElement } from './wrap-root-element'
