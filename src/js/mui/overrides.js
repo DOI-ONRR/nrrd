@@ -89,6 +89,9 @@ module.exports = Object.freeze({
         display: 'block',
       }
     },
+    fullWidth: {
+      maxWidth: 'auto',
+    },
     wrapper: {
       textTransform: 'capitalize',
       fontSize: '1.2rem',
