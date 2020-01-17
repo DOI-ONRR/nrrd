@@ -41,7 +41,6 @@ function a11yProps (index) {
 }
 
 const Tabtastic = props => {
-  console.log('Tabtastic props: ', props)
   const classes = useStyles()
 
   const { children } = props
