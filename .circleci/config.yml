@@ -86,7 +86,7 @@ jobs:
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0
+      - image: circleci/node:12.13.0-browsers
     steps:
       - checkout
       - restore_cache:
