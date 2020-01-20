@@ -82,7 +82,7 @@ const Map = props => {
           // let max=data.values.sort((a,b)=>a-b)[data.values.length-1];
 
           const ii = 0
-          for (const region in offshore.objects) {
+       /*   for (const region in offshore.objects) {
             if (ii < 1) {
               offshoreChart(
                 svg,
@@ -96,7 +96,7 @@ const Map = props => {
               )
               // ii++;
             }
-          }
+          } */
         })
       })
     }
@@ -114,7 +114,7 @@ const Map = props => {
         colorScheme,
         onClick
       )
-      for (const region in offshore.objects) {
+      /* for (const region in offshore.objects) {
         offshoreChart(
           svg,
           offshore,
@@ -123,7 +123,7 @@ const Map = props => {
           offshoreColorScheme,
           onClick
         )
-      }
+      } */
     }
   })
   return (
@@ -237,9 +237,16 @@ const chart = (
 
   // let states = get_states(us);
 
-  svg
-    .append('g')
-    .selectAll('path')
+  const zoom = d3.zoom()
+        .scaleExtent([1, 32])
+        .on('zoom', zoomed)
+  const g = svg.append('g');
+  
+  svg.call(zoom);
+
+  
+
+    g.selectAll('path')
     .data(topojson.feature(us, us.objects[mapFeatures]).features)
     .join('path')
     .attr('fill', d => color(data.get(d.id)))
@@ -266,10 +273,16 @@ const chart = (
     .append('path')
     .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
     .attr('fill', 'none')
-    .attr('stroke', '#9FA0A1')
-    .attr('stroke-linejoin', 'round')
+    //.attr('stroke', '#9FA0A1')
+    //.attr('stroke-linejoin', 'round')
     .attr('d', path)
 
+  function zoomed() {
+    console.debug("zoooom", g)
+      g
+        .selectAll('path') // To prevent stroke width from scaling
+        .attr('transform', d3.event.transform);
+   }
   return svg.node()
 }
 
