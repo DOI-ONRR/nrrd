@@ -1,71 +1,123 @@
-/* eslint-disable indent */
+const path = require('path')
+const fs = require('fs')
+const appRootDir = require('app-root-dir').get()
 
-const path = require(`path`)
-const GRAPHQL_QUERIES = require(`./src/js/graphql-queries`)
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions
 
-// Page Templates
-const CONTENT_DEFAULT_TEMPLATE = path.resolve(`src/templates/content-default.js`)
-const DOWNLOADS_TEMPLATE = path.resolve(`src/templates/downloads-default.js`)
+  /**
+   * We use the gatsby layout plugin and so if we want to use a different layout we pass in a property the default layout reads and then
+   * uses the appropriate layout.
+   */
+  if (page.path.match(/patterns/)) {
+    page.context.layout = 'pattern-library'
+    createPage(page)
+  }
+}
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage, createRedirect } = boundActionCreators
-
+exports.createPages = ({ graphql }) => {
   return Promise.all([
-    createDownloadPages(createPage, graphql)
+    createComponentsCache(graphql),
   ])
 }
 
-const getPageTemplate = templateId => {
-  switch (templateId) {
-    case 'howitworks-default':
-      return HOWITWORKS_DEFAULT_TEMPLATE
-    case 'archive-default':
-      return ARCHIVE_DEFAULT_TEMPLATE
-    case 'howitworks-process':
-      return HOWITWORKS_PROCESS_TEMPLATE
-    case 'downloads':
-      return DOWNLOADS_TEMPLATE
-    case 'how-it-works-reconciliation':
-      return HOWITWORKS_RECONCILIATION_TEMPLATE
-    case 'howitworks-revenue-by-company':
-      return HOWITWORKS_REVENUE_BY_COMPANY_TEMPLATE
-    case 'case-studies':
-      return CASE_STUDIES_TEMPLATE
-    case 'offshore-region':
-      return OFFSHORE_REGION_TEMPLATE
-    }
-  
-    return CONTENT_DEFAULT_TEMPLATE
-}
-
-
-const createDownloadPages = (createPage, graphql) => {
-  const graphQLQueryString = `{${ GRAPHQL_QUERIES.MARKDOWN_DOWNLOADS }}`
-
+/**
+ * Creates a index file of all the components during build time so they can be easily imported for the mdx provider to use.
+ * This aids in creating mdx pages since we dont have to import components in a mdx page. This is also used in creating documentation for
+ * the pattern library.
+ * @param {*} graphql
+ */
+const createComponentsCache = graphql => {
+  console.info('creating components cache index')
   return new Promise((resolve, reject) => {
-    resolve(
-      graphql(graphQLQueryString).then(result => {
-        if (result.errors) {
-        console.error(result.errors)
-          reject(result.errors)
+	    resolve(
+	      graphql(`
+        {  
+          allMdx(filter: {fileAbsolutePath: {regex: "/content-partials/"}}) {
+            edges {
+              node {
+                parent {
+                  ... on File {
+                    name
+                    absolutePath
+                  }
+                }
+              }
+            }
+          }
+          allComponentMetadata {
+            nodes {
+              id
+              displayName
+              description {
+                text
+              }
+              parent {
+                ... on File {
+                  absolutePath
+                }
+              }
+              props {
+                name
+                type {
+                  name
+                  raw
+                  value
+                }
+                description {
+                  text
+                }
+                required
+              }
+            }
+          }
         }
-        else {
-        // Create pages for each markdown file.
-          result.data.allMarkdownRemark.pages.forEach(({ page }) => {
-            const path = page.frontmatter.permalink
-            const template = getPageTemplate(page.frontmatter.layout)
-
-            createPage({
-              path,
-              component: template,
-              context: {
-                markdown: page,
-              },
+      `).then(result => {
+	        if (result.errors) {
+	          reject(result.errors)
+	        }
+	        else {
+          const allComponents = result.data.allComponentMetadata.nodes.map(
+            (node, i) =>
+              Object.assign({}, node, {
+                filePath: node.parent.absolutePath,
+              })
+          )
+          const allMdx = result.data.allMdx.edges.map(
+            (node, i) => Object.assign({}, node.node, {
+              displayName: node.node.parent.name,
+              filePath: node.node.parent.absolutePath,
             })
-          })
-        resolve()
-        }
-      })
-    )
-  })
+          )
+
+          let exportFileContents =
+              allComponents
+                .reduce((accumulator, { displayName, filePath }) => {
+                  accumulator.push(
+                    `export { default as ${ displayName } } from "${ filePath }"`
+                  )
+                  return accumulator
+                }, [])
+                .join('\n') + '\n'
+
+          exportFileContents = exportFileContents.concat(
+            allMdx
+              .reduce((accumulator, { displayName, filePath }) => {
+                accumulator.push(
+                  `export { default as ${ displayName } } from "${ filePath }"`
+                )
+                return accumulator
+              }, [])
+              .join('\n') + '\n'
+          )
+
+          fs.writeFileSync(
+            path.join(appRootDir, '.cache/components.js'),
+            exportFileContents
+          )
+          resolve()
+	        }
+	      })
+	    )
+	  })
 }
