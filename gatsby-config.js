@@ -55,6 +55,8 @@ const config = {
       resolve: 'gatsby-plugin-layout',
       options: {
         component: `${ __dirname }/src/components/layouts/PageLayoutManager`
+
+        // old from conflict component: `${ __dirname }/src/components/layouts/DefaultLayout`
       }
     },
     {
@@ -67,6 +69,7 @@ const config = {
     },
     'gatsby-theme-apollo',
     'gatsby-plugin-react-helmet',
+
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -134,6 +137,7 @@ const config = {
         }
       }
     },
+
     {
       resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
       options: {
@@ -159,6 +163,8 @@ const config = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     'gatsby-plugin-offline',
+
+    // 'gatsby-plugin-offline',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }

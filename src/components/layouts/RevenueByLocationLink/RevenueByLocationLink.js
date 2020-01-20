@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   menuLink: {
     '&:hover': {
-      textDecoration: `none`
+      textDecoration: 'none'
     }
   }
 }))
@@ -27,8 +27,8 @@ const RevenueByLocationLink = () => {
       </Grid>
       <Grid item>
         <Typography variant="body1">
-          <Link 
-            className={classes.menuLink} 
+          <Link
+            className={classes.menuLink}
             to="/explore/"
             activeClassName={classes.menuActiveLink}>
               Revenue by location

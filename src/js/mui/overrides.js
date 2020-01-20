@@ -20,7 +20,7 @@ module.exports = Object.freeze({
     root: {
       backgroundColor: primary.light,
       '&:hover': {
-        backgroundColor: primary.light,
+        backgroundColor: '#0F5A7D',
       }
     },
     text: {
@@ -33,9 +33,6 @@ module.exports = Object.freeze({
       boxShadow: '0 2px 5px 2px rgba(0, 0, 0, .2)',
       textTransform: 'inherit',
       fontSize: '1.2rem',
-      '&:hover': {
-        textDecoration: 'underline',
-      }
     },
   },
   // https://material-ui.com/api/link/
@@ -133,6 +130,11 @@ module.exports = Object.freeze({
   MuiIcon: {
     colorSecondary: '#fff'
   },
+  // https://material-ui.com/api/paper/
+  MuiPaper: {
+    root: {
+    }
+  },
   // https://material-ui.com/api/slider/
   MuiSlider: {
     root: {
@@ -141,12 +143,6 @@ module.exports = Object.freeze({
   },
   // https://material-ui.com/api/table-cell/
   MuiTableCell: {
-    root: {
-      padding: 0
-    },
-    sizeSmall: {
-      padding: 0
-    }
   },
   // https://material-ui.com/api/outlined-input/#outlinedinput-api
   MuiOutlinedInput: {
@@ -164,6 +160,15 @@ module.exports = Object.freeze({
         backgroundSize: 15,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'top left',
+      }
+    },
+  },
+  MuiTypography: {
+    root: {
+      '& + .h3Bar': {
+        borderBottom: '2px solid #cde3c3',
+        marginBottom: '1em',
+        paddingBottom: '.41667rem',
       }
     },
   }
