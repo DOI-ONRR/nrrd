@@ -1,6 +1,5 @@
 import React from 'react'
 
-import lazy from 'lazy.js'
 import GlossaryIcon from '-!svg-react-loader!../../../img/svg/icon-question-circle.svg'
 
 import GLOSSARY_TERMS from '../../../data/terms.yml'
@@ -23,7 +22,7 @@ class GlossaryItem extends React.Component {
   }
 
   render () {
-    let termId = utils.formatToSlug(this.props.term.name)+"_glossary_term"
+    const termId = utils.formatToSlug(this.props.term.name) + '_glossary_term'
     return (
       <li
         className="glossary-click glossary-item"
@@ -70,9 +69,9 @@ class Glossary extends React.Component {
   }
 
   clickHandler (event) {
-    let target = event.target
+    const target = event.target
     if (!this.state.toggleHidden && target.classList.value !== '') {
-      if (!lazy(target.classList.value).contains('glossary-click')) {
+      if (!target.classList.value.includes('glossary-click')) {
         this.onCloseHandler()
       }
     }
@@ -93,7 +92,7 @@ class Glossary extends React.Component {
   }
 
   render () {
-    let filteredTerms = filterGlossaryTerms(this.state.glossaryTerm)
+    const filteredTerms = filterGlossaryTerms(this.state.glossaryTerm)
     return (
       <div id="glossary" className="drawer glossary-click" aria-describedby="glossary-result" aria-hidden={this.state.toggleHidden}>
         <div className="glossary-click container">
@@ -149,14 +148,10 @@ function filterGlossaryTerms (glossaryTerm) {
 
 export function filterTerms (glossaryTerm) {
   if (glossaryTerm !== undefined && glossaryTerm !== null && glossaryTerm !== '') {
-    return (lazy(GLOSSARY_TERMS)
-      .filter(function (term) {
-        return (term.name.toLowerCase() === glossaryTerm.toLowerCase())
-      })
-      .toArray())
+    return GLOSSARY_TERMS.filter(term => term.name.toLowerCase() === glossaryTerm.toLowerCase())
   }
   else {
-    return lazy(GLOSSARY_TERMS).toArray()
+    return GLOSSARY_TERMS
   }
 }
 
