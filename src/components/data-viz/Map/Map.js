@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '30px',
-    zIndex: 10
+    zIndex: 10,
+    margin: '5px'
   }
 }))
 /**

@@ -50,12 +50,14 @@ export default class d3Map {
     const maxColor = this.maxColor
     const width = this.node.children[1].scrollWidth
     const height = this.node.children[1].scrollHeight
-
+    const vwidth = width * 1.5
+    const vheight = height * 1.5
     if (node.children[1].children[0]) {
       this._chart = d3.select(node.children[1].children[0])
       this._chart.selectAll('path').remove()
       _chart = this._chart
     }
+
     else {
       _chart = d3
         .select(node.children[1])
@@ -64,7 +66,7 @@ export default class d3Map {
         .style('height', height)
         .attr('fill', '#E0E2E3')
         .attr('class', 'map')
-        .attr('viewBox', '0 0 ' + width + ' ' + height)
+        .attr('viewBox', '0 0 ' + vwidth + ' ' + vheight)
     }
     // const margin = { top: 0, bottom: 0, right: 0, left: 0};
 

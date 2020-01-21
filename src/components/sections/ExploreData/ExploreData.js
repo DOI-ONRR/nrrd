@@ -14,7 +14,7 @@ import gql from 'graphql-tag'
 
 import Map from '../../data-viz/Map'
 import StateCard from '../../layouts/StateCard'
-
+import Switch from '@material-ui/core/Switch'
 import { StoreContext } from '../../../store'
 
 export const STATIC_QUERY = graphql`
@@ -176,12 +176,13 @@ const YearSlider = props => {
 }
 
 const ExploreData = () => {
+  const handleChange = () => {}
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
 
   const cards = state.cards
   const year = state.year
-
+  const county = state.county
   const onLink = state => {
     if (
       cards.filter(item => item.fips === state.properties.FIPS).length === 0
@@ -252,8 +253,14 @@ const ExploreData = () => {
         </Container>
         <Container className={classes.mapWrapper} maxWidth={false}>
           <Grid container>
-            <Grid item md={10}>
+            <Grid item md={12}>
               <Box className={classes.mapContainer}>
+                <Switch
+                  checked={state.county}
+                  onChange={handleChange('checkedA')}
+                  value="checkedA"
+                  inputProps={{ 'aria-label': 'secondary checkbox' }}
+                  />
                 <Map
                   mapFeatures="states"
                   mapData={mapData}
