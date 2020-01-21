@@ -49,7 +49,7 @@ permalink: /how-it-works/onshore-oil-gas/
           <p>The <span><a href="http://www.onrr.gov/">Office of Natural Resources Revenue</a> (ONRR)</span> manages some monetary transactions.</p>
         </div>
         <div class="revenues_subpage-office_logos">
-          <img class="revenues_subpage-office_logo" src="/public/img/logos/ONRR-mark.svg" alt="Office of Natural Resources Revenue">
+          <img class="revenues_subpage-office_logo" src="/public/img/logos/ONRR-mark.svg" alt="Office of Natural Resources Revenue" />
         </div>
       </div>
     </div>

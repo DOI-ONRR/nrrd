@@ -41,8 +41,8 @@ permalink: /how-it-works/offshore-oil-gas/
           <span><a href="http://www.bsee.gov/">Bureau of Safety and Environmental Enforcement</a> (BSEE)</span>.</p>
         </div>
         <div class="revenues_subpage-office_logos">
-          <img class="revenues_subpage-office_logo" src="/public/img/logos/BOEM-mark.png" alt="Bureau of Ocean Energy Management">
-          <img class="revenues_subpage-office_logo" src="/public/img/logos/BSEE-mark.png" alt="Bureau of Safety and Environmental Enforcement">
+          <img class="revenues_subpage-office_logo" src="/public/img/logos/BOEM-mark.png" alt="Bureau of Ocean Energy Management" />
+          <img class="revenues_subpage-office_logo" src="/public/img/logos/BSEE-mark.png" alt="Bureau of Safety and Environmental Enforcement" />
         </div>
       </div>
       <div class="revenues_subpage-office container">
@@ -50,7 +50,7 @@ permalink: /how-it-works/offshore-oil-gas/
           <p>The <span><a href="http://www.onrr.gov/">Office of Natural Resources Revenue</a> (ONRR)</span> manages monetary transactions.</p>
         </div>
         <div class="revenues_subpage-office_logos">
-          <img class="revenues_subpage-office_logo" src="/public/img/logos/ONRR-mark.svg" alt="Office of Natural Resources Revenue">
+          <img class="revenues_subpage-office_logo" src="/public/img/logos/ONRR-mark.svg" alt="Office of Natural Resources Revenue" />
         </div>
       </div>
     </div>
