@@ -8,6 +8,7 @@ import * as topojson from 'topojson-client'
 import utils from '../../../js/utils'
 // import { , withPrefix } from '../../utils/temp-link'
 // import styles from './Map.module.scss'
+import D3Map from './D3Map.js'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -73,8 +74,19 @@ const Map = (props) => {
         // let p= get_data().then((data)=>{3
         // chart(elemRef.current, us,mapFeatures,data);
         // });
-        elemRef.current.innerHTML = ''
-        const svg = chart(
+      //  elemRef.current.children[0].innerHTML = ''
+      //  elemRef.current.children[1].innerHTML = ''
+        let d3map=new D3Map(elemRef.current,
+                          us,
+                          mapFeatures,
+                          data,
+                          colorScheme,
+                          onClick,
+                          minColor,
+                          maxColor)
+        
+        
+       /* const svg = chart(
           elemRef.current,
           us,
           mapFeatures,
@@ -84,7 +96,8 @@ const Map = (props) => {
           minColor,
           maxColor
         )
-
+       */
+        
         const promise2 = d3.json(mapOffshoreJson)
         promise2.then(offshore => {
           // let max=data.values.sort((a,b)=>a-b)[data.values.length-1];
@@ -114,14 +127,23 @@ const Map = (props) => {
       // let states = get_states(us);
       const data = observableData(mapData)
       data.title = mapTitle
-      const svg = chart(
+      let map=new d3Map(elemRef.current,
+                        us,
+                        mapFeatures,
+                        data,
+                        colorScheme,
+                        onClick,
+                        minColor,
+                        maxColor)
+      /* const svg = chart(
         elemRef.current,
         us,
         mapFeatures,
         data,
         colorScheme,
         onClick
-      )
+        ) */
+      
       /* for (const region in offshore.objects) {
          offshoreChart(
          svg,
@@ -229,7 +251,7 @@ const chart = (
   }
 
   const svg = d3
-        .select(node)
+        .select(node.children[1])
         .append('svg')
         .style('width', width)
         .style('height', height)
@@ -241,10 +263,10 @@ const chart = (
   )
 
   console.debug(data)
-  svg
-    .append('g')
-    .attr('transform', 'translate(30,30)')
-    .call(legend, data.title, data, color, true)
+  const legendSvg = d3.select(node.children[0]).append('svg');
+  legendSvg.append("g")
+    .attr("transform", "translate(30,0)")
+    .call(legend,data.title, data, color,true);
   // return svg.node();
 
   // let states = get_states(us);
