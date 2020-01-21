@@ -19,13 +19,16 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '1rem',
     '& svg': {
       fill: '#1478a6',
+      verticalAlign: 'middle',
+      marginRight: '8px',
     },
     verticalAlign: 'middle',
     marginRight: '8px',
     '& span': {
-      fontSize: '1rem',
       marginRight: '1rem',
-      verticalAlign: 'baseline'
+      verticalAlign: 'baseline',
+      position: 'relative',
+      top: '2px',
     },
     '&:hover': {
       textDecoration: 'underline'

@@ -9,8 +9,8 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import { ThemeProvider } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
+
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Box from '@material-ui/core/Box'
 
@@ -34,12 +34,20 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'underline',
       cursor: 'pointer',
       '&:hover': {
-        textDecoration: `none`,
+        textDecoration: 'none',
       }
     },
     img: {
-      maxWidth: `100%`
+      maxWidth: '100%'
     },
+    '.header-bar': {
+      borderWidth: '2px',
+      borderBottom: 'solid',
+      paddingBottom: '.41667rem',
+    },
+    '.header-bar.green': {
+      borderColor: '#cde3c3',
+    }
   },
   root: {
     paddingTop: theme.spacing(2),
@@ -124,12 +132,12 @@ const DefaultLayout = ({ children }) => {
           <Banner />
 
           <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
-        
+
           <GlossaryDrawer />
-        
+
           <Box className={classes.siteContent}>
             <CssBaseline />
-            <main>{children}</main>
+            <Box component="main">{children}</Box>
           </Box>
 
           <Footer version={data && data.site.siteMetadata.version} />
