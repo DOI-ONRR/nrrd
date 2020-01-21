@@ -196,13 +196,12 @@ export default class d3Map {
         .attr('class', 'legend')
     }
 
-    let g=legend.append('g')
-        .attr('transform', 'translate(30,0)')
+    const g = legend.append('g')
+      .attr('transform', 'translate(30,0)')
     //      .call(legend,data.title, data, color,true);
     const width = 200
     const height = 20
     const sorted = data.values.sort((a, b) => a - b)
-    
     const lowest = utils.formatToSigFig_Dollar(Math.floor(sorted[0]), 3)
     const median = utils.formatToSigFig_Dollar(
       Math.floor(sorted[Math.floor(sorted.length / 2)]),
@@ -220,15 +219,13 @@ export default class d3Map {
         .attr('fill-opacity', 0.9)
         .style('fill', color(sorted[ii]))
     }
-    
     g.append('text')
       .attr('class', 'caption')
       .attr('y', -6)
       .attr('fill', '#000')
       .attr('text-anchor', 'start')
       .attr('font-weight', 'bold')
-    
-    .text(title)
+      .text(title)
 
     if (this.labels) {
       g.call(
@@ -241,5 +238,3 @@ export default class d3Map {
     }
   }
 }
-
-
