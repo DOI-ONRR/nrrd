@@ -54,11 +54,11 @@ Lease holders also pay different fees to the Bureau of Land Management, Bureau o
     <tr>
       <td>Offshore</td>
       <td><strong>Bonus</strong></td>
-      <td><strong>Water depth 0–200m:</strong> Years 1–5 rent is $7/acre, year 6 rent is $14/acre, year 7 rent is $21/acre, year 8+ rent is $28/acre<br>
-      <strong>Water depth 200–400m:</strong> Years 1–5 rent is $11/acre, year 6 rent is $22/acre, year 7 rent is $33/acre, year 8+ rent is $44/acre<br> 
+      <td><strong>Water depth 0–200m:</strong> Years 1–5 rent is $7/acre, year 6 rent is $14/acre, year 7 rent is $21/acre, year 8+ rent is $28/acre<br />
+      <strong>Water depth 200–400m:</strong> Years 1–5 rent is $11/acre, year 6 rent is $22/acre, year 7 rent is $33/acre, year 8+ rent is $44/acre<br /> 
       <strong>Water depth 400+:</strong> Years 1–5 rent is $11/acre, years 6+ rent is $16/acre
       </td>
-      <td><strong>12.5%</strong> for leases located in water depths less than 200 meters<br>
+      <td><strong>12.5%</strong> for leases located in water depths less than 200 meters<br />
       <strong>18.75%</strong> for leases located in water depths of 200 meters and deeper
       </td>
     </tr>
@@ -86,7 +86,7 @@ Lease holders also pay different fees to the Bureau of Land Management, Bureau o
       <td>Surface</td>
       <td><strong>Bonus</strong></td>
       <td><strong>$3</strong> annual rent per acre</td>
-      <td><strong>12.5%</strong> of production value in royalties<br>
+      <td><strong>12.5%</strong> of production value in royalties<br />
       <strong>$0.28</strong> per ton Abandoned Mine Land Fee
       </td>
     </tr>
@@ -94,7 +94,7 @@ Lease holders also pay different fees to the Bureau of Land Management, Bureau o
       <td>Sub-surface</td>
       <td><strong>Bonus</strong></td>
       <td><strong>$3</strong> annual rent per acre</td>
-      <td><strong>8%</strong> of production value in royalties<br>
+      <td><strong>8%</strong> of production value in royalties<br />
       <strong>$0.12</strong> per ton Abandoned Mine Land Fee
       </td>
     </tr>
@@ -123,16 +123,16 @@ Lease holders also pay different fees to the Bureau of Land Management, Bureau o
       <td>Public domain lands</td>
       <td></td>
       <td><strong>$1</strong> per acre</td>
-      <td><strong>$20</strong> processing fee<br>
-          <strong>$40</strong> location fee<br>
-          <strong>$165</strong> initial maintenance fee<br>
+      <td><strong>$20</strong> processing fee<br />
+          <strong>$40</strong> location fee<br />
+          <strong>$165</strong> initial maintenance fee<br />
           <strong>$165</strong> annual maintenance fee for the assessment year in which the claim/site was located
       </td>
       <td></td>
     </tr>
     <tr>
       <td>Acquired lands</td>
-      <td><strong>$1,000</strong> minimum bond for prospecting permits<br>
+      <td><strong>$1,000</strong> minimum bond for prospecting permits<br />
           <strong>$5,000</strong> minimum bond for leases</td>
       <td><strong>$0.50</strong> per acre or fraction of an acre</td>
       <td></td>
@@ -164,16 +164,16 @@ Lease holders also pay different fees to the Bureau of Land Management, Bureau o
       <td>
         <strong>$15</strong> per acre application filing fee (outside designated leasing areas)
       </td>
-      <td><strong>Rent</strong> determined by number of acres multiplied by zone rate<br><br>
+      <td><strong>Rent</strong> determined by number of acres multiplied by zone rate<br /><br />
       <a href="https://www.federalregister.gov/documents/2016/12/19/2016-27551/competitive-processes-terms-and-conditions-for-leasing-public-lands-for-solar-and-wind-energy">Review the details</a></td>
-      <td>Solar megawatt capacity fees vary by technology, ranging from <strong>$2,863</strong> to <strong>$4,294</strong><br><br>
-      <strong>$5,010</strong> megawatt capacity fee for wind<br><br>
+      <td>Solar megawatt capacity fees vary by technology, ranging from <strong>$2,863</strong> to <strong>$4,294</strong><br /><br />
+      <strong>$5,010</strong> megawatt capacity fee for wind<br /><br />
       <a href="https://www.blm.gov/policy/im-2017-096">Review the details</a>
       </td>
     </tr>
     <tr>
       <td>Offshore (wind)</td>
-      <td><strong>Bonus</strong> (competitive lease)<br>
+      <td><strong>Bonus</strong> (competitive lease)<br />
           <strong>$0.25</strong> per acre for acquisition fee (uncompetitive lease)</td>
       <td><strong>$3</strong> annual rent per acre</td>
       <td></td>
@@ -206,22 +206,22 @@ Lease holders also pay different fees to the Bureau of Land Management, Bureau o
     <tr>
       <td>Competitive leasing</td>
       <td>
-        <strong>$115</strong> nomination fee and <strong>$0.12</strong> per acre<br>
+        <strong>$115</strong> nomination fee and <strong>$0.12</strong> per acre<br />
         <strong>$165</strong> application fee
       </td>
-      <td><strong>$2</strong> per acre for the first year<br>
-          <strong>$3</strong> annual rent per acre for years 2–10<br>
+      <td><strong>$2</strong> per acre for the first year<br />
+          <strong>$3</strong> annual rent per acre for years 2–10<br />
           <strong>$5</strong> annual rent per acre after 10 years
       </td>
       <td>Direct-use fees for energy needs other than the commercial production or generation of electricity</td>
-      <td>Electricity sales: <strong>1.75%</strong> of gross proceeds for 10 years, then <strong>3.5%</strong><br><br>
+      <td>Electricity sales: <strong>1.75%</strong> of gross proceeds for 10 years, then <strong>3.5%</strong><br /><br />
           Arm’s length sales: <strong>10%</strong> of gross proceeds from contract multiplied by lease royalty rate
       </td>    
     </tr>
     <tr>
       <td>Noncompetitive leasing</td>
       <td><strong>$415</strong> application fee</td>
-      <td><strong>$1</strong> annual rent per acre for 10 years<br>
+      <td><strong>$1</strong> annual rent per acre for 10 years<br />
           <strong>$5</strong> annual rent per acre thereafter
       </td>
       <td></td>
