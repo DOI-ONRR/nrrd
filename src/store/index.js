@@ -10,22 +10,20 @@ const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
-    case 'GLOSSARY_TERM_SELECTED':
-      return ({ ...state, glossaryTerm: payload.glossaryTerm, glossaryOpen: payload.glossaryOpen })
-    case 'COUNT':
-      return ({ ...state, count: payload })
-    case 'CARDS': 
-      return ({ ...state, cards: payload.cards })
-    case 'YEAR': 
-      return ({ ...state, year: payload.year })
+  case 'GLOSSARY_TERM_SELECTED':
+    return ({ ...state, glossaryTerm: payload.glossaryTerm, glossaryOpen: payload.glossaryOpen })
+  case 'CARDS':
+    return ({ ...state, cards: payload.cards })
+  case 'YEAR':
+    return ({ ...state, year: payload.year })
 
-    default:
-      return state
+  default:
+    return state
   }
 }
 
 const initialState = {
-  cards: [{fips: 99, abbrev: 'National', name: 'National', minimizeIcon:true, closeIcon: false}],
+  cards: [{ fips: 99, abbrev: 'National', name: 'National', minimizeIcon: true, closeIcon: false }],
   count: 0,
   glossaryOpen: false,
   glossaryTerm: '',
@@ -34,7 +32,7 @@ const initialState = {
 
 const StoreContext = React.createContext(initialState)
 
-function StoreProvider({ children }) {
+function StoreProvider ({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
@@ -45,4 +43,3 @@ function StoreProvider({ children }) {
 }
 
 export { StoreContext, StoreProvider }
-
