@@ -13,11 +13,13 @@ const mdxComponents = {
 }
 
 export const wrapRootElement = ({ element }) => (
-  <ApolloProvider client={client}>
-    <StoreProvider>
-      <MDXProvider components={ mdxComponents }>
-        {element}
-      </MDXProvider>
-    </StoreProvider>
-  </ApolloProvider>
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <StoreProvider>
+        <MDXProvider components={ mdxComponents }>
+          {element}
+        </MDXProvider>
+      </StoreProvider>
+    </ApolloProvider>
+  </React.StrictMode>
 )
