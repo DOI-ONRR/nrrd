@@ -28,7 +28,7 @@ permalink: /how-it-works/coal/
 		      <p>Managed and regulated by the <span><a href="http://www.blm.gov/">Bureau of Land Management</a> (BLM)</span>.</p>
 		    </div>
 		    <div class="revenues_subpage-office_logos">
-		      <img class="revenues_subpage-office_logo" src="/public/img/logos/BLM-mark.png" alt="Bureau of Land Management">
+		      <img class="revenues_subpage-office_logo" src="/public/img/logos/BLM-mark.png" alt="Bureau of Land Management" />
 		    </div>
 		  </div>
 		  <div class="revenues_subpage-office container">
