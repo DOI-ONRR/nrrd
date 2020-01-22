@@ -32,6 +32,7 @@ const initialState = {
   glossaryTerm: '',
   year: 2019,
   countyLevel: false,
+  period: 'Fiscal Year'
 }
 
 const StoreContext = React.createContext(initialState)

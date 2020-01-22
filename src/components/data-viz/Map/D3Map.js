@@ -186,6 +186,8 @@ export default class d3Map {
   legend () {
     const title = this.data.title
     const data = this.data
+    console.debug("DATA", data);
+    console.debug("MAP FEATURE", this.mapFeature);
     const color = this.color
     let legend
     if (this.node.children[0].children[0]) {

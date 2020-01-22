@@ -51,6 +51,8 @@ const Map = (props) => {
 
   const mapFeatures = props.mapFeatures || 'counties'
   const mapData = props.mapData || []
+  console.debug("FEATURES", mapFeatures)
+
   // mapData=props.offshoreData && mapData.concat(props.offshoreData);
   const elemRef = useRef(null)
   const colorScheme = props.colorScheme || 'green'
@@ -64,13 +66,14 @@ const Map = (props) => {
   const classes = useStyles()
   const minColor = props.minColor
   const maxColor = props.maxColor
-
+  
   useEffect(() => {
     if (typeof mapJsonObject !== 'object') {
       const promise = d3.json(mapJson)
       promise.then(us => {
         // let states = get_states(us);
         const data = observableData(mapData)
+        console.debug("Data", mapData)
         data.title = mapTitle
         // let p= get_data().then((data)=>{3
         // chart(elemRef.current, us,mapFeatures,data);

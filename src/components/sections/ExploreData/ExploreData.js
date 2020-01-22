@@ -15,7 +15,7 @@ import gql from 'graphql-tag'
 import Map from '../../data-viz/Map'
 import StateCard from '../../layouts/StateCard'
 import Switch from '@material-ui/core/Switch'
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { StoreContext } from '../../../store'
 
 export const STATIC_QUERY = graphql`
@@ -29,8 +29,8 @@ export const STATIC_QUERY = graphql`
 `
 
 const FISCAL_REVENUE_QUERY = gql`
-  query FiscalRevenue($year: Int!) {
-    fiscal_revenue_summary(where: {state_or_area: {_nin: ["National", ""]}, fiscal_year: { _eq: $year } }) {
+  query FiscalRevenue($year: Int!, $location: String!) {
+    fiscal_revenue_summary(where: {state_or_area: {_nin: ["National", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location } }) {
       fiscal_year
       state_or_area
       sum
@@ -186,6 +186,7 @@ const ExploreData = () => {
     console.debug('Handle change', name, event)
     return dispatch({ type: 'COUNTY_LEVEL', payload: { [name]: event.target.checked } })
   }
+  const location = state.countyLevel ? 'County' : 'State'
   const onLink = state => {
     if (
       cards.filter(item => item.fips === state.properties.FIPS).length === 0
@@ -208,13 +209,13 @@ const ExploreData = () => {
   }
 
   const { loading, error, data } = useQuery(FISCAL_REVENUE_QUERY, {
-    variables: { year }
+    variables: { year, location }
   })
 
   const cache = [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
 
   cache.map((year, i) => {
-    useQuery(FISCAL_REVENUE_QUERY, { variables: { year } })
+    useQuery(FISCAL_REVENUE_QUERY, { variables: { year, location } })
   })
 
   if (loading) {
@@ -259,16 +260,16 @@ const ExploreData = () => {
             <Grid item md={12}>
               <Box className={classes.mapContainer}>
                 <FormControlLabel
-                  control={
+                  control= {
                     <Switch
                       checked={state.countyLevel}
                       onChange={handleChange('countyLevel')}
                       value="countyLevel"
-                     color="primary"
-                     />
-                     }
-                     label="County Data"
-                     />
+                      color="primary"
+                    />
+                  }
+                  label="County Data"
+                />
                 <Map
                   mapFeatures={ state.countyLevel ? 'counties' : 'states' }
                   mapData={mapData}
