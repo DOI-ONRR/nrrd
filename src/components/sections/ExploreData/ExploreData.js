@@ -15,6 +15,7 @@ import gql from 'graphql-tag'
 import Map from '../../data-viz/Map'
 import StateCard from '../../layouts/StateCard'
 import Switch from '@material-ui/core/Switch'
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { StoreContext } from '../../../store'
 
 export const STATIC_QUERY = graphql`
@@ -176,13 +177,15 @@ const YearSlider = props => {
 }
 
 const ExploreData = () => {
-  const handleChange = () => {}
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
 
   const cards = state.cards
   const year = state.year
-  const county = state.county
+  const handleChange = name => event => {
+    console.debug('Handle change', name, event)
+    return dispatch({ type: 'COUNTY_LEVEL', payload: { [name]: event.target.checked } })
+  }
   const onLink = state => {
     if (
       cards.filter(item => item.fips === state.properties.FIPS).length === 0
@@ -255,14 +258,19 @@ const ExploreData = () => {
           <Grid container>
             <Grid item md={12}>
               <Box className={classes.mapContainer}>
-                <Switch
-                  checked={state.county}
-                  onChange={handleChange('checkedA')}
-                  value="checkedA"
-                  inputProps={{ 'aria-label': 'secondary checkbox' }}
-                  />
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={state.countyLevel}
+                      onChange={handleChange('countyLevel')}
+                      value="countyLevel"
+                     color="primary"
+                     />
+                     }
+                     label="County Data"
+                     />
                 <Map
-                  mapFeatures="states"
+                  mapFeatures={ state.countyLevel ? 'counties' : 'states' }
                   mapData={mapData}
                   minColor="#CDE3C3"
                   maxColor="#2F4D26"
