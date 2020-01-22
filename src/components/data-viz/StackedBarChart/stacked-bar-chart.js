@@ -7,6 +7,8 @@ export default class stackedBarChart {
     this.options = options
     this.formatLegendFunc = formatLegendFunc
 
+    console.log('this.data: ', this.data)
+
     this.formatLegend(this.formatLegendFunc)
 
     if (options && options.columns) {
@@ -416,7 +418,6 @@ export default class stackedBarChart {
     const formatLegend = this.formatLegend()
     const strokeColor = '#eeeeee'
 
-    //    const yaxis = this.yaxis().reverse(); this.yaxis().reverse();
     let legend
     if (this.legend) {
       this.legend.selectAll('.legend').remove()
