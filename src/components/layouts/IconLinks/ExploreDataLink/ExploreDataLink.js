@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
       marginRight: '1rem',
       verticalAlign: 'baseline',
       position: 'relative',
-      top: '2px',
+      top: 3,
     },
     '&:hover': {
       textDecoration: 'underline'

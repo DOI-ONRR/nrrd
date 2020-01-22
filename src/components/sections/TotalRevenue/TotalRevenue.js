@@ -17,21 +17,30 @@ import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 
 import { StoreContext } from '../../../store'
 import { ThemeConsumer } from 'styled-components'
+import utils from '../../../js/utils'
 
 const TOTAL_REVENUE_QUERY = gql`
   query TotalYearlyRevenue($period: String!) {
-  
-
-
-  total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
-    federal_offshore
-    federal_onshore
-    native_american
-    not_tied_to_a_lease
-    fiscal_year
-
+    total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
+      federal_offshore
+      federal_onshore
+      native_american
+      not_tied_to_a_lease
+      fiscal_year
+    }
   }
-}
+`
+
+const TOTAL_REVENUE_QUERY = gql`
+  query TotalYearlyRevenue($period: String!) {
+    total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
+      federal_offshore
+      federal_onshore
+      native_american
+      not_tied_to_a_lease
+      fiscal_year
+    }
+  }
 `
 
 const TotalRevenue = props => {
@@ -63,6 +72,7 @@ const TotalRevenue = props => {
         <Grid item xs>
           <StackedBarChart
             data={data.total_yearly_revenue}
+            legendDataFormatFunc={utils.formatToDollarFloat}
             columns={columns}
             xRotate={xRotate}
             yLabels={yLabels}
