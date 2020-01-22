@@ -31,22 +31,11 @@ const TOTAL_REVENUE_QUERY = gql`
   }
 `
 
-const TOTAL_REVENUE_QUERY = gql`
-  query TotalYearlyRevenue($period: String!) {
-    total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
-      federal_offshore
-      federal_onshore
-      native_american
-      not_tied_to_a_lease
-      fiscal_year
-    }
-  }
-`
-
 const TotalRevenue = props => {
   const { state, dispatch } = useContext(StoreContext)
   const period = state.period
   const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american', 'not_tied_to_a_lease']
+  const columnHeaders = props.columnHeaders || ['Source', 'Year']
 
   const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American', 'Not tied to a lease']
   const xLabels = props.xLabels
@@ -74,6 +63,7 @@ const TotalRevenue = props => {
             data={data.total_yearly_revenue}
             legendDataFormatFunc={utils.formatToDollarFloat}
             columns={columns}
+            columnHeaders={columnHeaders}
             xRotate={xRotate}
             yLabels={yLabels}
             xLabels={xLabels}

@@ -4,6 +4,13 @@ import React, { useEffect, useRef } from 'react'
 // import utils from '../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
 import BarChart from './stacked-bar-chart.js'
 const useStyles = makeStyles(theme => ({
@@ -57,6 +64,7 @@ const StackedBarChart = props => {
   const options = {}
   const formatLegendFunc = props.legendDataFormatFunc
   options.columns = props.columns
+  options.columnHeaders = props.columnHeaders
   options.yLabels = props.yLabels
   options.xLabels = props.xLabels
   options.xRotate = props.xRotate
@@ -77,7 +85,26 @@ const StackedBarChart = props => {
 
   return (
 	  <div className={classes.container} ref={elemRef}>
-	    <div className={classes.chart}></div><div className={classes.legend}></div>
+	    <div className={classes.chart}></div>
+      <div className={classes.legend}></div>
+      {/* <Table className={classes.table} aria-label="Stacked bar chart">
+        <TableHead>
+          <TableRow>
+            <TableCell>Source</TableCell>
+            <TableCell align="right">Year</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {options.yLabels.map((row, index) => (
+            <TableRow key={index}>
+              <TableCell component="th" scope="row">
+                {row}
+              </TableCell>
+              <TableCell align="right">{row}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table> */}
     </div>
   )
 }
