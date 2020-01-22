@@ -105,7 +105,7 @@ const Tabordion = props => {
     </Fragment>
   )
 }
-
+/*
 export const Tab = props => {
   props.index = 0
   return (
@@ -124,11 +124,12 @@ TabPanel.propTypes = {
 }
 
 Tab.propTypes = {
-  /** The Id for the element, used to ensure expandable containers have unique Ids. */
+  // The Id for the element, used to ensure expandable containers have unique Ids. 
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired
 }
 
+*/
 Tabordion.propTypes = {
   children: PropTypes.node
 }
