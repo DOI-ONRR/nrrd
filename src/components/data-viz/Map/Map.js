@@ -102,11 +102,11 @@ const Map = (props) => {
         )
        */
         
-        const promise2 = d3.json(mapOffshoreJson)
-        promise2.then(offshore => {
+        //      const promise2 = d3.json(mapOffshoreJson)
+      //  promise2.then(offshore => {
           // let max=data.values.sort((a,b)=>a-b)[data.values.length-1];
 
-          const ii = 0
+        //  const ii = 0
           /*   for (const region in offshore.objects) {
                if (ii < 1) {
                offshoreChart(
@@ -122,16 +122,16 @@ const Map = (props) => {
                // ii++;
                }
                } */
-        })
+       // })
       })
     }
     else {
-      const us = mapJsonObject.us
+      const us = mapJsonObject
       const offshore = mapJsonObject.offshore
       // let states = get_states(us);
       const data = observableData(mapData)
       data.title = mapTitle
-      let map=new d3Map(elemRef.current,
+      let map=new D3Map(elemRef.current,
                         us,
                         mapFeatures,
                         data,

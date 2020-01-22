@@ -17,6 +17,8 @@ import StateCard from '../../layouts/StateCard'
 import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { StoreContext } from '../../../store'
+//import {mapJson} from './us-topology.json'
+import  mapJson from './us-topology.json'
 
 export const STATIC_QUERY = graphql`
   {
@@ -208,18 +210,19 @@ const ExploreData = () => {
     dispatch({ type: 'CARDS', payload: { cards: cards.filter(item => item.fips !== fips) } })
   }
 
-  const { loading, error, data } = useQuery(FISCAL_REVENUE_QUERY, {
+  let { loading, error, data } = useQuery(FISCAL_REVENUE_QUERY, {
     variables: { year, location }
   })
+ // const cache = [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
 
-  const cache = [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
+ //  cache.map((year, i) => {
+ //      useQuery(FISCAL_REVENUE_QUERY, { variables: { year, location } })
+ //  })
 
-  cache.map((year, i) => {
-    useQuery(FISCAL_REVENUE_QUERY, { variables: { year, location } })
-  })
+
 
   if (loading) {
-    return null
+    return loading
   }
 
   if (error) return `Error! ${ error.message }`
@@ -229,7 +232,7 @@ const ExploreData = () => {
       item.state_or_area,
       item.sum
     ])
-
+    console.debug("MAPJSON___________________", mapJson);
     // const timeout = 5000
     return (
       <Fragment>
@@ -271,7 +274,8 @@ const ExploreData = () => {
                   label="County Data"
                 />
                 <Map
-                  mapFeatures={ state.countyLevel ? 'counties' : 'states' }
+      mapFeatures={ state.countyLevel ? 'counties' : 'states' }
+      mapJsonObject={mapJson}
                   mapData={mapData}
                   minColor="#CDE3C3"
                   maxColor="#2F4D26"
