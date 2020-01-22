@@ -90,7 +90,10 @@ const useStyles = makeStyles({
     '& th': {
       padding: 5,
       lineHeight: 1
-    }
+    },
+    '& td': {
+      padding: 0,
+    },
   },
   paper: {
     width: '100%'
@@ -106,7 +109,7 @@ const APOLLO_QUERY = gql`
       fiscal_year
       state_or_area
       sum
-      distinctCommodities
+      distinct_commodities
     }
 
     revenue_commodity_summary(
@@ -141,23 +144,6 @@ const APOLLO_QUERY = gql`
 //   }
 // `
 
-const CACHE_QUERY = gql`
-  {
-    selectedYear @client
-    stateCards @client
-  }
-`
-
-const QueryCache = props => {
-  const { data } = useQuery(CACHE_QUERY)
-
-  let year = 2018
-  if (data) {
-    year = data.selectedYear
-  }
-  return year
-}
-
 // const TopCommodities = (state, commodity) => {
 //   const { loading, error, data } = useQuery(COMMODITY_TRENDS, {
 //     variables: { state: state, commodity: commodity }
@@ -187,7 +173,7 @@ const StateCard = props => {
     setMinimized(!minimized)
   }
 
-  const year = QueryCache()
+  const year = state.year
 
   // let state = props.abbrev
   const { loading, data } = useQuery(APOLLO_QUERY, {
@@ -258,6 +244,8 @@ const StateCard = props => {
     data.revenue_commodity_summary.length > 0 &&
     data.commodity_sparkdata.length > 0
   ) {
+
+
     sparkData = data.fiscal_revenue_summary.map((item, i) => [
       item.fiscal_year,
       item.sum

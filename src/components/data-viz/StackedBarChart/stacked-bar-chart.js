@@ -18,9 +18,8 @@ export default class stackedBarChart {
 
     if (options && options.xLabels) {
       this.xLabels(options.xLabels)
-    }
-    else {
-      this.xLabels(this.xdomain())
+    } else {
+       this.xLabels(this.xdomain())
     }
 
     if (options && options.yLabels) {
@@ -65,15 +64,14 @@ export default class stackedBarChart {
   xaxis () {
     return this._columns[0]
   }
-
+  
   xLabels (labels) {
     try {
-      if (labels) {
+      if(labels) {
         this._xLabels = labels
-      }
-      return this._xLabels
+      } 
+      return this._xLabels 
     }
-
     catch (err) {
       console.warn('error in xLabels:', err)
     }
@@ -92,17 +90,17 @@ export default class stackedBarChart {
 
   ydomain (row) {
     try {
-      const r = []
-      const allowed = this.yaxis()
+      let r=[]
+      const allowed=this.yaxis()
       const filtered = Object.keys(row)
-        .filter(key => allowed.includes(key))
-        .reduce((obj, key) => {
-          obj[key] = row[key]
-          return obj
-        }, {})
-
+            .filter(key => allowed.includes(key))
+            .reduce((obj, key) => {
+              obj[key] = row[key];
+              return obj;
+            }, {});
+      
       // console.log(filtered);
-      return filtered
+      return filtered;
     }
     catch (err) {
       console.warn('error in ydomain:', err)
@@ -223,6 +221,7 @@ export default class stackedBarChart {
   }
 */
 
+  
   getOrderedKeys (data) {
     return Object.keys((data[0][Object.keys(data[0])[0]])[0])
   }
@@ -257,7 +256,8 @@ export default class stackedBarChart {
     const stack = d3.stack()
 	  .keys(this.yaxis())
 	  .offset(d3.stackOffsetNone)
-    const xwidth = self.xScale.bandwidth()
+
+    const xwidth=self.xScale.bandwidth();
 
     // console.debug(xwidth);
     const keys = this.yaxis()
@@ -269,17 +269,16 @@ export default class stackedBarChart {
       .attr('height', (self._height - self.marginTop))
       .attr('width', self.xScale.bandwidth())
       .attr('transform', d => 'translate(' + (self.xScale(d[self.xaxis()]) + ',0)'))
-
       .attr('class', (d, i) => i === self.data.length - 1 ? 'active' : 'bar')
       .attr('data-key', d => Object.keys(d)[0])
       .attr('tabindex', 0)
       .selectAll('g')
       .data(d => {
         // console.debug("ROW", d)
-        const yd = self.ydomain(d)
-
+        let yd=self.ydomain(d)
+        
         // console.debug("YD", yd)
-        const r = stack([yd])
+        let r=stack([yd])
         // console.debug("STACK", r);
         return r
       })
@@ -297,7 +296,7 @@ export default class stackedBarChart {
       .attr('width', self.maxBarSize)
       .attr('x', self.barOffsetX)
       .on('click', function (d) {
-        console.debug(' onclick:', d)
+        console.debug(" onclick:", d);
         self.toggleSelectedBar(this, d, self.onSelect(d))
       })
   }
@@ -317,7 +316,7 @@ export default class stackedBarChart {
     this.addChart(this.data)
 
     this.chart.selectAll('.x-axis').remove()
-
+    
     this.addXAxis(this.xLabels())
 
     // Add Grouping Lines
@@ -325,7 +324,8 @@ export default class stackedBarChart {
     this.addGroupLines()
 
     this.addLegend()
-  }
+}
+
 
   addMaxExtent (units) {
     try {
@@ -358,17 +358,16 @@ export default class stackedBarChart {
 
   addXAxis (xLabels) {
     const self = this
-
-    const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat((d, i) => {
-      console.debug('---------------tickFormat: ', d, i, xLabels)
+    const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat( (d,i) => {
+      console.debug('---------------tickFormat: ', d,i, xLabels)
       return (xLabels) ? xLabels[i] : d
     }))
 
-    const rotate = this.options.xRotate || 0
-    let x = -1
-    const y = 6
-    if (rotate != 0) {
-      x = -11
+    const rotate=this.options.xRotate || 0
+    let x=-1
+    let y=6
+    if(rotate != 0) {
+      x=-11
     }
     self.chart.append('g')
       .attr('class', 'x-axis')
@@ -376,7 +375,6 @@ export default class stackedBarChart {
       .call(createXAxis())
       .selectAll('text')
       .attr('transform', 'rotate(' + rotate + ')')
-      .attr('y', y)
       .attr('x', x)
   }
 
@@ -493,6 +491,17 @@ export default class stackedBarChart {
       .attr('stroke', strokeColor)
       .attr('stroke-width', 1)
       .attr('transform', 'translate(' + [0, this.maxExtentLineY] + ')')
+      .attr('class', 'legend')
+      .attr('x', this._width - 70)
+      .attr('y', function (d, i) {
+        return 20 * (i + 1) + 3
+      })
+      .attr('dy', '1em')
+      .style('text-anchor', 'start')
+      .style('font-size', '11px')
+      .text(function (d, i) {
+        return selectedData[d] || 'error'
+      })
 
     this.legend = legend
     /*

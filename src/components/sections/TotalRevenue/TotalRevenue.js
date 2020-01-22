@@ -31,6 +31,22 @@ const TOTAL_REVENUE_QUERY = gql`
   }
 `
 
+const TOTAL_REVENUE_QUERY = gql`
+  query TotalYearlyRevenue($period: String!) {
+  
+
+
+  total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
+    federal_offshore
+    federal_onshore
+    native_american
+    not_tied_to_a_lease
+    fiscal_year
+
+  }
+}
+`
+
 const TotalRevenue = props => {
   const { state, dispatch } = useContext(StoreContext)
   const period = state.period
