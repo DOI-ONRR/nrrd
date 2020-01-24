@@ -1,27 +1,21 @@
 /**
  * Page Layout component manages which layout component will be applied to the mdx pages
  */
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import DefaultLayout from '../DefaultLayout'
 import DownloadsLayout from '../DownloadsLayout'
 import PatternLibraryLayout from '../PatternLibraryLayout'
 
-import React from 'react'
-import PropTypes from 'prop-types'
-
-const PageLayoutManager = ({ path, children, ...rest }) => {
-  if (path.includes('/downloads/')) {
+const PageLayoutManager = ({ children, pageContext, ...rest }) => {
+  if (pageContext.layout === 'downloads') {
     return <DownloadsLayout>{children}</DownloadsLayout>
   }
-  if (path.includes('/patterns/')) {
+  if (pageContext.layout === 'pattern-library') {
     return <PatternLibraryLayout>{children}</PatternLibraryLayout>
   }
-
-  return (
-    <DefaultLayout>
-      {children}
-    </DefaultLayout>
-  )
+  return <DefaultLayout>{children}</DefaultLayout>
 }
 
 PageLayoutManager.propTypes = {

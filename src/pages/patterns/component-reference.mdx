@@ -3,6 +3,17 @@ title: Component Reference
 ---
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import MuiLink from '@material-ui/core/Link'
+import { makeStyles } from '@material-ui/core/styles'
+
+export const useStyles = makeStyles(theme => ({
+  pathToFile: {
+    color: theme.palette.green.default
+  }
+}))
+
 
 # Component Reference
 
@@ -11,7 +22,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
     {
       props.data.allComponentMetadata.nodes.map( (component, index) => {
         return (
-          <div key={index}><a href={'#'+component.displayName}>{component.displayName}</a></div>
+          <div key={index}><MuiLink variant="body1" href={'#'+component.displayName}>{component.displayName}</MuiLink></div>
         )
       })
     }
@@ -19,10 +30,14 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
   <Grid item xs={9}>
     {
       props.data.allComponentMetadata.nodes.map( (component, index) => {
+        const classes = useStyles()
         return (
           <div key={index} style={{'marginBottom': '10px'}}>
-            <a href='#'>Top</a><h2 id={component.displayName}>{component.displayName}</h2>
-            <p>Path to file: <span style={{color: 'darkGreen'}}>{component.parent.relativePath}</span></p>
+            <MuiLink variant="body1" href='#'>Top</MuiLink><Typography variant="h2" id={component.displayName}>{component.displayName}</Typography>
+            <Typography variant="body1">
+              Path to file: <span className={classes.pathToFile}>{component.parent.relativePath}</span>
+            </Typography>
+            
             <MDXRenderer>{component.description.childMdx.body}</MDXRenderer>
             <PropsTable componentProps={component.childrenComponentProp} />
           </div>

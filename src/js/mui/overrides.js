@@ -11,8 +11,8 @@ module.exports = Object.freeze({
   // https://material-ui.com/api/app-bar/
   MuiAppBar: {
     root: {
-      boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)'
-    }
+      boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
+    },
   },
   // https://material-ui.com/components/buttons/
   MuiButton: {
@@ -147,6 +147,9 @@ module.exports = Object.freeze({
   },
   // https://material-ui.com/api/table-cell/
   MuiTableCell: {
+    head: {
+      fontWeight: 'bold',
+    }
   },
   // https://material-ui.com/api/outlined-input/#outlinedinput-api
   MuiOutlinedInput: {
@@ -175,5 +178,6 @@ module.exports = Object.freeze({
         paddingBottom: '.41667rem',
       }
     },
-  }
+  },
+
 })

@@ -1,10 +1,11 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
 import Drawer from './ResponsiveDrawer'
-import './PatternLibraryLayout.css'
+import Box from '@material-ui/core/Box'
+import SEO from '../../seo'
+// import './PatternLibraryLayout.css'
 
 const PatternLibraryLayout = ({ children }) => (
   <StaticQuery
@@ -19,15 +20,14 @@ const PatternLibraryLayout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Helmet htmlAttributes={{ lang: 'en' }}>
-          <title>{'Pattern Library - ' + data.site.siteMetadata.title}</title>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        </Helmet>
-        <Drawer title={'Pattern Library - ' + data.site.siteMetadata.title}>
-          <main>
+        <SEO
+          title={`Pattern Library - ${ data.site.siteMetadata.title }`}
+          htmlAttributes={{ lang: 'en' }}
+        />
+        <Drawer title={`Pattern Library - ${ data.site.siteMetadata.title }`}>
+          <Box component="main">
             {children}
-          </main>
+          </Box>
         </Drawer>
       </>
     )}

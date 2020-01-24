@@ -2,7 +2,7 @@
  * Default Layout component
  *
  */
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
@@ -138,8 +138,6 @@ const DefaultLayout = ({ children }) => {
 
         <Footer version={data && data.site.siteMetadata.version} />
       </Box>
-
-      <Footer version={data && data.site.siteMetadata.version} />
     </ThemeProvider>
   )
 }
