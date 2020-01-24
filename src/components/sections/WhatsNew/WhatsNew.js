@@ -14,7 +14,7 @@ const WhatsNew = props => {
     <Box pt={5} pb={5}>
       <Typography variant="h2">What's New</Typography>
       <Typography variant="body1">
-            In our latest release on October 25, 2019, we made the following
+            In our latest release on December 18, 2019, we made the following
             changes:
       </Typography>
 
@@ -23,22 +23,28 @@ const WhatsNew = props => {
           <ListItemIcon>
             <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
           </ListItemIcon>
-          <ListItemText primary="Updated revenue and disbursements data through Fiscal Year 2019" />
+          <ListItemText primary="Added monthly disbursements data for October 2019" />
         </ListItem>
         <ListItem component="li">
           <ListItemIcon>
             <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
           </ListItemIcon>
-          <ListItemText primary="Updated monthly production data through June 2019" />
+          <ListItemText primary="Added monthly production data for August 2019" />
+        </ListItem>
+        <ListItem component="li">
+          <ListItemIcon>
+            <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
+          </ListItemIcon>
+          <ListItemText primary="Added monthly revenue data for November 2019" />
         </ListItem>
         <ListItem component="li">
           <ListItemIcon>
             <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
           </ListItemIcon>
           <ListItemText>
-                Added{' '}
-            <Link to="/blog">
-                  blog post about designing for accessibility and inclusion
+            Added supporting information about{' '}
+            <Link to="https://revenuedata.doi.gov/how-it-works/reclamation-fund/">
+              Reclamation Fund disbursements
             </Link>
           </ListItemText>
         </ListItem>
