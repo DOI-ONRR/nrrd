@@ -1,10 +1,16 @@
 import * as d3 from 'd3'
 
 export default class stackedBarChart {
-  constructor (node, data, options) {
+  constructor (node, data, options, formatLegendFunc) {
     this.node = node
     this.data = data
     this.options = options
+    this.formatLegendFunc = formatLegendFunc
+
+    console.log('this.data: ', this.data)
+
+    this.formatLegend(this.formatLegendFunc)
+
     if (options && options.columns) {
       this._columns = options.columns
     }
@@ -19,7 +25,6 @@ export default class stackedBarChart {
     }
 
     if (options && options.yLabels) {
-      
       this.yLabels(options.yLabels)
     }
     else {
@@ -69,13 +74,11 @@ export default class stackedBarChart {
       } 
       return this._xLabels 
     }
-    
     catch (err) {
       console.warn('error in xLabels:', err)
     }
   }
 
-  
   xdomain () {
     try {
       const r = this.data.map((d, i) => d[this.xaxis()])
@@ -173,7 +176,20 @@ export default class stackedBarChart {
     })
     return d3.min(values)
   }
-/*
+
+  formatLegend (options) {
+    try {
+      if (options) {
+        this._formatLegend = options
+      }
+      return this._formatLegend
+    }
+
+    catch (err) {
+      console.warn('error in formatOptions:', err)
+    }
+  }
+  /*
   calcMaxValue (data) {
     return d3.max(data, d => {
       let sum = 0
@@ -242,8 +258,9 @@ export default class stackedBarChart {
     const stack = d3.stack()
 	  .keys(this.yaxis())
 	  .offset(d3.stackOffsetNone)
+
     const xwidth=self.xScale.bandwidth();
-    
+
     // console.debug(xwidth);
     const keys = this.yaxis()
     this.chart.append('g')
@@ -254,7 +271,6 @@ export default class stackedBarChart {
       .attr('height', (self._height - self.marginTop))
       .attr('width', self.xScale.bandwidth())
       .attr('transform', d => 'translate(' + (self.xScale(d[self.xaxis()]) + ',0)'))
-    
       .attr('class', (d, i) => i === self.data.length - 1 ? 'active' : 'bar')
       .attr('data-key', d => Object.keys(d)[0])
       .attr('tabindex', 0)
@@ -302,18 +318,16 @@ export default class stackedBarChart {
     this.addChart(this.data)
 
     this.chart.selectAll('.x-axis').remove()
-
     
     this.addXAxis(this.xLabels())
-
 
     // Add Grouping Lines
     this.chart.selectAll('.groups').remove()
     this.addGroupLines()
 
     this.addLegend()
-
 }
+
 
   addMaxExtent (units) {
     try {
@@ -346,7 +360,6 @@ export default class stackedBarChart {
 
   addXAxis (xLabels) {
     const self = this
-
     const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat( (d,i) => {
       console.debug('---------------tickFormat: ', d,i, xLabels)
       return (xLabels) ? xLabels[i] : d
@@ -364,7 +377,6 @@ export default class stackedBarChart {
       .call(createXAxis())
       .selectAll('text')
       .attr('transform', 'rotate(' + rotate + ')')
-      .attr('y', y )
       .attr('x', x)
   }
 
@@ -403,58 +415,83 @@ export default class stackedBarChart {
     //    const labels = this.xdomain().reverse()
     const selectedData = this.selectedData()
     const labels = this.yLabels()
-    
-    //    const yaxis = this.yaxis().reverse(); this.yaxis().reverse();
+    const formatLegend = this.formatLegend()
+    const strokeColor = '#eeeeee'
+
     let legend
     if (this.legend) {
       this.legend.selectAll('.legend').remove()
       this.legend.selectAll('.legend-rect').remove()
+      this.legend.selectAll('.legend-text').remove()
       legend = this.legend
     }
     else {
-      
       legend = d3.select(this.node.children[1]).append('svg')
         .attr('class', 'legend')
         .attr('width', this._width)
         .attr('height', this._height).selectAll('.legend')
         .data(this.yaxis().reverse())
         .enter().append('g')
-        .attr('class', 'legend')
+        .attr('class', 'legend-item')
     }
 
     legend.append('line')
-      .attr('class', 'legend')
+      .attr('class', 'legend-line')
       .attr('x1', 0)
       .attr('x2', this._width)
-      .attr('stroke', '#a7bcc7')
+      .attr('stroke', '#d3dfe6')
       .attr('stroke-width', 1)
       .attr('transform', 'translate(' + [0, this.maxExtentLineY] + ')')
 
     legend.append('rect')
       .attr('class', 'legend-rect')
-
       .attr('x', 0)
       .attr('y', function (d, i) {
-        return 20 * (i + 1) + 5
+        return 25 * (i + 1) + 5
       })
-      .attr('width', 10)
-      .attr('height', 10)
+      .attr('width', 15)
+      .attr('height', 15)
       .style('fill-opacity', (d, i) => ((i + 1) / labels.length))
 
     legend.append('text')
-      .attr('class', 'legend')
+      .attr('class', 'legend-text')
       .attr('x', 34)
       .attr('y', function (d, i) {
-        return 20 * (i + 1) + 3
+        return 25 * (i + 1) + 3
       })
       .attr('dy', '1em')
       .style('text-anchor', 'start')
-      .style('font-size', '11px')
+      .style('font-size', 'inherit')
       .text(function (d, i) {
         return labels[labels.length - 1 - i]
       })
 
     legend.append('text')
+      .attr('class', 'legend-text')
+      .attr('x', this._width - 125)
+      .attr('y', function (d, i) {
+        return 25 * (i + 1) + 3
+      })
+      .attr('dy', '1em')
+      .style('text-anchor', 'start')
+      .style('font-size', 'inherit')
+      .text(function (d, i) {
+        return formatLegend ? formatLegend(selectedData[d], 0) : selectedData[d] || 'error'
+      })
+
+    legend.append('line')
+      .attr('class', 'legend-line')
+      .attr('x1', 0)
+      .attr('x2', this._width)
+      .attr('y1', function (d, i) {
+        return 26 * (i + 1) + 3
+      })
+      .attr('y2', function (d, i) {
+        return 26 * (i + 1) + 3
+      })
+      .attr('stroke', strokeColor)
+      .attr('stroke-width', 1)
+      .attr('transform', 'translate(' + [0, this.maxExtentLineY] + ')')
       .attr('class', 'legend')
       .attr('x', this._width - 70)
       .attr('y', function (d, i) {

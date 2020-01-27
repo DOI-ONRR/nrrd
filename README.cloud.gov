@@ -48,4 +48,12 @@ export DB_PASSWORD=<password>
 export DB_DATABASE=$dbname
 export DB_PORT=7222
 export DB_HOST=localhost
+ 
+
+
+#
+# trouble shouting...
+
+
+cf logs <APP_NAME> --recent
 

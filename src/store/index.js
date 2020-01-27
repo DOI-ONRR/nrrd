@@ -10,17 +10,18 @@ const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
-    case 'GLOSSARY_TERM_SELECTED':
-      return ({ ...state, glossaryTerm: payload.glossaryTerm, glossaryOpen: payload.glossaryOpen })
-    case 'COUNT':
-      return ({ ...state, count: payload })
-    case 'CARDS': 
-      return ({ ...state, cards: payload.cards })
-    case 'YEAR': 
-      return ({ ...state, year: payload.year })
-
-    default:
-      return state
+  case 'GLOSSARY_TERM_SELECTED':
+    return ({ ...state, glossaryTerm: payload.glossaryTerm, glossaryOpen: payload.glossaryOpen })
+  case 'COUNT':
+    return ({ ...state, count: payload })
+  case 'CARDS':
+    return ({ ...state, cards: payload.cards })
+  case 'YEAR':
+    return ({ ...state, year: payload.year })
+  case 'COUNTY_LEVEL':
+    return ({ ...state, countyLevel: payload.countyLevel })
+  default:
+    return state
   }
 }
 
@@ -30,6 +31,7 @@ const initialState = {
   glossaryOpen: false,
   glossaryTerm: '',
   year: 2019,
+  countyLevel: false,
   period: 'Fiscal Year'
 }
 
