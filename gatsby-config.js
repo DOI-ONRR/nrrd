@@ -56,7 +56,6 @@ const config = {
       options: {
         component: `${ __dirname }/src/components/layouts/PageLayoutManager`
 
-        // old from conflict component: `${ __dirname }/src/components/layouts/DefaultLayout`
       }
     },
     {
@@ -163,8 +162,6 @@ const config = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     'gatsby-plugin-offline',
-
-    // 'gatsby-plugin-offline',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }

@@ -6,8 +6,14 @@ import React, { useEffect, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
 import BarChart from './stacked-bar-chart.js'
-
 const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'block',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '400px',
+  },
   chart: {
     display: 'block',
     top: 0,
@@ -39,22 +45,30 @@ const StackedBarChart = props => {
   // use ONRR topojson file for land
 
   const classes = useStyles()
+
   const data = props.data
+  const options = {}
+  options.columns = props.columns
+  options.yLabels = props.yLabels
+  options.xLabels = props.xLabels
+  options.xRotate = props.xRotate
+  console.debug('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOPITIONS', options)
   //   const selected = props.selected
   const elemRef = useRef(null)
 
   useEffect(() => {
-    console.debug(data)
-    console.debug('StackedBarChart useEffect fired!')
-
-    // stackedBarChar(elemRef.current,{}, data);
-    const chart = new BarChart(elemRef.current, data)
-    // chart.selected(selected)
+    // stackedBarChar(elemRef.current,{}, datas);
+    elemRef.current.children[0].innerHTML = ''
+    elemRef.current.children[1].innerHTML = ''
+  //  const chart2 = new BarChart2(elemRef.current, data2, options)
+//    chart2.draw(data2)
+    const chart = new BarChart(elemRef.current, data, options)
+    // chart.selected(selected);
     chart.draw(data)
   }, [elemRef])
 
   return (
-	  <div className={classes.chart} ref={elemRef}>
+	  <div className={classes.container} ref={elemRef}>
 	    <div className={classes.chart}></div><div className={classes.legend}></div>
     </div>
   )

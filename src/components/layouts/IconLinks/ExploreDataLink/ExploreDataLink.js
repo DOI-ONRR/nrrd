@@ -25,9 +25,10 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: 'middle',
     marginRight: '8px',
     '& span': {
-      fontSize: '1rem',
       marginRight: '1rem',
-      verticalAlign: 'baseline'
+      verticalAlign: 'baseline',
+      position: 'relative',
+      top: '2px',
     },
     '&:hover': {
       textDecoration: 'underline'

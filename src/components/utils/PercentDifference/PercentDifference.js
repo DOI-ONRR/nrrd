@@ -1,11 +1,12 @@
 import React from 'react'
 import utils from '../../../js/utils'
-import {makeStyles} from '@material-ui/core/styles'
+
+import { makeStyles } from '@material-ui/core/styles'
+
 import TriangleUpIcon from '-!svg-react-loader!../../../img/svg/arrow-up.svg'
 import TriangleDownIcon from '-!svg-react-loader!../../../img/svg/arrow-down.svg'
 
 const useStyles = makeStyles(theme => ({
-
   trendIcon: {
     position: 'relative',
     marginRight: 5,
@@ -34,5 +35,6 @@ const PercentDifference = ({ currentAmount, previousAmount }) => {
     </span>
   )
 }
+
 
 export default PercentDifference
