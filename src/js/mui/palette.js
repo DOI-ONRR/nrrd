@@ -48,5 +48,8 @@ module.exports = Object.freeze({
   },
   blue: {
     light: '#f0f6fa',
+    mid: '#323c42',
+    default: '#1478a6',
+    dark: '#086996'
   },
 })
