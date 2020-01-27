@@ -19,9 +19,9 @@ import { StoreContext } from '../../../store'
 import { ThemeConsumer } from 'styled-components'
 import utils from '../../../js/utils'
 
-const TOTAL_DISBURSEMENTS_QUERY = gql`
-  query TotalYearlyDisbursements($period: String!) {
-    total_yearly_disbursements(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
+const TOTAL_PRODUCTION_QUERY = gql`
+  query TotalYearlyProduction($period: String!) {
+    total_yearly_production(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
       federal_offshore
       federal_onshore
       native_american
@@ -30,7 +30,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
   }
 `
 
-const TotalDisbursments = props => {
+const TotalProduction = props => {
   const { state, dispatch } = useContext(StoreContext)
   const period = state.period
   const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american']
@@ -39,7 +39,7 @@ const TotalDisbursments = props => {
   const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American']
   const xLabels = props.xLabels
   const xRotate = props.xRotate || 0
-  const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY, {
+  const { loading, error, data } = useQuery(TOTAL_PRODUCTION_QUERY, {
     variables: { period }
   })
   if (loading) {
@@ -54,12 +54,12 @@ const TotalDisbursments = props => {
   return (
     <Box>
       <Typography variant="h3" className="header-bar green">
-          Total Disbursements
+          Total Production
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs>
           <StackedBarChart
-            data={data.total_yearly_disbursements}
+            data={data.total_yearly_production}
             legendDataFormatFunc={utils.formatToDollarFloat}
             columns={columns}
             columnHeaders={columnHeaders}
@@ -73,4 +73,4 @@ const TotalDisbursments = props => {
   )
 }
 
-export default TotalDisbursments
+export default TotalProduction
