@@ -7,7 +7,8 @@ args
     .option('-f, --file <file>', 'CSV file to load')
     .option('--password <password>', 'DB PASSWORD')
     .option('--port <port>', 'DB PORT') 
-    .option('--user <port>', 'DB USER')
+  .option('--user <port>', 'DB USER')
+    .option('--skip <ROWNUMB>', 'SKIP_TO')
     .option('--duplicates', 'Enable/disable duplicates',true)
     .option('--no-duplicates', 'Enable/disable duplicates')
     .option('-f, --file <file>', 'CSV file to load')
@@ -29,6 +30,11 @@ if(args.port) {
     DB_PORT=args.port;
 } else if( process.env.DB_PORT ) {
     DB_PORT= process.env.DB_PORT
+}
+
+let SKIP_TO=0
+if(args.skip) {
+    SKIP_TO=args.skip;
 }
 
 
@@ -91,7 +97,7 @@ if(args.file) {
 console.debug("DEDUP ", DEDUPLICATE, "FILE ", CSV)
 let duplicate_lookup={};
 
-
+let ROW_COUNT=0;
 const main =async () => {
     let period_lookup=await  initPeriod({});
 //    console.debug("PL", period_lookup);
@@ -102,7 +108,14 @@ const main =async () => {
 	.pipe(etl.csv()).pipe(etl.collect(BATCH)).promise().then(async  (data) => {
 	    for(let dd=0; dd<data.length; dd++) {
 		rows=data[dd];
-		for(let rr=0; rr<rows.length; rr++) {
+	      for(let rr=0; rr<rows.length; rr++) {
+
+                if (ROW_COUNT < SKIP_TO ) {
+                  ROW_COUNT++
+                  continue
+                }
+                ROW_COUNT++
+                
 		    let raw_row=rows[rr];
 		    let string=JSON.stringify(raw_row);
 		    string=string.replace(/[^\x00-\x7F]/g, ""); //remove wingdings as microsoft is source 
