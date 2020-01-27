@@ -3,16 +3,15 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { MDXProvider } from '@mdx-js/react'
 import * as components from './.cache/components'
 import CodeBlock from './src/components/layouts/CodeBlock/CodeBlock.js'
-// import { Grid } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import { Link } from 'gatsby'
 import { client } from './src/apollo/client'
 import { StoreProvider } from './src/store'
-import { Typography } from '@material-ui/core'
 
 const mdxComponents = {
   pre: props => <div {...props} />,
   code: CodeBlock,
-  // Grid, looks like Grid is not an accepted component for the MDXProvider, https://www.gatsbyjs.org/packages/gatsby-plugin-mdx/#mdxprovider
+  Grid,
   a: props => (props.href &&
     (props.href.charAt(0) === '#' || props.href.includes('http') || props.href.includes('mailto'))) ? <a {...props} /> : <Link to={props.href} {...props} />,
   h1: props => <Typography variant="h1" {...props} />,
