@@ -19,8 +19,6 @@ import Paper from '@material-ui/core/Paper'
 
 import Sparkline from '../../data-viz/Sparkline'
 
-import TriangleUpIcon from '-!svg-react-loader!../../../img/svg/arrow-up.svg'
-import TriangleDownIcon from '-!svg-react-loader!../../../img/svg/arrow-down.svg'
 
 const TREND_LIMIT = 10
 

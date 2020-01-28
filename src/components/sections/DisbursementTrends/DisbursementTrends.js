@@ -375,3 +375,4 @@ const calculateRevenueTypeAmountsByYear = (yearData, index) => {
 
   return { year: fiscalYear, amountByRevenueType: sums }
 }
+
