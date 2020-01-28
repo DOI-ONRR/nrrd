@@ -52,7 +52,7 @@ const TotalRevenue = props => {
   const { state, dispatch } = useContext(StoreContext)
   const period = state.period
 
-  const chartTitle = props.chartTitle || CONSTANTS.REVENUE
+  const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
   const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american', 'not_tied_to_a_lease']
   const columnHeaders = props.columnHeaders || ['Source', 'Year']
 
@@ -78,8 +78,7 @@ const TotalRevenue = props => {
         <Box component="span" className={classes.titleLink}>
           <ExploreDataLink
             to="/query-data?dataType=Revenue"
-            icon="filter"
-            c>Filter revenue data</ExploreDataLink>
+            icon="filter">Filter revenue data</ExploreDataLink>
         </Box>
       </Typography>
       <Grid container spacing={4}>
