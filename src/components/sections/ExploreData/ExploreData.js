@@ -271,8 +271,8 @@ const ExploreData = () => {
                   label="County Data"
                 />
                 <Map
-      mapFeatures={ state.countyLevel ? 'counties' : 'states' }
-      mapJsonObject={mapJson}
+                  mapFeatures={state.countyLevel ? 'counties' : 'states'}
+                  mapJsonObject={mapJson}
                   mapData={mapData}
                   minColor="#CDE3C3"
                   maxColor="#2F4D26"
