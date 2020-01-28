@@ -21,7 +21,7 @@ import utils from '../../../js/utils'
 
 const TOTAL_PRODUCTION_QUERY = gql`
   query TotalYearlyProduction($period: String!) {
-    total_yearly_production(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
+    total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
       federal_offshore
       federal_onshore
       native_american
@@ -59,7 +59,7 @@ const TotalProduction = props => {
       <Grid container spacing={4}>
         <Grid item xs>
           <StackedBarChart
-            data={data.total_yearly_production}
+            data={data.total_yearly_revenue}
             legendDataFormatFunc={utils.formatToDollarFloat}
             columns={columns}
             columnHeaders={columnHeaders}
