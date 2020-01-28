@@ -17,8 +17,8 @@ import StateCard from '../../layouts/StateCard'
 import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { StoreContext } from '../../../store'
-//import {mapJson} from './us-topology.json'
-import  mapJson from './us-topology.json'
+import mapJson from './us-topology.json'
+//import  mapJson from './us.t2.json'
 
 export const STATIC_QUERY = graphql`
   {

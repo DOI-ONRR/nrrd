@@ -261,29 +261,29 @@ const chart = (
         .style('height', height)
         .attr('fill', '#E0E2E3')
         .attr('viewBox', '0 0 ' + width + ' ' + height)
-
+  
   console.debug(
     '=================================================================data'
   )
-
+  
   console.debug(data)
   const legendSvg = d3.select(node.children[0]).append('svg');
   legendSvg.append("g")
     .attr("transform", "translate(30,0)")
     .call(legend,data.title, data, color,true);
   // return svg.node();
-
+  
   // let states = get_states(us);
-
+  
   const zoom = d3.zoom()
         .scaleExtent([1, 32])
         .on('zoom', zoomed)
   const g = svg.append('g');
   
   svg.call(zoom);
-
   
-
+  
+  
   g.selectAll('path')
     .data(topojson.feature(us, us.objects[mapFeatures]).features)
     .join("path")
@@ -306,6 +306,8 @@ const chart = (
        )
     .append("title")
     .text(d => `${d.properties.name}  ${format(data.get(d.id))}`);
+
+  console.debug("============================================", us.objects.states);
   
   svg.append("path")
     .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
