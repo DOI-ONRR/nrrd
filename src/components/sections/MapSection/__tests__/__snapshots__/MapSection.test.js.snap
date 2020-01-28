@@ -13,9 +13,7 @@ exports[`MapSection renders correctly 1`] = `
       />
       <div
         className="makeStyles-map-2"
-      >
-        <span />
-      </div>
+      />
     </div>
   </div>
 </section>
