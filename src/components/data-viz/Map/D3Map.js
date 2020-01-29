@@ -26,6 +26,7 @@ export default class d3Map {
     this.chart()
     this.legend()
   }
+
   /**
    *  The function that does the building of the svg with d3
    *
@@ -38,8 +39,31 @@ export default class d3Map {
    *
  */
 
+  onZoom (event) {
+    console.debug('transform onZoom', event.transform)
+  }
+
+  zoom (transform) {
+    try {
+      if (transform) {
+        const _zoom = transform
+        this._chart
+          .selectAll('path').attr('transform', 'translate(' + [_zoom.x, _zoom.y] + ')' + ' scale(' + _zoom.k + ')')
+        this._zoom = _zoom
+        return this._zoom
+      }
+      else {
+        return this._zoom
+      }
+    }
+    catch (err) {
+      console.warn('Error in zoom: ', err)
+    }
+  }
+
   chart () {
     let _chart
+    const self = this
     const node = this.node
     const us = this.us
     const mapFeatures = this.mapFeatures
@@ -50,8 +74,10 @@ export default class d3Map {
     const maxColor = this.maxColor
     const width = this.node.children[1].scrollWidth
     const height = this.node.children[1].scrollHeight
-    const vwidth = width * 1.5
-    const vheight = height * 1.5
+    const vwidth = width //* 1.5
+    const vheight = height //* 1.5
+    const _zoom = this._zoom
+
     if (node.children[1].children[0]) {
       this._chart = d3.select(node.children[1].children[0])
       this._chart.selectAll('path').remove()
@@ -64,6 +90,7 @@ export default class d3Map {
         .append('svg')
         .style('width', width)
         .style('height', height)
+        .attr('height', '100%')
         .attr('fill', '#E0E2E3')
         .attr('class', 'map')
         .attr('viewBox', '0 0 ' + vwidth + ' ' + vheight)
@@ -74,13 +101,6 @@ export default class d3Map {
       .translate([width / 2, height / 2]) // translate to center of screen
       .scale([width]) // scale things down so see entire US
 
-    // const path = d3.geoPath();
-    /*    projection.scale=function(_) {
-	  if (!arguments.length) return lower48.scale();
-	  lower48.scale(_), alaska.scale(_ * 0.70), hawaii.scale(_);
-	  return albersUsa.translate(lower48.translate());
-          };
-    */
     const path = d3.geoPath(projection)
 
     let color = () => {}
@@ -136,8 +156,9 @@ export default class d3Map {
 
     const zoom = d3
       .zoom()
-      .scaleExtent([1, 32])
+      .scaleExtent([-32, 32])
       .on('zoom', zoomed)
+
     const g = _chart.append('g')
 
     _chart.call(zoom)
@@ -164,30 +185,31 @@ export default class d3Map {
       })
       .append('title')
       .text(d => `${ d.properties.name }  ${ format(data.get(d.id)) }`)
-  console.debug("============================================", us.objects);
+    console.debug('============================================', us.objects)
     _chart.append('path')
       .datum(topojson.mesh(us, us.objects[mapFeatures], (a, b) => a !== b))
       .attr('fill', 'none')
       .attr('d', path)
     _chart.transition().duration(3000)
+    if (_zoom) {
+      console.debug(_zoom)
+    }
 
     function zoomed () {
       console.debug('zoooom', g)
-      g
-        .selectAll('path') // To prevent stroke width from scaling
+      console.debug('transform', d3.event.transform)
         .attr('transform', d3.event.transform)
+
+      self.onZoom(d3.event)
     }
 
-    this._chart = _chart.node()
-
-    return _chart.node()
+    this._chart = _chart
+    return _chart
   }
 
   legend () {
     const title = this.data.title
     const data = this.data
-    console.debug("DATA", data);
-    console.debug("MAP FEATURE", this.mapFeature);
     const color = this.color
     let legend
     if (this.node.children[0].children[0]) {
@@ -200,9 +222,9 @@ export default class d3Map {
         .attr('class', 'legend')
     }
 
-    const g = legend.append('g')
+    const g = legend
+      .append('g')
       .attr('transform', 'translate(30,0)')
-    //      .call(legend,data.title, data, color,true);
     const width = 200
     const height = 20
     const sorted = data.values.sort((a, b) => a - b)
