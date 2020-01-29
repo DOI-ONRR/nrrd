@@ -164,7 +164,7 @@ export default class d3Map {
       })
       .append('title')
       .text(d => `${ d.properties.name }  ${ format(data.get(d.id)) }`)
-  console.debug("============================================", us.objects);
+    console.debug('============================================', us.objects)
     _chart.append('path')
       .datum(topojson.mesh(us, us.objects[mapFeatures], (a, b) => a !== b))
       .attr('fill', 'none')
@@ -186,8 +186,8 @@ export default class d3Map {
   legend () {
     const title = this.data.title
     const data = this.data
-    console.debug("DATA", data);
-    console.debug("MAP FEATURE", this.mapFeature);
+    console.debug('DATA', data)
+    console.debug('MAP FEATURE', this.mapFeature)
     const color = this.color
     let legend
     if (this.node.children[0].children[0]) {

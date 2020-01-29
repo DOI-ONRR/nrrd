@@ -29,6 +29,10 @@ module.exports = Object.freeze({
     A400: '#303030',
     A200: '#aaaaaa'
   },
+  common: {
+    white: '#fff',
+    black: '#000',
+  },
   text: {
     primary: 'rgba(0, 0, 0, 0.87)',
     secondary: 'rgba(0, 0, 0, 0.54)',
