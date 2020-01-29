@@ -47,6 +47,7 @@ const useStyles = makeStyles(theme => ({
  *
  */
 const Map = props => {
+  console.log('Map props: ', props)
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
   const mapJson = props.mapJson || '/maps/land/us-topology.json'
@@ -56,6 +57,8 @@ const Map = props => {
 
   const mapFeatures = props.mapFeatures || 'counties'
   const mapData = props.mapData || []
+  const mapZoom = props.mapZoom
+
   console.debug('FEATURES', mapFeatures)
 
   // mapData=props.offshoreData && mapData.concat(props.offshoreData);
@@ -92,7 +95,8 @@ const Map = props => {
           colorScheme,
           onClick,
           minColor,
-          maxColor)
+          maxColor,
+          mapZoom)
 
         /* const svg = chart(
           elemRef.current,
@@ -142,7 +146,8 @@ const Map = props => {
         colorScheme,
         onClick,
         minColor,
-        maxColor)
+        maxColor,
+        mapZoom)
       /* const svg = chart(
         elemRef.current,
         us,

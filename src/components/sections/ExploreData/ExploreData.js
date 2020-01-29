@@ -227,10 +227,10 @@ const MapControls = props => {
   const mapZoom = state.mapZoom
 
   const handleClick = val => event => {
-    if (val === 'add') {
+    if (val === 'add' && mapZoom >= 1) {
       return dispatch({ type: 'MAP_ZOOM', payload: { mapZoom: mapZoom + 1 } })
     }
-    if (val === 'remove') {
+    if (val === 'remove' && mapZoom > 1) {
       return dispatch({ type: 'MAP_ZOOM', payload: { mapZoom: mapZoom - 1 } })
     }
   }
@@ -354,6 +354,7 @@ const ExploreData = () => {
               <Box className={classes.mapContainer}>
                 <Map
                   mapFeatures={ state.countyLevel ? 'counties' : 'states' }
+                  mapZoom={ state.mapZoom }
                   mapJsonObject={mapJson}
                   mapData={mapData}
                   minColor="#CDE3C3"

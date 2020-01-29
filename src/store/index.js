@@ -35,7 +35,7 @@ const initialState = {
   countyLevel: false,
   glossaryOpen: false,
   glossaryTerm: '',
-  mapZoom: 0,
+  mapZoom: 1,
   period: 'Fiscal Year',
   year: 2019,
 }

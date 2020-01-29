@@ -3,6 +3,7 @@
 import * as d3 from 'd3'
 import * as topojson from 'topojson-client'
 import utils from '../../../js/utils'
+import { ConsoleView } from 'react-device-detect'
 
 export default class d3Map {
   constructor (
@@ -13,7 +14,8 @@ export default class d3Map {
     colorScheme,
     onClick,
     minColor,
-    maxColor) {
+    maxColor,
+    mapZoom) {
     this.node = node
     this.us = us
     this.mapFeatures = mapFeatures
@@ -22,6 +24,7 @@ export default class d3Map {
     this.onClick = onClick
     this.minColor = minColor
     this.maxColor = maxColor
+    this.mapZoom = mapZoom
     this.labels = true
     this.chart()
     this.legend()
@@ -52,6 +55,11 @@ export default class d3Map {
     const height = this.node.children[1].scrollHeight
     const vwidth = width * 1.5
     const vheight = height * 1.5
+    const mapZoom = this.mapZoom
+
+    console.log('D3Map width: ', width)
+    console.log('D3Map mapZoom: ', mapZoom)
+
     if (node.children[1].children[0]) {
       this._chart = d3.select(node.children[1].children[0])
       this._chart.selectAll('path').remove()
@@ -122,6 +130,10 @@ export default class d3Map {
         .scaleSequentialQuantile()
         .interpolator(d3.interpolateRgb(minColor, maxColor))
         .domain(data.values.sort())
+    }
+
+    if (mapZoom) {
+      console.log('do something with map zoom!')
     }
 
     this.color = color
