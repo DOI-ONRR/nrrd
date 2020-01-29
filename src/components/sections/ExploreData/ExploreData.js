@@ -311,7 +311,9 @@ const ExploreData = () => {
 
   const cards = state.cards
   const year = state.year
-
+  const mapZoom = state.mapZoom
+  const mapX = state.mapX
+  const mapY = state.mapY
   const handleChange = (type, name) => event => {
     console.debug('Handle change', name, event)
     return dispatch({ type: type, payload: { [name]: event.target.checked } })
@@ -406,12 +408,24 @@ const ExploreData = () => {
             <Grid item xs={12}>
               <Box className={classes.mapContainer}>
                 <Map
-                  mapFeatures={ state.countyLevel ? 'counties' : 'states' }
-                  mapZoom={ state.mapZoom }
+                  mapFeatures={state.countyLevel ? 'counties' : 'states'}
                   mapJsonObject={mapJson}
                   mapData={mapData}
                   minColor="#CDE3C3"
                   maxColor="#2F4D26"
+                  mapZoom={mapZoom}
+                  mapX={mapX}
+                  mapY={mapY}
+                  onZoom={
+                    event => {
+                      console.debug('On Zoom in Explore Data', event.transform)
+                      return dispatch({ type: 'MAP_ZOOM', payload: {
+                        mapZoom: event.transform.k,
+                        mapX: event.transform.x,
+                        mapY: event.transform.y
+                      } })
+                    }
+                  }
                   onClick={(d, fips, foo, bar) => {
                     onLink(d)
                   }}
