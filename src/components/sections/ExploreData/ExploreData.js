@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
+import RefreshIcon from '@material-ui/icons/Refresh'
 
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
@@ -22,6 +23,7 @@ import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { StoreContext } from '../../../store'
 import mapJson from './us-topology.json'
+import { useMediaQuery } from '@material-ui/core'
 // import  mapJson from './us.t2.json'
 
 export const STATIC_QUERY = graphql`
@@ -102,7 +104,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     right: 0,
     bottom: 0,
-    height: 500,
+    height: 475,
     '& > div': {
       cursor: 'pointer',
     },
@@ -180,8 +182,8 @@ const useStyles = makeStyles(theme => ({
   },
   zoomButtonGroupContainer: {
     position: 'absolute',
-    bottom: 200,
-    left: 12,
+    bottom: 180,
+    left: 10,
   }
 }))
 
@@ -196,11 +198,13 @@ const YearSlider = props => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
   const [year] = useState(state.year)
+  const matchesMedia = useMediaQuery('(min-width:768px)')
 
   return (
     <Box className={classes.sliderRoot}>
       <Grid container spacing={4}>
         <Grid item xs>
+          { matchesMedia &&
           <Slider
             defaultValue={year}
             aria-labelledby="discrete-slider"
@@ -213,6 +217,21 @@ const YearSlider = props => {
             min={2003}
             max={2019}
           />
+          }
+          { !matchesMedia &&
+          <Slider
+            defaultValue={year}
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="auto"
+            step={1}
+            onChangeCommitted={(e, yr) => {
+              props.onYear(yr)
+            }}
+            marks
+            min={2003}
+            max={2019}
+          />
+          }
         </Grid>
       </Grid>
     </Box>
@@ -233,6 +252,9 @@ const MapControls = props => {
     if (val === 'remove' && mapZoom > 1) {
       return dispatch({ type: 'MAP_ZOOM', payload: { mapZoom: mapZoom - 1 } })
     }
+    if (val === 'refresh' && mapZoom) {
+      return dispatch({ type: 'MAP_ZOOM', payload: { mapZoom: 1 } })
+    }
   }
 
   return (
@@ -246,6 +268,9 @@ const MapControls = props => {
         </Button>
         <Button onClick={handleClick('remove')}>
           <RemoveIcon />
+        </Button>
+        <Button onClick={handleClick('refresh')}>
+          <RefreshIcon />
         </Button>
       </ButtonGroup>
     </Box>

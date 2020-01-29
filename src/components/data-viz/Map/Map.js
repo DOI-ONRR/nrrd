@@ -23,14 +23,14 @@ const useStyles = makeStyles(theme => ({
   },
   legend: {
     display: 'block',
-    bottom: 110,
-    left: 10,
-    width: 300,
-    height: 60,
+    bottom: 100,
+    left: 5,
+    width: 285,
+    height: 50,
     zIndex: 10,
     margin: '5px',
     position: 'absolute',
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     '& .tick': {
       fontSize: theme.typography.chartLegend.label,
     }

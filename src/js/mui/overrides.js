@@ -13,6 +13,9 @@ module.exports = Object.freeze({
   MuiAppBar: {
     root: {
       boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)'
+    },
+    colorPrimary: {
+      backgroundColor: common.white
     }
   },
   // https://material-ui.com/components/buttons/
@@ -41,7 +44,10 @@ module.exports = Object.freeze({
     root: {
       '& .MuiButton-contained': {
         backgroundColor: common.white
-      }
+      },
+    },
+    grouped: {
+      padding: '4px 8px',
     }
   },
   // https://material-ui.com/api/link/
