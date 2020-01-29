@@ -271,17 +271,15 @@ const MapControls = props => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
 
-  const mapZoom = state.mapZoom
-
   const handleClick = val => event => {
-    if (val === 'add' && mapZoom >= 1) {
-      return dispatch({ type: 'MAP_ZOOM', payload: { mapZoom: mapZoom + 1 } })
+    if (val === 'add' && state.mapZoom >= 0.75) {
+      return dispatch({ type: 'MAP_ZOOM', payload: { mapX: state.mapX - 100, mapY: state.mapY, mapZoom: state.mapZoom + 0.25 } })
     }
-    if (val === 'remove' && mapZoom > 1) {
-      return dispatch({ type: 'MAP_ZOOM', payload: { mapZoom: mapZoom - 1 } })
+    if (val === 'remove' && state.mapZoom >= 0.75) {
+      return dispatch({ type: 'MAP_ZOOM', payload: { mapX: state.mapX + 100, mapY: state.mapY, mapZoom: state.mapZoom - 0.25 } })
     }
-    if (val === 'refresh' && mapZoom) {
-      return dispatch({ type: 'MAP_ZOOM', payload: { mapZoom: 1 } })
+    if (val === 'refresh') {
+      return dispatch({ type: 'MAP_ZOOM', payload: { mapX: 0, mapY: 0, mapZoom: 0.75 } })
     }
   }
 
@@ -419,11 +417,14 @@ const ExploreData = () => {
                   onZoom={
                     event => {
                       console.debug('On Zoom in Explore Data', event.transform)
-                      return dispatch({ type: 'MAP_ZOOM', payload: {
-                        mapZoom: event.transform.k,
-                        mapX: event.transform.x,
-                        mapY: event.transform.y
-                      } })
+                      return dispatch({
+                        type: 'MAP_ZOOM',
+                        payload: {
+                          mapZoom: event.transform.k,
+                          mapX: event.transform.x,
+                          mapY: event.transform.y
+                        }
+                      })
                     }
                   }
                   onClick={(d, fips, foo, bar) => {

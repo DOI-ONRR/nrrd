@@ -23,7 +23,7 @@ const reducer = (state, action) => {
   case 'OFFSHORE':
     return ({ ...state, offShore: payload.offshore })
   case 'MAP_ZOOM':
-    return ({ ...state, mapZoom: payload.mapZoom })
+    return ({ ...state, mapX: payload.mapX, maxY: payload.mapY, mapZoom: payload.mapZoom })
   default:
     return state
   }
@@ -35,7 +35,9 @@ const initialState = {
   countyLevel: false,
   glossaryOpen: false,
   glossaryTerm: '',
-  mapZoom: 1,
+  mapX: 0,
+  mapY: 0,
+  mapZoom: 0.75,
   period: 'Fiscal Year',
   year: 2019,
 }

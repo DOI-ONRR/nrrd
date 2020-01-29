@@ -70,11 +70,13 @@ const Map = props => {
   const classes = useStyles()
   const minColor = props.minColor
   const maxColor = props.maxColor
-  const onZoom = props.onZoom || function () { console.debug('Map   onZoom default') }
+  const onZoom = props.onZoom || function () {
+    console.debug('Map   onZoom default')
+  }
   const mapZoom = props.mapZoom || 0
   const mapX = props.mapX || 0
   const mapY = props.mapY || 0
-  
+
   let map
 
   useEffect(() => {
@@ -94,7 +96,7 @@ const Map = props => {
           maxColor)
       })
       map.onZoom = onZoom
-      map.zoom({x:mapX, y:mapY, k:mapZoom})
+      map.zoom({ x: mapX, y: mapY, k: mapZoom })
     }
     else {
       const us = mapJsonObject
@@ -123,7 +125,6 @@ const Map = props => {
 }
 
 export default Map
-
 
 /**
  *  The function that mimics ObservableMap() funtcion to allow minimal change to prototype.
