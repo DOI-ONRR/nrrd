@@ -1,0 +1,4 @@
+---
+applications:
+- name: hasura 
+  memory: 512M

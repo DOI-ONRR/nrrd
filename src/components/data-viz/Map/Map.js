@@ -8,6 +8,7 @@ import * as topojson from 'topojson-client'
 import utils from '../../../js/utils'
 // import { , withPrefix } from '../../utils/temp-link'
 // import styles from './Map.module.scss'
+import D3Map from './D3Map.js'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -19,6 +20,15 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100%',
     order: '3'
+  },
+  legend: {
+    display: 'block',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '30px',
+    zIndex: 10,
+    margin: '5px'
   }
 }))
 /**
@@ -31,42 +41,56 @@ const useStyles = makeStyles(theme => ({
  *  @param {*} onClick function that determines what to do if area is clicked
  *
  */
-const Map = props => {
+const Map = (props) => {
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
   const mapJson = props.mapJson || '/maps/land/us-topology.json'
   const mapOffshoreJson =
-    props.mapOffshoreJson || '/maps/offshore/offshore.json'
+        props.mapOffshoreJson || '/maps/offshore/offshore.json'
   const mapJsonObject = props.mapJsonObject
 
   const mapFeatures = props.mapFeatures || 'counties'
   const mapData = props.mapData || []
+  console.debug("FEATURES", mapFeatures)
+
   // mapData=props.offshoreData && mapData.concat(props.offshoreData);
   const elemRef = useRef(null)
   const colorScheme = props.colorScheme || 'green'
   const offshoreColorScheme = props.offshoreColorScheme || colorScheme
   const mapTitle = props.mapTitle
   const onClick =
-    props.onClick ||
-    function (d, i) {
-      console.debug('Default onClick function', d, i)
-    }
+        props.onClick ||
+        function (d, i) {
+          console.debug('Default onClick function', d, i)
+        }
   const classes = useStyles()
   const minColor = props.minColor
   const maxColor = props.maxColor
-
+  
   useEffect(() => {
     if (typeof mapJsonObject !== 'object') {
       const promise = d3.json(mapJson)
       promise.then(us => {
         // let states = get_states(us);
         const data = observableData(mapData)
+        console.debug("Data", mapData)
         data.title = mapTitle
         // let p= get_data().then((data)=>{3
         // chart(elemRef.current, us,mapFeatures,data);
         // });
-        elemRef.current.innerHTML = ''
-        const svg = chart(
+      //  elemRef.current.children[0].innerHTML = ''
+      //  elemRef.current.children[1].innerHTML = ''
+        let d3map=new D3Map(elemRef.current,
+                          us,
+                          mapFeatures,
+                          data,
+                          colorScheme,
+                          onClick,
+                          minColor,
+                          maxColor)
+        
+        
+       /* const svg = chart(
           elemRef.current,
           us,
           mapFeatures,
@@ -76,61 +100,75 @@ const Map = props => {
           minColor,
           maxColor
         )
-
-        const promise2 = d3.json(mapOffshoreJson)
-        promise2.then(offshore => {
+       */
+        
+        //      const promise2 = d3.json(mapOffshoreJson)
+      //  promise2.then(offshore => {
           // let max=data.values.sort((a,b)=>a-b)[data.values.length-1];
 
-          const ii = 0
-          for (const region in offshore.objects) {
-            if (ii < 1) {
-              offshoreChart(
-                svg,
-                offshore,
-                region,
-                data,
-                offshoreColorScheme,
-                onClick,
-                minColor,
-                maxColor
-              )
-              // ii++;
-            }
-          }
-        })
+        //  const ii = 0
+          /*   for (const region in offshore.objects) {
+               if (ii < 1) {
+               offshoreChart(
+               svg,
+               offshore,
+               region,
+               data,
+               offshoreColorScheme,
+               onClick,
+               minColor,
+               maxColor
+               )
+               // ii++;
+               }
+               } */
+       // })
       })
     }
     else {
-      const us = mapJsonObject.us
+      const us = mapJsonObject
       const offshore = mapJsonObject.offshore
       // let states = get_states(us);
       const data = observableData(mapData)
       data.title = mapTitle
-      const svg = chart(
+      let map=new D3Map(elemRef.current,
+                        us,
+                        mapFeatures,
+                        data,
+                        colorScheme,
+                        onClick,
+                        minColor,
+                        maxColor)
+      /* const svg = chart(
         elemRef.current,
         us,
         mapFeatures,
         data,
         colorScheme,
         onClick
-      )
-      for (const region in offshore.objects) {
-        offshoreChart(
-          svg,
-          offshore,
-          region,
-          data,
-          offshoreColorScheme,
-          onClick
-        )
-      }
+        ) */
+      
+      /* for (const region in offshore.objects) {
+         offshoreChart(
+         svg,
+         offshore,
+         region,
+         data,
+         offshoreColorScheme,
+         onClick
+         )
+         } */
     }
+    
+    
+    
+    
   })
-  return (
-    <div className={classes.map} ref={elemRef}>
-      <span></span>
-    </div>
-  )
+  return (<div className={classes.map} ref={elemRef} ><div className={classes.legend} ></div>
+	  <div className={classes.map}  >
+          </div>
+	  </div>
+  	 )
 }
 
 export default Map
@@ -160,16 +198,16 @@ const chart = (
   const height = node.scrollHeight
   // const margin = { top: 0, bottom: 0, right: 0, left: 0};
   const projection = d3
-    .geoAlbersUsa()
-    .translate([width / 2, height / 2]) // translate to center of screen
-    .scale([width]) // scale things down so see entire US
+        .geoAlbersUsa()
+        .translate([width / 2, height / 2]) // translate to center of screen
+        .scale([width]) // scale things down so see entire US
   // const path = d3.geoPath();
   /*    projection.scale=function(_) {
 	if (!arguments.length) return lower48.scale();
 	lower48.scale(_), alaska.scale(_ * 0.70), hawaii.scale(_);
 	return albersUsa.translate(lower48.translate());
-    };
-*/
+        };
+  */
   const path = d3.geoPath(projection)
 
   let color = () => {}
@@ -178,28 +216,28 @@ const chart = (
   switch (colorScheme) {
   case 'blue':
     color = d3.scaleSequentialQuantile(data.values, t =>
-      d3.interpolateBlues(t)
-    )
+                                       d3.interpolateBlues(t)
+                                      )
     break
   case 'green':
     color = d3.scaleSequentialQuantile(data.values, t =>
-      d3.interpolateGreens(t)
-    )
+                                       d3.interpolateGreens(t)
+                                      )
     break
   case 'red':
     color = d3.scaleSequentialQuantile(data.values, t =>
-      d3.interpolateReds(t)
-    )
+                                       d3.interpolateReds(t)
+                                      )
     break
   case 'grey':
     color = d3.scaleSequentialQuantile(data.values, t =>
-      d3.interpolateGreys(t)
-    )
+                                       d3.interpolateGreys(t)
+                                      )
     break
   default:
     color = d3.scaleSequentialQuantile(data.values, t =>
-      d3.interpolateGreens(t)
-    )
+                                       d3.interpolateGreens(t)
+                                      )
   }
   if (minColor && maxColor) {
     color = d3
@@ -217,59 +255,73 @@ const chart = (
   }
 
   const svg = d3
-    .select(node)
-    .append('svg')
-    .style('width', width)
-    .style('height', height)
-    .attr('fill', '#E0E2E3')
-    .attr('viewBox', '0 0 ' + width + ' ' + height)
-
+        .select(node.children[1])
+        .append('svg')
+        .style('width', width)
+        .style('height', height)
+        .attr('fill', '#E0E2E3')
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
+  
   console.debug(
     '=================================================================data'
   )
-
+  
   console.debug(data)
-  svg
-    .append('g')
-    .attr('transform', 'translate(30,30)')
-    .call(legend, data.title, data, color, true)
+  const legendSvg = d3.select(node.children[0]).append('svg');
+  legendSvg.append("g")
+    .attr("transform", "translate(30,0)")
+    .call(legend,data.title, data, color,true);
   // return svg.node();
-
+  
   // let states = get_states(us);
-
-  svg
-    .append('g')
-    .selectAll('path')
+  
+  const zoom = d3.zoom()
+        .scaleExtent([1, 32])
+        .on('zoom', zoomed)
+  const g = svg.append('g');
+  
+  svg.call(zoom);
+  
+  
+  
+  g.selectAll('path')
     .data(topojson.feature(us, us.objects[mapFeatures]).features)
-    .join('path')
-    .attr('fill', d => color(data.get(d.id)))
-    .attr('fill-opacity', 0.9)
-    .attr('d', path)
-    .attr('stroke', '#CACBCC')
+    .join("path")
+    .attr("fill", d => color(data.get(d.id)))
+    .attr("fill-opacity", .9)
+    .attr("d", path)
+    .attr("stroke", "#CACBCC")
     .attr('vector-effect', 'non-scaling-stroke')
-    .on('click', (d, i) => {
-      onClick(d, i)
-    })
-    .on('mouseover', function (d, i) {
-      // ES6 function find the this node is alluding me
-      d3.select(this)
-        .style('fill-opacity', 0.7)
-        .style('cursor', 'pointer')
-    })
-    .on('mouseout', (d, i) => {
-      d3.selectAll('path').style('fill-opacity', 0.9)
-    })
-    .append('title')
-    .text(d => `${ d.properties.name }  ${ format(data.get(d.id)) }`)
+    .on("click", (d,i) => {onClick(d,i)} )
+    .on("mouseover", function(d,i) {   // ES6 function find the this node is alluding me
 
-  svg
-    .append('path')
+      d3.select(this)
+	.style('fill-opacity', .7)
+	.style("cursor", "pointer"); 
+    })
+    .on("mouseout", (d,i) => {
+      d3.selectAll('path')
+	.style('fill-opacity',.9)
+    }
+       )
+    .append("title")
+    .text(d => `${d.properties.name}  ${format(data.get(d.id))}`);
+
+  console.debug("============================================", us.objects.states);
+  
+  svg.append("path")
     .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
     .attr('fill', 'none')
-    .attr('stroke', '#9FA0A1')
-    .attr('stroke-linejoin', 'round')
+  //.attr('stroke', '#9FA0A1')
+  //.attr('stroke-linejoin', 'round')
     .attr('d', path)
 
+  function zoomed() {
+    console.debug("zoooom", g)
+    g
+      .selectAll('path') // To prevent stroke width from scaling
+      .attr('transform', d3.event.transform);
+  }
   return svg.node()
 }
 
@@ -289,11 +341,11 @@ const offshoreChart = (
   const scale = width
   //    const path = d3.geoPath();
   const projection = d3
-    .geoAlbersUsa()
-    //	  .fitExtent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]],
-    //                     topojson.feature(offshore, offshore.objects[region]))
-    .translate([width / 2, height / 2]) // translate to center of screen
-    .scale([scale]) // scale things down so see entire US
+        .geoAlbersUsa()
+  //	  .fitExtent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]],
+  //                     topojson.feature(offshore, offshore.objects[region]))
+        .translate([width / 2, height / 2]) // translate to center of screen
+        .scale([scale]) // scale things down so see entire US
 
   const path = d3.geoPath(projection)
   //   const path = d3.geoPath();
@@ -302,28 +354,28 @@ const offshoreChart = (
   switch (colorScheme) {
   case 'blue':
     color = d3.scaleSequentialQuantile(data.values, t =>
-      d3.interpolateBlues(t)
-    )
+                                       d3.interpolateBlues(t)
+                                      )
     break
   case 'green':
     color = d3.scaleSequentialQuantile(data.values, t =>
-      d3.interpolateGreens(t)
-    )
+                                       d3.interpolateGreens(t)
+                                      )
     break
   case 'red':
     color = d3.scaleSequentialQuantile(data.values, t =>
-      d3.interpolateReds(t)
-    )
+                                       d3.interpolateReds(t)
+                                      )
     break
   case 'grey':
     color = d3.scaleSequentialQuantile(data.values, t =>
-      d3.interpolateGreys(t)
-    )
+                                       d3.interpolateGreys(t)
+                                      )
     break
   default:
     color = d3.scaleSequentialQuantile(data.values, t =>
-      d3.interpolateGreens(t)
-    )
+                                       d3.interpolateGreens(t)
+                                      )
   }
   if (minColor && maxColor) {
     color = d3
@@ -392,18 +444,18 @@ const legend = (g, title, data, color, labels) => {
   /*
 
     g.append("rect")
-	.attr("x", 200)
-	.attr("y", 300)
-	.attr("width", ls_w)
-	.attr("height", ls_h)
-	.style("fill", '#FF00FF')
-	.style("opacity", 1);
+    .attr("x", 200)
+    .attr("y", 300)
+    .attr("width", ls_w)
+    .attr("height", ls_h)
+    .style("fill", '#FF00FF')
+    .style("opacity", 1);
 
     g.append("text")
-	.attr("x", 50)
-	.attr("y", function(d, i){ return height - (i*ls_h) - ls_h - 4;})
-	.text(function(d, i){ return "label "+i });
-*/
+    .attr("x", 50)
+    .attr("y", function(d, i){ return height - (i*ls_h) - ls_h - 4;})
+    .text(function(d, i){ return "label "+i });
+  */
   const width = 200
   const height = 20
   const sorted = data.values.sort((a, b) => a - b)
@@ -458,8 +510,8 @@ const observableData = d => {
   //    let data= await d3.csv("https://raw.githubusercontent.com/rentry/rentry.github.io/master/data/revenue-test.csv", ({id, rate}) => [id, +rate]).then( (d) => {
   const r = { values: [], title: '', keyValues: {} }
   for (let ii = 0; ii < d.length; ii++) {
-	   r.values.push(d[ii][1])
-	   r.keyValues[d[ii][0]] = d[ii][1]
+    r.values.push(d[ii][1])
+    r.keyValues[d[ii][0]] = d[ii][1]
   }
   r.get = id => {
     return r.keyValues[id]
@@ -475,20 +527,19 @@ const observableData = d => {
  *
  */
 
-// const get_states = (us)=> {
-//     let r={values: [] , keys: [], keyValues: {}};
-//     for(let key in  us.objects.states.geometries) {
-// 	let state= us.objects.states.geometries[key];
-// 	let id=state.id;
+const get_states = (us)=> {
+  let r={values: [] , keys: [], keyValues: {}};
+  for(let key in  us.objects.states.geometries) {
+    let state= us.objects.states.geometries[key];
+    let id=state.id;
 
-// 	let value=state.properties.name;
+    let value=state.properties.name;
 
-// 	r.values.push(value);
-// 	r.keys.push(id);
-// 	r.keyValues[id]={id:id,name:value};
+    r.values.push(value);
+    r.keys.push(id);
+    r.keyValues[id]={id:id,name:value};
 
-//     }
-//     r.get = (id) => { return r.keyValues[id]};
-//     return r;
-
-// }
+  }
+  r.get = (id) => { return r.keyValues[id]};
+  return r;
+} 
