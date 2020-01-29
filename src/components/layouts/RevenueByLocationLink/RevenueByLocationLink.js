@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 const RevenueByLocationLink = () => {
   const classes = useStyles()
+  console.log('RevenueByLocationLink')
   return (
     <Grid container className={classes.root} spacing={1} direction="row" justify="flex-end" alignItems="flex-end">
       <Grid item>
