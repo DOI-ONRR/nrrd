@@ -19,12 +19,17 @@ const useStyles = makeStyles(theme => ({
   },
   legend: {
     display: 'block',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '30px',
+    bottom: 110,
+    left: 10,
+    width: 300,
+    height: 60,
     zIndex: 10,
-    margin: '5px'
+    margin: '5px',
+    position: 'absolute',
+    padding: theme.spacing(2),
+    '& .tick': {
+      fontSize: theme.typography.chartLegend.label,
+    }
   }
 }))
 
@@ -65,6 +70,11 @@ const Map = props => {
   const classes = useStyles()
   const minColor = props.minColor
   const maxColor = props.maxColor
+  const onZoom = props.onZoom || function () { console.debug('Map   onZoom default') }
+  const mapZoom = props.mapZoom || 0
+  const mapX = props.mapX || 0
+  const mapY = props.mapY || 0
+  
   let map
 
   useEffect(() => {
@@ -83,6 +93,8 @@ const Map = props => {
           minColor,
           maxColor)
       })
+      map.onZoom = onZoom
+      map.zoom({x:mapX, y:mapY, k:mapZoom})
     }
     else {
       const us = mapJsonObject
@@ -97,21 +109,29 @@ const Map = props => {
         colorScheme,
         onClick,
         minColor,
-        maxColor
-      )
+        maxColor)
     }
-    map.zoom({ k: 2.0849315216822437, x: -633.6625582569186, y: -373.31911475784636 })
+    map.onZoom = onZoom
+    map.zoom({ x: mapX, y: mapY, k: mapZoom })
   })
   return (
-    <div className={classes.map} ref={elemRef} >
-      <div className={classes.legend} ></div>
-      <div className={classes.map}>
-      </div>
-    </div>
+    <div className={classes.map} ref={elemRef}>
+      <div className={`MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 ${ classes.legend }`} ></div>
+	    <div className={classes.map}></div>
+	  </div>
   )
 }
 
 export default Map
+
+
+/**
+ *  The function that mimics ObservableMap() funtcion to allow minimal change to prototype.
+ *
+ *  @param {array[][]}  d - two diminational array of data
+ *  @return {object} returns an object with values as an array keys as an array and a get accessor for getting the data
+ *
+ */
 
 const observableData = d => {
   const r = { values: [], title: '', keyValues: {} }

@@ -7,6 +7,10 @@ import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
 
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
@@ -18,7 +22,7 @@ import Switch from '@material-ui/core/Switch'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { StoreContext } from '../../../store'
 import mapJson from './us-topology.json'
-//import  mapJson from './us.t2.json'
+// import  mapJson from './us.t2.json'
 
 export const STATIC_QUERY = graphql`
   {
@@ -62,23 +66,42 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
     height: '600px'
   },
+  toolbar: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    boxShadow: '0 3px 6px 0 rgba(0, 0, 0, .25)',
+    '& h2': {
+      margin: 0,
+    },
+    '& label': {
+      marginTop: theme.spacing(2),
+    },
+    '& label span': {
+      margin: 0
+    }
+  },
   mapWrapper: {
     position: 'relative',
-    height: 600,
-    marginBottom: theme.spacing(20),
+    height: 575,
+    // marginBottom: theme.spacing(20),
+    background: theme.palette.grey[200],
+    paddingLeft: theme.spacing(0),
+    paddingRight: theme.spacing(0),
+    overflow: 'hidden',
   },
   mapContainer: {
     position: 'relative',
-    minWidth: '280px',
+    minWidth: 280,
     flexBasis: '100%',
-    height: '600px',
+    height: 575,
     order: '3',
   },
   cardContainer: {
     width: '280px',
     position: 'absolute',
     right: 0,
-    bottom: 20,
+    bottom: 0,
     height: 500,
     '& > div': {
       cursor: 'pointer',
@@ -135,10 +158,30 @@ const useStyles = makeStyles(theme => ({
       },
     }
   },
+  sliderContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    backgroundColor: '#fff',
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(0),
+    borderBottom: `1px solid ${ theme.palette.grey[300] }`
+  },
   sliderRoot: {
     width: '100%',
     position: 'relative',
-    top: -10,
+    boxSizing: 'border-box',
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    top: -21,
+  },
+  contentWrapper: {
+    paddingBottom: theme.spacing(4),
+  },
+  zoomButtonGroupContainer: {
+    position: 'absolute',
+    bottom: 200,
+    left: 12,
   }
 }))
 
@@ -151,7 +194,7 @@ const fiscalYearMarks = () => {
 // YearSlider
 const YearSlider = props => {
   const classes = useStyles()
-  const { state } = useContext(StoreContext)
+  const { state, dispatch } = useContext(StoreContext)
   const [year] = useState(state.year)
 
   return (
@@ -161,7 +204,7 @@ const YearSlider = props => {
           <Slider
             defaultValue={year}
             aria-labelledby="discrete-slider"
-            valueLabelDisplay="on"
+            valueLabelDisplay="auto"
             step={1}
             onChangeCommitted={(e, yr) => {
               props.onYear(yr)
@@ -174,8 +217,39 @@ const YearSlider = props => {
       </Grid>
     </Box>
   )
+}
 
-  // return(<div><div>FOO</div><div>{data && data.year}</div></div>)
+// Map Zoom Controls
+const MapControls = props => {
+  const classes = useStyles()
+  const { state, dispatch } = useContext(StoreContext)
+
+  const mapZoom = state.mapZoom
+
+  const handleClick = val => event => {
+    if (val === 'add' && mapZoom >= 1) {
+      return dispatch({ type: 'MAP_ZOOM', payload: { mapZoom: mapZoom + 1 } })
+    }
+    if (val === 'remove' && mapZoom > 1) {
+      return dispatch({ type: 'MAP_ZOOM', payload: { mapZoom: mapZoom - 1 } })
+    }
+  }
+
+  return (
+    <Box className={classes.zoomButtonGroupContainer}>
+      <ButtonGroup
+        orientation="vertical"
+        variant="contained"
+        aria-label="Explore data map zoom controls">
+        <Button onClick={handleClick('add')}>
+          <AddIcon />
+        </Button>
+        <Button onClick={handleClick('remove')}>
+          <RemoveIcon />
+        </Button>
+      </ButtonGroup>
+    </Box>
+  )
 }
 
 const ExploreData = () => {
@@ -184,11 +258,16 @@ const ExploreData = () => {
 
   const cards = state.cards
   const year = state.year
-  const handleChange = name => event => {
+  const mapZoom = state.mapZoom
+  const mapX = state.mapX
+  const mapY = state.mapY
+  const handleChange = (type, name) => event => {
     console.debug('Handle change', name, event)
-    return dispatch({ type: 'COUNTY_LEVEL', payload: { [name]: event.target.checked } })
+    return dispatch({ type: type, payload: { [name]: event.target.checked } })
   }
+
   const location = state.countyLevel ? 'County' : 'State'
+
   const onLink = state => {
     if (
       cards.filter(item => item.fips === state.properties.FIPS).length === 0
@@ -229,60 +308,79 @@ const ExploreData = () => {
       item.state_or_area,
       item.sum
     ])
-    console.debug("MAPJSON___________________", mapJson);
+    console.debug('MAPJSON___________________', mapJson)
     // const timeout = 5000
     return (
       <Fragment>
-        <Container>
-          <Grid container spacing={2}>
-            <Grid item sm={12} md={4}>
-              <Box mt={2} mb={2}>
+        <Container maxWidth={false} className={classes.toolbar}>
+          <Container>
+            <Grid container>
+              <Grid item sm={12} md={8}>
                 <Typography variant="h2">Fiscal Year {year} Revenue</Typography>
                 <Typography variant="subtitle2">
                   Select a state for detailed production, revenue, and disbursements data.
                 </Typography>
-              </Box>
-            </Grid>
-            <Grid item sm={12} md={8}>
-              <Box mt={6} mb={5}>
-                {/* Year Slider */}
-                <YearSlider
-                  onYear={selected => {
-                    onYear(selected)
-                  }}
-                />
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
-        <Container className={classes.mapWrapper} maxWidth={false}>
-          <Grid container>
-            <Grid item md={12}>
-              <Box className={classes.mapContainer}>
+              </Grid>
+              <Grid item sm={12} md={2}>
                 <FormControlLabel
                   control= {
                     <Switch
                       checked={state.countyLevel}
-                      onChange={handleChange('countyLevel')}
+                      onChange={handleChange('COUNTY_LEVEL', 'countyLevel')}
                       value="countyLevel"
                       color="primary"
                     />
                   }
-                  label="County Data"
+                  label="County data"
                 />
+              </Grid>
+              <Grid item sm={12} md={2}>
+                <FormControlLabel
+                  control= {
+                    <Switch
+                      checked={state.offshore}
+                      onChange={handleChange('OFFSHORE', 'offshore')}
+                      value="offshore"
+                      color="primary"
+                    />
+                  }
+                  label="Offshore data"
+                />
+              </Grid>
+            </Grid>
+          </Container>
+        </Container>
+        <Container className={classes.mapWrapper} maxWidth={false}>
+          <Grid container>
+            <Grid item xs={12}>
+              <Box className={classes.mapContainer}>
                 <Map
                   mapFeatures={state.countyLevel ? 'counties' : 'states'}
                   mapJsonObject={mapJson}
                   mapData={mapData}
                   minColor="#CDE3C3"
                   maxColor="#2F4D26"
+                  mapZoom={mapZoom}
+                  mapX={mapX}
+                  mapY={mapY}
+                  onZoom={
+                    event => {
+                      console.debug('On Zoom in Explore Data', event.transform)
+                      return dispatch({ type: 'MAP_ZOOM', payload: {
+                        mapZoom: event.transform.k,
+                        mapX: event.transform.x,
+                        mapY: event.transform.y
+                      } })
+                    }
+                  }
                   onClick={(d, fips, foo, bar) => {
                     onLink(d)
                   }}
                 />
+                <MapControls />
               </Box>
             </Grid>
-            <Grid item md={2}>
+            <Grid item xs={12}>
               <Box className={classes.cardContainer}>
                 {cards.map((state, i) => {
                   return (
@@ -303,13 +401,27 @@ const ExploreData = () => {
                 })}
               </Box>
             </Grid>
+            <Grid item xs={12}>
+              <Box className={classes.sliderContainer}>
+                <Container>
+                  <YearSlider
+                    onYear={selected => {
+                      onYear(selected)
+                    }}
+                  />
+                </Container>
+              </Box>
+            </Grid>
           </Grid>
         </Container>
         <Container className={classes.contentWrapper}>
           <Grid container>
             <Grid item md={12}>
-              <Typography variant="h1">
-                Explore the data
+              <Typography variant="h2" className="header-bar green thick">
+                Revenue
+              </Typography>
+              <Typography variant="body1">
+                When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. In fiscal year 2018, ONRR collected a total of [$9,161,704,392] in revenue.
               </Typography>
             </Grid>
           </Grid>

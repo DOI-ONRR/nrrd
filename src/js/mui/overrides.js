@@ -2,9 +2,10 @@
 // https://material-ui.com/customization/globals/
 const {
   primary,
-  // secondary,
-  // grey,
-  // text
+  secondary,
+  grey,
+  common,
+  ...rest
 } = require('./palette')
 
 module.exports = Object.freeze({
@@ -34,6 +35,14 @@ module.exports = Object.freeze({
       textTransform: 'inherit',
       fontSize: '1.2rem',
     },
+  },
+  // https://material-ui.com/api/button-group/
+  MuiButtonGroup: {
+    root: {
+      '& .MuiButton-contained': {
+        backgroundColor: common.white
+      }
+    }
   },
   // https://material-ui.com/api/link/
   MuiLink: {
@@ -143,6 +152,21 @@ module.exports = Object.freeze({
   MuiSlider: {
     root: {
       color: '#435159'
+    },
+    markLabel: {
+      fontWeight: 'normal',
+    },
+    markLabelActive: {
+      fontWeight: 'bold',
+    },
+    track: {
+      height: 4,
+    },
+    mark: {
+      height: 4,
+    },
+    thumb: {
+      marginTop: -4,
     }
   },
   // https://material-ui.com/api/table-cell/

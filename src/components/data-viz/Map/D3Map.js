@@ -3,6 +3,7 @@
 import * as d3 from 'd3'
 import * as topojson from 'topojson-client'
 import utils from '../../../js/utils'
+import { ConsoleView } from 'react-device-detect'
 
 export default class d3Map {
   constructor (
@@ -13,7 +14,8 @@ export default class d3Map {
     colorScheme,
     onClick,
     minColor,
-    maxColor) {
+    maxColor,
+    mapZoom) {
     this.node = node
     this.us = us
     this.mapFeatures = mapFeatures
@@ -22,6 +24,7 @@ export default class d3Map {
     this.onClick = onClick
     this.minColor = minColor
     this.maxColor = maxColor
+    this.mapZoom = mapZoom
     this.labels = true
     this.chart()
     this.legend()
@@ -96,7 +99,7 @@ export default class d3Map {
         .attr('viewBox', '0 0 ' + vwidth + ' ' + vheight)
     }
     // const margin = { top: 0, bottom: 0, right: 0, left: 0};
-
+    
     const projection = d3.geoAlbersUsa()
       .translate([width / 2, height / 2]) // translate to center of screen
       .scale([width]) // scale things down so see entire US
@@ -137,6 +140,7 @@ export default class d3Map {
           d3.interpolateGreens(t)
       )
     }
+    console.debug('COLOR ', minColor, maxColor)
     if (minColor && maxColor) {
       color = d3
         .scaleSequentialQuantile()
@@ -185,7 +189,7 @@ export default class d3Map {
       })
       .append('title')
       .text(d => `${ d.properties.name }  ${ format(data.get(d.id)) }`)
-    console.debug('============================================', us.objects)
+
     _chart.append('path')
       .datum(topojson.mesh(us, us.objects[mapFeatures], (a, b) => a !== b))
       .attr('fill', 'none')
@@ -198,6 +202,8 @@ export default class d3Map {
     function zoomed () {
       console.debug('zoooom', g)
       console.debug('transform', d3.event.transform)
+       
+      g.selectAll('path')
         .attr('transform', d3.event.transform)
 
       self.onZoom(d3.event)
