@@ -107,15 +107,43 @@ const useStyles = makeStyles(theme => ({
     height: 475,
     '& > div': {
       cursor: 'pointer',
+      '& .MuiCardHeader-root': {
+        backgroundColor: theme.palette.green.default,
+        color: theme.palette.common.white,
+      },
+      '& .MuiCardHeader-content > span': {
+        color: theme.palette.common.white,
+      }
     },
     '& > div:nth-child(2)': {
       transform: 'translate3d(-10%, 0px, 0px) !important',
+      '& .MuiCardHeader-root': {
+        backgroundColor: theme.palette.blue.dark,
+        color: theme.palette.common.white,
+      },
+      '& .MuiCardHeader-content > span': {
+        color: theme.palette.common.white,
+      }
     },
     '& > div:nth-child(3)': {
       transform: 'translate3d(-20%, 0px, 0px) !important',
+      '& .MuiCardHeader-root': {
+        backgroundColor: theme.palette.orange.default,
+        color: theme.palette.common.white,
+      },
+      '& .MuiCardHeader-content > span': {
+        color: theme.palette.common.white,
+      }
     },
     '& > div:nth-child(4)': {
       transform: 'translate3d(-30%, 0px, 0px) !important',
+      '& .MuiCardHeader-root': {
+        backgroundColor: theme.palette.purple.default,
+        color: theme.palette.common.white,
+      },
+      '& .MuiCardHeader-content > span': {
+        color: theme.palette.common.white,
+      }
     },
     '& > div:nth-child(5)': {
       transform: 'translate3d(-40%, 0px, 0px) !important',
