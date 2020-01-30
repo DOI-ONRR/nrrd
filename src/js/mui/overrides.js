@@ -170,9 +170,13 @@ module.exports = Object.freeze({
     },
     mark: {
       height: 4,
+      backgroundColor: common.white,
     },
     thumb: {
       marginTop: -4,
+    },
+    rail: {
+      height: 4,
     }
   },
   // https://material-ui.com/api/table-cell/

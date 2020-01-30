@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Snackbar, { SnackbarOrigin } from '@material-ui/core/Snackbar'
+
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RefreshIcon from '@material-ui/icons/Refresh'
@@ -105,6 +107,7 @@ const useStyles = makeStyles(theme => ({
     right: 0,
     bottom: 0,
     height: 475,
+    zIndex: 99,
     '& > div': {
       cursor: 'pointer',
       '& .MuiCardHeader-root': {
@@ -307,14 +310,32 @@ const ExploreData = () => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
 
+  // Snackbar state
+  const [snackbarState, setSnackbarState] = useState({
+    open: false,
+    vertical: 'bottom',
+    horizontal: 'left'
+  })
+  const { vertical, horizontal, open } = snackbarState
+
   const cards = state.cards
   const year = state.year
   const mapZoom = state.mapZoom
   const mapX = state.mapX
   const mapY = state.mapY
+
   const handleChange = (type, name) => event => {
     console.debug('Handle change', name, event)
     return dispatch({ type: type, payload: { [name]: event.target.checked } })
+  }
+
+  const handleSnackbar = newState => {
+    console.log('handleSnackbar hit yo!')
+    setSnackbarState({ open: true, ...newState })
+  }
+
+  const handleSnackbarClose = () => {
+    setSnackbarState({ ...snackbarState, open: false })
   }
 
   const location = state.countyLevel ? 'County' : 'State'
@@ -323,11 +344,17 @@ const ExploreData = () => {
     if (
       cards.filter(item => item.fips === state.properties.FIPS).length === 0
     ) {
-      cards.push({
-        fips: state.properties.FIPS,
-        abbrev: state.properties.abbr,
-        name: state.properties.name
-      })
+      if (cards.length <= 3) {
+        cards.push({
+          fips: state.properties.FIPS,
+          abbrev: state.properties.abbr,
+          name: state.properties.name
+        })
+      }
+      else {
+        console.log('fire alert yo!')
+        handleSnackbar({ vertical: 'bottom', horizontal: 'left' })
+      }
     }
     return dispatch({ type: 'CARDS', payload: { cards: cards } })
   }
@@ -469,6 +496,13 @@ const ExploreData = () => {
           </Grid>
         </Container>
         <Container className={classes.contentWrapper}>
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            key={`${ vertical },${ horizontal }`}
+            open={open}
+            onClose={handleSnackbarClose}
+            message="Only four locations can be viewed at once. Remove one of the location cards to add another location."
+          />
           <Grid container>
             <Grid item md={12}>
               <Typography variant="h2" className="header-bar green thick">
