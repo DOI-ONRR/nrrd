@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from 'react'
+import React, { Fragment, useState, useContext, useEffect } from 'react'
 // import { Link } from "gatsby"
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -274,27 +274,14 @@ const YearSlider = props => {
 // Map Zoom Controls
 const MapControls = props => {
   const classes = useStyles()
- /* const { state, dispatch } = useContext(StoreContext)
 
-  const handleClick = val => event => {
-    if (val === 'add' && state.mapZoom >= 0.75) {
-      return dispatch({ type: 'MAP_ZOOM', payload: { mapX: state.mapX - 100, mapY: state.mapY, mapZoom: state.mapZoom + 0.25 } })
-    }
-    if (val === 'remove' && state.mapZoom >= 0.75) {
-      return dispatch({ type: 'MAP_ZOOM', payload: { mapX: state.mapX + 100, mapY: state.mapY, mapZoom: state.mapZoom - 0.25 } })
-    }
-    if (val === 'refresh') {
-      return dispatch({ type: 'MAP_ZOOM', payload: { mapX: 0, mapY: 0, mapZoom: 0.75 } })
-    }
-  }
- */
   return (
     <Box className={classes.zoomButtonGroupContainer}>
       <ButtonGroup
         orientation="vertical"
         variant="contained"
         aria-label="Explore data map zoom controls">
-        <Button onClick={()=>{ props.handleClick('add')} }>
+        <Button onClick={() => props.handleClick('add')}>
           <AddIcon />
         </Button>
         <Button onClick={() => props.handleClick('remove')}>
@@ -322,44 +309,50 @@ const ExploreData = () => {
 
   const cards = state.cards
   const year = state.year
-  const mapZoom = state.mapZoom
-  const [mapK, setMapK] = useState()
+
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
+  const [mapK, setMapK] = useState(0.25)
+
   let x = mapX
   let y = mapY
   let k = mapK
+
+  const setZoom = (x, y, k) => {
+    setMapY(y)
+    setMapX(x)
+    setMapK(k)
+  }
+
+  useEffect(() => {
+    setZoom(x, y, k)
+  }, [mapX, mapY, mapK])
+
   const handleChange = (type, name) => event => {
     console.debug('Handle change', name, event)
-    console.debug('Handle change2',k,y,x)
-    setMapK(k)
-    setMapY(y)
-    setMapX(x)
-      return dispatch({ type: type, payload: { [name]: event.target.checked } })
-
+    console.debug('Handle change2', k, y, x)
+    setZoom(x, y, k)
+    return dispatch({ type: type, payload: { [name]: event.target.checked } })
   }
 
-  const handleClick = (val) => event => {
-    console.debug('handle click ', val, y, x,k)
-    if (val === 'add' ) {
-      k=k+0.25
-      x=x - 100
+  const handleClick = val => {
+    console.log('handleClick yo!', val, x, y, k)
+    if (val === 'add' && k >= 0.25) {
+      k = k + 0.25
+      x = x - 100
     }
-    if (val === 'remove' ) {
-      k=k - 0.25
-      x=x + 100
-
+    if (val === 'remove' && k >= 0.25) {
+      k = k - 0.25
+      x = x + 100
     }
     if (val === 'refresh') {
-      k=0.75
-      x=0
-      y=0
+      k = 0.25
+      x = 0
+      y = 0
     }
-    setMapK(k)
-    setMapY(y)
-    setMapX(x)
+    setZoom(x, y, k)
   }
-  
+
   const handleSnackbar = newState => {
     console.log('handleSnackbar hit yo!')
     setSnackbarState({ open: true, ...newState })
@@ -428,7 +421,7 @@ const ExploreData = () => {
     ])
     console.debug('MAPJSON___________________', mapJson)
   }
-  if( mapData ) {
+  if (mapData) {
     // const timeout = 5000
     return (
       <Fragment>
@@ -497,9 +490,9 @@ const ExploreData = () => {
                   onClick={(d, fips, foo, bar) => {
                     onLink(d)
                   }} />
-                  <MapControls
-                    handleClick={handleClick()}
-                    /> 
+                <MapControls
+                  handleClick={handleClick}
+                />
               </Box>
             </Grid>
             <Grid item xs={12}>
@@ -527,7 +520,7 @@ const ExploreData = () => {
               <Box className={classes.sliderContainer}>
                 <Container>
                   <YearSlider
-              
+
                     onYear={selected => {
                       onYear(selected)
                     }}

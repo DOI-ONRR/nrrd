@@ -15,7 +15,7 @@ export default class d3Map {
     onClick,
     minColor,
     maxColor,
-    mapZoom,
+    mapZ,
     mapX,
     mapY
   ) {
@@ -27,7 +27,7 @@ export default class d3Map {
     this.onClick = onClick
     this.minColor = minColor
     this.maxColor = maxColor
-    this.mapZoom = mapZoom
+    this.mapZ = mapZ
     this.mapX = mapX
     this.mapY = mapY
     this.labels = true
@@ -86,7 +86,7 @@ export default class d3Map {
     const maxColor = this.maxColor
     const width = this.node.children[1].scrollWidth
     const height = this.node.children[1].scrollHeight
-    const mapZoom = this.mapZoom
+    const mapZ = this.mapZ
     const mapX = this.mapX
     const mapY = this.mapY
     const vwidth = width //* 1.5
