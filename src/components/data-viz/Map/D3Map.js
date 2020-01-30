@@ -178,14 +178,6 @@ export default class d3Map {
       .on('end', ended)
 
     const g = _chart.append('g')
-    if( mapX && mapY && mapZoom ) {
-          //    console.debug("mapX Y AND Z SET ------------------------------------------------------", mapX, mapY, mapZoom)
-          //      _chart.selectAll('path').attr('transform', 'translate(' + [mapX, mapY] + ')' + ' scale(' + mapZoom + ')')
-    }
-
-
-
-    
     _chart.call(zoom)
     g.selectAll('path')
       .data(topojson.feature(us, us.objects[mapFeatures]).features)

@@ -23,7 +23,7 @@ const reducer = (state, action) => {
   case 'OFFSHORE':
     return ({ ...state, offShore: payload.offshore })
   case 'MAP_ZOOM':
-    return ({ ...state, mapX: payload.mapX, maxY: payload.mapY, mapZoom: payload.mapZoom })
+    return ({ ...state, mapX: payload.mapX, mapY: payload.mapY, mapZoom: payload.mapZoom })
   default:
     return state
   }

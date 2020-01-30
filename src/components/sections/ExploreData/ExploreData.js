@@ -274,7 +274,7 @@ const YearSlider = props => {
 // Map Zoom Controls
 const MapControls = props => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
+ /* const { state, dispatch } = useContext(StoreContext)
 
   const handleClick = val => event => {
     if (val === 'add' && state.mapZoom >= 0.75) {
@@ -287,20 +287,20 @@ const MapControls = props => {
       return dispatch({ type: 'MAP_ZOOM', payload: { mapX: 0, mapY: 0, mapZoom: 0.75 } })
     }
   }
-
+ */
   return (
     <Box className={classes.zoomButtonGroupContainer}>
       <ButtonGroup
         orientation="vertical"
         variant="contained"
         aria-label="Explore data map zoom controls">
-        <Button onClick={handleClick('add')}>
+        <Button onClick={()=>{ props.handleClick('add')} }>
           <AddIcon />
         </Button>
-        <Button onClick={handleClick('remove')}>
+        <Button onClick={() => props.handleClick('remove')}>
           <RemoveIcon />
         </Button>
-        <Button onClick={handleClick('refresh')}>
+        <Button onClick={() => props.handleClick('refresh')}>
           <RefreshIcon />
         </Button>
       </ButtonGroup>
@@ -339,6 +339,27 @@ const ExploreData = () => {
 
   }
 
+  const handleClick = (val) => event => {
+    console.debug('handle click ', val, y, x,k)
+    if (val === 'add' ) {
+      k=k+0.25
+      x=x - 100
+    }
+    if (val === 'remove' ) {
+      k=k - 0.25
+      x=x + 100
+
+    }
+    if (val === 'refresh') {
+      k=0.75
+      x=0
+      y=0
+    }
+    setMapK(k)
+    setMapY(y)
+    setMapX(x)
+  }
+  
   const handleSnackbar = newState => {
     console.log('handleSnackbar hit yo!')
     setSnackbarState({ open: true, ...newState })
@@ -476,7 +497,8 @@ const ExploreData = () => {
                   onClick={(d, fips, foo, bar) => {
                     onLink(d)
                   }} />
-                  <MapControls              
+                  <MapControls
+                    handleClick={handleClick()}
                     /> 
               </Box>
             </Grid>

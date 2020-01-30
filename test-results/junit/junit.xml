@@ -1,25 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="7" failures="0" time="11.068">
-  <testsuite name="Map" errors="0" failures="0" skipped="0" timestamp="2020-01-28T17:18:55" time="0.984" tests="1">
-    <testcase classname="Map renders correctly" name="Map renders correctly" time="0.073">
+<testsuites name="jest tests" tests="7" failures="2" time="29.674">
+  <testsuite name="Map" errors="0" failures="1" skipped="0" timestamp="2020-01-30T16:52:18" time="6.374" tests="1">
+    <testcase classname="Map renders correctly" name="Map renders correctly" time="0.289">
+      <failure>TypeError: Cannot read property &apos;label&apos; of undefined
+    at /storage/nicholmo/Development/nrrd/src/components/data-viz/Map/Map.js:31:46
+    at Object.create (/storage/nicholmo/Development/nrrd/node_modules/@material-ui/styles/getStylesCreator/getStylesCreator.js:32:35)
+    at attach (/storage/nicholmo/Development/nrrd/node_modules/@material-ui/styles/makeStyles/makeStyles.js:113:32)
+    at /storage/nicholmo/Development/nrrd/node_modules/@material-ui/styles/makeStyles/makeStyles.js:257:7
+    at useSynchronousEffect (/storage/nicholmo/Development/nrrd/node_modules/@material-ui/styles/makeStyles/makeStyles.js:211:14)
+    at useStyles (/storage/nicholmo/Development/nrrd/node_modules/@material-ui/styles/makeStyles/makeStyles.js:249:5)
+    at Map (/storage/nicholmo/Development/nrrd/src/components/data-viz/Map/Map.js:70:19)
+    at renderWithHooks (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6156:18)
+    at mountIndeterminateComponent (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8690:13)
+    at beginWork$1 (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10058:16)
+    at performUnitOfWork (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:14708:12)
+    at workLoopSync (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:14681:22)
+    at performSyncWorkOnRoot (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:14380:11)
+    at /storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2063:24
+    at unstable_runWithPriority (/storage/nicholmo/Development/nrrd/node_modules/scheduler/cjs/scheduler.development.js:697:12)
+    at runWithPriority (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2013:10)
+    at flushSyncCallbackQueueImpl (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2058:7)
+    at flushSyncCallbackQueue (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2046:3)
+    at scheduleUpdateOnFiber (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13819:9)
+    at updateContainer (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:17037:3)
+    at Object.create (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:17777:5)
+    at Object.&lt;anonymous&gt; (/storage/nicholmo/Development/nrrd/src/components/data-viz/Map/__tests__/Map.test.js:10:5)
+    at Object.asyncJestTest (/storage/nicholmo/Development/nrrd/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /storage/nicholmo/Development/nrrd/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/storage/nicholmo/Development/nrrd/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /storage/nicholmo/Development/nrrd/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
     </testcase>
   </testsuite>
-  <testsuite name="Banner" errors="0" failures="0" skipped="0" timestamp="2020-01-28T17:18:56" time="0.32" tests="1">
-    <testcase classname="Banner renders correctly" name="Banner renders correctly" time="0.028">
+  <testsuite name="MapSection" errors="0" failures="1" skipped="0" timestamp="2020-01-30T16:52:18" time="6.734" tests="1">
+    <testcase classname="MapSection renders correctly" name="MapSection renders correctly" time="0.207">
+      <failure>TypeError: Cannot read property &apos;label&apos; of undefined
+    at /storage/nicholmo/Development/nrrd/src/components/data-viz/Map/Map.js:31:46
+    at Object.create (/storage/nicholmo/Development/nrrd/node_modules/@material-ui/styles/getStylesCreator/getStylesCreator.js:32:35)
+    at attach (/storage/nicholmo/Development/nrrd/node_modules/@material-ui/styles/makeStyles/makeStyles.js:113:32)
+    at /storage/nicholmo/Development/nrrd/node_modules/@material-ui/styles/makeStyles/makeStyles.js:257:7
+    at useSynchronousEffect (/storage/nicholmo/Development/nrrd/node_modules/@material-ui/styles/makeStyles/makeStyles.js:211:14)
+    at useStyles (/storage/nicholmo/Development/nrrd/node_modules/@material-ui/styles/makeStyles/makeStyles.js:249:5)
+    at Map (/storage/nicholmo/Development/nrrd/src/components/data-viz/Map/Map.js:70:19)
+    at renderWithHooks (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:6156:18)
+    at mountIndeterminateComponent (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8690:13)
+    at beginWork$1 (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:10058:16)
+    at performUnitOfWork (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:14708:12)
+    at workLoopSync (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:14681:22)
+    at performSyncWorkOnRoot (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:14380:11)
+    at /storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2063:24
+    at unstable_runWithPriority (/storage/nicholmo/Development/nrrd/node_modules/scheduler/cjs/scheduler.development.js:697:12)
+    at runWithPriority (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2013:10)
+    at flushSyncCallbackQueueImpl (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2058:7)
+    at flushSyncCallbackQueue (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2046:3)
+    at scheduleUpdateOnFiber (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13819:9)
+    at updateContainer (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:17037:3)
+    at Object.create (/storage/nicholmo/Development/nrrd/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:17777:5)
+    at Object.&lt;anonymous&gt; (/storage/nicholmo/Development/nrrd/src/components/sections/MapSection/__tests__/MapSection.test.js:22:5)
+    at Object.asyncJestTest (/storage/nicholmo/Development/nrrd/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /storage/nicholmo/Development/nrrd/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (/storage/nicholmo/Development/nrrd/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /storage/nicholmo/Development/nrrd/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
     </testcase>
   </testsuite>
-  <testsuite name="MapSection" errors="0" failures="0" skipped="0" timestamp="2020-01-28T17:18:55" time="1.328" tests="1">
-    <testcase classname="MapSection renders correctly" name="MapSection renders correctly" time="0.108">
+  <testsuite name="Banner" errors="0" failures="0" skipped="0" timestamp="2020-01-30T16:52:25" time="1.01" tests="1">
+    <testcase classname="Banner renders correctly" name="Banner renders correctly" time="0.053">
     </testcase>
   </testsuite>
-  <testsuite name="Site Audits via Lighthouse" errors="0" failures="0" skipped="0" timestamp="2020-01-28T17:18:55" time="9.92" tests="4">
-    <testcase classname="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" name="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" time="0.002">
+  <testsuite name="Site Audits via Lighthouse" errors="0" failures="0" skipped="0" timestamp="2020-01-30T16:52:18" time="24.733" tests="4">
+    <testcase classname="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" name="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" time="0.006">
     </testcase>
     <testcase classname="Site Audits via Lighthouse passes a performance audit through Lighthouse" name="Site Audits via Lighthouse passes a performance audit through Lighthouse" time="0.001">
     </testcase>
     <testcase classname="Site Audits via Lighthouse passes a best practice audit through Lighthouse" name="Site Audits via Lighthouse passes a best practice audit through Lighthouse" time="0.002">
     </testcase>
-    <testcase classname="Site Audits via Lighthouse passes a SEO audit through Lighthouse" name="Site Audits via Lighthouse passes a SEO audit through Lighthouse" time="0">
+    <testcase classname="Site Audits via Lighthouse passes a SEO audit through Lighthouse" name="Site Audits via Lighthouse passes a SEO audit through Lighthouse" time="0.002">
     </testcase>
   </testsuite>
 </testsuites>
