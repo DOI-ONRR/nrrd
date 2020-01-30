@@ -336,7 +336,6 @@ const ExploreData = () => {
   }
 
   const handleClick = val => {
-    console.log('handleClick yo!', val, x, y, k)
     if (val === 'add' && k >= 0.25) {
       k = k + 0.25
       x = x - 100
