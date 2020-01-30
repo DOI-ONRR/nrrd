@@ -15,7 +15,10 @@ export default class d3Map {
     onClick,
     minColor,
     maxColor,
-    mapZoom) {
+    mapZoom,
+    mapX,
+    mapY
+  ) {
     this.node = node
     this.us = us
     this.mapFeatures = mapFeatures
@@ -25,6 +28,8 @@ export default class d3Map {
     this.minColor = minColor
     this.maxColor = maxColor
     this.mapZoom = mapZoom
+    this.mapX = mapX
+    this.mapY = mapY
     this.labels = true
     this.chart()
     this.legend()
@@ -43,7 +48,11 @@ export default class d3Map {
  */
 
   onZoom (event) {
-    console.debug('transform onZoom', event.transform)
+    //console.debug('transform onZoom', event.transform)
+  }
+
+  onZoomEnd (event) {
+    console.debug('transform onZoomEnd', event.transform)
   }
 
   zoom (transform) {
@@ -77,6 +86,9 @@ export default class d3Map {
     const maxColor = this.maxColor
     const width = this.node.children[1].scrollWidth
     const height = this.node.children[1].scrollHeight
+    const mapZoom = this.mapZoom
+    const mapX = this.mapX
+    const mapY = this.mapY
     const vwidth = width //* 1.5
     const vheight = height //* 1.5
     const _zoom = this._zoom
@@ -99,6 +111,7 @@ export default class d3Map {
         .attr('viewBox', '0 0 ' + vwidth + ' ' + vheight)
     }
     // const margin = { top: 0, bottom: 0, right: 0, left: 0};
+
     
     const projection = d3.geoAlbersUsa()
       .translate([width / 2, height / 2]) // translate to center of screen
@@ -162,11 +175,18 @@ export default class d3Map {
       .zoom()
       .scaleExtent([-32, 32])
       .on('zoom', zoomed)
+      .on('end', ended)
 
     const g = _chart.append('g')
+    if( mapX && mapY && mapZoom ) {
+          //    console.debug("mapX Y AND Z SET ------------------------------------------------------", mapX, mapY, mapZoom)
+          //      _chart.selectAll('path').attr('transform', 'translate(' + [mapX, mapY] + ')' + ' scale(' + mapZoom + ')')
+    }
 
+
+
+    
     _chart.call(zoom)
-
     g.selectAll('path')
       .data(topojson.feature(us, us.objects[mapFeatures]).features)
       .join('path')
@@ -188,27 +208,35 @@ export default class d3Map {
           .style('fill-opacity', 0.9)
       })
       .append('title')
-      .text(d => `${ d.properties.name }  ${ format(data.get(d.id)) }`)
+      .text(d => `${ d.properties.name }  ${ format(data.get(d.id)) }`).transition().duration(3000)
 
     _chart.append('path')
       .datum(topojson.mesh(us, us.objects[mapFeatures], (a, b) => a !== b))
       .attr('fill', 'none')
       .attr('d', path)
+
     _chart.transition().duration(3000)
+
+
+    
     if (_zoom) {
       console.debug(_zoom)
     }
 
     function zoomed () {
-      console.debug('zoooom', g)
-      console.debug('transform', d3.event.transform)
+      //console.debug('zoooom', g)
+      //console.debug('transform', d3.event.transform)
        
       g.selectAll('path')
         .attr('transform', d3.event.transform)
 
       self.onZoom(d3.event)
     }
-
+    function ended () {
+      console.debug('end')
+      self.onZoomEnd(d3.event)
+    }
+    
     this._chart = _chart
     return _chart
   }

@@ -197,6 +197,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     backgroundColor: '#fff',
     paddingTop: theme.spacing(1),
+    zIndex: 101,
     paddingBottom: theme.spacing(0),
     borderBottom: `1px solid ${ theme.palette.grey[300] }`
   },
@@ -204,6 +205,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     position: 'relative',
     boxSizing: 'border-box',
+    zIndex: 101,
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     top: -21,
@@ -321,12 +323,20 @@ const ExploreData = () => {
   const cards = state.cards
   const year = state.year
   const mapZoom = state.mapZoom
-  const mapX = state.mapX
-  const mapY = state.mapY
-
+  const [mapK, setMapK] = useState()
+  const [mapX, setMapX] = useState()
+  const [mapY, setMapY] = useState()
+  let x = mapX
+  let y = mapY
+  let k = mapK
   const handleChange = (type, name) => event => {
     console.debug('Handle change', name, event)
-    return dispatch({ type: type, payload: { [name]: event.target.checked } })
+    console.debug('Handle change2',k,y,x)
+    setMapK(k)
+    setMapY(y)
+    setMapX(x)
+      return dispatch({ type: type, payload: { [name]: event.target.checked } })
+
   }
 
   const handleSnackbar = newState => {
@@ -341,6 +351,9 @@ const ExploreData = () => {
   const location = state.countyLevel ? 'County' : 'State'
 
   const onLink = state => {
+    setMapK(k)
+    setMapY(y)
+    setMapX(x)
     if (
       cards.filter(item => item.fips === state.properties.FIPS).length === 0
     ) {
@@ -360,10 +373,16 @@ const ExploreData = () => {
   }
 
   const onYear = selected => {
+    setMapK(k)
+    setMapY(y)
+    setMapX(x)
     dispatch({ type: 'YEAR', payload: { year: selected } })
   }
 
   const closeCard = fips => {
+    setMapK(k)
+    setMapY(y)
+    setMapX(x)
     dispatch({ type: 'CARDS', payload: { cards: cards.filter(item => item.fips !== fips) } })
   }
 
@@ -374,19 +393,21 @@ const ExploreData = () => {
   //  cache.map((year, i) => {
   //      useQuery(FISCAL_REVENUE_QUERY, { variables: { year, location } })
   //  })
-
+  let mapData = [[]]
   if (loading) {
-    return loading
+    //
   }
 
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-    const mapData = data.fiscal_revenue_summary.map((item, i) => [
+    mapData = data.fiscal_revenue_summary.map((item, i) => [
       item.state_or_area,
       item.sum
     ])
     console.debug('MAPJSON___________________', mapJson)
+  }
+  if( mapData ) {
     // const timeout = 5000
     return (
       <Fragment>
@@ -438,27 +459,25 @@ const ExploreData = () => {
                   mapData={mapData}
                   minColor="#CDE3C3"
                   maxColor="#2F4D26"
-                  mapZoom={mapZoom}
+                  mapZoom={mapK}
                   mapX={mapX}
                   mapY={mapY}
-                  onZoom={
+                  onZoomEnd={
                     event => {
                       console.debug('On Zoom in Explore Data', event.transform)
-                      return dispatch({
-                        type: 'MAP_ZOOM',
-                        payload: {
-                          mapZoom: event.transform.k,
-                          mapX: event.transform.x,
-                          mapY: event.transform.y
-                        }
-                      })
+                      x = event.transform.x
+                      y = event.transform.y
+                      k = event.transform.k
+                      // setMapK(event.transform.k)
+                      // setMapX(event.transform.x)
+                      // setMapY(event.transform.y)
                     }
                   }
                   onClick={(d, fips, foo, bar) => {
                     onLink(d)
-                  }}
-                />
-                <MapControls />
+                  }} />
+                  <MapControls              
+                    /> 
               </Box>
             </Grid>
             <Grid item xs={12}>
@@ -486,6 +505,7 @@ const ExploreData = () => {
               <Box className={classes.sliderContainer}>
                 <Container>
                   <YearSlider
+              
                     onYear={selected => {
                       onYear(selected)
                     }}

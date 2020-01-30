@@ -73,54 +73,45 @@ const Map = props => {
   const onZoom = props.onZoom || function () {
     console.debug('Map   onZoom default')
   }
-  const mapZoom = props.mapZoom || 0
-  const mapX = props.mapX || 0
-  const mapY = props.mapY || 0
+  const onZoomEnd = props.onZoomEnd || function () {
+    //console.debug('Map   onZoomEnd default')
+  }
+  const mapZoom = props.mapZoom 
+  const mapX = props.mapX 
+  const mapY = props.mapY
 
   let map
 
   useEffect(() => {
-    if (typeof mapJsonObject !== 'object') {
-      const promise = d3.json(mapJson)
-      promise.then(us => {
-        const data = observableData(mapData)
-        data.title = mapTitle
-        map = new D3Map(
-          elemRef.current,
-          us,
-          mapFeatures,
-          data,
-          colorScheme,
-          onClick,
-          minColor,
-          maxColor)
-      })
-      map.onZoom = onZoom
+    const us = mapJsonObject
+    const offshore = mapJsonObject.offshore
+    const data = observableData(mapData)
+    data.title = mapTitle
+    map = new D3Map(
+      elemRef.current,
+      us,
+      mapFeatures,
+      data,
+      colorScheme,
+      onClick,
+      minColor,
+      maxColor,
+      mapZoom,
+      mapX,
+      mapY
+    )
+
+    map.onZoom = onZoom
+    map.onZoomEnd = onZoomEnd
+    if (mapX && mapY && mapZoom) {
       map.zoom({ x: mapX, y: mapY, k: mapZoom })
     }
-    else {
-      const us = mapJsonObject
-      const offshore = mapJsonObject.offshore
-      const data = observableData(mapData)
-      data.title = mapTitle
-      map = new D3Map(
-        elemRef.current,
-        us,
-        mapFeatures,
-        data,
-        colorScheme,
-        onClick,
-        minColor,
-        maxColor)
-    }
-    map.onZoom = onZoom
-    map.zoom({ x: mapX, y: mapY, k: mapZoom })
   })
   return (
     <div className={classes.map} ref={elemRef}>
       <div className={`MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 ${ classes.legend }`} ></div>
-	    <div className={classes.map}></div>
-	  </div>
+      <div className={classes.map}></div>
+    </div>
   )
 }
 
