@@ -48,7 +48,7 @@ export default class d3Map {
  */
 
   onZoom (event) {
-    //console.debug('transform onZoom', event.transform)
+    // console.debug('transform onZoom', event.transform)
   }
 
   onZoomEnd (event) {
@@ -112,7 +112,6 @@ export default class d3Map {
     }
     // const margin = { top: 0, bottom: 0, right: 0, left: 0};
 
-    
     const projection = d3.geoAlbersUsa()
       .translate([width / 2, height / 2]) // translate to center of screen
       .scale([width]) // scale things down so see entire US
@@ -209,16 +208,14 @@ export default class d3Map {
 
     _chart.transition().duration(3000)
 
-
-    
     if (_zoom) {
       console.debug(_zoom)
     }
 
     function zoomed () {
-      //console.debug('zoooom', g)
-      //console.debug('transform', d3.event.transform)
-       
+      // console.debug('zoooom', g)
+      // console.debug('transform', d3.event.transform)
+
       g.selectAll('path')
         .attr('transform', d3.event.transform)
 
@@ -228,7 +225,7 @@ export default class d3Map {
       console.debug('end')
       self.onZoomEnd(d3.event)
     }
-    
+
     this._chart = _chart
     return _chart
   }

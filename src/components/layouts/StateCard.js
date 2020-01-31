@@ -46,14 +46,14 @@ const useStyles = makeStyles({
   },
   card: {
     width: 285,
-    minHeight: 340,
     margin: '10px',
     position: 'absolute',
     right: 0,
     transform: 'translate3d(0, 0px, 0px)',
+    minHeight: 305,
     '@media (max-width: 768px)': {
       width: '100%',
-      height: 300,
+      height: 'auto',
     }
   },
   cardMinimized: {

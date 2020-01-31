@@ -104,14 +104,14 @@ const useStyles = makeStyles(theme => ({
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
     '@media (max-width: 768px)': {
-      height: 705,
+      height: 716,
     }
   },
   mapContainer: {
     position: 'relative',
     minWidth: 280,
     flexBasis: '100%',
-    height: 575,
+    height: 'auto',
     order: '3',
     '@media (max-width: 768px)': {
       height: 350,
@@ -122,7 +122,8 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     right: 0,
     bottom: 20,
-    height: 475,
+    height: 'auto',
+    minHeight: 305,
     zIndex: 99,
     '@media (max-width: 768px)': {
       width: '100%',
@@ -130,7 +131,7 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'flex-start',
       alignContent: 'flex-start',
       alignItems: 'flex-end',
-      background: 'transparent',
+      background: theme.palette.common.white,
       left: 0,
       top: 0,
       overflowX: 'auto',
@@ -143,7 +144,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         position: 'relative',
         minWidth: 275,
-        marginBottom: theme.spacing(2),
+        marginBottom: 0,
       },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.green.default,
