@@ -55,7 +55,6 @@ const Map = props => {
 
   const mapFeatures = props.mapFeatures || 'counties'
   const mapData = props.mapData || []
-  console.debug('FEATURES', mapFeatures)
 
   // mapData=props.offshoreData && mapData.concat(props.offshoreData);
   const elemRef = useRef(null)
@@ -65,19 +64,19 @@ const Map = props => {
   const onClick =
         props.onClick ||
         function (d, i) {
-          console.debug('Default onClick function', d, i)
+          // console.debug('Default onClick function', d, i)
         }
   const classes = useStyles()
   const minColor = props.minColor
   const maxColor = props.maxColor
   const onZoom = props.onZoom || function () {
-    console.debug('Map   onZoom default')
+    // console.debug('Map   onZoom default')
   }
   const onZoomEnd = props.onZoomEnd || function () {
-    //console.debug('Map   onZoomEnd default')
+    // console.debug('Map   onZoomEnd default')
   }
-  const mapZoom = props.mapZoom 
-  const mapX = props.mapX 
+  const mapZoom = props.mapZoom
+  const mapX = props.mapX
   const mapY = props.mapY
 
   let map
@@ -103,7 +102,7 @@ const Map = props => {
 
     map.onZoom = onZoom
     map.onZoomEnd = onZoomEnd
-    if (mapX && mapY && mapZoom) {
+    if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
       map.zoom({ x: mapX, y: mapY, k: mapZoom })
     }
   })
