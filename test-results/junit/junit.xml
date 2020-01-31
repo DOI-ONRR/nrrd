@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="5" failures="0" time="10.535">
-  <testsuite name="Banner" errors="0" failures="0" skipped="0" timestamp="2020-01-31T05:32:50" time="0.883" tests="1">
-    <testcase classname="Banner renders correctly" name="Banner renders correctly" time="0.048">
+<testsuites name="jest tests" tests="5" failures="0" time="11.162">
+  <testsuite name="Banner" errors="0" failures="0" skipped="0" timestamp="2020-01-31T05:42:52" time="0.942" tests="1">
+    <testcase classname="Banner renders correctly" name="Banner renders correctly" time="0.059">
     </testcase>
   </testsuite>
-  <testsuite name="Site Audits via Lighthouse" errors="0" failures="0" skipped="0" timestamp="2020-01-31T05:32:50" time="9.554" tests="4">
-    <testcase classname="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" name="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" time="0.004">
+  <testsuite name="Site Audits via Lighthouse" errors="0" failures="0" skipped="0" timestamp="2020-01-31T05:42:52" time="10.1" tests="4">
+    <testcase classname="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" name="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" time="0.003">
     </testcase>
     <testcase classname="Site Audits via Lighthouse passes a performance audit through Lighthouse" name="Site Audits via Lighthouse passes a performance audit through Lighthouse" time="0">
     </testcase>
