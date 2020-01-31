@@ -21,10 +21,25 @@ import utils from '../../../js/utils'
 
 const TOTAL_PRODUCTION_QUERY = gql`
   query TotalYearlyProduction($period: String!) {
-    total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
+  oil: total_yearly_production(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period }, product: { _eq: "Oil (bbl)" }}) { 
       federal_offshore
       federal_onshore
       native_american
+      mixed_exploratory
+      fiscal_year
+    }
+  gas: total_yearly_production(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period }, product: { _eq: "Gas (mcf)" }}) { 
+      federal_offshore
+      federal_onshore
+      native_american
+      mixed_exploratory
+      fiscal_year
+    }
+coal: total_yearly_production(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period }, product: { _eq: "Coal (tons)" }}) { 
+      federal_offshore
+      federal_onshore
+      native_american
+      mixed_exploratory
       fiscal_year
     }
   }
@@ -33,10 +48,10 @@ const TOTAL_PRODUCTION_QUERY = gql`
 const TotalProduction = props => {
   const { state, dispatch } = useContext(StoreContext)
   const period = state.period
-  const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american']
+  const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american', 'mixed_exploratory']
   const columnHeaders = props.columnHeaders || ['Source', 'Year']
 
-  const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American']
+  const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American', 'Mixed Exploratory']
   const xLabels = props.xLabels
   const xRotate = props.xRotate || 0
   const { loading, error, data } = useQuery(TOTAL_PRODUCTION_QUERY, {
@@ -59,7 +74,29 @@ const TotalProduction = props => {
       <Grid container spacing={4}>
         <Grid item xs>
           <StackedBarChart
-            data={data.total_yearly_revenue}
+            data={data.oil}
+            legendDataFormatFunc={utils.formatToDollarFloat}
+            columns={columns}
+            columnHeaders={columnHeaders}
+            xRotate={xRotate}
+            yLabels={yLabels}
+            xLabels={xLabels}
+            selected={4} />
+        </Grid>
+        <Grid item xs>
+          <StackedBarChart
+            data={data.gas}
+            legendDataFormatFunc={utils.formatToDollarFloat}
+            columns={columns}
+            columnHeaders={columnHeaders}
+            xRotate={xRotate}
+            yLabels={yLabels}
+            xLabels={xLabels}
+            selected={4} />
+        </Grid>
+        <Grid item xs>
+          <StackedBarChart
+            data={data.coal}
             legendDataFormatFunc={utils.formatToDollarFloat}
             columns={columns}
             columnHeaders={columnHeaders}
