@@ -28,7 +28,7 @@ const Sparkline = props => {
     highlightIndex = props.highlightIndex || props.data.length - 1
   }
 
-  console.debug(props)
+
   const elemRef = useRef(null)
   const classes = useStyles()
 
@@ -67,7 +67,6 @@ const Sparkline = props => {
       .attr('class', classes.sparkline)
       .attr('d', line)
 
-    console.debug(data)
     if (highlightIndex >= 0) {
 	  svg.append('circle')
 	      .attr('class', classes.sparkcircle)
