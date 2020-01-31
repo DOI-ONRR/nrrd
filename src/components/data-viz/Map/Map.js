@@ -123,7 +123,7 @@ const Map = props => {
   })
   return (
     <div className={classes.map} ref={elemRef}>
-      <div className={`MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 ${ classes.legend }`} ></div>
+      <div className={`MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 ${ classes.legend }`}></div>
       <div className={classes.map}></div>
     </div>
   )

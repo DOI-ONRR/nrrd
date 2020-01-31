@@ -93,7 +93,10 @@ const useStyles = makeStyles(theme => ({
   },
   toolbarControls: {
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
+    '@media (max-width: 768px)': {
+      justifyContent: 'flex-start',
+    }
   },
   mapWrapper: {
     position: 'relative',
@@ -113,15 +116,16 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '100%',
     height: 'auto',
     order: '3',
+    height: 575,
     '@media (max-width: 768px)': {
       height: 350,
     },
   },
   cardContainer: {
-    width: 'inherit',
+    width: 310,
     position: 'absolute',
     right: 0,
-    bottom: 20,
+    bottom: 120,
     height: 'auto',
     minHeight: 305,
     zIndex: 99,
@@ -131,7 +135,7 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'flex-start',
       alignContent: 'flex-start',
       alignItems: 'flex-end',
-      background: theme.palette.common.white,
+      background: 'transparent',
       left: 0,
       top: 0,
       overflowX: 'auto',
