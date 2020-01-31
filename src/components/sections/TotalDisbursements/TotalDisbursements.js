@@ -20,19 +20,6 @@ import { StoreContext } from '../../../store'
 import { ThemeConsumer } from 'styled-components'
 import utils from '../../../js/utils'
 import CONSTANTS from '../../../js/constants'
-import { classicNameResolver } from 'typescript'
-
-const TOTAL_REVENUE_QUERY = gql`
-  query TotalYearlyRevenue($period: String!) {
-    total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
-      federal_offshore
-      federal_onshore
-      native_american
-      not_tied_to_a_lease
-      fiscal_year
-    }
-  }
-`
 
 const useStyles = makeStyles(theme => ({
   titleBar: {
@@ -47,19 +34,30 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const TotalRevenue = props => {
+const TOTAL_DISBURSEMENTS_QUERY = gql`
+  query TotalYearlyDisbursements($period: String!) {
+    total_yearly_disbursements(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
+      federal_offshore
+      federal_onshore
+      native_american
+      fiscal_year
+    }
+  }
+`
+
+const TotalDisbursements = props => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
   const period = state.period
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
-  const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american', 'not_tied_to_a_lease']
+  const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENTS } (dollars)`
+  const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american']
   const columnHeaders = props.columnHeaders || ['Source', 'Year']
 
-  const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American', 'Not tied to a lease']
+  const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American']
   const xLabels = props.xLabels
   const xRotate = props.xRotate || 0
-  const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY, {
+  const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY, {
     variables: { period }
   })
   if (loading) {
@@ -74,18 +72,19 @@ const TotalRevenue = props => {
   return (
     <Box>
       <Typography variant="h3" className={`header-bar green ${ classes.titleBar }`}>
-          Total Revenue
+          Total Disbursements
         <Box component="span" className={classes.titleLink}>
           <ExploreDataLink
-            to="/query-data?dataType=Revenue"
-            icon="filter">Filter revenue data</ExploreDataLink>
+            to="/query-data?dataType=Disbursements"
+            icon="filter"
+            c>Filter disbursements data</ExploreDataLink>
         </Box>
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs>
           <StackedBarChart
             chartTitle={chartTitle}
-            data={data.total_yearly_revenue}
+            data={data.total_yearly_disbursements}
             legendDataFormatFunc={utils.formatToDollarFloat}
             columns={columns}
             columnHeaders={columnHeaders}
@@ -99,4 +98,4 @@ const TotalRevenue = props => {
   )
 }
 
-export default TotalRevenue
+export default TotalDisbursements
