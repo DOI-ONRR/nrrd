@@ -8,7 +8,7 @@ yarn.lock
 /public
 .DS_Store
 _site
-/test_results
+/test-results
 
 # vscode
 /.vscode
