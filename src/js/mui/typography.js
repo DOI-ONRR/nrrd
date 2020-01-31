@@ -57,7 +57,6 @@ module.exports = Object.freeze({
   },
   subtitle2: {},
   body1: {
-    margin: '0 0 1rem 0',
     color: '#323c42',
     fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
     fontSize: '1.2rem',
@@ -73,5 +72,8 @@ module.exports = Object.freeze({
   chartText: '1rem',
   chartLegend: {
     label: '.80rem'
+  },
+  label: {
+    fontSize: '.85rem',
   }
 })

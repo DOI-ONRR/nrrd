@@ -46,11 +46,15 @@ const useStyles = makeStyles({
   },
   card: {
     width: 285,
-    minHeight: 365,
+    minHeight: 340,
     margin: '10px',
     position: 'absolute',
     right: 0,
     transform: 'translate3d(0, 0px, 0px)',
+    '@media (max-width: 768px)': {
+      width: '100%',
+      height: 300,
+    }
   },
   cardMinimized: {
     minHeight: 'inherit',
@@ -62,11 +66,11 @@ const useStyles = makeStyles({
     }
   },
   cardHeader: {
-    padding: '16px 16px 0'
+    padding: 10,
   },
   close: {
     position: 'relative',
-    top: 4,
+    top: 8,
     right: '10px',
     cursor: 'pointer'
   },

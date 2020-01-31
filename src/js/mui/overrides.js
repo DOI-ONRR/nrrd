@@ -12,7 +12,11 @@ module.exports = Object.freeze({
   // https://material-ui.com/api/app-bar/
   MuiAppBar: {
     root: {
-      boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)'
+      boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
+      maxHeight: 130,
+      '@media (max-width: 768px)': {
+        maxHeight: '75px !important',
+      },
     },
     colorPrimary: {
       backgroundColor: common.white
@@ -47,7 +51,7 @@ module.exports = Object.freeze({
       },
     },
     grouped: {
-      padding: '4px 8px',
+      padding: '2px 4px',
     }
   },
   // https://material-ui.com/api/link/
@@ -161,6 +165,7 @@ module.exports = Object.freeze({
     },
     markLabel: {
       fontWeight: 'normal',
+      top: '30px',
     },
     markLabelActive: {
       fontWeight: 'bold',
@@ -181,6 +186,11 @@ module.exports = Object.freeze({
   },
   // https://material-ui.com/api/table-cell/
   MuiTableCell: {
+    root: {
+      '& > .MuiTypography-root': {
+        marginBottom: 0,
+      }
+    }
   },
   // https://material-ui.com/api/outlined-input/#outlinedinput-api
   MuiOutlinedInput: {
@@ -209,5 +219,14 @@ module.exports = Object.freeze({
         paddingBottom: '.41667rem',
       }
     },
+  },
+  // https://material-ui.com/api/form-control-label/#formcontrollabel-api
+  MuiFormControlLabel: {
+    root: {}
+  },
+  MuiCardHeader: {
+    title: {
+      margin: 0,
+    }
   }
 })

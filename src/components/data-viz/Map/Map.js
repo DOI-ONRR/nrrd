@@ -10,12 +10,23 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   map: {
-    display: 'block',
-    top: 0,
-    left: 0,
+    // display: 'block',
+    // top: 0,
+    // left: 0,
+    // width: '100%',
+    // height: '100%',
+    // order: '3'
     width: '100%',
     height: '100%',
-    order: '3'
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    paddingLeft: theme.spacing(0),
+    paddingRight: theme.spacing(0),
+    overflow: 'hidden',
+    background: theme.palette.grey[200],
   },
   legend: {
     display: 'block',
@@ -27,6 +38,9 @@ const useStyles = makeStyles(theme => ({
     margin: '5px',
     position: 'absolute',
     padding: theme.spacing(1),
+    '@media (max-width: 768px)': {
+      bottom: 5,
+    },
     '& .tick': {
       fontSize: theme.typography.chartLegend.label,
     }

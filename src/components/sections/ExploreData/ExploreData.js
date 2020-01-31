@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useContext, useEffect } from 'react'
 // import { Link } from "gatsby"
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider'
@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Snackbar, { SnackbarOrigin } from '@material-ui/core/Snackbar'
+import Snackbar from '@material-ui/core/Snackbar'
 
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
@@ -74,16 +74,26 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
     borderBottom: `1px solid ${ theme.palette.grey[300] }`,
-    boxShadow: '0 3px 6px 0 rgba(0, 0, 0, .25)',
+    boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
     '& h2': {
-      margin: 0,
+      marginTop: theme.spacing(1),
+      fontSize: '1rem',
+      lineHeight: 'inherit',
     },
     '& label': {
-      marginTop: theme.spacing(2),
+      marginTop: 0,
     },
     '& label span': {
-      margin: 0
+      margin: 0,
+      '@media (max-width: 768px)': {
+        fontSize: '.85rem',
+        lineHeight: '.85rem',
+      }
     }
+  },
+  toolbarControls: {
+    display: 'flex',
+    justifyContent: 'flex-start',
   },
   mapWrapper: {
     position: 'relative',
@@ -93,6 +103,9 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
+    '@media (max-width: 768px)': {
+      height: 705,
+    }
   },
   mapContainer: {
     position: 'relative',
@@ -100,16 +113,38 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '100%',
     height: 575,
     order: '3',
+    '@media (max-width: 768px)': {
+      height: 350,
+    },
   },
   cardContainer: {
-    width: '280px',
+    width: 'inherit',
     position: 'absolute',
     right: 0,
-    bottom: 0,
+    bottom: 20,
     height: 475,
     zIndex: 99,
+    '@media (max-width: 768px)': {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignContent: 'flex-start',
+      alignItems: 'flex-end',
+      background: 'transparent',
+      left: 0,
+      top: 0,
+      overflowX: 'auto',
+      height: 'auto',
+      position: 'relative',
+    },
     '& > div': {
       cursor: 'pointer',
+      '@media (max-width: 768px)': {
+        margin: 0,
+        position: 'relative',
+        minWidth: 275,
+        marginBottom: theme.spacing(2),
+      },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.green.default,
         color: theme.palette.common.white,
@@ -120,6 +155,9 @@ const useStyles = makeStyles(theme => ({
     },
     '& > div:nth-child(2)': {
       transform: 'translate3d(-10%, 0px, 0px) !important',
+      '@media (max-width: 768px)': {
+        transform: 'none !important',
+      },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.blue.dark,
         color: theme.palette.common.white,
@@ -130,6 +168,9 @@ const useStyles = makeStyles(theme => ({
     },
     '& > div:nth-child(3)': {
       transform: 'translate3d(-20%, 0px, 0px) !important',
+      '@media (max-width: 768px)': {
+        transform: 'none !important',
+      },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.orange.default,
         color: theme.palette.common.white,
@@ -140,6 +181,9 @@ const useStyles = makeStyles(theme => ({
     },
     '& > div:nth-child(4)': {
       transform: 'translate3d(-30%, 0px, 0px) !important',
+      '@media (max-width: 768px)': {
+        transform: 'none !important',
+      },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.purple.default,
         color: theme.palette.common.white,
@@ -150,6 +194,9 @@ const useStyles = makeStyles(theme => ({
     },
     '& > div:nth-child(5)': {
       transform: 'translate3d(-40%, 0px, 0px) !important',
+      '@media (max-width: 768px)': {
+        transform: 'none !important',
+      },
     },
     '& .minimized ~ div:nth-of-type(2)': {
       transform: 'translate3d(0px, 0px, 0px) !important',
@@ -163,32 +210,34 @@ const useStyles = makeStyles(theme => ({
     '& .minimized ~ div:nth-of-type(5)': {
       transform: 'translate3d(-30%, 0px, 0px) !important',
     },
-    '&:hover': {
-      cursor: 'pointer',
-      '& > div:nth-child(2)': {
-        transform: 'translate3d(-100%, 0px, 0px) !important',
-      },
-      '& > div:nth-child(3)': {
-        transform: 'translate3d(-200%, 0px, 0px) !important',
-      },
-      '& > div:nth-child(4)': {
-        transform: 'translate3d(-300%, 0px, 0px) !important',
-      },
-      '& > div:nth-child(5)': {
-        transform: 'translate3d(-400%, 0px, 0px) !important',
-      },
-      '& .minimized ~ div:nth-of-type(2)': {
-        transform: 'translate3d(0px, 0px, 0px) !important',
-      },
-      '& .minimized ~ div:nth-of-type(3)': {
-        transform: 'translate3d(-100%, 0px, 0px) !important',
-      },
-      '& .minimized ~ div:nth-of-type(4)': {
-        transform: 'translate3d(-200%, 0px, 0px) !important',
-      },
-      '& .minimized ~ div:nth-of-type(5)': {
-        transform: 'translate3d(-300%, 0px, 0px) !important',
-      },
+    '@media (min-width: 769px)': {
+      '&:hover': {
+        cursor: 'pointer',
+        '& > div:nth-child(2)': {
+          transform: 'translate3d(-100%, 0px, 0px) !important',
+        },
+        '& > div:nth-child(3)': {
+          transform: 'translate3d(-200%, 0px, 0px) !important',
+        },
+        '& > div:nth-child(4)': {
+          transform: 'translate3d(-300%, 0px, 0px) !important',
+        },
+        '& > div:nth-child(5)': {
+          transform: 'translate3d(-400%, 0px, 0px) !important',
+        },
+        '& .minimized ~ div:nth-of-type(2)': {
+          transform: 'translate3d(0px, 0px, 0px) !important',
+        },
+        '& .minimized ~ div:nth-of-type(3)': {
+          transform: 'translate3d(-100%, 0px, 0px) !important',
+        },
+        '& .minimized ~ div:nth-of-type(4)': {
+          transform: 'translate3d(-200%, 0px, 0px) !important',
+        },
+        '& .minimized ~ div:nth-of-type(5)': {
+          transform: 'translate3d(-300%, 0px, 0px) !important',
+        },
+      }
     }
   },
   sliderContainer: {
@@ -199,7 +248,12 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(1),
     zIndex: 101,
     paddingBottom: theme.spacing(0),
-    borderBottom: `1px solid ${ theme.palette.grey[300] }`
+    borderTop: `1px solid ${ theme.palette.grey[300] }`,
+    borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    '@media (max-width: 768px)': {
+      position: 'relative',
+      top: 0,
+    },
   },
   sliderRoot: {
     width: '100%',
@@ -208,7 +262,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 101,
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    top: -21,
+    top: 0,
   },
   contentWrapper: {
     paddingBottom: theme.spacing(4),
@@ -217,6 +271,9 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     bottom: 180,
     left: 10,
+    '@media (max-width: 768px)': {
+      bottom: 70,
+    }
   }
 }))
 
@@ -231,13 +288,16 @@ const YearSlider = props => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
   const [year] = useState(state.year)
-  const matchesMedia = useMediaQuery('(min-width:768px)')
+
+  const theme = useTheme()
+  const matchesSmUp = useMediaQuery(theme.breakpoints.up('sm'))
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
     <Box className={classes.sliderRoot}>
       <Grid container spacing={4}>
         <Grid item xs>
-          { matchesMedia &&
+          { matchesMdUp &&
           <Slider
             defaultValue={year}
             aria-labelledby="discrete-slider"
@@ -251,7 +311,7 @@ const YearSlider = props => {
             max={2019}
           />
           }
-          { !matchesMedia &&
+          { !matchesMdUp &&
           <Slider
             defaultValue={year}
             aria-labelledby="discrete-slider"
@@ -299,11 +359,15 @@ const ExploreData = () => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
 
+  const theme = useTheme()
+  const matchesSmUp = useMediaQuery(theme.breakpoints.up('sm'))
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+
   // Snackbar state
   const [snackbarState, setSnackbarState] = useState({
     open: false,
     vertical: 'bottom',
-    horizontal: 'left'
+    horizontal: 'center'
   })
   const { vertical, horizontal, open } = snackbarState
 
@@ -318,15 +382,28 @@ const ExploreData = () => {
   let y = mapY
   let k = mapK
 
+  const cardCountClass = () => {
+    switch (cards.length) {
+    case 2:
+      return 'cards-2'
+      break
+    case 3:
+      return 'cards-3'
+      break
+    case 4:
+      return 'cards-4'
+      break
+    default:
+      return 'cards-1'
+      break
+    }
+  }
+
   const setZoom = (x, y, k) => {
     setMapY(y)
     setMapX(x)
     setMapK(k)
   }
-
-  useEffect(() => {
-    setZoom(x, y, k)
-  }, [mapX, mapY, mapK])
 
   const handleChange = (type, name) => event => {
     console.debug('Handle change', name, event)
@@ -379,7 +456,7 @@ const ExploreData = () => {
       }
       else {
         console.log('fire alert yo!')
-        handleSnackbar({ vertical: 'bottom', horizontal: 'left' })
+        handleSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
     return dispatch({ type: 'CARDS', payload: { cards: cards } })
@@ -427,37 +504,37 @@ const ExploreData = () => {
         <Container maxWidth={false} className={classes.toolbar}>
           <Container>
             <Grid container>
-              <Grid item sm={12} md={8}>
+              <Grid item xs={12} sm={5}>
                 <Typography variant="h2">Fiscal Year {year} Revenue</Typography>
-                <Typography variant="subtitle2">
-                  Select a state for detailed production, revenue, and disbursements data.
-                </Typography>
+                {/* <Typography style={{ fontSize: '10px', lineHeight: 'inherit' }}>
+                Select a state for detailed production, revenue, and disbursements data.
+                </Typography> */}
               </Grid>
-              <Grid item sm={12} md={2}>
-                <FormControlLabel
-                  control= {
-                    <Switch
-                      checked={state.countyLevel}
-                      onChange={handleChange('COUNTY_LEVEL', 'countyLevel')}
-                      value="countyLevel"
-                      color="primary"
-                    />
-                  }
-                  label="County data"
-                />
-              </Grid>
-              <Grid item sm={12} md={2}>
-                <FormControlLabel
-                  control= {
-                    <Switch
-                      checked={state.offshore}
-                      onChange={handleChange('OFFSHORE', 'offshore')}
-                      value="offshore"
-                      color="primary"
-                    />
-                  }
-                  label="Offshore data"
-                />
+              <Grid item xs={12} sm={7}>
+                <Box className={classes.toolbarControls}>
+                  <FormControlLabel
+                    control= {
+                      <Switch
+                        checked={state.countyLevel}
+                        onChange={handleChange('COUNTY_LEVEL', 'countyLevel')}
+                        value="countyLevel"
+                        color="primary"
+                      />
+                    }
+                    label="County data"
+                  />
+                  <FormControlLabel
+                    control= {
+                      <Switch
+                        checked={state.offshore}
+                        onChange={handleChange('OFFSHORE', 'offshore')}
+                        value="offshore"
+                        color="primary"
+                      />
+                    }
+                    label="Offshore data"
+                  />
+                </Box>
               </Grid>
             </Grid>
           </Container>
@@ -495,7 +572,19 @@ const ExploreData = () => {
               </Box>
             </Grid>
             <Grid item xs={12}>
-              <Box className={classes.cardContainer}>
+              <Box className={classes.sliderContainer}>
+                <Container>
+                  <YearSlider
+
+                    onYear={selected => {
+                      onYear(selected)
+                    }}
+                  />
+                </Container>
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
 
@@ -513,18 +602,6 @@ const ExploreData = () => {
 
                   )
                 })}
-              </Box>
-            </Grid>
-            <Grid item xs={12}>
-              <Box className={classes.sliderContainer}>
-                <Container>
-                  <YearSlider
-
-                    onYear={selected => {
-                      onYear(selected)
-                    }}
-                  />
-                </Container>
               </Box>
             </Grid>
           </Grid>
