@@ -164,9 +164,9 @@ export default class d3Map {
       })
       .append('title')
       .text(d => `${ d.properties.name }  ${ format(data.get(d.id)) }`)
-
+  console.debug("============================================", us.objects);
     _chart.append('path')
-      .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
+      .datum(topojson.mesh(us, us.objects[mapFeatures], (a, b) => a !== b))
       .attr('fill', 'none')
       .attr('d', path)
     _chart.transition().duration(3000)

@@ -9,8 +9,6 @@ exports[`Map renders correctly 1`] = `
   />
   <div
     className="makeStyles-map-1"
-  >
-    <span />
-  </div>
+  />
 </div>
 `;
