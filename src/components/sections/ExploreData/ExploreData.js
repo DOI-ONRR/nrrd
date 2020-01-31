@@ -271,6 +271,7 @@ const useStyles = makeStyles(theme => ({
   },
   contentWrapper: {
     paddingBottom: theme.spacing(4),
+    minHeight: 500,
   },
   zoomButtonGroupContainer: {
     position: 'absolute',
