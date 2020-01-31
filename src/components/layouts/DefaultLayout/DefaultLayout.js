@@ -45,8 +45,16 @@ const useStyles = makeStyles(theme => ({
       borderBottom: 'solid',
       paddingBottom: '.41667rem',
     },
-    '.header-bar.green': {
+    '.green': {
       borderColor: '#cde3c3',
+    },
+    '.thick': {
+      borderWidth: '6px',
+    },
+    '.shadow': {
+      '-webkit-box-shadow': `3px 3px 5px 6px ${ theme.palette.common.black }`, /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+      '-moz-box-shadow': `3px 3px 5px 6px ${ theme.palette.common.black }`, /* Firefox 3.5 - 3.6 */
+      'box-shadow': `3px 3px 5px 6px ${ theme.palette.common.black }`,
     }
   },
   root: {
