@@ -3,12 +3,12 @@ import Map from '../../data-viz/Map'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
-	containerBottom: {
-		minWidth:'280px',
-		flexBasis:'100%',		    
-		height: '600px',
-		order:'3', 
-	}
+  containerBottom: {
+    minWidth:'280px',
+    flexBasis:'100%',		    
+    height: '600px',
+    order:'3', 
+  }
 }))
 
 const MapSection = props => {

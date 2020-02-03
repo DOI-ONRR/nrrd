@@ -1,24 +1,23 @@
 /**
  * Page Layout component manages which layout component will be applied to the mdx pages
  */
-
-import DefaultLayout from '../DefaultLayout'
-import DownloadsLayout from '../DownloadsLayout'
-
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const PageLayoutManager = ({ path, children, ...rest }) => {
+import DefaultLayout from '../DefaultLayout'
+import DownloadsLayout from '../DownloadsLayout'
+import PatternLibraryLayout from '../PatternLibraryLayout'
 
-  if (path.includes('/downloads/')) {
+const PageLayoutManager = ({ children, location, pageContext, ...rest }) => {
+  if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
+
+  if (pageContext.layout === 'downloads') {
     return <DownloadsLayout>{children}</DownloadsLayout>
   }
-
-  return (
-    <DefaultLayout>
-      {children}
-    </DefaultLayout>
-  )
+  if (pageContext.layout === 'pattern-library') {
+    return <PatternLibraryLayout>{children}</PatternLibraryLayout>
+  }
+  return <DefaultLayout>{children}</DefaultLayout>
 }
 
 PageLayoutManager.propTypes = {

@@ -5,17 +5,17 @@ export const initCounterState = {
 export const counterReducer = (state, action) => {
   const { type, payload } = action
   switch(type) {
-    case 'INCREMENT': {
-      return {
-        counter: payload.counter + 1
-      }
+  case 'INCREMENT': {
+    return {
+      counter: payload.counter + 1
     }
-    case 'DECREMENT': {
-      return {
-        counter: payload.counter - 1
-      }
+  }
+  case 'DECREMENT': {
+    return {
+      counter: payload.counter - 1
     }
-    default: 
-      return state
+  }
+  default: 
+    return state
   }
 }
