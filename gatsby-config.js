@@ -55,6 +55,7 @@ const config = {
       resolve: 'gatsby-plugin-layout',
       options: {
         component: `${ __dirname }/src/components/layouts/PageLayoutManager`
+
       }
     },
     {
@@ -67,6 +68,7 @@ const config = {
     },
     'gatsby-theme-apollo',
     'gatsby-plugin-react-helmet',
+
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -134,6 +136,7 @@ const config = {
         }
       }
     },
+
     {
       resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
       options: {

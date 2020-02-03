@@ -19,28 +19,27 @@ import { StoreContext } from '../../../store'
 import { ThemeConsumer } from 'styled-components'
 import utils from '../../../js/utils'
 
-const TOTAL_REVENUE_QUERY = gql`
-  query TotalYearlyRevenue($period: String!) {
-    total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
+const TOTAL_DISBURSEMENTS_QUERY = gql`
+  query TotalYearlyDisbursements($period: String!) {
+    total_yearly_disbursements(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
       federal_offshore
       federal_onshore
       native_american
-      not_tied_to_a_lease
       fiscal_year
     }
   }
 `
 
-const TotalRevenue = props => {
+const TotalDisbursements = props => {
   const { state, dispatch } = useContext(StoreContext)
   const period = state.period
-  const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american', 'not_tied_to_a_lease']
+  const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american']
   const columnHeaders = props.columnHeaders || ['Source', 'Year']
 
-  const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American', 'Not tied to a lease']
+  const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American']
   const xLabels = props.xLabels
   const xRotate = props.xRotate || 0
-  const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY, {
+  const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY, {
     variables: { period }
   })
   if (loading) {
@@ -55,12 +54,12 @@ const TotalRevenue = props => {
   return (
     <Box>
       <Typography variant="h3" className="header-bar green">
-          Total Revenue
+          Total Disbursements
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs>
           <StackedBarChart
-            data={data.total_yearly_revenue}
+            data={data.total_yearly_disbursements}
             legendDataFormatFunc={utils.formatToDollarFloat}
             columns={columns}
             columnHeaders={columnHeaders}
@@ -74,4 +73,4 @@ const TotalRevenue = props => {
   )
 }
 
-export default TotalRevenue
+export default TotalDisbursements

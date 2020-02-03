@@ -70,4 +70,8 @@ module.exports = Object.freeze({
   captionText: {},
   overlineText: {},
   fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
+  chartText: '1rem',
+  chartLegend: {
+    label: '.80rem'
+  }
 })
