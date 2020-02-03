@@ -1,11 +1,8 @@
 /**
- * Default Layout component that queries for data
- * with Gatsby's useStaticQuery component
+ * Default Layout component
  *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
-
-import React, { Fragment } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
@@ -45,8 +42,16 @@ const useStyles = makeStyles(theme => ({
       borderBottom: 'solid',
       paddingBottom: '.41667rem',
     },
-    '.header-bar.green': {
+    '.green': {
       borderColor: '#cde3c3',
+    },
+    '.thick': {
+      borderWidth: '6px',
+    },
+    '.shadow': {
+      '-webkit-box-shadow': `3px 3px 5px 6px ${ theme.palette.common.black }`, /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+      '-moz-box-shadow': `3px 3px 5px 6px ${ theme.palette.common.black }`, /* Firefox 3.5 - 3.6 */
+      'box-shadow': `3px 3px 5px 6px ${ theme.palette.common.black }`,
     }
   },
   root: {
@@ -124,26 +129,24 @@ const DefaultLayout = ({ children }) => {
   `)
 
   return (
-    <Fragment>
-      <ThemeProvider theme={theme}>
-        <Box className={classes.site}>
-          <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+    <ThemeProvider theme={theme}>
+      <Box className={classes.site}>
+        <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
 
-          <Banner />
+        <Banner />
 
-          <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
+        <Header className={classes.header} siteTitle={data.site.siteMetadata.title} />
 
-          <GlossaryDrawer />
+        <GlossaryDrawer />
 
-          <Box className={classes.siteContent}>
-            <CssBaseline />
-            <Box component="main">{children}</Box>
-          </Box>
-
-          <Footer version={data && data.site.siteMetadata.version} />
+        <Box className={classes.siteContent}>
+          <CssBaseline />
+          <Box component="main">{children}</Box>
         </Box>
-      </ThemeProvider>
-    </Fragment>
+
+        <Footer version={data && data.site.siteMetadata.version} />
+      </Box>
+    </ThemeProvider>
   )
 }
 

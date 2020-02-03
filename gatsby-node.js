@@ -13,6 +13,11 @@ exports.onCreatePage = ({ page, actions }) => {
     page.context.layout = 'pattern-library'
     createPage(page)
   }
+
+  if (page.path.match(/downloads/)) {
+    page.context.layout = 'downloads'
+    createPage(page)
+  }
 }
 
 exports.createPages = ({ graphql }) => {

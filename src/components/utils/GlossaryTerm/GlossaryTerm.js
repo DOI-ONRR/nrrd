@@ -11,10 +11,10 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   glossaryTerm: {
-    borderBottom: `1px dotted ${theme.palette.common.black}`,
+    borderBottom: `1px dotted ${ theme.palette.common.black }`,
     cursor: 'pointer',
     '&:hover': {
-      borderBottom: `1px solid ${theme.palette.common.black}`,
+      borderBottom: `1px solid ${ theme.palette.common.black }`,
     }
   },
   iconQuestion: {
@@ -42,7 +42,7 @@ const GlossaryTerm = ({ termKey, children }) => {
   return (
     <Fragment>
       <span className={classes.glossaryTerm} title="Click to define" tabIndex="0" 
-      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: getTerm(), glossaryOpen: true }})}>
+        onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: getTerm(), glossaryOpen: true }})}>
         {children} <GlossaryIcon className={classes.iconQuestion} />
       </span>
     </Fragment>

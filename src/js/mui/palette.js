@@ -29,6 +29,10 @@ module.exports = Object.freeze({
     A400: '#303030',
     A200: '#aaaaaa'
   },
+  common: {
+    white: '#fff',
+    black: '#000',
+  },
   text: {
     primary: 'rgba(0, 0, 0, 0.87)',
     secondary: 'rgba(0, 0, 0, 0.54)',
@@ -37,7 +41,8 @@ module.exports = Object.freeze({
   },
   chart: {
     primary: '#435159',
-    secondary: '#086996',
+    //    secondary: '#086996',
+    secondary: 'darkorange',
   },
   green: {
     light: '#cde3c3',
@@ -48,5 +53,12 @@ module.exports = Object.freeze({
   },
   blue: {
     light: '#f0f6fa',
+    dark: '#323c42',
   },
+  orange: {
+    default: '#ff8c00'
+  },
+  purple: {
+    default: '#ac2e97'
+  }
 })

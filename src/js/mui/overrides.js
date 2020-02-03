@@ -2,26 +2,24 @@
 // https://material-ui.com/customization/globals/
 const {
   primary,
-  // secondary,
-  // grey,
-  // text
+  secondary,
+  grey,
+  common,
+  ...rest
 } = require('./palette')
 
 module.exports = Object.freeze({
   // https://material-ui.com/api/app-bar/
   MuiAppBar: {
     root: {
-      boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)'
     }
   },
   // https://material-ui.com/components/buttons/
   MuiButton: {
     // Name of the rule
-    root: {
-      backgroundColor: primary.light,
-      '&:hover': {
-        backgroundColor: '#0F5A7D',
-      }
+    backgroundColor: primary.light,
+    '&:hover': {
+      backgroundColor: '#0F5A7D',
     },
     text: {
       // Some CSS
@@ -34,6 +32,17 @@ module.exports = Object.freeze({
       textTransform: 'inherit',
       fontSize: '1.2rem',
     },
+  },
+  // https://material-ui.com/api/button-group/
+  MuiButtonGroup: {
+    root: {
+      '& .MuiButton-contained': {
+        backgroundColor: common.white
+      },
+    },
+    grouped: {
+      padding: '4px 8px',
+    }
   },
   // https://material-ui.com/api/link/
   MuiLink: {
@@ -143,10 +152,32 @@ module.exports = Object.freeze({
   MuiSlider: {
     root: {
       color: '#435159'
+    },
+    markLabel: {
+      fontWeight: 'normal',
+    },
+    markLabelActive: {
+      fontWeight: 'bold',
+    },
+    track: {
+      height: 4,
+    },
+    mark: {
+      height: 4,
+      backgroundColor: common.white,
+    },
+    thumb: {
+      marginTop: -4,
+    },
+    rail: {
+      height: 4,
     }
   },
   // https://material-ui.com/api/table-cell/
   MuiTableCell: {
+    head: {
+      fontWeight: 'bold',
+    }
   },
   // https://material-ui.com/api/outlined-input/#outlinedinput-api
   MuiOutlinedInput: {
@@ -175,5 +206,6 @@ module.exports = Object.freeze({
         paddingBottom: '.41667rem',
       }
     },
-  }
+  },
+
 })
