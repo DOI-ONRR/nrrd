@@ -1,7 +1,7 @@
 #!/bin/bash
-# cf api https://api.fr.cloud.gov
-# cf auth "$STAGING_CF_USERNAME" "$STAGING_CF_PASSWORD"
-# cf target -o "$STAGING_CF_ORG" -s "$STAGING_CF_SPACE"
+cf api https://api.fr.cloud.gov
+cf auth "$STAGING_CF_USERNAME" "$STAGING_CF_PASSWORD"
+cf target -o "$STAGING_CF_ORG" -s "$STAGING_CF_SPACE"
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 #curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
 #sudo dpkg -i cf-cli_amd64.deb
@@ -68,19 +68,19 @@ echo "The candidate to remove from stage is $CANDIDATE"
 
 exit
 
-# if [ "$count" -gt 14 ]
-# then
-#     echo "cf delete -f $CANDIDATE"
-#     echo "cf delete-route -f app.cloud.gov --hostname $CANDIDATE"
-#     cf delete -f $CANDIDATE
-#     cf delete-route -f app.cloud.gov --hostname $CANDIDATE
-# fi    
-# ## Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
-# ## $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+if [ "$count" -gt 9 ]
+then
+    echo "cf delete -f $CANDIDATE"
+    echo "cf delete-route -f app.cloud.gov --hostname $CANDIDATE"
+    cf delete -f $CANDIDATE
+    cf delete-route -f app.cloud.gov --hostname $CANDIDATE
+fi    
+## Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+## $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
 
 
 
-# echo "cf push $BRANCH -f ./manifest.yml "
-# cf push $BRANCH -f ./manifest.staging.yml   
+echo "cf push $BRANCH -f ./manifest.yml "
+cf push $BRANCH -f ./manifest.staging.yml   
 
 
