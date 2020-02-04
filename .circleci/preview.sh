@@ -66,7 +66,6 @@ fi
 
 echo "The candidate to remove from stage is $CANDIDATE"
 
-exit
 
 if [ "$count" -gt 9 ]
 then
@@ -80,7 +79,7 @@ fi
 
 
 
-echo "cf push $BRANCH -f ./manifest.yml "
+echo "cf push $BRANCH -f ./manifest.staging.yml "
 cf push $BRANCH -f ./manifest.staging.yml   
 
 
