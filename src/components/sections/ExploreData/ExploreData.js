@@ -498,7 +498,6 @@ const ExploreData = () => {
               <Box className={classes.cardContainer}>
                 {cards.map((state, i) => {
                   return (
-
                     <StateCard
                       key={i}
                       fips={state.fips}
@@ -510,7 +509,6 @@ const ExploreData = () => {
                         closeCard(fips)
                       }}
                     />
-
                   )
                 })}
               </Box>

@@ -8,26 +8,66 @@ BRANCH=`git rev-parse --abbrev-ref HEAD`
 PREVIEWS=`cf apps | grep started  | cut -d " " -f 1`
 count=0
 CANDIDATE="";
+
+##  Loop through staged previews
+FOUND_FLAG=0;
 for ii in $PREVIEWS
 do
     echo $ii;
     count=$((count+1))
     if [ $ii != "nrrd" ] && [ $ii != "dev-nrrd" ]
     then 
+        # Each preview is a candidate
 	CANDIDATE=$ii
+        #echo "$ii vs $BRANCH"
 	if [ $ii == $BRANCH ]
-	then 
+	then
+            # If candidate is the branch then candidate is the branch.
+            FOUND_FLAG=1
 	    echo "echo exit loop"
 	    break
 	fi
     else
 	echo "->> $ii"
     fi
+
+    
      
 done
 echo $count
 
-if [ "$count" -gt 4 ]
+if [ "$FOUND_FLAG" -eq 0 ]
+then
+    BRANCH_HISTORY=`for branch in \`git branch -r | grep -v HEAD\`;do echo -e \`git show --format="%ci %cr" $branch | head -n 1\` \\\t$branch; done | sort  | cut -f2 | grep -v origin/dev | sed 's/origin\///'`
+    FOUND_FLAG=0
+    ## Loop through history  until first match in preview history.(ie oldest committed branch)
+    for branch in $BRANCH_HISTORY
+    do
+
+        if [ "$FOUND_FLAG" -eq 0 ]
+        then 
+            for preview in $PREVIEWS
+            do
+               ## echo "Compare $branch with $preview"
+                if [ $branch == $preview ]
+                then 
+                    echo "The oldest preview is $preview"
+                    CANDIDATE=$preview
+                    FOUND_FLAG=1
+                    break
+                    
+                fi
+                
+            done 
+        fi
+        
+    done
+fi
+
+echo "The candidate to remove from stage is $CANDIDATE"
+
+
+if [ "$count" -gt 9 ]
 then
     echo "cf delete -f $CANDIDATE"
     echo "cf delete-route -f app.cloud.gov --hostname $CANDIDATE"
@@ -39,6 +79,7 @@ fi
 
 
 
-echo "cf push $BRANCH -f ./manifest.yml "
-cf push $BRANCH -f ./manifest.yml   
+echo "cf push $BRANCH -f ./manifest.staging.yml "
+cf push $BRANCH -f ./manifest.staging.yml   
+
 

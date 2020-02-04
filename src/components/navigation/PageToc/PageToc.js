@@ -137,7 +137,7 @@ const PageToc = props => {
 
   useLayoutEffect(() => {
     createToc()
-  }, [window.location.pathname])
+  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
 
   const handleClick = () => {
     // setToc({ ...toc, expanded: !toc.expanded })
