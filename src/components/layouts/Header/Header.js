@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment, useContext, useMemo } from 'react'
 import { isIE } from 'react-device-detect'
 import { StoreContext } from '../../../store'
 
@@ -145,13 +145,20 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Header = props => {
+const ExploreDataLink2 = React.memo(() => {
+  const classes = useStyles()
+  return (<Link
+    className={classes.menuLink}
+    to="/explore/"
+    activeClassName={classes.menuActiveLink}>
+    Explore data
+  </Link>)
+})
+
+const Header = React.memo(props => {
   const classes = useStyles()
 
   const { state, dispatch } = useContext(StoreContext)
-  // const [state, setState ] = useState({
-  //   right: false
-  // })
 
   const toggleMobileDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -213,12 +220,7 @@ const Header = props => {
               <nav className={`${ classes.headerRight } ${ classes.bottom }`}>
                 <ul>
                   <li>
-                    <Link
-                      className={classes.menuLink}
-                      to="/explore/"
-                      activeClassName={classes.menuActiveLink}>
-                        Explore data
-                    </Link>
+                    <ExploreDataLink2 />
                   </li>
                   <li>
                     <Link
@@ -324,7 +326,7 @@ const Header = props => {
       </AppBar>
     </Fragment>
   )
-}
+})
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

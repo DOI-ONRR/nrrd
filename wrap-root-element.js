@@ -7,6 +7,7 @@ import { Grid, Typography } from '@material-ui/core'
 import { Link } from 'gatsby'
 import { client } from './src/apollo/client'
 import { StoreProvider } from './src/store'
+import ErrorBoundary from './src/components/ErrorBoundary'
 
 const mdxComponents = {
   pre: props => <div {...props} />,
@@ -21,12 +22,14 @@ const mdxComponents = {
 
 export const wrapRootElement = ({ element }) => (
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <StoreProvider>
-        <MDXProvider components={ mdxComponents }>
-          {element}
-        </MDXProvider>
-      </StoreProvider>
-    </ApolloProvider>
+    <ErrorBoundary>
+      <ApolloProvider client={client}>
+        <StoreProvider>
+          <MDXProvider components={ mdxComponents }>
+            {element}
+          </MDXProvider>
+        </StoreProvider>
+      </ApolloProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 )
