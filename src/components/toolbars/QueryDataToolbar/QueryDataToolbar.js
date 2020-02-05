@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { StoreContext } from '../../../store'
+import { DataFilterContext } from '../../../stores/data-filter-store'
 import { fetchDataFilterFromUrl } from '../../../js/utils'
 
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 const QueryDataToolbar = props => {
   const classes = useStyles()
   const [filter, setFilter] = useState(fetchDataFilterFromUrl())
-  const { state, updateDataFilter } = useContext(StoreContext)
+  const { state, updateDataFilter } = useContext(DataFilterContext)
 
   useEffect(() => {
     updateDataFilter(filter)
@@ -38,7 +38,7 @@ const QueryDataToolbar = props => {
     console.log(type, value)
     setFilter({ ...filter, [type]: value })
   }
-  console.log(filter[DFC.DATA_TYPE])
+  console.log('state', state)
   return (
     <React.Fragment>
       <Container maxWidth={true} className={classes.root}>
