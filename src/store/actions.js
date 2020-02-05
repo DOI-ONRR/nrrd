@@ -18,14 +18,15 @@ export const useActions = (state, dispatch) => {
 
   const updateDataFilter = updatedFilter => {
     let params = ''
-    if(updatedFilter) {
-      console.log(typeof updatedFilter)
-    }
-    
-    if (typeof window !== 'undefined' && window) {
-      console.log(JSON.stringify(updatedFilter))
-      //params = updatedFilter.keys().forEach(key => params.concat(key, '=', updatedFilter[key]))
-      //window.history.replaceState({}, '', `${ window.location.pathname }?${ params }`)
+
+    if (typeof window !== 'undefined' && window && Object.keys(updatedFilter).length > 0) {
+      for (const prop in updatedFilter) {
+        if (params.length > 0) {
+          params = params.concat('&')
+        }
+        params = params.concat(prop, '=', updatedFilter[prop])
+      }
+      window.history.replaceState({}, '', `${ window.location.pathname }?${ params }`)
     }
 
     dispatch({ type: types.UPDATE_DATA_FILTER, payload: updatedFilter })

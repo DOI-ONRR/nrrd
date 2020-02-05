@@ -8,6 +8,15 @@ import commodityNames from '../data/commodity_names.yml'
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
 
+export const fetchDataFilterFromUrl = () => {
+  const updatedFilter = {}
+  const urlSearchParams = (typeof window !== 'undefined' && window) && new URLSearchParams(window.location.search)
+  for (const searchParam of urlSearchParams.entries()) {
+    updatedFilter[searchParam[0]] = searchParam[1]
+  }
+  return updatedFilter
+}
+
 const utils = {
   scrollStop: callback => {
     // Make sure a valid callback was provided
