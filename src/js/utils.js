@@ -141,8 +141,10 @@ const utils = {
 
     const num = d3.format(`.${ precision + 2 }s`)(value)
 
-    const suffix = num.substring(num.length - 1)
-
+    let suffix = num.substring(num.length - 1)
+    if(suffix == 0) {
+      suffix = ''
+    }
     const dollarNum = this.formatToDollarFloat(num, precision - 1)
     const r = this.getMetricLongUnit(dollarNum + suffix)
     return r
@@ -151,6 +153,7 @@ const utils = {
     const suffix = { k: 'k', M: ' million', G: ' billion' }
 
     return str.replace(/[kMG]/g, match => {
+      
       return suffix[match] || match
     })
   },
