@@ -35,10 +35,9 @@ const QueryDataToolbar = props => {
   }, [filter])
 
   const handleChange = (type, value) => {
-    console.log(type, value)
     setFilter({ ...filter, [type]: value })
   }
-  console.log('state', state)
+
   return (
     <React.Fragment>
       <Container maxWidth={true} className={classes.root}>

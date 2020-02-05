@@ -10,8 +10,6 @@ const types = Object.freeze({
 const reducer = (state, action) => {
   const { type, payload } = action
 
-  console.log('State Update:', action)
-
   switch (type) {
   case types.UPDATE_DATA_FILTER:
     return ({ ...state, ...payload })
@@ -20,8 +18,6 @@ const reducer = (state, action) => {
   }
 }
 
-const initialState = {
-  dataFilter: undefined,
-}
+const initialState = {}
 
 export { initialState, types, reducer }

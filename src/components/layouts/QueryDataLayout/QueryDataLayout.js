@@ -13,7 +13,6 @@ import DefaultContentLayout from '../DefaultContentLayout'
 import { DataFilterProvider } from '../../../stores'
 
 const QueryDataLayout = ({ children }) => {
-  console.log('QueryDataLayout')
   return (
     <DefaultContentLayout>
       <DataFilterProvider>

@@ -10,7 +10,7 @@ function DataFilterProvider ({ children }) {
 
   // Log new state
   useEffect(() => console.log('DataFilterProvider', { newState: state }), [state])
-  console.log(actions)
+
   return (
     <DataFilterContext.Provider value={{ state, dispatch, ...actions }}>
       {children}

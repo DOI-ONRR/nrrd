@@ -7,23 +7,16 @@
  */
 
 import DefaultLayout from '../DefaultLayout'
-
 import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
 
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { DataFilterProvider } from '../../../stores'
-
 const DefaultContentLayout = ({ children }) => {
-  console.log("DefaultContentLayout")
   return (
     <DefaultLayout>
       <Container maxWidth="lg">
-        <DataFilterProvider>
-          {children}
-        </DataFilterProvider>
+        {children}
       </Container>
     </DefaultLayout>
   )
