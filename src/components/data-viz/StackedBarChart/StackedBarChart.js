@@ -15,6 +15,7 @@ import ChartTitle from '../ChartTitle'
 
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
 import BarChart from './stacked-bar-chart.js'
+
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'block',
@@ -50,9 +51,39 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '200px',
     fontSize: theme.typography.chartText,
-    '& .legend-rect': {
+    '& tr > td:first-child': {
+      width: 10,
+    },
+    '& td .legend-rect': {
       fill: theme.palette.chart.secondary,
-    }
+      backgroundColor: theme.palette.chart.secondary,
+      display: 'block',
+      height: 15,
+      width: 15,
+    },
+    '& .legend-table': {
+      width: '100%',
+      borderSpacing: 0,
+      borderCollapse: 0,
+      boxShadow: 'none',
+    },
+    '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
+      textAlign: 'right',
+    },
+    '& .legend-table > thead th': {
+      fontWeight: 'bold',
+      textAlign: 'left',
+      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    },
+    '& .legend-table > tbody tr td': {
+      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    },
+    '& .legend-table > tbody tr:last-child td': {
+      border: 'none',
+    },
+    '& .legend-table th, & .legend-table td': {
+      padding: theme.spacing(0.5),
+    },
   }
 }))
 
@@ -66,8 +97,9 @@ const StackedBarChart = props => {
   const options = {}
   const formatLegendFunc = props.legendDataFormatFunc
   const title = props.chartTitle
+
   options.columns = props.columns
-  options.columnHeaders = props.columnHeaders
+  options.columnNames = props.columnNames
   options.yLabels = props.yLabels
   options.xLabels = props.xLabels
   options.xRotate = props.xRotate

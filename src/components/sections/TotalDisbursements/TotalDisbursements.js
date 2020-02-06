@@ -52,10 +52,10 @@ const TotalDisbursements = props => {
 
   const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENTS } (dollars)`
   const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american']
-  const columnHeaders = props.columnHeaders || ['Source', 'Year']
+  const columnNames = props.columnNames || ['Source', '', state.year]
 
   const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American']
-  const xLabels = props.xLabels
+  const xLabels = props.xLabels || ["'10", "'11", "'12", "'13", "'14", "'15", "'16", "'17", "'18", "'19"]
   const xRotate = props.xRotate || 0
   const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY, {
     variables: { period }
@@ -87,7 +87,7 @@ const TotalDisbursements = props => {
             data={data.total_yearly_disbursements}
             legendDataFormatFunc={utils.formatToDollarFloat}
             columns={columns}
-            columnHeaders={columnHeaders}
+            columnNames={columnNames}
             xRotate={xRotate}
             yLabels={yLabels}
             xLabels={xLabels}
