@@ -10,9 +10,11 @@ import commodityNames from '../data/commodity_names.yml'
 
 export const fetchDataFilterFromUrl = () => {
   const updatedFilter = {}
-  const urlSearchParams = (typeof window !== 'undefined' && window) && new URLSearchParams(window.location.search)
-  for (const searchParam of urlSearchParams.entries()) {
-    updatedFilter[searchParam[0]] = searchParam[1]
+  if (typeof window !== 'undefined' && window) {
+    const urlSearchParams = new URLSearchParams(window.location.search)
+    for (const searchParam of urlSearchParams.entries()) {
+      updatedFilter[searchParam[0]] = searchParam[1]
+    }
   }
   return updatedFilter
 }
@@ -151,7 +153,7 @@ const utils = {
     const num = d3.format(`.${ precision + 2 }s`)(value)
 
     let suffix = num.substring(num.length - 1)
-    if(suffix == 0) {
+    if (suffix == 0) {
       suffix = ''
     }
     const dollarNum = this.formatToDollarFloat(num, precision - 1)
@@ -162,7 +164,6 @@ const utils = {
     const suffix = { k: 'k', M: ' million', G: ' billion' }
 
     return str.replace(/[kMG]/g, match => {
-      
       return suffix[match] || match
     })
   },
