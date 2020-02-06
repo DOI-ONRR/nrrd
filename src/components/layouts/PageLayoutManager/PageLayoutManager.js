@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 
 import DefaultLayout from '../DefaultLayout'
 import DefaultContentLayout from '../DefaultContentLayout'
-import QueryDataLayout from '../QueryDataLayout'
 import DownloadsLayout from '../DownloadsLayout'
 import PatternLibraryLayout from '../PatternLibraryLayout'
 
@@ -19,10 +18,7 @@ const PageLayoutManager = ({ children, location, pageContext, ...rest }) => {
   if (pageContext.layout === 'pattern-library') {
     return <PatternLibraryLayout>{children}</PatternLibraryLayout>
   }
-  if (pageContext.frontmatter.layout === 'QueryDataLayout') {
-    return <QueryDataLayout>{children}</QueryDataLayout>
-  }
-  if (pageContext.frontmatter.layout === 'DefaultContentLayout') {
+  if (pageContext.frontmatter && pageContext.frontmatter.layout === 'DefaultContentLayout') {
     return <DefaultContentLayout>{children}</DefaultContentLayout>
   }
   return <DefaultLayout>{children}</DefaultLayout>

@@ -40,7 +40,7 @@ const QueryDataToolbar = props => {
 
   return (
     <React.Fragment>
-      <Container maxWidth={true} className={classes.root}>
+      <Container className={classes.root}>
         <Grid container>
           <Grid item xs={12} sm={2}>
             <InputLabel id='data-type-label' aria-label='Data type'>Data type:</InputLabel>
