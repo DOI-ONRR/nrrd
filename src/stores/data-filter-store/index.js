@@ -12,7 +12,7 @@ function DataFilterProvider ({ children }) {
   useEffect(() => console.log('DataFilterProvider', { newState: state }), [state])
 
   return (
-    <DataFilterContext.Provider value={{ state, dispatch, ...actions }}>
+    <DataFilterContext.Provider value={{ state, ...actions }}>
       {children}
     </DataFilterContext.Provider>
   )

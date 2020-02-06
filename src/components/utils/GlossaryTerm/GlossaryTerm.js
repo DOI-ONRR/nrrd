@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { StoreContext } from '../../../store'
 
 import GlossaryIcon from '-!svg-react-loader!../../../img/svg/icon-question-circle.svg'
+import { GlossaryContext } from '../../../stores'
 
 // GlossaryTerm Styles
 const useStyles = makeStyles(theme => ({
@@ -26,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const GlossaryTerm = ({ termKey, children }) => {
   const classes = useStyles()
-  const { setGlossaryTermSelected } = useContext(StoreContext)
+  const { setGlossaryTermSelected } = useContext(GlossaryContext)
 
   const getTerm = () => {
     if (termKey) {

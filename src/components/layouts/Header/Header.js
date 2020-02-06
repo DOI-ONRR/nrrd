@@ -2,7 +2,7 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React, { Fragment, useContext, useMemo } from 'react'
 import { isIE } from 'react-device-detect'
-import { StoreContext } from '../../../store'
+import { GlossaryContext } from '../../../stores'
 
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -145,29 +145,19 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const ExploreDataLink2 = React.memo(() => {
-  const classes = useStyles()
-  return (<Link
-    className={classes.menuLink}
-    to="/explore/"
-    activeClassName={classes.menuActiveLink}>
-    Explore data
-  </Link>)
-})
-
 const Header = React.memo(props => {
   const classes = useStyles()
 
-  const { state, dispatch } = useContext(StoreContext)
+  const { state, toggleGlossaryDrawer } = useContext(GlossaryContext)
 
   const toggleMobileDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
 
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false } })
+    toggleGlossaryDrawer()
   }
-
+  
   return (
     <Fragment>
       {isIE && <BrowserBanner />}
@@ -207,7 +197,7 @@ const Header = React.memo(props => {
                       href="#"
                       className={classes.menuLink}
                       alt="this is the glossary drawer"
-                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: true } })}
+                      onClick={() => toggleGlossaryDrawer()}
                     >
                       Glossary
                     </a>
@@ -220,7 +210,12 @@ const Header = React.memo(props => {
               <nav className={`${ classes.headerRight } ${ classes.bottom }`}>
                 <ul>
                   <li>
-                    <ExploreDataLink2 />
+                    <Link
+                      className={classes.menuLink}
+                      to="/explore/"
+                      activeClassName={classes.menuActiveLink}>
+                        Explore data
+                    </Link>
                   </li>
                   <li>
                     <Link
