@@ -12,8 +12,8 @@ import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Fade from '@material-ui/core/Fade'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
+import ToggleButton from '@material-ui/lab/ToggleButton'
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormHelperText from '@material-ui/core/FormHelperText'
@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'normal',
   },
   formControl: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(0),
     minWidth: 120
   },
   selectEmpty: {
@@ -80,15 +80,25 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // Toggle Component
-const ToggleButtonGroup = props => {
+const ToggleGroup = props => {
+  const [toggle, setToggle] = useState('Yearly')
+
+  const handleToggle = (event, newVal) => {
+    setToggle(newVal)
+  }
+
   return (
-    <ButtonGroup size="large" color="primary">
+    <ToggleButtonGroup
+      value={toggle}
+      exclusive
+      onChange={handleToggle}
+      aria-label="Toggle between Yearly and Monthly data">
       {
-        Object.values(TOGGLE_VALUES).map(item => (
-          <Button>{item}</Button>
+        Object.values(TOGGLE_VALUES).map((item, i) => (
+          <ToggleButton key={i} value={item} aria-label={item}>{item}</ToggleButton>
         ))
       }
-    </ButtonGroup>
+    </ToggleButtonGroup>
   )
 }
 
@@ -138,7 +148,7 @@ const TotalRevenue = props => {
 
   const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
   const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american', 'not_tied_to_a_lease']
-  const columnNames = props.columnNames || ['Source', '', state.year]
+  const columnNames = props.columnNames || [CHART_LEGEND_TITLE, '', state.year]
 
   const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
   const xLabels = props.xLabels || ["'10", "'11", "'12", "'13", "'14", "'15", "'16", "'17", "'18", "'19"]
@@ -169,7 +179,7 @@ const TotalRevenue = props => {
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs={6}>
-          <ToggleButtonGroup />
+          <ToggleGroup />
         </Grid>
         <Grid item xs={6} style={{ textAlign: 'right' }}>
           <FormControlGroup />

@@ -62,6 +62,16 @@ module.exports = Object.freeze({
       margin: '8px 0',
     },
   },
+  // https://material-ui.com/api/toggle-button-group/#css
+  MuiToggleButtonGroup: {
+    root: {},
+  },
+  MuiToggleButton: {
+    label: {
+      fontWeight: 'bold',
+      textTransform: 'capitalize',
+    }
+  },
   // https://material-ui.com/api/link/
   MuiLink: {
     root: {

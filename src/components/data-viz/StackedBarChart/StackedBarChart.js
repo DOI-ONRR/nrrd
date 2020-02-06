@@ -32,10 +32,11 @@ const useStyles = makeStyles(theme => ({
     height: '200px',
     fill: theme.palette.chart.primary,
     '& .bars > .bar:hover': {
-      fill: theme.palette.chart.secondary
+      fill: theme.palette.chart.secondary,
+      cursor: 'pointer',
     },
     '& .bars > .active': {
-      fill: theme.palette.chart.secondary
+      fill: theme.palette.chart.secondary,
     },
     '& .maxExtent': {
       fontSize: theme.typography.chartText,
