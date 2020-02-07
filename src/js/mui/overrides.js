@@ -70,6 +70,16 @@ module.exports = Object.freeze({
     label: {
       fontWeight: 'bold',
       textTransform: 'capitalize',
+    },
+    root: {
+      '&.Mui-selected': {
+        color: common.white,
+        backgroundColor: primary.dark,
+      },
+      '&.Mui-selected:hover': {
+        color: common.white,
+        backgroundColor: `${ primary.dark } !important`,
+      }
     }
   },
   // https://material-ui.com/api/link/

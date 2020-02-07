@@ -95,7 +95,7 @@ const ToggleGroup = props => {
       aria-label="Toggle between Yearly and Monthly data">
       {
         Object.values(TOGGLE_VALUES).map((item, i) => (
-          <ToggleButton key={i} value={item} aria-label={item}>{item}</ToggleButton>
+          <ToggleButton key={i} value={item} aria-label={item} disableRipple={true}>{item}</ToggleButton>
         ))
       }
     </ToggleButtonGroup>
@@ -194,7 +194,9 @@ const TotalRevenue = props => {
             xRotate={xRotate}
             yLabels={yLabels}
             xLabels={xLabels}
-            selected={4} />
+            onClick={d => {
+              dispatch({ type: 'YEAR', payload: { year: data.total_yearly_revenue[d.selectedIndex].fiscal_year } })
+            }} />
         </Grid>
       </Grid>
     </Box>

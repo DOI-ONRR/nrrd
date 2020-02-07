@@ -7,8 +7,9 @@ export default class stackedBarChart {
     this.data = data
     this.options = options
     this.formatLegendFunc = formatLegendFunc
+    this.onClick = options.onClick
 
-    console.log('this.data: ', this.data)
+    console.log('this.options: ', this.options)
 
     this.formatLegend(this.formatLegendFunc)
 
@@ -32,6 +33,14 @@ export default class stackedBarChart {
     else {
       this.yLabels(this.yaxis())
     }
+
+    if (options && options.selectedIndex) {
+      this.selectedIndex = options.selectedIndex
+    }
+    else {
+      this.selectedIndex = this.data.length - 1
+    }
+
     this.selectedData(this.ydomain(data[data.length - 1]))
     this.marginBottom = 40
     this.marginTop = 25
@@ -229,6 +238,14 @@ export default class stackedBarChart {
     return Object.keys((data[0][Object.keys(data[0])[0]])[0])
   }
 
+  getSelected () {
+    d3.selectAll('.bar').filter((d, i, nodes) => {
+      if (nodes[i].className.baseVal.match(/active/)) {
+        this.selectedIndex = i
+      }
+    })
+  }
+
   toggleSelectedBar = (element, data, callBack) => {
     const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
 
@@ -237,18 +254,18 @@ export default class stackedBarChart {
       selectedElement.attr('class', 'bar')
     }
     const activeElement = element.parentNode.parentNode
-    activeElement.setAttribute('class', 'active')
+    activeElement.setAttribute('class', 'bar active')
     activeElement.setAttribute('selected', true)
     activeElement.setAttribute('tabindex', 1)
     this.selectedData(data[0].data)
     this.addLegend()
+    this.getSelected()
     if (callBack) {
       callBack(data)
     }
   }
 
   onSelect (d) {
-
   }
 
   addChart (data) {
@@ -272,7 +289,7 @@ export default class stackedBarChart {
       .attr('height', (self._height - self.marginTop))
       .attr('width', self.xScale.bandwidth())
       .attr('transform', d => 'translate(' + (self.xScale(d[self.xaxis()]) + ',0)'))
-      .attr('class', (d, i) => i === self.data.length - 1 ? 'active' : 'bar')
+      .attr('class', (d, i) => i === self.selectedIndex ? 'bar active' : 'bar')
       .attr('data-key', d => Object.keys(d)[0])
       .attr('tabindex', 0)
       .selectAll('g')
@@ -301,7 +318,12 @@ export default class stackedBarChart {
       .on('click', function (d) {
         console.debug(' onclick:', d)
         self.toggleSelectedBar(this, d, self.onSelect(d))
+        self.onClick(self)
       })
+  }
+
+  onClick () {
+    console.log('onClick fired from class yo!')
   }
 
   draw () {
@@ -435,6 +457,8 @@ export default class stackedBarChart {
 
   updateTable () {
     d3.selectAll('.legend-table tbody tr').remove()
+    this.getSelected()
+    console.log('selected yo: ', this.selectedIndex)
 
     const data = this.selectedData()
     const columns = this.options.columnNames
@@ -442,8 +466,6 @@ export default class stackedBarChart {
     const formatLegend = this.formatLegend()
     // const table = d3.selectAll('.legend-table')
     const tbody = d3.selectAll('.legend-table tbody')
-
-    // console.log('table: ', table)
 
     // turn object into array to play nice with d3
     const dataArr = Object.keys(data).map((key, i) => {

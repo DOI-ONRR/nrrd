@@ -4,12 +4,6 @@ import React, { useEffect, useRef } from 'react'
 // import utils from '../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
 
 import ChartTitle from '../ChartTitle'
 
@@ -104,6 +98,7 @@ const StackedBarChart = props => {
   options.yLabels = props.yLabels
   options.xLabels = props.xLabels
   options.xRotate = props.xRotate
+  options.onClick = props.onClick
 
   console.debug('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOPITIONS', options)
   //   const selected = props.selected
