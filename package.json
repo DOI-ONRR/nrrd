@@ -9,11 +9,8 @@
     "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "^2.3.0",
     "@material-ui/core": "^4.8.2",
     "@material-ui/icons": "^4.5.1",
-<<<<<<< HEAD
     "@material-ui/styles": "^4.9.0",
-=======
     "@material-ui/lab": "^4.0.0-alpha.41",
->>>>>>> 40835cdded3a8b68895c887cb2817693e0d337f8
     "@mdx-js/mdx": "^1.5.1",
     "@mdx-js/react": "^1.5.1",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
