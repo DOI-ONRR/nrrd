@@ -9,8 +9,6 @@ export default class stackedBarChart {
     this.formatLegendFunc = formatLegendFunc
     this.onClick = options.onClick
 
-    console.log('this.options: ', this.options)
-
     this.formatLegend(this.formatLegendFunc)
 
     if (options && options.columns) {
@@ -112,7 +110,6 @@ export default class stackedBarChart {
           return obj
         }, {})
 
-      // console.log(filtered);
       return filtered
     }
     catch (err) {
@@ -241,6 +238,7 @@ export default class stackedBarChart {
   getSelected () {
     d3.selectAll('.bar').filter((d, i, nodes) => {
       if (nodes[i].className.baseVal.match(/active/)) {
+        this.selectedFiscalYear = d.fiscal_year
         this.selectedIndex = i
       }
     })
@@ -320,10 +318,14 @@ export default class stackedBarChart {
         self.toggleSelectedBar(this, d, self.onSelect(d))
         self.onClick(self)
       })
+      .on('mouseover', function (d) {
+        self.toggleSelectedBar(this, d, self.onSelect(d))
+        self.onClick(self)
+      })
   }
 
   onClick () {
-    console.log('onClick fired from class yo!')
+    console.log('onClick fired from d3 class yo!')
   }
 
   draw () {
@@ -436,8 +438,10 @@ export default class stackedBarChart {
 
   createTable () {
     d3.selectAll('.legend-table').remove()
+    this.getSelected()
 
     const columns = this.options.columnNames
+    columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
     const table = d3.select(this.node.children[1]).append('table')
       .attr('class', 'legend-table')
     const thead = table.append('thead')
@@ -458,10 +462,11 @@ export default class stackedBarChart {
   updateTable () {
     d3.selectAll('.legend-table tbody tr').remove()
     this.getSelected()
-    console.log('selected yo: ', this.selectedIndex)
 
     const data = this.selectedData()
     const columns = this.options.columnNames
+    columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
+
     const labels = this.yLabels()
     const formatLegend = this.formatLegend()
     // const table = d3.selectAll('.legend-table')
