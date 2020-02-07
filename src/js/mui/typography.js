@@ -65,7 +65,12 @@ module.exports = Object.freeze({
     lineHeight: '1.6875rem',
     marginBottom: '0.75rem',
   },
-  body2: {},
+  body2: {
+    margin: '0 0 1rem 0',
+    color: '#323c42',
+    fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
+    fontSize: '.85rem',
+  },
   buttonText: {},
   captionText: {},
   overlineText: {},

@@ -32,16 +32,48 @@ module.exports = Object.freeze({
       textTransform: 'inherit',
       fontSize: '1.2rem',
     },
+    outlinedPrimary: {
+      '&:hover': {
+        backgroundColor: primary.main,
+        color: common.white,
+      },
+    }
   },
   // https://material-ui.com/api/button-group/
   MuiButtonGroup: {
     root: {
+      backgroundColor: common.white,
       '& .MuiButton-contained': {
         backgroundColor: common.white
       },
+      '& .MuiButton-contained:hover': {
+        color: primary.main,
+      }
     },
     grouped: {
-      padding: '4px 8px',
+      padding: '10px 14px',
+      background: 'inherit',
+      margin: '8px 0',
+    },
+  },
+  // https://material-ui.com/api/toggle-button-group/#css
+  MuiToggleButtonGroup: {
+    root: {},
+  },
+  MuiToggleButton: {
+    label: {
+      fontWeight: 'bold',
+      textTransform: 'capitalize',
+    },
+    root: {
+      '&.Mui-selected': {
+        color: common.white,
+        backgroundColor: primary.dark,
+      },
+      '&.Mui-selected:hover': {
+        color: common.white,
+        backgroundColor: `${ primary.dark } !important`,
+      }
     }
   },
   // https://material-ui.com/api/link/
@@ -117,7 +149,7 @@ module.exports = Object.freeze({
   // https://material-ui.com/api/list/
   MuiList: {
     root: {
-      marginBottom: '1.2rem',
+      marginBottom: '1rem',
       color: primary.light,
     }
   },
@@ -195,7 +227,7 @@ module.exports = Object.freeze({
         backgroundSize: 15,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'top left',
-      }
+      },
     },
   },
   MuiTypography: {
@@ -207,5 +239,16 @@ module.exports = Object.freeze({
       }
     },
   },
+
+  MuiFormLabel: {
+    root: {
+      lineHeight: 0.5,
+    }
+  },
+  MuiSelect: {
+    root: {
+      padding: '15px',
+    }
+  }
 
 })

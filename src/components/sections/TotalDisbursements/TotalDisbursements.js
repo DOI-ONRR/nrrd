@@ -14,10 +14,25 @@ import Box from '@material-ui/core/Box'
 import Fade from '@material-ui/core/Fade'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
 
 import { StoreContext } from '../../../store'
 import { ThemeConsumer } from 'styled-components'
 import utils from '../../../js/utils'
+import CONSTANTS from '../../../js/constants'
+
+const useStyles = makeStyles(theme => ({
+  titleBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    paddingBottom: 4,
+  },
+  titleLink: {
+    fontSize: '1.2rem',
+    marginBottom: 0,
+    fontWeight: 'normal',
+  }
+}))
 
 const TOTAL_DISBURSEMENTS_QUERY = gql`
   query TotalYearlyDisbursements($period: String!) {
@@ -31,13 +46,16 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
 `
 
 const TotalDisbursements = props => {
+  const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
   const period = state.period
+
+  const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENTS } (dollars)`
   const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american']
-  const columnHeaders = props.columnHeaders || ['Source', 'Year']
+  const columnNames = props.columnNames || ['Source', '', state.year]
 
   const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American']
-  const xLabels = props.xLabels
+  const xLabels = props.xLabels || ["'10", "'11", "'12", "'13", "'14", "'15", "'16", "'17", "'18", "'19"]
   const xRotate = props.xRotate || 0
   const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY, {
     variables: { period }
@@ -53,16 +71,23 @@ const TotalDisbursements = props => {
 
   return (
     <Box>
-      <Typography variant="h3" className="header-bar green">
+      <Typography variant="h3" className={`header-bar green ${ classes.titleBar }`}>
           Total Disbursements
+        <Box component="span" className={classes.titleLink}>
+          <ExploreDataLink
+            to="/query-data?dataType=Disbursements"
+            icon="filter"
+            c>Filter disbursements data</ExploreDataLink>
+        </Box>
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs>
           <StackedBarChart
+            chartTitle={chartTitle}
             data={data.total_yearly_disbursements}
             legendDataFormatFunc={utils.formatToDollarFloat}
             columns={columns}
-            columnHeaders={columnHeaders}
+            columnNames={columnNames}
             xRotate={xRotate}
             yLabels={yLabels}
             xLabels={xLabels}
