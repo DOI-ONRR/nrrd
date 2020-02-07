@@ -12,9 +12,15 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(1),
   },
   menuLink: {
+    textDecoration: 'none',
     '&:hover': {
-      textDecoration: 'none'
+      textDecoration: 'underline'
     }
+  },
+  iconMap: {
+    fill: theme.palette.primary.main,
+    position: 'relative',
+    top: -2,
   }
 }))
 
@@ -23,7 +29,7 @@ const RevenueByLocationLink = () => {
   return (
     <Grid container className={classes.root} spacing={1} direction="row" justify="flex-end" alignItems="flex-end">
       <Grid item>
-        <IconMap />
+        <IconMap className={classes.iconMap} />
       </Grid>
       <Grid item>
         <Typography variant="body1">
