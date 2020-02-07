@@ -316,11 +316,10 @@ export default class stackedBarChart {
       .on('click', function (d) {
         console.debug(' onclick:', d)
         self.toggleSelectedBar(this, d, self.onSelect(d))
-        self.onClick(self)
+        // self.onClick(self)
       })
       .on('mouseover', function (d) {
         self.toggleSelectedBar(this, d, self.onSelect(d))
-        self.onClick(self)
       })
   }
 
