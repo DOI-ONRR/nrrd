@@ -53,8 +53,8 @@ const useStyles = makeStyles(theme => ({
       fill: theme.palette.chart.secondary,
       backgroundColor: theme.palette.chart.secondary,
       display: 'block',
-      height: 15,
-      width: 15,
+      height: 20,
+      width: 20,
     },
     '& .legend-table': {
       width: '100%',

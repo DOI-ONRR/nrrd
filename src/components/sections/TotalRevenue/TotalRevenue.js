@@ -42,8 +42,8 @@ const TOTAL_REVENUE_QUERY = gql`
   }
 `
 const TOGGLE_VALUES = {
-  Year: 'Yearly',
-  Month: 'Monthly'
+  Year: 'year',
+  Month: 'month'
 }
 
 const DROPDOWN_VALUES = {
@@ -69,48 +69,36 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem',
     marginBottom: 0,
     fontWeight: 'normal',
+    '& span': {
+      marginRight: 0,
+    }
   },
   formControl: {
     margin: theme.spacing(0),
-    minWidth: 120
+    minWidth: 120,
+    textAlign: 'right',
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
   }
 }))
 
-// Toggle Component
-const ToggleGroup = props => {
-  const [toggle, setToggle] = useState('Yearly')
+// Total Revenu Controls, Menu
+const TotalRevenueControls = props => {
+  const classes = useStyles()
+
+  const inputLabel = useRef(null)
+
+  const [period, setPeriod] = useState('')
+  const [labelWidth, setLabelWidth] = useState(0)
+  const [toggle, setToggle] = useState('year')
 
   const handleToggle = (event, newVal) => {
     setToggle(newVal)
   }
 
-  return (
-    <ToggleButtonGroup
-      value={toggle}
-      exclusive
-      onChange={handleToggle}
-      aria-label="Toggle between Yearly and Monthly data">
-      {
-        Object.values(TOGGLE_VALUES).map((item, i) => (
-          <ToggleButton key={i} value={item} aria-label={item} disableRipple={true}>{item}</ToggleButton>
-        ))
-      }
-    </ToggleButtonGroup>
-  )
-}
-
-// Form control gridColumnGroup
-const FormControlGroup = props => {
-  const classes = useStyles()
-  const inputLabel = useRef(null)
-  const [period, setPeriod] = useState('')
-  const [labelWidth, setLabelWidth] = useState(0)
-
   useEffect(() => {
-    // setLabelWidth(inputLabel.current.offsetWidth)
+    setLabelWidth(inputLabel.current.offsetWidth)
   }, [])
 
   const handleChange = event => {
@@ -118,22 +106,56 @@ const FormControlGroup = props => {
   }
 
   return (
-    <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
-        Period
-      </InputLabel>
-      <Select
-        labelId="Period label"
-        id="period-label-select-outlined"
-        value={period}
-        onChange={handleChange}
-        labelWidth={labelWidth}
-      >
-        <MenuItem value="">None</MenuItem>
-        <MenuItem value="Calendar Year">Calendar Year</MenuItem>
-        <MenuItem value="Fiscal Year">Fiscal Year</MenuItem>
-      </Select>
-    </FormControl>
+    <>
+      <Grid item xs={6}>
+        <ToggleButtonGroup
+          value={toggle}
+          exclusive
+          onChange={handleToggle}
+          aria-label="Toggle between Yearly and Monthly data">
+          {
+            Object.values(TOGGLE_VALUES).map((item, i) => (
+              <ToggleButton key={i} value={item} aria-label={item} disableRipple={true}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
+            ))
+          }
+        </ToggleButtonGroup>
+      </Grid>
+      <Grid item xs={6} style={{ textAlign: 'right' }}>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
+          Period
+          </InputLabel>
+          <Select
+            labelId="Period label"
+            id="period-label-select-outlined"
+            value={period}
+            onChange={handleChange}
+            labelWidth={labelWidth}
+          >
+            {
+              (toggle === 'year')
+                ? Object.values(YEARLY_DROPDOWN_VALUES).map((item, i) => (
+                  <MenuItem value={item}>{ item === 'calendar_year' ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
+                ))
+                : Object.values(DROPDOWN_VALUES).map((item, i) => (
+                  <MenuItem value={item}>
+                    {(() => {
+                      switch (item) {
+                      case 'fiscal':
+                        return 'Fiscal year + [REVENUES_FISCAL_YEAR_OLD]'
+                      case 'calendar':
+                        return 'Calendar year + [REVENUES_CALENDAR_YEAR]'
+                      default:
+                        return 'Most recent 12 months'
+                      }
+                    })()}
+                  </MenuItem>
+                ))
+            }
+          </Select>
+        </FormControl>
+      </Grid>
+    </>
   )
 }
 
@@ -178,12 +200,7 @@ const TotalRevenue = props => {
         </Box>
       </Typography>
       <Grid container spacing={4}>
-        <Grid item xs={6}>
-          <ToggleGroup />
-        </Grid>
-        <Grid item xs={6} style={{ textAlign: 'right' }}>
-          <FormControlGroup />
-        </Grid>
+        <TotalRevenueControls />
         <Grid item xs={12}>
           <StackedBarChart
             chartTitle={chartTitle}

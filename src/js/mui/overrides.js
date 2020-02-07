@@ -134,6 +134,10 @@ module.exports = Object.freeze({
         marginLeft: 0,
         width: '100%',
         display: 'block',
+        minWidth: '100%',
+        '-moz-box-shadow': 'inset  0 -10px 10px -10px grey',
+        '-webkit-box-shadow': 'inset  0 -10px 10px -10px grey',
+        'box-shadow': 'inset  0 -10px 10px -10px grey',
       }
     },
     fullWidth: {
@@ -155,7 +159,7 @@ module.exports = Object.freeze({
   // https://material-ui.com/api/list/
   MuiList: {
     root: {
-      marginBottom: '1rem',
+      marginBottom: 0,
       color: primary.light,
     }
   },

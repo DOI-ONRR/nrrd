@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 import { isIE } from 'react-device-detect'
 import { StoreContext } from '../../../store'
 
@@ -149,14 +149,16 @@ const Header = props => {
   const classes = useStyles()
 
   const { state, dispatch } = useContext(StoreContext)
-  // const [state, setState ] = useState({
-  //   right: false
-  // })
+  const [ mobileMenuState, setMobileMenuState ] = useState({
+    right: false,
+  })
 
   const toggleMobileDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
+
+    setMobileMenuState({ ...mobileMenuState, [side]: open })
 
     dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false } })
   }
@@ -252,7 +254,7 @@ const Header = props => {
             <IconButton edge="start" onClick={toggleMobileDrawer('right', true)} className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
-            <Drawer anchor="right" open={state.glossaryOpen} onClose={toggleMobileDrawer('right', false)}>
+            <Drawer anchor="right" open={mobileMenuState.right} onClose={toggleMobileDrawer('right', false)} onOpen={toggleMobileDrawer('right', true)}>
               <CloseIcon className={classes.mobileMenuCloseButton} onClick={toggleMobileDrawer('right', false)} />
               <nav className={`${ classes.mobileMenu }`}>
                 <ul>

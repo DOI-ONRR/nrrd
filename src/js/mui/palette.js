@@ -40,9 +40,8 @@ module.exports = Object.freeze({
     hint: 'rgba(0, 0, 0, 0.38)'
   },
   chart: {
-    primary: '#435159',
-    //    secondary: '#086996',
-    secondary: 'darkorange',
+    primary: '#222222',
+    secondary: '#086996',
   },
   green: {
     light: '#cde3c3',

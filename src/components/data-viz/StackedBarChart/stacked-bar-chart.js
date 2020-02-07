@@ -53,7 +53,7 @@ export default class stackedBarChart {
     this.xScale = d3.scaleBand()
       .domain(this.xdomain())
       .range([0, this._width])
-      .paddingInner(0.3)
+      .paddingInner(0.5)
       .paddingOuter(0.1)
 
     this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
@@ -372,7 +372,7 @@ export default class stackedBarChart {
         .attr('x1', 0)
         .attr('x2', self._width)
         .attr('stroke', '#a7bcc7')
-        .attr('stroke-dasharray', [5, 5])
+        .attr('stroke-dasharray', [5, 10])
         .attr('stroke-width', 1)
         .attr('transform', 'translate(' + [0, self.maxExtentLineY] + ')')
     }
@@ -464,6 +464,7 @@ export default class stackedBarChart {
 
     const data = this.selectedData()
     const columns = this.options.columnNames
+    const totalColumns = ['Total', 'Value']
     columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
 
     const labels = this.yLabels()
@@ -475,6 +476,8 @@ export default class stackedBarChart {
     const dataArr = Object.keys(data).map((key, i) => {
       return ['', labels[i], data[key]]
     }).reverse()
+
+    console.log('dataArr: ', dataArr)
 
     // create a row for each object in the data
     const tr = tbody.selectAll('tr')
