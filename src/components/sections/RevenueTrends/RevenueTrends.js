@@ -19,8 +19,6 @@ import Paper from '@material-ui/core/Paper'
 
 import Sparkline from '../../data-viz/Sparkline'
 
-import TriangleUpIcon from '-!svg-react-loader!../../../img/svg/arrow-up.svg'
-import TriangleDownIcon from '-!svg-react-loader!../../../img/svg/arrow-down.svg'
 
 const TREND_LIMIT = 10
 
@@ -44,19 +42,6 @@ const APOLLO_QUERY = gql`
 
 const useStyles = makeStyles(theme => ({
   root: {},
-  tableContainer: {},
-  table: {
-    // padding: 0,
-    // '& .MuiTableCell-sizeSmall': {
-    //   padding: '6px 0 6px 0',
-    // },
-    // '& .MuiTableCell-sizeSmall:last-child': {
-    //   paddingRight: 0
-    // },
-    // '& .MuiTableBody-root .MuiTableCell-root': {
-    //   borderBottom: 'none'
-    // }
-  },
 }))
 
 const RevenueTrends = () => {

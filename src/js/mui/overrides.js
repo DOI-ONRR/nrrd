@@ -42,16 +42,48 @@ module.exports = Object.freeze({
       textTransform: 'inherit',
       fontSize: '1.2rem',
     },
+    outlinedPrimary: {
+      '&:hover': {
+        backgroundColor: primary.main,
+        color: common.white,
+      },
+    }
   },
   // https://material-ui.com/api/button-group/
   MuiButtonGroup: {
     root: {
+      backgroundColor: common.white,
       '& .MuiButton-contained': {
         backgroundColor: common.white
       },
+      '& .MuiButton-contained:hover': {
+        color: primary.main,
+      }
     },
     grouped: {
-      padding: '2px 4px',
+      padding: '10px 14px',
+      background: 'inherit',
+      margin: '8px 0',
+    },
+  },
+  // https://material-ui.com/api/toggle-button-group/#css
+  MuiToggleButtonGroup: {
+    root: {},
+  },
+  MuiToggleButton: {
+    label: {
+      fontWeight: 'bold',
+      textTransform: 'capitalize',
+    },
+    root: {
+      '&.Mui-selected': {
+        color: common.white,
+        backgroundColor: primary.dark,
+      },
+      '&.Mui-selected:hover': {
+        color: common.white,
+        backgroundColor: `${ primary.dark } !important`,
+      }
     }
   },
   // https://material-ui.com/api/link/
@@ -85,7 +117,7 @@ module.exports = Object.freeze({
       border: 'none',
     },
     flexContainer: {
-      '@media (max-width: 425px)': {
+      '@media (max-width: 500px)': {
         display: 'block',
         marginBottom: 0,
       }
@@ -102,10 +134,14 @@ module.exports = Object.freeze({
       '& span:hover': {
         textDecoration: 'underline',
       },
-      '@media (max-width: 425px)': {
+      '@media (max-width: 500px)': {
         marginLeft: 0,
         width: '100%',
         display: 'block',
+        minWidth: '100%',
+        '-moz-box-shadow': 'inset  0 -10px 10px -15px grey',
+        '-webkit-box-shadow': 'inset  0 -10px 10px -15px grey',
+        'box-shadow': 'inset  0 -10px 10px -15px grey',
       }
     },
     fullWidth: {
@@ -127,7 +163,7 @@ module.exports = Object.freeze({
   // https://material-ui.com/api/list/
   MuiList: {
     root: {
-      marginBottom: '1.2rem',
+      marginBottom: 0,
       color: primary.light,
     }
   },
@@ -208,7 +244,7 @@ module.exports = Object.freeze({
         backgroundSize: 15,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'top left',
-      }
+      },
     },
   },
   MuiTypography: {
@@ -220,13 +256,14 @@ module.exports = Object.freeze({
       }
     },
   },
-  // https://material-ui.com/api/form-control-label/#formcontrollabel-api
-  MuiFormControlLabel: {
-    root: {}
+  MuiFormLabel: {
+    root: {
+      lineHeight: 0.5,
+    }
   },
-  MuiCardHeader: {
-    title: {
-      margin: 0,
+  MuiSelect: {
+    root: {
+      padding: '15px',
     }
   }
 })
