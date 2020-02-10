@@ -25,11 +25,9 @@ module.exports = Object.freeze({
   // https://material-ui.com/components/buttons/
   MuiButton: {
     // Name of the rule
-    root: {
-      backgroundColor: primary.light,
-      '&:hover': {
-        backgroundColor: '#0F5A7D',
-      }
+    backgroundColor: primary.light,
+    '&:hover': {
+      backgroundColor: '#0F5A7D',
     },
     text: {
       // Some CSS

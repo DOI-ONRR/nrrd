@@ -5,11 +5,11 @@ import Button from '@material-ui/core/Button'
 const CounterTest = () => {
   const { state, dispatch } = useContext(StoreContext)
 
-  const incrementCount = (increment) => {
+  const incrementCount = increment => {
     return state.count + increment
   }
 
-  const count = (inc) => {
+  const count = inc => {
     dispatch({ type: 'COUNT', payload: incrementCount(inc) })
   }
 
@@ -19,7 +19,7 @@ const CounterTest = () => {
         Count:
         {state.count}
       </p>
-      <Button onClick={(e) => count(5)}>
+      <Button onClick={e => count(5)}>
         +1 to global
       </Button>
     </div>

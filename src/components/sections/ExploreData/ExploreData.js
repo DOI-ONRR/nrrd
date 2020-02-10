@@ -403,8 +403,6 @@ const ExploreData = () => {
   }
 
   const handleChange = (type, name) => event => {
-    console.debug('Handle change', name, event)
-    console.debug('Handle change2', k, y, x)
     setZoom(x, y, k)
     return dispatch({ type: type, payload: { [name]: event.target.checked } })
   }
@@ -427,7 +425,7 @@ const ExploreData = () => {
   }
 
   const handleSnackbar = newState => {
-    console.log('handleSnackbar hit yo!')
+    // console.log('handleSnackbar hit yo!')
     setSnackbarState({ open: true, ...newState })
   }
 
@@ -452,8 +450,8 @@ const ExploreData = () => {
         })
       }
       else {
-        console.log('fire alert yo!')
-        handleSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        // console.log('fire alert yo!')
+        handleSnackbar({ vertical: 'bottom', horizontal: 'left' })
       }
     }
     return dispatch({ type: 'CARDS', payload: { cards: cards } })
@@ -492,7 +490,7 @@ const ExploreData = () => {
       item.state_or_area,
       item.sum
     ])
-    console.debug('MAPJSON___________________', mapJson)
+
   }
   if (mapData) {
     // const timeout = 5000
@@ -551,7 +549,7 @@ const ExploreData = () => {
                   mapY={mapY}
                   onZoomEnd={
                     event => {
-                      console.debug('On Zoom in Explore Data', event.transform)
+                      //  console.debug('On Zoom in Explore Data', event.transform)
                       x = event.transform.x
                       y = event.transform.y
                       k = event.transform.k
@@ -584,7 +582,6 @@ const ExploreData = () => {
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
-
                     <StateCard
                       key={i}
                       fips={state.fips}
@@ -596,7 +593,6 @@ const ExploreData = () => {
                         closeCard(fips)
                       }}
                     />
-
                   )
                 })}
               </Box>

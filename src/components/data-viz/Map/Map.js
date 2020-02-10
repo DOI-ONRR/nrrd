@@ -48,14 +48,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 /**
- *  Map  a component for rendering maps dynamically from  data
+ * Map  a component for rendering maps dynamically from  data
  *
- *  @param {string} [mapJson="https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json"]  mapJson - url to get the topojson used in map.
- *  @param {string} [mapFeatures=counties] mapFeatures - A switch to view county data or state data
- *  @param {string[][]} mapData - a two dimenstional arrray of fips and data, maybe county or state fips
- *  @param {string} [colorScheme=green] colorScheme current lets you modify color from red to blue green or gray ;
- *  @param {*} onClick function that determines what to do if area is clicked
- *
+ * @param {string} [mapJson="https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json"]  mapJson - url to get the topojson used in map.
+ * @param {string} [mapFeatures=counties] mapFeatures - A switch to view county data or state data
+ * @param {string[][]} mapData - a two dimenstional arrray of fips and data, maybe county or state fips
+ * @param {string} [colorScheme=green] colorScheme current lets you modify color from red to blue green or gray ;
+ * @param {*} onClick function that determines what to do if area is clicked
  */
 
 const Map = props => {
@@ -69,7 +68,6 @@ const Map = props => {
 
   const mapFeatures = props.mapFeatures || 'counties'
   const mapData = props.mapData || []
-  console.debug('FEATURES', mapFeatures)
 
   // mapData=props.offshoreData && mapData.concat(props.offshoreData);
   const elemRef = useRef(null)
@@ -79,19 +77,19 @@ const Map = props => {
   const onClick =
         props.onClick ||
         function (d, i) {
-          console.debug('Default onClick function', d, i)
+          // console.debug('Default onClick function', d, i)
         }
   const classes = useStyles()
   const minColor = props.minColor
   const maxColor = props.maxColor
   const onZoom = props.onZoom || function () {
-    console.debug('Map   onZoom default')
+    // console.debug('Map   onZoom default')
   }
   const onZoomEnd = props.onZoomEnd || function () {
-    //console.debug('Map   onZoomEnd default')
+    // console.debug('Map   onZoomEnd default')
   }
-  const mapZoom = props.mapZoom 
-  const mapX = props.mapX 
+  const mapZoom = props.mapZoom
+  const mapX = props.mapX
   const mapY = props.mapY
 
   let map
@@ -117,7 +115,7 @@ const Map = props => {
 
     map.onZoom = onZoom
     map.onZoomEnd = onZoomEnd
-    if (mapX && mapY && mapZoom) {
+    if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
       map.zoom({ x: mapX, y: mapY, k: mapZoom })
     }
   })
