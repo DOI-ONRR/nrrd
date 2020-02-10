@@ -59,9 +59,9 @@ module.exports = Object.freeze({
       }
     },
     grouped: {
-      padding: '10px 14px',
+      padding: 5,
       background: 'inherit',
-      margin: '8px 0',
+      margin: 0,
     },
   },
   // https://material-ui.com/api/toggle-button-group/#css
