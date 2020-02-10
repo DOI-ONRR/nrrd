@@ -9,7 +9,7 @@ module.exports = Object.freeze({
     fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
     fontSize: '2.125rem',
     fontWeight: '600',
-    lineHeight: '2.875rem',
+    lineHeight: '2.25rem',
   },
   h2: {
     margin: '0 0 1rem 0',
@@ -17,7 +17,7 @@ module.exports = Object.freeze({
     fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
     fontSize: '1.625rem',
     fontWeight: '600',
-    lineHeight: '2.25rem',
+    lineHeight: '1.725rem',
     marginTop: '1.5rem',
   },
   h3: {
@@ -26,7 +26,7 @@ module.exports = Object.freeze({
     fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
     fontSize: '1.5rem',
     fontWeight: '600',
-    lineHeight: '2.125rem',
+    lineHeight: '1.6rem',
     marginBottom: '0.5rem',
   },
   h4: {
@@ -35,7 +35,7 @@ module.exports = Object.freeze({
     fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
     fontSize: '1.375rem',
     fontWeight: '300',
-    lineHeight: '2rem',
+    lineHeight: '1.4rem',
   },
   h5: {
     margin: '0 0 1rem 0',
@@ -43,7 +43,7 @@ module.exports = Object.freeze({
     fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
     fontSize: '1.125rem',
     fontWeight: '600',
-    lineHeight: '1.625rem',
+    lineHeight: '1.2rem',
   },
   h6: {},
   subtitle1: {

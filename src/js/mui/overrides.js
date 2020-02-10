@@ -113,7 +113,7 @@ module.exports = Object.freeze({
       border: 'none',
     },
     flexContainer: {
-      '@media (max-width: 425px)': {
+      '@media (max-width: 500px)': {
         display: 'block',
         marginBottom: 0,
       }
@@ -130,14 +130,14 @@ module.exports = Object.freeze({
       '& span:hover': {
         textDecoration: 'underline',
       },
-      '@media (max-width: 425px)': {
+      '@media (max-width: 500px)': {
         marginLeft: 0,
         width: '100%',
         display: 'block',
         minWidth: '100%',
-        '-moz-box-shadow': 'inset  0 -10px 10px -10px grey',
-        '-webkit-box-shadow': 'inset  0 -10px 10px -10px grey',
-        'box-shadow': 'inset  0 -10px 10px -10px grey',
+        '-moz-box-shadow': 'inset  0 -10px 10px -15px grey',
+        '-webkit-box-shadow': 'inset  0 -10px 10px -15px grey',
+        'box-shadow': 'inset  0 -10px 10px -15px grey',
       }
     },
     fullWidth: {

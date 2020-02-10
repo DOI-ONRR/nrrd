@@ -33,6 +33,11 @@ import { RevenueByLocationLink } from '../components/layouts/RevenueByLocationLi
 export const useStyles = makeStyles(theme => ({
   revenueByLocationLink: {
     marginTop: theme.spacing(2.5),
+    '@media (max-width: 426px)': {
+      display: 'block',
+      width: '100%',
+      textAlign: 'left',
+    }
   },
   whatsNewContainer: {
     background: theme.palette.blue.light,
@@ -73,7 +78,7 @@ export const IndexPage = props => {
       </Container>
       {/* Tabordion */}
       <Container maxWidth="lg">
-        <Box mb={5}>
+        <Box mb={2}>
           <Grid container spacing={0}>
             <Grid item xs={12} md={12}>
               <Tabtastic selected={selected}>

@@ -16,7 +16,6 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     width: '100%',
-    height: '400px',
   },
   chart: {
     display: 'block',
@@ -44,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     width: '100%',
-    height: '200px',
+    height: '100%',
     fontSize: theme.typography.chartText,
     '& tr > td:first-child': {
       width: 10,

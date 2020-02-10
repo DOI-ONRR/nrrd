@@ -10,6 +10,11 @@ import { Typography } from '@material-ui/core'
 const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: theme.spacing(1),
+    justifyContent: 'flex-end',
+    '@media (max-width: 426px)': {
+      justifyContent: 'flex-start',
+      paddingTop: theme.spacing(0),
+    },
   },
   menuLink: {
     textDecoration: 'none',
@@ -27,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 const RevenueByLocationLink = () => {
   const classes = useStyles()
   return (
-    <Grid container className={classes.root} spacing={1} direction="row" justify="flex-end" alignItems="flex-end">
+    <Grid container className={classes.root} spacing={1} direction="row">
       <Grid item>
         <IconMap className={classes.iconMap} />
       </Grid>
