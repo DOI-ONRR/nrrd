@@ -12,20 +12,14 @@ module.exports = Object.freeze({
   // https://material-ui.com/api/app-bar/
   MuiAppBar: {
     root: {
-      boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)'
-    },
-    colorPrimary: {
-      backgroundColor: common.white
     }
   },
   // https://material-ui.com/components/buttons/
   MuiButton: {
     // Name of the rule
-    root: {
-      backgroundColor: primary.light,
-      '&:hover': {
-        backgroundColor: '#0F5A7D',
-      }
+    backgroundColor: primary.light,
+    '&:hover': {
+      backgroundColor: '#0F5A7D',
     },
     text: {
       // Some CSS
@@ -181,6 +175,9 @@ module.exports = Object.freeze({
   },
   // https://material-ui.com/api/table-cell/
   MuiTableCell: {
+    head: {
+      fontWeight: 'bold',
+    }
   },
   // https://material-ui.com/api/outlined-input/#outlinedinput-api
   MuiOutlinedInput: {
@@ -209,5 +206,6 @@ module.exports = Object.freeze({
         paddingBottom: '.41667rem',
       }
     },
-  }
+  },
+
 })

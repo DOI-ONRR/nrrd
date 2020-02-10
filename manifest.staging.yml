@@ -1,0 +1,7 @@
+---
+applications:
+- name: nrrd
+  path: ./public
+  buildpacks:
+   - staticfile_buildpack
+  memory: 10M

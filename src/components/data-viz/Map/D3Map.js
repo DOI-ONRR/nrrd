@@ -48,11 +48,11 @@ export default class d3Map {
  */
 
   onZoom (event) {
-    //console.debug('transform onZoom', event.transform)
+    // console.debug('transform onZoom', event.transform)
   }
 
   onZoomEnd (event) {
-    console.debug('transform onZoomEnd', event.transform)
+    // console.debug('transform onZoomEnd', event.transform)
   }
 
   zoom (transform) {
@@ -112,10 +112,9 @@ export default class d3Map {
     }
     // const margin = { top: 0, bottom: 0, right: 0, left: 0};
 
-    
     const projection = d3.geoAlbersUsa()
       .translate([width / 2, height / 2]) // translate to center of screen
-      .scale([width]) // scale things down so see entire US
+      .scale([height*1.5]) // scale things down so see entire US
 
     const path = d3.geoPath(projection)
 
@@ -153,7 +152,7 @@ export default class d3Map {
           d3.interpolateGreens(t)
       )
     }
-    console.debug('COLOR ', minColor, maxColor)
+
     if (minColor && maxColor) {
       color = d3
         .scaleSequentialQuantile()
@@ -209,26 +208,17 @@ export default class d3Map {
 
     _chart.transition().duration(3000)
 
-
-    
-    if (_zoom) {
-      console.debug(_zoom)
-    }
-
     function zoomed () {
-      //console.debug('zoooom', g)
-      //console.debug('transform', d3.event.transform)
-       
       g.selectAll('path')
         .attr('transform', d3.event.transform)
 
       self.onZoom(d3.event)
     }
     function ended () {
-      console.debug('end')
+      //      console.debug('end')
       self.onZoomEnd(d3.event)
     }
-    
+
     this._chart = _chart
     return _chart
   }
