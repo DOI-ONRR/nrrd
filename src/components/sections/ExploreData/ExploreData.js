@@ -250,7 +250,7 @@ const useStyles = makeStyles(theme => ({
     bottom: 0,
     width: '100%',
     backgroundColor: '#fff',
-    paddingTop: theme.spacing(1),
+    paddingTop: theme.spacing(2),
     zIndex: 101,
     paddingBottom: theme.spacing(0),
     borderTop: `1px solid ${ theme.palette.grey[300] }`,
@@ -289,6 +289,17 @@ const fiscalYearMarks = () => {
   ))
 }
 
+const customMarks = [
+  {
+    label: '2003',
+    value: 2003
+  },
+  {
+    label: '2019',
+    value: 2019
+  }
+]
+
 // YearSlider
 const YearSlider = props => {
   const classes = useStyles()
@@ -303,34 +314,18 @@ const YearSlider = props => {
     <Box className={classes.sliderRoot}>
       <Grid container spacing={4}>
         <Grid item xs>
-          { matchesMdUp &&
           <Slider
             defaultValue={year}
             aria-labelledby="discrete-slider"
-            valueLabelDisplay="auto"
+            valueLabelDisplay="on"
             step={1}
             onChangeCommitted={(e, yr) => {
               props.onYear(yr)
             }}
-            marks={fiscalYearMarks()}
+            marks={customMarks}
             min={2003}
             max={2019}
           />
-          }
-          { !matchesMdUp &&
-          <Slider
-            defaultValue={year}
-            aria-labelledby="discrete-slider"
-            valueLabelDisplay="auto"
-            step={1}
-            onChangeCommitted={(e, yr) => {
-              props.onYear(yr)
-            }}
-            marks
-            min={2003}
-            max={2019}
-          />
-          }
         </Grid>
       </Grid>
     </Box>
@@ -392,16 +387,12 @@ const ExploreData = () => {
     switch (cards.length) {
     case 2:
       return 'cards-2'
-      break
     case 3:
       return 'cards-3'
-      break
     case 4:
       return 'cards-4'
-      break
     default:
       return 'cards-1'
-      break
     }
   }
 
