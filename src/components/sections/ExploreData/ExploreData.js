@@ -107,7 +107,7 @@ const useStyles = makeStyles(theme => ({
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
     '@media (max-width: 768px)': {
-      height: 716,
+      height: 752,
     }
   },
   mapContainer: {
