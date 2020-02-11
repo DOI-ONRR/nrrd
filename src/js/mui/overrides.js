@@ -206,6 +206,8 @@ module.exports = Object.freeze({
     markLabelActive: {
       fontWeight: 'bold',
       color: grey['800'],
+      background: 'transparent',
+      boxShadow: 'none',
     },
     track: {
       height: 4,
@@ -220,12 +222,22 @@ module.exports = Object.freeze({
       backgroundColor: common.white,
       width: 0,
     },
+    active: {
+      boxShadow: 'none',
+      transition: 'none',
+      borderRadius: 0,
+    },
     thumb: {
       marginTop: -4,
+      boxShadow: 'none',
+      transition: 'none',
       '&:hover': {
         boxShadow: 'none',
-        transition: 'inherit',
-      }
+        transition: 'none',
+      },
+      '&:focus,&:hover,&$active': {
+        boxShadow: 'inherit',
+      },
     },
     valueLabel: {
       width: 60,
@@ -233,12 +245,13 @@ module.exports = Object.freeze({
       left: 'calc(-50% + -18px)',
       transform: 'rotate(0deg)',
       fontSize: '1rem',
+      cursor: 'pointer',
       '& span': {
         width: 60,
         transform: 'rotate(0)',
         borderRadius: 0,
         textAlign: 'center',
-      }
+      },
     }
   },
   // https://material-ui.com/api/table-cell/

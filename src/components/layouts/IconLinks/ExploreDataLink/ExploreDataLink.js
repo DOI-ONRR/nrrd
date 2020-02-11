@@ -6,7 +6,6 @@ import { Link } from 'gatsby'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
-// import styles from './ExploreDataLink.module.scss'
 
 import ExploreDataIcon from '-!svg-react-loader!../../../../img/icons/explore-data.svg'
 import FilterTableIcon from '-!svg-react-loader!../../../../img/icons/filter-table.svg'
@@ -19,6 +18,7 @@ const useStyles = makeStyles(theme => ({
   exploreDataLink: {
     textDecoration: 'none',
     marginBottom: '1rem',
+    display: 'flex',
     '& svg': {
       fill: '#1478a6',
       verticalAlign: 'middle',
@@ -27,11 +27,11 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: 'middle',
     marginRight: '8px',
     '& span': {
-      fontSize: theme.typography.body2,
+      fontSize: theme.typography.body1.fontSize,
       marginRight: '1rem',
       verticalAlign: 'baseline',
       position: 'relative',
-      top: 2,
+      top: 0,
     },
     '&:hover': {
       textDecoration: 'underline'

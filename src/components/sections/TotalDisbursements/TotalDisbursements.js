@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem',
     marginBottom: 0,
     fontWeight: 'normal',
+    height: 29,
     '@media (max-width: 426px)': {
       display: 'block',
       width: '100%',

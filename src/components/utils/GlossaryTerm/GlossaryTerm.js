@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   iconQuestion: {
     width: '16px',
+    width: '1.65vw',
     height: '16px',
     marginLeft: theme.spacing(0.2)
   }

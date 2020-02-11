@@ -72,6 +72,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem',
     marginBottom: 0,
     fontWeight: 'normal',
+    height: 29,
     '@media (max-width: 426px)': {
       display: 'block',
       width: '100%',
@@ -142,10 +143,10 @@ const TotalRevenueControls = props => {
             {
               (toggle === 'year')
                 ? Object.values(YEARLY_DROPDOWN_VALUES).map((item, i) => (
-                  <MenuItem value={item}>{ item === 'calendar_year' ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
+                  <MenuItem key={i} value={item}>{ item === 'calendar_year' ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
                 ))
                 : Object.values(DROPDOWN_VALUES).map((item, i) => (
-                  <MenuItem value={item}>
+                  <MenuItem value={item} key={i}>
                     {(() => {
                       switch (item) {
                       case 'fiscal':

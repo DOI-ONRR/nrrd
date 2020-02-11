@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Snackbar from '@material-ui/core/Snackbar'
+import Hidden from '@material-ui/core/Hidden'
 
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
@@ -48,18 +49,7 @@ const FISCAL_REVENUE_QUERY = gql`
   }
 `
 
-// const CACHE_QUERY = gql`
-//   {
-//     year @client
-//   }
-// `
-
-// fiscal_revenue_summary(order_by: {fiscal_year: desc, state_or_area: asc}, where: {fiscal_year: {_eq: 2019}}) {
-//     fiscal_year
-//     state_or_area
-//     sum
-//   }
-// }`
+console.log('FISCAL_REVENUE_QUERY::', FISCAL_REVENUE_QUERY)
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -107,14 +97,13 @@ const useStyles = makeStyles(theme => ({
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
     '@media (max-width: 768px)': {
-      height: 752,
+      height: 435,
     }
   },
   mapContainer: {
     position: 'relative',
     minWidth: 280,
     flexBasis: '100%',
-    height: 'auto',
     order: '3',
     height: 575,
     '@media (max-width: 768px)': {
@@ -127,28 +116,31 @@ const useStyles = makeStyles(theme => ({
     right: 0,
     bottom: 120,
     height: 'auto',
-    minHeight: 305,
+    minHeight: 335,
     zIndex: 99,
+    '@media (max-width: 960px)': {
+      bottom: 40,
+    },
     '@media (max-width: 768px)': {
       width: '100%',
-      display: 'flex',
+      display: 'block',
       justifyContent: 'flex-start',
       alignContent: 'flex-start',
       alignItems: 'flex-end',
       background: 'transparent',
       left: 0,
       top: 0,
-      overflowX: 'auto',
+      overflow: 'hidden',
       height: 'auto',
       position: 'relative',
     },
     '& > div': {
       cursor: 'pointer',
       '@media (max-width: 768px)': {
-        margin: 0,
         position: 'relative',
-        minWidth: 275,
-        marginBottom: 0,
+        width: 'auto',
+        margin: '10px 5px',
+        boxSizing: 'border-box',
       },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.green.default,
@@ -255,10 +247,6 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(0),
     borderTop: `1px solid ${ theme.palette.grey[300] }`,
     borderBottom: `1px solid ${ theme.palette.grey[300] }`,
-    '@media (max-width: 768px)': {
-      position: 'relative',
-      top: 0,
-    },
   },
   sliderRoot: {
     width: '100%',
@@ -282,12 +270,6 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }))
-
-const fiscalYearMarks = () => {
-  return Array(17).fill(0).map((e, i) => (
-    { label: i + 2003, value: i + 2003 }
-  ))
-}
 
 const customMarks = [
   {
@@ -362,6 +344,7 @@ const ExploreData = () => {
 
   const theme = useTheme()
   const matchesSmUp = useMediaQuery(theme.breakpoints.up('sm'))
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   // Snackbar state
@@ -490,7 +473,6 @@ const ExploreData = () => {
       item.state_or_area,
       item.sum
     ])
-
   }
   if (mapData) {
     // const timeout = 5000
@@ -566,18 +548,7 @@ const ExploreData = () => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12}>
-              <Box className={classes.sliderContainer}>
-                <Container>
-                  <YearSlider
-
-                    onYear={selected => {
-                      onYear(selected)
-                    }}
-                  />
-                </Container>
-              </Box>
-            </Grid>
+            { matchesMdUp &&
             <Grid item xs={12}>
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
@@ -587,14 +558,26 @@ const ExploreData = () => {
                       fips={state.fips}
                       abbrev={state.abbrev}
                       name={state.name}
-		                  minimizeIcon={state.minimizeIcon}
-		                  closeIcon={state.closeIcon}
+                      minimizeIcon={state.minimizeIcon}
+                      closeIcon={state.closeIcon}
                       closeCard={fips => {
                         closeCard(fips)
                       }}
                     />
                   )
                 })}
+              </Box>
+            </Grid>
+            }
+            <Grid item xs={12}>
+              <Box className={classes.sliderContainer}>
+                <Container>
+                  <YearSlider
+                    onYear={selected => {
+                      onYear(selected)
+                    }}
+                  />
+                </Container>
               </Box>
             </Grid>
           </Grid>
@@ -607,6 +590,27 @@ const ExploreData = () => {
             onClose={handleSnackbarClose}
             message="Only four locations can be viewed at once. Remove one of the location cards to add another location."
           />
+          { matchesSmDown &&
+            <Grid item xs={12}>
+              <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
+                {cards.map((state, i) => {
+                  return (
+                    <StateCard
+                      key={i}
+                      fips={state.fips}
+                      abbrev={state.abbrev}
+                      name={state.name}
+                      minimizeIcon={state.minimizeIcon}
+                      closeIcon={state.closeIcon}
+                      closeCard={fips => {
+                        closeCard(fips)
+                      }}
+                    />
+                  )
+                })}
+              </Box>
+            </Grid>
+          }
           <Grid container>
             <Grid item md={12}>
               <Typography variant="h2" className="header-bar green thick">

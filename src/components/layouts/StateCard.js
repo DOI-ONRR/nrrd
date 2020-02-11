@@ -67,10 +67,17 @@ const useStyles = makeStyles({
   },
   cardHeader: {
     padding: 10,
+    height: 40,
+    '& .MuiCardHeader-action': {
+      marginTop: 0,
+    },
+    '& span': {
+      margin: 0,
+    },
   },
   close: {
     position: 'relative',
-    top: 8,
+    top: 0,
     right: '10px',
     cursor: 'pointer'
   },

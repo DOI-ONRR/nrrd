@@ -38,7 +38,11 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     textDecoration: 'none',
     color: theme.palette.common.black,
-    fontWeight: 400
+    fontWeight: 400,
+    fontSize: theme.typography.body1.fontSize,
+    '&:hover': {
+      textDecoration: 'underline',
+    }
   },
   menuActiveLink: {
     fontWeight: 600,
@@ -84,8 +88,9 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(0),
     width: '325px',
     [theme.breakpoints.down('sm')]: {
-      width: '225px'
-    }
+      marginTop: theme.spacing(4),
+      width: '200px',
+    },
   },
   headerRight: {
     width: 'auto',
