@@ -5,4 +5,18 @@ layout: DefaultContentLayout
 
 # Data Query Tool
 
-<QueryDataToolbar />
+<DataTypeToggle helperText={'Select a report type!'} />
+
+---
+
+<ContextDisplay params={'?dataType=Revenue'}>
+Revenue content goes here
+</ContextDisplay>
+<ContextDisplay params={'?dataType=Production'}>
+Production content goes here
+</ContextDisplay>
+<ContextDisplay params={'?dataType=Disbursements'}>
+Disbursements content goes here
+</ContextDisplay>
+
+<DataTable />

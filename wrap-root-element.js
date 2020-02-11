@@ -23,19 +23,17 @@ const mdxComponents = {
 }
 
 export const wrapRootElement = ({ element }) => (
-  <React.StrictMode>
-    <ErrorBoundary>
-      <ApolloProvider client={client}>
-        <DataFilterProvider>
-          <GlossaryProvider>
-            <StoreProvider>
-              <MDXProvider components={ mdxComponents }>
-                {element}
-              </MDXProvider>
-            </StoreProvider>
-          </GlossaryProvider>
-        </DataFilterProvider>
-      </ApolloProvider>
-    </ErrorBoundary>
-  </React.StrictMode>
+  <ErrorBoundary>
+    <ApolloProvider client={client}>
+      <DataFilterProvider>
+        <GlossaryProvider>
+          <StoreProvider>
+            <MDXProvider components={ mdxComponents }>
+              {element}
+            </MDXProvider>
+          </StoreProvider>
+        </GlossaryProvider>
+      </DataFilterProvider>
+    </ApolloProvider>
+  </ErrorBoundary>
 )
