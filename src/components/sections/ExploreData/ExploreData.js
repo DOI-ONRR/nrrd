@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext, useEffect } from 'react'
+import React, { Fragment, useState, useContext, useEffect, useRef } from 'react'
 // import { Link } from "gatsby"
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -10,7 +10,15 @@ import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Snackbar from '@material-ui/core/Snackbar'
-import Hidden from '@material-ui/core/Hidden'
+import Chip from '@material-ui/core/Chip'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import InputLabel from '@material-ui/core/InputLabel'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
 
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
@@ -61,10 +69,11 @@ const useStyles = makeStyles(theme => ({
     height: '600px'
   },
   toolbar: {
-    paddingTop: theme.spacing(1),
+    paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(1),
-    borderBottom: `1px solid ${ theme.palette.grey[300] }`,
-    boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
+    // borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    // boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
+    background: theme.palette.grey['200'],
     '& h2': {
       marginTop: theme.spacing(1),
       fontSize: '1rem',
@@ -83,7 +92,7 @@ const useStyles = makeStyles(theme => ({
   },
   toolbarControls: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     '@media (max-width: 768px)': {
       justifyContent: 'flex-start',
     }
@@ -123,24 +132,29 @@ const useStyles = makeStyles(theme => ({
     },
     '@media (max-width: 768px)': {
       width: '100%',
-      display: 'block',
+      display: 'flex',
       justifyContent: 'flex-start',
       alignContent: 'flex-start',
       alignItems: 'flex-end',
       background: 'transparent',
       left: 0,
       top: 0,
-      overflow: 'hidden',
+      overflowX: 'auto',
       height: 'auto',
       position: 'relative',
     },
     '& > div': {
       cursor: 'pointer',
+      bottom: 25,
       '@media (max-width: 768px)': {
         position: 'relative',
-        width: 'auto',
-        margin: '10px 5px',
+        width: '100%',
+        margin: 0,
         boxSizing: 'border-box',
+        minWidth: 285,
+        minHeight: 315,
+        marginBottom: theme.spacing(1),
+        bottom: 0,
       },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.green.default,
@@ -268,9 +282,148 @@ const useStyles = makeStyles(theme => ({
     '@media (max-width: 768px)': {
       bottom: 70,
     }
+  },
+  addCard: {
+    position: 'absolute',
+    bottom: -10,
+    right: 10,
+    width: 285,
+    '@media (max-width: 768px)': {
+      position: 'relative',
+      left: 20,
+    }
+  },
+  stateChipContainer: {
+    background: theme.palette.common.white,
+    borderRadius: 5,
+    padding: theme.spacing(2),
+    display: 'flex',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(0.5),
+    }
+  },
+  formControl: {
+    marginRight: theme.spacing(2),
+  },
+  mapExploreMenu: {
+    // position: 'absolute',
+    right: 20,
+    top: 20,
+    zIndex: 99,
+    '& button': {
+      color: theme.palette.common.black,
+      border: `1px solid ${ theme.palette.grey['300'] }`,
+      backgroundColor: theme.palette.common.white,
+      borderBottomLeftRadius: 4,
+      borderBottomRightRadius: 4,
+      boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
+      overflowX: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      minWidth: 150,
+    },
+    '& button:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.08)',
+    }
+  },
+  mapMenuItem: {
+    border: `1px solid ${ theme.palette.grey['300'] }`,
+    height: 48,
+    marginLeft: theme.spacing(0),
+    marginRight: theme.spacing(1),
+    paddingTop: 0,
+    paddingBottom: 0,
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4,
+    background: theme.palette.common.white,
+    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
+    overflowX: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    minWidth: 150,
+    '& *': {
+      margin: 0,
+    },
+    '& nav, & nav > div': {
+      paddingTop: 0,
+      paddingBottom: 0,
+    }
   }
 }))
 
+// State Chips
+const StateChip = props => {
+  const classes = useStyles()
+
+  const handleDelete = () => {
+    console.info('You clicked the delete icon.')
+  }
+
+  const handleClick = () => {
+    console.info('You clicked the Chip.')
+  }
+
+  return (
+    <Chip
+      label={props.chipName}
+      onDelete={handleDelete} />
+  )
+}
+
+// Other ways
+const MapExploreMenu = props => {
+  const classes = useStyles()
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const handleMenuClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  return (
+    <div className={classes.mapExploreMenu}>
+      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleMenuClick}>
+        Other ways to explore revenue
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={anchorEl}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>Revenue by company</MenuItem>
+        <MenuItem onClick={handleClose}>Native American revenue</MenuItem>
+        <MenuItem onClick={handleClose}>Query revenue data</MenuItem>
+        <MenuItem onClick={handleClose}>Downloads & Documentation</MenuItem>
+        <MenuItem onClick={handleClose}>How revenue works</MenuItem>
+      </Menu>
+    </div>
+  )
+}
+
+// Add Card
+const AddCardButton = props => {
+  const classes = useStyles()
+  return (
+    <Button
+      variant="contained"
+      color="default"
+      className={classes.addCard}
+      disableRipple
+      startIcon={<AddIcon />}
+    >
+        Add {props.cardName} Card
+    </Button>
+  )
+}
+
+// Custom Marks
 const customMarks = [
   {
     label: '2003',
@@ -335,6 +488,134 @@ const MapControls = props => {
         </Button>
       </ButtonGroup>
     </Box>
+  )
+}
+
+// Map Offshore
+const MapOffshore = props => {
+
+  const classes = useStyles()
+  const { state, dispatch } = useContext(StoreContext)
+
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [selectedIndex, setSelectedIndex] = useState(0)
+
+  const options = [
+    'Off',
+    'On'
+  ]
+
+  const handleClickListItem = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleMenuItemClick = (event, i) => {
+    setSelectedIndex(i)
+    setAnchorEl(i)
+
+    dispatch({ type: 'OFFSHORE', payload: { offshore: i === 1 } })
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  return (
+    <div className={classes.mapMenuItem}>
+      <List component="nav" aria-label="Map levels">
+        <ListItem
+          button
+          aria-haspopup="true"
+          aria-controls="map-offshore-menu"
+          aria-label="map offshore locked"
+          onClick={handleClickListItem}
+        >
+          <ListItemText primary="Offshore data" secondary={options[selectedIndex]} />
+        </ListItem>
+      </List>
+      <Menu
+        id="offshore-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {options.map((option, index) => (
+          <MenuItem
+            key={option}
+            selected={index === selectedIndex}
+            onClick={event => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  )
+}
+
+// Map Level
+const MapLevel = props => {
+  console.log('MapLevel props: ', props)
+
+  const classes = useStyles()
+  const { state, dispatch } = useContext(StoreContext)
+
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [selectedIndex, setSelectedIndex] = useState(0)
+
+  const options = [
+    'State',
+    'County'
+  ]
+
+  const handleClickListItem = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleMenuItemClick = (event, i) => {
+    console.log('handleMenuItemClick:', event, i)
+    setSelectedIndex(i)
+    setAnchorEl(i)
+
+    dispatch({ type: 'COUNTY_LEVEL', payload: { countyLevel: i === 1 } })
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  return (
+    <div className={classes.mapMenuItem}>
+      <List component="nav" aria-label="Map levels">
+        <ListItem
+          button
+          aria-haspopup="true"
+          aria-controls="map-levels-menu"
+          aria-label="map levels locked"
+          onClick={handleClickListItem}
+        >
+          <ListItemText primary="Map level" secondary={options[selectedIndex]} />
+        </ListItem>
+      </List>
+      <Menu
+        id="levels-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {options.map((option, index) => (
+          <MenuItem
+            key={option}
+            selected={index === selectedIndex}
+            onClick={event => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
   )
 }
 
@@ -434,7 +715,7 @@ const ExploreData = () => {
       }
       else {
         // console.log('fire alert yo!')
-        handleSnackbar({ vertical: 'bottom', horizontal: 'left' })
+        handleSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
     return dispatch({ type: 'CARDS', payload: { cards: cards } })
@@ -481,36 +762,17 @@ const ExploreData = () => {
         <Container maxWidth={false} className={classes.toolbar}>
           <Container>
             <Grid container>
-              <Grid item xs={12} sm={5}>
+              {/* <Grid item xs={12} sm={4}>
                 <Typography variant="h2">Fiscal Year {year} Revenue</Typography>
                 {/* <Typography style={{ fontSize: '10px', lineHeight: 'inherit' }}>
                 Select a state for detailed production, revenue, and disbursements data.
-                </Typography> */}
-              </Grid>
-              <Grid item xs={12} sm={7}>
+                </Typography>
+              </Grid> */}
+              <Grid item xs={12}>
                 <Box className={classes.toolbarControls}>
-                  <FormControlLabel
-                    control= {
-                      <Switch
-                        checked={state.countyLevel}
-                        onChange={handleChange('COUNTY_LEVEL', 'countyLevel')}
-                        value="countyLevel"
-                        color="primary"
-                      />
-                    }
-                    label="County data"
-                  />
-                  <FormControlLabel
-                    control= {
-                      <Switch
-                        checked={state.offshore}
-                        onChange={handleChange('OFFSHORE', 'offshore')}
-                        value="offshore"
-                        color="primary"
-                      />
-                    }
-                    label="Offshore data"
-                  />
+                  <MapLevel onChange={handleChange} />
+                  <MapOffshore onChange={handleChange} />
+                  <MapExploreMenu />
                 </Box>
               </Grid>
             </Grid>
@@ -566,6 +828,7 @@ const ExploreData = () => {
                     />
                   )
                 })}
+                <AddCardButton cardName="Native American" />
               </Box>
             </Grid>
             }
@@ -582,15 +845,9 @@ const ExploreData = () => {
             </Grid>
           </Grid>
         </Container>
-        <Container className={classes.contentWrapper}>
-          <Snackbar
-            anchorOrigin={{ vertical, horizontal }}
-            key={`${ vertical },${ horizontal }`}
-            open={open}
-            onClose={handleSnackbarClose}
-            message="Only four locations can be viewed at once. Remove one of the location cards to add another location."
-          />
+        <Container maxWidth={false} style={{ padding: 0 }}>
           { matchesSmDown &&
+          <>
             <Grid item xs={12}>
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
@@ -610,7 +867,18 @@ const ExploreData = () => {
                 })}
               </Box>
             </Grid>
+            <AddCardButton cardName="Native American" />
+          </>
           }
+        </Container>
+        <Container className={classes.contentWrapper}>
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            key={`${ vertical },${ horizontal }`}
+            open={open}
+            onClose={handleSnackbarClose}
+            message="Only four locations can be viewed at once. Remove one of the location cards to add another location."
+          />
           <Grid container>
             <Grid item md={12}>
               <Typography variant="h2" className="header-bar green thick">
@@ -619,6 +887,26 @@ const ExploreData = () => {
               <Typography variant="body1">
                 When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. In fiscal year 2018, ONRR collected a total of [$9,161,704,392] in revenue.
               </Typography>
+            </Grid>
+            <Grid item md={12}>
+              <Typography variant="h3" className="header-bar green thin">
+                Compare revenue
+              </Typography>
+              <Typography variant="body1">
+                Add more than one card to compare.  Select states, counties, and offshore regions.
+              </Typography>
+              <Typography variant="body1">
+                You currently have the following cards selected:
+              </Typography>
+              <div className={classes.stateChipContainer}>
+                {
+                  cards.map((state, i) => {
+                    return (
+                      <StateChip key={i} chipName={state.name} />
+                    )
+                  })
+                }
+              </div>
             </Grid>
           </Grid>
         </Container>

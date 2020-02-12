@@ -45,6 +45,9 @@ module.exports = Object.freeze({
         backgroundColor: primary.main,
         color: common.white,
       },
+    },
+    contained: {
+      backgroundColor: common.white,
     }
   },
   // https://material-ui.com/api/button-group/
@@ -163,6 +166,10 @@ module.exports = Object.freeze({
     root: {
       marginBottom: 0,
       color: primary.light,
+    },
+    padding: {
+      paddingTop: 0,
+      paddingBottom: 0,
     }
   },
   MuiListItem: {
@@ -181,6 +188,11 @@ module.exports = Object.freeze({
       minWidth: '18px',
       color: '#000',
       marginRight: 0,
+    }
+  },
+  MuiMenuItem: {
+    root: {
+      marginBottom: 0,
     }
   },
   // https://material-ui.com/api/icon/

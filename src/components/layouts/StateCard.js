@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper'
 import Slide from '@material-ui/core/Slide'
 import Collapse from '@material-ui/core/Collapse'
 import MinimizeIcon from '@material-ui/icons/Minimize'
+import AddIcon from '@material-ui/icons/Add'
 // import MaxmizeIcon from '@material-ui/icons/Maximize'
 
 // import CardActions from '@material-ui/core/CardActions'
@@ -23,6 +24,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 // import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+import Button from '@material-ui/core/Button'
 
 // import AppBar from "@material-ui/core/AppBar"
 // import Toolbar from "@material-ui/core/Toolbar"
@@ -57,10 +59,10 @@ const useStyles = makeStyles({
     }
   },
   cardMinimized: {
-    minHeight: 'inherit',
-    position: 'fixed',
-    bottom: 0,
-    width: 140,
+    minHeight: 0,
+    position: 'absolute',
+    bottom: -20,
+    width: 285,
     '& .MuiCardContent-root': {
       padding: 0,
     }
@@ -108,7 +110,7 @@ const useStyles = makeStyles({
   },
   paper: {
     width: '100%'
-  }
+  },
 })
 
 const APOLLO_QUERY = gql`
@@ -170,6 +172,8 @@ const APOLLO_QUERY = gql`
 //   return r
 // }
 
+
+
 const StateCard = props => {
   const classes = useStyles()
   const { state } = useContext(StoreContext)
@@ -205,48 +209,50 @@ const StateCard = props => {
   let total = 0
   if (loading) {
     return (
-      <Slide direction="left" in={true} mountOnEnter unmountOnExit>
-        <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })}>
-          <CardHeader
-            title={props.name}
-            action={
-              <>
-                {minimizeIcon && (
-                  <MinimizeIcon
-                    className={classes.close}
-                    onClick={(e, i) => {
-                      minimizeCard(i)
-                    }}
-                    key={state}
-                  />
-                )}
-                {closeIcon && (
-                  <CloseIcon
-                    className={classes.close}
-                    onClick={(e, i) => {
-                      closeCard(i)
-                    }}
-                  />
-                )}
-              </>
-            }
-            className={classes.cardHeader}
-          >
-            <Typography variant="h6" color="inherit">
-              {props.name}
-            </Typography>
-          </CardHeader>
-          <Collapse in={minimized} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Grid container>
-                <Typography style={{ fontSize: '.8rem' }}>
+      <>
+        <Slide direction="left" in={true} mountOnEnter unmountOnExit>
+          <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })}>
+            <CardHeader
+              title={props.name}
+              action={
+                <>
+                  {minimizeIcon && (
+                    <MinimizeIcon
+                      className={classes.close}
+                      onClick={(e, i) => {
+                        minimizeCard(i)
+                      }}
+                      key={state}
+                    />
+                  )}
+                  {closeIcon && (
+                    <CloseIcon
+                      className={classes.close}
+                      onClick={(e, i) => {
+                        closeCard(i)
+                      }}
+                    />
+                  )}
+                </>
+              }
+              className={classes.cardHeader}
+            >
+              <Typography variant="h6" color="inherit">
+                {props.name}
+              </Typography>
+            </CardHeader>
+            <Collapse in={minimized} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Grid container>
+                  <Typography style={{ fontSize: '.8rem' }}>
                   Loading....{' '}
-                </Typography>
-              </Grid>
-            </CardContent>
-          </Collapse>
-        </Card>
-      </Slide>
+                  </Typography>
+                </Grid>
+              </CardContent>
+            </Collapse>
+          </Card>
+        </Slide>
+      </>
     )
   }
   if (
@@ -255,8 +261,6 @@ const StateCard = props => {
     data.revenue_commodity_summary.length > 0 &&
     data.commodity_sparkdata.length > 0
   ) {
-
-
     sparkData = data.fiscal_revenue_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
@@ -267,7 +271,7 @@ const StateCard = props => {
     )
     total = data.fiscal_revenue_summary[highlightIndex].sum
     distinctCommodities =
-      data.fiscal_revenue_summary[highlightIndex].distinctCommodities
+      data.fiscal_revenue_summary[highlightIndex].distinct_commodities
     topCommodities = data.revenue_commodity_summary
       .map((item, i) => item.commodity)
       .map((com, i) => {
@@ -283,85 +287,86 @@ const StateCard = props => {
     sparkMax = sparkData[sparkData.length - 1][0]
 
     return (
-      <Slide direction="left" in={true} mountOnEnter unmountOnExit>
-        <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })}>
-          <CardHeader
-            title={props.name}
-            action={
-              <>
-                {minimizeIcon && (
-                  <MinimizeIcon
-                    className={classes.close}
-                    onClick={(e, i) => {
-                      minimizeCard(i)
-                    }}
-                    key={state}
-                  />
-                )}
-                {closeIcon && (
-                  <CloseIcon
-                    className={classes.close}
-                    onClick={(e, i) => {
-                      closeCard(i)
-                    }}
-                  />
-                )}
-              </>
-            }
-            className={classes.cardHeader}
-          >
-            <Typography variant="h6" color="inherit">
-              {props.name}
-            </Typography>
-          </CardHeader>
-          <CardContent>
-            <Collapse in={minimized} timeout="auto" unmountOnExit>
-              <Grid container>
-                <Grid item xs={7}>
-                  <Typography variant="caption">
-                    <Box>
+      <>
+        <Slide direction="left" in={true} mountOnEnter unmountOnExit>
+          <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })}>
+            <CardHeader
+              title={props.name}
+              action={
+                <>
+                  {minimizeIcon && (
+                    <MinimizeIcon
+                      className={classes.close}
+                      onClick={(e, i) => {
+                        minimizeCard(i)
+                      }}
+                      key={state}
+                    />
+                  )}
+                  {closeIcon && (
+                    <CloseIcon
+                      className={classes.close}
+                      onClick={(e, i) => {
+                        closeCard(i)
+                      }}
+                    />
+                  )}
+                </>
+              }
+              className={classes.cardHeader}
+            >
+              <Typography variant="h6" color="inherit">
+                {props.name}
+              </Typography>
+            </CardHeader>
+            <CardContent>
+              <Collapse in={minimized} timeout="auto" unmountOnExit>
+                <Grid container>
+                  <Grid item xs={7}>
+                    <Typography variant="caption">
+                      <Box>
                       Trend ({sparkMin} - {sparkMax})
+                      </Box>
+                    </Typography>
+                    <Box component="span">
+                      {sparkData && (
+                        <Sparkline
+                          data={sparkData}
+                          highlightIndex={highlightIndex}
+                        />
+                      )}
                     </Box>
-                  </Typography>
-                  <Box component="span">
-                    {sparkData && (
-                      <Sparkline
-                        data={sparkData}
-                        highlightIndex={highlightIndex}
-                      />
-                    )}
-                  </Box>
+                  </Grid>
+                  <Grid item xs={5} style={{ textAlign: 'right' }}>
+                    <Typography variant="caption">
+                      <Box>{state.year}</Box>
+                      <Box>
+                        {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
+                      </Box>
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={5} style={{ textAlign: 'right' }}>
-                  <Typography variant="caption">
-                    <Box>{state.year}</Box>
-                    <Box>
-                      {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
-                    </Box>
-                  </Typography>
-                </Grid>
-              </Grid>
 
-              <Grid container>
-                <Grid item xs={12} zeroMinWidth>
-                  <Typography
-                    variant="subtitle2"
-                    style={{ fontWeight: 'bold', marginBottom: 10 }}
-                  >
+                <Grid container>
+                  <Grid item xs={12} zeroMinWidth>
+                    <Typography
+                      variant="subtitle2"
+                      style={{ fontWeight: 'bold', marginBottom: 10 }}
+                    >
                     Top Commodities
-                  </Typography>
+                    </Typography>
+                  </Grid>
                 </Grid>
-              </Grid>
 
-              <Grid container>
-                <Paper className={classes.paper} style={{ marginBottom: 10 }}>
-                  <Table
-                    className={classes.table}
-                    size="small"
-                    aria-label="top commodities table"
-                  >
-                    <TableBody>
-                      {topCommodities &&
+                <Grid container>
+                  <Paper className={classes.paper} style={{ marginBottom: 10 }}>
+                    <Table
+                      className={classes.table}
+                      size="small"
+                      aria-label="top commodities table"
+                    >
+                      <TableBody>
+                        {topCommodities &&
                         topCommodities.map((row, i) => {
                           return (
                             <TableRow key={i}>
@@ -394,22 +399,23 @@ const StateCard = props => {
                             </TableRow>
                           )
                         })}
-                    </TableBody>
-                  </Table>
-                </Paper>
-              </Grid>
-
-              <Grid container>
-                <Grid item xs={12}>
-                  <Typography variant="subtitle2" component="span">
-                    Total Commodities: {distinctCommodities}
-                  </Typography>
+                      </TableBody>
+                    </Table>
+                  </Paper>
                 </Grid>
-              </Grid>
-            </Collapse>
-          </CardContent>
-        </Card>
-      </Slide>
+
+                <Grid container>
+                  <Grid item xs={12}>
+                    <Typography variant="subtitle2" component="span">
+                    Total Commodities: {distinctCommodities}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Collapse>
+            </CardContent>
+          </Card>
+        </Slide>
+      </>
     )
   }
   else {
