@@ -355,20 +355,17 @@ const useStyles = makeStyles(theme => ({
 
 // State Chips
 const StateChip = props => {
+  console.log('stateChip props: ', props)
   const classes = useStyles()
 
-  const handleDelete = () => {
-    console.info('You clicked the delete icon.')
-  }
-
-  const handleClick = () => {
-    console.info('You clicked the Chip.')
+  const closeCard = item => {
+    props.closeCard(props.fips)
   }
 
   return (
     <Chip
       label={props.chipName}
-      onDelete={handleDelete} />
+      onDelete={(e, i) => closeCard(i)} />
   )
 }
 
@@ -493,7 +490,6 @@ const MapControls = props => {
 
 // Map Offshore
 const MapOffshore = props => {
-
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
 
@@ -902,7 +898,13 @@ const ExploreData = () => {
                 {
                   cards.map((state, i) => {
                     return (
-                      <StateChip key={i} chipName={state.name} />
+                      <StateChip
+                        key={i}
+                        fips={state.fips}
+                        chipName={state.name}
+                        closeCard={fips => {
+                          closeCard(fips)
+                        }}/>
                     )
                   })
                 }
