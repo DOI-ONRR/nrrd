@@ -24,73 +24,71 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const LandCategorySelect = ({ helperText, label = 'Land category' }) => {
+const RevenueTypeSelect = ({ helperText, label = 'Revenue type' }) => {
   const { state } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(DFC.GET_DF_REVENUE_LOCATION_OPTIONS, DFC.ALL_DATA_FILTER_VARS(state))
   if (error) return `Error! ${ error.message }`
 
   return (
     <React.Fragment>
-      <LandCategorySelector loading={loading} label={label} data={data} helperText={helperText} />
+      <RevenueTypeSelector loading={loading} label={label} data={data} helperText={helperText} />
     </React.Fragment>
   )
 }
 
-export default LandCategorySelect
+export default RevenueTypeSelect
 
-const LandCategorySelector = ({ label, data, loading, helperText }) => {
+const RevenueTypeSelector = ({ loading, label, data, helperText }) => {
   const classes = useStyles()
-
   const { state, updateDataFilter } = useContext(DataFilterContext)
-
   const handleChange = event => {
-    updateDataFilter({ ...state, [DFC.LAND_CATEGORY]: event.target.value.toString() })
+    updateDataFilter({ ...state, [DFC.REVENUE_TYPE]: event.target.value.toString() })
   }
 
   useEffect(() => {
-    if (data && data[DFC.LAND_CATEGORY_OPTIONS].length === 0) {
-      updateDataFilter({ ...state, [DFC.LAND_CATEGORY]: undefined })
+    if (data && data[DFC.REVENUE_TYPE_OPTIONS].length === 0) {
+      updateDataFilter({ ...state, [DFC.REVENUE_TYPE]: undefined })
     }
   }, [data])
 
-  const handleClearAll = () => updateDataFilter({ ...state, [DFC.LAND_CATEGORY]: undefined })
+  const handleClearAll = () => updateDataFilter({ ...state, [DFC.REVENUE_TYPE]: undefined })
 
   return (
     <Grid container direction='row' alignitems='flex-end'>
       <Grid item xs={12} sm={10}>
-        <FormControl className={classes.formControl} disabled={(data && data[DFC.LAND_CATEGORY_OPTIONS].length === 0)}>
+        <FormControl className={classes.formControl} disabled={(data && data[DFC.REVENUE_TYPE_OPTIONS].length === 0)} >
           {!loading &&
-              <InputLabel id="land-category-select-label">{label}</InputLabel>
+              <InputLabel id="revenue-type-select-label">{label}</InputLabel>
           }
           {loading &&
-            <InputLabel id="land-category-select-label">
+            <InputLabel id="revenue-type-select-label">
               <LinearProgress />
               {label}
             </InputLabel>
           }
           <Select
-            labelId="land-category-select-label"
-            id="land-category-select"
-            value={state[DFC.LAND_CATEGORY] || ''}
+            labelId="revenue-type-select-label"
+            id="revenue-type-select"
+            value={state[DFC.REVENUE_TYPE] || ''}
             onChange={handleChange}
             displayEmpty
           >
             {data &&
-              data[DFC.LAND_CATEGORY_OPTIONS].map((option, i) =>
-                <MenuItem key={`${ option[DFC.LAND_CATEGORY] }_${ i }`} value={option[DFC.LAND_CATEGORY]}>{option[DFC.LAND_CATEGORY]}</MenuItem>)
+              data[DFC.REVENUE_TYPE_OPTIONS].map((option, i) =>
+                <MenuItem key={`${ option[DFC.REVENUE_TYPE] }_${ i }`} value={option[DFC.REVENUE_TYPE]}>{option[DFC.REVENUE_TYPE]}</MenuItem>)
             }
           </Select>
           {helperText &&
             <FormHelperText>{helperText}</FormHelperText>
           }
-          {(data && data[DFC.LAND_CATEGORY_OPTIONS].length === 0) &&
-            <FormHelperText>No land categories match the current filter options.</FormHelperText>
+          {(data && data[DFC.REVENUE_TYPE_OPTIONS].length === 0) &&
+            <FormHelperText>No revenue types match the current filter options.</FormHelperText>
           }
         </FormControl>
       </Grid>
       <Grid item xs={12} sm={2}>
-        { state[DFC.LAND_CATEGORY] &&
-          <IconButton color="primary" aria-label='Clear all land category options' onClick={handleClearAll}><ClearAll /></IconButton>
+        { state[DFC.REVENUE_TYPE] &&
+          <IconButton color="primary" aria-label='Clear all revenue type options' onClick={handleClearAll}><ClearAll /></IconButton>
         }
       </Grid>
     </Grid>

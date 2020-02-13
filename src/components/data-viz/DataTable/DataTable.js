@@ -57,7 +57,7 @@ const DataTable = ({ dataType, height = '100%' }) => {
       <Grid container spacing={2} style={{ height: '100%' }}>
         {type === REVENUE &&
           <Grid item xs={12}>
-            <RevenueDataTable />
+            <RevenueDataTable state={state} />
           </Grid>
         }
         {type === PRODUCTION &&
@@ -78,8 +78,18 @@ const DataTable = ({ dataType, height = '100%' }) => {
 export default DataTable
 
 const GET_REVENUE = gql`
+query GetRevenueDataTable(${ DFC.variableListDefined })
   {
-    revenue:query_tool_data(where: {period: {_eq: "Fiscal Year"}}, limit: 10) {
+    revenue:query_tool_data(
+      where: {
+        land_class: {_eq: $landClass},
+        land_category: {_eq: $landCategory},
+        offshore_region: {_in: $offshoreRegions},
+        state: {_in: $usStates},
+        county: {_in: $counties},
+        commodity: {_in: $commodities},
+        revenue_type: {_eq: $revenueType}
+      }) {
       land_class
       land_category
       offshore_region
@@ -107,6 +117,9 @@ const CurrencyTypeProvider = props => (
   />
 )
 const getColumnNames = row => {
+  if (!row) {
+    return []
+  }
   const filteredColumns = Object.keys(row).filter(column => !column.includes('typename'))
   return filteredColumns.map(column => {
     if (parseInt(column.substring(1)) > 1000) {
@@ -157,7 +170,7 @@ const getRowId = row => {
 }
 const Root = props => <TableGrid.Root {...props} style={{ height: '100%' }} />
 
-const RevenueDataTable = () => {
+const RevenueDataTable = ({ state }) => {
   const [grouping, setGrouping] = useState([{ columnName: 'revenue_type' }])
   const [filters, setFilters] = useState()
   const [tableColumnExtensions] = useState([
@@ -202,19 +215,19 @@ const RevenueDataTable = () => {
     { columnName: 'y2019', type: 'sum', showInGroupFooter: true, alignByColumn: true }])
 
   const [currencyColumns] = useState(['y2019'])
-  const { loading, error, data } = useQuery(GET_REVENUE)
 
   const [leftColumns] = useState(['revenue_type', 'commodity'])
 
+  const { loading, error, data } = useQuery(GET_REVENUE, DFC.ALL_DATA_FILTER_VARS(state))
   if (loading) return 'Loading...'
-  if (error) return `Error! ${ error.message }`
+  if (error) return `Error loading revenue data table ${ error.message }`
+
+  console.log('RevenueDataTable render', data)
 
   return (
     <TableGrid
       rows={data.revenue}
-      columns={getColumnNames(data.revenue[0])}
-      getRowId={getRowId}
-      rootComponent={Root}>
+      columns={getColumnNames(data.revenue[0])}>
       <CurrencyTypeProvider
         for={currencyColumns}
       />
