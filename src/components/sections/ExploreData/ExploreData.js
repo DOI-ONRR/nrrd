@@ -71,6 +71,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
     // borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     // boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
     background: theme.palette.grey['200'],
@@ -343,6 +344,7 @@ const useStyles = makeStyles(theme => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     minWidth: 150,
+    zIndex: 99,
     '& *': {
       margin: 0,
     },
@@ -755,29 +757,17 @@ const ExploreData = () => {
     // const timeout = 5000
     return (
       <Fragment>
-        <Container maxWidth={false} className={classes.toolbar}>
-          <Container>
-            <Grid container>
-              {/* <Grid item xs={12} sm={4}>
-                <Typography variant="h2">Fiscal Year {year} Revenue</Typography>
-                {/* <Typography style={{ fontSize: '10px', lineHeight: 'inherit' }}>
-                Select a state for detailed production, revenue, and disbursements data.
-                </Typography>
-              </Grid> */}
-              <Grid item xs={12}>
-                <Box className={classes.toolbarControls}>
-                  <MapLevel onChange={handleChange} />
-                  <MapOffshore onChange={handleChange} />
-                  <MapExploreMenu />
-                </Box>
-              </Grid>
-            </Grid>
-          </Container>
-        </Container>
         <Container className={classes.mapWrapper} maxWidth={false}>
           <Grid container>
             <Grid item xs={12}>
               <Box className={classes.mapContainer}>
+                <div className={classes.toolbar}>
+                  <Box className={classes.toolbarControls}>
+                    <MapLevel onChange={handleChange} />
+                    <MapOffshore onChange={handleChange} />
+                    <MapExploreMenu />
+                  </Box>
+                </div>
                 <Map
                   mapFeatures={state.countyLevel ? 'counties' : 'states'}
                   mapJsonObject={mapJson}
