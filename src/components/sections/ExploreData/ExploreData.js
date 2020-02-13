@@ -8,12 +8,10 @@ import Slider from '@material-ui/core/Slider'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Snackbar from '@material-ui/core/Snackbar'
 import Chip from '@material-ui/core/Chip'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import List from '@material-ui/core/List'
@@ -23,6 +21,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RefreshIcon from '@material-ui/icons/Refresh'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
@@ -30,8 +29,7 @@ import gql from 'graphql-tag'
 
 import Map from '../../data-viz/Map'
 import StateCard from '../../layouts/StateCard'
-import Switch from '@material-ui/core/Switch'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
+
 import { StoreContext } from '../../../store'
 import mapJson from './us-topology.json'
 import { useMediaQuery } from '@material-ui/core'
@@ -310,21 +308,20 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2),
   },
   mapExploreMenu: {
-    // position: 'absolute',
-    right: 20,
-    top: 20,
+    position: 'absolute',
+    right: 10,
+    top: 10,
     zIndex: 99,
     '& button': {
       color: theme.palette.common.black,
       border: `1px solid ${ theme.palette.grey['300'] }`,
       backgroundColor: theme.palette.common.white,
-      borderBottomLeftRadius: 4,
-      borderBottomRightRadius: 4,
+      borderRadius: '50%',
       boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
       overflowX: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
-      minWidth: 150,
+      padding: theme.spacing(0.5),
     },
     '& button:hover': {
       backgroundColor: 'rgba(0, 0, 0, 0.08)',
@@ -387,11 +384,15 @@ const MapExploreMenu = props => {
 
   return (
     <div className={classes.mapExploreMenu}>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleMenuClick}>
-        Other ways to explore revenue
-      </Button>
+      <IconButton
+        aria-label="Other ways to explore revenue"
+        aria-controls="explore-menu"
+        aria-haspopup="true"
+        onClick={handleMenuClick}>
+        <MoreVertIcon />
+      </IconButton>
       <Menu
-        id="simple-menu"
+        id="explore-menu"
         anchorEl={anchorEl}
         keepMounted
         open={anchorEl}
@@ -907,4 +908,5 @@ const ExploreData = () => {
     )
   }
 }
+
 export default ExploreData

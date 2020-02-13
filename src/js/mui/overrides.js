@@ -75,11 +75,15 @@ module.exports = Object.freeze({
     label: {
       fontWeight: 'bold',
       textTransform: 'capitalize',
+      color: primary.dark,
     },
     root: {
       '&.Mui-selected': {
         color: common.white,
         backgroundColor: primary.dark,
+        '& .MuiToggleButton-label': {
+          color: common.white,
+        },
       },
       '&.Mui-selected:hover': {
         color: common.white,
