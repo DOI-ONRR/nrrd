@@ -8,26 +8,21 @@ import Slider from '@material-ui/core/Slider'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
+
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Snackbar from '@material-ui/core/Snackbar'
 import Chip from '@material-ui/core/Chip'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
 
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RefreshIcon from '@material-ui/icons/Refresh'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import Map from '../../data-viz/Map'
+import ExploreDataToolbar from './ExploreDataToolbar'
 import StateCard from '../../layouts/StateCard'
 
 import { StoreContext } from '../../../store'
@@ -65,37 +60,6 @@ const useStyles = makeStyles(theme => ({
   section: {
     marginTop: theme.spacing(2),
     height: '600px'
-  },
-  toolbar: {
-    paddingTop: theme.spacing(0),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(1),
-    // borderBottom: `1px solid ${ theme.palette.grey[300] }`,
-    // boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
-    background: theme.palette.grey['200'],
-    overflowX: 'auto',
-    '& h2': {
-      marginTop: theme.spacing(1),
-      fontSize: '1rem',
-      lineHeight: 'inherit',
-    },
-    '& label': {
-      marginTop: 0,
-    },
-    '& label span': {
-      margin: 0,
-      '@media (max-width: 768px)': {
-        fontSize: '.85rem',
-        lineHeight: '.85rem',
-      }
-    }
-  },
-  toolbarControls: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    '@media (max-width: 768px)': {
-      justifyContent: 'flex-start',
-    }
   },
   mapWrapper: {
     position: 'relative',
@@ -307,50 +271,6 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     marginRight: theme.spacing(2),
   },
-  mapExploreMenu: {
-    position: 'absolute',
-    right: 10,
-    top: 10,
-    zIndex: 99,
-    '& button': {
-      color: theme.palette.common.black,
-      border: `1px solid ${ theme.palette.grey['300'] }`,
-      backgroundColor: theme.palette.common.white,
-      borderRadius: '50%',
-      boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
-      overflowX: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-      padding: theme.spacing(0.5),
-    },
-    '& button:hover': {
-      backgroundColor: 'rgba(0, 0, 0, 0.08)',
-    }
-  },
-  mapMenuItem: {
-    border: `1px solid ${ theme.palette.grey['300'] }`,
-    height: 48,
-    marginLeft: theme.spacing(0),
-    marginRight: theme.spacing(1),
-    paddingTop: 0,
-    paddingBottom: 0,
-    borderBottomLeftRadius: 4,
-    borderBottomRightRadius: 4,
-    background: theme.palette.common.white,
-    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
-    overflowX: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    minWidth: 150,
-    zIndex: 99,
-    '& *': {
-      margin: 0,
-    },
-    '& nav, & nav > div': {
-      paddingTop: 0,
-      paddingBottom: 0,
-    }
-  }
 }))
 
 // State Chips
@@ -366,45 +286,6 @@ const StateChip = props => {
     <Chip
       label={props.chipName}
       onDelete={(e, i) => closeCard(i)} />
-  )
-}
-
-// Other ways
-const MapExploreMenu = props => {
-  const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState(null)
-
-  const handleMenuClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  return (
-    <div className={classes.mapExploreMenu}>
-      <IconButton
-        aria-label="Other ways to explore revenue"
-        aria-controls="explore-menu"
-        aria-haspopup="true"
-        onClick={handleMenuClick}>
-        <MoreVertIcon />
-      </IconButton>
-      <Menu
-        id="explore-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={anchorEl}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose}>Revenue by company</MenuItem>
-        <MenuItem onClick={handleClose}>Native American revenue</MenuItem>
-        <MenuItem onClick={handleClose}>Query revenue data</MenuItem>
-        <MenuItem onClick={handleClose}>Downloads & Documentation</MenuItem>
-        <MenuItem onClick={handleClose}>How revenue works</MenuItem>
-      </Menu>
-    </div>
   )
 }
 
@@ -489,133 +370,6 @@ const MapControls = props => {
         </Button>
       </ButtonGroup>
     </Box>
-  )
-}
-
-// Map Offshore
-const MapOffshore = props => {
-  const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
-
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [selectedIndex, setSelectedIndex] = useState(0)
-
-  const options = [
-    'Off',
-    'On'
-  ]
-
-  const handleClickListItem = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleMenuItemClick = (event, i) => {
-    setSelectedIndex(i)
-    setAnchorEl(i)
-
-    dispatch({ type: 'OFFSHORE', payload: { offshore: i === 1 } })
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  return (
-    <div className={classes.mapMenuItem}>
-      <List component="nav" aria-label="Map levels">
-        <ListItem
-          button
-          aria-haspopup="true"
-          aria-controls="map-offshore-menu"
-          aria-label="map offshore locked"
-          onClick={handleClickListItem}
-        >
-          <ListItemText primary="Offshore data" secondary={options[selectedIndex]} />
-        </ListItem>
-      </List>
-      <Menu
-        id="offshore-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {options.map((option, index) => (
-          <MenuItem
-            key={option}
-            selected={index === selectedIndex}
-            onClick={event => handleMenuItemClick(event, index)}
-          >
-            {option}
-          </MenuItem>
-        ))}
-      </Menu>
-    </div>
-  )
-}
-
-// Map Level
-const MapLevel = props => {
-  console.log('MapLevel props: ', props)
-
-  const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
-
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [selectedIndex, setSelectedIndex] = useState(0)
-
-  const options = [
-    'State',
-    'County'
-  ]
-
-  const handleClickListItem = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleMenuItemClick = (event, i) => {
-    console.log('handleMenuItemClick:', event, i)
-    setSelectedIndex(i)
-    setAnchorEl(i)
-
-    dispatch({ type: 'COUNTY_LEVEL', payload: { countyLevel: i === 1 } })
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  return (
-    <div className={classes.mapMenuItem}>
-      <List component="nav" aria-label="Map levels">
-        <ListItem
-          button
-          aria-haspopup="true"
-          aria-controls="map-levels-menu"
-          aria-label="map levels locked"
-          onClick={handleClickListItem}
-        >
-          <ListItemText primary="Map level" secondary={options[selectedIndex]} />
-        </ListItem>
-      </List>
-      <Menu
-        id="levels-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {options.map((option, index) => (
-          <MenuItem
-            key={option}
-            selected={index === selectedIndex}
-            onClick={event => handleMenuItemClick(event, index)}
-          >
-            {option}
-          </MenuItem>
-        ))}
-      </Menu>
-    </div>
   )
 }
 
@@ -763,13 +517,7 @@ const ExploreData = () => {
           <Grid container>
             <Grid item xs={12}>
               <Box className={classes.mapContainer}>
-                <div className={classes.toolbar}>
-                  <Box className={classes.toolbarControls}>
-                    <MapLevel onChange={handleChange} />
-                    <MapOffshore onChange={handleChange} />
-                    <MapExploreMenu />
-                  </Box>
-                </div>
+                <ExploreDataToolbar onChange={handleChange} />
                 <Map
                   mapFeatures={state.countyLevel ? 'counties' : 'states'}
                   mapJsonObject={mapJson}
