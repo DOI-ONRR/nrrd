@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
       fill: '#1478a6',
       verticalAlign: 'middle',
       marginRight: '8px',
+      flex: 'none',
     },
     verticalAlign: 'middle',
     marginRight: '8px',
