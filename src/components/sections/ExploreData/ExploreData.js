@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button'
 
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Snackbar from '@material-ui/core/Snackbar'
-import Chip from '@material-ui/core/Chip'
 
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
@@ -22,7 +21,8 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import Map from '../../data-viz/Map'
-import ExploreDataToolbar from './ExploreDataToolbar'
+import MapToolbar from './MapToolbar'
+import StateDetailCard from './StateDetailCard'
 import StateCard from '../../layouts/StateCard'
 
 import { StoreContext } from '../../../store'
@@ -271,23 +271,49 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     marginRight: theme.spacing(2),
   },
-}))
-
-// State Chips
-const StateChip = props => {
-  console.log('stateChip props: ', props)
-  const classes = useStyles()
-
-  const closeCard = item => {
-    props.closeCard(props.fips)
+  compareCardsContainer: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    '& .MuiCard-root': {
+      marginRight: theme.spacing(2)
+    },
+    '& .MuiCard-root:last-child': {
+      marginRight: theme.spacing(0)
+    },
+    '& .MuiCard-root:nth-child(1)': {
+      '& > .MuiCardHeader-root': {
+        backgroundColor: theme.palette.green.default,
+        '& span': {
+          color: theme.palette.common.white,
+        }
+      },
+    },
+    '& .MuiCard-root:nth-child(2)': {
+      '& .MuiCardHeader-root': {
+        backgroundColor: theme.palette.blue.dark,
+        '& span': {
+          color: theme.palette.common.white,
+        }
+      },
+    },
+    '& .MuiCard-root:nth-child(3)': {
+      '& .MuiCardHeader-root': {
+        backgroundColor: theme.palette.orange.default,
+        '& span': {
+          color: theme.palette.common.white,
+        }
+      },
+    },
+    '& .MuiCard-root:nth-child(4)': {
+      '& .MuiCardHeader-root': {
+        backgroundColor: theme.palette.purple.default,
+        '& span': {
+          color: theme.palette.common.white,
+        }
+      }
+    }
   }
-
-  return (
-    <Chip
-      label={props.chipName}
-      onDelete={(e, i) => closeCard(i)} />
-  )
-}
+}))
 
 // Add Card
 const AddCardButton = props => {
@@ -517,7 +543,7 @@ const ExploreData = () => {
           <Grid container>
             <Grid item xs={12}>
               <Box className={classes.mapContainer}>
-                <ExploreDataToolbar onChange={handleChange} />
+                <MapToolbar onChange={handleChange} />
                 <Map
                   mapFeatures={state.countyLevel ? 'counties' : 'states'}
                   mapJsonObject={mapJson}
@@ -625,30 +651,34 @@ const ExploreData = () => {
               </Typography>
             </Grid>
             <Grid item md={12}>
-              <Typography variant="h3" className="header-bar green thin">
-                Compare revenue
-              </Typography>
-              <Typography variant="body1">
-                Add more than one card to compare.  Select states, counties, and offshore regions.
-              </Typography>
-              <Typography variant="body1">
-                You currently have the following cards selected:
-              </Typography>
-              <div className={classes.stateChipContainer}>
-                {
-                  cards.map((state, i) => {
-                    return (
-                      <StateChip
-                        key={i}
-                        fips={state.fips}
-                        chipName={state.name}
-                        closeCard={fips => {
-                          closeCard(fips)
-                        }}/>
-                    )
-                  })
-                }
-              </div>
+              <Box mt={5}>
+                <Typography variant="h3" className="header-bar green thin">
+                  Compare revenue
+                </Typography>
+                <Typography variant="body1">
+                  Add more than one card to compare.  Select states, counties, and offshore regions.
+                </Typography>
+                <Typography variant="body1">
+                  {cards.length > 0}
+                  You currently have {cards.length > 0 ? 'the following cards selected.' : 'no cards selected.'}
+                </Typography>
+                <Box className={classes.compareCardsContainer}>
+                  {
+                    cards.map((state, i) => {
+                      return (
+                        <StateDetailCard
+                          key={i}
+                          cardTitle={state.name}
+                          fips={state.fips}
+                          closeCard={fips => {
+                            closeCard(fips)
+                          }}
+                        />
+                      )
+                    })
+                  }
+                </Box>
+              </Box>
             </Grid>
           </Grid>
         </Container>

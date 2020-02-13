@@ -94,8 +94,6 @@ const useStyles = makeStyles(theme => ({
 
 // Map Level select
 const MapLevel = props => {
-  console.log('MapLevel props: ', props)
-
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
 
@@ -112,9 +110,8 @@ const MapLevel = props => {
   }
 
   const handleMenuItemClick = (event, i) => {
-    console.log('handleMenuItemClick:', event, i)
     setSelectedIndex(i)
-    setAnchorEl(i)
+    setAnchorEl(null)
 
     dispatch({ type: 'COUNTY_LEVEL', payload: { countyLevel: i === 1 } })
   }
@@ -246,11 +243,11 @@ const MapExploreMenu = props => {
         id="explore-menu"
         anchorEl={anchorEl}
         keepMounted
-        open={anchorEl}
+        open={Boolean(anchorEl)}
         onClose={handleClose(null)}
       >
         {
-          props.linkLabels.map((item, i) => <MenuItem onClick={handleClose(i)}>{item}</MenuItem>)
+          props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
         }
       </Menu>
     </div>
