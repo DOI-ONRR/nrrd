@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { navigate } from '@reach/router'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
@@ -227,8 +228,9 @@ const MapExploreMenu = props => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = () => {
+  const handleClose = index => event => {
     setAnchorEl(null)
+    navigate(props.linkUrls[index])
   }
 
   return (
@@ -245,13 +247,11 @@ const MapExploreMenu = props => {
         anchorEl={anchorEl}
         keepMounted
         open={anchorEl}
-        onClose={handleClose}
+        onClose={handleClose(null)}
       >
-        <MenuItem onClick={handleClose}>Revenue by company</MenuItem>
-        <MenuItem onClick={handleClose}>Native American revenue</MenuItem>
-        <MenuItem onClick={handleClose}>Query revenue data</MenuItem>
-        <MenuItem onClick={handleClose}>Downloads & Documentation</MenuItem>
-        <MenuItem onClick={handleClose}>How revenue works</MenuItem>
+        {
+          props.linkLabels.map((item, i) => <MenuItem onClick={handleClose(i)}>{item}</MenuItem>)
+        }
       </Menu>
     </div>
   )
@@ -265,7 +265,10 @@ const ExploreDataToolbar = props => {
       <Box className={classes.toolbarControls}>
         <MapLevel onChange={props.handleChange} />
         <MapOffshore onChange={props.handleChange} />
-        <MapExploreMenu />
+        <MapExploreMenu
+          linkLabels={['Revenue by company', 'Native American revenue', 'Query revenue data', 'Downloads & Documentation', 'How revenue works']}
+          linkUrls={['/explore/?dataType=revenue-by-company', '/explore/?dataType=native-american-revenue', '/query-data', '/downloads', '/how-it-works']}
+        />
       </Box>
     </Box>
   )
