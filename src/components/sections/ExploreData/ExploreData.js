@@ -75,6 +75,7 @@ const useStyles = makeStyles(theme => ({
     // borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     // boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
     background: theme.palette.grey['200'],
+    overflowX: 'auto',
     '& h2': {
       marginTop: theme.spacing(1),
       fontSize: '1rem',
