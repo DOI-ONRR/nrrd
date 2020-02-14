@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 // import styles from './Sparkline.module.scss'
 import { makeStyles } from '@material-ui/core/styles'
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   sparkline: {
     strokeWidth: '1px',
     stroke: '#5c737f',
@@ -10,10 +10,10 @@ const useStyles = makeStyles({
   },
 
   sparkcircle: {
-    fill: '#DB812C'
+    fill: theme.palette.grey['900']
   }
 
-})
+}))
 
 const Sparkline = props => {
   // const spakeStyles = {

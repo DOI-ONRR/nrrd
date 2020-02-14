@@ -1,4 +1,4 @@
-import React  from 'react'
+import React from 'react'
 import Map from '../../data-viz/Map'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -23,5 +23,3 @@ const MapSection = props => {
 }
 
 export default MapSection
-
-

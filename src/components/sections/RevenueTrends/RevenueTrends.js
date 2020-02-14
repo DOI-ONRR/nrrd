@@ -42,19 +42,6 @@ const APOLLO_QUERY = gql`
 
 const useStyles = makeStyles(theme => ({
   root: {},
-  tableContainer: {},
-  table: {
-    // padding: 0,
-    // '& .MuiTableCell-sizeSmall': {
-    //   padding: '6px 0 6px 0',
-    // },
-    // '& .MuiTableCell-sizeSmall:last-child': {
-    //   paddingRight: 0
-    // },
-    // '& .MuiTableBody-root .MuiTableCell-root': {
-    //   borderBottom: 'none'
-    // }
-  },
 }))
 
 const RevenueTrends = () => {

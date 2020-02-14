@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
   charTitle: {
     borderBottom: `1px solid ${ theme.palette.grey[600] }`,
     color: theme.palette.grey[600],
-    fontSize: theme.typography.body2,
+    fontSize: theme.typography.body2.fontSize,
     marginBottom: theme.spacing(2),
   }
 }))
