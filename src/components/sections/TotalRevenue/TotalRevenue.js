@@ -31,15 +31,22 @@ import { classicNameResolver } from 'typescript'
 import { set } from 'd3'
 
 const TOTAL_REVENUE_QUERY = gql`
-  query TotalYearlyRevenue($period: String!) {
-    total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
-      federal_offshore
-      federal_onshore
-      native_american
-      not_tied_to_a_lease
-      fiscal_year
+  query TotalYearlyRevenue {
+    total_yearly_fiscal_revenue2(where: {  period: { _eq: "Monthly" }, fiscal_year: { _gt: 2009,  _lt: 2020 } }) { 
+      fiscal_year,
+      revenue_source,
+      sum
     }
-  }
+    total_monthly_fiscal_revenue2(where: {  period: { _eq: "Monthly" }, fiscal_year:  { _eq: 2019 } }) {
+      source
+      sum
+      month_long
+      period_date
+      fiscal_month
+     fiscal_year
+  } 
+}
+
 `
 const TOGGLE_VALUES = {
   Year: 'Yearly',
@@ -84,6 +91,7 @@ const ToggleGroup = props => {
   const [toggle, setToggle] = useState('Yearly')
 
   const handleToggle = (event, newVal) => {
+    console.debug('handleToggle', event, newVal)
     setToggle(newVal)
   }
 
@@ -143,6 +151,7 @@ const TotalRevenue = props => {
   const { state, dispatch } = useContext(StoreContext)
 
   const [period, setPeriod] = useState(state.period)
+  const [toggle, setToggle] = useState('Yearly')
 
   // const period = state.period
 
@@ -151,22 +160,48 @@ const TotalRevenue = props => {
   const columnNames = props.columnNames || [CHART_LEGEND_TITLE, '', state.year]
 
   const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
-  const xLabels = props.xLabels || ["'10", "'11", "'12", "'13", "'14", "'15", "'16", "'17", "'18", "'19"]
   const xRotate = props.xRotate || 0
-
-  const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY, {
-    variables: { period }
-  })
+  const yOrderBy =  ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
+  
+  const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY)
 
   if (loading) {
     return 'Loading...'
   }
 
   if (error) return `Error! ${ error.message }`
+  let chartData
+  let xAxis
+  let yAxis ='sum'
+  let yGroupBy='source'
+  let xLabels='fiscal_month'
+  
   if (data) {
-    console.debug('DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
-  }
+    let p='Monthly'
+    console.debug('---------------------------------------period:',toggle,  period)
+    if(p === 'Monthly') {
+      chartData=data.total_monthly_fiscal_revenue2
+      xAxis='month_long'
+      xLabels= (x,i) =>
+                {
+                  console.debug(x)
+                  return x.map( v => '\''+v.toString().substr(0))
+                }   
+      
+    } else {
+      chartData=data.total_yearly_fiscal_revenue2
+      xAxis='fiscal_year'
+      xLabels= (x,i) =>
+                {
+                  console.debug(x)
+                  return x.map( v => '\''+v.toString().substr(2))
+                }
+              
 
+      console.debug('esle')
+    }
+    
+  }
   return (
     <Box>
       <Typography variant="h3" className={`header-bar green ${ classes.titleBar }`}>
@@ -179,21 +214,22 @@ const TotalRevenue = props => {
       </Typography>
       <Grid container spacing={4}>
         <Grid item xs={6}>
-          <ToggleGroup />
+          <ToggleGroup
+            onChange={ ()=> (e,newVal) => { console.debug('in tltoal revenue', e, newVal) }}
+            />
         </Grid>
         <Grid item xs={6} style={{ textAlign: 'right' }}>
           <FormControlGroup />
         </Grid>
         <Grid item xs={12}>
           <StackedBarChart
-            chartTitle={chartTitle}
-            data={data.total_yearly_revenue}
-            legendDataFormatFunc={utils.formatToDollarFloat}
-            columns={columns}
-            columnNames={columnNames}
-            xRotate={xRotate}
-            yLabels={yLabels}
-            xLabels={xLabels}
+            title={chartTitle}
+            data={chartData}
+            xAxis={xAxis}
+            yAxis={yAxis}
+            yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
+            legendFormat={utils.formatToDollarFloat}
             onClick={d => {
               dispatch({ type: 'YEAR', payload: { year: data.total_yearly_revenue[d.selectedIndex].fiscal_year } })
             }} />
@@ -201,6 +237,8 @@ const TotalRevenue = props => {
       </Grid>
     </Box>
   )
+
+  
 }
 
 export default TotalRevenue
