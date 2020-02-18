@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   header: {
-    maxHeight: '130px'
+    
   },
   skipNav: {
     position: 'absolute',

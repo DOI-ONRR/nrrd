@@ -1,6 +1,10 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
+<<<<<<< HEAD
 import React, { Fragment, useContext, useMemo } from 'react'
+=======
+import React, { Fragment, useContext, useState } from 'react'
+>>>>>>> dev
 import { isIE } from 'react-device-detect'
 import { GlossaryContext } from '../../../stores'
 
@@ -38,7 +42,11 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     textDecoration: 'none',
     color: theme.palette.common.black,
-    fontWeight: 400
+    fontWeight: 400,
+    fontSize: theme.typography.body1.fontSize,
+    '&:hover': {
+      textDecoration: 'underline',
+    }
   },
   menuActiveLink: {
     fontWeight: 600,
@@ -84,8 +92,9 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(0),
     width: '325px',
     [theme.breakpoints.down('sm')]: {
-      width: '225px'
-    }
+      marginTop: theme.spacing(4),
+      width: '200px',
+    },
   },
   headerRight: {
     width: 'auto',
@@ -148,14 +157,27 @@ const useStyles = makeStyles(theme => ({
 const Header = React.memo(props => {
   const classes = useStyles()
 
+<<<<<<< HEAD
   const { state, toggleGlossaryDrawer } = useContext(GlossaryContext)
+=======
+  const { state, dispatch } = useContext(StoreContext)
+  const [ mobileMenuState, setMobileMenuState ] = useState({
+    right: false,
+  })
+>>>>>>> dev
 
   const toggleMobileDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
 
+<<<<<<< HEAD
     toggleGlossaryDrawer()
+=======
+    setMobileMenuState({ ...mobileMenuState, [side]: open })
+
+    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false } })
+>>>>>>> dev
   }
   
   return (
@@ -249,7 +271,7 @@ const Header = React.memo(props => {
             <IconButton edge="start" onClick={toggleMobileDrawer('right', true)} className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
-            <Drawer anchor="right" open={state.glossaryOpen} onClose={toggleMobileDrawer('right', false)}>
+            <Drawer anchor="right" open={mobileMenuState.right} onClose={toggleMobileDrawer('right', false)} onOpen={toggleMobileDrawer('right', true)}>
               <CloseIcon className={classes.mobileMenuCloseButton} onClick={toggleMobileDrawer('right', false)} />
               <nav className={`${ classes.mobileMenu }`}>
                 <ul>

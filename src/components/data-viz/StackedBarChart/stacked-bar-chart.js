@@ -1,4 +1,5 @@
 import * as d3 from 'd3'
+import { isEnumMember } from 'typescript'
 
 export default class stackedBarChart {
   constructor (node, data, options, formatLegendFunc) {
@@ -6,8 +7,7 @@ export default class stackedBarChart {
     this.data = data
     this.options = options
     this.formatLegendFunc = formatLegendFunc
-
-    console.log('this.data: ', this.data)
+    this.onClick = options.onClick
 
     this.formatLegend(this.formatLegendFunc)
 
@@ -20,8 +20,9 @@ export default class stackedBarChart {
 
     if (options && options.xLabels) {
       this.xLabels(options.xLabels)
-    } else {
-       this.xLabels(this.xdomain())
+    }
+    else {
+      this.xLabels(this.xdomain())
     }
 
     if (options && options.yLabels) {
@@ -30,6 +31,14 @@ export default class stackedBarChart {
     else {
       this.yLabels(this.yaxis())
     }
+
+    if (options && options.selectedIndex) {
+      this.selectedIndex = options.selectedIndex
+    }
+    else {
+      this.selectedIndex = this.data.length - 1
+    }
+
     this.selectedData(this.ydomain(data[data.length - 1]))
     this.marginBottom = 40
     this.marginTop = 25
@@ -44,7 +53,7 @@ export default class stackedBarChart {
     this.xScale = d3.scaleBand()
       .domain(this.xdomain())
       .range([0, this._width])
-      .paddingInner(0.3)
+      .paddingInner(0.5)
       .paddingOuter(0.1)
 
     this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
@@ -66,13 +75,13 @@ export default class stackedBarChart {
   xaxis () {
     return this._columns[0]
   }
-  
+
   xLabels (labels) {
     try {
-      if(labels) {
+      if (labels) {
         this._xLabels = labels
-      } 
-      return this._xLabels 
+      }
+      return this._xLabels
     }
     catch (err) {
       console.warn('error in xLabels:', err)
@@ -92,17 +101,16 @@ export default class stackedBarChart {
 
   ydomain (row) {
     try {
-      let r=[]
-      const allowed=this.yaxis()
+      const r = []
+      const allowed = this.yaxis()
       const filtered = Object.keys(row)
-            .filter(key => allowed.includes(key))
-            .reduce((obj, key) => {
-              obj[key] = row[key];
-              return obj;
-            }, {});
-      
-      // console.log(filtered);
-      return filtered;
+        .filter(key => allowed.includes(key))
+        .reduce((obj, key) => {
+          obj[key] = row[key]
+          return obj
+        }, {})
+
+      return filtered
     }
     catch (err) {
       console.warn('error in ydomain:', err)
@@ -223,9 +231,17 @@ export default class stackedBarChart {
   }
 */
 
-  
   getOrderedKeys (data) {
     return Object.keys((data[0][Object.keys(data[0])[0]])[0])
+  }
+
+  getSelected () {
+    d3.selectAll('.bar').filter((d, i, nodes) => {
+      if (nodes[i].className.baseVal.match(/active/)) {
+        this.selectedFiscalYear = d.fiscal_year
+        this.selectedIndex = i
+      }
+    })
   }
 
   toggleSelectedBar = (element, data, callBack) => {
@@ -236,18 +252,18 @@ export default class stackedBarChart {
       selectedElement.attr('class', 'bar')
     }
     const activeElement = element.parentNode.parentNode
-    activeElement.setAttribute('class', 'active')
+    activeElement.setAttribute('class', 'bar active')
     activeElement.setAttribute('selected', true)
     activeElement.setAttribute('tabindex', 1)
     this.selectedData(data[0].data)
     this.addLegend()
+    this.getSelected()
     if (callBack) {
       callBack(data)
     }
   }
 
   onSelect (d) {
-
   }
 
   addChart (data) {
@@ -259,7 +275,7 @@ export default class stackedBarChart {
 	  .keys(this.yaxis())
 	  .offset(d3.stackOffsetNone)
 
-    const xwidth=self.xScale.bandwidth();
+    const xwidth = self.xScale.bandwidth()
 
     // console.debug(xwidth);
     const keys = this.yaxis()
@@ -271,16 +287,16 @@ export default class stackedBarChart {
       .attr('height', (self._height - self.marginTop))
       .attr('width', self.xScale.bandwidth())
       .attr('transform', d => 'translate(' + (self.xScale(d[self.xaxis()]) + ',0)'))
-      .attr('class', (d, i) => i === self.data.length - 1 ? 'active' : 'bar')
+      .attr('class', (d, i) => i === self.selectedIndex ? 'bar active' : 'bar')
       .attr('data-key', d => Object.keys(d)[0])
       .attr('tabindex', 0)
       .selectAll('g')
       .data(d => {
         // console.debug("ROW", d)
-        let yd=self.ydomain(d)
-        
+        const yd = self.ydomain(d)
+
         // console.debug("YD", yd)
-        let r=stack([yd])
+        const r = stack([yd])
         // console.debug("STACK", r);
         return r
       })
@@ -298,9 +314,17 @@ export default class stackedBarChart {
       .attr('width', self.maxBarSize)
       .attr('x', self.barOffsetX)
       .on('click', function (d) {
-        console.debug(" onclick:", d);
+        console.debug(' onclick:', d)
+        self.toggleSelectedBar(this, d, self.onSelect(d))
+        // self.onClick(self)
+      })
+      .on('mouseover', function (d) {
         self.toggleSelectedBar(this, d, self.onSelect(d))
       })
+  }
+
+  onClick () {
+    console.log('onClick fired from d3 class yo!')
   }
 
   draw () {
@@ -318,7 +342,7 @@ export default class stackedBarChart {
     this.addChart(this.data)
 
     this.chart.selectAll('.x-axis').remove()
-    
+
     this.addXAxis(this.xLabels())
 
     // Add Grouping Lines
@@ -326,8 +350,7 @@ export default class stackedBarChart {
     this.addGroupLines()
 
     this.addLegend()
-}
-
+  }
 
   addMaxExtent (units) {
     try {
@@ -349,7 +372,7 @@ export default class stackedBarChart {
         .attr('x1', 0)
         .attr('x2', self._width)
         .attr('stroke', '#a7bcc7')
-        .attr('stroke-dasharray', [5, 5])
+        .attr('stroke-dasharray', [5, 10])
         .attr('stroke-width', 1)
         .attr('transform', 'translate(' + [0, self.maxExtentLineY] + ')')
     }
@@ -360,16 +383,16 @@ export default class stackedBarChart {
 
   addXAxis (xLabels) {
     const self = this
-    const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat( (d,i) => {
-      console.debug('---------------tickFormat: ', d,i, xLabels)
+    const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat((d, i) => {
+      console.debug('---------------tickFormat: ', d, i, xLabels)
       return (xLabels) ? xLabels[i] : d
     }))
 
-    const rotate=this.options.xRotate || 0
-    let x=-1
-    let y=6
-    if(rotate != 0) {
-      x=-11
+    const rotate = this.options.xRotate || 0
+    let x = -1
+    const y = 8
+    if (rotate != 0) {
+      x = -11
     }
     self.chart.append('g')
       .attr('class', 'x-axis')
@@ -378,6 +401,7 @@ export default class stackedBarChart {
       .selectAll('text')
       .attr('transform', 'rotate(' + rotate + ')')
       .attr('x', x)
+      .attr('y', y)
   }
 
   addGroupLines () {
@@ -411,115 +435,96 @@ export default class stackedBarChart {
     }
   }
 
-  addLegend () {
-    //    const labels = this.xdomain().reverse()
-    const selectedData = this.selectedData()
+  createTable () {
+    d3.selectAll('.legend-table').remove()
+    this.getSelected()
+
+    const columns = this.options.columnNames
+    columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
+    const table = d3.select(this.node.children[1]).append('table')
+      .attr('class', 'legend-table')
+    const thead = table.append('thead')
+
+    table.append('tbody')
+
+    // append the header row
+    thead.append('tr')
+      .selectAll('th')
+      .data(columns)
+      .enter()
+      .append('th')
+      .text(function (column) {
+        return column
+      })
+  }
+
+  updateTable () {
+    d3.selectAll('.legend-table tbody tr').remove()
+    this.getSelected()
+
+    const data = this.selectedData()
+    const columns = this.options.columnNames
+    const totalColumns = ['Total', 'Value']
+    columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
+
     const labels = this.yLabels()
     const formatLegend = this.formatLegend()
-    const strokeColor = '#eeeeee'
+    // const table = d3.selectAll('.legend-table')
+    const tbody = d3.selectAll('.legend-table tbody')
 
-    let legend
+    // turn object into array to play nice with d3
+    const dataArr = Object.keys(data).map((key, i) => {
+      return ['', labels[i], data[key]]
+    }).reverse()
+
+    console.log('dataArr: ', dataArr)
+
+    // create a row for each object in the data
+    const tr = tbody.selectAll('tr')
+      .data(dataArr)
+      .enter()
+      .append('tr')
+
+    // append color blocks into tr first cell
+    tr.append('td')
+      .append('rect')
+      .attr('class', 'legend-rect')
+      .attr('width', 15)
+      .attr('height', 15)
+      .style('opacity', (d, i) => ((i + 1) / labels.length))
+
+    // create a cell in each row for each column
+    tr.selectAll('td')
+      .data(function (row, i) {
+        return columns.map(function (column, i) {
+          return { column: column, value: row[i] }
+        })
+      })
+      .enter()
+      .append('td')
+      .html(function (d) {
+        if (Number.isInteger(d.value)) {
+          return formatLegend(d.value, 0)
+        }
+        else {
+          return d.value
+        }
+      })
+  }
+
+  addLegend () {
+    let legend = this.createTable()
+
     if (this.legend) {
-      this.legend.selectAll('.legend').remove()
+      this.legend.selectAll('.legend-table').remove()
       this.legend.selectAll('.legend-rect').remove()
-      this.legend.selectAll('.legend-text').remove()
       legend = this.legend
     }
     else {
-      legend = d3.select(this.node.children[1]).append('svg')
-        .attr('class', 'legend')
-        .attr('width', this._width)
-        .attr('height', this._height).selectAll('.legend')
-        .data(this.yaxis().reverse())
-        .enter().append('g')
-        .attr('class', 'legend-item')
+      this.updateTable()
     }
 
-    legend.append('line')
-      .attr('class', 'legend-line')
-      .attr('x1', 0)
-      .attr('x2', this._width)
-      .attr('stroke', '#d3dfe6')
-      .attr('stroke-width', 1)
-      .attr('transform', 'translate(' + [0, this.maxExtentLineY] + ')')
-
-    legend.append('rect')
-      .attr('class', 'legend-rect')
-      .attr('x', 0)
-      .attr('y', function (d, i) {
-        return 25 * (i + 1) + 5
-      })
-      .attr('width', 15)
-      .attr('height', 15)
-      .style('fill-opacity', (d, i) => ((i + 1) / labels.length))
-
-    legend.append('text')
-      .attr('class', 'legend-text')
-      .attr('x', 34)
-      .attr('y', function (d, i) {
-        return 25 * (i + 1) + 3
-      })
-      .attr('dy', '1em')
-      .style('text-anchor', 'start')
-      .style('font-size', 'inherit')
-      .text(function (d, i) {
-        return labels[labels.length - 1 - i]
-      })
-
-    legend.append('text')
-      .attr('class', 'legend-text')
-      .attr('x', this._width - 125)
-      .attr('y', function (d, i) {
-        return 25 * (i + 1) + 3
-      })
-      .attr('dy', '1em')
-      .style('text-anchor', 'start')
-      .style('font-size', 'inherit')
-      .text(function (d, i) {
-        return formatLegend ? formatLegend(selectedData[d], 0) : selectedData[d] || 'error'
-      })
-
-    legend.append('line')
-      .attr('class', 'legend-line')
-      .attr('x1', 0)
-      .attr('x2', this._width)
-      .attr('y1', function (d, i) {
-        return 26 * (i + 1) + 3
-      })
-      .attr('y2', function (d, i) {
-        return 26 * (i + 1) + 3
-      })
-      .attr('stroke', strokeColor)
-      .attr('stroke-width', 1)
-      .attr('transform', 'translate(' + [0, this.maxExtentLineY] + ')')
-      .attr('class', 'legend')
-      .attr('x', this._width - 70)
-      .attr('y', function (d, i) {
-        return 20 * (i + 1) + 3
-      })
-      .attr('dy', '1em')
-      .style('text-anchor', 'start')
-      .style('font-size', '11px')
-      .text(function (d, i) {
-        return selectedData[d] || 'error'
-      })
-
     this.legend = legend
-    /*
-      legend.append("text")
-      .attr("x", this._width + 5)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("text-anchor", "start")
-      .text(function(d, i) {
-      switch (i) {
-      case 0: return "Anjou pears";
-      case 1: return "Naval oranges";
-      case 2: return "McIntosh apples";
-      case 3: return "Red Delicious apples";
-      }
-      });
-    */
   }
 
   getMetricLongUnit (str) {

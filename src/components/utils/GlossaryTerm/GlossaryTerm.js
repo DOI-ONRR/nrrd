@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const GlossaryTerm = ({ termKey, children }) => {
   const classes = useStyles()
-  const { setGlossaryTermSelected } = useContext(GlossaryContext)
+  const { dispatch } = useContext(StoreContext)
 
   const getTerm = () => {
     if (termKey) {
@@ -41,8 +41,8 @@ const GlossaryTerm = ({ termKey, children }) => {
 
   return (
     <Fragment>
-      <span className={classes.glossaryTerm} title='Click to define' tabIndex='0'
-        onClick={() => setGlossaryTermSelected(getTerm())}>
+      <span className={classes.glossaryTerm} title="Click to define" tabIndex="0"
+        onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: getTerm(), glossaryOpen: true } })}>
         {children} <GlossaryIcon className={classes.iconQuestion} />
       </span>
     </Fragment>

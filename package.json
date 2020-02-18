@@ -2,7 +2,7 @@
   "name": "gatsby-starter-default",
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "Mojo Nichols <mojo.nichols",
+  "author": "Mojo Nichols <mojo.nichols>",
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.7",
     "@apollo/react-hooks": "^3.1.3",
