@@ -1,13 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-// import ReactDOM from 'react-dom'
-
-// import utils from '../../../js/utils'
-
 import { makeStyles } from '@material-ui/core/styles'
-
 import ChartTitle from '../ChartTitle'
-
-// import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
 import BarChart from './D3StackedBarChart.js'
 
 const useStyles = makeStyles(theme => ({
@@ -16,7 +9,6 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     width: '100%',
-    height: '400px',
   },
   chart: {
     display: 'block',
@@ -45,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     width: '100%',
-    height: '200px',
+    height: '100%',
     fontSize: theme.typography.chartText,
     '& tr > td:first-child': {
       width: 10,
@@ -54,8 +46,8 @@ const useStyles = makeStyles(theme => ({
       fill: theme.palette.chart.secondary,
       backgroundColor: theme.palette.chart.secondary,
       display: 'block',
-      height: 15,
-      width: 15,
+      height: 20,
+      width: 20,
     },
     '& .legend-table': {
       width: '100%',
@@ -90,24 +82,19 @@ const StackedBarChart = props => {
   const classes = useStyles()
 
   const { data, ...options } = props
-  console.debug('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOPITIONS', options)
-  //   const selected = props.selected
   const elemRef = useRef(null)
   const title = options.title || ''
   useEffect(() => {
-    // stackedBarChar(elemRef.current,{}, datas);
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
-
     const chart = new BarChart(elemRef.current, data, options)
     chart.draw(data)
-  }, [elemRef])
+    //  }, [elemRef]) What does this do? Other then cause it to not update
+  })
 
   return (
     <>
-      {title && <ChartTitle>
-        {title}
-      </ChartTitle>}
+      {title && <ChartTitle>{title}</ChartTitle>}
       <div className={classes.container} ref={elemRef}>
         <div className={classes.chart}></div>
         <div className={classes.legend}></div>

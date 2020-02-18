@@ -1,4 +1,3 @@
-
 'use strict';
 import * as d3 from 'd3'
 import { isEnumMember } from 'typescript'
@@ -41,6 +40,8 @@ export default class D3StackedBarChart {
       .attr('height', this._height)
       .attr('width', this._width)
   }
+
+  
 
   draw () {
     try {
@@ -136,8 +137,8 @@ export default class D3StackedBarChart {
     try {
       const self = this
       const stack = d3.stack()
-	  .keys(this.yGroupings())
-	  .offset(d3.stackOffsetNone)
+	    .keys(this.yGroupings())
+	    .offset(d3.stackOffsetNone)
 
       // console.debug(xwidth);
       const keys = this.yGroupings()
@@ -155,7 +156,7 @@ export default class D3StackedBarChart {
           // console.debug("D: ", d, "I: ",i)
           // console.debug("SI: ", self.selectedIndex)
           return i === self.selectedIndex ? 'bar active' : 'bar'
-        })
+        }  )
       
         .attr('tabindex', (d, i) => i )
         .selectAll('g')
@@ -228,15 +229,15 @@ export default class D3StackedBarChart {
   
   select (index) {
     try {
-      console.debug("INdex: ", index, "I: ", this.selectedIndex)
+      // console.debug("INdex: ", index, "I: ", this.selectedIndex)
       d3.selectAll('.bar').filter((d, i, nodes) => {
 
         if(i === index) {
-/*          this.xSelectedValue = d 
-          this.ySelectedGroup = this.yGroupData(d)
-          this.selectedData(this.ySelectedGroup)
-          this.selectedIndex = index
-*/
+          /*          this.xSelectedValue = d 
+                      this.ySelectedGroup = this.yGroupData(d)
+                      this.selectedData(this.ySelectedGroup)
+                      this.selectedIndex = index
+          */
           
           const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
           if (selectedElement) {
@@ -320,7 +321,7 @@ export default class D3StackedBarChart {
       const self=this
       d3.selectAll('.legend-table tbody tr').remove()
       d3.selectAll('.legend-rect').remove()
-//      this.getSelected()
+      //      this.getSelected()
       
       const data = newData ||  this.selectedData()
 
@@ -333,9 +334,9 @@ export default class D3StackedBarChart {
 
       // turn object into array to play nice with d3
       const dataArr = Object.keys(data).map((key, i) => {
-        return  ['', labels[i],'', data[labels[i]]]
+        return  ['', labels[i],undefined, data[labels[i]]]
       }).reverse()
-      dataArr.push(['','Total','', Object.keys(data).reduce((sum,key) => sum+data[key], 0)])
+      dataArr.push(['','Total',undefined, Object.keys(data).reduce((sum,key) => sum+data[key], 0)])
       
       // create a row for each object in the data
       const tr = tbody.selectAll('tr')
@@ -361,13 +362,7 @@ export default class D3StackedBarChart {
         .enter()
         .append('td')
         .html(function (d) {
-          if (Number.isInteger(d.value)) {
-            //return d.value
-            return self._legendFormat(d.value)
-          }
-          else {
-            return d.value
-          }
+          return self._legendFormat(d.value)
         })
 
 
@@ -387,7 +382,11 @@ export default class D3StackedBarChart {
 
   _legendFormat (d) {
     try {
-      return this.legendFormat(d)
+      if(isNaN(d)) {
+        return d
+      } else {
+        return this.legendFormat(d)
+      }
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -405,7 +404,7 @@ export default class D3StackedBarChart {
     }
   }
 
-    onClick (d) {
+  onClick (d) {
     // console.debug('_onClick: ', d) 
   }
 
@@ -446,8 +445,8 @@ export default class D3StackedBarChart {
         selectedElement.attr('class', 'bar')
       }
       const activeElement = element.parentNode.parentNode
-     // activeElement.setAttribute('class', 'bar active')
-     // activeElement.setAttribute('selected', true)
+      // activeElement.setAttribute('class', 'bar active')
+      // activeElement.setAttribute('selected', true)
       activeElement.setAttribute('tabindex', 1)
       this.selectedData(data[0].data)
       this._legend()
@@ -477,12 +476,12 @@ export default class D3StackedBarChart {
         let years=this.xDomain()
 
         let tabIndex = element.parentNode.parentNode.tabIndex
-        console.debug(years,  years[tabIndex] , tabIndex)
+       // // console.debug(years,  years[tabIndex] , tabIndex)
         this.createLegend(data[0].data, years[tabIndex])
         this.updateLegend(data[0].data, years[tabIndex])
       } else {
         this.getSelected()
-      //  activeElement.setAttribute('class', 'bar')
+        //  activeElement.setAttribute('class', 'bar')
         
         this.select(this.index)
         this.createLegend()
@@ -549,10 +548,10 @@ export default class D3StackedBarChart {
   yDomain () {
     try {
       const r = d3.nest()
-        .key(k => k[this.xAxis])
-        .rollup(v => d3.sum(v, i => i[this.yAxis]))
-        .entries(this.data)
-        .map(y => y.value)
+            .key(k => k[this.xAxis])
+            .rollup(v => d3.sum(v, i => i[this.yAxis]))
+            .entries(this.data)
+            .map(y => y.value)
       const domain = [...(new Set(r.sort((a, b) => a - b)))]
       this._yDomain = domain
       return domain
@@ -571,13 +570,13 @@ export default class D3StackedBarChart {
         // console.debug(this.options.yOrderBy)
         const r = d3.nest()
         //            .key(k => k[this.xAxis])
-          .key(k => k[this.options.yGroupBy])
-          .rollup(v => d3.sum(v, d => d[this.yAxis]))
-          .entries(this.data)
-          .reduce((acc, d, i) => {
-            acc[d.key] = d.value
-            return acc
-          }, {})
+              .key(k => k[this.options.yGroupBy])
+              .rollup(v => d3.sum(v, d => d[this.yAxis]))
+              .entries(this.data)
+              .reduce((acc, d, i) => {
+                acc[d.key] = d.value
+                return acc
+              }, {})
         // console.debug('else if', r)
         
       }
@@ -604,9 +603,9 @@ export default class D3StackedBarChart {
       if (this.options.yGroupBy) {
         const data = xValue ? this.data.filter(r => r[this.xAxis] === xValue) : this.data
         const r = d3.nest()
-          .key(k => k[this.options.yGroupBy])
-          .entries(data)
-          .map(y => y.key)
+              .key(k => k[this.options.yGroupBy])
+              .entries(data)
+              .map(y => y.key)
         // console.debug(r)
         return r.reverse()
       }
@@ -637,8 +636,8 @@ export default class D3StackedBarChart {
     catch (err) {
       console.warn('Error: ', err)
     }
-      }
-    
+  }
+  
   yGroupData (xValue) {
     try {
       if (this.options.yGroupBy) {
@@ -742,7 +741,7 @@ export default class D3StackedBarChart {
     this.minValue = this.min(data)
     this.extentPercent = 0.05
     this.extentMarginOfError = 0.10 
-   this.maxExtentLineY = 20
+    this.maxExtentLineY = 20
     this._colors = ['#b33040', '#d25c4d', '#f2b447', '#d9d574']
     this.xScale = d3.scaleBand()
       .domain(this.xdomain())
@@ -798,11 +797,11 @@ export default class D3StackedBarChart {
       const r = []
       const allowed = this.yaxis()
       const filtered = Object.keys(row)
-        .filter(key => allowed.includes(key))
-        .reduce((obj, key) => {
-          obj[key] = row[key]
-          return obj
-        }, {})
+            .filter(key => allowed.includes(key))
+            .reduce((obj, key) => {
+              obj[key] = row[key]
+              return obj
+            }, {})
 
       return filtered
     }
@@ -892,38 +891,38 @@ export default class D3StackedBarChart {
     }
   }
   /*
-  calcMaxValue (data) {
+    calcMaxValue (data) {
     return d3.max(data, d => {
-      let sum = 0
-      Object.entries(d).forEach(
-        ([key, values]) => {
-	  Object.entries(values[0]).forEach(
-            ([key, value]) => {
-	      sum += value
-            }
-	  )
-        }
-      )
-      return (sum)
+    let sum = 0
+    Object.entries(d).forEach(
+    ([key, values]) => {
+    Object.entries(values[0]).forEach(
+    ([key, value]) => {
+    sum += value
+    }
+    )
+    }
+    )
+    return (sum)
     })
-  }
+    }
 
-  calcMinValue (data) {
+    calcMinValue (data) {
     return d3.min(data, d => {
-      let data = 0
-      Object.entries(d).forEach(
-        ([key, values]) => {
-	  Object.entries(values[0]).forEach(
-            ([key, value]) => {
-	      data += value
-            }
-	  )
-        }
-      )
-      return (data)
+    let data = 0
+    Object.entries(d).forEach(
+    ([key, values]) => {
+    Object.entries(values[0]).forEach(
+    ([key, value]) => {
+    data += value
+    }
+    )
+    }
+    )
+    return (data)
     })
-  }
-*/
+    }
+  */
 
   getOrderedKeys (data) {
     return Object.keys((data[0][Object.keys(data[0])[0]])[0])
@@ -932,11 +931,11 @@ export default class D3StackedBarChart {
   getSelected () {
     d3.selectAll('.bar').filter((d, i, nodes) => {
       if (nodes[i].className.baseVal.match(/active/)) {
-        console.debug("getSelected: ", i)
+        // console.debug("getSelected: ", i)
         this.xSelectedValue = d 
         this.ySelectedGroup = this.yGroupData(d)
         this.selectedData(this.ySelectedGroup)
-        console.debug("Selecting index: ",i)
+        // console.debug("Selecting index: ",i)
         this.selectedIndex = i
       }
     })
@@ -1082,11 +1081,11 @@ export default class D3StackedBarChart {
 
   addXAxis (xLabels) {
     const self = this
-/*    const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat((d, i) => {
-      console.debug('---------------tickFormat: ', d, i, xLabels)
-      return (xLabels) ? xLabels[i] : d
-    }))
-*/
+    /*    const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat((d, i) => {
+          console.debug('---------------tickFormat: ', d, i, xLabels)
+          return (xLabels) ? xLabels[i] : d
+          }))
+    */
     const rotate = this.options.xRotate || 0
     let x = -1
     const y = 8
@@ -1141,7 +1140,7 @@ export default class D3StackedBarChart {
     const columns = this.options.columnNames
     columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
     const table = d3.select(this.node.children[1]).append('table')
-      .attr('class', 'legend-table')
+          .attr('class', 'legend-table')
     const thead = table.append('thead')
 
     table.append('tbody')
@@ -1177,9 +1176,9 @@ export default class D3StackedBarChart {
 
     // create a row for each object in the data
     const tr = tbody.selectAll('tr')
-      .data(dataArr)
-      .enter()
-      .append('tr')
+          .data(dataArr)
+          .enter()
+          .append('tr')
 
     // append color blocks into tr first cell
     tr.append('td')

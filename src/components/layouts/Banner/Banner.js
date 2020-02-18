@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     height: 'auto',
     width: '100%',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    zIndex: 100,
   },
   bannerImage: {
     paddingLeft: '0.20833em',
