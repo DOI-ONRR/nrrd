@@ -10,5 +10,5 @@ export const client = new ApolloClient({
     headers: {},
     fetch,
     resolvers: {}
-  })
+  }),
 })

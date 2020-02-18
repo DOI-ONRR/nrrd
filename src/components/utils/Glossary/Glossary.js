@@ -7,7 +7,7 @@ import GLOSSARY_TERMS from '../../../data/terms.yml'
 
 import utils from '../../../js/utils'
 
-class GlossaryItem extends React.Component {
+class GlossaryItem extends React.PureComponent {
   state = {
     toggle: this.props.toggle || false,
     show: this.props.term.show || true,

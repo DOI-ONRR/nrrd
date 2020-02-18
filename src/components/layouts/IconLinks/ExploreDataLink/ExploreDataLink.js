@@ -4,7 +4,8 @@ import { Link } from 'gatsby'
 // import Link from '../../../utils/temp-link'
 
 import { makeStyles } from '@material-ui/core/styles'
-// import styles from './ExploreDataLink.module.scss'
+import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
 
 import ExploreDataIcon from '-!svg-react-loader!../../../../img/icons/explore-data.svg'
 import FilterTableIcon from '-!svg-react-loader!../../../../img/icons/filter-table.svg'
@@ -17,18 +18,21 @@ const useStyles = makeStyles(theme => ({
   exploreDataLink: {
     textDecoration: 'none',
     marginBottom: '1rem',
+    display: 'flex',
     '& svg': {
       fill: '#1478a6',
       verticalAlign: 'middle',
       marginRight: '8px',
+      flex: 'none',
     },
     verticalAlign: 'middle',
     marginRight: '8px',
     '& span': {
+      fontSize: theme.typography.body1.fontSize,
       marginRight: '1rem',
       verticalAlign: 'baseline',
       position: 'relative',
-      top: '2px',
+      top: 0,
     },
     '&:hover': {
       textDecoration: 'underline'
@@ -59,11 +63,11 @@ const ExploreDataLink = props => {
   return (
     <Link to={props.to} className={classes.exploreDataLink}>
       {getIcon(props.icon)}
-      <span>
+      <Box component="span" fontSize="body2">
         {props.children === undefined
           ? 'Explore data'
           : props.children}
-      </span>
+      </Box>
 	  </Link>
   )
 }

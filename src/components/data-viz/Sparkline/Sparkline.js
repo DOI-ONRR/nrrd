@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 // import styles from './Sparkline.module.scss'
 import { makeStyles } from '@material-ui/core/styles'
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   sparkline: {
     strokeWidth: '1px',
     stroke: '#5c737f',
@@ -10,10 +10,10 @@ const useStyles = makeStyles({
   },
 
   sparkcircle: {
-    fill: '#DB812C'
+    fill: theme.palette.grey['900']
   }
 
-})
+}))
 
 const Sparkline = props => {
   // const spakeStyles = {
@@ -28,7 +28,7 @@ const Sparkline = props => {
     highlightIndex = props.highlightIndex || props.data.length - 1
   }
 
-  console.debug(props)
+
   const elemRef = useRef(null)
   const classes = useStyles()
 
@@ -67,7 +67,6 @@ const Sparkline = props => {
       .attr('class', classes.sparkline)
       .attr('d', line)
 
-    console.debug(data)
     if (highlightIndex >= 0) {
 	  svg.append('circle')
 	      .attr('class', classes.sparkcircle)
