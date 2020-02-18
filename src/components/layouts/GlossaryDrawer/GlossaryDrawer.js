@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import TextField from '@material-ui/core/TextField'
 import CloseIcon from '@material-ui/icons/Close'
 
-import { StoreContext } from '../../../store'
+import { GlossaryContext } from '../../../stores'
 
 import GlossaryIcon from '-!svg-react-loader!../../../img/svg/icon-question-circle.svg'
 
@@ -47,19 +47,18 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const GlossaryDrawer = () => {
-
+const GlossaryDrawer = React.memo(() => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
+  const { state, setGlossaryTermSelected, toggleGlossaryDrawer } = useContext(GlossaryContext)
 
   const filteredTerms = filterGlossaryTerms(state.glossaryTerm)
 
   const handleClose = () => {
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false } })
+    toggleGlossaryDrawer()
   }
 
   const handleChange = event => {
-    dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: event.target.value, glossaryOpen: true } })
+    setGlossaryTermSelected(event.target.value)
   }
 
   const glossaryList = side => (
@@ -109,7 +108,7 @@ const GlossaryDrawer = () => {
       </Drawer>
     </Fragment>
   )
-}
+})
 
 function filterGlossaryTerms (glossaryTerm) {
   let numOfTermsToShow = 0

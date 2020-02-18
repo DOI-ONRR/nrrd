@@ -34,8 +34,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Footer = ({ data }) => {
+const Footer = React.memo(({ data }) => {
   const classes = useStyles()
+
   return (
     <Box component="footer" className={classes.root}>
       <Container maxWidth="lg">
@@ -173,7 +174,7 @@ const Footer = ({ data }) => {
       </Container>
     </Box>
   )
-}
+})
 
 export default props => (
   <StaticQuery

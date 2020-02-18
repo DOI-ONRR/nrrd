@@ -5,6 +5,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import DefaultLayout from '../DefaultLayout'
+import DefaultContentLayout from '../DefaultContentLayout'
 import DownloadsLayout from '../DownloadsLayout'
 import PatternLibraryLayout from '../PatternLibraryLayout'
 
@@ -16,6 +17,9 @@ const PageLayoutManager = ({ children, location, pageContext, ...rest }) => {
   }
   if (pageContext.layout === 'pattern-library') {
     return <PatternLibraryLayout>{children}</PatternLibraryLayout>
+  }
+  if (pageContext.frontmatter && pageContext.frontmatter.layout === 'DefaultContentLayout') {
+    return <DefaultContentLayout>{children}</DefaultContentLayout>
   }
   return <DefaultLayout>{children}</DefaultLayout>
 }
