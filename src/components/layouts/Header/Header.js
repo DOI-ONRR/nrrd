@@ -1,12 +1,8 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
-<<<<<<< HEAD
-import React, { Fragment, useContext, useMemo } from 'react'
-=======
 import React, { Fragment, useContext, useState } from 'react'
->>>>>>> dev
 import { isIE } from 'react-device-detect'
-import { GlossaryContext } from '../../../stores'
+import { StoreContext } from '../../../store'
 
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -157,29 +153,21 @@ const useStyles = makeStyles(theme => ({
 const Header = React.memo(props => {
   const classes = useStyles()
 
-<<<<<<< HEAD
-  const { state, toggleGlossaryDrawer } = useContext(GlossaryContext)
-=======
-  const { state, dispatch } = useContext(StoreContext)
-  const [ mobileMenuState, setMobileMenuState ] = useState({
+  const { dispatch } = useContext(StoreContext)
+  const [mobileMenuState, setMobileMenuState] = useState({
     right: false,
   })
->>>>>>> dev
 
   const toggleMobileDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
 
-<<<<<<< HEAD
-    toggleGlossaryDrawer()
-=======
     setMobileMenuState({ ...mobileMenuState, [side]: open })
 
     dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: false } })
->>>>>>> dev
   }
-  
+
   return (
     <Fragment>
       {isIE && <BrowserBanner />}
