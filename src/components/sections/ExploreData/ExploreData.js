@@ -478,7 +478,7 @@ const ExploreData = () => {
   }
 
   const location = state.countyLevel ? 'County' : 'State'
-
+  
   const onLink = state => {
     setMapK(k)
     setMapY(y)
@@ -489,7 +489,7 @@ const ExploreData = () => {
       if (cards.length <= 3) {
         cards.push({
           fips: state.properties.FIPS,
-          abbrev: state.properties.abbr,
+          abbrev: state.properties.abbr || state.properties.FIPS,
           name: state.properties.name
         })
       }
@@ -564,7 +564,8 @@ const ExploreData = () => {
                       // setMapY(event.transform.y)
                     }
                   }
-                  onClick={(d, fips, foo, bar) => {
+      onClick={(d, fips, foo, bar) => {
+        console.debug("click map", d,fips,foo,bar)
                     onLink(d)
                   }} />
                 <MapControls

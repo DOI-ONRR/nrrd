@@ -261,6 +261,9 @@ const StateCard = props => {
     data.revenue_commodity_summary.length > 0 &&
     data.commodity_sparkdata.length > 0
   ) {
+    console.debug("=========================== "+props.abbrev+" ===============================")
+    console.debug(data)
+    
     sparkData = data.fiscal_revenue_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
