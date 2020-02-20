@@ -11,8 +11,11 @@ import CloseIcon from '@material-ui/icons/Close'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: '40%',
+    maxWidth: '25%',
     minWidth: 250,
+    '@media (max-width: 768px)': {
+      maxWidth: '100%',
+    }
   },
   closeIcon: {
     color: theme.palette.common.white,

@@ -297,9 +297,12 @@ const useStyles = makeStyles(theme => ({
     },
     '& > div:last-child': {
       marginRight: theme.spacing(0),
-      width: '40%',
+      maxWidth: '25%',
       position: 'relative',
       minWidth: 250,
+      '@media (max-width: 768px)': {
+        maxWidth: '100%',
+      }
     },
     '& .MuiCard-root:nth-child(1)': {
       '& > .MuiCardHeader-root': {
