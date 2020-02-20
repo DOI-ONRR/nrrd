@@ -266,8 +266,12 @@ const useStyles = makeStyles(theme => ({
     width: 285,
     zIndex: 99,
     '@media (max-width: 768px)': {
-      position: 'relative',
-      left: 20,
+      right: 0,
+      bottom: 8,
+      width: '100%',
+      position: 'inherit',
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
     }
   },
   addCard: {
@@ -287,11 +291,15 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     marginTop: theme.spacing(5),
+    overflow: 'auto',
     '& > div': {
       marginRight: theme.spacing(2)
     },
     '& > div:last-child': {
-      marginRight: theme.spacing(0)
+      marginRight: theme.spacing(0),
+      width: '40%',
+      position: 'relative',
+      minWidth: 250,
     },
     '& .MuiCard-root:nth-child(1)': {
       '& > .MuiCardHeader-root': {
@@ -349,7 +357,7 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     '& .MuiButton-root': {
       marginRight: theme.spacing(2),
-    }
+    },
   },
   addCardButtonContainer: {
     marginTop: theme.spacing(2),
@@ -360,6 +368,9 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.common.white,
       boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
     },
+    '@media (max-width: 768px)': {
+      textAlign: 'left',
+    }
   }
 }))
 
@@ -424,7 +435,7 @@ const AddLocationCard = props => {
   return (
     <Card className={classes.addLocationCard}>
       <CardHeader
-        title='Add a location'
+        title={props.title}
       />
       <CardContent>
         <OutlinedInput
@@ -442,13 +453,12 @@ const AddLocationCard = props => {
             </InputAdornment>
           }
         />
-        { props.menuItems.length > 0 &&
-          <AddCardButton menuItems={props.menuItems} />
-        }
 
       </CardContent>
       <CardActions>
-        {/* <Button size="small" color="primary">Learn More</Button> */}
+        { props.menuItems.length > 0 &&
+          <AddCardButton menuItems={props.menuItems} />
+        }
       </CardActions>
     </Card>
   )
@@ -800,34 +810,31 @@ const ExploreData = () => {
               </Typography>
             </Grid>
             <Grid item md={12}>
-              <Box className={classes.compareRevenueContainer}>
-                <Typography variant="h3" className="header-bar green thin">
+              <Typography variant="h3" mt={5} className="header-bar green thin">
                   Compare revenue
-                </Typography>
-                <Typography variant="body1">
+              </Typography>
+              <Typography variant="body1">
                   Add more than one card to compare.  Select states, counties, and offshore regions.
-                </Typography>
-
-                <Box className={classes.compareCardsContainer}>
-                  {
-                    cards.map((card, i) => {
-                      return (
-                        <StateDetailCard
-                          key={i}
-                          cardTitle={card.name}
-                          fips={card.fips}
-                          closeCard={fips => {
-                            closeCard(fips)
-                          }}
-                        />
-                      )
-                    })
-                  }
-                  { (cards.length >= 0 && cards.length <= 3) ? <AddLocationCard menuItems={cardMenuItems} /> : '' }
-                </Box>
-              </Box>
+              </Typography>
             </Grid>
           </Grid>
+          <Box className={classes.compareCardsContainer}>
+            {
+              cards.map((card, i) => {
+                return (
+                  <StateDetailCard
+                    key={i}
+                    cardTitle={card.name}
+                    fips={card.fips}
+                    closeCard={fips => {
+                      closeCard(fips)
+                    }}
+                  />
+                )
+              })
+            }
+            { (cards.length >= 0 && cards.length <= 3) ? <AddLocationCard title='Add a location' menuItems={cardMenuItems} /> : '' }
+          </Box>
         </Container>
       </Fragment>
     )

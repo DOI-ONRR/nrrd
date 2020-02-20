@@ -318,5 +318,13 @@ module.exports = Object.freeze({
     root: {
       padding: '15px',
     }
+  },
+  // https://material-ui.com/api/container/
+  MuiContainer: {
+    maxWidthLg: {
+      '@media (min-width: 2560px)': {
+        maxWidth: 1440,
+      }
+    }
   }
 })

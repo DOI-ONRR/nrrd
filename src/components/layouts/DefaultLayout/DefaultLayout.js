@@ -75,9 +75,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(0),
     flexGrow: 1
   },
-  header: {
-    
-  },
+  header: {},
   skipNav: {
     position: 'absolute',
     top: '-1000px',

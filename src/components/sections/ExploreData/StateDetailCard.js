@@ -5,14 +5,14 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
 import CloseIcon from '@material-ui/icons/Close'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: '24%',
+    maxWidth: '40%',
+    minWidth: 250,
   },
   closeIcon: {
     color: theme.palette.common.white,
@@ -48,9 +48,7 @@ const StateDetailCard = props => {
           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </Typography>
       </CardContent>
-      <CardActions>
-        {/* <Button size="small" color="primary">Learn More</Button> */}
-      </CardActions>
+      <CardActions></CardActions>
     </Card>
   )
 }
