@@ -8,6 +8,18 @@ import Slider from '@material-ui/core/Slider'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
+import OutlinedInput from '@material-ui/core/OutlinedInput'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import TextField from '@material-ui/core/TextField'
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardContent from '@material-ui/core/CardContent'
+import IconButton from '@material-ui/core/IconButton'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Snackbar from '@material-ui/core/Snackbar'
@@ -15,6 +27,8 @@ import Snackbar from '@material-ui/core/Snackbar'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RefreshIcon from '@material-ui/icons/Refresh'
+import CloseIcon from '@material-ui/icons/Close'
+import SearchIcon from '@material-ui/icons/Search'
 
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
@@ -49,8 +63,6 @@ const FISCAL_REVENUE_QUERY = gql`
     }
   }
 `
-
-console.log('FISCAL_REVENUE_QUERY::', FISCAL_REVENUE_QUERY)
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -247,37 +259,38 @@ const useStyles = makeStyles(theme => ({
       bottom: 70,
     }
   },
-  addCard: {
+  nonStateCardsContainer: {
     position: 'absolute',
-    bottom: -10,
+    bottom: 102,
     right: 10,
     width: 285,
+    zIndex: 99,
     '@media (max-width: 768px)': {
       position: 'relative',
       left: 20,
     }
   },
-  stateChipContainer: {
-    background: theme.palette.common.white,
-    borderRadius: 5,
-    padding: theme.spacing(2),
-    display: 'flex',
-    justifyContent: 'flex-start',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(0.5),
-    }
+  addCard: {
+    position: 'relative',
+    marginBottom: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 285,
   },
   formControl: {
     marginRight: theme.spacing(2),
   },
+  compareRevenueContainer: {
+    marginTop: theme.spacing(7),
+  },
   compareCardsContainer: {
     display: 'flex',
     justifyContent: 'flex-start',
-    '& .MuiCard-root': {
+    alignItems: 'stretch',
+    marginTop: theme.spacing(5),
+    '& > div': {
       marginRight: theme.spacing(2)
     },
-    '& .MuiCard-root:last-child': {
+    '& > div:last-child': {
       marginRight: theme.spacing(0)
     },
     '& .MuiCard-root:nth-child(1)': {
@@ -312,42 +325,151 @@ const useStyles = makeStyles(theme => ({
         }
       }
     }
+  },
+  addCardContainer: {
+    padding: theme.spacing(2),
+    marginBottom: theme.spacing(4),
+    backgroundColor: theme.palette.grey['100'],
+  },
+  addLocationCard: {
+    background: `${ theme.palette.grey['100'] }`,
+    '& div:nth-child(1)': {
+      background: `${ theme.palette.grey['100'] } !important`,
+      '& > span': {
+        color: `${ theme.palette.common.black } !important`,
+      }
+    },
+    '& .MuiCardContent-root div': {
+      textAlign: 'left',
+    }
+  },
+  cardButtonContainer: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    '& .MuiButton-root': {
+      marginRight: theme.spacing(2),
+    }
+  },
+  addCardButtonContainer: {
+    marginTop: theme.spacing(2),
+    textAlign: 'right',
+    '& button': {
+      padding: theme.spacing(0.5),
+      color: theme.palette.common.black,
+      backgroundColor: theme.palette.common.white,
+      boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+    },
   }
 }))
 
-// Add Card
+// AddCardButton
 const AddCardButton = props => {
+  // Map explore menu speed dial
+
   const classes = useStyles()
+  const [anchorEl, setAnchorEl] = useState(null)
+  const { state, dispatch } = useContext(StoreContext)
+  const cards = state.cards
+
+  const handleMenuClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = (index, item) => event => {
+    setAnchorEl(null)
+    if (typeof item === 'undefined') {
+      dispatch({ type: 'CARDS', payload: { cards: cards } })
+    }
+    else {
+      if (item.abbrev === 'National') {
+        cards.unshift(item)
+      }
+      else {
+        cards.push(item)
+      }
+    }
+
+    dispatch({ type: 'CARDS', payload: { cards: cards } })
+  }
+
   return (
-    <Button
-      variant="contained"
-      color="default"
-      className={classes.addCard}
-      disableRipple
-      startIcon={<AddIcon />}
-    >
-        Add {props.cardName} Card
-    </Button>
+    <div className={classes.addCardButtonContainer}>
+      <IconButton
+        aria-label="Add additional card"
+        aria-controls="add-additional-card-menu"
+        aria-haspopup="true"
+        onClick={handleMenuClick}>
+        <AddIcon />
+      </IconButton>
+      <Menu
+        id="explore-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose(null)}
+      >
+        {
+          props.menuItems.map((item, i) => <MenuItem key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
+        }
+      </Menu>
+    </div>
   )
 }
 
-// Custom Marks
-const customMarks = [
-  {
-    label: '2003',
-    value: 2003
-  },
-  {
-    label: '2019',
-    value: 2019
-  }
-]
+// Add location card with search
+const AddLocationCard = props => {
+  const classes = useStyles()
+
+  return (
+    <Card className={classes.addLocationCard}>
+      <CardHeader
+        title='Add a location'
+      />
+      <CardContent>
+        <OutlinedInput
+          id="search-input"
+          margin="dense"
+          title="search input"
+          type="search"
+          className={classes.cardSearch}
+          placeholder='Search location'
+          name="q"
+          role="search"
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+        />
+        { props.menuItems.length > 0 &&
+          <AddCardButton menuItems={props.menuItems} />
+        }
+
+      </CardContent>
+      <CardActions>
+        {/* <Button size="small" color="primary">Learn More</Button> */}
+      </CardActions>
+    </Card>
+  )
+}
 
 // YearSlider
 const YearSlider = props => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
   const [year] = useState(state.year)
+
+  const customMarks = [
+    {
+      label: '2003',
+      value: 2003
+    },
+    {
+      label: '2019',
+      value: 2019
+    }
+  ]
 
   const theme = useTheme()
   const matchesSmUp = useMediaQuery(theme.breakpoints.up('sm'))
@@ -375,7 +497,7 @@ const YearSlider = props => {
   )
 }
 
-// Map Zoom Controls
+// Map Controls
 const MapControls = props => {
   const classes = useStyles()
 
@@ -426,6 +548,22 @@ const ExploreData = () => {
   let x = mapX
   let y = mapY
   let k = mapK
+
+  const nationalCard = cards && cards.some(item => item.abbrev === 'National')
+  const nativeAmericanCard = cards && cards.some(item => item.abbrev === 'Native American')
+  let cardMenuItems = []
+
+  if (!nationalCard) {
+    cardMenuItems = [{ fips: 99, abbrev: 'National', name: 'National', label: 'Add National card' }]
+  }
+
+  if (!nativeAmericanCard) {
+    cardMenuItems = [{ fips: undefined, abbrev: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+  }
+
+  if (!nationalCard && !nativeAmericanCard) {
+    cardMenuItems = [{ fips: 99, abbrev: 'National', name: 'National', label: 'Add National card' }, { fips: undefined, abbrev: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+  }
 
   const cardCountClass = () => {
     switch (cards.length) {
@@ -590,8 +728,15 @@ const ExploreData = () => {
                     />
                   )
                 })}
-                <AddCardButton cardName="Native American" />
               </Box>
+              { cardMenuItems.length > 0 &&
+              <Box className={classes.nonStateCardsContainer}>
+                <AddCardButton
+                  cards={cards}
+                  menuItems={cardMenuItems} />
+              </Box>
+              }
+
             </Grid>
             }
             <Grid item xs={12}>
@@ -629,7 +774,11 @@ const ExploreData = () => {
                 })}
               </Box>
             </Grid>
-            <AddCardButton cardName="Native American" />
+            { cardMenuItems.length > 0 &&
+              <Box className={classes.nonStateCardsContainer}>
+                <AddCardButton menuItems={cardMenuItems} />
+              </Box>
+            }
           </>
           }
         </Container>
@@ -647,29 +796,26 @@ const ExploreData = () => {
                 Revenue
               </Typography>
               <Typography variant="body1">
-                When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. In fiscal year 2018, ONRR collected a total of [$9,161,704,392] in revenue.
+                When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. In fiscal year {year}, ONRR collected a total of [$9,161,704,392] in revenue.
               </Typography>
             </Grid>
             <Grid item md={12}>
-              <Box mt={5}>
+              <Box className={classes.compareRevenueContainer}>
                 <Typography variant="h3" className="header-bar green thin">
                   Compare revenue
                 </Typography>
                 <Typography variant="body1">
                   Add more than one card to compare.  Select states, counties, and offshore regions.
                 </Typography>
-                <Typography variant="body1">
-                  {cards.length > 0}
-                  You currently have {cards.length > 0 ? 'the following cards selected.' : 'no cards selected.'}
-                </Typography>
+
                 <Box className={classes.compareCardsContainer}>
                   {
-                    cards.map((state, i) => {
+                    cards.map((card, i) => {
                       return (
                         <StateDetailCard
                           key={i}
-                          cardTitle={state.name}
-                          fips={state.fips}
+                          cardTitle={card.name}
+                          fips={card.fips}
                           closeCard={fips => {
                             closeCard(fips)
                           }}
@@ -677,6 +823,7 @@ const ExploreData = () => {
                       )
                     })
                   }
+                  { (cards.length >= 0 && cards.length <= 3) ? <AddLocationCard menuItems={cardMenuItems} /> : '' }
                 </Box>
               </Box>
             </Grid>

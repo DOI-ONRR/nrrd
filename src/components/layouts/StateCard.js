@@ -172,8 +172,6 @@ const APOLLO_QUERY = gql`
 //   return r
 // }
 
-
-
 const StateCard = props => {
   const classes = useStyles()
   const { state } = useContext(StoreContext)
@@ -285,6 +283,8 @@ const StateCard = props => {
 
     sparkMin = sparkData[0][0]
     sparkMax = sparkData[sparkData.length - 1][0]
+
+    console.log('data: ', data)
 
     return (
       <>
