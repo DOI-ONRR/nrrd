@@ -15,7 +15,7 @@ exports.createPages = ({ graphql }) => {
  * the pattern library.
  * @param {*} graphql
  */
-const createComponentsCache = graphql => {
+const createComponentsCache = ({ graphql, reporter }) => {
   console.info('creating components cache index')
   return new Promise((resolve, reject) => {
 	    resolve(
@@ -68,7 +68,7 @@ const createComponentsCache = graphql => {
         }
       `).then(result => {
 	        if (result.errors) {
-	          reject(result.errors)
+          reporter.panicOnBuild('🚨  ERROR: Loading "Create Components Cache" query', result.errors)
 	        }
 	        else {
           const allSVG = result.data.allSVG.nodes.map(

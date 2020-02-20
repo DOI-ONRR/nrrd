@@ -19,7 +19,11 @@ const mdxComponents = {
   a: props => (props.href &&
     (props.href.charAt(0) === '#' || props.href.includes('http') || props.href.includes('mailto'))) ? <a {...props} /> : <Link to={props.href} {...props} />,
   h1: props => <Typography variant="h1" {...props} />,
+  h2: props => <Typography variant="h2" {...props} />,
+  h3: props => <Typography variant="h3" {...props} />,
   p: props => <Typography variant="body1" paragraph={true} {...props} />,
+  ul: props => <ul style={{ paddingInlineStart: '22.5px' }} {...props} />,
+  li: props => <li style={{ fontSize: '1.375rem' }}><Typography variant='subtitle1' {...props} /></li>,
   ...components
 }
 
