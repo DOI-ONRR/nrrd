@@ -1,7 +1,6 @@
 ---
 title: How It Works
 description: Learn what governs natural resource extraction in the U.S., how resources result in federal revenue, and what processes ensure accuracy and accountability in this industry.
-layout: DefaultContentLayout
 tags:
 - How it works
 - Coal
@@ -13,22 +12,56 @@ tags:
 - Audit
 ---
 
-[How it works /](/how-it-works/)
+import palette from '../../js/mui/palette.js'
 
-<h1>{props.pageContext.frontmatter.title}</h1>
+<Grid container style={{background:palette.blue.light}}>
+<Container maxWidth="lg">
+<Grid container>
+<Grid item xs={12} sm={8} style={{padding:'25px 25px 0px 0px', borderRight: '5px solid white'}}>
+
+# How it works
 
 In the U.S., land and the resources beneath it can be owned by private individuals and corporations or by federal, state, local, and Native American governments. This makes the U.S. different from nearly every other country; in many places oil, gas, coal, and other minerals simply belong to the government, but in the U.S. there is widespread private ownership of these resources.
 
 Learn what [governs natural resource extraction](#laws) in the U.S., how [resources result in federal revenue](#resources_process), and what [processes ensure accuracy and accountability](#accounting) in this industry.
 
-## Who owns natural resources in the U.S.?
+</Grid>
+<Grid container xs={12} sm={4} style={{borderRight: '5px solid white'}}>
+<Grid item xs={12} style={{padding:'25px 25px 0px 25px'}}>
+
+**Natural resource extraction in the U.S. is governed by laws and regulations tied primarily to land ownership and the commodities being extracted.**
+
+<p align='center'>
+  <HowItWorksRibbonGraphicSvg style={{height:'100px'}}></HowItWorksRibbonGraphicSvg>
+</p>
+</Grid>
+<Grid container xs={12} styleOption='blueGrey' style={{background:palette.blueGrey.default, padding:'25px'}}>
+
+[What natural resources does the U.S. produce?] (https://revenuedata.doi.gov/how-it-works/#production) 
+
+</Grid>
+</Grid>
+</Grid>
+</Container>
+</Grid>
+
+<!-- Begin content -->
+
+<Container maxWidth="lg">
+<Grid container>
+<Grid item xs={12} sm={3}>
+<PageToc scrollOffset={190}></PageToc>
+</Grid>
+<Grid item xs={12} sm={9}>
+
+<h2 alt='Land ownership'>Who owns natural resources in the U.S.?</h2>
 
 ### Ownership
 Private individuals and corporations, as well as federal, state, local, and Native American governments, can own land and the oil, gas, coal, and other minerals found below the surface.
 
 [Learn about land and resource ownership](/how-it-works/ownership/)
 
-## What laws and regulations govern natural resource extraction in the U.S.?
+<h2 alt='Laws and regulations'> What laws and regulations govern natural resource extraction in the U.S.?</h2>
 
 ### Federal laws and regulations
 The legislative branch has passed many laws governing natural resource extraction on federal lands.
@@ -40,7 +73,7 @@ The government reforms laws and regulations by enacting new legislation and prop
 
 [Learn about reforms](/how-it-works/federal-reforms/)
 
-## How are natural resources on Native American land governed?
+<h2 alt='Natural resources on Native American land'>How are natural resources on Native American land governed?</h2>
 
 ### Ownership and governance
 Native American land ownership involves a complex patchwork of titles, restrictions, obligations, statutes, and regulations.
@@ -62,31 +95,68 @@ Extraction affects Native American economies in a number of ways, though effects
 
 [Learn about economic impact](/how-it-works/tribal-economic-impact/)
 
-## How do natural resources result in federal revenue?
+<h2 alt='Resources to revenue'>How do natural resources result in federal revenue?</h2>
 
-### The production process
+<h3 alt='Production'>The production process</h3>
+
+<Grid container alignItems='center'>
+<Grid item xs={10}>
 
 #### Oil and gas
+
 Oil and gas (or natural gas) are fossil fuels that form underground on land and under the ocean. The U.S. is among the world's top producers of oil and gas.
 
 [Learn about oil and gas](/how-it-works/offshore-oil-gas)
+
+</Grid>
+<Grid item xs={2}>
+<HowMainIconOilSvg style={{opacity: '0.2'}}></HowMainIconOilSvg>
+</Grid>
+</Grid>
+
+<Grid container alignItems='center'>
+<Grid item xs={10}>
 
 #### Coal
 Miners extract coal through surface and subsurface mining. Most of the coal produced on federal land in the U.S. is mined in the Powder River Basin of Wyoming.
 
 [Learn about economic impact](/how-it-works/coal)
 
+</Grid>
+<Grid item xs={2}>
+<HowMainIconCoalSvg style={{opacity: '0.2'}}></HowMainIconCoalSvg>
+</Grid>
+</Grid>
+
+<Grid container alignItems='center'>
+<Grid item xs={10}>
+
 #### Nonenergy minerals
 Gold, copper, and iron are the main sources of nonenergy mineral revenues. The Mining Law of 1872 is the major federal law governing locatable minerals.
 
 [Learn about economic impact](/how-it-works/minerals)
+
+</Grid>
+<Grid item xs={2}>
+<HowMainIconHardrockSvg style={{opacity: '0.2'}}></HowMainIconHardrockSvg>
+</Grid>
+</Grid>
+
+<Grid container alignItems='center'>
+<Grid item xs={10}>
 
 #### Renewable energy
 Renewable energy resources include geothermal, solar, wind, biomass, and hydrokinetic energy.
 
 [Learn about economic impact](/how-it-works/onshore-renewables)
 
-### Understanding federal revenues
+</Grid>
+<Grid item xs={2}>
+<HowMainIconWindSvg style={{opacity: '0.2'}}></HowMainIconWindSvg>
+</Grid>
+</Grid>
+
+<h3 alt='Revenues'>Understanding federal revenues</h3>
 
 #### How revenue works
 Companies pay the federal government to extract natural resources on federal lands and waters. This revenue is collected by the Office of Natural Resources Revenue, mostly as <GlossaryTerm termKey="bonus">bonuses</GlossaryTerm>, <GlossaryTerm>rent</GlossaryTerm>, and <GlossaryTerm termKey="royalty">royalties</GlossaryTerm>.
@@ -108,7 +178,7 @@ Coal producers pay a federal excise tax, which originated in 1977 with the Black
 
 [Learn about excise tax revenue](/how-it-works/coal-excise-tax)
 
-### Understanding federal disbursements
+<h3 alt='Disbursements'>Understanding federal disbursements</h3>
 
 #### How disbursements works
 The Office of Natural Resources Revenue collects revenue from natural resources extraction on federal lands and waters and distributes that revenue according to federal law. This process is called "disbursement."
@@ -135,9 +205,13 @@ The Gulf of Mexico Energy Security Act (GOMESA) created a revenue-sharing model 
 
 [Learn about GOMESA](/how-it-works/gomesa)
 
-## How does the U.S. ensure accuracy and accountability in natural resource revenue?
+<h2 alt='Accountability'>How does the U.S. ensure accuracy and accountability in natural resource revenue?</h2>
 
 ### Audits and assurances
 Data about revenue from the extractive industries is subject to a number of controls, standards, and regulations.
 
 [Learn about audits and assurances](/how-it-works/audits-and-assurances)
+
+</Grid>
+</Grid>
+</Container>

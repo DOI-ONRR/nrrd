@@ -5,7 +5,7 @@ import { mdx } from '@mdx-js/react'
 import * as components from '../../../../.cache/components'
 
 const CodeBlock = ({ children, className, live, render }) => {
-  const language = className.replace(/language-/, '')
+  const language = className && className.replace(/language-/, '')
 
   if (live) {
     return (

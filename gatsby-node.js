@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const appRootDir = require('app-root-dir').get()
+const to = require('to-case')
 
 exports.createPages = ({ graphql }) => {
   return Promise.all([
@@ -20,6 +21,12 @@ const createComponentsCache = graphql => {
 	    resolve(
 	      graphql(`
         {  
+          allSVG:allFile(filter: {absolutePath: {regex: "/svg/"}}) {
+            nodes {
+              absolutePath
+              name
+            }
+          }
           allMdx(filter: {fileAbsolutePath: {regex: "/content-partials/"}}) {
             edges {
               node {
@@ -64,6 +71,12 @@ const createComponentsCache = graphql => {
 	          reject(result.errors)
 	        }
 	        else {
+          const allSVG = result.data.allSVG.nodes.map(
+            (node, i) => Object.assign({}, node, {
+              displayName: to.pascal(node.name).concat('Svg'),
+              filePath: node.absolutePath,
+            })
+          )
           const allComponents = result.data.allComponentMetadata.nodes.map(
             (node, i) =>
               Object.assign({}, node, {
@@ -92,6 +105,17 @@ const createComponentsCache = graphql => {
               .reduce((accumulator, { displayName, filePath }) => {
                 accumulator.push(
                   `export { default as ${ displayName } } from "${ filePath }"`
+                )
+                return accumulator
+              }, [])
+              .join('\n') + '\n'
+          )
+
+          exportFileContents = exportFileContents.concat(
+            allSVG
+              .reduce((accumulator, { displayName, filePath }) => {
+                accumulator.push(
+                  `export { default as ${ displayName } } from "-!svg-react-loader!${ filePath }"`
                 )
                 return accumulator
               }, [])
