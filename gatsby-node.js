@@ -2,24 +2,6 @@ const path = require('path')
 const fs = require('fs')
 const appRootDir = require('app-root-dir').get()
 
-exports.onCreatePage = ({ page, actions }) => {
-  const { createPage } = actions
-
-  /**
-   * We use the gatsby layout plugin and so if we want to use a different layout we pass in a property the default layout reads and then
-   * uses the appropriate layout.
-   */
-  if (page.path.match(/patterns/)) {
-    page.context.layout = 'pattern-library'
-    createPage(page)
-  }
-
-  if (page.path.match(/downloads/)) {
-    page.context.layout = 'downloads'
-    createPage(page)
-  }
-}
-
 exports.createPages = ({ graphql }) => {
   return Promise.all([
     createComponentsCache(graphql),

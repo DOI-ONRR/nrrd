@@ -12,13 +12,15 @@ import PatternLibraryLayout from '../PatternLibraryLayout'
 const PageLayoutManager = ({ children, location, pageContext, ...rest }) => {
   if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
 
-  if (pageContext.layout === 'downloads') {
+  const layout = pageContext.frontmatter && pageContext.frontmatter.layout
+
+  if (layout=== 'downloads') {
     return <DownloadsLayout>{children}</DownloadsLayout>
   }
-  if (pageContext.layout === 'pattern-library') {
+  if (layout === 'pattern-library') {
     return <PatternLibraryLayout>{children}</PatternLibraryLayout>
   }
-  if (pageContext.frontmatter && pageContext.frontmatter.layout === 'DefaultContentLayout') {
+  if (layout === 'DefaultContentLayout') {
     return <DefaultContentLayout>{children}</DefaultContentLayout>
   }
   return <DefaultLayout>{children}</DefaultLayout>

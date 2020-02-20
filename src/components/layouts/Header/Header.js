@@ -247,7 +247,7 @@ const Header = React.memo(props => {
                       className={classes.menuLink}
                       to="/how-it-works/"
                       activeClassName={classes.menuActiveLink}>
-                        How revenue works
+                        How it works
                     </Link>
                   </li>
                 </ul>
