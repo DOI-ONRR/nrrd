@@ -1,6 +1,9 @@
 // https://material-ui.com/system/palette/
 
 module.exports = Object.freeze({
+  background: {
+    default: '#fff'
+  },
   primary: {
     main: '#5c737f',
     light: '#1478a6',

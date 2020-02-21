@@ -31,12 +31,12 @@ const Banner = () => {
   const classes = useStyles()
   return (
     <Container component="section" className={classes.root} maxWidth={false}>
-      <Box component="span">
+      <span>
         <img
           className={classes.bannerImage}
           src={logo} alt="U.S. flag signifying that this is a United States Federal Government website" />
           An official website of the U.S. government
-      </Box>
+      </span>
     </Container>
   )
 }
