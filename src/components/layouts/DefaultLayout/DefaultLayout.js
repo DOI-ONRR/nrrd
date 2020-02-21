@@ -2,14 +2,13 @@
  * Default Layout component
  *
  */
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
-import Box from '@material-ui/core/Box'
 
 import { Banner } from '../Banner'
 import { Header } from '../Header'
@@ -31,14 +30,12 @@ const useStyles = makeStyles(theme => (
       ul: {
         paddingInlineStart: '22.5px'
       },
-      li: { ...theme.typography.subtitle1 },
       'ul ul': {
         listStyleType: 'square'
       },
       a: {
         color: theme.palette.text.secondary,
         textDecoration: 'underline',
-        cursor: 'pointer',
         '&:hover': {
           textDecoration: 'none',
         }

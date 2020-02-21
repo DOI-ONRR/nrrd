@@ -2,7 +2,8 @@ import React from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { mdx } from '@mdx-js/react'
-import * as components from '../../../../.cache/components'
+import * as CustomComponents from '../../../../.cache/components'
+import * as MaterialUI from '@material-ui/core'
 
 const CodeBlock = ({ children, className, live, render }) => {
   const language = className && className.replace(/language-/, '')
@@ -13,7 +14,7 @@ const CodeBlock = ({ children, className, live, render }) => {
         <LiveProvider
           code={children}
           transformCode={code => '/** @jsx mdx */' + code}
-          scope={{ mdx, ...components }}
+          scope={{ mdx, ...CustomComponents, ...MaterialUI }}
         >
           <LivePreview />
           <LiveEditor style={{ marginTop: '10px', border: '2px solid #9691ae', backgroundColor: '#130749' }} />

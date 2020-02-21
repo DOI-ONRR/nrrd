@@ -3,9 +3,9 @@ const fs = require('fs')
 const appRootDir = require('app-root-dir').get()
 const to = require('to-case')
 
-exports.createPages = ({ graphql }) => {
+exports.createPages = ({ graphql, reporter }) => {
   return Promise.all([
-    createComponentsCache(graphql),
+    createComponentsCache({ graphql, reporter }),
   ])
 }
 
@@ -17,6 +17,7 @@ exports.createPages = ({ graphql }) => {
  */
 const createComponentsCache = ({ graphql, reporter }) => {
   console.info('creating components cache index')
+
   return new Promise((resolve, reject) => {
 	    resolve(
 	      graphql(`

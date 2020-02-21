@@ -2,19 +2,10 @@ import React from 'react'
 import { ApolloProvider } from '@apollo/react-hooks'
 
 import { MDXProvider } from '@mdx-js/react'
-import * as components from './.cache/components'
+import * as CustomComponents from './.cache/components'
 import CodeBlock from './src/components/layouts/CodeBlock/CodeBlock.js'
-import {
-  Box,
-  Grid,
-  Typography,
-  Container,
-  Table,
-  TableHead,
-  TableRow,
-  TableBody,
-  TableCell
-} from '@material-ui/core'
+
+import * as MaterialUI from '@material-ui/core'
 
 import { Link } from 'gatsby'
 import { client } from './src/apollo/client'
@@ -27,18 +18,10 @@ import theme from './src/js/mui/theme'
 const mdxComponents = {
   pre: props => <div {...props} />,
   code: CodeBlock,
-  Box,
-  Grid,
-  Typography,
-  Container,
-  Table,
-  TableHead,
-  TableRow,
-  TableBody,
-  TableCell,
   a: props => (props.href &&
     (props.href.charAt(0) === '#' || props.href.includes('http') || props.href.includes('mailto'))) ? <a {...props} /> : <Link to={props.href} {...props} />,
-  ...components
+  ...CustomComponents,
+  ...MaterialUI
 }
 
 export const wrapRootElement = ({ element }) => (
