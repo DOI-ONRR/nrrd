@@ -20,6 +20,14 @@ import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
 const useStyles = makeStyles(theme => (
   {
     '@global': {
+      p: {
+        margin: '0.5rem 0rem'
+      },
+      hr: {
+        borderWidth: '0px 0px 10px 0px',
+        borderColor: theme.palette.secondary.light,
+        marginBottom: '1rem',
+      },
       ul: {
         paddingInlineStart: '22.5px'
       },
@@ -28,7 +36,7 @@ const useStyles = makeStyles(theme => (
         listStyleType: 'square'
       },
       a: {
-        color: '#1478a6',
+        color: theme.palette.text.secondary,
         textDecoration: 'underline',
         cursor: 'pointer',
         '&:hover': {
@@ -41,6 +49,9 @@ const useStyles = makeStyles(theme => (
       h4: { ...theme.typography.h4 },
       h5: { ...theme.typography.h5 },
       h6: { ...theme.typography.h6 },
+    },
+    img: {
+      width: '100%'
     },
     skipNav: {
       position: 'absolute',

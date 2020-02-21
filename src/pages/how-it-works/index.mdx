@@ -12,14 +12,11 @@ tags:
 - Audit
 ---
 
-<!-- Import the color palette to use for the background of the grids -->
-
-import palette from '../../js/mui/palette.js'
-
-<Grid container style={{background:palette.blue.light}}>
+<Box bgcolor='primary.main'>
 <Container maxWidth="lg">
-<Grid container>
-<Grid item xs={12} sm={8} style={{padding:'25px 25px 0px 0px', borderRight: '5px solid white'}}>
+<Grid container spacing={2} alignItems='center'>
+<Grid item xs={12} sm={8}>
+<Box padding='20px' >
 
 # How It Works
 
@@ -27,25 +24,31 @@ In the U.S., land and the resources beneath it can be owned by private individua
 
 Learn what [governs natural resource extraction](#laws) in the U.S., how [resources result in federal revenue](#resources_process), and what [processes ensure accuracy and accountability](#accounting) in this industry.
 
+</Box>
 </Grid>
-<Grid container xs={12} sm={4} style={{borderRight: '5px solid white'}}>
-<Grid item xs={12} style={{padding:'25px 25px 0px 25px'}}>
+<Grid container xs={12} sm={4} >
+<Box padding='20px' border='4px solid white'>
+<Grid item xs={12}>
 
 **Natural resource extraction in the U.S. is governed by laws and regulations tied primarily to land ownership and the commodities being extracted.**
 
-<p align='center'>
-  <HowItWorksRibbonGraphicSvg style={{height:'100px'}}></HowItWorksRibbonGraphicSvg>
-</p>
+<Box align='center'>
+  <HowItWorksRibbonGraphicSvg style={{height:'100px'}} alignSelf='center'></HowItWorksRibbonGraphicSvg>
+</Box>
 </Grid>
-<Grid container xs={12} styleOption='blueGrey' style={{background:palette.blueGrey.default, padding:'25px'}}>
+</Box>
+<Grid container xs={12}>
+<Box bgcolor='primary.dark' padding='20px' align='center'>
 
 [What natural resources does the U.S. produce?] (https://revenuedata.doi.gov/how-it-works/#production) 
 
+</Box>
 </Grid>
 </Grid>
 </Grid>
+
 </Container>
-</Grid>
+</Box>
 
 <!-- Begin content -->
 
@@ -58,12 +61,16 @@ Learn what [governs natural resource extraction](#laws) in the U.S., how [resour
 
 <h2 alt='Land ownership'>Who owns natural resources in the U.S.?</h2>
 
+---
+
 ### Ownership
 Private individuals and corporations, as well as federal, state, local, and Native American governments, can own land and the oil, gas, coal, and other minerals found below the surface.
 
 [Learn about land and resource ownership](/how-it-works/ownership/)
 
 <h2 alt='Laws and regulations'> What laws and regulations govern natural resource extraction in the U.S.?</h2>
+
+---
 
 ### Federal laws and regulations
 The legislative branch has passed many laws governing natural resource extraction on federal lands.
@@ -76,6 +83,8 @@ The government reforms laws and regulations by enacting new legislation and prop
 [Learn about reforms](/how-it-works/federal-reforms/)
 
 <h2 alt='Natural resources on Native American land'>How are natural resources on Native American land governed?</h2>
+
+---
 
 ### Ownership and governance
 Native American land ownership involves a complex patchwork of titles, restrictions, obligations, statutes, and regulations.
@@ -98,6 +107,8 @@ Extraction affects Native American economies in a number of ways, though effects
 [Learn about economic impact](/how-it-works/tribal-economic-impact/)
 
 <h2 alt='Resources to revenue'>How do natural resources result in federal revenue?</h2>
+
+---
 
 <h3 alt='Production'>The production process</h3>
 
@@ -208,6 +219,8 @@ The Gulf of Mexico Energy Security Act (GOMESA) created a revenue-sharing model 
 [Learn about GOMESA](/how-it-works/gomesa)
 
 <h2 alt='Accountability'>How does the U.S. ensure accuracy and accountability in natural resource revenue?</h2>
+
+---
 
 ### Audits and assurances
 Data about revenue from the extractive industries is subject to a number of controls, standards, and regulations.
