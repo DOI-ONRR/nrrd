@@ -19,9 +19,9 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(1),
     paddingLeft: theme.spacing(1),
-    // borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    // borderBottom: `1px solid ${ theme.palette.gray[300] }`,
     // boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
-    background: theme.palette.grey['200'],
+    background: theme.palette.gray['200'],
     overflowX: 'auto',
     '& h2': {
       marginTop: theme.spacing(1),
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 99,
     '& button': {
       color: theme.palette.common.black,
-      border: `1px solid ${ theme.palette.grey['300'] }`,
+      border: `1px solid ${ theme.palette.gray['300'] }`,
       backgroundColor: theme.palette.common.white,
       borderRadius: '50%',
       boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   mapMenuItem: {
-    border: `1px solid ${ theme.palette.grey['300'] }`,
+    border: `1px solid ${ theme.palette.gray['300'] }`,
     height: 48,
     marginLeft: theme.spacing(0),
     marginRight: theme.spacing(1),

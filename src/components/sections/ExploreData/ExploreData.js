@@ -8,11 +8,11 @@ import Slider from '@material-ui/core/Slider'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
-import Paper from '@material-ui/core/Paper'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
+
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -27,7 +27,6 @@ import Snackbar from '@material-ui/core/Snackbar'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RefreshIcon from '@material-ui/icons/Refresh'
-import CloseIcon from '@material-ui/icons/Close'
 import SearchIcon from '@material-ui/icons/Search'
 
 import { graphql } from 'gatsby'
@@ -64,6 +63,19 @@ const FISCAL_REVENUE_QUERY = gql`
   }
 `
 
+const STATE_OR_AREA_QUERY = gql`
+  query StateOrArea {
+    fiscal_revenue_summary( 
+      order_by: { state_or_area: asc }
+      where: {state_or_area: {_nin: [""]}}
+    ) {
+      state_or_area
+    }
+  }
+`
+
+const MAX_CARDS = 3
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: 0,
@@ -77,7 +89,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     height: 575,
     // marginBottom: theme.spacing(20),
-    background: theme.palette.grey[200],
+    background: theme.palette.gray[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
@@ -235,8 +247,8 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(2),
     zIndex: 101,
     paddingBottom: theme.spacing(0),
-    borderTop: `1px solid ${ theme.palette.grey[300] }`,
-    borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    borderTop: `1px solid ${ theme.palette.gray[300] }`,
+    borderBottom: `1px solid ${ theme.palette.gray[300] }`,
   },
   sliderRoot: {
     width: '100%',
@@ -296,10 +308,11 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(2)
     },
     '& > div:last-child': {
-      marginRight: theme.spacing(0),
+      margin: theme.spacing(1),
       maxWidth: '25%',
+      width: '100%',
       position: 'relative',
-      minWidth: 250,
+      // minWidth: 310,
       '@media (max-width: 768px)': {
         maxWidth: '100%',
       }
@@ -340,12 +353,12 @@ const useStyles = makeStyles(theme => ({
   addCardContainer: {
     padding: theme.spacing(2),
     marginBottom: theme.spacing(4),
-    backgroundColor: theme.palette.grey['100'],
+    backgroundColor: theme.palette.gray['100'],
   },
   addLocationCard: {
-    background: `${ theme.palette.grey['100'] }`,
+    background: `${ theme.palette.gray['100'] }`,
     '& div:nth-child(1)': {
-      background: `${ theme.palette.grey['100'] } !important`,
+      background: `${ theme.palette.gray['100'] } !important`,
       '& > span': {
         color: `${ theme.palette.common.black } !important`,
       }
@@ -376,6 +389,18 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }))
+
+console.log('mapjson: ', mapJson)
+
+const getRegion = input => {
+  const selectedObj = mapJson.objects.states.geometries.filter(obj => {
+    if (obj.properties.abbr.toLowerCase() === input.toLowerCase()) {
+      return obj.properties
+    }
+  })
+
+  return selectedObj
+}
 
 // AddCardButton
 const AddCardButton = props => {
@@ -435,36 +460,54 @@ const AddCardButton = props => {
 const AddLocationCard = props => {
   const classes = useStyles()
 
-  return (
-    <Card className={classes.addLocationCard}>
-      <CardHeader
-        title={props.title}
-      />
-      <CardContent>
-        <OutlinedInput
-          id="search-input"
-          margin="dense"
-          title="search input"
-          type="search"
-          className={classes.cardSearch}
-          placeholder='Search location'
-          name="q"
-          role="search"
-          startAdornment={
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          }
-        />
+  const { state, dispatch } = useContext(StoreContext)
+  const [input, setInput] = useState('')
+  const cards = state.cards
 
-      </CardContent>
-      <CardActions>
-        { props.menuItems.length > 0 &&
-          <AddCardButton menuItems={props.menuItems} />
-        }
-      </CardActions>
-    </Card>
-  )
+  const handleChange = val => {
+    if (typeof val !== 'undefined' && val !== null) {
+      cards.push({
+        fips: getRegion(val.state_or_area)[0].properties.FIPS,
+        abbrev: getRegion(val.state_or_area)[0].properties.abbr,
+        name: getRegion(val.state_or_area)[0].properties.name
+      })
+      dispatch({ type: 'CARDS', payload: { cards: cards } })
+    }
+  }
+
+  const { loading, error, data } = useQuery(STATE_OR_AREA_QUERY)
+
+  if (loading) return null
+  if (error) return `Error! ${ error.message }`
+
+  if (data) {
+    const stateOrAreaData = data.fiscal_revenue_summary
+    return (
+      <Card className={classes.addLocationCard}>
+        <CardHeader
+          title={props.title}
+        />
+        <CardContent>
+          <Autocomplete
+            autoComplete={true}
+            id="combo-box-demo"
+            options={stateOrAreaData}
+            getOptionLabel={option => option.state_or_area}
+            style={{ width: '100%' }}
+            renderInput={params => (
+              <TextField {...params} label="Search locations..." variant="outlined" fullWidth />
+            )}
+            onChange={(e, v) => handleChange(v)}
+          />
+        </CardContent>
+        <CardActions>
+          { props.menuItems.length > 0 &&
+            <AddCardButton menuItems={props.menuItems} />
+          }
+        </CardActions>
+      </Card>
+    )
+  }
 }
 
 // YearSlider
@@ -637,7 +680,7 @@ const ExploreData = () => {
     if (
       cards.filter(item => item.fips === state.properties.FIPS).length === 0
     ) {
-      if (cards.length <= 3) {
+      if (cards.length <= MAX_CARDS) {
         cards.push({
           fips: state.properties.FIPS,
           abbrev: state.properties.abbr,
@@ -813,12 +856,14 @@ const ExploreData = () => {
               </Typography>
             </Grid>
             <Grid item md={12}>
-              <Typography variant="h3" mt={5} className="header-bar green thin">
+              <Box mt={5}>
+                <Typography variant="h3" mt={5} className="header-bar green thin">
                   Compare revenue
-              </Typography>
-              <Typography variant="body1">
+                </Typography>
+                <Typography variant="body1">
                   Add more than one card to compare.  Select states, counties, and offshore regions.
-              </Typography>
+                </Typography>
+              </Box>
             </Grid>
           </Grid>
           <Box className={classes.compareCardsContainer}>
@@ -836,7 +881,7 @@ const ExploreData = () => {
                 )
               })
             }
-            { (cards.length >= 0 && cards.length <= 3) ? <AddLocationCard title='Add a location' menuItems={cardMenuItems} /> : '' }
+            { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add a location' menuItems={cardMenuItems} /> : '' }
           </Box>
         </Container>
       </Fragment>

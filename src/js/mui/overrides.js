@@ -3,7 +3,7 @@
 const {
   primary,
   secondary,
-  grey,
+  gray,
   common,
   ...rest
 } = require('./palette')
@@ -147,9 +147,9 @@ module.exports = Object.freeze({
         width: '100%',
         display: 'block',
         minWidth: '100%',
-        '-moz-box-shadow': 'inset  0 -10px 10px -15px grey',
-        '-webkit-box-shadow': 'inset  0 -10px 10px -15px grey',
-        'box-shadow': 'inset  0 -10px 10px -15px grey',
+        '-moz-box-shadow': 'inset  0 -10px 10px -15px gray',
+        '-webkit-box-shadow': 'inset  0 -10px 10px -15px gray',
+        'box-shadow': 'inset  0 -10px 10px -15px gray',
       }
     },
     fullWidth: {
@@ -219,12 +219,12 @@ module.exports = Object.freeze({
     markLabel: {
       fontWeight: 'bold',
       top: '28px',
-      color: grey['800'],
+      color: gray['800'],
       fontSize: '1rem',
     },
     markLabelActive: {
       fontWeight: 'bold',
-      color: grey['800'],
+      color: gray['800'],
       background: 'transparent',
       boxShadow: 'none',
     },
@@ -234,7 +234,7 @@ module.exports = Object.freeze({
     },
     rail: {
       height: 4,
-      backgroundColor: grey['500']
+      backgroundColor: gray['500']
     },
     mark: {
       height: 4,

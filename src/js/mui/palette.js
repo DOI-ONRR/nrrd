@@ -5,15 +5,15 @@ module.exports = Object.freeze({
     main: '#5c737f',
     light: '#1478a6',
     dark: 'rgb(64, 80, 88)',
-    contrastText: '#d3dfe6'
+    contrastText: '#d3dfe6',
   },
   secondary: {
     main: '#cde3c3',
     light: 'rgb(215, 232, 207)',
     dark: 'rgb(0, 100, 42)',
-    contrastText: 'rgba(0, 0, 0, 0.87)'
+    contrastText: 'rgba(0, 0, 0, 0.87)',
   },
-  grey: {
+  gray: {
     50: '#fafafa',
     100: '#f5f5f5',
     200: '#eeeeee',
@@ -27,17 +27,17 @@ module.exports = Object.freeze({
     A700: '#616161',
     A100: '#d5d5d5',
     A400: '#303030',
-    A200: '#aaaaaa'
+    A200: '#aaaaaa',
   },
   common: {
-    white: '#fff',
-    black: '#000',
+    white: '#ffffff',
+    black: '#000000',
   },
   text: {
     primary: 'rgba(0, 0, 0, 0.87)',
     secondary: 'rgba(0, 0, 0, 0.54)',
     disabled: 'rgba(0, 0, 0, 0.38)',
-    hint: 'rgba(0, 0, 0, 0.38)'
+    hint: 'rgba(0, 0, 0, 0.38)',
   },
   chart: {
     primary: '#222222',
@@ -54,12 +54,12 @@ module.exports = Object.freeze({
     light: '#f0f6fa',
     mid: '#323c42',
     default: '#1478a6',
-    dark: '#086996'
+    dark: '#086996',
   },
   orange: {
-    default: '#ff8c00'
+    default: '#ff8c00',
   },
   purple: {
-    default: '#ac2e97'
-  }
+    default: '#ac2e97',
+  },
 })

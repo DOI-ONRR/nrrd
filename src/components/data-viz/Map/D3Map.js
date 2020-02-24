@@ -140,10 +140,10 @@ export default class d3Map {
           d3.interpolateReds(t)
       )
       break
-    case 'grey':
+    case 'gray':
       color = d3.scaleSequentialQuantile(
         data.values, t =>
-          d3.interpolateGreys(t)
+          d3.interpolategrays(t)
       )
       break
     default:
