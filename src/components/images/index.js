@@ -13,7 +13,7 @@ import Img from 'gatsby-image'
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const UsFlagImg = ({ alt }) => {
+export const UsFlagImg = ({ alt }) => {
   const data = useStaticQuery(graphql`
     query {
       imageSharp(fixed: {originalName: {eq: "us-flag-small.png"}}) {
@@ -23,8 +23,5 @@ const UsFlagImg = ({ alt }) => {
       }
     }
   `)
-
   return <Img fixed={data.imageSharp.fixed} alt={alt || 'US Flag'} />
 }
-
-export default UsFlagImg

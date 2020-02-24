@@ -94,9 +94,16 @@ const createComponentsCache = ({ graphql, reporter }) => {
           let exportFileContents =
               allComponents
                 .reduce((accumulator, { displayName, filePath }) => {
-                  accumulator.push(
-                    `export { default as ${ displayName } } from "${ filePath }"`
-                  )
+                  if (filePath.search('components/images') >= 0) {
+                    accumulator.push(
+                      `export { ${ displayName } } from "${ filePath }"`
+                    )
+                  }
+                  else {
+                    accumulator.push(
+                      `export { default as ${ displayName } } from "${ filePath }"`
+                    )
+                  }
                   return accumulator
                 }, [])
                 .join('\n') + '\n'
