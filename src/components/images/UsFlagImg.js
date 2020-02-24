@@ -17,7 +17,7 @@ const UsFlagImg = ({ alt }) => {
   const data = useStaticQuery(graphql`
     query {
       imageSharp(fixed: {originalName: {eq: "us-flag-small.png"}}) {
-        fixed {
+        fixed(width: 16) {
           ...GatsbyImageSharpFixed
         }
       }
