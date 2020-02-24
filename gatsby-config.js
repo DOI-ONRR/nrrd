@@ -97,7 +97,7 @@ const config = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: `${ __dirname }/src/img`
+        path: `${ __dirname }/src/images`
       }
     },
     {

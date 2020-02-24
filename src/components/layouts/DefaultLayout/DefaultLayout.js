@@ -14,7 +14,7 @@ import {
   Grid
 } from '@material-ui/core'
 
-import { Banner } from '../Banner'
+import InfoBanner from '../../content-partials/InfoBanner'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
 
@@ -108,12 +108,10 @@ const DefaultLayout = ({ includeToc, children }) => {
     }
   `)
 
-  console.log(includeToc)
-
   return (
     <React.Fragment>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
-      <Banner />
+      <InfoBanner />
       <Header siteTitle={data.site.siteMetadata.title} />
       <GlossaryDrawer />
       <CssBaseline />

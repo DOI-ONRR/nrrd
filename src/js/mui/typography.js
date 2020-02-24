@@ -6,10 +6,6 @@ module.exports = Object.freeze({
   fontSize: '18',
   fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
   fontWeightBold: '600',
-  body1: {
-    fontSize: '1.125rem',
-    lineHeight: '1.6875rem',
-  },
   // This overrides CSSBaseline for the body tag
   body2: {
     color: '#000',

@@ -8,10 +8,11 @@ module.exports = Object.freeze({
   info: { main: '#d3dfe6' },
   text: {
     primary: '#000000',
-    secondary: '#d3dfe6'
+    secondary: '#1478a6'
   },
   chart: {
     primary: '#222222',
     secondary: '#086996',
   },
+  tonalOffset: 0.5
 })
