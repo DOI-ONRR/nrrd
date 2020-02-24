@@ -8,11 +8,17 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
-import CssBaseline from '@material-ui/core/CssBaseline'
+import {
+  CssBaseline,
+  Container,
+  Grid
+} from '@material-ui/core'
 
 import { Banner } from '../Banner'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
+
+import PageToc from '../../navigation/PageToc'
 
 import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
 
@@ -24,7 +30,7 @@ const useStyles = makeStyles(theme => (
       },
       hr: {
         borderWidth: '0px 0px 10px 0px',
-        borderColor: theme.palette.secondary.light,
+        borderColor: theme.palette.secondary.main,
         marginBottom: '1rem',
       },
       ul: {
@@ -34,7 +40,7 @@ const useStyles = makeStyles(theme => (
         listStyleType: 'square'
       },
       a: {
-        color: theme.palette.text.secondary,
+        color: theme.palette.link,
         textDecoration: 'underline',
         '&:hover': {
           textDecoration: 'none',
@@ -87,7 +93,7 @@ const useStyles = makeStyles(theme => (
   })
 )
 
-const DefaultLayout = ({ children }) => {
+const DefaultLayout = ({ includeToc, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
@@ -102,6 +108,8 @@ const DefaultLayout = ({ children }) => {
     }
   `)
 
+  console.log(includeToc)
+
   return (
     <React.Fragment>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
@@ -110,7 +118,19 @@ const DefaultLayout = ({ children }) => {
       <GlossaryDrawer />
       <CssBaseline />
       <main id='main-content'>
-        {children}
+        {includeToc
+          ? <Container maxWidth="lg" component="section">
+            <Grid container>
+              <Grid item xs={12} sm={3}>
+                <PageToc scrollOffset={190}></PageToc>
+              </Grid>
+              <Grid item xs={12} sm={9}>
+                {children}
+              </Grid>
+            </Grid>
+          </Container>
+          : <React.Fragment>{ children }</React.Fragment>
+        }
       </main>
       <Footer version={data && data.site.siteMetadata.version} />
     </React.Fragment>

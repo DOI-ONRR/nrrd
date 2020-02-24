@@ -9,12 +9,12 @@ import DefaultContentLayout from '../DefaultContentLayout'
 import DownloadsLayout from '../DownloadsLayout'
 import PatternLibraryLayout from '../PatternLibraryLayout'
 
-const PageLayoutManager = ({ children, location, pageContext, ...rest }) => {
+const PageLayoutManager = ({ children, location, pageContext }) => {
   if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
 
   const layout = pageContext.frontmatter && pageContext.frontmatter.layout
 
-  if (layout=== 'downloads') {
+  if (layout === 'downloads') {
     return <DownloadsLayout>{children}</DownloadsLayout>
   }
   if (layout === 'pattern-library') {
@@ -23,7 +23,8 @@ const PageLayoutManager = ({ children, location, pageContext, ...rest }) => {
   if (layout === 'DefaultContentLayout') {
     return <DefaultContentLayout>{children}</DefaultContentLayout>
   }
-  return <DefaultLayout>{children}</DefaultLayout>
+
+  return <DefaultLayout includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>{children}</DefaultLayout>
 }
 
 PageLayoutManager.propTypes = {
