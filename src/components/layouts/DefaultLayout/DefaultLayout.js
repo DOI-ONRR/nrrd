@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => (
         listStyleType: 'square'
       },
       a: {
-        color: theme.palette.link,
+        color: theme.palette.text.secondary,
         textDecoration: 'underline',
         '&:hover': {
           textDecoration: 'none',
