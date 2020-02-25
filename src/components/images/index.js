@@ -2,6 +2,18 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
+import HowMainIconOilSvg from '-!svg-react-loader!../../images/how-it-works/how-main-icon-oil.svg'
+import HowMainIconHardrockSvg from '-!svg-react-loader!../../images/how-it-works/how-main-icon-hardrock.svg'
+import HowMainIconWindSvg from '-!svg-react-loader!../../images/how-it-works/how-main-icon-wind.svg'
+import HowMainIconCoalSvg from '-!svg-react-loader!../../images/how-it-works/how-main-icon-coal.svg'
+import HowItWorksRibbonGraphicSvg from '-!svg-react-loader!../../images/how-it-works/how-it-works-ribbon-graphic.svg'
+
+export const HowMainIconOilImg = props => <HowMainIconOilSvg {...props} />
+export const HowMainIconHardrockImg = props => <HowMainIconHardrockSvg {...props} />
+export const HowMainIconWindImg = props => <HowMainIconWindSvg {...props} />
+export const HowMainIconCoalImg = props => <HowMainIconCoalSvg {...props} />
+export const HowItWorksRibbonGraphicImg = props => <HowItWorksRibbonGraphicSvg {...props} />
+
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
  * images with lazy loading and reduced file sizes. The image is loaded using a
@@ -13,7 +25,7 @@ import Img from 'gatsby-image'
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-export const UsFlagImg = ({ alt }) => {
+export const UsFlagImg = ({ alt, ...rest }) => {
   const data = useStaticQuery(graphql`
     query {
       imageSharp(fixed: {originalName: {eq: "us-flag-small.png"}}) {
@@ -23,5 +35,6 @@ export const UsFlagImg = ({ alt }) => {
       }
     }
   `)
-  return <Img fixed={data.imageSharp.fixed} alt={alt || 'US Flag'} />
+  return <Img fixed={data.imageSharp.fixed} alt={alt || 'US Flag'} {...rest} />
 }
+
