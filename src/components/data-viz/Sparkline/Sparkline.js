@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   sparkcircle: {
-    fill: theme.palette.grey['900']
+    fill: theme.palette.grays['900']
   }
 
 }))

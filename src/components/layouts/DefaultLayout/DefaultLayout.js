@@ -11,7 +11,7 @@ import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Box from '@material-ui/core/Box'
 
-import theme from '../../../js/mui/theme'
+import nrrdTheme from '../../../js/mui/theme'
 
 import { Banner } from '../Banner'
 import { Header } from '../Header'
@@ -19,15 +19,17 @@ import { Footer } from '../Footer'
 
 import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
 
+console.log('nrrdTheme: ', nrrdTheme)
+
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
-      background: '#fff',
+      background: theme.palette.common.white,
       margin: 0,
       fontFamily: theme.typography.fontFamily
     },
     a: {
-      color: '#1478a6',
+      color: nrrdTheme.palette.links.default,
       textDecoration: 'underline',
       cursor: 'pointer',
       '&:hover': {
@@ -76,7 +78,6 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   header: {
-    
   },
   skipNav: {
     position: 'absolute',
@@ -129,7 +130,7 @@ const DefaultLayout = ({ children }) => {
   `)
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={nrrdTheme}>
       <Box className={classes.site}>
         <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
 

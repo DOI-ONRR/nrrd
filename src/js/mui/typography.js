@@ -2,7 +2,7 @@
 
 require('typeface-lato')
 
-module.exports = Object.freeze({
+const typography = {
   h1: {
     margin: '0 0 1rem 0',
     color: '#323c42',
@@ -89,4 +89,6 @@ module.exports = Object.freeze({
   label: {
     fontSize: '.85rem',
   }
-})
+}
+
+module.exports.typography = typography

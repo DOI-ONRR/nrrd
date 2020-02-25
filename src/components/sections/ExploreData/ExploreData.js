@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     height: 575,
     // marginBottom: theme.spacing(20),
-    background: theme.palette.grey[200],
+    background: theme.palette.grays[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
@@ -121,7 +121,7 @@ const useStyles = makeStyles(theme => ({
         bottom: 0,
       },
       '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.green.default,
+        backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.white,
       },
       '& .MuiCardHeader-content > span': {
@@ -134,7 +134,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.blue.dark,
+        backgroundColor: theme.palette.blues[600],
         color: theme.palette.common.white,
       },
       '& .MuiCardHeader-content > span': {
@@ -147,7 +147,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.orange.default,
+        backgroundColor: theme.palette.oranges[200],
         color: theme.palette.common.white,
       },
       '& .MuiCardHeader-content > span': {
@@ -160,7 +160,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.purple.default,
+        backgroundColor: theme.palette.purples[500],
         color: theme.palette.common.white,
       },
       '& .MuiCardHeader-content > span': {
@@ -223,8 +223,8 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(2),
     zIndex: 101,
     paddingBottom: theme.spacing(0),
-    borderTop: `1px solid ${ theme.palette.grey[300] }`,
-    borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    borderTop: `1px solid ${ theme.palette.grays[300] }`,
+    borderBottom: `1px solid ${ theme.palette.grays[300] }`,
   },
   sliderRoot: {
     width: '100%',
@@ -282,7 +282,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& .MuiCard-root:nth-child(1)': {
       '& > .MuiCardHeader-root': {
-        backgroundColor: theme.palette.green.default,
+        backgroundColor: theme.palette.primary.main,
         '& span': {
           color: theme.palette.common.white,
         }
@@ -290,7 +290,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& .MuiCard-root:nth-child(2)': {
       '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.blue.dark,
+        backgroundColor: theme.palette.blues[600],
         '& span': {
           color: theme.palette.common.white,
         }
@@ -298,7 +298,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& .MuiCard-root:nth-child(3)': {
       '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.orange.default,
+        backgroundColor: theme.palette.oranges[200],
         '& span': {
           color: theme.palette.common.white,
         }
@@ -306,7 +306,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& .MuiCard-root:nth-child(4)': {
       '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.purple.default,
+        backgroundColor: theme.palette.purples[500],
         '& span': {
           color: theme.palette.common.white,
         }

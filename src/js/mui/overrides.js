@@ -1,14 +1,8 @@
 /* eslint-disable max-len */
 // https://material-ui.com/customization/globals/
-const {
-  primary,
-  secondary,
-  grey,
-  common,
-  ...rest
-} = require('./palette')
+const { palette } = require('./palette')
 
-module.exports = Object.freeze({
+const overrides = {
   // https://material-ui.com/api/app-bar/
   MuiAppBar: {
     root: {
@@ -19,13 +13,13 @@ module.exports = Object.freeze({
       },
     },
     colorPrimary: {
-      backgroundColor: common.white
+      backgroundColor: palette.common.white
     }
   },
   // https://material-ui.com/components/buttons/
   MuiButton: {
     // Name of the rule
-    backgroundColor: primary.light,
+    backgroundColor: palette.primary.light,
     '&:hover': {
       backgroundColor: '#0F5A7D',
     },
@@ -42,23 +36,23 @@ module.exports = Object.freeze({
     },
     outlinedPrimary: {
       '&:hover': {
-        backgroundColor: primary.main,
-        color: common.white,
+        backgroundColor: palette.primary.main,
+        color: palette.common.white,
       },
     },
     contained: {
-      backgroundColor: common.white,
+      backgroundColor: palette.common.white,
     }
   },
   // https://material-ui.com/api/button-group/
   MuiButtonGroup: {
     root: {
-      backgroundColor: common.white,
+      backgroundColor: palette.common.white,
       '& .MuiButton-contained': {
-        backgroundColor: common.white
+        backgroundColor: palette.common.white
       },
       '& .MuiButton-contained:hover': {
-        color: primary.main,
+        color: palette.primary.main,
       }
     },
     grouped: {
@@ -75,26 +69,26 @@ module.exports = Object.freeze({
     label: {
       fontWeight: 'bold',
       textTransform: 'capitalize',
-      color: primary.dark,
+      color: palette.secondary.dark,
     },
     root: {
       '&.Mui-selected': {
-        color: common.white,
-        backgroundColor: primary.dark,
+        color: palette.common.white,
+        backgroundColor: palette.secondary.dark,
         '& .MuiToggleButton-label': {
-          color: common.white,
+          color: palette.common.white,
         },
       },
       '&.Mui-selected:hover': {
-        color: common.white,
-        backgroundColor: `${ primary.dark } !important`,
+        color: palette.common.white,
+        backgroundColor: `${ palette.secondary.dark } !important`,
       }
     }
   },
   // https://material-ui.com/api/link/
   MuiLink: {
     root: {
-      color: primary.light,
+      color: palette.primary.light,
     },
     underlineAlways: {
       textDecoration: 'underline',
@@ -169,7 +163,7 @@ module.exports = Object.freeze({
   MuiList: {
     root: {
       marginBottom: 0,
-      color: primary.light,
+      color: palette.primary.light,
     },
     padding: {
       paddingTop: 0,
@@ -179,7 +173,7 @@ module.exports = Object.freeze({
   MuiListItem: {
     root: {
       '& a span': {
-        color: primary.light
+        color: palette.primary.light
       },
       '& a:hover': {
         textDecoration: 'none'
@@ -216,12 +210,12 @@ module.exports = Object.freeze({
     markLabel: {
       fontWeight: 'bold',
       top: '28px',
-      color: grey['800'],
+      color: palette.grays['800'],
       fontSize: '1rem',
     },
     markLabelActive: {
       fontWeight: 'bold',
-      color: grey['800'],
+      color: palette.grays['800'],
       background: 'transparent',
       boxShadow: 'none',
     },
@@ -231,11 +225,11 @@ module.exports = Object.freeze({
     },
     rail: {
       height: 4,
-      backgroundColor: grey['500']
+      backgroundColor: palette.grays['500']
     },
     mark: {
       height: 4,
-      backgroundColor: common.white,
+      backgroundColor: palette.common.white,
       width: 0,
     },
     active: {
@@ -316,4 +310,6 @@ module.exports = Object.freeze({
       padding: '15px',
     }
   }
-})
+}
+
+module.exports.overrides = overrides

@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '1rem',
     display: 'flex',
     '& svg': {
-      fill: '#1478a6',
+      fill: theme.palette.links.default,
       verticalAlign: 'middle',
       marginRight: '8px',
       flex: 'none',
