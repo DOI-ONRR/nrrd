@@ -82,7 +82,7 @@ const createComponentsCache = ({ graphql, reporter }) => {
           let exportFileContents =
               allComponents
                 .reduce((accumulator, { displayName, filePath }) => {
-                  if (filePath.search('components/images') >= 0) {
+                  if (filePath.search('components/images/index.js') >= 0) {
                     accumulator.push(
                       `export { ${ displayName } } from "${ filePath }"`
                     )

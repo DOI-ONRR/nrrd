@@ -15,8 +15,8 @@ import {
 } from '@material-ui/core'
 
 import InfoBanner from '../../content-partials/InfoBanner'
+import Footer from '../../content-partials/Footer2'
 import { Header } from '../Header'
-import { Footer } from '../Footer'
 
 import PageToc from '../../navigation/PageToc'
 
