@@ -1,4 +1,11 @@
-import React from 'react'
+import React, { useContext }  from 'react'
+// import { graphql } from 'gatsby'
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+// utility functions
+
+import { StoreContext } from '../../../store'
+
 
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -9,6 +16,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
 import CloseIcon from '@material-ui/icons/Close'
+import PieChart from '../../data-viz/PieChart/PieChart.js'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,14 +29,43 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer'
   }
 }))
+const APOLLO_QUERY = gql`
+  query DetailCard($state: String!, $year: Int!) {
+    revenue_commodity_summary(
+      limit: 5
+      where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
+      order_by: { fiscal_year: asc, total: desc }
+    ) {
+      fiscal_year
+      commodity
+      state_or_area
+      total
+    }
+  }
+`
 
 const StateDetailCard = props => {
   const classes = useStyles()
+  console.debug(props)
+  const { state } = useContext(StoreContext)
+  const year = state.year
+  const location=props.abbrev
 
+  const { loading, data } = useQuery(APOLLO_QUERY, {
+    variables: { state: location, year: year }
+  })
+  
   const closeCard = item => {
     props.closeCard(props.fips)
   }
-
+  if(loading) {
+    return "Loading ...."
+  }
+  let chartData
+  if(data) {
+    chartData=data.revenue_commodity_summary
+  }
+  
   return (
     <Card className={`${ classes.root } ${ props.cardCountClass }`}>
       <CardHeader
@@ -44,9 +81,7 @@ const StateDetailCard = props => {
         <Typography variant="body1" component="p">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </Typography>
-        <Typography variant="body2" component="p">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </Typography>
+      <PieChart data={chartData} xAxis='commodity' yAxis='total'/>
       </CardContent>
       <CardActions>
         {/* <Button size="small" color="primary">Learn More</Button> */}
