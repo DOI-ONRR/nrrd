@@ -3,7 +3,7 @@ import React, { useContext }  from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 // utility functions
-
+import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
 
 
@@ -14,9 +14,14 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 
 import CloseIcon from '@material-ui/icons/Close'
 import PieChart from '../../data-viz/PieChart/PieChart.js'
+import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,6 +46,17 @@ const APOLLO_QUERY = gql`
       state_or_area
       total
     }
+    revenue_type_summary(
+      limit: 5
+      where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
+      order_by: { fiscal_year: asc, total: desc }
+    ) {
+      fiscal_year
+      revenue_type
+      state_or_area
+      total
+    }
+
   }
 `
 
@@ -49,7 +65,7 @@ const StateDetailCard = props => {
   console.debug(props)
   const { state } = useContext(StoreContext)
   const year = state.year
-  const location=props.abbrev
+  const location = props.abbrev
 
   const { loading, data } = useQuery(APOLLO_QUERY, {
     variables: { state: location, year: year }
@@ -61,9 +77,11 @@ const StateDetailCard = props => {
   if(loading) {
     return "Loading ...."
   }
+  console.debug('DWGH ----------------------------------')
   let chartData
   if(data) {
-    chartData=data.revenue_commodity_summary
+    console.debug('data========================================================', data)
+    chartData=data
   }
   
   return (
@@ -71,18 +89,32 @@ const StateDetailCard = props => {
       <CardHeader
         title={props.cardTitle}
         action={<CloseIcon
-          className={classes.closeIcon}
-          onClick={(e, i) => {
-            closeCard(i)
-          }}
+                    className={classes.closeIcon}
+                    onClick={(e, i) => {
+                      closeCard(i)
+                    }}
         />}
       />
       <CardContent>
-        <Typography variant="body1" component="p">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </Typography>
-      <PieChart data={chartData} xAxis='commodity' yAxis='total'/>
+        <Grid container>
+          <Grid item >
+
+            { chartData && (
+              <Box >
+                <CircleChart data={chartData.revenue_commodity_summary} xAxis='commodity' yAxis='total'
+                             format={ d => utils.formatToDollarFloat(d) }
+                             minColor='#E6E6FA' maxColor='#4B0082'/>
+                  <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
+                               format={ d => utils.formatToDollarFloat(d) }
+                               minColor='#FFCC99' maxColor='#FF9900'/>
+              </Box>
+            )
+            }
+    
+    </Grid>
+      </Grid>
       </CardContent>
+      
       <CardActions>
         {/* <Button size="small" color="primary">Learn More</Button> */}
       </CardActions>

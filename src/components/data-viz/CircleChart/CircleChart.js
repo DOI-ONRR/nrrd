@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import ChartTitle from '../ChartTitle'
 
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
-import D3PieChart from './D3PieChart.js'
+import D3CircleChart from './D3CircleChart.js'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -49,8 +49,6 @@ const useStyles = makeStyles(theme => ({
       width: 10,
     },
     '& td .legend-rect': {
-      fill: theme.palette.chart.secondary,
-      backgroundColor: theme.palette.chart.secondary,
       display: 'block',
       height: 20,
       width: 20,
@@ -81,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const PieChart = props => {
+const CircleChart = props => {
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
 
@@ -98,7 +96,7 @@ const PieChart = props => {
     //  const chart2 = new BarChart2(elemRef.current, data2, options)
     //    chart2.draw(data2)
     console.debug(elemRef.current)
-    const chart = new D3PieChart(elemRef.current, data, options)
+    const chart = new D3CircleChart(elemRef.current, data, options)
     // chart.selected(selected);
     //chart.draw(data)
 
@@ -114,4 +112,4 @@ const PieChart = props => {
   )
 }
 
-export default PieChart
+export default CircleChart
