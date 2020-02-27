@@ -12,12 +12,15 @@ export default class D3CircleChart {
     console.debug("data =========================================:", this.radius)
     this.minColor=options.minColor || 'lightblue'
         this.maxColor=options.maxColor || 'darkblue'
-    
+
+
 
     const yAxis=options.yAxis
     const xAxis=options.xAxis
     this.xAxis=xAxis
     this.yAxis=yAxis
+    this.yLabel=options.yLabel || this.yAxis
+    this.xLabel=options.xLabel || this.xAxis
     this.chart()
     this.legend()
   }
@@ -99,7 +102,7 @@ export default class D3CircleChart {
     const yAxis=this.yAxis
     const self=this
     const color = this.color()
-    const columns=[ '', this.xAxis, this.yAxis ]
+    const columns=[ '', this.xLabel.replace('_',' '), this.yLabel.replace('_',' ') ]
     const table = d3.select(this.container.children[1]).append('table')
     const thead = table.append('thead')
      thead.append('tr')
@@ -107,7 +110,9 @@ export default class D3CircleChart {
       .data(columns)
       .enter()
       .append('th')
+      .style('text-transform','capitalize')
       .text(function (column) {
+        
         return column
       })
     const tbody = table.append('tbody')

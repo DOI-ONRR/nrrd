@@ -77,11 +77,13 @@ const StateDetailCard = props => {
   if(loading) {
     return "Loading ...."
   }
-  console.debug('DWGH ----------------------------------')
+  console.debug('DWGH ----------------------------------', year)
   let chartData
+  let dataSet='FY '+year
   if(data) {
     console.debug('data========================================================', data)
     chartData=data
+
   }
   
   return (
@@ -101,12 +103,15 @@ const StateDetailCard = props => {
 
             { chartData && (
               <Box >
-                <CircleChart data={chartData.revenue_commodity_summary} xAxis='commodity' yAxis='total'
-                             format={ d => utils.formatToDollarFloat(d) }
-                             minColor='#E6E6FA' maxColor='#4B0082'/>
+                <CircleChart data={chartData.revenue_commodity_summary}
+                  xAxis='commodity' yAxis='total'
+                  format={ d => utils.formatToDollarFloat(d) }
+                  yLabel={dataSet}
+                  minColor='#E6E6FA' maxColor='#4B0082'/>
                   <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
-                               format={ d => utils.formatToDollarFloat(d) }
-                               minColor='#FFCC99' maxColor='#FF9900'/>
+                    format={ d => utils.formatToDollarFloat(d) }
+                    yLabel={dataSet}
+                    minColor='#FFCC99' maxColor='#FF9900'/>
               </Box>
             )
             }
@@ -116,9 +121,9 @@ const StateDetailCard = props => {
       </CardContent>
       
       <CardActions>
-        {/* <Button size="small" color="primary">Learn More</Button> */}
-      </CardActions>
-    </Card>
+      {/* <Button size="small" color="primary">Learn More</Button> */}
+    </CardActions>
+      </Card>
   )
 }
 
