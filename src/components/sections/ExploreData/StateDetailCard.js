@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 const APOLLO_QUERY = gql`
   query DetailCard($state: String!, $year: Int!) {
     revenue_commodity_summary(
-      limit: 5
+      limit: 6
       where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
       order_by: { fiscal_year: asc, total: desc }
     ) {
@@ -47,7 +47,7 @@ const APOLLO_QUERY = gql`
       total
     }
     revenue_type_summary(
-      limit: 5
+      limit: 4
       where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
       order_by: { fiscal_year: asc, total: desc }
     ) {
@@ -105,13 +105,13 @@ const StateDetailCard = props => {
               <Box >
                 <CircleChart data={chartData.revenue_commodity_summary}
                   xAxis='commodity' yAxis='total'
-                  format={ d => utils.formatToDollarFloat(d) }
+                  format={ d => utils.formatToDollarInt(d) }
                   yLabel={dataSet}
-                  minColor='#E6E6FA' maxColor='#4B0082'/>
+                  minColor='#DCD2DF' maxColor='#2B1C30'/>
                   <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
-                    format={ d => utils.formatToDollarFloat(d) }
+                    format={ d => utils.formatToDollarInt(d) }
                     yLabel={dataSet}
-                    minColor='#FFCC99' maxColor='#FF9900'/>
+                    maxColor='#B64D00' minColor='#FCBA8B'/>
               </Box>
             )
             }

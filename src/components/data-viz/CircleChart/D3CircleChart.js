@@ -19,8 +19,8 @@ export default class D3CircleChart {
     const xAxis=options.xAxis
     this.xAxis=xAxis
     this.yAxis=yAxis
-    this.yLabel=options.yLabel || this.yAxis
-    this.xLabel=options.xLabel || this.xAxis
+    this.yLabel=options.yLabel || this.yAxis.replace('_',' ')
+    this.xLabel=options.xLabel || this.xAxis.replace('_',' ')
     this.chart()
     this.legend()
   }
@@ -102,19 +102,22 @@ export default class D3CircleChart {
     const yAxis=this.yAxis
     const self=this
     const color = this.color()
+     const yDomain = this.yDomain()
     const columns=[ '', this.xLabel.replace('_',' '), this.yLabel.replace('_',' ') ]
-    const table = d3.select(this.container.children[1]).append('table')
+    const table = d3.select(this.container.children[1]).append('table').attr('class','legend-table')
     const thead = table.append('thead')
-     thead.append('tr')
-      .selectAll('th')
-      .data(columns)
-      .enter()
-      .append('th')
+    const rh=thead.append('tr')
+    rh.append('th')
+      .attr('colspan',2)
+      .style('text-align','left')
       .style('text-transform','capitalize')
-      .text(function (column) {
-        
-        return column
-      })
+      .text(this.xLabel)
+    rh.append('th')
+      .style('text-align','right')
+      .style('text-transform','capitalize')
+      .text(this.yLabel)
+
+
     const tbody = table.append('tbody')
     //    const tbody = d3.selectAll('.legend-table tbody')
     const tr = tbody.selectAll('tr')
@@ -127,8 +130,8 @@ export default class D3CircleChart {
       .attr('class', 'legend-rect')
       .attr('width', 15)
       .attr('height', 15)
-      .style("fill", function(d){ return color(d[yAxis])})
-      .style("background-color", function(d){ return color(d[yAxis])})
+      .style("fill", function(d,i){ return color(yDomain.length - i )})
+      .style("background-color", function(d,i){ return color(yDomain.length - i )})
       .style("fill-opacity", 0.8)
     tr.append('td')
       .html((row,i)=> {
@@ -169,9 +172,9 @@ export default class D3CircleChart {
   
   color () {
     
-    
+
     return  d3.scaleLinear()
-      .domain([0, this.yMax()])
+      .domain([0, this.yDomain().length])
     .range([this.minColor, this.maxColor])
     
   }
@@ -185,6 +188,7 @@ export default class D3CircleChart {
     const w=this._width
     const h=this._height
     const color = this.color()
+    const yDomain = this.yDomain()
     console.debug("data =========================================:", w,h)
     let svg = d3.select(chartNode).append('svg')
         .attr('height', this._width)
@@ -258,7 +262,7 @@ export default class D3CircleChart {
       .attr("r", function(d){ return size(d[yAxis])})
       .attr("cx", width / 2)
       .attr("cy", height / 2)
-      .style("fill", function(d){ return color(d[yAxis])})
+      .style("fill", function(d,i){ return color(yDomain.length - i)})
       .style("fill-opacity", 0.8)
       .attr("stroke", "black")
       .style("stroke-width", 1)

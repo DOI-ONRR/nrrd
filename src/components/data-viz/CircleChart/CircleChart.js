@@ -42,8 +42,6 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     top: 0,
     left: 0,
-    width: '100%',
-    height: '100%',
     fontSize: theme.typography.chartText,
     '& tr > td:first-child': {
       width: 10,
@@ -54,7 +52,7 @@ const useStyles = makeStyles(theme => ({
       width: 20,
     },
     '& .legend-table': {
-      width: '100%',
+      width: '85%',
       borderSpacing: 0,
       borderCollapse: 0,
       boxShadow: 'none',
