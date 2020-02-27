@@ -263,8 +263,8 @@ const ExploreDataToolbar = props => {
         <MapLevel onChange={props.handleChange} />
         <MapOffshore onChange={props.handleChange} />
         <MapExploreMenu
-          linkLabels={['Revenue by company', 'Native American revenue', 'Query revenue data', 'Downloads & Documentation', 'How revenue works']}
-          linkUrls={['/explore/?dataType=revenue-by-company', '/explore/?dataType=native-american-revenue', '/query-data', '/downloads', '/how-it-works']}
+          linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
+          linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
         />
       </Box>
     </Box>
