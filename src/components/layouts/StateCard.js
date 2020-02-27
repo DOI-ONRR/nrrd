@@ -284,8 +284,6 @@ const StateCard = props => {
     sparkMin = sparkData[0][0]
     sparkMax = sparkData[sparkData.length - 1][0]
 
-    console.log('data: ', data)
-
     return (
       <>
         <Slide direction="left" in={true} mountOnEnter unmountOnExit>

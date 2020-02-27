@@ -41,7 +41,10 @@ import StateCard from '../../layouts/StateCard'
 import { StoreContext } from '../../../store'
 import mapJson from './us-topology.json'
 import { useMediaQuery } from '@material-ui/core'
+import { select } from 'd3'
 // import  mapJson from './us.t2.json'
+
+console.log('mapJson: ', mapJson)
 
 export const STATIC_QUERY = graphql`
   {
@@ -63,13 +66,12 @@ const FISCAL_REVENUE_QUERY = gql`
   }
 `
 
-const STATE_OR_AREA_QUERY = gql`
-  query StateOrArea {
-    fiscal_revenue_summary( 
-      order_by: { state_or_area: asc }
-      where: {state_or_area: {_nin: [""]}}
-    ) {
-      state_or_area
+const DISTINCT_LOCATIONS_QUERY = gql`
+  query DistinctLocations {
+    distinct_locations {
+      location
+      location_id
+      sort_order
     }
   }
 `
@@ -387,17 +389,29 @@ const useStyles = makeStyles(theme => ({
     '@media (max-width: 768px)': {
       textAlign: 'left',
     }
-  }
+  },
+  searchString: {
+    fontWeight: 700,
+  },
 }))
 
-console.log('mapjson: ', mapJson)
+const getRegionProperties = input => {
 
-const getRegion = input => {
-  const selectedObj = mapJson.objects.states.geometries.filter(obj => {
-    if (obj.properties.abbr.toLowerCase() === input.toLowerCase()) {
-      return obj.properties
-    }
-  })
+  let selectedObj
+  if (input.length > 2) {
+    selectedObj = mapJson.objects.counties.geometries.filter(obj => {
+      if (obj.properties.FIPS.toLowerCase() === input.toLowerCase()) {
+        return obj.properties
+      }
+    })
+  }
+  else {
+    selectedObj = mapJson.objects.states.geometries.filter(obj => {
+      if (obj.properties.abbr.toLowerCase() === input.toLowerCase()) {
+        return obj.properties
+      }
+    })
+  }
 
   return selectedObj
 }
@@ -461,27 +475,61 @@ const AddLocationCard = props => {
   const classes = useStyles()
 
   const { state, dispatch } = useContext(StoreContext)
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState(null)
+  const [keyCount, setKeyCount] = useState(0)
   const cards = state.cards
 
+  const handleSearch = event => {
+    setInput(event.target.value)
+  }
+
   const handleChange = val => {
-    if (typeof val !== 'undefined' && val !== null) {
+    if (val) {
       cards.push({
-        fips: getRegion(val.state_or_area)[0].properties.FIPS,
-        abbrev: getRegion(val.state_or_area)[0].properties.abbr,
-        name: getRegion(val.state_or_area)[0].properties.name
+        fips: getRegionProperties(val.location_id)[0].properties.FIPS,
+        abbrev: val.location_id,
+        name: val.location
       })
       dispatch({ type: 'CARDS', payload: { cards: cards } })
+      setInput(null)
+      setKeyCount(keyCount + 1)
     }
   }
 
-  const { loading, error, data } = useQuery(STATE_OR_AREA_QUERY)
+  const renderLabel = item => {
+    const label = item
+    const searchString = input
+
+    if (searchString) {
+      const index = label.toLowerCase().indexOf(searchString.toLowerCase())
+
+      if (index !== -1) {
+        const length = searchString.length
+        const prefix = label.substring(0, index)
+        const suffix = label.substring(index + length)
+        const match = label.substring(index, index + length)
+
+        return (
+          <span>
+            {prefix}<Box variant="span" fontWeight="bold" display="inline">{match}</Box>{suffix}
+          </span>
+        )
+      }
+    }
+
+    return (
+      <span>{label}</span>
+    )
+  }
+
+  const { loading, error, data } = useQuery(DISTINCT_LOCATIONS_QUERY)
 
   if (loading) return null
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-    const stateOrAreaData = data.fiscal_revenue_summary
+    // console.log('explore data: ', data)
+    const distinctLocations = data.distinct_locations
     return (
       <Card className={classes.addLocationCard}>
         <CardHeader
@@ -489,14 +537,17 @@ const AddLocationCard = props => {
         />
         <CardContent>
           <Autocomplete
-            autoComplete={true}
+            key={keyCount}
             id="combo-box-demo"
-            options={stateOrAreaData}
-            getOptionLabel={option => option.state_or_area}
+            autoComplete
+            inputValue={input}
+            options={distinctLocations}
+            getOptionLabel={option => option.location}
             style={{ width: '100%' }}
             renderInput={params => (
-              <TextField {...params} label="Search locations..." variant="outlined" fullWidth />
+              <TextField {...params} label="Search locations..." variant="outlined" fullWidth onChange={handleSearch} />
             )}
+            renderOption={option => renderLabel(option.location)}
             onChange={(e, v) => handleChange(v)}
           />
         </CardContent>
@@ -663,7 +714,6 @@ const ExploreData = () => {
   }
 
   const handleSnackbar = newState => {
-    // console.log('handleSnackbar hit yo!')
     setSnackbarState({ open: true, ...newState })
   }
 
