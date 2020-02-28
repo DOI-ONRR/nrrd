@@ -12,8 +12,13 @@ const useStyles = makeStyles(theme => ({
   tabsRoot: {
     '& .Mui-selected': {
       borderTop: `5px solid ${ theme.palette.primary.dark }`,
+      borderBottom: `1px solid ${ theme.palette.background.default }`,
+      borderLeft: `1px solid ${ theme.palette.primary.dark }`,
+      borderRight: `1px solid ${ theme.palette.primary.dark }`,
       fontWeight: 'bold',
       color: theme.palette.primary.dark,
+      backgroundColor: theme.palette.background.default,
+      zIndex: 10,
     },
   },
   tabRoot: {
@@ -25,6 +30,8 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(1),
     color: theme.palette.primary.dark,
     textTransform: 'capitalize',
+    minHeight: 60,
+    fonnnntSize: theme.typography.h4.fontSize,
     '& span:hover': {
       textDecoration: 'underline',
     },
@@ -37,6 +44,9 @@ const useStyles = makeStyles(theme => ({
       '-webkit-box-shadow': 'inset  0 -10px 10px -15px grey',
       'box-shadow': 'inset  0 -10px 10px -15px grey',
     },
+  },
+  tabSelected: {
+    background: theme.palette.background,
   },
   tabPanelContainer: {
     position: 'relative',
@@ -111,7 +121,16 @@ const Tabtastic = props => {
       >
         { children &&
           React.Children.map(children, (item, index) => (
-            <Tab disableRipple key={index} label={item.props.label} {...a11yProps(index)} index={index} className={classes.tabRoot} />
+            <Tab
+              disableRipple
+              key={index}
+              label={item.props.label}
+              {...a11yProps(index)}
+              index={index}
+              classes={{
+                root: classes.tabRoot,
+                selected: classes.tabSelected
+              }} />
           ))
         }
       </Tabs>

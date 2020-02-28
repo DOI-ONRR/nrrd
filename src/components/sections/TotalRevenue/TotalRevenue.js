@@ -88,6 +88,15 @@ const useStyles = makeStyles(theme => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
+  },
+  toggleButtonRoot: {
+    textTransform: 'capitalize',
+    '& .Mui-selected': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
+  toggleButtonSelected: {
+    backgroundColor: `${ theme.palette.primary.dark } !important`,
   }
 }))
 
@@ -123,7 +132,15 @@ const TotalRevenueControls = props => {
           aria-label="Toggle between Yearly and Monthly data">
           {
             Object.values(TOGGLE_VALUES).map((item, i) => (
-              <ToggleButton key={i} value={item} aria-label={item} disableRipple={true}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
+              <ToggleButton
+                key={i}
+                value={item}
+                aria-label={item}
+                disableRipple
+                classes={{
+                  root: classes.toggleButtonRoot,
+                  selected: classes.toggleButtonSelected,
+                }}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
             ))
           }
         </ToggleButtonGroup>

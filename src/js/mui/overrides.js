@@ -17,4 +17,10 @@ module.exports = Object.freeze({
       },
     }
   },
+  MuiListItemIcon: {
+    root: {
+      color: palette.primary.dark,
+      minWidth: 30,
+    }
+  }
 })

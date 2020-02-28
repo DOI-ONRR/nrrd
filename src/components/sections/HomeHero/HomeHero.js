@@ -6,8 +6,8 @@ import { GlossaryTerm } from '../../utils/GlossaryTerm'
 
 const HomeHero = () => {
   return (
-    <Typography variant="subtitle1">
-      <Box pt={5} pb={5}>
+    <Typography variant="h2">
+      <Box pt={5} pb={5} fontWeight="normal">
         When companies extract energy and mineral resources on property
         leased from the federal government and Native Americans, they pay{' '}
         <GlossaryTerm termKey="Bonus">bonuses</GlossaryTerm>,{' '}

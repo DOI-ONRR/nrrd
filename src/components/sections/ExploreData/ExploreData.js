@@ -224,7 +224,7 @@ const useStyles = makeStyles(theme => ({
     borderTop: `1px solid ${ theme.palette.grays[300] }`,
     borderBottom: `1px solid ${ theme.palette.grays[300] }`,
   },
-  sliderRoot: {
+  sliderBox: {
     width: '100%',
     position: 'relative',
     boxSizing: 'border-box',
@@ -232,6 +232,66 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     top: 0,
+  },
+  sliderRoot: {
+  },
+  sliderMarkLabel: {
+    fontWeight: 'bold',
+    top: '28px',
+    // color: theme.palette.grays['800'],
+    fontSize: '1rem',
+  },
+  sliderMarkLabelActive: {
+    fontWeight: 'bold',
+    boxShadow: 'none',
+  },
+  sliderTrack: {
+    height: 4,
+    backgroundColor: 'transparent',
+  },
+  sliderRail: {
+    height: 4,
+    backgroundColor: theme.palette.grays['500']
+  },
+  sliderMark: {
+    height: 4,
+    backgroundColor: theme.palette.common.white,
+    width: 0,
+  },
+  sliderActive: {
+    boxShadow: 'none',
+    transition: 'none',
+    borderRadius: 0,
+  },
+  sliderThumb: {
+    marginTop: -4,
+    boxShadow: 'none',
+    transition: 'none',
+    '&:hover': {
+      boxShadow: 'none',
+      transition: 'none',
+    },
+    '&:focus,&:hover,&$active': {
+      boxShadow: 'inherit',
+    },
+  },
+  sliderValueLabel: {
+    width: 60,
+    top: -2,
+    left: 'calc(-50% + -18px)',
+    transform: 'rotate(0deg)',
+    fontSize: '1rem',
+    cursor: 'pointer',
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.primary.contrastText,
+    '& span': {
+      width: 60,
+      transform: 'rotate(0)',
+      borderRadius: 0,
+      textAlign: 'center',
+      color: `${ theme.palette.common.white } !important`,
+      backgroundColor: theme.palette.primary.dark,
+    },
   },
   contentWrapper: {
     paddingBottom: theme.spacing(4),
@@ -337,8 +397,14 @@ const useStyles = makeStyles(theme => ({
   searchString: {
     fontWeight: 700,
   },
+  buttonGroupGrouped: {
+    padding: 5,
+    background: theme.palette.background.default,
+    margin: 0,
+  },
 }))
 
+// get region details from map object
 const getRegionProperties = input => {
   let selectedObj
   if (input.length > 2) {
@@ -428,14 +494,18 @@ const AddLocationCard = props => {
 
   const handleChange = val => {
     if (val) {
-      cards.push({
-        fips: getRegionProperties(val.location_id)[0].properties.FIPS,
-        abbrev: val.location_id,
-        name: val.location
-      })
-      dispatch({ type: 'CARDS', payload: { cards: cards } })
-      setInput(null)
-      setKeyCount(keyCount + 1)
+      if (
+        cards.filter(item => item.fips === getRegionProperties(val.location_id)[0].properties.FIPS).length === 0
+      ) {
+        cards.push({
+          fips: getRegionProperties(val.location_id)[0].properties.FIPS,
+          abbrev: val.location_id,
+          name: val.location
+        })
+        dispatch({ type: 'CARDS', payload: { cards: cards } })
+        setInput(null)
+        setKeyCount(keyCount + 1)
+      }
     }
   }
 
@@ -521,12 +591,8 @@ const YearSlider = props => {
     }
   ]
 
-  const theme = useTheme()
-  const matchesSmUp = useMediaQuery(theme.breakpoints.up('sm'))
-  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
-
   return (
-    <Box id="year-slider" className={classes.sliderRoot}>
+    <Box id="year-slider" className={classes.sliderBox}>
       <Grid container spacing={4}>
         <Grid item xs>
           <Slider
@@ -542,6 +608,17 @@ const YearSlider = props => {
             marks={customMarks}
             min={2003}
             max={2019}
+            classes={{
+              root: classes.sliderRoot,
+              markLabel: classes.sliderMarkLabel,
+              markLabelActive: classes.sliderMarkLabelActive,
+              track: classes.sliderTrack,
+              rail: classes.sliderRail,
+              mark: classes.sliderMark,
+              active: classes.sliderActive,
+              thumb: classes.sliderThumb,
+              valueLabel: classes.sliderValueLabel,
+            }}
           />
         </Grid>
       </Grid>
@@ -558,7 +635,8 @@ const MapControls = props => {
       <ButtonGroup
         orientation="vertical"
         variant="contained"
-        aria-label="Explore data map zoom controls">
+        aria-label="Explore data map zoom controls"
+        classes={{ grouped: classes.buttonGroupGrouped }}>
         <Button onClick={() => props.handleClick('add')} role="button" aria-label="Map zoom in">
           <AddIcon />
         </Button>

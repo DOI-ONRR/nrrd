@@ -78,7 +78,8 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
-    color: theme.palette.common.black
+    color: theme.palette.common.black,
+    margin: 0,
   },
   link: {
     color: theme.palette.common.black

@@ -21,9 +21,22 @@ const useStyles = makeStyles(theme => ({
   closeIcon: {
     color: theme.palette.common.white,
     position: 'relative',
-    top: 10,
+    top: 15,
     cursor: 'pointer'
-  }
+  },
+  cardHeader: {
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.common.white,
+    padding: 10,
+    height: 75,
+    fontSize: '1.2rem',
+    '& .MuiCardHeader-action': {
+      marginTop: 0,
+    },
+    '& span': {
+      margin: 0,
+    },
+  },
 }))
 
 const StateDetailCard = props => {
@@ -43,6 +56,7 @@ const StateDetailCard = props => {
             closeCard(i)
           }}
         />}
+        classes={{ root: classes.cardHeader }}
       />
       <CardContent>
         <Typography variant="body1" component="p">

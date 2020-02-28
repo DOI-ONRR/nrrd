@@ -72,6 +72,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.common.white,
     padding: 10,
     height: 40,
+    fontSize: '1.2rem',
     '& .MuiCardHeader-action': {
       marginTop: 0,
     },
@@ -81,7 +82,7 @@ const useStyles = makeStyles(theme => ({
   },
   close: {
     position: 'relative',
-    top: 0,
+    top: -3,
     right: '10px',
     cursor: 'pointer'
   },
@@ -237,7 +238,7 @@ const StateCard = props => {
               }
               classes={{ root: classes.cardHeader }}
             >
-              <Typography variant="h6" color="inherit">
+              <Typography variant="h4" color="inherit">
                 {props.name}
               </Typography>
             </CardHeader>
@@ -315,18 +316,17 @@ const StateCard = props => {
               }
               classes={{ root: classes.cardHeader }}
             >
-              <Typography variant="h6" color="inherit">
+              <Typography variant="h4" color="inherit">
                 {props.name}
               </Typography>
             </CardHeader>
             <CardContent>
               <Collapse in={minimized} timeout="auto" unmountOnExit>
                 <Grid container>
-                  <Grid item xs={7}>
+                  <Grid item xs={6}>
                     <Typography variant="caption">
-                      <Box>
-                      Trend ({sparkMin} - {sparkMax})
-                      </Box>
+                      <Box>Trend</Box>
+                      <Box>({sparkMin} - {sparkMax})</Box>
                     </Typography>
                     <Box component="span">
                       {sparkData && (
@@ -337,7 +337,7 @@ const StateCard = props => {
                       )}
                     </Box>
                   </Grid>
-                  <Grid item xs={5} style={{ textAlign: 'right' }}>
+                  <Grid item xs={6} style={{ textAlign: 'right' }}>
                     <Typography variant="caption">
                       <Box>{state.year}</Box>
                       <Box>
@@ -434,7 +434,7 @@ const StateCard = props => {
             }
             classes={{ root: classes.cardHeader }}
           >
-            <Typography variant="h6" color="inherit">
+            <Typography variant="h4" color="inherit">
               {props.name}
             </Typography>
             <CloseIcon
