@@ -618,7 +618,8 @@ const ExploreData = () => {
                       key={i}
                       fips={state.fips}
                       abbrev={state.abbrev}
-                      name={state.name}
+                    name={state.name}
+                    year={state.year}
                       minimizeIcon={state.minimizeIcon}
                       closeIcon={state.closeIcon}
                       closeCard={fips => {

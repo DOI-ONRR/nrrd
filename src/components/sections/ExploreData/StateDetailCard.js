@@ -37,7 +37,6 @@ const useStyles = makeStyles(theme => ({
 const APOLLO_QUERY = gql`
   query DetailCard($state: String!, $year: Int!) {
     revenue_commodity_summary(
-      limit: 6
       where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
       order_by: { fiscal_year: asc, total: desc }
     ) {
@@ -47,7 +46,6 @@ const APOLLO_QUERY = gql`
       total
     }
     revenue_type_summary(
-      limit: 4
       where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
       order_by: { fiscal_year: asc, total: desc }
     ) {
@@ -62,7 +60,7 @@ const APOLLO_QUERY = gql`
 
 const StateDetailCard = props => {
   const classes = useStyles()
-  console.debug(props)
+  // console.debug(props)
   const { state } = useContext(StoreContext)
   const year = state.year
   const location = props.abbrev
@@ -77,11 +75,11 @@ const StateDetailCard = props => {
   if(loading) {
     return "Loading ...."
   }
-  console.debug('DWGH ----------------------------------', year)
+  // console.debug('DWGH ----------------------------------', year)
   let chartData
   let dataSet='FY '+year
   if(data) {
-    console.debug('data========================================================', data)
+    // console.debug('data========================================================', data)
     chartData=data
 
   }
@@ -105,12 +103,18 @@ const StateDetailCard = props => {
               <Box >
                 <CircleChart data={chartData.revenue_commodity_summary}
                   xAxis='commodity' yAxis='total'
-                  format={ d => utils.formatToDollarInt(d) }
+                             format={ d => {
+                               // console.debug('fooormat', d)
+                               return utils.formatToDollarInt(d)
+                             }
+                             }
                   yLabel={dataSet}
+                  maxCircles={6}
                   minColor='#DCD2DF' maxColor='#2B1C30'/>
                   <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
                     format={ d => utils.formatToDollarInt(d) }
-                    yLabel={dataSet}
+                    yLabel={'FY '+state.year}
+                    maxCircles={4}
                     maxColor='#B64D00' minColor='#FCBA8B'/>
               </Box>
             )

@@ -9,22 +9,87 @@ export default class D3CircleChart {
     this._width = (container.children[0].clientWidth <= 0) ? 300 : container.children[0].clientWidth
     this.radius = Math.min(this._width, this._height) / 2
     if(options.format ) { this.format=options.format  }
-    console.debug("data =========================================:", this.radius)
+    // console.debug("data =========================================:", this.radius)
     this.minColor=options.minColor || 'lightblue'
         this.maxColor=options.maxColor || 'darkblue'
 
-
-
+    this.maxCircles = options.maxCircles - 1
     const yAxis=options.yAxis
     const xAxis=options.xAxis
     this.xAxis=xAxis
     this.yAxis=yAxis
     this.yLabel=options.yLabel || this.yAxis.replace('_',' ')
     this.xLabel=options.xLabel || this.xAxis.replace('_',' ')
+    this.data=this.rollUpOther(data)
+
+    
+    const root= this.pack({name: 'root', children: this.data})
+    this._root=root
+    
+    
+    // console.debug("DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",this.data)
     this.chart()
     this.legend()
+    
   }
- xDomain () {
+  
+  pack (data) {
+    try {
+      
+      let r=d3.pack()
+          .size([this._width - 2, this._height - 2])
+          .padding(3)
+      (this.hierarchy(data))
+      return r
+    }
+    catch (err) {  console.warn('Errror: ',err) } 
+  }
+  
+  
+
+  
+  rollUpOther(data) {
+    try {
+      const maxCircles=this.maxCircles
+      const yAxis=this.yAxis
+      const xAxis=this.xAxis
+      // console.debug('-------------------------------------------------------------',data)
+      if(maxCircles < data.length) {
+        let tmp=data
+        let other=tmp.reduce( (sum,row,i) => {
+          // console.debug("maxcircles: ",sum,row,i)
+          if(i > maxCircles) {
+            return sum + row[yAxis] || 0
+          }
+        }, 0)
+        // console.debug(other)
+        let o=data[maxCircles]
+        data=data.filter( (row,i) => i < maxCircles )
+        o[xAxis]='Other'
+        o[yAxis]=other
+        data.push(o)
+        // console.debug("OTHER :", o);
+       
+      }
+      
+      return data;
+    }
+    catch (err) {  console.warn('Errror: ',err) }
+  }
+  
+  hierarchy (data) {
+    try {
+      const r= d3.hierarchy(data)
+            .sum(d => d[this.yAxis])
+            .sort((a, b) => b[this.yAxis] - a[this.yAxis])
+      // console.debug(r)
+      return r
+    }
+    catch (err) {  console.warn('Errror: ',err) } 
+    
+  }
+  
+  xDomain () {
     try {
       const r = this.data.map((row, i) => {
         return row[this.xAxis]
@@ -91,7 +156,7 @@ export default class D3CircleChart {
   }
 
   legend () {
-    console.debug(this._legend)
+    //// console.debug(this._legend)
     if (this._legend) {
       this._legend.selectAll('.legend-table').remove()
       this._legend.selectAll('.legend-rect').remove()
@@ -135,20 +200,16 @@ export default class D3CircleChart {
       .style("fill-opacity", 0.8)
     tr.append('td')
       .html((row,i)=> {
-        console.debug(row)
+        //// console.debug(row)
         
         return row[xAxis]
       })
     tr.append('td')
       .style('text-align','right')
       .html(function (d) {
-        console.debug(d)
-        if (Number.isInteger(d[yAxis])) {
+        //// console.debug(d)
           return self._format(d[yAxis], 0)
-        }
-        else {
-          return d[yAxis]
-        }
+      
       }).enter()
 
     
@@ -178,18 +239,108 @@ export default class D3CircleChart {
     .range([this.minColor, this.maxColor])
     
   }
-  
+
   chart () {
 
     const xAxis=this.xAxis
     const yAxis=this.yAxis
-    const data=this.data
+
+    const chartNode=this.container.children[0]
+    const width=this._width
+    const height=this._height
+    const color = this.color()
+    const yDomain = this.yDomain()
+    const root = this._root
+    let focus = root;
+    let view;
+
+
+
+
+    
+    const svg = d3.select(chartNode).append('svg')
+      .attr("viewBox", `-${width*0.75} -${height*0.75} ${width*1.5} ${height*1.5}`)
+      .style("display", "block")
+      .style("margin", "0 -14px")
+      .style("background", 'white')
+      .style("cursor", "pointer")
+      .on("click", () => zoom(root))
+    
+
+    const node = svg.append("g")
+          .selectAll("circle")
+          .data(root.descendants().slice(1))
+          .join("circle")
+          .attr("fill", (d,i) => {
+            // console.debug("fill attr", d,i)
+            return d.children ? color(d.depth) : color(yDomain.length - i)
+          })
+          .attr("pointer-events", d => !d.children ? "none" : null)
+          .on("mouseover", function() { d3.select(this).attr("stroke", "#000"); })
+          .on("mouseout", function() { d3.select(this).attr("stroke", null); })
+          .on("click", d => focus !== d && (zoom(d), d3.event.stopPropagation()));
+
+    const label = svg.append("g")
+          .style("font", "10px sans-serif")
+          .attr("pointer-events", "none")
+          .attr("text-anchor", "middle")
+          .selectAll("text")
+          .data(root.descendants())
+          .join("text")
+          .style("fill-opacity", d => d.parent === root ? 1 : 0)
+          .style("display", d => d.parent === root ? "inline" : "none")
+          .text(d => d.data.name);
+    
+    zoomTo([root.x, root.y, root.r * 2]);
+    
+    function zoomTo(v) {
+      const k = width / v[2];
+      
+      view = v;                                 
+
+      label.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
+      node.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
+      node.attr("r", d => d.r * k);
+    }
+
+    function zoom(d) {
+      const focus0 = focus;
+      
+      focus = d;
+      
+      const transition = svg.transition()
+            .duration(d3.event.altKey ? 7500 : 750)
+            .tween("zoom", d => {
+              const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
+              return t => zoomTo(i(t));
+            });
+      
+      label
+        .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
+        .transition(transition)
+        .style("fill-opacity", d => d.parent === focus ? 1 : 0)
+        .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
+        .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
+    }
+    
+    return svg.node();
+    
+  }
+
+  
+  
+  
+  dep_chart () {
+
+    const xAxis=this.xAxis
+    const yAxis=this.yAxis
+    const data=this.pack(this.data)
     const chartNode=this.container.children[0]
     const w=this._width
     const h=this._height
     const color = this.color()
     const yDomain = this.yDomain()
-    console.debug("data =========================================:", w,h)
+    // console.debug("data =========================================:", w,h)
     let svg = d3.select(chartNode).append('svg')
         .attr('height', this._width)
         .attr('width', this._width)
@@ -204,22 +355,13 @@ export default class D3CircleChart {
     var height = h
   // Filter a bit the data -> more than 1 million inhabitants
 //  data = data.filter(function(d){ return d.value>10000000 })
-    console.debug("========================",data)
+    // console.debug("========================",data)
   // Color palette for continents?
 
     
 
 
-    const    pack = data => d3.pack()
-      .size([width - 2, height - 2])
-      .padding(3)
-    (d3.hierarchy(data)
-     .sum(d => d[yAxis])
-     .sort((a, b) => b[yAxis] - a[yAxis]))
     
-    const root= pack(data);
-
-    console.debug('ROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOt ',root)
     // Size scale for countries
   var size = d3.scaleLinear()
       .domain([0,this.yMax()])
@@ -279,7 +421,7 @@ export default class D3CircleChart {
       .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
       .force("charge", d3.forceManyBody().strength(1)) // Nodes are attracted one each other of value is > 0
       .force("collide", d3.forceCollide().strength(.2).radius(function(d){
-        //console.debug('collide ',d)
+        //// console.debug('collide ',d)
         return (size(d[yAxis])+1)
       }).iterations(1)) // Force that avoids circle overlapping
 
@@ -298,7 +440,7 @@ export default class D3CircleChart {
   // What happens when a circle is dragged?
   function dragstarted(d) {
     if (!d3.event.active) simulation.alphaTarget(.03).restart();
-    console.debug("drag start", d)
+    // console.debug("drag start", d)
     d.fx = d.x;
     d.fy = d.y;
   }
@@ -307,8 +449,8 @@ export default class D3CircleChart {
     d.fy = d3.event.y;
   }
     function dragended(d) {
-      console.debug("dd3.event.activerag ended", d)
-      console.debug(d3.event.active)
+     // console.debug("dd3.event.activerag ended", d)
+     // console.debug(d3.event.active)
       if (!d3.event.active) simulation.alphaTarget(.03);
       d.fx = null;
       d.fy = null;
