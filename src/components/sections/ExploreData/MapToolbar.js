@@ -66,9 +66,9 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: 'rgba(0, 0, 0, 0.08)',
     }
   },
-  mapMenuItem: {
+  mapMenuRoot: {
     border: `1px solid ${ theme.palette.grays['300'] }`,
-    height: 48,
+    height: 50,
     marginLeft: theme.spacing(0),
     marginRight: theme.spacing(1),
     paddingTop: 0,
@@ -82,6 +82,11 @@ const useStyles = makeStyles(theme => ({
     whiteSpace: 'nowrap',
     minWidth: 150,
     zIndex: 99,
+    fontSize: theme.typography.body2,
+    '& .MuiTypography-root': {
+      fontSize: '1.2rem',
+      lineHeight: '1.2rem',
+    },
     '& *': {
       margin: 0,
     },
@@ -121,7 +126,7 @@ const MapLevel = props => {
   }
 
   return (
-    <div className={classes.mapMenuItem}>
+    <div className={classes.mapMenuRoot}>
       <List component="nav" aria-label="Map levels">
         <ListItem
           button
@@ -183,7 +188,7 @@ const MapOffshore = props => {
   }
 
   return (
-    <div className={classes.mapMenuItem}>
+    <div className={classes.mapMenuRoot}>
       <List component="nav" aria-label="Map levels">
         <ListItem
           button

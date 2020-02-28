@@ -42,7 +42,7 @@ import utils from '../../js/utils'
 
 import { StoreContext } from '../../store'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: '20px'
   },
@@ -56,7 +56,7 @@ const useStyles = makeStyles({
     '@media (max-width: 768px)': {
       width: '100%',
       height: 'auto',
-    }
+    },
   },
   cardMinimized: {
     minHeight: 0,
@@ -68,6 +68,8 @@ const useStyles = makeStyles({
     }
   },
   cardHeader: {
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.common.white,
     padding: 10,
     height: 40,
     '& .MuiCardHeader-action': {
@@ -111,7 +113,7 @@ const useStyles = makeStyles({
   paper: {
     width: '100%'
   },
-})
+}))
 
 const APOLLO_QUERY = gql`
   query StateTrend($state: String!, $year: Int!) {
@@ -235,7 +237,7 @@ const StateCard = props => {
                   )}
                 </>
               }
-              className={classes.cardHeader}
+              classes={{ root: classes.cardHeader }}
             >
               <Typography variant="h6" color="inherit">
                 {props.name}
@@ -313,7 +315,7 @@ const StateCard = props => {
                   )}
                 </>
               }
-              className={classes.cardHeader}
+              classes={{ root: classes.cardHeader }}
             >
               <Typography variant="h6" color="inherit">
                 {props.name}
@@ -432,7 +434,7 @@ const StateCard = props => {
                 }}
               />
             }
-            className={classes.cardHeader}
+            classes={{ root: classes.cardHeader }}
           >
             <Typography variant="h6" color="inherit">
               {props.name}

@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
       bottom: 5,
     },
     '& .tick': {
-      fontSize: theme.typography.chartLegend.label,
+      fontSize: theme.typography.body2,
     }
   }
 }))

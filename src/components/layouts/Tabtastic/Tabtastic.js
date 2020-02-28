@@ -9,6 +9,35 @@ import Tab from '@material-ui/core/Tab'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
+  tabsRoot: {
+    '& .Mui-selected': {
+      borderTop: `5px solid ${ theme.palette.primary.dark }`,
+      fontWeight: 'bold',
+      color: theme.palette.primary.dark,
+    },
+  },
+  tabRoot: {
+    background: theme.palette.primary.light,
+    borderTop: `5px solid ${ theme.palette.primary.light }`,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    color: theme.palette.primary.dark,
+    textTransform: 'capitalize',
+    '& span:hover': {
+      textDecoration: 'underline',
+    },
+    '@media (max-width: 500px)': {
+      marginLeft: 0,
+      width: '100%',
+      display: 'block',
+      minWidth: '100%',
+      '-moz-box-shadow': 'inset  0 -10px 10px -15px grey',
+      '-webkit-box-shadow': 'inset  0 -10px 10px -15px grey',
+      'box-shadow': 'inset  0 -10px 10px -15px grey',
+    },
+  },
   tabPanelContainer: {
     position: 'relative',
     top: '-1px',
@@ -78,10 +107,11 @@ const Tabtastic = props => {
         textColor="primary"
         variant="fullWidth"
         aria-label="Revenue, Disbursements, and Production Tabs"
+        className={classes.tabsRoot}
       >
         { children &&
           React.Children.map(children, (item, index) => (
-            <Tab disableRipple key={index} label={item.props.label} {...a11yProps(index)} index={index} />
+            <Tab disableRipple key={index} label={item.props.label} {...a11yProps(index)} index={index} className={classes.tabRoot} />
           ))
         }
       </Tabs>

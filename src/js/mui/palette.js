@@ -1,30 +1,22 @@
 // https://material-ui.com/system/palette/
 
-const palette = {
+module.exports = Object.freeze({
   // New color ramps
   // https://935313.axshare.com/#g=1&p=color_ramps
+  background: { default: '#ffffff' },
   primary: {
-    main: '#587f4c',
-    light: '#86af78',
-    dark: '#2c5223',
-    contrastText: '#cde3c3',
+    main: '#f0f6fa',
   },
   secondary: {
-    main: '#323c42',
-    light: '#5c666d',
-    dark: '#0c161b',
-    contrastText: '#f0f6fa',
+    main: '#cde3c3',
   },
   common: {
     white: '#fff',
     black: '#000',
-    blue: '#1478a6',
   },
   text: {
-    primary: 'rgba(0, 0, 0, 0.87)',
-    secondary: 'rgba(0, 0, 0, 0.54)',
-    disabled: 'rgba(0, 0, 0, 0.38)',
-    hint: 'rgba(0, 0, 0, 0.38)'
+    primary: '#000000',
+    secondary: '#1478a6'
   },
   chart: {
     primary: '#222222',
@@ -95,7 +87,6 @@ const palette = {
     1300: '#383a3b',
     1400: '#252627',
     1500: '#131314'
-  }
-}
-
-module.exports.palette = palette
+  },
+  tonalOffset: 0.5,
+})

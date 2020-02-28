@@ -120,52 +120,24 @@ const useStyles = makeStyles(theme => ({
         marginBottom: theme.spacing(1),
         bottom: 0,
       },
-      '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.common.white,
-      },
-      '& .MuiCardHeader-content > span': {
-        color: theme.palette.common.white,
-      }
     },
     '& > div:nth-child(2)': {
       transform: 'translate3d(-10%, 0px, 0px) !important',
       '@media (max-width: 768px)': {
         transform: 'none !important',
       },
-      '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.blues[600],
-        color: theme.palette.common.white,
-      },
-      '& .MuiCardHeader-content > span': {
-        color: theme.palette.common.white,
-      }
     },
     '& > div:nth-child(3)': {
       transform: 'translate3d(-20%, 0px, 0px) !important',
       '@media (max-width: 768px)': {
         transform: 'none !important',
       },
-      '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.oranges[200],
-        color: theme.palette.common.white,
-      },
-      '& .MuiCardHeader-content > span': {
-        color: theme.palette.common.white,
-      }
     },
     '& > div:nth-child(4)': {
       transform: 'translate3d(-30%, 0px, 0px) !important',
       '@media (max-width: 768px)': {
         transform: 'none !important',
       },
-      '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.purples[500],
-        color: theme.palette.common.white,
-      },
-      '& .MuiCardHeader-content > span': {
-        color: theme.palette.common.white,
-      }
     },
     '& > div:nth-child(5)': {
       transform: 'translate3d(-40%, 0px, 0px) !important',
@@ -280,38 +252,6 @@ const useStyles = makeStyles(theme => ({
     '& .MuiCard-root:last-child': {
       marginRight: theme.spacing(0)
     },
-    '& .MuiCard-root:nth-child(1)': {
-      '& > .MuiCardHeader-root': {
-        backgroundColor: theme.palette.primary.main,
-        '& span': {
-          color: theme.palette.common.white,
-        }
-      },
-    },
-    '& .MuiCard-root:nth-child(2)': {
-      '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.blues[600],
-        '& span': {
-          color: theme.palette.common.white,
-        }
-      },
-    },
-    '& .MuiCard-root:nth-child(3)': {
-      '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.oranges[200],
-        '& span': {
-          color: theme.palette.common.white,
-        }
-      },
-    },
-    '& .MuiCard-root:nth-child(4)': {
-      '& .MuiCardHeader-root': {
-        backgroundColor: theme.palette.purples[500],
-        '& span': {
-          color: theme.palette.common.white,
-        }
-      }
-    }
   }
 }))
 
