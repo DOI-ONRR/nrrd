@@ -21,98 +21,76 @@ import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
 
 console.log('nrrdTheme: ', nrrdTheme)
 
-const useStyles = makeStyles(theme => ({
-  '@global': {
-    body: {
-      background: theme.palette.common.white,
-      margin: 0,
-      fontFamily: theme.typography.fontFamily
-    },
-    a: {
-      color: nrrdTheme.palette.links.default,
-      textDecoration: 'underline',
-      cursor: 'pointer',
-      '&:hover': {
-        textDecoration: 'none',
-      }
+const useStyles = makeStyles(theme => (
+  {
+    '@global': {
+      p: {
+        margin: '0.5rem 0rem'
+      },
+      hr: {
+        borderWidth: '0px 0px 10px 0px',
+        borderColor: theme.palette.secondary.main,
+        marginBottom: '1rem',
+      },
+      ul: {
+        paddingInlineStart: '22.5px'
+      },
+      'ul ul': {
+        listStyleType: 'square'
+      },
+      a: {
+        color: theme.palette.text.secondary,
+        textDecoration: 'underline',
+        '&:hover': {
+          textDecoration: 'none',
+        }
+      },
+      h1: { ...theme.typography.h1 },
+      h2: { ...theme.typography.h2 },
+      h3: { ...theme.typography.h3 },
+      h4: { ...theme.typography.h4 },
+      h5: { ...theme.typography.h5 },
+      h6: { ...theme.typography.h6 },
     },
     img: {
-      maxWidth: '100%'
+      width: '100%'
     },
-    '.header-bar': {
-      borderWidth: '2px',
-      borderBottom: 'solid',
-      paddingBottom: '.41667rem',
-    },
-    '.green': {
-      borderColor: '#cde3c3',
-    },
-    '.thick': {
-      borderWidth: '6px',
-    },
-    '.shadow': {
-      '-webkit-box-shadow': `3px 3px 5px 6px ${ theme.palette.common.black }`, /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-      '-moz-box-shadow': `3px 3px 5px 6px ${ theme.palette.common.black }`, /* Firefox 3.5 - 3.6 */
-      'box-shadow': `3px 3px 5px 6px ${ theme.palette.common.black }`,
-    }
-  },
-  root: {
-    paddingTop: theme.spacing(2),
-    paddingLeft: 0,
-    paddingRight: 0,
-    [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(0),
-      paddingRight: theme.spacing(0)
-    }
-  },
-  site: {
-    display: 'flex',
-    minHeight: '100vh',
-    flexDirection: 'column',
-  },
-  siteContent: {
-    margin: '0',
-    maxWidth: '100%',
-    paddingTop: theme.spacing(0),
-    paddingBottom: theme.spacing(0),
-    flexGrow: 1
-  },
-  header: {},
-  skipNav: {
-    position: 'absolute',
-    top: '-1000px',
-    left: '-1000px',
-    height: '1px',
-    width: '1px',
-    textAlign: 'left',
-    overflow: 'hidden',
+    skipNav: {
+      position: 'absolute',
+      top: '-1000px',
+      left: '-1000px',
+      height: '1px',
+      width: '1px',
+      textAlign: 'left',
+      overflow: 'hidden',
 
-    '&:active': {
-      left: '0',
-      top: '0',
-      padding: '5px',
-      width: 'auto',
-      height: 'auto',
-      overflow: 'visible'
-    },
-    '&:focus': {
-      left: '0',
-      top: '0',
-      padding: '5px',
-      width: 'auto',
-      height: 'auto',
-      overflow: 'visible'
-    },
-    '&:hover': {
-      left: '0',
-      top: '0',
-      padding: '5px',
-      width: 'auto',
-      height: 'auto',
-      overflow: 'visible'
+      '&:active': {
+        left: '0',
+        top: '0',
+        padding: '5px',
+        width: 'auto',
+        height: 'auto',
+        overflow: 'visible'
+      },
+      '&:focus': {
+        left: '0',
+        top: '0',
+        padding: '5px',
+        width: 'auto',
+        height: 'auto',
+        overflow: 'visible'
+      },
+      '&:hover': {
+        left: '0',
+        top: '0',
+        padding: '5px',
+        width: 'auto',
+        height: 'auto',
+        overflow: 'visible'
+      }
     }
-  }
-}))
+  })
+)
 
 const DefaultLayout = ({ children }) => {
   const classes = useStyles()

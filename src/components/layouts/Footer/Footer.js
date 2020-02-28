@@ -15,7 +15,7 @@ import DownloadIcon from '-!svg-react-loader!../../../img/svg/icon-download-base
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#323c42'
+    backgroundColor: theme.palette.primary.dark,
   },
   footerLink: {
     color: theme.palette.common.white
@@ -31,7 +31,10 @@ const useStyles = makeStyles(theme => ({
     fill: theme.palette.common.white,
     top: theme.spacing(2),
     marginLeft: theme.spacing(1)
-  }
+  },
+  footerImage: {
+    maxWidth: 'calc(100% - 2%)',
+  },
 }))
 
 const Footer = React.memo(({ data }) => {
@@ -43,13 +46,13 @@ const Footer = React.memo(({ data }) => {
         <Box component="div" pt={5} pb={10}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={2}>
-              <a href="https://doi.gov">
-                <img
-                  src={logo}
-                  className={classes.footerImage}
-                  alt="Department of the Interior logo"
-                />
-              </a>
+                <a href="https://doi.gov">
+                  <img
+                    src={logo}
+                    className={classes.footerImage}
+                    alt="Department of the Interior logo"
+                  />
+                </a>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box mb={2}>

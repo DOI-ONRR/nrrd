@@ -88,5 +88,5 @@ module.exports = Object.freeze({
     1400: '#252627',
     1500: '#131314'
   },
-  tonalOffset: 0.5,
+  tonalOffset: 0.6,
 })

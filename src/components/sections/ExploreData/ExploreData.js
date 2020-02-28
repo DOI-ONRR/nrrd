@@ -8,8 +8,6 @@ import Slider from '@material-ui/core/Slider'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import InputAdornment from '@material-ui/core/InputAdornment'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 
@@ -27,7 +25,6 @@ import Snackbar from '@material-ui/core/Snackbar'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RefreshIcon from '@material-ui/icons/Refresh'
-import SearchIcon from '@material-ui/icons/Search'
 
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
@@ -402,6 +399,17 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.background.default,
     margin: 0,
   },
+  cardHeader: {
+    padding: 10,
+    height: 75,
+    fontSize: '1.2rem',
+    '& .MuiCardHeader-action': {
+      marginTop: 0,
+    },
+    '& span': {
+      margin: 0,
+    },
+  },
 }))
 
 // get region details from map object
@@ -547,6 +555,7 @@ const AddLocationCard = props => {
       <Card className={classes.addLocationCard}>
         <CardHeader
           title={props.title}
+          classes={{ root: classes.cardHeader }}
         />
         <CardContent>
           <Autocomplete
@@ -921,22 +930,20 @@ const ExploreData = () => {
           />
           <Grid container>
             <Grid item md={12}>
-              <Typography variant="h2" className="header-bar green thick">
-                Revenue
-              </Typography>
+              <Box color="secondary.main" mb={1} borderBottom={5} borderColor="secondary.main">
+                <Box color="primary.dark"><h2 style={{ margin: '1rem 0 0' }}>Revenue</h2></Box>
+              </Box>
               <Typography variant="body1">
                 When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. In fiscal year {year}, ONRR collected a total of [$9,161,704,392] in revenue.
               </Typography>
             </Grid>
             <Grid item md={12}>
-              <Box mt={5}>
-                <Typography variant="h3" mt={5} className="header-bar green thin">
-                  Compare revenue
-                </Typography>
-                <Typography variant="body1">
-                  Add more than one card to compare.  Select states, counties, and offshore regions.
-                </Typography>
+              <Box color="secondary.main" mb={1} borderBottom={2} borderColor="secondary.main">
+                <Box color="primary.dark"><h4 style={{ margin: '1rem 0 0' }}>Compare revenue</h4></Box>
               </Box>
+              <Typography variant="body1">
+                Add more than one card to compare.  Select states, counties, and offshore regions.
+              </Typography>
             </Grid>
           </Grid>
           <Box className={classes.compareCardsContainer}>
