@@ -11,8 +11,8 @@ module.exports = Object.freeze({
     main: '#cde3c3',
   },
   common: {
-    white: '#fff',
-    black: '#000',
+    white: '#ffffff',
+    black: '#000000',
   },
   text: {
     primary: '#000000',

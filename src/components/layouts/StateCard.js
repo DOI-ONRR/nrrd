@@ -174,8 +174,6 @@ const APOLLO_QUERY = gql`
 //   return r
 // }
 
-
-
 const StateCard = props => {
   const classes = useStyles()
   const { state } = useContext(StoreContext)

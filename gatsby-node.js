@@ -26,6 +26,14 @@ exports.createPages = ({ graphql }) => {
   ])
 }
 
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     node: {
+//       fs: 'empty'
+//     }
+//   })
+// }
+
 /**
  * Creates a index file of all the components during build time so they can be easily imported for the mdx provider to use.
  * This aids in creating mdx pages since we dont have to import components in a mdx page. This is also used in creating documentation for
