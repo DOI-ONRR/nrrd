@@ -396,7 +396,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const getRegionProperties = input => {
-
   let selectedObj
   if (input.length > 2) {
     selectedObj = mapJson.objects.counties.geometries.filter(obj => {
@@ -449,14 +448,14 @@ const AddCardButton = props => {
   return (
     <div className={classes.addCardButtonContainer}>
       <IconButton
-        aria-label="Add additional card"
-        aria-controls="add-additional-card-menu"
+        aria-label="Add additional location card menu"
+        aria-controls="add-additional-location-card-menu"
         aria-haspopup="true"
         onClick={handleMenuClick}>
         <AddIcon />
       </IconButton>
       <Menu
-        id="explore-menu"
+        id="add-additional-location-card-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -583,12 +582,14 @@ const YearSlider = props => {
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   return (
-    <Box className={classes.sliderRoot}>
+    <Box id="year-slider" className={classes.sliderRoot}>
       <Grid container spacing={4}>
         <Grid item xs>
           <Slider
             defaultValue={year}
-            aria-labelledby="discrete-slider"
+            aria-label="Year slider"
+            aria-labelledby="year-slider"
+            aria-valuetext={year}
             valueLabelDisplay="on"
             step={1}
             onChangeCommitted={(e, yr) => {
@@ -614,13 +615,13 @@ const MapControls = props => {
         orientation="vertical"
         variant="contained"
         aria-label="Explore data map zoom controls">
-        <Button onClick={() => props.handleClick('add')}>
+        <Button onClick={() => props.handleClick('add')} role="button" aria-label="Map zoom in">
           <AddIcon />
         </Button>
-        <Button onClick={() => props.handleClick('remove')}>
+        <Button onClick={() => props.handleClick('remove')} role="button" aria-label="Map zoom out">
           <RemoveIcon />
         </Button>
-        <Button onClick={() => props.handleClick('refresh')}>
+        <Button onClick={() => props.handleClick('refresh')} role="button" aria-label="Map reset">
           <RefreshIcon />
         </Button>
       </ButtonGroup>

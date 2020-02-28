@@ -127,14 +127,14 @@ const MapLevel = props => {
           button
           aria-haspopup="true"
           aria-controls="map-levels-menu"
-          aria-label="map levels locked"
+          aria-label="Map levels menu"
           onClick={handleClickListItem}
         >
           <ListItemText primary="Map level" secondary={options[selectedIndex]} />
         </ListItem>
       </List>
       <Menu
-        id="levels-menu"
+        id="map-levels-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -184,19 +184,19 @@ const MapOffshore = props => {
 
   return (
     <div className={classes.mapMenuItem}>
-      <List component="nav" aria-label="Map levels">
+      <List component="nav" aria-label="Offshore data menu">
         <ListItem
           button
           aria-haspopup="true"
-          aria-controls="map-offshore-menu"
-          aria-label="map offshore locked"
+          aria-controls="offshore-data-menu"
+          aria-label="Offshore data menu"
           onClick={handleClickListItem}
         >
           <ListItemText primary="Offshore data" secondary={options[selectedIndex]} />
         </ListItem>
       </List>
       <Menu
-        id="offshore-menu"
+        id="offshore-data-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -233,14 +233,14 @@ const MapExploreMenu = props => {
   return (
     <div className={classes.mapExploreMenu}>
       <IconButton
-        aria-label="Other ways to explore revenue"
-        aria-controls="explore-menu"
+        aria-label="Other ways to explore data"
+        aria-controls="other-ways-to-explore-data"
         aria-haspopup="true"
         onClick={handleMenuClick}>
         <MoreVertIcon />
       </IconButton>
       <Menu
-        id="explore-menu"
+        id="other-ways-to-explore-data"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
