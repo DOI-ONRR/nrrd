@@ -299,12 +299,12 @@ const useStyles = makeStyles(theme => ({
   addCardContainer: {
     padding: theme.spacing(2),
     marginBottom: theme.spacing(4),
-    backgroundColor: theme.palette.gray['100'],
+    backgroundColor: theme.palette.grays['100'],
   },
   addLocationCard: {
-    background: `${ theme.palette.gray['100'] }`,
+    background: `${ theme.palette.grays['100'] }`,
     '& div:nth-child(1)': {
-      background: `${ theme.palette.gray['100'] } !important`,
+      background: `${ theme.palette.grays['100'] } !important`,
       '& > span': {
         color: `${ theme.palette.common.black } !important`,
       }

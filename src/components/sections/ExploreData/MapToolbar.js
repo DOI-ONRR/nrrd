@@ -188,7 +188,7 @@ const MapOffshore = props => {
   }
 
   return (
-    <div className={classes.mapMenuItem}>
+    <div className={classes.mapMenuRoot}>
       <List component="nav" aria-label="Offshore data menu">
         <ListItem
           button
