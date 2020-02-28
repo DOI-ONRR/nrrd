@@ -306,15 +306,19 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'stretch',
     marginTop: theme.spacing(5),
     overflow: 'auto',
+    '& media (max-width: 768px)': {
+      display: 'relative',
+    },
     '& > div': {
-      marginRight: theme.spacing(2)
+      marginRight: theme.spacing(2),
+      minWidth: 275,
     },
     '& > div:last-child': {
       margin: theme.spacing(1),
       maxWidth: '25%',
       width: '100%',
       position: 'relative',
-      // minWidth: 310,
+      minWidth: 275,
       '@media (max-width: 768px)': {
         maxWidth: '100%',
       }
@@ -589,7 +593,7 @@ const YearSlider = props => {
             defaultValue={year}
             aria-label="Year slider"
             aria-labelledby="year-slider"
-            aria-valuetext={year}
+            aria-valuetext={year.toString()}
             valueLabelDisplay="on"
             step={1}
             onChangeCommitted={(e, yr) => {

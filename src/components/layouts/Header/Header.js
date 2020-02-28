@@ -207,7 +207,7 @@ const Header = React.memo(props => {
                       href="#"
                       className={classes.menuLink}
                       alt="this is the glossary drawer"
-                      onClick={() => toggleGlossaryDrawer()}
+                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: true } })}
                     >
                       Glossary
                     </a>
