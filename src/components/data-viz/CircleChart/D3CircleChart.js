@@ -54,7 +54,7 @@ export default class D3CircleChart {
       const yAxis=this.yAxis
       const xAxis=this.xAxis
       // console.debug('-------------------------------------------------------------',data)
-      if(maxCircles < data.length) {
+      if(maxCircles + 1 < data.length) {
         let tmp=data
         let other=tmp.reduce( (sum,row,i) => {
           // console.debug("maxcircles: ",sum,row,i)
