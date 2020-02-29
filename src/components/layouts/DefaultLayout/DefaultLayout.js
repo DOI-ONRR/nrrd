@@ -18,6 +18,7 @@ import { Header } from '../Header'
 import { Footer } from '../Footer'
 
 import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
+import { classicNameResolver } from 'typescript'
 
 console.log('nrrdTheme: ', nrrdTheme)
 
@@ -51,9 +52,9 @@ const useStyles = makeStyles(theme => (
       h4: { ...theme.typography.h4 },
       h5: { ...theme.typography.h5 },
       h6: { ...theme.typography.h6 },
-    },
-    img: {
-      width: '100%'
+      img: {
+        maxWidth: '100%',
+      },
     },
     skipNav: {
       position: 'absolute',

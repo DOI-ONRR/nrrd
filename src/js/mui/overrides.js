@@ -3,6 +3,11 @@
 const palette = require('./palette')
 
 module.exports = Object.freeze({
+  MuiButton: {
+    root: {
+      textTransform: 'inherit',
+    }
+  },
   MuiTableCell: {
     head: {
       borderBottomColor: palette.secondary.main,

@@ -46,13 +46,13 @@ const Footer = React.memo(({ data }) => {
         <Box component="div" pt={5} pb={10}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={2}>
-                <a href="https://doi.gov">
-                  <img
-                    src={logo}
-                    className={classes.footerImage}
-                    alt="Department of the Interior logo"
-                  />
-                </a>
+              <a href="https://doi.gov">
+                <img
+                  src={logo}
+                  className={classes.footerImage}
+                  alt="Department of the Interior logo"
+                />
+              </a>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box mb={2}>
