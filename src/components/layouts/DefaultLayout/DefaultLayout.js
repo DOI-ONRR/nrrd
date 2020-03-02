@@ -93,7 +93,7 @@ const useStyles = makeStyles(theme => (
   })
 )
 
-const DefaultLayout = ({ includeToc, children }) => {
+const DefaultLayout = ({ includeToc = true, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
