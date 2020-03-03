@@ -15,12 +15,12 @@ import Img from 'gatsby-image'
 export default ({ alt, ...rest }) => {
   const data = useStaticQuery(graphql`
   query {
-      imageSharp(fixed: {originalName: {eq: "doi.png"}}) {
-        fixed(width: 110) {
+      imageSharp(fixed: {originalName: {eq: "BSEE-mark.png"}}) {
+        fixed(width: 50) {
           ...GatsbyImageSharpFixed
         }
       }
     }
   `)
-  return <Img fixed={data.imageSharp.fixed} alt={alt || 'Department of the Interior logo'} {...rest} />
+  return <Img fixed={data.imageSharp.fixed} alt={alt || 'Bureau of Safety and Environmental Enforcement'} {...rest} />
 }
