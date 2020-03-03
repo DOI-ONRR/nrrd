@@ -63,7 +63,6 @@ const useStyles = makeStyles(theme => ({
   titleBar: {
     display: 'flex',
     justifyContent: 'space-between',
-    paddingBottom: 4,
     '@media (max-width: 426px)': {
       display: 'block',
     }
@@ -72,7 +71,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem',
     marginBottom: 0,
     fontWeight: 'normal',
-    height: 29,
+    height: 24,
     '@media (max-width: 426px)': {
       display: 'block',
       width: '100%',
@@ -215,15 +214,15 @@ const TotalRevenue = props => {
   }
 
   return (
-    <Box>
-      <Typography variant="h3" className={`header-bar green ${ classes.titleBar }`}>
-          Total Revenue
+    <>
+      <Box color="secondary.main" mb={2} borderBottom={2} pb={1} className={classes.titleBar}>
+        <Box component="h3" m={0} color="primary.dark">Total revenue</Box>
         <Box component="span" className={classes.titleLink}>
           <ExploreDataLink
             to="/query-data?dataType=Revenue"
             icon="filter">Filter revenue data</ExploreDataLink>
         </Box>
-      </Typography>
+      </Box>
       <Grid container spacing={4}>
         <TotalRevenueControls />
         <Grid item xs={12}>
@@ -241,7 +240,7 @@ const TotalRevenue = props => {
             }} />
         </Grid>
       </Grid>
-    </Box>
+    </>
   )
 }
 
