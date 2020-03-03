@@ -43,7 +43,6 @@ module.exports = {
     "standard/array-bracket-even-spacing": ["error", "either"],
     "standard/computed-property-even-spacing": ["error", "even"],
     "standard/no-callback-literal": ["error", ["cb", "callback"]],
-
     // react plugin - options
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
