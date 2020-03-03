@@ -21,8 +21,10 @@ const useStyles = makeStyles(theme => ({
   closeIcon: {
     color: theme.palette.common.white,
     position: 'relative',
-    top: 15,
-    cursor: 'pointer'
+    top: theme.spacing(1.75),
+    right: theme.spacing(1),
+    cursor: 'pointer',
+    maxWidth: 20,
   },
   cardHeader: {
     backgroundColor: theme.palette.primary.dark,
@@ -37,6 +39,9 @@ const useStyles = makeStyles(theme => ({
       margin: 0,
     },
   },
+  cardHeaderContent: {
+    fontSize: theme.typography.h3.fontSize,
+  }
 }))
 
 const StateDetailCard = props => {
@@ -56,7 +61,8 @@ const StateDetailCard = props => {
             closeCard(i)
           }}
         />}
-        classes={{ root: classes.cardHeader }}
+        classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+        disableTypography
       />
       <CardContent>
         <Typography variant="body1" component="p">

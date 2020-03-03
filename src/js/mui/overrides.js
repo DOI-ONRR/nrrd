@@ -8,6 +8,11 @@ module.exports = Object.freeze({
       textTransform: 'inherit',
     }
   },
+  MuiLink: {
+    underlineHover: {
+      color: palette.text.secondary,
+    },
+  },
   MuiTableCell: {
     head: {
       borderBottomColor: palette.secondary.main,

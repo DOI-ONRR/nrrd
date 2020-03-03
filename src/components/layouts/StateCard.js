@@ -80,11 +80,15 @@ const useStyles = makeStyles(theme => ({
       margin: 0,
     },
   },
+  cardHeaderContent: {
+    fontSize: theme.typography.h4.fontSize,
+  },
   close: {
     position: 'relative',
     top: -3,
     right: '10px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    maxWidth: 20,
   },
   bullet: {
     display: 'inline-block',
@@ -236,7 +240,8 @@ const StateCard = props => {
                   )}
                 </>
               }
-              classes={{ root: classes.cardHeader }}
+              classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+              disableTypography
             >
               <Typography variant="h4" color="inherit">
                 {props.name}
@@ -314,7 +319,8 @@ const StateCard = props => {
                   )}
                 </>
               }
-              classes={{ root: classes.cardHeader }}
+              classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+              disableTypography
             >
               <Typography variant="h4" color="inherit">
                 {props.name}
@@ -432,7 +438,8 @@ const StateCard = props => {
                 }}
               />
             }
-            classes={{ root: classes.cardHeader }}
+            classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+            disableTypography
           >
             <Typography variant="h4" color="inherit">
               {props.name}

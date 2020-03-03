@@ -235,7 +235,7 @@ const useStyles = makeStyles(theme => ({
   sliderMarkLabel: {
     fontWeight: 'bold',
     top: '28px',
-    // color: theme.palette.grays['800'],
+    color: theme.palette.grays['1000'],
     fontSize: '1rem',
   },
   sliderMarkLabelActive: {
@@ -410,10 +410,17 @@ const useStyles = makeStyles(theme => ({
       margin: 0,
     },
   },
+  cardHeaderContent: {
+    fontSize: theme.typography.h3.fontSize,
+  }
 }))
 
 // get region details from map object
 const getRegionProperties = input => {
+  console.log('getRegionProperties input: ', input)
+  // check for fips_code that are only 4 digits, the data values should all be 5
+  input = input.length === 4 ? input = `0${ input }` : input
+
   let selectedObj
   if (input.length > 2) {
     selectedObj = mapJson.objects.counties.geometries.filter(obj => {
@@ -555,7 +562,8 @@ const AddLocationCard = props => {
       <Card className={classes.addLocationCard}>
         <CardHeader
           title={props.title}
-          classes={{ root: classes.cardHeader }}
+          classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+          disableTypography
         />
         <CardContent>
           <Autocomplete
@@ -930,16 +938,16 @@ const ExploreData = () => {
           />
           <Grid container>
             <Grid item md={12}>
-              <Box color="secondary.main" mb={1} borderBottom={5} borderColor="secondary.main">
-                <Box color="primary.dark"><h2 style={{ margin: '1rem 0 0' }}>Revenue</h2></Box>
+              <Box mb={1} color="secondary.main" borderBottom={5}>
+                <Box component="h2" color="secondary.dark">Revenue</Box>
               </Box>
               <Typography variant="body1">
                 When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. In fiscal year {year}, ONRR collected a total of [$9,161,704,392] in revenue.
               </Typography>
             </Grid>
             <Grid item md={12}>
-              <Box color="secondary.main" mb={1} borderBottom={2} borderColor="secondary.main">
-                <Box color="primary.dark"><h4 style={{ margin: '1rem 0 0' }}>Compare revenue</h4></Box>
+              <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+                <Box component="h3" color="secondary.dark">Compare revenue</Box>
               </Box>
               <Typography variant="body1">
                 Add more than one card to compare.  Select states, counties, and offshore regions.

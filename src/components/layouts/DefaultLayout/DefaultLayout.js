@@ -40,18 +40,18 @@ const useStyles = makeStyles(theme => (
         listStyleType: 'square'
       },
       a: {
-        color: theme.palette.text.secondary,
+        color: nrrdTheme.palette.text.secondary,
         textDecoration: 'underline',
         '&:hover': {
           textDecoration: 'none',
         }
       },
-      h1: { ...theme.typography.h1 },
-      h2: { ...theme.typography.h2 },
-      h3: { ...theme.typography.h3 },
-      h4: { ...theme.typography.h4 },
-      h5: { ...theme.typography.h5 },
-      h6: { ...theme.typography.h6 },
+      h1: { ...nrrdTheme.typography.h1 },
+      h2: { ...nrrdTheme.typography.h2 },
+      h3: { ...nrrdTheme.typography.h3 },
+      h4: { ...nrrdTheme.typography.h4 },
+      h5: { ...nrrdTheme.typography.h5 },
+      h6: { ...nrrdTheme.typography.h6 },
       img: {
         maxWidth: '100%',
       },

@@ -67,6 +67,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   mapMenuRoot: {
+    position: 'relative',
+    top: -2,
     border: `1px solid ${ theme.palette.grays['300'] }`,
     height: 50,
     marginLeft: theme.spacing(0),

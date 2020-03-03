@@ -35,10 +35,12 @@ const useStyles = makeStyles(theme => ({
       top: 0,
     },
     '&:hover': {
-      textDecoration: 'underline'
+      textDecoration: 'underline',
+      color: theme.palette.text.secondary,
     },
     '&:active': {
-      textDecoration: 'underline'
+      textDecoration: 'underline',
+      color: theme.palette.text.secondary,
     }
   }
 }))
@@ -63,7 +65,7 @@ const ExploreDataLink = props => {
   return (
     <Link to={props.to} className={classes.exploreDataLink}>
       {getIcon(props.icon)}
-      <Box component="span" fontSize="body2">
+      <Box component="span" fontSize="body2" color="text.secondary">
         {props.children === undefined
           ? 'Explore data'
           : props.children}
