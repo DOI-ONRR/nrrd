@@ -128,6 +128,7 @@ const TotalRevenueControls = props => {
           value={toggle}
           exclusive
           onChange={handleToggle}
+          size="large"
           aria-label="Toggle between Yearly and Monthly data">
           {
             Object.values(TOGGLE_VALUES).map((item, i) => (
@@ -146,11 +147,11 @@ const TotalRevenueControls = props => {
       </Grid>
       <Grid item xs={6} style={{ textAlign: 'right' }}>
         <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
+          <InputLabel ref={inputLabel} id="select-period-outlined-label">
           Period
           </InputLabel>
           <Select
-            labelId="Period label"
+            labelId="Period select"
             id="period-label-select-outlined"
             value={period}
             onChange={handleChange}

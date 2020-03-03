@@ -9,21 +9,15 @@ import Tab from '@material-ui/core/Tab'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
-  tabsRoot: {
-    '& .Mui-selected': {
-      borderTop: `5px solid ${ theme.palette.primary.dark }`,
-      borderBottom: `1px solid ${ theme.palette.background.default }`,
-      borderLeft: `1px solid ${ theme.palette.primary.dark }`,
-      borderRight: `1px solid ${ theme.palette.primary.dark }`,
-      fontWeight: 'bold',
-      color: theme.palette.primary.dark,
-      backgroundColor: theme.palette.background.default,
-      zIndex: 10,
+  tabsRoot: {},
+  tabsFlexContainer: {
+    '@media (max-width: 500px)': {
+      display: 'block',
     },
   },
   tabRoot: {
-    background: theme.palette.primary.light,
-    borderTop: `5px solid ${ theme.palette.primary.light }`,
+    background: theme.palette.primary.main,
+    borderTop: `5px solid ${ theme.palette.primary.main }`,
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     paddingTop: theme.spacing(1),
@@ -46,7 +40,14 @@ const useStyles = makeStyles(theme => ({
     },
   },
   tabSelected: {
-    background: theme.palette.background,
+    borderTop: `5px solid ${ theme.palette.primary.dark }`,
+    borderBottom: `1px solid ${ theme.palette.background.default }`,
+    borderLeft: `1px solid ${ theme.palette.primary.dark }`,
+    borderRight: `1px solid ${ theme.palette.primary.dark }`,
+    fontWeight: 'bold',
+    color: theme.palette.primary.dark,
+    backgroundColor: theme.palette.background.default,
+    zIndex: 10,
   },
   tabPanelContainer: {
     position: 'relative',
@@ -114,10 +115,12 @@ const Tabtastic = props => {
         value={selectedIndex}
         onChange={handleChange}
         indicatorColor="primary"
-        textColor="primary"
         variant="fullWidth"
         aria-label="Revenue, Disbursements, and Production Tabs"
-        className={classes.tabsRoot}
+        classes={{
+          root: classes.tabsRoot,
+          flexContainer: classes.tabsFlexContainer
+        }}
       >
         { children &&
           React.Children.map(children, (item, index) => (

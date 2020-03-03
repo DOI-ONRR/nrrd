@@ -412,7 +412,10 @@ const useStyles = makeStyles(theme => ({
   },
   cardHeaderContent: {
     fontSize: theme.typography.h3.fontSize,
-  }
+  },
+  autoCompleteRoot: {
+    background: theme.palette.background.default,
+  },
 }))
 
 // get region details from map object
@@ -568,17 +571,26 @@ const AddLocationCard = props => {
         <CardContent>
           <Autocomplete
             key={keyCount}
-            id="combo-box-demo"
+            id="location-selecte"
             autoComplete
             inputValue={input}
             options={distinctLocations}
             getOptionLabel={option => option.location}
             style={{ width: '100%' }}
             renderInput={params => (
-              <TextField {...params} label="Search locations..." variant="outlined" fullWidth onChange={handleSearch} />
+              <TextField
+                {...params}
+                label="Search locations..."
+                variant="outlined"
+                fullWidth
+                onChange={handleSearch}
+              />
             )}
             renderOption={option => renderLabel(option.location)}
             onChange={(e, v) => handleChange(v)}
+            classes={{
+              inputRoot: classes.autoCompleteRoot
+            }}
           />
         </CardContent>
         <CardActions>
@@ -969,7 +981,7 @@ const ExploreData = () => {
                 )
               })
             }
-            { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add a location' menuItems={cardMenuItems} /> : '' }
+            { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' menuItems={cardMenuItems} /> : '' }
           </Box>
         </Container>
       </Fragment>
