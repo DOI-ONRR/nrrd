@@ -39,9 +39,8 @@ export default ({ children, title = 'Did you know?' }) => {
     setExpanded(!expanded)
   }
 
-  const mainContent = children.filter(child => child.props.mdxType !== 'MoreContent')
-  const moreContent = children.filter(child => child.props.mdxType === 'MoreContent')
-  console.log(mainContent, moreContent)
+  const mainContent = children.filter(child => child.props.mdxType !== 'CollapsibleContent')
+  const moreContent = children.filter(child => child.props.mdxType === 'CollapsibleContent')
 
   return (
     <Box>
@@ -61,12 +60,11 @@ export default ({ children, title = 'Did you know?' }) => {
             aria-expanded={expanded}
             aria-label="show more"
           >
-            {expanded ? <Typography variant='caption'>Less</Typography> : <Typography variant='caption'>More</Typography>}
             <ExpandMoreIcon />
           </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Box p={2}>
+          <Box p={2} pat={0}>
             {moreContent}
           </Box>
         </Collapse>
