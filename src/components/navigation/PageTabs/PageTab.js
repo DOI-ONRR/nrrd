@@ -5,9 +5,9 @@ import {
 
 export default ({ children, to, ...rest }) => {
   return (
-    <Box bgcolor={to ? 'white' : 'primary.main'} pl={2} pr={2}>
+    <Box bgcolor={to ? 'white' : 'primary.main'}>
       <Button {...rest} disableElevation={true} variant='text' onClick={() => (to && (window.location.href = to))}>
-        {children}
+        <Box pl={2} pr={2}>{children}</Box>
       </Button>
     </Box>
   )
