@@ -195,9 +195,9 @@ const StateCard = props => {
 
   const year = state.year
 
-  // let state = props.abbrev
+  // let state = props.abbr
   const { loading, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbrev, year: year }
+    variables: { state: props.abbr, year: year }
   })
   const minimizeIcon = Object.is(props.minimizeIcon, undefined)
     ? false

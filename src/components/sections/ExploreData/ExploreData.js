@@ -41,8 +41,6 @@ import { useMediaQuery } from '@material-ui/core'
 import { select } from 'd3'
 // import  mapJson from './us.t2.json'
 
-console.log('mapJson: ', mapJson)
-
 export const STATIC_QUERY = graphql`
   {
     onrr {
@@ -415,12 +413,15 @@ const useStyles = makeStyles(theme => ({
   },
   autoCompleteRoot: {
     background: theme.palette.background.default,
+    color: theme.palette.primary.dark,
   },
+  autoCompleteFocused: {
+    color: theme.palette.primary.dark,
+  }
 }))
 
 // get region details from map object
 const getRegionProperties = input => {
-  console.log('getRegionProperties input: ', input)
   // check for fips_code that are only 4 digits, the data values should all be 5
   input = input.length === 4 ? input = `0${ input }` : input
 
@@ -443,14 +444,10 @@ const getRegionProperties = input => {
   return selectedObj
 }
 
-// AddCardButton
+// AddCardButton - map speed dial button
 const AddCardButton = props => {
-  // Map explore menu speed dial
-
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
-  const { state, dispatch } = useContext(StoreContext)
-  const cards = state.cards
 
   const handleMenuClick = event => {
     setAnchorEl(event.currentTarget)
@@ -458,19 +455,7 @@ const AddCardButton = props => {
 
   const handleClose = (index, item) => event => {
     setAnchorEl(null)
-    if (typeof item === 'undefined') {
-      dispatch({ type: 'CARDS', payload: { cards: cards } })
-    }
-    else {
-      if (item.abbrev === 'National') {
-        cards.unshift(item)
-      }
-      else {
-        cards.push(item)
-      }
-    }
-
-    dispatch({ type: 'CARDS', payload: { cards: cards } })
+    props.onLink(item)
   }
 
   return (
@@ -501,10 +486,8 @@ const AddCardButton = props => {
 const AddLocationCard = props => {
   const classes = useStyles()
 
-  const { state, dispatch } = useContext(StoreContext)
   const [input, setInput] = useState(null)
   const [keyCount, setKeyCount] = useState(0)
-  const cards = state.cards
 
   const handleSearch = event => {
     setInput(event.target.value)
@@ -512,18 +495,10 @@ const AddLocationCard = props => {
 
   const handleChange = val => {
     if (val) {
-      if (
-        cards.filter(item => item.fips === getRegionProperties(val.location_id)[0].properties.FIPS).length === 0
-      ) {
-        cards.push({
-          fips: getRegionProperties(val.location_id)[0].properties.FIPS,
-          abbrev: val.location_id,
-          name: val.location
-        })
-        dispatch({ type: 'CARDS', payload: { cards: cards } })
-        setInput(null)
-        setKeyCount(keyCount + 1)
-      }
+      const item = getRegionProperties(val.location_id)[0]
+      props.onLink(item)
+      setInput(null)
+      setKeyCount(keyCount + 1)
     }
   }
 
@@ -559,7 +534,6 @@ const AddLocationCard = props => {
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-    // console.log('explore data: ', data)
     const distinctLocations = data.distinct_locations
     return (
       <Card className={classes.addLocationCard}>
@@ -589,13 +563,14 @@ const AddLocationCard = props => {
             renderOption={option => renderLabel(option.location)}
             onChange={(e, v) => handleChange(v)}
             classes={{
-              inputRoot: classes.autoCompleteRoot
+              inputRoot: classes.autoCompleteRoot,
+              focused: classes.autoCompleteFocused,
             }}
           />
         </CardContent>
         <CardActions>
           { props.menuItems.length > 0 &&
-            <AddCardButton menuItems={props.menuItems} />
+            <AddCardButton onLink={props.onLink} menuItems={props.menuItems} />
           }
         </CardActions>
       </Card>
@@ -708,20 +683,20 @@ const ExploreData = () => {
   let y = mapY
   let k = mapK
 
-  const nationalCard = cards && cards.some(item => item.abbrev === 'National')
-  const nativeAmericanCard = cards && cards.some(item => item.abbrev === 'Native American')
+  const nationalCard = cards && cards.some(item => item.abbr === 'National')
+  const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
   let cardMenuItems = []
 
   if (!nationalCard) {
-    cardMenuItems = [{ fips: 99, abbrev: 'National', name: 'National', label: 'Add National card' }]
+    cardMenuItems = [{ fips: 99, abbr: 'National', name: 'National', label: 'Add National card' }]
   }
 
   if (!nativeAmericanCard) {
-    cardMenuItems = [{ fips: undefined, abbrev: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+    cardMenuItems = [{ fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
   }
 
   if (!nationalCard && !nativeAmericanCard) {
-    cardMenuItems = [{ fips: 99, abbrev: 'National', name: 'National', label: 'Add National card' }, { fips: undefined, abbrev: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+    cardMenuItems = [{ fips: 99, abbr: 'National', name: 'National', label: 'Add National card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
   }
 
   const cardCountClass = () => {
@@ -779,18 +754,36 @@ const ExploreData = () => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
+
+    const fips = state.properties ? state.properties.FIPS : state.fips
+    const name = state.properties ? state.properties.name : state.name
+
+    let abbr
+    if (state.properties) {
+      abbr = state.properties.abbr ? state.properties.abbr : state.properties.state
+    }
+    else {
+      abbr = state.abbr
+    }
+
+    const stateObj = {
+      fips: fips,
+      abbr: abbr,
+      name: name,
+    }
+
     if (
-      cards.filter(item => item.fips === state.properties.FIPS).length === 0
+      cards.filter(item => item.fips === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        cards.push({
-          fips: state.properties.FIPS,
-          abbrev: state.properties.abbr,
-          name: state.properties.name
-        })
+        if (stateObj.abbr && stateObj.abbr.match(/National/)) {
+          cards.unshift(stateObj)
+        }
+        else {
+          cards.push(stateObj)
+        }
       }
       else {
-        // console.log('fire alert yo!')
         handleSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
@@ -876,7 +869,7 @@ const ExploreData = () => {
                     <StateCard
                       key={i}
                       fips={state.fips}
-                      abbrev={state.abbrev}
+                      abbr={state.abbr}
                       name={state.name}
                       minimizeIcon={state.minimizeIcon}
                       closeIcon={state.closeIcon}
@@ -891,7 +884,8 @@ const ExploreData = () => {
               <Box className={classes.nonStateCardsContainer}>
                 <AddCardButton
                   cards={cards}
-                  menuItems={cardMenuItems} />
+                  menuItems={cardMenuItems}
+                  onLink={onLink} />
               </Box>
               }
 
@@ -920,7 +914,7 @@ const ExploreData = () => {
                     <StateCard
                       key={i}
                       fips={state.fips}
-                      abbrev={state.abbrev}
+                      abbr={state.abbr}
                       name={state.name}
                       minimizeIcon={state.minimizeIcon}
                       closeIcon={state.closeIcon}
@@ -934,7 +928,7 @@ const ExploreData = () => {
             </Grid>
             { cardMenuItems.length > 0 &&
               <Box className={classes.nonStateCardsContainer}>
-                <AddCardButton menuItems={cardMenuItems} />
+                <AddCardButton onLink={onLink} menuItems={cardMenuItems} />
               </Box>
             }
           </>
@@ -981,7 +975,7 @@ const ExploreData = () => {
                 )
               })
             }
-            { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' menuItems={cardMenuItems} /> : '' }
+            { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} menuItems={cardMenuItems} /> : '' }
           </Box>
         </Container>
       </Fragment>
