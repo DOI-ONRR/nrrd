@@ -64,7 +64,7 @@ export default ({ children, title = 'Did you know?' }) => {
           </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Box p={2} pat={0}>
+          <Box p={2} pt={0} borderTop={1} borderColor={'info.main'}>
             {moreContent}
           </Box>
         </Collapse>

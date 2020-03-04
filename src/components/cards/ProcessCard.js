@@ -82,7 +82,6 @@ export default ({ children, step, name, defaultExpanded = false }) => {
                 </CardActions>
               </Grid>
             }
-
           </Grid>
           <Collapse in={mobile ? expanded : true} timeout="auto" unmountOnExit>
             <Box pl={5}>
