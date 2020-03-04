@@ -1,11 +1,10 @@
-import React, { useContext }  from 'react'
+import React, { useContext } from 'react'
 // import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
-
 
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -19,8 +18,6 @@ import Box from '@material-ui/core/Box'
 import CloseIcon from '@material-ui/icons/Close'
 import PieChart from '../../data-viz/PieChart/PieChart.js'
 import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
-
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,6 +53,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: theme.typography.h3.fontSize,
   }
 }))
+
 const APOLLO_QUERY = gql`
   query DetailCard($state: String!, $year: Int!) {
     revenue_commodity_summary(
@@ -90,31 +88,32 @@ const StateDetailCard = props => {
   const { loading, data } = useQuery(APOLLO_QUERY, {
     variables: { state: location, year: year }
   })
-  
+
+  console.log('data yo: ', data)
+
   const closeCard = item => {
     props.closeCard(props.fips)
   }
-  if(loading) {
-    return "Loading ...."
+  if (loading) {
+    return 'Loading ....'
   }
   // console.debug('DWGH ----------------------------------', year)
   let chartData
-  let dataSet='FY '+year
-  if(data) {
-    // console.debug('data========================================================', data)
-    chartData=data
-
+  const dataSet = 'FY ' + year
+  if (data) {
+    console.debug('data========================================================', data)
+    chartData = data
   }
-  
+
   return (
     <Card className={`${ classes.root } ${ props.cardCountClass }`}>
       <CardHeader
         title={props.cardTitle}
         action={<CloseIcon
-                    className={classes.closeIcon}
-                    onClick={(e, i) => {
-                      closeCard(i)
-                    }}
+          className={classes.closeIcon}
+          onClick={(e, i) => {
+            closeCard(i)
+          }}
         />}
         classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
         disableTypography
@@ -127,25 +126,25 @@ const StateDetailCard = props => {
               <Box >
                 <CircleChart data={chartData.revenue_commodity_summary}
                   xAxis='commodity' yAxis='total'
-                             format={ d => {
-                               // console.debug('fooormat', d)
-                               return utils.formatToDollarInt(d)
-                             }
-                             }
+                  format={ d => {
+                    // console.debug('fooormat', d)
+                    return utils.formatToDollarInt(d)
+                  }
+                  }
                   yLabel={dataSet}
                   maxCircles={6}
                   minColor='#DCD2DF' maxColor='#2B1C30'/>
-                  <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
-                    format={ d => utils.formatToDollarInt(d) }
-                    yLabel={'FY '+state.year}
-                    maxCircles={4}
-                    maxColor='#B64D00' minColor='#FCBA8B'/>
+                <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
+                  format={ d => utils.formatToDollarInt(d) }
+                  yLabel={'FY ' + state.year}
+                  maxCircles={4}
+                  maxColor='#B64D00' minColor='#FCBA8B'/>
               </Box>
             )
             }
-    
-    </Grid>
-      </Grid>
+
+          </Grid>
+        </Grid>
       </CardContent>
       <CardActions></CardActions>
     </Card>
