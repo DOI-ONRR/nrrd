@@ -53,7 +53,7 @@ export const STATIC_QUERY = graphql`
 
 const FISCAL_REVENUE_QUERY = gql`
   query FiscalRevenue($year: Int!, $location: String!) {
-    fiscal_revenue_summary(where: {state_or_area: {_nin: ["National", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location } }) {
+    fiscal_revenue_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location } }) {
       fiscal_year
       state_or_area
       sum
@@ -685,12 +685,12 @@ const ExploreData = () => {
   let y = mapY
   let k = mapK
 
-  const nationalCard = cards && cards.some(item => item.abbr === 'National')
+  const nationalCard = cards && cards.some(item => item.abbr === 'Nationwide Federal')
   const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
   let cardMenuItems = []
 
   if (!nationalCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'National', name: 'National', label: 'Add National card' }]
+    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }]
   }
 
   if (!nativeAmericanCard) {
@@ -698,7 +698,7 @@ const ExploreData = () => {
   }
 
   if (!nationalCard && !nativeAmericanCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'National', name: 'National', label: 'Add National card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
   }
 
   const cardCountClass = () => {
@@ -778,7 +778,7 @@ const ExploreData = () => {
       cards.filter(item => item.fips === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        if (stateObj.abbr && stateObj.abbr.match(/National/)) {
+        if (stateObj.abbr && stateObj.abbr.match(/Nationwide Federal/)) {
           cards.unshift(stateObj)
         }
         else {
