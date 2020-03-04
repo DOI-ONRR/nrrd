@@ -6,8 +6,6 @@
 const reducer = (state, action) => {
   const { type, payload } = action
 
-  console.log('State Update:', action)
-
   switch (type) {
   case 'COUNT':
     return ({ ...state, count: payload })

@@ -455,7 +455,9 @@ const AddCardButton = props => {
 
   const handleClose = (index, item) => event => {
     setAnchorEl(null)
-    props.onLink(item)
+    if (typeof item !== 'undefined') {
+      props.onLink(item)
+    }
   }
 
   return (
