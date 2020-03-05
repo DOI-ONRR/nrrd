@@ -14,6 +14,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import CloseIcon from '@material-ui/icons/Close'
 import PieChart from '../../data-viz/PieChart/PieChart.js'
@@ -48,10 +49,39 @@ const useStyles = makeStyles(theme => ({
     '& span': {
       margin: 0,
     },
+    '& span:first-child': {
+      marginTop: theme.spacing(1),
+      marginRight: theme.spacing(1),
+    },
   },
   cardHeaderContent: {
     fontSize: theme.typography.h3.fontSize,
-  }
+  },
+  detailCardHeaderContent: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    '& svg': {
+      maxWidth: 50,
+      maxHeight: 50,
+      fill: theme.palette.common.white,
+    },
+  },
+  progressContainer: {
+    maxWidth: '25%',
+    display: 'flex',
+    '& > *': {
+      marginTop: theme.spacing(3),
+      marginRight: 'auto',
+      marginLeft: 'auto',
+    }
+  },
+  commodityBox: {
+    minHeight: 475,
+  },
+  circularProgressRoot: {
+    color: theme.palette.primary.dark,
+  },
 }))
 
 const APOLLO_QUERY = gql`
@@ -74,29 +104,56 @@ const APOLLO_QUERY = gql`
       state_or_area
       total
     }
-
   }
 `
 
+const StateIcon = props => {
+  console.log('StateIcon props: ', props)
+  const classes = useStyles()
+
+  const stateTitle = props.stateTitle
+  const stateAbbr = props.stateAbbr
+
+  let svgTag
+  if (stateTitle === 'Nationwide Federal') {
+    svgTag = '<svg className="icon-state"><use xlink:href=#icon-state-USA /></svg>'
+  }
+  else {
+    svgTag = `<svg className="icon-state"><use xlink:href=#icon-state-${ stateAbbr } /></svg>`
+  }
+
+  return (
+    <div className={classes.detailCardHeaderContent}>
+      <span dangerouslySetInnerHTML={{ __html: svgTag }} />
+      <span>{props.stateTitle}</span>
+    </div>
+  )
+}
+
 const StateDetailCard = props => {
   const classes = useStyles()
-  // console.debug(props)
+
   const { state } = useContext(StoreContext)
   const year = state.year
-  const location = props.abbrev
+  const location = props.abbr
 
-  const { loading, data } = useQuery(APOLLO_QUERY, {
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: location, year: year }
   })
-
-  console.log('data yo: ', data)
 
   const closeCard = item => {
     props.closeCard(props.fips)
   }
+
   if (loading) {
-    return 'Loading ....'
+    return (
+      <div className={classes.progressContainer}>
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </div>
+    )
   }
+
+  if (error) return `Error! ${ error.message }`
   // console.debug('DWGH ----------------------------------', year)
   let chartData
   const dataSet = 'FY ' + year
@@ -108,7 +165,7 @@ const StateDetailCard = props => {
   return (
     <Card className={`${ classes.root } ${ props.cardCountClass }`}>
       <CardHeader
-        title={props.cardTitle}
+        title={<StateIcon stateTitle={props.cardTitle} stateAbbr={location} />}
         action={<CloseIcon
           className={classes.closeIcon}
           onClick={(e, i) => {
@@ -119,32 +176,37 @@ const StateDetailCard = props => {
         disableTypography
       />
       <CardContent>
-        <Grid container>
-          <Grid item >
+        <>
+          { chartData.revenue_commodity_summary.length > 0 && (
 
-            { chartData && (
-              <Box >
-                <CircleChart data={chartData.revenue_commodity_summary}
-                  xAxis='commodity' yAxis='total'
-                  format={ d => {
-                    // console.debug('fooormat', d)
-                    return utils.formatToDollarInt(d)
-                  }
-                  }
-                  yLabel={dataSet}
-                  maxCircles={6}
-                  minColor='#DCD2DF' maxColor='#2B1C30'/>
-                <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
-                  format={ d => utils.formatToDollarInt(d) }
-                  yLabel={'FY ' + state.year}
-                  maxCircles={4}
-                  maxColor='#B64D00' minColor='#FCBA8B'/>
-              </Box>
-            )
-            }
+            <Box className={classes.commodityBox}>
+              <h4>Commodities</h4>
+              <CircleChart data={chartData.revenue_commodity_summary}
+                xAxis='commodity' yAxis='total'
+                format={ d => {
+                // console.debug('fooormat', d)
+                  return utils.formatToDollarInt(d)
+                }
+                }
+                yLabel={dataSet}
+                maxCircles={6}
+                minColor='#DCD2DF' maxColor='#2B1C30' />
+            </Box>
+          )
+          }
+          { chartData.revenue_type_summary.length > 0 && (
+            <Box>
+              <h4>Revenue types</h4>
+              <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
+                format={ d => utils.formatToDollarInt(d) }
+                yLabel={'FY ' + state.year}
+                maxCircles={4}
+                maxColor='#B64D00' minColor='#FCBA8B' />
+            </Box>
+          )
+          }
+        </>
 
-          </Grid>
-        </Grid>
       </CardContent>
       <CardActions></CardActions>
     </Card>

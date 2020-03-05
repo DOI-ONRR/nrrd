@@ -128,7 +128,7 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
+            uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
             resolvers: {}

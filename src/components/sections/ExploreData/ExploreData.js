@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext, useEffect, useRef } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 // import { Link } from "gatsby"
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -40,6 +40,8 @@ import mapJson from './us-topology.json'
 import { useMediaQuery } from '@material-ui/core'
 import { select } from 'd3'
 // import  mapJson from './us.t2.json'
+
+import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
 
 export const STATIC_QUERY = graphql`
   {
@@ -337,7 +339,7 @@ const useStyles = makeStyles(theme => ({
       display: 'relative',
     },
     '& > div': {
-      marginRight: theme.spacing(2),
+      marginRight: theme.spacing(1),
       minWidth: 275,
     },
     '& > div:last-child': {
@@ -829,7 +831,8 @@ const ExploreData = () => {
   if (mapData) {
     // const timeout = 5000
     return (
-      <Fragment>
+      <>
+        <StatesSvg />
         <Container className={classes.mapWrapper} maxWidth={false}>
           <Grid container>
             <Grid item xs={12}>
@@ -958,9 +961,14 @@ const ExploreData = () => {
               <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
                 <Box component="h3" color="secondary.dark">Compare revenue</Box>
               </Box>
-              <Typography variant="body1">
+              <Box fontSize="body1.fontSize">
                 Add more than one card to compare.  Select states, counties, and offshore regions.
-              </Typography>
+              </Box>
+              <Box fontSize="body1.fontSize">
+                { cards.length > 0 &&
+                  <Box>You currently have {cards.length > 0 ? 'the following cards selected.' : 'no cards selected.'}</Box>
+                }
+              </Box>
             </Grid>
           </Grid>
           <Box className={classes.compareCardsContainer}>
@@ -971,6 +979,8 @@ const ExploreData = () => {
                     key={i}
                     cardTitle={card.name}
                     fips={card.fips}
+                    abbr={card.abbr}
+                    name={card.name}
                     closeCard={fips => {
                       closeCard(fips)
                     }}
@@ -981,7 +991,7 @@ const ExploreData = () => {
             { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} menuItems={cardMenuItems} /> : '' }
           </Box>
         </Container>
-      </Fragment>
+      </>
     )
   }
 }

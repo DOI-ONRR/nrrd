@@ -34,10 +34,10 @@ const useStyles = makeStyles(theme => (
         marginBottom: '1rem',
       },
       ul: {
-        paddingInlineStart: '22.5px'
+        paddingInlineStart: '22.5px',
       },
       'ul ul': {
-        listStyleType: 'square'
+        listStyleType: 'square',
       },
       a: {
         color: nrrdTheme.palette.text.secondary,
