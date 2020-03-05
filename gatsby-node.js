@@ -1,28 +1,11 @@
 const path = require('path')
 const fs = require('fs')
 const appRootDir = require('app-root-dir').get()
+const to = require('to-case')
 
-exports.onCreatePage = ({ page, actions }) => {
-  const { createPage } = actions
-
-  /**
-   * We use the gatsby layout plugin and so if we want to use a different layout we pass in a property the default layout reads and then
-   * uses the appropriate layout.
-   */
-  if (page.path.match(/patterns/)) {
-    page.context.layout = 'pattern-library'
-    createPage(page)
-  }
-
-  if (page.path.match(/downloads/)) {
-    page.context.layout = 'downloads'
-    createPage(page)
-  }
-}
-
-exports.createPages = ({ graphql }) => {
+exports.createPages = ({ graphql, reporter }) => {
   return Promise.all([
-    createComponentsCache(graphql),
+    createComponentsCache({ graphql, reporter }),
   ])
 }
 
@@ -32,8 +15,9 @@ exports.createPages = ({ graphql }) => {
  * the pattern library.
  * @param {*} graphql
  */
-const createComponentsCache = graphql => {
+const createComponentsCache = ({ graphql, reporter }) => {
   console.info('creating components cache index')
+
   return new Promise((resolve, reject) => {
 	    resolve(
 	      graphql(`
@@ -79,7 +63,7 @@ const createComponentsCache = graphql => {
         }
       `).then(result => {
 	        if (result.errors) {
-	          reject(result.errors)
+          reporter.panicOnBuild('🚨  ERROR: Loading "Create Components Cache" query', result.errors)
 	        }
 	        else {
           const allComponents = result.data.allComponentMetadata.nodes.map(
@@ -98,9 +82,16 @@ const createComponentsCache = graphql => {
           let exportFileContents =
               allComponents
                 .reduce((accumulator, { displayName, filePath }) => {
-                  accumulator.push(
-                    `export { default as ${ displayName } } from "${ filePath }"`
-                  )
+                  if (filePath.search('components/images/index.js') >= 0) {
+                    accumulator.push(
+                      `export { ${ displayName } } from "${ filePath }"`
+                    )
+                  }
+                  else {
+                    accumulator.push(
+                      `export { default as ${ displayName } } from "${ filePath }"`
+                    )
+                  }
                   return accumulator
                 }, [])
                 .join('\n') + '\n'

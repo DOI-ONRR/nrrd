@@ -74,9 +74,6 @@ const Tabtastic = props => {
       <Tabs
         value={selectedIndex}
         onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        variant="fullWidth"
         aria-label="Revenue, Disbursements, and Production Tabs"
       >
         { children &&
