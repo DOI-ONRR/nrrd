@@ -282,7 +282,7 @@ const TotalProduction = props => {
   return (
     <>
       <Box color="secondary.main" mb={2} borderBottom={2} pb={1} className={classes.titleBar}>
-        <Box component="h3" m={0} color="primary.dark">Revenue</Box>
+        <Box component="h3" m={0} color="primary.dark">Production</Box>
         <Box component="span" className={classes.titleLink}>
           <ExploreDataLink
             to="/query-data?dataType=Production"
