@@ -111,6 +111,38 @@ export default class D3StackedBarChart {
     }
   }
 
+  // addGroupLines () {
+  xAxisGroup () {
+    if (this.xAxisGroup) {
+      let self = this
+      
+      let groupLines = this.chart.append('g').attr('id', 'groups')
+      let groupItemWidth = (self.width / self.state.length)
+      let padding = (self.xScale.bandwidth() * 0.2)
+      let xPos = 0
+      
+      Object.keys(self.groups).map((name, index) => {
+        let groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
+        
+        groupLines.append('line')
+	  .attr('x1', xPos + padding)
+	  .attr('x2', groupLineWidth)
+	  .attr('stroke', '#a7bcc7')
+	  .attr('stroke-width', 1)
+	 		      .attr('transform', 'translate(' + [0, self.height - 4 - self.marginBottom / 2] + ')')
+
+        groupLines.append('text')
+          .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))
+          .attr('y', self.height - 16)
+          .attr('text-anchor', 'middle')
+          .text(name)
+
+			    xPos = groupLineWidth + padding
+      }
+                                  )
+  }
+  }
+  
   _maxExtend () {
     try {
       const self = this

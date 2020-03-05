@@ -618,7 +618,8 @@ const ExploreData = () => {
                       key={i}
                       fips={state.fips}
                       abbrev={state.abbrev}
-                      name={state.name}
+                    name={state.name}
+                    year={state.year}
                       minimizeIcon={state.minimizeIcon}
                       closeIcon={state.closeIcon}
                       closeCard={fips => {
@@ -666,11 +667,13 @@ const ExploreData = () => {
                   {
                     cards.map((state, i) => {
                       return (
-                        <StateDetailCard
-                          key={i}
-                          cardTitle={state.name}
-                          fips={state.fips}
-                          closeCard={fips => {
+                          <StateDetailCard
+                        key={i}
+                        cardTitle={state.name}
+                        fips={state.fips}
+                        abbrev={state.abbrev}
+                        name={state.name}
+                        closeCard={fips => {
                             closeCard(fips)
                           }}
                         />
