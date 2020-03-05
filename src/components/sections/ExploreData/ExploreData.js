@@ -122,10 +122,10 @@ const useStyles = makeStyles(theme => ({
       },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.green.default,
-        color: theme.palette.common.white,
+        color: 'white',
       },
       '& .MuiCardHeader-content > span': {
-        color: theme.palette.common.white,
+        color: 'white',
       }
     },
     '& > div:nth-child(2)': {
@@ -135,10 +135,10 @@ const useStyles = makeStyles(theme => ({
       },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.blue.dark,
-        color: theme.palette.common.white,
+        color: 'white',
       },
       '& .MuiCardHeader-content > span': {
-        color: theme.palette.common.white,
+        color: 'white',
       }
     },
     '& > div:nth-child(3)': {
@@ -148,10 +148,10 @@ const useStyles = makeStyles(theme => ({
       },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.orange.default,
-        color: theme.palette.common.white,
+        color: 'white',
       },
       '& .MuiCardHeader-content > span': {
-        color: theme.palette.common.white,
+        color: 'white',
       }
     },
     '& > div:nth-child(4)': {
@@ -161,10 +161,10 @@ const useStyles = makeStyles(theme => ({
       },
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.purple.default,
-        color: theme.palette.common.white,
+        color: 'white',
       },
       '& .MuiCardHeader-content > span': {
-        color: theme.palette.common.white,
+        color: 'white',
       }
     },
     '& > div:nth-child(5)': {
@@ -258,7 +258,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   stateChipContainer: {
-    background: theme.palette.common.white,
+    background: 'white',
     borderRadius: 5,
     padding: theme.spacing(2),
     display: 'flex',
@@ -284,7 +284,7 @@ const useStyles = makeStyles(theme => ({
       '& > .MuiCardHeader-root': {
         backgroundColor: theme.palette.green.default,
         '& span': {
-          color: theme.palette.common.white,
+          color: 'white',
         }
       },
     },
@@ -292,7 +292,7 @@ const useStyles = makeStyles(theme => ({
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.blue.dark,
         '& span': {
-          color: theme.palette.common.white,
+          color: 'white',
         }
       },
     },
@@ -300,7 +300,7 @@ const useStyles = makeStyles(theme => ({
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.orange.default,
         '& span': {
-          color: theme.palette.common.white,
+          color: 'white',
         }
       },
     },
@@ -308,7 +308,7 @@ const useStyles = makeStyles(theme => ({
       '& .MuiCardHeader-root': {
         backgroundColor: theme.palette.purple.default,
         '& span': {
-          color: theme.palette.common.white,
+          color: 'white',
         }
       }
     }

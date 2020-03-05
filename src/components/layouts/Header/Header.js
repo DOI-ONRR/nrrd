@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     maxHeight: '130px'
   },
   toolbar: {
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: 'white',
     color: theme.palette.common.black,
     borderBottom: '2px solid #cde3c3',
     maxHeight: '130px'

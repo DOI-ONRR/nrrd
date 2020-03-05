@@ -18,17 +18,17 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#323c42'
   },
   footerLink: {
-    color: theme.palette.common.white
+    color: 'white'
   },
   footerDownloadLink: {
-    color: theme.palette.common.white,
+    color: 'white',
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'none',
     }
   },
   footerIcon: {
-    fill: theme.palette.common.white,
+    fill: 'white',
     top: theme.spacing(2),
     marginLeft: theme.spacing(1)
   }

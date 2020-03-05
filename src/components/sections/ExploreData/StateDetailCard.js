@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '24%',
   },
   closeIcon: {
-    color: theme.palette.common.white,
+    color: 'white',
     position: 'relative',
     top: 10,
     cursor: 'pointer'

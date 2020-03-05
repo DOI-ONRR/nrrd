@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     '& button': {
       color: theme.palette.common.black,
       border: `1px solid ${ theme.palette.grey['300'] }`,
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: 'white',
       borderRadius: '50%',
       boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
       overflowX: 'hidden',
@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 0,
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 4,
-    background: theme.palette.common.white,
+    background: 'white',
     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
     overflowX: 'hidden',
     textOverflow: 'ellipsis',
