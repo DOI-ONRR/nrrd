@@ -80,7 +80,7 @@ const useStyles = makeStyles(theme => ({
   },
   toggleButtonSelected: {
     backgroundColor: `${ theme.palette.primary.dark } !important`,
-  }
+  },
 }))
 
 const TOTAL_PRODUCTION_QUERY = gql`
@@ -162,10 +162,19 @@ const TotalProductionControls = props => {
           value={toggle}
           exclusive
           onChange={handleToggle}
+          size="large"
           aria-label="Toggle between Yearly and Monthly data">
           {
             Object.values(TOGGLE_VALUES).map((item, i) => (
-              <ToggleButton key={i} value={item} aria-label={item} disableRipple={true}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
+              <ToggleButton
+                key={i}
+                value={item}
+                aria-label={item}
+                disableRipple
+                classes={{
+                  root: classes.toggleButtonRoot,
+                  selected: classes.toggleButtonSelected,
+                }}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
             ))
           }
         </ToggleButtonGroup>
