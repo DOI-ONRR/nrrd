@@ -20,7 +20,7 @@ import { Footer } from '../Footer'
 import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
 import { classicNameResolver } from 'typescript'
 
-console.log('nrrdTheme: ', nrrdTheme)
+//console.log('nrrdTheme: ', nrrdTheme)
 
 const useStyles = makeStyles(theme => (
   {

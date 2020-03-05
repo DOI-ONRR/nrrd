@@ -43,13 +43,10 @@ const YEARLY_DROPDOWN_VALUES = {
 }
 
 
-
-
 const useStyles = makeStyles(theme => ({
   titleBar: {
     display: 'flex',
     justifyContent: 'space-between',
-    paddingBottom: 4,
     '@media (max-width: 426px)': {
       display: 'block',
     }
@@ -58,13 +55,36 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem',
     marginBottom: 0,
     fontWeight: 'normal',
-    height: 29,
+    height: 24,
     '@media (max-width: 426px)': {
       display: 'block',
       width: '100%',
     },
+    '& span': {
+      marginRight: 0,
+    }
+  },
+  formControl: {
+    margin: theme.spacing(0),
+    minWidth: 120,
+    textAlign: 'right',
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  },
+  toggleButtonRoot: {
+    textTransform: 'capitalize',
+    '& .Mui-selected': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
+  toggleButtonSelected: {
+    backgroundColor: `${ theme.palette.primary.dark } !important`,
   }
 }))
+
+
+
 
 
 const TOTAL_PRODUCTION_QUERY = gql`
@@ -281,7 +301,7 @@ const TotalProduction = props => {
       </Typography>
       <Grid container spacing={4}>
         <TotalProductionControls onToggleChange={toggleChange} onMenuChange={menuChange} maxFiscalYear={2019} maxCalendarYear={2020}/>
-        <Grid item xs>
+      <Grid item xs={12} md={4}>
           <StackedBarChart
             title={'Oil (bbl)'}
             data={chartData.filter(row => row.product === 'Oil (bbl)')}
@@ -300,7 +320,7 @@ const TotalProduction = props => {
             selectedIndex={selected}
             />
         </Grid>
-        <Grid item xs>
+        <Grid item xs={12} md={4}>
           <StackedBarChart
             title={'Gas (mcf)'}
             data={chartData.filter(row => row.product === 'Gas (mcf)')}
@@ -320,7 +340,7 @@ const TotalProduction = props => {
             
             />
         </Grid>
-        <Grid item xs>
+        <Grid item xs={12} md={4}>
           <StackedBarChart
             title={'Coal (tons)'}
             data={chartData.filter(row => row.product === 'Coal (tons)')}
