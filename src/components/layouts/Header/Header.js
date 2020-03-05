@@ -150,11 +150,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Header = props => {
+const Header = React.memo(props => {
   const classes = useStyles()
 
-  const { state, dispatch } = useContext(StoreContext)
-  const [ mobileMenuState, setMobileMenuState ] = useState({
+  const { dispatch } = useContext(StoreContext)
+  const [mobileMenuState, setMobileMenuState] = useState({
     right: false,
   })
 
@@ -207,7 +207,7 @@ const Header = props => {
                       href="#"
                       className={classes.menuLink}
                       alt="this is the glossary drawer"
-                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: true } })}
+                      onClick={() => toggleGlossaryDrawer()}
                     >
                       Glossary
                     </a>
@@ -331,7 +331,7 @@ const Header = props => {
       </AppBar>
     </Fragment>
   )
-}
+})
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
