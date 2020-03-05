@@ -41,7 +41,7 @@ import { useMediaQuery } from '@material-ui/core'
 import { select } from 'd3'
 // import  mapJson from './us.t2.json'
 
-import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
+// import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
 
 export const STATIC_QUERY = graphql`
   {
@@ -832,7 +832,6 @@ const ExploreData = () => {
     // const timeout = 5000
     return (
       <>
-        <StatesSvg />
         <Container className={classes.mapWrapper} maxWidth={false}>
           <Grid container>
             <Grid item xs={12}>
