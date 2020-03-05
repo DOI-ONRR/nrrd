@@ -20,6 +20,7 @@ import Select from '@material-ui/core/Select'
 import Fade from '@material-ui/core/Fade'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
 
 import { StoreContext } from '../../../store'
 import { ThemeConsumer } from 'styled-components'
@@ -279,10 +280,15 @@ const TotalProduction = props => {
   }
 
   return (
-    <Box>
-      <Typography variant="h3" className="header-bar green">
-          Total Production
-      </Typography>
+    <>
+      <Box color="secondary.main" mb={2} borderBottom={2} pb={1} className={classes.titleBar}>
+        <Box component="h3" m={0} color="primary.dark">Revenue</Box>
+        <Box component="span" className={classes.titleLink}>
+          <ExploreDataLink
+            to="/query-data?dataType=Production"
+            icon="filter">Filter production data</ExploreDataLink>
+        </Box>
+      </Box>
       <Grid container spacing={4}>
         <TotalProductionControls onToggleChange={toggleChange} onMenuChange={menuChange} maxFiscalYear={2019} maxCalendarYear={2020}/>
         <Grid item xs={12} md={4}>
@@ -346,7 +352,7 @@ const TotalProduction = props => {
 
         </Grid>
       </Grid>
-    </Box>
+    </>
   )
 }
 

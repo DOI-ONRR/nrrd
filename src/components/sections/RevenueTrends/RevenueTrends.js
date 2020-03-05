@@ -40,7 +40,7 @@ const APOLLO_QUERY = gql`
   `
 
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {}
 }))
 
 const RevenueTrends = () => {
