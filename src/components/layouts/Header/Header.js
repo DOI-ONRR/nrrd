@@ -78,7 +78,8 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
-    color: theme.palette.common.black
+    color: theme.palette.common.black,
+    margin: 0,
   },
   link: {
     color: theme.palette.common.black
@@ -207,7 +208,7 @@ const Header = React.memo(props => {
                       href="#"
                       className={classes.menuLink}
                       alt="this is the glossary drawer"
-                      onClick={() => toggleGlossaryDrawer()}
+                      onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: '', glossaryOpen: true } })}
                     >
                       Glossary
                     </a>

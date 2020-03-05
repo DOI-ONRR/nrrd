@@ -19,9 +19,9 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(1),
     paddingLeft: theme.spacing(1),
-    // borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    // borderBottom: `1px solid ${ theme.palette.grays[300] }`,
     // boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
-    background: theme.palette.grey['200'],
+    background: theme.palette.grays['200'],
     overflowX: 'auto',
     '& h2': {
       marginTop: theme.spacing(1),
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 99,
     '& button': {
       color: theme.palette.common.black,
-      border: `1px solid ${ theme.palette.grey['300'] }`,
+      border: `1px solid ${ theme.palette.grays['300'] }`,
       backgroundColor: theme.palette.common.white,
       borderRadius: '50%',
       boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
@@ -66,9 +66,11 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: 'rgba(0, 0, 0, 0.08)',
     }
   },
-  mapMenuItem: {
-    border: `1px solid ${ theme.palette.grey['300'] }`,
-    height: 48,
+  mapMenuRoot: {
+    position: 'relative',
+    top: -2,
+    border: `1px solid ${ theme.palette.grays['300'] }`,
+    height: 50,
     marginLeft: theme.spacing(0),
     marginRight: theme.spacing(1),
     paddingTop: 0,
@@ -82,6 +84,11 @@ const useStyles = makeStyles(theme => ({
     whiteSpace: 'nowrap',
     minWidth: 150,
     zIndex: 99,
+    fontSize: theme.typography.body2,
+    '& .MuiTypography-root': {
+      fontSize: '1.2rem',
+      lineHeight: '1.2rem',
+    },
     '& *': {
       margin: 0,
     },
@@ -121,20 +128,20 @@ const MapLevel = props => {
   }
 
   return (
-    <div className={classes.mapMenuItem}>
+    <div className={classes.mapMenuRoot}>
       <List component="nav" aria-label="Map levels">
         <ListItem
           button
           aria-haspopup="true"
           aria-controls="map-levels-menu"
-          aria-label="map levels locked"
+          aria-label="Map levels menu"
           onClick={handleClickListItem}
         >
           <ListItemText primary="Map level" secondary={options[selectedIndex]} />
         </ListItem>
       </List>
       <Menu
-        id="levels-menu"
+        id="map-levels-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -183,20 +190,20 @@ const MapOffshore = props => {
   }
 
   return (
-    <div className={classes.mapMenuItem}>
-      <List component="nav" aria-label="Map levels">
+    <div className={classes.mapMenuRoot}>
+      <List component="nav" aria-label="Offshore data menu">
         <ListItem
           button
           aria-haspopup="true"
-          aria-controls="map-offshore-menu"
-          aria-label="map offshore locked"
+          aria-controls="offshore-data-menu"
+          aria-label="Offshore data menu"
           onClick={handleClickListItem}
         >
           <ListItemText primary="Offshore data" secondary={options[selectedIndex]} />
         </ListItem>
       </List>
       <Menu
-        id="offshore-menu"
+        id="offshore-data-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -233,14 +240,14 @@ const MapExploreMenu = props => {
   return (
     <div className={classes.mapExploreMenu}>
       <IconButton
-        aria-label="Other ways to explore revenue"
-        aria-controls="explore-menu"
+        aria-label="Other ways to explore data"
+        aria-controls="other-ways-to-explore-data"
         aria-haspopup="true"
         onClick={handleMenuClick}>
         <MoreVertIcon />
       </IconButton>
       <Menu
-        id="explore-menu"
+        id="other-ways-to-explore-data"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -263,8 +270,8 @@ const ExploreDataToolbar = props => {
         <MapLevel onChange={props.handleChange} />
         <MapOffshore onChange={props.handleChange} />
         <MapExploreMenu
-          linkLabels={['Revenue by company', 'Native American revenue', 'Query revenue data', 'Downloads & Documentation', 'How revenue works']}
-          linkUrls={['/explore/?dataType=revenue-by-company', '/explore/?dataType=native-american-revenue', '/query-data', '/downloads', '/how-it-works']}
+          linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
+          linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
         />
       </Box>
     </Box>

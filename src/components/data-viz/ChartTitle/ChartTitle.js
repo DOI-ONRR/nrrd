@@ -5,8 +5,8 @@ import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles(theme => ({
   charTitle: {
-    borderBottom: `1px solid ${ theme.palette.grey[600] }`,
-    color: theme.palette.grey[600],
+    borderBottom: `1px solid ${ theme.palette.grays[600] }`,
+    color: theme.palette.grays[600],
     fontSize: theme.typography.body2.fontSize,
     marginBottom: theme.spacing(2),
   }

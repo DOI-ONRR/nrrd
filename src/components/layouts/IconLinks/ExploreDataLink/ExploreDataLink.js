@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '1rem',
     display: 'flex',
     '& svg': {
-      fill: '#1478a6',
+      fill: theme.palette.links.default,
       verticalAlign: 'middle',
       marginRight: '8px',
       flex: 'none',
@@ -32,13 +32,15 @@ const useStyles = makeStyles(theme => ({
       marginRight: '1rem',
       verticalAlign: 'baseline',
       position: 'relative',
-      top: 0,
+      top: -2,
     },
     '&:hover': {
-      textDecoration: 'underline'
+      textDecoration: 'underline',
+      color: theme.palette.text.secondary,
     },
     '&:active': {
-      textDecoration: 'underline'
+      textDecoration: 'underline',
+      color: theme.palette.text.secondary,
     }
   }
 }))
@@ -63,7 +65,7 @@ const ExploreDataLink = props => {
   return (
     <Link to={props.to} className={classes.exploreDataLink}>
       {getIcon(props.icon)}
-      <Box component="span" fontSize="body2">
+      <Box component="span" fontSize="body2" color="text.secondary">
         {props.children === undefined
           ? 'Explore data'
           : props.children}

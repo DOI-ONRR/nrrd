@@ -1,65 +1,92 @@
 // https://material-ui.com/system/palette/
 
 module.exports = Object.freeze({
+  // New color ramps
+  // https://935313.axshare.com/#g=1&p=color_ramps
+  background: { default: '#ffffff' },
   primary: {
-    main: '#5c737f',
-    light: '#1478a6',
-    dark: 'rgb(64, 80, 88)',
-    contrastText: '#d3dfe6'
+    main: '#f0f6fa',
   },
   secondary: {
     main: '#cde3c3',
-    light: 'rgb(215, 232, 207)',
-    dark: 'rgb(0, 100, 42)',
-    contrastText: 'rgba(0, 0, 0, 0.87)'
-  },
-  grey: {
-    50: '#fafafa',
-    100: '#f5f5f5',
-    200: '#eeeeee',
-    300: '#e0e0e0',
-    400: '#bdbdbd',
-    500: '#9e9e9e',
-    600: '#757575',
-    700: '#616161',
-    800: '#424242',
-    900: '#212121',
-    A700: '#616161',
-    A100: '#d5d5d5',
-    A400: '#303030',
-    A200: '#aaaaaa'
   },
   common: {
-    white: '#fff',
-    black: '#000',
+    white: '#ffffff',
+    black: '#000000',
   },
   text: {
-    primary: 'rgba(0, 0, 0, 0.87)',
-    secondary: 'rgba(0, 0, 0, 0.54)',
-    disabled: 'rgba(0, 0, 0, 0.38)',
-    hint: 'rgba(0, 0, 0, 0.38)'
+    primary: '#000000',
+    secondary: '#1478a6'
   },
   chart: {
     primary: '#222222',
-    secondary: '#086996',
+    secondary: '#086996'
   },
-  green: {
-    light: '#cde3c3',
-    mid: '#9dbd92',
-    land: '#69995a',
-    default: '#587f4c',
-    dark: '#2f4d26',
-  },
-  blue: {
-    light: '#f0f6fa',
-    mid: '#323c42',
+  links: {
     default: '#1478a6',
-    dark: '#086996'
   },
-  orange: {
-    default: '#ff8c00'
+  // Land category charts
+  blues: {
+    100: '#bccacf',
+    200: '#8fa7af',
+    300: '#62848f',
+    400: '#43646f',
+    500: '#30474f',
+    600: '#131c20'
   },
-  purple: {
-    default: '#ac2e97'
-  }
+  // Location charts
+  greens: {
+    100: '#c2d0bd',
+    200: '#94ad8d',
+    300: '#678a5c',
+    400: '#49683f',
+    500: '#30462a',
+    600: '#182315'
+  },
+  // Revenue type charts (only first four)
+  oranges: {
+    100: '#fcba8b',
+    200: '#fa842e',
+    300: '#e36000',
+    400: '#b64d00',
+    500: '#833a00',
+    600: '#5b2700'
+  },
+  // Commodity charts
+  purples: {
+    100: '#dcd2df',
+    200: '#b9a6bf',
+    300: '#96799f',
+    400: '#82568f',
+    500: '#56395f',
+    600: '#2b1c30'
+  },
+  // Not currently being used, but available if needed
+  browns: {
+    100: '#dfd6d2',
+    200: '#bfaca6',
+    300: '#9f8379',
+    400: '#895d52',
+    500: '#5f4339',
+    600: '#30211c'
+  },
+  // lines, backgrounds, etc.
+  grays: {
+    100: '#f2f2f3',
+    200: '#e5e6e6',
+    300: '#d8d9da',
+    400: '#cbcdce',
+    500: '#bdc0c1',
+    600: '#b0b3b5',
+    700: '#a3a7a8',
+    800: '#969a9c',
+    900: '#838789',
+    1000: '#717475',
+    1100: '#5e6062',
+    1200: '#4b4d4e',
+    1300: '#383a3b',
+    1400: '#252627',
+    1500: '#131314'
+  },
+  tonalOffset: 0.6,
 })

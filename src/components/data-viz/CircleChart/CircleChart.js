@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
       width: 20,
     },
     '& .legend-table': {
-      width: '85%',
+      width: '100%',
       borderSpacing: 0,
       borderCollapse: 0,
       boxShadow: 'none',

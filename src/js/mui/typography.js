@@ -3,90 +3,48 @@
 require('typeface-lato')
 
 module.exports = Object.freeze({
-  h1: {
-    margin: '0 0 1rem 0',
-    color: '#323c42',
-    fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-    fontSize: '2.125rem',
-    fontWeight: '600',
-    lineHeight: 'inherit',
-  },
-  h2: {
-    margin: '0 0 1rem 0',
-    color: '#323c42',
-    fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-    fontSize: '1.625rem',
-    fontWeight: '600',
-    lineHeight: 'inherit',
-    marginTop: '1.5rem',
-  },
-  h3: {
-    margin: '0 0 1rem 0',
-    color: '#323c42',
-    fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-    fontSize: '1.5rem',
-    fontWeight: '600',
-    lineHeight: 'inherit',
-    marginBottom: '0.5rem',
-  },
-  h4: {
-    margin: '0 0 1rem 0',
-    color: '#323c42',
-    fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-    fontSize: '1.375rem',
-    fontWeight: '300',
-    lineHeight: 'inherit',
-  },
-  h5: {
-    margin: '0 0 1rem 0',
-    color: '#323c42',
-    fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-    fontSize: '1.125rem',
-    fontWeight: '600',
-    lineHeight: 'inherit',
-  },
-  h6: {
-    margin: '0 0 1rem 0',
-    color: '#323c42',
-    fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-    fontSize: '.875rem',
-    fontWeight: '600',
-    lineHeight: 'inherit',
-  },
-  subtitle1: {
-    margin: '0 0 1rem 0',
-    color: '#323c42',
-    fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-    fontSize: '1.375rem',
-    // fontSize: 'calc(1vw + 1vh + .5vmin)',
-    fontWeight: '400',
-    lineHeight: 'inherit',
-    marginBottom: '0.75rem',
-  },
-  subtitle2: {},
+  fontSize: '18',
+  fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
+  fontWeightBold: 'bold',
+  // This overrides CSSBaseline for the body tag
   body1: {
-    color: '#323c42',
-    fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-    fontSize: '1.2rem',
-    fontWeight: '400',
-    lineHeight: '1.6875rem',
-    marginBottom: '0.75rem',
+    fontSize: '1.285rem',
+    fontWeight: 400,
+    lineHeight: 1.5,
   },
   body2: {
+    color: '#000',
+    fontSize: '1.125rem',
+    lineHeight: '1.6875rem',
+  },
+  h1: {
     margin: '0 0 1rem 0',
-    color: '#323c42',
-    fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-    fontSize: '.85rem',
+    fontSize: '2.125rem',
+    fontWeight: '600',
   },
-  buttonText: {},
-  captionText: {},
-  overlineText: {},
-  fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-  chartText: '1rem',
-  chartLegend: {
-    label: '.80rem'
+  h2: {
+    margin: '2rem 0 1rem 0',
+    fontSize: '1.625rem',
+    fontWeight: '600',
   },
-  label: {
-    fontSize: '.85rem',
-  }
+  h3: {
+    margin: '2rem 0 0.25rem 0',
+    fontSize: '1.25rem',
+    fontWeight: '600',
+  },
+  h4: {
+    margin: '2rem 0 0.25rem 0',
+    fontSize: '1.2rem',
+    fontWeight: '600',
+  },
+  h5: {
+    margin: '2rem 0 0.25rem 0',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+  },
+  h6: {
+    margin: '2rem 0 0.25rem 0',
+    fontSize: '.875rem',
+    fontWeight: '600',
+  },
 })

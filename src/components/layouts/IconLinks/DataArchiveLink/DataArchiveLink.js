@@ -9,7 +9,7 @@ import DataArchiveIcon from '-!svg-react-loader!../../../../img/svg/icon-archive
 const useStyles = makeStyles(theme => ({
   root: {
     '& svg': {
-      fill: '#1478a6',
+      fill: theme.palette.links.primary,
       verticalAlign: 'middle',
       marginRight: '8px',
     },
