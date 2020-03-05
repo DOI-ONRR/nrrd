@@ -288,7 +288,7 @@ const TotalRevenue = props => {
             yOrderBy={yOrderBy}
             xLabels={xLabels}
             legendFormat={v => {
-              return utils.formatToDollarFloat(v)
+              return utils.formatToDollarInt(v)
             }}
           />
         </Grid>

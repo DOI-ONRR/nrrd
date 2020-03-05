@@ -39,9 +39,8 @@ const DROPDOWN_VALUES = {
 
 const YEARLY_DROPDOWN_VALUES = {
   Fiscal: 'fiscal_year',
- Calendar: 'calendar_year'
+  Calendar: 'calendar_year'
 }
-
 
 const useStyles = makeStyles(theme => ({
   titleBar: {
@@ -82,10 +81,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: `${ theme.palette.primary.dark } !important`,
   }
 }))
-
-
-
-
 
 const TOTAL_PRODUCTION_QUERY = gql`
   query TotalYearlyProduction {
@@ -134,8 +129,6 @@ const TOTAL_PRODUCTION_QUERY = gql`
   } 
   }
 `
-
-
 
 // Total Productrion Controls, Menu
 const TotalProductionControls = props => {
@@ -215,14 +208,12 @@ const TotalProductionControls = props => {
   )
 }
 
-
 const TotalProduction = props => {
-
   const classes = useStyles()
   const [period, setPeriod] = useState('fiscal_year')
   const [toggle, setToggle] = useState('year')
   const [selected, setSelected] = useState(9)
-  
+
   const toggleChange = value => {
     // console.debug('ON TOGGLE CHANGE: ', value)
     setToggle(value)
@@ -231,15 +222,14 @@ const TotalProduction = props => {
     // console.debug('ON Menu CHANGE: ', value)
     setPeriod(value)
   }
-  
+
   const handleSelect = value => {
     console.debug('handle select CHANGE: ', value)
     setSelected(value.selectedIndex)
-    
   }
-  
-  const chartTitle = props.chartTitle || `${ CONSTANTS.PRODUCTION} (dollars)`
-  
+
+  const chartTitle = props.chartTitle || `${ CONSTANTS.PRODUCTION } (dollars)`
+
   const { loading, error, data } = useQuery(TOTAL_PRODUCTION_QUERY)
   if (loading) {
     return 'Loading...'
@@ -250,8 +240,6 @@ const TotalProduction = props => {
   const yGroupBy = 'source'
   let xLabels
 
-
-  
   if (loading) {
     return 'Loading...'
   }
@@ -282,16 +270,12 @@ const TotalProduction = props => {
       }
       else {
         chartData = data.total_yearly_calendar_production2
-        
       }
-      console.debug(chartData) 
+      console.debug(chartData)
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
-        
       }
     }
-    
-    
   }
 
   return (
@@ -301,7 +285,7 @@ const TotalProduction = props => {
       </Typography>
       <Grid container spacing={4}>
         <TotalProductionControls onToggleChange={toggleChange} onMenuChange={menuChange} maxFiscalYear={2019} maxCalendarYear={2020}/>
-      <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4}>
           <StackedBarChart
             title={'Oil (bbl)'}
             data={chartData.filter(row => row.product === 'Oil (bbl)')}
@@ -310,15 +294,15 @@ const TotalProduction = props => {
             yGroupBy={yGroupBy}
             xLabels={xLabels}
             legendFormat={v => {
-              return utils.formatToDollarInt(v)
+              return utils.formatToCommaInt(v)
             }}
-            onSelect={ d =>{
+            onSelect={ d => {
               console.log('handle select', d)
               return handleSelect(d)
-              }
+            }
             }
             selectedIndex={selected}
-            />
+          />
         </Grid>
         <Grid item xs={12} md={4}>
           <StackedBarChart
@@ -329,16 +313,16 @@ const TotalProduction = props => {
             yGroupBy={yGroupBy}
             xLabels={xLabels}
             legendFormat={v => {
-              return utils.formatToDollarInt(v)
+              return utils.formatToCommaInt(v)
             }}
-            onSelect={ d =>{
+            onSelect={ d => {
               console.log('handle select', d)
               return handleSelect(d)
-              }
+            }
             }
             selectedIndex={selected}
-            
-            />
+
+          />
         </Grid>
         <Grid item xs={12} md={4}>
           <StackedBarChart
@@ -349,16 +333,16 @@ const TotalProduction = props => {
             yGroupBy={yGroupBy}
             xLabels={xLabels}
             legendFormat={v => {
-              return utils.formatToDollarInt(v)
+              return utils.formatToCommaInt(v)
             }}
-            onSelect={ d =>{
+            onSelect={ d => {
               console.log('handle select', d)
               return handleSelect(d)
-              }
+            }
             }
             selectedIndex={selected}
 
-            />
+          />
 
         </Grid>
       </Grid>
