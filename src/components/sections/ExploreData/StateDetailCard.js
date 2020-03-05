@@ -114,17 +114,18 @@ const StateIcon = props => {
   const stateTitle = props.stateTitle
   const stateAbbr = props.stateAbbr
 
-  let svgTag
+  let svgImg
   if (stateTitle === 'Nationwide Federal') {
-    svgTag = '<svg className="icon-state"><use xlink:href=#icon-state-USA /></svg>'
+    svgImg = ''
   }
   else {
-    svgTag = `<svg className="icon-state"><use xlink:href=#icon-state-${ stateAbbr } /></svg>`
+    svgImg = ''
+    // svgImg = `<img src={'/maps/states/${ stateAbbr }.png'} alt="${ stateAbbr } Logo" />`
   }
 
   return (
     <div className={classes.detailCardHeaderContent}>
-      <span dangerouslySetInnerHTML={{ __html: svgTag }} />
+      {svgImg}
       <span>{props.stateTitle}</span>
     </div>
   )
