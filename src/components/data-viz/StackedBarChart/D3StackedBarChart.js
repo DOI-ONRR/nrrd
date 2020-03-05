@@ -15,8 +15,14 @@ export default class D3StackedBarChart {
     this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
     this.marginBottom = options.marginBottom || 40
     this.marginTop = options.marginTop || 25
-    this.selectedIndex = options.selectedIndex || this.xDomain().length - 1
 
+    if(options.selectedIndex === undefined) {
+        this.selectedIndex = this.xDomain().length - 1
+    }
+    else {
+      this.selectedIndex = options.selectedIndex
+    }
+    
     this.xLabels=options.xLabels
     //max extent line props and defaults
     this.legendFormat=options.legendFormat
