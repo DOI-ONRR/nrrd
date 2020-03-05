@@ -1,45 +1,64 @@
-import React, { Fragment, useState, useContext, useEffect, useRef } from 'react'
-// import { Link } from "gatsby"
-import { graphql } from 'gatsby'
+import React, { useState, useEffect, useRef } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
-import Slider from '@material-ui/core/Slider'
-import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
-import Fade from '@material-ui/core/Fade'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
-import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
 
-import { StoreContext } from '../../../store'
-import { ThemeConsumer } from 'styled-components'
 import utils from '../../../js/utils'
 import CONSTANTS from '../../../js/constants'
-import { classicNameResolver } from 'typescript'
-import { set } from 'd3'
 
 const TOTAL_REVENUE_QUERY = gql`
-  query TotalYearlyRevenue($period: String!) {
-    total_yearly_revenue(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
-      federal_offshore
-      federal_onshore
-      native_american
-      not_tied_to_a_lease
-      fiscal_year
+  query TotalYearlyRevenue {
+    total_yearly_fiscal_revenue2 { 
+      year,
+      source,
+      sum
     }
-  }
+    total_yearly_calendar_revenue2 { 
+      year,
+      source,
+      sum
+    }
+    total_monthly_fiscal_revenue2 {
+      source
+      sum
+      month_long
+      period_date
+      month
+     year
+    }
+    total_monthly_calendar_revenue2 {
+      source
+      sum
+      month_long
+      period_date
+      month
+     year
+
+  } 
+ last_twelve_revenue2 {
+      source
+      sum
+      month_long
+      period_date
+      month
+     year
+
+  } 
+}
+
 `
 const TOGGLE_VALUES = {
   Year: 'year',
@@ -56,8 +75,6 @@ const YEARLY_DROPDOWN_VALUES = {
   Fiscal: 'fiscal_year',
   Calendar: 'calendar_year'
 }
-
-const CHART_LEGEND_TITLE = 'Source'
 
 const useStyles = makeStyles(theme => ({
   titleBar: {
@@ -103,6 +120,7 @@ const TotalRevenueControls = props => {
 
   const handleToggle = (event, newVal) => {
     setToggle(newVal)
+    props.onToggleChange(newVal)
   }
 
   useEffect(() => {
@@ -111,6 +129,7 @@ const TotalRevenueControls = props => {
 
   const handleChange = event => {
     setPeriod(event.target.value)
+    props.onMenuChange(event.target.value)
   }
 
   return (
@@ -146,13 +165,13 @@ const TotalRevenueControls = props => {
                   <MenuItem key={i} value={item}>{ item === 'calendar_year' ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
                 ))
                 : Object.values(DROPDOWN_VALUES).map((item, i) => (
-                  <MenuItem value={item} key={i}>
+                  <MenuItem value={item} if key={i}>
                     {(() => {
                       switch (item) {
                       case 'fiscal':
-                        return 'Fiscal year + [REVENUES_FISCAL_YEAR_OLD]'
+                        return 'Fiscal year ' + props.maxFiscalYear
                       case 'calendar':
-                        return 'Calendar year + [REVENUES_CALENDAR_YEAR]'
+                        return 'Calendar year ' + props.maxCalendarYear
                       default:
                         return 'Most recent 12 months'
                       }
@@ -170,33 +189,66 @@ const TotalRevenueControls = props => {
 // TotalRevenue component
 const TotalRevenue = props => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
-
-  const [period, setPeriod] = useState(state.period)
+  const [period, setPeriod] = useState('fiscal_year')
+  const [toggle, setToggle] = useState('year')
 
   // const period = state.period
 
   const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
-  const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american', 'not_tied_to_a_lease']
-  const columnNames = props.columnNames || [CHART_LEGEND_TITLE, '', state.year]
-
-  const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
-  const xLabels = props.xLabels || ["'10", "'11", "'12", "'13", "'14", "'15", "'16", "'17", "'18", "'19"]
-  const xRotate = props.xRotate || 0
-
-  const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY, {
-    variables: { period }
-  })
+  const yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
+  const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY)
 
   if (loading) {
     return 'Loading...'
   }
 
-  if (error) return `Error! ${ error.message }`
-  if (data) {
-    console.debug('DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
+  const toggleChange = value => {
+    // console.debug('ON TOGGLE CHANGE: ', value)
+    setToggle(value)
+  }
+  const menuChange = value => {
+    // console.debug('ON Menu CHANGE: ', value)
+    setPeriod(value)
   }
 
+  if (error) return `Error! ${ error.message }`
+  let chartData
+  let xAxis
+  const yAxis = 'sum'
+  const yGroupBy = 'source'
+  let xLabels = 'month'
+
+  if (data) {
+    if (toggle === 'month') {
+      if (period === 'fiscal') {
+        chartData = data.total_monthly_fiscal_revenue2
+      }
+      else if (period === 'calendar') {
+        chartData = data.total_monthly_calendar_revenue2
+      }
+      else {
+        chartData = data.last_twelve_revenue2
+      }
+
+      xAxis = 'month_long'
+      xLabels = (x, i) => {
+        // console.debug(x)
+        return x.map(v => v.substr(0, 3))
+      }
+    }
+    else {
+      if (period === 'fiscal_year') {
+        chartData = data.total_yearly_fiscal_revenue2
+      }
+      else {
+        chartData = data.total_yearly_calendar_revenue2
+      }
+      xAxis = 'year'
+      xLabels = (x, i) => {
+        return x.map(v => '\'' + v.toString().substr(2))
+      }
+    }
+  }
   return (
     <Box>
       <Typography variant="h3" className={`header-bar green ${ classes.titleBar }`}>
@@ -208,20 +260,20 @@ const TotalRevenue = props => {
         </Box>
       </Typography>
       <Grid container spacing={4}>
-        <TotalRevenueControls />
+        <TotalRevenueControls onToggleChange={toggleChange} onMenuChange={menuChange} maxFiscalYear={2019} maxCalendarYear={2020}/>
         <Grid item xs={12}>
           <StackedBarChart
-            chartTitle={chartTitle}
-            data={data.total_yearly_revenue}
-            legendDataFormatFunc={utils.formatToDollarFloat}
-            columns={columns}
-            columnNames={columnNames}
-            xRotate={xRotate}
-            yLabels={yLabels}
+            title={chartTitle}
+            data={chartData}
+            xAxis={xAxis}
+            yAxis={yAxis}
+            yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
             xLabels={xLabels}
-            onClick={d => {
-              dispatch({ type: 'YEAR', payload: { year: data.total_yearly_revenue[d.selectedIndex].fiscal_year } })
-            }} />
+            legendFormat={v => {
+              return utils.formatToDollarFloat(v)
+            }}
+          />
         </Grid>
       </Grid>
     </Box>
