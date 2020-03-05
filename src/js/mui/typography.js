@@ -41,4 +41,8 @@ module.exports = Object.freeze({
     fontSize: '.875rem',
     fontWeight: '600',
   },
+  chartText: '1rem',
+  chartLegend: {
+    label: '.80rem'
+  },
 })
