@@ -15,8 +15,14 @@ export default class D3StackedBarChart {
     this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
     this.marginBottom = options.marginBottom || 40
     this.marginTop = options.marginTop || 25
-    this.selectedIndex = options.selectedIndex || this.xDomain().length - 1
 
+    if(options.selectedIndex === undefined) {
+        this.selectedIndex = this.xDomain().length - 1
+    }
+    else {
+      this.selectedIndex = options.selectedIndex
+    }
+    
     this.xLabels=options.xLabels
     //max extent line props and defaults
     this.legendFormat=options.legendFormat
@@ -25,6 +31,10 @@ export default class D3StackedBarChart {
     this.extentMarginOfError = options.extentMarginOfError || 0.10
     this.maxExtentLineY = options.maxExtentLineY || 20
 
+    //overload methods to make chart awesome
+    if(options.onSelect) this.onSelect=options.onSelect
+    if(options.onClick) this.onClick=options.onClick
+    
     
     
     this.yOrder()
@@ -286,8 +296,8 @@ export default class D3StackedBarChart {
   
   createLegend (newData, xValue) {
     try {
-      d3.selectAll('.legend-table').remove()
-      d3.selectAll('.legend-rect').remove()
+      d3.select(this.node).selectAll('.legend-table').remove()
+      d3.select(this.node).selectAll('.legend-rect').remove()
 
 
       //const columns = this.yGroupings()
@@ -319,8 +329,8 @@ export default class D3StackedBarChart {
   updateLegend (newData, xValue) {
     try {
       const self=this
-      d3.selectAll('.legend-table tbody tr').remove()
-      d3.selectAll('.legend-rect').remove()
+      d3.select(this.node).selectAll('.legend-table tbody tr').remove()
+      d3.select(this.node).selectAll('.legend-rect').remove()
       //      this.getSelected()
       
       const data = newData ||  this.selectedData()
@@ -330,7 +340,7 @@ export default class D3StackedBarChart {
       const labels = this.yGroupings()
       const formatLegend = this.formatLegend()
       // const table = d3.selectAll('.legend-table')
-      const tbody = d3.selectAll('.legend-table tbody')
+      const tbody = d3.select(this.node).selectAll('.legend-table tbody')
 
       // turn object into array to play nice with d3
       const dataArr = Object.keys(data).map((key, i) => {
@@ -411,7 +421,7 @@ export default class D3StackedBarChart {
   
   _onSelect = (element, data) => {
     try {
-      const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
+      const selectedElement = d3.select(this.node).selectAll('.active') // element.parentNode.querySelector('[selected=true]')
       // console.debug(data)
       if (selectedElement) {
         selectedElement.attr('selected', false)
@@ -929,7 +939,7 @@ export default class D3StackedBarChart {
   }
 
   getSelected () {
-    d3.selectAll('.bar').filter((d, i, nodes) => {
+    d3.select(this.node).selectAll('.bar').filter((d, i, nodes) => {
       if (nodes[i].className.baseVal.match(/active/)) {
         // console.debug("getSelected: ", i)
         this.xSelectedValue = d 
