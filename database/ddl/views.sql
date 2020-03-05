@@ -101,7 +101,7 @@ CREATE OR REPLACE VIEW "public"."last_twelve_revenue2" AS
 
 
 drop view  "public"."total_yearly_fiscal_revenue2";
-CREATE OR REPLACE VIEW "public"."total_yearly_fiscal_revenue2" AS
+CREATE OR REPLACE VIEW "public"."total_yearly_fiscal_revenue2" AS 
  SELECT period.period,
     period.fiscal_year as year, 
         CASE
