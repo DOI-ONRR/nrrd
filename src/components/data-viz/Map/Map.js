@@ -10,12 +10,23 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   map: {
-    display: 'block',
-    top: 0,
-    left: 0,
+    // display: 'block',
+    // top: 0,
+    // left: 0,
+    // width: '100%',
+    // height: '100%',
+    // order: '3'
     width: '100%',
     height: '100%',
-    order: '3'
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    paddingLeft: theme.spacing(0),
+    paddingRight: theme.spacing(0),
+    overflow: 'hidden',
+    background: theme.palette.grey[200],
   },
   legend: {
     display: 'block',
@@ -27,6 +38,9 @@ const useStyles = makeStyles(theme => ({
     margin: '5px',
     position: 'absolute',
     padding: theme.spacing(1),
+    '@media (max-width: 768px)': {
+      bottom: 5,
+    },
     '& .tick': {
       fontSize: theme.typography.chartLegend.label,
     }
@@ -54,7 +68,6 @@ const Map = props => {
 
   const mapFeatures = props.mapFeatures || 'counties'
   const mapData = props.mapData || []
-  console.debug('FEATURES', mapFeatures)
 
   // mapData=props.offshoreData && mapData.concat(props.offshoreData);
   const elemRef = useRef(null)
@@ -64,19 +77,19 @@ const Map = props => {
   const onClick =
         props.onClick ||
         function (d, i) {
-          console.debug('Default onClick function', d, i)
+          // console.debug('Default onClick function', d, i)
         }
   const classes = useStyles()
   const minColor = props.minColor
   const maxColor = props.maxColor
   const onZoom = props.onZoom || function () {
-    console.debug('Map   onZoom default')
+    // console.debug('Map   onZoom default')
   }
   const onZoomEnd = props.onZoomEnd || function () {
-    //console.debug('Map   onZoomEnd default')
+    // console.debug('Map   onZoomEnd default')
   }
-  const mapZoom = props.mapZoom 
-  const mapX = props.mapX 
+  const mapZoom = props.mapZoom
+  const mapX = props.mapX
   const mapY = props.mapY
 
   let map
@@ -102,13 +115,13 @@ const Map = props => {
 
     map.onZoom = onZoom
     map.onZoomEnd = onZoomEnd
-    if (mapX && mapY && mapZoom) {
+    if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
       map.zoom({ x: mapX, y: mapY, k: mapZoom })
     }
   })
   return (
     <div className={classes.map} ref={elemRef}>
-      <div className={`MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 ${ classes.legend }`} ></div>
+      <div className={`MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 ${ classes.legend }`}></div>
       <div className={classes.map}></div>
     </div>
   )

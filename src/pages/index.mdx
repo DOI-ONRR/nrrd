@@ -28,11 +28,16 @@ import ExploreRevenue from '../components/sections/Explore/Revenue'
 import ExploreDisbursements from '../components/sections/Explore/Disbursements'
 import ExploreProduction from '../components/sections/Explore/Production'
 
-import { RevenueByLocationLink } from '../components/layouts/RevenueByLocationLink'
+import { LocationLink } from '../components/layouts/LocationLink'
 
 export const useStyles = makeStyles(theme => ({
-  revenueByLocationLink: {
+  locationLink: {
     marginTop: theme.spacing(2.5),
+    '@media (max-width: 426px)': {
+      display: 'block',
+      width: '100%',
+      textAlign: 'left',
+    }
   },
   whatsNewContainer: {
     background: theme.palette.blue.light,
@@ -73,19 +78,22 @@ export const IndexPage = props => {
       </Container>
       {/* Tabordion */}
       <Container maxWidth="lg">
-        <Box mb={5}>
+        <Box mb={2}>
           <Grid container spacing={0}>
             <Grid item xs={12} md={12}>
               <Tabtastic selected={selected}>
                 <TabtasticTab label="Revenue">
                   <Grid container m={0} spacing={4}>
-                    <Grid item sm={12} md={6}>
+                    <Grid item xs={12} sm={6}>
                       <Typography variant="h2">
                         Revenue
                       </Typography>
                     </Grid>
-                    <Grid item sm={12} md={6} className={classes.revenueByLocationLink}>
-                      <RevenueByLocationLink />
+                    <Grid item xs={12} sm={6} className={classes.locationLink}>
+                      <LocationLink
+                        linkTitle="Revenue by location"
+                        linkUrl="/explore?data=revenue"
+                         />
                     </Grid>
                     <Grid item sm={12}>
                       <Typography variant="body1">
@@ -105,10 +113,17 @@ export const IndexPage = props => {
                 </TabtasticTab>
                 <TabtasticTab label="Disbursements">
                   <Grid container spacing={4}>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sm={6}>
                       <Typography variant="h2">
                         Disbursements
                       </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={6} className={classes.locationLink}>
+                      <LocationLink
+                        linkTitle="Disbursements by location"
+                        linkUrl="/explore?data=disbursements" />
+                    </Grid>
+                    <Grid item sm={12}>
                       <Typography variant="body1">
                         The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.
                       </Typography>

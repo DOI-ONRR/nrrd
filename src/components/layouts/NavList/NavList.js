@@ -2,8 +2,6 @@ import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 
-// import lazy from 'lazy.js'
-
 const useStyles = makeStyles(theme => ({
   root: {}
 }))

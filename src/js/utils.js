@@ -8,6 +8,29 @@ import commodityNames from '../data/commodity_names.yml'
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
 
+export const fetchDataFilterFromUrl = () => {
+  const updatedFilter = {}
+  if (typeof window !== 'undefined' && window) {
+    const urlSearchParams = new URLSearchParams(window.location.search)
+    for (const searchParam of urlSearchParams.entries()) {
+      updatedFilter[searchParam[0]] = searchParam[1]
+    }
+  }
+  return updatedFilter
+}
+export const toTitleCase = str => {
+  str = str.toLowerCase().split(' ')
+  for (let i = 0; i < str.length; i++) {
+    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1)
+  }
+  return str.join(' ')
+}
+export const range = (start, end) => {
+  return Array(end - start + 1)
+    .fill()
+    .map((_, idx) => start + idx)
+}
+
 const utils = {
   scrollStop: callback => {
     // Make sure a valid callback was provided
@@ -141,8 +164,10 @@ const utils = {
 
     const num = d3.format(`.${ precision + 2 }s`)(value)
 
-    const suffix = num.substring(num.length - 1)
-
+    let suffix = num.substring(num.length - 1)
+    if (suffix == 0) {
+      suffix = ''
+    }
     const dollarNum = this.formatToDollarFloat(num, precision - 1)
     const r = this.getMetricLongUnit(dollarNum + suffix)
     return r

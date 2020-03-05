@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { StoreContext } from '../../../store'
 
 import GlossaryIcon from '-!svg-react-loader!../../../img/svg/icon-question-circle.svg'
+import { GlossaryContext } from '../../../stores'
 
 // GlossaryTerm Styles
 const useStyles = makeStyles(theme => ({
@@ -25,7 +26,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const GlossaryTerm = ({ termKey, children }) => {
-  
   const classes = useStyles()
   const { dispatch } = useContext(StoreContext)
 
@@ -41,8 +41,8 @@ const GlossaryTerm = ({ termKey, children }) => {
 
   return (
     <Fragment>
-      <span className={classes.glossaryTerm} title="Click to define" tabIndex="0" 
-        onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: getTerm(), glossaryOpen: true }})}>
+      <span className={classes.glossaryTerm} title="Click to define" tabIndex="0"
+        onClick={() => dispatch({ type: 'GLOSSARY_TERM_SELECTED', payload: { glossaryTerm: getTerm(), glossaryOpen: true } })}>
         {children} <GlossaryIcon className={classes.iconQuestion} />
       </span>
     </Fragment>

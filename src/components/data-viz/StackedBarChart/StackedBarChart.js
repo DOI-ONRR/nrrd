@@ -1,25 +1,14 @@
 import React, { useEffect, useRef } from 'react'
-// import ReactDOM from 'react-dom'
-
-// import utils from '../../../js/utils'
-
 import { makeStyles } from '@material-ui/core/styles'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
+import ChartTitle from '../ChartTitle'
+import BarChart from './D3StackedBarChart.js'
 
-// import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
-import BarChart from './stacked-bar-chart.js'
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'block',
     top: 0,
     left: 0,
     width: '100%',
-    height: '400px',
   },
   chart: {
     display: 'block',
@@ -29,11 +18,13 @@ const useStyles = makeStyles(theme => ({
     height: '200px',
     fill: theme.palette.chart.primary,
     '& .bars > .bar:hover': {
-      fill: theme.palette.chart.secondary
+      fill: theme.palette.chart.secondary,
+      cursor: 'pointer',
     },
     '& .bars > .active': {
-      fill: theme.palette.chart.secondary
+      fill: theme.palette.chart.secondary,
     },
+
     '& .maxExtent': {
       fontSize: theme.typography.chartText,
     },
@@ -46,11 +37,41 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     width: '100%',
-    height: '200px',
+    height: '100%',
     fontSize: theme.typography.chartText,
-    '& .legend-rect': {
+    '& tr > td:first-child': {
+      width: 10,
+    },
+    '& td .legend-rect': {
       fill: theme.palette.chart.secondary,
-    }
+      backgroundColor: theme.palette.chart.secondary,
+      display: 'block',
+      height: 20,
+      width: 20,
+    },
+    '& .legend-table': {
+      width: '100%',
+      borderSpacing: 0,
+      borderCollapse: 0,
+      boxShadow: 'none',
+    },
+    '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
+      textAlign: 'right',
+    },
+    '& .legend-table > thead th': {
+      fontWeight: 'bold',
+      textAlign: 'left',
+      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    },
+    '& .legend-table > tbody tr td': {
+      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    },
+    '& .legend-table > tbody tr:last-child td': {
+      border: 'none',
+    },
+    '& .legend-table th, & .legend-table td': {
+      padding: theme.spacing(0.5),
+    },
   }
 }))
 
@@ -60,52 +81,25 @@ const StackedBarChart = props => {
 
   const classes = useStyles()
 
-  const data = props.data
-  const options = {}
-  const formatLegendFunc = props.legendDataFormatFunc
-  options.columns = props.columns
-  options.columnHeaders = props.columnHeaders
-  options.yLabels = props.yLabels
-  options.xLabels = props.xLabels
-  options.xRotate = props.xRotate
-  console.debug('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOPITIONS', options)
-  //   const selected = props.selected
+  const { data, ...options } = props
   const elemRef = useRef(null)
-
+  const title = options.title || ''
   useEffect(() => {
-    // stackedBarChar(elemRef.current,{}, datas);
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
-    //  const chart2 = new BarChart2(elemRef.current, data2, options)
-    //    chart2.draw(data2)
-    const chart = new BarChart(elemRef.current, data, options, formatLegendFunc)
-    // chart.selected(selected);
+    const chart = new BarChart(elemRef.current, data, options)
     chart.draw(data)
-  }, [elemRef])
+    //  }, [elemRef]) What does this do? Other then cause it to not update
+  })
 
   return (
-	  <div className={classes.container} ref={elemRef}>
-	    <div className={classes.chart}></div>
-      <div className={classes.legend}></div>
-      {/* <Table className={classes.table} aria-label="Stacked bar chart">
-        <TableHead>
-          <TableRow>
-            <TableCell>Source</TableCell>
-            <TableCell align="right">Year</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {options.yLabels.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell component="th" scope="row">
-                {row}
-              </TableCell>
-              <TableCell align="right">{row}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table> */}
-    </div>
+    <>
+      {title && <ChartTitle>{title}</ChartTitle>}
+      <div className={classes.container} ref={elemRef}>
+        <div className={classes.chart}></div>
+        <div className={classes.legend}></div>
+      </div>
+    </>
   )
 }
 
