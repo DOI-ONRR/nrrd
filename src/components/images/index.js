@@ -13,6 +13,8 @@ import IconCoalSvg from '-!svg-react-loader!../../images/icons/icon-coal.svg'
 import IconHardrockSvg from '-!svg-react-loader!../../images/icons/icon-hardrock.svg'
 import IconGeothermalSvg from '-!svg-react-loader!../../images/icons/icon-geothermal.svg'
 import IconRenewablesSvg from '-!svg-react-loader!../../images/icons/icon-renewables.svg'
+import IconArchiveSvg from '-!svg-react-loader!../../images/icons/icon-archive.svg'
+import IconDownloadBaseSvg from '-!svg-react-loader!../../images/icons/icon-download-base.svg'
 
 export const HowMainIconOilImg = props => <HowMainIconOilSvg {...props} />
 export const HowMainIconHardrockImg = props => <HowMainIconHardrockSvg {...props} />
@@ -28,3 +30,5 @@ export const IconCoalImg = props => <IconCoalSvg {...props} />
 export const IconHardrockImg = props => <IconHardrockSvg {...props} />
 export const IconGeothermalImg = props => <IconGeothermalSvg {...props} />
 export const IconRenewablesImg = props => <IconRenewablesSvg {...props} />
+export const IconArchiveImg = props => <IconArchiveSvg {...props} style={{ verticalAlign: 'middle' }}/>
+export const IconDownloadBaseImg = props => <IconDownloadBaseSvg {...props} style={{ verticalAlign: 'middle', fill: 'currentColor' }}/>
