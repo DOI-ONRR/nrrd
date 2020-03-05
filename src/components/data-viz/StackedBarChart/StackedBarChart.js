@@ -1,14 +1,7 @@
 import React, { useEffect, useRef } from 'react'
-// import ReactDOM from 'react-dom'
-
-// import utils from '../../../js/utils'
-
 import { makeStyles } from '@material-ui/core/styles'
-
 import ChartTitle from '../ChartTitle'
-
-// import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
-import BarChart from './stacked-bar-chart.js'
+import BarChart from './D3StackedBarChart.js'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -31,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     '& .bars > .active': {
       fill: theme.palette.chart.secondary,
     },
+
     '& .maxExtent': {
       fontSize: theme.typography.chartText,
     },
@@ -87,38 +81,20 @@ const StackedBarChart = props => {
 
   const classes = useStyles()
 
-  const data = props.data
-  const options = {}
-  const formatLegendFunc = props.legendDataFormatFunc
-  const title = props.chartTitle
-
-  options.columns = props.columns
-  options.columnNames = props.columnNames
-  options.yLabels = props.yLabels
-  options.xLabels = props.xLabels
-  options.xRotate = props.xRotate
-  options.onClick = props.onClick
-
-  console.debug('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOPITIONS', options)
-  //   const selected = props.selected
+  const { data, ...options } = props
   const elemRef = useRef(null)
-
+  const title = options.title || ''
   useEffect(() => {
-    // stackedBarChar(elemRef.current,{}, datas);
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
-    //  const chart2 = new BarChart2(elemRef.current, data2, options)
-    //    chart2.draw(data2)
-    const chart = new BarChart(elemRef.current, data, options, formatLegendFunc)
-    // chart.selected(selected);
+    const chart = new BarChart(elemRef.current, data, options)
     chart.draw(data)
-  }, [elemRef])
+    //  }, [elemRef]) What does this do? Other then cause it to not update
+  })
 
   return (
     <>
-      {title && <ChartTitle>
-        {title}
-      </ChartTitle>}
+      {title && <ChartTitle>{title}</ChartTitle>}
       <div className={classes.container} ref={elemRef}>
         <div className={classes.chart}></div>
         <div className={classes.legend}></div>
