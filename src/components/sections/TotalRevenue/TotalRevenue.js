@@ -122,13 +122,19 @@ const TotalRevenueControls = props => {
 
   const inputLabel = useRef(null)
 
-  const [period, setPeriod] = useState('fiscal_year')
+  const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
   const [labelWidth, setLabelWidth] = useState(0)
-  const [toggle, setToggle] = useState('year')
+  const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
 
   const handleToggle = (event, newVal) => {
     setToggle(newVal)
     props.onToggleChange(newVal)
+    if (newVal && newVal.toLowerCase() === TOGGLE_VALUES.Month.toLowerCase()) {
+      setPeriod(DROPDOWN_VALUES.Recent)
+    }
+    else {
+      setPeriod(YEARLY_DROPDOWN_VALUES.Fiscal)
+    }
   }
 
   useEffect(() => {
@@ -182,7 +188,7 @@ const TotalRevenueControls = props => {
                   <MenuItem key={i} value={item}>{ item === 'calendar_year' ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
                 ))
                 : Object.values(DROPDOWN_VALUES).map((item, i) => (
-                  <MenuItem value={item} if key={i}>
+                  <MenuItem value={item} key={i}>
                     {(() => {
                       switch (item) {
                       case 'fiscal':
@@ -206,8 +212,8 @@ const TotalRevenueControls = props => {
 // TotalRevenue component
 const TotalRevenue = props => {
   const classes = useStyles()
-  const [period, setPeriod] = useState('fiscal_year')
-  const [toggle, setToggle] = useState('year')
+  const [period, setPeriod] = useState(null)
+  const [toggle, setToggle] = useState(null)
 
   // const period = state.period
 
@@ -234,6 +240,7 @@ const TotalRevenue = props => {
   const yAxis = 'sum'
   const yGroupBy = 'source'
   let xLabels = 'month'
+  const units = 'dollars'
 
   if (data) {
     if (toggle === 'month') {
@@ -280,16 +287,17 @@ const TotalRevenue = props => {
         <TotalRevenueControls onToggleChange={toggleChange} onMenuChange={menuChange} maxFiscalYear={2019} maxCalendarYear={2020}/>
         <Grid item xs={12}>
           <StackedBarChart
-            title={chartTitle}
             data={chartData}
-            xAxis={xAxis}
-            yAxis={yAxis}
-            yGroupBy={yGroupBy}
-            yOrderBy={yOrderBy}
-            xLabels={xLabels}
             legendFormat={v => {
               return utils.formatToDollarInt(v)
             }}
+            title={chartTitle}
+            units={units}
+            xAxis={xAxis}
+            xLabels={xLabels}
+            yAxis={yAxis}
+            yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
           />
         </Grid>
       </Grid>

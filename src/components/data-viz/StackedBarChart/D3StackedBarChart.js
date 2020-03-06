@@ -14,6 +14,7 @@ export default class D3StackedBarChart {
     this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
     this.marginBottom = options.marginBottom || 40
     this.marginTop = options.marginTop || 25
+    this.units = (options.units) ? options.units : ''
 
     if (options.selectedIndex === undefined) {
       this.selectedIndex = this.xDomain().length - 1
@@ -146,9 +147,6 @@ export default class D3StackedBarChart {
       const maxExtentGroup = self.chart.append('g').attr('class', 'maxExtent')
 
       const maxExtentValue = this.maxExtent()
-      if (!this.units) {
-        this.units = ''
-      }
 
       maxExtentGroup.append('text')
         .attr('width', self._width)

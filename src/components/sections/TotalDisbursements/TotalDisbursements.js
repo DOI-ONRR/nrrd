@@ -40,7 +40,6 @@ const DROPDOWN_VALUES = {
 
 const YEARLY_DROPDOWN_VALUES = {
   Fiscal: 'fiscal_year'
-
 }
 
 const useStyles = makeStyles(theme => ({
@@ -126,13 +125,19 @@ const TotalDisbursementControls = props => {
 
   const inputLabel = useRef(null)
 
-  const [period, setPeriod] = useState('')
+  const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
   const [labelWidth, setLabelWidth] = useState(0)
-  const [toggle, setToggle] = useState('year')
+  const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
 
   const handleToggle = (event, newVal) => {
     setToggle(newVal)
     props.onToggleChange(newVal)
+    if (newVal && newVal.toLowerCase() === TOGGLE_VALUES.Month.toLowerCase()) {
+      setPeriod(DROPDOWN_VALUES.Recent)
+    }
+    else {
+      setPeriod(YEARLY_DROPDOWN_VALUES.Fiscal)
+    }
   }
 
   useEffect(() => {
@@ -186,7 +191,7 @@ const TotalDisbursementControls = props => {
                   <MenuItem key={i} value={item}>{ item === 'calendar_year' ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
                 ))
                 : Object.values(DROPDOWN_VALUES).map((item, i) => (
-                  <MenuItem value={item} if key={i}>
+                  <MenuItem value={item} key={i}>
                     {(() => {
                       switch (item) {
                       case 'fiscal':
@@ -209,8 +214,8 @@ const TotalDisbursementControls = props => {
 
 const TotalDisbursements = props => {
   const classes = useStyles()
-  const [period, setPeriod] = useState('fiscal_year')
-  const [toggle, setToggle] = useState('year')
+  const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
+  const [toggle, setToggle] = useState(DROPDOWN_VALUES.Year)
   const toggleChange = value => {
     // console.debug('ON TOGGLE CHANGE: ', value)
     setToggle(value)
@@ -230,6 +235,7 @@ const TotalDisbursements = props => {
   let xAxis = 'year'
   const yAxis = 'sum'
   const yGroupBy = 'source'
+  const units = 'dollars'
   let xLabels
 
   if (error) return `Error! ${ error.message }`
@@ -269,19 +275,12 @@ const TotalDisbursements = props => {
             icon="filter">Filter disbursements data</ExploreDataLink>
         </Box>
       </Box>
-      {/* <Typography variant="h3" className={`header-bar green ${ classes.titleBar }`}>
-          Total Disbursements
-        <Box component="span" className={classes.titleLink}>
-          <ExploreDataLink
-            to="/query-data?dataType=Disbursements"
-            icon="filter">Filter disbursements data</ExploreDataLink>
-        </Box>
-      </Typography> */}
       <Grid container spacing={4}>
         <TotalDisbursementControls onToggleChange={toggleChange} onMenuChange={menuChange} maxFiscalYear={2019} maxCalendarYear={2020}/>
         <Grid item xs>
           <StackedBarChart
             title={chartTitle}
+            units={units}
             data={chartData}
             xAxis={xAxis}
             yAxis={yAxis}
