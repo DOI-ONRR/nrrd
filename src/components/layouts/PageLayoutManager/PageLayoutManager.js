@@ -14,9 +14,6 @@ const PageLayoutManager = ({ children, location, pageContext }) => {
 
   const layout = pageContext.frontmatter && pageContext.frontmatter.layout
 
-  if (layout === 'downloads') {
-    return <DownloadsLayout>{children}</DownloadsLayout>
-  }
   if (layout === 'pattern-library') {
     return <PatternLibraryLayout>{children}</PatternLibraryLayout>
   }

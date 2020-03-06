@@ -39,13 +39,6 @@ const useStyles = makeStyles(theme => (
       'ul ul': {
         listStyleType: 'square'
       },
-      a: {
-        color: theme.palette.text.secondary,
-        textDecoration: 'underline',
-        '&:hover': {
-          textDecoration: 'none',
-        }
-      },
       h1: { ...theme.typography.h1 },
       h2: { ...theme.typography.h2 },
       h3: { ...theme.typography.h3 },
