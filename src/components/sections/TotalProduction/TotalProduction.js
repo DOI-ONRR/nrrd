@@ -137,13 +137,19 @@ const TotalProductionControls = props => {
 
   const inputLabel = useRef(null)
 
-  const [period, setPeriod] = useState('')
+  const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
   const [labelWidth, setLabelWidth] = useState(0)
-  const [toggle, setToggle] = useState('year')
+  const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
 
   const handleToggle = (event, newVal) => {
     setToggle(newVal)
     props.onToggleChange(newVal)
+    if (newVal && newVal.toLowerCase() === TOGGLE_VALUES.Month.toLowerCase()) {
+      setPeriod(DROPDOWN_VALUES.Recent)
+    }
+    else {
+      setPeriod(YEARLY_DROPDOWN_VALUES.Fiscal)
+    }
   }
 
   useEffect(() => {
@@ -197,7 +203,7 @@ const TotalProductionControls = props => {
                   <MenuItem key={i} value={item}>{ item === 'calendar_year' ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
                 ))
                 : Object.values(DROPDOWN_VALUES).map((item, i) => (
-                  <MenuItem value={item} if key={i}>
+                  <MenuItem value={item} key={i}>
                     {(() => {
                       switch (item) {
                       case 'fiscal':
@@ -220,8 +226,8 @@ const TotalProductionControls = props => {
 
 const TotalProduction = props => {
   const classes = useStyles()
-  const [period, setPeriod] = useState('fiscal_year')
-  const [toggle, setToggle] = useState('year')
+  const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
+  const [toggle, setToggle] = useState(DROPDOWN_VALUES.Year)
   const [selected, setSelected] = useState(9)
 
   const toggleChange = value => {
