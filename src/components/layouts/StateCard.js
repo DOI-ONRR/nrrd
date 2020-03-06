@@ -42,7 +42,7 @@ import utils from '../../js/utils'
 
 import { StoreContext } from '../../store'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: '20px'
   },
@@ -52,11 +52,11 @@ const useStyles = makeStyles({
     position: 'absolute',
     right: 0,
     transform: 'translate3d(0, 0px, 0px)',
-    minHeight: 305,
+    minHeight: 325,
     '@media (max-width: 768px)': {
       width: '100%',
       height: 'auto',
-    }
+    },
   },
   cardMinimized: {
     minHeight: 0,
@@ -68,8 +68,11 @@ const useStyles = makeStyles({
     }
   },
   cardHeader: {
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.common.white,
     padding: 10,
     height: 40,
+    fontSize: '1.2rem',
     '& .MuiCardHeader-action': {
       marginTop: 0,
     },
@@ -77,11 +80,15 @@ const useStyles = makeStyles({
       margin: 0,
     },
   },
+  cardHeaderContent: {
+    fontSize: theme.typography.h4.fontSize,
+  },
   close: {
     position: 'relative',
-    top: 0,
+    top: -3,
     right: '10px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    maxWidth: 20,
   },
   bullet: {
     display: 'inline-block',
@@ -111,7 +118,7 @@ const useStyles = makeStyles({
   paper: {
     width: '100%'
   },
-})
+}))
 
 const APOLLO_QUERY = gql`
   query StateTrend($state: String!, $year: Int!) {
@@ -172,8 +179,6 @@ const APOLLO_QUERY = gql`
 //   return r
 // }
 
-
-
 const StateCard = props => {
   const classes = useStyles()
   const { state } = useContext(StoreContext)
@@ -190,9 +195,9 @@ const StateCard = props => {
 
   const year = state.year
 
-  // let state = props.abbrev
+  // let state = props.abbr
   const { loading, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbrev, year: year }
+    variables: { state: props.abbr, year: year }
   })
   const minimizeIcon = Object.is(props.minimizeIcon, undefined)
     ? false
@@ -235,9 +240,10 @@ const StateCard = props => {
                   )}
                 </>
               }
-              className={classes.cardHeader}
+              classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+              disableTypography
             >
-              <Typography variant="h6" color="inherit">
+              <Typography variant="h4" color="inherit">
                 {props.name}
               </Typography>
             </CardHeader>
@@ -313,20 +319,20 @@ const StateCard = props => {
                   )}
                 </>
               }
-              className={classes.cardHeader}
+              classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+              disableTypography
             >
-              <Typography variant="h6" color="inherit">
+              <Typography variant="h4" color="inherit">
                 {props.name}
               </Typography>
             </CardHeader>
             <CardContent>
               <Collapse in={minimized} timeout="auto" unmountOnExit>
                 <Grid container>
-                  <Grid item xs={7}>
+                  <Grid item xs={6}>
                     <Typography variant="caption">
-                      <Box>
-                      Trend ({sparkMin} - {sparkMax})
-                      </Box>
+                      <Box>Trend</Box>
+                      <Box>({sparkMin} - {sparkMax})</Box>
                     </Typography>
                     <Box component="span">
                       {sparkData && (
@@ -337,7 +343,7 @@ const StateCard = props => {
                       )}
                     </Box>
                   </Grid>
-                  <Grid item xs={5} style={{ textAlign: 'right' }}>
+                  <Grid item xs={6} style={{ textAlign: 'right' }}>
                     <Typography variant="caption">
                       <Box>{state.year}</Box>
                       <Box>
@@ -432,9 +438,10 @@ const StateCard = props => {
                 }}
               />
             }
-            className={classes.cardHeader}
+            classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+            disableTypography
           >
-            <Typography variant="h6" color="inherit">
+            <Typography variant="h4" color="inherit">
               {props.name}
             </Typography>
             <CloseIcon

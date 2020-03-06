@@ -80,7 +80,6 @@ const useStyles = makeStyles(theme => ({
   titleBar: {
     display: 'flex',
     justifyContent: 'space-between',
-    paddingBottom: 4,
     '@media (max-width: 426px)': {
       display: 'block',
     }
@@ -89,7 +88,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem',
     marginBottom: 0,
     fontWeight: 'normal',
-    height: 29,
+    height: 24,
     '@media (max-width: 426px)': {
       display: 'block',
       width: '100%',
@@ -105,6 +104,15 @@ const useStyles = makeStyles(theme => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
+  },
+  toggleButtonRoot: {
+    textTransform: 'capitalize',
+    '& .Mui-selected': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
+  toggleButtonSelected: {
+    backgroundColor: `${ theme.palette.primary.dark } !important`,
   }
 }))
 
@@ -139,21 +147,30 @@ const TotalRevenueControls = props => {
           value={toggle}
           exclusive
           onChange={handleToggle}
+          size="large"
           aria-label="Toggle between Yearly and Monthly data">
           {
             Object.values(TOGGLE_VALUES).map((item, i) => (
-              <ToggleButton key={i} value={item} aria-label={item} disableRipple={true}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
+              <ToggleButton
+                key={i}
+                value={item}
+                aria-label={item}
+                disableRipple
+                classes={{
+                  root: classes.toggleButtonRoot,
+                  selected: classes.toggleButtonSelected,
+                }}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
             ))
           }
         </ToggleButtonGroup>
       </Grid>
       <Grid item xs={6} style={{ textAlign: 'right' }}>
         <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
+          <InputLabel ref={inputLabel} id="select-period-outlined-label">
           Period
           </InputLabel>
           <Select
-            labelId="Period label"
+            labelId="Period select"
             id="period-label-select-outlined"
             value={period}
             onChange={handleChange}
@@ -250,15 +267,15 @@ const TotalRevenue = props => {
     }
   }
   return (
-    <Box>
-      <Typography variant="h3" className={`header-bar green ${ classes.titleBar }`}>
-          Total Revenue
+    <>
+      <Box color="secondary.main" mb={2} borderBottom={2} pb={1} className={classes.titleBar}>
+        <Box component="h3" m={0} color="primary.dark">Revenue</Box>
         <Box component="span" className={classes.titleLink}>
           <ExploreDataLink
             to="/query-data?dataType=Revenue"
             icon="filter">Filter revenue data</ExploreDataLink>
         </Box>
-      </Typography>
+      </Box>
       <Grid container spacing={4}>
         <TotalRevenueControls onToggleChange={toggleChange} onMenuChange={menuChange} maxFiscalYear={2019} maxCalendarYear={2020}/>
         <Grid item xs={12}>
@@ -271,12 +288,12 @@ const TotalRevenue = props => {
             yOrderBy={yOrderBy}
             xLabels={xLabels}
             legendFormat={v => {
-              return utils.formatToDollarFloat(v)
+              return utils.formatToDollarInt(v)
             }}
           />
         </Grid>
       </Grid>
-    </Box>
+    </>
   )
 }
 

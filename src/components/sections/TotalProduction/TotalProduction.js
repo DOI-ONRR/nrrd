@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from 'react'
+import React, { Fragment, useState, useEffect, useRef, useContext } from 'react'
 // import { Link } from "gatsby"
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
@@ -11,65 +11,357 @@ import Slider from '@material-ui/core/Slider'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
+import ToggleButton from '@material-ui/lab/ToggleButton'
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
 import Fade from '@material-ui/core/Fade'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
 
 import { StoreContext } from '../../../store'
 import { ThemeConsumer } from 'styled-components'
 import utils from '../../../js/utils'
+import CONSTANTS from '../../../js/constants'
+
+const TOGGLE_VALUES = {
+  Year: 'year',
+  Month: 'month'
+}
+
+const DROPDOWN_VALUES = {
+  Recent: 'recent',
+  Fiscal: 'fiscal',
+  Calendar: 'calendar'
+}
+
+const YEARLY_DROPDOWN_VALUES = {
+  Fiscal: 'fiscal_year',
+  Calendar: 'calendar_year'
+}
+
+const useStyles = makeStyles(theme => ({
+  titleBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    '@media (max-width: 426px)': {
+      display: 'block',
+    }
+  },
+  titleLink: {
+    fontSize: '1.2rem',
+    marginBottom: 0,
+    fontWeight: 'normal',
+    height: 24,
+    '@media (max-width: 426px)': {
+      display: 'block',
+      width: '100%',
+    },
+    '& span': {
+      marginRight: 0,
+    }
+  },
+  formControl: {
+    margin: theme.spacing(0),
+    minWidth: 120,
+    textAlign: 'right',
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  },
+  toggleButtonRoot: {
+    textTransform: 'capitalize',
+    '& .Mui-selected': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
+  toggleButtonSelected: {
+    backgroundColor: `${ theme.palette.primary.dark } !important`,
+  },
+}))
 
 const TOTAL_PRODUCTION_QUERY = gql`
-  query TotalYearlyProduction($period: String!) {
-    total_yearly_production(where: { fiscal_year: { _gt: 2009 },  period: { _eq: $period } }) { 
-      federal_offshore
-      federal_onshore
-      native_american
-      fiscal_year
+  query TotalYearlyProduction {
+    total_yearly_fiscal_production2 {
+      product,
+      year,
+      source,
+      sum
+    }   
+
+    total_yearly_calendar_production2 {
+      product,
+      year,
+      source,
+      sum
+    }   
+
+    total_monthly_fiscal_production2 {
+      source
+     product
+      sum
+      month_long
+      period_date
+      month
+     year
     }
+    total_monthly_calendar_production2 {
+      source
+     product
+      sum
+      month_long
+      period_date
+      month
+     year
+
+  } 
+     last_twelve_production2 {
+      source
+      product
+      sum
+      month_long
+      period_date
+      month
+     year
+
+  } 
   }
 `
 
-const TotalProduction = props => {
-  const { state, dispatch } = useContext(StoreContext)
-  const period = state.period
-  const columns = props.columns || ['fiscal_year', 'federal_onshore', 'federal_offshore', 'native_american']
-  const columnHeaders = props.columnHeaders || ['Source', 'Year']
+// Total Productrion Controls, Menu
+const TotalProductionControls = props => {
+  const classes = useStyles()
 
-  const yLabels = props.yLabels || ['Federal onshore', 'Federal offshore', 'Native American']
-  const xLabels = props.xLabels
-  const xRotate = props.xRotate || 0
-  const { loading, error, data } = useQuery(TOTAL_PRODUCTION_QUERY, {
-    variables: { period }
-  })
+  const inputLabel = useRef(null)
+
+  const [period, setPeriod] = useState('')
+  const [labelWidth, setLabelWidth] = useState(0)
+  const [toggle, setToggle] = useState('year')
+
+  const handleToggle = (event, newVal) => {
+    setToggle(newVal)
+    props.onToggleChange(newVal)
+  }
+
+  useEffect(() => {
+    setLabelWidth(inputLabel.current.offsetWidth)
+  }, [])
+
+  const handleChange = event => {
+    setPeriod(event.target.value)
+    props.onMenuChange(event.target.value)
+  }
+
+  return (
+    <>
+      <Grid item xs={6}>
+        <ToggleButtonGroup
+          value={toggle}
+          exclusive
+          onChange={handleToggle}
+          size="large"
+          aria-label="Toggle between Yearly and Monthly data">
+          {
+            Object.values(TOGGLE_VALUES).map((item, i) => (
+              <ToggleButton
+                key={i}
+                value={item}
+                aria-label={item}
+                disableRipple
+                classes={{
+                  root: classes.toggleButtonRoot,
+                  selected: classes.toggleButtonSelected,
+                }}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
+            ))
+          }
+        </ToggleButtonGroup>
+      </Grid>
+      <Grid item xs={6} style={{ textAlign: 'right' }}>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
+          Period
+          </InputLabel>
+          <Select
+            labelId="Period label"
+            id="period-label-select-outlined"
+            value={period}
+            onChange={handleChange}
+            labelWidth={labelWidth}
+          >
+            {
+              (toggle === 'year')
+                ? Object.values(YEARLY_DROPDOWN_VALUES).map((item, i) => (
+                  <MenuItem key={i} value={item}>{ item === 'calendar_year' ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
+                ))
+                : Object.values(DROPDOWN_VALUES).map((item, i) => (
+                  <MenuItem value={item} if key={i}>
+                    {(() => {
+                      switch (item) {
+                      case 'fiscal':
+                        return 'Fiscal year ' + props.maxFiscalYear
+                      case 'calendar':
+                        return 'Calendar year ' + props.maxCalendarYear
+                      default:
+                        return 'Most recent 12 months'
+                      }
+                    })()}
+                  </MenuItem>
+                ))
+            }
+          </Select>
+        </FormControl>
+      </Grid>
+    </>
+  )
+}
+
+const TotalProduction = props => {
+  const classes = useStyles()
+  const [period, setPeriod] = useState('fiscal_year')
+  const [toggle, setToggle] = useState('year')
+  const [selected, setSelected] = useState(9)
+
+  const toggleChange = value => {
+    // console.debug('ON TOGGLE CHANGE: ', value)
+    setToggle(value)
+  }
+  const menuChange = value => {
+    // console.debug('ON Menu CHANGE: ', value)
+    setPeriod(value)
+  }
+
+  const handleSelect = value => {
+    console.debug('handle select CHANGE: ', value)
+    setSelected(value.selectedIndex)
+  }
+
+  const chartTitle = props.chartTitle || `${ CONSTANTS.PRODUCTION } (dollars)`
+
+  const { loading, error, data } = useQuery(TOTAL_PRODUCTION_QUERY)
+  if (loading) {
+    return 'Loading...'
+  }
+  let chartData
+  let xAxis = 'year'
+  const yAxis = 'sum'
+  const yGroupBy = 'source'
+  let xLabels
+
   if (loading) {
     return 'Loading...'
   }
 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.debug('DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', data)
+    console.debug(data)
+    if (toggle === 'month') {
+      if (period === 'fiscal') {
+        chartData = data.total_monthly_fiscal_production2
+      }
+      else if (period === 'calendar') {
+        chartData = data.total_monthly_calendar_production2
+      }
+      else {
+        chartData = data.last_twelve_production2
+      }
+      xAxis = 'month_long'
+      xLabels = (x, i) => {
+        // console.debug(x)
+        return x.map(v => v.substr(0, 3))
+      }
+    }
+    else {
+      console.debug('fffffffffffffffffffffffffffffffffffffffffffffffffffiscal', period)
+      if (period === 'fiscal_year') {
+        chartData = data.total_yearly_fiscal_production2
+      }
+      else {
+        chartData = data.total_yearly_calendar_production2
+      }
+      console.debug(chartData)
+      xLabels = (x, i) => {
+        return x.map(v => '\'' + v.toString().substr(2))
+      }
+    }
   }
 
   return (
-    <Box>
-      <Typography variant="h3" className="header-bar green">
-          Total Production
-      </Typography>
+    <>
+      <Box color="secondary.main" mb={2} borderBottom={2} pb={1} className={classes.titleBar}>
+        <Box component="h3" m={0} color="primary.dark">Production</Box>
+        <Box component="span" className={classes.titleLink}>
+          <ExploreDataLink
+            to="/query-data?dataType=Production"
+            icon="filter">Filter production data</ExploreDataLink>
+        </Box>
+      </Box>
       <Grid container spacing={4}>
-        <Grid item xs>
+        <TotalProductionControls onToggleChange={toggleChange} onMenuChange={menuChange} maxFiscalYear={2019} maxCalendarYear={2020}/>
+        <Grid item xs={12} md={4}>
           <StackedBarChart
-            data={data.total_yearly_production}
-            legendDataFormatFunc={utils.formatToDollarFloat}
-            columns={columns}
-            columnHeaders={columnHeaders}
-            xRotate={xRotate}
-            yLabels={yLabels}
+            title={'Oil (bbl)'}
+            data={chartData.filter(row => row.product === 'Oil (bbl)')}
+            xAxis={xAxis}
+            yAxis={yAxis}
+            yGroupBy={yGroupBy}
             xLabels={xLabels}
-            selected={4} />
+            legendFormat={v => {
+              return utils.formatToCommaInt(v)
+            }}
+            onSelect={ d => {
+              console.log('handle select', d)
+              return handleSelect(d)
+            }
+            }
+            selectedIndex={selected}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <StackedBarChart
+            title={'Gas (mcf)'}
+            data={chartData.filter(row => row.product === 'Gas (mcf)')}
+            xAxis={xAxis}
+            yAxis={yAxis}
+            yGroupBy={yGroupBy}
+            xLabels={xLabels}
+            legendFormat={v => {
+              return utils.formatToCommaInt(v)
+            }}
+            onSelect={ d => {
+              console.log('handle select', d)
+              return handleSelect(d)
+            }
+            }
+            selectedIndex={selected}
+
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <StackedBarChart
+            title={'Coal (tons)'}
+            data={chartData.filter(row => row.product === 'Coal (tons)')}
+            xAxis={xAxis}
+            yAxis={yAxis}
+            yGroupBy={yGroupBy}
+            xLabels={xLabels}
+            legendFormat={v => {
+              return utils.formatToCommaInt(v)
+            }}
+            onSelect={ d => {
+              console.log('handle select', d)
+              return handleSelect(d)
+            }
+            }
+            selectedIndex={selected}
+
+          />
+
         </Grid>
       </Grid>
-    </Box>
+    </>
   )
 }
 

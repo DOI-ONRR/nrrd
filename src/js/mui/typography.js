@@ -34,15 +34,12 @@ module.exports = Object.freeze({
   },
   h5: {
     margin: '2rem 0 0.25rem 0',
+    fontSize: '1.1rem',
     fontWeight: '600',
   },
   h6: {
     margin: '2rem 0 0.25rem 0',
     fontSize: '.875rem',
     fontWeight: '600',
-  },
-  chartText: '1rem',
-  chartLegend: {
-    label: '.80rem'
   },
 })

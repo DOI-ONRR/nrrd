@@ -110,12 +110,12 @@ const DisbursementTrends = () => {
 
     return (
       <Box component="section" className={classes.root}>
-        <Typography variant="h3" className="header-bar green">
-            Disbursement trends
-        </Typography>
-        <Typography variant="body1" paragraph={true}>
-          Includes disbursements through {longCurrentText}
-        </Typography>
+        <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
+          <Box component="h3" m={0} color="primary.dark">Disbursement trends</Box>
+        </Box>
+        <Box component="p" color="text.primary">
+        Includes disbursements through {longCurrentText}
+        </Box>
         <TableContainer component={Paper} className={classes.tableContainer}>
           <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
             <TableHead>

@@ -15,7 +15,7 @@ import DownloadIcon from '-!svg-react-loader!../../../img/svg/icon-download-base
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#323c42'
+    backgroundColor: theme.palette.primary.dark,
   },
   footerLink: {
     color: 'white'
@@ -31,7 +31,10 @@ const useStyles = makeStyles(theme => ({
     fill: 'white',
     top: theme.spacing(2),
     marginLeft: theme.spacing(1)
-  }
+  },
+  footerImage: {
+    maxWidth: 'calc(100% - 2%)',
+  },
 }))
 
 const Footer = React.memo(({ data }) => {

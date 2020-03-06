@@ -19,7 +19,6 @@ import Paper from '@material-ui/core/Paper'
 
 import Sparkline from '../../data-viz/Sparkline'
 
-
 const TREND_LIMIT = 10
 
 /**
@@ -41,7 +40,7 @@ const APOLLO_QUERY = gql`
   `
 
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {}
 }))
 
 const RevenueTrends = () => {
@@ -90,12 +89,12 @@ const RevenueTrends = () => {
 
     return (
       <Box component="section" className={classes.root}>
-        <Typography variant="h3" className="header-bar green">
-          Revenue trends
-        </Typography>
-        <Typography variant="body1" paragraph={true}>
+        <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
+          <Box component="h3" m={0} color="primary.dark">Revenue trends</Box>
+        </Box>
+        <Box component="p" color="text.primary">
           Includes federal and Native American revenue through {longCurrentYearText}
-        </Typography>
+        </Box>
 
         <TableContainer component={Paper} className={classes.tableContainer}>
           <Table className={classes.table} size="small" aria-label="Revenue Trends Table">

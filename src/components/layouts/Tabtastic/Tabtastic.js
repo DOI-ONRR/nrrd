@@ -9,6 +9,46 @@ import Tab from '@material-ui/core/Tab'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
+  tabsRoot: {},
+  tabsFlexContainer: {
+    '@media (max-width: 500px)': {
+      display: 'block',
+    },
+  },
+  tabRoot: {
+    background: theme.palette.primary.main,
+    borderTop: `5px solid ${ theme.palette.primary.main }`,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    color: theme.palette.primary.dark,
+    textTransform: 'capitalize',
+    minHeight: 60,
+    fonnnntSize: theme.typography.h4.fontSize,
+    '& span:hover': {
+      textDecoration: 'underline',
+    },
+    '@media (max-width: 500px)': {
+      marginLeft: 0,
+      width: '100%',
+      display: 'block',
+      minWidth: '100%',
+      '-moz-box-shadow': 'inset  0 -10px 10px -15px grey',
+      '-webkit-box-shadow': 'inset  0 -10px 10px -15px grey',
+      'box-shadow': 'inset  0 -10px 10px -15px grey',
+    },
+  },
+  tabSelected: {
+    borderTop: `5px solid ${ theme.palette.primary.dark }`,
+    borderBottom: `1px solid ${ theme.palette.background.default }`,
+    borderLeft: `1px solid ${ theme.palette.primary.dark }`,
+    borderRight: `1px solid ${ theme.palette.primary.dark }`,
+    fontWeight: 'bold',
+    color: theme.palette.primary.dark,
+    backgroundColor: theme.palette.background.default,
+    zIndex: 10,
+  },
   tabPanelContainer: {
     position: 'relative',
     top: '-1px',
@@ -74,11 +114,26 @@ const Tabtastic = props => {
       <Tabs
         value={selectedIndex}
         onChange={handleChange}
+        indicatorColor="primary"
+        variant="fullWidth"
         aria-label="Revenue, Disbursements, and Production Tabs"
+        classes={{
+          root: classes.tabsRoot,
+          flexContainer: classes.tabsFlexContainer
+        }}
       >
         { children &&
           React.Children.map(children, (item, index) => (
-            <Tab disableRipple key={index} label={item.props.label} {...a11yProps(index)} index={index} />
+            <Tab
+              disableRipple
+              key={index}
+              label={item.props.label}
+              {...a11yProps(index)}
+              index={index}
+              classes={{
+                root: classes.tabRoot,
+                selected: classes.tabSelected
+              }} />
           ))
         }
       </Tabs>

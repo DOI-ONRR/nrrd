@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   iconMap: {
-    fill: theme.palette.primary.main,
+    fill: theme.palette.links.default,
     position: 'relative',
     top: -2,
   }

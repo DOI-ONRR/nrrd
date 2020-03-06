@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
-    background: theme.palette.grey[200],
+    background: theme.palette.grays[200],
   },
   legend: {
     display: 'block',
@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
       bottom: 5,
     },
     '& .tick': {
-      fontSize: theme.typography.chartLegend.label,
+      fontSize: theme.typography.body2,
     }
   }
 }))
