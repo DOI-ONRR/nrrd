@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link as GatsbyLink, withPrefix } from 'gatsby'
 import { makeStyles, useTheme, Box } from '@material-ui/core'
-import { IconDownloadXlsImg, IconDownloadCsvImg } from '../images'
+import { IconDownloadXlsImg, IconDownloadCsvImg, IconDownloadDataImg } from '../images'
 
 const useStyles = makeStyles(theme => ({
   link: {
@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const DownloadLink = ({ icon, children, ...props }) => (
-  <Box pl={4} mt={2}>
+const IconLink = ({ icon, children, ...props }) => (
+  <Box pl={4} mt={2} mb={2}>
     <BaseLink {...props} disableRouting>
       <Box mr={1} display='inline-block'>{icon}</Box>
       <span>{children}</span>
@@ -45,12 +45,14 @@ const BaseLink = ({ to, href, disableRouting, className = '', children, ...props
 
 const LinkTypeComponents = {
   default: props => <BaseLink {...props} />,
-  DownloadXls: props => <DownloadLink icon={<IconDownloadXlsImg />} {...props} />,
-  DownloadCsv: props => <DownloadLink icon={<IconDownloadCsvImg />} {...props} />
+  DownloadXls: props => <IconLink icon={<IconDownloadXlsImg />} {...props} />,
+  DownloadCsv: props => <IconLink icon={<IconDownloadCsvImg />} {...props} />,
+  DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />
 }
 
 const regexXlsx = RegExp('.xlsx$')
 const regexCsv = RegExp('.csv$')
+const regexDownloadData = RegExp('^/downloads/[a-zA-Z0-9]+')
 
 const getLinkComponent = ({ linkType, ...props }) => {
   if (linkType) {
@@ -61,6 +63,9 @@ const getLinkComponent = ({ linkType, ...props }) => {
   }
   if (regexCsv.test(props.href)) {
     return LinkTypeComponents.DownloadCsv(props)
+  }
+  if (regexDownloadData.test(props.href)) {
+    return LinkTypeComponents.DownloadData(props)
   }
 
   return LinkTypeComponents.default(props)
@@ -83,7 +88,7 @@ Link.propTypes = {
    *
    * By default we determine the appropriate link type but you can specify a type if you want to override it.
    */
-  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'default']),
+  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'default']),
   /**
    * Used to flag a relative link that we may not want to use Gatsby Routing for. An example is download files.
    *

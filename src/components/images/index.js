@@ -17,6 +17,7 @@ import IconArchiveSvg from '-!svg-react-loader!../../images/icons/icon-archive.s
 import IconDownloadBaseSvg from '-!svg-react-loader!../../images/icons/icon-download-base.svg'
 import IconDownloadXlsSvg from '-!svg-react-loader!../../images/icons/icon-download-xls.svg'
 import IconDownloadCsvSvg from '-!svg-react-loader!../../images/icons/icon-download-csv.svg'
+import IconDownloadDataSvg from '-!svg-react-loader!../../images/icons/icon-download-data.svg'
 
 export const HowMainIconOilImg = props => <HowMainIconOilSvg {...props} />
 export const HowMainIconHardrockImg = props => <HowMainIconHardrockSvg {...props} />
@@ -32,7 +33,8 @@ export const IconCoalImg = props => <IconCoalSvg {...props} />
 export const IconHardrockImg = props => <IconHardrockSvg {...props} />
 export const IconGeothermalImg = props => <IconGeothermalSvg {...props} />
 export const IconRenewablesImg = props => <IconRenewablesSvg {...props} />
-export const IconArchiveImg = props => <IconArchiveSvg {...props} style={{ verticalAlign: 'middle' }}/>
-export const IconDownloadBaseImg = props => <IconDownloadBaseSvg {...props} style={{ verticalAlign: 'middle', fill: 'currentColor' }}/>
-export const IconDownloadXlsImg = props => <IconDownloadXlsSvg {...props} style={{ verticalAlign: 'middle', fill: 'currentColor' }}/>
-export const IconDownloadCsvImg = props => <IconDownloadCsvSvg {...props} style={{ verticalAlign: 'middle', fill: 'currentColor' }}/>
+export const IconArchiveImg = props => <IconArchiveSvg style={{ verticalAlign: 'middle' }} {...props}/>
+export const IconDownloadBaseImg = props => <IconDownloadBaseSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
+export const IconDownloadXlsImg = props => <IconDownloadXlsSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
+export const IconDownloadCsvImg = props => <IconDownloadCsvSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
+export const IconDownloadDataImg = props => <IconDownloadDataSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
