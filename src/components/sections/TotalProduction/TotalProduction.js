@@ -20,6 +20,7 @@ import Select from '@material-ui/core/Select'
 import Fade from '@material-ui/core/Fade'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
 
 import { StoreContext } from '../../../store'
 import { ThemeConsumer } from 'styled-components'
@@ -79,7 +80,7 @@ const useStyles = makeStyles(theme => ({
   },
   toggleButtonSelected: {
     backgroundColor: `${ theme.palette.primary.dark } !important`,
-  }
+  },
 }))
 
 const TOTAL_PRODUCTION_QUERY = gql`
@@ -161,10 +162,19 @@ const TotalProductionControls = props => {
           value={toggle}
           exclusive
           onChange={handleToggle}
+          size="large"
           aria-label="Toggle between Yearly and Monthly data">
           {
             Object.values(TOGGLE_VALUES).map((item, i) => (
-              <ToggleButton key={i} value={item} aria-label={item} disableRipple={true}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
+              <ToggleButton
+                key={i}
+                value={item}
+                aria-label={item}
+                disableRipple
+                classes={{
+                  root: classes.toggleButtonRoot,
+                  selected: classes.toggleButtonSelected,
+                }}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
             ))
           }
         </ToggleButtonGroup>
@@ -279,10 +289,15 @@ const TotalProduction = props => {
   }
 
   return (
-    <Box>
-      <Typography variant="h3" className="header-bar green">
-          Total Production
-      </Typography>
+    <>
+      <Box color="secondary.main" mb={2} borderBottom={2} pb={1} className={classes.titleBar}>
+        <Box component="h3" m={0} color="primary.dark">Production</Box>
+        <Box component="span" className={classes.titleLink}>
+          <ExploreDataLink
+            to="/query-data?dataType=Production"
+            icon="filter">Filter production data</ExploreDataLink>
+        </Box>
+      </Box>
       <Grid container spacing={4}>
         <TotalProductionControls onToggleChange={toggleChange} onMenuChange={menuChange} maxFiscalYear={2019} maxCalendarYear={2020}/>
         <Grid item xs={12} md={4}>
@@ -346,7 +361,7 @@ const TotalProduction = props => {
 
         </Grid>
       </Grid>
-    </Box>
+    </>
   )
 }
 

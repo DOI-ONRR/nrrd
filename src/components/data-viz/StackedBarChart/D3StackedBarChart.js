@@ -386,17 +386,14 @@ export default class D3StackedBarChart {
 
       tr.append('td')
         .html(function (d, i) {
-          console.log('d: ', d)
           return self._legendFormat(d[0])
         })
       tr.append('td')
         .html(function (d, i) {
-          console.log('d: ', d)
           return self._legendFormat(d[1])
         })
       tr.append('td')
         .html(function (d, i) {
-          console.log('d: ', d)
           return self._legendFormat(d[2])
         })
 
@@ -1054,7 +1051,7 @@ export default class D3StackedBarChart {
   }
 
   onClick () {
-    console.log('onClick fired from d3 class yo!')
+    // console.log('onClick fired from d3 class yo!')
   }
 
   drawDep () {

@@ -40,14 +40,13 @@ const DROPDOWN_VALUES = {
 
 const YEARLY_DROPDOWN_VALUES = {
   Fiscal: 'fiscal_year'
- 
+
 }
 
 const useStyles = makeStyles(theme => ({
   titleBar: {
     display: 'flex',
     justifyContent: 'space-between',
-    paddingBottom: 4,
     '@media (max-width: 426px)': {
       display: 'block',
     }
@@ -56,11 +55,31 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem',
     marginBottom: 0,
     fontWeight: 'normal',
-    height: 29,
+    height: 24,
     '@media (max-width: 426px)': {
       display: 'block',
       width: '100%',
     },
+    '& span': {
+      marginRight: 0,
+    }
+  },
+  formControl: {
+    margin: theme.spacing(0),
+    minWidth: 120,
+    textAlign: 'right',
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  },
+  toggleButtonRoot: {
+    textTransform: 'capitalize',
+    '& .Mui-selected': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
+  toggleButtonSelected: {
+    backgroundColor: `${ theme.palette.primary.dark } !important`,
   }
 }))
 
@@ -132,10 +151,19 @@ const TotalDisbursementControls = props => {
           value={toggle}
           exclusive
           onChange={handleToggle}
+          size="large"
           aria-label="Toggle between Yearly and Monthly data">
           {
             Object.values(TOGGLE_VALUES).map((item, i) => (
-              <ToggleButton key={i} value={item} aria-label={item} disableRipple={true}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
+              <ToggleButton
+                key={i}
+                value={item}
+                aria-label={item}
+                disableRipple
+                classes={{
+                  root: classes.toggleButtonRoot,
+                  selected: classes.toggleButtonSelected,
+                }}>{ item === 'year' ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
             ))
           }
         </ToggleButtonGroup>
@@ -191,10 +219,9 @@ const TotalDisbursements = props => {
     // console.debug('ON Menu CHANGE: ', value)
     setPeriod(value)
   }
-  
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENTS} (dollars)`
-  
+  const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENTS } (dollars)`
+
   const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY)
   if (loading) {
     return 'Loading...'
@@ -225,29 +252,34 @@ const TotalDisbursements = props => {
       }
     }
     else {
-
       chartData = data.total_yearly_fiscal_disbursement2
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
-        
       }
     }
   }
-  
+
   return (
-    <Box>
-      <Typography variant="h3" className={`header-bar green ${ classes.titleBar }`}>
+    <>
+      <Box color="secondary.main" mb={2} borderBottom={2} pb={1} className={classes.titleBar}>
+        <Box component="h3" m={0} color="primary.dark">Disbursements</Box>
+        <Box component="span" className={classes.titleLink}>
+          <ExploreDataLink
+            to="/query-data?dataType=Disbursements"
+            icon="filter">Filter disbursements data</ExploreDataLink>
+        </Box>
+      </Box>
+      {/* <Typography variant="h3" className={`header-bar green ${ classes.titleBar }`}>
           Total Disbursements
         <Box component="span" className={classes.titleLink}>
           <ExploreDataLink
             to="/query-data?dataType=Disbursements"
-            icon="filter"
-            c>Filter disbursements data</ExploreDataLink>
+            icon="filter">Filter disbursements data</ExploreDataLink>
         </Box>
-      </Typography>
+      </Typography> */}
       <Grid container spacing={4}>
         <TotalDisbursementControls onToggleChange={toggleChange} onMenuChange={menuChange} maxFiscalYear={2019} maxCalendarYear={2020}/>
-         <Grid item xs>
+        <Grid item xs>
           <StackedBarChart
             title={chartTitle}
             data={chartData}
@@ -258,10 +290,10 @@ const TotalDisbursements = props => {
             legendFormat={v => {
               return utils.formatToDollarInt(v)
             }}
-           />
+          />
         </Grid>
       </Grid>
-    </Box>
+    </>
   )
 }
 

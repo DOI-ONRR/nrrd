@@ -17,8 +17,11 @@ import Box from '@material-ui/core/Box'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import CloseIcon from '@material-ui/icons/Close'
+import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
+
 import PieChart from '../../data-viz/PieChart/PieChart.js'
 import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -82,6 +85,18 @@ const useStyles = makeStyles(theme => ({
   circularProgressRoot: {
     color: theme.palette.primary.dark,
   },
+  usLocationIcon: {
+    fill: theme.palette.common.white,
+    marginRight: theme.spacing(1.5),
+    height: 75,
+    width: 75,
+  },
+  cardLocationIcon: {
+    maxHeight: 50,
+    maxWidth: 50,
+    marginRight: theme.spacing(1.5),
+    filter: 'invert(1)',
+  }
 }))
 
 const APOLLO_QUERY = gql`
@@ -114,17 +129,17 @@ const StateIcon = props => {
   const stateTitle = props.stateTitle
   const stateAbbr = props.stateAbbr
 
-  let svgTag
+  let svgImg
   if (stateTitle === 'Nationwide Federal') {
-    svgTag = '<svg className="icon-state"><use xlink:href=#icon-state-USA /></svg>'
+    svgImg = <IconMap className={classes.usLocationIcon} alt="US Icon" />
   }
   else {
-    svgTag = `<svg className="icon-state"><use xlink:href=#icon-state-${ stateAbbr } /></svg>`
+    svgImg = <img src={`/maps/states/${ stateAbbr }.svg`} alt={`${ stateAbbr } State Icon`} className={classes.cardLocationIcon} />
   }
 
   return (
     <div className={classes.detailCardHeaderContent}>
-      <span dangerouslySetInnerHTML={{ __html: svgTag }} />
+      {svgImg}
       <span>{props.stateTitle}</span>
     </div>
   )
