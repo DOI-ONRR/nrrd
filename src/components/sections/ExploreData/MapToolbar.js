@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 0,
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 4,
-    background: theme.palette.common.white,
+    background: 'white',
     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
     overflowX: 'hidden',
     textOverflow: 'ellipsis',

@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   tocContainer: {
     padding: theme.spacing(2),
     marginRight: theme.spacing(2),
-    backgroundColor: theme.palette.common.white
+    backgroundColor: 'white'
   },
   tocItem: {
     '& a': {

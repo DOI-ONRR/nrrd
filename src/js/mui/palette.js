@@ -1,19 +1,11 @@
 // https://material-ui.com/system/palette/
 
 module.exports = Object.freeze({
-  // New color ramps
-  // https://935313.axshare.com/#g=1&p=color_ramps
+  // This overrides CSSBaseline for the body tag
   background: { default: '#ffffff' },
-  primary: {
-    main: '#f0f6fa',
-  },
-  secondary: {
-    main: '#cde3c3',
-  },
-  common: {
-    white: '#ffffff',
-    black: '#000000',
-  },
+  primary: { main: '#f0f6fa' },
+  secondary: { main: '#cde3c3' },
+  info: { main: '#d3dfe6' },
   text: {
     primary: '#000000',
     secondary: '#1478a6'

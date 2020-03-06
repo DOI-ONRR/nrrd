@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   closeIcon: {
-    color: theme.palette.common.white,
+    color: 'white',
     position: 'relative',
     top: theme.spacing(1.75),
     right: theme.spacing(1),
