@@ -16,11 +16,11 @@ export default ({ alt, ...rest }) => {
   const data = useStaticQuery(graphql`
   query {
       imageSharp(fixed: {originalName: {eq: "BLM-mark.png"}}) {
-        fixed(width: 50) {
-          ...GatsbyImageSharpFixed
+        fluid {
+          ...GatsbyImageSharpFluid
         }
       }
     }
   `)
-  return <Img fixed={data.imageSharp.fixed} alt={alt || 'Bureau of Land Management'} {...rest} />
+  return <Img fluid={data.imageSharp.fluid} alt={alt || 'Bureau of Land Management'} {...rest} />
 }

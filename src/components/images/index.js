@@ -8,6 +8,7 @@ import HowItWorksRibbonGraphicSvg from '-!svg-react-loader!../../images/how-it-w
 import AmlUnappropGrowthSvg from '-!svg-react-loader!../../images/how-it-works/AML_unapprop-growth.svg'
 
 import OnrrLogoSvg from '-!svg-react-loader!../../images/logos/ONRR-mark.svg'
+
 import IconOilSvg from '-!svg-react-loader!../../images/icons/icon-oil.svg'
 import IconCoalSvg from '-!svg-react-loader!../../images/icons/icon-coal.svg'
 import IconHardrockSvg from '-!svg-react-loader!../../images/icons/icon-hardrock.svg'
@@ -28,6 +29,7 @@ export const HowItWorksRibbonGraphicImg = props => <HowItWorksRibbonGraphicSvg {
 export const AmlUnappropGrowthImg = ({ alt, ...props }) => <AmlUnappropGrowthSvg {...props} alt={alt || "Chart shows the growth of the AML fund's unappropriated balance from 1989 to 2017. It grew from around $500 million to nearly $2.5 billion dollars in 2015, before falling slightly to $2.38 billion in 2017."}/>
 
 export const OnrrLogoImg = props => <OnrrLogoSvg {...props} />
+
 export const IconOilImg = props => <IconOilSvg {...props} />
 export const IconCoalImg = props => <IconCoalSvg {...props} />
 export const IconHardrockImg = props => <IconHardrockSvg {...props} />
