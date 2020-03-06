@@ -15,14 +15,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const DownloadLink = ({ icon, children, ...props }) => (
-  <Box>
+  <Box pl={4} mt={2}>
     <BaseLink {...props} disableRouting>
       <Box mr={1} display='inline-block'>{icon}</Box>
-      <span>
-        {children === undefined
-          ? 'Download'
-          : children}
-      </span>
+      <span>{children}</span>
     </BaseLink>
   </Box>
 )
