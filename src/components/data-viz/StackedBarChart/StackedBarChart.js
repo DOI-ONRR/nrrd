@@ -29,8 +29,11 @@ const useStyles = makeStyles(theme => ({
       fontSize: theme.typography.chartText,
     },
     '& .x-axis > .tick': {
-      fontSize: theme.typography.chartText,
-    }
+      fontSize: theme.typography.body2.fontSize,
+    },
+    '& .y-axis > .tick': {
+      fontSize: theme.typography.body2.fontSize,
+    },
   },
   legend: {
     display: 'block',
@@ -61,10 +64,10 @@ const useStyles = makeStyles(theme => ({
     '& .legend-table > thead th': {
       fontWeight: 'bold',
       textAlign: 'left',
-      borderBottom: `1px solid ${ theme.palette.grays[300] }`,
+      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     },
     '& .legend-table > tbody tr td': {
-      borderBottom: `1px solid ${ theme.palette.grays[300] }`,
+      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     },
     '& .legend-table > tbody tr:last-child td': {
       border: 'none',

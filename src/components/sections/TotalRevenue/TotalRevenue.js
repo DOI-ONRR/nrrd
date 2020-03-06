@@ -122,7 +122,7 @@ const TotalRevenueControls = props => {
 
   const inputLabel = useRef(null)
 
-  const [period, setPeriod] = useState('')
+  const [period, setPeriod] = useState('fiscal_year')
   const [labelWidth, setLabelWidth] = useState(0)
   const [toggle, setToggle] = useState('year')
 
@@ -167,7 +167,7 @@ const TotalRevenueControls = props => {
       <Grid item xs={6} style={{ textAlign: 'right' }}>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel ref={inputLabel} id="select-period-outlined-label">
-          Period
+            Period
           </InputLabel>
           <Select
             labelId="Period select"
