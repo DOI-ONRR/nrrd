@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     maxHeight: '130px'
   },
   toolbar: {
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: 'white',
     color: theme.palette.common.black,
     borderBottom: '2px solid #cde3c3',
     maxHeight: '130px'
@@ -248,7 +248,7 @@ const Header = React.memo(props => {
                       className={classes.menuLink}
                       to="/how-it-works/"
                       activeClassName={classes.menuActiveLink}>
-                        How revenue works
+                        How it works
                     </Link>
                   </li>
                 </ul>

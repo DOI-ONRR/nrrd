@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 // https://material-ui.com/customization/globals/
 const palette = require('./palette')
 
