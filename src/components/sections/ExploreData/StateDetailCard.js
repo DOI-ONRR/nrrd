@@ -130,7 +130,7 @@ const StateIcon = props => {
   const stateAbbr = props.stateAbbr
 
   let svgImg
-  if (stateTitle === 'Nationwide Federal') {
+  if (stateTitle === 'Nationwide Federal' || stateTitle === 'Native American') {
     svgImg = <IconMap className={classes.usLocationIcon} alt="US Icon" />
   }
   else {
