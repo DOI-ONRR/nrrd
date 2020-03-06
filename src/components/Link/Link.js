@@ -76,7 +76,7 @@ const getLinkComponent = ({ linkType, ...props }) => {
  * internal routing table and the ability to prefetch relative links.
  * By default all relative urls will use Gatsby, however files that need to be downloaded or anchor links do not use Gatsby Link.
  *
- * We also determine a link type by default to assign the appropriate icon and/or if Gatsby Link is needed.
+ * We also determine a link type by default to assign the appropriate icon.
  */
 const Link = props => getLinkComponent(props)
 
