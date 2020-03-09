@@ -23,6 +23,7 @@ const config = {
       name: 'Data Specialists',
       email: 'onrrdatarequests@onrr.gov'
     },
+    officeName: 'Office of Natural Resources Revenue',
     informationDataManagement: {
       name: 'Information and Data Management',
       street: '1849 C Street NW MS 5134',

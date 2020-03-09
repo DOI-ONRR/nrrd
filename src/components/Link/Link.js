@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link as GatsbyLink, withPrefix } from 'gatsby'
 import { makeStyles, useTheme, Box } from '@material-ui/core'
-import { IconDownloadXlsImg, IconDownloadCsvImg, IconDownloadDataImg } from '../images'
+import { IconDownloadXlsImg, IconDownloadCsvImg, IconDownloadDataImg, IconDownloadBaseImg } from '../images'
 
 const useStyles = makeStyles(theme => ({
   link: {
@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const IconLink = ({ icon, children, ...props }) => (
-  <Box pl={4} mt={2} mb={2}>
+const IconLink = ({ icon, children, pl = 4, ...props }) => (
+  <Box pl={pl} mt={2} mb={2}>
     <BaseLink {...props} disableRouting>
       <Box mr={1} display='inline-block'>{icon}</Box>
       <span>{children}</span>
@@ -23,9 +23,9 @@ const IconLink = ({ icon, children, ...props }) => (
   </Box>
 )
 
-const BaseLink = ({ to, href, disableRouting, className = '', children, ...props }) => {
+const BaseLink = ({ href, disableRouting, className = '', children, ...props }) => {
   const theme = useTheme()
-  let url = to || href
+  let url = href
   const isRelative = (url.charAt(0) !== '#' && !url.includes('http') && !url.includes('mailto'))
   url = isRelative ? withPrefix(url) : url
 
@@ -47,7 +47,8 @@ const LinkTypeComponents = {
   default: props => <BaseLink {...props} />,
   DownloadXls: props => <IconLink icon={<IconDownloadXlsImg />} {...props} />,
   DownloadCsv: props => <IconLink icon={<IconDownloadCsvImg />} {...props} />,
-  DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />
+  DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />,
+  DownloadBase: props => <IconLink icon={<IconDownloadBaseImg />} pl={0} {...props} />
 }
 
 const regexXlsx = RegExp('.xlsx$')
@@ -64,7 +65,11 @@ const getLinkComponent = ({ linkType, ...props }) => {
   if (regexCsv.test(props.href)) {
     return LinkTypeComponents.DownloadCsv(props)
   }
-  if (regexDownloadData.test(props.href)) {
+
+  if (props.linkType === 'DownloadBase') {
+    return LinkTypeComponents.DownloadBase(props)
+  }
+  else if (regexDownloadData.test(props.href)) {
     return LinkTypeComponents.DownloadData(props)
   }
 
@@ -88,7 +93,7 @@ Link.propTypes = {
    *
    * By default we determine the appropriate link type but you can specify a type if you want to override it.
    */
-  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'default']),
+  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'default']),
   /**
    * Used to flag a relative link that we may not want to use Gatsby Routing for. An example is download files.
    *
