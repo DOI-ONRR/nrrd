@@ -32,17 +32,17 @@ const useStyles = makeStyles(theme => ({
       fill: theme.palette.chart.secondary,
     },
     '& .maxExtent': {
-      fontSize: theme.typography.chartText,
+      fontSize: theme.typography.h5.fontSize,
     },
     '& .x-axis > .tick': {
-      fontSize: theme.typography.chartText,
+      fontSize: theme.typography.h5.fontSize,
     }
   },
   legend: {
     display: 'block',
     top: 0,
     left: 0,
-    fontSize: theme.typography.chartText,
+    fontSize: theme.typography.h5.fontSize,
     '& tr > td:first-child': {
       width: 10,
     },
