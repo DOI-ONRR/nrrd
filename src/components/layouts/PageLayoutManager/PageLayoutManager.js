@@ -10,8 +10,6 @@ import PatternLibraryLayout from '../PatternLibraryLayout'
 
 const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
 
-  console.log(props)
-
   if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
 
   const layout = pageContext.frontmatter && pageContext.frontmatter.layout

@@ -1,0 +1,33 @@
+<Box  mt={4} mb={4} pb={2} borderBottom={2} color='secondary.main'>
+<Container maxWidth="lg">
+<Grid container> 
+
+<Grid item xs={10} sm={4}>
+<NrrdLogoImg />
+</Grid>
+
+<Hidden xsDown>
+
+<Grid item sm={8}>
+<Grid container justify='flex-end'>
+<Link href='/' linkType='Header'>Home</Link>
+<Link href='/about' linkType='Header'>About</Link>
+<Link href='#' onClick={() => console.log('show glossary')} linkType='Header'>Glossary</Link>
+</Grid>
+</Grid>
+
+<Grid item sm={12}>
+<Grid container justify='flex-end'>
+<Link href='/explore' linkType='Header'>Explore data</Link>
+<Link href='/query-data' linkType='Header'>Query data</Link>
+<Link href='/downloads' linkType='Header'>Download data</Link>
+<Link href='/how-it-works' linkType='Header'>How it works</Link>
+</Grid>
+</Grid>
+
+</Hidden>
+
+</Grid>
+
+</Container>
+</Box>

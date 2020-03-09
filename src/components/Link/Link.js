@@ -12,7 +12,19 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'none',
     }
   },
-}))
+  headerLink: {
+    color: theme.typography.body2.color,
+    textDecoration: 'none',
+    marginLeft: theme.spacing(2),
+    '&:hover': {
+      textDecoration: 'underline',
+    }
+  },
+  headerLinkBold: {
+    fontWeight: theme.typography.fontWeightBold
+  },
+})
+)
 
 const IconLink = ({ icon, children, pl = 4, ...props }) => (
   <Box pl={pl} mt={2} mb={2}>
@@ -25,18 +37,25 @@ const IconLink = ({ icon, children, pl = 4, ...props }) => (
 
 const BaseLink = ({ href, disableRouting, className = '', children, ...props }) => {
   const theme = useTheme()
-  console.log(props, href)
+  const styles = useStyles(theme)
+  const currentPathname = typeof window !== 'undefined' ? window.location.pathname : ''
+
   let url = href
+
   const isRelative = (url.charAt(0) !== '#' && !url.includes('http') && !url.includes('mailto'))
   url = isRelative ? withPrefix(url) : url
+
+  const classes = (props.linkType === LinkTypeComponents.Header)
+    ? `${ styles.headerLink } ${ className } ${ (currentPathname === href) && styles.headerLinkBold }`
+    : `${ styles.link } ${ className }`
 
   return (
     <React.Fragment>
       {(!disableRouting && isRelative)
-        ? <GatsbyLink to={url} className={`${ useStyles(theme).link } ${ className }`} {...props} >
+        ? <GatsbyLink to={url} className={classes} {...props} >
           {children}
         </GatsbyLink>
-        : <a href={url} className={`${ useStyles(theme).link } ${ className }`} {...props} >
+        : <a href={url} className={classes} {...props} >
           {children}
         </a>
       }
@@ -46,6 +65,7 @@ const BaseLink = ({ href, disableRouting, className = '', children, ...props }) 
 
 const LinkTypeComponents = {
   default: props => <BaseLink {...props} />,
+  Header: props => <BaseLink {...props} linkType={LinkTypeComponents.Header} />,
   DownloadXls: props => <IconLink icon={<IconDownloadXlsImg />} {...props} />,
   DownloadCsv: props => <IconLink icon={<IconDownloadCsvImg />} {...props} />,
   DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />,
@@ -94,7 +114,7 @@ Link.propTypes = {
    *
    * By default we determine the appropriate link type but you can specify a type if you want to override it.
    */
-  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'default']),
+  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'Header', 'default']),
   /**
    * Used to flag a relative link that we may not want to use Gatsby Routing for. An example is download files.
    *

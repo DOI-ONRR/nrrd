@@ -16,7 +16,7 @@ import {
 
 import InfoBanner from '../../content-partials/InfoBanner'
 import Footer from '../../content-partials/Footer'
-import { Header } from '../Header'
+import Header from '../../content-partials/Header'
 
 import PageToc from '../../navigation/PageToc'
 
@@ -113,7 +113,7 @@ const DefaultLayout = ({ includeToc = true, children }) => {
     <React.Fragment>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <InfoBanner />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header />
       <GlossaryDrawer />
       <CssBaseline />
       <main id='main-content'>
