@@ -25,6 +25,7 @@ const IconLink = ({ icon, children, pl = 4, ...props }) => (
 
 const BaseLink = ({ href, disableRouting, className = '', children, ...props }) => {
   const theme = useTheme()
+  console.log(props, href)
   let url = href
   const isRelative = (url.charAt(0) !== '#' && !url.includes('http') && !url.includes('mailto'))
   url = isRelative ? withPrefix(url) : url
