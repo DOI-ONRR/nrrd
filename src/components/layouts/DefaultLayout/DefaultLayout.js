@@ -102,7 +102,7 @@ const DefaultLayout = ({ includeToc = true, children }) => {
   `)
 
   return (
-    <React.Fragment>
+    <>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <InfoBanner />
       <Header siteTitle={data.site.siteMetadata.title} />
@@ -120,11 +120,11 @@ const DefaultLayout = ({ includeToc = true, children }) => {
               </Grid>
             </Grid>
           </Container>
-          : <React.Fragment>{ children }</React.Fragment>
+          : <>{ children }</>
         }
       </main>
       <Footer version={data && data.site.siteMetadata.version} />
-    </React.Fragment>
+    </>
   )
 }
 

@@ -3,7 +3,7 @@
 require('typeface-lato')
 
 module.exports = Object.freeze({
-  fontSize: '18',
+  fontSize: 18,
   fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
   fontWeightBold: '600',
   // This overrides CSSBaseline for the body tag

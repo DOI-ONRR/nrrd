@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     },
 
     '& .maxExtent': {
-      fontSize: theme.typography.chartText,
+      fontSize: theme.typography.h5.fontSize,
     },
     '& .x-axis > .tick': {
       fontSize: theme.typography.body2.fontSize,
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '100%',
-    fontSize: theme.typography.chartText,
+    fontSize: theme.typography.h5.fontSize,
     '& tr > td:first-child': {
       width: 10,
     },

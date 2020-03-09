@@ -58,6 +58,8 @@ export default class D3StackedBarChart {
       this._chart()
       this._xLabels()
       this._legend()
+
+      this.xAxisGroup()
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -109,6 +111,7 @@ export default class D3StackedBarChart {
 
   // addGroupLines () {
   xAxisGroup () {
+    console.log('xAxisGroup: ', this)
     if (this.xAxisGroup) {
       const self = this
 
@@ -121,11 +124,11 @@ export default class D3StackedBarChart {
         const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
 
         groupLines.append('line')
-	  .attr('x1', xPos + padding)
-	  .attr('x2', groupLineWidth)
-	  .attr('stroke', '#a7bcc7')
-	  .attr('stroke-width', 1)
-	 		      .attr('transform', 'translate(' + [0, self.height - 4 - self.marginBottom / 2] + ')')
+          .attr('x1', xPos + padding)
+          .attr('x2', groupLineWidth)
+          .attr('stroke', '#a7bcc7')
+          .attr('stroke-width', 1)
+	 		    .attr('transform', 'translate(' + [0, self.height - 4 - self.marginBottom / 2] + ')')
 
         groupLines.append('text')
           .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))

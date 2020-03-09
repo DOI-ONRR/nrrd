@@ -101,6 +101,7 @@ const TotalRevenue = props => {
   const units = 'dollars'
 
   if (data) {
+    console.log('totalRevenue data: ', data)
     if (toggle === 'month') {
       if (period === 'fiscal') {
         chartData = data.total_monthly_fiscal_revenue2
