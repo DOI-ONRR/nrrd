@@ -29,7 +29,8 @@ const useStyles = makeStyles(theme => ({
       fontSize: theme.typography.h5.fontSize,
     },
     '& .x-axis > .tick': {
-      fontSize: theme.typography.body2.fontSize,
+      fontSize: '1rem',
+      fontWeight: 'normal',
     },
     '& .y-axis > .tick': {
       fontSize: theme.typography.body2.fontSize,

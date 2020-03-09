@@ -70,8 +70,8 @@ const YEARLY_DROPDOWN_VALUES = {
 
 // TotalRevenue component
 const TotalRevenue = props => {
-  const [period, setPeriod] = useState(null)
-  const [toggle, setToggle] = useState(null)
+  const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
+  const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
 
   // const period = state.period
 
@@ -102,11 +102,11 @@ const TotalRevenue = props => {
 
   if (data) {
     console.log('totalRevenue data: ', data)
-    if (toggle === 'month') {
-      if (period === 'fiscal') {
+    if (toggle === TOGGLE_VALUES.Month) {
+      if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_monthly_fiscal_revenue2
       }
-      else if (period === 'calendar') {
+      else if (period === MONTHLY_DROPDOWN_VALUES.Calendar) {
         chartData = data.total_monthly_calendar_revenue2
       }
       else {
@@ -120,7 +120,7 @@ const TotalRevenue = props => {
       }
     }
     else {
-      if (period === 'fiscal_year') {
+      if (period === YEARLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_yearly_fiscal_revenue2
       }
       else {

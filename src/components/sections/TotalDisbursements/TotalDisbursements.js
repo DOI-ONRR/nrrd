@@ -94,11 +94,11 @@ const TotalDisbursements = props => {
   if (error) return `Error! ${ error.message }`
   if (data) {
     console.debug(data)
-    if (toggle === 'month') {
-      if (period === 'fiscal') {
+    if (toggle === TOGGLE_VALUES.Month) {
+      if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_monthly_fiscal_disbursement2
       }
-      else if (period === 'calendar') {
+      else if (period === MONTHLY_DROPDOWN_VALUES.Calendar) {
         chartData = data.total_monthly_calendar_disbursement2
       }
       else {

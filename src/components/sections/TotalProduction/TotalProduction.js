@@ -112,11 +112,11 @@ const TotalProduction = props => {
   if (error) return `Error! ${ error.message }`
   if (data) {
     // console.debug(data)
-    if (toggle === 'month') {
-      if (period === 'fiscal') {
+    if (toggle === TOGGLE_VALUES.Month) {
+      if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_monthly_fiscal_production2
       }
-      else if (period === 'calendar') {
+      else if (period === MONTHLY_DROPDOWN_VALUES.Calendar) {
         chartData = data.total_monthly_calendar_production2
       }
       else {
@@ -130,7 +130,7 @@ const TotalProduction = props => {
     }
     else {
       console.debug('fffffffffffffffffffffffffffffffffffffffffffffffffffiscal', period)
-      if (period === 'fiscal_year') {
+      if (period === YEARLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_yearly_fiscal_production2
       }
       else {
