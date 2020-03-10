@@ -26,11 +26,15 @@ const useStyles = makeStyles(theme => ({
     },
 
     '& .maxExtent': {
-      fontSize: theme.typography.chartText,
+      fontSize: theme.typography.h5.fontSize,
     },
     '& .x-axis > .tick': {
-      fontSize: theme.typography.chartText,
-    }
+      fontSize: '1rem',
+      fontWeight: 'normal',
+    },
+    '& .y-axis > .tick': {
+      fontSize: theme.typography.body2.fontSize,
+    },
   },
   legend: {
     display: 'block',
@@ -38,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '100%',
-    fontSize: theme.typography.chartText,
+    fontSize: theme.typography.h5.fontSize,
     '& tr > td:first-child': {
       width: 10,
     },
@@ -61,10 +65,10 @@ const useStyles = makeStyles(theme => ({
     '& .legend-table > thead th': {
       fontWeight: 'bold',
       textAlign: 'left',
-      borderBottom: `1px solid ${ theme.palette.grays[300] }`,
+      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     },
     '& .legend-table > tbody tr td': {
-      borderBottom: `1px solid ${ theme.palette.grays[300] }`,
+      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     },
     '& .legend-table > tbody tr:last-child td': {
       border: 'none',

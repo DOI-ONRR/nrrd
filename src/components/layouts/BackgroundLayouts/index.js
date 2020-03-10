@@ -1,0 +1,5 @@
+export { default as OffshoreOilGasBackground } from './OffshoreOilGasBackground.js'
+export { default as OnshoreOilGasBackground } from './OnshoreOilGasBackground.js'
+export { default as CoalBackground } from './CoalBackground.js'
+export { default as MineralsBackground } from './MineralsBackground.js'
+export { default as OnshoreRenewablesBackground } from './OnshoreRenewablesBackground.js'

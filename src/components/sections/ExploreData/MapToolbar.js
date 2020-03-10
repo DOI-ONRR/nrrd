@@ -19,9 +19,9 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(1),
     paddingLeft: theme.spacing(1),
-    // borderBottom: `1px solid ${ theme.palette.grays[300] }`,
+    // borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     // boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
-    background: theme.palette.grays['200'],
+    background: theme.palette.grey['200'],
     overflowX: 'auto',
     '& h2': {
       marginTop: theme.spacing(1),
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 99,
     '& button': {
       color: theme.palette.common.black,
-      border: `1px solid ${ theme.palette.grays['300'] }`,
+      border: `1px solid ${ theme.palette.grey['300'] }`,
       backgroundColor: theme.palette.common.white,
       borderRadius: '50%',
       boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
   mapMenuRoot: {
     position: 'relative',
     top: -2,
-    border: `1px solid ${ theme.palette.grays['300'] }`,
+    border: `1px solid ${ theme.palette.grey['300'] }`,
     height: 50,
     marginLeft: theme.spacing(0),
     marginRight: theme.spacing(1),
@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: 0,
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 4,
-    background: theme.palette.common.white,
+    background: 'white',
     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
     overflowX: 'hidden',
     textOverflow: 'ellipsis',

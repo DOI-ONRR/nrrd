@@ -3,15 +3,10 @@
 require('typeface-lato')
 
 module.exports = Object.freeze({
-  fontSize: '18',
+  fontSize: 18,
   fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-  fontWeightBold: 'bold',
+  fontWeightBold: '600',
   // This overrides CSSBaseline for the body tag
-  body1: {
-    fontSize: '1.285rem',
-    fontWeight: 400,
-    lineHeight: 1.5,
-  },
   body2: {
     color: '#000',
     fontSize: '1.125rem',
@@ -35,12 +30,12 @@ module.exports = Object.freeze({
   h4: {
     margin: '2rem 0 0.25rem 0',
     fontSize: '1.2rem',
-    fontWeight: '600',
+    fontWeight: '500',
   },
   h5: {
     margin: '2rem 0 0.25rem 0',
     fontSize: '1.1rem',
-    fontWeight: '600',
+    fontWeight: '500',
   },
   h6: {
     margin: '2rem 0 0.25rem 0',

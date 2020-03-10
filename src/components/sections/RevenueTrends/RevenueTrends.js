@@ -40,7 +40,7 @@ const APOLLO_QUERY = gql`
   `
 
 const useStyles = makeStyles(theme => ({
-  root: {},
+  root: {}
 }))
 
 const RevenueTrends = () => {
@@ -219,8 +219,8 @@ const aggregateData = data => {
     { fund: 'Royalties', current: 0, previous: 0, histSum: {}, histData: [] },
     { fund: 'Bonuses', current: 0, previous: 0, histSum: {}, histData: [] },
     { fund: 'Rents', current: 0, previous: 0, histSum: {}, histData: [] },
-    { fund: 'Other Revenues', current: 0, previous: 0, histSum: {}, histData: [] },
-    { fund: 'Total Revenues', current: 0, previous: 0, histSum: {}, histData: [], className: 'strong' }
+    { fund: 'Other revenues', current: 0, previous: 0, histSum: {}, histData: [] },
+    { fund: 'Total revenues', current: 0, previous: 0, histSum: {}, histData: [], className: 'strong' }
   ]
 
   const currentYear = data[0].fiscalYear

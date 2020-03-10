@@ -33,6 +33,10 @@ const useStyles = makeStyles(theme => ({
       verticalAlign: 'baseline',
       position: 'relative',
       top: -2,
+      textTransform: 'lowercase',
+    },
+    '& span:first-letter': {
+      textTransform: 'capitalize',
     },
     '&:hover': {
       textDecoration: 'underline',

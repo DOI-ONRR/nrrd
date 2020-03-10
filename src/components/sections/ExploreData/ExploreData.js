@@ -41,7 +41,7 @@ import { useMediaQuery } from '@material-ui/core'
 import { select } from 'd3'
 // import  mapJson from './us.t2.json'
 
-import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
+// import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
 
 export const STATIC_QUERY = graphql`
   {
@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     height: 575,
     // marginBottom: theme.spacing(20),
-    background: theme.palette.grays[200],
+    background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
@@ -218,8 +218,8 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(2),
     zIndex: 101,
     paddingBottom: theme.spacing(0),
-    borderTop: `1px solid ${ theme.palette.grays[300] }`,
-    borderBottom: `1px solid ${ theme.palette.grays[300] }`,
+    borderTop: `1px solid ${ theme.palette.grey[300] }`,
+    borderBottom: `1px solid ${ theme.palette.grey[300] }`,
   },
   sliderBox: {
     width: '100%',
@@ -235,7 +235,7 @@ const useStyles = makeStyles(theme => ({
   sliderMarkLabel: {
     fontWeight: 'bold',
     top: '28px',
-    color: theme.palette.grays['1000'],
+    color: theme.palette.grey['1000'],
     fontSize: '1rem',
   },
   sliderMarkLabelActive: {
@@ -248,7 +248,7 @@ const useStyles = makeStyles(theme => ({
   },
   sliderRail: {
     height: 4,
-    backgroundColor: theme.palette.grays['500']
+    backgroundColor: theme.palette.grey['500']
   },
   sliderMark: {
     height: 4,
@@ -356,12 +356,12 @@ const useStyles = makeStyles(theme => ({
   addCardContainer: {
     padding: theme.spacing(2),
     marginBottom: theme.spacing(4),
-    backgroundColor: theme.palette.grays['100'],
+    backgroundColor: theme.palette.grey['100'],
   },
   addLocationCard: {
-    background: `${ theme.palette.grays['100'] }`,
+    background: `${ theme.palette.grey['100'] }`,
     '& div:nth-child(1)': {
-      background: `${ theme.palette.grays['100'] } !important`,
+      background: `${ theme.palette.grey['100'] } !important`,
       '& > span': {
         color: `${ theme.palette.common.black } !important`,
       }
@@ -832,7 +832,6 @@ const ExploreData = () => {
     // const timeout = 5000
     return (
       <>
-        <StatesSvg />
         <Container className={classes.mapWrapper} maxWidth={false}>
           <Grid container>
             <Grid item xs={12}>

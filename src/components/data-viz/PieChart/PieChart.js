@@ -5,8 +5,6 @@ import React, { useEffect, useRef } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 
-import ChartTitle from '../ChartTitle'
-
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
 import D3PieChart from './D3PieChart.js'
 
@@ -32,10 +30,10 @@ const useStyles = makeStyles(theme => ({
       fill: theme.palette.chart.secondary,
     },
     '& .maxExtent': {
-      fontSize: theme.typography.chartText,
+      fontSize: theme.typography.h5.fontSize,
     },
     '& .x-axis > .tick': {
-      fontSize: theme.typography.chartText,
+      fontSize: theme.typography.h5.fontSize,
     }
   },
   legend: {
@@ -44,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '100%',
-    fontSize: theme.typography.chartText,
+    fontSize: theme.typography.h5.fontSize,
     '& tr > td:first-child': {
       width: 10,
     },
