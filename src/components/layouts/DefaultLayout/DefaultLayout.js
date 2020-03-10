@@ -15,8 +15,8 @@ import {
 } from '@material-ui/core'
 
 import InfoBanner from '../../content-partials/InfoBanner'
-import Footer from '../../content-partials/Footer2'
-import { Header } from '../Header'
+import Footer from '../../content-partials/Footer'
+import Header from '../../content-partials/Header'
 
 import PageToc from '../../navigation/PageToc'
 
@@ -91,21 +91,29 @@ const DefaultLayout = ({ includeToc = true, children }) => {
   const classes = useStyles(theme)
 
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query DefaultLayoutQuery {
       site {
         siteMetadata {
           title
           version
+          officeName
+          informationDataManagement {
+            name
+            city
+            zip
+            street
+            email
+          }
         }
       }
     }
   `)
 
   return (
-    <>
+    <React.Fragment>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <InfoBanner />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header />
       <GlossaryDrawer />
       <CssBaseline />
       <main id='main-content'>
@@ -123,8 +131,10 @@ const DefaultLayout = ({ includeToc = true, children }) => {
           : <>{ children }</>
         }
       </main>
-      <Footer version={data && data.site.siteMetadata.version} />
-    </>
+      {data &&
+        <Footer data={data} />
+      }
+    </React.Fragment>
   )
 }
 

@@ -8,7 +8,8 @@ import DefaultLayout from '../DefaultLayout'
 import DefaultContentLayout from '../DefaultContentLayout'
 import PatternLibraryLayout from '../PatternLibraryLayout'
 
-const PageLayoutManager = ({ children, location, pageContext }) => {
+const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
+
   if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
 
   const layout = pageContext.frontmatter && pageContext.frontmatter.layout
