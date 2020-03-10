@@ -66,13 +66,13 @@ const useStyles = makeStyles(theme => ({
 
 const TOTAL_DISBURSEMENTS_QUERY = gql`
   query TotalYearlyDisbursements {
-    total_yearly_fiscal_disbursement2 {
+    total_yearly_fiscal_disbursement {
       year,
       source,
       sum
     }   
 
-    total_monthly_fiscal_disbursement2 {
+    total_monthly_fiscal_disbursement {
       source
       sum
       month_long
@@ -80,7 +80,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       month
      year
     }
-    total_monthly_calendar_disbursement2 {
+    total_monthly_calendar_disbursement {
       source
       sum
       month_long
@@ -89,7 +89,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
      year
 
   } 
-     last_twelve_disbursement2 {
+     total_monthly_last_twelve_disbursement {
       source
       sum
       month_long
@@ -210,13 +210,13 @@ const TotalDisbursements = props => {
     console.debug(data)
     if (toggle === 'month') {
       if (period === 'fiscal') {
-        chartData = data.total_monthly_fiscal_disbursement2
+        chartData = data.total_monthly_fiscal_disbursement
       }
       else if (period === 'calendar') {
-        chartData = data.total_monthly_calendar_disbursement2
+        chartData = data.total_monthly_calendar_disbursement
       }
       else {
-        chartData = data.last_twelve_disbursement2
+        chartData = data.total_monthly_last_twelve_disbursement
       }
       xAxis = 'month_long'
       xLabels = (x, i) => {
@@ -226,7 +226,7 @@ const TotalDisbursements = props => {
     }
     else {
 
-      chartData = data.total_yearly_fiscal_disbursement2
+      chartData = data.total_yearly_fiscal_disbursement
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
         

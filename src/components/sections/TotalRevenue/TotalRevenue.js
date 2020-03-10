@@ -21,17 +21,17 @@ import CONSTANTS from '../../../js/constants'
 
 const TOTAL_REVENUE_QUERY = gql`
   query TotalYearlyRevenue {
-    total_yearly_fiscal_revenue2 { 
+    total_yearly_fiscal_revenue { 
       year,
       source,
       sum
     }
-    total_yearly_calendar_revenue2 { 
+    total_yearly_calendar_revenue { 
       year,
       source,
       sum
     }
-    total_monthly_fiscal_revenue2 {
+    total_monthly_fiscal_revenue {
       source
       sum
       month_long
@@ -39,7 +39,7 @@ const TOTAL_REVENUE_QUERY = gql`
       month
      year
     }
-    total_monthly_calendar_revenue2 {
+    total_monthly_calendar_revenue {
       source
       sum
       month_long
@@ -48,7 +48,7 @@ const TOTAL_REVENUE_QUERY = gql`
      year
 
   } 
- last_twelve_revenue2 {
+ total_monthly_last_twelve_revenue {
       source
       sum
       month_long
@@ -238,13 +238,13 @@ const TotalRevenue = props => {
   if (data) {
     if (toggle === 'month') {
       if (period === 'fiscal') {
-        chartData = data.total_monthly_fiscal_revenue2
+        chartData = data.total_monthly_fiscal_revenue
       }
       else if (period === 'calendar') {
-        chartData = data.total_monthly_calendar_revenue2
+        chartData = data.total_monthly_calendar_revenue
       }
       else {
-        chartData = data.last_twelve_revenue2
+        chartData = data.total_monthly_last_twelve_revenue
       }
 
       xAxis = 'month_long'
@@ -255,10 +255,10 @@ const TotalRevenue = props => {
     }
     else {
       if (period === 'fiscal_year') {
-        chartData = data.total_yearly_fiscal_revenue2
+        chartData = data.total_yearly_fiscal_revenue
       }
       else {
-        chartData = data.total_yearly_calendar_revenue2
+        chartData = data.total_yearly_calendar_revenue
       }
       xAxis = 'year'
       xLabels = (x, i) => {

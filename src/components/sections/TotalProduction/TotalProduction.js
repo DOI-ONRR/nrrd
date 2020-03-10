@@ -84,21 +84,21 @@ const useStyles = makeStyles(theme => ({
 
 const TOTAL_PRODUCTION_QUERY = gql`
   query TotalYearlyProduction {
-    total_yearly_fiscal_production2 {
+    total_yearly_fiscal_production {
       product,
       year,
       source,
       sum
     }   
 
-    total_yearly_calendar_production2 {
+    total_yearly_calendar_production {
       product,
       year,
       source,
       sum
     }   
 
-    total_monthly_fiscal_production2 {
+    total_monthly_fiscal_production {
       source
      product
       sum
@@ -107,7 +107,7 @@ const TOTAL_PRODUCTION_QUERY = gql`
       month
      year
     }
-    total_monthly_calendar_production2 {
+    total_monthly_calendar_production {
       source
      product
       sum
@@ -117,7 +117,7 @@ const TOTAL_PRODUCTION_QUERY = gql`
      year
 
   } 
-     last_twelve_production2 {
+     total_monthly_last_twelve_production {
       source
       product
       sum
@@ -249,13 +249,13 @@ const TotalProduction = props => {
     console.debug(data)
     if (toggle === 'month') {
       if (period === 'fiscal') {
-        chartData = data.total_monthly_fiscal_production2
+        chartData = data.total_monthly_fiscal_production
       }
       else if (period === 'calendar') {
-        chartData = data.total_monthly_calendar_production2
+        chartData = data.total_monthly_calendar_production
       }
       else {
-        chartData = data.last_twelve_production2
+        chartData = data.monthly_last_twelve_production2
       }
       xAxis = 'month_long'
       xLabels = (x, i) => {
@@ -266,10 +266,10 @@ const TotalProduction = props => {
     else {
       console.debug('fffffffffffffffffffffffffffffffffffffffffffffffffffiscal', period)
       if (period === 'fiscal_year') {
-        chartData = data.total_yearly_fiscal_production2
+        chartData = data.total_yearly_fiscal_production
       }
       else {
-        chartData = data.total_yearly_calendar_production2
+        chartData = data.total_yearly_calendar_production
       }
       console.debug(chartData)
       xLabels = (x, i) => {
@@ -332,8 +332,13 @@ const TotalProduction = props => {
             yAxis={yAxis}
             yGroupBy={yGroupBy}
             xLabels={xLabels}
-            legendFormat={v => {
-              return utils.formatToCommaInt(v)
+    legendFormat={v => {
+      if(v) {
+        return utils.formatToCommaInt(v)
+      }
+      else {
+        return '-'
+      }
             }}
             onSelect={ d => {
               console.log('handle select', d)
