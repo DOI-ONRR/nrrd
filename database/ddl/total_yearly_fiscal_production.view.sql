@@ -10,7 +10,7 @@ CREATE OR REPLACE VIEW "public"."total_yearly_fiscal_production" AS
 (  select t1.period, t1.year, t1.product_order, t1.product,
     t2.source,
     t2.sort_order,
-   CASE WHEN t1.source=t2.source THEN t1.sum ELSE t2.sum END as sum
+   CASE WHEN t1.source=t2.source THEN t1.sum ELSE null END as sum
 FROM   ( SELECT period.period,
             period.fiscal_year AS year,
                 CASE
@@ -39,10 +39,17 @@ FROM   ( SELECT period.period,
              JOIN period USING (period_id))
              JOIN location USING (location_id))
              JOIN commodity USING (commodity_id))
-          WHERE (((period.period)::text = 'Fiscal Year'::text) AND (period.period_date > ( SELECT (max(period_1.period_date) - '3 years'::interval)
-                   FROM (production production_1
-                     JOIN period period_1 USING (period_id))
-                  WHERE ((period_1.period)::text = 'Fiscal Year'::text))) AND ((commodity.product)::text = ANY (ARRAY[('Oil (bbl)'::character varying)::text, ('Gas (mcf)'::character varying)::text, ('Coal (tons)'::character varying)::text])))
+             WHERE ((period_1.period)::text = 'Monthly'::text)
+             AND (period.fiscal_year <= ( SELECT max(period_1.fiscal_year) AS max
+                                           FROM (revenue revenue_1
+                                           JOIN period period_1 USING (period_id))
+                                            WHERE (period_1.fiscal_month = 12)))
+             AND (period.fiscal_year > ( SELECT (max(period_1.fiscal_year) - 10)
+                                         FROM (revenue revenue_1
+                                         JOIN period period_1 USING (period_id))
+                                         WHERE (period_1.fiscal_month = 12)))
+             AND (commodity.product)::text = ANY (ARRAY[('Oil (bbl)'::character varying)::text, ('Gas (mcf)'::character varying)::text, ('Coal (tons)'::character varying)::text])
+             
           GROUP BY period.period, period.fiscal_year, location.land_category, location.land_class, commodity.product,
                 CASE
                     WHEN ((commodity.product)::text = 'Oil (bbl)'::text) THEN 1
@@ -75,16 +82,24 @@ FROM   ( SELECT period.period,
                     WHEN (((location.land_class)::text = 'Federal'::text) AND ((location.land_category)::text = 'Offshore'::text)) THEN 2
                     ELSE 0
                 END AS sort_order,
-                       1 as sum
+                       0 as sum
            FROM (((production
              JOIN period USING (period_id))
              JOIN location USING (location_id))
              JOIN commodity USING (commodity_id))
-          WHERE (((period.period)::text = 'Fiscal Year'::text) AND (period.period_date > ( SELECT (max(period_1.period_date) - '3 years'::interval)
-                   FROM (production production_1
-                     JOIN period period_1 USING (period_id))
-                  WHERE ((period_1.period)::text = 'Fiscal Year'::text))) AND ((commodity.product)::text = ANY (ARRAY[('Oil (bbl)'::character varying)::text, ('Gas (mcf)'::character varying)::text, ('Coal (tons)'::character varying)::text])))
-                  ) t2 using (period, year)
+             WHERE ((period_1.period)::text = 'Monthly'::text)
+             AND (period.fiscal_year <= ( SELECT max(period_1.fiscal_year) AS max
+                                           FROM (revenue revenue_1
+                                           JOIN period period_1 USING (period_id))
+                                            WHERE (period_1.fiscal_month = 12)))
+             AND (period.fiscal_year > ( SELECT (max(period_1.fiscal_year) - 10)
+                                         FROM (revenue revenue_1
+                                         JOIN period period_1 USING (period_id))
+                                         WHERE (period_1.fiscal_month = 12)))
+             AND (commodity.product)::text = ANY (ARRAY[('Oil (bbl)'::character varying)::text, ('Gas (mcf)'::character varying)::text, ('Coal (tons)'::character varying)::text])
+             
+
+          ) t2 using (period, year)
                
  
 ) a

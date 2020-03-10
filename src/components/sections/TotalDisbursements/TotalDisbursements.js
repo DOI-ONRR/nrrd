@@ -90,10 +90,19 @@ const TotalDisbursements = props => {
   const yGroupBy = 'source'
   const units = 'dollars'
   let xLabels
-
+  let maxFiscalYear
+  let maxCalendarYear
+ 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.debug(data)
+
+    maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
+      return (prev.year > current.year) ? prev.year : current.year
+    })
+    maxCalendarYear = data.total_monthly_calendar_disbursement.reduce((prev, current) => {
+      return (prev.year > current.year) ? prev.year : current.year
+    })
+
     if (toggle === TOGGLE_VALUES.Month) {
       if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_monthly_fiscal_disbursement
@@ -111,7 +120,6 @@ const TotalDisbursements = props => {
       }
     }
     else {
-
       chartData = data.total_yearly_fiscal_disbursement
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
@@ -129,8 +137,8 @@ const TotalDisbursements = props => {
         <SectionControls
           onToggleChange={toggleChange}
           onMenuChange={menuChange}
-          maxFiscalYear={2019}
-          maxCalendarYear={2020}
+          maxFiscalYear={maxFiscalYear}
+          maxCalendarYear={maxCalendarYear}
           monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
           toggleValues={TOGGLE_VALUES}
           yearlyDropdownValues={YEARLY_DROPDOWN_VALUES} />

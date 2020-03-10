@@ -79,14 +79,16 @@ const TotalProduction = props => {
 
   const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
   const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
-  const [selected, setSelected] = useState(9)
+  const [selected, setSelected] = useState(undefined)
 
   const toggleChange = value => {
     // console.debug('ON TOGGLE CHANGE: ', value)
+    setSelected(undefined)
     setToggle(value)
   }
   const menuChange = value => {
     // console.debug('ON Menu CHANGE: ', value)
+    setSelected(undefined)
     setPeriod(value)
   }
 
@@ -104,7 +106,9 @@ const TotalProduction = props => {
   const yAxis = 'sum'
   const yGroupBy = 'source'
   let xLabels
-
+  let maxFiscalYear
+  let maxCalendarYear
+  
   if (loading) {
     return 'Loading...'
   }
@@ -112,6 +116,15 @@ const TotalProduction = props => {
   if (error) return `Error! ${ error.message }`
   if (data) {
     // console.debug(data)
+
+    maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
+      return (prev.year > current.year) ? prev.year : current.year
+    })
+    maxCalendarYear = data.total_monthly_calendar_disbursement.reduce((prev, current) => {
+      return (prev.year > current.year) ? prev.year : current.year
+    })
+
+    
     if (toggle === TOGGLE_VALUES.Month) {
       if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_monthly_fiscal_production
@@ -120,7 +133,7 @@ const TotalProduction = props => {
         chartData = data.total_monthly_calendar_production
       }
       else {
-        chartData = data.monthly_last_twelve_production2
+        chartData = data.total_monthly_last_twelve_production
       }
       xAxis = 'month_long'
       xLabels = (x, i) => {
@@ -129,7 +142,6 @@ const TotalProduction = props => {
       }
     }
     else {
-      console.debug('fffffffffffffffffffffffffffffffffffffffffffffffffffiscal', period)
       if (period === YEARLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_yearly_fiscal_production
       }
@@ -153,8 +165,8 @@ const TotalProduction = props => {
         <SectionControls
           onToggleChange={toggleChange}
           onMenuChange={menuChange}
-          maxFiscalYear={2019}
-          maxCalendarYear={2020}
+          maxFiscalYear={maxFiscalYear}
+          maxCalendarYear={maxCalendarYear}
           monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
           toggleValues={TOGGLE_VALUES}
           yearlyDropdownValues={YEARLY_DROPDOWN_VALUES} />
