@@ -128,7 +128,7 @@ const DefaultLayout = ({ includeToc = true, children }) => {
               </Grid>
             </Grid>
           </Container>
-          : <React.Fragment>{ children }</React.Fragment>
+          : <>{ children }</>
         }
       </main>
       {data &&

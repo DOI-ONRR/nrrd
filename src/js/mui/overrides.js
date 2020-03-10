@@ -20,11 +20,12 @@ module.exports = Object.freeze({
   },
   MuiToggleButton: {
     root: {
+      color: palette.primary.dark,
       '&.Mui-selected': {
         color: 'white',
         backgroundColor: '#5c737f',
       },
-    }
+    },
   },
   MuiListItemIcon: {
     root: {
