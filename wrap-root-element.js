@@ -14,7 +14,8 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Typography
+  Typography,
+  Hidden
 } from '@material-ui/core'
 
 import { client } from './src/apollo/client'
@@ -37,7 +38,8 @@ const mdxComponents = {
   TableCell,
   TableHead,
   TableRow,
-  Typography
+  Typography,
+  Hidden
 }
 
 export const wrapRootElement = ({ element }) => (

@@ -29,13 +29,13 @@ const YEARLY_DROPDOWN_VALUES = {
 
 const TOTAL_DISBURSEMENTS_QUERY = gql`
   query TotalYearlyDisbursements {
-    total_yearly_fiscal_disbursement2 {
+    total_yearly_fiscal_disbursement {
       year,
       source,
       sum
     }   
 
-    total_monthly_fiscal_disbursement2 {
+    total_monthly_fiscal_disbursement {
       source
       sum
       month_long
@@ -43,7 +43,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       month
      year
     }
-    total_monthly_calendar_disbursement2 {
+    total_monthly_calendar_disbursement {
       source
       sum
       month_long
@@ -52,7 +52,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
      year
 
   } 
-     last_twelve_disbursement2 {
+     total_monthly_last_twelve_disbursement {
       source
       sum
       month_long
@@ -90,20 +90,40 @@ const TotalDisbursements = props => {
   const yGroupBy = 'source'
   const units = 'dollars'
   let xLabels
-
+  let maxFiscalYear
+  let maxCalendarYear
+  let xGroups={}
+  
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.debug(data)
+
+    maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
+      return (prev.year > current.year) ? prev.year : current.year
+    })
+    maxCalendarYear = data.total_monthly_calendar_disbursement.reduce((prev, current) => {
+      return (prev.year > current.year) ? prev.year : current.year
+    })
+
     if (toggle === TOGGLE_VALUES.Month) {
       if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
-        chartData = data.total_monthly_fiscal_disbursement2
+        chartData = data.total_monthly_fiscal_disbursement
       }
       else if (period === MONTHLY_DROPDOWN_VALUES.Calendar) {
-        chartData = data.total_monthly_calendar_disbursement2
+        chartData = data.total_monthly_calendar_disbursement
       }
       else {
-        chartData = data.last_twelve_disbursement2
+        chartData = data.total_monthly_last_twelve_disbursement
       }
+
+      xGroups=chartData.reduce((g,row,i) => {         
+        let r = g
+        let year = row.period_date.substring(0,4)
+        let months = g[year] || []
+        months.push(row.month)
+        r[year] = months
+        return r
+      },{})
+      
       xAxis = 'month_long'
       xLabels = (x, i) => {
         // console.debug(x)
@@ -111,7 +131,8 @@ const TotalDisbursements = props => {
       }
     }
     else {
-      chartData = data.total_yearly_fiscal_disbursement2
+      chartData = data.total_yearly_fiscal_disbursement
+      xGroups['Fiscal Year']=chartData.map((row,i)=> row.year)
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
       }
@@ -128,8 +149,8 @@ const TotalDisbursements = props => {
         <SectionControls
           onToggleChange={toggleChange}
           onMenuChange={menuChange}
-          maxFiscalYear={2019}
-          maxCalendarYear={2020}
+          maxFiscalYear={maxFiscalYear}
+          maxCalendarYear={maxCalendarYear}
           monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
           toggleValues={TOGGLE_VALUES}
           yearlyDropdownValues={YEARLY_DROPDOWN_VALUES} />
@@ -139,7 +160,8 @@ const TotalDisbursements = props => {
             units={units}
             data={chartData}
             xAxis={xAxis}
-            yAxis={yAxis}
+    yAxis={yAxis}
+    xGroups={xGroups}
             yGroupBy={yGroupBy}
             xLabels={xLabels}
             legendFormat={v => {

@@ -13,17 +13,17 @@ import CONSTANTS from '../../../js/constants'
 
 const TOTAL_REVENUE_QUERY = gql`
   query TotalYearlyRevenue {
-    total_yearly_fiscal_revenue2 { 
+    total_yearly_fiscal_revenue { 
       year,
       source,
       sum
     }
-    total_yearly_calendar_revenue2 { 
+    total_yearly_calendar_revenue { 
       year,
       source,
       sum
     }
-    total_monthly_fiscal_revenue2 {
+    total_monthly_fiscal_revenue {
       source
       sum
       month_long
@@ -31,7 +31,7 @@ const TOTAL_REVENUE_QUERY = gql`
       month
      year
     }
-    total_monthly_calendar_revenue2 {
+    total_monthly_calendar_revenue {
       source
       sum
       month_long
@@ -40,7 +40,7 @@ const TOTAL_REVENUE_QUERY = gql`
      year
 
   } 
- last_twelve_revenue2 {
+ total_monthly_last_twelve_revenue {
       source
       sum
       month_long
@@ -99,19 +99,39 @@ const TotalRevenue = props => {
   const yGroupBy = 'source'
   let xLabels = 'month'
   const units = 'dollars'
-
+  let maxFiscalYear
+  let maxCalendarYear
+  let xGroups={}
   if (data) {
     console.log('totalRevenue data: ', data)
+    maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
+      return (prev.year > current.year) ? prev.year : current.year
+    })
+    maxCalendarYear = data.total_monthly_calendar_revenue.reduce((prev, current) => {
+      return (prev.year > current.year) ? prev.year : current.year
+    })
     if (toggle === TOGGLE_VALUES.Month) {
+
       if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
-        chartData = data.total_monthly_fiscal_revenue2
+        chartData = data.total_monthly_fiscal_revenue
+
+
       }
       else if (period === MONTHLY_DROPDOWN_VALUES.Calendar) {
-        chartData = data.total_monthly_calendar_revenue2
+        chartData = data.total_monthly_calendar_revenue
       }
       else {
-        chartData = data.last_twelve_revenue2
+        chartData = data.total_monthly_last_twelve_revenue
       }
+
+      xGroups=chartData.reduce((g,row,i) => {         
+        let r = g
+        let year = row.period_date.substring(0,4)
+        let months = g[year] || []
+        months.push(row.month)
+        r[year] = months
+        return r
+      },{})
 
       xAxis = 'month_long'
       xLabels = (x, i) => {
@@ -121,10 +141,12 @@ const TotalRevenue = props => {
     }
     else {
       if (period === YEARLY_DROPDOWN_VALUES.Fiscal) {
-        chartData = data.total_yearly_fiscal_revenue2
+        chartData = data.total_yearly_fiscal_revenue
+       xGroups['Fiscal Year']=chartData.map((row,i)=> row.year)
       }
       else {
-        chartData = data.total_yearly_calendar_revenue2
+        chartData = data.total_yearly_calendar_revenue
+          xGroups['Calendar Year']=chartData.map((row,i)=> row.year)
       }
       xAxis = 'year'
       xLabels = (x, i) => {
@@ -142,8 +164,8 @@ const TotalRevenue = props => {
         <SectionControls
           onToggleChange={toggleChange}
           onMenuChange={menuChange}
-          maxFiscalYear={2019}
-          maxCalendarYear={2020}
+          maxFiscalYear={maxFiscalYear}
+          maxCalendarYear={maxCalendarYear}
           monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
           toggleValues={TOGGLE_VALUES}
           yearlyDropdownValues={YEARLY_DROPDOWN_VALUES} />
@@ -157,7 +179,8 @@ const TotalRevenue = props => {
             units={units}
             xAxis={xAxis}
             xLabels={xLabels}
-            yAxis={yAxis}
+    yAxis={yAxis}
+    xGroups={xGroups}
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
           />
