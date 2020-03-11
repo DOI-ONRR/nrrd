@@ -33,6 +33,7 @@ const APOLLO_QUERY = gql`
       revenue_trends(order_by: {fiscal_year: desc, current_month: desc}) {
         fiscalYear:fiscal_year
         revenue:total
+        revenue_ytd:total_ytd
         revenueType:trend_type
         month:current_month
       }
@@ -224,7 +225,7 @@ const aggregateData = data => {
   ]
 
   const currentYear = data[0].fiscalYear
-
+  const currentMonth = data[0].month
   for (let i = 0; i < data.length; i++) {
     const item = data[i]
     if (item.revenueType.match(/Royalties/)) {
@@ -236,18 +237,27 @@ const aggregateData = data => {
     else if (item.revenueType.match(/Rents/)) {
       sumData(item, r, 2, currentYear) // sum into Rents
     }
-    else {
+    else if (item.revenueType.match(/Other Revenues/)) {
       sumData(item, r, 3, currentYear) // sum into Other Revenues
     }
-    sumData(item, r, 4, currentYear) // sum into Total
+    else if (item.revenueType.match(/All Revenue/)) {
+      sumData(item, r, 4, currentYear) // sum into Total
+    }
   }
 
   r.map((row, i) => {
     let a = []
     const years = Object.keys(row.histSum).sort()
     a = years.map((year, i) => ([year, row.histSum[year]]))
-    r[i].histData = a.slice(-10)
-    return a.slice(-10)
+    console.debug(currentMonth, "YEARS ------->",  years, "AAAAAAAAAAAAAAAAAAAAAAAAA a", a)
+    if (currentMonth === 'December') {
+      r[i].histData = a.slice(-10)
+      return a.slice(-10)
+    }
+    else {
+      r[i].histData = a.slice(-11).slice(0, 10)
+      return a.slice(-11).slice(0, 10)
+    }
   })
 
   return r
@@ -255,8 +265,8 @@ const aggregateData = data => {
 
 const sumData = (item, r, index, currentYear) => {
   const previousYear = currentYear - 1
-  if (item.fiscalYear == currentYear) r[index].current += item.revenue
-  if (item.fiscalYear == previousYear) r[index].previous += item.revenue
+  if (item.fiscalYear == currentYear) r[index].current += item.revenue_ytd
+  if (item.fiscalYear == previousYear) r[index].previous += item.revenue_ytd
 
   if (r[index].histSum[item.fiscalYear]) {
     if (!isNaN(Number(item.revenue))) r[index].histSum[item.fiscalYear] += Number(item.revenue)

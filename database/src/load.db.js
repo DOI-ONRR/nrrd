@@ -131,8 +131,9 @@ const main = async () => {
 		    const raw_row = rows[rr]
 		    let string = JSON.stringify(raw_row)
 		    string = string.replace(/[^\x00-\x7F]/g, '') // remove wingdings as microsoft is source
-		    const row = JSON.parse(string)
-		    const location = await addLocation(row, location_lookup)
+		    let row = JSON.parse(string)
+                row = await NativeAmerican(row)
+  		const location = await addLocation(row, location_lookup)
 		    const location_id = location[0]
 		    const commodity = await addCommodity(row, commodity_lookup)
 		    const commodity_id = commodity[0]
@@ -155,9 +156,31 @@ const main = async () => {
 		    if (raw_volume) {
             await insertProduction(commodity_id, location_id, period_id, duplicate_no, raw_volume, row)
           }
+
         }
 	    }
     })
+}
+
+const NativeAmerican = async (row) => {
+
+//  console.debug('NATIVE AMERICAN', row)
+  switch (row['Fund Type']) {
+  case 'U.S. TreasuryAI':
+    row['Land Class']='Native American'
+    break;
+  case 'Native American Tribes & Allottees':
+    row['Land Class']='Native American'
+    break;
+  case 'American Indian Tribes':
+    row['Land Class']='Native American'
+    break;
+  default:
+    row['Land Class']='Federal'
+    break;
+  }
+  return row
+  
 }
 
 const deduplicate = (commodity_id, location_id, period_id, row) => {
