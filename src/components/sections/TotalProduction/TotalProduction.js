@@ -76,7 +76,6 @@ const TOTAL_PRODUCTION_QUERY = gql`
 
 // TotalProduction
 const TotalProduction = props => {
-
   const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
   const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
   const [selected, setSelected] = useState(undefined)
@@ -108,8 +107,8 @@ const TotalProduction = props => {
   let xLabels
   let maxFiscalYear
   let maxCalendarYear
-  let xGroups={}
-  
+  let xGroups = {}
+
   if (loading) {
     return 'Loading...'
   }
@@ -117,13 +116,13 @@ const TotalProduction = props => {
   if (error) return `Error! ${ error.message }`
   if (data) {
     // console.debug(data)
-     maxFiscalYear = data.total_yearly_fiscal_production.reduce((prev, current) => {
+    maxFiscalYear = data.total_yearly_fiscal_production.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
     maxCalendarYear = data.total_yearly_calendar_production.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
-    
+
     if (toggle === TOGGLE_VALUES.Month) {
       if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_monthly_fiscal_production
@@ -135,17 +134,17 @@ const TotalProduction = props => {
         chartData = data.total_monthly_last_twelve_production
       }
 
-      xGroups=chartData.filter(row => row.product === 'Oil (bbl)').reduce((g,row,i) => {         
-        let r = g
-        let year = row.period_date.substring(0,4)
-        let months = g[year] || []
+      xGroups = chartData.filter(row => row.product === 'Oil (bbl)').reduce((g, row, i) => {
+        const r = g
+        const year = row.period_date.substring(0, 4)
+        const months = g[year] || []
         months.push(row.month)
         r[year] = months
         return r
-      },[])
-      console.debug("XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS", xGroups)
-      console.debug("XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS", chartData)
-      
+      }, [])
+      console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', xGroups)
+      console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', chartData)
+
       xAxis = 'month_long'
       xLabels = (x, i) => {
         // console.debug(x)
@@ -155,11 +154,11 @@ const TotalProduction = props => {
     else {
       if (period === YEARLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_yearly_fiscal_production
-        xGroups['Fiscal Year']=chartData.filter(row => row.product === 'Oil (bbl)').map((row,i)=> row.year)
+        xGroups['Fiscal Year'] = chartData.filter(row => row.product === 'Oil (bbl)').map((row, i) => row.year)
       }
       else {
         chartData = data.total_yearly_calendar_production
-        xGroups['Calendar Year']=chartData.filter(row => row.product === 'Oil (bbl)').map((row,i)=> row.year)
+        xGroups['Calendar Year'] = chartData.filter(row => row.product === 'Oil (bbl)').map((row, i) => row.year)
       }
       console.debug(chartData)
       xLabels = (x, i) => {
@@ -192,14 +191,8 @@ const TotalProduction = props => {
             xGroups={xGroups}
             yGroupBy={yGroupBy}
             xLabels={xLabels}
-            legendFormat={v => {
-              return utils.formatToCommaInt(v)
-            }}
-            onSelect={ d => {
-              console.log('handle select', d)
-              return handleSelect(d)
-            }
-            }
+            legendFormat={v => utils.formatToCommaInt(v)}
+            onSelect={ d => handleSelect(d) }
             selectedIndex={selected}
           />
         </Grid>
