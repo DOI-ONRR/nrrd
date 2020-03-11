@@ -14,6 +14,7 @@ export default class D3StackedBarChart {
     this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
     this.marginBottom = options.marginBottom || 40
     this.marginTop = options.marginTop || 25
+    this.units = (options.units) ? options.units : ''
 
     if (options.selectedIndex === undefined) {
       this.selectedIndex = this.xDomain().length - 1
@@ -21,6 +22,7 @@ export default class D3StackedBarChart {
     else {
       this.selectedIndex = options.selectedIndex
     }
+    this.xGroups = (options.xGroups) ? options.xGroups : undefined
 
     this.xLabels = options.xLabels
     // max extent line props and defaults
@@ -57,6 +59,8 @@ export default class D3StackedBarChart {
       this._chart()
       this._xLabels()
       this._legend()
+
+      this.xAxisGroup()
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -108,34 +112,40 @@ export default class D3StackedBarChart {
 
   // addGroupLines () {
   xAxisGroup () {
-    if (this.xAxisGroup) {
-      const self = this
+    try {
+      console.log('xAxisGroup this: ', this)
+      if (this.xGroups) {
+        const self = this
 
-      const groupLines = this.chart.append('g').attr('id', 'groups')
-      const groupItemWidth = (self.width / self.state.length)
-      const padding = (self.xScale.bandwidth() * 0.2)
-      let xPos = 0
+        const groupLines = this.chart.append('g').attr('class', 'x-axis-groups')
+        const groupItemWidth = (self._width / self.data.length)
+        const padding = (self.xScale.bandwidth() * 0.2)
+        let xPos = 0
 
-      Object.keys(self.groups).map((name, index) => {
-        const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
+        Object.keys(self.xGroups).map((name, index) => {
+          const groupLineWidth = xPos + (groupItemWidth * self.xGroups[name].length) - padding
 
-        groupLines.append('line')
-	  .attr('x1', xPos + padding)
-	  .attr('x2', groupLineWidth)
-	  .attr('stroke', '#a7bcc7')
-	  .attr('stroke-width', 1)
-	 		      .attr('transform', 'translate(' + [0, self.height - 4 - self.marginBottom / 2] + ')')
+          groupLines.append('line')
+            .attr('x1', xPos + padding)
+            .attr('x2', groupLineWidth)
+            .attr('stroke', '#a7bcc7')
+            .attr('stroke-width', 1)
+	    .attr('transform', 'translate(' + [0, self._height + 4  - self.marginBottom / 2] + ')')
 
-        groupLines.append('text')
-          .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))
-          .attr('y', self.height - 16)
-          .attr('text-anchor', 'middle')
-          .text(name)
+          groupLines.append('text')
+            .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))
+            .attr('y', self._height   )
+            .attr('text-anchor', 'middle')
+            .attr('font','small')
+            .text(name)
 
-			    xPos = groupLineWidth + padding
+	  xPos = groupLineWidth + padding
+        })
       }
-      )
     }
+    catch (err) {
+      console.warn('Error: ', err)
+    }  
   }
 
   _maxExtend () {
@@ -146,9 +156,6 @@ export default class D3StackedBarChart {
       const maxExtentGroup = self.chart.append('g').attr('class', 'maxExtent')
 
       const maxExtentValue = this.maxExtent()
-      if (!this.units) {
-        this.units = ''
-      }
 
       maxExtentGroup.append('text')
         .attr('width', self._width)
@@ -1136,13 +1143,13 @@ export default class D3StackedBarChart {
       const self = this
 
       const groupLines = this.chart.append('g').attr('class', 'groups')
-      const groupItemWidth = (self._width / self.state.length)
+      const groupItemWidth = (self._width / self.te.length)
       const padding = (self.xScale.bandwidth() * 0.2)
       let xPos = 0
 
       Object.keys(self.groups).map((name, index) => {
         const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
-
+        
         groupLines.append('line')
 	  .attr('x1', xPos + padding)
 	  .attr('x2', groupLineWidth)

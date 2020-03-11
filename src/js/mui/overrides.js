@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 // https://material-ui.com/customization/globals/
 const palette = require('./palette')
 
@@ -21,11 +20,12 @@ module.exports = Object.freeze({
   },
   MuiToggleButton: {
     root: {
+      color: palette.primary.dark,
       '&.Mui-selected': {
         color: 'white',
         backgroundColor: '#5c737f',
       },
-    }
+    },
   },
   MuiListItemIcon: {
     root: {

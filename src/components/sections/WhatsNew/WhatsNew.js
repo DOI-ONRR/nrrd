@@ -12,7 +12,7 @@ import FiberManualRecordRoundedIcon from '@material-ui/icons/FiberManualRecordRo
 const WhatsNew = props => {
   return (
     <Box pt={5} pb={5}>
-      <Typography variant="h2">What's New</Typography>
+      <Typography variant="h2">What's new</Typography>
       <Typography variant="body1">
             In our latest release on December 18, 2019, we made the following
             changes:

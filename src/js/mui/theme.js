@@ -16,9 +16,9 @@ import overrides from './overrides'
 // Globals/Overrides
 
 const theme = createMuiTheme({
-  palette: palette,
-  typography: typography,
-  overrides: overrides
+  palette,
+  typography,
+  overrides
 })
 
 export default theme

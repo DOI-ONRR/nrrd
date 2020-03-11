@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   closeIcon: {
-    color: theme.palette.common.white,
+    color: 'white',
     position: 'relative',
     top: theme.spacing(1.75),
     right: theme.spacing(1),
@@ -93,7 +93,6 @@ const useStyles = makeStyles(theme => ({
   },
   cardLocationIcon: {
     maxHeight: 50,
-    maxWidth: 50,
     marginRight: theme.spacing(1.5),
     filter: 'invert(1)',
   }
