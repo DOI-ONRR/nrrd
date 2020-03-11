@@ -101,7 +101,7 @@ const TotalRevenue = props => {
   const units = 'dollars'
   let maxFiscalYear
   let maxCalendarYear
-  let xGroups={}
+  let xGroups = {}
   if (data) {
     console.log('totalRevenue data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
@@ -111,11 +111,8 @@ const TotalRevenue = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
     if (toggle === TOGGLE_VALUES.Month) {
-
       if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_monthly_fiscal_revenue
-
-
       }
       else if (period === MONTHLY_DROPDOWN_VALUES.Calendar) {
         chartData = data.total_monthly_calendar_revenue
@@ -124,14 +121,14 @@ const TotalRevenue = props => {
         chartData = data.total_monthly_last_twelve_revenue
       }
 
-      xGroups=chartData.reduce((g,row,i) => {         
-        let r = g
-        let year = row.period_date.substring(0,4)
-        let months = g[year] || []
+      xGroups = chartData.reduce((g, row, i) => {
+        const r = g
+        const year = row.period_date.substring(0, 4)
+        const months = g[year] || []
         months.push(row.month)
         r[year] = months
         return r
-      },{})
+      }, {})
 
       xAxis = 'month_long'
       xLabels = (x, i) => {
@@ -142,11 +139,11 @@ const TotalRevenue = props => {
     else {
       if (period === YEARLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_yearly_fiscal_revenue
-       xGroups['Fiscal Year']=chartData.map((row,i)=> row.year)
+        xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)
       }
       else {
         chartData = data.total_yearly_calendar_revenue
-          xGroups['Calendar Year']=chartData.map((row,i)=> row.year)
+        xGroups['Calendar Year'] = chartData.map((row, i) => row.year)
       }
       xAxis = 'year'
       xLabels = (x, i) => {
@@ -179,8 +176,8 @@ const TotalRevenue = props => {
             units={units}
             xAxis={xAxis}
             xLabels={xLabels}
-    yAxis={yAxis}
-    xGroups={xGroups}
+            yAxis={yAxis}
+            xGroups={xGroups}
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
           />
