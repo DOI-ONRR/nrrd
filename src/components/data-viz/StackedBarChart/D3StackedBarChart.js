@@ -130,22 +130,22 @@ export default class D3StackedBarChart {
             .attr('x2', groupLineWidth)
             .attr('stroke', '#a7bcc7')
             .attr('stroke-width', 1)
-	    .attr('transform', 'translate(' + [0, self._height + 4  - self.marginBottom / 2] + ')')
+	          .attr('transform', 'translate(' + [0, self._height + 4 - self.marginBottom / 2] + ')')
 
           groupLines.append('text')
             .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))
-            .attr('y', self._height   )
+            .attr('y', self._height)
             .attr('text-anchor', 'middle')
-            .attr('font','small')
+            .style('font-size', '1rem')
             .text(name)
 
-	  xPos = groupLineWidth + padding
+	        xPos = groupLineWidth + padding
         })
       }
     }
     catch (err) {
       console.warn('Error: ', err)
-    }  
+    }
   }
 
   _maxExtend () {
@@ -1149,7 +1149,7 @@ export default class D3StackedBarChart {
 
       Object.keys(self.groups).map((name, index) => {
         const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
-        
+
         groupLines.append('line')
 	  .attr('x1', xPos + padding)
 	  .attr('x2', groupLineWidth)
