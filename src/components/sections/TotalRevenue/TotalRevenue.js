@@ -169,9 +169,7 @@ const TotalRevenue = props => {
         <Grid item xs={12}>
           <StackedBarChart
             data={chartData}
-            legendFormat={v => {
-              return utils.formatToDollarInt(v)
-            }}
+            legendFormat={v => utils.formatToDollarInt(v)}
             title={chartTitle}
             units={units}
             xAxis={xAxis}

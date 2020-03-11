@@ -191,14 +191,8 @@ const TotalProduction = props => {
             xGroups={xGroups}
             yGroupBy={yGroupBy}
             xLabels={xLabels}
-            legendFormat={v => {
-              return utils.formatToCommaInt(v)
-            }}
-            onSelect={ d => {
-              console.log('handle select', d)
-              return handleSelect(d)
-            }
-            }
+            legendFormat={v => utils.formatToCommaInt(v)}
+            onSelect={ d => handleSelect(d) }
             selectedIndex={selected}
           />
         </Grid>
