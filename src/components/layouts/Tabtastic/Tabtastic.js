@@ -53,11 +53,17 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     top: '-1px',
     borderTop: '1px solid #5c737f',
-  }
+  },
+  tabPanelBox: {
+    '@media (max-width: 426px)': {
+      padding: 0,
+    },
+  },
 }))
 
 function TabPanel (props) {
   const { children, value, index, ...other } = props
+  const classes = useStyles()
 
   return (
     <Typography
@@ -68,7 +74,7 @@ function TabPanel (props) {
       aria-labelledby={`full-width-tab-${ index }`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && <Box p={3} className={classes.tabPanelBox}>{children}</Box>}
     </Typography>
   )
 }

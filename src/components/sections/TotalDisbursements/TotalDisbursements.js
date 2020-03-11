@@ -92,11 +92,10 @@ const TotalDisbursements = props => {
   let xLabels
   let maxFiscalYear
   let maxCalendarYear
-  let xGroups={}
-  
+  let xGroups = {}
+
   if (error) return `Error! ${ error.message }`
   if (data) {
-
     maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
@@ -115,15 +114,15 @@ const TotalDisbursements = props => {
         chartData = data.total_monthly_last_twelve_disbursement
       }
 
-      xGroups=chartData.reduce((g,row,i) => {         
-        let r = g
-        let year = row.period_date.substring(0,4)
-        let months = g[year] || []
+      xGroups = chartData.reduce((g, row, i) => {
+        const r = g
+        const year = row.period_date.substring(0, 4)
+        const months = g[year] || []
         months.push(row.month)
         r[year] = months
         return r
-      },{})
-      
+      }, {})
+
       xAxis = 'month_long'
       xLabels = (x, i) => {
         // console.debug(x)
@@ -132,7 +131,7 @@ const TotalDisbursements = props => {
     }
     else {
       chartData = data.total_yearly_fiscal_disbursement
-      xGroups['Fiscal Year']=chartData.map((row,i)=> row.year)
+      xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
       }
@@ -160,13 +159,11 @@ const TotalDisbursements = props => {
             units={units}
             data={chartData}
             xAxis={xAxis}
-    yAxis={yAxis}
-    xGroups={xGroups}
+            yAxis={yAxis}
+            xGroups={xGroups}
             yGroupBy={yGroupBy}
             xLabels={xLabels}
-            legendFormat={v => {
-              return utils.formatToDollarInt(v)
-            }}
+            legendFormat={v => utils.formatToDollarInt(v)}
           />
         </Grid>
       </Grid>
