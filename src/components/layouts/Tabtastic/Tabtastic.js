@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { navigate, location } from '@reach/router'
+import { navigate } from '@reach/router'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Box, Tabs, Tab } from '@material-ui/core'
