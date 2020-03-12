@@ -36,7 +36,7 @@ SELECT period.period,
                     WHEN (((location.land_class)::text = 'Federal'::text) AND ((location.land_category)::text = 'Offshore'::text)) THEN 2
                     ELSE 0
                 END AS sort_order,
-            (sum((production.volume)::double precision))::numeric(20,2) AS sum
+            sum(production.volume) AS sum
            FROM (((production
              JOIN period USING (period_id))
              JOIN location USING (location_id))
