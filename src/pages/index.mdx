@@ -10,9 +10,6 @@ tag:
 - Production
 ---
 
-export const urlParams = new URLSearchParams(location.search)
-export const selected = urlParams.get('tab')
-
 <Container maxWidth="lg">
   <Box component="h2" pb={5} fontWeight="normal" style={{ lineHeight: '2.25rem' }}>
     When companies extract energy and mineral resources on property
@@ -26,13 +23,13 @@ export const selected = urlParams.get('tab')
     funds, and local governments for public use. All revenue collected
     from extraction on Native American lands is disbursed to Native
     American tribes, nations, or individuals.
-</Box>
+  </Box>
 </Container>
 <Container maxWidth="lg">
   <Box mb={2}>
     <Grid container spacing={0}>
       <Grid item xs={12} md={12}>
-        <Tabtastic selected={selected}>
+        <Tabtastic selected={props.location.search}>
           <TabtasticTab label="Revenue">
             <Grid container m={0} spacing={4}>
               <Grid item xs={12} sm={6}>
@@ -122,4 +119,3 @@ export const selected = urlParams.get('tab')
     <WhatsNew />
   </Container>
 </Container>
-
