@@ -86,7 +86,14 @@ const TotalRevenue = props => {
   const toggleChange = value => {
     // console.debug('ON TOGGLE CHANGE: ', value)
     setToggle(value)
+    if (value && value.toLowerCase() === TOGGLE_VALUES.Month.toLowerCase()) {
+      setPeriod(MONTHLY_DROPDOWN_VALUES.Recent)
+    }
+    else {
+      setPeriod(YEARLY_DROPDOWN_VALUES.Fiscal)
+    }
   }
+
   const menuChange = value => {
     // console.debug('ON Menu CHANGE: ', value)
     setPeriod(value)
@@ -103,7 +110,6 @@ const TotalRevenue = props => {
   let maxCalendarYear
   let xGroups = {}
   if (data) {
-    console.log('totalRevenue data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
@@ -165,7 +171,9 @@ const TotalRevenue = props => {
           maxCalendarYear={maxCalendarYear}
           monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
           toggleValues={TOGGLE_VALUES}
-          yearlyDropdownValues={YEARLY_DROPDOWN_VALUES} />
+          yearlyDropdownValues={YEARLY_DROPDOWN_VALUES}
+          period={period}
+          toggle={toggle} />
         <Grid item xs={12}>
           <StackedBarChart
             data={chartData}

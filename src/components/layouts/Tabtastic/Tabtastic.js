@@ -1,12 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { navigate } from '@reach/router'
+import { navigate, location } from '@reach/router'
 
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
 import { makeStyles } from '@material-ui/core/styles'
+import { Typography, Box, Tabs, Tab } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   tabsRoot: {},
@@ -89,8 +86,11 @@ function a11yProps (index) {
 const Tabtastic = props => {
   const classes = useStyles()
 
+  const urlParams = new URLSearchParams(props.selected)
+  const selectedParams = urlParams.get('tab')
+
   const { children } = props
-  const [selected, setSelected] = useState(props.selected || '')
+  const [selected, setSelected] = useState(selectedParams || '')
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   useEffect(() => {
