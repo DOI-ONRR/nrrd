@@ -39,15 +39,14 @@ FROM   ( SELECT period.period,
              JOIN period USING (period_id))
              JOIN location USING (location_id))
              JOIN commodity USING (commodity_id))
-             WHERE ((period_1.period)::text = 'Monthly'::text)
-             AND (period.fiscal_year <= ( SELECT max(period_1.fiscal_year) AS max
-                                           FROM (revenue revenue_1
-                                           JOIN period period_1 USING (period_id))
-                                            WHERE (period_1.fiscal_month = 12)))
-             AND (period.fiscal_year > ( SELECT (max(period_1.fiscal_year) - 10)
-                                         FROM (revenue revenue_1
-                                         JOIN period period_1 USING (period_id))
-                                         WHERE (period_1.fiscal_month = 12)))
+  WHERE (((period.period)::text = 'Monthly'::text) AND (period.fiscal_year <= ( SELECT max(period_1.fiscal_year) AS max
+           FROM (production production_1
+             JOIN period period_1 USING (period_id))
+          WHERE (period_1.fiscal_month = 12))) AND (period.fiscal_year > ( SELECT (max(period_1.fiscal_year) - 10)
+           FROM (production production_1
+             JOIN period period_1 USING (period_id))
+          WHERE (period_1.fiscal_month = 12))))
+
              AND (commodity.product)::text = ANY (ARRAY[('Oil (bbl)'::character varying)::text, ('Gas (mcf)'::character varying)::text, ('Coal (tons)'::character varying)::text])
              
           GROUP BY period.period, period.fiscal_year, location.land_category, location.land_class, commodity.product,
@@ -87,15 +86,14 @@ FROM   ( SELECT period.period,
              JOIN period USING (period_id))
              JOIN location USING (location_id))
              JOIN commodity USING (commodity_id))
-             WHERE ((period_1.period)::text = 'Monthly'::text)
-             AND (period.fiscal_year <= ( SELECT max(period_1.fiscal_year) AS max
-                                           FROM (revenue revenue_1
-                                           JOIN period period_1 USING (period_id))
-                                            WHERE (period_1.fiscal_month = 12)))
-             AND (period.fiscal_year > ( SELECT (max(period_1.fiscal_year) - 10)
-                                         FROM (revenue revenue_1
-                                         JOIN period period_1 USING (period_id))
-                                         WHERE (period_1.fiscal_month = 12)))
+               WHERE (((period.period)::text = 'Monthly'::text) AND (period.fiscal_year <= ( SELECT max(period_1.fiscal_year) AS max
+           FROM (production production_1
+             JOIN period period_1 USING (period_id))
+          WHERE (period_1.fiscal_month = 12))) AND (period.fiscal_year > ( SELECT (max(period_1.fiscal_year) - 10)
+           FROM (production production_1
+             JOIN period period_1 USING (period_id))
+          WHERE (period_1.fiscal_month = 12))))
+
              AND (commodity.product)::text = ANY (ARRAY[('Oil (bbl)'::character varying)::text, ('Gas (mcf)'::character varying)::text, ('Coal (tons)'::character varying)::text])
              
 

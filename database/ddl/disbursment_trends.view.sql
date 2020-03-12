@@ -6,14 +6,14 @@ FROM (
         CASE
           WHEN commodity.fund_type = 'U.S. Treasury'  THEN 1 
           WHEN commodity.fund_type like '%State%'  THEN 2 
-          WHEN commodity.fund_type = 'Reclamation'  THEN 3
+          WHEN commodity.fund_type like '%Reclamation%'  THEN 3
           WHEN location.land_class = 'Native American' THEN 4
           ELSE 5 
           END AS trend_order, 
           CASE
             WHEN commodity.fund_type = 'U.S. Treasury'  THEN  'U.S. Treasury'
             WHEN commodity.fund_type like '%State%'  THEN   'States & counties'
-            WHEN commodity.fund_type = 'Reclamation'  THEN 'Reclamation fund'
+            WHEN commodity.fund_type like '%Reclamation%'  THEN 'Reclamation fund'
             WHEN location.land_class = 'Native American' THEN 'Native Americans'
           ELSE  'Other Funds'
         END AS trend_type,

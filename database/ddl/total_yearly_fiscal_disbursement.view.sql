@@ -31,7 +31,7 @@ CREATE OR REPLACE VIEW "public"."total_yearly_fiscal_disbursement" AS
                    FROM (disbursement disbursement_1
                      JOIN period period_1 USING (period_id))
                   WHERE ((period_1.period)::text = 'Fiscal Year'::text))))
-          GROUP BY period.period, period.fiscal_year, location.land_category, location.land_class, commodity.source,
+          GROUP BY period.period, period.fiscal_year, location.land_category, location.land_class, commodity.source
 ) a
   GROUP BY a.period, a.year, a.source, a.sort_order
   ORDER BY a.period, a.year, a.sort_order;

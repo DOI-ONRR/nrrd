@@ -156,7 +156,7 @@ const main = async () => {
 		    if (raw_volume) {
             await insertProduction(commodity_id, location_id, period_id, duplicate_no, raw_volume, row)
           }
-
+    
         }
 	    }
     })
@@ -164,21 +164,25 @@ const main = async () => {
 
 const NativeAmerican = async (row) => {
 
-//  console.debug('NATIVE AMERICAN', row)
-  switch (row['Fund Type']) {
-  case 'U.S. TreasuryAI':
-    row['Land Class']='Native American'
-    break;
-  case 'Native American Tribes & Allottees':
-    row['Land Class']='Native American'
-    break;
-  case 'American Indian Tribes':
-    row['Land Class']='Native American'
-    break;
-  default:
-    row['Land Class']='Federal'
-    break;
+  //console.debug('NATIVE AMERICAN', row)
+  if(row['Fund Type']) {
+    switch (row['Fund Type']) {
+    case 'U.S. TreasuryAI':
+      row['Land Class']='Native American'
+      break;
+    case 'Native American Tribes & Allottees':
+      row['Land Class']='Native American'
+      break;
+    case 'American Indian Tribes':
+      row['Land Class']='Native American'
+      break;
+    default:
+      row['Land Class']='Federal'
+      break;
+      
+    }
   }
+//    console.debug('NATIVE AMERICAN AFTER', row)
   return row
   
 }

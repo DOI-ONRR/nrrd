@@ -42,7 +42,7 @@ select t1.period, t1.year, t1.month, t1.month_long, t1.period_date, t1.product,
              JOIN location USING (location_id))
              JOIN commodity USING (commodity_id))
           WHERE (((period.period)::text = 'Monthly'::text) AND (period.fiscal_year = ( SELECT max(period_1.fiscal_year) AS max
-                   FROM (disbursement
+                   FROM (production
                      JOIN period period_1 USING (period_id))
                   WHERE (period_1.fiscal_month = 12))))
           GROUP BY period.period, period.fiscal_year, period.fiscal_month, period.month_long, period.period_date, commodity.product, location.land_category, location.land_class, commodity.source,
@@ -82,14 +82,14 @@ select t1.period, t1.year, t1.month, t1.month_long, t1.period_date, t1.product,
                     WHEN (((location.land_class)::text = 'Federal'::text) AND ((location.land_category)::text = 'Onshore'::text)) THEN 3
                     WHEN (((location.land_class)::text = 'Federal'::text) AND ((location.land_category)::text = 'Offshore'::text)) THEN 2
                     ELSE 0
-                END AS sort_order,
+                END AS sort_order
            FROM (((production
              JOIN period USING (period_id))
              JOIN location USING (location_id))
              JOIN commodity USING (commodity_id))
           WHERE (((period.period)::text = 'Monthly'::text) AND (period.fiscal_year = ( SELECT max(period_1.fiscal_year) AS max
-                   FROM (disbursement
-                     JOIN period period_1 USING (period_id))
+                   FROM (production
+                   JOIN period period_1 USING (period_id))
                   WHERE (period_1.fiscal_month = 12))))
                   ) t2 USING (period, year, month, month_long, period_date)
 
