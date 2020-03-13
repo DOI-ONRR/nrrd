@@ -65,7 +65,7 @@ const FISCAL_REVENUE_QUERY = gql`
 
 const DISTINCT_LOCATIONS_QUERY = gql`
   query DistinctLocations {
-    distinct_locations {
+    distinct_locations(where: {location: {_neq: ""}}) {
       location
       location_id
       sort_order
