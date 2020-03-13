@@ -2,34 +2,23 @@ import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardHeader from '@material-ui/core/CardHeader'
-// import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import Paper from '@material-ui/core/Paper'
-import Slide from '@material-ui/core/Slide'
-import Collapse from '@material-ui/core/Collapse'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Typography,
+  Grid,
+  Box,
+  Paper,
+  Slide,
+  Collapse,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow
+} from '@material-ui/core'
+
 import MinimizeIcon from '@material-ui/icons/Minimize'
-import AddIcon from '@material-ui/icons/Add'
-// import MaxmizeIcon from '@material-ui/icons/Maximize'
-
-// import CardActions from '@material-ui/core/CardActions'
-// import IconButton from '@material-ui/core/IconButton'
-
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-// import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Button from '@material-ui/core/Button'
-
-// import AppBar from "@material-ui/core/AppBar"
-// import Toolbar from "@material-ui/core/Toolbar"
-// import IconButton from "@material-ui/core/IconButton"
-// import MenuIcon from "@material-ui/icons/Menu"
 import CloseIcon from '@material-ui/icons/Close'
 
 import Sparkline from '../data-viz/Sparkline'
@@ -151,33 +140,12 @@ const APOLLO_QUERY = gql`
       commodity
       total
     }
+
+    fiscalYears: fiscal_revenue_summary(where: {state_or_area: {_nin: [""]}}, distinct_on: fiscal_year) {
+      fiscal_year
+    }
   }
 `
-// const COMMODITY_TRENDS = gql`
-//   query CommmodityTrend($state: String!, $commodity: String!) {
-//     revenue_commodity_summary(
-//       where: { commodity: { _eq: $commodity }, state_or_area: { _eq: $state } }
-//     ) {
-//       fiscal_year
-//       total
-//     }
-//   }
-// `
-
-// const TopCommodities = (state, commodity) => {
-//   const { loading, error, data } = useQuery(COMMODITY_TRENDS, {
-//     variables: { state: state, commodity: commodity }
-//   })
-
-//   let r = [[]]
-//   if (data) {
-//     r = data.revenue_commodity_summary.map((item, i) => [
-//       item.fiscal_year,
-//       item.total
-//     ])
-//   }
-//   return r
-// }
 
 const StateCard = props => {
   const classes = useStyles()
@@ -206,8 +174,8 @@ const StateCard = props => {
     ? true
     : props.closeIcon
   let sparkData = []
-  let sparkMin = 203
-  let sparkMax = 219
+  let sparkMin
+  let sparkMax
   let highlightIndex = 0
   let distinctCommodities = 0
   let topCommodities = []
@@ -271,6 +239,9 @@ const StateCard = props => {
       item.fiscal_year,
       item.sum
     ])
+
+    sparkMin = data.fiscalYears.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, data.fiscalYears[0].fiscal_year)
+    sparkMax = data.fiscalYears.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, data.fiscalYears[data.fiscalYears.length - 1].fiscal_year)
 
     highlightIndex = data.fiscal_revenue_summary.findIndex(
       x => x.fiscal_year === year
@@ -463,4 +434,5 @@ const StateCard = props => {
     )
   }
 }
+
 export default StateCard

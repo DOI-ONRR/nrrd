@@ -37,6 +37,8 @@ import StateCard from '../../layouts/StateCard'
 import { StoreContext } from '../../../store'
 import mapJson from './us-topology.json'
 
+import utils from '../../../js/utils'
+
 import { select } from 'd3'
 // import  mapJson from './us.t2.json'
 
@@ -55,6 +57,16 @@ export const STATIC_QUERY = graphql`
 const FISCAL_REVENUE_QUERY = gql`
   query FiscalRevenue($year: Int!, $location: String!) {
     fiscal_revenue_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location } }) {
+      fiscal_year
+      state_or_area
+      sum
+    }
+  }
+`
+
+const LOCATION_TOTAL_QUERY = gql`
+  query NationwideFederal($stateOrArea: String!, $year: Int!) {
+    fiscal_revenue_summary(where: {state_or_area: {_eq: $stateOrArea, _neq: ""}, fiscal_year: {_eq: $year}}) {
       fiscal_year
       state_or_area
       sum
@@ -658,6 +670,28 @@ const MapControls = props => {
   )
 }
 
+// location total
+const LocationTotal = props => {
+  const { format, stateOrArea } = props
+  const { state } = useContext(StoreContext)
+  const year = state.year
+
+  const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
+    variables: { stateOrArea, year }
+  })
+
+  if (loading) return ''
+  if (error) return `Error loading revenue data table ${ error.message }`
+
+  if (data) {
+    return (
+      <>
+        { format ? format(data.fiscal_revenue_summary[0].sum) : data.fiscal_revenue_summary[0].sum }
+      </>
+    )
+  }
+}
+
 const ExploreData = () => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
@@ -810,16 +844,11 @@ const ExploreData = () => {
   const { loading, error, data } = useQuery(FISCAL_REVENUE_QUERY, {
     variables: { year, location }
   })
-  // const cache = [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
-  //  cache.map((year, i) => {
-  //      useQuery(FISCAL_REVENUE_QUERY, { variables: { year, location } })
-  //  })
-  let mapData = [[]]
-  if (loading) {
-    //
-  }
 
-  if (error) return `Error! ${ error.message }`
+  let mapData = [[]]
+
+  if (loading) return 'Loading...'
+  if (error) return `Error loading revenue data table ${ error.message }`
 
   if (data) {
     mapData = data.fiscal_revenue_summary.map((item, i) => [
@@ -828,7 +857,6 @@ const ExploreData = () => {
     ])
   }
   if (mapData) {
-    // const timeout = 5000
     return (
       <>
         <Container className={classes.mapWrapper} maxWidth={false}>
@@ -952,7 +980,7 @@ const ExploreData = () => {
                 <Box component="h2" color="secondary.dark">Revenue</Box>
               </Box>
               <Typography variant="body1">
-                When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. In fiscal year {year}, ONRR collected a total of [$9,161,704,392] in revenue.
+                When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. <strong>In fiscal year {year}, ONRR collected a total of <LocationTotal stateOrArea="Nationwide Federal" format={d => utils.formatToDollarInt(d)} /> in revenue.</strong>
               </Typography>
             </Grid>
             <Grid item md={12}>
@@ -979,9 +1007,11 @@ const ExploreData = () => {
                     fips={card.fips}
                     abbr={card.abbr}
                     name={card.name}
+                    year={state.year}
                     closeCard={fips => {
                       closeCard(fips)
                     }}
+                    total={<LocationTotal stateOrArea={card.abbr} format={d => utils.formatToDollarInt(d)} />}
                   />
                 )
               })

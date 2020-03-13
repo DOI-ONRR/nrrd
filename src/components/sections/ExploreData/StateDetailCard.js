@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-// import { graphql } from 'gatsby'
+
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 // utility functions
@@ -7,14 +7,14 @@ import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardHeader from '@material-ui/core/CardHeader'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardContent,
+  Box,
+  CircularProgress
+} from '@material-ui/core'
 
 import CloseIcon from '@material-ui/icons/Close'
 import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
@@ -22,6 +22,7 @@ import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
 import PieChart from '../../data-viz/PieChart/PieChart.js'
 import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
 
+import Sparkline from '../../data-viz/Sparkline'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -100,6 +101,15 @@ const useStyles = makeStyles(theme => ({
 
 const APOLLO_QUERY = gql`
   query DetailCard($state: String!, $year: Int!) {
+    fiscal_revenue_summary(
+      where: { state_or_area: { _eq: $state } }
+      order_by: { fiscal_year: asc, state_or_area: asc }
+    ) {
+      fiscal_year
+      state_or_area
+      sum
+      distinct_commodities
+    }
     revenue_commodity_summary(
       where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
       order_by: { fiscal_year: asc, total: desc }
@@ -118,11 +128,13 @@ const APOLLO_QUERY = gql`
       state_or_area
       total
     }
+    fiscalYears: fiscal_revenue_summary(where: {state_or_area: {_nin: [""]}}, distinct_on: fiscal_year) {
+      fiscal_year
+    }
   }
 `
 
 const StateIcon = props => {
-  console.log('StateIcon props: ', props)
   const classes = useStyles()
 
   const stateTitle = props.stateTitle
@@ -170,10 +182,28 @@ const StateDetailCard = props => {
   if (error) return `Error! ${ error.message }`
   // console.debug('DWGH ----------------------------------', year)
   let chartData
-  const dataSet = 'FY ' + year
+  const dataSet = `FY ${ year }`
+
+  let sparkData = []
+  let sparkMin
+  let sparkMax
+  let highlightIndex = 0
+
   if (data) {
     console.debug('data========================================================', data)
+
     chartData = data
+    sparkMin = data.fiscalYears.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, data.fiscalYears[0].fiscal_year)
+    sparkMax = data.fiscalYears.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, data.fiscalYears[data.fiscalYears.length - 1].fiscal_year)
+
+    sparkData = data.fiscal_revenue_summary.map((item, i) => [
+      item.fiscal_year,
+      item.sum
+    ])
+
+    highlightIndex = data.fiscal_revenue_summary.findIndex(
+      x => x.fiscal_year === year
+    )
   }
 
   return (
@@ -191,6 +221,19 @@ const StateDetailCard = props => {
       />
       <CardContent>
         <>
+          <Box textAlign="center">
+            <h2 style={{ marginTop: 0 }}>{props.total}</h2>
+            {props.year && <span>FY {props.year} revenue</span>}
+            {sparkData && (
+              <Box component="span">
+                <Sparkline
+                  data={sparkData}
+                  highlightIndex={highlightIndex}
+                />
+                Revenue trend ({sparkMin} - {sparkMax})
+              </Box>
+            )}
+          </Box>
           { chartData.revenue_commodity_summary.length > 0 && (
 
             <Box className={classes.commodityBox}>
