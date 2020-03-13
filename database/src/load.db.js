@@ -10,6 +10,8 @@ args
   .option('--skip <ROWNUMB>', 'SKIP_TO')
   .option('--duplicates', 'Enable/disable duplicates', true)
   .option('--no-duplicates', 'Enable/disable duplicates')
+  .option('--progress', 'Enable/disable progress', true)
+  .option('--no-progress', 'Enable/disable progress')
   .option('-f, --file <file>', 'CSV file to load')
   .parse(process.argv)
 
@@ -91,6 +93,15 @@ if (args.file) {
 else {
   process.exit()
 }
+
+let PROGRESS=true
+if (args.progress) {
+
+}
+else {
+  PROGRESS = false
+}
+
 console.debug('DEDUP ', DEDUPLICATE, 'FILE ', CSV)
 const duplicate_lookup = {}
 
@@ -110,13 +121,19 @@ const main = async () => {
             ROW_COUNT++
             continue
           }
-          ROW_COUNT++
+                ROW_COUNT++
+
+                if(ROW_COUNT % 100 == 0 ) {
+                  let dt=new Date()
+                  console.debug(ROW_COUNT+' rows processed @ '+dt)
+                }
 
 		    const raw_row = rows[rr]
 		    let string = JSON.stringify(raw_row)
 		    string = string.replace(/[^\x00-\x7F]/g, '') // remove wingdings as microsoft is source
-		    const row = JSON.parse(string)
-		    const location = await addLocation(row, location_lookup)
+		    let row = JSON.parse(string)
+                row = await NativeAmerican(row)
+  		const location = await addLocation(row, location_lookup)
 		    const location_id = location[0]
 		    const commodity = await addCommodity(row, commodity_lookup)
 		    const commodity_id = commodity[0]
@@ -139,9 +156,35 @@ const main = async () => {
 		    if (raw_volume) {
             await insertProduction(commodity_id, location_id, period_id, duplicate_no, raw_volume, row)
           }
+    
         }
 	    }
     })
+}
+
+const NativeAmerican = async (row) => {
+
+  //console.debug('NATIVE AMERICAN', row)
+  if(row['Fund Type']) {
+    switch (row['Fund Type']) {
+    case 'U.S. TreasuryAI':
+      row['Land Class']='Native American'
+      break;
+    case 'Native American Tribes & Allottees':
+      row['Land Class']='Native American'
+      break;
+    case 'American Indian Tribes':
+      row['Land Class']='Native American'
+      break;
+    default:
+      row['Land Class']='Federal'
+      break;
+      
+    }
+  }
+//    console.debug('NATIVE AMERICAN AFTER', row)
+  return row
+  
 }
 
 const deduplicate = (commodity_id, location_id, period_id, row) => {
@@ -231,8 +274,13 @@ const insertProduction = async (commodity_id, location_id, period_id, duplicate_
   }
 }
 
+
+
+
+
 const addLocation = async (row, lookup) => {
   let fips_code = ''; let state = ''; let county = ''; let land_class = ''; let land_category = ''; let offshore_region = ''; let offshore_planning_area = ''; const offshore_planning_area_code = ''; let offshore_block = ''; let offshore_protraction = ''
+  
   for (const field in row) {
     switch (field.trim()) {
     case 'FIPS Code':
@@ -279,13 +327,14 @@ const addLocation = async (row, lookup) => {
     }
   }
 
+  let state_name=STATE_NAME_MAP[state] || ''
   const key = fips_code + '-' + state + '-' + county + '-' + land_class + '-' + land_category + '-' + offshore_region + '-' + offshore_planning_area + '-' + offshore_planning_area_code + '-' + offshore_block + '-' + offshore_protraction
   if (lookup[key]) {
     return lookup[key]
   }
   else {
     try {
-	    const insert = await db.query('insert into location(fips_code, state,county,land_class,land_category, offshore_region, offshore_planning_area, offshore_planning_area_code, offshore_block,offshore_protraction) values ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10) ON CONFLICT DO NOTHING  returning location_id', [fips_code, state, county, land_class, land_category, offshore_region, offshore_planning_area, offshore_planning_area_code, offshore_block, offshore_protraction])
+      const insert = await db.query('insert into location(fips_code, state,state_name,county,land_class,land_category, offshore_region, offshore_planning_area, offshore_planning_area_code, offshore_block,offshore_protraction) values ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) ON CONFLICT DO NOTHING  returning location_id', [fips_code, state,state_name, county, land_class, land_category, offshore_region, offshore_planning_area, offshore_planning_area_code, offshore_block, offshore_protraction])
 
 	    if (insert.rows.length > 0) {
         lookup[key] = [insert.rows[0].location_id, fips_code, state, county, land_class, land_category, offshore_region, offshore_planning_area, offshore_planning_area_code, offshore_block, offshore_protraction]
@@ -659,4 +708,67 @@ const COMMODITY_MAP = {
   'Oil & Gas (Non Royalty)': 'Oil & Gas (Non-Royalty)',
   'Oil & Gas (Non-Royalty)': 'Oil & Gas (Non-Royalty)'
 }
+
+const STATE_NAME_MAP = {
+  "AL": "Alabama",
+  "AK": "Alaska",
+  "AS": "American Samoa",
+  "AZ": "Arizona",
+  "AR": "Arkansas",
+  "CA": "California",
+  "CO": "Colorado",
+  "CT": "Connecticut",
+  "DE": "Delaware",
+  "DC": "District Of Columbia",
+  "FM": "Federated States Of Micronesia",
+  "FL": "Florida",
+  "GA": "Georgia",
+  "GU": "Guam",
+  "HI": "Hawaii",
+  "ID": "Idaho",
+  "IL": "Illinois",
+  "IN": "Indiana",
+  "IA": "Iowa",
+  "KS": "Kansas",
+  "KY": "Kentucky",
+  "LA": "Louisiana",
+  "ME": "Maine",
+  "MH": "Marshall Islands",
+  "MD": "Maryland",
+  "MA": "Massachusetts",
+  "MI": "Michigan",
+  "MN": "Minnesota",
+  "MS": "Mississippi",
+  "MO": "Missouri",
+  "MT": "Montana",
+  "NE": "Nebraska",
+  "NV": "Nevada",
+  "NH": "New Hampshire",
+  "NJ": "New Jersey",
+  "NM": "New Mexico",
+  "NY": "New York",
+  "NC": "North Carolina",
+  "ND": "North Dakota",
+  "MP": "Northern Mariana Islands",
+  "OH": "Ohio",
+  "OK": "Oklahoma",
+  "OR": "Oregon",
+  "PW": "Palau",
+  "PA": "Pennsylvania",
+  "PR": "Puerto Rico",
+  "RI": "Rhode Island",
+  "SC": "South Carolina",
+  "SD": "South Dakota",
+  "TN": "Tennessee",
+  "TX": "Texas",
+  "UT": "Utah",
+  "VT": "Vermont",
+  "VI": "Virgin Islands",
+  "VA": "Virginia",
+  "WA": "Washington",
+  "WV": "West Virginia",
+  "WI": "Wisconsin",
+  "WY": "Wyoming"
+}
+
 main()

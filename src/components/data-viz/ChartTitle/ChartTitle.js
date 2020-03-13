@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.grey[800],
     fontSize: theme.typography.h4.fontSize,
     marginBottom: theme.spacing(2),
+    marginTop: 0,
   }
 }))
 

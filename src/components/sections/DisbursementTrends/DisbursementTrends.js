@@ -7,15 +7,16 @@ import utils from '../../../js/utils'
 import PercentDifference from '../../utils/PercentDifference'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
+import {
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
+} from '@material-ui/core'
 
 import Sparkline from '../../data-viz/Sparkline'
 
@@ -31,30 +32,13 @@ const MAX_MONTH = 10
 
 const APOLLO_QUERY = gql`
   query DisbursementTrendsQuery {
-    allYearlyDisbursements : disbursement(order_by: {period: {calendar_year: desc}}) {
-      period {
+      disbursement_trends(order_by: {fiscal_year: desc, current_month: desc}) {
         fiscalYear:fiscal_year
+        disbursement:total
+        disbursement_ytd:total_ytd
+        disbursementType:trend_type
+        month:current_month
       }
-      commodity {
-        fund_type
-      }
-      location {
-        county
-        state
-      }
-      _Total_:disbursement
-    }
-    currentMonthlyDisbursements : disbursement(order_by: {period: {calendar_year: desc}}) {
-      period {
-        fiscalYear:fiscal_year
-        month
-        month_long
-      }
-      commodity {
-        fund_type
-      }
-      disbursement
-    }
   }
 `
 
@@ -75,8 +59,44 @@ const DisbursementTrends = () => {
 
   if (loading) return null
   if (error) return `Error! ${ error }`
+ if (
+    data &&
+    data.disbursement_trends.length > 0
+  ) {
+    // Group data to match what was previously happening with gatsby static query
+    const groupedData = groupBy(data.disbursement_trends, 'fiscalYear')
 
-  if (
+    const fiscalYearData = groupedData.map(item => {
+      const newObj = {}
+      newObj.fiscalYear = item[0].fiscalYear
+      newObj.data = item
+
+      return newObj
+    })
+
+    // Get the latest date then subtract 1 year to filter previous year data to compare current year data
+    const currentMonth = monthLookup(fiscalYearData[0].data[0].month)
+    const currentYear = fiscalYearData[0].data[0].fiscalYear
+    const currentYearDate = new Date(`${ currentMonth }-01-${ currentYear }`)
+
+    // Get previous year
+    const previousYear = currentYear - 1
+
+    // Trends
+    const trends = aggregateData(data.disbursement_trends)
+
+    // maxMonth Min/Max Year
+    const maxMonth = currentYearDate.toLocaleString('en-us', { timeZone: 'UTC', month: 'long' })
+    const minYear = trends[0].histData[0][0].substring(2)
+    const maxYear = trends[0].histData[trends[0].histData.length - 1][0].substring(2)
+
+    // Text output
+    const currentFiscalYearText = `FY${ currentYear.toString().substring(2) } so far`
+    const longCurrentYearText = `${ maxMonth } ${ currentYear }`
+    const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
+    const currentTrendText = `FY${ minYear } - FY${ maxYear }`
+
+/*  if (
     data &&
     data.allYearlyDisbursements.length > 0 &&
     data.currentMonthlyDisbursements.length > 0
@@ -107,17 +127,75 @@ const DisbursementTrends = () => {
     const currentFiscalYearText = `FY${ currentYear.toString().substring(2) } so far`
     const longCurrentText = `${ maxMonth } ${ calendarYear }`
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
+*/
+   return (
+     <Box component="section" className={classes.root}>
+       <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
+         <Box component="h3" m={0} color="primary.dark">Disbursement trends</Box>
+       </Box>
+       <Box component="p" color="text.primary">
+         Includes disbursements through {longCurrentYearText}
+       </Box>
 
+       <TableContainer component={Paper} className={classes.tableContainer}>
+         <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
+           <TableHead>
+             <TableRow>
+               <TableCell><Box fontWeight="bold">{currentTrendText}</Box></TableCell>
+               <TableCell align="right"><Box fontWeight="bold">{currentFiscalYearText}</Box></TableCell>
+             </TableRow>
+           </TableHead>
+           <TableBody>
+             {
+               trends.map((trend, index) => (
+                 <TableRow key={`tableRow${ index }`}>
+                   <TableCell component="th" scope="row">
+                     <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
+                       {trend.fund}
+                     </Box>
+                     <Sparkline
+                       key={`sparkline${ index }`}
+                       data={trend.histData} />
+                   </TableCell>
+                   <TableCell align="right">
+                     <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
+                       {utils.formatToSigFig_Dollar(trend.current, 3)}
+                     </Box>
+                     <Box>
+                       <PercentDifference
+                         currentAmount={trend.current}
+                         previousAmount={trend.previous}
+                         />{` ${ previousFiscalYearText }`}
+                     </Box>
+                   </TableCell>
+                 </TableRow>
+               ))
+             }
+     </TableBody>
+       </Table>
+       </TableContainer>
+       </Box>
+   )
+ }
+  
+  else {
+    return (
+      console.error('no data yo!')
+    )
+  }
+}
+
+/*
     return (
       <Box component="section" className={classes.root}>
         <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
           <Box component="h3" m={0} color="primary.dark">Disbursement trends</Box>
         </Box>
         <Box component="p" color="text.primary">
-        Includes disbursements through {longCurrentText}
+        Includes disbursements through {longCurrentYearText}
         </Box>
         <TableContainer component={Paper} className={classes.tableContainer}>
-          <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
+          <Table className={classes.table} size="small" aria-label="Disbursement Trends Table">
             <TableHead>
               <TableRow>
                 <TableCell><Box fontWeight="bold">FY{minYear} - FY{maxYear} trend</Box></TableCell>
@@ -138,12 +216,12 @@ const DisbursementTrends = () => {
                     </TableCell>
                     <TableCell align="right">
                       <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
-                        {utils.formatToSigFig_Dollar(currentTrends[idx].current, 3)}
+                        {utils.formatToSigFig_Dollar(trend.current, 3)}
                       </Box>
                       <Box>
                         <PercentDifference
-                          currentAmount={currentTrends[idx].current}
-                          previousAmount={currentTrends[idx].previous}
+                          currentAmount={trend.current}
+                          previousAmount={trend.previous}
                         />{' ' + previousFiscalYearText}
                       </Box>
                     </TableCell>
@@ -155,16 +233,30 @@ const DisbursementTrends = () => {
         </TableContainer>
       </Box>
     )
-  }
-  else {
-    return (
-      console.error('no data yo!')
-    )
-  }
-}
+*/
+
 
 export default DisbursementTrends
 
+const monthLookup = month => {
+  const monthNumber = {
+    January: 1,
+    February: 2,
+    March: 3,
+    April: 4,
+    May: 5,
+    June: 6,
+    July: 7,
+    August: 8,
+    September: 9,
+    October: 10,
+    November: 11,
+    December: 12
+  }
+
+  return monthNumber[month]
+}
+/*
 const getCurrentYear = data => {
   const r = data.reduce((max, p) => p.period.fiscalYear > max ? p.period.fiscalYear : max, data[0].period.fiscalYear)
 
@@ -185,25 +277,6 @@ const getPreviousYear = data => {
 const getMaxMonth = data => {
   const r = data.reduce((max, p) => p.month === max ? p.date : max, MAX_MONTH)
   return r
-}
-
-const monthLookup = month => {
-  const monthNumber = {
-    January: 1,
-    February: 2,
-    March: 3,
-    April: 4,
-    May: 5,
-    June: 6,
-    July: 7,
-    August: 8,
-    September: 9,
-    October: 10,
-    November: 11,
-    December: 12
-  }
-
-  return monthNumber[month]
 }
 
 const fiscalMonthLookup = month => {
@@ -241,18 +314,22 @@ const aggregateMonthlyData = (data, currentYear) => {
     const item = data[ii]
     const fiscalMonth = item.fiscalMonth ? item.fiscalMonth : item.period.month
     if (fiscalMonth <= maxFiscalMonth) {
-	    if (item.commodity.fund_type == 'U.S. Treasury') {
+	    if (item.disbursementType == 'U.S. Treasury') {
         sumMonthlyData(item, r, 0, currentYear) // sum into us treasury
 	    }
-      else if (item.commodity.fund_type.match(/State/)) {
+      else if (item.disbursementType.match(/State/)) {
         sumMonthlyData(item, r, 1, currentYear) // sum into state
 	    }
-      else if (item.commodity.fund_type.match(/Reclamation/)) {
+      else if (item.disbursementType.match(/Reclamation/)) {
         sumMonthlyData(item, r, 2, currentYear) // sum into Reclamation
 	    }
-      else if (item.commodity.fund_type.match(/Native American/) || item.commodity.fund_type == 'U.S. TreasuryAI') {
+      else if (item.disbursementType.match(/Native American/) ) {
         sumMonthlyData(item, r, 3, currentYear) // sum into Native
 	    }
+      else if (item.disbursementType.match(/Native American/) ) {
+        sumMonthlyData(item, r, 3, currentYear) // sum into Native
+	    }
+
       else {
         sumMonthlyData(item, r, 4, currentYear) // sum into other
 	    }
@@ -283,6 +360,20 @@ const monthlyDate = obj => {
   const date = new Date(year + '-' + month + '-02')
   return date
 }
+*/
+/**
+* Group by defined property and return object with key, value
+* @param array of items to do groupings
+* @prop property field to group by, this will be the key
+*
+*/
+const groupBy = (arr, prop) => {
+  const map = new Map(Array.from(arr, obj => [obj[prop], []]))
+  arr.forEach(obj => map.get(obj[prop]).push(obj))
+  return Array.from(map.values())
+}
+
+
 
 const aggregateData = data => {
   const r = [
@@ -293,30 +384,30 @@ const aggregateData = data => {
     { fund: 'Other Funds', current: 0, previous: 0, histSum: {}, histData: [] },
     { fund: 'Total', current: 0, previous: 0, histSum: {}, histData: [], className: 'strong' }
   ]
-
-  const currentYear = data[0].period.fiscalYear
-
+  const currentYear = data[0].fiscalYear
+  const currentMonth = data[0].month
   for (let ii = 0; ii < data.length; ii++) {
     const item = data[ii]
-    if (item.commodity.fund_type.match(/U.S. Treasury/)) {
+    if (item.disbursementType.match(/U.S. Treasury/)) {
 	    sumData(item, r, 0, currentYear) // sum into us treasury
     }
-    else if (item.commodity.fund_type.match(/State/)) {
+    else if (item.disbursementType.match(/State/)) {
 	    sumData(item, r, 1, currentYear) // sum into state
     }
-    else if (item.commodity.fund_type.match(/Reclamation/)) {
+    else if (item.disbursementType.match(/Reclamation/)) {
 	    sumData(item, r, 2, currentYear) // sum into Reclamation
     }
-    else if (item.commodity.fund_type.match(/American Indian/)) {
+    else if (item.disbursementType.match(/Native American/)) {
 	    sumData(item, r, 3, currentYear) // sum into Native
     }
-    else {
+    else if (item.disbursementType.match(/Other Funds/)) {
 	    sumData(item, r, 4, currentYear) // sum into other
     }
-    sumData(item, r, 5, currentYear) // sum into Total
+    else if (item.disbursementType.match(/Total/)) {
+      sumData(item, r, 5, currentYear) // sum into Total
+    }
   }
-
-  r.map((row, i) => {
+/*  r.map((row, i) => {
     let a = []
     const years = Object.keys(row.histSum).sort()
     a = years.map((year, i) => ([year, row.histSum[year]]))
@@ -324,18 +415,38 @@ const aggregateData = data => {
     return a.slice(-10)
   })
 
+
+*/
+  console.debug("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR", r)
+  r.map((row, i) => {
+    let a = []
+    const years = Object.keys(row.histSum).sort()
+    console.debug('-----',row)
+    a = years.map((year, i) => ([year, row.histSum[year]]))
+    console.debug(currentMonth, "YEARS ------->",  years, "AAAAAAAAAAAAAAAAAAAAAAAAA a", a)
+    if (currentMonth === 'December') {
+      r[i].histData = a.slice(-10)
+      return a.slice(-10)
+    }
+    else {
+      r[i].histData = a.slice(-11).slice(0, 10)
+      return a.slice(-11).slice(0, 10)
+    }
+  })
   return r
 }
 
 const sumData = (item, r, index, currentYear) => {
+
+  console.debug('IIIIIIIIIIIIIIIIIIIIIIIIIIIIItem', item)
   const previousYear = currentYear - 1
-  if (item.period.fiscalYear == currentYear) r[index].current += item._Total_
-  if (item.period.fiscalYear == previousYear) r[index].previous += item._Total_
-  if (r[index].histSum[item.period.fiscalYear]) {
-    if (!isNaN(Number(item._Total_))) r[index].histSum[item.period.fiscalYear] += Number(item._Total_)
+  if (item.fiscalYear === currentYear) r[index].current += item.disbursement_ytd
+  if (item.fiscalYear === previousYear) r[index].previous += item.disbursement_ytd
+  if (r[index].histSum[item.fiscalYear]) {
+    if (!isNaN(Number(item.disbursement))) r[index].histSum[item.fiscalYear] += Number(item.disbursement)
   }
   else {
-    r[index].histSum[item.period.fiscalYear] = Number(item._Total_)
+    r[index].histSum[item.fiscalYear] = Number(item.disbursement)
   }
 }
 
@@ -375,4 +486,3 @@ const calculateRevenueTypeAmountsByYear = (yearData, index) => {
 
   return { year: fiscalYear, amountByRevenueType: sums }
 }
-

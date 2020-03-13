@@ -1,12 +1,15 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon
+} from '@material-ui/core'
+
 import FiberManualRecordRoundedIcon from '@material-ui/icons/FiberManualRecordRounded'
 
 const WhatsNew = props => {
