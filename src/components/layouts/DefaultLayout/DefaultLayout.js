@@ -20,8 +20,6 @@ import Header from '../../content-partials/Header'
 
 import PageToc from '../../navigation/PageToc'
 
-import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
-
 const useStyles = makeStyles(theme => (
   {
     '@global': {
@@ -114,7 +112,6 @@ const DefaultLayout = ({ includeToc = true, children }) => {
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <InfoBanner />
       <Header />
-      <GlossaryDrawer />
       <CssBaseline />
       <main id='main-content'>
         {includeToc

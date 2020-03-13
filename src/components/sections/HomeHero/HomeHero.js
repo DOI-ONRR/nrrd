@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '@material-ui/core/Box'
 
-import { GlossaryTerm } from '../../utils/GlossaryTerm'
+import GlossaryTerm from '../../GlossaryTerm/GlossaryTerm'
 
 const HomeHero = () => {
   return (

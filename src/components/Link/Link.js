@@ -38,6 +38,7 @@ const IconLink = ({ icon, children, pl = 4, ...props }) => (
 const BaseLink = ({ href, disableRouting, className = '', children, ...props }) => {
   const theme = useTheme()
   const styles = useStyles(theme)
+
   const currentPathname = typeof window !== 'undefined' ? window.location.pathname : ''
 
   let url = href
@@ -55,7 +56,7 @@ const BaseLink = ({ href, disableRouting, className = '', children, ...props }) 
         ? <GatsbyLink to={url} className={classes} {...props} >
           {children}
         </GatsbyLink>
-        : <a href={url} className={classes} {...props} >
+        : <a href={url} className={classes} {...props}>
           {children}
         </a>
       }
