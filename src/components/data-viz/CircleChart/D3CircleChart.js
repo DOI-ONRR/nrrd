@@ -8,87 +8,86 @@ export default class D3CircleChart {
     this._height = (container.children[0].clientHeight > 0) ? container.children[0].clientHeight : 400
     this._width = (container.children[0].clientWidth <= 0) ? 300 : container.children[0].clientWidth
     this.radius = Math.min(this._width, this._height) / 2
-    if(options.format ) { this.format=options.format  }
+    if (options.format) {
+      this.format = options.format
+    }
     // console.debug("data =========================================:", this.radius)
-    this.minColor=options.minColor || 'lightblue'
-        this.maxColor=options.maxColor || 'darkblue'
+    this.minColor = options.minColor || 'lightblue'
+    this.maxColor = options.maxColor || 'darkblue'
 
     this.maxCircles = options.maxCircles - 1
-    const yAxis=options.yAxis
-    const xAxis=options.xAxis
-    this.xAxis=xAxis
-    this.yAxis=yAxis
-    this.yLabel=options.yLabel || this.yAxis.replace('_',' ')
-    this.xLabel=options.xLabel || this.xAxis.replace('_',' ')
-    this.data=this.rollUpOther(data)
+    const yAxis = options.yAxis
+    const xAxis = options.xAxis
+    this.xAxis = xAxis
+    this.yAxis = yAxis
+    this.yLabel = options.yLabel || this.yAxis.replace('_', ' ')
+    this.xLabel = options.xLabel || this.xAxis.replace('_', ' ')
+    this.data = this.rollUpOther(data)
 
-    
-    const root= this.pack({name: 'root', children: this.data})
-    this._root=root
-    
-    
+    const root = this.pack({ name: 'root', children: this.data })
+    this._root = root
+
     // console.debug("DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",this.data)
     this.chart()
     this.legend()
-    
   }
-  
+
   pack (data) {
     try {
-      
-      let r=d3.pack()
-          .size([this._width - 2, this._height - 2])
-          .padding(3)
-      (this.hierarchy(data))
+      const r = d3.pack()
+        .size([this._width - 2, this._height - 2])
+        .padding(3)
+        (this.hierarchy(data))
       return r
     }
-    catch (err) {  console.warn('Errror: ',err) } 
+    catch (err) {
+      console.warn('Errror: ', err)
+    }
   }
-  
-  
 
-  
-  rollUpOther(data) {
+  rollUpOther (data) {
     try {
-      const maxCircles=this.maxCircles
-      const yAxis=this.yAxis
-      const xAxis=this.xAxis
+      const maxCircles = this.maxCircles
+      const yAxis = this.yAxis
+      const xAxis = this.xAxis
       // console.debug('-------------------------------------------------------------',data)
-      if(maxCircles + 1 < data.length) {
-        let tmp=data
-        let other=tmp.reduce( (sum,row,i) => {
+      if (maxCircles + 1 < data.length) {
+        const tmp = data
+        const other = tmp.reduce((sum, row, i) => {
           // console.debug("maxcircles: ",sum,row,i)
-          if(i > maxCircles) {
+          if (i + 1 >= maxCircles) {
             return sum + row[yAxis] || 0
           }
         }, 0)
         // console.debug(other)
-        let o=data[maxCircles]
-        data=data.filter( (row,i) => i < maxCircles )
-        o[xAxis]='Other'
-        o[yAxis]=other
+        const o = data[maxCircles]
+        data = data.filter((row, i) => i < maxCircles)
+        o[xAxis] = 'Other'
+        o[yAxis] = other
         data.push(o)
         // console.debug("OTHER :", o);
-       
       }
-      
-      return data;
+
+      return data
     }
-    catch (err) {  console.warn('Errror: ',err) }
+    catch (err) {
+      console.warn('Errror: ', err)
+    }
   }
-  
+
   hierarchy (data) {
     try {
-      const r= d3.hierarchy(data)
-            .sum(d => d[this.yAxis])
-            .sort((a, b) => b[this.yAxis] - a[this.yAxis])
+      const r = d3.hierarchy(data)
+        .sum(d => d[this.yAxis])
+        .sort((a, b) => b[this.yAxis] - a[this.yAxis])
       // console.debug(r)
       return r
     }
-    catch (err) {  console.warn('Errror: ',err) } 
-    
+    catch (err) {
+      console.warn('Errror: ', err)
+    }
   }
-  
+
   xDomain () {
     try {
       const r = this.data.map((row, i) => {
@@ -103,13 +102,13 @@ export default class D3CircleChart {
     }
   }
 
-   yDomain () {
+  yDomain () {
     try {
       const r = d3.nest()
-            .key(k => k[this.xAxis])
-            .rollup(v => d3.sum(v, i => i[this.yAxis]))
-            .entries(this.data)
-            .map(y => y.value)
+        .key(k => k[this.xAxis])
+        .rollup(v => d3.sum(v, i => i[this.yAxis]))
+        .entries(this.data)
+        .map(y => y.value)
       const domain = [...(new Set(r.sort((a, b) => a - b)))]
       this._yDomain = domain
       return domain
@@ -118,8 +117,8 @@ export default class D3CircleChart {
       console.warn('Error: ', err)
     }
   }
-  
-    xMin () {
+
+  xMin () {
     try {
       return this.xDomain().shift()
     }
@@ -156,67 +155,67 @@ export default class D3CircleChart {
   }
 
   legend () {
-    //// console.debug(this._legend)
+    /// / console.debug(this._legend)
     if (this._legend) {
       this._legend.selectAll('.legend-table').remove()
       this._legend.selectAll('.legend-rect').remove()
       this._legend.selectAll('.legend-table tbody tr').remove()
     }
-    const data=this.data
-    const xAxis=this.xAxis
-    const yAxis=this.yAxis
-    const self=this
+    const data = this.data
+    const xAxis = this.xAxis
+    const yAxis = this.yAxis
+    const self = this
     const color = this.color()
-     const yDomain = this.yDomain()
-    const columns=[ '', this.xLabel.replace('_',' '), this.yLabel.replace('_',' ') ]
-    const table = d3.select(this.container.children[1]).append('table').attr('class','legend-table')
+    const yDomain = this.yDomain()
+    const columns = ['', this.xLabel.replace('_', ' '), this.yLabel.replace('_', ' ')]
+    const table = d3.select(this.container.children[1]).append('table').attr('class', 'legend-table')
     const thead = table.append('thead')
-    const rh=thead.append('tr')
+    const rh = thead.append('tr')
     rh.append('th')
-      .attr('colspan',2)
-      .style('text-align','left')
-      .style('text-transform','capitalize')
+      .attr('colspan', 2)
+      .style('text-align', 'left')
+      .style('text-transform', 'capitalize')
       .text(this.xLabel)
     rh.append('th')
-      .style('text-align','right')
-      .style('text-transform','capitalize')
+      .style('text-align', 'right')
+      .style('text-transform', 'capitalize')
       .text(this.yLabel)
-
 
     const tbody = table.append('tbody')
     //    const tbody = d3.selectAll('.legend-table tbody')
     const tr = tbody.selectAll('tr')
-          .data(data)
-          .enter()
-          .append('tr')
-    
+      .data(data)
+      .enter()
+      .append('tr')
+
     tr.append('td')
       .append('rect')
       .attr('class', 'legend-rect')
       .attr('width', 15)
       .attr('height', 15)
-      .style("fill", function(d,i){ return color(yDomain.length - i )})
-      .style("background-color", function(d,i){ return color(yDomain.length - i )})
-      .style("fill-opacity", 0.8)
+      .style('fill', function (d, i) {
+        return color(yDomain.length - i)
+      })
+      .style('background-color', function (d, i) {
+        return color(yDomain.length - i)
+      })
+      .style('fill-opacity', 0.8)
     tr.append('td')
-      .html((row,i)=> {
-        //// console.debug(row)
-        
+      .html((row, i) => {
+        /// / console.debug(row)
+
         return row[xAxis]
       })
     tr.append('td')
-      .style('text-align','right')
+      .style('text-align', 'right')
       .html(function (d) {
-        //// console.debug(d)
-          return self._format(d[yAxis], 0)
-      
+        /// / console.debug(d)
+        return self._format(d[yAxis], 0)
       }).enter()
 
-    
     this._legend = table
-
   }
-  
+
   _format (value) {
     try {
       return this.format(value)
@@ -230,375 +229,368 @@ export default class D3CircleChart {
   format (value) {
     return value
   }
-  
-  color () {
-    
 
-    return  d3.scaleLinear()
+  color () {
+    return d3.scaleLinear()
       .domain([0, this.yDomain().length])
-    .range([this.minColor, this.maxColor])
-    
+      .range([this.minColor, this.maxColor])
   }
 
   chart () {
+    const xAxis = this.xAxis
+    const yAxis = this.yAxis
 
-    const xAxis=this.xAxis
-    const yAxis=this.yAxis
-
-    const chartNode=this.container.children[0]
-    const width=this._width
-    const height=this._height
+    const chartNode = this.container.children[0]
+    const width = this._width
+    const height = this._height
     const color = this.color()
     const yDomain = this.yDomain()
     const root = this._root
-    let focus = root;
-    let view;
+    let focus = root
+    let view
 
-
-
-
-    
     const svg = d3.select(chartNode).append('svg')
-      .attr("viewBox", `-${width*0.75} -${height*0.75} ${width*1.5} ${height*1.5}`)
-      .style("display", "block")
-      .style("margin", "0 -14px")
-      .style("background", 'white')
-      .style("cursor", "pointer")
-      .on("click", () => zoom(root))
-    
+      .attr('viewBox', `-${ width * 0.75 } -${ height * 0.75 } ${ width * 1.5 } ${ height * 1.5 }`)
+      .style('display', 'block')
+      .style('margin', '0 -14px')
+      .style('background', 'white')
+      .style('cursor', 'pointer')
+      .on('click', () => zoom(root))
 
-    const node = svg.append("g")
-          .selectAll("circle")
-          .data(root.descendants().slice(1))
-          .join("circle")
-          .attr("fill", (d,i) => {
-            // console.debug("fill attr", d,i)
-            return d.children ? color(d.depth) : color(yDomain.length - i)
-          })
-          .attr("pointer-events", d => !d.children ? "none" : null)
-          .on("mouseover", function() { d3.select(this).attr("stroke", "#000"); })
-          .on("mouseout", function() { d3.select(this).attr("stroke", null); })
-          .on("click", d => focus !== d && (zoom(d), d3.event.stopPropagation()));
+    const node = svg.append('g')
+      .selectAll('circle')
+      .data(root.descendants().slice(1))
+      .join('circle')
+      .attr('fill', (d, i) => {
+        // console.debug("fill attr", d,i)
+        return d.children ? color(d.depth) : color(yDomain.length - i)
+      })
+      .attr('pointer-events', d => !d.children ? 'none' : null)
+      .on('mouseover', function () {
+        d3.select(this).attr('stroke', '#000')
+      })
+      .on('mouseout', function () {
+        d3.select(this).attr('stroke', null)
+      })
+      .on('click', d => focus !== d && (zoom(d), d3.event.stopPropagation()))
 
-    const label = svg.append("g")
-          .style("font", "10px sans-serif")
-          .attr("pointer-events", "none")
-          .attr("text-anchor", "middle")
-          .selectAll("text")
-          .data(root.descendants())
-          .join("text")
-          .style("fill-opacity", d => d.parent === root ? 1 : 0)
-          .style("display", d => d.parent === root ? "inline" : "none")
-          .text(d => d.data.name);
-    
-    zoomTo([root.x, root.y, root.r * 2]);
-    
-    function zoomTo(v) {
-      const k = width / v[2];
-      
-      view = v;                                 
+    const label = svg.append('g')
+      .style('font', '10px sans-serif')
+      .attr('pointer-events', 'none')
+      .attr('text-anchor', 'middle')
+      .selectAll('text')
+      .data(root.descendants())
+      .join('text')
+      .style('fill-opacity', d => d.parent === root ? 1 : 0)
+      .style('display', d => d.parent === root ? 'inline' : 'none')
+      .text(d => d.data.name)
 
-      label.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
-      node.attr("transform", d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`);
-      node.attr("r", d => d.r * k);
+    zoomTo([root.x, root.y, root.r * 2])
+
+    function zoomTo (v) {
+      const k = width / v[2]
+
+      view = v
+
+      label.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
+      node.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
+      node.attr('r', d => d.r * k)
     }
 
-    function zoom(d) {
-      const focus0 = focus;
-      
-      focus = d;
-      
+    function zoom (d) {
+      const focus0 = focus
+
+      focus = d
+
       const transition = svg.transition()
-            .duration(d3.event.altKey ? 7500 : 750)
-            .tween("zoom", d => {
-              const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
-              return t => zoomTo(i(t));
-            });
-      
+        .duration(d3.event.altKey ? 7500 : 750)
+        .tween('zoom', d => {
+          const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2])
+          return t => zoomTo(i(t))
+        })
+
       label
-        .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
+        .filter(function (d) {
+          return d.parent === focus || this.style.display === 'inline'
+        })
         .transition(transition)
-        .style("fill-opacity", d => d.parent === focus ? 1 : 0)
-        .on("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
-        .on("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
+        .style('fill-opacity', d => d.parent === focus ? 1 : 0)
+        .on('start', function (d) {
+          if (d.parent === focus) this.style.display = 'inline'
+        })
+        .on('end', function (d) {
+          if (d.parent !== focus) this.style.display = 'none'
+        })
     }
-    
-    return svg.node();
-    
+
+    return svg.node()
   }
 
-  
-  
-  
   dep_chart () {
-
-    const xAxis=this.xAxis
-    const yAxis=this.yAxis
-    const data=this.pack(this.data)
-    const chartNode=this.container.children[0]
-    const w=this._width
-    const h=this._height
+    const xAxis = this.xAxis
+    const yAxis = this.yAxis
+    const data = this.pack(this.data)
+    const chartNode = this.container.children[0]
+    const w = this._width
+    const h = this._height
     const color = this.color()
     const yDomain = this.yDomain()
     // console.debug("data =========================================:", w,h)
-    let svg = d3.select(chartNode).append('svg')
-        .attr('height', this._width)
-        .attr('width', this._width)
-        .style("font", "10px sans-serif")
-        .attr("text-anchor", "middle");
-
+    const svg = d3.select(chartNode).append('svg')
+      .attr('height', this._width)
+      .attr('width', this._width)
+      .style('font', '10px sans-serif')
+      .attr('text-anchor', 'middle')
 
     //  .attr("viewBox", [0, 0, w, h])
-    
+
     // set the dimensions and margins of the graph
-    var width = w
-    var height = h
-  // Filter a bit the data -> more than 1 million inhabitants
-//  data = data.filter(function(d){ return d.value>10000000 })
+    const width = w
+    const height = h
+    // Filter a bit the data -> more than 1 million inhabitants
+    //  data = data.filter(function(d){ return d.value>10000000 })
     // console.debug("========================",data)
-  // Color palette for continents?
+    // Color palette for continents?
 
-    
-
-
-    
     // Size scale for countries
-  var size = d3.scaleLinear()
-      .domain([0,this.yMax()])
-      .range([7,  w * 0.2])  // circle will be between 7 and 55 px wide
+    const size = d3.scaleLinear()
+      .domain([0, this.yMax()])
+      .range([7, w * 0.2]) // circle will be between 7 and 55 px wide
 
-  // create a tooltip
-  var Tooltip = d3.select("#my_dataviz")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
+    // create a tooltip
+    const Tooltip = d3.select('#my_dataviz')
+      .append('div')
+      .style('opacity', 0)
+      .attr('class', 'tooltip')
+      .style('background-color', 'white')
+      .style('border', 'solid')
+      .style('border-width', '2px')
+      .style('border-radius', '5px')
+      .style('padding', '5px')
 
-  // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function(d) {
-    Tooltip
-      .style("opacity", 1)
-  }
-  var mousemove = function(d) {
-    Tooltip
-      .html('<u>' + d.key + '</u>' + "<br>" + d.value + " inhabitants")
-      .style("left", (d3.mouse(this)[0]+20) + "px")
-      .style("top", (d3.mouse(this)[1]) + "px")
-  }
-  var mouseleave = function(d) {
-    Tooltip
-      .style("opacity", 0)
-  }
+    // Three function that change the tooltip when user hover / move / leave a cell
+    const mouseover = function (d) {
+      Tooltip
+        .style('opacity', 1)
+    }
+    const mousemove = function (d) {
+      Tooltip
+        .html('<u>' + d.key + '</u>' + '<br>' + d.value + ' inhabitants')
+        .style('left', (d3.mouse(this)[0] + 20) + 'px')
+        .style('top', (d3.mouse(this)[1]) + 'px')
+    }
+    const mouseleave = function (d) {
+      Tooltip
+        .style('opacity', 0)
+    }
 
-  // Initialize the circle: all located at the center of the svg area
-  var node = svg.append("g")
-    .selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle")
-      .attr("class", "node")
-      .attr("r", function(d){ return size(d[yAxis])})
-      .attr("cx", width / 2)
-      .attr("cy", height / 2)
-      .style("fill", function(d,i){ return color(yDomain.length - i)})
-      .style("fill-opacity", 0.8)
-      .attr("stroke", "black")
-      .style("stroke-width", 1)
-      .on("mouseover", mouseover) // What to do when hovered
-      .on("mousemove", mousemove)
-      .on("mouseleave", mouseleave)
+    // Initialize the circle: all located at the center of the svg area
+    const node = svg.append('g')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr('class', 'node')
+      .attr('r', function (d) {
+        return size(d[yAxis])
+      })
+      .attr('cx', width / 2)
+      .attr('cy', height / 2)
+      .style('fill', function (d, i) {
+        return color(yDomain.length - i)
+      })
+      .style('fill-opacity', 0.8)
+      .attr('stroke', 'black')
+      .style('stroke-width', 1)
+      .on('mouseover', mouseover) // What to do when hovered
+      .on('mousemove', mousemove)
+      .on('mouseleave', mouseleave)
       .call(d3.drag() // call specific function when circle is dragged
-           .on("start", dragstarted)
-           .on("drag", dragged)
-           .on("end", dragended));
+        .on('start', dragstarted)
+        .on('drag', dragged)
+        .on('end', dragended))
 
-  // Features of the forces applied to the nodes:
-  var simulation = d3.forceSimulation()
-      .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-      .force("charge", d3.forceManyBody().strength(1)) // Nodes are attracted one each other of value is > 0
-      .force("collide", d3.forceCollide().strength(.2).radius(function(d){
-        //// console.debug('collide ',d)
-        return (size(d[yAxis])+1)
+    // Features of the forces applied to the nodes:
+    const simulation = d3.forceSimulation()
+      .force('center', d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
+      .force('charge', d3.forceManyBody().strength(1)) // Nodes are attracted one each other of value is > 0
+      .force('collide', d3.forceCollide().strength(0.2).radius(function (d) {
+        /// / console.debug('collide ',d)
+        return (size(d[yAxis]) + 1)
       }).iterations(1)) // Force that avoids circle overlapping
 
-  // Apply these forces to the nodes and update their positions.
-  // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-  simulation
+    // Apply these forces to the nodes and update their positions.
+    // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
+    simulation
       .nodes(data)
-      .on("tick", function(d){
+      .on('tick', function (d) {
         node
-          .attr("cx", function(d){
-         //   console.debug('simulation',d)
-            return d.x })
-            .attr("cy", function(d){ return d.y; })
-      });
+          .attr('cx', function (d) {
+            //   console.debug('simulation',d)
+            return d.x
+          })
+          .attr('cy', function (d) {
+            return d.y
+          })
+      })
 
-  // What happens when a circle is dragged?
-  function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(.03).restart();
-    // console.debug("drag start", d)
-    d.fx = d.x;
-    d.fy = d.y;
-  }
-  function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-  }
-    function dragended(d) {
-     // console.debug("dd3.event.activerag ended", d)
-     // console.debug(d3.event.active)
-      if (!d3.event.active) simulation.alphaTarget(.03);
-      d.fx = null;
-      d.fy = null;
+    // What happens when a circle is dragged?
+    function dragstarted (d) {
+      if (!d3.event.active) simulation.alphaTarget(0.03).restart()
+      // console.debug("drag start", d)
+      d.fx = d.x
+      d.fy = d.y
+    }
+    function dragged (d) {
+      d.fx = d3.event.x
+      d.fy = d3.event.y
+    }
+    function dragended (d) {
+      // console.debug("dd3.event.activerag ended", d)
+      // console.debug(d3.event.active)
+      if (!d3.event.active) simulation.alphaTarget(0.03)
+      d.fx = null
+      d.fy = null
       simulation.alpha(1).restart()
     }
   }
-    
 
-  
+  //     /*
+  // // append the svg object to the body of the page
 
-//     /*
-// // append the svg object to the body of the page
+  // // Read data
+  //   // Filter a bit the data -> more than 1 million inhabitants
+  // //  data = data.filter(function(d){ return d.value>10000000 })
+  //     console.debug("========================",data)
+  //   // Color palette for continents?
 
-// // Read data
-//   // Filter a bit the data -> more than 1 million inhabitants
-// //  data = data.filter(function(d){ return d.value>10000000 })
-//     console.debug("========================",data)
-//   // Color palette for continents?
+  //     /*
+  // var color = d3.scaleOrdinal()
+  //     .domain(["", "Europe", "Africa", "Oceania", "Americas"])
+  //     .range(d3.schemeSet1);
+  //     */
+  //     const    pack = data => d3.pack()
+  //       .size([width - 2, height - 2])
+  //       .padding(3)
+  //     (d3.hierarchy(data)
+  //      .sum(d => d[yAxis])
+  //      .sort((a, b) => b[yAxis] - a[yAxis]))
 
-//     /*
-// var color = d3.scaleOrdinal()
-//     .domain(["", "Europe", "Africa", "Oceania", "Americas"])
-//     .range(d3.schemeSet1);
-//     */
-//     const    pack = data => d3.pack()
-//       .size([width - 2, height - 2])
-//       .padding(3)
-//     (d3.hierarchy(data)
-//      .sum(d => d[yAxis])
-//      .sort((a, b) => b[yAxis] - a[yAxis]))
-    
-//     const root= pack(data);
+  //     const root= pack(data);
 
-//     console.debug('ROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOt ',root)
-//     // Size scale for countries
-//   var size = d3.scaleLinear()
-//     .domain([0,6597880000])
-//     .range([7,55])  // circle will be between 7 and 55 px wide
+  //     console.debug('ROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOt ',root)
+  //     // Size scale for countries
+  //   var size = d3.scaleLinear()
+  //     .domain([0,6597880000])
+  //     .range([7,55])  // circle will be between 7 and 55 px wide
 
-//   // create a tooltip
-//   var Tooltip = d3.select("#my_dataviz")
-//     .append("div")
-//     .style("opacity", 0)
-//     .attr("class", "tooltip")
-//     .style("background-color", "white")
-//     .style("border", "solid")
-//     .style("border-width", "2px")
-//     .style("border-radius", "5px")
-//     .style("padding", "5px")
+  //   // create a tooltip
+  //   var Tooltip = d3.select("#my_dataviz")
+  //     .append("div")
+  //     .style("opacity", 0)
+  //     .attr("class", "tooltip")
+  //     .style("background-color", "white")
+  //     .style("border", "solid")
+  //     .style("border-width", "2px")
+  //     .style("border-radius", "5px")
+  //     .style("padding", "5px")
 
-//   // Three function that change the tooltip when user hover / move / leave a cell
-//   var mouseover = function(d) {
-//     Tooltip
-//       .style("opacity", 1)
-//   }
-//   var mousemove = function(d) {
-//     Tooltip
-//       .html('<u>' + d.key + '</u>' + "<br>" + d.value + " inhabitants")
-//       .style("left", (d3.mouse(this)[0]+20) + "px")
-//       .style("top", (d3.mouse(this)[1]) + "px")
-//   }
-//   var mouseleave = function(d) {
-//     Tooltip
-//       .style("opacity", 0)
-//   }
+  //   // Three function that change the tooltip when user hover / move / leave a cell
+  //   var mouseover = function(d) {
+  //     Tooltip
+  //       .style("opacity", 1)
+  //   }
+  //   var mousemove = function(d) {
+  //     Tooltip
+  //       .html('<u>' + d.key + '</u>' + "<br>" + d.value + " inhabitants")
+  //       .style("left", (d3.mouse(this)[0]+20) + "px")
+  //       .style("top", (d3.mouse(this)[1]) + "px")
+  //   }
+  //   var mouseleave = function(d) {
+  //     Tooltip
+  //       .style("opacity", 0)
+  //   }
 
-//   // Initialize the circle: all located at the center of the svg area
-//   var node = svg.append("g")
-//     .selectAll("circle")
-//     .data(data)
-//     .enter()
-//     .append("circle")
-//       .attr("class", "node")
-//       .attr("r", function(d){ return size(d[yAxis])})
-//       .attr("cx", width / 2)
-//       .attr("cy", height / 2)
-//       .style("fill", function(d){ return color(d[yAxis])})
-//       .style("fill-opacity", 0.8)
-//       .attr("stroke", "black")
-//       .style("stroke-width", 1)
-//       .on("mouseover", mouseover) // What to do when hovered
-//       .on("mousemove", mousemove)
-//       .on("mouseleave", mouseleave)
-//       .call(d3.drag() // call specific function when circle is dragged
-//            .on("start", dragstarted)
-//            .on("drag", dragged)
-//            .on("end", dragended));
+  //   // Initialize the circle: all located at the center of the svg area
+  //   var node = svg.append("g")
+  //     .selectAll("circle")
+  //     .data(data)
+  //     .enter()
+  //     .append("circle")
+  //       .attr("class", "node")
+  //       .attr("r", function(d){ return size(d[yAxis])})
+  //       .attr("cx", width / 2)
+  //       .attr("cy", height / 2)
+  //       .style("fill", function(d){ return color(d[yAxis])})
+  //       .style("fill-opacity", 0.8)
+  //       .attr("stroke", "black")
+  //       .style("stroke-width", 1)
+  //       .on("mouseover", mouseover) // What to do when hovered
+  //       .on("mousemove", mousemove)
+  //       .on("mouseleave", mouseleave)
+  //       .call(d3.drag() // call specific function when circle is dragged
+  //            .on("start", dragstarted)
+  //            .on("drag", dragged)
+  //            .on("end", dragended));
 
-//   // Features of the forces applied to the nodes:
-//   var simulation = d3.forceSimulation()
-//       .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-//       .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
-//       .force("collide", d3.forceCollide().strength(.2).radius(function(d){
-//             console.debug('collide ',d)
-//         return (size(d[yAxis])+3)
-//       }).iterations(1)) // Force that avoids circle overlapping
+  //   // Features of the forces applied to the nodes:
+  //   var simulation = d3.forceSimulation()
+  //       .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
+  //       .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
+  //       .force("collide", d3.forceCollide().strength(.2).radius(function(d){
+  //             console.debug('collide ',d)
+  //         return (size(d[yAxis])+3)
+  //       }).iterations(1)) // Force that avoids circle overlapping
 
-//   // Apply these forces to the nodes and update their positions.
-//   // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-//   simulation
-//       .nodes(data)
-//       .on("tick", function(d){
-//         node
-//           .attr("cx", function(d){
-//             console.debug('simulation',d)
-//             return d.x })
-//             .attr("cy", function(d){ return d.y; })
-//       });
+  //   // Apply these forces to the nodes and update their positions.
+  //   // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
+  //   simulation
+  //       .nodes(data)
+  //       .on("tick", function(d){
+  //         node
+  //           .attr("cx", function(d){
+  //             console.debug('simulation',d)
+  //             return d.x })
+  //             .attr("cy", function(d){ return d.y; })
+  //       });
 
-//   // What happens when a circle is dragged?
-//   function dragstarted(d) {
-//     if (!d3.event.active) simulation.alphaTarget(.03).restart();
-//     console.debug("drag start", d)
-//     d.fx = d.x;
-//     d.fy = d.y;
-//   }
-//   function dragged(d) {
-//     d.fx = d3.event.x;
-//     d.fy = d3.event.y;
-//   }
-//   function dragended(d) {
-//     if (!d3.event.active) simulation.alphaTarget(.03);
-//     d.fx = null;
-//     d.fy = null;
-//   }
-// */
-    
-    
-//     /*
-//     console.debug('hhData: ', hData)
-//     const vData=d3.stratify()([{name:'data', children:hData}])
-//     console.debug(vData)
+  //   // What happens when a circle is dragged?
+  //   function dragstarted(d) {
+  //     if (!d3.event.active) simulation.alphaTarget(.03).restart();
+  //     console.debug("drag start", d)
+  //     d.fx = d.x;
+  //     d.fy = d.y;
+  //   }
+  //   function dragged(d) {
+  //     d.fx = d3.event.x;
+  //     d.fy = d3.event.y;
+  //   }
+  //   function dragended(d) {
+  //     if (!d3.event.active) simulation.alphaTarget(.03);
+  //     d.fx = null;
+  //     d.fy = null;
+  //   }
+  // */
 
-//     const vLayout = d3.pack().size([w, h])
-//     const vRoot = d3.hierarchy(vData).sum(function (d) { return d });
-//     const vNodes = vRoot.descendants()
-//     vLayout(vNodes)
-//     var vSlices = g.selectAll('circle').data(vNodes).enter().append('circle');
-//     // Draw on screen
-//     vSlices.attr('cx', function (d) { return d.x; })
-//       .attr('cy', function (d) { return d.y; })
-//       .attr('r', function (d) { return d.r; });
-//     this.svg=svg;
-//     */
-//   }
+  //     /*
+  //     console.debug('hhData: ', hData)
+  //     const vData=d3.stratify()([{name:'data', children:hData}])
+  //     console.debug(vData)
 
+  //     const vLayout = d3.pack().size([w, h])
+  //     const vRoot = d3.hierarchy(vData).sum(function (d) { return d });
+  //     const vNodes = vRoot.descendants()
+  //     vLayout(vNodes)
+  //     var vSlices = g.selectAll('circle').data(vNodes).enter().append('circle');
+  //     // Draw on screen
+  //     vSlices.attr('cx', function (d) { return d.x; })
+  //       .attr('cy', function (d) { return d.y; })
+  //       .attr('r', function (d) { return d.r; });
+  //     this.svg=svg;
+  //     */
+  //   }
 
-/*
+  /*
 
 // set the dimensions and margins of the graph
 var width = 460
@@ -711,9 +703,7 @@ console.debug(data)
 
 */
 
-
-  
-   draw () {
+  draw () {
     try {
       this.chart.selectAll('#backgroundRect').remove()
       this.addBackgroundRect()
@@ -722,7 +712,6 @@ console.debug(data)
       this._chart()
       this._xLabels()
       this._legend()
-      
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -775,16 +764,16 @@ console.debug(data)
   // addGroupLines () {
   xAxisGroup () {
     if (this.xAxisGroup) {
-      let self = this
-      
-      let groupLines = this.chart.append('g').attr('id', 'groups')
-      let groupItemWidth = (self.width / self.state.length)
-      let padding = (self.xScale.bandwidth() * 0.2)
+      const self = this
+
+      const groupLines = this.chart.append('g').attr('id', 'groups')
+      const groupItemWidth = (self.width / self.state.length)
+      const padding = (self.xScale.bandwidth() * 0.2)
       let xPos = 0
-      
+
       Object.keys(self.groups).map((name, index) => {
-        let groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
-        
+        const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
+
         groupLines.append('line')
 	  .attr('x1', xPos + padding)
 	  .attr('x2', groupLineWidth)
@@ -800,10 +789,10 @@ console.debug(data)
 
 			    xPos = groupLineWidth + padding
       }
-                                  )
+      )
+    }
   }
-  }
-  
+
   _maxExtend () {
     try {
       const self = this
@@ -845,7 +834,7 @@ console.debug(data)
 
       // console.debug(xwidth);
       const keys = this.yGroupings()
-      
+
       //  console.debug("Group Data:", data)
       this.chart.append('g')
         .attr('class', 'bars')
@@ -859,9 +848,9 @@ console.debug(data)
           // console.debug("D: ", d, "I: ",i)
           // console.debug("SI: ", self.selectedIndex)
           return i === self.selectedIndex ? 'bar active' : 'bar'
-        }  )
-      
-        .attr('tabindex', (d, i) => i )
+        })
+
+        .attr('tabindex', (d, i) => i)
         .selectAll('g')
         .data(d => {
           const yd = self.yGroupData(d)
@@ -892,7 +881,7 @@ console.debug(data)
           // self._onClick(self)
         })
         .on('mouseenter', function (d) {
-          self._onHover(this,d, true)
+          self._onHover(this, d, true)
         })
         .on('mouseleave', function (d) {
           self._onHover(this, d, false)
@@ -901,31 +890,25 @@ console.debug(data)
     catch (err) {
       console.warn('Error: ', err)
     }
-    
   }
-
-
-  
 
   select (index) {
     try {
       // console.debug("INdex: ", index, "I: ", this.selectedIndex)
       d3.selectAll('.bar').filter((d, i, nodes) => {
-
-        if(i === index) {
-          /*          this.xSelectedValue = d 
+        if (i === index) {
+          /*          this.xSelectedValue = d
                       this.ySelectedGroup = this.yGroupData(d)
                       this.selectedData(this.ySelectedGroup)
                       this.selectedIndex = index
           */
-          
+
           const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
           if (selectedElement) {
             selectedElement.attr('selected', false)
             selectedElement.attr('class', 'bar')
           }
-          d3.select(nodes[i]).attr('class','bar active')
-          
+          d3.select(nodes[i]).attr('class', 'bar active')
         }
       })
     }
@@ -933,53 +916,48 @@ console.debug(data)
       console.warn('Error: ', err)
     }
   }
-  
+
   legendHeaders (h) {
     // stub for public function
     // default return headers
     return h
   }
-  
+
   _legendHeaders (xValue) {
-    try { 
-      let r=[]
+    try {
+      let r = []
       this.getSelected()
-      
-      if( this.options.yGroupBy ) {
-        
-        r=['',this.options.yGroupBy, '', xValue || this.xSelectedValue]
+
+      if (this.options.yGroupBy) {
+        r = ['', this.options.yGroupBy, '', xValue || this.xSelectedValue]
       }
       else {
-        r=['', this.yAxis, '', xValue || this.xSelectedValue]
+        r = ['', this.yAxis, '', xValue || this.xSelectedValue]
       }
-      
-      r=this.legendHeaders(r)
+
+      r = this.legendHeaders(r)
       return r
-      
     }
     catch (err) {
       console.warn('Error: ', err)
     }
-
   }
-  
-  
+
   createLegend (newData, xValue) {
     try {
       d3.selectAll('.legend-table').remove()
       d3.selectAll('.legend-rect').remove()
 
+      // const columns = this.yGroupings()
 
-      //const columns = this.yGroupings()
-      
-      //columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
-      const headers=this._legendHeaders(xValue);
+      // columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
+      const headers = this._legendHeaders(xValue)
       const table = d3.select(this.node.children[1]).append('table')
-            .attr('class', 'legend-table')
+        .attr('class', 'legend-table')
       const thead = table.append('thead')
-      
+
       table.append('tbody')
-      
+
       // append the header row
       thead.append('tr')
         .selectAll('th')
@@ -989,24 +967,23 @@ console.debug(data)
         .text(function (column) {
           return column
         })
-      
     }
     catch (err) {
       console.warn('Error: ', err)
     }
   }
-  
+
   updateLegend (newData, xValue) {
     try {
-      const self=this
+      const self = this
       d3.selectAll('.legend-table tbody tr').remove()
       d3.selectAll('.legend-rect').remove()
       //      this.getSelected()
-      
-      const data = newData ||  this.selectedData()
+
+      const data = newData || this.selectedData()
 
       // console.debug('SELECTED DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:', data)
-      let headers = this._legendHeaders(xValue)
+      const headers = this._legendHeaders(xValue)
       const labels = this.yGroupings()
       const formatLegend = this.formatLegend()
       // const table = d3.selectAll('.legend-table')
@@ -1014,15 +991,15 @@ console.debug(data)
 
       // turn object into array to play nice with d3
       const dataArr = Object.keys(data).map((key, i) => {
-        return  ['', labels[i],undefined, data[labels[i]]]
+        return ['', labels[i], undefined, data[labels[i]]]
       }).reverse()
-      dataArr.push(['','Total',undefined, Object.keys(data).reduce((sum,key) => sum+data[key], 0)])
-      
+      dataArr.push(['', 'Total', undefined, Object.keys(data).reduce((sum, key) => sum + data[key], 0)])
+
       // create a row for each object in the data
       const tr = tbody.selectAll('tr')
-            .data(dataArr)
-            .enter()
-            .append('tr')
+        .data(dataArr)
+        .enter()
+        .append('tr')
 
       // append color blocks into tr first cell
       tr.append('td')
@@ -1044,11 +1021,6 @@ console.debug(data)
         .html(function (d) {
           return self._legendFormat(d.value)
         })
-
-
-      
-      
-      
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -1062,9 +1034,10 @@ console.debug(data)
 
   _legendFormat (d) {
     try {
-      if(isNaN(d)) {
+      if (isNaN(d)) {
         return d
-      } else {
+      }
+      else {
         return this.legendFormat(d)
       }
     }
@@ -1075,9 +1048,8 @@ console.debug(data)
 
   _onClick (e, d) {
     try {
-      // console.debug('_onClick: ', e,d) 
+      // console.debug('_onClick: ', e,d)
       this.onClick(d)
-      
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -1085,10 +1057,9 @@ console.debug(data)
   }
 
   onClick (d) {
-    // console.debug('_onClick: ', d) 
+    // console.debug('_onClick: ', d)
   }
 
-  
   _onSelect = (element, data) => {
     try {
       const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
@@ -1105,7 +1076,6 @@ console.debug(data)
       this._legend()
       this.getSelected()
       this.onSelect(this)
-      
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -1130,9 +1100,8 @@ console.debug(data)
       activeElement.setAttribute('tabindex', 1)
       this.selectedData(data[0].data)
       this._legend()
-      
+
       this.onMouseover(this)
-      
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -1142,46 +1111,38 @@ console.debug(data)
   onMouseover (d) {
     console.debug('onSelect: ', d)
   }
-  
-  
-  _onHover = (element,data, hover) => {
+
+  _onHover = (element, data, hover) => {
     try {
       const activeElement = element.parentNode.parentNode
       const index = this.selectedIndex
       // console.debug(data)
       // console.debug(element)
-      
-      if(hover === true ) {
-        // activeElement.setAttribute('class', 'bar active')
-        let years=this.xDomain()
 
-        let tabIndex = element.parentNode.parentNode.tabIndex
-       // // console.debug(years,  years[tabIndex] , tabIndex)
+      if (hover === true) {
+        // activeElement.setAttribute('class', 'bar active')
+        const years = this.xDomain()
+
+        const tabIndex = element.parentNode.parentNode.tabIndex
+        // // console.debug(years,  years[tabIndex] , tabIndex)
         this.createLegend(data[0].data, years[tabIndex])
         this.updateLegend(data[0].data, years[tabIndex])
-      } else {
+      }
+      else {
         this.getSelected()
         //  activeElement.setAttribute('class', 'bar')
-        
+
         this.select(this.index)
         this.createLegend()
         this.updateLegend()
-
       }
-
-
-      
-      
     }
     catch (err) {
       console.warn('Error: ', err)
-    }      
-
+    }
   }
 
   onHover (d) {
     console.debug('onSelect: ', d)
   }
-
 }
-
