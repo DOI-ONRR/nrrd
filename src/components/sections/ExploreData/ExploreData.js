@@ -1,34 +1,33 @@
-import React, { useState, useContext, useEffect, useRef } from 'react'
-// import { Link } from "gatsby"
-
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
-import Slider from '@material-ui/core/Slider'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import Autocomplete from '@material-ui/lab/Autocomplete'
-
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardHeader from '@material-ui/core/CardHeader'
-import CardContent from '@material-ui/core/CardContent'
-import IconButton from '@material-ui/core/IconButton'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
-
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Snackbar from '@material-ui/core/Snackbar'
-
-import AddIcon from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
-import RefreshIcon from '@material-ui/icons/Refresh'
-
+import React, { useState, useContext } from 'react'
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import {
+  Container,
+  Typography,
+  Slider,
+  Grid,
+  Box,
+  Button,
+  ButtonGroup,
+  TextField,
+  Card,
+  CardActions,
+  CardHeader,
+  CardContent,
+  IconButton,
+  Menu,
+  MenuItem,
+  Snackbar,
+  useMediaQuery
+} from '@material-ui/core'
+
+import { Autocomplete } from '@material-ui/lab'
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
+import RefreshIcon from '@material-ui/icons/Refresh'
 
 import Map from '../../data-viz/Map'
 import MapToolbar from './MapToolbar'
@@ -37,7 +36,7 @@ import StateCard from '../../layouts/StateCard'
 
 import { StoreContext } from '../../../store'
 import mapJson from './us-topology.json'
-import { useMediaQuery } from '@material-ui/core'
+
 import { select } from 'd3'
 // import  mapJson from './us.t2.json'
 
