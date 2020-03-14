@@ -8,8 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 
-import { GlossaryTerm } from '../components/utils/GlossaryTerm'
-import { filterTerms } from '../components/utils/Glossary'
+import GlossaryTerm from '../components/GlossaryTerm/GlossaryTerm'
 
 export const useStyles = makeStyles(theme => ({
   title: {
@@ -46,9 +45,7 @@ export const SearchResults = () => {
     // Map over each ID and return the full document
     .map(({ ref }) => index.documentStore.getDoc(ref))
   )
-  const [glossaryResults] = useState(
-    filterTerms (queryString)
-  )
+  const [glossaryResults] = useState([])
   return (
     <Fragment>
       <SEO
@@ -69,7 +66,7 @@ export const SearchResults = () => {
                     return <li key={ index }><Link to={ item.path }>{ item.title }</Link></li>
                   }
                   ) : <p><strong>We didn't find any search results for {queryString}.</strong> {(glossaryResults.length > 0) && 
-                  <Fragment>You might try searching for <GlossaryTerm termKey={queryString}>{queryString}</GlossaryTerm> in our glossary.</Fragment>}</p>
+                  <Fragment>You might try searching for <GlossaryTerm>{queryString}</GlossaryTerm> in our glossary.</Fragment>}</p>
                 }
               </ul>
             </article>
