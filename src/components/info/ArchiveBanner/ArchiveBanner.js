@@ -35,7 +35,7 @@ const ArchiveBanner = () => {
   return (
     <div className={classes.root}>
       <p className={classes.content}>
-        <DataArchiveIcon/> This content was created as part of <GlossaryTerm termKey="EITI Standard">USEITI</GlossaryTerm> and is no longer being updated
+        <DataArchiveIcon/> This content was created as part of <GlossaryTerm>USEITI</GlossaryTerm> and is no longer being updated
         . <Link to="/archive">Learn more about USEITI.</Link>
       </p>
     </div>

@@ -22,12 +22,13 @@ const useStyles = makeStyles(theme => (
     },
     term: {
       borderBottom: '1px dotted',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      whiteSpace: 'nowrap'
     }
   }
 ))
 
-const GlossaryTerm = ({ termKey, children, ...rest }) => {
+const GlossaryTerm = ({ children, ...rest }) => {
   const theme = useTheme()
   const styles = useStyles(theme)
   const results = useStaticQuery(graphql`
@@ -38,6 +39,7 @@ const GlossaryTerm = ({ termKey, children, ...rest }) => {
             terms {
               definition
               name
+              tags
             }
           }
         }
@@ -46,16 +48,16 @@ const GlossaryTerm = ({ termKey, children, ...rest }) => {
   `)
 
   const terms = results.allMdx.nodes[0].frontmatter.terms
-  const termId = termKey || children
 
-  const termResults = terms.filter(term => termId.toLowerCase() === term.name.toLowerCase())
+  const termResults = terms.filter(term =>
+    (children.toLowerCase() === term.name.toLowerCase()) || (term.tags && term.tags.findIndex(tag => tag.toLowerCase() === children.toLowerCase()) > -1))
 
   if (termResults.length > 1) {
-    console.warning(`Found more than 1 definition for the termId: ${ termId }. Will use the first result returned.`, termResults)
+    console.warn(`Found more than 1 definition for the term: ${ children }. Will use the first result returned.`, termResults)
   }
 
   if (termResults.length === 0) {
-    throw new Error(`Found no definitions for the termId: ${ termId }.`)
+    throw new Error(`Found no definitions for the term: ${ children }`)
   }
 
   const TermDisplay = React.forwardRef((props, ref) => (
@@ -73,8 +75,8 @@ const GlossaryTerm = ({ termKey, children, ...rest }) => {
 }
 
 GlossaryTerm.propTypes = {
-  /** If the key for looking up the glossary term is differnt then the children property use this to override */
-  termKey: PropTypes.string,
+  /** The children must a be a string that can be used to lookup a glossary definition */
+  children: PropTypes.string.isRequired,
 }
 
 export default GlossaryTerm
