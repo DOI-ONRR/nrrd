@@ -143,12 +143,12 @@ const config = {
           Mdx: {
             title: node => node.frontmatter.title,
             tags: node => node.frontmatter.tag || node.frontmatter.tags,
-            description: node => node.frontmatter.description || node.frontmatter.description,
-            path: node => node => node.fields && node.fields.slug
+            description: node => node.frontmatter.description,
+            path: node => node.fields.slug
           }
         },
         // Optional filter to limit indexed nodes
-        filter: (node, getNode) => node.frontmatter.slug !== undefined
+        filter: (node, getNode) => node.frontmatter.title !== ''
       }
     },
 

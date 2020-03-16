@@ -55,7 +55,6 @@ export const SearchResults = () => {
               <ul>
                 {results.length > 0
                   ? results.map((item, index) => {
-                    console.log(item)
                     return <li key={ index }><Link to={ item.path }>{ item.title }</Link></li>
                   }
                   ) : <p><strong>We didn't find any search results for " {queryString} ".</strong></p>
