@@ -2,7 +2,7 @@ import React from 'react'
 import Explore from './Explore'
 import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
 
-const Disbursements = props => {
+const ExploreDisbursements = props => {
   return (
     <Explore
       title="disbursements"
@@ -40,4 +40,4 @@ const Disbursements = props => {
   )
 }
 
-export default Disbursements
+export default ExploreDisbursements

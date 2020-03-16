@@ -18,11 +18,14 @@ import {
 
 import CloseIcon from '@material-ui/icons/Close'
 import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
+import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
 
 import PieChart from '../../data-viz/PieChart/PieChart.js'
 import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
 
 import Sparkline from '../../data-viz/Sparkline'
+import LandPercent from './Ownership'
+import Link from '../../../components/Link'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -69,6 +72,9 @@ const useStyles = makeStyles(theme => ({
       maxWidth: 50,
       maxHeight: 50,
       fill: theme.palette.common.white,
+    },
+    '& span > div': {
+      fontSize: theme.typography.caption.fontSize,
     },
   },
   progressContainer: {
@@ -151,7 +157,10 @@ const StateIcon = props => {
   return (
     <div className={classes.detailCardHeaderContent}>
       {svgImg}
-      <span>{props.stateTitle}</span>
+      <span>
+        {props.stateTitle}
+        <LandPercent stateAbbr={props.stateAbbr} />
+      </span>
     </div>
   )
 }
@@ -235,9 +244,8 @@ const StateDetailCard = props => {
             )}
           </Box>
           { chartData.revenue_commodity_summary.length > 0 && (
-
-            <Box className={classes.commodityBox}>
-              <h4>Commodities</h4>
+            <Box>
+              <Box component="h4" fontWeight="bold">Commodities</Box>
               <CircleChart data={chartData.revenue_commodity_summary}
                 xAxis='commodity' yAxis='total'
                 format={ d => {
@@ -248,17 +256,27 @@ const StateDetailCard = props => {
                 yLabel={dataSet}
                 maxCircles={6}
                 minColor='#DCD2DF' maxColor='#2B1C30' />
+              <Box mt={3}>
+                <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
+                  Query revenue by commodity
+                </ExploreDataLink>
+              </Box>
             </Box>
           )
           }
           { chartData.revenue_type_summary.length > 0 && (
             <Box>
-              <h4>Revenue types</h4>
+              <Box component="h4" fontWeight="bold">Revenue types</Box>
               <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
                 format={ d => utils.formatToDollarInt(d) }
-                yLabel={'FY ' + state.year}
+                yLabel={`FY ${ state.year }`}
                 maxCircles={4}
                 maxColor='#B64D00' minColor='#FCBA8B' />
+              <Box mt={3}>
+                <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
+                  Query revenue by type
+                </ExploreDataLink>
+              </Box>
             </Box>
           )
           }
