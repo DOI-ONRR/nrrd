@@ -136,18 +136,19 @@ const config = {
       resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
       options: {
         // Fields to index
-        fields: ['title', 'tags'],
+        fields: ['title', 'description', 'tags'],
         // How to resolve each field's value for a supported node type
         resolvers: {
           // For any node of type MarkdownRemark, list how to resolve the fields' values
           Mdx: {
             title: node => node.frontmatter.title,
             tags: node => node.frontmatter.tag || node.frontmatter.tags,
-            path: node => node.frontmatter.permalink
+            description: node => node.frontmatter.description || node.frontmatter.description,
+            path: node => node => node.fields && node.fields.slug
           }
         },
         // Optional filter to limit indexed nodes
-        filter: (node, getNode) => node.frontmatter.tags !== 'exempt'
+        filter: (node, getNode) => node.frontmatter.slug !== undefined
       }
     },
 

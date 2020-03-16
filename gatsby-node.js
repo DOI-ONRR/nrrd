@@ -3,6 +3,20 @@ const fs = require('fs')
 const appRootDir = require('app-root-dir').get()
 const to = require('to-case')
 
+const { createFilePath } = require('gatsby-source-filesystem')
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
+  if (node.internal.type === 'Mdx' && node.frontmatter.title) {
+    const slug = createFilePath({ node, getNode, basePath: 'pages' })
+    createNodeField({
+      node,
+      name: 'slug',
+      value: slug,
+    })
+  }
+}
+
 exports.createPages = ({ graphql, reporter }) => {
   return Promise.all([
     createComponentsCache({ graphql, reporter }),
