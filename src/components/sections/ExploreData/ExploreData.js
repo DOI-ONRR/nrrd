@@ -38,7 +38,8 @@ import StateCard from '../../layouts/StateCard'
 import { StoreContext } from '../../../store'
 import mapJson from './us-topology.json'
 import { useMediaQuery } from '@material-ui/core'
-import { select } from 'd3'
+
+import LineChart from '../../data-viz/LineChart/LineChart.js'
 // import  mapJson from './us.t2.json'
 
 // import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
@@ -988,7 +989,19 @@ const ExploreData = () => {
               })
             }
             { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} menuItems={cardMenuItems} /> : '' }
+      </Box>
+          <Box>
+            <LineChart data = {
+              [
+                [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019], // xAxis
+                [110, 90, 120, 112, 93, 122, 190, 190, 150, 130], // yLine1
+                [11, 9, 12, 12, 9, 12, 19, 19, 15, 13], // yLine1
+                [10, 19, 10, 16, 13, 22, 10, 30, 10, 10], // yLine1
+
+              ]
+            }/>
           </Box>
+
         </Container>
       </>
     )
