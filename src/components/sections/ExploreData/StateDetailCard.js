@@ -248,7 +248,7 @@ const StateDetailCard = props => {
           <Box textAlign="center" className={classes.boxTopSection}>
             <Box component="h2" mt={0} mb={0}>{props.total}</Box>
             <Box component="span" mb={4}>{props.year && <span>FY {props.year} revenue</span>}</Box>
-            {sparkData.length > 0 && (
+            {sparkData.length > 1 && (
               <Box mt={4}>
                 <Sparkline
                   data={sparkData}
