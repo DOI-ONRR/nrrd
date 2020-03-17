@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -29,15 +28,20 @@ const LandPercent = props => {
     variables: { state: location }
   })
 
+  let landStats
+
   if (loading) return ''
   if (error) return `Error loading revenue data table ${ error.message }`
 
+  console.log('LandPercent data: ', data)
+
   if (data) {
-    const landStats = data.land_stats[0]
-    return (
-      <Box>{utils.round(landStats.federal_percent, 1)}% federal</Box>
-    )
+    landStats = data.land_stats[0]
   }
+
+  return (
+    landStats ? <Box>{utils.round(landStats.federal_percent, 1)}% federal</Box> : null
+  )
 }
 
 export default LandPercent

@@ -232,10 +232,10 @@ const StateDetailCard = props => {
       <CardContent>
         <>
           <Box textAlign="center">
-            <h2 style={{ marginTop: 0 }}>{props.total}</h2>
-            {props.year && <span>FY {props.year} revenue</span>}
+            <Box component="h2" mt={0} mb={0}>{props.total}</Box>
+            <Box component="span" mb={4}>{props.year && <span>FY {props.year} revenue</span>}</Box>
             {sparkData && (
-              <Box component="span">
+              <Box mt={4}>
                 <Sparkline
                   data={sparkData}
                   highlightIndex={highlightIndex}
