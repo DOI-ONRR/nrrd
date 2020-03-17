@@ -686,7 +686,7 @@ const LocationTotal = props => {
   if (data) {
     return (
       <>
-        { format ? format(data.fiscal_revenue_summary[0].sum) : data.fiscal_revenue_summary[0].sum }
+        { data.fiscal_revenue_summary[0] ? format(data.fiscal_revenue_summary[0].sum) : format(0) }
       </>
     )
   }

@@ -33,8 +33,6 @@ const LandPercent = props => {
   if (loading) return ''
   if (error) return `Error loading revenue data table ${ error.message }`
 
-  console.log('LandPercent data: ', data)
-
   if (data) {
     landStats = data.land_stats[0]
   }

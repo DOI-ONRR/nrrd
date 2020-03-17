@@ -105,6 +105,18 @@ const useStyles = makeStyles(theme => ({
     maxHeight: 50,
     marginRight: theme.spacing(1.5),
     filter: 'invert(1)',
+  },
+  boxTopSection: {
+    minHeight: 150,
+  },
+  boxSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    // border: '1px solid deeppink',
+    '& > div:last-child': {
+      minHeight: 550,
+    },
   }
 }))
 
@@ -211,6 +223,8 @@ const StateDetailCard = props => {
       item.sum
     ])
 
+    console.log('sparkData: ', sparkData)
+
     highlightIndex = data.fiscal_revenue_summary.findIndex(
       x => x.fiscal_year === year
     )
@@ -231,10 +245,10 @@ const StateDetailCard = props => {
       />
       <CardContent>
         <>
-          <Box textAlign="center">
+          <Box textAlign="center" className={classes.boxTopSection}>
             <Box component="h2" mt={0} mb={0}>{props.total}</Box>
             <Box component="span" mb={4}>{props.year && <span>FY {props.year} revenue</span>}</Box>
-            {sparkData && (
+            {sparkData.length > 0 && (
               <Box mt={4}>
                 <Sparkline
                   data={sparkData}
@@ -244,46 +258,68 @@ const StateDetailCard = props => {
               </Box>
             )}
           </Box>
-          { chartData.revenue_commodity_summary.length > 0 && (
+          { chartData.revenue_commodity_summary.length > 0 ? (
             <>
-              <Box className={classes.commodityBox}>
+              <Box className={classes.boxSection}>
                 <Box component="h4" fontWeight="bold">Commodities</Box>
-                <CircleChart data={chartData.revenue_commodity_summary}
-                  xAxis='commodity' yAxis='total'
-                  format={ d => {
-                  // console.debug('fooormat', d)
-                    return utils.formatToDollarInt(d)
-                  }
-                  }
-                  yLabel={dataSet}
-                  maxCircles={6}
-                  minColor='#DCD2DF' maxColor='#2B1C30' />
-              </Box>
-              <Box mt={3}>
-                <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
-                  Query revenue by commodity
-                </ExploreDataLink>
+                <Box>
+                  <CircleChart data={chartData.revenue_commodity_summary}
+                    xAxis='commodity' yAxis='total'
+                    format={ d => {
+                      // console.debug('fooormat', d)
+                      return utils.formatToDollarInt(d)
+                    }
+                    }
+                    yLabel={dataSet}
+                    maxCircles={6}
+                    minColor='#DCD2DF' maxColor='#2B1C30' />
+                  <Box mt={3}>
+                    <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
+                      Query revenue by commodity
+                    </ExploreDataLink>
+                  </Box>
+                </Box>
               </Box>
             </>
           )
+            : (
+              <>
+                <Box className={classes.boxSection}>
+                  <Box component="h4" fontWeight="bold">Commodities</Box>
+                  <Box fontSize="subtitle2.fontSize">No commodities generated revenue on federal land in {props.cardTitle} in FY {props.year}.</Box>
+                </Box>
+              </>
+            )
           }
-          { chartData.revenue_type_summary.length > 0 && (
+          { chartData.revenue_type_summary.length > 0 ? (
             <>
-              <Box className={classes.revenueTypeBox}>
+              <Box className={classes.boxSection}>
                 <Box component="h4" fontWeight="bold">Revenue types</Box>
-                <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
-                  format={ d => utils.formatToDollarInt(d) }
-                  yLabel={`FY ${ state.year }`}
-                  maxCircles={4}
-                  maxColor='#B64D00' minColor='#FCBA8B' />
-              </Box>
-              <Box mt={3}>
-                <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
+                <Box>
+                  <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
+                    format={ d => utils.formatToDollarInt(d) }
+                    yLabel={`FY ${ state.year }`}
+                    maxCircles={4}
+                    maxColor='#B64D00' minColor='#FCBA8B' />
+                  <Box mt={3}>
+                    <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                   Query revenue by type
-                </ExploreDataLink>
+                    </ExploreDataLink>
+                  </Box>
+                </Box>
               </Box>
             </>
           )
+            : (
+              (
+                <>
+                  <Box className={classes.boxSection}>
+                    <Box component="h4" fontWeight="bold">Revenue types</Box>
+                    <Box fontSize="subtitle2.fontSize">There was no revenue on federal land in {props.cardTitle} in FY {props.year}.</Box>
+                  </Box>
+                </>
+              )
+            )
           }
         </>
 
