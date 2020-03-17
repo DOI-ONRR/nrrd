@@ -40,6 +40,7 @@ import mapJson from './us-topology.json'
 import utils from '../../../js/utils'
 
 import { select } from 'd3'
+import LineChart from '../../data-viz/LineChart/LineChart.js'
 // import  mapJson from './us.t2.json'
 
 // import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
@@ -791,22 +792,34 @@ const ExploreData = () => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-
+    console.debug("onLink:", state)
     const fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
-
+          
+    let stateAbbr 
     let abbr
+
+    if (state.properties.FIPS.length > 2) {
+      abbr = state.properties.FIPS
+      stateAbbr = state.properties.state
+    }
+    else {
+      abbr = state.properties.abbr
+      stateAbbr = state.properties.abbr
+    }
+/*      
     if (state.properties) {
-      abbr = state.properties.abbr ? state.properties.abbr : state.properties.state
+      abbr = state.properties.FIPS ? state.properties.FIPS : state.properties.state
     }
     else {
       abbr = state.abbr
     }
-
+*/
     const stateObj = {
       fips: fips,
       abbr: abbr,
       name: name,
+      state: stateAbbr
     }
 
     if (
@@ -945,7 +958,7 @@ const ExploreData = () => {
                     <StateCard
                       key={i}
                       fips={state.fips}
-                      abbr={state.abbr}
+                    abbr={state.abbr}
                       name={state.name}
                       year={state.year}
                       minimizeIcon={state.minimizeIcon}
@@ -1006,8 +1019,8 @@ const ExploreData = () => {
                     cardTitle={card.name}
                     fips={card.fips}
                     abbr={card.abbr}
-                    name={card.name}
-                    year={state.year}
+                  state={card.state}
+                  name={card.name}
                     closeCard={fips => {
                       closeCard(fips)
                     }}
@@ -1017,7 +1030,7 @@ const ExploreData = () => {
               })
             }
             { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} menuItems={cardMenuItems} /> : '' }
-          </Box>
+      </Box>
         </Container>
       </>
     )
