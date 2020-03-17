@@ -20,6 +20,7 @@ import IconDownloadBaseSvg from '-!svg-react-loader!../../images/icons/icon-down
 import IconDownloadXlsSvg from '-!svg-react-loader!../../images/icons/icon-download-xls.svg'
 import IconDownloadCsvSvg from '-!svg-react-loader!../../images/icons/icon-download-csv.svg'
 import IconDownloadDataSvg from '-!svg-react-loader!../../images/icons/icon-download-data.svg'
+import IconQuestionCircleSvg from '-!svg-react-loader!../../images/icons/icon-question-circle.svg'
 
 export const HowMainIconOilImg = props => <HowMainIconOilSvg {...props} />
 export const HowMainIconHardrockImg = props => <HowMainIconHardrockSvg {...props} />
@@ -42,3 +43,4 @@ export const IconDownloadBaseImg = props => <IconDownloadBaseSvg style={{ vertic
 export const IconDownloadXlsImg = props => <IconDownloadXlsSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
 export const IconDownloadCsvImg = props => <IconDownloadCsvSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
 export const IconDownloadDataImg = props => <IconDownloadDataSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
+export const IconQuestionCircleImg = props => <IconQuestionCircleSvg style={{ width: '16px', height: '16px', marginLeft: '1.6px', fill: 'currentColor' }} {...props}/>

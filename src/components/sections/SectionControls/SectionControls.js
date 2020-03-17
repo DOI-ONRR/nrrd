@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import ToggleButton from '@material-ui/lab/ToggleButton'
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
+
+import { Grid, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core'
+import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
 
 import CONSTANTS from '../../../js/constants'
 
@@ -46,19 +42,12 @@ const SectionControls = props => {
   const MONTHLY_DROPDOWN_VALUES = props.monthlyDropdownValues
   const YEARLY_DROPDOWN_VALUES = props.yearlyDropdownValues
 
-  const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
   const [labelWidth, setLabelWidth] = useState(0)
-  const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
+
+  const disabled = props.disabledInput
 
   const handleToggle = (event, newVal) => {
-    setToggle(newVal)
     props.onToggleChange(newVal)
-    if (newVal && newVal.toLowerCase() === TOGGLE_VALUES.Month.toLowerCase()) {
-      setPeriod(MONTHLY_DROPDOWN_VALUES.Recent)
-    }
-    else {
-      setPeriod(YEARLY_DROPDOWN_VALUES.Fiscal)
-    }
   }
 
   useEffect(() => {
@@ -66,7 +55,6 @@ const SectionControls = props => {
   }, [])
 
   const handleChange = event => {
-    setPeriod(event.target.value)
     props.onMenuChange(event.target.value)
   }
 
@@ -74,7 +62,7 @@ const SectionControls = props => {
     <>
       <Grid item xs={12} sm={6}>
         <ToggleButtonGroup
-          value={toggle}
+          value={props.toggle}
           exclusive
           onChange={handleToggle}
           size="large"
@@ -95,19 +83,19 @@ const SectionControls = props => {
         </ToggleButtonGroup>
       </Grid>
       <Grid item xs={12} sm={6} className={classes.periodFormControlContainer}>
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl variant="outlined" className={classes.formControl} disabled={disabled}>
           <InputLabel ref={inputLabel} id="select-period-outlined-label">
             Period
           </InputLabel>
           <Select
             labelId="Period select"
             id="period-label-select-outlined"
-            value={period}
+            value={props.period}
             onChange={handleChange}
             labelWidth={labelWidth}
           >
             {
-              (toggle === TOGGLE_VALUES.Year)
+              (props.toggle === TOGGLE_VALUES.Year)
                 ? Object.values(YEARLY_DROPDOWN_VALUES).map((item, i) => (
                   <MenuItem key={i} value={item}>{ item === YEARLY_DROPDOWN_VALUES.Calendar ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
                 ))

@@ -69,9 +69,17 @@ const TotalDisbursements = props => {
   // const classes = useStyles()
   const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
   const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
+
   const toggleChange = value => {
     // console.debug('ON TOGGLE CHANGE: ', value)
     setToggle(value)
+
+    if (value && value.toLowerCase() === TOGGLE_VALUES.Month.toLowerCase()) {
+      setPeriod(MONTHLY_DROPDOWN_VALUES.Recent)
+    }
+    else {
+      setPeriod(YEARLY_DROPDOWN_VALUES.Fiscal)
+    }
   }
   const menuChange = value => {
     // console.debug('ON Menu CHANGE: ', value)
@@ -93,6 +101,7 @@ const TotalDisbursements = props => {
   let maxFiscalYear
   let maxCalendarYear
   let xGroups = {}
+  let disabledInput = false
 
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -130,6 +139,7 @@ const TotalDisbursements = props => {
       }
     }
     else {
+      disabledInput = true
       chartData = data.total_yearly_fiscal_disbursement
       xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)
       xLabels = (x, i) => {
@@ -152,7 +162,10 @@ const TotalDisbursements = props => {
           maxCalendarYear={maxCalendarYear}
           monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
           toggleValues={TOGGLE_VALUES}
-          yearlyDropdownValues={YEARLY_DROPDOWN_VALUES} />
+          yearlyDropdownValues={YEARLY_DROPDOWN_VALUES}
+          toggle={toggle}
+          period={period}
+          disabledInput={disabledInput} />
         <Grid item xs>
           <StackedBarChart
             title={chartTitle}

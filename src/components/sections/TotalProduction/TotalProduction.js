@@ -84,6 +84,13 @@ const TotalProduction = props => {
     // console.debug('ON TOGGLE CHANGE: ', value)
     setSelected(undefined)
     setToggle(value)
+
+    if (value && value.toLowerCase() === TOGGLE_VALUES.Month.toLowerCase()) {
+      setPeriod(MONTHLY_DROPDOWN_VALUES.Recent)
+    }
+    else {
+      setPeriod(YEARLY_DROPDOWN_VALUES.Fiscal)
+    }
   }
   const menuChange = value => {
     // console.debug('ON Menu CHANGE: ', value)
@@ -181,7 +188,9 @@ const TotalProduction = props => {
           maxCalendarYear={maxCalendarYear}
           monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
           toggleValues={TOGGLE_VALUES}
-          yearlyDropdownValues={YEARLY_DROPDOWN_VALUES} />
+          yearlyDropdownValues={YEARLY_DROPDOWN_VALUES}
+          toggle={toggle}
+          period={period} />
         <Grid item xs={12} md={4}>
           <StackedBarChart
             title={'Oil (bbl)'}
