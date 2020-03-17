@@ -150,6 +150,7 @@ const StateDetailCard = props => {
   const { state } = useContext(StoreContext)
   const year = state.year
   const location = props.abbr
+  const stateAbbr = props.state
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: location, year: year }
@@ -179,7 +180,7 @@ const StateDetailCard = props => {
   return (
     <Card className={`${ classes.root } ${ props.cardCountClass }`}>
       <CardHeader
-        title={<StateIcon stateTitle={props.cardTitle} stateAbbr={location} />}
+        title={<StateIcon stateTitle={props.cardTitle} stateAbbr={stateAbbr} />}
         action={<CloseIcon
           className={classes.closeIcon}
           onClick={(e, i) => {

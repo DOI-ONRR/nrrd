@@ -759,22 +759,34 @@ const ExploreData = () => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-
+    console.debug("onLink:", state)
     const fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
-
+          
+    let stateAbbr 
     let abbr
+
+    if (state.properties.FIPS.length > 2) {
+      abbr = state.properties.FIPS
+      stateAbbr = state.properties.state
+    }
+    else {
+      abbr = state.properties.abbr
+      stateAbbr = state.properties.abbr
+    }
+/*      
     if (state.properties) {
-      abbr = state.properties.abbr ? state.properties.abbr : state.properties.state
+      abbr = state.properties.FIPS ? state.properties.FIPS : state.properties.state
     }
     else {
       abbr = state.abbr
     }
-
+*/
     const stateObj = {
       fips: fips,
       abbr: abbr,
       name: name,
+      state: stateAbbr
     }
 
     if (
@@ -919,7 +931,7 @@ const ExploreData = () => {
                     <StateCard
                       key={i}
                       fips={state.fips}
-                      abbr={state.abbr}
+                    abbr={state.abbr}
                       name={state.name}
                       year={state.year}
                       minimizeIcon={state.minimizeIcon}
@@ -980,7 +992,8 @@ const ExploreData = () => {
                     cardTitle={card.name}
                     fips={card.fips}
                     abbr={card.abbr}
-                    name={card.name}
+                  name={card.name}
+                  state={card.state}
                     closeCard={fips => {
                       closeCard(fips)
                     }}
@@ -990,18 +1003,6 @@ const ExploreData = () => {
             }
             { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} menuItems={cardMenuItems} /> : '' }
       </Box>
-          <Box>
-            <LineChart data = {
-              [
-                [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019], // xAxis
-                [110, 90, 120, 112, 93, 122, 190, 190, 150, 130], // yLine1
-                [11, 9, 12, 12, 9, 12, 19, 19, 15, 13], // yLine1
-                [10, 19, 10, 16, 13, 22, 10, 30, 10, 10], // yLine1
-
-              ]
-            }/>
-          </Box>
-
         </Container>
       </>
     )

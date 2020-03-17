@@ -110,10 +110,13 @@ foo () {
       const yScale = this.yScale()
       const xDomain = this.xDomain()
       return d3.line()
-        .x((d, i) =>{ console.debug("x in line", xDomain[i], i ); return xScale(xDomain[i])} ) // set the x values for the line generator
-        .y((d, i) =>{console.debug("d in addline", d)
-                     return yScale(d)
-                    }) // set the y values for the line generator
+        .x((d, i) =>{
+          // console.debug("x in line", xDomain[i], i );
+          return xScale(xDomain[i])} ) // set the x values for the line generator
+        .y((d, i) =>{
+          // console.debug("d in addline", d)
+          return yScale(d)
+        }) // set the y values for the line generator
         .curve(d3.curveBasis) // apply smoothing to the line
     }
     catch (err) {
@@ -123,7 +126,7 @@ foo () {
 
   xDomain () {
     try {
-      console.debug('xDomain', this.data[0])
+      // console.debug('xDomain', this.data[0])
       return this.data[0]
     }
     catch (err) {
@@ -149,12 +152,12 @@ foo () {
 
   yDomain () {
     try {
-      console.debug('yDomain', this.data)
+      // console.debug('yDomain', this.data)
       const yDatasets=this.yDatasets()
-      console.debug('yDomain yDatasets', yDatasets)
+      // console.debug('yDomain yDatasets', yDatasets)
       let r = []
       r = yDatasets.reduce( (r, dataset, i) => r.concat(dataset) ,[] )
-      console.debug('return', r)
+      // console.debug('return', r)
       return r
     }
     catch (err) {
@@ -181,7 +184,7 @@ foo () {
     try {
       const data=this.data
       const r=data.slice(-1 * data.length + 1)
-      console.debug('yDatasetxss', r)
+      // console.debug('yDatasetxss', r)
       return r
     }
     catch (err) {
