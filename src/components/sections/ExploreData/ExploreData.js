@@ -31,13 +31,15 @@ import RefreshIcon from '@material-ui/icons/Refresh'
 
 import Map from '../../data-viz/Map'
 import MapToolbar from './MapToolbar'
-import StateDetailCard from './StateDetailCard'
-import StateCard from '../../layouts/StateCard'
+import DetailCard from './DetailCard'
+import SummaryCard from './SummaryCard'
 
 import { StoreContext } from '../../../store'
 import mapJson from './us-topology.json'
 
 import utils from '../../../js/utils'
+
+import CONSTANTS from '../../../js/constants'
 
 import { select } from 'd3'
 import LineChart from '../../data-viz/LineChart/LineChart.js'
@@ -81,6 +83,14 @@ const DISTINCT_LOCATIONS_QUERY = gql`
       location
       location_id
       sort_order
+    }
+  }
+`
+
+const FISCAL_YEARS_QUERY = gql`
+  query FiscalYears($period: String!) {
+    period(where: {period: {_eq: $period }}) {
+      fiscal_year
     }
   }
 `
@@ -597,17 +607,34 @@ const AddLocationCard = props => {
 // YearSlider
 const YearSlider = props => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
+  const { state } = useContext(StoreContext)
   const [year] = useState(state.year)
+
+  const { loading, error, data } = useQuery(FISCAL_YEARS_QUERY, { variables: { period: 'Fiscal Year' } })
+
+  let periodData
+  let minYear
+  let maxYear
+
+  if (loading) return null
+  if (error) return `Error loading revenue data table ${ error.message }`
+
+  if (data) {
+    periodData = data.period
+
+    // set min and max trend years
+    minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
+    maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+  }
 
   const customMarks = [
     {
-      label: '2003',
-      value: 2003
+      label: minYear,
+      value: minYear
     },
     {
-      label: '2019',
-      value: 2019
+      label: maxYear,
+      value: maxYear
     }
   ]
 
@@ -626,8 +653,8 @@ const YearSlider = props => {
               props.onYear(yr)
             }}
             marks={customMarks}
-            min={2003}
-            max={2019}
+            min={minYear}
+            max={maxYear}
             classes={{
               root: classes.sliderRoot,
               markLabel: classes.sliderMarkLabel,
@@ -687,7 +714,7 @@ const LocationTotal = props => {
   if (data) {
     return (
       <>
-        { data.fiscal_revenue_summary[0] ? format(data.fiscal_revenue_summary[0].sum) : format(0) }
+        { data.fiscal_revenue_summary.length > 0 ? format(data.fiscal_revenue_summary[0].sum) : format(0) }
       </>
     )
   }
@@ -792,29 +819,22 @@ const ExploreData = () => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    console.debug("onLink:", state)
+    console.debug('onLink:', state)
+
     const fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
-          
-    let stateAbbr 
+    let stateAbbr
     let abbr
 
-    if (state.properties.FIPS.length > 2) {
-      abbr = state.properties.FIPS
+    if (fips && fips.length > 2) {
+      abbr = fips
       stateAbbr = state.properties.state
     }
     else {
-      abbr = state.properties.abbr
-      stateAbbr = state.properties.abbr
+      abbr = state.properties ? state.properties.abbr : state.abbr
+      stateAbbr = state.properties ? state.properties.abbr : state.abbr
     }
-/*      
-    if (state.properties) {
-      abbr = state.properties.FIPS ? state.properties.FIPS : state.properties.state
-    }
-    else {
-      abbr = state.abbr
-    }
-*/
+
     const stateObj = {
       fips: fips,
       abbr: abbr,
@@ -910,7 +930,7 @@ const ExploreData = () => {
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
-                    <StateCard
+                    <SummaryCard
                       key={i}
                       fips={state.fips}
                       abbr={state.abbr}
@@ -955,10 +975,10 @@ const ExploreData = () => {
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
-                    <StateCard
+                    <SummaryCard
                       key={i}
                       fips={state.fips}
-                    abbr={state.abbr}
+                      abbr={state.abbr}
                       name={state.name}
                       year={state.year}
                       minimizeIcon={state.minimizeIcon}
@@ -1014,13 +1034,13 @@ const ExploreData = () => {
             {
               cards.map((card, i) => {
                 return (
-                  <StateDetailCard
+                  <DetailCard
                     key={i}
                     cardTitle={card.name}
                     fips={card.fips}
                     abbr={card.abbr}
-                  state={card.state}
-                  name={card.name}
+                    state={card.state}
+                    name={card.name}
                     closeCard={fips => {
                       closeCard(fips)
                     }}
@@ -1030,7 +1050,7 @@ const ExploreData = () => {
               })
             }
             { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} menuItems={cardMenuItems} /> : '' }
-      </Box>
+          </Box>
         </Container>
       </>
     )

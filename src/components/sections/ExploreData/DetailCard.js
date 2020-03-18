@@ -25,7 +25,9 @@ import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
 
 import Sparkline from '../../data-viz/Sparkline'
 import LandPercent from './Ownership'
-import Link from '../../../components/Link'
+import Link from '../../Link'
+
+import CONSTANTS from '../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -103,6 +105,7 @@ const useStyles = makeStyles(theme => ({
   },
   cardLocationIcon: {
     maxHeight: 50,
+    maxWidth: 50,
     marginRight: theme.spacing(1.5),
     filter: 'invert(1)',
   },
@@ -121,7 +124,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query DetailCard($state: String!, $year: Int!) {
+  query DetailCard($state: String!, $year: Int!, $period: String!) {
     fiscal_revenue_summary(
       where: { state_or_area: { _eq: $state } }
       order_by: { fiscal_year: asc, state_or_area: asc }
@@ -149,7 +152,7 @@ const APOLLO_QUERY = gql`
       state_or_area
       total
     }
-    fiscalYears: fiscal_revenue_summary(where: {state_or_area: {_nin: [""]}}, distinct_on: fiscal_year) {
+    period(where: {period: {_ilike: $period }}) {
       fiscal_year
     }
   }
@@ -166,7 +169,7 @@ const StateIcon = props => {
     svgImg = <IconMap className={classes.usLocationIcon} alt="US Icon" />
   }
   else {
-    svgImg = <img src={`/maps/states/${ stateAbbr }.svg`} alt={`${ stateAbbr } State Icon`} className={classes.cardLocationIcon} />
+    svgImg = (stateAbbr.length === 2) ? <img src={`/maps/states/${ stateAbbr }.svg`} alt={`${ stateAbbr } State Icon`} className={classes.cardLocationIcon} /> : ''
   }
 
   return (
@@ -174,22 +177,22 @@ const StateIcon = props => {
       {svgImg}
       <span>
         {props.stateTitle}
-        <LandPercent stateAbbr={props.stateAbbr} />
+        <LandPercent stateAbbr={stateAbbr} />
       </span>
     </div>
   )
 }
 
-const StateDetailCard = props => {
+const DetailCard = props => {
   const classes = useStyles()
 
   const { state } = useContext(StoreContext)
   const year = state.year
-  const location = props.abbr
-  const stateAbbr = props.state
+
+  const stateAbbr = (props.abbr.length > 2) ? props.abbr : props.state
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: location, year: year }
+    variables: { state: stateAbbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
   const closeCard = item => {
@@ -213,28 +216,47 @@ const StateDetailCard = props => {
   let sparkMin
   let sparkMax
   let highlightIndex = 0
+  let periodData
+  let fiscalData
 
-  if (data) {
+  if (
+    data
+  ) {
     chartData = data
-    sparkMin = data.fiscalYears.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, data.fiscalYears[0].fiscal_year)
-    sparkMax = data.fiscalYears.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, data.fiscalYears[data.fiscalYears.length - 1].fiscal_year)
 
-    sparkData = data.fiscal_revenue_summary.map((item, i) => [
+    periodData = data.period
+
+    // set min and max trend years
+    sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
+    sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+
+    fiscalData = data.fiscal_revenue_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
     ])
 
-    console.log('sparkData: ', sparkData)
+    // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
+    sparkData = periodData.map((item, i) => {
+      const sum = fiscalData.find(x => x[0] === item.fiscal_year)
+      return ([
+        item.fiscal_year,
+        sum ? sum[1] : 0
+      ])
+    })
 
-    highlightIndex = data.fiscal_revenue_summary.findIndex(
-      x => x.fiscal_year === year
+    // sparkline index
+    highlightIndex = sparkData.findIndex(
+      x => x[0] === year
     )
+
+    console.debug('sparkData: ', sparkData)
+    console.debug('hightlightIndex: ', highlightIndex)
   }
 
   return (
     <Card className={`${ classes.root } ${ props.cardCountClass }`}>
       <CardHeader
-        title={<StateIcon stateTitle={props.cardTitle} stateAbbr={stateAbbr} />}
+        title={<StateIcon stateTitle={props.cardTitle} stateAbbr={stateAbbr} state={props.state} />}
         action={<CloseIcon
           className={classes.closeIcon}
           onClick={(e, i) => {
@@ -248,7 +270,7 @@ const StateDetailCard = props => {
         <>
           <Box textAlign="center" className={classes.boxTopSection}>
             <Box component="h2" mt={0} mb={0}>{props.total}</Box>
-            <Box component="span" mb={4}>{props.year && <span>FY {props.year} revenue</span>}</Box>
+            <Box component="span" mb={4}>{year && <span>{dataSet} revenue</span>}</Box>
             {sparkData.length > 1 && (
               <Box mt={4}>
                 <Sparkline
@@ -287,7 +309,7 @@ const StateDetailCard = props => {
               <>
                 <Box className={classes.boxSection}>
                   <Box component="h4" fontWeight="bold">Commodities</Box>
-                  <Box fontSize="subtitle2.fontSize">No commodities generated revenue on federal land in {props.cardTitle} in FY {props.year}.</Box>
+                  <Box fontSize="subtitle2.fontSize">No commodities generated revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
                 </Box>
               </>
             )
@@ -299,7 +321,7 @@ const StateDetailCard = props => {
                 <Box>
                   <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
                     format={ d => utils.formatToDollarInt(d) }
-                    yLabel={`FY ${ state.year }`}
+                    yLabel={dataSet}
                     maxCircles={4}
                     maxColor='#B64D00' minColor='#FCBA8B' />
                   <Box mt={3}>
@@ -316,7 +338,7 @@ const StateDetailCard = props => {
                 <>
                   <Box className={classes.boxSection}>
                     <Box component="h4" fontWeight="bold">Revenue types</Box>
-                    <Box fontSize="subtitle2.fontSize">There was no revenue on federal land in {props.cardTitle} in FY {props.year}.</Box>
+                    <Box fontSize="subtitle2.fontSize">There was no revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
                   </Box>
                 </>
               )
@@ -330,4 +352,4 @@ const StateDetailCard = props => {
   )
 }
 
-export default StateDetailCard
+export default DetailCard

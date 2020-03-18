@@ -41,4 +41,5 @@ module.exports = Object.freeze({
   GAS: 'Gas',
   COAL: 'Coal',
 
+  TREND_LIMIT: 10,
 })

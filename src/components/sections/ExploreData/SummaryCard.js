@@ -21,15 +21,17 @@ import {
 import MinimizeIcon from '@material-ui/icons/Minimize'
 import CloseIcon from '@material-ui/icons/Close'
 
-import Sparkline from '../data-viz/Sparkline'
+import Sparkline from '../../data-viz/Sparkline'
 
 // import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import utils from '../../js/utils'
+import utils from '../../../js/utils'
 
-import { StoreContext } from '../../store'
+import { StoreContext } from '../../../store'
+
+import CONSTANTS from '../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -110,7 +112,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query StateTrend($state: String!, $year: Int!) {
+  query StateTrend($state: String!, $year: Int!, $period: String!) {
     fiscal_revenue_summary(
       where: { state_or_area: { _eq: $state } }
       order_by: { fiscal_year: asc, state_or_area: asc }
@@ -141,13 +143,13 @@ const APOLLO_QUERY = gql`
       total
     }
 
-    fiscalYears: fiscal_revenue_summary(where: {state_or_area: {_nin: [""]}}, distinct_on: fiscal_year) {
+    period(where: {period: {_ilike: $period }}) {
       fiscal_year
     }
   }
 `
 
-const StateCard = props => {
+const SummaryCard = props => {
   const classes = useStyles()
   const { state } = useContext(StoreContext)
 
@@ -165,7 +167,7 @@ const StateCard = props => {
 
   // let state = props.abbr
   const { loading, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, year: year }
+    variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
   const minimizeIcon = Object.is(props.minimizeIcon, undefined)
     ? false
@@ -176,6 +178,8 @@ const StateCard = props => {
   let sparkData = []
   let sparkMin
   let sparkMax
+  let periodData
+  let fiscalData
   let highlightIndex = 0
   let distinctCommodities = 0
   let topCommodities = []
@@ -235,20 +239,46 @@ const StateCard = props => {
     data.revenue_commodity_summary.length > 0 &&
     data.commodity_sparkdata.length > 0
   ) {
-    sparkData = data.fiscal_revenue_summary.map((item, i) => [
+    // sparkData = data.fiscal_revenue_summary.map((item, i) => [
+    //   item.fiscal_year,
+    //   item.sum
+    // ])
+
+    periodData = data.period
+
+    // set min and max trend years
+    sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
+    sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+
+    fiscalData = data.fiscal_revenue_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
     ])
 
-    sparkMin = data.fiscalYears.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, data.fiscalYears[0].fiscal_year)
-    sparkMax = data.fiscalYears.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, data.fiscalYears[data.fiscalYears.length - 1].fiscal_year)
+    // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
+    sparkData = periodData.map((item, i) => {
+      const sum = fiscalData.find(x => x[0] === item.fiscal_year)
+      return ([
+        item.fiscal_year,
+        sum ? sum[1] : 0
+      ])
+    })
 
-    highlightIndex = data.fiscal_revenue_summary.findIndex(
-      x => x.fiscal_year === year
+    // sparkline index
+    highlightIndex = sparkData.findIndex(
+      x => x[0] === year
     )
-    total = data.fiscal_revenue_summary[highlightIndex].sum
-    distinctCommodities =
-      data.fiscal_revenue_summary[highlightIndex].distinct_commodities
+
+    // highlightIndex = data.fiscal_revenue_summary.findIndex(
+    //   x => x.fiscal_year === year
+    // )
+
+    console.log('data.fiscal_revenue_summary: ', data.fiscal_revenue_summary)
+    total = data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].sum
+    distinctCommodities = data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].distinct_commodities
+
+    console.log('data.revenue_commodity_summary: ', data.revenue_commodity_summary)
+
     topCommodities = data.revenue_commodity_summary
       .map((item, i) => item.commodity)
       .map((com, i) => {
@@ -256,12 +286,11 @@ const StateCard = props => {
         const s = r.map((row, i) => [row.fiscal_year, row.total])
         return { commodity: com, data: s }
       })
+
+    console.log('topCommodities: ', topCommodities)
     // let first_top_commodity = topCommodities[0].data[highlightIndex][1]
     // let dwgh=topCommodities.map((com,i) => {
     // let r = data.commodity_sparkdata.filter( item=> item.commodity==com) let s=r.map((row,i)=>[row.fiscal_year,row.total]) return {com, s}}// )
-
-    sparkMin = sparkData[0][0]
-    sparkMax = sparkData[sparkData.length - 1][0]
 
     return (
       <>
@@ -435,4 +464,4 @@ const StateCard = props => {
   }
 }
 
-export default StateCard
+export default SummaryCard
