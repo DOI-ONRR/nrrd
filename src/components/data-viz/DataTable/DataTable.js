@@ -49,6 +49,9 @@ const useStyles = makeStyles(theme => ({
 const DataTable = ({ dataType, height = '100%' }) => {
   const classes = useStyles()
   const { state } = useContext(DataFilterContext)
+  if (!state) {
+    throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
+  }
 
   const type = dataType || state[DFC.DATA_TYPE]
 

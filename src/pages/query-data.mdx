@@ -1,14 +1,14 @@
 ---
 title: Query Data
 includeToc: false
+includeDataProvider: false
 ---
+<Box mb={4}>
 <Container maxWidth="lg">
-
-# Data Query Tool
-
-<DataTypeToggle helperText={'Select a report type!'} />
+<QueryToolAppBar />
 
 <ContextDisplay params={'?dataType=Revenue'}>
+<Box bgcolor='primary.main' mt={3} mb={3}>
   <Grid container>
    <Grid item xs={12} sm={2}>
       <LandClassSelect />
@@ -35,6 +35,28 @@ includeToc: false
       <YearRangeSelect />
     </Grid>
   </Grid>
+</Box>
+
+<Grid container>
+<Grid item xs={12} sm={3}>
+
+# Revenue
+
+</Grid>
+
+<Grid item xs={12} sm={9}>
+<Grid container justify='flex-end'>
+<Link href='/how-it-works/#revenues' linkType='HowWorks'>How revenue works</Link>
+<Link href='/downloads/#revenues' linkType='DownloadData'>Downloads</Link>
+</Grid>
+
+</Grid>
+<Grid item xs={12}>
+
+---
+
+</Grid>
+</Grid>
 </ContextDisplay>
 <ContextDisplay params={'?dataType=Production'}>
 Production content goes here
@@ -43,5 +65,7 @@ Production content goes here
 Disbursements content goes here
 </ContextDisplay>
 
+
 <DataTable />
 </Container>
+</Box>
