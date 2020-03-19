@@ -259,7 +259,7 @@ const useStyles = makeStyles(theme => ({
   sliderMarkLabel: {
     fontWeight: 'bold',
     top: '28px',
-    color: theme.palette.grey['1000'],
+    color: theme.palette.grey['900'],
     fontSize: '1rem',
   },
   sliderMarkLabelActive: {

@@ -24,7 +24,7 @@ import PieChart from '../../data-viz/PieChart/PieChart.js'
 import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
 
 import Sparkline from '../../data-viz/Sparkline'
-import LandPercent from './Ownership'
+import LandPercent from './LandPercent'
 import Link from '../../Link'
 
 import CONSTANTS from '../../../js/constants'
@@ -259,9 +259,6 @@ const DetailCard = props => {
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
-
-    console.debug('sparkData: ', sparkData)
-    console.debug('hightlightIndex: ', highlightIndex)
   }
 
   return (

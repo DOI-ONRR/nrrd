@@ -180,7 +180,6 @@ const SummaryCard = props => {
   let sparkMax
   let periodData
   let fiscalData
-  let commoditySparkData
   let highlightIndex = 0
   let distinctCommodities = 0
   let topCommodities = []
@@ -240,11 +239,6 @@ const SummaryCard = props => {
     data.revenue_commodity_summary.length > 0 &&
     data.commodity_sparkdata.length > 0
   ) {
-    // sparkData = data.fiscal_revenue_summary.map((item, i) => [
-    //   item.fiscal_year,
-    //   item.sum
-    // ])
-
     periodData = data.period
 
     // set min and max trend years
@@ -265,20 +259,17 @@ const SummaryCard = props => {
       ])
     })
 
+    console.log('sparkData: ', sparkData)
+
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
 
-    console.log('hightlightIndex: ', highlightIndex)
-
-    // highlightIndex = data.fiscal_revenue_summary.findIndex(
-    //   x => x.fiscal_year === year
-    // )
+    console.log('data.fiscal_revenue_summary: ', data.fiscal_revenue_summary)
 
     total = data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].sum
     distinctCommodities = data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].distinct_commodities
-
 
     topCommodities = data.revenue_commodity_summary
       .map((item, i) => item.commodity)
@@ -286,9 +277,9 @@ const SummaryCard = props => {
         const r = data.commodity_sparkdata.filter(item => item.commodity === com)
         const s = r.map((row, i) => [row.fiscal_year, row.total])
         const d = periodData.map((row, i) => {
-          total = s.find(x => x[0] === row.fiscal_year)
+          const t = s.find(x => x[0] === row.fiscal_year)
           return (
-            [row.fiscal_year, total ? total[1] : 0]
+            [row.fiscal_year, t ? t[1] : 0]
           )
         })
         return { commodity: com, data: d }
