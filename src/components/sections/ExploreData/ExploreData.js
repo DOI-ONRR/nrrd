@@ -124,8 +124,10 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '100%',
     order: '3',
     height: 575,
+    minHeight: 575,
     '@media (max-width: 768px)': {
       height: 350,
+      minHeight: 350,
     },
   },
   cardContainer: {

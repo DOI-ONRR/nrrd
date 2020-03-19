@@ -158,25 +158,36 @@ const APOLLO_QUERY = gql`
   }
 `
 
-const StateIcon = props => {
+const nonStateOrCountyCards = [
+  CONSTANTS.NATIONWIDE_FEDERAL,
+  CONSTANTS.NATIVE_AMERICAN
+]
+
+const CardTitle = props => {
   const classes = useStyles()
 
   const stateTitle = props.stateTitle
-  const stateAbbr = props.stateAbbr
+  const stateAbbr = props.state ? props.state : props.stateAbbr
+  const isCounty = props.stateAbbr > 2
+  let cardTitle = `${ props.stateTitle }`
+
+  if (isCounty && !nonStateOrCountyCards.includes(stateTitle)) {
+    cardTitle = `${ stateTitle }, ${ stateAbbr }`
+  }
 
   let svgImg
-  if (stateTitle === 'Nationwide Federal' || stateTitle === 'Native American') {
+  if (nonStateOrCountyCards.includes(stateTitle)) {
     svgImg = <IconMap className={classes.usLocationIcon} alt="US Icon" />
   }
   else {
-    svgImg = (stateAbbr.length === 2) ? <img src={`/maps/states/${ stateAbbr }.svg`} alt={`${ stateAbbr } State Icon`} className={classes.cardLocationIcon} /> : ''
+    svgImg = (!isCounty) ? <img src={`/maps/states/${ stateAbbr }.svg`} alt={`${ stateAbbr } State Icon`} className={classes.cardLocationIcon} /> : ''
   }
 
   return (
     <div className={classes.detailCardHeaderContent}>
       {svgImg}
       <span>
-        {props.stateTitle}
+        {cardTitle}
         <LandPercent stateAbbr={stateAbbr} />
       </span>
     </div>
@@ -256,7 +267,7 @@ const DetailCard = props => {
   return (
     <Card className={`${ classes.root } ${ props.cardCountClass }`}>
       <CardHeader
-        title={<StateIcon stateTitle={props.cardTitle} stateAbbr={stateAbbr} state={props.state} />}
+        title={<CardTitle stateTitle={props.cardTitle} stateAbbr={stateAbbr} state={props.state} />}
         action={<CloseIcon
           className={classes.closeIcon}
           onClick={(e, i) => {

@@ -27,6 +27,7 @@ module.exports = Object.freeze({
   FEDERAL_OFFSHORE: 'Federal offshore',
   FEDERAL_ONSHORE: 'Federal onshore',
   NATIVE_AMERICAN: 'Native American',
+  NATIONWIDE_FEDERAL: 'Nationwide Federal',
   OFFSHORE: 'Offshore',
   ONSHORE: 'Onshore',
   FEDERAL: 'Federal',
