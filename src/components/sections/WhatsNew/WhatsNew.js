@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import Link from '../../../components/Link'
 
 import {
   Box,
@@ -46,7 +46,7 @@ const WhatsNew = props => {
           </ListItemIcon>
           <ListItemText>
             Added supporting information about{' '}
-            <Link to="https://revenuedata.doi.gov/how-it-works/reclamation-fund/">
+            <Link href='/how-it-works/reclamation-fund/'>
               Reclamation Fund disbursements
             </Link>
           </ListItemText>
@@ -54,10 +54,9 @@ const WhatsNew = props => {
       </List>
       <Typography variant="body1">
             Review our{' '}
-        <a href="https://github.com/ONRR/doi-extractives-data/releases">
+        <Link href='https://github.com/ONRR/doi-extractives-data/releases'>
               full release details
-        </a>
-            .
+        </Link>.
       </Typography>
     </Box>
 

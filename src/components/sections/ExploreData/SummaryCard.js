@@ -259,14 +259,10 @@ const SummaryCard = props => {
       ])
     })
 
-    console.log('sparkData: ', sparkData)
-
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
-
-    console.log('data.fiscal_revenue_summary: ', data.fiscal_revenue_summary)
 
     total = data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].sum
     distinctCommodities = data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].distinct_commodities
