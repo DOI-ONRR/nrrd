@@ -32,7 +32,7 @@ const Sparkline = props => {
     const width = 70
     const height = 20
     const x = d3.scaleLinear().range([0, width - 3])
-    const y = d3.scaleLinear().range([height - 3, 0])
+    const y = d3.scaleLinear().range([height - 3, 4])
     const line = d3.line()
       .curve(d3.curveCardinal)
       .x(function (d) {
