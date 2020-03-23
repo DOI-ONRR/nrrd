@@ -17,6 +17,8 @@ const reducer = (state, action) => {
     return ({ ...state, countyLevel: payload.countyLevel })
   case 'OFFSHORE':
     return ({ ...state, offShore: payload.offshore })
+  case 'DATA_TYPE':
+    return ({ ...state, dataType: payload.dataType })
   case 'MAP_ZOOM':
     return ({ ...state, mapX: payload.mapX, mapY: payload.mapY, mapZoom: payload.mapZoom })
   default:
@@ -28,6 +30,7 @@ const initialState = {
   cards: [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', minimizeIcon: false, closeIcon: true }],
   count: 0,
   countyLevel: false,
+  dataType: 'Revenue',
   mapX: 0,
   mapY: 0,
   mapZoom: 0.75,

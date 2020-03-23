@@ -2,17 +2,20 @@ import React, { useContext, useState } from 'react'
 import { navigate } from '@reach/router'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
+import {
+  Box,
+  Menu,
+  MenuItem,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton
+} from '@material-ui/core'
 
-import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 import { StoreContext } from '../../../store'
+import MapSelectControl from './MapSelectControl'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -99,129 +102,21 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// Map Level select
-const MapLevel = props => {
-  const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
+const MAP_DATA_TYPE_SELECT_OPTIONS = [
+  'Revenue',
+  'Disbursements',
+  'Production'
+]
 
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [selectedIndex, setSelectedIndex] = useState(0)
+const MAP_LEVEL_OPTIONS = [
+  'State',
+  'County'
+]
 
-  const options = [
-    'State',
-    'County'
-  ]
-
-  const handleClickListItem = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleMenuItemClick = (event, i) => {
-    setSelectedIndex(i)
-    setAnchorEl(null)
-
-    dispatch({ type: 'COUNTY_LEVEL', payload: { countyLevel: i === 1 } })
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  return (
-    <div className={classes.mapMenuRoot}>
-      <List component="nav" aria-label="Map levels">
-        <ListItem
-          button
-          aria-haspopup="true"
-          aria-controls="map-levels-menu"
-          aria-label="Map levels menu"
-          onClick={handleClickListItem}
-        >
-          <ListItemText primary="Map level" secondary={options[selectedIndex]} />
-        </ListItem>
-      </List>
-      <Menu
-        id="map-levels-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {options.map((option, index) => (
-          <MenuItem
-            key={option}
-            selected={index === selectedIndex}
-            onClick={event => handleMenuItemClick(event, index)}
-          >
-            {option}
-          </MenuItem>
-        ))}
-      </Menu>
-    </div>
-  )
-}
-
-// Map Offshore select
-const MapOffshore = props => {
-  const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
-
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [selectedIndex, setSelectedIndex] = useState(0)
-
-  const options = [
-    'Off',
-    'On'
-  ]
-
-  const handleClickListItem = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleMenuItemClick = (event, i) => {
-    setSelectedIndex(i)
-    setAnchorEl(i)
-
-    dispatch({ type: 'OFFSHORE', payload: { offshore: i === 1 } })
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  return (
-    <div className={classes.mapMenuRoot}>
-      <List component="nav" aria-label="Offshore data menu">
-        <ListItem
-          button
-          aria-haspopup="true"
-          aria-controls="offshore-data-menu"
-          aria-label="Offshore data menu"
-          onClick={handleClickListItem}
-        >
-          <ListItemText primary="Offshore data" secondary={options[selectedIndex]} />
-        </ListItem>
-      </List>
-      <Menu
-        id="offshore-data-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {options.map((option, index) => (
-          <MenuItem
-            key={option}
-            selected={index === selectedIndex}
-            onClick={event => handleMenuItemClick(event, index)}
-          >
-            {option}
-          </MenuItem>
-        ))}
-      </Menu>
-    </div>
-  )
-}
+const MAP_OFFSHORE_SELECT_OPTIONS = [
+  'Off',
+  'On'
+]
 
 // Map explore menu speed dial
 const MapExploreMenu = props => {
@@ -267,8 +162,21 @@ const ExploreDataToolbar = props => {
   return (
     <Box className={classes.toolbar}>
       <Box className={classes.toolbarControls}>
-        <MapLevel onChange={props.handleChange} />
-        <MapOffshore onChange={props.handleChange} />
+        <MapSelectControl
+          options={MAP_DATA_TYPE_SELECT_OPTIONS}
+          label="Data type"
+          payload={{ type: 'DATA_TYPE', payload: { dataType: 'Revenue' } }} />
+
+        <MapSelectControl
+          options={MAP_LEVEL_OPTIONS}
+          label="Map level"
+          payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: false } }} />
+
+        <MapSelectControl
+          options={MAP_OFFSHORE_SELECT_OPTIONS}
+          label="Offshore data"
+          payload={{ type: 'OFFSHORE_DATA', payload: { offshoreData: false } }} />
+
         <MapExploreMenu
           linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
           linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
