@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 import { navigate } from '@reach/router'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -6,16 +7,13 @@ import {
   Box,
   Menu,
   MenuItem,
-  List,
-  ListItem,
-  ListItemText,
   IconButton
 } from '@material-ui/core'
 
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
-import { StoreContext } from '../../../store'
 import MapSelectControl from './MapSelectControl'
+import CONSTANTS from '../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -118,11 +116,21 @@ const MAP_OFFSHORE_SELECT_OPTIONS = [
   'On'
 ]
 
+// const MAP_TIMEFRAME_OPTIONS = [
+//   CONSTANTS.YEARLY,
+//   CONSTANTS.MONTHLY
+// ]
+
+const MAP_PERIOD_OPTIONS = [
+  CONSTANTS.CALENDAR_YEAR,
+  CONSTANTS.FISCAL_YEAR,
+  CONSTANTS.MONTHLY
+]
+
 // Map explore menu speed dial
 const MapExploreMenu = props => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
-
   const handleMenuClick = event => {
     setAnchorEl(event.currentTarget)
   }
@@ -158,7 +166,18 @@ const MapExploreMenu = props => {
 
 // Explore data toolbar
 const ExploreDataToolbar = props => {
+  const data = useStaticQuery(graphql`
+    query CommodityQuery {
+      onrr {
+        commodity(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
+          commodity
+        }
+      }
+    }
+  `)
+  const commodityOptions = data.onrr.commodity.map(item => item.commodity)
   const classes = useStyles()
+
   return (
     <Box className={classes.toolbar}>
       <Box className={classes.toolbarControls}>
@@ -170,12 +189,28 @@ const ExploreDataToolbar = props => {
         <MapSelectControl
           options={MAP_LEVEL_OPTIONS}
           label="Map level"
-          payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: false } }} />
+          payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: 'State', prop1: 'prop1 value', prop2: 'prop2 value' } }} />
 
         <MapSelectControl
           options={MAP_OFFSHORE_SELECT_OPTIONS}
           label="Offshore data"
-          payload={{ type: 'OFFSHORE_DATA', payload: { offshoreData: false } }} />
+          payload={{ type: 'OFFSHORE_DATA', payload: { offshoreData: 'Off' } }} />
+
+        {/* <MapSelectControl
+          options={MAP_TIMEFRAME_OPTIONS}
+          label="Timeframe"
+          payload={{ type: 'TIMEFRAME', payload: { timeframe: MAP_TIMEFRAME_OPTIONS.YEARLY } }} /> */}
+
+        <MapSelectControl
+          options={MAP_PERIOD_OPTIONS}
+          label="Period"
+          payload={{ type: 'PERIOD', payload: { period: MAP_PERIOD_OPTIONS.CALENDAR_YEAR } }} />
+
+        <MapSelectControl
+          options={commodityOptions}
+          label="Commodity"
+          checkbox
+          payload={{ type: 'COMMODITY', payload: { commodity: '' } }} />
 
         <MapExploreMenu
           linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}

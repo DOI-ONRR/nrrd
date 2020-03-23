@@ -7,7 +7,9 @@ import {
   MenuItem,
   List,
   ListItem,
-  ListItemText
+  ListItemIcon,
+  ListItemText,
+  Checkbox
 } from '@material-ui/core'
 
 import { StoreContext } from '../../../store'
@@ -55,54 +57,142 @@ const MapSelectControl = props => {
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [checked, setChecked] = React.useState([0])
+  const [selectAll, setSelectAll] = useState(true)
+
+  const handleToggle = value => () => {
+    const currentIndex = checked.indexOf(value)
+    const newChecked = [...checked]
+    if (currentIndex === -1) {
+      newChecked.push(value)
+    }
+    else {
+      newChecked.splice(currentIndex, 1)
+    }
+    setChecked(newChecked)
+  }
 
   const handleClickListItem = event => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleMenuItemClick = (event, i) => {
+  const handleMenuItemClick = (event, i, option) => {
     setSelectedIndex(i)
     setAnchorEl(i)
     // TODO: finish setting up how the payload gets handled
-    dispatch(payload)
+    const keys = Object.keys(payload.payload)
+    dispatch({ type: payload.type, payload: { [keys[0]]: option } })
+
+    if (props.checkbox) {
+      handleToggle(option)
+    }
   }
 
   const handleClose = () => {
     setAnchorEl(null)
   }
 
-  return (
-    <div {...rest} className={classes.mapMenuRoot}>
-      <List component="nav" aria-label={`${ label } data menu`}>
-        <ListItem
-          button
-          aria-haspopup="true"
-          aria-controls={`${ label }-data-menu`}
-          aria-label={`${ label } data menu`}
-          onClick={handleClickListItem}
-        >
-          <ListItemText primary={label} secondary={options[selectedIndex]} />
-        </ListItem>
-      </List>
-      <Menu
-        id={`${ label }-data-menu`}
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {options.map((option, index) => (
-          <MenuItem
-            key={option}
-            selected={index === selectedIndex}
-            onClick={event => handleMenuItemClick(event, index)}
+  const toggleSelectAll = () => {
+    setSelectAll(!selectAll)
+  }
+
+  // Select menu list with checkboxes
+  if (props.checkbox) {
+    return (
+      <div className={classes.mapMenuRoot}>
+        <List component="nav" aria-label={`${ label } data menu`}>
+          <ListItem
+            button
+            aria-haspopup="true"
+            aria-controls={`${ label }-data-menu`}
+            aria-label={`${ label } data menu`}
+            onClick={handleClickListItem}
           >
-            {option}
-          </MenuItem>
-        ))}
-      </Menu>
-    </div>
-  )
+            <ListItemText primary={label} secondary={options[selectedIndex]} />
+          </ListItem>
+        </List>
+        <Menu
+          id={`${ label }-data-menu`}
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <List>
+            <ListItem key={0} role={undefined} dense button onClick={toggleSelectAll}>
+              <ListItemIcon>
+                <Checkbox
+                  edge="start"
+                  checked={selectAll}
+                  tabIndex={-1}
+                  disableRipple
+                  onClick={toggleSelectAll}
+                  inputProps={{ 'aria-labelledby': 'selectAll' }}
+                />
+              </ListItemIcon>
+              <ListItemText id="selectAll" primary={selectAll ? 'Select none' : 'Select all'} />
+            </ListItem>
+            {options.map((option, index) => {
+              const labelId = `checkbox-list-label-${ option }`
+
+              return (
+                <ListItem key={index + 1} role={undefined} dense button onClick={handleToggle(option)}>
+                  <ListItemIcon>
+                    <Checkbox
+                      edge="start"
+                      checked={checked.indexOf(option) !== -1}
+                      tabIndex={0}
+                      disableRipple
+                      inputProps={{ 'aria-labelledby': labelId }}
+                    />
+                  </ListItemIcon>
+                  <ListItemText id={labelId} primary={option} />
+                </ListItem>
+              )
+            })}
+          </List>
+        </Menu>
+      </div>
+    )
+  }
+  else {
+    return (
+      <div {...rest} className={classes.mapMenuRoot}>
+        <List component="nav" aria-label={`${ label } data menu`}>
+          <ListItem
+            button
+            aria-haspopup="true"
+            aria-controls={`${ label }-data-menu`}
+            aria-label={`${ label } data menu`}
+            onClick={handleClickListItem}
+          >
+            <ListItemText primary={label} secondary={options[selectedIndex]} />
+          </ListItem>
+        </List>
+        <Menu
+          id={`${ label }-data-menu`}
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          {options.map((option, index) => {
+            return (
+              <MenuItem
+                key={option}
+                value={option}
+                selected={index === selectedIndex}
+                onClick={event => handleMenuItemClick(event, index, option)}
+              >
+                {option}
+              </MenuItem>
+            )
+          })
+          }
+        </Menu>
+      </div>
+    )
+  }
 }
 
 MapSelectControl.propTypes = {

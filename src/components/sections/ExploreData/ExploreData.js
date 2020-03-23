@@ -21,6 +21,7 @@ import {
   Menu,
   MenuItem,
   Snackbar,
+  LinearProgress,
   useMediaQuery
 } from '@material-ui/core'
 
@@ -443,7 +444,10 @@ const useStyles = makeStyles(theme => ({
   },
   autoCompleteFocused: {
     color: theme.palette.primary.dark,
-  }
+  },
+  linearProgress: {
+    backgroundColor: theme.palette.primary.dark,
+  },
 }))
 
 // get region details from map object
@@ -815,7 +819,7 @@ const ExploreData = () => {
     setSnackbarState({ ...snackbarState, open: false })
   }
 
-  const location = state.countyLevel ? 'County' : 'State'
+  const location = state.countyLevel === 'County' ? 'County' : 'State'
 
   const onLink = state => {
     setMapK(k)
@@ -882,7 +886,7 @@ const ExploreData = () => {
 
   let mapData = [[]]
 
-  if (loading) return 'Loading...'
+  if (loading) return <LinearProgress classes={{ root: classes.linearProgress }} />
   if (error) return `Error loading revenue data table ${ error.message }`
 
   if (data) {
@@ -900,7 +904,7 @@ const ExploreData = () => {
               <Box className={classes.mapContainer}>
                 <MapToolbar onChange={handleChange} />
                 <Map
-                  mapFeatures={state.countyLevel ? 'counties' : 'states'}
+                  mapFeatures={state.countyLevel === 'County' ? 'counties' : 'states'}
                   mapJsonObject={mapJson}
                   mapData={mapData}
                   minColor="#CDE3C3"
