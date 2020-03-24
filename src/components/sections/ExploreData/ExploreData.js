@@ -46,7 +46,7 @@ import mapStatesOffshore from './states-offshore.json'
 
 import { select } from 'd3'
 import LineChart from '../../data-viz/LineChart/LineChart.js'
-// import  mapJson from './us.t2.json'
+import  mapJson from './us-topology.json'
 
 // import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
 
@@ -825,16 +825,19 @@ const ExploreData = () => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    console.debug('onLink:', state)
 
-    const fips = state.properties ? state.properties.FIPS : state.fips
+    let fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
+    if (fips === undefined) {
+      fips = state.id
+    }
+    
     let stateAbbr
     let abbr
 
     if (fips && fips.length > 2) {
       abbr = fips
-      stateAbbr = state.properties.statexs
+      stateAbbr = state.properties.state ? state.properties.state :  state.properties.region
     }
     else {
       abbr = state.properties ? state.properties.abbr : state.abbr
@@ -898,11 +901,6 @@ const ExploreData = () => {
       item.state_or_area,
       item.sum
     ])
-    console.debug("countiesJSON  ",mapCounties  )
-    console.debug("statesJSON  ",mapStates)
-    console.debug("county with offshore JSON  ", mapCountiesOffshore )
-    console.debug("states with offshore JSON  ", mapStatesOffshore )
-    console.debug("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSTATE: ", state)
     
     if (state.countyLevel) {
       if (state.offShore) {

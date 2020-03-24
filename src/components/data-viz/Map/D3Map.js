@@ -179,7 +179,6 @@ export default class d3Map {
 
     const g = _chart.append('g')
     _chart.call(zoom)
-    console.debug("USSSSSSSSSSSSSSSSSSSSSSSSSS", us)
     g.selectAll('path')
       .data(topojson.feature(us, us.objects[mapFeatures]).features)
       .join('path')
