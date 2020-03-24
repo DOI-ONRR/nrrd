@@ -1,3 +1,4 @@
+
 import React, { useState, useContext, useEffect, useRef } from 'react'
 // import { Link } from "gatsby"
 
@@ -37,6 +38,14 @@ import StateCard from '../../layouts/StateCard'
 
 import { StoreContext } from '../../../store'
 import mapJson from './us-topology.json'
+import allJson from './all-topo.json'
+import offshoreJson from './offshore.json'
+import mapCounties from './counties.json'
+import mapStates from './states.json'
+import mapCountiesOffshore from './counties-offshore.json'
+import mapStatesOffshore from './states-offshore.json'
+
+
 import { useMediaQuery } from '@material-ui/core'
 import { select } from 'd3'
 // import  mapJson from './us.t2.json'
@@ -55,7 +64,7 @@ export const STATIC_QUERY = graphql`
 
 const FISCAL_REVENUE_QUERY = gql`
   query FiscalRevenue($year: Int!, $location: String!) {
-    fiscal_revenue_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location } }) {
+    fiscal_revenue_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }}) {
       fiscal_year
       state_or_area
       sum
@@ -498,6 +507,7 @@ const AddLocationCard = props => {
   }
 
   const handleChange = val => {
+    
     if (val) {
       const item = getRegionProperties(val.location_id)[0]
       props.onLink(item)
@@ -821,13 +831,43 @@ const ExploreData = () => {
   }
 
   if (error) return `Error! ${ error.message }`
-
+  let mapJsonObject = mapStates
+  let mapFeatures='states-geo'
+ 
   if (data) {
     mapData = data.fiscal_revenue_summary.map((item, i) => [
       item.state_or_area,
       item.sum
     ])
+    console.debug("countiesJSON  ",mapCounties  )
+    console.debug("statesJSON  ",mapStates)
+    console.debug("county with offshore JSON  ", mapCountiesOffshore )
+    console.debug("states with offshore JSON  ", mapStatesOffshore )
+    console.debug("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSTATE: ", state)
+    
+    if (state.countyLevel) {
+      if (state.offShore) {
+        mapJsonObject=mapCountiesOffshore
+        mapFeatures='counties-offshore-geo'
+      }
+      else {
+        mapJsonObject=mapCounties
+        mapFeatures='counties-geo'
+      }
+    }
+    else  {
+      if (state.offShore) {
+        mapJsonObject=mapStatesOffshore
+        mapFeatures='states-offshore-geo'
+      }
+      else {
+        mapJsonObject=mapStates
+        mapFeatures='states-geo'
+      }
+    } 
   }
+  
+  
   if (mapData) {
     // const timeout = 5000
     return (
@@ -838,8 +878,8 @@ const ExploreData = () => {
               <Box className={classes.mapContainer}>
                 <MapToolbar onChange={handleChange} />
                 <Map
-                  mapFeatures={state.countyLevel ? 'counties' : 'states'}
-                  mapJsonObject={mapJson}
+                  mapFeatures={mapFeatures}
+                  mapJsonObject={mapJsonObject}
                   mapData={mapData}
                   minColor="#CDE3C3"
                   maxColor="#2F4D26"
