@@ -260,7 +260,7 @@ const useStyles = makeStyles(theme => ({
   sliderMarkLabel: {
     fontWeight: 'bold',
     top: '28px',
-    color: theme.palette.grey['900'],
+    color: theme.palette.primary.dark,
     fontSize: '1rem',
   },
   sliderMarkLabelActive: {
@@ -304,7 +304,7 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(0deg)',
     fontSize: '1rem',
     cursor: 'pointer',
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.links.default,
     color: theme.palette.primary.contrastText,
     '& span': {
       width: 60,
@@ -312,7 +312,7 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 0,
       textAlign: 'center',
       color: `${ theme.palette.common.white } !important`,
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: theme.palette.links.default,
     },
   },
   contentWrapper: {

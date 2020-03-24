@@ -15,6 +15,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import MapSelectControl from './MapSelectControl'
 import CONSTANTS from '../../../js/constants'
 
+import { StoreContext } from '../../../store'
+
 const useStyles = makeStyles(theme => ({
   toolbar: {
     paddingTop: theme.spacing(0),
@@ -131,6 +133,7 @@ const MAP_PERIOD_OPTIONS = [
 const MapExploreMenu = props => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
+
   const handleMenuClick = event => {
     setAnchorEl(event.currentTarget)
   }
@@ -178,6 +181,9 @@ const ExploreDataToolbar = props => {
   const commodityOptions = data.onrr.commodity.map(item => item.commodity)
   const classes = useStyles()
 
+  const { state, dispatch } = useContext(StoreContext)
+  const dataType = state.dataType
+
   return (
     <Box className={classes.toolbar}>
       <Box className={classes.toolbarControls}>
@@ -206,11 +212,13 @@ const ExploreDataToolbar = props => {
           label="Period"
           payload={{ type: 'PERIOD', payload: { period: MAP_PERIOD_OPTIONS.CALENDAR_YEAR } }} />
 
-        <MapSelectControl
-          options={commodityOptions}
-          label="Commodity"
-          checkbox
-          payload={{ type: 'COMMODITY', payload: { commodity: '' } }} />
+        {(dataType !== 'Disbursements') && 
+          <MapSelectControl
+            options={commodityOptions}
+            label="Commodity"
+            checkbox
+            payload={{ type: 'COMMODITY', payload: { commodity: '' } }} />
+        }
 
         <MapExploreMenu
           linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}

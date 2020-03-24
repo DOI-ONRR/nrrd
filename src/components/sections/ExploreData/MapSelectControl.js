@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -11,6 +11,8 @@ import {
   ListItemText,
   Checkbox
 } from '@material-ui/core'
+
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 
 import { StoreContext } from '../../../store'
 
@@ -46,7 +48,20 @@ const useStyles = makeStyles(theme => ({
       paddingTop: 0,
       paddingBottom: 0,
     }
-  }
+  },
+  menuIcon: {
+    color: theme.palette.links.default,
+    position: 'relative',
+    top: -8,
+  },
+  listItemTextPrimary: {
+    color: theme.palette.grey[700],
+    fontSize: theme.typography.h5.fontSize,
+  },
+  listItemTextSecondary: {
+    color: theme.palette.grey[900],
+    fontWeight: 'bold',
+  },
 }))
 
 const MapSelectControl = props => {
@@ -59,6 +74,21 @@ const MapSelectControl = props => {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [checked, setChecked] = React.useState([0])
   const [selectAll, setSelectAll] = useState(true)
+
+  const checkedItemsToDisplay = [...checked]
+
+  useEffect(() => {
+    setChecked(options)
+  }, [])
+
+  useEffect(() => {
+    if (!selectAll) {
+      setChecked([])
+    }
+    else {
+      setChecked(options)
+    }
+  }, [selectAll])
 
   const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value)
@@ -108,7 +138,14 @@ const MapSelectControl = props => {
             aria-label={`${ label } data menu`}
             onClick={handleClickListItem}
           >
-            <ListItemText primary={label} secondary={options[selectedIndex]} />
+            { /* Output checked list to comma seperated items with ellipsis at the end */ }
+            <ListItemText
+              primary={label}
+              secondary={selectAll ? 'All' : checkedItemsToDisplay.join(', ').replace(/, ([^,]*)$/, '...') || 'None' }
+              classes={{ primary: classes.listItemTextPrimary, secondary: classes.listItemTextSecondary }} />
+            <ListItemIcon>
+              <KeyboardArrowDownIcon classes={{ root: classes.menuIcon }} />
+            </ListItemIcon>
           </ListItem>
         </List>
         <Menu
@@ -126,7 +163,6 @@ const MapSelectControl = props => {
                   checked={selectAll}
                   tabIndex={-1}
                   disableRipple
-                  onClick={toggleSelectAll}
                   inputProps={{ 'aria-labelledby': 'selectAll' }}
                 />
               </ListItemIcon>
@@ -136,12 +172,12 @@ const MapSelectControl = props => {
               const labelId = `checkbox-list-label-${ option }`
 
               return (
-                <ListItem key={index + 1} role={undefined} dense button onClick={handleToggle(option)}>
+                <ListItem key={index} role={undefined} dense button onClick={handleToggle(option)}>
                   <ListItemIcon>
                     <Checkbox
                       edge="start"
                       checked={checked.indexOf(option) !== -1}
-                      tabIndex={0}
+                      tabIndex={-1}
                       disableRipple
                       inputProps={{ 'aria-labelledby': labelId }}
                     />
@@ -166,7 +202,13 @@ const MapSelectControl = props => {
             aria-label={`${ label } data menu`}
             onClick={handleClickListItem}
           >
-            <ListItemText primary={label} secondary={options[selectedIndex]} />
+            <ListItemText
+              primary={label}
+              secondary={options[selectedIndex]}
+              classes={{ primary: classes.listItemTextPrimary, secondary: classes.listItemTextSecondary }} />
+            <ListItemIcon>
+              <KeyboardArrowDownIcon classes={{ root: classes.menuIcon }} />
+            </ListItemIcon>
           </ListItem>
         </List>
         <Menu
