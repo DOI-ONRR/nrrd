@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react'
+
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
@@ -36,17 +37,17 @@ import DetailCard from './DetailCard'
 import SummaryCard from './SummaryCard'
 
 import { StoreContext } from '../../../store'
-
 import utils from '../../../js/utils'
-
 import CONSTANTS from '../../../js/constants'
+
 import mapCounties from './counties.json'
 import mapStates from './states.json'
 import mapCountiesOffshore from './counties-offshore.json'
 import mapStatesOffshore from './states-offshore.json'
+
 import { select } from 'd3'
 import LineChart from '../../data-viz/LineChart/LineChart.js'
-import mapJson from './us-topology.json'
+import  mapJson from './us-topology.json'
 
 // import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
 
@@ -528,6 +529,7 @@ const AddLocationCard = props => {
   }
 
   const handleChange = val => {
+    
     if (val) {
       const item = getRegionProperties(val.location_id)[0]
       props.onLink(item)
@@ -828,18 +830,14 @@ const ExploreData = () => {
     setMapY(y)
     setMapX(x)
 
-    const fips = state.properties ? state.properties.FIPS : state.fips
+    let fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
-    if (fips === undefined) {
-      fips = state.id
-    }
-
     let stateAbbr
     let abbr
 
     if (fips && fips.length > 2) {
       abbr = fips
-      stateAbbr = state.properties.state ? state.properties.state : state.properties.region
+      stateAbbr = state.properties.state
     }
     else {
       abbr = state.properties ? state.properties.abbr : state.abbr
@@ -895,34 +893,37 @@ const ExploreData = () => {
   if (error) return `Error! ${ error.message }`
 
   let mapJsonObject = mapStates
-  let mapFeatures = 'states-geo'
+  let mapFeatures='states-geo'
 
   if (data) {
     mapData = data.fiscal_revenue_summary.map((item, i) => [
       item.state_or_area,
       item.sum
     ])
+    
     if (state.countyLevel) {
       if (state.offShore) {
-        mapJsonObject = mapCountiesOffshore
-        mapFeatures = 'counties-offshore-geo'
+        mapJsonObject=mapCountiesOffshore
+        mapFeatures='counties-offshore-geo'
       }
       else {
-        mapJsonObject = mapCounties
-        mapFeatures = 'counties-geo'
+        mapJsonObject=mapCounties
+        mapFeatures='counties-geo'
       }
     }
-    else {
+    else  {
       if (state.offShore) {
-        mapJsonObject = mapStatesOffshore
-        mapFeatures = 'states-offshore-geo'
+        mapJsonObject=mapStatesOffshore
+        mapFeatures='states-offshore-geo'
       }
       else {
-        mapJsonObject = mapStates
-        mapFeatures = 'states-geo'
+        mapJsonObject=mapStates
+        mapFeatures='states-geo'
       }
-    }
+    } 
   }
+  
+  
   if (mapData) {
     return (
       <>
