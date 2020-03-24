@@ -181,8 +181,8 @@ const MapOffshore = props => {
   const handleMenuItemClick = (event, i) => {
     setSelectedIndex(i)
     setAnchorEl(i)
-
-    dispatch({ type: 'OFFSHORE', payload: { offshore: i === 1 } })
+    console.debug("map offshore ", event, i)
+    dispatch({ type: 'OFFSHORE', payload: { offShore: i === 1 } })
   }
 
   const handleClose = () => {
