@@ -37,9 +37,7 @@ import StateDetailCard from './StateDetailCard'
 import StateCard from '../../layouts/StateCard'
 
 import { StoreContext } from '../../../store'
-import mapJson from './us-topology.json'
-import allJson from './all-topo.json'
-import offshoreJson from './offshore.json'
+
 import mapCounties from './counties.json'
 import mapStates from './states.json'
 import mapCountiesOffshore from './counties-offshore.json'
@@ -63,7 +61,7 @@ export const STATIC_QUERY = graphql`
 `
 
 const FISCAL_REVENUE_QUERY = gql`
-  query FiscalRevenue($year: Int!, $location: String!) {
+  query FiscalRevenue($year: Int!) {
     fiscal_revenue_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }}) {
       fiscal_year
       state_or_area
@@ -819,7 +817,7 @@ const ExploreData = () => {
   }
 
   const { loading, error, data } = useQuery(FISCAL_REVENUE_QUERY, {
-    variables: { year, location }
+    variables: { year }
   })
   // const cache = [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
   //  cache.map((year, i) => {
