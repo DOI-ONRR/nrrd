@@ -1,15 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { fetchDataFilterFromUrl } from '../../../../js/utils'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC, DATA_TYPES } from '../../../../constants'
 
 import {
   Grid,
   FormControl,
-  FormHelperText,
-  InputLabel
+  FormHelperText
 } from '@material-ui/core'
 
 import {
@@ -18,13 +16,6 @@ import {
 } from '@material-ui/lab'
 
 const DataTypeToggle = ({ helperText }) => {
-  const [urlParams] = useState(fetchDataFilterFromUrl())
-  useEffect(() => {
-    if (Object.keys(urlParams).length > 0) {
-      updateDataFilter(urlParams)
-    }
-  }, [urlParams])
-
   const { state, updateDataFilter } = useContext(DataFilterContext)
   const handleChange = (event, newDataType) => {
     updateDataFilter({ ...state, [DFC.DATA_TYPE]: newDataType })

@@ -5,9 +5,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import DefaultLayout from '../DefaultLayout'
+import DataFilterProviderWrapper from '../../DataFilterProviderWrapper'
 import PatternLibraryLayout from '../PatternLibraryLayout'
-
-import DataFilterProvider from '../../../stores/data-filter-store'
 
 const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
@@ -18,12 +17,14 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   if (layout === 'pattern-library') {
     return <PatternLibraryLayout>{children}</PatternLibraryLayout>
   }
-
+  console.log(children)
   if (includeDataProvider) {
     return (
-      <DataFilterProvider>
-        <DefaultLayout includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>{children}</DefaultLayout>
-      </DataFilterProvider>
+      <DefaultLayout includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
+        <DataFilterProviderWrapper>
+          {children}
+        </DataFilterProviderWrapper>
+      </DefaultLayout>
     )
   }
 
