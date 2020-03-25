@@ -16,7 +16,7 @@ const reducer = (state, action) => {
   case 'COUNTY_LEVEL':
     return ({ ...state, countyLevel: payload.countyLevel })
   case 'OFFSHORE_DATA':
-    return ({ ...state, offShoreData: payload.offshoreData })
+    return ({ ...state, offshoreData: payload.offshoreData })
   case 'DATA_TYPE':
     return ({ ...state, dataType: payload.dataType })
   case 'MAP_ZOOM':

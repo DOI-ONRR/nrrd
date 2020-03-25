@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Menu,
   MenuItem,
@@ -68,6 +68,7 @@ const MapSelectControl = props => {
   const { options, label, payload, ...rest } = props
 
   const classes = useStyles()
+  const theme = useTheme()
   const { state, dispatch } = useContext(StoreContext)
 
   const [anchorEl, setAnchorEl] = useState(null)
@@ -116,6 +117,8 @@ const MapSelectControl = props => {
     if (props.checkbox) {
       handleToggle(option)
     }
+
+    handleClose()
   }
 
   const handleClose = () => {
@@ -164,6 +167,7 @@ const MapSelectControl = props => {
                   tabIndex={-1}
                   disableRipple
                   inputProps={{ 'aria-labelledby': 'selectAll' }}
+                  style={{ color: theme.palette.links.default }}
                 />
               </ListItemIcon>
               <ListItemText id="selectAll" primary={selectAll ? 'Select none' : 'Select all'} />
@@ -180,6 +184,7 @@ const MapSelectControl = props => {
                       tabIndex={-1}
                       disableRipple
                       inputProps={{ 'aria-labelledby': labelId }}
+                      style={{ color: theme.palette.links.default }}
                     />
                   </ListItemIcon>
                   <ListItemText id={labelId} primary={option} />

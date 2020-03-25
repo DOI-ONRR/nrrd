@@ -47,7 +47,7 @@ import mapStatesOffshore from './states-offshore.json'
 
 import { select } from 'd3'
 import LineChart from '../../data-viz/LineChart/LineChart.js'
-import  mapJson from './us-topology.json'
+import mapJson from './us-topology.json'
 
 // import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
 
@@ -529,7 +529,6 @@ const AddLocationCard = props => {
   }
 
   const handleChange = val => {
-    
     if (val) {
       const item = getRegionProperties(val.location_id)[0]
       props.onLink(item)
@@ -749,6 +748,7 @@ const ExploreData = () => {
 
   const cards = state.cards
   const year = state.year
+  const offshore = state.offshoreData === 'On'
 
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
@@ -823,7 +823,7 @@ const ExploreData = () => {
     setSnackbarState({ ...snackbarState, open: false })
   }
 
-  const location = state.countyLevel === 'County' ? 'County' : 'State'
+  const countyLevel = state.countyLevel === 'County'
 
   const onLink = state => {
     setMapK(k)
@@ -832,12 +832,15 @@ const ExploreData = () => {
 
     let fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
+    if (fips === undefined) {
+      fips = state.id
+    }
     let stateAbbr
     let abbr
 
     if (fips && fips.length > 2) {
       abbr = fips
-      stateAbbr = state.properties.state
+      stateAbbr = state.properties.state ? state.properties.state : state.properties.region
     }
     else {
       abbr = state.properties ? state.properties.abbr : state.abbr
@@ -893,37 +896,36 @@ const ExploreData = () => {
   if (error) return `Error! ${ error.message }`
 
   let mapJsonObject = mapStates
-  let mapFeatures='states-geo'
+  let mapFeatures = 'states-geo'
 
   if (data) {
     mapData = data.fiscal_revenue_summary.map((item, i) => [
       item.state_or_area,
       item.sum
     ])
-    
-    if (state.countyLevel) {
-      if (state.offShore) {
-        mapJsonObject=mapCountiesOffshore
-        mapFeatures='counties-offshore-geo'
+
+    if (countyLevel) {
+      if (offshore) {
+        mapJsonObject = mapCountiesOffshore
+        mapFeatures = 'counties-offshore-geo'
       }
       else {
-        mapJsonObject=mapCounties
-        mapFeatures='counties-geo'
+        mapJsonObject = mapCounties
+        mapFeatures = 'counties-geo'
       }
     }
-    else  {
-      if (state.offShore) {
-        mapJsonObject=mapStatesOffshore
-        mapFeatures='states-offshore-geo'
+    else {
+      if (offshore) {
+        mapJsonObject = mapStatesOffshore
+        mapFeatures = 'states-offshore-geo'
       }
       else {
-        mapJsonObject=mapStates
-        mapFeatures='states-geo'
+        mapJsonObject = mapStates
+        mapFeatures = 'states-geo'
       }
-    } 
+    }
   }
-  
-  
+
   if (mapData) {
     return (
       <>

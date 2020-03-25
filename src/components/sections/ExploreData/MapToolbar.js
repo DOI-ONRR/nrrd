@@ -195,7 +195,7 @@ const ExploreDataToolbar = props => {
         <MapSelectControl
           options={MAP_LEVEL_OPTIONS}
           label="Map level"
-          payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: 'State', prop1: 'prop1 value', prop2: 'prop2 value' } }} />
+          payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: 'State' } }} />
 
         <MapSelectControl
           options={MAP_OFFSHORE_SELECT_OPTIONS}
@@ -212,7 +212,7 @@ const ExploreDataToolbar = props => {
           label="Period"
           payload={{ type: 'PERIOD', payload: { period: MAP_PERIOD_OPTIONS.CALENDAR_YEAR } }} />
 
-        {(dataType !== 'Disbursements') && 
+        {(dataType !== 'Disbursements') &&
           <MapSelectControl
             options={commodityOptions}
             label="Commodity"
