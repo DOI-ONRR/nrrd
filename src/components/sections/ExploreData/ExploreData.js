@@ -1,5 +1,5 @@
 
-import React, { useState, useContext, useEffect, useRef } from 'react'
+import React, { useState, useContext } from 'react'
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
@@ -167,7 +167,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         boxSizing: 'border-box',
         minWidth: 285,
-        minHeight: 315,
+        minHeight: 325,
         marginBottom: theme.spacing(1),
         bottom: 0,
       },

@@ -40,19 +40,21 @@ const useStyles = makeStyles(theme => ({
         fontSize: '.85rem',
         lineHeight: '.85rem',
       }
-    }
+    },
   },
   toolbarControls: {
     display: 'flex',
     justifyContent: 'flex-start',
     '@media (max-width: 768px)': {
       justifyContent: 'flex-start',
+      width: 'calc(100% - 60px)',
+      overflowX: 'auto',
     }
   },
   mapExploreMenu: {
     position: 'absolute',
     right: 10,
-    top: 10,
+    top: 4,
     zIndex: 99,
     '& button': {
       color: theme.palette.common.black,
@@ -219,7 +221,8 @@ const ExploreDataToolbar = props => {
             checkbox
             payload={{ type: 'COMMODITY', payload: { commodity: '' } }} />
         }
-
+      </Box>
+      <Box>
         <MapExploreMenu
           linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
           linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}

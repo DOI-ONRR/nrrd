@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
     top: -2,
     border: `1px solid ${ theme.palette.grey['300'] }`,
     height: 50,
+    minWidth: 150,
     marginLeft: theme.spacing(0),
     marginRight: theme.spacing(1),
     paddingTop: 0,
@@ -34,7 +35,6 @@ const useStyles = makeStyles(theme => ({
     overflowX: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    minWidth: 150,
     zIndex: 99,
     fontSize: theme.typography.body2,
     '& .MuiTypography-root': {
@@ -51,12 +51,14 @@ const useStyles = makeStyles(theme => ({
   },
   menuIcon: {
     color: theme.palette.links.default,
-    position: 'relative',
-    top: -8,
+    position: 'absolute',
+    right: 0,
+    top: -2,
   },
   listItemTextPrimary: {
     color: theme.palette.grey[700],
     fontSize: theme.typography.h5.fontSize,
+    marginRight: theme.spacing(0.5),
   },
   listItemTextSecondary: {
     color: theme.palette.grey[900],
