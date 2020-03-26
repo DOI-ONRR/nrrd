@@ -196,7 +196,6 @@ const CardTitle = props => {
 }
 
 const DetailCard = props => {
-  console.log('DetailCard props: ', props)
   const classes = useStyles()
 
   const { state } = useContext(StoreContext)

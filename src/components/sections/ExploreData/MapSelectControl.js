@@ -131,16 +131,20 @@ const MapSelectControl = props => {
     setSelectAll(!selectAll)
   }
 
+  // aria label formatting, remove any spaces and add a dash from props label
+  const labelStr = label.toLowerCase()
+  const ariaLabel = labelStr.replace(/[^a-zA-Z0-9.-]+/g, '-')
+
   // Select menu list with checkboxes
   if (props.checkbox) {
     return (
       <div className={classes.mapMenuRoot}>
-        <List component="nav" aria-label={`${ label } data menu`}>
+        <List component="nav" aria-label={`${ ariaLabel } select menu`}>
           <ListItem
             button
             aria-haspopup="true"
-            aria-controls={`${ label }-data-menu`}
-            aria-label={`${ label } data menu`}
+            aria-controls={`${ ariaLabel }-select-menu`}
+            aria-label={`${ ariaLabel } select menu`}
             onClick={handleClickListItem}
           >
             { /* Output checked list to comma seperated items with ellipsis at the end */ }
@@ -154,7 +158,7 @@ const MapSelectControl = props => {
           </ListItem>
         </List>
         <Menu
-          id={`${ label }-data-menu`}
+          id={`${ ariaLabel }-select-menu`}
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
@@ -201,12 +205,12 @@ const MapSelectControl = props => {
   else {
     return (
       <div {...rest} className={classes.mapMenuRoot}>
-        <List component="nav" aria-label={`${ label } data menu`}>
+        <List component="nav" aria-label={`${ ariaLabel } select menu`}>
           <ListItem
             button
             aria-haspopup="true"
-            aria-controls={`${ label }-data-menu`}
-            aria-label={`${ label } data menu`}
+            aria-controls={`${ ariaLabel }-select-menu`}
+            aria-label={`${ ariaLabel } select menu`}
             onClick={handleClickListItem}
           >
             <ListItemText
@@ -219,7 +223,7 @@ const MapSelectControl = props => {
           </ListItem>
         </List>
         <Menu
-          id={`${ label }-data-menu`}
+          id={`${ ariaLabel }-select-menu`}
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
