@@ -7,6 +7,8 @@ const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
+  case 'COMMODITY':
+    return ({ ...state, commodity: payload.commodity })
   case 'COUNT':
     return ({ ...state, count: payload })
   case 'CARDS':
@@ -28,6 +30,7 @@ const reducer = (state, action) => {
 
 const initialState = {
   cards: [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', minimizeIcon: false, closeIcon: true }],
+  commodity: 'Oil',
   count: 0,
   countyLevel: 'State',
   dataType: 'Revenue',

@@ -67,14 +67,17 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const MapSelectControl = props => {
-  const { options, label, payload, ...rest } = props
+  const { options, label, payload, selectedOption, ...rest } = props
 
   const classes = useStyles()
   const theme = useTheme()
   const { state, dispatch } = useContext(StoreContext)
 
+  const findSelectedOption = options.findIndex(item => item === selectedOption)
+  console.log('findSelectedOption: ', options.find(item => item === selectedOption))
+
   const [anchorEl, setAnchorEl] = useState(null)
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState(findSelectedOption || 0)
   const [checked, setChecked] = React.useState([0])
   const [selectAll, setSelectAll] = useState(true)
 
@@ -92,6 +95,10 @@ const MapSelectControl = props => {
       setChecked(options)
     }
   }, [selectAll])
+
+  useEffect(() => {
+    setSelectedIndex(findSelectedOption)
+  }, [findSelectedOption])
 
   const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value)

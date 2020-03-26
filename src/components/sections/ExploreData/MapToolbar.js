@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { navigate } from '@reach/router'
 
@@ -183,7 +183,7 @@ const ExploreDataToolbar = props => {
   const commodityOptions = data.onrr.commodity.map(item => item.commodity)
   const classes = useStyles()
 
-  const { state, dispatch } = useContext(StoreContext)
+  const { state } = useContext(StoreContext)
   const dataType = state.dataType
 
   return (
@@ -191,16 +191,19 @@ const ExploreDataToolbar = props => {
       <Box className={classes.toolbarControls}>
         <MapSelectControl
           options={MAP_DATA_TYPE_SELECT_OPTIONS}
+          selectedOption="Revenue"
           label="Data type"
           payload={{ type: 'DATA_TYPE', payload: { dataType: 'Revenue' } }} />
 
         <MapSelectControl
           options={MAP_LEVEL_OPTIONS}
+          selectedOption="State"
           label="Map level"
           payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: 'State' } }} />
 
         <MapSelectControl
           options={MAP_OFFSHORE_SELECT_OPTIONS}
+          selectedOption="Off"
           label="Offshore data"
           payload={{ type: 'OFFSHORE_DATA', payload: { offshoreData: 'Off' } }} />
 
@@ -211,15 +214,17 @@ const ExploreDataToolbar = props => {
 
         <MapSelectControl
           options={MAP_PERIOD_OPTIONS}
+          selectedOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
           label="Period"
           payload={{ type: 'PERIOD', payload: { period: MAP_PERIOD_OPTIONS.CALENDAR_YEAR } }} />
 
         {(dataType !== 'Disbursements') &&
           <MapSelectControl
             options={commodityOptions}
+            selectedOption="Oil"
             label="Commodity"
-            checkbox
-            payload={{ type: 'COMMODITY', payload: { commodity: '' } }} />
+            // checkbox={(dataType !== 'Production')}
+            payload={{ type: 'COMMODITY', payload: { commodity: 'Oil' } }} />
         }
       </Box>
       <Box>
