@@ -22,7 +22,6 @@ import {
   Menu,
   MenuItem,
   Snackbar,
-  LinearProgress,
   useMediaQuery
 } from '@material-ui/core'
 
@@ -892,7 +891,7 @@ const ExploreData = () => {
 
   let mapData = [[]]
 
-  if (loading) return <LinearProgress classes={{ root: classes.linearProgress }} />
+  if (loading) {}
   if (error) return `Error! ${ error.message }`
 
   let mapJsonObject = mapStates
