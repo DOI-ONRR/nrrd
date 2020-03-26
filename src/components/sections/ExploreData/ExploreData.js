@@ -891,6 +891,7 @@ const ExploreData = () => {
 
   let mapData = [[]]
 
+  // Return nothing so that the map still appears while data is loading
   if (loading) {}
   if (error) return `Error! ${ error.message }`
 
