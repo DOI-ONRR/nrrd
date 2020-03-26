@@ -223,7 +223,7 @@ const ExploreDataToolbar = props => {
             options={commodityOptions}
             selectedOption="Oil"
             label="Commodity"
-            // checkbox={(dataType !== 'Production')}
+            checkbox={(dataType === 'Revenue')}
             payload={{ type: 'COMMODITY', payload: { commodity: 'Oil' } }} />
         }
       </Box>
