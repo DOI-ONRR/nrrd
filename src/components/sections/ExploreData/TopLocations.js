@@ -19,13 +19,13 @@ import Chip from '@material-ui/core/Chip'
 
 import CloseIcon from '@material-ui/icons/Close'
 import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
-import CirlceChart from '../../data-viz/CircleChart/CircleChart.js'
+import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
   query TopLocations($year: Int! ) {
     fiscal_revenue_summary(
 where: {location_type: {_eq: "State"}, fiscal_year: { _eq: $year } }
-      order_by: { fiscal_year: asc, sum desc }
+      order_by: { fiscal_year: asc, sum: desc }
     ) {
       fiscal_year
       state_or_area
@@ -71,6 +71,8 @@ const TopLocations = props => {
     )
   }
   if (error) return `Error! ${ error.message }`
+  let chartData=[];
+  const dataSet = `FY ${ year }`
   if (data) {
     chartData = data.fiscal_revenue_summary
   }
