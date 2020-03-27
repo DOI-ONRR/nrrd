@@ -33,7 +33,7 @@ import Map from '../../data-viz/Map'
 import MapToolbar from './MapToolbar'
 import DetailCard from './DetailCard'
 import SummaryCard from './SummaryCard'
-
+import TopLocations from './TopLocations'
 import { StoreContext } from '../../../store'
 import mapJson from './us-topology.json'
 
@@ -1052,7 +1052,8 @@ const ExploreData = () => {
               })
             }
             { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} menuItems={cardMenuItems} /> : '' }
-          </Box>
+      </Box>
+        <TopLocations /> 
         </Container>
       </>
     )
