@@ -168,7 +168,7 @@ const CardTitle = props => {
 
   const stateTitle = props.stateTitle
   const stateAbbr = props.state ? props.state : props.stateAbbr
-  const isCounty = props.stateAbbr > 2
+  const isCounty = props.stateAbbr.length > 2
   let cardTitle = `${ props.stateTitle }`
 
   if (isCounty && !nonStateOrCountyCards.includes(stateTitle)) {
@@ -176,6 +176,7 @@ const CardTitle = props => {
   }
 
   let svgImg
+
   if (nonStateOrCountyCards.includes(stateTitle)) {
     svgImg = <IconMap className={classes.usLocationIcon} alt="US Icon" />
   }
@@ -219,7 +220,7 @@ const DetailCard = props => {
   }
 
   if (error) return `Error! ${ error.message }`
-  // console.debug('DWGH ----------------------------------', year)
+
   let chartData
   const dataSet = `FY ${ year }`
 
@@ -297,7 +298,6 @@ const DetailCard = props => {
                   <CircleChart data={chartData.revenue_commodity_summary}
                     xAxis='commodity' yAxis='total'
                     format={ d => {
-                      // console.debug('fooormat', d)
                       return utils.formatToDollarInt(d)
                     }
                     }

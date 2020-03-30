@@ -80,7 +80,10 @@ const useStyles = makeStyles(theme => (
         height: 'auto',
         overflow: 'visible'
       }
-    }
+    },
+    mainContent: {
+      minHeight: 575,
+    },
   })
 )
 
@@ -113,7 +116,7 @@ const DefaultLayout = ({ includeToc = true, children }) => {
       <InfoBanner />
       <Header />
       <CssBaseline />
-      <main id='main-content'>
+      <main id='main-content' className={classes.mainContent}>
         {includeToc
           ? <Container maxWidth="lg" component="section">
             <Grid container>

@@ -32,5 +32,5 @@ module.exports = Object.freeze({
       color: palette.primary.dark,
       minWidth: 30,
     }
-  }
+  },
 })
