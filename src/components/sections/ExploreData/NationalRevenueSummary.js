@@ -96,22 +96,20 @@ const NationalRevenueSummary = props => {
                   The federal government’s basic operating fund pays for roughly two-thirds of all federal expenditures, including the military, national parks, and schools.
                 </Box>
               </TableCell>
-              <TableCell style={{ width: '40%' }}>
-                <Grid item xs={12}>
-                  <StackedBarChart
-                    data={chartData}
-                    legendFormat={v => utils.formatToDollarInt(v)}
-                    title={chartTitle}
-                    units={units}
-                    xAxis={xAxis}
-                    xLabels={xLabels}
-                    yAxis={yAxis}
-                    xGroups={xGroups}
-                    yGroupBy={yGroupBy}
-                    yOrderBy={yOrderBy}
-                    horizontal
-                  />
-                </Grid>
+              <TableCell style={{ width: '65%' }}>
+                <StackedBarChart
+                  data={chartData}
+                  legendFormat={v => utils.formatToDollarInt(v)}
+                  title={chartTitle}
+                  units={units}
+                  xAxis={xAxis}
+                  xLabels={xLabels}
+                  yAxis={yAxis}
+                  xGroups={xGroups}
+                  yGroupBy={yGroupBy}
+                  yOrderBy={yOrderBy}
+                  horizontal
+                />
               </TableCell>
             </TableRow>
             <TableRow>
@@ -122,6 +120,19 @@ const NationalRevenueSummary = props => {
                 </Box>
               </TableCell>
               <TableCell>
+                <StackedBarChart
+                  data={chartData}
+                  legendFormat={v => utils.formatToDollarInt(v)}
+                  title={chartTitle}
+                  units={units}
+                  xAxis={xAxis}
+                  xLabels={xLabels}
+                  yAxis={yAxis}
+                  xGroups={xGroups}
+                  yGroupBy={yGroupBy}
+                  yOrderBy={yOrderBy}
+                  horizontal
+                />
               </TableCell>
             </TableRow>
             <TableRow>
@@ -132,6 +143,19 @@ const NationalRevenueSummary = props => {
                 </Box>
               </TableCell>
               <TableCell>
+                <StackedBarChart
+                  data={chartData}
+                  legendFormat={v => utils.formatToDollarInt(v)}
+                  title={chartTitle}
+                  units={units}
+                  xAxis={xAxis}
+                  xLabels={xLabels}
+                  yAxis={yAxis}
+                  xGroups={xGroups}
+                  yGroupBy={yGroupBy}
+                  yOrderBy={yOrderBy}
+                  horizontal
+                />
               </TableCell>
             </TableRow>
             <TableRow>
@@ -142,6 +166,19 @@ const NationalRevenueSummary = props => {
                 </Box>
               </TableCell>
               <TableCell>
+                <StackedBarChart
+                  data={chartData}
+                  legendFormat={v => utils.formatToDollarInt(v)}
+                  title={chartTitle}
+                  units={units}
+                  xAxis={xAxis}
+                  xLabels={xLabels}
+                  yAxis={yAxis}
+                  xGroups={xGroups}
+                  yGroupBy={yGroupBy}
+                  yOrderBy={yOrderBy}
+                  horizontal
+                />
               </TableCell>
             </TableRow>
             <TableRow>
@@ -153,6 +190,19 @@ const NationalRevenueSummary = props => {
                 <Link href="/how-it-works/land-and-water-conservation-fund/">How this fund works</Link>
               </TableCell>
               <TableCell>
+                <StackedBarChart
+                  data={chartData}
+                  legendFormat={v => utils.formatToDollarInt(v)}
+                  title={chartTitle}
+                  units={units}
+                  xAxis={xAxis}
+                  xLabels={xLabels}
+                  yAxis={yAxis}
+                  xGroups={xGroups}
+                  yGroupBy={yGroupBy}
+                  yOrderBy={yOrderBy}
+                  horizontal
+                />
               </TableCell>
             </TableRow>
             <TableRow>
@@ -163,6 +213,19 @@ const NationalRevenueSummary = props => {
                 </Box>
               </TableCell>
               <TableCell>
+                <StackedBarChart
+                  data={chartData}
+                  legendFormat={v => utils.formatToDollarInt(v)}
+                  title={chartTitle}
+                  units={units}
+                  xAxis={xAxis}
+                  xLabels={xLabels}
+                  yAxis={yAxis}
+                  xGroups={xGroups}
+                  yGroupBy={yGroupBy}
+                  yOrderBy={yOrderBy}
+                  horizontal
+                />
               </TableCell>
             </TableRow>
             <TableRow>
@@ -174,6 +237,19 @@ const NationalRevenueSummary = props => {
                 <Link href="/how-it-works/historic-preservation-fund/">How this fund works</Link>
               </TableCell>
               <TableCell>
+                <StackedBarChart
+                  data={chartData}
+                  legendFormat={v => utils.formatToDollarInt(v)}
+                  title={chartTitle}
+                  units={units}
+                  xAxis={xAxis}
+                  xLabels={xLabels}
+                  yAxis={yAxis}
+                  xGroups={xGroups}
+                  yGroupBy={yGroupBy}
+                  yOrderBy={yOrderBy}
+                  horizontal
+                />
               </TableCell>
             </TableRow>
           </TableBody>

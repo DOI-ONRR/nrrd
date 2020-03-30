@@ -16,11 +16,17 @@ export default class D3StackedBarChart {
     this.marginTop = options.marginTop || 25
     this.units = (options.units) ? options.units : ''
     this.horizontal = options.horizontal
-    if ( this.horizontal) {
+    if (this.horizontal) {
       const h = this._height
       const w = this._width
-      this._width=h
-      this._height=w
+      this._width = h
+      this._height = w
+
+      // reset margins
+      this.marginLeft = 0
+      this.marginTop = 0
+      this.marginRight = 0
+      this.marginBottom = 0
     }
     if (options.selectedIndex === undefined) {
       this.selectedIndex = this.xDomain().length - 1
@@ -251,10 +257,12 @@ export default class D3StackedBarChart {
 
       // transform bars to horizontal if prop set
       if (this.horizontal) {
-        let rotate='90 '+this._height / 4 + ' 0'
+        const rotate = '90 ' + (this._height / 2 - 5) + ' 0'
         this.chart
-        .attr('transform', 'rotate('+rotate+')')
-        
+          .attr('transform', 'rotate(' + rotate + ')')
+          .attr('width', 20)
+          .style('position', 'relative')
+          .style('left', -5)
       }
     }
     catch (err) {
