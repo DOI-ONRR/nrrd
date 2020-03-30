@@ -30,9 +30,10 @@ import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RefreshIcon from '@material-ui/icons/Refresh'
 
+import DetailCard from './DetailCard'
 import Map from '../../data-viz/Map'
 import MapToolbar from './MapToolbar'
-import DetailCard from './DetailCard'
+import NationalRevenueSummary from './NationalRevenueSummary'
 import SummaryCard from './SummaryCard'
 
 import { StoreContext } from '../../../store'
@@ -1088,6 +1089,7 @@ const ExploreData = () => {
             }
             { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} menuItems={cardMenuItems} /> : '' }
           </Box>
+          <NationalRevenueSummary />
         </Container>
       </>
     )

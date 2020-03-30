@@ -15,6 +15,7 @@ export default class D3StackedBarChart {
     this.marginBottom = options.marginBottom || 40
     this.marginTop = options.marginTop || 25
     this.units = (options.units) ? options.units : ''
+    this.horizontal = options.horizontal
 
     if (options.selectedIndex === undefined) {
       this.selectedIndex = this.xDomain().length - 1
@@ -238,6 +239,13 @@ export default class D3StackedBarChart {
         .on('mouseleave', function (d) {
           self._onHover(this, d, false)
         })
+
+      // transform bars to horizontal if prop set
+      if (this.horizontal) {
+        this.chart.select('.bars')
+          .attr('transform', 'rotate(90 200 0)')
+          .attr('height', (self._height - self.marginTop))
+      }
     }
     catch (err) {
       console.warn('Error: ', err)
