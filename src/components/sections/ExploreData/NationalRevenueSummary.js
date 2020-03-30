@@ -96,7 +96,7 @@ const NationalRevenueSummary = props => {
                   The federal government’s basic operating fund pays for roughly two-thirds of all federal expenditures, including the military, national parks, and schools.
                 </Box>
               </TableCell>
-              <TableCell style={{ width: '60%' }}>
+              <TableCell style={{ width: '40%' }}>
                 <Grid item xs={12}>
                   <StackedBarChart
                     data={chartData}

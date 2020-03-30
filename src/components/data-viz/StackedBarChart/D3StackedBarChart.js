@@ -243,8 +243,10 @@ export default class D3StackedBarChart {
       // transform bars to horizontal if prop set
       if (this.horizontal) {
         this.chart.select('.bars')
-          .attr('transform', 'rotate(90 200 0)')
-          .attr('height', (self._height - self.marginTop))
+          .attr('transform', 'rotate(90 200 150)')
+
+        this.chart.selectAll('.bars > .bar')
+          .attr('width', 5)
       }
     }
     catch (err) {
