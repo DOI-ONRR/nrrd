@@ -1,0 +1,133 @@
+Below is a series of commands in attempting to create one topo json with county offshore and states.
+
+This was not accomplished so a work around was to create a county map,  a county map with offshore, a state map and finally a state map with offshore.
+
+First a geo json is created for each of the regions:
+
+topo2geo states=states-geo.json < us-topology.json
+topo2geo tracts=counties-geo.json < us-topology.json
+topo2geo alaska=alaska-geo.json < offshore.json
+topo2geo atlantic=atlantic-geo.json < offshore.json
+topo2geo pacific=pacific-geo.json < offshore.json
+topo2geo gulf=gulf-geo.json < offshore.json
+
+Then we geojson-merge the offshore regions with counties and states separately.   This is because when merging counties and states they become one region and overlay themselves. 
+
+geojson-merge alaska-geo.json atlantic-geo.json gulf-geo.json pacific-geo.json alaska-geo.json counties-geo.json > counties-offshore-geo.json 
+geojson-merge alaska-geo.json atlantic-geo.json gulf-geo.json pacific-geo.json alaska-geo.json states-geo.json > states-offshore-geo.json 
+
+last we geo2topo convert our geo json to topojason for each of the four regions:
+
+geo2topo counties-offshore-geo.json > counties-offshore.json
+geo2topo states-offshore-geo.json > states-offshore.json
+geo2topo states-geo.json > states.json
+geo2topo counties-geo.json > counties.json
+
+
+
+4339  npm install -g geojson-merge
+ 4340  sudo npm install -g geojson-merge
+ 4341  geojson-merge
+ 4342  geo2topo
+ 4345  geo2json
+ 4346  geo2topo
+ 4353  topo2geo tracts=us-geo.json < land/us-topology.json
+ 4354  topo2geo  land/us-topology.json
+ 4355  topo2geo < land/us-topology.json
+ 4356  topo2geo
+ 4357  topo2geo --help
+ 4358  topo2geo -i land/us-topology.json
+ 4359  topo2geo -i land/us-topology.json tracts=us-geo.json
+ 4360  topo2geo -i land/us-topology.json objects=us-geo.json
+ 4361  topo2geo -i land/us-topology.json us-geo.json
+ 4362  topo2geo -i land/us-topology.json 
+ 4363  topo2geo -i land/us-topology.json --list
+ 4364  topo2geo -i land/us-topology.json states.geo.json
+ 4365  topo2geo -i land/us-topology.json states
+ 4367  topo2geo -i land/us-topology.json states.json
+ 4370  topo2geo -i land/us-topology.json counties.json
+ 4371  topo2geo -i offshore/offshore.json --list
+ 4372  topo2geo -i offshore/offshore.json alaska.json
+ 4373  topo2geo -i offshore/offshore.json atlantic.json
+ 4374  topo2geo -i offshore/offshore.json gulf.json
+ 4375  topo2geo -i offshore/offshore.json pacific.json
+ 4378  geojson-merge *.json > combined-geo.json
+ 4380  geo2topo combined-geo.json
+ 4381  geo2topo combined-geo.json > all-topology.json
+ 4393  rm static/maps/alaska.json static/maps/all-topology.json  static/maps/atlantic.json static/maps/combined-geo.json  static/maps/counties.json static/maps/gulf.json static/maps/pacific.json static/maps/states.json
+ 6216  topo2geo tracts=us-geo.json < us-topology.json
+ 6218  topo2geo tracts=counties-geo.json < us-topology.json
+ 6219  topo2geo counties=counties-geo.json < us-topology.json
+ 6220  more counties-geo.json
+ 6221  topo2geo states=states-geo.json < us-topology.json
+ 6222  more states-geo.json
+ 6226  topo2geo objects=objects-geo.json < offshore.json
+ 6230  topo2geo alaska=alaska-geo.json < offshore.json
+ 6235  topo2geo atlantic=atlantic-geo.json < offshore.json
+ 6236  topo2geo pacific=pacific-geo.json < offshore.json
+ 6237  topo2geo gulf=gulf-geo.json < offshore.json
+ 6238  geojson-merge *-geo.json > all-geo.json
+ 6239  more all-geo.json
+ 6240  geo2topo tracts=all-geo.json > all-topo.json
+ 6315  ls *-geo.json
+ 6316  mv all-geo.bak
+ 6317  mv all-geo.json all-geo.json.bak
+ 6318  ls *-geo.json
+ 6319  cat states-geo.json counties-geo.json atlantic-geo.json alaska-geo.json pacific-geo.json gulf-geo.json > all-geo.json
+ 6320  geo2topo tracts=all-geo.json > all-topo.json
+ 6332  more atlantic-geo.json
+ 6343  more all-geo.json
+ 6344  geo2topo tracts=all-geo.json > all-topo.json
+ 6346  geo2topo alaska-geo.json > alaska-topo.json
+ 6360  topo2geo -l us-topology.json
+ 6361  topo2geo -l 
+ 6362  topo2geo -l  <us-topology.json
+ 6363  topo2geo -l  <offshore.json
+ 6375  more all-geo.json
+ 6376  topomerge alaska-geo.json
+ 6377  topmerge alaska < alaska-geo.json
+ 6378  topomerge alaska < alaska-geo.json
+ 6379  topomerge alaska-geo.json pacific-geo.json
+ 6380  cat alaska-geo.json pacific-geo.json | topomerge offshore
+ 6382  more alaska-geo.json
+ 6384  more new-geo.json
+ 6387  more all-geo.json
+ 6388  cat alaska-geo.json pacific-geo.json | topomerge offshore
+ 6389  more alaska-geo.json
+ 6391  geo2topo new-geo.json new-topo.json
+ 6392  geo2topo new-geo.json > new-topo.json
+ 6395  more new-geo.json
+ 6396  geo2topo new-geo.json > new-topo.json
+ 6398  geo2topo --help
+ 6399  geo2topo new-geo.json 
+ 6400  geojson-merge alaska-topo.json
+ 6401  geojson-merge  < alaska-topo.json
+ 6402  geojson-merge  < alaska-topo.json pacific-geo.json states-geo.json
+ 6403  geojson-merge  < alaska-topo.json pacific-geo.json states-geo.json  > all-geo.json
+ 6404  more all-geo.json
+ 6406  cat alaska-geo.json pacific-geo.json | topomerge 
+ 6407  cat alaska-geo.json pacific-geo.json | topomerge offshore
+ 6409  more all-geo.json
+ 6411  more states-geo.json
+ 6412  topo2geo < offshore.json
+ 6413  man topo2geo
+ 6414  topo2geo --help
+ 6415  topo2geo --list
+ 6416  topo2geo --list < offshore.json
+ 6417  geojson-merge
+ 6418  geojson-merge alaska-geo.json pacific-geo.json > try-geo
+ 6419  more try-geo
+ 6443  geojson-merge
+ 6444  geojson-merge alaska-geo.json atlantic-geo.json gulf-geo.json pacific-geo.json alaska-geo.json states-geo.json
+ 6445  geojson-merge alaska-geo.json atlantic-geo.json gulf-geo.json pacific-geo.json alaska-geo.json states-geo.json > all-geo.json 
+ 6446  geo2topo all-geo.json
+ 6447  geo2topo all-geo.json > all-topo.json
+ 6448  geojson-merge alaska-geo.json atlantic-geo.json gulf-geo.json pacific-geo.json alaska-geo.json counties-geo.json > counties-offshore.json 
+ 6449  geojson-merge alaska-geo.json atlantic-geo.json gulf-geo.json pacific-geo.json alaska-geo.json counties-geo.json > counties-offshore-geo.json 
+ 6450  geo2topo counties-offshore.json > counties-offshore.json
+ 6451  geo2topo counties-offshore-geo.json > counties-offshore.json
+ 6452  geojson-merge alaska-geo.json atlantic-geo.json gulf-geo.json pacific-geo.json alaska-geo.json states-geo.json > states-offshore-geo.json 
+ 6453  geo2topo states-offshore-geo.json > states-offshore.json
+ 6455  geo2topo states-geo.json > states.json
+ 6456  geo2topo counties-geo.json > counties.json
+ 6483  history | grep geo

@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from 'react'
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
@@ -35,15 +36,17 @@ import DetailCard from './DetailCard'
 import SummaryCard from './SummaryCard'
 
 import { StoreContext } from '../../../store'
-import mapJson from './us-topology.json'
-
 import utils from '../../../js/utils'
-
 import CONSTANTS from '../../../js/constants'
+
+import mapCounties from './counties.json'
+import mapStates from './states.json'
+import mapCountiesOffshore from './counties-offshore.json'
+import mapStatesOffshore from './states-offshore.json'
 
 import { select } from 'd3'
 import LineChart from '../../data-viz/LineChart/LineChart.js'
-// import  mapJson from './us.t2.json'
+import mapJson from './us-topology.json'
 
 // import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
 
@@ -58,8 +61,8 @@ export const STATIC_QUERY = graphql`
 `
 
 const FISCAL_REVENUE_QUERY = gql`
-  query FiscalRevenue($year: Int!, $location: String!) {
-    fiscal_revenue_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location } }) {
+  query FiscalRevenue($year: Int!) {
+    fiscal_revenue_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }}) {
       fiscal_year
       state_or_area
       sum
@@ -163,7 +166,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         boxSizing: 'border-box',
         minWidth: 285,
-        minHeight: 315,
+        minHeight: 325,
         marginBottom: theme.spacing(1),
         bottom: 0,
       },
@@ -259,7 +262,7 @@ const useStyles = makeStyles(theme => ({
   sliderMarkLabel: {
     fontWeight: 'bold',
     top: '28px',
-    color: theme.palette.grey['900'],
+    color: theme.palette.primary.dark,
     fontSize: '1rem',
   },
   sliderMarkLabelActive: {
@@ -303,7 +306,7 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(0deg)',
     fontSize: '1rem',
     cursor: 'pointer',
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.links.default,
     color: theme.palette.primary.contrastText,
     '& span': {
       width: 60,
@@ -311,7 +314,7 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 0,
       textAlign: 'center',
       color: `${ theme.palette.common.white } !important`,
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: theme.palette.links.default,
     },
   },
   contentWrapper: {
@@ -443,7 +446,10 @@ const useStyles = makeStyles(theme => ({
   },
   autoCompleteFocused: {
     color: theme.palette.primary.dark,
-  }
+  },
+  linearProgress: {
+    backgroundColor: theme.palette.primary.dark,
+  },
 }))
 
 // get region details from map object
@@ -741,6 +747,7 @@ const ExploreData = () => {
 
   const cards = state.cards
   const year = state.year
+  const offshore = state.offshoreData === 'On'
 
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
@@ -815,22 +822,24 @@ const ExploreData = () => {
     setSnackbarState({ ...snackbarState, open: false })
   }
 
-  const location = state.countyLevel ? 'County' : 'State'
+  const countyLevel = state.countyLevel === 'County'
 
   const onLink = state => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    console.debug('onLink:', state)
 
-    const fips = state.properties ? state.properties.FIPS : state.fips
+    let fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
+    if (fips === undefined) {
+      fips = state.id
+    }
     let stateAbbr
     let abbr
 
     if (fips && fips.length > 2) {
       abbr = fips
-      stateAbbr = state.properties.state
+      stateAbbr = state.properties.state ? state.properties.state : state.properties.region
     }
     else {
       abbr = state.properties ? state.properties.abbr : state.abbr
@@ -877,20 +886,46 @@ const ExploreData = () => {
   }
 
   const { loading, error, data } = useQuery(FISCAL_REVENUE_QUERY, {
-    variables: { year, location }
+    variables: { year }
   })
 
   let mapData = [[]]
 
-  if (loading) return 'Loading...'
-  if (error) return `Error loading revenue data table ${ error.message }`
+  // Return nothing so that the map still appears while data is loading
+  if (loading) {}
+  if (error) return `Error! ${ error.message }`
+
+  let mapJsonObject = mapStates
+  let mapFeatures = 'states-geo'
 
   if (data) {
     mapData = data.fiscal_revenue_summary.map((item, i) => [
       item.state_or_area,
       item.sum
     ])
+
+    if (countyLevel) {
+      if (offshore) {
+        mapJsonObject = mapCountiesOffshore
+        mapFeatures = 'counties-offshore-geo'
+      }
+      else {
+        mapJsonObject = mapCounties
+        mapFeatures = 'counties-geo'
+      }
+    }
+    else {
+      if (offshore) {
+        mapJsonObject = mapStatesOffshore
+        mapFeatures = 'states-offshore-geo'
+      }
+      else {
+        mapJsonObject = mapStates
+        mapFeatures = 'states-geo'
+      }
+    }
   }
+
   if (mapData) {
     return (
       <>
@@ -900,8 +935,8 @@ const ExploreData = () => {
               <Box className={classes.mapContainer}>
                 <MapToolbar onChange={handleChange} />
                 <Map
-                  mapFeatures={state.countyLevel ? 'counties' : 'states'}
-                  mapJsonObject={mapJson}
+                  mapFeatures={mapFeatures}
+                  mapJsonObject={mapJsonObject}
                   mapData={mapData}
                   minColor="#CDE3C3"
                   maxColor="#2F4D26"
