@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link as GatsbyLink, withPrefix } from 'gatsby'
 import { makeStyles, useTheme, Box } from '@material-ui/core'
-import { IconDownloadXlsImg, IconDownloadCsvImg, IconDownloadDataImg, IconDownloadBaseImg,  HowWorksLinkIconImg } from '../images'
+import { IconDownloadXlsImg, IconDownloadCsvImg, IconDownloadDataImg, IconDownloadBaseImg, HowWorksLinkIconImg } from '../images'
 
 const useStyles = makeStyles(theme => ({
   link: {

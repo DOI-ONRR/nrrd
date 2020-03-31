@@ -17,7 +17,7 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   if (layout === 'pattern-library') {
     return <PatternLibraryLayout>{children}</PatternLibraryLayout>
   }
-  console.log(children)
+
   if (includeDataProvider) {
     return (
       <DefaultLayout includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
