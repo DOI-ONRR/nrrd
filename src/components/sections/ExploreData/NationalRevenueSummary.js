@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import PropTypes from 'prop-types'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
@@ -26,7 +27,7 @@ import CONSTANTS from '../../../js/constants'
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   query NationalRevenue($year: Int!) {
-    fiscal_revenue_type_class_summary(where: {year: {_eq: $year}}, order_by: {class_order: asc}) {
+    fiscal_revenue_type_class_summary(order_by: {class_order: asc}, where: {year: {_eq: $year}}) {
       revenue_type
       sum
       year
@@ -35,6 +36,16 @@ const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
     }
   }
 `
+
+const revenueTypeDescriptions = [
+  'Once the land or water produces enough resources to pay royalties, the leaseholder pays royalties to the federal government.',
+  'Companies bid on and lease lands and waters from the federal government.  They pay a bonus when they win a lease.',
+  'Leaseholders pay rent until the land or water starts producing resources.',
+  // eslint-disable-next-line max-len
+  'The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.',
+  'ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws.',
+  'This includes other fees leaseholders pay such as permit fees and AML fees.'
+]
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -52,7 +63,8 @@ const NationalRevenueSummary = props => {
   const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
-  let chartData
+  let groupData
+  let nationalRevenueData
   const xAxis = 'year'
   const yAxis = 'sum'
   const yGroupBy = 'land_class'
@@ -69,8 +81,9 @@ const NationalRevenueSummary = props => {
   if (data) {
     // do something wit dat data
     console.log('NationalRevenueSummary data: ', data)
-    chartData = data.fiscal_revenue_type_class_summary
-    xGroups['Fiscal year'] = chartData.map((row, i) => row.year)
+    groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
+    nationalRevenueData = Object.entries(groupData)
+    xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => console.log('row map: ', row))
   }
 
   return (
@@ -89,169 +102,35 @@ const NationalRevenueSummary = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell style={{ verticalAlign: 'top' }}>
-                <Box component="h4" mt={0}>U.S. Treasury</Box>
-                <Box component="p">
-                  The federal government’s basic operating fund pays for roughly two-thirds of all federal expenditures, including the military, national parks, and schools.
-                </Box>
-              </TableCell>
-              <TableCell style={{ width: '65%' }}>
-                <StackedBarChart
-                  data={chartData}
-                  legendFormat={v => utils.formatToDollarInt(v)}
-                  title={chartTitle}
-                  units={units}
-                  xAxis={xAxis}
-                  xLabels={xLabels}
-                  yAxis={yAxis}
-                  xGroups={xGroups}
-                  yGroupBy={yGroupBy}
-                  yOrderBy={yOrderBy}
-                  horizontal
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ verticalAlign: 'top' }}>
-                <Box component="h4" mt={0}>State and local governments</Box>
-                <Box component="p">
-                  Funds disbursed to states fall under the jurisdiction of each state, and each state determines how the funds will be used.
-                </Box>
-              </TableCell>
-              <TableCell>
-                <StackedBarChart
-                  data={chartData}
-                  legendFormat={v => utils.formatToDollarInt(v)}
-                  title={chartTitle}
-                  units={units}
-                  xAxis={xAxis}
-                  xLabels={xLabels}
-                  yAxis={yAxis}
-                  xGroups={xGroups}
-                  yGroupBy={yGroupBy}
-                  yOrderBy={yOrderBy}
-                  horizontal
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ verticalAlign: 'top' }}>
-                <Box component="h4" mt={0}>Reclamation Fund</Box>
-                <Box component="p">
-                Supports the establishment of critical infrastructure projects like dams and power plants.
-                </Box>
-              </TableCell>
-              <TableCell>
-                <StackedBarChart
-                  data={chartData}
-                  legendFormat={v => utils.formatToDollarInt(v)}
-                  title={chartTitle}
-                  units={units}
-                  xAxis={xAxis}
-                  xLabels={xLabels}
-                  yAxis={yAxis}
-                  xGroups={xGroups}
-                  yGroupBy={yGroupBy}
-                  yOrderBy={yOrderBy}
-                  horizontal
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ verticalAlign: 'top' }}>
-                <Box component="h4" mt={0}>Native American tribes and individuals</Box>
-                <Box component="p">
-                ONRR disburses 100% of revenue collected from resource extraction on Native American lands back to tribes, nations, and individuals.
-                </Box>
-              </TableCell>
-              <TableCell>
-                <StackedBarChart
-                  data={chartData}
-                  legendFormat={v => utils.formatToDollarInt(v)}
-                  title={chartTitle}
-                  units={units}
-                  xAxis={xAxis}
-                  xLabels={xLabels}
-                  yAxis={yAxis}
-                  xGroups={xGroups}
-                  yGroupBy={yGroupBy}
-                  yOrderBy={yOrderBy}
-                  horizontal
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ verticalAlign: 'top' }}>
-                <Box component="h4" mt={0}>Land and Water Conservation Fund</Box>
-                <Box component="p">
-                  Provides matching grants to states and local governments to buy and develop public outdoor recreation areas across the 50 states.
-                </Box>
-                <Link href="/how-it-works/land-and-water-conservation-fund/">How this fund works</Link>
-              </TableCell>
-              <TableCell>
-                <StackedBarChart
-                  data={chartData}
-                  legendFormat={v => utils.formatToDollarInt(v)}
-                  title={chartTitle}
-                  units={units}
-                  xAxis={xAxis}
-                  xLabels={xLabels}
-                  yAxis={yAxis}
-                  xGroups={xGroups}
-                  yGroupBy={yGroupBy}
-                  yOrderBy={yOrderBy}
-                  horizontal
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ verticalAlign: 'top' }}>
-                <Box component="h4" mt={0}>Other funds</Box>
-                <Box component="p">
-                Some funds are directed back to federal agencies that administer these lands to help cover operational costs. The Ultra-Deepwater Research Program and the Mescal Settlement Agreement also receive $50 million each.
-                </Box>
-              </TableCell>
-              <TableCell>
-                <StackedBarChart
-                  data={chartData}
-                  legendFormat={v => utils.formatToDollarInt(v)}
-                  title={chartTitle}
-                  units={units}
-                  xAxis={xAxis}
-                  xLabels={xLabels}
-                  yAxis={yAxis}
-                  xGroups={xGroups}
-                  yGroupBy={yGroupBy}
-                  yOrderBy={yOrderBy}
-                  horizontal
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ verticalAlign: 'top' }}>
-                <Box component="h4" mt={0}>Historic Preservation Fund</Box>
-                <Box component="p">
-                Helps preserve U.S. historical and archaeological sites and cultural heritage through grants to state and tribal historic preservation offices.
-                </Box>
-                <Link href="/how-it-works/historic-preservation-fund/">How this fund works</Link>
-              </TableCell>
-              <TableCell>
-                <StackedBarChart
-                  data={chartData}
-                  legendFormat={v => utils.formatToDollarInt(v)}
-                  title={chartTitle}
-                  units={units}
-                  xAxis={xAxis}
-                  xLabels={xLabels}
-                  yAxis={yAxis}
-                  xGroups={xGroups}
-                  yGroupBy={yGroupBy}
-                  yOrderBy={yOrderBy}
-                  horizontal
-                />
-              </TableCell>
-            </TableRow>
+            { nationalRevenueData &&
+              nationalRevenueData.map((item, i) => {
+                return (
+                  <TableRow key={i}>
+                    <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box component="h4" mt={0}>{item[0]}</Box>
+                      <Box component="p">
+                        {revenueTypeDescriptions[i]}
+                      </Box>
+                    </TableCell>
+                    <TableCell style={{ width: '65%' }}>
+                      <StackedBarChart
+                        data={item[1]}
+                        legendFormat={v => utils.formatToDollarInt(v)}
+                        title={chartTitle}
+                        units={units}
+                        xAxis={xAxis}
+                        xLabels={xLabels}
+                        yAxis={yAxis}
+                        xGroups={xGroups}
+                        yGroupBy={yGroupBy}
+                        yOrderBy={yOrderBy}
+                        horizontal
+                      />
+                    </TableCell>
+                  </TableRow>
+                )
+              })
+            }
           </TableBody>
         </Table>
       </Grid>
@@ -260,3 +139,5 @@ const NationalRevenueSummary = props => {
 }
 
 export default NationalRevenueSummary
+
+NationalRevenueSummary.propTypes = {}
