@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -45,5 +46,6 @@ const LandPercent = props => {
 export default LandPercent
 
 LandPercent.propTypes = {
+  // Location state abbreviation
   stateAbbr: PropTypes.string.isRequired
 }

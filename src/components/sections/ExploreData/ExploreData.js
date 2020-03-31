@@ -1,4 +1,3 @@
-
 import React, { useState, useContext } from 'react'
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
@@ -8,58 +7,30 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Container,
   Typography,
-  Slider,
   Grid,
   Box,
-  Button,
-  ButtonGroup,
-  TextField,
-  Card,
-  CardActions,
-  CardHeader,
-  CardContent,
-  IconButton,
-  Menu,
-  MenuItem,
   Snackbar,
   useMediaQuery
 } from '@material-ui/core'
 
-import { Autocomplete } from '@material-ui/lab'
-import AddIcon from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
-import RefreshIcon from '@material-ui/icons/Refresh'
-
-import DetailCard from './DetailCard'
 import Map from '../../data-viz/Map'
 import MapToolbar from './MapToolbar'
+import MapControls from './MapControls'
+import AddCardButton from './AddCardButton'
+import CompareCards from './CompareCards'
+import LocationTotal from './LocationTotal'
 import NationalRevenueSummary from './NationalRevenueSummary'
 import SummaryCard from './SummaryCard'
+import YearSlider from './YearSlider'
 
 import { StoreContext } from '../../../store'
 import utils from '../../../js/utils'
-import CONSTANTS from '../../../js/constants'
+// import CONSTANTS from '../../../js/constants'
 
 import mapCounties from './counties.json'
 import mapStates from './states.json'
 import mapCountiesOffshore from './counties-offshore.json'
 import mapStatesOffshore from './states-offshore.json'
-
-import { select } from 'd3'
-import LineChart from '../../data-viz/LineChart/LineChart.js'
-import mapJson from './us-topology.json'
-
-// import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
-
-export const STATIC_QUERY = graphql`
-  {
-    onrr {
-      commodity(distinct_on: fund_type) {
-        fund_type
-      }
-    }
-  }
-`
 
 const FISCAL_REVENUE_QUERY = gql`
   query FiscalRevenue($year: Int!) {
@@ -67,34 +38,6 @@ const FISCAL_REVENUE_QUERY = gql`
       fiscal_year
       state_or_area
       sum
-    }
-  }
-`
-
-const LOCATION_TOTAL_QUERY = gql`
-  query NationwideFederal($stateOrArea: String!, $year: Int!) {
-    fiscal_revenue_summary(where: {state_or_area: {_eq: $stateOrArea, _neq: ""}, fiscal_year: {_eq: $year}}) {
-      fiscal_year
-      state_or_area
-      sum
-    }
-  }
-`
-
-const DISTINCT_LOCATIONS_QUERY = gql`
-  query DistinctLocations {
-    distinct_locations(where: {location: {_neq: ""}}) {
-      location
-      location_id
-      sort_order
-    }
-  }
-`
-
-const FISCAL_YEARS_QUERY = gql`
-  query FiscalYears($period: String!) {
-    period(where: {period: {_eq: $period }}) {
-      fiscal_year
     }
   }
 `
@@ -249,86 +192,9 @@ const useStyles = makeStyles(theme => ({
     borderTop: `1px solid ${ theme.palette.grey[300] }`,
     borderBottom: `1px solid ${ theme.palette.grey[300] }`,
   },
-  sliderBox: {
-    width: '100%',
-    position: 'relative',
-    boxSizing: 'border-box',
-    zIndex: 101,
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    top: 0,
-  },
-  sliderRoot: {
-  },
-  sliderMarkLabel: {
-    fontWeight: 'bold',
-    top: '28px',
-    color: theme.palette.primary.dark,
-    fontSize: '1rem',
-  },
-  sliderMarkLabelActive: {
-    fontWeight: 'bold',
-    boxShadow: 'none',
-  },
-  sliderTrack: {
-    height: 4,
-    backgroundColor: 'transparent',
-  },
-  sliderRail: {
-    height: 4,
-    backgroundColor: theme.palette.grey['500']
-  },
-  sliderMark: {
-    height: 4,
-    backgroundColor: theme.palette.common.white,
-    width: 0,
-  },
-  sliderActive: {
-    boxShadow: 'none',
-    transition: 'none',
-    borderRadius: 0,
-  },
-  sliderThumb: {
-    marginTop: -4,
-    boxShadow: 'none',
-    transition: 'none',
-    '&:hover': {
-      boxShadow: 'none',
-      transition: 'none',
-    },
-    '&:focus,&:hover,&$active': {
-      boxShadow: 'inherit',
-    },
-  },
-  sliderValueLabel: {
-    width: 60,
-    top: -2,
-    left: 'calc(-50% + -18px)',
-    transform: 'rotate(0deg)',
-    fontSize: '1rem',
-    cursor: 'pointer',
-    backgroundColor: theme.palette.links.default,
-    color: theme.palette.primary.contrastText,
-    '& span': {
-      width: 60,
-      transform: 'rotate(0)',
-      borderRadius: 0,
-      textAlign: 'center',
-      color: `${ theme.palette.common.white } !important`,
-      backgroundColor: theme.palette.links.default,
-    },
-  },
   contentWrapper: {
     paddingBottom: theme.spacing(4),
     minHeight: 500,
-  },
-  zoomButtonGroupContainer: {
-    position: 'absolute',
-    bottom: 180,
-    left: 10,
-    '@media (max-width: 768px)': {
-      bottom: 70,
-    }
   },
   nonStateCardsContainer: {
     position: 'absolute',
@@ -386,18 +252,6 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(4),
     backgroundColor: theme.palette.grey['100'],
   },
-  addLocationCard: {
-    background: `${ theme.palette.grey['100'] }`,
-    '& div:nth-child(1)': {
-      background: `${ theme.palette.grey['100'] } !important`,
-      '& > span': {
-        color: `${ theme.palette.common.black } !important`,
-      }
-    },
-    '& .MuiCardContent-root div': {
-      textAlign: 'left',
-    }
-  },
   cardButtonContainer: {
     display: 'flex',
     justifyContent: 'flex-start',
@@ -406,328 +260,7 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(2),
     },
   },
-  addCardButtonContainer: {
-    marginTop: theme.spacing(2),
-    textAlign: 'right',
-    '& button': {
-      padding: theme.spacing(0.5),
-      color: theme.palette.common.black,
-      backgroundColor: theme.palette.common.white,
-      boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
-    },
-    '@media (max-width: 768px)': {
-      textAlign: 'left',
-    }
-  },
-  searchString: {
-    fontWeight: 700,
-  },
-  buttonGroupGrouped: {
-    padding: 5,
-    background: theme.palette.background.default,
-    margin: 0,
-  },
-  cardHeader: {
-    padding: 10,
-    height: 75,
-    fontSize: '1.2rem',
-    '& .MuiCardHeader-action': {
-      marginTop: 0,
-    },
-    '& span': {
-      margin: 0,
-    },
-  },
-  cardHeaderContent: {
-    fontSize: theme.typography.h3.fontSize,
-  },
-  autoCompleteRoot: {
-    background: theme.palette.background.default,
-    color: theme.palette.primary.dark,
-  },
-  autoCompleteFocused: {
-    color: theme.palette.primary.dark,
-  },
-  linearProgress: {
-    backgroundColor: theme.palette.primary.dark,
-  },
 }))
-
-// get region details from map object
-const getRegionProperties = input => {
-  // check for fips_code that are only 4 digits, the data values should all be 5
-  input = input.length === 4 ? input = `0${ input }` : input
-
-  let selectedObj
-  if (input.length > 2) {
-    selectedObj = mapJson.objects.counties.geometries.filter(obj => {
-      if (obj.properties.FIPS.toLowerCase() === input.toLowerCase()) {
-        return obj.properties
-      }
-    })
-  }
-  else {
-    selectedObj = mapJson.objects.states.geometries.filter(obj => {
-      if (obj.properties.abbr.toLowerCase() === input.toLowerCase()) {
-        return obj.properties
-      }
-    })
-  }
-
-  return selectedObj
-}
-
-// AddCardButton - map speed dial button
-const AddCardButton = props => {
-  const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState(null)
-
-  const handleMenuClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleClose = (index, item) => event => {
-    setAnchorEl(null)
-    if (typeof item !== 'undefined') {
-      props.onLink(item)
-    }
-  }
-
-  return (
-    <div className={classes.addCardButtonContainer}>
-      <IconButton
-        aria-label="Add additional location card menu"
-        aria-controls="add-additional-location-card-menu"
-        aria-haspopup="true"
-        onClick={handleMenuClick}>
-        <AddIcon />
-      </IconButton>
-      <Menu
-        id="add-additional-location-card-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose(null)}
-      >
-        {
-          props.menuItems.map((item, i) => <MenuItem key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
-        }
-      </Menu>
-    </div>
-  )
-}
-
-// Add location card with search
-const AddLocationCard = props => {
-  const classes = useStyles()
-
-  const [input, setInput] = useState(null)
-  const [keyCount, setKeyCount] = useState(0)
-
-  const handleSearch = event => {
-    setInput(event.target.value)
-  }
-
-  const handleChange = val => {
-    if (val) {
-      const item = getRegionProperties(val.location_id)[0]
-      props.onLink(item)
-      setInput(null)
-      setKeyCount(keyCount + 1)
-    }
-  }
-
-  const renderLabel = item => {
-    const label = item
-    const searchString = input
-
-    if (searchString) {
-      const index = label.toLowerCase().indexOf(searchString.toLowerCase())
-
-      if (index !== -1) {
-        const length = searchString.length
-        const prefix = label.substring(0, index)
-        const suffix = label.substring(index + length)
-        const match = label.substring(index, index + length)
-
-        return (
-          <span>
-            {prefix}<Box variant="span" fontWeight="bold" display="inline">{match}</Box>{suffix}
-          </span>
-        )
-      }
-    }
-
-    return (
-      <span>{label}</span>
-    )
-  }
-
-  const { loading, error, data } = useQuery(DISTINCT_LOCATIONS_QUERY)
-
-  if (loading) return null
-  if (error) return `Error! ${ error.message }`
-
-  if (data) {
-    const distinctLocations = data.distinct_locations
-    return (
-      <Card className={classes.addLocationCard}>
-        <CardHeader
-          title={props.title}
-          classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
-          disableTypography
-        />
-        <CardContent>
-          <Autocomplete
-            key={keyCount}
-            id="location-selecte"
-            autoComplete
-            inputValue={input}
-            options={distinctLocations}
-            getOptionLabel={option => option.location}
-            style={{ width: '100%' }}
-            renderInput={params => (
-              <TextField
-                {...params}
-                label="Search locations..."
-                variant="outlined"
-                fullWidth
-                onChange={handleSearch}
-              />
-            )}
-            renderOption={option => renderLabel(option.location)}
-            onChange={(e, v) => handleChange(v)}
-            classes={{
-              inputRoot: classes.autoCompleteRoot,
-              focused: classes.autoCompleteFocused,
-            }}
-          />
-        </CardContent>
-        <CardActions>
-          { props.menuItems.length > 0 &&
-            <AddCardButton onLink={props.onLink} menuItems={props.menuItems} />
-          }
-        </CardActions>
-      </Card>
-    )
-  }
-}
-
-// YearSlider
-const YearSlider = props => {
-  const classes = useStyles()
-  const { state } = useContext(StoreContext)
-  const [year] = useState(state.year)
-
-  const { loading, error, data } = useQuery(FISCAL_YEARS_QUERY, { variables: { period: 'Fiscal Year' } })
-
-  let periodData
-  let minYear
-  let maxYear
-
-  if (loading) return null
-  if (error) return `Error loading revenue data table ${ error.message }`
-
-  if (data) {
-    periodData = data.period
-
-    // set min and max trend years
-    minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-    maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-  }
-
-  const customMarks = [
-    {
-      label: minYear,
-      value: minYear
-    },
-    {
-      label: maxYear,
-      value: maxYear
-    }
-  ]
-
-  return (
-    <Box id="year-slider" className={classes.sliderBox}>
-      <Grid container spacing={4}>
-        <Grid item xs>
-          <Slider
-            defaultValue={year}
-            aria-label="Year slider"
-            aria-labelledby="year-slider"
-            aria-valuetext={year.toString()}
-            valueLabelDisplay="on"
-            step={1}
-            onChangeCommitted={(e, yr) => {
-              props.onYear(yr)
-            }}
-            marks={customMarks}
-            min={minYear}
-            max={maxYear}
-            classes={{
-              root: classes.sliderRoot,
-              markLabel: classes.sliderMarkLabel,
-              markLabelActive: classes.sliderMarkLabelActive,
-              track: classes.sliderTrack,
-              rail: classes.sliderRail,
-              mark: classes.sliderMark,
-              active: classes.sliderActive,
-              thumb: classes.sliderThumb,
-              valueLabel: classes.sliderValueLabel,
-            }}
-          />
-        </Grid>
-      </Grid>
-    </Box>
-  )
-}
-
-// Map Controls
-const MapControls = props => {
-  const classes = useStyles()
-
-  return (
-    <Box className={classes.zoomButtonGroupContainer}>
-      <ButtonGroup
-        orientation="vertical"
-        variant="contained"
-        aria-label="Explore data map zoom controls"
-        classes={{ grouped: classes.buttonGroupGrouped }}>
-        <Button onClick={() => props.handleClick('add')} role="button" aria-label="Map zoom in">
-          <AddIcon />
-        </Button>
-        <Button onClick={() => props.handleClick('remove')} role="button" aria-label="Map zoom out">
-          <RemoveIcon />
-        </Button>
-        <Button onClick={() => props.handleClick('refresh')} role="button" aria-label="Map reset">
-          <RefreshIcon />
-        </Button>
-      </ButtonGroup>
-    </Box>
-  )
-}
-
-// location total
-const LocationTotal = props => {
-  const { format, stateOrArea } = props
-  const { state } = useContext(StoreContext)
-  const year = state.year
-
-  const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { stateOrArea, year }
-  })
-
-  if (loading) return ''
-  if (error) return `Error loading revenue data table ${ error.message }`
-
-  if (data) {
-    return (
-      <>
-        { data.fiscal_revenue_summary.length > 0 ? format(data.fiscal_revenue_summary[0].sum) : format(0) }
-      </>
-    )
-  }
-}
 
 const ExploreData = () => {
   const classes = useStyles()
@@ -1054,41 +587,12 @@ const ExploreData = () => {
                 When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. <strong>In fiscal year {year}, ONRR collected a total of <LocationTotal stateOrArea="Nationwide Federal" format={d => utils.formatToDollarInt(d)} /> in revenue.</strong>
               </Typography>
             </Grid>
-            <Grid item md={12}>
-              <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                <Box component="h3" color="secondary.dark">Compare revenue</Box>
-              </Box>
-              <Box fontSize="body1.fontSize">
-                Add more than one card to compare.  Select states, counties, and offshore regions.
-              </Box>
-              <Box fontSize="body1.fontSize">
-                { cards.length > 0 &&
-                  <Box>You currently have {cards.length > 0 ? 'the following cards selected.' : 'no cards selected.'}</Box>
-                }
-              </Box>
-            </Grid>
           </Grid>
-          <Box className={classes.compareCardsContainer}>
-            {
-              cards.map((card, i) => {
-                return (
-                  <DetailCard
-                    key={i}
-                    cardTitle={card.name}
-                    fips={card.fips}
-                    abbr={card.abbr}
-                    state={card.state}
-                    name={card.name}
-                    closeCard={fips => {
-                      closeCard(fips)
-                    }}
-                    total={<LocationTotal stateOrArea={card.abbr} format={d => utils.formatToDollarInt(d)} />}
-                  />
-                )
-              })
-            }
-            { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} menuItems={cardMenuItems} /> : '' }
-          </Box>
+          <CompareCards
+            cards={cards}
+            closeCard={closeCard}
+            onLink={onLink}
+            cardMenuItems={cardMenuItems} />
           <NationalRevenueSummary />
         </Container>
       </>
