@@ -63,8 +63,35 @@ export DB_HOST=localhost
 
 
 #
-# trouble shouting...
+# trouble shooting...
 
 
 cf logs <APP_NAME> --recent
 cf env $DB_ENV 
+
+#you must restage if you drop schema
+
+
+#BACK UP Restoring from database:
+# in this example port 7222 has tunnel to psql-sandbox (source) 
+# port 7223 has port to psql-onrr (target)
+
+
+pg_dump postgres://$creds@localhost:7222/$dbname -F t -f psql-sandbox.03122020.pg
+
+#drop existing db I'm not sure this is required in all cases
+psql postgres://$creds@localhost:7223/$dbname
+cgawsbr...od8py3w7sukk91mnq=> drop owned by current_user cascade;
+cgawsbr...od8py3w7sukk91mnq=> create schema public;
+cgawsbr...od8py3w7sukk91mnq=> quit
+
+$time pg_restore --user=$DB_USER --port=$DB_PORT --host=$DB_HOST  --clean --no-owner --no-acl --dbname=$DB_DATABASE psql-sandbox.03122020.pg
+Password: <ENTER PASSWORD>
+.....
+
+
+# New objects won't be seen by hasura so if new objects be sure to restage:
+
+
+cf restage hasura-$DB_ENV (where we are in the shell  configure for hasura-onrr
+

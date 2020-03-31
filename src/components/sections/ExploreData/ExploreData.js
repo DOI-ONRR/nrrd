@@ -1,45 +1,52 @@
-import React, { useState, useContext, useEffect, useRef } from 'react'
-// import { Link } from "gatsby"
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
-import Slider from '@material-ui/core/Slider'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import Autocomplete from '@material-ui/lab/Autocomplete'
-
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardHeader from '@material-ui/core/CardHeader'
-import CardContent from '@material-ui/core/CardContent'
-import IconButton from '@material-ui/core/IconButton'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
-
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Snackbar from '@material-ui/core/Snackbar'
-
-import AddIcon from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
-import RefreshIcon from '@material-ui/icons/Refresh'
-
+import React, { useState, useContext } from 'react'
 import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import {
+  Container,
+  Typography,
+  Slider,
+  Grid,
+  Box,
+  Button,
+  ButtonGroup,
+  TextField,
+  Card,
+  CardActions,
+  CardHeader,
+  CardContent,
+  IconButton,
+  Menu,
+  MenuItem,
+  Snackbar,
+  useMediaQuery
+} from '@material-ui/core'
+
+import { Autocomplete } from '@material-ui/lab'
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
+import RefreshIcon from '@material-ui/icons/Refresh'
+
 import Map from '../../data-viz/Map'
 import MapToolbar from './MapToolbar'
-import StateDetailCard from './StateDetailCard'
-import StateCard from '../../layouts/StateCard'
+import DetailCard from './DetailCard'
+import SummaryCard from './SummaryCard'
 
 import { StoreContext } from '../../../store'
-import mapJson from './us-topology.json'
-import { useMediaQuery } from '@material-ui/core'
+import utils from '../../../js/utils'
+import CONSTANTS from '../../../js/constants'
+
+import mapCounties from './counties.json'
+import mapStates from './states.json'
+import mapCountiesOffshore from './counties-offshore.json'
+import mapStatesOffshore from './states-offshore.json'
+
 import { select } from 'd3'
-// import  mapJson from './us.t2.json'
+import LineChart from '../../data-viz/LineChart/LineChart.js'
+import mapJson from './us-topology.json'
 
 // import StatesSvg from '-!svg-react-loader!../../../img/svg/usstates/all.svg'
 
@@ -54,8 +61,18 @@ export const STATIC_QUERY = graphql`
 `
 
 const FISCAL_REVENUE_QUERY = gql`
-  query FiscalRevenue($year: Int!, $location: String!) {
-    fiscal_revenue_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location } }) {
+  query FiscalRevenue($year: Int!) {
+    fiscal_revenue_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }}) {
+      fiscal_year
+      state_or_area
+      sum
+    }
+  }
+`
+
+const LOCATION_TOTAL_QUERY = gql`
+  query NationwideFederal($stateOrArea: String!, $year: Int!) {
+    fiscal_revenue_summary(where: {state_or_area: {_eq: $stateOrArea, _neq: ""}, fiscal_year: {_eq: $year}}) {
       fiscal_year
       state_or_area
       sum
@@ -65,10 +82,18 @@ const FISCAL_REVENUE_QUERY = gql`
 
 const DISTINCT_LOCATIONS_QUERY = gql`
   query DistinctLocations {
-    distinct_locations {
+    distinct_locations(where: {location: {_neq: ""}}) {
       location
       location_id
       sort_order
+    }
+  }
+`
+
+const FISCAL_YEARS_QUERY = gql`
+  query FiscalYears($period: String!) {
+    period(where: {period: {_eq: $period }}) {
+      fiscal_year
     }
   }
 `
@@ -102,8 +127,10 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '100%',
     order: '3',
     height: 575,
+    minHeight: 575,
     '@media (max-width: 768px)': {
       height: 350,
+      minHeight: 350,
     },
   },
   cardContainer: {
@@ -139,7 +166,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         boxSizing: 'border-box',
         minWidth: 285,
-        minHeight: 315,
+        minHeight: 325,
         marginBottom: theme.spacing(1),
         bottom: 0,
       },
@@ -235,7 +262,7 @@ const useStyles = makeStyles(theme => ({
   sliderMarkLabel: {
     fontWeight: 'bold',
     top: '28px',
-    color: theme.palette.grey['1000'],
+    color: theme.palette.primary.dark,
     fontSize: '1rem',
   },
   sliderMarkLabelActive: {
@@ -279,7 +306,7 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(0deg)',
     fontSize: '1rem',
     cursor: 'pointer',
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.links.default,
     color: theme.palette.primary.contrastText,
     '& span': {
       width: 60,
@@ -287,7 +314,7 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 0,
       textAlign: 'center',
       color: `${ theme.palette.common.white } !important`,
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: theme.palette.links.default,
     },
   },
   contentWrapper: {
@@ -419,7 +446,10 @@ const useStyles = makeStyles(theme => ({
   },
   autoCompleteFocused: {
     color: theme.palette.primary.dark,
-  }
+  },
+  linearProgress: {
+    backgroundColor: theme.palette.primary.dark,
+  },
 }))
 
 // get region details from map object
@@ -585,17 +615,34 @@ const AddLocationCard = props => {
 // YearSlider
 const YearSlider = props => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
+  const { state } = useContext(StoreContext)
   const [year] = useState(state.year)
+
+  const { loading, error, data } = useQuery(FISCAL_YEARS_QUERY, { variables: { period: 'Fiscal Year' } })
+
+  let periodData
+  let minYear
+  let maxYear
+
+  if (loading) return null
+  if (error) return `Error loading revenue data table ${ error.message }`
+
+  if (data) {
+    periodData = data.period
+
+    // set min and max trend years
+    minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
+    maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+  }
 
   const customMarks = [
     {
-      label: '2003',
-      value: 2003
+      label: minYear,
+      value: minYear
     },
     {
-      label: '2019',
-      value: 2019
+      label: maxYear,
+      value: maxYear
     }
   ]
 
@@ -614,8 +661,8 @@ const YearSlider = props => {
               props.onYear(yr)
             }}
             marks={customMarks}
-            min={2003}
-            max={2019}
+            min={minYear}
+            max={maxYear}
             classes={{
               root: classes.sliderRoot,
               markLabel: classes.sliderMarkLabel,
@@ -659,6 +706,28 @@ const MapControls = props => {
   )
 }
 
+// location total
+const LocationTotal = props => {
+  const { format, stateOrArea } = props
+  const { state } = useContext(StoreContext)
+  const year = state.year
+
+  const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
+    variables: { stateOrArea, year }
+  })
+
+  if (loading) return ''
+  if (error) return `Error loading revenue data table ${ error.message }`
+
+  if (data) {
+    return (
+      <>
+        { data.fiscal_revenue_summary.length > 0 ? format(data.fiscal_revenue_summary[0].sum) : format(0) }
+      </>
+    )
+  }
+}
+
 const ExploreData = () => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
@@ -678,6 +747,7 @@ const ExploreData = () => {
 
   const cards = state.cards
   const year = state.year
+  const offshore = state.offshoreData === 'On'
 
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
@@ -752,28 +822,35 @@ const ExploreData = () => {
     setSnackbarState({ ...snackbarState, open: false })
   }
 
-  const location = state.countyLevel ? 'County' : 'State'
+  const countyLevel = state.countyLevel === 'County'
 
   const onLink = state => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
 
-    const fips = state.properties ? state.properties.FIPS : state.fips
+    let fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
-
+    if (fips === undefined) {
+      fips = state.id
+    }
+    let stateAbbr
     let abbr
-    if (state.properties) {
-      abbr = state.properties.abbr ? state.properties.abbr : state.properties.state
+
+    if (fips && fips.length > 2) {
+      abbr = fips
+      stateAbbr = state.properties.state ? state.properties.state : state.properties.region
     }
     else {
-      abbr = state.abbr
+      abbr = state.properties ? state.properties.abbr : state.abbr
+      stateAbbr = state.properties ? state.properties.abbr : state.abbr
     }
 
     const stateObj = {
       fips: fips,
       abbr: abbr,
       name: name,
+      state: stateAbbr
     }
 
     if (
@@ -809,27 +886,47 @@ const ExploreData = () => {
   }
 
   const { loading, error, data } = useQuery(FISCAL_REVENUE_QUERY, {
-    variables: { year, location }
+    variables: { year }
   })
-  // const cache = [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]
-  //  cache.map((year, i) => {
-  //      useQuery(FISCAL_REVENUE_QUERY, { variables: { year, location } })
-  //  })
-  let mapData = [[]]
-  if (loading) {
-    //
-  }
 
+  let mapData = [[]]
+
+  // Return nothing so that the map still appears while data is loading
+  if (loading) {}
   if (error) return `Error! ${ error.message }`
+
+  let mapJsonObject = mapStates
+  let mapFeatures = 'states-geo'
 
   if (data) {
     mapData = data.fiscal_revenue_summary.map((item, i) => [
       item.state_or_area,
       item.sum
     ])
+
+    if (countyLevel) {
+      if (offshore) {
+        mapJsonObject = mapCountiesOffshore
+        mapFeatures = 'counties-offshore-geo'
+      }
+      else {
+        mapJsonObject = mapCounties
+        mapFeatures = 'counties-geo'
+      }
+    }
+    else {
+      if (offshore) {
+        mapJsonObject = mapStatesOffshore
+        mapFeatures = 'states-offshore-geo'
+      }
+      else {
+        mapJsonObject = mapStates
+        mapFeatures = 'states-geo'
+      }
+    }
   }
+
   if (mapData) {
-    // const timeout = 5000
     return (
       <>
         <Container className={classes.mapWrapper} maxWidth={false}>
@@ -838,8 +935,8 @@ const ExploreData = () => {
               <Box className={classes.mapContainer}>
                 <MapToolbar onChange={handleChange} />
                 <Map
-                  mapFeatures={state.countyLevel ? 'counties' : 'states'}
-                  mapJsonObject={mapJson}
+                  mapFeatures={mapFeatures}
+                  mapJsonObject={mapJsonObject}
                   mapData={mapData}
                   minColor="#CDE3C3"
                   maxColor="#2F4D26"
@@ -870,7 +967,7 @@ const ExploreData = () => {
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
-                    <StateCard
+                    <SummaryCard
                       key={i}
                       fips={state.fips}
                       abbr={state.abbr}
@@ -915,7 +1012,7 @@ const ExploreData = () => {
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
-                    <StateCard
+                    <SummaryCard
                       key={i}
                       fips={state.fips}
                       abbr={state.abbr}
@@ -953,7 +1050,7 @@ const ExploreData = () => {
                 <Box component="h2" color="secondary.dark">Revenue</Box>
               </Box>
               <Typography variant="body1">
-                When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. In fiscal year {year}, ONRR collected a total of [$9,161,704,392] in revenue.
+                When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. <strong>In fiscal year {year}, ONRR collected a total of <LocationTotal stateOrArea="Nationwide Federal" format={d => utils.formatToDollarInt(d)} /> in revenue.</strong>
               </Typography>
             </Grid>
             <Grid item md={12}>
@@ -974,15 +1071,17 @@ const ExploreData = () => {
             {
               cards.map((card, i) => {
                 return (
-                  <StateDetailCard
+                  <DetailCard
                     key={i}
                     cardTitle={card.name}
                     fips={card.fips}
                     abbr={card.abbr}
+                    state={card.state}
                     name={card.name}
                     closeCard={fips => {
                       closeCard(fips)
                     }}
+                    total={<LocationTotal stateOrArea={card.abbr} format={d => utils.formatToDollarInt(d)} />}
                   />
                 )
               })

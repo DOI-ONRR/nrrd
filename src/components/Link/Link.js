@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 )
 
 const IconLink = ({ icon, children, pl = 4, ...props }) => (
-  <Box pl={pl} mt={2} mb={2}>
+  <Box pl={0} mt={2} mb={2}>
     <BaseLink {...props} disableRouting>
       <Box mr={1} display='inline-block'>{icon}</Box>
       <span>{children}</span>

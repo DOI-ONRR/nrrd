@@ -11,7 +11,15 @@ tag:
 ---
 
 <Container maxWidth="lg">
-  <Box component="h2" pb={5} fontWeight="normal" style={{ lineHeight: '2.25rem' }}>
+  <Box 
+    component="p" 
+    pt={3} 
+    pb={6} 
+    pr={{ md: '35%' }} 
+    style={{ 
+      fontWeight: 'normal', 
+      fontSize: '1.4rem', 
+      lineHeight: '2.25rem' }}>
     When companies extract energy and mineral resources on property
     leased from the federal government and Native Americans, they pay{' '}
   <GlossaryTerm>bonuses</GlossaryTerm>,{' '}
@@ -46,9 +54,9 @@ tag:
                 </Box>
               </Grid>
               <Grid item sm={12}>
-                <Typography variant="body1">
+                <Box component="p" pr={{ md: '35%' }}>
                   The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
-                </Typography>
+                </Box>
               </Grid>
               <Grid item xs={12} md={8}>
                 <TotalRevenue />
@@ -76,9 +84,9 @@ tag:
                 </Box>
               </Grid>
               <Grid item sm={12}>
-                <Typography variant="body1">
+                <Box component="p" pr={{ md: '35%' }}>
                   The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.
-                </Typography>
+                </Box>
               </Grid>
               <Grid item xs={12} md={8}>
                 <TotalDisbursements />
@@ -97,9 +105,9 @@ tag:
                 <Typography variant="h2">
                   Production
                 </Typography>
-                <Typography variant="body1">
+                <Box component="p" pr={{ md: '35%' }}>
                   The volume of major commodities extracted on federal lands and waters and Native American lands.
-                </Typography>
+                </Box>
               </Grid>
               <Grid item xs={12}>
                 <TotalProduction />
