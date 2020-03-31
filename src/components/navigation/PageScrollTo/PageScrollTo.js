@@ -3,15 +3,34 @@ import PropTypes from 'prop-types'
 
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 
+import { makeStyles } from '@material-ui/core/styles'
 import {
-  Box
+  Box,
+  Menu,
+  MenuList,
+  MenuItem,
+  Paper
 } from '@material-ui/core'
 
-const PageScrollTo = props => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'inline-block',
+    color: theme.palette.primary.dark,
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
+  },
+}))
+
+const PageScrollTo = ({ menuItems, ...rest }) => {
+  console.log('PageScrollTo menuItems: ', menuItems)
+  const classes = useStyles()
   return (
-    <>
-      <Box>PageScrollTo component yo!</Box>
-    </>
+    <Paper className={classes.root}>
+      <MenuList>
+        <MenuItem>Top</MenuItem>
+        { menuItems.map(item => <MenuItem>{item}</MenuItem>) }
+      </MenuList>
+    </Paper>
   )
 }
 

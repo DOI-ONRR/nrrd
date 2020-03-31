@@ -22,6 +22,7 @@ import LocationTotal from './LocationTotal'
 import NationalRevenueSummary from './NationalRevenueSummary'
 import SummaryCard from './SummaryCard'
 import YearSlider from './YearSlider'
+import PageScrollTo from '../../navigation/PageScrollTo'
 
 import { StoreContext } from '../../../store'
 import utils from '../../../js/utils'
@@ -588,6 +589,7 @@ const ExploreData = () => {
               </Typography>
             </Grid>
           </Grid>
+
           <CompareCards
             cards={cards}
             closeCard={closeCard}
