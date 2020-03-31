@@ -4,11 +4,21 @@ includeToc: false
 includeDataProvider: true
 ---
 <Box mb={4}>
+<Container maxWidth={'xl'}>
 
 # Data Query Tool
 
-<DataTypeAppBar>
-  <DataTable />
-</DataTypeAppBar>
+<Grid container spacing={2}>
+  <Grid item xs={12}>
+    <DataTypeToggle />
+  </Grid>
+  <Grid item xs={12}>
+    <DataFilterDrawer />
+  </Grid>
+  <Grid item xs={12}>
+    <DataTable />
+  </Grid>
+</Grid>
 
+</Container>
 </Box>

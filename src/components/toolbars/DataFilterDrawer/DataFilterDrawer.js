@@ -1,44 +1,28 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import clsx from 'clsx'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import Drawer from '@material-ui/core/Drawer'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import List from '@material-ui/core/List'
-import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
-import IconButton from '@material-ui/core/IconButton'
-import FilterList from '@material-ui/icons/FilterList'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import MailIcon from '@material-ui/icons/Mail'
 
-const drawerWidth = 240
+import { makeStyles } from '@material-ui/core/styles'
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
+import Button from '@material-ui/core/Button'
+import FilterList from '@material-ui/icons/FilterList'
+import Grid from '@material-ui/core/Grid'
+
+import LandCategorySelect from '../data-filters/LandCategorySelect'
+import LandClassSelect from '../data-filters/LandClassSelect'
+import StateSelect from '../data-filters/StateSelect'
+import CountySelect from '../data-filters/CountySelect'
+import RevenueTypeSelect from '../data-filters/RevenueTypeSelect'
+import CommoditySelect from '../data-filters/CommoditySelect'
+import OffshoreRegionSelect from '../data-filters/OffshoreRegionSelect'
+
+import { DataFilterContext } from '../../../stores/data-filter-store'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
+  list: {
+    width: 250,
   },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    top: 'auto',
-    position: 'absolute'
-  },
-  appBarShift: {
-    width: `calc(100% - ${ drawerWidth }px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+  fullList: {
+    width: 'auto',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -46,57 +30,84 @@ const useStyles = makeStyles(theme => ({
   hide: {
     display: 'none',
   },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
   drawerPaper: {
-    width: drawerWidth,
-    top: 'auto',
-    position: 'absolute',
-    height: 'auto'
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
+    [theme.breakpoints.up('sm')]: {
+      width: 300,
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    }
   },
 }))
 
-const DataFilterDrawer = ({ open }) => {
+export default function DataFilterDrawer () {
+  const { state } = useContext(DataFilterContext)
+  if (!state) {
+    throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
+  }
   const classes = useStyles()
+  const [open, setOpen] = React.useState(false)
+
+  const toggleDrawer = open => event => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return
+    }
+
+    setOpen(open)
+  }
+
+  console.log(state)
+
   return (
-    <Drawer
-      className={classes.drawer}
-      variant="persistent"
-      anchor="left"
-      open={open}
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
-      DataFilterDrawer
-    </Drawer>
+    <div >
+      <React.Fragment>
+        <Button
+          variant="contained"
+          color="primary"
+          aria-label="open data filters"
+          onClick={toggleDrawer(true)}
+          onKeyDown={toggleDrawer(true)}
+          startIcon={<FilterList />}
+          className={clsx(classes.menuButton, open && classes.hide)}
+          disabled={!state.dataType}
+        >
+          Filter Data
+        </Button>
+        <SwipeableDrawer
+          anchor={'left'}
+          open={open}
+          onClose={toggleDrawer(false)}
+          onOpen={toggleDrawer(true)}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <Grid container>
+            <Grid item xs={12}>
+              <LandClassSelect />
+            </Grid>
+          </Grid>
+        </SwipeableDrawer>
+      </React.Fragment>
+    </div>
   )
 }
 
-export default DataFilterDrawer
+
+/* 
+
+
+            <Grid item xs={12}>
+              <LandCategorySelect />
+            </Grid>
+            <Grid item xs={12}>
+              <LandClassSelect />
+            </Grid>
+            <Grid item xs={12}>
+              <RevenueTypeSelect />
+            </Grid>
+            <Grid item xs={12}>
+              <OffshoreRegionSelect />
+            </Grid>
+
+            */

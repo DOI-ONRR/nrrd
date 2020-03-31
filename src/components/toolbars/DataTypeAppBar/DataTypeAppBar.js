@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
 const DataTypeAppBar = ({ children }) => {
   const classes = useStyles()
   const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(true)
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -99,7 +99,6 @@ const DataTypeAppBar = ({ children }) => {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
