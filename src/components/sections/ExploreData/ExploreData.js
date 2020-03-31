@@ -589,6 +589,18 @@ const ExploreData = () => {
               </Typography>
             </Grid>
           </Grid>
+          <Grid container>
+            <Grid item md={12}>
+              <PageScrollTo
+                menuItems={[
+                  'Compare revenue',
+                  'National revenue summary',
+                  'Top locations',
+                  'Top commodities',
+                  'Revenue by company'
+                ]} />
+            </Grid>
+          </Grid>
 
           <CompareCards
             cards={cards}

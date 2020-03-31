@@ -1,5 +1,6 @@
-import React from 'React'
+import React, { useEffect } from 'React'
 import PropTypes from 'prop-types'
+import { StickyWrapper } from '../../utils/StickyWrapper'
 
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 
@@ -15,22 +16,31 @@ import {
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'inline-block',
-    color: theme.palette.primary.dark,
+    color: theme.palette.links.default,
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(2),
+    width: '100%',
+    '& ul': {
+      display: 'flex',
+      padding: 0,
+    }
   },
 }))
 
 const PageScrollTo = ({ menuItems, ...rest }) => {
-  console.log('PageScrollTo menuItems: ', menuItems)
   const classes = useStyles()
+
   return (
-    <Paper className={classes.root}>
-      <MenuList>
-        <MenuItem>Top</MenuItem>
-        { menuItems.map(item => <MenuItem>{item}</MenuItem>) }
-      </MenuList>
-    </Paper>
+    <>
+      <StickyWrapper top={1000} bottomBoundary={200} innerZ="1000" activeClass="sticky">
+        <Paper elevation={1} square className={classes.root}>
+          <MenuList>
+            <MenuItem>Top</MenuItem>
+            { menuItems.map(item => <MenuItem>{item}</MenuItem>) }
+          </MenuList>
+        </Paper>
+      </StickyWrapper>
+    </>
   )
 }
 
