@@ -39,6 +39,7 @@ export default class D3StackedBarChart {
     this.xLabels = options.xLabels
     // max extent line props and defaults
     this.legendFormat = options.legendFormat
+    this.legendHeaders = options.legendHeaders
 
     this.extentPercent = options.extentPercent || 0.05
     this.extentMarginOfError = options.extentMarginOfError || 0.10
@@ -55,7 +56,9 @@ export default class D3StackedBarChart {
       .paddingInner(0.3)
       .paddingOuter(0.1)
 
-    this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
+    this.barScale = (options.barScale) ? options.barScale : 1
+    this._height= d3.max([this._height * this.barScale, 1])
+    this.yScale = d3.scaleLinear().rangeRound([this.marginTop ,  this._height - this.marginBottom  ])
     this.yScale.domain([this.yMax(), 0])
     this.chart = d3.select(this.node.children[0]).append('svg')
       .attr('height', this._height)

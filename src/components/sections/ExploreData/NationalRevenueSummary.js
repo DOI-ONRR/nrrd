@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
@@ -64,6 +65,7 @@ const NationalRevenueSummary = props => {
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
+  let groupTotal
   let nationalRevenueData
   const xAxis = 'year'
   const yAxis = 'sum'
@@ -71,7 +73,7 @@ const NationalRevenueSummary = props => {
   const xLabels = 'month'
   const units = 'dollars'
   const xGroups = {}
-
+  
   if (loading) {
     return 'Loading...'
   }
@@ -82,7 +84,9 @@ const NationalRevenueSummary = props => {
     // do something wit dat data
     console.log('NationalRevenueSummary data: ', data)
     groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
+    groupTotal = Object.keys(groupData).map( k => groupData[k].reduce( (sum,i) => sum+=i.sum, 0)  ).reduce( (total,s) => total+=s,0 )
     nationalRevenueData = Object.entries(groupData)
+    
     xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => console.log('row map: ', row))
   }
 
@@ -115,8 +119,21 @@ const NationalRevenueSummary = props => {
                     <TableCell style={{ width: '65%' }}>
                       <StackedBarChart
                         data={item[1]}
-                        legendFormat={v => utils.formatToDollarInt(v)}
-                        title={chartTitle}
+                        legendFormat={v => {
+                          if (v === 0) {
+                            return '-'
+                          }
+                          else {
+                            return utils.formatToDollarInt(v)
+                          }
+                        }}
+                        legendHeaders={ headers => {
+                          console.debug("headers..................", headers)
+                          headers[0]= ""
+                          return headers
+                          }
+                        }
+                        barScale={item[1].reduce((sum,i) => sum+=i.sum,0) / groupTotal }
                         units={units}
                         xAxis={xAxis}
                         xLabels={xLabels}
