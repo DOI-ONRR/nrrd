@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { AppStatusContext } from '../../../../stores/app-status-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const LandCategorySelect = ({ helperText, label = 'Land category' }) => {
+const LandCategorySelect = ({ helperText, isLoadingHandler, label = 'Land category' }) => {
   const { state } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(DFC.GET_DF_REVENUE_LOCATION_OPTIONS, DFC.ALL_DATA_FILTER_VARS(state))
   if (error) return `Error! ${ error.message }`
@@ -42,6 +43,7 @@ const LandCategorySelector = ({ label, data, loading, helperText }) => {
   const classes = useStyles()
 
   const { state, updateDataFilter } = useContext(DataFilterContext)
+  const { updateLoadingStatus } = useContext(AppStatusContext)
 
   const handleChange = event => {
     updateDataFilter({ ...state, [DFC.LAND_CATEGORY]: event.target.value.toString() })
@@ -52,6 +54,10 @@ const LandCategorySelector = ({ label, data, loading, helperText }) => {
       updateDataFilter({ ...state, [DFC.LAND_CATEGORY]: undefined })
     }
   }, [data])
+
+  useEffect(() => {
+    updateLoadingStatus(loading)
+  }, [loading])
 
   const handleClearAll = () => updateDataFilter({ ...state, [DFC.LAND_CATEGORY]: undefined })
 

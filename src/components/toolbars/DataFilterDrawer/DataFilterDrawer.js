@@ -6,6 +6,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import Button from '@material-ui/core/Button'
 import FilterList from '@material-ui/icons/FilterList'
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 
 import LandCategorySelect from '../data-filters/LandCategorySelect'
 import LandClassSelect from '../data-filters/LandClassSelect'
@@ -82,11 +83,34 @@ export default function DataFilterDrawer () {
             paper: classes.drawerPaper,
           }}
         >
-          <Grid container>
-            <Grid item xs={12}>
-              <LandClassSelect />
+          <Box ml={2}>
+            <Grid container>
+              <Grid item xs={12}>
+                <LandCategorySelect />
+              </Grid>
+              <Grid item xs={12}>
+                <LandClassSelect />
+              </Grid>
+              <Grid item xs={12}>
+                <RevenueTypeSelect />
+              </Grid>
+              <Grid item xs={12}>
+                <StateSelect />
+              </Grid>
+              <Grid item xs={12}>
+                <CountySelect />
+              </Grid>
+              <Grid item xs={12}>
+                <OffshoreRegionSelect />
+              </Grid>
+              <Grid item xs={12}>
+                <CommoditySelect />
+              </Grid>
+              <Grid item xs={12}>
+                <RevenueTypeSelect />
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         </SwipeableDrawer>
       </React.Fragment>
     </div>

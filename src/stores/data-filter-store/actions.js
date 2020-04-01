@@ -7,7 +7,7 @@
 import { types } from './reducers'
 
 export const useActions = (state, dispatch) => {
-  const updateDataFilter = (updatedFilter, apolloClient) => {
+  const updateDataFilter = updatedFilter => {
     let params = ''
 
     if (typeof window !== 'undefined' && window && Object.keys(updatedFilter).length > 0) {
