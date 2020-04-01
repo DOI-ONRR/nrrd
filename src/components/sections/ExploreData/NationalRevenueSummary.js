@@ -102,7 +102,7 @@ const NationalRevenueSummary = props => {
           <TableHead>
             <TableRow>
               <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
-              <TableCell style={{ fontWeight: 'bold' }}>{year} amount</TableCell>
+              <TableCell style={{ fontWeight: 'bold' }}>FY {year} amount</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -129,7 +129,8 @@ const NationalRevenueSummary = props => {
                         }}
                         legendHeaders={ headers => {
                           console.debug("headers..................", headers)
-                          headers[0]= ""
+                          headers[0] = ""
+                          headers[2] = 'FY '+headers[2]
                           return headers
                           }
                         }
@@ -142,6 +143,7 @@ const NationalRevenueSummary = props => {
                         yGroupBy={yGroupBy}
                         yOrderBy={yOrderBy}
                         horizontal
+                        legendReverse={true}
                       />
                     </TableCell>
                   </TableRow>
