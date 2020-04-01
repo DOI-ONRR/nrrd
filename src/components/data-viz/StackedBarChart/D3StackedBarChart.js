@@ -427,7 +427,7 @@ export default class D3StackedBarChart {
         .attr('height', 15)
         .style('opacity', (d, i) => {
           if(legendReverse) {
-            return (i < labels.length ? (1 - ((i + 1) / labels.length)) : 0)
+            return (i < labels.length ? (1 - ((i) / labels.length)) : 0)
           } else {
             return (i < labels.length ? ((i + 1) / labels.length) : 0)
           }
