@@ -120,6 +120,11 @@ const AddLocationCard = props => {
   const [input, setInput] = useState(null)
   const [keyCount, setKeyCount] = useState(0)
 
+  const {
+    cardMenuItems,
+    onLink
+  } = props
+
   const handleSearch = event => {
     setInput(event.target.value)
   }
@@ -200,8 +205,8 @@ const AddLocationCard = props => {
           />
         </CardContent>
         <CardActions>
-          { props.menuItems.length > 0 &&
-            <AddCardButton onLink={props.onLink} menuItems={props.menuItems} />
+          { cardMenuItems.length > 0 &&
+            <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
           }
         </CardActions>
       </Card>

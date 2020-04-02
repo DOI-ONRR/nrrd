@@ -30,6 +30,8 @@ const AddCardButton = props => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
 
+  const { cardMenuItems } = props
+
   const handleMenuClick = event => {
     setAnchorEl(event.currentTarget)
   }
@@ -58,7 +60,7 @@ const AddCardButton = props => {
         onClose={handleClose(null)}
       >
         {
-          props.menuItems.map((item, i) => <MenuItem key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
+          cardMenuItems.map((item, i) => <MenuItem key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
         }
       </Menu>
     </div>
@@ -68,5 +70,5 @@ const AddCardButton = props => {
 export default AddCardButton
 
 AddCardButton.propTypes = {
-  menuItems: PropTypes.array.isRequired
+  cardMenuItems: PropTypes.array
 }

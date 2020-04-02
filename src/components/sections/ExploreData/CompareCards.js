@@ -12,6 +12,10 @@ import DetailCard from './DetailCard'
 import LocationTotal from './LocationTotal'
 import utils from '../../../js/utils'
 
+import {
+  cardMenuItems
+} from './Revenue/RevenueMap'
+
 const MAX_CARDS = 3
 
 const useStyles = makeStyles(theme => ({
@@ -41,15 +45,22 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const CompareRevenue = props => {
-  const { cards, ...rest } = props
+const CompareCards = props => {
+  const {
+    cards,
+    cardMenuItems,
+    closeCard,
+    onLink
+  } = props
+
   const classes = useStyles()
+
   return (
     <>
       <Grid container>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-            <Box component="h3" color="secondary.dark">Compare revenue</Box>
+            <Box component="h3" color="secondary.dark" id="compare-revenue">Compare revenue</Box>
           </Box>
           <Box fontSize="body1.fontSize">
                 Add more than one card to compare.  Select states, counties, and offshore regions.
@@ -73,22 +84,22 @@ const CompareRevenue = props => {
                 state={card.state}
                 name={card.name}
                 closeCard={fips => {
-                  rest.closeCard(fips)
+                  closeCard(fips)
                 }}
                 total={<LocationTotal stateOrArea={card.abbr} format={d => utils.formatToDollarInt(d)} />}
               />
             )
           })
         }
-        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={rest.onLink} menuItems={rest.cardMenuItems} /> : '' }
+        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
       </Box>
     </>
   )
 }
 
-export default CompareRevenue
+export default CompareCards
 
-CompareRevenue.propTypes = {
+CompareCards.propTypes = {
   // Cards array
   cards: PropTypes.array.isRequired
 }

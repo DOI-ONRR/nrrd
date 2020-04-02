@@ -196,10 +196,12 @@ const CardTitle = props => {
 }
 
 const DetailCard = props => {
+  console.log('props: ', props)
   const classes = useStyles()
 
-  const { state } = useContext(StoreContext)
+  const { state, dispatch } = useContext(StoreContext)
   const year = state.year
+  const cards = state.cards
 
   const stateAbbr = (props.abbr.length > 2) ? props.abbr : props.state
 
@@ -207,8 +209,8 @@ const DetailCard = props => {
     variables: { state: stateAbbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
-  const closeCard = item => {
-    props.closeCard(props.fips)
+  const closeCard = fips => {
+    dispatch({ type: 'CARDS', payload: { cards: cards.filter(item => item.fips !== fips) } })
   }
 
   if (loading) {
@@ -269,7 +271,7 @@ const DetailCard = props => {
         action={<CloseIcon
           className={classes.closeIcon}
           onClick={(e, i) => {
-            closeCard(i)
+            closeCard(props.fips)
           }}
         />}
         classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
