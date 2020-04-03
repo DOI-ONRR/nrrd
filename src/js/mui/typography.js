@@ -15,22 +15,26 @@ module.exports = Object.freeze({
   h1: {
     margin: '0 0 1rem 0',
     fontSize: '2.125rem',
+    lineHeight: '2.875rem',
     fontWeight: '600',
   },
   h2: {
     margin: '2rem 0 1rem 0',
     fontSize: '1.625rem',
+    lineHeight: '2.25rem',
     fontWeight: '600',
   },
   h3: {
-    margin: '2rem 0 0.25rem 0',
-    fontSize: '1.25rem',
+    margin: '2rem 0 .5rem 0',
+    fontSize: '1.375rem',
+    lineHeight: '2rem',
     fontWeight: '600',
   },
   h4: {
     margin: '2rem 0 0.25rem 0',
-    fontSize: '1.2rem',
-    fontWeight: '500',
+    fontSize: '1.21rem',
+    lineHeight: '1.235',
+    fontWeight: '600',
   },
   h5: {
     margin: '2rem 0 0.25rem 0',

@@ -7,6 +7,8 @@ const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
+  case 'COMMODITY':
+    return ({ ...state, commodity: payload.commodity })
   case 'COUNT':
     return ({ ...state, count: payload })
   case 'CARDS':
@@ -15,8 +17,10 @@ const reducer = (state, action) => {
     return ({ ...state, year: payload.year })
   case 'COUNTY_LEVEL':
     return ({ ...state, countyLevel: payload.countyLevel })
-  case 'OFFSHORE':
-    return ({ ...state, offShore: payload.offshore })
+  case 'OFFSHORE_DATA':
+    return ({ ...state, offshoreData: payload.offshoreData })
+  case 'DATA_TYPE':
+    return ({ ...state, dataType: payload.dataType })
   case 'MAP_ZOOM':
     return ({ ...state, mapX: payload.mapX, mapY: payload.mapY, mapZoom: payload.mapZoom })
   default:
@@ -26,11 +30,14 @@ const reducer = (state, action) => {
 
 const initialState = {
   cards: [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', minimizeIcon: false, closeIcon: true }],
+  commodity: 'Oil',
   count: 0,
-  countyLevel: false,
+  countyLevel: 'State',
+  dataType: 'Revenue',
   mapX: 0,
   mapY: 0,
   mapZoom: 0.75,
+  offshoreData: 'Off',
   period: 'Fiscal Year',
   year: 2019,
 }
