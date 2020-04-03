@@ -27,6 +27,7 @@ const APOLLO_QUERY = gql`
 where: {location_type: {_eq: "State"}, fiscal_year: { _eq: $year } }
       order_by: { fiscal_year: asc, sum: desc }
     ) {
+      location_name
       fiscal_year
       state_or_area
       sum
@@ -80,8 +81,8 @@ const TopLocations = props => {
   return (
     <Box className={classes.root}>
       <Box component="h4" fontWeight="bold">Top Locations</Box>
-      <Box>
-        <CircleChart data={chartData} xAxis='state_or_area' yAxis='sum'
+      <Box height = "700" >
+        <CircleChart data={chartData} xAxis='location_name' yAxis='sum'
                      format={ d => utils.formatToDollarInt(d) }
           yLabel={dataSet}
           maxCircles={10}
