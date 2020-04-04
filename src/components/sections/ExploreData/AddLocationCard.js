@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -18,16 +17,6 @@ import { Autocomplete } from '@material-ui/lab'
 
 import AddCardButton from './AddCardButton'
 import mapJson from './us-topology.json'
-
-const DISTINCT_LOCATIONS_QUERY = gql`
-  query DistinctLocations {
-    distinct_locations(where: {location: {_neq: ""}}) {
-      location
-      location_id
-      sort_order
-    }
-  }
-`
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -115,6 +104,7 @@ const getRegionProperties = input => {
 }
 
 const AddLocationCard = props => {
+  console.log('AddLocationCard props: ', props)
   const classes = useStyles()
 
   const [input, setInput] = useState(null)
@@ -164,13 +154,9 @@ const AddLocationCard = props => {
     )
   }
 
-  const { loading, error, data } = useQuery(DISTINCT_LOCATIONS_QUERY)
-
-  if (loading) return null
-  if (error) return `Error! ${ error.message }`
+  const data = props.data
 
   if (data) {
-    const distinctLocations = data.distinct_locations
     return (
       <Card className={classes.addLocationCard}>
         <CardHeader
@@ -184,7 +170,7 @@ const AddLocationCard = props => {
             id="location-selecte"
             autoComplete
             inputValue={input}
-            options={distinctLocations}
+            options={data}
             getOptionLabel={option => option.location}
             style={{ width: '100%' }}
             renderInput={params => (

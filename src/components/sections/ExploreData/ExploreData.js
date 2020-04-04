@@ -1,50 +1,23 @@
 import React, { useContext, useState } from 'react'
 
-import {
-  RevenueMap,
-  RevenueCompare,
-  RevenueSummary
-} from './Revenue'
-
-import {
-  DisbursementsMap,
-  DisbursementsCompare
-} from './Disbursements'
-
 import { StoreContext } from '../../../store'
 import { DATA_TYPES } from '../../../constants'
 
 const MAX_CARDS = 3
 
-const ExploreData = () => {
+const ExploreData = props => {
   const { state, dispatch } = useContext(StoreContext)
 
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
   const [mapK, setMapK] = useState(0.25)
 
+  let x = mapX
+  let y = mapY
+  let k = mapK
+
   const cards = state.cards
-  const countyLevel = state.countyLevel === 'County'
   const dataType = state.dataType
-  const offshore = state.offshoreData === 'On'
-  const year = state.year
-
-  // card Menu Item for adding/removing Nationwide Federal or Native American cards
-  const nationalCard = cards && cards.some(item => item.abbr === 'Nationwide Federal')
-  const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
-  let cardMenuItems = []
-
-  if (!nationalCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }]
-  }
-
-  if (!nativeAmericanCard) {
-    cardMenuItems = [{ fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
-  }
-
-  if (!nationalCard && !nativeAmericanCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
-  }
 
   // closeCard
   const closeCard = (fips, x, y, k) => {
@@ -118,36 +91,42 @@ const ExploreData = () => {
     setMapK(k)
   }
 
-  console.log('DATA_TYPES: ', DATA_TYPES)
+  // card Menu Item for adding/removing Nationwide Federal or Native American cards
+  const nationalCard = cards && cards.some(item => item.abbr === 'Nationwide Federal')
+  const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
+  let cardMenuItems = []
+
+  if (!nationalCard) {
+    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }]
+  }
+
+  if (!nativeAmericanCard) {
+    cardMenuItems = [{ fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+  }
+
+  if (!nationalCard && !nativeAmericanCard) {
+    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+  }
+
+  const exploreDataProps = {
+    cardMenuItems: cardMenuItems,
+    closeCard: closeCard,
+    onLink: onLink,
+    onYear: onYear,
+    setZoom: setZoom,
+  }
+
+  const children = React.Children.map(props.children, child => {
+    return React.cloneElement(child, {
+      exploreDataProps: exploreDataProps
+    })
+  })
 
   // Revenue
   if (dataType === DATA_TYPES[0]) {
     return (
       <>
-        <RevenueMap
-          cards={cards}
-          cardMenuItems={cardMenuItems}
-          closeCard={closeCard}
-          countyLevel={countyLevel}
-          mapX={mapX}
-          mapY={mapY}
-          mapK={mapK}
-          offshore={offshore}
-          onLink={onLink}
-          onYear={onYear}
-          setZoom={setZoom}
-          year={year} />
-
-        <RevenueCompare
-          cards={cards}
-          cardMenuItems={cardMenuItems}
-          dataType={dataType}
-          onLink={onLink}
-          year={year} />
-
-        <RevenueSummary
-          year={year}
-        />
+        {children}
       </>
     )
   }
@@ -156,7 +135,7 @@ const ExploreData = () => {
   if (dataType === DATA_TYPES[1]) {
     return (
       <>
-        <span>Production data!</span>
+        { /* disbursement component */ }
       </>
     )
   }
@@ -165,8 +144,7 @@ const ExploreData = () => {
   if (dataType === DATA_TYPES[2]) {
     return (
       <>
-        <DisbursementsMap />
-        <DisbursementsCompare />
+        { /* disbursement component */ }
       </>
     )
   }

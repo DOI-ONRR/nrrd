@@ -10,30 +10,20 @@ import {
   useMediaQuery
 } from '@material-ui/core'
 
-import Map from '../../../data-viz/Map'
-import MapToolbar from '../MapToolbar'
-import MapControls from '../MapControls'
-import AddCardButton from '../AddCardButton'
-import SummaryCard from '../SummaryCard'
-import YearSlider from '../YearSlider'
-import MapSnackbar from '../MapSnackbar'
+import Map from '../../data-viz/Map'
+import MapToolbar from './MapToolbar'
+import MapControls from './MapControls'
+import AddCardButton from './AddCardButton'
+import SummaryCard from './SummaryCard'
+import YearSlider from './YearSlider'
+import MapSnackbar from './MapSnackbar'
 
-import { StoreContext } from '../../../../store'
+import { StoreContext } from '../../../store'
 
-import mapCounties from '../counties.json'
-import mapStates from '../states.json'
-import mapCountiesOffshore from '../counties-offshore.json'
-import mapStatesOffshore from '../states-offshore.json'
-
-const FISCAL_REVENUE_QUERY = gql`
-  query FiscalRevenue($year: Int!) {
-    fiscal_revenue_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }}) {
-      fiscal_year
-      state_or_area
-      sum
-    }
-  }
-`
+import mapCounties from './counties.json'
+import mapStates from './states.json'
+import mapCountiesOffshore from './counties-offshore.json'
+import mapStatesOffshore from './states-offshore.json'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -254,31 +244,42 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default props => {
+  console.log('ExploreDataMap props: ', props)
   const classes = useStyles()
-  const { dispatch } = useContext(StoreContext)
+  const { state, dispatch } = useContext(StoreContext)
+
+  const [mapX, setMapX] = useState()
+  const [mapY, setMapY] = useState()
+  const [mapK, setMapK] = useState(0.25)
 
   const {
-    cards,
-    cardMenuItems,
-    closeCard,
-    countyLevel,
-    mapX,
-    mapY,
-    mapK,
-    offshore,
-    onLink,
-    onYear,
-    setZoom,
-    year
+    isLoading,
+    mapData,
+    periodData,
+    summaryCardFiscalRevenueSummaryData,
+    summaryCardRevenueCommoditySummaryData,
+    summaryCardCommoditySparkdataData
   } = props
-
-  const theme = useTheme()
-  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
-  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   let x = mapX
   let y = mapY
   let k = mapK
+
+  const cardMenuItems = props.exploreDataProps
+  const closeCard = props.exploreDataProps.closeCard
+
+  const onLink = props.exploreDataProps.onLink
+  const onYear = props.exploreDataProps.onYear
+  const setZoom = props.exploreDataProps.setZoom
+
+  const cards = state.cards
+  const countyLevel = state.countyLevel === 'County'
+  const offshore = state.offshoreData === 'On'
+  const year = state.year
+
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   const cardCountClass = () => {
     switch (cards.length) {
@@ -315,44 +316,27 @@ export default props => {
     setZoom(x, y, k)
   }
 
-  const { loading, error, data } = useQuery(FISCAL_REVENUE_QUERY, {
-    variables: { year }
-  })
-
-  let mapData = [[]]
-
-  // Return nothing so that the map still appears while data is loading
-  if (loading) {}
-  if (error) return `Error! ${ error.message }`
-
   let mapJsonObject = mapStates
   let mapFeatures = 'states-geo'
 
-  if (data) {
-    mapData = data.fiscal_revenue_summary.map((item, i) => [
-      item.state_or_area,
-      item.sum
-    ])
-
-    if (countyLevel) {
-      if (offshore) {
-        mapJsonObject = mapCountiesOffshore
-        mapFeatures = 'counties-offshore-geo'
-      }
-      else {
-        mapJsonObject = mapCounties
-        mapFeatures = 'counties-geo'
-      }
+  if (countyLevel) {
+    if (offshore) {
+      mapJsonObject = mapCountiesOffshore
+      mapFeatures = 'counties-offshore-geo'
     }
     else {
-      if (offshore) {
-        mapJsonObject = mapStatesOffshore
-        mapFeatures = 'states-offshore-geo'
-      }
-      else {
-        mapJsonObject = mapStates
-        mapFeatures = 'states-geo'
-      }
+      mapJsonObject = mapCounties
+      mapFeatures = 'counties-geo'
+    }
+  }
+  else {
+    if (offshore) {
+      mapJsonObject = mapStatesOffshore
+      mapFeatures = 'states-offshore-geo'
+    }
+    else {
+      mapJsonObject = mapStates
+      mapFeatures = 'states-geo'
     }
   }
 
@@ -394,6 +378,13 @@ export default props => {
                 {cards.map((state, i) => {
                   return (
                     <SummaryCard
+                      data={[
+                        periodData,
+                        summaryCardFiscalRevenueSummaryData,
+                        summaryCardRevenueCommoditySummaryData,
+                        summaryCardCommoditySparkdataData
+                      ]}
+                      isLoading={isLoading}
                       key={i}
                       fips={state.fips}
                       abbr={state.abbr}
@@ -422,6 +413,7 @@ export default props => {
               <Box className={classes.sliderContainer}>
                 <Container>
                   <YearSlider
+                    data={periodData}
                     onYear={selected => {
                       onYear(selected, x, y, k)
                     }}

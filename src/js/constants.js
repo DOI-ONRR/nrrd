@@ -43,4 +43,5 @@ module.exports = Object.freeze({
   COAL: 'Coal',
 
   TREND_LIMIT: 10,
+  MAX_CARDS: 3,
 })

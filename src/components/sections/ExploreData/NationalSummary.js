@@ -1,8 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
 
 import {
   Box,
@@ -15,23 +12,12 @@ import {
   TableCell
 } from '@material-ui/core'
 
-import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
+import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 
-import utils from '../../../../js/utils'
-import CONSTANTS from '../../../../js/constants'
+import { StoreContext } from '../../../store'
 
-// revenue type by land but just take one year of front page to do poc
-const REVENUE_SUMMARY_QUERY = gql`
-  query NationalRevenue($year: Int!) {
-    fiscal_revenue_type_class_summary(order_by: {class_order: asc}, where: {year: {_eq: $year}}) {
-      revenue_type
-      sum
-      year
-      land_class
-      class_order
-    }
-  }
-`
+import utils from '../../../js/utils'
+import CONSTANTS from '../../../js/constants'
 
 const revenueTypeDescriptions = [
   'Once the land or water produces enough resources to pay royalties, the leaseholder pays royalties to the federal government.',
@@ -43,14 +29,9 @@ const revenueTypeDescriptions = [
   'This includes other fees leaseholders pay such as permit fees and AML fees.'
 ]
 
-const NationalRevenueSummary = props => {
-  const {
-    year
-  } = props
-
-  const { loading, error, data } = useQuery(REVENUE_SUMMARY_QUERY, {
-    variables: { year }
-  })
+const NationalSummary = props => {
+  const { state } = useContext(StoreContext)
+  const year = state.year
 
   const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
@@ -62,20 +43,11 @@ const NationalRevenueSummary = props => {
   const units = 'dollars'
   const xGroups = {}
 
-  let groupData
-  let nationalRevenueData
+  let nationalRevenueData = props.summaryData
 
-  if (loading) {
-    return 'Loading...'
-  }
-
-  if (error) return `Error! ${ error.message }`
-
-  if (data) {
-    groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
-    nationalRevenueData = Object.entries(groupData)
-    xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => console.log('row map: ', row))
-  }
+  const groupData = utils.groupBy(nationalRevenueData, 'revenue_type')
+  nationalRevenueData = Object.entries(groupData)
+  xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => row[0])
 
   return (
     <Container>
@@ -131,8 +103,8 @@ const NationalRevenueSummary = props => {
   )
 }
 
-export default NationalRevenueSummary
+export default NationalSummary
 
-NationalRevenueSummary.propTypes = {
+NationalSummary.propTypes = {
   year: PropTypes.isString
 }

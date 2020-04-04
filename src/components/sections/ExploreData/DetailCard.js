@@ -1,18 +1,16 @@
 import React, { useContext } from 'react'
 
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
+  Box,
   Card,
   CardActions,
   CardHeader,
   CardContent,
-  Box,
   CircularProgress
 } from '@material-ui/core'
 
@@ -20,12 +18,9 @@ import CloseIcon from '@material-ui/icons/Close'
 import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
 import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
 
-import PieChart from '../../data-viz/PieChart/PieChart.js'
 import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
 
 import Sparkline from '../../data-viz/Sparkline'
-import LandPercent from './LandPercent'
-import Link from '../../Link'
 
 import CONSTANTS from '../../../js/constants'
 
@@ -123,52 +118,28 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const APOLLO_QUERY = gql`
-  query DetailCard($state: String!, $year: Int!, $period: String!) {
-    fiscal_revenue_summary(
-      where: { state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, state_or_area: asc }
-    ) {
-      fiscal_year
-      state_or_area
-      sum
-      distinct_commodities
-    }
-    revenue_commodity_summary(
-      where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, total: desc }
-    ) {
-      fiscal_year
-      commodity
-      state_or_area
-      total
-    }
-    revenue_type_summary(
-      where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, total: desc }
-    ) {
-      fiscal_year
-      revenue_type
-      state_or_area
-      total
-    }
-    period(where: {period: {_ilike: $period }}) {
-      fiscal_year
-    }
-  }
-`
-
 const nonStateOrCountyCards = [
   CONSTANTS.NATIONWIDE_FEDERAL,
   CONSTANTS.NATIVE_AMERICAN
 ]
 
+// Card title
 const CardTitle = props => {
   const classes = useStyles()
+
+  const landStatsData = props.data
 
   const stateTitle = props.stateTitle
   const stateAbbr = props.state ? props.state : props.stateAbbr
   const isCounty = props.stateAbbr.length > 2
+
+  // Get land percentage
+  const getLandPercent = stateOrArea => {
+    const loc = stateOrArea === 'Nationwide Federal' ? 'National' : stateOrArea
+    const landStat = landStatsData.find(item => item.location === loc)
+    if (landStat) return <Box>{ `${ utils.round(landStat.federal_percent, 1) }% federal` }</Box>
+  }
+
   let cardTitle = `${ props.stateTitle }`
 
   if (isCounty && !nonStateOrCountyCards.includes(stateTitle)) {
@@ -189,31 +160,63 @@ const CardTitle = props => {
       {svgImg}
       <span>
         {cardTitle}
-        <LandPercent stateAbbr={stateAbbr} />
+        {getLandPercent(stateAbbr)}
       </span>
     </div>
   )
 }
 
 const DetailCard = props => {
-  console.log('props: ', props)
+  console.log('DetailCard props: ', props)
   const classes = useStyles()
 
   const { state, dispatch } = useContext(StoreContext)
   const year = state.year
   const cards = state.cards
 
+  const {
+    detailCardRevenueSummaryData,
+    detailCardRevenueCommoditySummaryData,
+    detailCardRevenueTypeSummaryData,
+    isLoading,
+    landStatsData,
+    periodData
+  } = props.data
+
+  console.log('DetailCard data: ', props.data)
+
   const stateAbbr = (props.abbr.length > 2) ? props.abbr : props.state
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, year: year, period: CONSTANTS.FISCAL_YEAR }
-  })
+  // const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  //   variables: { state: stateAbbr, year: year, period: CONSTANTS.FISCAL_YEAR }
+  // })
 
   const closeCard = fips => {
     dispatch({ type: 'CARDS', payload: { cards: cards.filter(item => item.fips !== fips) } })
   }
 
-  if (loading) {
+  // if (loading) {
+  //   return (
+  //     <div className={classes.progressContainer}>
+  //       <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+  //     </div>
+  //   )
+  // }
+
+  // if (error) return `Error! ${ error.message }`
+
+  const dataSet = `FY ${ year }`
+
+  let sparkData = []
+  let sparkMin
+  let sparkMax
+  let highlightIndex = 0
+  let fiscalData
+  let revenueSummaryData
+  let commoditySummaryData
+  let revenueTypeSummaryData
+
+  if (isLoading) {
     return (
       <div className={classes.progressContainer}>
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />
@@ -221,30 +224,23 @@ const DetailCard = props => {
     )
   }
 
-  if (error) return `Error! ${ error.message }`
-
-  let chartData
-  const dataSet = `FY ${ year }`
-
-  let sparkData = []
-  let sparkMin
-  let sparkMax
-  let highlightIndex = 0
-  let periodData
-  let fiscalData
-
   if (
-    data
+    props.data &&
+    detailCardRevenueSummaryData.length > 0 &&
+    detailCardRevenueCommoditySummaryData.length > 0 &&
+    detailCardRevenueTypeSummaryData.length > 0 &&
+    periodData.length > 0
   ) {
-    chartData = data
-
-    periodData = data.period
-
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
 
-    fiscalData = data.fiscal_revenue_summary.map((item, i) => [
+    // filter down to location
+    revenueSummaryData = detailCardRevenueSummaryData.filter(item => item.state_or_area === stateAbbr)
+    commoditySummaryData = detailCardRevenueCommoditySummaryData.filter(item => item.state_or_area === stateAbbr)
+    revenueTypeSummaryData = detailCardRevenueTypeSummaryData.filter(item => item.state_or_area === stateAbbr)
+
+    fiscalData = revenueSummaryData.map((item, i) => [
       item.fiscal_year,
       item.sum
     ])
@@ -263,11 +259,10 @@ const DetailCard = props => {
       x => x[0] === year
     )
   }
-
   return (
     <Card className={`${ classes.root } ${ props.cardCountClass }`}>
       <CardHeader
-        title={<CardTitle stateTitle={props.cardTitle} stateAbbr={stateAbbr} state={props.state} />}
+        title={<CardTitle data={landStatsData} stateTitle={props.cardTitle} stateAbbr={stateAbbr} state={props.state} />}
         action={<CloseIcon
           className={classes.closeIcon}
           onClick={(e, i) => {
@@ -292,12 +287,12 @@ const DetailCard = props => {
               </Box>
             )}
           </Box>
-          { chartData.revenue_commodity_summary.length > 0 ? (
+          { commoditySummaryData.length > 0 ? (
             <>
               <Box className={classes.boxSection}>
                 <Box component="h4" fontWeight="bold">Commodities</Box>
                 <Box>
-                  <CircleChart data={chartData.revenue_commodity_summary}
+                  <CircleChart data={commoditySummaryData}
                     xAxis='commodity' yAxis='total'
                     format={ d => {
                       return utils.formatToDollarInt(d)
@@ -324,12 +319,12 @@ const DetailCard = props => {
               </>
             )
           }
-          { chartData.revenue_type_summary.length > 0 ? (
+          { revenueTypeSummaryData.length > 0 ? (
             <>
               <Box className={classes.boxSection}>
                 <Box component="h4" fontWeight="bold">Revenue types</Box>
                 <Box>
-                  <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
+                  <CircleChart data={revenueTypeSummaryData} xAxis='revenue_type' yAxis='total'
                     format={ d => utils.formatToDollarInt(d) }
                     yLabel={dataSet}
                     maxCircles={4}

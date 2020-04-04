@@ -1,9 +1,6 @@
 import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
-
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Slider,
@@ -12,14 +9,6 @@ import {
 } from '@material-ui/core'
 
 import { StoreContext } from '../../../store'
-
-const FISCAL_YEARS_QUERY = gql`
-  query FiscalYears($period: String!) {
-    period(where: {period: {_eq: $period }}) {
-      fiscal_year
-    }
-  }
-`
 
 const useStyles = makeStyles(theme => ({
   sliderBox: {
@@ -96,19 +85,16 @@ const useStyles = makeStyles(theme => ({
 const YearSlider = props => {
   const classes = useStyles()
   const { state } = useContext(StoreContext)
-  const [year] = useState(state.year)
 
-  const { loading, error, data } = useQuery(FISCAL_YEARS_QUERY, { variables: { period: 'Fiscal Year' } })
+  const data = props.data
+  const year = state.year
 
   let periodData
   let minYear
   let maxYear
 
-  if (loading) return null
-  if (error) return `Error loading revenue data table ${ error.message }`
-
   if (data) {
-    periodData = data.period
+    periodData = data
 
     // set min and max trend years
     minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
