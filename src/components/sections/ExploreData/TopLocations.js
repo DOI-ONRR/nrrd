@@ -22,9 +22,9 @@ import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
 import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
-  query TopLocations($year: Int! ) {
+  query TopLocations($year: Int!, $location: String! ) {
     fiscal_revenue_summary(
-where: {location_type: {_eq: "State"}, fiscal_year: { _eq: $year } }
+where: {location_type: {_eq: $location}, fiscal_year: { _eq: $year }, location_name: {_neq: ""} }
       order_by: { fiscal_year: asc, sum: desc }
     ) {
       location_name
@@ -62,7 +62,10 @@ const TopLocations = props => {
   const classes = useStyles()
   const { state } = useContext(StoreContext)
   const year = state.year
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
+  const location = state.countyLevel
+  
+  console.debug("location: ", state);
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location } })
 
   if (loading) {
     return (
@@ -81,7 +84,7 @@ const TopLocations = props => {
   return (
     <Box className={classes.root}>
       <Box component="h4" fontWeight="bold">Top Locations</Box>
-      <Box height = "700" >
+      <Box height="1200px" >
         <CircleChart data={chartData} xAxis='location_name' yAxis='sum'
                      format={ d => utils.formatToDollarInt(d) }
           yLabel={dataSet}

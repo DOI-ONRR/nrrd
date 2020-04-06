@@ -5,6 +5,7 @@ export default class D3CircleChart {
   constructor (container, data, options) {
     this.container = container
     this.data = data
+    console.debug("CONTAINER: ", container)
     this._height = (container.children[0].clientHeight > 0) ? container.children[0].clientHeight : 400
     this._width = (container.children[0].clientWidth <= 0) ? 300 : container.children[0].clientWidth
     this.radius = Math.min(this._width, this._height) / 2
@@ -274,8 +275,10 @@ export default class D3CircleChart {
       })
       .on('click', d => focus !== d && (zoom(d), d3.event.stopPropagation()))
 
+    
     const label = svg.append('g')
-      .style('font', '10px sans-serif')
+          .style('color','white')
+      .style('font', '20px sans-serif')
       .attr('pointer-events', 'none')
       .attr('text-anchor', 'middle')
       .selectAll('text')
@@ -283,7 +286,8 @@ export default class D3CircleChart {
       .join('text')
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
-      .text(d => d.data.name)
+          .text(d =>  { console.debug("DATA d", d)
+                        return d.data.location_name })
 
     zoomTo([root.x, root.y, root.r * 2])
 

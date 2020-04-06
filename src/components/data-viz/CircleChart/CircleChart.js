@@ -16,13 +16,14 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     width: '100%',
+    height: '100%',
   },
   chart: {
     display: 'block',
     top: 0,
     left: 0,
     width: '100%',
-    height: '200px',
+    height: '70%',
     fill: theme.palette.chart.primary,
     '& .bars > .bar:hover': {
       fill: theme.palette.chart.secondary,
