@@ -187,8 +187,8 @@ const ExploreDataToolbar = props => {
   const {
     dataType,
     countyLevel,
-    offshoreData,
-   } = state.dataType
+    offshoreData
+  } = state
 
   return (
     <Box className={classes.toolbar}>
@@ -227,7 +227,7 @@ const ExploreDataToolbar = props => {
             options={commodityOptions}
             defaultOption="Oil"
             label="Commodity"
-            checkbox={(dataType && dataType === 'Revenue') && true}
+            checkbox={(dataType === 'Revenue') && true}
             payload={{ type: 'COMMODITY', payload: { commodity: 'Oil' } }} />
         }
       </Box>
