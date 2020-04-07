@@ -67,13 +67,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const MapSelectControl = props => {
-  const { options, label, payload, selectedOption, ...rest } = props
+  const { options, label, payload, defaultOption, ...rest } = props
 
   const classes = useStyles()
   const theme = useTheme()
   const { state, dispatch } = useContext(StoreContext)
 
-  const findSelectedOption = options.findIndex(item => item === selectedOption)
+  const findSelectedOption = options.findIndex(item => item === defaultOption)
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [selectedIndex, setSelectedIndex] = useState(findSelectedOption || 0)
@@ -118,6 +118,7 @@ const MapSelectControl = props => {
   const handleMenuItemClick = (event, i, option) => {
     setSelectedIndex(i)
     setAnchorEl(i)
+
     // TODO: finish setting up how the payload gets handled
     const keys = Object.keys(payload.payload)
     dispatch({ type: payload.type, payload: { [keys[0]]: option } })

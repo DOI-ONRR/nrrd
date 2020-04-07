@@ -49,7 +49,7 @@ tag:
                 <Box pt={3.5}>
                   <LocationLink
                     linkTitle="Revenue by location"
-                    linkUrl="/explore?data=revenue"
+                    linkUrl="/explore?dataType=Revenue"
                       />
                 </Box>
               </Grid>
@@ -80,7 +80,7 @@ tag:
                 <Box pt={3.5}>
                   <LocationLink
                     linkTitle="Disbursements by location"
-                    linkUrl="/explore?data=disbursements" />
+                    linkUrl="/explore?dataType=Disbursements" />
                 </Box>
               </Grid>
               <Grid item sm={12}>
@@ -101,10 +101,19 @@ tag:
           </TabtasticTab>
           <TabtasticTab label="Production">
             <Grid container spacing={4}>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="h2">
                   Production
                 </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Box pt={3.5}>
+                  <LocationLink
+                    linkTitle="Production by location"
+                    linkUrl="/explore?dataType=Production" />
+                </Box>
+              </Grid>
+              <Grid item sm={12}>
                 <Box component="p" pr={{ md: '35%' }}>
                   The volume of major commodities extracted on federal lands and waters and Native American lands.
                 </Box>

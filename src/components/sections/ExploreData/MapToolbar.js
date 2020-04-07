@@ -184,26 +184,30 @@ const ExploreDataToolbar = props => {
   const classes = useStyles()
 
   const { state } = useContext(StoreContext)
-  const dataType = state.dataType
+  const {
+    dataType,
+    countyLevel,
+    offshoreData,
+   } = state.dataType
 
   return (
     <Box className={classes.toolbar}>
       <Box className={classes.toolbarControls}>
         <MapSelectControl
           options={MAP_DATA_TYPE_SELECT_OPTIONS}
-          selectedOption="Revenue"
+          defaultOption={ dataType || 'Revenue' }
           label="Data type"
           payload={{ type: 'DATA_TYPE', payload: { dataType: 'Revenue' } }} />
 
         <MapSelectControl
           options={MAP_LEVEL_OPTIONS}
-          selectedOption="State"
+          defaultOption={ countyLevel || 'State' }
           label="Map level"
           payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: 'State' } }} />
 
         <MapSelectControl
           options={MAP_OFFSHORE_SELECT_OPTIONS}
-          selectedOption="Off"
+          defaultOption={ offshoreData || 'Off' }
           label="Offshore data"
           payload={{ type: 'OFFSHORE_DATA', payload: { offshoreData: 'Off' } }} />
 
@@ -214,16 +218,16 @@ const ExploreDataToolbar = props => {
 
         <MapSelectControl
           options={MAP_PERIOD_OPTIONS}
-          selectedOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
+          defaultOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
           label="Period"
           payload={{ type: 'PERIOD', payload: { period: MAP_PERIOD_OPTIONS.CALENDAR_YEAR } }} />
 
         {(dataType !== 'Disbursements') &&
           <MapSelectControl
             options={commodityOptions}
-            selectedOption="Oil"
+            defaultOption="Oil"
             label="Commodity"
-            checkbox={(dataType === 'Revenue')}
+            checkbox={(dataType && dataType === 'Revenue') && true}
             payload={{ type: 'COMMODITY', payload: { commodity: 'Oil' } }} />
         }
       </Box>

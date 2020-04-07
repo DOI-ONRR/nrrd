@@ -6,14 +6,14 @@ import CONSTANTS from '../../../js/constants'
 import PageScrollTo from '../../navigation/PageScrollTo'
 import AddLocationCard from './AddLocationCard'
 import DetailCard from './DetailCard'
+import LocationTotal from './LocationTotal'
 
 import { StoreContext } from '../../../store'
 
 import {
   Box,
   Container,
-  Grid,
-  Typography
+  Grid
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
@@ -44,8 +44,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const ExploreDataCompare = props => {
-  console.log('exploreDataCompare props: ', props)
+const ExploreDataCompare = ({ children, exploreDataProps, ...props }) => {
   const classes = useStyles()
   const { state } = useContext(StoreContext)
   const cards = state.cards
@@ -53,49 +52,22 @@ const ExploreDataCompare = props => {
   const year = state.year
 
   const {
-    detailCardRevenueSummaryData,
-    detailCardRevenueCommoditySummaryData,
-    detailCardRevenueTypeSummaryData,
-    distinctLocationsData,
-    isLoading,
-    landStatsData,
-    locationTotalData,
-    periodData
-  } = props
-
-  const {
     cardMenuItems,
     closeCard,
     onLink
-  } = props.exploreDataProps
+  } = exploreDataProps
 
-  const detailCardData = {
-    detailCardRevenueSummaryData: detailCardRevenueSummaryData,
-    detailCardRevenueCommoditySummaryData: detailCardRevenueCommoditySummaryData,
-    detailCardRevenueTypeSummaryData: detailCardRevenueTypeSummaryData,
-    isLoading: isLoading,
-    landStatsData: landStatsData,
-    periodData: periodData
-  }
+  const periodData = props.periodData
+  const landStatsData = props.landStatsData
 
-  const getLocationTotal = stateOrArea => {
-    const locData = locationTotalData.find(item => item.state_or_area === stateOrArea)
-    console.log('locData: ', locData)
-    if (locData) return utils.formatToDollarInt(locData.sum)
-  }
+  React.Children.map(props.children, child => {
+    return React.cloneElement(child, {
+      year: year,
+    })
+  })
 
   return (
     <Container>
-      <Grid container>
-        <Grid item md={12}>
-          <Box mb={1} color="secondary.main" borderBottom={5}>
-            <Box component="h2" color="secondary.dark">Revenue</Box>
-          </Box>
-          <Typography variant="body1">
-            When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. <strong>In fiscal year {year}, ONRR collected a total of {getLocationTotal('Nationwide Federal')} in revenue.</strong>
-          </Typography>
-        </Grid>
-      </Grid>
       <Grid container>
         <Grid item md={12}>
           <Box mt={4} mb={2}>
@@ -120,6 +92,7 @@ const ExploreDataCompare = props => {
           </Box>
         </Grid>
       </Grid>
+
       <Box className={classes.compareCards}>
         {
           cards.map((card, i) => {
@@ -127,7 +100,8 @@ const ExploreDataCompare = props => {
               <DetailCard
                 key={i}
                 cardTitle={card.name}
-                data={detailCardData}
+                periodData={periodData}
+                landStatsData={landStatsData}
                 fips={card.fips}
                 abbr={card.abbr}
                 state={card.state}
@@ -135,13 +109,14 @@ const ExploreDataCompare = props => {
                 closeCard={fips => {
                   closeCard(fips)
                 }}
-                total={getLocationTotal(card.abbr)}
+                total={<LocationTotal location={card.abbr} />}
               />
             )
           })
         }
-        { (cards.length >= 0 && cards.length <= CONSTANTS.MAX_CARDS) ? <AddLocationCard data={distinctLocationsData} title='Add another card' onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
+        { (cards.length >= 0 && cards.length <= CONSTANTS.MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
       </Box>
+      {children}
     </Container>
   )
 }

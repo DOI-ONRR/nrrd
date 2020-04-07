@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
+import { useQuery } from '@apollo/react-hooks'
 import PropTypes from 'prop-types'
+import gql from 'graphql-tag'
 
 import {
   Box,
@@ -18,6 +20,18 @@ import { StoreContext } from '../../../store'
 
 import utils from '../../../js/utils'
 import CONSTANTS from '../../../js/constants'
+
+const APOLLO_QUERY = gql`
+  query FiscalRevenue($year: Int!) {
+    nationalRevenueSummary:fiscal_revenue_type_class_summary(order_by: {class_order: asc}, where: {year: {_eq: $year}}) {
+        revenue_type
+        sum
+        year
+        land_class
+        class_order
+      }
+  }
+`
 
 const revenueTypeDescriptions = [
   'Once the land or water produces enough resources to pay royalties, the leaseholder pays royalties to the federal government.',
@@ -43,11 +57,21 @@ const NationalSummary = props => {
   const units = 'dollars'
   const xGroups = {}
 
-  let nationalRevenueData = props.summaryData
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { year }
+  })
 
-  const groupData = utils.groupBy(nationalRevenueData, 'revenue_type')
-  nationalRevenueData = Object.entries(groupData)
-  xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => row[0])
+  let nationalRevenueData
+
+  if (loading) {}
+  if (error) return `Error! ${ error.message }`
+
+  if (data) {
+    nationalRevenueData = data.nationalRevenueSummary
+    const groupData = utils.groupBy(nationalRevenueData, 'revenue_type')
+    nationalRevenueData = Object.entries(groupData)
+    xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => row[0])
+  }
 
   return (
     <Container>
@@ -105,6 +129,4 @@ const NationalSummary = props => {
 
 export default NationalSummary
 
-NationalSummary.propTypes = {
-  year: PropTypes.isString
-}
+NationalSummary.propTypes = {}

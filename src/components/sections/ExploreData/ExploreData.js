@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 
 import { StoreContext } from '../../../store'
-import { DATA_TYPES } from '../../../constants'
+
 
 const MAX_CARDS = 3
 
@@ -12,9 +12,9 @@ const ExploreData = props => {
   const [mapY, setMapY] = useState()
   const [mapK, setMapK] = useState(0.25)
 
-  let x = mapX
-  let y = mapY
-  let k = mapK
+  const x = mapX
+  const y = mapY
+  const k = mapK
 
   const cards = state.cards
   const dataType = state.dataType
@@ -122,32 +122,11 @@ const ExploreData = props => {
     })
   })
 
-  // Revenue
-  if (dataType === DATA_TYPES[0]) {
-    return (
-      <>
-        {children}
-      </>
-    )
-  }
-
-  // Disbursements
-  if (dataType === DATA_TYPES[1]) {
-    return (
-      <>
-        { /* disbursement component */ }
-      </>
-    )
-  }
-
-  // Production
-  if (dataType === DATA_TYPES[2]) {
-    return (
-      <>
-        { /* disbursement component */ }
-      </>
-    )
-  }
+  return (
+    <>
+      {children}
+    </>
+  )
 }
 
 export default ExploreData

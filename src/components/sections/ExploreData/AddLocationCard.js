@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-
+import React, { useState, useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -15,8 +15,21 @@ import {
 
 import { Autocomplete } from '@material-ui/lab'
 
+import CONSTANTS from '../../../js/constants'
+import { StoreContext } from '../../../store'
+
 import AddCardButton from './AddCardButton'
 import mapJson from './us-topology.json'
+
+const REVENUE_QUERY = gql`
+  query FiscalRevenue($year: Int!, $period: String!, $state: [String!]) {
+    distinct_locations(where: {location: {_neq: ""}}) {
+      location
+      location_id
+      sort_order
+    }
+  }
+`
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -104,8 +117,9 @@ const getRegionProperties = input => {
 }
 
 const AddLocationCard = props => {
-  console.log('AddLocationCard props: ', props)
   const classes = useStyles()
+  const { state } = useContext(StoreContext)
+  const year = state.year
 
   const [input, setInput] = useState(null)
   const [keyCount, setKeyCount] = useState(0)
@@ -154,9 +168,16 @@ const AddLocationCard = props => {
     )
   }
 
-  const data = props.data
+  const { loading, error, data } = useQuery(REVENUE_QUERY, {
+    variables: { year: year, period: CONSTANTS.FISCAL_YEAR }
+  })
 
-  if (data) {
+  if (loading) {}
+  if (error) return `Error! ${ error.message }`
+
+  if (
+    data &&
+    data.distinct_locations.length > 0) {
     return (
       <Card className={classes.addLocationCard}>
         <CardHeader
@@ -170,7 +191,7 @@ const AddLocationCard = props => {
             id="location-selecte"
             autoComplete
             inputValue={input}
-            options={data}
+            options={data.distinct_locations}
             getOptionLabel={option => option.location}
             style={{ width: '100%' }}
             renderInput={params => (
@@ -192,7 +213,7 @@ const AddLocationCard = props => {
         </CardContent>
         <CardActions>
           { cardMenuItems.length > 0 &&
-            <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
+              <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
           }
         </CardActions>
       </Card>

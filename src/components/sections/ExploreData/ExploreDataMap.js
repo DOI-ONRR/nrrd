@@ -1,6 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import React, { useState, useContext } from 'react'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -17,6 +15,7 @@ import AddCardButton from './AddCardButton'
 import SummaryCard from './SummaryCard'
 import YearSlider from './YearSlider'
 import MapSnackbar from './MapSnackbar'
+import { RevenueSummary } from './Revenue'
 
 import { StoreContext } from '../../../store'
 
@@ -24,6 +23,8 @@ import mapCounties from './counties.json'
 import mapStates from './states.json'
 import mapCountiesOffshore from './counties-offshore.json'
 import mapStatesOffshore from './states-offshore.json'
+
+import CONSTANTS from '../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -244,7 +245,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default props => {
-  console.log('ExploreDataMap props: ', props)
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
 
@@ -252,30 +252,26 @@ export default props => {
   const [mapY, setMapY] = useState()
   const [mapK, setMapK] = useState(0.25)
 
-  const {
-    isLoading,
-    mapData,
-    periodData,
-    summaryCardFiscalRevenueSummaryData,
-    summaryCardRevenueCommoditySummaryData,
-    summaryCardCommoditySparkdataData
-  } = props
-
   let x = mapX
   let y = mapY
   let k = mapK
 
-  const cardMenuItems = props.exploreDataProps
-  const closeCard = props.exploreDataProps.closeCard
-
-  const onLink = props.exploreDataProps.onLink
-  const onYear = props.exploreDataProps.onYear
-  const setZoom = props.exploreDataProps.setZoom
+  const {
+    cardMenuItems,
+    closeCard,
+    onLink,
+    onYear,
+    setZoom
+  } = props.exploreDataProps
 
   const cards = state.cards
   const countyLevel = state.countyLevel === 'County'
   const offshore = state.offshoreData === 'On'
   const year = state.year
+  const dataType = state.dataType
+
+  const mapData = props.mapData
+  const periodData = props.periodData
 
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
@@ -340,61 +336,69 @@ export default props => {
     }
   }
 
-  if (mapData) {
-    return (
-      <>
-        <Container className={classes.mapWrapper} maxWidth={false}>
-          <Grid container>
-            <Grid item xs={12}>
-              <Box className={classes.mapContainer}>
-                <MapToolbar onChange={handleChange} />
-                <Map
-                  mapFeatures={mapFeatures}
-                  mapJsonObject={mapJsonObject}
-                  mapData={mapData}
-                  minColor="#CDE3C3"
-                  maxColor="#2F4D26"
-                  mapZoom={mapK}
-                  mapX={mapX}
-                  mapY={mapY}
-                  onZoomEnd={
-                    event => {
-                      x = event.transform.x
-                      y = event.transform.y
-                      k = event.transform.k
+  return (
+    <>
+      {mapData &&
+        <>
+          <Container className={classes.mapWrapper} maxWidth={false}>
+            <Grid container>
+              <Grid item xs={12}>
+                <Box className={classes.mapContainer}>
+                  <MapToolbar onChange={handleChange} />
+                  <Map
+                    mapFeatures={mapFeatures}
+                    mapJsonObject={mapJsonObject}
+                    mapData={mapData}
+                    minColor="#CDE3C3"
+                    maxColor="#2F4D26"
+                    mapZoom={mapK}
+                    mapX={mapX}
+                    mapY={mapY}
+                    onZoomEnd={
+                      event => {
+                        x = event.transform.x
+                        y = event.transform.y
+                        k = event.transform.k
+                      }
                     }
-                  }
-                  onClick={(d, fips, foo, bar) => {
-                    onLink(d, x, y, k)
-                  }} />
-                <MapControls
-                  handleClick={handleClick}
-                />
-              </Box>
-            </Grid>
-            { matchesMdUp &&
+                    onClick={(d, fips, foo, bar) => {
+                      onLink(d, x, y, k)
+                    }} />
+                  <MapControls
+                    handleClick={handleClick}
+                  />
+                </Box>
+              </Grid>
+              { matchesMdUp &&
             <Grid item xs={12}>
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
                     <SummaryCard
-                      data={[
-                        periodData,
-                        summaryCardFiscalRevenueSummaryData,
-                        summaryCardRevenueCommoditySummaryData,
-                        summaryCardCommoditySparkdataData
-                      ]}
-                      isLoading={isLoading}
                       key={i}
                       fips={state.fips}
                       abbr={state.abbr}
                       name={state.name}
                       minimizeIcon={state.minimizeIcon}
+                      periodData={periodData}
                       closeIcon={state.closeIcon}
                       closeCard={fips => {
                         closeCard(fips)
                       }}
-                    />
+                    >
+                      {dataType === CONSTANTS.REVENUE &&
+                        <RevenueSummary />
+                      }
+
+                      {dataType === CONSTANTS.DISBURSEMENTS &&
+                        <span>Disbursements summary card content!</span>
+                      }
+
+                      {dataType === CONSTANTS.PRODUCTION &&
+                        <span>Production summary card content!</span>
+                      }
+
+                    </SummaryCard>
                   )
                 })}
               </Box>
@@ -408,23 +412,23 @@ export default props => {
               }
 
             </Grid>
-            }
-            <Grid item xs={12}>
-              <Box className={classes.sliderContainer}>
-                <Container>
-                  <YearSlider
-                    data={periodData}
-                    onYear={selected => {
-                      onYear(selected, x, y, k)
-                    }}
-                  />
-                </Container>
-              </Box>
+              }
+              <Grid item xs={12}>
+                <Box className={classes.sliderContainer}>
+                  <Container>
+                    <YearSlider
+                      data={periodData}
+                      onYear={selected => {
+                        onYear(selected, x, y, k)
+                      }}
+                    />
+                  </Container>
+                </Box>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-        <Container maxWidth={false} style={{ padding: 0 }}>
-          { matchesSmDown &&
+          </Container>
+          <Container maxWidth={false} style={{ padding: 0 }}>
+            { matchesSmDown &&
           <>
             <Grid item xs={12}>
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
@@ -452,12 +456,13 @@ export default props => {
               </Box>
             }
           </>
-          }
-        </Container>
-        <Container>
-          <MapSnackbar message="Only four locations can be viewed at once. Remove one of the location cards to add another location." />
-        </Container>
-      </>
-    )
-  }
+            }
+          </Container>
+          <Container>
+            <MapSnackbar message="Only four locations can be viewed at once. Remove one of the location cards to add another location." />
+          </Container>
+        </>
+      }
+    </>
+  )
 }
