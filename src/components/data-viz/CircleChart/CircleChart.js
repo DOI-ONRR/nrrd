@@ -43,6 +43,7 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     top: 0,
     left: 0,
+    maxWidth: '400px',
     fontSize: theme.typography.h5.fontSize,
     '& tr > td:first-child': {
       width: 10,

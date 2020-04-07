@@ -12,6 +12,9 @@ export default class D3CircleChart {
     if (options.format) {
       this.format = options.format
     }
+    if (options.circleLabel) {
+      this.circleLabel = options.circleLabel
+    }
     // console.debug("data =========================================:", this.radius)
     this.minColor = options.minColor || 'lightblue'
     this.maxColor = options.maxColor || 'darkblue'
@@ -237,11 +240,31 @@ export default class D3CircleChart {
       .range([this.minColor, this.maxColor])
   }
 
+  circleLabel (data, xAxis, yAxis) {
+
+    let r=[,]
+    return r
+  }
+  
+  _circleLabel (data) {
+    try {
+      // call user defined function that has circle data argument and returns string
+      // defaluts to empty string - no label
+      let r = this.circleLabel(data)
+      return r
+    }
+    catch (err) {
+      console.warn('Errror: ', err)
+    }
+  }
+
+
   chart () {
     const xAxis = this.xAxis
     const yAxis = this.yAxis
 
     const chartNode = this.container.children[0]
+    const circleLabel = this.circleLabel
     const width = this._width
     const height = this._height
     const color = this.color()
@@ -276,19 +299,33 @@ export default class D3CircleChart {
       .on('click', d => focus !== d && (zoom(d), d3.event.stopPropagation()))
 
     
-    const label = svg.append('g')
-          .style('color','white')
+    
+    const xLabel = svg.append('g')
+          .style('fill','white')
       .style('font', '20px sans-serif')
       .attr('pointer-events', 'none')
       .attr('text-anchor', 'middle')
       .selectAll('text')
-      .data(root.descendants())
-      .join('text')
+          .data(root.descendants())
+          .join('text')
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
-          .text(d =>  { console.debug("DATA d", d)
-                        return d.data.location_name })
+          .text( d => circleLabel(d.data, xAxis, yAxis)[0])
 
+    const yLabel = svg.append('g')
+          .style('fill','white')
+          .style('font', '20px sans-serif')
+          .attr('pointer-events', 'none')
+          .attr('text-anchor', 'middle')
+          .selectAll('text')
+          .data(root.descendants())
+          .join('text')
+          .style('fill-opacity', d => d.parent === root ? 1 : 0)
+          .style('display', d => d.parent === root ? 'inline' : 'none')
+          .text( d => circleLabel(d.data, xAxis, yAxis)[1])
+    
+    
+    
     zoomTo([root.x, root.y, root.r * 2])
 
     function zoomTo (v) {
@@ -296,7 +333,8 @@ export default class D3CircleChart {
 
       view = v
 
-      label.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
+      xLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
+      yLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k +30})`)
       node.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
       node.attr('r', d => d.r * k)
     }
@@ -313,7 +351,7 @@ export default class D3CircleChart {
           return t => zoomTo(i(t))
         })
 
-      label
+    /* xLabel
         .filter(function (d) {
           return d.parent === focus || this.style.display === 'inline'
         })
@@ -325,7 +363,21 @@ export default class D3CircleChart {
         .on('end', function (d) {
           if (d.parent !== focus) this.style.display = 'none'
         })
-    }
+
+      yLabel
+        .filter(function (d) {
+          return d.parent === focus || this.style.display === 'inline'
+        })
+        .transition(transition)
+        .style('fill-opacity', d => d.parent === focus ? 1 : 0)
+        .on('start', function (d) {
+          if (d.parent === focus) this.style.display = 'inline'
+        })
+        .on('end', function (d) {
+          if (d.parent !== focus) this.style.display = 'none'
+        })
+    */
+}
 
     return svg.node()
   }

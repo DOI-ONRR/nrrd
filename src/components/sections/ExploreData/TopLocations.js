@@ -85,11 +85,22 @@ const TopLocations = props => {
     <Box className={classes.root}>
       <Box component="h4" fontWeight="bold">Top Locations</Box>
       <Box height="1200px" >
-        <CircleChart data={chartData} xAxis='location_name' yAxis='sum'
-                     format={ d => utils.formatToDollarInt(d) }
+        <CircleChart
+          data={chartData}
+          xAxis='location_name'
+          yAxis='sum'
+          format={ d => utils.formatToDollarInt(d) }
+          circleLabel={ d =>{ console.debug('circleLABLE: ', d)
+                              let r=[]
+                               r[0] = d.location_name
+                               r[1] = utils.formatToDollarInt(d.sum)
+                              return r
+                            }
+          }
+          
           yLabel={dataSet}
-          maxCircles={10}
-          maxColor='#B64D00' minColor='#FCBA8B' />
+          maxCircles={6}
+          maxColor='rgb(47, 77, 38)' minColor='rgb(144, 169, 135)' />
       </Box>
     </Box>
   )
