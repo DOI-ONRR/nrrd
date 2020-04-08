@@ -87,6 +87,7 @@ const TopLocations = props => {
       <Box height="1200px" >
         <CircleChart
           data={chartData}
+          maxLegendWidth='800px'
           xAxis='location_name'
           yAxis='sum'
           format={ d => utils.formatToDollarInt(d) }
