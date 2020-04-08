@@ -1,4 +1,6 @@
 import React, { useState, useContext } from 'react'
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -9,6 +11,16 @@ import {
 } from '@material-ui/core'
 
 import { StoreContext } from '../../../store'
+import CONSTANTS from '../../../js/constants'
+
+const APOLLO_QUERY = gql`
+  query YearPeriod($year: Int!, $period: String!) {
+    # period query
+    period(where: {period: {_ilike: $period }}) {
+      fiscal_year
+    }
+  }
+`
 
 const useStyles = makeStyles(theme => ({
   sliderBox: {
@@ -86,15 +98,21 @@ const YearSlider = props => {
   const classes = useStyles()
   const { state } = useContext(StoreContext)
 
-  const data = props.data
   const year = state.year
 
   let periodData
   let minYear
   let maxYear
 
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { year: year, period: CONSTANTS.FISCAL_YEAR }
+  })
+
+  if (loading) {}
+  if (error) return `Error! ${ error.message }`
+
   if (data) {
-    periodData = data
+    periodData = data.period
 
     // set min and max trend years
     minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)

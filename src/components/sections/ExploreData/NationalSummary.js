@@ -22,7 +22,7 @@ import utils from '../../../js/utils'
 import CONSTANTS from '../../../js/constants'
 
 const APOLLO_QUERY = gql`
-  query FiscalRevenue($year: Int!) {
+  query NationalSummary($year: Int!) {
     nationalRevenueSummary:fiscal_revenue_type_class_summary(order_by: {class_order: asc}, where: {year: {_eq: $year}}) {
         revenue_type
         sum
@@ -43,7 +43,7 @@ const revenueTypeDescriptions = [
   'This includes other fees leaseholders pay such as permit fees and AML fees.'
 ]
 
-const NationalSummary = props => {
+const NationalSummary = ({ title, ...props }) => {
   const { state } = useContext(StoreContext)
   const year = state.year
 
@@ -78,7 +78,7 @@ const NationalSummary = props => {
       <Grid container>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-            <Box component="h3" color="secondary.dark" id="national-revenue-summary">Nationwide revenue summary</Box>
+            <Box component="h3" color="secondary.dark" id={utils.formatToSlug(title)}>{title}</Box>
           </Box>
         </Grid>
         <Grid item md={12}>

@@ -14,15 +14,13 @@ import {
 } from '@material-ui/core'
 
 import { Autocomplete } from '@material-ui/lab'
-
-import CONSTANTS from '../../../js/constants'
 import { StoreContext } from '../../../store'
 
 import AddCardButton from './AddCardButton'
 import mapJson from './us-topology.json'
 
-const REVENUE_QUERY = gql`
-  query FiscalRevenue($year: Int!, $period: String!, $state: [String!]) {
+const APOLLO_QUERY = gql`
+  query DistinctLocationsQuery {
     distinct_locations(where: {location: {_neq: ""}}) {
       location
       location_id
@@ -168,62 +166,62 @@ const AddLocationCard = props => {
     )
   }
 
-  const { loading, error, data } = useQuery(REVENUE_QUERY, {
-    variables: { year: year, period: CONSTANTS.FISCAL_YEAR }
-  })
+  const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   if (loading) {}
   if (error) return `Error! ${ error.message }`
 
-  if (
-    data &&
-    data.distinct_locations.length > 0) {
-    return (
-      <Card className={classes.addLocationCard}>
-        <CardHeader
-          title={props.title}
-          classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
-          disableTypography
-        />
-        <CardContent>
-          <Autocomplete
-            key={keyCount}
-            id="location-selecte"
-            autoComplete
-            inputValue={input}
-            options={data.distinct_locations}
-            getOptionLabel={option => option.location}
-            style={{ width: '100%' }}
-            renderInput={params => (
-              <TextField
-                {...params}
-                label="Search locations..."
-                variant="outlined"
-                fullWidth
-                onChange={handleSearch}
-              />
-            )}
-            renderOption={option => renderLabel(option.location)}
-            onChange={(e, v) => handleChange(v)}
-            classes={{
-              inputRoot: classes.autoCompleteRoot,
-              focused: classes.autoCompleteFocused,
-            }}
-          />
-        </CardContent>
-        <CardActions>
-          { cardMenuItems.length > 0 &&
-              <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
-          }
-        </CardActions>
-      </Card>
-    )
+  let distinctLocations
+
+  if (data) {
+    distinctLocations = data.distinct_locations
   }
+
+  return (
+    <Card className={classes.addLocationCard}>
+      <CardHeader
+        title={props.title}
+        classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+        disableTypography
+      />
+      <CardContent>
+        <Autocomplete
+          key={keyCount}
+          id="location-selecte"
+          autoComplete
+          inputValue={input}
+          options={distinctLocations}
+          getOptionLabel={option => option.location}
+          style={{ width: '100%' }}
+          renderInput={params => (
+            <TextField
+              {...params}
+              label="Search locations..."
+              variant="outlined"
+              fullWidth
+              onChange={handleSearch}
+            />
+          )}
+          renderOption={option => renderLabel(option.location)}
+          onChange={(e, v) => handleChange(v)}
+          classes={{
+            inputRoot: classes.autoCompleteRoot,
+            focused: classes.autoCompleteFocused,
+          }}
+        />
+      </CardContent>
+      <CardActions>
+        { cardMenuItems.length > 0 &&
+              <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
+        }
+      </CardActions>
+    </Card>
+  )
 }
 
 export default AddLocationCard
 
 AddLocationCard.propTypes = {
   // Title of location card
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 }

@@ -65,6 +65,11 @@ const APOLLO_QUERY = gql`
       total
       state_or_area
     }
+
+    # period query
+    period(where: {period: {_ilike: $period }}) {
+      fiscal_year
+    }
   }
 `
 
@@ -227,7 +232,7 @@ const SummaryCard = props => {
     data.cardRevenueCommoditySummary.length > 0 &&
     data.cardCommoditySparkdata.length > 0
   ) {
-    periodData = props.periodData
+    periodData = data.period
 
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)

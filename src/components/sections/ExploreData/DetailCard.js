@@ -58,6 +58,19 @@ const APOLLO_QUERY = gql`
       state_or_area
       total
     }
+
+    # land stats
+    landStats:land_stats {
+      federal_acres
+      federal_percent
+      location
+      total_acres
+    }
+
+    # period query
+    period(where: {period: {_ilike: $period }}) {
+      fiscal_year
+    }
   }
 `
 
@@ -211,9 +224,6 @@ const DetailCard = props => {
   const cards = state.cards
 
   const stateAbbr = (props.abbr.length > 2) ? props.abbr : props.state
-  const periodData = props.periodData
-  const landStatsData = props.landStatsData
-  const locationtTotalData = props.locationtTotalData
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year: year, period: CONSTANTS.FISCAL_YEAR, state: props.state }
@@ -230,6 +240,8 @@ const DetailCard = props => {
   let sparkMax
   let highlightIndex = 0
   let fiscalData
+  let landStatsData
+  let periodData
 
   if (loading) {
     return (
@@ -245,9 +257,10 @@ const DetailCard = props => {
     data &&
     data.cardRevenueSummary.length > 0 &&
     data.cardRevenueCommoditySummary.length > 0 &&
-    data.cardRevenueTypeSummary.length > 0 &&
-    periodData.length > 0
+    data.cardRevenueTypeSummary.length > 0
   ) {
+    landStatsData = data.landStats
+    periodData = data.period
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
