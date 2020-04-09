@@ -19,6 +19,7 @@ import { RevenueSummary } from './Revenue'
 
 import { StoreContext } from '../../../store'
 
+
 import mapCounties from './counties.json'
 import mapStates from './states.json'
 import mapCountiesOffshore from './counties-offshore.json'
@@ -162,17 +163,6 @@ const useStyles = makeStyles(theme => ({
         },
       }
     }
-  },
-  sliderContainer: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    backgroundColor: '#fff',
-    paddingTop: theme.spacing(2),
-    zIndex: 101,
-    paddingBottom: theme.spacing(0),
-    borderTop: `1px solid ${ theme.palette.grey[300] }`,
-    borderBottom: `1px solid ${ theme.palette.grey[300] }`,
   },
   contentWrapper: {
     paddingBottom: theme.spacing(4),
@@ -370,60 +360,55 @@ export default props => {
                 </Box>
               </Grid>
               { matchesMdUp &&
-            <Grid item xs={12}>
-              <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
-                {cards.map((state, i) => {
-                  return (
-                    <SummaryCard
-                      key={i}
-                      fips={state.fips}
-                      abbr={state.abbr}
-                      name={state.name}
-                      minimizeIcon={state.minimizeIcon}
-                      periodData={periodData}
-                      closeIcon={state.closeIcon}
-                      closeCard={fips => {
-                        closeCard(fips)
-                      }}
-                    >
-                      {dataType === CONSTANTS.REVENUE &&
-                        <RevenueSummary />
-                      }
+                <Grid item xs={12}>
+                  <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
+                    {cards.map((state, i) => {
+                      return (
+                        <SummaryCard
+                          key={i}
+                          fips={state.fips}
+                          abbr={state.abbr}
+                          name={state.name}
+                          minimizeIcon={state.minimizeIcon}
+                          periodData={periodData}
+                          closeIcon={state.closeIcon}
+                          closeCard={fips => {
+                            closeCard(fips)
+                          }}
+                        >
+                          {dataType === CONSTANTS.REVENUE &&
+                            <RevenueSummary />
+                          }
 
-                      {dataType === CONSTANTS.DISBURSEMENTS &&
-                        <span>Disbursements summary card content!</span>
-                      }
+                          {dataType === CONSTANTS.DISBURSEMENTS &&
+                            <span>Disbursements summary card content!</span>
+                          }
 
-                      {dataType === CONSTANTS.PRODUCTION &&
-                        <span>Production summary card content!</span>
-                      }
+                          {dataType === CONSTANTS.PRODUCTION &&
+                            <span>Production summary card content!</span>
+                          }
 
-                    </SummaryCard>
-                  )
-                })}
-              </Box>
-              { cardMenuItems.length > 0 &&
-              <Box className={classes.nonStateCardsContainer}>
-                <AddCardButton
-                  cards={cards}
-                  cardMenuItems={cardMenuItems}
-                  onLink={onLink} />
-              </Box>
-              }
-
-            </Grid>
+                        </SummaryCard>
+                      )
+                    })}
+                  </Box>
+                  { cardMenuItems.length > 0 &&
+                  <Box className={classes.nonStateCardsContainer}>
+                    <AddCardButton
+                      cards={cards}
+                      cardMenuItems={cardMenuItems}
+                      onLink={onLink} />
+                  </Box>
+                  }
+                </Grid>
               }
               <Grid item xs={12}>
-                <Box className={classes.sliderContainer}>
-                  <Container>
-                    <YearSlider
-                      data={periodData}
-                      onYear={selected => {
-                        onYear(selected, x, y, k)
-                      }}
-                    />
-                  </Container>
-                </Box>
+                <YearSlider
+                  data={periodData}
+                  onYear={selected => {
+                    onYear(selected, x, y, k)
+                  }}
+                />
               </Grid>
             </Grid>
           </Container>

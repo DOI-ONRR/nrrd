@@ -13,7 +13,8 @@ import {
   CardActions,
   CardHeader,
   CardContent,
-  CircularProgress
+  CircularProgress,
+  useTheme
 } from '@material-ui/core'
 
 import CloseIcon from '@material-ui/icons/Close'
@@ -134,10 +135,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   commodityBox: {
-    minHeight: 475,
+    minheight: 350,
+    border: '2px solid purple',
   },
   revenueTypeBox: {
-    minHeight: 430,
+    height: 250,
   },
   circularProgressRoot: {
     color: theme.palette.primary.dark,
@@ -161,9 +163,18 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    // border: '1px solid deeppink',
-    '& > div:last-child': {
-      minHeight: 550,
+    '& .chart-container': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'top',
+      '& .chart': {
+        width: '100%',
+        height: 250
+      },
+      '& .legend': {
+        marginTop: theme.spacing(2),
+        height: 'auto',
+      },
     },
   }
 }))
@@ -218,6 +229,7 @@ const CardTitle = props => {
 
 const DetailCard = props => {
   const classes = useStyles()
+  const theme = useTheme()
 
   const { state, dispatch } = useContext(StoreContext)
   const year = state.year
@@ -318,7 +330,8 @@ const DetailCard = props => {
               <Box className={classes.boxSection}>
                 <Box component="h4" fontWeight="bold">Commodities</Box>
                 <Box>
-                  <CircleChart data={data.cardRevenueCommoditySummary}
+                  <CircleChart 
+                    data={data.cardRevenueCommoditySummary}
                     xAxis='commodity' yAxis='total'
                     format={ d => {
                       return utils.formatToDollarInt(d)
@@ -326,7 +339,8 @@ const DetailCard = props => {
                     }
                     yLabel={dataSet}
                     maxCircles={6}
-                    minColor='#DCD2DF' maxColor='#2B1C30' />
+                    minColor={theme.palette.purples[100]}
+                    maxColor={theme.palette.purples[600]} />
                   <Box mt={3}>
                     <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                       Query revenue by commodity
@@ -338,7 +352,7 @@ const DetailCard = props => {
           )
             : (
               <>
-                <Box className={classes.boxSection}>
+                <Box className={classes.revenueTypeBox}>
                   <Box component="h4" fontWeight="bold">Commodities</Box>
                   <Box fontSize="subtitle2.fontSize">No commodities generated revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
                 </Box>
@@ -354,7 +368,8 @@ const DetailCard = props => {
                     format={ d => utils.formatToDollarInt(d) }
                     yLabel={dataSet}
                     maxCircles={4}
-                    maxColor='#B64D00' minColor='#FCBA8B' />
+                    minColor={theme.palette.oranges[100]}
+                    maxColor={theme.palette.oranges[600]} />
                   <Box mt={3}>
                     <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                   Query revenue by type

@@ -104,9 +104,9 @@ const CircleChart = props => {
 
   return (
     <>
-      <div className={classes.container} ref={elemRef}>
-        <div className={classes.chart}></div>
-        <div className={classes.legend}></div>
+      <div className={`${ classes.container } chart-container`} ref={elemRef}>
+        <div className={`${ classes.chart } chart`}></div>
+        <div className={`${ classes.legend } legend`}></div>
       </div>
     </>
   )

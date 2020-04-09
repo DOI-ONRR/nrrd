@@ -33,4 +33,9 @@ module.exports = Object.freeze({
       minWidth: 30,
     }
   },
+  MuiMenuItem: {
+    root: {
+      overflow: 'none',
+    },
+  },
 })
