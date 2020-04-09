@@ -11,27 +11,38 @@ tag:
 ---
 
 <Container maxWidth="lg">
-  <Box 
-    component="p" 
-    pt={3} 
-    pb={6} 
-    pr={{ md: '35%' }} 
-    style={{ 
-      fontWeight: 'normal', 
-      fontSize: '1.4rem', 
-      lineHeight: '2.25rem' }}>
-    When companies extract energy and mineral resources on property
-    leased from the federal government and Native Americans, they pay{' '}
-  <GlossaryTerm>bonuses</GlossaryTerm>,{' '}
-  <GlossaryTerm>rent</GlossaryTerm>, and{' '}
-  <GlossaryTerm>royalties</GlossaryTerm>. The
-    Office of Natural Resources Revenue (ONRR) collects and{' '}
-  <GlossaryTerm>disburses</GlossaryTerm>{' '}
-    revenue from federal lands and waters to different agencies,
-    funds, and local governments for public use. All revenue collected
-    from extraction on Native American lands is disbursed to Native
-    American tribes, nations, or individuals.
-  </Box>
+  <Grid container spacing={0}>
+    <Grid item xs={12} md={7}>
+      <Box 
+        component="p" 
+        pt={3} 
+        pb={6}
+        pr={3}
+        style={{ 
+          fontWeight: 'normal', 
+          fontSize: '1.4rem', 
+          lineHeight: '2.25rem' }}>
+        When companies extract energy and mineral resources on property
+        leased from the federal government and Native Americans, they pay{' '}
+      <GlossaryTerm>bonuses</GlossaryTerm>,{' '}
+      <GlossaryTerm>rent</GlossaryTerm>, and{' '}
+      <GlossaryTerm>royalties</GlossaryTerm>. The
+        Office of Natural Resources Revenue (ONRR) collects and{' '}
+      <GlossaryTerm>disburses</GlossaryTerm>{' '}
+        revenue from federal lands and waters to different agencies,
+        funds, and local governments for public use. All revenue collected
+        from extraction on Native American lands is disbursed to Native
+        American tribes, nations, or individuals.
+      </Box>
+    </Grid>
+    <Grid item xs={12} md={5}>
+      <Hidden mdDown>
+      <Box bgcolor="info.light" mt={3} mb={3} px={5,5} borderRadius={10}>
+        <WhatsNew />
+      </Box>
+      </Hidden>
+    </Grid>
+  </Grid>
 </Container>
 <Container maxWidth="lg">
   <Box mb={2}>
@@ -131,8 +142,10 @@ tag:
     </Grid>
   </Box>
 </Container>
-<Container maxWidth={false} component="section" style={{ backgroundColor: '#f0f6fa' }}>
-  <Container maxWidth="lg">
-    <WhatsNew />
+<Hidden mdUp>
+  <Container maxWidth={false} component="section" style={{ backgroundColor: '#f0f6fa' }}>
+    <Container maxWidth="lg">
+      <WhatsNew />
+    </Container>
   </Container>
-</Container>
+</Hidden>
