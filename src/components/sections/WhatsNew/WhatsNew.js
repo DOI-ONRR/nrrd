@@ -20,7 +20,7 @@ const WhatsNew = props => {
         In our latest release on March 30, 2020, we made the following changes:
       </Typography>
       <List component="ul" aria-label="whats new list">
-        <ListItem component="li">
+        <ListItem component="li" disableGutters>
           <ListItemIcon>
             <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
           </ListItemIcon>
@@ -33,7 +33,7 @@ const WhatsNew = props => {
         </ListItem>
       </List>
       <List component="ul" aria-label="whats new list">
-        <ListItem component="li">
+        <ListItem component="li" disableGutters>
           <ListItemIcon>
             <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
           </ListItemIcon>
