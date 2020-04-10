@@ -17,7 +17,7 @@ import { StoreContext } from '../../../store'
 import CONSTANTS from '../../../js/constants'
 
 const APOLLO_QUERY = gql`
-  query YearPeriod($year: Int!, $period: String!) {
+  query YearPeriod($period: String!) {
     # period query
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
@@ -128,7 +128,7 @@ const YearSlider = props => {
   let maxYear
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { period: CONSTANTS.FISCAL_YEAR }
   })
 
   if (loading) {}
@@ -155,43 +155,43 @@ const YearSlider = props => {
 
   return (
     <Box className={classes.root}>
-    <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
-      <Box className={`${ classes.sliderContainer } slider-wrapper`}>
-        <Container>
-          <Box id="year-slider" className={classes.sliderBox}>
-            <Grid container spacing={4}>
-              <Grid item xs>
-                <Slider
-                  defaultValue={year}
-                  aria-label="Year slider"
-                  aria-labelledby="year-slider"
-                  aria-valuetext={year.toString()}
-                  valueLabelDisplay="on"
-                  step={1}
-                  onChangeCommitted={(e, yr) => {
-                    props.onYear(yr)
-                  }}
-                  marks={customMarks}
-                  min={minYear}
-                  max={maxYear}
-                  classes={{
-                    root: classes.sliderRoot,
-                    markLabel: classes.sliderMarkLabel,
-                    markLabelActive: classes.sliderMarkLabelActive,
-                    track: classes.sliderTrack,
-                    rail: classes.sliderRail,
-                    mark: classes.sliderMark,
-                    active: classes.sliderActive,
-                    thumb: classes.sliderThumb,
-                    valueLabel: classes.sliderValueLabel,
-                  }}
-                />
+      <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+        <Box className={`${ classes.sliderContainer } slider-wrapper`}>
+          <Container>
+            <Box id="year-slider" className={classes.sliderBox}>
+              <Grid container spacing={4}>
+                <Grid item xs>
+                  <Slider
+                    defaultValue={year}
+                    aria-label="Year slider"
+                    aria-labelledby="year-slider"
+                    aria-valuetext={year.toString()}
+                    valueLabelDisplay="on"
+                    step={1}
+                    onChangeCommitted={(e, yr) => {
+                      props.onYear(yr)
+                    }}
+                    marks={customMarks}
+                    min={minYear}
+                    max={maxYear}
+                    classes={{
+                      root: classes.sliderRoot,
+                      markLabel: classes.sliderMarkLabel,
+                      markLabelActive: classes.sliderMarkLabelActive,
+                      track: classes.sliderTrack,
+                      rail: classes.sliderRail,
+                      mark: classes.sliderMark,
+                      active: classes.sliderActive,
+                      thumb: classes.sliderThumb,
+                      valueLabel: classes.sliderValueLabel,
+                    }}
+                  />
+                </Grid>
               </Grid>
-            </Grid>
-          </Box>
-        </Container>
-      </Box>
-    </StickyWrapper>
+            </Box>
+          </Container>
+        </Box>
+      </StickyWrapper>
     </Box>
   )
 }

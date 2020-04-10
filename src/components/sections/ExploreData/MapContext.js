@@ -8,17 +8,13 @@ import {
   useMediaQuery
 } from '@material-ui/core'
 
-
 import MapToolbar from './MapToolbar'
 import MapControls from './MapControls'
 import AddCardButton from './AddCardButton'
-import SummaryCard from './SummaryCard'
 import YearSlider from './YearSlider'
 import MapSnackbar from './MapSnackbar'
 
-
 import { StoreContext } from '../../../store'
-
 
 import mapCounties from './counties.json'
 import mapStates from './states.json'
@@ -237,12 +233,13 @@ const useStyles = makeStyles(theme => ({
 const MapContext = props => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
-  const cards=state.cards
+  const cards = state.cards
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
   const [mapK, setMapK] = useState(0.25)
+
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
-  
+
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
   const nationalCard = cards && cards.some(item => item.abbr === 'Nationwide Federal')
   const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
@@ -257,12 +254,9 @@ const MapContext = props => {
     cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
   }
 
-
-  
   let x = mapX
   let y = mapY
   let k = mapK
-
 
   // onYear
   const onYear = (selected, x, y, k) => {
@@ -277,7 +271,7 @@ const MapContext = props => {
     setMapX(x)
     setMapK(k)
   }
-  
+
   // onLink
   const onLink = (state, x, y, k) => {
     setMapK(k)
@@ -325,11 +319,6 @@ const MapContext = props => {
 
   const countyLevel = state.countyLevel === 'County'
   const offshore = state.offshoreData === 'On'
-  const year = state.year
-  const dataType = state.dataType
-
-  const mapData = props.mapData
-  const periodData = props.periodData
 
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
@@ -394,52 +383,50 @@ const MapContext = props => {
     }
   }
 
-  const onZoomEnd = (event) => {
+  const onZoomEnd = event => {
     x = event.transform.x
     y = event.transform.y
     k = event.transform.k
   }
-  const onClick=(d, fips, foo, bar) => {
+
+  const onClick = (d, fips, foo, bar) => {
     onLink(d, x, y, k)
   }
-  
-  
- const mapChild=React.cloneElement(props.children[0],
-                              {
-                                mapFeatures: mapFeatures,    // use context instead
-                                mapJsonObject: mapJsonObject, // use context instead
-                                minColor: "#CDE3C3",
-                                maxColor: "#2F4D26",
-                                mapZoom: mapK,
-                                mapX: mapX,
-                                mapY: mapY,
-                                onZoomEnd: onZoomEnd,
-                                onClick: onClick
 
-                              })
-  
-  
+  const mapChild = React.cloneElement(props.children[0],
+    {
+      mapFeatures: mapFeatures, // use context instead
+      mapJsonObject: mapJsonObject, // use context instead
+      minColor: '#CDE3C3',
+      maxColor: '#2F4D26',
+      mapZoom: mapK,
+      mapX: mapX,
+      mapY: mapY,
+      onZoomEnd: onZoomEnd,
+      onClick: onClick
+    })
+
   return (
     <>
-      
-          <Container className={classes.mapWrapper} maxWidth={false}>
-            <Grid container>
-              <Grid item xs={12}>
-                <Box className={classes.mapContainer}>
-                  <MapToolbar onChange={handleChange} />
-                  {mapChild}
-                  <MapControls
-                    handleClick={handleClick}
-                  />
-                </Box>
-              </Grid>
-              { matchesMdUp &&
+
+      <Container className={classes.mapWrapper} maxWidth={false}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Box className={classes.mapContainer}>
+              <MapToolbar onChange={handleChange} />
+              {mapChild}
+              <MapControls
+                handleClick={handleClick}
+              />
+            </Box>
+          </Grid>
+          { matchesMdUp &&
             <Grid item xs={12}>
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
                     React.cloneElement(props.children[1], {
-                      key:i,
+                      key: i,
                       fips: state.fips,
                       abbr: state.abbr,
                       name: state.name,
@@ -457,49 +444,47 @@ const MapContext = props => {
               }
 
             </Grid>
-              }
-              <Grid item xs={12}>
-                <YearSlider
-                  data={periodData}
-                  onYear={selected => {
-                    onYear(selected, x, y, k)
-                  }}
-                />
-              </Grid>
-            </Grid>
-          </Container>
-          <Container maxWidth={false} style={{ padding: 0 }}>
-            { matchesSmDown &&
+          }
+          <Grid item xs={12}>
+            <YearSlider
+              onYear={selected => {
+                onYear(selected, x, y, k)
+              }}
+            />
+          </Grid>
+        </Grid>
+      </Container>
+      <Container maxWidth={false} style={{ padding: 0 }}>
+        { matchesSmDown &&
           <>
             <Grid item xs={12}>
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
                     React.cloneElement(props.children[1], {
-                      key:i,
+                      key: i,
                       fips: state.fips,
                       abbr: state.abbr,
                       name: state.name,
                     })
-                    
+
                   )
-                  })}
-                </Box>
-              </Grid>
-              { cardMenuItems.length > 0 &&
+                })}
+              </Box>
+            </Grid>
+            { cardMenuItems.length > 0 &&
                 <Box className={classes.nonStateCardsContainer}>
-                <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
-                  </Box>
-                  }
-              </>
+                  <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
+                </Box>
             }
-          </Container>
-          <Container>
-            <MapSnackbar message="Only four locations can be viewed at once. Remove one of the location cards to add another location." />
-          </Container>
-        </>
+          </>
+        }
+      </Container>
+      <Container>
+        <MapSnackbar message="Only four locations can be viewed at once. Remove one of the location cards to add another location." />
+      </Container>
+    </>
   )
 }
-
 
 export default MapContext

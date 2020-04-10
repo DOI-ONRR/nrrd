@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-
 // utility functions
 import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
@@ -14,20 +13,15 @@ import {
   CardActions,
   CardHeader,
   CardContent,
-  CircularProgress,
-  useTheme
+  CircularProgress
 } from '@material-ui/core'
 
 import CloseIcon from '@material-ui/icons/Close'
 import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
-import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
 
-import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
-
-import Sparkline from '../../data-viz/Sparkline'
+import AddLocationCard from './AddLocationCard'
 
 import CONSTANTS from '../../../js/constants'
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,6 +31,30 @@ const useStyles = makeStyles(theme => ({
     '@media (max-width: 768px)': {
       maxWidth: '100%',
     }
+  },
+  compareCards: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    marginTop: theme.spacing(5),
+    overflow: 'auto',
+    '& media (max-width: 768px)': {
+      display: 'relative',
+    },
+    '& > div': {
+      marginRight: theme.spacing(1),
+      minWidth: 275,
+    },
+    '& > div:last-child': {
+      margin: theme.spacing(1),
+      maxWidth: '25%',
+      width: '100%',
+      position: 'relative',
+      minWidth: 275,
+      '@media (max-width: 768px)': {
+        maxWidth: '100%',
+      }
+    },
   },
   closeIcon: {
     color: 'white',
@@ -134,7 +152,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query ExploreDataCompareQuery($period: String!) {
+  query ExploreDataCompareQuery {
     # land stats
     land_stats {
       federal_acres
@@ -142,8 +160,7 @@ const APOLLO_QUERY = gql`
       location
       total_acres
     }
-
-      }
+  }
 `
 
 const nonStateOrCountyCards = [
@@ -196,27 +213,80 @@ const CardTitle = props => {
 
 const DetailCards = props => {
   const classes = useStyles()
-  const theme = useTheme()
 
   const { state, dispatch } = useContext(StoreContext)
-  const year = state.year
   const cards = state.cards
 
-  const stateAbbr = (props.abbr.length > 2) ? props.abbr : props.state
+  const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { period: CONSTANTS.FISCAL_YEAR,  }
-  })
+  const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   const closeCard = fips => {
     dispatch({ type: 'CARDS', payload: { cards: cards.filter(item => item.fips !== fips) } })
   }
 
-  const dataSet = `FY ${ year }`
+  // card Menu Item for adding/removing Nationwide Federal or Native American cards
+  const nationalCard = cards && cards.some(item => item.abbr === 'Nationwide Federal')
+  const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
+  let cardMenuItems = []
+  if (!nationalCard) {
+    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }]
+  }
+  if (!nativeAmericanCard) {
+    cardMenuItems = [{ fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+  }
+  if (!nationalCard && !nativeAmericanCard) {
+    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+  }
 
+  // onLink
+  const onLink = state => {
+    // setMapK(k)
+    // setMapY(y)
+    // setMapX(x)
+    let fips = state.properties ? state.properties.FIPS : state.fips
+    const name = state.properties ? state.properties.name : state.name
+    if (fips === undefined) {
+      fips = state.id
+    }
+    let stateAbbr
+    let abbr
+    if (fips && fips.length > 2) {
+      abbr = fips
+      stateAbbr = state.properties.state ? state.properties.state : state.properties.region
+    }
+    else {
+      abbr = state.properties ? state.properties.abbr : state.abbr
+      stateAbbr = state.properties ? state.properties.abbr : state.abbr
+    }
+    const stateObj = {
+      fips: fips,
+      abbr: abbr,
+      name: name,
+      state: stateAbbr
+    }
+    if (
+      cards.filter(item => item.fips === fips).length === 0
+    ) {
+      if (cards.length <= MAX_CARDS) {
+        if (stateObj.abbr && stateObj.abbr.match(/Nationwide Federal/)) {
+          cards.unshift(stateObj)
+        }
+        else {
+          cards.push(stateObj)
+        }
+      }
+      else {
+        handleSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        setSnackbarState({ ...snackbarState, open: false })
+      }
+    }
+    return dispatch({ type: 'CARDS', payload: { cards: cards } })
+  }
+
+  // const dataSet = `FY ${ year }`
 
   let landStatsData
-
 
   if (loading) {
     return (
@@ -228,27 +298,39 @@ const DetailCards = props => {
 
   if (error) return `Error! ${ error.message }`
 
-  if ( data ) {
-    landStatsData = data.landStats
+  if (data) {
+    landStatsData = data.land_stats
   }
+
   return (
-    <Card className={`${ classes.root } ${ props.cardCountClass }`}>
-      <CardHeader
-        title={<CardTitle data={landStatsData} stateTitle={props.cardTitle} stateAbbr={stateAbbr} state={props.state} />}
-        action={<CloseIcon
-          className={classes.closeIcon}
-          onClick={(e, i) => {
-            closeCard(props.fips)
-          }}
-        />}
-        classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
-        disableTypography
-      />
-      <CardContent>
-      {props.children}
-      </CardContent>
-      <CardActions></CardActions>
-    </Card>
+    <>
+      <Box className={classes.compareCards}>
+        {cards.map((card, i) => {
+          return (
+            <Card className={`${ classes.root } ${ props.cardCountClass }`}>
+              <CardHeader
+                title={<CardTitle data={landStatsData} stateTitle={card.name} stateAbbr={card.abbr} state={card.abbr} />}
+                action={<CloseIcon
+                  className={classes.closeIcon}
+                  onClick={(e, i) => {
+                    closeCard(card.fips)
+                  }}
+                />}
+                classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+                disableTypography
+              />
+              <CardContent>
+                {props.children}
+              </CardContent>
+              <CardActions></CardActions>
+            </Card>
+          )
+        })
+        }
+
+        { (cards.length >= 0 && cards.length <= CONSTANTS.MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
+      </Box>
+    </>
   )
 }
 
