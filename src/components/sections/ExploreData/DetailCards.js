@@ -14,7 +14,8 @@ import {
   CardActions,
   CardHeader,
   CardContent,
-  CircularProgress
+  CircularProgress,
+  useTheme
 } from '@material-ui/core'
 
 import CloseIcon from '@material-ui/icons/Close'
@@ -88,10 +89,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   commodityBox: {
-    minHeight: 475,
+    minheight: 350,
+    border: '2px solid purple',
   },
   revenueTypeBox: {
-    minHeight: 430,
+    height: 250,
   },
   circularProgressRoot: {
     color: theme.palette.primary.dark,
@@ -115,9 +117,18 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    // border: '1px solid deeppink',
-    '& > div:last-child': {
-      minHeight: 550,
+    '& .chart-container': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'top',
+      '& .chart': {
+        width: '100%',
+        height: 250
+      },
+      '& .legend': {
+        marginTop: theme.spacing(2),
+        height: 'auto',
+      },
     },
   }
 }))
@@ -185,6 +196,7 @@ const CardTitle = props => {
 
 const DetailCards = props => {
   const classes = useStyles()
+  const theme = useTheme()
 
   const { state, dispatch } = useContext(StoreContext)
   const year = state.year

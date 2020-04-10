@@ -19,6 +19,7 @@ import MapSnackbar from './MapSnackbar'
 
 import { StoreContext } from '../../../store'
 
+
 import mapCounties from './counties.json'
 import mapStates from './states.json'
 import mapCountiesOffshore from './counties-offshore.json'
@@ -162,17 +163,6 @@ const useStyles = makeStyles(theme => ({
         },
       }
     }
-  },
-  sliderContainer: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    backgroundColor: '#fff',
-    paddingTop: theme.spacing(2),
-    zIndex: 101,
-    paddingBottom: theme.spacing(0),
-    borderTop: `1px solid ${ theme.palette.grey[300] }`,
-    borderBottom: `1px solid ${ theme.palette.grey[300] }`,
   },
   contentWrapper: {
     paddingBottom: theme.spacing(4),
@@ -469,16 +459,12 @@ const MapContext = props => {
             </Grid>
               }
               <Grid item xs={12}>
-                <Box className={classes.sliderContainer}>
-                  <Container>
-                    <YearSlider
-                      data={periodData}
-                      onYear={selected => {
-                        onYear(selected, x, y, k)
-                      }}
-                    />
-                  </Container>
-                </Box>
+                <YearSlider
+                  data={periodData}
+                  onYear={selected => {
+                    onYear(selected, x, y, k)
+                  }}
+                />
               </Grid>
             </Grid>
           </Container>

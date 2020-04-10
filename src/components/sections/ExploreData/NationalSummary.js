@@ -74,11 +74,11 @@ const NationalSummary = ({ title, ...props }) => {
   }
 
   return (
-    <Container>
+    <Container id={utils.formatToSlug(title)}>
       <Grid container>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-            <Box component="h3" color="secondary.dark" id={utils.formatToSlug(title)}>{title}</Box>
+            <Box component="h3" color="secondary.dark">{title}</Box>
           </Box>
         </Grid>
         <Grid item md={12}>
@@ -129,4 +129,6 @@ const NationalSummary = ({ title, ...props }) => {
 
 export default NationalSummary
 
-NationalSummary.propTypes = {}
+NationalSummary.propTypes = {
+  title: PropTypes.string
+}

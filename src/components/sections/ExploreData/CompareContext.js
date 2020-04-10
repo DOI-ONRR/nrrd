@@ -1,10 +1,6 @@
-import React, { useCallback, useContext, useLayoutEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-
-import { StickyWrapper } from '../../utils/StickyWrapper'
-import useEventListener from '../../../js/use-event-listener'
-import Link from '../../Link'
 
 import CONSTANTS from '../../../js/constants'
 import utils from '../../../js/utils'
@@ -19,10 +15,6 @@ import {
   Box,
   Container,
   Grid,
-  Menu,
-  MenuList,
-  MenuItem,
-  Paper
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
@@ -51,21 +43,6 @@ const useStyles = makeStyles(theme => ({
       }
     },
   },
-  pageScrollTo: {
-    display: 'inline-block',
-    color: theme.palette.links.default,
-    marginTop: theme.spacing(0),
-    marginBottom: theme.spacing(0),
-    width: '100%',
-    '& ul': {
-      display: 'flex',
-      padding: 0,
-    },
-    '& a': {
-      fontWeight: 'bold',
-      textDecoration: 'none'
-    },
-  }
 }))
 
 // create sub menu
@@ -101,16 +78,16 @@ const CompareContext = props => {
       <Grid container>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-            <Box component="h3" color="secondary.dark" id={utils.formatToSlug(props.title)}>{props.title}</Box>
+            <Box component="h3" color="secondary.dark">{props.title}</Box>
           </Box>
           <Box fontSize="body1.fontSize">
                 Add more than one card to compare.  Select states, counties, and offshore regions.
           </Box>
-          <Box fontSize="body1.fontSize">
+          {/* <Box fontSize="body1.fontSize">
             { cards.length > 0 &&
               <Box>You currently have {cards.length > 0 ? 'the following cards selected.' : 'no cards selected.'}</Box>
             }
-          </Box>
+          </Box> */}
         </Grid>
       </Grid>
 
