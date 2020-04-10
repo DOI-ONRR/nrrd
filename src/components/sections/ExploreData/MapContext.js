@@ -8,14 +8,14 @@ import {
   useMediaQuery
 } from '@material-ui/core'
 
-import Map from '../../data-viz/Map'
+
 import MapToolbar from './MapToolbar'
 import MapControls from './MapControls'
 import AddCardButton from './AddCardButton'
 import SummaryCard from './SummaryCard'
 import YearSlider from './YearSlider'
 import MapSnackbar from './MapSnackbar'
-import { RevenueSummary } from './Revenue'
+
 
 import { StoreContext } from '../../../store'
 
@@ -244,27 +244,95 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default props => {
+const MapContext = props => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
-
+  const cards=state.cards
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
   const [mapK, setMapK] = useState(0.25)
+  const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
+  
+  // card Menu Item for adding/removing Nationwide Federal or Native American cards
+  const nationalCard = cards && cards.some(item => item.abbr === 'Nationwide Federal')
+  const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
+  let cardMenuItems = []
+  if (!nationalCard) {
+    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }]
+  }
+  if (!nativeAmericanCard) {
+    cardMenuItems = [{ fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+  }
+  if (!nationalCard && !nativeAmericanCard) {
+    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+  }
 
+
+  
   let x = mapX
   let y = mapY
   let k = mapK
 
-  const {
-    cardMenuItems,
-    closeCard,
-    onLink,
-    onYear,
-    setZoom
-  } = props.exploreDataProps
 
-  const cards = state.cards
+  // onYear
+  const onYear = (selected, x, y, k) => {
+    setMapK(k)
+    setMapY(y)
+    setMapX(x)
+    dispatch({ type: 'YEAR', payload: { year: selected } })
+  }
+  // setZoom
+  const setZoom = (x, y, k) => {
+    setMapY(y)
+    setMapX(x)
+    setMapK(k)
+  }
+  
+  // onLink
+  const onLink = (state, x, y, k) => {
+    setMapK(k)
+    setMapY(y)
+    setMapX(x)
+    let fips = state.properties ? state.properties.FIPS : state.fips
+    const name = state.properties ? state.properties.name : state.name
+    if (fips === undefined) {
+      fips = state.id
+    }
+    let stateAbbr
+    let abbr
+    if (fips && fips.length > 2) {
+      abbr = fips
+      stateAbbr = state.properties.state ? state.properties.state : state.properties.region
+    }
+    else {
+      abbr = state.properties ? state.properties.abbr : state.abbr
+      stateAbbr = state.properties ? state.properties.abbr : state.abbr
+    }
+    const stateObj = {
+      fips: fips,
+      abbr: abbr,
+      name: name,
+      state: stateAbbr
+    }
+    if (
+      cards.filter(item => item.fips === fips).length === 0
+    ) {
+      if (cards.length <= MAX_CARDS) {
+        if (stateObj.abbr && stateObj.abbr.match(/Nationwide Federal/)) {
+          cards.unshift(stateObj)
+        }
+        else {
+          cards.push(stateObj)
+        }
+      }
+      else {
+        handleSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        setSnackbarState({ ...snackbarState, open: false })
+      }
+    }
+    return dispatch({ type: 'CARDS', payload: { cards: cards } })
+  }
+
   const countyLevel = state.countyLevel === 'County'
   const offshore = state.offshoreData === 'On'
   const year = state.year
@@ -336,34 +404,40 @@ export default props => {
     }
   }
 
+  const onZoomEnd = (event) => {
+    x = event.transform.x
+    y = event.transform.y
+    k = event.transform.k
+  }
+  const onClick=(d, fips, foo, bar) => {
+    onLink(d, x, y, k)
+  }
+  
+  
+ const mapChild=React.cloneElement(props.children[0],
+                              {
+                                mapFeatures: mapFeatures,    // use context instead
+                                mapJsonObject: mapJsonObject, // use context instead
+                                minColor: "#CDE3C3",
+                                maxColor: "#2F4D26",
+                                mapZoom: mapK,
+                                mapX: mapX,
+                                mapY: mapY,
+                                onZoomEnd: onZoomEnd,
+                                onClick: onClick
+
+                              })
+  
+  
   return (
     <>
-      {mapData &&
-        <>
+      
           <Container className={classes.mapWrapper} maxWidth={false}>
             <Grid container>
               <Grid item xs={12}>
                 <Box className={classes.mapContainer}>
                   <MapToolbar onChange={handleChange} />
-                  <Map
-                    mapFeatures={mapFeatures}
-                    mapJsonObject={mapJsonObject}
-                    mapData={mapData}
-                    minColor="#CDE3C3"
-                    maxColor="#2F4D26"
-                    mapZoom={mapK}
-                    mapX={mapX}
-                    mapY={mapY}
-                    onZoomEnd={
-                      event => {
-                        x = event.transform.x
-                        y = event.transform.y
-                        k = event.transform.k
-                      }
-                    }
-                    onClick={(d, fips, foo, bar) => {
-                      onLink(d, x, y, k)
-                    }} />
+                  {mapChild}
                   <MapControls
                     handleClick={handleClick}
                   />
@@ -374,31 +448,12 @@ export default props => {
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
-                    <SummaryCard
-                      key={i}
-                      fips={state.fips}
-                      abbr={state.abbr}
-                      name={state.name}
-                      minimizeIcon={state.minimizeIcon}
-                      periodData={periodData}
-                      closeIcon={state.closeIcon}
-                      closeCard={fips => {
-                        closeCard(fips)
-                      }}
-                    >
-                      {dataType === CONSTANTS.REVENUE &&
-                        <RevenueSummary />
-                      }
-
-                      {dataType === CONSTANTS.DISBURSEMENTS &&
-                        <span>Disbursements summary card content!</span>
-                      }
-
-                      {dataType === CONSTANTS.PRODUCTION &&
-                        <span>Production summary card content!</span>
-                      }
-
-                    </SummaryCard>
+                    React.cloneElement(props.children[1], {
+                      key:i,
+                      fips: state.fips,
+                      abbr: state.abbr,
+                      name: state.name,
+                    })
                   )
                 })}
               </Box>
@@ -434,35 +489,31 @@ export default props => {
               <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
                 {cards.map((state, i) => {
                   return (
-                    <SummaryCard
-                      key={i}
-                      fips={state.fips}
-                      abbr={state.abbr}
-                      name={state.name}
-                      year={state.year}
-                      minimizeIcon={state.minimizeIcon}
-                      closeIcon={state.closeIcon}
-                      closeCard={fips => {
-                        closeCard(fips)
-                      }}
-                    />
+                    React.cloneElement(props.children[1], {
+                      key:i,
+                      fips: state.fips,
+                      abbr: state.abbr,
+                      name: state.name,
+                    })
+                    
                   )
-                })}
-              </Box>
-            </Grid>
-            { cardMenuItems.length > 0 &&
-              <Box className={classes.nonStateCardsContainer}>
+                  })}
+                </Box>
+              </Grid>
+              { cardMenuItems.length > 0 &&
+                <Box className={classes.nonStateCardsContainer}>
                 <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
-              </Box>
-            }
-          </>
+                  </Box>
+                  }
+              </>
             }
           </Container>
           <Container>
             <MapSnackbar message="Only four locations can be viewed at once. Remove one of the location cards to add another location." />
           </Container>
         </>
-      }
-    </>
   )
 }
+
+
+export default MapContext

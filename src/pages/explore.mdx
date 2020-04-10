@@ -14,62 +14,27 @@ tags:
 
 <Container style={{ padding: 0 }} maxWidth={false}>
   <Box mb={10}>
-    <ExploreData>
-      <Revenue>
-        <ExploreDataMap />
-        <Container>
-          <Grid container>
-            <Grid item md={12}>
-              <Box mb={1} color="secondary.main" borderBottom={5}>
-                <Box component="h2" color="secondary.dark">Revenue</Box>
-              </Box>
-              <Typography variant="body1">
-                When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. <strong>In fiscal year <Year />, ONRR collected a total of <LocationTotal location='Nationwide Federal' /> in revenue.</strong>
-              </Typography>
-            </Grid>
-          </Grid>
-        </Container>
-        <ExploreDataCompare title="Compare revenue" />
-        <NationalSummary title="Nationwide revenue summary" />
-        <Locations title="Top locations" />
-        <Commodities title="Top commodities" />
-        <Company title="Revenue companies" />
-      </Revenue>
-      <Disbursements>
-        <ExploreDataMap />
-        <Container>
-          <Grid container>
-            <Grid item md={12}>
-              <Box mb={1} color="secondary.main" borderBottom={5}>
-                <Box component="h2" color="secondary.dark">Disbursements</Box>
-              </Box>
-              <Typography variant="body1">
-                After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called "disbursement."  <strong>In <Year />, ONRR disbursed a total of <LocationTotal location='Nationwide Federal' />.</strong>
-              </Typography>
-            </Grid>
-          </Grid>
-        </Container>
-        <ExploreDataCompare title="Compare disbursements" />
-        <NationalSummary title="Disbursements over time" />
-      </Disbursements>
-      <Production>
-        <ExploreDataMap />
-        <Container>
-          <Grid container>
-            <Grid item md={12}>
-              <Box mb={1} color="secondary.main" borderBottom={5}>
-                <Box component="h2" color="secondary.dark">Production</Box>
-              </Box>
-              <Typography variant="body1">
-                The Office of Natural Resources Revenue collects detailed data about natural resource production (?) on federal lands and waters.
-              </Typography>
-            </Grid>
-          </Grid>
-        </Container>
-        <ExploreDataCompare title="Compare oil production" />
-        <NationalSummary title="Oil production over time" />
-        <Locations title="Top locations" />
-      </Production>
+  <ExploreData>
+  <Revenue>
+   <span>Hello cruel world</span>
+  <MapContext>
+     <RevenueMap/>
+  <SummaryCards>
+  <DisbursementTrend />
+  </SummaryCards>
+</MapContext>
+  {/*
+  <CompareContext title='Compare Revenue'>
+    <DetailCards> 
+  <div> foo </div>
+    </DetailCards> 
+  </CompareContext>
+    */}
+    
+
+</Revenue>
     </ExploreData>
   </Box>
-</Container>
+ </Container>
+
+

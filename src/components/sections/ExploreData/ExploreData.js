@@ -115,16 +115,16 @@ const ExploreData = props => {
     onYear: onYear,
     setZoom: setZoom,
   }
-
+/*
   const children = React.Children.map(props.children, child => {
     return React.cloneElement(child, {
       exploreDataProps: exploreDataProps
     })
   })
-
+*/
   return (
     <>
-      {children}
+      {props.children}
     </>
   )
 }
