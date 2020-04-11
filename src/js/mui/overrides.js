@@ -17,6 +17,11 @@ module.exports = Object.freeze({
     head: {
       borderBottomColor: palette.secondary.main,
       borderBottomWidth: '3px'
+    },
+    footer: {
+      color: typography.body2.color,
+      fontSize: typography.body2.fontSize,
+      fontWeight: typography.fontWeightBold
     }
   },
   MuiToggleButton: {
@@ -37,7 +42,10 @@ module.exports = Object.freeze({
   MuiFormLabel: {
     root: {
       color: typography.body2.color,
-      fontSize: typography.body2.fontSize
+      fontSize: typography.body2.fontSize,
+      '&.Mui-focused': {
+        color: palette.text.secondary,
+      },
     }
   },
   MuiFormHelperText: {

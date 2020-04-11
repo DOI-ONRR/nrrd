@@ -4,20 +4,34 @@
  */
 
 const types = Object.freeze({
-  UPDATE_LOADING_STATUS: 'UPDATE_LOADING_STATUS',
+  ADD_LOADING_MESSAGE: 'ADD_LOADING_MESSAGE',
+  DELETE_LOADING_MESSAGE: 'DELETE_LOADING_MESSAGE',
+  SHOW_ERROR_MESSAGE: 'SHOW_ERROR_MESSAGE',
 })
 
 const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
-  case types.UPDATE_LOADING_STATUS:
+  case types.ADD_LOADING_MESSAGE:
+    state.loadingMessages.push({ message: payload.message })
+    return ({ ...state })
+  case types.DELETE_LOADING_MESSAGE: {
+    const result = state.loadingMessages.findIndex(item => item.message === payload.message)
+    if (result > -1) {
+      state.loadingMessages.splice(result, 1)
+    }
+    return ({ ...state })
+  }
+  case types.SHOW_ERROR_MESSAGE:
     return ({ ...state, ...payload })
   default:
     return state
   }
 }
 
-const initialState = {}
+const initialState = {
+  loadingMessages: []
+}
 
 export { initialState, types, reducer }

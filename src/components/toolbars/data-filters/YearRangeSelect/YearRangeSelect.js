@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { AppStatusContext } from '../../../../stores/app-status-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { range } from '../../../../js/utils'
@@ -28,28 +29,45 @@ import { ClearAll } from '@material-ui/icons'
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(2),
-    minWidth: 250,
+    width: '-webkit-fill-available',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  MuiSlider: {
+    color: 'black',
+    thumb: {
+      color: 'blue'
+    }
+  }
 }))
 
-const YearRangeSelect = ({ helperText, label = 'Fiscal years' }) => {
+const YearRangeSelect = ({ helperText, label = 'Fiscal years', loadingMessage = 'Updating Year options from server...' }) => {
   const { state } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(DFC.GET_DF_REVENUE_LOCATION_OPTIONS, DFC.ALL_DATA_FILTER_VARS(state))
-  if (error) return `Error! ${ error.message }`
+
+  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
+
+  useEffect(() => {
+    if (error) {
+      showErrorMessage(`Error!: ${ error.message }`)
+    }
+  }, [error])
+
+  useEffect(() => {
+    updateLoadingStatus({ status: loading, message: loadingMessage })
+  }, [loading])
 
   return (
     <React.Fragment>
-      <YearRangeSelector loading={loading} label={label} data={data} helperText={helperText} />
+      <YearRangeSelector label={label} data={data} helperText={helperText} />
     </React.Fragment>
   )
 }
 
 export default YearRangeSelect
 
-const YearRangeSelector = ({ loading, label, data, helperText }) => {
+const YearRangeSelector = ({ label, data, helperText }) => {
   const classes = useStyles()
   const { state, updateDataFilter } = useContext(DataFilterContext)
   const handleChange = (event, newValue) => {
@@ -90,21 +108,12 @@ const YearRangeSelector = ({ loading, label, data, helperText }) => {
   }
 
   return (
-    <Grid container direction='row' alignitems='flex-end'>
+    <Grid container>
       <Grid item xs={12}>
         <FormControl className={classes.formControl} disabled={(data && data[DFC.FISCAL_YEAR_OPTIONS].length === 0)}>
-
-          {!loading &&
-            <InputLabel id="years-select-label">
-              {label.concat(': ')}<Typography display={'inline'} color={'textSecondary'}>{getCurrentValuesText()}</Typography>
-            </InputLabel>
-          }
-          {loading &&
-            <InputLabel id="years-select-label">
-              <LinearProgress />
-              {label}
-            </InputLabel>
-          }
+          <InputLabel id="years-select-label">
+            {label.concat(': ')}<Typography display={'inline'} color={'textSecondary'}>{getCurrentValuesText()}</Typography>
+          </InputLabel>
           {fiscalYearOptions &&
             <Slider
               defaultValue={getCurrentValues()}
@@ -115,7 +124,8 @@ const YearRangeSelector = ({ loading, label, data, helperText }) => {
               onChangeCommitted={handleChange}
               marks
               min={fiscalYearOptions[0]}
-              max={fiscalYearOptions[fiscalYearOptions.length - 1]} />
+              max={fiscalYearOptions[fiscalYearOptions.length - 1]}
+              className={classes.MuiSlider} />
           }
           {helperText &&
             <FormHelperText>{helperText}</FormHelperText>
@@ -128,27 +138,3 @@ const YearRangeSelector = ({ loading, label, data, helperText }) => {
     </Grid>
   )
 }
-
-/*
-
-<Select
-            labelId="states-select-label"
-            id="states-select"
-            multiple
-            value={currentUsStates}
-            renderValue={selected => selected.join(', ')}
-            input={<Input />}
-            onChange={handleChange}
-            displayEmpty
-
-          >
-            {data &&
-          data[DFC.US_STATE_OPTIONS].map(
-            (option, i) => <MenuItem key={`${ option[DFC.US_STATE] }_${ i }`} value={option[DFC.US_STATE]}>
-              <Checkbox checked={currentUsStates.findIndex(state => state === option[DFC.US_STATE]) > -1} />
-              <ListItemText primary={option[DFC.US_STATE]} />
-            </MenuItem>)
-            }
-          </Select>
-
-          */

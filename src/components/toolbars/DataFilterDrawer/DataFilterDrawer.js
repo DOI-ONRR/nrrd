@@ -15,6 +15,7 @@ import CountySelect from '../data-filters/CountySelect'
 import RevenueTypeSelect from '../data-filters/RevenueTypeSelect'
 import CommoditySelect from '../data-filters/CommoditySelect'
 import OffshoreRegionSelect from '../data-filters/OffshoreRegionSelect'
+import YearRangeSelect from '../data-filters/YearRangeSelect'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
@@ -33,11 +34,12 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     [theme.breakpoints.up('sm')]: {
-      width: 300,
+      width: 350,
     },
     [theme.breakpoints.down('sm')]: {
       width: '100%',
-    }
+    },
+    backgroundColor: theme.palette.primary.main,
   },
 }))
 
@@ -83,7 +85,7 @@ export default function DataFilterDrawer () {
             paper: classes.drawerPaper,
           }}
         >
-          <Box ml={2}>
+          <Box m={2}>
             <Grid container>
               <Grid item xs={12}>
                 <LandCategorySelect />
@@ -91,14 +93,13 @@ export default function DataFilterDrawer () {
               <Grid item xs={12}>
                 <LandClassSelect />
               </Grid>
-              <Grid item xs={12}>
-                <RevenueTypeSelect />
-              </Grid>
+              {state.dataType === 'Revenue' &&
+                <Grid item xs={12}>
+                  <RevenueTypeSelect />
+                </Grid>
+              }
               <Grid item xs={12}>
                 <StateSelect />
-              </Grid>
-              <Grid item xs={12}>
-                <CountySelect />
               </Grid>
               <Grid item xs={12}>
                 <OffshoreRegionSelect />
@@ -107,7 +108,7 @@ export default function DataFilterDrawer () {
                 <CommoditySelect />
               </Grid>
               <Grid item xs={12}>
-                <RevenueTypeSelect />
+                <YearRangeSelect />
               </Grid>
             </Grid>
           </Box>
@@ -121,6 +122,9 @@ export default function DataFilterDrawer () {
 /* 
 
 
+              <Grid item xs={12}>
+                <CountySelect />
+              </Grid>
             <Grid item xs={12}>
               <LandCategorySelect />
             </Grid>

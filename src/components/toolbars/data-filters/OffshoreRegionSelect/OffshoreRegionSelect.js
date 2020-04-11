@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { useQuery } from '@apollo/react-hooks'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { AppStatusContext } from '../../../../stores/app-status-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -14,38 +15,62 @@ import ListItemText from '@material-ui/core/ListItemText'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import { IconButton, Grid, LinearProgress } from '@material-ui/core'
-import { ClearAll } from '@material-ui/icons'
+import { IconButton, Grid } from '@material-ui/core'
+import Clear from '@material-ui/icons/Clear'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 175,
+    width: '-webkit-fill-available'
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
 }))
 
-const OffshoreRegionSelect = ({ helperText, label = 'Offshore region(s)' }) => {
+const OffshoreRegionSelect = ({ helperText, label = 'Offshore region(s)', loadingMessage = 'Updating Offshore Region options from server...' }) => {
   const { state } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(DFC.GET_DF_REVENUE_LOCATION_OPTIONS, DFC.ALL_DATA_FILTER_VARS(state))
-  if (error) return `Error! ${ error.message }`
+
+  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
+
+  useEffect(() => {
+    if (error) {
+      showErrorMessage(`Error!: ${ error.message }`)
+    }
+  }, [error])
+
+  useEffect(() => {
+    updateLoadingStatus({ status: loading, message: loadingMessage })
+  }, [loading])
 
   return (
     <React.Fragment>
-      <OffshoreRegionMultiSelect loading={loading} label={label} data={data} helperText={helperText} />
+      <OffshoreRegionMultiSelect label={label} data={data} helperText={helperText} />
     </React.Fragment>
   )
 }
 
 export default OffshoreRegionSelect
 
-const OffshoreRegionMultiSelect = ({ label, data, loading, helperText }) => {
+const OffshoreRegionMultiSelect = ({ label, data, helperText }) => {
   const classes = useStyles()
   const { state, updateDataFilter } = useContext(DataFilterContext)
+  const [selectedOptions, setSelectedOptions] = useState(state[DFC.OFFSHORE_REGIONS] || '')
+
   const handleChange = event => {
-    updateDataFilter({ ...state, [DFC.OFFSHORE_REGIONS]: event.target.value.toString() })
+    if (event.target.value.includes('Clear')) {
+      handleClearAll()
+    }
+    else {
+      setSelectedOptions(event.target.value.toString())
+    }
+  }
+
+  const handleClose = event => {
+    if (!(selectedOptions.length === 0 && !state[DFC.OFFSHORE_REGIONS]) && (selectedOptions !== state[DFC.OFFSHORE_REGIONS])) {
+      updateDataFilter({ ...state, [DFC.OFFSHORE_REGIONS]: selectedOptions })
+    }
   }
 
   useEffect(() => {
@@ -54,38 +79,32 @@ const OffshoreRegionMultiSelect = ({ label, data, loading, helperText }) => {
     }
   }, [data])
 
-  const handleClearAll = () => updateDataFilter({ ...state, [DFC.OFFSHORE_REGIONS]: undefined })
-
-  const currentRegions = state[DFC.OFFSHORE_REGIONS] ? state[DFC.OFFSHORE_REGIONS].split(',') : []
-
+  const handleClearAll = () => {
+    setSelectedOptions('')
+    updateDataFilter({ ...state, [DFC.OFFSHORE_REGIONS]: undefined })
+  }
   return (
-    <Grid container direction='row' alignitems='flex-end'>
-      <Grid item xs={12} sm={10}>
+    <Grid container>
+      <Grid item xs={12}>
         <FormControl className={classes.formControl} disabled={(data && data[DFC.OFFSHORE_REGION_OPTIONS].length === 0)}>
-          {!loading &&
-              <InputLabel id="offshore-region-select-label">{label}</InputLabel>
-          }
-          {loading &&
-            <InputLabel id="offshore-region-select-label">
-              <LinearProgress />
-              {label}
-            </InputLabel>
-          }
+          <InputLabel id="offshore-region-select-label">{label}</InputLabel>
           <Select
             labelId="offshore-region-select-label"
             id="offshore-region-select"
             multiple
-            value={currentRegions}
-            renderValue={selected => selected.join(', ')}
+            value={selectedOptions.length > 0 ? selectedOptions.split(',') : []}
+            renderValue={selected => selected && selected.join(', ')}
             input={<Input />}
             onChange={handleChange}
-            displayEmpty
-
+            onClose={handleClose}
           >
+            <MenuItem value={'Clear'} disabled={(selectedOptions.length === 0)}>
+              <IconButton><Clear /></IconButton><ListItemText primary={'Clear selected'} />
+            </MenuItem>
             {data &&
           data[DFC.OFFSHORE_REGION_OPTIONS].map(
             (option, i) => <MenuItem key={`${ option[DFC.OFFSHORE_REGION] }_${ i }`} value={option[DFC.OFFSHORE_REGION]}>
-              <Checkbox checked={(currentRegions.findIndex(region => region === option[DFC.OFFSHORE_REGION]) > -1)} />
+              <Checkbox checked={selectedOptions.includes(option[DFC.OFFSHORE_REGION])} />
               <ListItemText primary={option[DFC.OFFSHORE_REGION]} />
             </MenuItem>)
             }
@@ -97,11 +116,6 @@ const OffshoreRegionMultiSelect = ({ label, data, loading, helperText }) => {
         <FormHelperText>No offshore regions match the current filter options.</FormHelperText>
           }
         </FormControl>
-      </Grid>
-      <Grid item xs={12} sm={2}>
-        { state[DFC.OFFSHORE_REGIONS] &&
-          <IconButton color="primary" aria-label='Clear all offshore region options' onClick={handleClearAll}><ClearAll /></IconButton>
-        }
       </Grid>
     </Grid>
 

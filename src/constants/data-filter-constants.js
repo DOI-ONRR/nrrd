@@ -1,4 +1,5 @@
 import gql from 'graphql-tag'
+import * as CONSTANTS from './index'
 
 export const DATA_TYPE = 'dataType'
 export const LAND_CLASS = 'landClass'
@@ -25,18 +26,65 @@ export const COMMODITY_OPTIONS = 'commodityOptions'
 export const REVENUE_TYPE_OPTIONS = 'revenueTypeOptions'
 export const FISCAL_YEAR_OPTIONS = 'fiscalYearOptions'
 
-export const ALL_DATA_FILTER_VARS = state => ({
-  variables: {
-    [LAND_CLASS]: state[LAND_CLASS],
-    [LAND_CATEGORY]: state[LAND_CATEGORY],
-    [OFFSHORE_REGIONS]: state[OFFSHORE_REGIONS] && state[OFFSHORE_REGIONS].split(','),
-    [US_STATES]: state[US_STATES] && state[US_STATES].split(','),
-    [COUNTIES]: state[COUNTIES] && state[COUNTIES].split(','),
-    [COMMODITIES]: state[COMMODITIES] && state[COMMODITIES].split(','),
-    [REVENUE_TYPE]: state[REVENUE_TYPE],
-    [FISCAL_YEARS]: state[FISCAL_YEARS] && state[FISCAL_YEARS].split(',').map(year => parseInt(year)),
+export const ALL_DATA_FILTER_VARS = state => {
+  if (state.dataType === 'Revenue') {
+    return ({
+      variables: {
+        [LAND_CLASS]: state[LAND_CLASS],
+        [LAND_CATEGORY]: state[LAND_CATEGORY],
+        [OFFSHORE_REGIONS]: state[OFFSHORE_REGIONS] && state[OFFSHORE_REGIONS].split(','),
+        [US_STATES]: state[US_STATES] && state[US_STATES].split(','),
+        [COUNTIES]: state[COUNTIES] && state[COUNTIES].split(','),
+        [COMMODITIES]: state[COMMODITIES] && state[COMMODITIES].split(','),
+        [REVENUE_TYPE]: state[REVENUE_TYPE],
+        [FISCAL_YEARS]: state[FISCAL_YEARS] && state[FISCAL_YEARS].split(',').map(year => parseInt(year)),
+      }
+    })
   }
-})
+  if (state.dataType === 'Production') {
+    return ({
+      variables: {
+        [LAND_CLASS]: state[LAND_CLASS],
+        [LAND_CATEGORY]: state[LAND_CATEGORY],
+        [OFFSHORE_REGIONS]: state[OFFSHORE_REGIONS] && state[OFFSHORE_REGIONS].split(','),
+        [US_STATES]: state[US_STATES] && state[US_STATES].split(','),
+        [COUNTIES]: state[COUNTIES] && state[COUNTIES].split(','),
+        [COMMODITIES]: state[COMMODITIES] && state[COMMODITIES].split(','),
+        [FISCAL_YEARS]: state[FISCAL_YEARS] && state[FISCAL_YEARS].split(',').map(year => parseInt(year)),
+      }
+    })
+  }
+}
+
+export const GetDataFilterOptions = (optionType, dataType) => {
+  switch (optionType) {
+  case LAND_CATEGORY:
+    if (dataType === CONSTANTS.REVENUE) {
+      return (GET_DF_REVENUE_LAND_CATEGORY_OPTIONS)
+    }
+    if (dataType === CONSTANTS.REVENUE.PRODUCTION) {
+      return (GET_DF_PRODUCTION_LAND_CATEGORY_OPTIONS)
+    }
+    break
+  }
+}
+
+export const GET_LOCATION_OPTIONS = dataType => {
+  if (dataType === 'Revenue') {
+    return (GET_DF_REVENUE_LAND_CATEGORY_OPTIONS)
+  }
+  if (dataType === 'Production') {
+    return (GET_DF_PRODUCTION_LAND_CATEGORY_OPTIONS)
+  }
+}
+export const GET_COMMODITY_OPTIONS = dataType => {
+  if (dataType === 'Revenue') {
+    return (GET_DF_REVENUE_COMMODITY_OPTIONS)
+  }
+  if (dataType === 'Production') {
+    return (GET_DF_PRODUCTION_COMMODITY_OPTIONS)
+  }
+}
 
 export const variableListDefined = ''.concat(
   '$landClass: String,',
@@ -48,6 +96,50 @@ export const variableListDefined = ''.concat(
   '$revenueType: String,',
   '$fiscalYears: [Int!],'
 )
+export const variableListDefinedProduction = ''.concat(
+  '$landClass: String,',
+  '$landCategory: String,',
+  '$offshoreRegions: [String!],',
+  '$usStates: [String!],',
+  '$counties: [String!],',
+  '$commodities: [String!],',
+  '$fiscalYears: [Int!],'
+)
+
+const QUERY_LAND_CATEGORY_OPTIONS = `
+landCategoryOptions:data_filter_revenue_options(
+  where: {
+    land_class: {_eq: $landClass},
+    land_category: {_neq: ""},
+    offshore_region: {_in: $offshoreRegions},
+    state: {_in: $usStates},
+    county: {_in: $counties},
+    commodity: {_in: $commodities},
+    revenue_type: {_eq: $revenueType},
+    fiscal_year: {_in: $fiscalYears}
+  },
+  distinct_on: land_category,
+  order_by: {land_category: asc}
+) {
+  landCategory:land_category
+}`
+
+const QUERY_LAND_CATEGORY_OPTIONS_PRODUCTION = `
+landCategoryOptions:data_filter_production_options(
+  where: {
+    land_class: {_eq: $landClass},
+    land_category: {_neq: ""},
+    offshore_region: {_in: $offshoreRegions},
+    state: {_in: $usStates},
+    county: {_in: $counties},
+    commodity: {_in: $commodities},
+    fiscal_year: {_in: $fiscalYears}
+  },
+  distinct_on: land_category,
+  order_by: {land_category: asc}
+) {
+  landCategory:land_category
+}`
 
 const QUERY_LAND_CLASS_OPTIONS = `
 landClassOptions:data_filter_revenue_options(
@@ -65,23 +157,6 @@ landClassOptions:data_filter_revenue_options(
   order_by: {land_class: asc}
 ) {
   landClass:land_class
-}`
-const QUERY_LAND_CATEGORY_OPTIONS = `
-landCategoryOptions:data_filter_revenue_options(
-  where: {
-    land_class: {_eq: $landClass},
-    land_category: {_neq: ""},
-    offshore_region: {_in: $offshoreRegions},
-    state: {_in: $usStates},
-    county: {_in: $counties},
-    commodity: {_in: $commodities},
-    revenue_type: {_eq: $revenueType},
-    fiscal_year: {_in: $fiscalYears}
-  },
-  distinct_on: land_category,
-  order_by: {land_category: asc}
-) {
-  landCategory:land_category
 }`
 const QUERY_OFFSHORE_REGION_OPTIONS = `
 offshoreRegionOptions:data_filter_revenue_options(
@@ -151,6 +226,22 @@ commodityOptions:data_filter_revenue_options(
 ) {
   commodity
 }`
+const QUERY_COMMODITY_OPTIONS_PRODUCTION = `
+commodityOptions:data_filter_production_options(
+  where: {
+    land_class: {_eq: $landClass},
+    land_category: {_eq: $landCategory},
+    offshore_region: {_in: $offshoreRegions},
+    state: {_in: $usStates},
+    county: {_in: $counties},
+    commodity: {_neq: ""},
+    fiscal_year: {_in: $fiscalYears}
+  },
+  distinct_on: commodity,
+  order_by: {commodity: asc}
+) {
+  commodity
+}`
 const QUERY_FISCAL_YEAR_OPTIONS = `
 fiscalYearOptions:data_filter_revenue_options(
   where: {
@@ -191,6 +282,11 @@ query GetDfRevenueLandCategoryOptions(${ variableListDefined })
 {
   ${ QUERY_LAND_CATEGORY_OPTIONS }
 }`
+export const GET_DF_PRODUCTION_LAND_CATEGORY_OPTIONS = gql`
+query GetDfProductionLandCategoryOptions(${ variableListDefinedProduction })
+{
+  ${ QUERY_LAND_CATEGORY_OPTIONS_PRODUCTION }
+}`
 
 export const GET_DF_REVENUE_OFFSHORE_REGION_OPTIONS = gql`
 query GetDfRevenueLandCategoryOptions(${ variableListDefined })
@@ -227,6 +323,11 @@ export const GET_DF_REVENUE_COMMODITY_OPTIONS = gql`
 query GetDfRevenueLandCategoryOptions(${ variableListDefined })
 {
   ${ QUERY_COMMODITY_OPTIONS }
+}`
+export const GET_DF_PRODUCTION_COMMODITY_OPTIONS = gql`
+query GetDfProductionLandCategoryOptions(${ variableListDefined })
+{
+  ${ QUERY_COMMODITY_OPTIONS_PRODUCTION }
 }`
 
 export const GET_DF_REVENUE_REVENUE_TYPE_OPTIONS = gql`

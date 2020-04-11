@@ -26,16 +26,16 @@ const useStyles = makeStyles(theme => ({
 })
 )
 
-const IconLink = ({ icon, children, pl = 4, ...props }) => (
+const IconLink = ({ icon, children, pl = 4, ...rest }) => (
   <Box pl={0} mt={2} mb={2}>
-    <BaseLink {...props} disableRouting>
+    <BaseLink {...rest} disableRouting>
       <Box mr={1} display='inline-block'>{icon}</Box>
       <span>{children}</span>
     </BaseLink>
   </Box>
 )
 
-const BaseLink = ({ href, disableRouting, className = '', children, ...props }) => {
+const BaseLink = ({ href, disableRouting, className = '', children, linkType, ...rest }) => {
   const theme = useTheme()
   const styles = useStyles(theme)
 
@@ -46,17 +46,17 @@ const BaseLink = ({ href, disableRouting, className = '', children, ...props }) 
   const isRelative = (url.charAt(0) !== '#' && !url.includes('http') && !url.includes('mailto'))
   url = isRelative ? withPrefix(url) : url
 
-  const classes = (props.linkType === LinkTypeComponents.Header)
+  const classes = (linkType === LinkTypeComponents.Header)
     ? `${ styles.headerLink } ${ className } ${ (currentPathname === href) && styles.headerLinkBold }`
     : `${ styles.link } ${ className }`
 
   return (
     <React.Fragment>
       {(!disableRouting && isRelative)
-        ? <GatsbyLink to={url} className={classes} {...props} >
+        ? <GatsbyLink to={url} className={classes} {...rest} >
           {children}
         </GatsbyLink>
-        : <a href={url} className={classes} {...props}>
+        : <a href={url} className={classes} {...rest}>
           {children}
         </a>
       }
