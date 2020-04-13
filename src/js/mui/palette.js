@@ -12,7 +12,7 @@ module.exports = Object.freeze({
   },
   chart: {
     primary: '#222222',
-    secondary: '#086996'
+    secondary: '#43646F'
   },
   links: {
     default: '#1478a6',

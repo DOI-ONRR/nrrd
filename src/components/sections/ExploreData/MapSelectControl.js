@@ -74,7 +74,6 @@ const MapSelectControl = props => {
   const { state, dispatch } = useContext(StoreContext)
 
   const findSelectedOption = options.findIndex(item => item === selectedOption)
-  console.log('findSelectedOption: ', options.find(item => item === selectedOption))
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [selectedIndex, setSelectedIndex] = useState(findSelectedOption || 0)
