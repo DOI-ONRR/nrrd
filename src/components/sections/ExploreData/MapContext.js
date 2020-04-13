@@ -5,6 +5,7 @@ import {
   Container,
   Grid,
   Box,
+  Snackbar,
   useMediaQuery
 } from '@material-ui/core'
 
@@ -12,7 +13,6 @@ import MapToolbar from './MapToolbar'
 import MapControls from './MapControls'
 import AddCardButton from './AddCardButton'
 import YearSlider from './YearSlider'
-import MapSnackbar from './MapSnackbar'
 
 import { StoreContext } from '../../../store'
 
@@ -20,8 +20,6 @@ import mapCounties from './counties.json'
 import mapStates from './states.json'
 import mapCountiesOffshore from './counties-offshore.json'
 import mapStatesOffshore from './states-offshore.json'
-
-import CONSTANTS from '../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -234,6 +232,7 @@ const MapContext = props => {
   const classes = useStyles()
   const { state, dispatch } = useContext(StoreContext)
   const cards = state.cards
+
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
   const [mapK, setMapK] = useState(0.25)
@@ -252,6 +251,23 @@ const MapContext = props => {
   }
   if (!nationalCard && !nativeAmericanCard) {
     cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
+  }
+
+  // Map snackbar
+  const [mapSnackbarState, setMapSnackbarState] = useState({
+    open: false,
+    vertical: 'bottom',
+    horizontal: 'center'
+  })
+
+  const { vertical, horizontal, open } = mapSnackbarState
+
+  const handleMapSnackbar = newState => {
+    setMapSnackbarState({ open: true, ...newState })
+  }
+
+  const handleMapSnackbarClose = () => {
+    setMapSnackbarState({ ...mapSnackbarState, open: false })
   }
 
   let x = mapX
@@ -310,8 +326,8 @@ const MapContext = props => {
         }
       }
       else {
-        handleSnackbar({ vertical: 'bottom', horizontal: 'center' })
-        setSnackbarState({ ...snackbarState, open: false })
+        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        // setMapSnackbarState({ ...mapSnackbarState, open: false })
       }
     }
     return dispatch({ type: 'CARDS', payload: { cards: cards } })
@@ -408,7 +424,6 @@ const MapContext = props => {
 
   return (
     <>
-
       <Container className={classes.mapWrapper} maxWidth={false}>
         <Grid container>
           <Grid item xs={12}>
@@ -481,7 +496,13 @@ const MapContext = props => {
         }
       </Container>
       <Container>
-        <MapSnackbar message="Only four locations can be viewed at once. Remove one of the location cards to add another location." />
+        <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          key={`${ vertical },${ horizontal }`}
+          open={open}
+          onClose={handleMapSnackbarClose}
+          message="Only four locations can be viewed at once. Remove one of the location cards to add another location."
+        />
       </Container>
     </>
   )
