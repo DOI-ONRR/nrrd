@@ -93,7 +93,7 @@ const NationalRevenueSummary = props => {
   return (
     <Grid container>
       <Grid item md={12}>
-        <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+        <Box color="secondary.main" mt={5} mb={2} >
           <Box component="h3" color="secondary.dark">Nationwide revenue summary</Box>
         </Box>
       </Grid>
@@ -101,7 +101,10 @@ const NationalRevenueSummary = props => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
+      <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
+      <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
+      <span style={{ fontWeight: 'bold', float:'right' }}>FY {year}</span></TableCell>
+      
             </TableRow>
           </TableHead>
           <TableBody>
@@ -128,8 +131,8 @@ const NationalRevenueSummary = props => {
                         }}
                         legendHeaders={ headers => {
                           console.debug("headers..................", headers)
-                          headers[0] = "Source"
-                          headers[2] = 'FY '+headers[2]
+                          headers[0] = ''
+                          headers[2] = ''
                           return headers
                           }
                         }
