@@ -53,12 +53,17 @@ tags:
             <Grid container>
               <Grid item md={12}>
                 <DetailCards> 
-                  <div>Detail cards children!</div>
+                  <RevenueDetailTrends />
+                  <RevenueDetailCommodities />
                 </DetailCards>
               </Grid>
             </Grid>
           </Container> 
         </CompareContext>
+        <NationalSummary title="Nationwide revenue summary" />
+        <TopLocations title="Top locations" />
+        <Commodities title="Top commodities" />
+        <Company title="Revenue by company" />
       </Revenue>
     </ExploreData>
   </Box>

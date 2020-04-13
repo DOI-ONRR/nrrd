@@ -58,7 +58,7 @@ const NationalSummary = ({ title, ...props }) => {
   const xGroups = {}
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year }
+    variables: { year: year }
   })
 
   let nationalRevenueData
