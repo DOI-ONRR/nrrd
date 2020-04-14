@@ -112,7 +112,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
     topRecipients = data.cardDisbursementRecipientSummary
       .map((item, i) => item.recipient)
       .map((com, i) => {
-        const r = data.cardRecipientSparkdata.filter(item => item.recipient === com)
+        const r = data.cardDisbursementSparkdata.filter(item => item.recipient === com)
         const s = r.map((row, i) => [row.fiscal_year, row.total])
         const d = periodData.map((row, i) => {
           const t = s.find(x => x[0] === row.fiscal_year)
@@ -130,11 +130,11 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
             <Table
               className={classes.table}
               size="small"
-              aria-label="top commodities table"
+              aria-label="top Recipients table"
               >
               <TableBody>
-                {topCommodities &&
-                  topCommodities.map((row, i) => {
+                {topRecipients &&
+                  topRecipients.map((row, i) => {
                     return (
                       <TableRow key={i}>
                         <TableCell component="th" scope="row">
@@ -155,7 +155,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
                             {utils.formatToSigFig_Dollar(
                               Math.floor(
                                 // eslint-disable-next-line standard/computed-property-even-spacing
-                                topCommodities[i].data[
+                                topRecipients[i].data[
                                   row.data.findIndex(x => x[0] === year)
                                 ][1]
                               ),
@@ -169,14 +169,6 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
       </TableBody>
         </Table>
         </Paper>
-        </Grid>
-
-        <Grid container>
-        <Grid item xs={12}>
-        <Typography variant="subtitle2" component="span">
-        Total Commodities: {distinctCommodities}
-      </Typography>
-        </Grid>
         </Grid>
         </>
     )
