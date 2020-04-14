@@ -64,8 +64,11 @@ const useStyles = makeStyles(theme => ({
     '& .card-content-container > div:first-of-type': {
       minHeight: 165,
     },
-    '& .card-content-container > div': {
-      minHeight: 675,
+    '& .card-content-container > div:nth-child(2) .chart-container .legend': {
+      minHeight: 265
+    },
+    '& .card-content-container > div:nth-child(3) .chart-container .legend': {
+      minHeight: 205
     }
   },
   closeIcon: {
