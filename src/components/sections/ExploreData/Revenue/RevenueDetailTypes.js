@@ -18,54 +18,49 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    '& .chart-container': {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'top',
-      '& .chart': {
-        width: '100%',
-        height: 250
-      },
-      '& .legend': {
-        marginTop: theme.spacing(2),
-        height: 'auto',
-      },
+    '& > div:last-child': {
+      minHeight: 350,
+    },
+    '& .chart': {
+      height: 200,
     },
   }
 }))
 
 const APOLLO_QUERY = gql`
-  query RevenueCommodityQuery($year: Int!, $state: String!) {
-    # Revenue commodity summary
-    revenue_commodity_summary(
+  query RevenueTypes($state: String!, $year: Int!) {
+    revenue_type_summary(
       where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
       order_by: { fiscal_year: asc, total: desc }
     ) {
       fiscal_year
-      commodity
+      revenue_type
       state_or_area
       total
     }
   }
 `
 
-const RevenueDetailCommodities = props => {
+const RevenueDetailTypes = props => {
+
   const classes = useStyles()
   const theme = useTheme()
   const { state } = useContext(StoreContext)
   const year = state.year
 
+  const dataSet = `FY ${ year }`
+
   const stateAbbr = ((props.abbr.length > 2) &&
     (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year: year, state: stateAbbr }
+    variables: { state: stateAbbr, year: year }
   })
 
-  const dataSet = `FY ${ year }`
   let chartData
 
   if (loading) return ''
+
   if (error) return `Error! ${ error.message }`
 
   if (data) {
@@ -74,24 +69,20 @@ const RevenueDetailCommodities = props => {
 
   return (
     <>
-      { chartData.revenue_commodity_summary.length > 0
+      { chartData.revenue_type_summary.length > 0
         ? (
           <Box className={classes.root}>
-            <Box component="h4" fontWeight="bold">Commodities</Box>
+            <Box component="h4" fontWeight="bold">Revenue types</Box>
             <Box>
-              <CircleChart data={chartData.revenue_commodity_summary}
-                xAxis='commodity' yAxis='total'
-                format={ d => {
-                  return utils.formatToDollarInt(d)
-                }
-                }
+              <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
+                format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
-                maxCircles={6}
-                minColor={theme.palette.purple[100]}
-                maxColor={theme.palette.purple[600]} />
+                maxCircles={4}
+                maxColor={theme.palette.orange[600]}
+                minColor={theme.palette.orange[100]} />
               <Box mt={3}>
                 <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
-                      Query revenue by commodity
+                    Query revenue by type
                 </ExploreDataLink>
               </Box>
             </Box>
@@ -99,8 +90,8 @@ const RevenueDetailCommodities = props => {
         )
         : (
           <Box className={classes.boxSection}>
-            <Box component="h4" fontWeight="bold">Commodities</Box>
-            <Box fontSize="subtitle2.fontSize">No commodities generated revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
+            <Box component="h4" fontWeight="bold">Revenue types</Box>
+            <Box fontSize="subtitle2.fontSize">There was no revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
           </Box>
         )
       }
@@ -108,4 +99,4 @@ const RevenueDetailCommodities = props => {
   )
 }
 
-export default RevenueDetailCommodities
+export default RevenueDetailTypes
