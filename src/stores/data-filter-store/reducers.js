@@ -16,7 +16,7 @@ const reducer = (state, action) => {
     // state.dataTypesCache = state.dataTypesCache || {}
 
     // if (payload.dataType !== undefined && payload.dataType !== state.dataType) {
-    const dataTypeCache = Object.assign({ ...initialState }, { ...payload })
+    const dataTypeCache = Object.assign(((state.dataTypesCache && state.dataTypesCache[dataType]) || { ...initialState }), { ...payload })
     const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
     console.log(state, dataTypeCache)
     return ({ dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache, dataType: dataType })

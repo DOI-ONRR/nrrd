@@ -4,7 +4,8 @@ import {
   COMMODITIES,
   LAND_CLASS,
   OFFSHORE_REGIONS,
-  US_STATES
+  US_STATES,
+  PERIOD
 } from '../../constants'
 
 /**
@@ -111,12 +112,31 @@ const COMMODITY_OPTIONS_QUERY = `
     option:commodity
   }`
 
+const PERIOD_OPTIONS_QUERY = `
+  options:${ GRAPHQL_VIEW }(
+    where: {
+      land_class: {_eq: $landClass},
+      land_category: {_eq: $landCategory},
+      offshore_region: {_in: $offshoreRegions},
+      state: {_in: $usStates},
+      county: {_in: $counties},
+      commodity: {_in: $commodities},
+      revenue_type: {_eq: $revenueType},
+      period: {_neq: "Monthly"}
+    },
+    distinct_on: period,
+    order_by: {period: asc}
+  ) {
+    option:period
+  }`
+
 const PRODUCTION_QUERIES = {
   [LAND_CATEGORY]: gql`query GetLandCategoryOptionsProduction(${ VARIABLE_LIST }){${ LAND_CATEGORY_OPTIONS_QUERY }}`,
   [LAND_CLASS]: gql`query GetLandClassOptionsProduction(${ VARIABLE_LIST }){${ LAND_CLASS_OPTIONS_QUERY }}`,
   [US_STATES]: gql`query GetUsStateOptionsProduction(${ VARIABLE_LIST }){${ US_STATE_OPTIONS_QUERY }}`,
   [OFFSHORE_REGIONS]: gql`query GetOffshoreRegionOptionsProduction(${ VARIABLE_LIST }){${ OFFSHORE_REGION_OPTIONS_QUERY }}`,
-  [COMMODITIES]: gql`query GetCommodityOptionsProduction(${ VARIABLE_LIST }){${ COMMODITY_OPTIONS_QUERY }}`
+  [COMMODITIES]: gql`query GetCommodityOptionsProduction(${ VARIABLE_LIST }){${ COMMODITY_OPTIONS_QUERY }}`,
+  [PERIOD]: gql`query GetPeriodOptionsProduction(${ VARIABLE_LIST }){${ PERIOD_OPTIONS_QUERY }}`
 }
 
 export default PRODUCTION_QUERIES

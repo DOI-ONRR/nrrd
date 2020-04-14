@@ -15,7 +15,7 @@ import {
   PERIOD_FISCAL_YEAR,
   PERIOD_CALENDAR_YEAR,
   FISCAL_YEARS,
-  CALENDAR_YEARS,
+  CALENDAR_YEARS
 } from '../../constants'
 
 import REVENUE_QUERIES from './revenue-queries'
@@ -26,15 +26,11 @@ import PRODUCTION_QUERIES from './production-queries'
  */
 const DataFilterQueryManager = {
   getQuery: (optionKey, state) => {
-    if (optionKey === YEARS) {
-      if (state.period === PERIOD_FISCAL_YEAR) {
-        return QUERIES[state.dataType](FISCAL_YEARS)
-      }
-      if (state.period === PERIOD_CALENDAR_YEAR) {
-        return QUERIES[state.dataType](CALENDAR_YEARS)
-      }
+    const query = QUERIES[state.dataType](optionKey)
+    if (query === undefined) {
+      throw new Error(`For data type: '${ state.dataType }' and option key '${ optionKey }', no query was found.`)
     }
-    return QUERIES[state.dataType](optionKey)
+    return query
   },
   getVariables: state => VARIABLES[state.dataType](state)
 }
