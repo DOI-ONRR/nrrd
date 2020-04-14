@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -131,24 +131,6 @@ const useStyles = makeStyles(theme => ({
   boxTopSection: {
     minHeight: 150,
   },
-  boxSection: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    '& .chart-container': {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'top',
-      '& .chart': {
-        width: '100%',
-        height: 250
-      },
-      '& .legend': {
-        marginTop: theme.spacing(2),
-        height: 'auto',
-      },
-    },
-  }
 }))
 
 const APOLLO_QUERY = gql`
@@ -239,6 +221,23 @@ const DetailCards = props => {
     cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
   }
 
+  // Map snackbar
+  const [mapSnackbarState, setMapSnackbarState] = useState({
+    open: false,
+    vertical: 'bottom',
+    horizontal: 'center'
+  })
+
+  const { vertical, horizontal, open } = mapSnackbarState
+
+  const handleMapSnackbar = newState => {
+    setMapSnackbarState({ open: true, ...newState })
+  }
+
+  const handleMapSnackbarClose = () => {
+    setMapSnackbarState({ ...mapSnackbarState, open: false })
+  }
+
   // onLink
   const onLink = state => {
     // setMapK(k)
@@ -277,8 +276,8 @@ const DetailCards = props => {
         }
       }
       else {
-        handleSnackbar({ vertical: 'bottom', horizontal: 'center' })
-        setSnackbarState({ ...snackbarState, open: false })
+        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        setMapSnackbarState({ ...snackbarState, open: false })
       }
     }
     return dispatch({ type: 'CARDS', payload: { cards: cards } })
@@ -306,8 +305,17 @@ const DetailCards = props => {
     <>
       <Box className={classes.compareCards}>
         {cards.map((card, i) => {
+          const children = React.Children.map(props.children, child =>
+            React.cloneElement(child, {
+              key: i,
+              fips: card.fips,
+              abbr: card.abbr,
+              name: card.name,
+              state: card.state
+            })
+          )
           return (
-            <Card className={`${ classes.root } ${ props.cardCountClass }`}>
+            <Card className={`${ classes.root } ${ props.cardCountClass }`} key={i}>
               <CardHeader
                 title={<CardTitle data={landStatsData} stateTitle={card.name} stateAbbr={card.abbr} state={card.abbr} />}
                 action={<CloseIcon
@@ -320,7 +328,7 @@ const DetailCards = props => {
                 disableTypography
               />
               <CardContent>
-                {props.children}
+                {children}
               </CardContent>
               <CardActions></CardActions>
             </Card>
@@ -328,7 +336,7 @@ const DetailCards = props => {
         })
         }
 
-        { (cards.length >= 0 && cards.length <= CONSTANTS.MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
+        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
       </Box>
     </>
   )

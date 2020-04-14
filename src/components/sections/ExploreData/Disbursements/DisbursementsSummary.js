@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const DisbursementsSummary = props => {
-  console.log('DisbursementsSummary props: ', props)
   const { state } = useContext(StoreContext)
   const classes = useStyles()
   const year = state.year
