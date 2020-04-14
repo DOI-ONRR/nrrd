@@ -10,7 +10,12 @@ import {
   COUNTIES,
   COMMODITIES,
   REVENUE_TYPE,
+  PERIOD,
+  YEARS,
+  PERIOD_FISCAL_YEAR,
+  PERIOD_CALENDAR_YEAR,
   FISCAL_YEARS,
+  CALENDAR_YEARS,
 } from '../../constants'
 
 import REVENUE_QUERIES from './revenue-queries'
@@ -20,7 +25,17 @@ import PRODUCTION_QUERIES from './production-queries'
  * This object provides various methods for quering the data filters
  */
 const DataFilterQueryManager = {
-  getQuery: (optionKey, dataType) => QUERIES[dataType](optionKey),
+  getQuery: (optionKey, state) => {
+    if (optionKey === YEARS) {
+      if (state.period === PERIOD_FISCAL_YEAR) {
+        return QUERIES[state.dataType](FISCAL_YEARS)
+      }
+      if (state.period === PERIOD_CALENDAR_YEAR) {
+        return QUERIES[state.dataType](CALENDAR_YEARS)
+      }
+    }
+    return QUERIES[state.dataType](optionKey)
+  },
   getVariables: state => VARIABLES[state.dataType](state)
 }
 
@@ -40,6 +55,8 @@ const VARIABLES = {
       [COUNTIES]: state[COUNTIES] && state[COUNTIES].split(','),
       [COMMODITIES]: state[COMMODITIES] && state[COMMODITIES].split(','),
       [REVENUE_TYPE]: state[REVENUE_TYPE],
+      [PERIOD]: state[PERIOD],
+      [CALENDAR_YEARS]: state[CALENDAR_YEARS] && state[CALENDAR_YEARS].split(',').map(year => parseInt(year)),
       [FISCAL_YEARS]: state[FISCAL_YEARS] && state[FISCAL_YEARS].split(',').map(year => parseInt(year)),
     }
   }),

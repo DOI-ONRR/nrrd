@@ -6,7 +6,6 @@ import { useQuery } from '@apollo/react-hooks'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../../stores/app-status-store'
 import DFQM from '../../../../js/data-filter-query-manager/index'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { formatToSlug } from '../../../../js/utils'
 
@@ -35,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, loadingMessage }) => {
   const { state } = useContext(DataFilterContext)
-  const { loading, error, data } = useQuery(DFQM.getQuery(dataFilterKey, state.dataType), DFQM.getVariables(state))
+  const { loading, error, data } = useQuery(DFQM.getQuery(dataFilterKey, state), DFQM.getVariables(state))
 
   const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
 
@@ -101,19 +100,17 @@ const BaseSingleSelect = ({ dataFilterKey, label, data, helperText }) => {
       handleClearAll()
     }
     else {
-      updateDataFilter({ ...state, [dataFilterKey]: event.target.value.toString() })
+      updateDataFilter({ [dataFilterKey]: event.target.value.toString() })
     }
   }
 
   useEffect(() => {
     if (data && data.options.length === 0) {
-      updateDataFilter({ ...state, [dataFilterKey]: undefined })
+      updateDataFilter({ [dataFilterKey]: undefined })
     }
   }, [data])
 
-  const handleClearAll = () => updateDataFilter({ ...state, [dataFilterKey]: undefined })
-
-  console.log(data)
+  const handleClearAll = () => updateDataFilter({ [dataFilterKey]: undefined })
 
   return (
     <Grid container>
@@ -164,20 +161,20 @@ const BaseMultiSelector = ({ dataFilterKey, label, data, helperText }) => {
 
   const handleClose = event => {
     if (!(selectedOptions.length === 0 && !state[dataFilterKey]) && (selectedOptions !== state[dataFilterKey])) {
-      updateDataFilter({ ...state, [dataFilterKey]: selectedOptions })
+      updateDataFilter({ [dataFilterKey]: selectedOptions })
     }
   }
 
   useEffect(() => {
     if (data && data.options.length === 0) {
-      updateDataFilter({ ...state, [dataFilterKey]: undefined })
+      updateDataFilter({ [dataFilterKey]: undefined })
     }
   }, [data])
 
   const handleClearAll = () => {
     setSelectedOptions('')
     if (state[dataFilterKey]) {
-      updateDataFilter({ ...state, [dataFilterKey]: undefined })
+      updateDataFilter({ [dataFilterKey]: undefined })
     }
   }
 

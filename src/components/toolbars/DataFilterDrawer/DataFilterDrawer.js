@@ -15,6 +15,7 @@ import CountySelect from '../data-filters/CountySelect'
 import RevenueTypeSelect from '../data-filters/RevenueTypeSelect'
 import CommoditySelect from '../data-filters/CommoditySelect'
 import OffshoreRegionSelect from '../data-filters/OffshoreRegionSelect'
+import PeriodSelect from '../data-filters/PeriodSelect'
 import YearRangeSelect from '../data-filters/YearRangeSelect'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
@@ -58,8 +59,6 @@ export default function DataFilterDrawer () {
 
     setOpen(open)
   }
-
-  console.log(state)
 
   return (
     <div >
@@ -106,6 +105,9 @@ export default function DataFilterDrawer () {
               </Grid>
               <Grid item xs={12}>
                 <CommoditySelect />
+              </Grid>
+              <Grid item xs={12}>
+                <PeriodSelect />
               </Grid>
               <Grid item xs={12}>
                 <YearRangeSelect />

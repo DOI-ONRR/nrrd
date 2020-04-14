@@ -18,7 +18,7 @@ import {
 const DataTypeToggle = ({ helperText }) => {
   const { state, updateDataFilter } = useContext(DataFilterContext)
   const handleChange = (event, newDataType) => {
-    updateDataFilter({ ...state, [DFC.DATA_TYPE]: newDataType })
+    updateDataFilter({ [DFC.DATA_TYPE]: newDataType })
   }
 
   return (

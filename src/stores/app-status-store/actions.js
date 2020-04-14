@@ -15,7 +15,7 @@ export const useActions = (state, dispatch) => {
     }
   }
   const showErrorMessage = (message = 'An error has occurred.') => {
-    console.log('jkosdfhaksjlfdfkadslfdsjkfas')
+    console.error(message)
     dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: { isError: true, message: message } })
   }
 

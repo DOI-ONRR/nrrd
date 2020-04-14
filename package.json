@@ -68,8 +68,7 @@
     "topojson-client": "^3.1.0",
     "typeface-lato": "0.0.75",
     "typescript": "^2.8.0",
-    "url-search-params-polyfill": "^7.0.0",
-    "uuid": "^7.0.3"
+    "url-search-params-polyfill": "^7.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.7.4",

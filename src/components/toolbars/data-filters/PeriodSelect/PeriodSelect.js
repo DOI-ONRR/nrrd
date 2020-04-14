@@ -1,22 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { OFFSHORE_REGIONS } from '../../../../constants'
+import { PERIOD } from '../../../../constants'
 
 import BaseDataFilterSelect from '../BaseDataFilterSelect'
 
-const OffshoreRegionSelect = ({ helperText, label, loadingMessage }) => (
+const PeriodSelect = ({ helperText, label, loadingMessage }) => (
   <BaseDataFilterSelect
-    dataFilterKey={OFFSHORE_REGIONS}
-    selectType={'Multi'}
+    dataFilterKey={PERIOD}
     label={label}
     loadingMessage={loadingMessage}
     helperText={helperText} />
 )
 
-export default OffshoreRegionSelect
+export default PeriodSelect
 
-OffshoreRegionSelect.propTypes = {
+PeriodSelect.propTypes = {
   /**
    * Text that displays below the select box to provide additional instructions
    */
@@ -30,7 +29,7 @@ OffshoreRegionSelect.propTypes = {
    */
   loadingMessage: PropTypes.string
 }
-OffshoreRegionSelect.defaultProps = {
-  label: 'Offshore region(s)',
-  loadingMessage: 'Updating Offshore region options from server...'
+PeriodSelect.defaultProps = {
+  label: 'Period',
+  loadingMessage: 'Updating Period options from server...'
 }

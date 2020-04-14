@@ -31,5 +31,5 @@ RevenueTypeSelect.propTypes = {
 }
 RevenueTypeSelect.defaultProps = {
   label: 'Revenue type',
-  loadingMessage: 'Updating data filters from server...'
+  loadingMessage: 'Updating Revenue type options from server...'
 }
