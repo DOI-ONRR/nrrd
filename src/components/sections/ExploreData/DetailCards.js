@@ -30,6 +30,11 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     '@media (max-width: 768px)': {
       maxWidth: '100%',
+    },
+    '.MuiCardContent-root > div': {
+      display: 'flex',
+      alignItems: 'stretch',
+      minHeight: 675,
     }
   },
   compareCards: {
@@ -106,13 +111,6 @@ const useStyles = makeStyles(theme => ({
       marginLeft: 'auto',
     }
   },
-  commodityBox: {
-    minheight: 350,
-    border: '2px solid purple',
-  },
-  revenueTypeBox: {
-    height: 250,
-  },
   circularProgressRoot: {
     color: theme.palette.primary.dark,
   },
@@ -127,9 +125,6 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 50,
     marginRight: theme.spacing(1.5),
     filter: 'invert(1)',
-  },
-  boxTopSection: {
-    minHeight: 150,
   },
 }))
 

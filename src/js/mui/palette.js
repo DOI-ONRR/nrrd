@@ -18,7 +18,7 @@ module.exports = Object.freeze({
     default: '#1478a6',
   },
   // Land category charts
-  blues: {
+  blue: {
     100: '#bccacf',
     200: '#8fa7af',
     300: '#62848f',
@@ -27,7 +27,7 @@ module.exports = Object.freeze({
     600: '#131c20'
   },
   // Location charts
-  greens: {
+  green: {
     100: '#c2d0bd',
     200: '#94ad8d',
     300: '#678a5c',
@@ -36,7 +36,7 @@ module.exports = Object.freeze({
     600: '#182315'
   },
   // Revenue type charts (only first four)
-  oranges: {
+  orange: {
     100: '#fcba8b',
     200: '#fa842e',
     300: '#e36000',
@@ -45,7 +45,7 @@ module.exports = Object.freeze({
     600: '#5b2700'
   },
   // Commodity charts
-  purples: {
+  purple: {
     100: '#dcd2df',
     200: '#b9a6bf',
     300: '#96799f',
@@ -54,7 +54,7 @@ module.exports = Object.freeze({
     600: '#2b1c30'
   },
   // Not currently being used, but available if needed
-  browns: {
+  brown: {
     100: '#dfd6d2',
     200: '#bfaca6',
     300: '#9f8379',

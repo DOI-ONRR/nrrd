@@ -120,8 +120,8 @@ const TopLocations = ({ title, ...props }) => {
                 }
                 yLabel={dataSet}
                 maxCircles={6}
-                minColor={theme.palette.greens[100]}
-                maxColor={theme.palette.greens[600]} />
+                minColor={theme.palette.green[100]}
+                maxColor={theme.palette.green[600]} />
             </Box>
           </Box>
         </Grid>

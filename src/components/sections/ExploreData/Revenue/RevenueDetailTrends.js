@@ -16,7 +16,7 @@ import {
 import Sparkline from '../../../data-viz/Sparkline'
 
 const useStyles = makeStyles(theme => ({
-  boxTopSection: {
+  root: {
     minHeight: 150,
   },
 }))
@@ -60,7 +60,7 @@ const RevenueDetailTrends = props => {
     props.closeCard(props.fips)
   }
 
-  if (loading) return 'Loading...'
+  if (loading) return ''
 
   if (error) return `Error! ${ error.message }`
 
@@ -107,7 +107,7 @@ const RevenueDetailTrends = props => {
 
   return (
     <>
-      <Box textAlign="center" className={classes.boxTopSection} key={props.key}>
+      <Box textAlign="center" className={classes.root} key={props.key}>
         <Box component="h2" mt={0} mb={0}>{locData && utils.formatToDollarInt(locData.sum)}</Box>
         <Box component="span" mb={4}>{year && <span>{dataSet} revenue</span>}</Box>
         {sparkData.length > 1 && (
