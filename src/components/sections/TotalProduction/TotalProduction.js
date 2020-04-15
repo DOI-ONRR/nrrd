@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import Grid from '@material-ui/core/Grid'
+import {
+  Box,
+  Grid
+} from '@material-ui/core'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import SectionHeader from '../../sections/SectionHeader'
 import SectionControls from '../../sections/SectionControls'
+import Link from '../../../components/Link'
 
 import utils from '../../../js/utils'
 
@@ -257,6 +261,9 @@ const TotalProduction = props => {
 
         </Grid>
       </Grid>
+      <Box style={{ fontStyle: 'italic', textAlign: 'right' }}>
+        <Link href='/downloads/federal-production-by-month/'>Source file</Link>
+      </Box>
     </>
   )
 }

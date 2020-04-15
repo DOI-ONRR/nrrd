@@ -5,6 +5,7 @@ import gql from 'graphql-tag'
 import * as d3 from 'd3'
 import utils from '../../../js/utils'
 import PercentDifference from '../../utils/PercentDifference'
+import Link from '../../../components/Link'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -135,6 +136,11 @@ const RevenueTrends = () => {
             </TableBody>
           </Table>
         </TableContainer>
+
+        <Box fontStyle="italic" display="inline">
+          <Link href='/downloads/federal-revenue-by-location/' style={{ display: 'inline' }}>Source file</Link>
+          <Link href='/downloads/federal-revenue-by-month/' style={{ display: 'inline' }}>Source file</Link>
+        </Box>
       </Box>
     )
   }
@@ -250,7 +256,7 @@ const aggregateData = data => {
     let a = []
     const years = Object.keys(row.histSum).sort()
     a = years.map((year, i) => ([year, row.histSum[year]]))
-    console.debug(currentMonth, "YEARS ------->",  years, "AAAAAAAAAAAAAAAAAAAAAAAAA a", a)
+    console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
     if (currentMonth === 'December') {
       r[i].histData = a.slice(-10)
       return a.slice(-10)

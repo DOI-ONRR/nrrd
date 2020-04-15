@@ -2,11 +2,15 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import Grid from '@material-ui/core/Grid'
+import {
+  Box,
+  Grid
+} from '@material-ui/core'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import SectionHeader from '../../sections/SectionHeader'
 import SectionControls from '../../sections/SectionControls'
+import Link from '../../../components/Link/'
 
 import utils from '../../../js/utils'
 import CONSTANTS from '../../../js/constants'
@@ -188,6 +192,9 @@ const TotalRevenue = props => {
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
           />
+          <Box style={{ fontStyle: 'italic', textAlign: 'right' }}>
+            <Link href='/downloads/federal-revenue-by-month/'>Source file</Link>
+          </Box>
         </Grid>
       </Grid>
     </>

@@ -19,6 +19,7 @@ import {
 } from '@material-ui/core'
 
 import Sparkline from '../../data-viz/Sparkline'
+import Link from '../../../components/Link'
 
 const TREND_LIMIT = 10
 const MAX_MONTH = 10
@@ -59,7 +60,7 @@ const DisbursementTrends = () => {
 
   if (loading) return null
   if (error) return `Error! ${ error }`
- if (
+  if (
     data &&
     data.disbursement_trends.length > 0
   ) {
@@ -96,7 +97,7 @@ const DisbursementTrends = () => {
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
 
-/*  if (
+    /*  if (
     data &&
     data.allYearlyDisbursements.length > 0 &&
     data.currentMonthlyDisbursements.length > 0
@@ -128,56 +129,61 @@ const DisbursementTrends = () => {
     const longCurrentText = `${ maxMonth } ${ calendarYear }`
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
 */
-   return (
-     <Box component="section" className={classes.root}>
-       <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
-         <Box component="h3" m={0} color="primary.dark">Disbursement trends</Box>
-       </Box>
-       <Box component="p" color="text.primary">
+    return (
+      <Box component="section" className={classes.root}>
+        <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
+          <Box component="h3" m={0} color="primary.dark">Disbursement trends</Box>
+        </Box>
+        <Box component="p" color="text.primary">
          Includes disbursements through {longCurrentYearText}
-       </Box>
+        </Box>
 
-       <TableContainer component={Paper} className={classes.tableContainer}>
-         <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
-           <TableHead>
-             <TableRow>
-               <TableCell><Box fontWeight="bold">{currentTrendText}</Box></TableCell>
-               <TableCell align="right"><Box fontWeight="bold">{currentFiscalYearText}</Box></TableCell>
-             </TableRow>
-           </TableHead>
-           <TableBody>
-             {
-               trends.map((trend, index) => (
-                 <TableRow key={`tableRow${ index }`}>
-                   <TableCell component="th" scope="row">
-                     <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
-                       {trend.fund}
-                     </Box>
-                     <Sparkline
-                       key={`sparkline${ index }`}
-                       data={trend.histData} />
-                   </TableCell>
-                   <TableCell align="right">
-                     <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
-                       {utils.formatToSigFig_Dollar(trend.current, 3)}
-                     </Box>
-                     <Box>
-                       <PercentDifference
-                         currentAmount={trend.current}
-                         previousAmount={trend.previous}
-                         />{` ${ previousFiscalYearText }`}
-                     </Box>
-                   </TableCell>
-                 </TableRow>
-               ))
-             }
-     </TableBody>
-       </Table>
-       </TableContainer>
-       </Box>
-   )
- }
-  
+        <TableContainer component={Paper} className={classes.tableContainer}>
+          <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
+            <TableHead>
+              <TableRow>
+                <TableCell><Box fontWeight="bold">{currentTrendText}</Box></TableCell>
+                <TableCell align="right"><Box fontWeight="bold">{currentFiscalYearText}</Box></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {
+                trends.map((trend, index) => (
+                  <TableRow key={`tableRow${ index }`}>
+                    <TableCell component="th" scope="row">
+                      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
+                        {trend.fund}
+                      </Box>
+                      <Sparkline
+                        key={`sparkline${ index }`}
+                        data={trend.histData} />
+                    </TableCell>
+                    <TableCell align="right">
+                      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
+                        {utils.formatToSigFig_Dollar(trend.current, 3)}
+                      </Box>
+                      <Box>
+                        <PercentDifference
+                          currentAmount={trend.current}
+                          previousAmount={trend.previous}
+                        />{` ${ previousFiscalYearText }`}
+                      </Box>
+                    </TableCell>
+                  </TableRow>
+                ))
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
+
+        <Box fontStyle="italic" display="inline">
+          <Link href='/downloads/disbursements/'>Source file</Link>
+          <Link href='/downloads/federal-disbursements-by-month/'>Source file</Link>
+        </Box>
+      </Box>
+    )
+  }
+
   else {
     return (
       console.error('no data yo!')
@@ -234,7 +240,6 @@ const DisbursementTrends = () => {
       </Box>
     )
 */
-
 
 export default DisbursementTrends
 
@@ -373,8 +378,6 @@ const groupBy = (arr, prop) => {
   return Array.from(map.values())
 }
 
-
-
 const aggregateData = data => {
   const r = [
     { fund: 'U.S. Treasury', current: 0, previous: 0, histSum: {}, histData: [] },
@@ -407,7 +410,7 @@ const aggregateData = data => {
       sumData(item, r, 5, currentYear) // sum into Total
     }
   }
-/*  r.map((row, i) => {
+  /*  r.map((row, i) => {
     let a = []
     const years = Object.keys(row.histSum).sort()
     a = years.map((year, i) => ([year, row.histSum[year]]))
@@ -415,15 +418,14 @@ const aggregateData = data => {
     return a.slice(-10)
   })
 
-
 */
-  console.debug("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR", r)
+  console.debug('RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR', r)
   r.map((row, i) => {
     let a = []
     const years = Object.keys(row.histSum).sort()
-    console.debug('-----',row)
+    console.debug('-----', row)
     a = years.map((year, i) => ([year, row.histSum[year]]))
-    console.debug(currentMonth, "YEARS ------->",  years, "AAAAAAAAAAAAAAAAAAAAAAAAA a", a)
+    console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
     if (currentMonth === 'December') {
       r[i].histData = a.slice(-10)
       return a.slice(-10)
@@ -437,7 +439,6 @@ const aggregateData = data => {
 }
 
 const sumData = (item, r, index, currentYear) => {
-
   console.debug('IIIIIIIIIIIIIIIIIIIIIIIIIIIIItem', item)
   const previousYear = currentYear - 1
   if (item.fiscalYear === currentYear) r[index].current += item.disbursement_ytd
