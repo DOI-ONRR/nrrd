@@ -192,7 +192,7 @@ const TotalRevenue = props => {
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
           />
-          <Box style={{ fontStyle: 'italic', textAlign: 'right' }}>
+          <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
             <Link href='/downloads/federal-revenue-by-month/'>Source file</Link>
           </Box>
         </Grid>

@@ -261,7 +261,7 @@ const TotalProduction = props => {
 
         </Grid>
       </Grid>
-      <Box style={{ fontStyle: 'italic', textAlign: 'right' }}>
+      <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
         <Link href='/downloads/federal-production-by-month/'>Source file</Link>
       </Box>
     </>

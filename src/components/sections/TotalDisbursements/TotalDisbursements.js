@@ -183,7 +183,7 @@ const TotalDisbursements = props => {
             xLabels={xLabels}
             legendFormat={v => utils.formatToDollarInt(v)}
           />
-          <Box fontStyle="italic" textAlign="right">
+          <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
             <Link href='/downloads/disbursements/'>Source file</Link>
           </Box>
         </Grid>

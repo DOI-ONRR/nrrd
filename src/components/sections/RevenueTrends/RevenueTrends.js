@@ -43,7 +43,12 @@ const APOLLO_QUERY = gql`
   `
 
 const useStyles = makeStyles(theme => ({
-  root: {}
+  root: {},
+  inlineSourceLinks: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: theme.spacing(1),
+  }
 }))
 
 const RevenueTrends = () => {
@@ -137,9 +142,9 @@ const RevenueTrends = () => {
           </Table>
         </TableContainer>
 
-        <Box fontStyle="italic" display="inline">
-          <Link href='/downloads/federal-revenue-by-location/' style={{ display: 'inline' }}>Source file</Link>
-          <Link href='/downloads/federal-revenue-by-month/' style={{ display: 'inline' }}>Source file</Link>
+        <Box fontStyle="italic" fontSize="h6.fontSize" className={classes.inlineSourceLinks}>
+          <Link href='/downloads/federal-revenue-by-location/'>Source file</Link>
+          <Link href='/downloads/federal-revenue-by-month/'>Source file</Link>
         </Box>
       </Box>
     )

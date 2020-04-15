@@ -52,6 +52,11 @@ const useStyles = makeStyles(theme => ({
     marginRight: 5,
     top: 5,
   },
+  inlineSourceLinks: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: theme.spacing(1),
+  }
 }))
 
 const DisbursementTrends = () => {
@@ -176,7 +181,7 @@ const DisbursementTrends = () => {
           </Table>
         </TableContainer>
 
-        <Box fontStyle="italic" display="inline">
+        <Box fontStyle="italic" fontSize="h6.fontSize" className={classes.inlineSourceLinks}>
           <Link href='/downloads/disbursements/'>Source file</Link>
           <Link href='/downloads/federal-disbursements-by-month/'>Source file</Link>
         </Box>
