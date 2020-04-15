@@ -37,7 +37,7 @@ tags:
             </Grid>
           </Container>
           <PageSubMenu />
-          <Container>
+          <Container id="compare-revenue">
             <Grid container>
               <Grid item md={12}>
                 <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
@@ -48,8 +48,6 @@ tags:
                 </Box>
               </Grid>
             </Grid>
-          </Container>
-          <Container>
             <Grid container>
               <Grid item md={12}>
                 <DetailCards> 
@@ -59,7 +57,7 @@ tags:
                 </DetailCards>
               </Grid>
             </Grid>
-          </Container> 
+          </Container>
         </CompareContext>
         <NationalSummary title="Nationwide revenue summary" />
         <TopLocations title="Top locations" />
@@ -87,19 +85,17 @@ tags:
             </Grid>
           </Container>
           <PageSubMenu />
-          <Container>
+          <Container id="compare-disbursements">
             <Grid container>
               <Grid item md={12}>
                 <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                  <Box component="h3" color="secondary.dark">Compare disbursements (fiscal year <Year />)</Box>
+                  <Box component="h3" color="secondary.dark">Compare disbursements</Box>
                 </Box>
                 <Box fontSize="body1.fontSize">
                   Add more than one card to compare.  Select states, counties, and offshore regions.
                 </Box>
               </Grid>
             </Grid>
-          </Container>
-          <Container>
             <Grid container>
               <Grid item md={12}>
                 <DetailCards> 
@@ -107,7 +103,7 @@ tags:
                 </DetailCards>
               </Grid>
             </Grid>
-          </Container> 
+          </Container>
         </CompareContext>
       </Disbursements>
       <Production>
@@ -131,19 +127,17 @@ tags:
             </Grid>
           </Container>
           <PageSubMenu />
-          <Container>
+          <Container id="compare-oil-production">
             <Grid container>
               <Grid item md={12}>
                 <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                  <Box component="h3" color="secondary.dark">Compare oil production (fiscal year <Year />)</Box>
+                  <Box component="h3" color="secondary.dark">Compare oil production</Box>
                 </Box>
                 <Box fontSize="body1.fontSize">
                   Add more than one card to compare.  Select states, counties, and offshore regions.
                 </Box>
               </Grid>
             </Grid>
-          </Container>
-          <Container>
             <Grid container>
               <Grid item md={12}>
                 <DetailCards> 
@@ -151,7 +145,7 @@ tags:
                 </DetailCards>
               </Grid>
             </Grid>
-          </Container> 
+          </Container>       
         </CompareContext>
       </Production>
     </ExploreData>

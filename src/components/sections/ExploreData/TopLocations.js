@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import PropTypes from 'prop-types'
+
 // utility functions
 import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
@@ -21,7 +23,7 @@ import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
 const APOLLO_QUERY = gql`
   query TopLocations($year: Int!, $location: String! ) {
     fiscal_revenue_summary(
-where: {location_type: {_eq: $location}, fiscal_year: { _eq: $year }, location_name: {_neq: ""} }
+      where: {location_type: {_eq: $location}, fiscal_year: { _eq: $year }, location_name: {_neq: ""} }
       order_by: { fiscal_year: asc, sum: desc }
     ) {
       location_name
@@ -29,7 +31,6 @@ where: {location_type: {_eq: $location}, fiscal_year: { _eq: $year }, location_n
       state_or_area
       sum
     }
-
   }
 `
 const useStyles = makeStyles(theme => ({
@@ -111,7 +112,7 @@ const TopLocations = ({ title, ...props }) => {
                 yAxis='sum'
                 format={ d => utils.formatToDollarInt(d) }
                 circleLabel={ d => {
-                  console.debug('circleLABLE: ', d)
+                  // console.debug('circleLABLE: ', d)
                   const r = []
                   r[0] = d.location_name
                   r[1] = utils.formatToDollarInt(d.sum)
@@ -127,8 +128,11 @@ const TopLocations = ({ title, ...props }) => {
         </Grid>
       </Grid>
     </Container>
-
   )
 }
 
 export default TopLocations
+
+TopLocations.propTypes = {
+  title: PropTypes.string
+}

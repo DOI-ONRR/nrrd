@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     bottom: 0,
     width: '100%',
     backgroundColor: '#fff',
-    paddingTop: theme.spacing(0),
+    paddingTop: theme.spacing(1),
     zIndex: 101,
     paddingBottom: theme.spacing(0),
     borderTop: `1px solid ${ theme.palette.grey[300] }`,
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 78,
+    height: 100,
   },
   sliderBox: {
     width: '100%',
@@ -115,6 +115,19 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.links.default,
     },
   },
+  sliderYearDisplay: {
+    // border: `2px solid ${ theme.palette.links.default }`,
+    // color: theme.palette.links.default,
+    background: theme.palette.common.white,
+    fontWeight: 'bold',
+    width: 175,
+    borderRadius: '50px',
+    margin: '0 auto',
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    position: 'relative',
+    top: theme.spacing(0),
+  },
 }))
 
 const YearSlider = props => {
@@ -122,6 +135,7 @@ const YearSlider = props => {
   const { state } = useContext(StoreContext)
 
   const year = state.year
+  const period = state.period
 
   let periodData
   let minYear
@@ -158,6 +172,7 @@ const YearSlider = props => {
       <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
         <Box className={`${ classes.sliderContainer } slider-wrapper`}>
           <Container>
+            <Box className={classes.sliderYearDisplay}>{period} {year}</Box>
             <Box id="year-slider" className={classes.sliderBox}>
               <Grid container spacing={4}>
                 <Grid item xs>

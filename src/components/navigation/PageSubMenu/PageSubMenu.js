@@ -38,11 +38,19 @@ const useStyles = makeStyles(theme => ({
       border: 'none',
       background: 'none',
     },
-    '& li.active': {
-      borderBottom: `2px solid ${ theme.palette.links.default }`,
-      background: theme.palette.grey[100],
-    },
+    // '& li.active': {
+    //   borderBottom: `2px solid ${ theme.palette.links.default }`,
+    //   background: theme.palette.grey[100],
+    // },
   },
+  activeLink: {
+    '&:first-child': {
+      border: 'none',
+      background: 'none',
+    },
+    borderBottom: `2px solid ${ theme.palette.links.default }`,
+    background: theme.palette.grey[100],
+  }
 }))
 
 // Page ScrollTo
@@ -50,14 +58,18 @@ const PageSubMenu = ({ menuItems, ...props }) => {
   const classes = useStyles()
 
   const [subMenu, setSubMenu] = useState({
-    scrollOffset: parseInt(props.scrollOffset) || 0,
+    scrollOffset: parseInt(props.scrollOffset) || 250,
     items: menuItems || [],
     mobileActive: false
   })
 
   useLayoutEffect(() => {
-    createSubMenu()
-  }, [])
+    const timer = setTimeout(() => {
+      createSubMenu()
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
 
   // handler
   const handler = useCallback(() => {
@@ -66,7 +78,7 @@ const PageSubMenu = ({ menuItems, ...props }) => {
     if (subMenuLinks) {
       handleScroll(subMenuLinks)
     }
-  }, [])
+  }, [setSubMenu])
 
   useEventListener('scroll', handler)
 
@@ -79,14 +91,16 @@ const PageSubMenu = ({ menuItems, ...props }) => {
 
       if (!section) return
 
+      const sectionCalcPos = section.offsetTop - subMenu.scrollOffset
+
       if (
-        section.offsetTop <= fromTop &&
-        section.offsetTop + section.offsetHeight > fromTop
+        sectionCalcPos <= fromTop &&
+        sectionCalcPos + section.offsetHeight > fromTop
       ) {
-        link.offsetParent.classList.add('active')
+        link.offsetParent.classList.add(classes.activeLink)
       }
       else {
-        link.offsetParent.classList.remove('active')
+        link.offsetParent.classList.remove(classes.activeLink)
       }
     })
   }
@@ -111,7 +125,7 @@ const PageSubMenu = ({ menuItems, ...props }) => {
       <Grid container>
         <Grid item md={12}>
           <Box className={classes.root}>
-            <StickyWrapper enabled={true} top={78} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+            <StickyWrapper enabled={true} top={100} bottomBoundary={0} innerZ="1000" activeClass="sticky">
               <Paper elevation={1} square>
                 <MenuList id="page-scrollto-subnav">
                   <MenuItem key={0}>
