@@ -151,7 +151,8 @@ const TotalDisbursements = props => {
   return (
     <>
       <SectionHeader
-        title="Disbursements"
+        title="Total disbursements"
+        linkLabel="disbursements"
         showExploreLink
       />
       <Grid container spacing={4}>
