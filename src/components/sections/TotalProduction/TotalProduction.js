@@ -208,6 +208,7 @@ const TotalProduction = props => {
             legendFormat={v => utils.formatToCommaInt(v)}
             onSelect={ d => handleSelect(d) }
             selectedIndex={selected}
+            units='bbl'
           />
         </Grid>
         <Grid item xs={12} md={4}>
@@ -229,7 +230,7 @@ const TotalProduction = props => {
             }
             }
             selectedIndex={selected}
-
+            units='mcf'
           />
         </Grid>
         <Grid item xs={12} md={4}>
@@ -256,7 +257,7 @@ const TotalProduction = props => {
             }
             }
             selectedIndex={selected}
-
+            units='tons'
           />
 
         </Grid>

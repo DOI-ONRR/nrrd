@@ -1126,7 +1126,7 @@ export default class D3StackedBarChart {
         .attr('x', self._width)
         .attr('y', (self.maxExtentLineY - 5))
         .attr('text-anchor', 'end')
-        .text((units === 'dollars' || units === '$') ? ['$', maxExtentValue].join('') : [maxExtentValue, units].join(' '))
+        .text((units === 'dollars' || units === '$') ? ['$', maxExtentValue].join('') : [maxExtentValue, units].join(''))
 
       maxExtentGroup.append('line')
         .attr('x1', 0)
