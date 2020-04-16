@@ -174,13 +174,17 @@ const ExploreDataToolbar = props => {
   const data = useStaticQuery(graphql`
     query CommodityQuery {
       onrr {
-        commodity(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
+        production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
+          commodity
+        }
+        revenue_commodity: revenue_commodity_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
           commodity
         }
       }
     }
   `)
-  const commodityOptions = data.onrr.commodity.map(item => item.commodity)
+  const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
+  const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
   const classes = useStyles()
 
   const { state } = useContext(StoreContext)
@@ -222,13 +226,21 @@ const ExploreDataToolbar = props => {
           label="Period"
           payload={{ type: 'PERIOD', payload: { period: MAP_PERIOD_OPTIONS.CALENDAR_YEAR } }} />
 
-        {(dataType !== 'Disbursements') &&
+        {(dataType === 'Revenue') &&
           <MapSelectControl
-            options={commodityOptions}
+            options={revenueCommodityOptions}
             defaultOption="Oil"
             label="Commodity"
             checkbox={(dataType === 'Revenue') && true}
             payload={{ type: 'COMMODITY', payload: { commodity: 'Oil' } }} />
+        }
+            {(dataType === 'Production') &&
+          <MapSelectControl
+            options={productionCommodityOptions}
+            defaultOption="Oil (bbl)"
+            label="Commodity"
+            checkbox={(dataType === 'Revenue') && true}
+            payload={{ type: 'COMMODITY', payload: { commodity: 'Oil (bbl)' } }} />
         }
       </Box>
       <Box>
