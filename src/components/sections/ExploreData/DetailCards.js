@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -23,6 +23,8 @@ import AddLocationCard from './AddLocationCard'
 
 import CONSTANTS from '../../../js/constants'
 
+let BOX_MIN_HEIGHT
+
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: '25%',
@@ -31,11 +33,6 @@ const useStyles = makeStyles(theme => ({
     '@media (max-width: 768px)': {
       maxWidth: '100%',
     },
-    '.MuiCardContent-root > div': {
-      display: 'flex',
-      alignItems: 'stretch',
-      minHeight: 675,
-    }
   },
   compareCards: {
     display: 'flex',
@@ -60,6 +57,19 @@ const useStyles = makeStyles(theme => ({
         maxWidth: '100%',
       }
     },
+    '& .card-content-container': {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    '& .card-content-container > div:first-of-type': {
+      minHeight: 165,
+    },
+    '& .card-content-container > div:nth-child(2) .chart-container .legend': {
+      minHeight: 265
+    },
+    '& .card-content-container > div:nth-child(3) .chart-container .legend': {
+      minHeight: 205
+    }
   },
   closeIcon: {
     color: 'white',
@@ -322,7 +332,7 @@ const DetailCards = props => {
                 classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
                 disableTypography
               />
-              <CardContent>
+              <CardContent className="card-content-container">
                 {children}
               </CardContent>
               <CardActions></CardActions>
