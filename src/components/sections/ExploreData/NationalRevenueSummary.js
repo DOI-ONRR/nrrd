@@ -12,6 +12,7 @@ import { StoreContext } from '../../../store'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
+  Container,
   Grid,
   Table,
   TableBody,
@@ -57,6 +58,8 @@ const NationalRevenueSummary = props => {
   const { state } = useContext(StoreContext)
   const year = state.year
 
+  const { title } = props
+
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
     variables: { year }
   })
@@ -73,7 +76,7 @@ const NationalRevenueSummary = props => {
   const xLabels = 'month'
   const units = 'dollars'
   const xGroups = {}
-  
+
   if (loading) {
     return 'Loading...'
   }
@@ -84,31 +87,32 @@ const NationalRevenueSummary = props => {
     // do something wit dat data
     console.log('NationalRevenueSummary data: ', data)
     groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
-    groupTotal = Object.keys(groupData).map( k => groupData[k].reduce( (sum,i) => sum+=i.sum, 0)  ).reduce( (total,s) => total+=s,0 )
+    groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.sum, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
-    
+
     xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => console.log('row map: ', row))
   }
 
   return (
-    <Grid container>
-      <Grid item md={12}>
-        <Box color="secondary.main" mt={5} mb={2} >
-          <Box component="h3" color="secondary.dark">Nationwide revenue summary</Box>
-        </Box>
-      </Grid>
-      <Grid item md={12}>
-        <Table>
-          <TableHead>
-            <TableRow>
-      <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
-      <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
-      <span style={{ fontWeight: 'bold', float:'right' }}>FY {year}</span></TableCell>
-      
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            { nationalRevenueData &&
+    <Container id={utils.formatToSlug(title)}>
+      <Grid container>
+        <Grid item md={12}>
+          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+            <Box component="h3" color="secondary.dark">{title}</Box>
+          </Box>
+        </Grid>
+        <Grid item md={12}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
+                  <span style={{ fontWeight: 'bold', float: 'right' }}>FY {year}</span></TableCell>
+
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              { nationalRevenueData &&
               nationalRevenueData.map((item, i) => {
                 return (
                   <TableRow key={i}>
@@ -130,13 +134,13 @@ const NationalRevenueSummary = props => {
                           }
                         }}
                         legendHeaders={ headers => {
-                          console.debug("headers..................", headers)
+                          console.debug('headers..................', headers)
                           headers[0] = ''
                           headers[2] = ''
                           return headers
-                          }
                         }
-                        barScale={item[1].reduce((sum,i) => sum+=i.sum,0) / groupTotal }
+                        }
+                        barScale={item[1].reduce((sum, i) => sum += i.sum, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}
                         xLabels={xLabels}
@@ -151,14 +155,17 @@ const NationalRevenueSummary = props => {
                   </TableRow>
                 )
               })
-            }
-          </TableBody>
-        </Table>
+              }
+            </TableBody>
+          </Table>
+        </Grid>
       </Grid>
-    </Grid>
+    </Container>
   )
 }
 
 export default NationalRevenueSummary
 
-NationalRevenueSummary.propTypes = {}
+NationalRevenueSummary.propTypes = {
+  title: PropTypes.string
+}
