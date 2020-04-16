@@ -8,7 +8,7 @@ import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
 
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
-
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Box,
   Grid,
@@ -19,7 +19,7 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+
 
 import CONSTANTS from '../../../../js/constants'
 
@@ -60,6 +60,7 @@ const DisbursementRecipients = props => {
 
   const { state } = useContext(StoreContext)
   const classes = useStyles()
+  const theme = useTheme()
   const year = state.year
   console.debug("DT                ", state)
 const { loading, error, data } = useQuery(APOLLO_QUERY, {
@@ -90,9 +91,9 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
     data={chartData.DisbursementRecipientSummary}
     xAxis='recipient'
     yAxis='total'
-
+          minColor={theme.palette.orange[100]}
+                maxColor={theme.palette.orange[600]} />
     
-     />
 <Box mt={3}>
                 <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
                       Query Disbursements by Recipients
