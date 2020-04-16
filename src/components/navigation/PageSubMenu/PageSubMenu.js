@@ -125,7 +125,7 @@ const PageSubMenu = ({ menuItems, ...props }) => {
       <Grid container>
         <Grid item md={12}>
           <Box className={classes.root}>
-            <StickyWrapper enabled={true} top={100} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+            <StickyWrapper enabled={true} top={75} bottomBoundary={0} innerZ="1000" activeClass="sticky">
               <Paper elevation={1} square>
                 <MenuList id="page-scrollto-subnav">
                   <MenuItem key={0}>
