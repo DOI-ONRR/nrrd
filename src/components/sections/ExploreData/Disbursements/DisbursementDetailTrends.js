@@ -109,14 +109,14 @@ const DisbursementDetailTrends = props => {
     <>
       <Box textAlign="center" className={classes.boxTopSection} key={props.key}>
         <Box component="h2" mt={0} mb={0}>{locData && utils.formatToDollarInt(locData.sum)}</Box>
-        <Box component="span" mb={4}>{year && <span>{dataSet} revenue</span>}</Box>
+        <Box component="span" mb={4}>{year && <span>{dataSet} Disbursements</span>}</Box>
         {sparkData.length > 1 && (
           <Box mt={4}>
             <Sparkline
               data={sparkData}
               highlightIndex={highlightIndex}
             />
-            Revenue trend ({sparkMin} - {sparkMax})
+            Disbursement trend ({sparkMin} - {sparkMax})
           </Box>
         )}
       </Box>
