@@ -37,7 +37,7 @@ tags:
             </Grid>
           </Container>
           <PageSubMenu />
-          <Container>
+          <Container id="compare-revenue">
             <Grid container>
               <Grid item md={12}>
                 <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
@@ -48,8 +48,6 @@ tags:
                 </Box>
               </Grid>
             </Grid>
-          </Container>
-          <Container>
             <Grid container>
               <Grid item md={12}>
                 <DetailCards> 
@@ -59,18 +57,19 @@ tags:
                 </DetailCards>
               </Grid>
             </Grid>
-          </Container> 
+          </Container>
         </CompareContext>
-        <NationalSummary title="Nationwide revenue summary" />
+        <NationalRevenueSummary title="Nationwide revenue summary" />
         <TopLocations title="Top locations" />
         <Commodities title="Top commodities" />
         <Company title="Revenue by company" />
       </Revenue>
       <Disbursements>
         <MapContext>
-          <DisbursementsMap />
+          <DisbursementMap />
           <SummaryCards>
-            <Box>Disbursements summary content</Box>
+            <DisbursementTrend />
+            <DisbursementRecipientSummary/>
           </SummaryCards>
         </MapContext>
         <CompareContext>
@@ -81,33 +80,32 @@ tags:
                   <Box component="h2" color="secondary.dark">Disbursements</Box>
                 </Box>
                 <Typography variant="body1">
-                  After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called "disbursement." <strong>In <Year />, disbursed a total of [TOTAL].</strong>
+                  After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called "disbursement." <strong>In <Year />, disbursed a total of <LocationTotal location='Nationwide Federal' />.</strong>
                 </Typography>
               </Grid>
             </Grid>
           </Container>
           <PageSubMenu />
-          <Container>
+          <Container id="compare-disbursements">
             <Grid container>
               <Grid item md={12}>
                 <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                  <Box component="h3" color="secondary.dark">Compare disbursements (fiscal year <Year />)</Box>
+                  <Box component="h3" color="secondary.dark">Compare disbursements</Box>
                 </Box>
                 <Box fontSize="body1.fontSize">
                   Add more than one card to compare.  Select states, counties, and offshore regions.
                 </Box>
               </Grid>
             </Grid>
-          </Container>
-          <Container>
             <Grid container>
               <Grid item md={12}>
-                <DetailCards> 
-                  <Box>Disbursements child content.</Box>
+                <DetailCards>  
+                  <DisbursementDetailTrends />
+                  <DisbursementRecipients />        
                 </DetailCards>
               </Grid>
             </Grid>
-          </Container> 
+          </Container>
         </CompareContext>
       </Disbursements>
       <Production>
@@ -131,19 +129,17 @@ tags:
             </Grid>
           </Container>
           <PageSubMenu />
-          <Container>
+          <Container id="compare-oil-production">
             <Grid container>
               <Grid item md={12}>
                 <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                  <Box component="h3" color="secondary.dark">Compare oil production (fiscal year <Year />)</Box>
+                  <Box component="h3" color="secondary.dark">Compare oil production</Box>
                 </Box>
                 <Box fontSize="body1.fontSize">
                   Add more than one card to compare.  Select states, counties, and offshore regions.
                 </Box>
               </Grid>
             </Grid>
-          </Container>
-          <Container>
             <Grid container>
               <Grid item md={12}>
                 <DetailCards> 
@@ -151,7 +147,7 @@ tags:
                 </DetailCards>
               </Grid>
             </Grid>
-          </Container> 
+          </Container>       
         </CompareContext>
       </Production>
     </ExploreData>

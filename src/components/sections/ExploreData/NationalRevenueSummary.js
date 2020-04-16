@@ -1,8 +1,15 @@
+
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
 import PropTypes from 'prop-types'
+
+import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
+import Link from '../../Link'
+
+import { StoreContext } from '../../../store'
+
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Container,
@@ -16,20 +23,19 @@ import {
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 
-import { StoreContext } from '../../../store'
-
 import utils from '../../../js/utils'
 import CONSTANTS from '../../../js/constants'
 
-const APOLLO_QUERY = gql`
-  query NationalSummary($year: Int!) {
-    nationalRevenueSummary:fiscal_revenue_type_class_summary(order_by: {class_order: asc}, where: {year: {_eq: $year}}) {
-        revenue_type
-        sum
-        year
-        land_class
-        class_order
-      }
+// revenue type by land but just take one year of front page to do poc
+const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
+  query NationalRevenue($year: Int!) {
+    fiscal_revenue_type_class_summary(order_by: {class_order: asc}, where: {year: {_eq: $year}}) {
+      revenue_type
+      sum
+      year
+      land_class
+      class_order
+    }
   }
 `
 
@@ -43,13 +49,27 @@ const revenueTypeDescriptions = [
   'This includes other fees leaseholders pay such as permit fees and AML fees.'
 ]
 
-const NationalSummary = ({ title, ...props }) => {
+const useStyles = makeStyles(theme => ({
+  root: {},
+}))
+
+const NationalRevenueSummary = props => {
+  const classes = useStyles()
   const { state } = useContext(StoreContext)
   const year = state.year
+
+  const { title } = props
+
+  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+    variables: { year }
+  })
 
   const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
+  let groupData
+  let groupTotal
+  let nationalRevenueData
   const xAxis = 'year'
   const yAxis = 'sum'
   const yGroupBy = 'land_class'
@@ -57,20 +77,20 @@ const NationalSummary = ({ title, ...props }) => {
   const units = 'dollars'
   const xGroups = {}
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year: year }
-  })
+  if (loading) {
+    return 'Loading...'
+  }
 
-  let nationalRevenueData
-
-  if (loading) {}
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-    nationalRevenueData = data.nationalRevenueSummary
-    const groupData = utils.groupBy(nationalRevenueData, 'revenue_type')
+    // do something wit dat data
+    console.log('NationalRevenueSummary data: ', data)
+    groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
+    groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.sum, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
-    xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => row[0])
+
+    xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => console.log('row map: ', row))
   }
 
   return (
@@ -86,7 +106,9 @@ const NationalSummary = ({ title, ...props }) => {
             <TableHead>
               <TableRow>
                 <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
-                <TableCell style={{ fontWeight: 'bold' }}>{year} amount</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
+                  <span style={{ fontWeight: 'bold', float: 'right' }}>FY {year}</span></TableCell>
+
               </TableRow>
             </TableHead>
             <TableBody>
@@ -103,8 +125,22 @@ const NationalSummary = ({ title, ...props }) => {
                     <TableCell style={{ width: '65%' }}>
                       <StackedBarChart
                         data={item[1]}
-                        legendFormat={v => utils.formatToDollarInt(v)}
-                        title={chartTitle}
+                        legendFormat={v => {
+                          if (v === 0) {
+                            return '-'
+                          }
+                          else {
+                            return utils.formatToDollarInt(v)
+                          }
+                        }}
+                        legendHeaders={ headers => {
+                          console.debug('headers..................', headers)
+                          headers[0] = ''
+                          headers[2] = ''
+                          return headers
+                        }
+                        }
+                        barScale={item[1].reduce((sum, i) => sum += i.sum, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}
                         xLabels={xLabels}
@@ -113,6 +149,7 @@ const NationalSummary = ({ title, ...props }) => {
                         yGroupBy={yGroupBy}
                         yOrderBy={yOrderBy}
                         horizontal
+                        legendReverse={true}
                       />
                     </TableCell>
                   </TableRow>
@@ -127,8 +164,8 @@ const NationalSummary = ({ title, ...props }) => {
   )
 }
 
-export default NationalSummary
+export default NationalRevenueSummary
 
-NationalSummary.propTypes = {
+NationalRevenueSummary.propTypes = {
   title: PropTypes.string
 }
