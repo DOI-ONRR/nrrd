@@ -173,6 +173,13 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
         </>
     )
   }
+  
+  return (<Box className={classes.boxSection}>
+          <Box component="h4" fontWeight="bold">No Disbursements</Box>
+          </Box>
+         )
+
+  
 }
 
 export default DisbursementRecipientSummary

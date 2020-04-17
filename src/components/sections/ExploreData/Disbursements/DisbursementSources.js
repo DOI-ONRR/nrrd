@@ -103,10 +103,10 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
         <Box className={classes.boxSection}>
           <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box fontSize="subtitle2.fontSize">
-            All of {props.state}'s disbursements were from onshore production</Box>
+            All of  disbursements were from onshore production</Box>
         </Box>
       )
-    // '
+
     }
   }
       
@@ -114,7 +114,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
       <Box className={classes.boxSection}>
         <Box component="h4" fontWeight="bold">Disbursements by source</Box>
         <Box fontSize="subtitle2.fontSize">
-          {props.state} had no disbursements
+           had no disbursements
         </Box>
       </Box>
     )
