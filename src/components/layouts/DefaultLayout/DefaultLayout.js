@@ -17,7 +17,7 @@ import {
 import InfoBanner from '../../content-partials/InfoBanner'
 import Footer from '../../content-partials/Footer'
 import Header from '../../content-partials/Header'
-
+import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
 const useStyles = makeStyles(theme => (
@@ -113,6 +113,7 @@ const DefaultLayout = ({ includeToc = true, children }) => {
   return (
     <React.Fragment>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+      <LoadingStatusBackdrop />
       <InfoBanner />
       <Header />
       <CssBaseline />

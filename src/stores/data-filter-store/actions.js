@@ -7,8 +7,8 @@
 import { types } from './reducers'
 
 export const useActions = (state, dispatch) => {
-  const updateDataFilter = (updatedFilter, apolloClient) => {
-    let params = ''
+  const updateDataFilter = updatedFilter => {
+    /* const params = ''
 
     if (typeof window !== 'undefined' && window && Object.keys(updatedFilter).length > 0) {
       for (const prop in updatedFilter) {
@@ -21,7 +21,7 @@ export const useActions = (state, dispatch) => {
         }
       }
       window.history.replaceState({}, '', `${ window.location.pathname }?${ params }`)
-    }
+    } */
 
     dispatch({ type: types.UPDATE_DATA_FILTER, payload: updatedFilter })
   }
