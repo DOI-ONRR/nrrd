@@ -2,13 +2,23 @@ import React, { useContext, useState, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { navigate } from '@reach/router'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
+  BottomNavigation,
+  BottomNavigationAction,
   Box,
+  Hidden,
   Menu,
+  MenuList,
   MenuItem,
-  IconButton
+  Paper,
+  IconButton,
+  useMediaQuery
 } from '@material-ui/core'
+
+import ExploreIcon from '@material-ui/icons/Explore'
+import MapIcon from '@material-ui/icons/Map'
+import SearchIcon from '@material-ui/icons/Search'
 
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
@@ -19,13 +29,13 @@ import { StoreContext } from '../../../store'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
-    paddingTop: theme.spacing(0),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(1),
-    // borderBottom: `1px solid ${ theme.palette.grey[300] }`,
-    // boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.3), 0px 2px 4px -1px rgba(0,0,0,0.14), 0px 2px 4px -1px rgba(0,0,0,0.12)',
-    background: theme.palette.grey['200'],
-    overflowX: 'auto',
+    padding: 0,
+    '@media (max-width: 768px)': {
+      position: 'relative',
+      width: '100%',
+      background: theme.palette.common.white,
+      zIndex: 89,
+    },
     '& h2': {
       marginTop: theme.spacing(1),
       fontSize: '1rem',
@@ -45,9 +55,10 @@ const useStyles = makeStyles(theme => ({
   toolbarControls: {
     display: 'flex',
     justifyContent: 'flex-start',
+    transition: 'height .4s ease',
     '@media (max-width: 768px)': {
       justifyContent: 'flex-start',
-      width: 'calc(100% - 60px)',
+      width: '100%',
       overflowX: 'auto',
     }
   },
@@ -56,6 +67,12 @@ const useStyles = makeStyles(theme => ({
     right: 10,
     top: 4,
     zIndex: 99,
+    '@media (max-width: 768px)': {
+      position: 'relative',
+      width: '100%',
+      top: 'inherit',
+      right: 'inherit',
+    },
     '& button': {
       color: theme.palette.common.black,
       border: `1px solid ${ theme.palette.grey['300'] }`,
@@ -101,7 +118,22 @@ const useStyles = makeStyles(theme => ({
       paddingTop: 0,
       paddingBottom: 0,
     }
-  }
+  },
+  mobileToolbar: {
+    position: 'relative',
+    zIndex: 99,
+    boxShadow: '0 3px 6px 0 hsla(0,0%,57%,.23)',
+    overflowX: 'auto',
+  },
+  botNavRoot: {
+    color: theme.palette.grey[700],
+  },
+  botNavSelected: {
+    color: theme.palette.links.default,
+    '& svg': {
+      fill: theme.palette.links.default,
+    }
+  },
 }))
 
 const MAP_DATA_TYPE_SELECT_OPTIONS = [
@@ -136,6 +168,9 @@ const MapExploreMenu = props => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
 
+  const theme = useTheme()
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+
   const handleMenuClick = event => {
     setAnchorEl(event.currentTarget)
   }
@@ -147,24 +182,39 @@ const MapExploreMenu = props => {
 
   return (
     <div className={classes.mapExploreMenu}>
-      <IconButton
-        aria-label="Other ways to explore data"
-        aria-controls="other-ways-to-explore-data"
-        aria-haspopup="true"
-        onClick={handleMenuClick}>
-        <MoreVertIcon />
-      </IconButton>
-      <Menu
-        id="other-ways-to-explore-data"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose(null)}
-      >
-        {
-          props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
-        }
-      </Menu>
+      {matchesMdUp &&
+        <>
+          <IconButton
+            aria-label="Other ways to explore data"
+            aria-controls="other-ways-to-explore-data"
+            aria-haspopup="true"
+            onClick={handleMenuClick}>
+            <MoreVertIcon />
+          </IconButton>
+          <Menu
+            id="other-ways-to-explore-data"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose(null)}
+          >
+            {
+              props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
+            }
+          </Menu>
+        </>
+      }
+      {!matchesMdUp &&
+      <>
+        <Paper>
+          <MenuList>
+            {
+              props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
+            }
+          </MenuList>
+        </Paper>
+      </>
+      }
     </div>
   )
 }
@@ -183,6 +233,19 @@ const ExploreDataToolbar = props => {
   const commodityOptions = data.onrr.commodity.map(item => item.commodity)
   const classes = useStyles()
 
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+
+  console.log('matchesMdUp: ', matchesMdUp)
+
+  const [navValue, setNavValue] = useState(null)
+  const [menu, setMenu] = useState({
+    showMapTools: false,
+    showSearch: false,
+    showExplore: false,
+  })
+
   const { state } = useContext(StoreContext)
   const {
     dataType,
@@ -191,53 +254,94 @@ const ExploreDataToolbar = props => {
   } = state
 
   return (
-    <Box className={classes.toolbar}>
-      <Box className={classes.toolbarControls}>
-        <MapSelectControl
-          options={MAP_DATA_TYPE_SELECT_OPTIONS}
-          defaultOption={ dataType || 'Revenue' }
-          label="Data type"
-          payload={{ type: 'DATA_TYPE', payload: { dataType: 'Revenue' } }} />
+    <>
+      <Hidden mdUp>
+        <Box className={classes.mobileToolbar}>
+          <BottomNavigation
+            value={navValue}
+            onChange={(event, newValue) => {
+              setNavValue(newValue)
+              switch (newValue) {
+              case 0:
+                setMenu({ ...menu, showMapTools: !menu.showMapTools, showExplore: false })
+                break
+              case 1:
+                setMenu({ ...menu, showExplore: !menu.showExplore, showMapTools: false })
+                break
+              default:
+                break
+              }
+            }}
+            showLabels
+            className={classes.root}
+          >
+            <BottomNavigationAction
+              label="Map tools"
+              icon={<MapIcon />}
+              classes={{
+                root: classes.botNavRoot,
+                selected: classes.botNavSelected
+              }} />
+            <BottomNavigationAction
+              label="Explore more"
+              icon={<ExploreIcon />}
+              classes={{ root: classes.botNavRoot, selected: classes.botNavSelected }} />
+          </BottomNavigation>
+        </Box>
+      </Hidden>
 
-        <MapSelectControl
-          options={MAP_LEVEL_OPTIONS}
-          defaultOption={ countyLevel || 'State' }
-          label="Map level"
-          payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: 'State' } }} />
+      <Box className={classes.toolbar}>
+        {(menu.showMapTools || matchesMdUp) &&
+          <Box className={classes.toolbarControls}>
+            <MapSelectControl
+              options={MAP_DATA_TYPE_SELECT_OPTIONS}
+              defaultOption={ dataType || 'Revenue' }
+              label="Data type"
+              payload={{ type: 'DATA_TYPE', payload: { dataType: 'Revenue' } }} />
 
-        <MapSelectControl
-          options={MAP_OFFSHORE_SELECT_OPTIONS}
-          defaultOption={ offshoreData || 'Off' }
-          label="Offshore data"
-          payload={{ type: 'OFFSHORE_DATA', payload: { offshoreData: 'Off' } }} />
+            <MapSelectControl
+              options={MAP_LEVEL_OPTIONS}
+              defaultOption={ countyLevel || 'State' }
+              label="Map level"
+              payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: 'State' } }} />
 
-        {/* <MapSelectControl
+            <MapSelectControl
+              options={MAP_OFFSHORE_SELECT_OPTIONS}
+              defaultOption={ offshoreData || 'Off' }
+              label="Offshore data"
+              payload={{ type: 'OFFSHORE_DATA', payload: { offshoreData: 'Off' } }} />
+
+            {/* <MapSelectControl
           options={MAP_TIMEFRAME_OPTIONS}
           label="Timeframe"
           payload={{ type: 'TIMEFRAME', payload: { timeframe: MAP_TIMEFRAME_OPTIONS.YEARLY } }} /> */}
 
-        <MapSelectControl
-          options={MAP_PERIOD_OPTIONS}
-          defaultOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
-          label="Period"
-          payload={{ type: 'PERIOD', payload: { period: MAP_PERIOD_OPTIONS.CALENDAR_YEAR } }} />
+            <MapSelectControl
+              options={MAP_PERIOD_OPTIONS}
+              defaultOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
+              label="Period"
+              payload={{ type: 'PERIOD', payload: { period: MAP_PERIOD_OPTIONS.CALENDAR_YEAR } }} />
 
-        {(dataType !== 'Disbursements') &&
+            {(dataType !== 'Disbursements') &&
           <MapSelectControl
             options={commodityOptions}
             defaultOption="Oil"
             label="Commodity"
             checkbox={(dataType === 'Revenue') && true}
             payload={{ type: 'COMMODITY', payload: { commodity: 'Oil' } }} />
+            }
+          </Box>
+        }
+        {(menu.showExplore || matchesMdUp) &&
+          <Box className={classes.toolbarExploreMenu}>
+            <MapExploreMenu
+              linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
+              linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
+            />
+          </Box>
         }
       </Box>
-      <Box>
-        <MapExploreMenu
-          linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
-          linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
-        />
-      </Box>
-    </Box>
+    </>
   )
 }
 

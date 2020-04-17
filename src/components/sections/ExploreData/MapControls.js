@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     bottom: 180,
     left: 10,
     '@media (max-width: 768px)': {
-      bottom: 70,
+      bottom: 80,
     }
   },
 }))

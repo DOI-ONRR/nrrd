@@ -50,8 +50,8 @@ const useStyles = makeStyles(theme => ({
     height: 575,
     minHeight: 575,
     '@media (max-width: 768px)': {
-      height: 350,
-      minHeight: 350,
+      height: 435,
+      minHeight: 435,
     },
   },
   cardContainer: {

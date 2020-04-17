@@ -187,7 +187,7 @@ const AddLocationCard = props => {
       <CardContent>
         <Autocomplete
           key={keyCount}
-          id="location-selecte"
+          id="location-select"
           autoComplete
           inputValue={input}
           options={distinctLocations}
