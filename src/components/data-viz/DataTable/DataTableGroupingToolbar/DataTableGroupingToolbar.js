@@ -37,6 +37,7 @@ const GROUP_BY_OPTIONS = {
     { value: US_STATE, option: 'State' },
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
+  [DISBURSEMENTS]: [],
 }
 
 const DataTableGroupingToolbar = () => {
@@ -45,6 +46,9 @@ const DataTableGroupingToolbar = () => {
   // This is where all business logic will applied for the grouping options
   const setGroupByOptions = state => {
     let optionList = GROUP_BY_OPTIONS[state[DATA_TYPE]]
+    if (!optionList || optionList.length === 0) {
+      return
+    }
 
     // Remove any option that only has 1 value selected
     optionList = optionList.filter(item => !(state[item.value] && state[item.value].split(',').length === 1))
@@ -78,7 +82,9 @@ const DataTableGroupingToolbar = () => {
   }
 
   useEffect(() => {
-    updateDataFilter({ [GROUP_BY]: groupBy, [BREAKOUT_BY]: breakoutBy })
+    if (groupBy !== state[GROUP_BY] || breakoutBy !== state[BREAKOUT_BY]) {
+      updateDataFilter({ [GROUP_BY]: groupBy, [BREAKOUT_BY]: breakoutBy })
+    }
   }, [groupBy, breakoutBy])
 
   useEffect(() => {

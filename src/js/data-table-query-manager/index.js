@@ -11,11 +11,7 @@ import {
   COMMODITY,
   REVENUE_TYPE,
   PERIOD,
-  DATA_TYPE,
-  PERIOD_FISCAL_YEAR,
-  PERIOD_CALENDAR_YEAR,
-  FISCAL_YEAR,
-  CALENDAR_YEAR
+  ZERO_OPTIONS
 } from '../../constants'
 import gql from 'graphql-tag'
 
@@ -46,7 +42,7 @@ const DataTableQueryManager = {
   getQuery: state => {
     const query = QUERIES[state.dataType]
     if (query === undefined) {
-      throw new Error(`For data type: '${ state.dataType }' and option key '${ optionKey }', no query was found.`)
+      throw new Error(`For data type: '${ state.dataType }', no query was found.`)
     }
     return query
   },
@@ -68,32 +64,30 @@ export default DataTableQueryManager
 const VARIABLES = {
   [REVENUE]: state => ({
     variables: {
-      [LAND_CLASS]: state[LAND_CLASS],
-      [LAND_CATEGORY]: state[LAND_CATEGORY],
-      [OFFSHORE_REGION]: state[OFFSHORE_REGION] && state[OFFSHORE_REGION].split(','),
-      [US_STATE]: state[US_STATE] && state[US_STATE].split(','),
-      [COUNTY]: state[COUNTY] && state[COUNTY].split(','),
-      [COMMODITY]: state[COMMODITY] && state[COMMODITY].split(','),
-      [REVENUE_TYPE]: state[REVENUE_TYPE] && state[REVENUE_TYPE].split(','),
-      [PERIOD]: state[PERIOD],
+      [LAND_CLASS]: (state[LAND_CLASS] === ZERO_OPTIONS) ? undefined : state[LAND_CLASS],
+      [LAND_CATEGORY]: (state[LAND_CATEGORY] === ZERO_OPTIONS) ? undefined : state[LAND_CATEGORY],
+      [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
+      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
+      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
+      [REVENUE_TYPE]: (state[REVENUE_TYPE] === ZERO_OPTIONS || !state[REVENUE_TYPE]) ? undefined : state[REVENUE_TYPE].split(','),
+      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
   }),
   [PRODUCTION]: state => ({
     variables: {
-      [LAND_CLASS]: state[LAND_CLASS],
-      [LAND_CATEGORY]: state[LAND_CATEGORY],
-      [OFFSHORE_REGION]: state[OFFSHORE_REGION] && state[OFFSHORE_REGION].split(','),
-      [US_STATE]: state[US_STATE] && state[US_STATE].split(','),
-      [COUNTY]: state[COUNTY] && state[COUNTY].split(','),
-      [COMMODITY]: state[COMMODITY] && state[COMMODITY].split(','),
-      [PERIOD]: state[PERIOD],
-      [CALENDAR_YEAR]: (state[PERIOD] === PERIOD_CALENDAR_YEAR && state[CALENDAR_YEAR]) && state[CALENDAR_YEAR].split(',').map(year => parseInt(year)),
-      [FISCAL_YEAR]: (state[PERIOD] === PERIOD_FISCAL_YEAR && state[FISCAL_YEAR]) && state[FISCAL_YEAR].split(',').map(year => parseInt(year)),
+      [LAND_CLASS]: (state[LAND_CLASS] === ZERO_OPTIONS) ? undefined : state[LAND_CLASS],
+      [LAND_CATEGORY]: (state[LAND_CATEGORY] === ZERO_OPTIONS) ? undefined : state[LAND_CATEGORY],
+      [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
+      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
+      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
+      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
   })
 }
 
-const VARIABLE_LIST = ''.concat(
+const VARIABLE_LIST_REVENUE = ''.concat(
   '$landClass: String,',
   '$landCategory: String,',
   '$offshoreRegion: [String!],',
@@ -101,6 +95,15 @@ const VARIABLE_LIST = ''.concat(
   '$county: [String!],',
   '$commodity: [String!],',
   '$revenueType: [String!],',
+  '$period: String,'
+)
+const VARIABLE_LIST_PRODUCTION = ''.concat(
+  '$landClass: String,',
+  '$landCategory: String,',
+  '$offshoreRegion: [String!],',
+  '$usState: [String!],',
+  '$county: [String!],',
+  '$commodity: [String!],',
   '$period: String,'
 )
 
@@ -117,13 +120,34 @@ const REVENUE_QUERY = `
       revenue_type: {_in: $revenueType},
       period: {_eq: $period},
     }) {
-    land_class  
+    ${ LAND_CLASS }: land_class  
     ${ LAND_CATEGORY }: land_category
-    offshore_region
-    state
-    county
+    ${ OFFSHORE_REGION }: offshore_region
+    ${ US_STATE }: state
+    ${ COUNTY }: county
     ${ REVENUE_TYPE }: revenue_type
-    commodity
+    ${ COMMODITY }: commodity
+    ${ allRevenueYears }
+  }`
+
+const PRODUCTION_QUERY = `
+  results:query_tool_production_data(
+    limit: 50,
+    where: {
+      land_class: {_eq: $landClass},
+      land_category: {_eq: $landCategory},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $usState},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
+      period: {_eq: $period},
+    }) {
+    ${ LAND_CLASS }: land_class  
+    ${ LAND_CATEGORY }: land_category
+    ${ OFFSHORE_REGION }: offshore_region
+    ${ US_STATE }: state
+    ${ COUNTY }: county
+    ${ COMMODITY }: commodity
     ${ allRevenueYears }
   }`
 
@@ -131,5 +155,6 @@ const REVENUE_QUERY = `
  * Get the queries based on data type and the data filter option
  */
 const QUERIES = {
-  [REVENUE]: gql`query GetLandCategoryOptionsRevenue(${ VARIABLE_LIST }){${ REVENUE_QUERY }}`,
+  [REVENUE]: gql`query GetDataTableRevenue(${ VARIABLE_LIST_REVENUE }){${ REVENUE_QUERY }}`,
+  [PRODUCTION]: gql`query GetDataTableProduction(${ VARIABLE_LIST_PRODUCTION }){${ PRODUCTION_QUERY }}`,
 }

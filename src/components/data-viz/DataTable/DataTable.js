@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 import {
   REVENUE,
@@ -6,7 +6,12 @@ import {
   DISBURSEMENTS,
   DATA_TYPE,
   GROUP_BY,
-  REVENUE_TYPE
+  BREAKOUT_BY,
+  PERIOD,
+  PERIOD_FISCAL_YEAR,
+  PERIOD_CALENDAR_YEAR,
+  FISCAL_YEAR,
+  CALENDAR_YEAR
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
@@ -65,6 +70,38 @@ const DataTable = ({ dataType, height = '100%' }) => {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
 
+  const type = dataType || state[DATA_TYPE]
+
+  return (
+    <Box className={classes.root} height={height}>
+      <Grid container spacing={2} style={{ height: '100%' }}>
+        <React.Fragment>
+          {type === REVENUE &&
+              <Grid item xs={12}>
+                <RevenueDataTableImpl />
+              </Grid>
+          }
+          {type === PRODUCTION &&
+              <Grid item xs={12}>
+                <ProductionDataTableImpl />
+              </Grid>
+          }
+          {type === DISBURSEMENTS &&
+              <Grid item xs={12}>
+
+              </Grid>
+          }
+        </React.Fragment>
+      </Grid>
+    </Box>
+  )
+}
+
+export default DataTable
+
+const RevenueDataTableImpl = () => {
+  const { state } = useContext(DataFilterContext)
+
   const loadingMessage = `Loading ${ state.dataType } data from server...`
 
   const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
@@ -80,68 +117,135 @@ const DataTable = ({ dataType, height = '100%' }) => {
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
   }, [loading])
-  const type = dataType || state[DATA_TYPE]
 
   return (
-    <Box className={classes.root} height={height}>
-      <Grid container spacing={2} style={{ height: '100%' }}>
-        {data &&
-          <React.Fragment>
-            {type === REVENUE &&
-              <Grid item xs={12}>
-                <RevenueDataTableImpl { ...data } />
-              </Grid>
-            }
-            {type === PRODUCTION &&
-              <Grid item xs={12}>
-                <ProductionDataTable state={state} />
-              </Grid>
-            }
-            {type === DISBURSEMENTS &&
-              <Grid item xs={12}>
-                <DisbursementDataTable state={state} />
-              </Grid>
-            }
-          </React.Fragment>
-        }
-      </Grid>
-    </Box>
+    <React.Fragment>
+      {(data && data.results.length > 0) &&
+        <DataTableImpl {...data} />
+      }
+    </React.Fragment>
+  )
+}
+const ProductionDataTableImpl = () => {
+  const { state } = useContext(DataFilterContext)
+
+  const loadingMessage = `Loading ${ state.dataType } data from server...`
+
+  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
+
+  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
+
+  useEffect(() => {
+    if (error) {
+      showErrorMessage(`Error!: ${ error.message }`)
+    }
+  }, [error])
+
+  useEffect(() => {
+    updateLoadingStatus({ status: loading, message: loadingMessage })
+  }, [loading])
+
+  return (
+    <React.Fragment>
+      {(data && data.results.length > 0) &&
+        <DataTableImpl {...data} />
+      }
+    </React.Fragment>
   )
 }
 
-export default DataTable
+const CurrencyFormatter = ({ value }) => `$${ value }`
 
-const RevenueDataTableImpl = data => {
+const CurrencyTypeProvider = props => (
+  <DataTypeProvider
+    formatterComponent={CurrencyFormatter}
+    {...props}
+  />
+)
+
+const DataTableImpl = data => {
   const { state } = useContext(DataFilterContext)
   const columnNames = getColumnNames(data.results[0])
-  const [grouping, setGrouping] = useState()
-  const [hiddenColumnNames] = useState()
+  const [grouping, setGrouping] = useState([])
+  const [hiddenColumnNames, setHiddenColumnNames] = useState([])
+  const [fixedColumns, setFixedColumns] = useState([])
+  const [totalSummaryItems, setTotalSummaryItems] = useState([])
+  const [groupSummaryItems, setGroupSummaryItems] = useState([])
+  const [currencyColumns, setCurrencyColumns] = useState([])
+
+  const getHiddenColumns = () => {
+    let yearColumns = []
+    if (state[CALENDAR_YEAR] || state[FISCAL_YEAR]) {
+      let years = (state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',') : state[FISCAL_YEAR].split(',')
+      years = years.map(item => `y${ item }`)
+      yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !years.includes(item.name)))
+    }
+
+    const nonYearColumns = columnNames.filter(item => (!item.name.startsWith('y') && item.name !== state[GROUP_BY] && item.name !== state[BREAKOUT_BY]))
+
+    return yearColumns.concat(nonYearColumns).map(item => item.name)
+  }
+
+  const getCurrencyColumns = () => {
+    const years = columnNames.filter(item => item.name.startsWith('y'))
+    return years && years.map(item => item.name)
+  }
+
+  const getTotalSummaryItems = () => {
+    const years = columnNames.filter(item => item.name.startsWith('y'))
+    return years && years.map(item => ({ columnName: item.name, type: 'sum', alignByColumn: false }))
+  }
+
+  const getGroupSummaryItems = () => {
+    const years = columnNames.filter(item => item.name.startsWith('y'))
+    return years && years.map(item => ({ columnName: item.name, type: 'sum', showInGroupFooter: true, alignByColumn: true }))
+  }
 
   useEffect(() => {
-    console.log(state)
     setGrouping([{ columnName: state[GROUP_BY] }])
+    if (state[GROUP_BY]) {
+      setHiddenColumnNames(getHiddenColumns())
+    }
+    if (state[DATA_TYPE] === REVENUE || state[DATA_TYPE] === DISBURSEMENTS) {
+      setCurrencyColumns(getCurrencyColumns())
+    }
+    setFixedColumns([state[GROUP_BY], state[BREAKOUT_BY]])
+    setTotalSummaryItems(getTotalSummaryItems())
+    setGroupSummaryItems(getGroupSummaryItems())
   }, [state])
 
   return (
     <React.Fragment>
-      {data &&
+      {(data && data.results.length > 0) &&
         <Grid container>
           <Grid item xs={12}>
             <TableGrid
               rows={data.results}
               columns={columnNames}>
+              <CurrencyTypeProvider for={currencyColumns}/>
               <SortingState />
               <GroupingState
                 grouping={grouping}
               />
+              <SummaryState
+                totalItems={totalSummaryItems}
+                groupItems={groupSummaryItems}
+              />
               <IntegratedSorting />
               <IntegratedGrouping />
+              <IntegratedSummary calculator={summaryCalculator} />
               <Table />
               <TableHeaderRow showSortingControls/>
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
               />
               <TableGroupRow />
+              <TableSummaryRow
+                groupRowComponent={CustomTableSummaryRowGroupRow}
+                totalRowComponent={CustomTableSummaryRowTotalRow}
+                itemComponent={CustomTableSummaryRowItem}
+              />
+              <TableFixedColumns leftColumns={fixedColumns} />
             </TableGrid>
           </Grid>
         </Grid>
@@ -158,14 +262,6 @@ const getAllYearsColumns = () => {
   return allYearsColumnNames
 }
 
-const CurrencyFormatter = ({ value }) => `$${ value }`
-
-const CurrencyTypeProvider = props => (
-  <DataTypeProvider
-    formatterComponent={CurrencyFormatter}
-    {...props}
-  />
-)
 const PLURAL_COLUMNS_MAP = {
   'Revenue type': 'revenue types',
   Commodity: 'commodities',
