@@ -1,11 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
 
-import { formatToSlug } from '../../../../js/utils'
-
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import useTheme from '@material-ui/core/styles/useTheme'
+import DefaultSingleSelect from '../../../inputs/DefaultSingleSelect'
+
 import Grid from '@material-ui/core/Grid'
 
 import {
@@ -98,7 +96,7 @@ const DataTableGroupingToolbar = () => {
     <Grid container spacing={2} alignItems='flex-end'>
       <Grid item xs={12} sm={3}>
         {options &&
-          <BaseSingleSelect
+          <DefaultSingleSelect
             includeClearAll={false}
             handleChange={handleGroupByChange}
             label={'Group by'}
@@ -108,7 +106,7 @@ const DataTableGroupingToolbar = () => {
       </Grid>
       {(options && options.length > 1) &&
         <Grid item xs={12} sm={3}>
-          <BaseSingleSelect
+          <DefaultSingleSelect
             handleChange={handleBreakoutByChange}
             label={'Breakout by'}
             currentValue={(breakoutBy === NO_BREAKOUT_BY) ? undefined : breakoutBy}
@@ -120,46 +118,3 @@ const DataTableGroupingToolbar = () => {
 }
 
 export default DataTableGroupingToolbar
-
-const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: theme.spacing(1),
-    width: '-webkit-fill-available'
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}))
-const BaseSingleSelect = ({ handleChange, label, options, currentValue, helperText, infoText, includeClearAll, ...props }) => {
-  const theme = useTheme()
-  const classes = useStyles(theme)
-  const labelSlug = formatToSlug(label)
-
-  return (
-    <FormControl className={classes.formControl} disabled={(options.length === 0)}>
-      <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
-      <Select
-        labelId={`${ labelSlug }-select-label`}
-        id={`${ labelSlug }-select`}
-        value={currentValue || ''}
-        onChange={handleChange}
-        displayEmpty
-      >
-        {includeClearAll &&
-          <MenuItem value={'Clear'} disabled={(!currentValue)}>
-            <Clear /><ListItemText primary={'Clear selected'} />
-          </MenuItem>
-        }
-        { options.map((item, i) =>
-          <MenuItem key={`${ formatToSlug(item.option) }_${ i }`} value={item.value || item.option}><ListItemText primary={item.option} /></MenuItem>)
-        }
-      </Select>
-      {helperText &&
-      <FormHelperText>{helperText}</FormHelperText>
-      }
-      {(options.length === 0 && infoText) &&
-        <FormHelperText>{infoText}</FormHelperText>
-      }
-    </FormControl>
-  )
-}

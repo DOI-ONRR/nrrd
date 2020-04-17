@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const BaseSingleSelect = ({ handleChange, label, options, currentValue, helperText, infoText, includeClearAll, ...props }) => {
+const DefaultSingleSelect = ({ handleChange, label, options, currentValue, helperText, infoText, includeClearAll, ...props }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
   const labelSlug = formatToSlug(label)
@@ -57,8 +57,9 @@ const BaseSingleSelect = ({ handleChange, label, options, currentValue, helperTe
   )
 }
 
-export default BaseSingleSelect
-BaseSingleSelect.propTypes = {
+export default DefaultSingleSelect
+
+DefaultSingleSelect.propTypes = {
   /**
    * Text that displays below the select box to provide additional instructions
    */
@@ -76,6 +77,6 @@ BaseSingleSelect.propTypes = {
    */
   includeClearAll: PropTypes.bool
 }
-BaseSingleSelect.defaultProps = {
+DefaultSingleSelect.defaultProps = {
   includeClearAll: true
 }
