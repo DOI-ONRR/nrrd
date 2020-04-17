@@ -92,7 +92,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     top: -2,
     border: `1px solid ${ theme.palette.grey['300'] }`,
-    height: 50,
+    height: 60,
     marginLeft: theme.spacing(0),
     marginRight: theme.spacing(1),
     paddingTop: 0,
@@ -124,9 +124,14 @@ const useStyles = makeStyles(theme => ({
     zIndex: 99,
     boxShadow: '0 3px 6px 0 hsla(0,0%,57%,.23)',
     overflowX: 'auto',
+    height: 60,
+    '& div': {
+      height: 60,
+    },
   },
   botNavRoot: {
     color: theme.palette.grey[700],
+    height: 60,
   },
   botNavSelected: {
     color: theme.palette.links.default,

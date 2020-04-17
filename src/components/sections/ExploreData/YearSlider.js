@@ -44,7 +44,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 75,
+    height: 90,
+    '@media (max-width: 768px)': {
+      paddingTop: theme.spacing(1.5),
+    },
   },
   sliderBox: {
     width: '100%',
@@ -53,35 +56,28 @@ const useStyles = makeStyles(theme => ({
     zIndex: 101,
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    top: -4,
+    top: -12,
+    '@media (max-width: 768px)': {
+      top: -10,
+    },
   },
   sliderRoot: {
-    width: '90%',
+    width: '100%',
     display: 'block',
     margin: '0 auto',
-    // pure css sorcery needed to defeat the material-ui goblin
-    '& .MuiSlider-markLabel:nth-child(5)': {
-      left: '-5% !important',
-    },
-    '& .MuiSlider-markLabel:nth-child(7)': {
-      left: '105% !important',
-    }
   },
   sliderMarkLabel: {
     fontWeight: 'bold',
-    top: 1,
+    top: 25,
     color: theme.palette.primary.dark,
     fontSize: '1rem',
+    '@media (max-width: 768px)': {
+      top: 30,
+    },
   },
   sliderMarkLabelActive: {
     fontWeight: 'bold',
     boxShadow: 'none',
-    '&:nth-child(1)': {
-      left: '-5% !important',
-    },
-    '&:last-child': {
-      left: '105% !important',
-    }
   },
   sliderTrack: {
     height: 4,
@@ -142,7 +138,10 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     position: 'relative',
-    top: -6,
+    top: -14,
+    '@media (max-width: 768px)': {
+      top: -5,
+    },
   },
 }))
 
