@@ -1,52 +1,29 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC, DATA_TYPES } from '../../../../constants'
+import { DATA_TYPE } from '../../../../constants'
 
-import {
-  Grid,
-  FormControl,
-  FormHelperText
-} from '@material-ui/core'
+import BaseDataFilterToggle from '../BaseDataFilterToggle'
 
-import {
-  ToggleButton,
-  ToggleButtonGroup
-} from '@material-ui/lab'
-
-const DataTypeToggle = ({ helperText }) => {
-  const { state, updateDataFilter } = useContext(DataFilterContext)
-  const handleChange = (event, newDataType) => {
-    updateDataFilter({ [DFC.DATA_TYPE]: newDataType })
-  }
-
-  return (
-    <Grid container>
-      <Grid item xs={12} sm={12}>
-        <FormControl fullWidth={false} >
-          <ToggleButtonGroup value={state[DFC.DATA_TYPE]} onChange={handleChange} exclusive>
-            {DATA_TYPES.map(type =>
-              <ToggleButton key={type} value={type} aria-label={type}>
-                {type}
-              </ToggleButton>)}
-          </ToggleButtonGroup>
-          {helperText &&
-            <FormHelperText>{helperText}</FormHelperText>
-          }
-        </FormControl>
-      </Grid>
-    </Grid>
-  )
-}
-
-DataTypeToggle.propTypes = {
-  /** The string for the instruction label. */
-  helperText: PropTypes.string,
-}
-
-DataTypeToggle.defaultProps = {
-  helperText: 'Select a data type.',
-}
+const DataTypeToggle = ({ helperText, loadingMessage }) => (
+  <BaseDataFilterToggle
+    dataFilterKey={DATA_TYPE}
+    loadingMessage={loadingMessage}
+    helperText={helperText} />
+)
 
 export default DataTypeToggle
+
+DataTypeToggle.propTypes = {
+  /**
+   * Text that displays below the select box to provide additional instructions
+   */
+  helperText: PropTypes.string,
+  /**
+   * The message that shows in the loading screen
+   */
+  loadingMessage: PropTypes.string
+}
+DataTypeToggle.defaultProps = {
+  loadingMessage: 'Updating Data type options from server...'
+}

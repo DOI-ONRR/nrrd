@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import {
   PERIOD_FISCAL_YEAR,
-  FISCAL_YEARS,
+  FISCAL_YEAR,
   PERIOD_CALENDAR_YEAR,
-  CALENDAR_YEARS
+  CALENDAR_YEAR
 } from '../../../../constants'
 
 import BaseDataFilterRangeSlider from '../BaseDataFilterRangeSlider'
@@ -18,14 +18,14 @@ const YearRangeSelect = ({ helperText, label, loadingMessage }) => {
     <React.Fragment>
       {state.period === PERIOD_FISCAL_YEAR &&
         <BaseDataFilterRangeSlider
-          dataFilterKey={FISCAL_YEARS}
+          dataFilterKey={FISCAL_YEAR}
           label={'Fiscal years'}
           loadingMessage={'Updating Fiscal year options from server...'}
           helperText={helperText} />
       }
       {state.period === PERIOD_CALENDAR_YEAR &&
         <BaseDataFilterRangeSlider
-          dataFilterKey={CALENDAR_YEARS}
+          dataFilterKey={CALENDAR_YEAR}
           label={'Calendar years'}
           loadingMessage={'Updating Calendar year options from server...'}
           helperText={helperText} />

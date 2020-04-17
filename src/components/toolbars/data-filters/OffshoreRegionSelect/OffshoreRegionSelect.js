@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { OFFSHORE_REGIONS } from '../../../../constants'
+import { OFFSHORE_REGION } from '../../../../constants'
 
 import BaseDataFilterSelect from '../BaseDataFilterSelect'
 
 const OffshoreRegionSelect = ({ helperText, label, loadingMessage }) => (
   <BaseDataFilterSelect
-    dataFilterKey={OFFSHORE_REGIONS}
+    dataFilterKey={OFFSHORE_REGION}
     selectType={'Multi'}
     label={label}
     loadingMessage={loadingMessage}

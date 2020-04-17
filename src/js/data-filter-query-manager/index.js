@@ -5,19 +5,21 @@ import {
   DISBURSEMENTS,
   LAND_CLASS,
   LAND_CATEGORY,
-  OFFSHORE_REGIONS,
-  US_STATES,
-  COUNTIES,
-  COMMODITIES,
+  OFFSHORE_REGION,
+  US_STATE,
+  COUNTY,
+  COMMODITY,
   REVENUE_TYPE,
   PERIOD,
-  YEARS,
+  DATA_TYPE,
   PERIOD_FISCAL_YEAR,
   PERIOD_CALENDAR_YEAR,
-  FISCAL_YEARS,
-  CALENDAR_YEARS
+  FISCAL_YEAR,
+  CALENDAR_YEAR,
+  ZERO_OPTIONS
 } from '../../constants'
 
+import DATA_TYPE_QUERIES from './data-type-queries'
 import REVENUE_QUERIES from './revenue-queries'
 import PRODUCTION_QUERIES from './production-queries'
 
@@ -26,13 +28,21 @@ import PRODUCTION_QUERIES from './production-queries'
  */
 const DataFilterQueryManager = {
   getQuery: (optionKey, state) => {
+    if (optionKey === DATA_TYPE) {
+      return QUERIES[DATA_TYPE](optionKey)
+    }
     const query = QUERIES[state.dataType](optionKey)
     if (query === undefined) {
       throw new Error(`For data type: '${ state.dataType }' and option key '${ optionKey }', no query was found.`)
     }
     return query
   },
-  getVariables: state => VARIABLES[state.dataType](state)
+  getVariables: (state, optionKey) => {
+    if (optionKey === DATA_TYPE) {
+      return undefined
+    }
+    return VARIABLES[state.dataType](state)
+  }
 }
 
 export default DataFilterQueryManager
@@ -44,27 +54,29 @@ export default DataFilterQueryManager
 const VARIABLES = {
   [REVENUE]: state => ({
     variables: {
-      [LAND_CLASS]: state[LAND_CLASS],
-      [LAND_CATEGORY]: state[LAND_CATEGORY],
-      [OFFSHORE_REGIONS]: state[OFFSHORE_REGIONS] && state[OFFSHORE_REGIONS].split(','),
-      [US_STATES]: state[US_STATES] && state[US_STATES].split(','),
-      [COUNTIES]: state[COUNTIES] && state[COUNTIES].split(','),
-      [COMMODITIES]: state[COMMODITIES] && state[COMMODITIES].split(','),
-      [REVENUE_TYPE]: state[REVENUE_TYPE],
-      [PERIOD]: state[PERIOD],
-      [CALENDAR_YEARS]: state[CALENDAR_YEARS] && state[CALENDAR_YEARS].split(',').map(year => parseInt(year)),
-      [FISCAL_YEARS]: state[FISCAL_YEARS] && state[FISCAL_YEARS].split(',').map(year => parseInt(year)),
+      [LAND_CLASS]: (state[LAND_CLASS] === ZERO_OPTIONS) ? undefined : state[LAND_CLASS],
+      [LAND_CATEGORY]: (state[LAND_CATEGORY] === ZERO_OPTIONS) ? undefined : state[LAND_CATEGORY],
+      [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
+      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
+      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
+      [REVENUE_TYPE]: (state[REVENUE_TYPE] === ZERO_OPTIONS || !state[REVENUE_TYPE]) ? undefined : state[REVENUE_TYPE].split(','),
+      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
+      [CALENDAR_YEAR]: (state[PERIOD] === PERIOD_CALENDAR_YEAR && state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',').map(year => parseInt(year)) : undefined,
+      [FISCAL_YEAR]: (state[PERIOD] === PERIOD_FISCAL_YEAR && state[FISCAL_YEAR]) ? state[FISCAL_YEAR].split(',').map(year => parseInt(year)) : undefined,
     }
   }),
   [PRODUCTION]: state => ({
     variables: {
-      [LAND_CLASS]: state[LAND_CLASS],
-      [LAND_CATEGORY]: state[LAND_CATEGORY],
-      [OFFSHORE_REGIONS]: state[OFFSHORE_REGIONS] && state[OFFSHORE_REGIONS].split(','),
-      [US_STATES]: state[US_STATES] && state[US_STATES].split(','),
-      [COUNTIES]: state[COUNTIES] && state[COUNTIES].split(','),
-      [COMMODITIES]: state[COMMODITIES] && state[COMMODITIES].split(','),
-      [FISCAL_YEARS]: state[FISCAL_YEARS] && state[FISCAL_YEARS].split(',').map(year => parseInt(year)),
+      [LAND_CLASS]: (state[LAND_CLASS] === ZERO_OPTIONS) ? undefined : state[LAND_CLASS],
+      [LAND_CATEGORY]: (state[LAND_CATEGORY] === ZERO_OPTIONS) ? undefined : state[LAND_CATEGORY],
+      [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
+      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || state[US_STATE]) ? undefined : state[US_STATE].split(','),
+      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || state[COUNTY]) ? undefined : state[COUNTY].split(','),
+      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
+      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
+      [CALENDAR_YEAR]: (state[PERIOD] === PERIOD_CALENDAR_YEAR && state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',').map(year => parseInt(year)) : undefined,
+      [FISCAL_YEAR]: (state[PERIOD] === PERIOD_FISCAL_YEAR && state[FISCAL_YEAR]) ? state[FISCAL_YEAR].split(',').map(year => parseInt(year)) : undefined,
     }
   })
 }
@@ -73,6 +85,7 @@ const VARIABLES = {
  * Get the queries based on data type and the data filter option
  */
 const QUERIES = {
+  [DATA_TYPE]: optionKey => DATA_TYPE_QUERIES[optionKey],
   [REVENUE]: optionKey => REVENUE_QUERIES[optionKey],
   [PRODUCTION]: optionKey => PRODUCTION_QUERIES[optionKey]
 }

@@ -8,6 +8,7 @@ import BaseDataFilterSelect from '../BaseDataFilterSelect'
 const RevenueTypeSelect = ({ helperText, label, loadingMessage }) => (
   <BaseDataFilterSelect
     dataFilterKey={REVENUE_TYPE}
+    selectType={'Multi'}
     label={label}
     loadingMessage={loadingMessage}
     helperText={helperText} />

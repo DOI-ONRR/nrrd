@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { US_STATES } from '../../../../constants'
+import { US_STATE } from '../../../../constants'
 
 import BaseDataFilterSelect from '../BaseDataFilterSelect'
 
 const StateSelect = ({ helperText, label, loadingMessage }) => (
   <BaseDataFilterSelect
-    dataFilterKey={US_STATES}
+    dataFilterKey={US_STATE}
     selectType={'Multi'}
     label={label}
     loadingMessage={loadingMessage}

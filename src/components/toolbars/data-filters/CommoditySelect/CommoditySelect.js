@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { COMMODITIES } from '../../../../constants'
+import { COMMODITY } from '../../../../constants'
 
 import BaseDataFilterSelect from '../BaseDataFilterSelect'
 
 const CommoditySelect = ({ helperText, label, loadingMessage }) => (
   <BaseDataFilterSelect
-    dataFilterKey={COMMODITIES}
+    dataFilterKey={COMMODITY}
     selectType={'Multi'}
     label={label}
     loadingMessage={loadingMessage}

@@ -7,6 +7,8 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../../stores/app-status-store'
 import DFQM from '../../../../js/data-filter-query-manager/index'
 
+import { ZERO_OPTIONS } from '../../../../constants'
+
 import { formatToSlug } from '../../../../js/utils'
 
 import makeStyles from '@material-ui/core/styles/makeStyles'
@@ -51,10 +53,10 @@ const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, lo
   return (
     <React.Fragment>
       {selectType === 'Single' &&
-        <BaseSingleSelect dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} />
+        <BaseDataFilterSingleSelect dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} />
       }
       {selectType === 'Multi' &&
-        <BaseMultiSelector dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} />
+        <BaseDataFilterMultiSelector dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} />
       }
     </React.Fragment>
   )
@@ -89,7 +91,7 @@ BaseDataFilterSelect.defaultProps = {
   selectType: 'Single'
 }
 
-const BaseSingleSelect = ({ dataFilterKey, label, data, helperText }) => {
+const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText }) => {
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
 
@@ -106,7 +108,10 @@ const BaseSingleSelect = ({ dataFilterKey, label, data, helperText }) => {
 
   useEffect(() => {
     if (data && data.options.length === 0) {
-      updateDataFilter({ [dataFilterKey]: undefined })
+      updateDataFilter({ [dataFilterKey]: ZERO_OPTIONS })
+    }
+    else if (state[dataFilterKey] === ZERO_OPTIONS) {
+      handleClearAll()
     }
   }, [data])
 
@@ -120,7 +125,7 @@ const BaseSingleSelect = ({ dataFilterKey, label, data, helperText }) => {
           <Select
             labelId={`${ labelSlug }-select-label`}
             id={`${ labelSlug }-select`}
-            value={state[dataFilterKey] || ''}
+            value={(state[dataFilterKey] === ZERO_OPTIONS || !state[dataFilterKey]) ? '' : state[dataFilterKey]}
             onChange={handleChange}
             displayEmpty
           >
@@ -144,11 +149,11 @@ const BaseSingleSelect = ({ dataFilterKey, label, data, helperText }) => {
   )
 }
 
-const BaseMultiSelector = ({ dataFilterKey, label, data, helperText }) => {
+const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText }) => {
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
   const { state, updateDataFilter } = useContext(DataFilterContext)
-  const [selectedOptions, setSelectedOptions] = useState(state[dataFilterKey] || '')
+  const [selectedOptions, setSelectedOptions] = useState((state[dataFilterKey] === ZERO_OPTIONS || !state[dataFilterKey]) ? '' : state[dataFilterKey])
 
   const handleChange = event => {
     if (event.target.value.includes('Clear')) {
@@ -167,7 +172,10 @@ const BaseMultiSelector = ({ dataFilterKey, label, data, helperText }) => {
 
   useEffect(() => {
     if (data && data.options.length === 0) {
-      updateDataFilter({ [dataFilterKey]: undefined })
+      updateDataFilter({ [dataFilterKey]: ZERO_OPTIONS })
+    }
+    else if (state[dataFilterKey] === ZERO_OPTIONS) {
+      handleClearAll()
     }
   }, [data])
 

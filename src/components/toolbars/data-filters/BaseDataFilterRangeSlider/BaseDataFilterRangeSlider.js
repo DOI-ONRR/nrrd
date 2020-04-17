@@ -5,29 +5,16 @@ import { useQuery } from '@apollo/react-hooks'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../../stores/app-status-store'
 import DFQM from '../../../../js/data-filter-query-manager/index'
-import {
-  YEARS,
-} from '../../../../constants'
 
 import { range } from '../../../../js/utils'
 
-import { makeStyles } from '@material-ui/core/styles'
-import Input from '@material-ui/core/Input'
+import makeStyles from '@material-ui/core/styles/makeStyles'
 import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import Checkbox from '@material-ui/core/Checkbox'
-import ListItemText from '@material-ui/core/ListItemText'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import {
-  IconButton,
-  Grid,
-  Slider,
-  Typography,
-  LinearProgress
-} from '@material-ui/core'
-import { ClearAll } from '@material-ui/icons'
+import Grid from '@material-ui/core/Grid'
+import Slider from '@material-ui/core/Slider'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -112,14 +99,14 @@ const BaseDataFilterRangeSliderImpl = ({ dataFilterKey, label, data, helperText 
     <Grid container>
       <Grid item xs={12}>
         <FormControl className={classes.formControl} disabled={(data && data.options.length === 0)}>
-          <InputLabel id="years-select-label">
+          <InputLabel id={`${ label }-slider`}>
             {label.concat(': ')}<Typography display={'inline'} color={'textSecondary'}>{getCurrentValuesText()}</Typography>
           </InputLabel>
           {yearOptions &&
             <Slider
               defaultValue={getCurrentValues()}
               getAriaValueText={getCurrentValuesText}
-              aria-labelledby="years-select-label"
+              aria-labelledby={`${ label }-slider`}
               valueLabelDisplay="auto"
               step={1}
               onChangeCommitted={handleChange}

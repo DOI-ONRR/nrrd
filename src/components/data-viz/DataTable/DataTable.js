@@ -1,12 +1,21 @@
 import React, { forwardRef, useContext, useState, useEffect } from 'react'
 
-import { REVENUE, PRODUCTION, DISBURSEMENTS, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import {
+  REVENUE,
+  PRODUCTION,
+  DISBURSEMENTS,
+  DATA_TYPE,
+  GROUP_BY,
+  REVENUE_TYPE
+} from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
 import utils, { toTitleCase } from '../../../js/utils'
 
-import gql from 'graphql-tag'
+import DTQM from '../../../js/data-table-query-manager'
 import { useQuery } from '@apollo/react-hooks'
+
+import DataTableGroupingToolbar from './DataTableGroupingToolbar'
 
 import {
   makeStyles,
@@ -56,27 +65,44 @@ const DataTable = ({ dataType, height = '100%' }) => {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
 
-  const type = dataType || state[DFC.DATA_TYPE]
+  const loadingMessage = `Loading ${ state.dataType } data from server...`
 
-  console.log('type', type)
+  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
+
+  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
+
+  useEffect(() => {
+    if (error) {
+      showErrorMessage(`Error!: ${ error.message }`)
+    }
+  }, [error])
+
+  useEffect(() => {
+    updateLoadingStatus({ status: loading, message: loadingMessage })
+  }, [loading])
+  const type = dataType || state[DATA_TYPE]
 
   return (
     <Box className={classes.root} height={height}>
       <Grid container spacing={2} style={{ height: '100%' }}>
-        {type === REVENUE &&
-          <Grid item xs={12}>
-            <RevenueDataTable state={state} />
-          </Grid>
-        }
-        {type === PRODUCTION &&
-          <Grid item xs={12}>
-            <ProductionDataTable state={state} />
-          </Grid>
-        }
-        {type === DISBURSEMENTS &&
-          <Grid item xs={12}>
-            <DisbursementDataTable state={state} />
-          </Grid>
+        {data &&
+          <React.Fragment>
+            {type === REVENUE &&
+              <Grid item xs={12}>
+                <RevenueDataTableImpl { ...data } />
+              </Grid>
+            }
+            {type === PRODUCTION &&
+              <Grid item xs={12}>
+                <ProductionDataTable state={state} />
+              </Grid>
+            }
+            {type === DISBURSEMENTS &&
+              <Grid item xs={12}>
+                <DisbursementDataTable state={state} />
+              </Grid>
+            }
+          </React.Fragment>
         }
       </Grid>
     </Box>
@@ -84,6 +110,45 @@ const DataTable = ({ dataType, height = '100%' }) => {
 }
 
 export default DataTable
+
+const RevenueDataTableImpl = data => {
+  const { state } = useContext(DataFilterContext)
+  const columnNames = getColumnNames(data.results[0])
+  const [grouping, setGrouping] = useState()
+  const [hiddenColumnNames] = useState()
+
+  useEffect(() => {
+    console.log(state)
+    setGrouping([{ columnName: state[GROUP_BY] }])
+  }, [state])
+
+  return (
+    <React.Fragment>
+      {data &&
+        <Grid container>
+          <Grid item xs={12}>
+            <TableGrid
+              rows={data.results}
+              columns={columnNames}>
+              <SortingState />
+              <GroupingState
+                grouping={grouping}
+              />
+              <IntegratedSorting />
+              <IntegratedGrouping />
+              <Table />
+              <TableHeaderRow showSortingControls/>
+              <TableColumnVisibility
+                hiddenColumnNames={hiddenColumnNames}
+              />
+              <TableGroupRow />
+            </TableGrid>
+          </Grid>
+        </Grid>
+      }
+    </React.Fragment>
+  )
+}
 
 const getAllYearsColumns = () => {
   let allYearsColumnNames = ''
@@ -93,59 +158,6 @@ const getAllYearsColumns = () => {
   return allYearsColumnNames
 }
 
-const GET_REVENUE = gql`
-query GetRevenueDataTable(${ DFC.variableListDefined })
-  {
-    revenue:query_tool_data(
-      where: {
-        land_class: {_eq: $landClass},
-        land_category: {_eq: $landCategory},
-        offshore_region: {_in: $offshoreRegions},
-        state: {_in: $usStates},
-        county: {_in: $counties},
-        commodity: {_in: $commodities},
-        revenue_type: {_eq: $revenueType}
-      }) {
-      land_class  
-      land_category
-      offshore_region
-      state
-      county
-      revenue_type
-      commodity
-      ${ getAllYearsColumns() }
-    }
-  }`
-
-const GET_PRODUCTION = gql`
-  query GetProductionDataTable(${ DFC.variableListDefined })
-    {
-      production:query_tool_production_data(
-        where: {
-          land_class: {_eq: $landClass},
-          land_category: {_eq: $landCategory},
-          offshore_region: {_in: $offshoreRegions},
-          state: {_in: $usStates},
-          county: {_in: $counties},
-          commodity: {_in: $commodities}
-        }) {
-        land_class
-        land_category
-        offshore_region
-        state
-        county
-        commodity
-        y2019
-        y2018
-        y2017
-        y2016
-        y2015
-        y2014
-        y2013
-        y2012
-        y2011
-      }
-    }`
 const CurrencyFormatter = ({ value }) => `$${ value }`
 
 const CurrencyTypeProvider = props => (
@@ -172,7 +184,7 @@ const getColumnNames = row => {
   const filteredColumns = Object.keys(row).filter(column => !column.includes('typename'))
   return filteredColumns.map(column => {
     if (parseInt(column.substring(1)) > 1000) {
-      return { name: column, title: column.substring(1) }
+      return { name: column, title: column.substring(1), year: parseInt(column.substring(1)) }
     }
     const titleName = toTitleCase(column).replace('_', ' ')
     return { name: column, title: titleName, plural: PLURAL_COLUMNS_MAP[titleName] }
@@ -289,17 +301,9 @@ const RevenueDataTable = ({ state }) => {
 
   const [leftColumns] = useState(['revenue_type', 'commodity'])
 
-  const { loading, error, data } = useQuery(GET_REVENUE, DFC.ALL_DATA_FILTER_VARS(state))
+  const data = undefined
 
-  useEffect(() => {
-    if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
-    }
-  }, [error])
-
-  useEffect(() => {
-    updateLoadingStatus({ status: loading, message: 'Loading Revenue data from server...' })
-  }, [loading])
+  return (<div>Revenue Data Table</div>)
 
   return (
     <React.Fragment>
@@ -348,120 +352,5 @@ const RevenueDataTable = ({ state }) => {
         </TableGrid>
       }
     </React.Fragment>
-  )
-}
-
-const ProductionDataTable = ({ state }) => {
-  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
-  const [grouping, setGrouping] = useState([])
-  const [filters, setFilters] = useState()
-  const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right' })))
-
-  const allColumns = [
-    'commodity',
-    'land_class'
-  ]
-
-  const [defaultColumnWidths] = useState([
-    { columnName: 'commodity', width: 180 },
-    { columnName: 'land_class', width: 180 },
-    { columnName: 'land_category', width: 180 },
-    { columnName: 'state', width: 180 },
-    { columnName: 'county', width: 180 },
-    { columnName: 'offshore_region', width: 180 },
-  ].concat(allYears.map(year => ({ columnName: `y${ year }`, width: 210 }))))
-
-  const [hiddenColumnNames, setHiddenColumnNames] = useState([
-    'commodity',
-    'land_category',
-    'state',
-    'county',
-    'offshore_region',
-  ])
-
-  const [totalSummaryItems] = useState(allYears.map(year => ({ columnName: `y${ year }`, type: 'sum', alignByColumn: false })))
-
-  const [groupSummaryItems] = useState(allYears.map(year => ({ columnName: `y${ year }`, type: 'sum', showInGroupFooter: true, alignByColumn: true })))
-
-  const [currencyColumns] = useState(allYears.map(year => `y${ year }`))
-
-  const [leftColumns] = useState(['land_class'])
-
-  const { loading, error, data } = useQuery(GET_PRODUCTION, DFC.ALL_DATA_FILTER_VARS(state))
-
-  useEffect(() => {
-    if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
-    }
-  }, [error])
-
-  useEffect(() => {
-    updateLoadingStatus({ status: loading, message: 'Loading Production data from server...' })
-  }, [loading])
-
-  return (
-    <React.Fragment>
-      {data &&
-        <TableGrid
-          rows={data.production}
-          columns={getColumnNames(data.production[0])}>
-          <CurrencyTypeProvider
-            for={currencyColumns}
-          />
-          <AllTypeProvider
-            for={allColumns}
-          />
-          <SortingState
-            defaultSorting={[{ columnName: `y${ allYears[0] }`, direction: 'asc' }]}
-          />
-          <GroupingState
-            grouping={grouping}
-          />
-          <SummaryState
-            totalItems={totalSummaryItems}
-            groupItems={groupSummaryItems}
-          />
-          <FilteringState
-            filters={filters}
-            onFiltersChange={setFilters}
-          />
-          <IntegratedSorting />
-          <IntegratedGrouping />
-          <IntegratedSummary calculator={summaryCalculator} />
-          <IntegratedFiltering />
-          <Table columnExtensions={tableColumnExtensions} />
-          <TableColumnResizing defaultColumnWidths={defaultColumnWidths} />
-          <TableHeaderRow showSortingControls/>
-          <TableColumnVisibility
-            hiddenColumnNames={hiddenColumnNames.concat(getHiddenYears(state))}
-            onHiddenColumnNamesChange={setHiddenColumnNames}
-          />
-          <TableGroupRow />
-          <TableSummaryRow
-            groupRowComponent={CustomTableSummaryRowGroupRow}
-            totalRowComponent={CustomTableSummaryRowTotalRow}
-            itemComponent={CustomTableSummaryRowItem}
-          />
-          <TableFixedColumns leftColumns={leftColumns} />
-        </TableGrid>
-      }
-    </React.Fragment>
-  )
-}
-
-const GET_DISBURSEMENTS = gql`
-  {
-    disbursement(distinct_on: period_id, limit: 10) {
-      disbursement
-    }
-  }`
-const DisbursementDataTable = () => {
-  const { loading, error, data } = useQuery(GET_DISBURSEMENTS)
-
-  if (loading) return 'Loading...'
-  if (error) return `Error! ${ error.message }`
-
-  return (
-    <div>Disbursement Data Table</div>
   )
 }

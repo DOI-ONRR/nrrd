@@ -1,14 +1,14 @@
 import gql from 'graphql-tag'
 import {
   LAND_CATEGORY,
-  COMMODITIES,
+  COMMODITY,
   LAND_CLASS,
   REVENUE_TYPE,
-  US_STATES,
-  OFFSHORE_REGIONS,
+  US_STATE,
+  OFFSHORE_REGION,
   PERIOD,
-  FISCAL_YEARS,
-  CALENDAR_YEARS
+  FISCAL_YEAR,
+  CALENDAR_YEAR
 } from '../../constants'
 
 /**
@@ -22,13 +22,14 @@ const GRAPHQL_VIEW = 'data_filter_revenue_options'
 const VARIABLE_LIST = ''.concat(
   '$landClass: String,',
   '$landCategory: String,',
-  '$offshoreRegions: [String!],',
-  '$usStates: [String!],',
-  '$counties: [String!],',
-  '$commodities: [String!],',
-  '$revenueType: String,',
+  '$offshoreRegion: [String!],',
+  '$usState: [String!],',
+  '$county: [String!],',
+  '$commodity: [String!],',
+  '$revenueType: [String!],',
   '$period: String,',
-  '$fiscalYears: [Int!],'
+  '$fiscalYear: [Int!],',
+  '$calendarYear: [Int!],'
 )
 
 const LAND_CATEGORY_OPTIONS_QUERY = `
@@ -36,13 +37,14 @@ const LAND_CATEGORY_OPTIONS_QUERY = `
     where: {
       land_class: {_eq: $landClass},
       land_category: {_neq: ""},
-      offshore_region: {_in: $offshoreRegions},
-      state: {_in: $usStates},
-      county: {_in: $counties},
-      commodity: {_in: $commodities},
-      revenue_type: {_eq: $revenueType},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $usState},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
+      revenue_type: {_in: $revenueType},
       period: {_eq: $period},
-      fiscal_year: {_in: $fiscalYears}
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: land_category,
     order_by: {land_category: asc}
@@ -55,13 +57,14 @@ const LAND_CLASS_OPTIONS_QUERY = `
     where: {
       land_class: {_neq: ""},
       land_category: {_eq: $landCategory},
-      offshore_region: {_in: $offshoreRegions},
-      state: {_in: $usStates},
-      county: {_in: $counties},
-      commodity: {_in: $commodities},
-      revenue_type: {_eq: $revenueType},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $usState},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
+      revenue_type: {_in: $revenueType},
       period: {_eq: $period},
-      fiscal_year: {_in: $fiscalYears}
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: land_class,
     order_by: {land_class: asc}
@@ -74,13 +77,14 @@ const REVENUE_TYPE_OPTIONS_QUERY = `
     where: {
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
-      offshore_region: {_in: $offshoreRegions},
-      state: {_in: $usStates},
-      county: {_in: $counties},
-      commodity: {_in: $commodities},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $usState},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
       revenue_type: {_neq: ""},
       period: {_eq: $period},
-      fiscal_year: {_in: $fiscalYears}
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: revenue_type,
     order_by: {revenue_type: asc}
@@ -93,13 +97,14 @@ const US_STATE_OPTIONS_QUERY = `
     where: {
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
-      offshore_region: {_in: $offshoreRegions},
+      offshore_region: {_in: $offshoreRegion},
       state: {_neq: ""},
-      county: {_in: $counties},
-      commodity: {_in: $commodities},
-      revenue_type: {_eq: $revenueType},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
+      revenue_type: {_in: $revenueType},
       period: {_eq: $period},
-      fiscal_year: {_in: $fiscalYears}
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: state,
     order_by: {state: asc}
@@ -113,12 +118,13 @@ const OFFSHORE_REGION_OPTIONS_QUERY = `
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
       offshore_region: {_neq: ""},
-      state: {_in: $usStates},
-      county: {_in: $counties},
-      commodity: {_in: $commodities},
-      revenue_type: {_eq: $revenueType},
+      state: {_in: $usState},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
+      revenue_type: {_in: $revenueType},
       period: {_eq: $period},
-      fiscal_year: {_in: $fiscalYears}
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: offshore_region,
     order_by: {offshore_region: asc}
@@ -131,13 +137,14 @@ const COMMODITY_OPTIONS_QUERY = `
     where: {
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
-      offshore_region: {_in: $offshoreRegions},
-      state: {_in: $usStates},
-      county: {_in: $counties},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $usState},
+      county: {_in: $county},
       commodity: {_neq: ""},
-      revenue_type: {_eq: $revenueType},
+      revenue_type: {_in: $revenueType},
       period: {_eq: $period},
-      fiscal_year: {_in: $fiscalYears}
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: commodity,
     order_by: {commodity: asc}
@@ -150,11 +157,11 @@ const FISCAL_YEAR_OPTIONS_QUERY = `
     where: {
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
-      offshore_region: {_in: $offshoreRegions},
-      state: {_in: $usStates},
-      county: {_in: $counties},
-      commodity: {_in: $commodities},
-      revenue_type: {_eq: $revenueType},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $usState},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
+      revenue_type: {_in: $revenueType},
       period: {_eq: $period},
       fiscal_year: {_neq: 0}
     },
@@ -169,11 +176,11 @@ const CALENDAR_YEAR_OPTIONS_QUERY = `
     where: {
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
-      offshore_region: {_in: $offshoreRegions},
-      state: {_in: $usStates},
-      county: {_in: $counties},
-      commodity: {_in: $commodities},
-      revenue_type: {_eq: $revenueType},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $usState},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
+      revenue_type: {_in: $revenueType},
       period: {_eq: $period},
       calendar_year: {_neq: 0}
     },
@@ -188,11 +195,11 @@ const PERIOD_OPTIONS_QUERY = `
     where: {
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
-      offshore_region: {_in: $offshoreRegions},
-      state: {_in: $usStates},
-      county: {_in: $counties},
-      commodity: {_in: $commodities},
-      revenue_type: {_eq: $revenueType},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $usState},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
+      revenue_type: {_in: $revenueType},
       period: {_neq: "Monthly"}
     },
     distinct_on: period,
@@ -205,12 +212,12 @@ const REVENUE_QUERIES = {
   [LAND_CATEGORY]: gql`query GetLandCategoryOptionsRevenue(${ VARIABLE_LIST }){${ LAND_CATEGORY_OPTIONS_QUERY }}`,
   [LAND_CLASS]: gql`query GetLandClassOptionsRevenue(${ VARIABLE_LIST }){${ LAND_CLASS_OPTIONS_QUERY }}`,
   [REVENUE_TYPE]: gql`query GetRevenueTypeOptionsRevenue(${ VARIABLE_LIST }){${ REVENUE_TYPE_OPTIONS_QUERY }}`,
-  [US_STATES]: gql`query GetUsStateOptionsRevenue(${ VARIABLE_LIST }){${ US_STATE_OPTIONS_QUERY }}`,
-  [OFFSHORE_REGIONS]: gql`query GetOffshoreRegionOptionsRevenue(${ VARIABLE_LIST }){${ OFFSHORE_REGION_OPTIONS_QUERY }}`,
+  [US_STATE]: gql`query GetUsStateOptionsRevenue(${ VARIABLE_LIST }){${ US_STATE_OPTIONS_QUERY }}`,
+  [OFFSHORE_REGION]: gql`query GetOffshoreRegionOptionsRevenue(${ VARIABLE_LIST }){${ OFFSHORE_REGION_OPTIONS_QUERY }}`,
   [PERIOD]: gql`query GetPeriodOptionsRevenue(${ VARIABLE_LIST }){${ PERIOD_OPTIONS_QUERY }}`,
-  [FISCAL_YEARS]: gql`query GetFiscalYearOptionsRevenue(${ VARIABLE_LIST }){${ FISCAL_YEAR_OPTIONS_QUERY }}`,
-  [CALENDAR_YEARS]: gql`query GetCalendarYearOptionsRevenue(${ VARIABLE_LIST }){${ CALENDAR_YEAR_OPTIONS_QUERY }}`,
-  [COMMODITIES]: gql`query GetCommodityOptionsRevenue(${ VARIABLE_LIST }){${ COMMODITY_OPTIONS_QUERY }}`
+  [FISCAL_YEAR]: gql`query GetFiscalYearOptionsRevenue(${ VARIABLE_LIST }){${ FISCAL_YEAR_OPTIONS_QUERY }}`,
+  [CALENDAR_YEAR]: gql`query GetCalendarYearOptionsRevenue(${ VARIABLE_LIST }){${ CALENDAR_YEAR_OPTIONS_QUERY }}`,
+  [COMMODITY]: gql`query GetCommodityOptionsRevenue(${ VARIABLE_LIST }){${ COMMODITY_OPTIONS_QUERY }}`
 }
 
 export default REVENUE_QUERIES
