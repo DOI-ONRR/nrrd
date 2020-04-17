@@ -53,5 +53,10 @@ module.exports = Object.freeze({
       color: typography.body2.color,
       fontSize: typography.body2.fontSize
     }
-  }
+  },
+  MuiMenuItem: {
+    root: {
+      overflow: 'none',
+    },
+  },
 })

@@ -4,25 +4,27 @@ import React, { useEffect, useRef } from 'react'
 // import utils from '../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
+import clsx from "clsx";
 
 import ChartTitle from '../ChartTitle'
 
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
 import D3CircleChart from './D3CircleChart.js'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme,props) => ({
   container: {
     display: 'block',
     top: 0,
     left: 0,
     width: '100%',
+    height: '100%',
   },
   chart: {
     display: 'block',
     top: 0,
     left: 0,
     width: '100%',
-    height: '200px',
+    height: '80%',
     fill: theme.palette.chart.primary,
     '& .bars > .bar:hover': {
       fill: theme.palette.chart.secondary,
@@ -42,6 +44,7 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     top: 0,
     left: 0,
+    maxWidth: '400px',
     fontSize: theme.typography.h5.fontSize,
     '& tr > td:first-child': {
       width: 10,
@@ -82,9 +85,10 @@ const CircleChart = props => {
   // use ONRR topojson file for land
 
   const classes = useStyles()
+  
   const { data, ...options } = props
   const elemRef = useRef(null)
-
+  console.debug("CLASSES : x", classes)
   useEffect(() => {
     // stackedBarChar(elemRef.current,{}, datas);
     // console.debug("EEEEEEEEEEEEEEEEEEEE", elemRef)
@@ -100,9 +104,9 @@ const CircleChart = props => {
 
   return (
     <>
-      <div className={classes.container} ref={elemRef}>
-        <div className={classes.chart}></div>
-        <div className={classes.legend}></div>
+      <div className={`${ classes.container } chart-container`} ref={elemRef}>
+        <div className={`${ classes.chart } chart`}></div>
+        <div className={`${ classes.legend } legend`}></div>
       </div>
     </>
   )

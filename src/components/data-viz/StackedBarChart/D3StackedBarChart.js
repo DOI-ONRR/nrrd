@@ -15,7 +15,19 @@ export default class D3StackedBarChart {
     this.marginBottom = options.marginBottom || 40
     this.marginTop = options.marginTop || 25
     this.units = (options.units) ? options.units : ''
+    this.horizontal = options.horizontal
+    if (this.horizontal) {
+      const h = this._height
+      const w = this._width
+      this._width = h
+      this._height = w
 
+      // reset margins
+      this.marginLeft = 0
+      this.marginTop = 0
+      this.marginRight = 0
+      this.marginBottom = 0
+    }
     if (options.selectedIndex === undefined) {
       this.selectedIndex = this.xDomain().length - 1
     }
@@ -24,10 +36,16 @@ export default class D3StackedBarChart {
     }
     this.xGroups = (options.xGroups) ? options.xGroups : undefined
 
+    this.legendReverse = (options.legendReverse) ? options.legendReverse : false
+
     this.xLabels = options.xLabels
     // max extent line props and defaults
-    this.legendFormat = options.legendFormat
-
+    if (options.legendFormat) {
+      this.legendFormat = options.legendFormat
+    }
+    if (options.legendHeaders) {
+      this.legendHeaders = options.legendHeaders
+    }
     this.extentPercent = options.extentPercent || 0.05
     this.extentMarginOfError = options.extentMarginOfError || 0.10
     this.maxExtentLineY = options.maxExtentLineY || 20
@@ -43,7 +61,9 @@ export default class D3StackedBarChart {
       .paddingInner(0.3)
       .paddingOuter(0.1)
 
-    this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
+    this.barScale = (options.barScale) ? options.barScale : 1
+    this._height= d3.max([this._height * this.barScale, 1])
+    this.yScale = d3.scaleLinear().rangeRound([this.marginTop ,  this._height - this.marginBottom  ])
     this.yScale.domain([this.yMax(), 0])
     this.chart = d3.select(this.node.children[0]).append('svg')
       .attr('height', this._height)
@@ -54,13 +74,17 @@ export default class D3StackedBarChart {
     try {
       this.chart.selectAll('#backgroundRect').remove()
       this.addBackgroundRect()
-
-      this._maxExtend()
+      if (!this.horizontal) {
+        this._maxExtend()
+      }
       this._chart()
-      this._xLabels()
+      if (!this.horizontal) {
+        this._xLabels()
+      }
       this._legend()
-
-      this.xAxisGroup()
+      if (!this.horizontal) {
+        this.xAxisGroup()
+      }
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -238,6 +262,16 @@ export default class D3StackedBarChart {
         .on('mouseleave', function (d) {
           self._onHover(this, d, false)
         })
+
+      // transform bars to horizontal if prop set
+      if (this.horizontal) {
+        const rotate = '90 ' + (this._height / 2 - 5) + ' 0'
+        this.chart
+          .attr('transform', 'rotate(' + rotate + ')')
+          .attr('width', 20)
+          .style('position', 'relative')
+          .style('left', -5)
+      }
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -359,7 +393,7 @@ export default class D3StackedBarChart {
       d3.select(this.node).selectAll('.legend-table tbody tr').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
       //      this.getSelected()
-
+      const legendReverse=this.legendReverse
       const data = newData || this.selectedData()
 
       // console.debug('SELECTED DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:', data)
@@ -370,14 +404,18 @@ export default class D3StackedBarChart {
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
 
       // turn object into array to play nice with d3
-      const dataArr = Object.keys(data).map((key, i) => {
+      let dataArr = Object.keys(data).map((key, i) => {
         return [labels[i], undefined, data[labels[i]]]
       }).reverse()
+
+      if(this.legendReverse) {
+        dataArr=dataArr.reverse()
+      }
       // dataArr.push(['Total', undefined, Object.keys(data).reduce((sum, key) => sum + data[key], 0)])
 
       // create a row for each object in the data
       const tr = tbody.selectAll('tr')
-        .data(dataArr)
+            .data(dataArr)
         .enter()
         .append('tr')
 
@@ -387,7 +425,14 @@ export default class D3StackedBarChart {
         .attr('class', 'legend-rect')
         .attr('width', 15)
         .attr('height', 15)
-        .style('opacity', (d, i) => i < labels.length ? ((i + 1) / labels.length) : 0)
+        .style('opacity', (d, i) => {
+          if(legendReverse) {
+            return (i < labels.length ? (1 - ((i) / labels.length)) : 0)
+          } else {
+            return (i < labels.length ? ((i + 1) / labels.length) : 0)
+          }
+        }
+                                    )
 
       // create a cell in each row for each column
 

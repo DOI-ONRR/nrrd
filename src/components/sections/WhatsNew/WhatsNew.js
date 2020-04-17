@@ -15,39 +15,32 @@ import FiberManualRecordRoundedIcon from '@material-ui/icons/FiberManualRecordRo
 const WhatsNew = props => {
   return (
     <Box pt={5} pb={5}>
-      <Typography variant="h2">What's new</Typography>
+      <Box component="h2" m={0}>What's new</Box>
       <Typography variant="body1">
-            In our latest release on December 18, 2019, we made the following
-            changes:
+        In our latest release on March 30, 2020, we made the following changes:
       </Typography>
-
       <List component="ul" aria-label="whats new list">
-        <ListItem component="li">
-          <ListItemIcon>
-            <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
-          </ListItemIcon>
-          <ListItemText primary="Added monthly disbursements data for October 2019" />
-        </ListItem>
-        <ListItem component="li">
-          <ListItemIcon>
-            <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
-          </ListItemIcon>
-          <ListItemText primary="Added monthly production data for August 2019" />
-        </ListItem>
-        <ListItem component="li">
-          <ListItemIcon>
-            <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
-          </ListItemIcon>
-          <ListItemText primary="Added monthly revenue data for November 2019" />
-        </ListItem>
-        <ListItem component="li">
+        <ListItem component="li" disableGutters>
           <ListItemIcon>
             <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
           </ListItemIcon>
           <ListItemText>
-            Added supporting information about{' '}
-            <Link href='/how-it-works/reclamation-fund/'>
-              Reclamation Fund disbursements
+            Updated{' '}
+            <Link href='https://revenuedata.doi.gov/downloads/federal-production'>
+              fiscal year production data through 2019
+            </Link>
+          </ListItemText>
+        </ListItem>
+      </List>
+      <List component="ul" aria-label="whats new list">
+        <ListItem component="li" disableGutters>
+          <ListItemIcon>
+            <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
+          </ListItemIcon>
+          <ListItemText>
+            Added{' '}
+            <Link href='/how-it-works/gomesa/#revenue-sharing'>
+              2020 GOMESA disbursements to states and local governments
             </Link>
           </ListItemText>
         </ListItem>

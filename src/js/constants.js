@@ -38,9 +38,11 @@ module.exports = Object.freeze({
   YEARLY: 'Yearly',
   REVENUE: 'Revenue',
   DISBURSEMENTS: 'Disbursements',
+  PRODUCTION: 'Production',
   OIL: 'Oil',
   GAS: 'Gas',
   COAL: 'Coal',
 
   TREND_LIMIT: 10,
+  MAX_CARDS: 3,
 })

@@ -23,7 +23,7 @@ cf restage hasura-onrr
 # 2) sandbox
 # 3) prod
 
-export DB_ENV=sandbox
+export DB_ENV=sandbox || onrr
 
 #create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.  
 
