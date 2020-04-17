@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
-
+import PropTypes from 'prop-types'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import useTheme from '@material-ui/core/styles/useTheme'
+import { formatToSlug } from '../../../../js/utils'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-
-import DefaultSingleSelect from '../../../inputs/DefaultSingleSelect'
 
 import Grid from '@material-ui/core/Grid'
 
@@ -118,3 +119,70 @@ const DataTableGroupingToolbar = () => {
 }
 
 export default DataTableGroupingToolbar
+
+
+
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(1),
+    width: '-webkit-fill-available'
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}))
+
+const DefaultSingleSelect = ({ handleChange, label, options, currentValue, helperText, infoText, includeClearAll, ...props }) => {
+  const theme = useTheme()
+  const classes = useStyles(theme)
+  const labelSlug = formatToSlug(label)
+
+  return (
+    <FormControl className={classes.formControl} disabled={(options.length === 0)}>
+      <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
+      <Select
+        labelId={`${ labelSlug }-select-label`}
+        id={`${ labelSlug }-select`}
+        value={currentValue || ''}
+        onChange={handleChange}
+        displayEmpty
+      >
+        {includeClearAll &&
+          <MenuItem value={'Clear'} disabled={(!currentValue)}>
+            <Clear /><ListItemText primary={'Clear selected'} />
+          </MenuItem>
+        }
+        { options.map((item, i) =>
+          <MenuItem key={`${ formatToSlug(item.option) }_${ i }`} value={item.value || item.option}><ListItemText primary={item.option} /></MenuItem>)
+        }
+      </Select>
+      {helperText &&
+      <FormHelperText>{helperText}</FormHelperText>
+      }
+      {(options.length === 0 && infoText) &&
+        <FormHelperText>{infoText}</FormHelperText>
+      }
+    </FormControl>
+  )
+}
+DefaultSingleSelect.propTypes = {
+  /**
+   * Text that displays below the select box to provide additional instructions
+   */
+  helperText: PropTypes.string,
+  /**
+   * Text that displays below the select box that displays when there are no options available
+   */
+  infoText: PropTypes.string,
+  /**
+   * Text that displays on the component
+   */
+  label: PropTypes.string.isRequired,
+  /**
+   * Display a clear all option to clear the selected option
+   */
+  includeClearAll: PropTypes.bool
+}
+DefaultSingleSelect.defaultProps = {
+  includeClearAll: true
+}
