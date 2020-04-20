@@ -139,6 +139,12 @@ const useStyles = makeStyles(theme => ({
       fill: theme.palette.links.default,
     }
   },
+  botNavNotSelected: {
+    color: theme.palette.grey[700],
+    '& svg': {
+      fill: theme.palette.grey[700],
+    }
+  }
 }))
 
 const MAP_DATA_TYPE_SELECT_OPTIONS = [
@@ -242,8 +248,6 @@ const ExploreDataToolbar = props => {
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
-  console.log('matchesMdUp: ', matchesMdUp)
-
   const [navValue, setNavValue] = useState(null)
   const [menu, setMenu] = useState({
     showMapTools: false,
@@ -269,9 +273,11 @@ const ExploreDataToolbar = props => {
               switch (newValue) {
               case 0:
                 setMenu({ ...menu, showMapTools: !menu.showMapTools, showExplore: false })
+                !menu.showMapTools || setNavValue(null)
                 break
               case 1:
                 setMenu({ ...menu, showExplore: !menu.showExplore, showMapTools: false })
+                !menu.showExplore || setNavValue(null)
                 break
               default:
                 break
