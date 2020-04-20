@@ -89,7 +89,7 @@ const RevenueSummaryTrends = props => {
       x => x[0] === year
     )
 
-    total = data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].sum
+    total = data.fiscal_revenue_summary.length > 1 ? data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].sum : 0
   }
 
   return (
@@ -100,6 +100,7 @@ const RevenueSummaryTrends = props => {
             <Box>Trend</Box>
             <Box>({sparkMin} - {sparkMax})</Box>
           </Typography>
+          {sparkData.length > 1 &&
           <Box component="span">
             {sparkData && (
               <Sparkline
@@ -108,6 +109,7 @@ const RevenueSummaryTrends = props => {
               />
             )}
           </Box>
+          }
         </Grid>
         <Grid item xs={6} style={{ textAlign: 'right' }}>
           <Typography variant="caption">

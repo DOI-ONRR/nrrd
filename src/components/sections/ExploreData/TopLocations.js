@@ -40,6 +40,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     '@media (max-width: 768px)': {
       maxWidth: '100%',
+      margin: 0,
     }
   },
   progressContainer: {
@@ -57,15 +58,17 @@ const useStyles = makeStyles(theme => ({
   topLocationsChart: {
     '& .chart-container': {
       display: 'flex',
-      alignItems: 'top',
+      // alignItems: 'top',
+      '@media (max-width: 426px)': {
+        display: 'block',
+        margin: 0,
+      },
       '& .chart': {
-        width: 'calc(100% - 400px)',
-        height: 550,
-      },
-      '& .legend': {
-        width: 400,
-        marginTop: theme.spacing(2),
-      },
+        marginRight: theme.spacing(2),
+        '@media (max-width: 426px)': {
+          marginRight: 0,
+        },
+      }
     },
   }
 }))
@@ -97,12 +100,12 @@ const TopLocations = ({ title, ...props }) => {
   return (
     <Container id={utils.formatToSlug(title)}>
       <Grid container>
-        <Grid item md={12}>
+        <Grid item xs={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h3" color="secondary.dark">{title}</Box>
           </Box>
         </Grid>
-        <Grid item md={12}>
+        <Grid item xs={12}>
           <Box className={classes.root}>
             <Box className={classes.topLocationsChart}>
               <CircleChart

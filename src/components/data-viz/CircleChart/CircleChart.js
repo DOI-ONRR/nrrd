@@ -4,14 +4,14 @@ import React, { useEffect, useRef } from 'react'
 // import utils from '../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
-import clsx from "clsx";
+import clsx from 'clsx'
 
 import ChartTitle from '../ChartTitle'
 
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
 import D3CircleChart from './D3CircleChart.js'
 
-const useStyles = makeStyles((theme,props) => ({
+const useStyles = makeStyles((theme, props) => ({
   container: {
     display: 'block',
     top: 0,
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme,props) => ({
     top: 0,
     left: 0,
     width: '100%',
-    height: '80%',
+    height: '100%',
     fill: theme.palette.chart.primary,
     '& .bars > .bar:hover': {
       fill: theme.palette.chart.secondary,
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme,props) => ({
     display: 'block',
     top: 0,
     left: 0,
-    maxWidth: '400px',
+    maxWidth: '100%',
     fontSize: theme.typography.h5.fontSize,
     '& tr > td:first-child': {
       width: 10,
@@ -70,12 +70,16 @@ const useStyles = makeStyles((theme,props) => ({
     },
     '& .legend-table > tbody tr td': {
       borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+      verticalAlign: 'top',
     },
     '& .legend-table > tbody tr:last-child td': {
       border: 'none',
     },
     '& .legend-table th, & .legend-table td': {
       padding: theme.spacing(0.5),
+    },
+    '& .legend-rect': {
+      marginTop: theme.spacing(0.5),
     },
   }
 }))
@@ -85,10 +89,10 @@ const CircleChart = props => {
   // use ONRR topojson file for land
 
   const classes = useStyles()
-  
+
   const { data, ...options } = props
   const elemRef = useRef(null)
-  console.debug("CLASSES : x", classes)
+  console.debug('CLASSES : x', classes)
   useEffect(() => {
     // stackedBarChar(elemRef.current,{}, datas);
     // console.debug("EEEEEEEEEEEEEEEEEEEE", elemRef)
