@@ -8,6 +8,8 @@ import DefaultLayout from '../DefaultLayout'
 import DataFilterProviderWrapper from '../../DataFilterProviderWrapper'
 import PatternLibraryLayout from '../PatternLibraryLayout'
 
+import ContactUs from '../../content-partials/ContactUs'
+
 const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
 
@@ -16,6 +18,15 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
 
   if (layout === 'pattern-library') {
     return <PatternLibraryLayout>{children}</PatternLibraryLayout>
+  }
+
+  if (location.pathname.includes('/downloads')) {
+    return (
+      <DefaultLayout includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
+        {children}
+        <ContactUs />
+      </DefaultLayout>
+    )
   }
 
   if (includeDataProvider) {
