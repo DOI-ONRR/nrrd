@@ -209,6 +209,7 @@ const TotalProduction = props => {
             onSelect={ d => handleSelect(d) }
             selectedIndex={selected}
             units='bbl'
+            showLegendUnits
           />
         </Grid>
         <Grid item xs={12} md={4}>
@@ -231,6 +232,7 @@ const TotalProduction = props => {
             }
             selectedIndex={selected}
             units='mcf'
+            showLegendUnits
           />
         </Grid>
         <Grid item xs={12} md={4}>
@@ -258,6 +260,7 @@ const TotalProduction = props => {
             }
             selectedIndex={selected}
             units='tons'
+            showLegendUnits
           />
 
         </Grid>
