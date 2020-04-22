@@ -88,7 +88,7 @@ const CircleChart = props => {
   
   const { data, ...options } = props
   const elemRef = useRef(null)
-  console.debug("CLASSES : x", classes)
+  // console.debug("CLASSES : x", classes)
   useEffect(() => {
     // stackedBarChar(elemRef.current,{}, datas);
     // console.debug("EEEEEEEEEEEEEEEEEEEE", elemRef)

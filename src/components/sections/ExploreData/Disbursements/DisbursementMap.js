@@ -232,7 +232,7 @@ export default props => {
 
   }
 
-  console.debug("Map props", props) 
+  // console.debug("Map props", props) 
   return (
     <>
       {mapData &&
