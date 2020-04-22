@@ -78,7 +78,7 @@ const RevenueOverTime = props => {
   }
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
-  if(data && cards) {
+  if(data && cards && cards.length > 0) {
     const years = [...new Set(data.fiscal_revenue_summary.map(item => item.fiscal_year))];
     const sums = cards.map( yData => [...new Set(data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
 

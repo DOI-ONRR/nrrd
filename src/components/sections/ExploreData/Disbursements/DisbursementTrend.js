@@ -78,6 +78,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
   let periodData
   let fiscalData
   let highlightIndex = 0
+  let total = 0
   if (
     data &&
     data.fiscalDisbursementSummary.length > 0 ) {
@@ -105,31 +106,37 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
+    total = data.fiscalDisbursementSummary[data.fiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].sum
 
-  
-  return (
-    <>
-      <Grid container>
-        <Grid item xs={6}>
-          <Typography variant="caption">
-            <Box>Trend</Box>
-            <Box>({sparkMin} - {sparkMax})</Box>
-          </Typography>
-          <Box component="span">
-            {
-              sparkData && (
+    return (
+      <>
+        <Grid container>
+          <Grid item xs={6}>
+            <Typography variant="caption">
+              <Box>Trend</Box>
+              <Box>({sparkMin} - {sparkMax})</Box>
+            </Typography>
+            <Box component="span">
+              {sparkData && (
                 <Sparkline
                   data={sparkData}
-                  highlightIndex={highlightIndex}
-                  />
+                  highlightIndex={highlightIndex}/>
               )}
-           </Box>
-      </Grid>
-      </Grid>
-      </>
-  )
+            </Box>
+          </Grid>
+          <Grid item xs={6} style={{ textAlign: 'right' }}>
+            <Typography variant="caption">
+              <Box>{year}</Box>
+              <Box>
+                {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
+              </Box>
+            </Typography>
+          </Grid>
+        </Grid>
+        </>
+    )
   }
-
+  
   return (<></>)
 }
 

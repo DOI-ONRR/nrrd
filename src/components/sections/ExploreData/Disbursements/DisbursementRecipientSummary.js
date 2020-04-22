@@ -107,7 +107,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
     periodData = data.period
 
     total = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].sum
-    distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].distinct_commodities
+//    distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].distinct_commodities
 
     topRecipients = data.cardDisbursementRecipientSummary
       .map((item, i) => item.recipient)
@@ -120,18 +120,26 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
             [row.fiscal_year, t ? t[1] : 0]
           )
         })
-        return { commodity: com, data: d }
+        return { recipient: com, data: d }
       })
 
-  return (
+    return (
       <>
+        <Grid container>
+          <Grid item xs={12} zeroMinWidth>
+            <Typography
+              variant="subtitle2"
+              style={{ fontWeight: 'bold', marginBottom: 10 }}>
+              Top Recipients
+            </Typography>
+          </Grid>
+        </Grid>
         <Grid container>
           <Paper className={classes.paper} style={{ marginBottom: 10 }}>
             <Table
               className={classes.table}
               size="small"
-              aria-label="top Recipients table"
-              >
+              aria-label="top Recipients table">
               <TableBody>
                 {topRecipients &&
                   topRecipients.map((row, i) => {
@@ -139,7 +147,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
                       <TableRow key={i}>
                         <TableCell component="th" scope="row">
                           <Typography style={{ fontSize: '.8rem' }}>
-                            {row.commodity}
+                            {row.recipient}
                           </Typography>
                         </TableCell>
                         <TableCell align="right">
@@ -147,8 +155,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
                             data={row.data}
                             highlightIndex={row.data.findIndex(
                               x => x[0] === year
-                            )}
-                            />
+                            )}/>
                         </TableCell>
                         <TableCell align="right">
                           <Typography style={{ fontSize: '.8rem' }}>
@@ -165,21 +172,21 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
                         </TableCell>
                       </TableRow>
                     )
-                  })}
-      </TableBody>
-        </Table>
-        </Paper>
+                  })
+                }
+              </TableBody>
+            </Table>
+          </Paper>
         </Grid>
-        </>
+      </>
     )
   }
-  
-  return (<Box className={classes.boxSection}>
-          <Box component="h4" fontWeight="bold">No Disbursements</Box>
-          </Box>
-         )
 
-  
+  return (
+    <Box className={classes.boxSection}>
+      <Box component="h4" fontWeight="bold">No Disbursements</Box>
+    </Box>
+  )
 }
 
 export default DisbursementRecipientSummary

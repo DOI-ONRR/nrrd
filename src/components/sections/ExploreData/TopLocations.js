@@ -92,43 +92,46 @@ const TopLocations = ({ title, ...props }) => {
   const dataSet = `FY ${ year }`
   if (data) {
     chartData = data.fiscal_revenue_summary
-  }
-
-  return (
-    <Container id={utils.formatToSlug(title)}>
-      <Grid container>
-        <Grid item md={12}>
-          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-            <Box component="h3" color="secondary.dark">{title}</Box>
-          </Box>
-        </Grid>
-        <Grid item md={12}>
-          <Box className={classes.root}>
-            <Box className={classes.topLocationsChart}>
-              <CircleChart
-                data={chartData}
-                maxLegendWidth='800px'
-                xAxis='location_name'
-                yAxis='sum'
-                format={ d => utils.formatToDollarInt(d) }
-                circleLabel={ d => {
-                  // console.debug('circleLABLE: ', d)
-                  const r = []
-                  r[0] = d.location_name
-                  r[1] = utils.formatToDollarInt(d.sum)
-                  return r
-                }
-                }
-                yLabel={dataSet}
-                maxCircles={6}
-                minColor={theme.palette.green[100]}
-                maxColor={theme.palette.green[600]} />
+    return (
+      <Container id={utils.formatToSlug(title)}>
+        <Grid container>
+          <Grid item md={12}>
+            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+              <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
-          </Box>
+          </Grid>
+          <Grid item md={12}>
+            <Box className={classes.root}>
+              <Box className={classes.topLocationsChart}>
+                <CircleChart
+                  data={chartData}
+                  maxLegendWidth='800px'
+                  xAxis='location_name'
+                  yAxis='sum'
+                  format={ d => utils.formatToDollarInt(d) }
+                  circleLabel={
+                    d => {
+                      // console.debug('circleLABLE: ', d)
+                      const r = []
+                      r[0] = d.location_name
+                      r[1] = utils.formatToDollarInt(d.sum)
+                      return r
+                    }
+                  }
+                  yLabel={dataSet}
+                  maxCircles={6}
+                  minColor={theme.palette.green[100]}
+                  maxColor={theme.palette.green[600]} />
+              </Box>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
-  )
+      </Container>
+    )
+  }
+  else {
+    return (null)
+  }
 }
 
 export default TopLocations

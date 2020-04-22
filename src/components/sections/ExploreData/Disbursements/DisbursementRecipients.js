@@ -24,20 +24,24 @@ import {
 import CONSTANTS from '../../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
-  table: {
-    width: '100%',
-    marginBottom: 0,
-    '& th': {
-      padding: 5,
-      lineHeight: 1
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    '& .chart-container': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'top',
+      '& .chart': {
+        width: '100%',
+        height: 250
+      },
+      '& .legend': {
+        marginTop: theme.spacing(2),
+        height: 'auto',
+      },
     },
-    '& td': {
-      padding: 0,
-    },
-  },
-  paper: {
-    width: '100%'
-  },
+  }
 }))
 
 const APOLLO_QUERY = gql`
@@ -87,8 +91,11 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
               data={chartData.DisbursementRecipientSummary}
               xAxis='recipient'
               yAxis='total'
-              minColor={theme.palette.orange[100]}
-              maxColor={theme.palette.orange[600]} />
+              minColor='#FCBA8B' 
+              maxColor='#B64D00'
+              format={ d => {
+                return utils.formatToDollarInt(d)
+              }}/>
               
               <Box mt={3}>
               <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
@@ -99,7 +106,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
               </Box>
              )
      }
-    else if ( chartData.DisbursementSourceSummary.length === 1) {
+    else if ( chartData.DisbursementRecipientSummary.length === 1) {
       return (
           <Box className={classes.boxSection}>
           <Box component="h4" fontWeight="bold">Disbursements by Recipient</Box>

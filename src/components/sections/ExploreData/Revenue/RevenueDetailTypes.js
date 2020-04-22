@@ -78,8 +78,8 @@ const RevenueDetailTypes = props => {
                 format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
                 maxCircles={4}
-                maxColor={theme.palette.orange[600]}
-                minColor={theme.palette.orange[100]} />
+                minColor='#FCBA8B'
+                maxColor='#B64D00' /> 
               <Box mt={3}>
                 <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                     Query revenue by type
