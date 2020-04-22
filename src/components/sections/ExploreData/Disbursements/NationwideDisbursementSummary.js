@@ -85,12 +85,12 @@ const NationwideDisbursementSummary = props => {
 
   if (data) {
     // do something wit dat data
-    console.log('NationwideDisbursementSummary data: ', data)
+    // console.log('NationwideDisbursementSummary data: ', data)
     groupData = utils.groupBy(data.fiscal_disbursement_recipient_source_summary, 'recipient')
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.total, 0)).reduce((total, s) => total += s, 0)
     nationwideSummaryData = Object.entries(groupData)
 
-    xGroups['Fiscal year'] = nationwideSummaryData.map((row, i) => console.log('row map: ', row))
+
   }
 
   return (
@@ -134,7 +134,7 @@ const NationwideDisbursementSummary = props => {
                           }
                         }}
                         legendHeaders={ headers => {
-                          console.debug('headers..................', headers)
+                          // console.debug('headers..................', headers)
                           headers[0] = ''
                           headers[2] = ''
                           return headers
@@ -145,7 +145,6 @@ const NationwideDisbursementSummary = props => {
                         xAxis={xAxis}
                         xLabels={xLabels}
                         yAxis={yAxis}
-                        xGroups={xGroups}
                         yGroupBy={yGroupBy}
                         yOrderBy={yOrderBy}
                         horizontal

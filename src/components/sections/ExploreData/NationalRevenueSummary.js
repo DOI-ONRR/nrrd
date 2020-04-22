@@ -85,12 +85,12 @@ const NationalRevenueSummary = props => {
 
   if (data) {
     // do something wit dat data
-    console.log('NationalRevenueSummary data: ', data)
+    //    console.log('NationalRevenueSummary data: ', data)
     groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.sum, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
 
-    xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => console.log('row map: ', row))
+
   }
 
   return (
@@ -134,7 +134,7 @@ const NationalRevenueSummary = props => {
                           }
                         }}
                         legendHeaders={ headers => {
-                          console.debug('headers..................', headers)
+                          // console.debug('headers..................', headers)
                           headers[0] = ''
                           headers[2] = ''
                           return headers
@@ -145,7 +145,6 @@ const NationalRevenueSummary = props => {
                         xAxis={xAxis}
                         xLabels={xLabels}
                         yAxis={yAxis}
-                        xGroups={xGroups}
                         yGroupBy={yGroupBy}
                         yOrderBy={yOrderBy}
                         horizontal

@@ -84,7 +84,7 @@ const DisbursementRecipientSummary = props => {
   const { state } = useContext(StoreContext)
   const classes = useStyles()
   const year = state.year
-  console.debug("DT                ", state)
+  // console.debug("DT                ", state)
 const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
