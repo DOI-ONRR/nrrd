@@ -175,6 +175,13 @@ const DisbursementRecipientSummary = props => {
       </>
     )
   }
+  
+  return (<Box className={classes.boxSection}>
+          <Box component="h4" fontWeight="bold">No Disbursements</Box>
+          </Box>
+         )
+
+  
 }
 
 export default DisbursementRecipientSummary

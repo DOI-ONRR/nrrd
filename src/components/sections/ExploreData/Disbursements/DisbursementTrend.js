@@ -132,6 +132,8 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
       </>
   )
   }
+
+  return (<></>)
 }
 
 export default DisbursementTrend

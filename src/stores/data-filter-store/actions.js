@@ -7,9 +7,7 @@
 import { types } from './reducers'
 
 export const useActions = (state, dispatch) => {
-  const updateDataFilter = (updatedFilter, apolloClient) => {
-    console.log('updateDataFilter updatedFilter: ', updatedFilter)
-    let params = ''
+  const updateDataFilter = updatedFilter => {
 
     // omit the following properties, might be better to store location ids in comma seperated list
     const propsToExclude = [
@@ -36,7 +34,7 @@ export const useActions = (state, dispatch) => {
         }
       }
       window.history.replaceState({}, '', `${ window.location.pathname }?${ params }`)
-    }
+    } */
 
     dispatch({ type: types.UPDATE_DATA_FILTER, payload: updatedFilter })
   }

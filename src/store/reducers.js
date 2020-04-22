@@ -29,7 +29,7 @@ const reducer = (state, action) => {
 }
 
 const initialState = {
-  cards: [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', minimizeIcon: false, closeIcon: true }],
+  cards: [],
   commodity: 'Oil',
   count: 0,
   countyLevel: 'State',

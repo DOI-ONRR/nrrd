@@ -81,40 +81,44 @@ const DisbursementRecipients = props => {
     data &&
     data.DisbursementRecipientSummary.length > 0) {
     chartData = data
-  }
 
-  return (
-    <>
-      { chartData.DisbursementRecipientSummary.length > 0
-        ? (
-          <Box className={classes.root}>
-            <Box component="h4" fontWeight="bold">Recipients</Box>
-            <Box>
+    if (chartData.DisbursementRecipientSummary.length > 1) {
+      return (<Box className={classes.root}>
+              <Box component="h4" fontWeight="bold">Recipients</Box>
+              <Box>
               <CircleChart
-                data={chartData.DisbursementRecipientSummary}
-                xAxis='recipient'
-                yAxis='total'
-                minColor={theme.palette.orange[100]}
-                maxColor={theme.palette.orange[600]} />
-
+              data={chartData.DisbursementRecipientSummary}
+              xAxis='recipient'
+              yAxis='total'
+              minColor={theme.palette.orange[100]}
+              maxColor={theme.palette.orange[600]} />
+              
               <Box mt={3}>
-                <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
-                      Query Disbursements by Recipients
-                </ExploreDataLink>
+              <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
+              Query Disbursements by Recipients
+              </ExploreDataLink>
               </Box>
-            </Box>
-          </Box>
-        )
-        : (
+              </Box>
+              </Box>
+             )
+     }
+    else if ( chartData.DisbursementSourceSummary.length === 1) {
+      return (
           <Box className={classes.boxSection}>
-            <Box component="h4" fontWeight="bold">Commodities</Box>
-            <Box fontSize="subtitle2.fontSize">No commodities generated revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
+          <Box component="h4" fontWeight="bold">Disbursements by Recipient</Box>
+          <Box fontSize="subtitle2.fontSize">
+          All of  disbursements went to the state</Box>
           </Box>
-        )
-      }
+      )
+    }
+  }
+  
+  return (<Box className={classes.boxSection}>
+          <Box component="h4" fontWeight="bold">No Disbursements</Box>
+          </Box>
+         )
 
-    </>
-  )
+  
 }
 
 export default DisbursementRecipients

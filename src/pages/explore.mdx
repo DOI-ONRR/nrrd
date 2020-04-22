@@ -60,6 +60,7 @@ tags:
             </Grid>
           </Container>
         </CompareContext>
+        <RevenueOverTime title="Revenue Over Time"  />       
         <NationalRevenueSummary title="Nationwide revenue summary" />
         <TopLocations title="Top locations" />
         <Commodities title="Top commodities" />
@@ -104,12 +105,16 @@ tags:
               <Grid item md={12}>
                 <DetailCards>  
                   <DisbursementDetailTrends />
-                  <DisbursementRecipients />        
+                  <DisbursementRecipients />
+                  <DisbursementSources />  
                 </DetailCards>
               </Grid>
             </Grid>
           </Container>
         </CompareContext>
+        <DisbursementsOverTime title="Disbursements Over Time"  /> 
+         <NationwideDisbursementSummary title="Nationwide Disbursements Summary" />
+         <DisbursementTopRecipients title="Top Recipients" />
       </Disbursements>
       </ContextProvider>
       <ContextProvider params={'?dataType=Production'}>

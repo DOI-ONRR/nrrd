@@ -1,47 +1,27 @@
 ---
 title: Query Data
 includeToc: false
+includeDataProvider: true
 ---
-<Container maxWidth="lg">
+<Box mb={4}>
+<Container maxWidth={'xl'}>
 
-# Data Query Tool
+# Query data
 
-<DataTypeToggle helperText={'Select a report type!'} />
-
-<ContextDisplay params={'?dataType=Revenue'}>
-  <Grid container>
-   <Grid item xs={12} sm={2}>
-      <LandClassSelect />
-    </Grid>
-    <Grid item xs={12} sm={2}>
-      <LandCategorySelect />
-    </Grid>
-    <Grid item xs={12} sm={2}>
-      <OffshoreRegionSelect />
-    </Grid>
-    <Grid item xs={12} sm={2}>
-      <StateSelect />
-    </Grid>
-    <Grid item xs={12} sm={2}>
-      <CountySelect />
-    </Grid>
-    <Grid item xs={12} sm={2}>
-      <CommoditySelect />
-    </Grid>
-    <Grid item xs={12} sm={2}>
-      <RevenueTypeSelect />
-    </Grid>
-    <Grid item xs={12} sm={4}>
-      <YearRangeSelect />
-    </Grid>
+<Grid container spacing={2}>
+  <Grid item xs={12}>
+    <DataTypeToggle />
   </Grid>
-</ContextDisplay>
-<ContextDisplay params={'?dataType=Production'}>
-Production content goes here
-</ContextDisplay>
-<ContextDisplay params={'?dataType=Disbursements'}>
-Disbursements content goes here
-</ContextDisplay>
+  <Grid item xs={12}>
+    <DataFilterDrawer />
+  </Grid>
+  <Grid item xs={12}>
+    <DataTableGroupingToolbar />
+  </Grid>
+  <Grid item xs={12}>
+    <DataTable />
+  </Grid>
+</Grid>
 
-<DataTable />
 </Container>
+</Box>
