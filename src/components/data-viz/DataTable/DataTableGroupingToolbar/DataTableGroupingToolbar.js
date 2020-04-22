@@ -6,6 +6,13 @@ import { formatToSlug } from '../../../../js/utils'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 
 import Grid from '@material-ui/core/Grid'
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import MenuItem from '@material-ui/core/MenuItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Clear from '@material-ui/icons/Clear'
+import Select from '@material-ui/core/Select'
 
 import {
   REVENUE_TYPE,
