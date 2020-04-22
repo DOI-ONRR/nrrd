@@ -7,7 +7,7 @@ import {
 
 const bgImage = {
   backgroundImage:
-    'url("/images/how-it-works/renew-onshore.svg"), url("/images/how-it-works/renewables-bg-gradient.png")',
+    'url("/images/how-it-works/renew-offshore.svg"), url("/images/how-it-works/renewables-bg-gradient.png")',
   backgroundRepeat: 'no-repeat, repeat-x',
   backgroundSize: '100%, contain',
   backgroundPosition: '0 100%, 0 0',

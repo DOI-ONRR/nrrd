@@ -13,6 +13,11 @@ module.exports = Object.freeze({
       color: palette.text.secondary,
     },
   },
+  MuiTable: {
+    root: {
+      marginBottom: '25px'
+    }
+  },
   MuiTableCell: {
     head: {
       borderBottomColor: palette.secondary.main,
