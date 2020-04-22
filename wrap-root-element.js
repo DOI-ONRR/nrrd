@@ -20,7 +20,11 @@ import {
 
 import { client } from './src/apollo/client'
 import { StoreProvider } from './src/store'
-import { AppStatusProvider } from './src/stores'
+import {
+  AppStatusProvider,
+  DataFilterProvider
+} from './src/stores'
+
 import ErrorBoundary from './src/components/ErrorBoundary'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './src/js/mui/theme'
@@ -46,13 +50,15 @@ export const wrapRootElement = ({ element }) => (
   <ErrorBoundary>
     <ThemeProvider theme={theme}>
       <ApolloProvider client={client}>
-        <StoreProvider>
-          <AppStatusProvider>
-            <MDXProvider components={ mdxComponents }>
-              {element}
-            </MDXProvider>
-          </AppStatusProvider>
-        </StoreProvider>
+        <DataFilterProvider>
+          <StoreProvider>
+            <AppStatusProvider>
+              <MDXProvider components={ mdxComponents }>
+                {element}
+              </MDXProvider>
+            </AppStatusProvider>
+          </StoreProvider>
+        </DataFilterProvider>
       </ApolloProvider>
     </ThemeProvider>
   </ErrorBoundary>

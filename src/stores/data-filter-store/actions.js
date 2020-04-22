@@ -8,7 +8,7 @@ import { types } from './reducers'
 
 export const useActions = (state, dispatch) => {
   const updateDataFilter = updatedFilter => {
-
+    let params = ''
     // omit the following properties, might be better to store location ids in comma seperated list
     const propsToExclude = [
       'arcs',
@@ -34,7 +34,7 @@ export const useActions = (state, dispatch) => {
         }
       }
       window.history.replaceState({}, '', `${ window.location.pathname }?${ params }`)
-    } */
+    }
 
     dispatch({ type: types.UPDATE_DATA_FILTER, payload: updatedFilter })
   }
