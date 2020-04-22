@@ -1,6 +1,6 @@
 /**
  * Reducer define how to update the application state
- * Any logic should be defined in actions
+ * Any business logic should be defined in actions
  */
 
 const types = Object.freeze({
@@ -11,13 +11,21 @@ const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
-  case types.UPDATE_DATA_FILTER:
-    return ({ ...state, ...payload })
+  case types.UPDATE_DATA_FILTER: {
+    const dataType = payload.dataType || state.dataType
+    const dataTypeCache = Object.assign(((state.dataTypesCache && state.dataTypesCache[dataType]) || { ...initialState }), { ...payload })
+    const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
+
+    return ({ dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache, dataType: dataType })
+  }
   default:
     return state
   }
 }
 
-const initialState = {}
+const initialState = {
+  dataType: 'Revenue',
+  period: 'Calendar Year',
+}
 
 export { initialState, types, reducer }

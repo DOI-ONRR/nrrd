@@ -30,6 +30,13 @@ export const range = (start, end) => {
     .fill()
     .map((_, idx) => start + idx)
 }
+export const formatToSlug = name => {
+  return slugify(name, {
+    lower: true,
+    // eslint-disable-next-line no-useless-escape
+    remove: /[$*_+~.()'"!\:@,?]/g
+  }).replace('-and-', '-')
+}
 
 const utils = {
   scrollStop: callback => {
