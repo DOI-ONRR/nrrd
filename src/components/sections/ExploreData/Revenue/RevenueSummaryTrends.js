@@ -11,6 +11,9 @@ import {
 import Sparkline from '../../../data-viz/Sparkline'
 
 import { StoreContext } from '../../../../store'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import utils from '../../../../js/utils'
 import CONSTANTS from '../../../../js/constants'
 
@@ -33,8 +36,8 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueSummaryTrends = props => {
-  const { state } = useContext(StoreContext)
-  const year = state.year
+  const { state } = useContext(DataFilterContext)
+  const year = state[DFC.YEAR]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, period: CONSTANTS.FISCAL_YEAR }

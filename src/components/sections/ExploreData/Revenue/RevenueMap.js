@@ -4,7 +4,8 @@ import gql from 'graphql-tag'
 
 import Map from '../../../data-viz/Map'
 
-import { StoreContext } from '../../../../store'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CONSTANTS from '../../../../js/constants'
 
@@ -24,9 +25,9 @@ const REVENUE_QUERY = gql`
 `
 
 export default props => {
-  const { state } = useContext(StoreContext)
+  const { state } = useContext(DataFilterContext)
 
-  const year = state.year
+  const year = state[DFC.YEAR]
 
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
     variables: { year, period: CONSTANTS.FISCAL_YEAR }

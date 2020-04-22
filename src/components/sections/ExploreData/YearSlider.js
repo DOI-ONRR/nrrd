@@ -16,6 +16,9 @@ import {
 import { StoreContext } from '../../../store'
 import CONSTANTS from '../../../js/constants'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 const APOLLO_QUERY = gql`
   query YearPeriod($period: String!) {
     # period query
@@ -128,9 +131,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   sliderYearDisplay: {
-    border: `2px solid ${ theme.palette.links.default }`,
-    color: theme.palette.links.default,
-    background: theme.palette.common.white,
+    color: theme.palette.grey[900],
+    background: theme.palette.grey[100],
     fontWeight: 'bold',
     width: 175,
     borderRadius: 4,
@@ -147,10 +149,10 @@ const useStyles = makeStyles(theme => ({
 
 const YearSlider = props => {
   const classes = useStyles()
-  const { state } = useContext(StoreContext)
+  const { state } = useContext(DataFilterContext)
 
-  const year = state.year
-  const period = state.period
+  const year = state[DFC.YEAR]
+  const period = state[DFC.PERIOD]
 
   let periodData
   let minYear

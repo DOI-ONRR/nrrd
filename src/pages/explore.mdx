@@ -15,6 +15,7 @@ tags:
 <Container style={{ padding: 0 }} maxWidth={false}>
   <Box mb={10}>
     <ExploreData>
+      <ContextProvider params={'?dataType=Revenue'}>
       <Revenue>
         <MapContext>
           <RevenueMap />
@@ -64,6 +65,8 @@ tags:
         <Commodities title="Top commodities" />
         <Company title="Revenue by company" />
       </Revenue>
+      </ContextProvider>
+      <ContextProvider params={'?dataType=Disbursements'}>
       <Disbursements>
         <MapContext>
           <DisbursementMap />
@@ -108,6 +111,8 @@ tags:
           </Container>
         </CompareContext>
       </Disbursements>
+      </ContextProvider>
+      <ContextProvider params={'?dataType=Production'}>
       <Production>
         <MapContext>
           <ProductionMap />
@@ -150,6 +155,7 @@ tags:
           </Container>       
         </CompareContext>
       </Production>
+      </ContextProvider>
     </ExploreData>
   </Box>
 </Container>

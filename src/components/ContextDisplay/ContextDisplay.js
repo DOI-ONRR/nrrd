@@ -8,6 +8,7 @@ const ContextDisplay = ({ params, children }) => {
   const isEqual = () => {
     let equal = true
     const urlSearchParams = new URLSearchParams(params)
+    console.log('urlSearchParams: ', urlSearchParams)
     for (const searchParam of urlSearchParams.entries()) {
       if (equal) {
         equal = (searchParam[1] === state[searchParam[0]])

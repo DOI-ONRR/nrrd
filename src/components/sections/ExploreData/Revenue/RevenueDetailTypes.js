@@ -5,6 +5,9 @@ import gql from 'graphql-tag'
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
 
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
 import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
 
@@ -45,8 +48,8 @@ const RevenueDetailTypes = props => {
 
   const classes = useStyles()
   const theme = useTheme()
-  const { state } = useContext(StoreContext)
-  const year = state.year
+  const { state } = useContext(DataFilterContext)
+  const year = state[DFC.YEAR]
 
   const dataSet = `FY ${ year }`
 

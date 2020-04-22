@@ -14,6 +14,9 @@ import Map from '../../../data-viz/Map'
 
 import { StoreContext } from '../../../../store'
 
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import mapCounties from '../counties.json'
 import mapStates from '../states.json'
 import mapCountiesOffshore from '../counties-offshore.json'
@@ -38,7 +41,7 @@ const DISBURSEMENT_QUERY = gql`
 `
 
 export default props => {
-  const { state, dispatch } = useContext(StoreContext)
+  const { state, updateDataFilter } = useContext(DataFilterContext)
 
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
@@ -48,20 +51,11 @@ export default props => {
   let y = mapY
   let k = mapK
 
-  /*
-  const {
-    cardMenuItems,
-    closeCard,
-    onLink,
-    onYear,
-    setZoom
-  } = props.exploreDataProps
-*/
-  const cards = state.cards
-  const countyLevel = state.countyLevel === 'County'
-  const offshore = state.offshoreData === 'On'
-  const year = state.year
-  const dataType = state.dataType
+  const cards = state[DFC.CARDS]
+  const countyLevel = state[DFC.COUNTIES] === 'County'
+  const offshore = state[DFC.OFFSHORE_REGIONS] === 'On'
+  const year = state[DFC.YEAR]
+  const dataType = state[DFC.DATA_TYPE]
 
 
 
@@ -87,7 +81,8 @@ export default props => {
 
   const handleChange = (type, name) => event => {
     setZoom(x, y, k)
-    return dispatch({ type: type, payload: { [name]: event.target.checked } })
+
+    updateDataFilter({ ...state, [type]: event.target.checked })
   }
 
   const handleClick = val => {
@@ -176,14 +171,15 @@ export default props => {
         setSnackbarState({ ...snackbarState, open: false })
       }
     }
-    return dispatch({ type: 'CARDS', payload: { cards: cards } })
+    updateDataFilter({ ...state, [DFC.CARDS]: cards })
   }
 
   const closeCard = (fips, x, y, k) => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    dispatch({ type: 'CARDS', payload: { cards: cards.filter(item => item.fips !== fips) } })
+
+    updateDataFilter({ ...state, [DFC.CARDS]: cards.filter(item => item.fips !== fips) })
   }
 
   // onYear
@@ -191,7 +187,8 @@ export default props => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    dispatch({ type: 'YEAR', payload: { year: selected } })
+
+    updateDataFilter({ ...state, [DFC.YEAR]: selected })
   }
 
   // setZoom

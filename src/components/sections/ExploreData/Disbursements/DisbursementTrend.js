@@ -8,6 +8,9 @@ import Sparkline from '../../../data-viz/Sparkline'
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
 
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import {
   Box,
   Grid,
@@ -61,9 +64,9 @@ const APOLLO_QUERY = gql`
 
 const DisbursementTrend = props => {
 
-  const { state } = useContext(StoreContext)
+  const { state } = useContext(DataFilterContext)
   const classes = useStyles()
-  const year = state.year
+  const year = state[DFC.YEAR]
   
 const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }

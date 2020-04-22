@@ -14,7 +14,9 @@ import {
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 
-import { StoreContext } from '../../../store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
+import { DataFilterContext } from '../../../stores/data-filter-store'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -68,11 +70,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const MapSelectControl = props => {
-  const { options, label, payload, defaultOption, ...rest } = props
+  const { options, label, dataFilterType, defaultOption, ...rest } = props
 
   const classes = useStyles()
   const theme = useTheme()
-  const { state, dispatch } = useContext(StoreContext)
+
+  const { state, updateDataFilter } = useContext(DataFilterContext)
 
   const findSelectedOption = options.findIndex(item => item === defaultOption)
 
@@ -120,9 +123,7 @@ const MapSelectControl = props => {
     setSelectedIndex(i)
     setAnchorEl(i)
 
-    // TODO: finish setting up how the payload gets handled
-    const keys = Object.keys(payload.payload)
-    dispatch({ type: payload.type, payload: { [keys[0]]: option } })
+    updateDataFilter({ ...state, [dataFilterType]: option.toString() })
 
     if (props.checkbox) {
       handleToggle(option)

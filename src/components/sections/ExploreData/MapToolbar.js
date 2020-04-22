@@ -26,6 +26,9 @@ import MapSelectControl from './MapSelectControl'
 import CONSTANTS from '../../../js/constants'
 
 import { StoreContext } from '../../../store'
+import { DataFilterContext } from '../../../stores/data-filter-store'
+
+import { REVENUE, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -232,6 +235,7 @@ const MapExploreMenu = props => {
 
 // Explore data toolbar
 const ExploreDataToolbar = props => {
+  console.log('ExploreDataToolbar props: ', props)
   const data = useStaticQuery(graphql`
     query CommodityQuery {
       onrr {
@@ -255,12 +259,15 @@ const ExploreDataToolbar = props => {
     showExplore: false,
   })
 
-  const { state } = useContext(StoreContext)
+  const { state } = useContext(DataFilterContext)
+
   const {
     dataType,
-    countyLevel,
-    offshoreData
+    counties,
+    offshoreRegion
   } = state
+
+  console.log('MapToolbar state: ', state)
 
   return (
     <>
@@ -306,21 +313,21 @@ const ExploreDataToolbar = props => {
           <Box className={classes.toolbarControls}>
             <MapSelectControl
               options={MAP_DATA_TYPE_SELECT_OPTIONS}
-              defaultOption={ dataType || 'Revenue' }
+              defaultOption={ dataType || REVENUE }
               label="Data type"
-              payload={{ type: 'DATA_TYPE', payload: { dataType: 'Revenue' } }} />
+              dataFilterType={DFC.DATA_TYPE} />
 
             <MapSelectControl
               options={MAP_LEVEL_OPTIONS}
-              defaultOption={ countyLevel || 'State' }
+              defaultOption={ counties || 'State' }
               label="Map level"
-              payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: 'State' } }} />
+              dataFilterType={DFC.COUNTIES} />
 
             <MapSelectControl
               options={MAP_OFFSHORE_SELECT_OPTIONS}
-              defaultOption={ offshoreData || 'Off' }
+              defaultOption={ offshoreRegion || 'Off' }
               label="Offshore data"
-              payload={{ type: 'OFFSHORE_DATA', payload: { offshoreData: 'Off' } }} />
+              dataFilterType={DFC.OFFSHORE_REGIONS} />
 
             {/* <MapSelectControl
           options={MAP_TIMEFRAME_OPTIONS}
@@ -331,15 +338,15 @@ const ExploreDataToolbar = props => {
               options={MAP_PERIOD_OPTIONS}
               defaultOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
               label="Period"
-              payload={{ type: 'PERIOD', payload: { period: MAP_PERIOD_OPTIONS.CALENDAR_YEAR } }} />
+              dataFilterType="" />
 
             {(dataType !== 'Disbursements') &&
           <MapSelectControl
             options={commodityOptions}
             defaultOption="Oil"
             label="Commodity"
-            checkbox={(dataType === 'Revenue') && true}
-            payload={{ type: 'COMMODITY', payload: { commodity: 'Oil' } }} />
+            checkbox={(dataType === REVENUE) && true}
+            dataFilterType={DFC.COMMODITIES} />
             }
           </Box>
         }
@@ -347,7 +354,7 @@ const ExploreDataToolbar = props => {
           <Box className={classes.toolbarExploreMenu}>
             <MapExploreMenu
               linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
-              linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
+              linkUrls={['/query-data/?type=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
             />
           </Box>
         }

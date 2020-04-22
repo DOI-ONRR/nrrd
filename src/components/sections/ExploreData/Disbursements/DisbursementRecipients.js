@@ -2,12 +2,15 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
 import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
 
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
+
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Box,
@@ -19,7 +22,6 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
-
 
 import CONSTANTS from '../../../../js/constants'
 
@@ -57,44 +59,45 @@ DisbursementRecipientSummary: disbursement_recipient_summary(
 `
 
 const DisbursementRecipients = props => {
-
-  const { state } = useContext(StoreContext)
+  const { state } = useContext(DataFilterContext)
   const classes = useStyles()
   const theme = useTheme()
-  const year = state.year
-  console.debug("DT                ", state)
-const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  const year = state[DFC.YEAR]
+
+  console.debug('DT                ', state)
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
-  if (loading) { return 'Loading ... ' }
+  if (loading) {
+    return 'Loading ... '
+  }
   if (error) return `Error! ${ error.message }`
 
+  let chartData = []
 
-  let chartData=[]
-
-  let total = 0
+  const total = 0
   if (
     data &&
-    data.DisbursementRecipientSummary.length > 0 ) {
+    data.DisbursementRecipientSummary.length > 0) {
     chartData = data
   }
 
   return (
-      <>
-        { chartData.DisbursementRecipientSummary.length > 0
+    <>
+      { chartData.DisbursementRecipientSummary.length > 0
         ? (
-      <Box className={classes.root}>
+          <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Recipients</Box>
             <Box>
-      <CircleChart
-    data={chartData.DisbursementRecipientSummary}
-    xAxis='recipient'
-    yAxis='total'
-          minColor={theme.palette.orange[100]}
+              <CircleChart
+                data={chartData.DisbursementRecipientSummary}
+                xAxis='recipient'
+                yAxis='total'
+                minColor={theme.palette.orange[100]}
                 maxColor={theme.palette.orange[600]} />
-    
-<Box mt={3}>
+
+              <Box mt={3}>
                 <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
                       Query Disbursements by Recipients
                 </ExploreDataLink>
@@ -106,12 +109,12 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
           <Box className={classes.boxSection}>
             <Box component="h4" fontWeight="bold">Commodities</Box>
             <Box fontSize="subtitle2.fontSize">No commodities generated revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
-            </Box>
+          </Box>
         )
-        }
+      }
 
-        </>
-    )
-  }
+    </>
+  )
+}
 
 export default DisbursementRecipients

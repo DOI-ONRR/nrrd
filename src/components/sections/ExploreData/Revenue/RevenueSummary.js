@@ -5,6 +5,9 @@ import Sparkline from '../../../data-viz/Sparkline'
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
 
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import {
   Box,
   Grid,
@@ -35,9 +38,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const RevenueSummary = props => {
-  const { state } = useContext(StoreContext)
+  const { state } = useContext(DataFilterContext)
   const classes = useStyles()
-  const year = state.year
+  const year = state[DFC.YEAR]
   const {
     distinctCommodities,
     highlightIndex,

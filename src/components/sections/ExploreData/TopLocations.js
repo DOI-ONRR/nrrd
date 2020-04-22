@@ -7,6 +7,9 @@ import PropTypes from 'prop-types'
 import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -73,9 +76,9 @@ const useStyles = makeStyles(theme => ({
 const TopLocations = ({ title, ...props }) => {
   const classes = useStyles()
   const theme = useTheme()
-  const { state } = useContext(StoreContext)
-  const year = state.year
-  const location = state.countyLevel
+  const { state } = useContext(DataFilterContext)
+  const year = state[DFC.YEAR]
+  const location = state[DFC.COUNTIES]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location } })
 

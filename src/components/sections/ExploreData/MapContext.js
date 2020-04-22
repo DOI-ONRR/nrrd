@@ -16,6 +16,9 @@ import YearSlider from './YearSlider'
 
 import { StoreContext } from '../../../store'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 import mapCounties from './counties.json'
 import mapStates from './states.json'
 import mapCountiesOffshore from './counties-offshore.json'
@@ -230,8 +233,8 @@ const useStyles = makeStyles(theme => ({
 
 const MapContext = props => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
-  const cards = state.cards
+  const { state, updateDataFilter } = useContext(DataFilterContext)
+  const cards = state[DFC.CARDS]
 
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
@@ -279,7 +282,8 @@ const MapContext = props => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    dispatch({ type: 'YEAR', payload: { year: selected } })
+
+    updateDataFilter({ ...state, [DFC.YEAR]: selected })
   }
   // setZoom
   const setZoom = (x, y, k) => {
@@ -330,11 +334,12 @@ const MapContext = props => {
         // setMapSnackbarState({ ...mapSnackbarState, open: false })
       }
     }
-    return dispatch({ type: 'CARDS', payload: { cards: cards } })
+
+    updateDataFilter({ ...state, [DFC.CARDS]: cards })
   }
 
-  const countyLevel = state.countyLevel === 'County'
-  const offshore = state.offshoreData === 'On'
+  const countyLevel = state[DFC.COUNTIES] === 'County'
+  const offshore = state[DFC.OFFSHORE_REGIONS] === 'On'
 
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
@@ -355,7 +360,8 @@ const MapContext = props => {
 
   const handleChange = (type, name) => event => {
     setZoom(x, y, k)
-    return dispatch({ type: type, payload: { [name]: event.target.checked } })
+
+    updateDataFilter({ ...state, [type]: event.target.checked })
   }
 
   const handleClick = val => {

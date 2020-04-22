@@ -5,6 +5,9 @@ import gql from 'graphql-tag'
 import { StoreContext } from '../../../store'
 import utils from '../../../js/utils'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 const LOCATION_TOTAL_QUERY = gql`
   query NationwideFederal($stateOrArea: String!, $year: Int!) {
     fiscal_revenue_summary(where: {state_or_area: {_eq: $stateOrArea, _neq: ""}, fiscal_year: {_eq: $year}}) {
@@ -17,8 +20,8 @@ const LOCATION_TOTAL_QUERY = gql`
 
 const LocationTotal = props => {
   const { location } = props
-  const { state } = useContext(StoreContext)
-  const year = state.year
+  const { state } = useContext(DataFilterContext)
+  const year = state[DFC.YEAR]
 
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
     variables: { stateOrArea: location, year: year }

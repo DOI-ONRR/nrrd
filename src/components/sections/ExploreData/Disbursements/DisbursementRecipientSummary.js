@@ -2,11 +2,13 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-
 import Sparkline from '../../../data-viz/Sparkline'
 
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
+
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import {
   Box,
@@ -80,24 +82,24 @@ const APOLLO_QUERY = gql`
 `
 
 const DisbursementRecipientSummary = props => {
-
-  const { state } = useContext(StoreContext)
+  const { state } = useContext(DataFilterContext)
   const classes = useStyles()
-  const year = state.year
-  console.debug("DT                ", state)
-const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  const year = state[DFC.YEAR]
+  console.debug('DT                ', state)
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
-  if (loading) { return 'Loading ... ' }
+  if (loading) {
+    return 'Loading ... '
+  }
   if (error) return `Error! ${ error.message }`
-
 
   let periodData
 
   let distinctRecipients = 0
   let topRecipients = []
-  let total = 0
+  // let total = 0
   if (
     data &&
     data.cardFiscalDisbursementSummary.length > 0 &&
@@ -106,7 +108,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
   ) {
     periodData = data.period
 
-    total = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].sum
+    // total = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].sum
     distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].distinct_commodities
 
     topRecipients = data.cardDisbursementRecipientSummary
@@ -123,7 +125,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
         return { commodity: com, data: d }
       })
 
-  return (
+    return (
       <>
         <Grid container>
           <Paper className={classes.paper} style={{ marginBottom: 10 }}>
@@ -131,7 +133,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
               className={classes.table}
               size="small"
               aria-label="top Recipients table"
-              >
+            >
               <TableBody>
                 {topRecipients &&
                   topRecipients.map((row, i) => {
@@ -148,7 +150,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
                             highlightIndex={row.data.findIndex(
                               x => x[0] === year
                             )}
-                            />
+                          />
                         </TableCell>
                         <TableCell align="right">
                           <Typography style={{ fontSize: '.8rem' }}>
@@ -166,11 +168,11 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
                       </TableRow>
                     )
                   })}
-      </TableBody>
-        </Table>
-        </Paper>
+              </TableBody>
+            </Table>
+          </Paper>
         </Grid>
-        </>
+      </>
     )
   }
 }
