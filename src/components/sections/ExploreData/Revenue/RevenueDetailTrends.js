@@ -105,13 +105,13 @@ const RevenueDetailTrends = props => {
     )
 
     locationTotalData = data.locationTotal
-    locData = locationTotalData.find(item => item.state_or_area === stateAbbr)
+    locData = locationTotalData.length > 0 ? locationTotalData.find(item => item.state_or_area === stateAbbr).sum : 0
   }
 
   return (
     <>
       <Box textAlign="center" className={classes.root} key={props.key}>
-        <Box component="h2" mt={0} mb={0}>{locData && utils.formatToDollarInt(locData.sum)}</Box>
+        <Box component="h2" mt={0} mb={0}>{utils.formatToDollarInt(locData)}</Box>
         <Box component="span" mb={4}>{year && <span>{dataSet} revenue</span>}</Box>
         {sparkData.length > 1 && (
           <Box mt={4}>

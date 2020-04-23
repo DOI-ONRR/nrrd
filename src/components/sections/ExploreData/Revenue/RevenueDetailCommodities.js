@@ -25,14 +25,14 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'top',
-      '& .chart': {
-        width: '100%',
-        height: 250
-      },
-      '& .legend': {
-        marginTop: theme.spacing(2),
-        height: 'auto',
-      },
+      // '& .chart': {
+      //   width: '100%',
+      //   height: 250
+      // },
+      // '& .legend': {
+      //   marginTop: theme.spacing(2),
+      //   height: 'auto',
+      // },
     },
   }
 }))

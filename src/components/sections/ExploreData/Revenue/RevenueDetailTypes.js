@@ -21,12 +21,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    '& > div:last-child': {
-      minHeight: 350,
-    },
-    '& .chart': {
-      height: 200,
-    },
   }
 }))
 

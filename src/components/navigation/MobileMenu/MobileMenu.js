@@ -4,10 +4,12 @@ import clsx from 'clsx'
 import {
   Drawer,
   List,
-  ListItem
+  ListItem,
+  ListItemIcon
 } from '@material-ui/core'
 
 import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -26,6 +28,10 @@ const useStyles = makeStyles(theme => ({
   listRoot: {
     background: theme.palette.common.black,
     color: theme.palette.common.white,
+    '& div:last-child': {
+      display: 'flex',
+      justifyContent: 'center',
+    },
   },
   menuButton: {
     color: theme.palette.common.black,
@@ -77,6 +83,11 @@ const MobileMenu = ({ children, ...rest }) => {
             </ListItem>
           ))
         }
+        <ListItem button key={children.length + 1} disableGutters>
+          <ListItemIcon onClick={toggleDrawer(anchor, false)}>
+            <CloseIcon />
+          </ListItemIcon>
+        </ListItem>
       </List>
     </div>
   )

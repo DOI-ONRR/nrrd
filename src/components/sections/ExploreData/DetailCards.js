@@ -68,10 +68,10 @@ const useStyles = makeStyles(theme => ({
       minHeight: 165,
     },
     '& .card-content-container > div:nth-child(2) .chart-container .legend': {
-      minHeight: 265
+      minHeight: 275
     },
     '& .card-content-container > div:nth-child(3) .chart-container .legend': {
-      minHeight: 205
+      minHeight: 245
     }
   },
   closeIcon: {
