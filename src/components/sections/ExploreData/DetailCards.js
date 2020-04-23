@@ -206,8 +206,6 @@ const DetailCards = props => {
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
 
-  console.log('cards: ', cards)
-
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
   const { loading, error, data } = useQuery(APOLLO_QUERY)

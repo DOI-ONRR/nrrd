@@ -235,7 +235,6 @@ const MapExploreMenu = props => {
 
 // Explore data toolbar
 const ExploreDataToolbar = props => {
-  console.log('ExploreDataToolbar props: ', props)
   const data = useStaticQuery(graphql`
     query CommodityQuery {
       onrr {
