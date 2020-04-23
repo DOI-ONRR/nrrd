@@ -6,7 +6,8 @@ export default class D3CircleChart {
     this.container = container
     this.data = data
     this._height = (container.children[0].clientHeight > 0) ? container.children[0].clientHeight : 400
-    this._width = (container.children[0].clientWidth <= 0) ? 300 : container.children[0].clientWidth
+    this._height = 500
+    this._width = 500
     this.radius = Math.min(this._width, this._height) / 2
     if (options.format) {
       this.format = options.format
@@ -240,23 +241,21 @@ export default class D3CircleChart {
   }
 
   circleLabel (data, xAxis, yAxis) {
-
-    let r=[,]
+    const r = [,]
     return r
   }
-  
+
   _circleLabel (data) {
     try {
       // call user defined function that has circle data argument and returns string
       // defaluts to empty string - no label
-      let r = this.circleLabel(data)
+      const r = this.circleLabel(data)
       return r
     }
     catch (err) {
       console.warn('Errror: ', err)
     }
   }
-
 
   chart () {
     const xAxis = this.xAxis
@@ -273,9 +272,12 @@ export default class D3CircleChart {
     let view
 
     const svg = d3.select(chartNode).append('svg')
-      .attr('viewBox', `-${ width * 0.75 } -${ height * 0.75 } ${ width * 1.5 } ${ height * 1.5 }`)
+      // .attr('viewBox', `-${ width * 0.75 } -${ height * 0.75 } ${ width * 1.5 } ${ height * 1.5 }`)
+      .attr('viewBox', `-${ width * 0.5 } -${ height * 0.5 } ${ width } ${ height }`)
       .style('display', 'block')
-      .style('margin', '0 -14px')
+      // .style('margin', '0 -14px')
+      .style('margin', '0')
+      .style('padding', '0')
       .style('background', 'white')
       .style('cursor', 'pointer')
       .on('click', () => zoom(root))
@@ -297,34 +299,30 @@ export default class D3CircleChart {
       })
       .on('click', d => focus !== d && (zoom(d), d3.event.stopPropagation()))
 
-    
-    
     const xLabel = svg.append('g')
-          .style('fill','white')
-      .style('font', '20px sans-serif')
+      .style('fill', 'white')
+      .style('font', '16px sans-serif')
       .attr('pointer-events', 'none')
       .attr('text-anchor', 'middle')
       .selectAll('text')
-          .data(root.descendants())
-          .join('text')
+      .data(root.descendants())
+      .join('text')
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
-          .text( d => circleLabel(d.data, xAxis, yAxis)[0])
+      .text(d => circleLabel(d.data, xAxis, yAxis)[0])
 
     const yLabel = svg.append('g')
-          .style('fill','white')
-          .style('font', '20px sans-serif')
-          .attr('pointer-events', 'none')
-          .attr('text-anchor', 'middle')
-          .selectAll('text')
-          .data(root.descendants())
-          .join('text')
-          .style('fill-opacity', d => d.parent === root ? 1 : 0)
-          .style('display', d => d.parent === root ? 'inline' : 'none')
-          .text( d => circleLabel(d.data, xAxis, yAxis)[1])
-    
-    
-    
+      .style('fill', 'white')
+      .style('font', '16px sans-serif')
+      .attr('pointer-events', 'none')
+      .attr('text-anchor', 'middle')
+      .selectAll('text')
+      .data(root.descendants())
+      .join('text')
+      .style('fill-opacity', d => d.parent === root ? 1 : 0)
+      .style('display', d => d.parent === root ? 'inline' : 'none')
+      .text(d => circleLabel(d.data, xAxis, yAxis)[1])
+
     zoomTo([root.x, root.y, root.r * 2])
 
     function zoomTo (v) {
@@ -333,7 +331,7 @@ export default class D3CircleChart {
       view = v
 
       xLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
-      yLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k +30})`)
+      yLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k + 30 })`)
       node.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
       node.attr('r', d => d.r * k)
     }
@@ -376,7 +374,7 @@ export default class D3CircleChart {
           if (d.parent !== focus) this.style.display = 'none'
         })
     */
-}
+    }
 
     return svg.node()
   }

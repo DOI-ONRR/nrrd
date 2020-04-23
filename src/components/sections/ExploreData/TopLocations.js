@@ -7,6 +7,9 @@ import PropTypes from 'prop-types'
 import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -40,6 +43,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     '@media (max-width: 768px)': {
       maxWidth: '100%',
+      margin: 0,
     }
   },
   progressContainer: {
@@ -57,15 +61,17 @@ const useStyles = makeStyles(theme => ({
   topLocationsChart: {
     '& .chart-container': {
       display: 'flex',
-      alignItems: 'top',
+      // alignItems: 'top',
+      '@media (max-width: 426px)': {
+        display: 'block',
+        margin: 0,
+      },
       '& .chart': {
-        width: 'calc(100% - 400px)',
-        height: 550,
-      },
-      '& .legend': {
-        width: 400,
-        marginTop: theme.spacing(2),
-      },
+        marginRight: theme.spacing(2),
+        '@media (max-width: 426px)': {
+          marginRight: 0,
+        },
+      }
     },
   }
 }))
@@ -73,9 +79,9 @@ const useStyles = makeStyles(theme => ({
 const TopLocations = ({ title, ...props }) => {
   const classes = useStyles()
   const theme = useTheme()
-  const { state } = useContext(StoreContext)
-  const year = state.year
-  const location = state.countyLevel
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
+  const location = filterState[DFC.COUNTIES]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location } })
 
@@ -92,10 +98,11 @@ const TopLocations = ({ title, ...props }) => {
   const dataSet = `FY ${ year }`
   if (data) {
     chartData = data.fiscal_revenue_summary
+
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
-          <Grid item md={12}>
+          <Grid item xs={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
               <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
@@ -130,7 +137,7 @@ const TopLocations = ({ title, ...props }) => {
     )
   }
   else {
-    return (null)
+    return null
   }
 }
 

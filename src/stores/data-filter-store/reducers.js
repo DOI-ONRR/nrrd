@@ -3,6 +3,9 @@
  * Any business logic should be defined in actions
  */
 
+import { REVENUE, DATA_FILTER_CONSTANTS as DFC } from '../../constants'
+import CONSTANTS from '../../js/constants'
+
 const types = Object.freeze({
   UPDATE_DATA_FILTER: 'UPDATE_DATA_FILTER',
 })
@@ -24,8 +27,12 @@ const reducer = (state, action) => {
 }
 
 const initialState = {
-  dataType: 'Revenue',
-  period: 'Calendar Year',
+  [DFC.DATA_TYPE]: REVENUE,
+  [DFC.OFFSHORE_REGIONS]: 'Off',
+  [DFC.COUNTIES]: 'State',
+  [DFC.COMMODITY]: CONSTANTS.OIL,
+  [DFC.PERIOD]: CONSTANTS.FISCAL_YEAR,
+  [DFC.YEAR]: 2019
 }
 
 export { initialState, types, reducer }

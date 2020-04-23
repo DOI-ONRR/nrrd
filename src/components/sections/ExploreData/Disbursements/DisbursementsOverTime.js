@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '100%',
     }
   },
-   progressContainer: {
+  progressContainer: {
     maxWidth: '25%',
     display: 'flex',
     '& > *': {
@@ -48,22 +48,23 @@ const useStyles = makeStyles(theme => ({
       marginRight: 'auto',
       marginLeft: 'auto',
     }
-   },
+  },
   circularProgressRoot: {
     color: theme.palette.primary.dark,
-  }, 
+  },
 }))
 
 const DisbursementsOverTime = props => {
   const classes = useStyles()
   const title = props.title || ''
-  
-  const { state } = useContext(StoreContext)
-  const cards = state.cards
 
-  const {loading, error, data } = useQuery(APOLLO_QUERY)
-  const handleDelete = props.handleDelete || ((e,val) => { console.debug('handle delete') })
+  const { state: pageState } = useContext(StoreContext)
+  const cards = pageState.cards
 
+  const { loading, error, data } = useQuery(APOLLO_QUERY)
+  const handleDelete = props.handleDelete || ((e, val) => {
+    console.debug('handle delete')
+  })
 
   if (loading) {
     return (
@@ -75,31 +76,28 @@ const DisbursementsOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
-    const years = [...new Set(data.fiscal_disbursement_summary.map(item => item.fiscal_year))];
-    const sums = cards.map( yData => [...new Set(data.fiscal_disbursement_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
+    const years = [...new Set(data.fiscal_disbursement_summary.map(item => item.fiscal_year))]
+    const sums = cards.map(yData => [...new Set(data.fiscal_disbursement_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
     // console.debug(sums, years)
-    chartData=[years, ...sums]
+    chartData = [years, ...sums]
 
-
-
-  return (
+    return (
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h3" color="secondary.dark">{title}</Box>
           </Box>
-      </Grid>
-      <Grid item md={12}>
-      
-      <LineChart data={chartData} lineDashes={['1,0', '5,5', '10,10', '20,10,5,5,5,10']} />
-      {cards.map( (card, i) => {
-        
-        return (  <Chip key={'DisbursementOverTimeChip_'+ card.fips} variant='outlined' color='primary.dark' onDelete={(e) => handleDelete(e, card.fips)}  label={card.name} /> )
-            })
-      }
-    </Grid>
-    </Container>
-  )
+        </Grid>
+        <Grid item md={12}>
+
+          <LineChart data={chartData} lineDashes={['1,0', '5,5', '10,10', '20,10,5,5,5,10']} />
+          {cards.map((card, i) => {
+            return (<Chip key={'DisbursementOverTimeChip_' + card.fips} variant='outlined' color='primary.dark' onDelete={e => handleDelete(e, card.fips)} label={card.name} />)
+          })
+          }
+        </Grid>
+      </Container>
+    )
   }
   else {
     return (null)

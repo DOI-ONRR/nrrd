@@ -14,7 +14,9 @@ import {
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 
-import { StoreContext } from '../../../store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
+import { DataFilterContext } from '../../../stores/data-filter-store'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -23,20 +25,21 @@ const useStyles = makeStyles(theme => ({
     top: -2,
     border: `1px solid ${ theme.palette.grey['300'] }`,
     height: 50,
-    minWidth: 150,
     marginLeft: theme.spacing(0),
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(0.5),
     paddingTop: 0,
     paddingBottom: 0,
-    borderBottomLeftRadius: 4,
-    borderBottomRightRadius: 4,
+    minWidth: 165,
     background: 'white',
     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
     overflowX: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    zIndex: 99,
+    zIndex: 89,
     fontSize: theme.typography.body2,
+    '@media (max-width: 768px)': {
+      marginRight: 0,
+    },
     '& .MuiTypography-root': {
       fontSize: '1.2rem',
       lineHeight: '1.2rem',
@@ -47,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     '& nav, & nav > div': {
       paddingTop: 0,
       paddingBottom: 0,
-    }
+    },
   },
   menuIcon: {
     color: theme.palette.links.default,
@@ -67,11 +70,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const MapSelectControl = props => {
-  const { options, label, payload, defaultOption, ...rest } = props
+  const { options, label, dataFilterType, defaultOption, ...rest } = props
 
   const classes = useStyles()
   const theme = useTheme()
-  const { state, dispatch } = useContext(StoreContext)
+
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
 
   const findSelectedOption = options.findIndex(item => item === defaultOption)
 
@@ -119,9 +123,7 @@ const MapSelectControl = props => {
     setSelectedIndex(i)
     setAnchorEl(i)
 
-    // TODO: finish setting up how the payload gets handled
-    const keys = Object.keys(payload.payload)
-    dispatch({ type: payload.type, payload: { [keys[0]]: option } })
+    updateDataFilter({ ...filterState, [dataFilterType]: option.toString() })
 
     if (props.checkbox) {
       handleToggle(option)

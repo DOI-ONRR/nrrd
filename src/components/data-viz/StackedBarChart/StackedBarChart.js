@@ -79,6 +79,10 @@ const useStyles = makeStyles(theme => ({
     },
     '& .legend-table th, & .legend-table td': {
       padding: theme.spacing(0.5),
+      verticalAlign: 'top',
+    },
+    '& .legend-rect': {
+      marginTop: theme.spacing(0.5),
     },
   }
 }))

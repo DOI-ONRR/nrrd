@@ -2,11 +2,13 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-
 import Sparkline from '../../../data-viz/Sparkline'
 
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
+
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import {
   Box,
@@ -60,16 +62,17 @@ const APOLLO_QUERY = gql`
 `
 
 const DisbursementTrend = props => {
-
-  const { state } = useContext(StoreContext)
+  const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
-  const year = state.year
-  
-const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  const year = filterState[DFC.YEAR]
+
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
-  if (loading) { return 'Loading ... ' }
+  if (loading) {
+    return 'Loading ... '
+  }
   if (error) return `Error! ${ error.message }`
 
   let sparkData = []
@@ -81,7 +84,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
   let total = 0
   if (
     data &&
-    data.fiscalDisbursementSummary.length > 0 ) {
+    data.fiscalDisbursementSummary.length > 0) {
     periodData = data.period
 
     // set min and max trend years
@@ -133,10 +136,10 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
             </Typography>
           </Grid>
         </Grid>
-        </>
+      </>
     )
   }
-  
+
   return (<></>)
 }
 

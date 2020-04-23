@@ -16,6 +16,7 @@ export default class D3StackedBarChart {
     this.marginTop = options.marginTop || 25
     this.units = (options.units) ? options.units : ''
     this.horizontal = options.horizontal
+    this.showLegendUnits = options.showLegendUnits
     if (this.horizontal) {
       const h = this._height
       const w = this._width
@@ -33,6 +34,9 @@ export default class D3StackedBarChart {
     }
     else {
       this.selectedIndex = options.selectedIndex
+    }
+    if (this.showLegendUnits) {
+      this.showLegendUnits = true
     }
     this.xGroups = (options.xGroups) ? options.xGroups : undefined
 
@@ -62,8 +66,8 @@ export default class D3StackedBarChart {
       .paddingOuter(0.1)
 
     this.barScale = (options.barScale) ? options.barScale : 1
-    this._height= d3.max([this._height * this.barScale, 1])
-    this.yScale = d3.scaleLinear().rangeRound([this.marginTop ,  this._height - this.marginBottom  ])
+    this._height = d3.max([this._height * this.barScale, 1])
+    this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
     this.yScale.domain([this.yMax(), 0])
     this.chart = d3.select(this.node.children[0]).append('svg')
       .attr('height', this._height)
@@ -350,6 +354,8 @@ export default class D3StackedBarChart {
 
   createLegend (newData, xValue) {
     try {
+      const self = this
+      
       d3.select(this.node).selectAll('.legend-table').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
 
@@ -369,7 +375,18 @@ export default class D3StackedBarChart {
         .data(headers)
         .enter()
         .append('th')
-        .style('text-transform', 'capitalize')
+        .style('text-transform', (d, i) => {
+          if (self.showLegendUnits) {
+            if (i < 1) {
+              return 'capitalize'
+            }
+            else {
+              return 'inherit'
+            }
+          } else {
+            return 'capitalize'
+          }
+        })
         .attr('colspan', (d, i) => {
           if (i < 1) {
             return 2
@@ -378,8 +395,13 @@ export default class D3StackedBarChart {
             return 1
           }
         })
-        .text(function (column) {
-          return column
+        .text(function (column, i) {
+          if (self.showLegendUnits) {
+            return i === 2 ? `${ column } (${ self.units })` : column
+          }
+          else {
+            return column
+          }
         })
     }
     catch (err) {
@@ -393,7 +415,7 @@ export default class D3StackedBarChart {
       d3.select(this.node).selectAll('.legend-table tbody tr').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
       //      this.getSelected()
-      const legendReverse=this.legendReverse
+      const legendReverse = this.legendReverse
       const data = newData || this.selectedData()
 
       // console.debug('SELECTED DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:', data)
@@ -408,14 +430,14 @@ export default class D3StackedBarChart {
         return [labels[i], undefined, data[labels[i]]]
       }).reverse()
 
-      if(this.legendReverse) {
-        dataArr=dataArr.reverse()
+      if (this.legendReverse) {
+        dataArr = dataArr.reverse()
       }
       // dataArr.push(['Total', undefined, Object.keys(data).reduce((sum, key) => sum + data[key], 0)])
 
       // create a row for each object in the data
       const tr = tbody.selectAll('tr')
-            .data(dataArr)
+        .data(dataArr)
         .enter()
         .append('tr')
 
@@ -426,13 +448,14 @@ export default class D3StackedBarChart {
         .attr('width', 15)
         .attr('height', 15)
         .style('opacity', (d, i) => {
-          if(legendReverse) {
+          if (legendReverse) {
             return (i < labels.length ? (1 - ((i) / labels.length)) : 0)
-          } else {
+          }
+          else {
             return (i < labels.length ? ((i + 1) / labels.length) : 0)
           }
         }
-                                    )
+        )
 
       // create a cell in each row for each column
 
@@ -1145,7 +1168,7 @@ export default class D3StackedBarChart {
         .attr('x', self._width)
         .attr('y', (self.maxExtentLineY - 5))
         .attr('text-anchor', 'end')
-        .text((units === 'dollars' || units === '$') ? ['$', maxExtentValue].join('') : [maxExtentValue, units].join(' '))
+        .text((units === 'dollars' || units === '$') ? ['$', maxExtentValue].join('') : [maxExtentValue, units].join(''))
 
       maxExtentGroup.append('line')
         .attr('x1', 0)

@@ -14,7 +14,7 @@ import RefreshIcon from '@material-ui/icons/Refresh'
 
 const useStyles = makeStyles(theme => ({
   buttonGroupGrouped: {
-    padding: 5,
+    padding: theme.spacing(0.5),
     background: theme.palette.background.default,
     margin: 0,
   },
@@ -23,8 +23,12 @@ const useStyles = makeStyles(theme => ({
     bottom: 180,
     left: 10,
     '@media (max-width: 768px)': {
-      bottom: 70,
-    }
+      bottom: 100,
+    },
+    '& svg': {
+      height: '.75em',
+      width: '.75em',
+    },
   },
 }))
 
