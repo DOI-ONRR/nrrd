@@ -12,7 +12,7 @@ import {
 import BaseDataFilterRangeSlider from '../BaseDataFilterRangeSlider'
 
 const YearRangeSelect = ({ helperText, label, loadingMessage }) => {
-  const { state: filterState } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
 
   return (
     <React.Fragment>

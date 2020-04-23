@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const BaseDataFilterRangeSlider = ({ dataFilterKey, label = 'Years', helperText, loadingMessage = 'Updating...' }) => {
-  const { state: filterState } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(DFQM.getQuery(dataFilterKey, state), DFQM.getVariables(state))
 
   const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)

@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
 
 const DataTable = ({ dataType, height = '100%' }) => {
   const classes = useStyles()
-  const { state: filterState } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
   if (!state) {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
@@ -100,7 +100,7 @@ const DataTable = ({ dataType, height = '100%' }) => {
 export default DataTable
 
 const RevenueDataTableImpl = () => {
-  const { state: filterState } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
 
   const loadingMessage = `Loading ${ state.dataType } data from server...`
 
@@ -127,7 +127,7 @@ const RevenueDataTableImpl = () => {
   )
 }
 const ProductionDataTableImpl = () => {
-  const { state: filterState } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
 
   const loadingMessage = `Loading ${ state.dataType } data from server...`
 
@@ -164,7 +164,7 @@ const CurrencyTypeProvider = props => (
 )
 
 const DataTableImpl = data => {
-  const { state: filterState } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
   const columnNames = getColumnNames(data.results[0])
   const [grouping, setGrouping] = useState([])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
