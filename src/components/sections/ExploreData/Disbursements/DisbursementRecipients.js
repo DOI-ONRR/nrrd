@@ -26,20 +26,24 @@ import {
 import CONSTANTS from '../../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
-  table: {
-    width: '100%',
-    marginBottom: 0,
-    '& th': {
-      padding: 5,
-      lineHeight: 1
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    '& .chart-container': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'top',
+      '& .chart': {
+        width: '100%',
+        height: 250
+      },
+      '& .legend': {
+        marginTop: theme.spacing(2),
+        height: 'auto',
+      },
     },
-    '& td': {
-      padding: 0,
-    },
-  },
-  paper: {
-    width: '100%'
-  },
+  }
 }))
 
 const APOLLO_QUERY = gql`
@@ -59,12 +63,12 @@ DisbursementRecipientSummary: disbursement_recipient_summary(
 `
 
 const DisbursementRecipients = props => {
-  const { state } = useContext(DataFilterContext)
+  const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
-  const theme = useTheme()
-  const year = state[DFC.YEAR]
 
-  console.debug('DT                ', state)
+  const year = filterState[DFC.YEAR]
+
+  console.debug('DT                ', filterState)
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
@@ -84,41 +88,42 @@ const DisbursementRecipients = props => {
 
     if (chartData.DisbursementRecipientSummary.length > 1) {
       return (<Box className={classes.root}>
-              <Box component="h4" fontWeight="bold">Recipients</Box>
-              <Box>
-              <CircleChart
-              data={chartData.DisbursementRecipientSummary}
-              xAxis='recipient'
-              yAxis='total'
-              minColor={theme.palette.orange[100]}
-              maxColor={theme.palette.orange[600]} />
-              
-              <Box mt={3}>
-              <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
+        <Box component="h4" fontWeight="bold">Recipients</Box>
+        <Box>
+          <CircleChart
+            data={chartData.DisbursementRecipientSummary}
+            xAxis='recipient'
+            yAxis='total'
+            minColor='#FCBA8B'
+            maxColor='#B64D00'
+            format={ d => {
+              return utils.formatToDollarInt(d)
+            }}/>
+
+          <Box mt={3}>
+            <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
               Query Disbursements by Recipients
-              </ExploreDataLink>
-              </Box>
-              </Box>
-              </Box>
-             )
-     }
-    else if ( chartData.DisbursementSourceSummary.length === 1) {
+            </ExploreDataLink>
+          </Box>
+        </Box>
+      </Box>
+      )
+    }
+    else if (chartData.DisbursementRecipientSummary.length === 1) {
       return (
-          <Box className={classes.boxSection}>
+        <Box className={classes.boxSection}>
           <Box component="h4" fontWeight="bold">Disbursements by Recipient</Box>
           <Box fontSize="subtitle2.fontSize">
           All of  disbursements went to the state</Box>
-          </Box>
+        </Box>
       )
     }
   }
-  
-  return (<Box className={classes.boxSection}>
-          <Box component="h4" fontWeight="bold">No Disbursements</Box>
-          </Box>
-         )
 
-  
+  return (<Box className={classes.boxSection}>
+    <Box component="h4" fontWeight="bold">No Disbursements</Box>
+  </Box>
+  )
 }
 
 export default DisbursementRecipients

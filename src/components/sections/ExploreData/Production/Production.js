@@ -6,8 +6,8 @@ import { PRODUCTION, DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { fetchDataFilterFromUrl } from '../../../../js/utils'
 
 export default ({ children }) => {
-  const { state, updateDataFilter } = useContext(DataFilterContext)
-  const type = state[DFC.DATA_TYPE]
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  const type = filterState[DFC.DATA_TYPE]
 
   const [urlParams] = useState(fetchDataFilterFromUrl())
   useEffect(() => {

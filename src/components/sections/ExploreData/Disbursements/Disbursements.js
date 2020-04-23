@@ -6,8 +6,8 @@ import { DISBURSEMENTS, DATA_FILTER_CONSTANTS as DFC } from '../../../../constan
 import { fetchDataFilterFromUrl } from '../../../../js/utils'
 
 export default ({ children }) => {
-  const { state, updateDataFilter } = useContext(DataFilterContext)
-  const type = state[DFC.DATA_TYPE]
+  const { state: filterData, updateDataFilter } = useContext(DataFilterContext)
+  const type = filterData[DFC.DATA_TYPE]
 
   const [urlParams] = useState(fetchDataFilterFromUrl())
   useEffect(() => {

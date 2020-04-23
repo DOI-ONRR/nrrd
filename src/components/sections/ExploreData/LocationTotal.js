@@ -20,8 +20,8 @@ const LOCATION_TOTAL_QUERY = gql`
 
 const LocationTotal = props => {
   const { location } = props
-  const { state } = useContext(DataFilterContext)
-  const year = state[DFC.YEAR]
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
     variables: { stateOrArea: location, year: year }

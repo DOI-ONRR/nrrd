@@ -38,9 +38,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const DisbursementsSummary = props => {
-  const { state } = useContext(DataFilterContext)
+  const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
-  const year = state[DFC.YEAR]
+  const year = filterState[DFC.YEAR]
   
   const {
     distinctCommodities,

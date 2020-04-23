@@ -55,8 +55,8 @@ const APOLLO_QUERY = gql`
 const RevenueDetailCommodities = props => {
   const classes = useStyles()
   const theme = useTheme()
-  const { state } = useContext(DataFilterContext)
-  const year = state[DFC.YEAR]
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   const stateAbbr = ((props.abbr.length > 2) &&
     (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state

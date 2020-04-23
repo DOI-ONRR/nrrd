@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-
 import Sparkline from '../../../data-viz/Sparkline'
 
 import utils from '../../../../js/utils'
@@ -63,16 +62,17 @@ const APOLLO_QUERY = gql`
 `
 
 const DisbursementTrend = props => {
-
-  const { state } = useContext(DataFilterContext)
+  const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
-  const year = state[DFC.YEAR]
-  
-const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  const year = filterState[DFC.YEAR]
+
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
-  if (loading) { return 'Loading ... ' }
+  if (loading) {
+    return 'Loading ... '
+  }
   if (error) return `Error! ${ error.message }`
 
   let sparkData = []
@@ -81,9 +81,10 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
   let periodData
   let fiscalData
   let highlightIndex = 0
+  let total = 0
   if (
     data &&
-    data.fiscalDisbursementSummary.length > 0 ) {
+    data.fiscalDisbursementSummary.length > 0) {
     periodData = data.period
 
     // set min and max trend years
@@ -108,29 +109,35 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
+    total = data.fiscalDisbursementSummary[data.fiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].sum
 
-  
-  return (
-    <>
-      <Grid container>
-        <Grid item xs={6}>
-          <Typography variant="caption">
-            <Box>Trend</Box>
-            <Box>({sparkMin} - {sparkMax})</Box>
-          </Typography>
-          <Box component="span">
-            {
-              sparkData && (
+    return (
+      <>
+        <Grid container>
+          <Grid item xs={6}>
+            <Typography variant="caption">
+              <Box>Trend</Box>
+              <Box>({sparkMin} - {sparkMax})</Box>
+            </Typography>
+            <Box component="span">
+              {sparkData && (
                 <Sparkline
                   data={sparkData}
-                  highlightIndex={highlightIndex}
-                  />
+                  highlightIndex={highlightIndex}/>
               )}
-           </Box>
-      </Grid>
-      </Grid>
+            </Box>
+          </Grid>
+          <Grid item xs={6} style={{ textAlign: 'right' }}>
+            <Typography variant="caption">
+              <Box>{year}</Box>
+              <Box>
+                {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
+              </Box>
+            </Typography>
+          </Grid>
+        </Grid>
       </>
-  )
+    )
   }
 
   return (<></>)

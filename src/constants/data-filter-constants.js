@@ -19,7 +19,6 @@ export const CALENDAR_YEAR = 'calendarYear'
 export const MONTHLY = 'monthly'
 export const PERIOD = 'period'
 export const YEAR = 'year'
-export const CARDS = 'cards'
 
 export const PERIOD_FISCAL_YEAR = 'Fiscal Year'
 export const PERIOD_CALENDAR_YEAR = 'Calendar Year'

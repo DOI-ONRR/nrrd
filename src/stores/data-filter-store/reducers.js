@@ -32,8 +32,7 @@ const initialState = {
   [DFC.COUNTIES]: 'State',
   [DFC.COMMODITY]: CONSTANTS.OIL,
   [DFC.PERIOD]: CONSTANTS.FISCAL_YEAR,
-  [DFC.YEAR]: 2019,
-  [DFC.CARDS]: [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', minimizeIcon: false, closeIcon: true }],
+  [DFC.YEAR]: 2019
 }
 
 export { initialState, types, reducer }

@@ -75,7 +75,7 @@ const MapSelectControl = props => {
   const classes = useStyles()
   const theme = useTheme()
 
-  const { state, updateDataFilter } = useContext(DataFilterContext)
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
 
   const findSelectedOption = options.findIndex(item => item === defaultOption)
 
@@ -123,7 +123,7 @@ const MapSelectControl = props => {
     setSelectedIndex(i)
     setAnchorEl(i)
 
-    updateDataFilter({ ...state, [dataFilterType]: option.toString() })
+    updateDataFilter({ ...filterState, [dataFilterType]: option.toString() })
 
     if (props.checkbox) {
       handleToggle(option)

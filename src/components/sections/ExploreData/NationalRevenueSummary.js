@@ -58,8 +58,8 @@ const useStyles = makeStyles(theme => ({
 
 const NationalRevenueSummary = props => {
   const classes = useStyles()
-  const { state } = useContext(DataFilterContext)
-  const year = state[DFC.YEAR]
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   const { title } = props
 

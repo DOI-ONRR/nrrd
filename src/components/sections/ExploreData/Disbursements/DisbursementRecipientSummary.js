@@ -82,10 +82,10 @@ const APOLLO_QUERY = gql`
 `
 
 const DisbursementRecipientSummary = props => {
-  const { state } = useContext(DataFilterContext)
+  const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
-  const year = state[DFC.YEAR]
-  console.debug('DT                ', state)
+  const year = filterState[DFC.YEAR]
+  console.debug('DT                ', filterState)
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
@@ -99,7 +99,7 @@ const DisbursementRecipientSummary = props => {
 
   let distinctRecipients = 0
   let topRecipients = []
-  // let total = 0
+  let total = 0
   if (
     data &&
     data.cardFiscalDisbursementSummary.length > 0 &&
@@ -108,7 +108,7 @@ const DisbursementRecipientSummary = props => {
   ) {
     periodData = data.period
 
-    // total = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].sum
+    total = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].sum
     distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].distinct_commodities
 
     topRecipients = data.cardDisbursementRecipientSummary
@@ -122,11 +122,20 @@ const DisbursementRecipientSummary = props => {
             [row.fiscal_year, t ? t[1] : 0]
           )
         })
-        return { commodity: com, data: d }
+        return { recipient: com, data: d }
       })
 
     return (
       <>
+        <Grid container>
+          <Grid item xs={12} zeroMinWidth>
+            <Typography
+              variant="subtitle2"
+              style={{ fontWeight: 'bold', marginBottom: 10 }}>
+              Top Recipients
+            </Typography>
+          </Grid>
+        </Grid>
         <Grid container>
           <Paper className={classes.paper} style={{ marginBottom: 10 }}>
             <Table
@@ -141,7 +150,7 @@ const DisbursementRecipientSummary = props => {
                       <TableRow key={i}>
                         <TableCell component="th" scope="row">
                           <Typography style={{ fontSize: '.8rem' }}>
-                            {row.commodity}
+                            {row.recipient}
                           </Typography>
                         </TableCell>
                         <TableCell align="right">
@@ -175,13 +184,12 @@ const DisbursementRecipientSummary = props => {
       </>
     )
   }
-  
-  return (<Box className={classes.boxSection}>
-          <Box component="h4" fontWeight="bold">No Disbursements</Box>
-          </Box>
-         )
 
-  
+  return (
+    <Box className={classes.boxSection}>
+      <Box component="h4" fontWeight="bold">No Disbursements</Box>
+    </Box>
+  )
 }
 
 export default DisbursementRecipientSummary

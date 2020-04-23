@@ -6,8 +6,8 @@ import gql from 'graphql-tag'
 import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
 
-import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+// import { DataFilterContext } from '../../../stores/data-filter-store'
+// import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -26,7 +26,6 @@ import AddLocationCard from './AddLocationCard'
 
 import CONSTANTS from '../../../js/constants'
 
-let BOX_MIN_HEIGHT
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -204,15 +203,17 @@ const CardTitle = props => {
 const DetailCards = props => {
   const classes = useStyles()
 
-  const { state, updateDataFilter } = useContext(DataFilterContext)
-  const cards = state[DFC.CARDS]
+  const { state: pageState, dispatch } = useContext(StoreContext)
+  const cards = pageState.cards
+
+  console.log('cards: ', cards)
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
   const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   const closeCard = fips => {
-    updateDataFilter({ ...state, [DFC.CARDS]: cards.filter(item => item.fips !== fips) })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== props.fips) })
   }
 
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
@@ -288,7 +289,8 @@ const DetailCards = props => {
         setMapSnackbarState({ ...snackbarState, open: false })
       }
     }
-    updateDataFilter({ ...state, [DFC.CARDS]: cards })
+
+    dispatch({ type: 'CARDS', payload: cards })
   }
 
   // const dataSet = `FY ${ year }`
@@ -323,7 +325,7 @@ const DetailCards = props => {
             })
           )
           return (
-            <Card className={`${ classes.root } ${ props.cardCountClass }`} key={i}>
+            <Card className={classes.root} key={i}>
               <CardHeader
                 title={<CardTitle data={landStatsData} stateTitle={card.name} stateAbbr={card.abbr} state={card.abbr} />}
                 action={<CloseIcon

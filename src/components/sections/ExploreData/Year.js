@@ -5,8 +5,8 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const Year = ({ location }) => {
-  const { state } = useContext(DataFilterContext)
-  const year = state[DFC.YEAR]
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   return (
     <>

@@ -119,8 +119,8 @@ const getRegionProperties = input => {
 
 const AddLocationCard = props => {
   const classes = useStyles()
-  const { state } = useContext(DataFilterContext)
-  const year = state[DFC.YEAR]
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   const [input, setInput] = useState(null)
   const [keyCount, setKeyCount] = useState(0)

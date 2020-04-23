@@ -20,9 +20,9 @@ const APOLLO_QUERY = gql`
 `
 
 export default props => {
-  const { state } = useContext(DataFilterContext)
+  const { state: filterState } = useContext(DataFilterContext)
 
-  const year = state[DFC.YEAR]
+  const year = filterState[DFC.YEAR]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year }

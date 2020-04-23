@@ -85,12 +85,12 @@ const useStyles = makeStyles(theme => ({
 
 const SummaryCards = props => {
   const classes = useStyles()
-  const { state, updateDataFilter } = useContext(DataFilterContext)
-  const cards = state[DFC.CARDS]
+  const { state: pageState, dispatch } = useContext(StoreContext)
+  const cards = pageState.cards
 
   const [minimized, setMinimized] = useState(true)
   const closeCard = item => {
-    updateDataFilter({ ...state, [DFC.CARDS]: cards.filter(item => item.fips !== props.fips) })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== props.fips) })
   }
 
   const minimizeCard = item => {
@@ -126,7 +126,7 @@ const SummaryCards = props => {
                     onClick={(e, i) => {
                       minimizeCard(i)
                     }}
-                    key={state}
+                    key={filterState}
                   />
                 )}
                 {closeIcon && (

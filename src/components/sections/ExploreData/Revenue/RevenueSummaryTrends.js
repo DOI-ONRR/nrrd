@@ -36,8 +36,8 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueSummaryTrends = props => {
-  const { state } = useContext(DataFilterContext)
-  const year = state[DFC.YEAR]
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, period: CONSTANTS.FISCAL_YEAR }

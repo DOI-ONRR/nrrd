@@ -21,7 +21,8 @@ export const useActions = (state, dispatch) => {
       'period',
       'properties',
       'type',
-      'year'
+      'year',
+      'dataTypesCache'
     ]
 
     if (typeof window !== 'undefined' && window && Object.keys(updatedFilter).length > 0) {

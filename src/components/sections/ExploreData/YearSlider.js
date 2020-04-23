@@ -149,14 +149,15 @@ const useStyles = makeStyles(theme => ({
 
 const YearSlider = props => {
   const classes = useStyles()
-  const { state } = useContext(DataFilterContext)
+  const { state: filterState } = useContext(DataFilterContext)
 
-  const year = state[DFC.YEAR]
-  const period = state[DFC.PERIOD]
+  const year = filterState[DFC.YEAR]
+  const period = filterState[DFC.PERIOD]
 
   let periodData
   let minYear
   let maxYear
+  const customMarks = []
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { period: CONSTANTS.FISCAL_YEAR }
@@ -171,18 +172,18 @@ const YearSlider = props => {
     // set min and max trend years
     minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-  }
 
-  const customMarks = [
-    {
-      label: minYear,
-      value: minYear
-    },
-    {
-      label: maxYear,
-      value: maxYear
-    }
-  ]
+    customMarks.push(
+      {
+        label: minYear.toString(),
+        value: minYear
+      },
+      {
+        label: maxYear.toString(),
+        value: maxYear
+      }
+    )
+  }
 
   return (
     <Box className={classes.root}>

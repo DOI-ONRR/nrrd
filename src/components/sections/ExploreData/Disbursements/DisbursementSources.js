@@ -24,20 +24,24 @@ import {
 import CONSTANTS from '../../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
-  table: {
-    width: '100%',
-    marginBottom: 0,
-    '& th': {
-      padding: 5,
-      lineHeight: 1
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    '& .chart-container': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'top',
+      '& .chart': {
+        width: '100%',
+        height: 250
+      },
+      '& .legend': {
+        marginTop: theme.spacing(2),
+        height: 'auto',
+      },
     },
-    '& td': {
-      padding: 0,
-    },
-  },
-  paper: {
-    width: '100%'
-  },
+  }
 }))
 
 const APOLLO_QUERY = gql`
@@ -84,9 +88,13 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
           <Box component="h4" fontWeight="bold">Sources</Box>
           <Box>
             <CircleChart
-              data={chartData.DisbursementSourceSummary}
-            xAxis='source'
-              yAxis='total'
+        data={chartData.DisbursementSourceSummary}
+        xAxis='source'
+        yAxis='total'
+         format={ d => {
+                  return utils.formatToDollarInt(d)
+                }
+                }
               minColor={theme.palette.blue[100]}
               maxColor={theme.palette.blue[600]} />
             <Box mt={3}>
