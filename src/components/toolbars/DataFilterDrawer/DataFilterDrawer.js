@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function DataFilterDrawer () {
-  const { state: filterState } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
   if (!state) {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
