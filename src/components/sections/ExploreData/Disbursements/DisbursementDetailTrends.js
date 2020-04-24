@@ -6,6 +6,9 @@ import gql from 'graphql-tag'
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
 
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import CONSTANTS from '../../../../js/constants'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -46,8 +49,8 @@ const APOLLO_QUERY = gql`
 
 const DisbursementDetailTrends = props => {
   const classes = useStyles()
-  const { state } = useContext(StoreContext)
-  const year = state.year
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   const stateAbbr = ((props.abbr.length > 2) &&
     (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state

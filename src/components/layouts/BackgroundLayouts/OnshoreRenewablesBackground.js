@@ -15,7 +15,7 @@ const bgImage = {
 }
 
 export default ({ children }) => (
-  <Box display='inline-box' style={bgImage}>
+  <Box display='inline-box' style={bgImage} mt={2}>
     <Container maxWidth="lg" component="section">
       <Box>
         { children }

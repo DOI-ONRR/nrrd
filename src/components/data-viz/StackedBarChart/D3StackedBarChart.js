@@ -16,6 +16,7 @@ export default class D3StackedBarChart {
     this.marginTop = options.marginTop || 25
     this.units = (options.units) ? options.units : ''
     this.horizontal = options.horizontal
+    this.showLegendUnits = options.showLegendUnits
     if (this.horizontal) {
       const h = this._height
       const w = this._width
@@ -33,6 +34,9 @@ export default class D3StackedBarChart {
     }
     else {
       this.selectedIndex = options.selectedIndex
+    }
+    if (this.showLegendUnits) {
+      this.showLegendUnits = true
     }
     this.xGroups = (options.xGroups) ? options.xGroups : undefined
 
@@ -350,6 +354,8 @@ export default class D3StackedBarChart {
 
   createLegend (newData, xValue) {
     try {
+      const self = this
+      
       d3.select(this.node).selectAll('.legend-table').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
 
@@ -369,7 +375,18 @@ export default class D3StackedBarChart {
         .data(headers)
         .enter()
         .append('th')
-        .style('text-transform', 'capitalize')
+        .style('text-transform', (d, i) => {
+          if (self.showLegendUnits) {
+            if (i < 1) {
+              return 'capitalize'
+            }
+            else {
+              return 'inherit'
+            }
+          } else {
+            return 'capitalize'
+          }
+        })
         .attr('colspan', (d, i) => {
           if (i < 1) {
             return 2
@@ -378,8 +395,13 @@ export default class D3StackedBarChart {
             return 1
           }
         })
-        .text(function (column) {
-          return column
+        .text(function (column, i) {
+          if (self.showLegendUnits) {
+            return i === 2 ? `${ column } (${ self.units })` : column
+          }
+          else {
+            return column
+          }
         })
     }
     catch (err) {

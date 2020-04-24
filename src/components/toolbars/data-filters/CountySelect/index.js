@@ -1,1 +1,1 @@
-export default './CountySelect'
+export default from './CountySelect'

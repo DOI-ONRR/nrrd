@@ -16,6 +16,9 @@ import YearSlider from './YearSlider'
 
 import { StoreContext } from '../../../store'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 import mapCounties from './counties.json'
 import mapStates from './states.json'
 import mapCountiesOffshore from './counties-offshore.json'
@@ -230,8 +233,9 @@ const useStyles = makeStyles(theme => ({
 
 const MapContext = props => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
-  const cards = state.cards
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  const { state: pageState, dispatch } = useContext(StoreContext)
+  const cards = pageState.cards
 
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
@@ -279,7 +283,8 @@ const MapContext = props => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    dispatch({ type: 'YEAR', payload: { year: selected } })
+
+    updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
   }
   // setZoom
   const setZoom = (x, y, k) => {
@@ -330,32 +335,21 @@ const MapContext = props => {
         // setMapSnackbarState({ ...mapSnackbarState, open: false })
       }
     }
-    return dispatch({ type: 'CARDS', payload: { cards: cards } })
+
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== props.fips) })
   }
 
-  const countyLevel = state.countyLevel === 'County'
-  const offshore = state.offshoreData === 'On'
+  const countyLevel = filterState[DFC.COUNTIES] === 'County'
+  const offshore = filterState[DFC.OFFSHORE_REGIONS] === 'On'
 
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
-  const cardCountClass = () => {
-    switch (cards.length) {
-    case 2:
-      return 'cards-2'
-    case 3:
-      return 'cards-3'
-    case 4:
-      return 'cards-4'
-    default:
-      return 'cards-1'
-    }
-  }
-
   const handleChange = (type, name) => event => {
     setZoom(x, y, k)
-    return dispatch({ type: type, payload: { [name]: event.target.checked } })
+
+    updateDataFilter({ ...filterState, [type]: event.target.checked })
   }
 
   const handleClick = val => {
@@ -437,7 +431,7 @@ const MapContext = props => {
           </Grid>
           { matchesMdUp &&
             <Grid item xs={12}>
-              <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
+              <Box className={classes.cardContainer}>
                 {cards.map((state, i) => {
                   return (
                     React.cloneElement(props.children[1], {
@@ -473,7 +467,7 @@ const MapContext = props => {
         { matchesSmDown &&
           <>
             <Grid item xs={12}>
-              <Box className={`${ classes.cardContainer } ${ cardCountClass() }`}>
+              <Box className={classes.cardContainer}>
                 {cards.map((state, i) => {
                   return (
                     React.cloneElement(props.children[1], {

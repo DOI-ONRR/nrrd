@@ -1,5 +1,6 @@
 import React from 'react'
 
+import HowWorksLinkIconSvg from '-!svg-react-loader!../../images/icons/how-works.svg'
 import HowMainIconOilSvg from '-!svg-react-loader!../../images/how-it-works/how-main-icon-oil.svg'
 import HowMainIconHardrockSvg from '-!svg-react-loader!../../images/how-it-works/how-main-icon-hardrock.svg'
 import HowMainIconWindSvg from '-!svg-react-loader!../../images/how-it-works/how-main-icon-wind.svg'
@@ -22,6 +23,7 @@ import IconDownloadCsvSvg from '-!svg-react-loader!../../images/icons/icon-downl
 import IconDownloadDataSvg from '-!svg-react-loader!../../images/icons/icon-download-data.svg'
 import IconQuestionCircleSvg from '-!svg-react-loader!../../images/icons/icon-question-circle.svg'
 
+export const HowWorksLinkIconImg = props => <HowWorksLinkIconSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} />
 export const HowMainIconOilImg = props => <HowMainIconOilSvg {...props} />
 export const HowMainIconHardrockImg = props => <HowMainIconHardrockSvg {...props} />
 export const HowMainIconWindImg = props => <HowMainIconWindSvg {...props} />

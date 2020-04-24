@@ -1,1 +1,1 @@
-export default './CommoditySelect'
+export default from './CommoditySelect'

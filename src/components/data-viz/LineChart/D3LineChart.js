@@ -3,13 +3,7 @@
 import * as d3 from 'd3'
 
 export default class D3LineChart {
-foo () {
-  try {
-  }
-  catch (err) {
-      console.warn('Error: ', err)
-    }
-  }
+
   constructor (container, data, options) {
     this.data=data
     if(!( data ) || data.length === 0 ) {
@@ -22,6 +16,9 @@ foo () {
     this.margin = (options.margin) ? options.margin : { right: 25, left: 25, top: 25, bottom: 25 }
     this._height = (this.chartNode.clientHeight > 0) ? this.chartNode.clientHeight - this.margin.top - this.margin.bottom : 400
     this._width = (this.chartNode.clientWidth > 0) ? this.chartNode.clientWidth - this.margin.right - this.margin.left : 400
+
+    this.lineDashes = (options.lineDashes) ? options.lineDashes : ['1,0']
+    this.lineStrokes = (options.lineStrokes) ? options.lineStrokes : ['black']
 
    
     this.chart()
@@ -63,7 +60,9 @@ foo () {
       const yAxis = this.yAxis()
       const yDatasets = this.yDatasets()
       const addLine = this.addLine()
-
+      const lineDashes = this.lineDashes
+      const lineStrokes = this.lineStrokes
+      
       const svg = d3.select(this.chartNode).append('svg')
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
@@ -80,11 +79,23 @@ foo () {
         .attr('class', 'y axis')
         .call(yAxis)
 
-      svg.append('path')
-        .datum(yDatasets[0]) // 10. Binds data to the line
-        .attr('class', 'line') // Assign a class for styling
-        .attr('d', addLine) // 11. Calls the line generator
+  
+      for (let ii = 0; ii < yDatasets.length; ii++) {
+        let d = yDatasets[ii]
 
+        let dd= ii % lineDashes.length
+        let ss = ii % lineStrokes.length
+        svg.append('path')
+          .datum(d) // 10. Binds data to the line
+          .attr('class', 'line') // Assign a class for styling
+          .attr('fill','none')
+          .attr('stroke', lineStrokes[ss])
+          .attr('stroke-width', 3)
+          .attr('stroke-dasharray',lineDashes[dd])
+          .attr('d', addLine) // 11. Calls the line generator
+      }
+   
+      /*
       svg.append('path')
         .datum(yDatasets[1]) // 10. Binds data to the line
         .attr('class', 'line') // Assign a class for styling
@@ -94,7 +105,7 @@ foo () {
         .datum(yDatasets[2]) // 10. Binds data to the line
         .attr('class', 'line') // Assign a class for styling
         .attr('d', addLine) // 11. Calls the line generator
-
+*/
       this.chart = svg
       return svg
       // end try
@@ -110,14 +121,9 @@ foo () {
       const yScale = this.yScale()
       const xDomain = this.xDomain()
       return d3.line()
-        .x((d, i) =>{
-          // console.debug("x in line", xDomain[i], i );
-          return xScale(xDomain[i])} ) // set the x values for the line generator
-        .y((d, i) =>{
-          // console.debug("d in addline", d)
-          return yScale(d)
-        }) // set the y values for the line generator
-        .curve(d3.curveBasis) // apply smoothing to the line
+        .x((d, i) => xScale(xDomain[i])) // set the x values for the line generator
+        .y((d, i) => yScale(d)) // set the y values for the line generator
+        // apply smoothing to the line
     }
     catch (err) {
       console.warn('Error: ', err)
