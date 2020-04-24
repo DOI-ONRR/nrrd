@@ -3,18 +3,12 @@
 import * as d3 from 'd3'
 
 export default class D3LineChart {
-foo () {
-  try {
-  }
-  catch (err) {
-      console.warn('Error: ', err)
-    }
-  }
   constructor (container, data, options) {
-    this.data=data
-    if(!( data ) || data.length === 0 ) {
-      console.warn("No data for chart exiting");
-      return;
+    this.data = data
+
+    if (!(data) || data.length === 0) {
+      console.warn('No data for chart exiting')
+      return
     }
     this.container = container
     this.legendNode = container.children[1]
@@ -23,37 +17,43 @@ foo () {
     this._height = (this.chartNode.clientHeight > 0) ? this.chartNode.clientHeight - this.margin.top - this.margin.bottom : 400
     this._width = (this.chartNode.clientWidth > 0) ? this.chartNode.clientWidth - this.margin.right - this.margin.left : 400
 
-   
+    this.lineDashes = (options.lineDashes) ? options.lineDashes : ['1,0']
+    this.lineStrokes = (options.lineStrokes) ? options.lineStrokes : ['black']
+
     this.chart()
-    
+
     // end constructor
   }
 
   xAxis () {
     try {
       const xScale = this.xScale()
-      const data=this.data
-      return  d3.axisBottom(xScale)
-            .tickValues(data[0])
-            .tickFormat(d3.format('04d'))
+      const data = this.data
+      return d3.axisBottom(xScale)
+        .tickValues(data[0])
+        .tickFormat(d3.format('04d'))
     }
     catch (err) {
       console.warn('Error: ', err)
     }
   }
+
   yAxis () {
     try {
       const yScale = this.yScale()
       return d3.axisLeft(yScale)
         .ticks(5)
-      // Create an axis component with d3.axisLeft
+        .tickFormat(function (d) {
+          return `$${ d / 1000000000 }M`
+        })
 
-  }
-  catch (err) {
+      // Create an axis component with d3.axisLeft
+    }
+    catch (err) {
       console.warn('Error: ', err)
     }
   }
-  
+
   chart () {
     try {
       const width = this._width
@@ -63,28 +63,46 @@ foo () {
       const yAxis = this.yAxis()
       const yDatasets = this.yDatasets()
       const addLine = this.addLine()
+      const lineDashes = this.lineDashes
+      const lineStrokes = this.lineStrokes
 
       const svg = d3.select(this.chartNode).append('svg')
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
-        .style('border', 'solid 1px black')
+        .style('border', 'solid 1px rgba(0, 0, 0, 0.25)')
+        .style('border-radius', '4px')
+        .style('box-shadow', '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)')
         .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
       svg.append('g')
         .attr('class', 'x-axis')
-        .attr('transform', 'translate(0,' + height + ')')
+        .attr('transform', `translate(0, ${ height })`)
+        .style('font-size', '.875rem')
         .call(xAxis) // Create an axis component with d3.axisBottom
 
       svg.append('g')
-        .attr('class', 'y axis')
+        .attr('class', 'y-axis')
+        .attr('transform', `translate(${ margin.left }, 0)`)
+        .style('font-size', '.875rem')
         .call(yAxis)
 
-      svg.append('path')
-        .datum(yDatasets[0]) // 10. Binds data to the line
-        .attr('class', 'line') // Assign a class for styling
-        .attr('d', addLine) // 11. Calls the line generator
+      for (let ii = 0; ii < yDatasets.length; ii++) {
+        const d = yDatasets[ii]
 
+        const dd = ii % lineDashes.length
+        const ss = ii % lineStrokes.length
+        svg.append('path')
+          .datum(d) // 10. Binds data to the line
+          .attr('class', 'line') // Assign a class for styling
+          .attr('fill', 'none')
+          .attr('stroke', lineStrokes[ss])
+          .attr('stroke-width', 3)
+          .attr('stroke-dasharray', lineDashes[dd])
+          .attr('d', addLine) // 11. Calls the line generator
+      }
+
+      /*
       svg.append('path')
         .datum(yDatasets[1]) // 10. Binds data to the line
         .attr('class', 'line') // Assign a class for styling
@@ -94,7 +112,7 @@ foo () {
         .datum(yDatasets[2]) // 10. Binds data to the line
         .attr('class', 'line') // Assign a class for styling
         .attr('d', addLine) // 11. Calls the line generator
-
+*/
       this.chart = svg
       return svg
       // end try
@@ -110,14 +128,9 @@ foo () {
       const yScale = this.yScale()
       const xDomain = this.xDomain()
       return d3.line()
-        .x((d, i) =>{
-          // console.debug("x in line", xDomain[i], i );
-          return xScale(xDomain[i])} ) // set the x values for the line generator
-        .y((d, i) =>{
-          // console.debug("d in addline", d)
-          return yScale(d)
-        }) // set the y values for the line generator
-        .curve(d3.curveBasis) // apply smoothing to the line
+        .x((d, i) => xScale(xDomain[i])) // set the x values for the line generator
+        .y((d, i) => yScale(d)) // set the y values for the line generator
+        // apply smoothing to the line
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -134,11 +147,10 @@ foo () {
     }
   }
 
-  
   xScale () {
     try {
-      let n = this.xDomain().length
-      let width = this._width
+      const n = this.xDomain().length
+      const width = this._width
       const min = this.xMin()
       const max = this.xMax()
       return d3.scaleLinear()
@@ -153,10 +165,10 @@ foo () {
   yDomain () {
     try {
       // console.debug('yDomain', this.data)
-      const yDatasets=this.yDatasets()
+      const yDatasets = this.yDatasets()
       // console.debug('yDomain yDatasets', yDatasets)
       let r = []
-      r = yDatasets.reduce( (r, dataset, i) => r.concat(dataset) ,[] )
+      r = yDatasets.reduce((r, dataset, i) => r.concat(dataset), [])
       // console.debug('return', r)
       return r
     }
@@ -167,23 +179,22 @@ foo () {
 
   yScale () {
     try {
-      
       const height = this._height
       const min = this.yMin()
       const max = this.yMax()
       return d3.scaleLinear()
         .domain([min, max]) // input
-        .range([height,0])
+        .range([height, 0])
     }
     catch (err) {
       console.warn('Error: ', err)
     }
   }
- 
+
   yDatasets () {
     try {
-      const data=this.data
-      const r=data.slice(-1 * data.length + 1)
+      const data = this.data
+      const r = data.slice(-1 * data.length + 1)
       // console.debug('yDatasetxss', r)
       return r
     }
@@ -191,9 +202,10 @@ foo () {
       console.warn('Error: ', err)
     }
   }
+
   xMax () {
     try {
-      return this.xDomain()[this.xDomain().length - 1 ]
+      return this.xDomain()[this.xDomain().length - 1]
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -205,30 +217,27 @@ foo () {
       return this.xDomain()[0]
     }
     catch (err) {
-        console.warn('Error: ', err)
-      }
+      console.warn('Error: ', err)
+    }
   }
-  
+
   yMax () {
     try {
-      const yDomain=this.yDomain()
+      const yDomain = this.yDomain()
       return d3.max(yDomain)
     }
     catch (err) {
       console.warn('Error: ', err)
     }
   }
-  
+
   yMin () {
     try {
-      const yDomain=this.yDomain()
+      const yDomain = this.yDomain()
       return d3.min(yDomain)
-
     }
     catch (err) {
-        console.warn('Error: ', err)
+      console.warn('Error: ', err)
     }
   }
-  
-  
 }

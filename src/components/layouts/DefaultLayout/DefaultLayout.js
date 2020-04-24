@@ -6,18 +6,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-
-import {
-  CssBaseline,
-  Container,
-  Grid
-} from '@material-ui/core'
+import Box from '@material-ui/core/Box'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import useTheme from '@material-ui/core/styles/useTheme'
 
 import InfoBanner from '../../content-partials/InfoBanner'
 import Footer from '../../content-partials/Footer'
 import Header from '../../content-partials/Header'
-
+import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
 const useStyles = makeStyles(theme => (
@@ -113,6 +112,7 @@ const DefaultLayout = ({ includeToc = true, children }) => {
   return (
     <React.Fragment>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+      <LoadingStatusBackdrop />
       <InfoBanner />
       <Header />
       <CssBaseline />
@@ -132,7 +132,9 @@ const DefaultLayout = ({ includeToc = true, children }) => {
         }
       </main>
       {data &&
-        <Footer data={data} />
+        <Box mt={3}>
+          <Footer data={data} />
+        </Box>
       }
     </React.Fragment>
   )

@@ -5,11 +5,7 @@ export default class D3CircleChart {
   constructor (container, data, options) {
     this.container = container
     this.data = data
-    console.debug('CONTAINER: ', container)
-    console.debug('containerHeight: ', container.children[0].clientHeight)
-    console.debug('containerWidth: ', container.children[0].clientWidth)
-    // this._height = (container.children[0].clientHeight > 0) ? container.children[0].clientHeight : 400
-    // this._width = (container.children[0].clientWidth <= 0) ? 300 : container.children[0].clientWidth
+    this._height = (container.children[0].clientHeight > 0) ? container.children[0].clientHeight : 400
     this._height = 500
     this._width = 500
     this.radius = Math.min(this._width, this._height) / 2

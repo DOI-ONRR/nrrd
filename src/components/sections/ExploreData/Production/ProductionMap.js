@@ -6,23 +6,28 @@ import Map from '../../../data-viz/Map'
 
 import { StoreContext } from '../../../../store'
 
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 const APOLLO_QUERY = gql`
-  query FiscalDisbursements($year: Int!) {
-    fiscal_disbursement_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }}) {
+  query FiscalProduction($year: Int!, $commodity: String!) {
+    fiscal_production_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}) {
       fiscal_year
       state_or_area
       sum
+      
     }
   }
 `
 
 export default props => {
-  const { state } = useContext(StoreContext)
+  const { state: filterState } = useContext(DataFilterContext)
 
-  const year = state.year
+  const commodity = filterState[DFC.COMMODITY]
+  const year = filterState[DFC.YEAR]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year }
+    variables: { year, commodity }
   })
 
   let mapData = [[]]
@@ -30,7 +35,7 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    mapData = data.fiscal_disbursement_summary.map((item, i) => [
+    mapData = data.fiscal_production_summary.map((item, i) => [
       item.state_or_area,
       item.sum
     ])

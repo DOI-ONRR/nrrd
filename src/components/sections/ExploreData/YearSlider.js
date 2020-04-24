@@ -16,6 +16,9 @@ import {
 import { StoreContext } from '../../../store'
 import CONSTANTS from '../../../js/constants'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 const APOLLO_QUERY = gql`
   query YearPeriod($period: String!) {
     # period query
@@ -128,9 +131,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   sliderYearDisplay: {
-    border: `2px solid ${ theme.palette.links.default }`,
-    color: theme.palette.links.default,
-    background: theme.palette.common.white,
+    color: theme.palette.grey[900],
+    background: theme.palette.grey[100],
     fontWeight: 'bold',
     width: 175,
     borderRadius: 4,
@@ -147,14 +149,15 @@ const useStyles = makeStyles(theme => ({
 
 const YearSlider = props => {
   const classes = useStyles()
-  const { state } = useContext(StoreContext)
+  const { state: filterState } = useContext(DataFilterContext)
 
-  const year = state.year
-  const period = state.period
+  const year = filterState[DFC.YEAR]
+  const period = filterState[DFC.PERIOD]
 
   let periodData
   let minYear
   let maxYear
+  const customMarks = []
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { period: CONSTANTS.FISCAL_YEAR }
@@ -169,18 +172,18 @@ const YearSlider = props => {
     // set min and max trend years
     minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-  }
 
-  const customMarks = [
-    {
-      label: minYear,
-      value: minYear
-    },
-    {
-      label: maxYear,
-      value: maxYear
-    }
-  ]
+    customMarks.push(
+      {
+        label: minYear.toString(),
+        value: minYear
+      },
+      {
+        label: maxYear.toString(),
+        value: maxYear
+      }
+    )
+  }
 
   return (
     <Box className={classes.root}>

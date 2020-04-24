@@ -26,6 +26,9 @@ import MapSelectControl from './MapSelectControl'
 import CONSTANTS from '../../../js/constants'
 
 import { StoreContext } from '../../../store'
+import { DataFilterContext } from '../../../stores/data-filter-store'
+
+import { REVENUE, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -235,13 +238,17 @@ const ExploreDataToolbar = props => {
   const data = useStaticQuery(graphql`
     query CommodityQuery {
       onrr {
-        commodity(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
+        production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
+          commodity
+        }
+        revenue_commodity: revenue_commodity_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
           commodity
         }
       }
     }
   `)
-  const commodityOptions = data.onrr.commodity.map(item => item.commodity)
+  const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
+  const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
   const classes = useStyles()
 
   const theme = useTheme()
@@ -255,12 +262,13 @@ const ExploreDataToolbar = props => {
     showExplore: false,
   })
 
-  const { state } = useContext(StoreContext)
+  const { state: filterState } = useContext(DataFilterContext)
+
   const {
     dataType,
-    countyLevel,
-    offshoreData
-  } = state
+    counties,
+    offshoreRegion
+  } = filterState
 
   return (
     <>
@@ -306,49 +314,58 @@ const ExploreDataToolbar = props => {
           <Box className={classes.toolbarControls}>
             <MapSelectControl
               options={MAP_DATA_TYPE_SELECT_OPTIONS}
-              defaultOption={ dataType || 'Revenue' }
+              defaultOption={ dataType || REVENUE }
               label="Data type"
-              payload={{ type: 'DATA_TYPE', payload: { dataType: 'Revenue' } }} />
+              dataFilterType={DFC.DATA_TYPE} />
 
             <MapSelectControl
               options={MAP_LEVEL_OPTIONS}
-              defaultOption={ countyLevel || 'State' }
+              defaultOption={ counties || 'State' }
               label="Map level"
-              payload={{ type: 'COUNTY_LEVEL', payload: { countyLevel: 'State' } }} />
+              dataFilterType={DFC.COUNTIES} />
 
             <MapSelectControl
               options={MAP_OFFSHORE_SELECT_OPTIONS}
-              defaultOption={ offshoreData || 'Off' }
+              defaultOption={ offshoreRegion || 'Off' }
               label="Offshore data"
-              payload={{ type: 'OFFSHORE_DATA', payload: { offshoreData: 'Off' } }} />
+              dataFilterType={DFC.OFFSHORE_REGIONS} />
 
             {/* <MapSelectControl
-          options={MAP_TIMEFRAME_OPTIONS}
-          label="Timeframe"
-          payload={{ type: 'TIMEFRAME', payload: { timeframe: MAP_TIMEFRAME_OPTIONS.YEARLY } }} /> */}
+                  options={MAP_TIMEFRAME_OPTIONS}
+                  label="Timeframe"
+                  dataFilterType={DFC.TIMEFRAME'} /> */}
 
             <MapSelectControl
               options={MAP_PERIOD_OPTIONS}
               defaultOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
               label="Period"
-              payload={{ type: 'PERIOD', payload: { period: MAP_PERIOD_OPTIONS.CALENDAR_YEAR } }} />
+              dataFilterType="" />
 
-            {(dataType !== 'Disbursements') &&
-          <MapSelectControl
-            options={commodityOptions}
-            defaultOption="Oil"
-            label="Commodity"
-            checkbox={(dataType === 'Revenue') && true}
-            payload={{ type: 'COMMODITY', payload: { commodity: 'Oil' } }} />
+            {(dataType === 'Revenue') &&
+            <MapSelectControl
+              options={revenueCommodityOptions}
+              defaultOption="Oil"
+              label="Commodity"
+              checkbox={(dataType === REVENUE) && true}
+              dataFilterType={DFC.COMMODITIES} />
             }
-          </Box>
-        }
-        {(menu.showExplore || matchesMdUp) &&
-          <Box className={classes.toolbarExploreMenu}>
-            <MapExploreMenu
-              linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
-              linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
-            />
+
+            {(dataType === 'Production') &&
+              <MapSelectControl
+                options={productionCommodityOptions}
+                defaultOption="Oil (bbl)"
+                label="Commodity"
+                checkbox={(dataType === 'Revenue') && true}
+                payload={{ type: 'COMMODITY', payload: { commodity: 'Oil (bbl)' } }} />
+            }
+            {(menu.showExplore || matchesMdUp) &&
+              <Box className={classes.toolbarExploreMenu}>
+                <MapExploreMenu
+                  linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
+                  linkUrls={['/query-data/?type=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
+                />
+              </Box>
+            }
           </Box>
         }
       </Box>

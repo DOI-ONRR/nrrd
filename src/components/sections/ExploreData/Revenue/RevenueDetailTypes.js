@@ -5,6 +5,9 @@ import gql from 'graphql-tag'
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
 
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
 import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
 
@@ -39,8 +42,8 @@ const RevenueDetailTypes = props => {
 
   const classes = useStyles()
   const theme = useTheme()
-  const { state } = useContext(StoreContext)
-  const year = state.year
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   const dataSet = `FY ${ year }`
 
@@ -72,8 +75,8 @@ const RevenueDetailTypes = props => {
                 format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
                 maxCircles={4}
-                maxColor={theme.palette.orange[600]}
-                minColor={theme.palette.orange[100]} />
+                minColor='#FCBA8B'
+                maxColor='#B64D00' /> 
               <Box mt={3}>
                 <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                     Query revenue by type
