@@ -17,7 +17,7 @@ const reducer = (state, action) => {
 }
 
 const initialState = {
-  cards: [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', minimizeIcon: false, closeIcon: true }],
+  cards: [],
   mapX: 0,
   mapY: 0,
   mapZoom: 0.75,
