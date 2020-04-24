@@ -3,11 +3,15 @@ import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import Grid from '@material-ui/core/Grid'
+import {
+  Box,
+  Grid
+} from '@material-ui/core'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import SectionHeader from '../../sections/SectionHeader'
 import SectionControls from '../../sections/SectionControls'
+import Link from '../../../components/Link'
 
 import utils from '../../../js/utils'
 import CONSTANTS from '../../../js/constants'
@@ -151,7 +155,8 @@ const TotalDisbursements = props => {
   return (
     <>
       <SectionHeader
-        title="Disbursements"
+        title="Total disbursements"
+        linkLabel="disbursements"
         showExploreLink
       />
       <Grid container spacing={4}>
@@ -178,6 +183,9 @@ const TotalDisbursements = props => {
             xLabels={xLabels}
             legendFormat={v => utils.formatToDollarInt(v)}
           />
+          <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
+            <Link href='/downloads/disbursements/'>Source file</Link>
+          </Box>
         </Grid>
       </Grid>
     </>

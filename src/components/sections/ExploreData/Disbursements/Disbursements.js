@@ -1,14 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
-import { StoreContext } from '../../../../store'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DISBURSEMENTS, DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import CONSTANTS from '../../../../js/constants'
+import { fetchDataFilterFromUrl } from '../../../../js/utils'
 
-export default props => {
-  const { state } = useContext(StoreContext)
-  const dataType = state.dataType
+export default ({ children }) => {
+  const { state: filterData, updateDataFilter } = useContext(DataFilterContext)
+  const type = filterData[DFC.DATA_TYPE]
+
+  const [urlParams] = useState(fetchDataFilterFromUrl())
+  useEffect(() => {
+    if (Object.keys(urlParams).length > 0) {
+      updateDataFilter(urlParams)
+    }
+  }, [urlParams])
 
   return (
-    (dataType === CONSTANTS.DISBURSEMENTS) ? <>{props.children}</> : null
+    <>
+      { type === DISBURSEMENTS && children }
+    </>
   )
 }

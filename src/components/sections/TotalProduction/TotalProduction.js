@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import Grid from '@material-ui/core/Grid'
+import {
+  Box,
+  Grid
+} from '@material-ui/core'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import SectionHeader from '../../sections/SectionHeader'
 import SectionControls from '../../sections/SectionControls'
+import Link from '../../../components/Link'
 
 import utils from '../../../js/utils'
 
@@ -177,7 +181,8 @@ const TotalProduction = props => {
   return (
     <>
       <SectionHeader
-        title="Production"
+        title="Total production"
+        linkLabel="production"
         showExploreLink
       />
       <Grid container spacing={4}>
@@ -203,6 +208,8 @@ const TotalProduction = props => {
             legendFormat={v => utils.formatToCommaInt(v)}
             onSelect={ d => handleSelect(d) }
             selectedIndex={selected}
+            units='bbl'
+            showLegendUnits
           />
         </Grid>
         <Grid item xs={12} md={4}>
@@ -224,7 +231,8 @@ const TotalProduction = props => {
             }
             }
             selectedIndex={selected}
-
+            units='mcf'
+            showLegendUnits
           />
         </Grid>
         <Grid item xs={12} md={4}>
@@ -251,11 +259,15 @@ const TotalProduction = props => {
             }
             }
             selectedIndex={selected}
-
+            units='tons'
+            showLegendUnits
           />
 
         </Grid>
       </Grid>
+      <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
+        <Link href='/downloads/federal-production-by-month/'>Source file</Link>
+      </Box>
     </>
   )
 }

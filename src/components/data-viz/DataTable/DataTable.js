@@ -399,7 +399,7 @@ const RevenueDataTable = ({ state }) => {
 
   const data = undefined
 
-  return (<div>Revenue Data Table</div>)
+  // return (<div>Revenue Data Table</div>)
 
   return (
     <React.Fragment>
