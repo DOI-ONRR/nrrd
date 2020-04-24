@@ -18,6 +18,8 @@ import {
   Chip
 } from '@material-ui/core'
 
+const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
+
 const APOLLO_QUERY = gql`
   query FiscalRevenueSummary {
     fiscal_revenue_summary(
@@ -37,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     '@media (max-width: 768px)': {
       maxWidth: '100%',
-    }
+    },
   },
   progressContainer: {
     maxWidth: '25%',
@@ -51,7 +53,54 @@ const useStyles = makeStyles(theme => ({
   circularProgressRoot: {
     color: theme.palette.primary.dark,
   },
+  chipRoot: {
+    height: 40,
+    marginRight: theme.spacing(1),
+    '& > span': {
+      fontWeight: 'bold',
+    },
+  },
+  chipLabelLine: {
+    display: 'block',
+    height: 3,
+  },
+  chipContainer: {
+    '& .MuiChip-root:nth-child(1) .line': {
+      stroke: theme.palette.blue[300],
+    },
+    '& .MuiChip-root:nth-child(2) .line': {
+      stroke: theme.palette.orange[300],
+    },
+    '& .MuiChip-root:nth-child(3) .line': {
+      stroke: theme.palette.green[300],
+    },
+    '& .MuiChip-root:nth-child(4) .line': {
+      stroke: theme.palette.purple[300],
+    }
+  }
 }))
+
+const ChipLabelSVG = props => {
+  return (
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" height="100px">
+      <line className="line" x1="0" x2="175" y1="0" y2="0" stroke="black" stroke-width="15" stroke-dasharray={props.strokeDasharray} />
+    </svg>
+  )
+}
+
+const ChipLabel = props => {
+  const classes = useStyles()
+  const { labelIndex, label } = props
+
+  return (
+    <>
+      <Box component="span">{label}</Box>
+      <Box component="span" className={classes.chipLabelLine}>
+        <ChipLabelSVG labelIndex={labelIndex} strokeDasharray={LINE_DASHES[labelIndex]} />
+      </Box>
+    </>
+  )
+}
 
 const RevenueOverTime = props => {
   const classes = useStyles()
@@ -89,12 +138,21 @@ const RevenueOverTime = props => {
           </Box>
         </Grid>
         <Grid item md={12}>
-
-          <LineChart data={chartData} lineDashes={['1,0', '5,5', '10,10', '20,10,5,5,5,10']} />
-          {cards.map((card, i) => {
-            return (<Chip key={'RevenueOverTimeChip_' + card.fips} variant='outlined' color='primary.dark' onDelete={ e => handleDelete(e, card.fips)} label={card.name} />)
-          })
-          }
+          <LineChart data={chartData} lineDashes={LINE_DASHES} />
+          <Box mt={2} className={classes.chipContainer}>
+            {
+              cards.map((card, i) => {
+                return (
+                  <Chip
+                    key={`RevenueOverTimeChip_${ card.fips }`}
+                    variant='outlined'
+                    onDelete={ e => handleDelete(e, card.fips)}
+                    label={<ChipLabel labelIndex={i} label={card.name} />}
+                    classes={{ root: classes.chipRoot }} />
+                )
+              })
+            }
+          </Box>
         </Grid>
       </Container>
     )
