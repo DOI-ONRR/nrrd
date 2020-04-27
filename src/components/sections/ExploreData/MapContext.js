@@ -283,7 +283,7 @@ const MapContext = props => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-
+    console.debug("YEAR ", selected)
     updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
   }
   // setZoom
