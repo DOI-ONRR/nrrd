@@ -355,8 +355,8 @@ const ExploreDataToolbar = props => {
                 options={productionCommodityOptions}
                 defaultOption="Oil (bbl)"
                 label="Commodity"
-                checkbox={(dataType === 'Revenue') && true}
-                payload={{ type: 'COMMODITY', payload: { commodity: 'Oil (bbl)' } }} />
+                checkbox={false}
+             dataFilterType={DFC.COMMODITY} />
             }
             {(menu.showExplore || matchesMdUp) &&
               <Box className={classes.toolbarExploreMenu}>

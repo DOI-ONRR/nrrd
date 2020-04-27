@@ -242,9 +242,11 @@ export default class D3CircleChart {
   }
 
   color () {
+    const domain = d3.min([this.yDomain().length, this.maxCircles])
     return d3.scaleLinear()
-      .domain([0, this.yDomain().length])
+      .domain([0, domain])
       .range([this.minColor, this.maxColor])
+
   }
 
   circleLabel (data, xAxis, yAxis) {

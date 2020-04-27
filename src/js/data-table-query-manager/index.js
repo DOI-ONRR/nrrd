@@ -109,7 +109,6 @@ const VARIABLE_LIST_PRODUCTION = ''.concat(
 
 const REVENUE_QUERY = `
   results:query_tool_data(
-    limit: 50,
     where: {
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},

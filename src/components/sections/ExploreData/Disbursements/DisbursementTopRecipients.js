@@ -6,6 +6,8 @@ import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -72,9 +74,8 @@ const DisbursementTopRecipients = props => {
   const theme = useTheme()
   const title = props.title || ''
   
-  const { state } = useContext(StoreContext)
-  const year = state.year
-
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
   
   const {loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
   const handleDelete = props.handleDelete || ((e,val) => { console.debug('handle delete') })

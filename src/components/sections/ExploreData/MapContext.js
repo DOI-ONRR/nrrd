@@ -283,7 +283,7 @@ const MapContext = props => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-
+    console.debug("YEAR ", selected)
     updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
   }
   // setZoom
@@ -348,7 +348,7 @@ const MapContext = props => {
 
   const handleChange = (type, name) => event => {
     setZoom(x, y, k)
-
+    console.debug("TYPE: ", type, "Name ", name, "Event")
     updateDataFilter({ ...filterState, [type]: event.target.checked })
   }
 

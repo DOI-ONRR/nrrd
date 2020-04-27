@@ -8,6 +8,9 @@ import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
 
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Box,
@@ -62,11 +65,13 @@ DisbursementSourceSummary: disbursement_source_summary(
 
 const DisbursementSources = props => {
 
-  const { state } = useContext(StoreContext)
+
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
+
   const classes = useStyles()
   const theme = useTheme()
-  const year = state.year
-  console.debug("DT                ", state)
+
 const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })

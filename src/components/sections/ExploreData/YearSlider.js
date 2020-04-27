@@ -149,11 +149,14 @@ const useStyles = makeStyles(theme => ({
 
 const YearSlider = props => {
   const classes = useStyles()
-  const { state: filterState } = useContext(DataFilterContext)
 
-  const year = filterState[DFC.YEAR]
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  let year = filterState[DFC.YEAR]
   const period = filterState[DFC.PERIOD]
-
+  const handleOnchange = year => {
+    updateDataFilter({ ...filterState, [DFC.YEAR]: year })
+  }
+  
   let periodData
   let minYear
   let maxYear
@@ -172,7 +175,10 @@ const YearSlider = props => {
     // set min and max trend years
     minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-
+    if (!year) {
+      year = maxYear
+      handleOnchange(maxYear)
+    }
     customMarks.push(
       {
         label: minYear.toString(),
@@ -183,8 +189,9 @@ const YearSlider = props => {
         value: maxYear
       }
     )
-  }
 
+
+  
   return (
     <Box className={classes.root}>
       <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
@@ -198,11 +205,11 @@ const YearSlider = props => {
                     defaultValue={year}
                     aria-label="Year slider"
                     aria-labelledby="year-slider"
-                    aria-valuetext={year.toString()}
+                    aria-valuetext={year && year.toString()}
                     valueLabelDisplay="on"
                     step={1}
                     onChangeCommitted={(e, yr) => {
-                      props.onYear(yr)
+                      handleOnchange(yr)
                     }}
                     marks={customMarks}
                     min={minYear}
@@ -227,6 +234,8 @@ const YearSlider = props => {
       </StickyWrapper>
     </Box>
   )
+  }
+  else { return (null) }
 }
 
 export default YearSlider

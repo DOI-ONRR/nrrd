@@ -80,8 +80,8 @@ const TopLocations = ({ title, ...props }) => {
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
-  const year = filterState[DFC.YEAR]
-  const location = filterState[DFC.COUNTIES]
+  const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
+  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : "State" 
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location } })
 

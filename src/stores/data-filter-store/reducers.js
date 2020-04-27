@@ -26,13 +26,6 @@ const reducer = (state, action) => {
   }
 }
 
-const initialState = {
-  [DFC.DATA_TYPE]: REVENUE,
-  [DFC.OFFSHORE_REGIONS]: 'Off',
-  [DFC.COUNTIES]: 'State',
-  [DFC.COMMODITY]: CONSTANTS.OIL,
-  [DFC.PERIOD]: CONSTANTS.FISCAL_YEAR,
-  [DFC.YEAR]: 2019
-}
+const initialState = {}
 
 export { initialState, types, reducer }
