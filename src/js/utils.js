@@ -1,12 +1,31 @@
 import * as d3 from 'd3'
 import slugify from 'slugify'
 import currencyFormatter from 'currency-formatter'
+import ExcelJs from 'exceljs'
+import { saveAs } from 'file-saver'
 
 // Import Display Name Yaml Files
 import commodityNames from '../data/commodity_names.yml'
 
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
+
+export const downloadExcel = () => {
+  const workbook = new ExcelJs.Workbook()
+  const worksheet = workbook.addWorksheet('My Sheet')
+  worksheet.columns = [
+    { header: 'Id', key: 'id', width: 10 },
+    { header: 'Name', key: 'name', width: 32 },
+    { header: 'D.O.B.', key: 'DOB', width: 10, outlineLevel: 1 }
+  ]
+  worksheet.addRow({ id: 1, name: 'John Doe', dob: new Date(1970, 1, 1) })
+  worksheet.addRow({ id: 2, name: 'Jane Doe', dob: new Date(1965, 1, 7) })
+
+  workbook.xlsx.writeBuffer({ base64: true }).then(result => {
+    // eslint-disable-next-line no-undef
+    saveAs(new Blob([result], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), 'test.xlsx')
+  })
+}
 
 export const fetchDataFilterFromUrl = () => {
   const updatedFilter = {}

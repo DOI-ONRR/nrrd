@@ -21,6 +21,7 @@ import DTQM from '../../../js/data-table-query-manager'
 import { useQuery } from '@apollo/react-hooks'
 
 import DataTableGroupingToolbar from './DataTableGroupingToolbar'
+import DownloadDataTable from '../../DownloadDataTable'
 
 import {
   makeStyles,
@@ -75,6 +76,9 @@ const DataTable = ({ dataType, height = '100%' }) => {
   return (
     <Box className={classes.root} height={height}>
       <Grid container spacing={2} style={{ height: '100%' }}>
+        <Grid item xs={12}>
+          <DownloadDataTable />
+        </Grid>
         <React.Fragment>
           {type === REVENUE &&
               <Grid item xs={12}>
