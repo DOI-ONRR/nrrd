@@ -151,7 +151,7 @@ const YearSlider = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
 
-  const year = filterState[DFC.YEAR]
+  const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = filterState[DFC.PERIOD]
 
   let periodData

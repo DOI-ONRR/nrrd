@@ -27,8 +27,8 @@ const REVENUE_QUERY = gql`
 export default props => {
   const { state: filterState } = useContext(DataFilterContext)
 
-  const year = filterState[DFC.YEAR]
-
+  const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
+ //const year = filterState[DFC.YEAR]
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
     variables: { year, period: CONSTANTS.FISCAL_YEAR }
   })
