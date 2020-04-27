@@ -11,7 +11,8 @@ import {
   PERIOD_FISCAL_YEAR,
   PERIOD_CALENDAR_YEAR,
   FISCAL_YEAR,
-  CALENDAR_YEAR
+  CALENDAR_YEAR,
+  NO_BREAKOUT_BY
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
@@ -172,6 +173,7 @@ const DataTableImpl = data => {
   const [totalSummaryItems, setTotalSummaryItems] = useState([])
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
   const [currencyColumns, setCurrencyColumns] = useState([])
+  const [aggregatedSums, setAggregatedSums] = useState(data.results)
 
   const getHiddenColumns = () => {
     let yearColumns = []
@@ -214,19 +216,25 @@ const DataTableImpl = data => {
     setGroupSummaryItems(getGroupSummaryItems())
   }, [state])
 
-  console.log(data.results)
-
-  if (data && data.results.length > 0) {
-    aggregateSum({ data: data.results, groupBy: 'revenueType' })
-  }
+  useEffect(() => {
+    if (data && data.results.length > 0) {
+      const yearProps = columnNames.filter(item => item.name.startsWith('y'))
+      setAggregatedSums(aggregateSum({
+        data: data.results,
+        groupBy: state[GROUP_BY],
+        breakoutBy: (state[BREAKOUT_BY] === NO_BREAKOUT_BY) ? undefined : state[BREAKOUT_BY],
+        sumByProps: yearProps.map(item => item.name)
+      }))
+    }
+  }, [data])
 
   return (
     <React.Fragment>
-      {(data && data.results.length > 0) &&
+      {(aggregatedSums && aggregatedSums.length > 0) &&
         <Grid container>
           <Grid item xs={12}>
             <TableGrid
-              rows={data.results}
+              rows={aggregatedSums}
               columns={columnNames}>
               <CurrencyTypeProvider for={currencyColumns}/>
               <SortingState />
