@@ -198,7 +198,7 @@ const YearSlider = props => {
                     defaultValue={year}
                     aria-label="Year slider"
                     aria-labelledby="year-slider"
-                    aria-valuetext={year.toString()}
+                    aria-valuetext={year && year.toString()}
                     valueLabelDisplay="on"
                     step={1}
                     onChangeCommitted={(e, yr) => {

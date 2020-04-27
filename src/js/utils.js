@@ -40,10 +40,23 @@ export const formatToSlug = name => {
 export const aggregateSum = ({ data, groupBy, breakoutBy }) => {
   const aggregated = data.reduce((results, current) => {
     console.log(results)
-    const matches = results.filter(item => item[groupBy] === current[groupBy])
+    const matches = results.filter(item => {
+      let foundMatch = false
+      if (groupBy) {
+        foundMatch = item[groupBy] === current[groupBy]
+      }
+      if (breakoutBy) {
+        foundMatch = item[breakoutBy] === current[breakoutBy]
+      }
+
+      return foundMatch
+    })
     console.log(matches)
     if (matches.length === 0) {
       results.push(current)
+    }
+    else {
+
     }
     return results
   }, [])

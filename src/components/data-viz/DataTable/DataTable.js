@@ -214,6 +214,12 @@ const DataTableImpl = data => {
     setGroupSummaryItems(getGroupSummaryItems())
   }, [state])
 
+  console.log(data.results)
+
+  if (data && data.results.length > 0) {
+    aggregateSum({ data: data.results, groupBy: 'revenueType' })
+  }
+
   return (
     <React.Fragment>
       {(data && data.results.length > 0) &&
