@@ -5,6 +5,7 @@ export default class D3CircleChart {
   constructor (container, data, options) {
     this.container = container
     this.data = data
+    console.log('D3Circlechart data: ', this.data)
     this._height = (container.children[0].clientHeight > 0) ? container.children[0].clientHeight : 400
     this._height = 500
     this._width = 500
@@ -12,8 +13,10 @@ export default class D3CircleChart {
     if (options.format) {
       this.format = options.format
     }
+    this.showTooltip = true
     if (options.circleLabel) {
       this.circleLabel = options.circleLabel
+      this.showTooltip = false
     }
     // console.debug("data =========================================:", this.radius)
     this.minColor = options.minColor || 'lightblue'
@@ -263,6 +266,7 @@ export default class D3CircleChart {
 
     const chartNode = this.container.children[0]
     const circleLabel = this.circleLabel
+    const showTooltip = this.showTooltip
     const width = this._width
     const height = this._height
     const color = this.color()
@@ -270,6 +274,7 @@ export default class D3CircleChart {
     const root = this._root
     let focus = root
     let view
+    const self = this
 
     const svg = d3.select(chartNode).append('svg')
       // .attr('viewBox', `-${ width * 0.75 } -${ height * 0.75 } ${ width * 1.5 } ${ height * 1.5 }`)
@@ -282,6 +287,23 @@ export default class D3CircleChart {
       .style('cursor', 'pointer')
       .on('click', () => zoom(root))
 
+    // Define the div for the tooltip
+    const tooltip = d3.select(chartNode).append('div')
+      .attr('class', 'tooltip')
+      .style('opacity', 0)
+
+    const tooltipContent = d => {
+      if (d.data.commodity) {
+        return `${ d.data.commodity }<br>${ self.format(d.data.total) }`
+      }
+      if (d.data.revenue_type) {
+        return `${ d.data.revenue_type }<br>${ self.format(d.data.total) }`
+      }
+      if (d.data.receipient) {
+        return `${ d.data.receipient }<br>${ self.format(d.data.total) }`
+      }
+    }
+
     const node = svg.append('g')
       .selectAll('circle')
       .data(root.descendants().slice(1))
@@ -290,12 +312,25 @@ export default class D3CircleChart {
         // console.debug("fill attr", d,i)
         return d.children ? color(d.depth) : color(yDomain.length - i)
       })
-      .attr('pointer-events', d => !d.children ? 'none' : null)
-      .on('mouseover', function () {
-        d3.select(this).attr('stroke', '#000')
+      // .attr('pointer-events', d => !d.children ? 'none' : null)
+      .on('mouseover', function (d) {
+        if (showTooltip) {
+          console.log('D3CircleChart chart mouseover yo!')
+          d3.select(this)
+            .transition()
+            .duration(200)
+            .style('opacity', 0.9)
+            // call a circleLabel function that can be overloaded
+          tooltip.html(tooltipContent(d))
+          tooltip.style('opacity', 1)
+            .style('left', (d3.event.pageX) + 'px')
+            .style('top', (d3.event.pageY - 28) + 'px')
+        }
       })
       .on('mouseout', function () {
-        d3.select(this).attr('stroke', null)
+        d3.select(this)
+          .style('opacity', 1)
+        tooltip.style('opacity', 0)
       })
       .on('click', d => focus !== d && (zoom(d), d3.event.stopPropagation()))
 
@@ -930,6 +965,7 @@ console.debug(data)
           self._onClick(this, d)
         })
         .on('mouseover', function (d) {
+          console.log('_chart mouseover yo!')
           //          self._onMouseover(this, d)
           // self._onClick(self)
         })
