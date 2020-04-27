@@ -26,8 +26,6 @@ const reducer = (state, action) => {
   }
 }
 
-const initialState = {
-  [DFC.DATA_TYPE]: REVENUE,
-}
+const initialState = {}
 
 export { initialState, types, reducer }

@@ -4,7 +4,6 @@ import currencyFormatter from 'currency-formatter'
 
 // Import Display Name Yaml Files
 import commodityNames from '../data/commodity_names.yml'
-import { ConsoleView } from 'react-device-detect'
 
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
@@ -19,6 +18,7 @@ export const fetchDataFilterFromUrl = () => {
   }
   return updatedFilter
 }
+
 export const toTitleCase = str => {
   str = str.toLowerCase().split(' ')
   for (let i = 0; i < str.length; i++) {
@@ -26,11 +26,13 @@ export const toTitleCase = str => {
   }
   return str.join(' ')
 }
+
 export const range = (start, end) => {
   return Array(end - start + 1)
     .fill()
     .map((_, idx) => start + idx)
 }
+
 export const formatToSlug = name => {
   return slugify(name, {
     lower: true,
@@ -38,8 +40,16 @@ export const formatToSlug = name => {
     remove: /[$*_+~.()'"!\:@,?]/g
   }).replace('-and-', '-')
 }
+
 export const aggregateSum = ({ data, groupBy, breakoutBy, sumByProps }) => {
-  const aggregated = data.reduce((results, current) => {
+  // Clone original data so we don't change it
+  const clonedData = JSON.parse(JSON.stringify(data))
+
+  // Use a reduce function to aggregate the data
+  const aggregated = clonedData.reduce((results, current) => {
+
+    // Find the objects that match based on the criteria
+    // If it finds a match then we will sum the props of the current item to the results
     const matches = results.filter((item, index) => {
       let foundMatch = false
       if (groupBy) {
@@ -52,16 +62,18 @@ export const aggregateSum = ({ data, groupBy, breakoutBy, sumByProps }) => {
         foundMatch = item[breakoutBy] === current[breakoutBy]
       }
 
+      if (foundMatch) {
+        sumByProps.forEach(prop => {
+          results[index][prop] += current[prop]
+        })
+      }
+
       return foundMatch
     })
 
+    // No matches found so lets just add the current item to the results array
     if (matches.length === 0) {
       results.push(current)
-    }
-    else {
-      sumByProps.forEach(prop => {
-        matches[0][prop] += current[prop]
-      })
     }
 
     return results
