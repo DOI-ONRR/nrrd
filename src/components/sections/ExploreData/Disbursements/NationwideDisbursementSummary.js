@@ -8,6 +8,8 @@ import gql from 'graphql-tag'
 import Link from '../../../Link'
 
 import { StoreContext } from '../../../../store'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -55,8 +57,9 @@ const useStyles = makeStyles(theme => ({
 
 const NationwideDisbursementSummary = props => {
   const classes = useStyles()
-  const { state } = useContext(StoreContext)
-  const year = state.year
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
+
 
   const { title } = props
 
