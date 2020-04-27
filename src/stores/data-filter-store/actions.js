@@ -25,7 +25,7 @@ export const useActions = (state, dispatch) => {
       'dataTypesCache'
     ]
 
-    if (typeof window !== 'undefined' && window && Object.keys(updatedFilter).length > 0) {
+    /* if (typeof window !== 'undefined' && window && Object.keys(updatedFilter).length > 0) {
       for (const prop in updatedFilter) {
         if (updatedFilter[prop] && !propsToExclude.includes(prop) && prop !== '') {
           if (params.length > 0) {
@@ -35,7 +35,7 @@ export const useActions = (state, dispatch) => {
         }
       }
       window.history.replaceState({}, '', `${ window.location.pathname }?${ params }`)
-    }
+    } */
 
     dispatch({ type: types.UPDATE_DATA_FILTER, payload: updatedFilter })
   }

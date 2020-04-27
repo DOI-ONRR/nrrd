@@ -15,7 +15,7 @@ import {
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
-import utils, { toTitleCase } from '../../../js/utils'
+import utils, { toTitleCase, aggregateSum } from '../../../js/utils'
 
 import DTQM from '../../../js/data-table-query-manager'
 import { useQuery } from '@apollo/react-hooks'

@@ -37,6 +37,19 @@ export const formatToSlug = name => {
     remove: /[$*_+~.()'"!\:@,?]/g
   }).replace('-and-', '-')
 }
+export const aggregateSum = ({ data, groupBy, breakoutBy }) => {
+  const aggregated = data.reduce((results, current) => {
+    console.log(results)
+    const matches = results.filter(item => item[groupBy] === current[groupBy])
+    console.log(matches)
+    if (matches.length === 0) {
+      results.push(current)
+    }
+    return results
+  }, [])
+
+  console.log(aggregated)
+}
 
 const utils = {
   scrollStop: callback => {
