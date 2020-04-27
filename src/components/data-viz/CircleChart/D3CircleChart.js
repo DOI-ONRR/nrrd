@@ -5,7 +5,7 @@ export default class D3CircleChart {
   constructor (container, data, options) {
     this.container = container
     this.data = data
-    console.log('D3Circlechart data: ', this.data)
+    console.log('D3Circlechart options.circleTooltip: ', options.circleTooltip)
     this._height = (container.children[0].clientHeight > 0) ? container.children[0].clientHeight : 400
     this._height = 500
     this._width = 500
@@ -13,11 +13,15 @@ export default class D3CircleChart {
     if (options.format) {
       this.format = options.format
     }
-    this.showTooltip = true
+
     if (options.circleLabel) {
       this.circleLabel = options.circleLabel
-      this.showTooltip = false
     }
+
+    if (options.circleTooltip) {
+      this.circleTooltip = options.circleTooltip
+    }
+
     // console.debug("data =========================================:", this.radius)
     this.minColor = options.minColor || 'lightblue'
     this.maxColor = options.maxColor || 'darkblue'
@@ -260,13 +264,31 @@ export default class D3CircleChart {
     }
   }
 
+  // Circle tooltips
+  circleTooltip (data, xAxis, yAxis) {
+    console.log('circleTooltip data yo: ', data)
+    const r = [,]
+    return r
+  }
+
+  _circleTooltip (data) {
+    console.log('_circleTooltip data yo: ', data)
+    try {
+      const r = this.circleTooltip(data)
+      return r
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
+  }
+
   chart () {
     const xAxis = this.xAxis
     const yAxis = this.yAxis
 
     const chartNode = this.container.children[0]
     const circleLabel = this.circleLabel
-    const showTooltip = this.showTooltip
+    const circleTooltip = this.circleTooltip
     const width = this._width
     const height = this._height
     const color = this.color()
@@ -274,7 +296,6 @@ export default class D3CircleChart {
     const root = this._root
     let focus = root
     let view
-    const self = this
 
     const svg = d3.select(chartNode).append('svg')
       // .attr('viewBox', `-${ width * 0.75 } -${ height * 0.75 } ${ width * 1.5 } ${ height * 1.5 }`)
@@ -292,18 +313,6 @@ export default class D3CircleChart {
       .attr('class', 'tooltip')
       .style('opacity', 0)
 
-    const tooltipContent = d => {
-      if (d.data.commodity) {
-        return `${ d.data.commodity }<br>${ self.format(d.data.total) }`
-      }
-      if (d.data.revenue_type) {
-        return `${ d.data.revenue_type }<br>${ self.format(d.data.total) }`
-      }
-      if (d.data.receipient) {
-        return `${ d.data.receipient }<br>${ self.format(d.data.total) }`
-      }
-    }
-
     const node = svg.append('g')
       .selectAll('circle')
       .data(root.descendants().slice(1))
@@ -314,18 +323,16 @@ export default class D3CircleChart {
       })
       // .attr('pointer-events', d => !d.children ? 'none' : null)
       .on('mouseover', function (d) {
-        if (showTooltip) {
-          console.log('D3CircleChart chart mouseover yo!')
-          d3.select(this)
-            .transition()
-            .duration(200)
-            .style('opacity', 0.9)
-            // call a circleLabel function that can be overloaded
-          tooltip.html(tooltipContent(d))
-          tooltip.style('opacity', 1)
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY - 28) + 'px')
-        }
+        console.log('D3CircleChart chart mouseover yo!')
+        d3.select(this)
+          .transition()
+          .duration(200)
+          .style('opacity', 0.9)
+        // call a circleTooltip func that can be overloaded
+        tooltip.html(`${ circleTooltip(d.data)[0] }<br>${ circleTooltip(d.data)[1] }`)
+        tooltip.style('opacity', 1)
+          .style('left', (d3.event.pageX) + 'px')
+          .style('top', (d3.event.pageY - 25) + 'px')
       })
       .on('mouseout', function () {
         d3.select(this)

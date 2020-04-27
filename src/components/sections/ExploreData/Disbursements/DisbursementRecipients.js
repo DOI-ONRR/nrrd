@@ -86,6 +86,8 @@ const DisbursementRecipients = props => {
     data.DisbursementRecipientSummary.length > 0) {
     chartData = data
 
+    console.log('chartData: ', chartData)
+
     if (chartData.DisbursementRecipientSummary.length > 1) {
       return (<Box className={classes.root}>
         <Box component="h4" fontWeight="bold">Recipients</Box>
@@ -98,7 +100,16 @@ const DisbursementRecipients = props => {
             maxColor='#B64D00'
             format={ d => {
               return utils.formatToDollarInt(d)
-            }}/>
+            }}
+            circleTooltip={
+              d => {
+                console.log('d: ', d)
+                const r = []
+                r[0] = d.recipient
+                r[1] = utils.formatToDollarInt(d.total)
+                return r
+              }
+            } />
 
           <Box mt={3}>
             <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
