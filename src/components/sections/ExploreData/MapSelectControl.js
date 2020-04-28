@@ -139,7 +139,9 @@ const MapSelectControl = props => {
 
   const handleClose = () => {
     //updateDataFilter({ ...filterState, [dataFilterType]: option.toString() })
-    updateDataFilter({ ...filterState, [dataFilterType]: checked })
+    if(props.checkbox) {
+      updateDataFilter({ ...filterState, [dataFilterType]: checked })
+    }
     setAnchorEl(null)
   }
 
