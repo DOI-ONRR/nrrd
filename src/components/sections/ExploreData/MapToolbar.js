@@ -28,7 +28,7 @@ import CONSTANTS from '../../../js/constants'
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
-import { REVENUE, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { REVENUE, DISBURSEMENTS, PRODUCTION, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -360,11 +360,24 @@ const ExploreDataToolbar = props => {
             }
             {(menu.showExplore || matchesMdUp) &&
               <Box className={classes.toolbarExploreMenu}>
-
+                {dataType === REVENUE &&
                 <MapExploreMenu
                   linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
-                  linkUrls={['/query-data/?type=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
+                  linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-revenue-works/#revenues', '/how-revenue-works/federal-revenue-by-company/2018/']}
                 />
+                }
+                {dataType === DISBURSEMENTS &&
+                <MapExploreMenu
+                  linkLabels={['Query disbursements data', 'Downloads & Documentation', 'How disbursements works']}
+                  linkUrls={['/query-data/?dataType=Disbursements', '/downloads/#Disbursements', '/how-revenue-works/#understanding-federal-disbursements']}
+                />
+                }
+                {dataType === PRODUCTION &&
+                <MapExploreMenu
+                  linkLabels={['Query production data', 'Downloads & Documentation', 'How production works']}
+                  linkUrls={['/query-data/?dataType=Production', '/downloads/#Production', '/how-revenue-works/#the-production-process']}
+                />
+                }
               </Box>
             }
           </Box>
