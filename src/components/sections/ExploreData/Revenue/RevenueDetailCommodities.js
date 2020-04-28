@@ -90,8 +90,6 @@ const RevenueDetailCommodities = props => {
                 }
                 circleTooltip={
                   d => {
-                    console.log('circleTooltip d: ', d)
-                    
                     const r = []
                     r[0] = d.commodity
                     r[1] = utils.formatToDollarInt(d.total)

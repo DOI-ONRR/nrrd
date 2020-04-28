@@ -71,6 +71,9 @@ const useStyles = makeStyles(theme => ({
         '@media (max-width: 426px)': {
           marginRight: 0,
         },
+      },
+      '& .tooltip': {
+        display: 'none',
       }
     },
   }

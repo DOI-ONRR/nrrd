@@ -53,7 +53,6 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
       maxWidth: '25%',
       width: '100%',
-      position: 'relative',
       minWidth: 275,
       '@media (max-width: 768px)': {
         maxWidth: '100%',

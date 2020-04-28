@@ -356,10 +356,11 @@ const ExploreDataToolbar = props => {
                 defaultOption="Oil (bbl)"
                 label="Commodity"
                 checkbox={false}
-             dataFilterType={DFC.COMMODITY} />
+                dataFilterType={DFC.COMMODITY} />
             }
             {(menu.showExplore || matchesMdUp) &&
               <Box className={classes.toolbarExploreMenu}>
+
                 <MapExploreMenu
                   linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
                   linkUrls={['/query-data/?type=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
