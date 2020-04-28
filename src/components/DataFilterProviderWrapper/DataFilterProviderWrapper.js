@@ -3,9 +3,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { DataFilterContext, DataFilterProvider } from '../../stores/data-filter-store'
 import { fetchDataFilterFromUrl } from '../../js/utils'
 
-const DataFilterProviderWrapper = ({ children }) => {
+const DataFilterProviderWrapper = ({ children, defaults }) => {
   return (
-    <DataFilterProvider>
+    <DataFilterProvider defaults={defaults}>
       <DataFilterFromUrlWrapper />
       {children}
     </DataFilterProvider>

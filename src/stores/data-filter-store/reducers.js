@@ -16,10 +16,12 @@ const reducer = (state, action) => {
   switch (type) {
   case types.UPDATE_DATA_FILTER: {
     const dataType = payload.dataType || state.dataType
+
     const dataTypeCache = Object.assign(((state.dataTypesCache && state.dataTypesCache[dataType]) || { ...initialState }), { ...payload })
+
     const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
 
-    return ({ dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache, dataType: dataType })
+    return ({ dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
   }
   default:
     return state

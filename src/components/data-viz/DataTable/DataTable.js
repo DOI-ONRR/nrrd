@@ -66,44 +66,33 @@ const useStyles = makeStyles(theme => ({
 
 const DataTable = ({ dataType, height = '100%' }) => {
   const classes = useStyles()
-  const [tableType, setTableType] = useState()
-  const { state, updateDataFilter } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
   if (!state) {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
 
-  // Set default state for the data filter
-  if (!state[DATA_TYPE]) {
-    updateDataFilter({ [DATA_TYPE]: dataType || REVENUE, [PERIOD]: PERIOD_FISCAL_YEAR })
-  }
-  else if (!state[PERIOD]) {
-    updateDataFilter({ [PERIOD]: PERIOD_FISCAL_YEAR })
-  }
-
-  useEffect(() => {
-    setTableType(state[DATA_TYPE])
-  }, [state])
-
   return (
     <Box className={classes.root} height={height}>
       <Grid container spacing={2} style={{ height: '100%' }}>
-        <React.Fragment>
-          {tableType === REVENUE &&
-              <Grid item xs={12}>
-                <RevenueDataTableImpl />
-              </Grid>
-          }
-          {tableType === PRODUCTION &&
-              <Grid item xs={12}>
-                <ProductionDataTableImpl />
-              </Grid>
-          }
-          {tableType === DISBURSEMENTS &&
-              <Grid item xs={12}>
+        {state[DATA_TYPE] &&
+          <React.Fragment>
+            {state[DATA_TYPE] === REVENUE &&
+                <Grid item xs={12}>
+                  <RevenueDataTableImpl />
+                </Grid>
+            }
+            {state[DATA_TYPE] === PRODUCTION &&
+                <Grid item xs={12}>
+                  <ProductionDataTableImpl />
+                </Grid>
+            }
+            {state[DATA_TYPE] === DISBURSEMENTS &&
+                <Grid item xs={12}>
 
-              </Grid>
-          }
-        </React.Fragment>
+                </Grid>
+            }
+          </React.Fragment>
+        }
       </Grid>
     </Box>
   )
@@ -184,7 +173,7 @@ const DataTableImpl = data => {
   const [totalSummaryItems, setTotalSummaryItems] = useState([])
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
   const [currencyColumns, setCurrencyColumns] = useState([])
-  const [aggregatedSums, setAggregatedSums] = useState(data.results)
+  const [aggregatedSums, setAggregatedSums] = useState()
 
   const getHiddenColumns = () => {
     let yearColumns = []
@@ -215,19 +204,22 @@ const DataTableImpl = data => {
   }
 
   useEffect(() => {
-    setGrouping([{ columnName: state[GROUP_BY] }])
     if (state[GROUP_BY]) {
+      setGrouping([{ columnName: state[GROUP_BY] }])
+      setFixedColumns([state[GROUP_BY], state[BREAKOUT_BY]])
       setHiddenColumnNames(getHiddenColumns())
     }
+    else {
+      setGrouping([])
+      setFixedColumns([])
+      setHiddenColumnNames([])
+    }
+
     if (state[DATA_TYPE] === REVENUE || state[DATA_TYPE] === DISBURSEMENTS) {
       setCurrencyColumns(getCurrencyColumns())
     }
-    setFixedColumns([state[GROUP_BY], state[BREAKOUT_BY]])
     setTotalSummaryItems(getTotalSummaryItems())
     setGroupSummaryItems(getGroupSummaryItems())
-  }, [state])
-
-  useEffect(() => {
     if (data && data.results.length > 0) {
       const yearProps = columnNames.filter(item => item.name.startsWith('y'))
       setAggregatedSums(aggregateSum({
@@ -237,7 +229,7 @@ const DataTableImpl = data => {
         sumByProps: yearProps.map(item => item.name)
       }))
     }
-  }, [data])
+  }, [state, data])
 
   return (
     <React.Fragment>
