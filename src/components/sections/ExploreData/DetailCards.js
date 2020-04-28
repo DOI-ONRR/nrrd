@@ -211,7 +211,8 @@ const DetailCards = props => {
   const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   const closeCard = fips => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== props.fips) })
+    console.log('fips: ', fips)
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== fips) })
   }
 
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
