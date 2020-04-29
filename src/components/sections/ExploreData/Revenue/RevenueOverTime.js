@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
   chipLabelLine: {
     display: 'block',
-    height: 3,
+    height: 6,
   },
   chipContainer: {
     '& .MuiChip-root:nth-child(1) .line': {

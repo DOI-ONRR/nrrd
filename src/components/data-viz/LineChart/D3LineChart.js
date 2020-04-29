@@ -97,7 +97,7 @@ export default class D3LineChart {
           .attr('class', 'line') // Assign a class for styling
           .attr('fill', 'none')
           .attr('stroke', lineStrokes[ss])
-          .attr('stroke-width', 3)
+          .attr('stroke-width', 6)
           .attr('stroke-dasharray', lineDashes[dd])
           .attr('d', addLine) // 11. Calls the line generator
       }
