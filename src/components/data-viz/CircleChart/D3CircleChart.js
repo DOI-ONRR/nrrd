@@ -281,6 +281,7 @@ export default class D3CircleChart {
   }
 
   chart () {
+    const self = this
     const xAxis = this.xAxis
     const yAxis = this.yAxis
 
@@ -319,9 +320,10 @@ export default class D3CircleChart {
       .style('color', 'white')
       .style('padding', '4px')
       .style('pointer-events', 'none')
-      .style('opacity', 1)
+      .style('opacity', 0)
 
     const mouseover = function (d) {
+      self._onMouseover(this, d)
       tooltip
         .style('opacity', 1)
     }
@@ -334,11 +336,13 @@ export default class D3CircleChart {
     }
 
     const mouseout = function (d) {
+      self._onMouseout(this, d)
       tooltip.style('opacity', 0)
     }
 
     const node = svg.append('g')
       .selectAll('circle')
+      .attr('class', 'circle')
       .data(root.descendants().slice(1))
       .join('circle')
       .attr('fill', (d, i) => {
@@ -942,7 +946,7 @@ console.debug(data)
 
       //  console.debug("Group Data:", data)
       this.chart.append('g')
-        .attr('class', 'bars')
+        .attr('class', 'circles')
         .selectAll('g')
         .data(self.xDomain())
         .enter().append('g')
@@ -952,7 +956,7 @@ console.debug(data)
         .attr('class', (d, i) => {
           // console.debug("D: ", d, "I: ",i)
           // console.debug("SI: ", self.selectedIndex)
-          return i === self.selectedIndex ? 'bar active' : 'bar'
+          return i === self.selectedIndex ? 'circle active' : 'circle'
         })
 
         .attr('tabindex', (d, i) => i)
@@ -963,7 +967,7 @@ console.debug(data)
           return r
         })
         .enter().append('g')
-        .attr('class', (d, i) => 'stacked-bar-chart-' + i)
+        .attr('class', (d, i) => 'stacked-circle-chart-' + i)
         .attr('fill-opacity', (d, i) => (1 - (i / keys.length)))
         .append('rect')
         .attr('y', d => {
@@ -1012,9 +1016,9 @@ console.debug(data)
           const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
           if (selectedElement) {
             selectedElement.attr('selected', false)
-            selectedElement.attr('class', 'bar')
+            selectedElement.attr('class', 'circle')
           }
-          d3.select(nodes[i]).attr('class', 'bar active')
+          d3.select(nodes[i]).attr('class', 'circle active')
         }
       })
     }
@@ -1172,10 +1176,10 @@ console.debug(data)
       // console.debug(data)
       if (selectedElement) {
         selectedElement.attr('selected', false)
-        selectedElement.attr('class', 'bar')
+        selectedElement.attr('class', 'circle')
       }
       const activeElement = element.parentNode.parentNode
-      activeElement.setAttribute('class', 'bar active')
+      activeElement.setAttribute('class', 'circle active')
       activeElement.setAttribute('selected', true)
       activeElement.setAttribute('tabindex', 1)
       this.selectedData(data[0].data)
@@ -1192,19 +1196,31 @@ console.debug(data)
     // console.debug('onSelect: ', d)
   }
 
-  _onMouseover = (element, data) => {
+  _onMouseover (element, data) {
     try {
-      const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
-      // console.debug(data)
+      // console.log('_onMouseover element', element)
+      // console.log('_onMouseover data: ', data)
+      const selectedElement = d3.select(element)
+      const legendRows = d3.select(this.container.children[1]).select('.legend-table').selectAll('tbody tr')
+      const selectedRowIndex = data.parent.data.children.findIndex(item => item === data.data)
+      const selectedLegendRow = legendRows._groups[0][selectedRowIndex]
+
       if (selectedElement) {
-        selectedElement.attr('selected', false)
-        selectedElement.attr('class', 'bar')
+        selectedElement.attr('class', 'circle active')
+          .transition()
+          .duration(200)
+          .style('stroke', '#000')
+          .style('stroke-width', '4px')
+          .style('opacity', 0.9)
+        d3.select(selectedLegendRow)
+          .transition()
+          .duration(200)
+          .style('background', '#e0e0e0')
+
       }
       const activeElement = element.parentNode.parentNode
-      // activeElement.setAttribute('class', 'bar active')
-      // activeElement.setAttribute('selected', true)
       activeElement.setAttribute('tabindex', 1)
-      this.selectedData(data[0].data)
+      this.selectedData(data.data)
       this._legend()
 
       this.onMouseover(this)
@@ -1216,6 +1232,34 @@ console.debug(data)
 
   onMouseover (d) {
     console.debug('onSelect: ', d)
+  }
+
+  _onMouseout = (element, data) => {
+    try {
+      const selectedElement = d3.select(element)
+      const legendRows = d3.select(this.container.children[1]).select('.legend-table').selectAll('tbody tr')
+      const selectedRowIndex = data.parent.data.children.findIndex(item => item === data.data)
+      const selectedLegendRow = legendRows._groups[0][selectedRowIndex]
+
+      if (selectedElement) {
+        selectedElement.attr('class', 'circle')
+          .transition()
+          .duration(500)
+          .style('stroke', 'none')
+          .style('opacity', 1)
+        d3.select(selectedLegendRow)
+          .transition()
+          .duration(500)
+          .style('background', 'none')
+      }
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
+  }
+
+  onMouseout (d) {
+    console.debug('onMouseout: ', d)
   }
 
   _onHover = (element, data, hover) => {
