@@ -2,11 +2,13 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-
 import Sparkline from '../../../data-viz/Sparkline'
 
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
+
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import {
   Box,
@@ -80,18 +82,18 @@ const APOLLO_QUERY = gql`
 `
 
 const DisbursementRecipientSummary = props => {
-
-  const { state } = useContext(StoreContext)
+  const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
-  const year = state.year
-  console.debug("DT                ", state)
-const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  const year = filterState[DFC.YEAR]
+  console.debug('DT                ', filterState)
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
-  if (loading) { return 'Loading ... ' }
+  if (loading) {
+    return 'Loading ... '
+  }
   if (error) return `Error! ${ error.message }`
-
 
   let periodData
 
@@ -120,18 +122,27 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
             [row.fiscal_year, t ? t[1] : 0]
           )
         })
-        return { commodity: com, data: d }
+        return { recipient: com, data: d }
       })
 
-  return (
+    return (
       <>
+        <Grid container>
+          <Grid item xs={12} zeroMinWidth>
+            <Typography
+              variant="subtitle2"
+              style={{ fontWeight: 'bold', marginBottom: 10 }}>
+              Top Recipients
+            </Typography>
+          </Grid>
+        </Grid>
         <Grid container>
           <Paper className={classes.paper} style={{ marginBottom: 10 }}>
             <Table
               className={classes.table}
               size="small"
               aria-label="top Recipients table"
-              >
+            >
               <TableBody>
                 {topRecipients &&
                   topRecipients.map((row, i) => {
@@ -139,7 +150,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
                       <TableRow key={i}>
                         <TableCell component="th" scope="row">
                           <Typography style={{ fontSize: '.8rem' }}>
-                            {row.commodity}
+                            {row.recipient}
                           </Typography>
                         </TableCell>
                         <TableCell align="right">
@@ -148,7 +159,7 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
                             highlightIndex={row.data.findIndex(
                               x => x[0] === year
                             )}
-                            />
+                          />
                         </TableCell>
                         <TableCell align="right">
                           <Typography style={{ fontSize: '.8rem' }}>
@@ -166,13 +177,19 @@ const { loading, error, data } = useQuery(APOLLO_QUERY, {
                       </TableRow>
                     )
                   })}
-      </TableBody>
-        </Table>
-        </Paper>
+              </TableBody>
+            </Table>
+          </Paper>
         </Grid>
-        </>
+      </>
     )
   }
+
+  return (
+    <Box className={classes.boxSection}>
+      <Box component="h4" fontWeight="bold">No Disbursements</Box>
+    </Box>
+  )
 }
 
 export default DisbursementRecipientSummary

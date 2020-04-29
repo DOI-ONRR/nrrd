@@ -199,8 +199,7 @@ const PERIOD_OPTIONS_QUERY = `
       state: {_in: $usState},
       county: {_in: $county},
       commodity: {_in: $commodity},
-      revenue_type: {_in: $revenueType},
-      period: {_neq: "Monthly"}
+      revenue_type: {_in: $revenueType}
     },
     distinct_on: period,
     order_by: {period: asc}

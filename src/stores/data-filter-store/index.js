@@ -4,8 +4,8 @@ import { initialState, reducer } from './reducers'
 
 const DataFilterContext = React.createContext(initialState)
 
-function DataFilterProvider ({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState)
+function DataFilterProvider ({ children, defaults }) {
+  const [state, dispatch] = useReducer(reducer, Object.assign(initialState, defaults))
   const actions = useActions(state, dispatch)
 
   // Log new state

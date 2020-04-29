@@ -11,6 +11,9 @@ import {
 import Sparkline from '../../../data-viz/Sparkline'
 
 import { StoreContext } from '../../../../store'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import utils from '../../../../js/utils'
 import CONSTANTS from '../../../../js/constants'
 
@@ -33,8 +36,8 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueSummaryTrends = props => {
-  const { state } = useContext(StoreContext)
-  const year = state.year
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, period: CONSTANTS.FISCAL_YEAR }
@@ -89,37 +92,42 @@ const RevenueSummaryTrends = props => {
       x => x[0] === year
     )
 
-    total = data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].sum
-  }
+    total = data.fiscal_revenue_summary.length > 1 ? data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].sum : 0
 
-  return (
-    <>
-      <Grid container>
-        <Grid item xs={6}>
-          <Typography variant="caption">
-            <Box>Trend</Box>
-            <Box>({sparkMin} - {sparkMax})</Box>
-          </Typography>
-          <Box component="span">
-            {sparkData && (
-              <Sparkline
-                data={sparkData}
-                highlightIndex={highlightIndex}
-              />
-            )}
-          </Box>
+    return (
+      <>
+        <Grid container>
+          <Grid item xs={6}>
+            <Typography variant="caption">
+              <Box>Trend</Box>
+              <Box>({sparkMin} - {sparkMax})</Box>
+            </Typography>
+            {sparkData.length > 1 &&
+              <Box component="span">
+                {sparkData && (
+                  <Sparkline
+                    data={sparkData}
+                    highlightIndex={highlightIndex}
+                  />
+                )}
+              </Box>
+            }
+          </Grid>
+          <Grid item xs={6} style={{ textAlign: 'right' }}>
+            <Typography variant="caption">
+              <Box>{year}</Box>
+              <Box>
+                {utils.formatToSigFig_Dollar(Math.floor(total), 3)} 
+              </Box>
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={6} style={{ textAlign: 'right' }}>
-          <Typography variant="caption">
-            <Box>{year}</Box>
-            <Box>
-              {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
-            </Box>
-          </Typography>
-        </Grid>
-      </Grid>
-    </>
-  )
+      </>
+    )
+  }
+  else {
+    return (null)
+  }
 }
 
 export default RevenueSummaryTrends

@@ -9,6 +9,9 @@ import Link from '../../Link'
 
 import { StoreContext } from '../../../store'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -55,8 +58,8 @@ const useStyles = makeStyles(theme => ({
 
 const NationalRevenueSummary = props => {
   const classes = useStyles()
-  const { state } = useContext(StoreContext)
-  const year = state.year
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
 
   const { title } = props
 
@@ -85,23 +88,23 @@ const NationalRevenueSummary = props => {
 
   if (data) {
     // do something wit dat data
-    console.log('NationalRevenueSummary data: ', data)
+    //    console.log('NationalRevenueSummary data: ', data)
     groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.sum, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
 
-    xGroups['Fiscal year'] = nationalRevenueData.map((row, i) => console.log('row map: ', row))
+
   }
 
   return (
     <Container id={utils.formatToSlug(title)}>
       <Grid container>
-        <Grid item md={12}>
+        <Grid item xs={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h3" color="secondary.dark">{title}</Box>
           </Box>
         </Grid>
-        <Grid item md={12}>
+        <Grid item xs={12} style={{ overflowX: 'auto' }}>
           <Table>
             <TableHead>
               <TableRow>
@@ -134,7 +137,7 @@ const NationalRevenueSummary = props => {
                           }
                         }}
                         legendHeaders={ headers => {
-                          console.debug('headers..................', headers)
+                          // console.debug('headers..................', headers)
                           headers[0] = ''
                           headers[2] = ''
                           return headers
@@ -145,7 +148,6 @@ const NationalRevenueSummary = props => {
                         xAxis={xAxis}
                         xLabels={xLabels}
                         yAxis={yAxis}
-                        xGroups={xGroups}
                         yGroupBy={yGroupBy}
                         yOrderBy={yOrderBy}
                         horizontal

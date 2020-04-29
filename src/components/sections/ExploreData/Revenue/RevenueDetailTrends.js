@@ -6,6 +6,9 @@ import gql from 'graphql-tag'
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
 
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 import CONSTANTS from '../../../../js/constants'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -46,8 +49,8 @@ const APOLLO_QUERY = gql`
 
 const RevenueDetailTrends = props => {
   const classes = useStyles()
-  const { state } = useContext(StoreContext)
-  const year = state.year
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   const stateAbbr = ((props.abbr.length > 2) &&
     (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
@@ -102,13 +105,13 @@ const RevenueDetailTrends = props => {
     )
 
     locationTotalData = data.locationTotal
-    locData = locationTotalData.find(item => item.state_or_area === stateAbbr)
+    locData = locationTotalData.length > 0 ? locationTotalData.find(item => item.state_or_area === stateAbbr).sum : 0
   }
 
   return (
     <>
       <Box textAlign="center" className={classes.root} key={props.key}>
-        <Box component="h2" mt={0} mb={0}>{locData && utils.formatToDollarInt(locData.sum)}</Box>
+        <Box component="h2" mt={0} mb={0}>{utils.formatToDollarInt(locData)}</Box>
         <Box component="span" mb={4}>{year && <span>{dataSet} revenue</span>}</Box>
         {sparkData.length > 1 && (
           <Box mt={4}>

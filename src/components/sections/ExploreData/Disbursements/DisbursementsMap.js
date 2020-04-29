@@ -6,6 +6,9 @@ import Map from '../../../data-viz/Map'
 
 import { StoreContext } from '../../../../store'
 
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
 const APOLLO_QUERY = gql`
   query FiscalDisbursements($year: Int!) {
     fiscal_disbursement_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }}) {
@@ -17,9 +20,9 @@ const APOLLO_QUERY = gql`
 `
 
 export default props => {
-  const { state } = useContext(StoreContext)
+  const { state: filterState } = useContext(DataFilterContext)
 
-  const year = state.year
+  const year = filterState[DFC.YEAR]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year }

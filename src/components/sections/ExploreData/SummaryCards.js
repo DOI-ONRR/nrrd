@@ -16,6 +16,9 @@ import CloseIcon from '@material-ui/icons/Close'
 
 import { StoreContext } from '../../../store'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: '20px'
@@ -82,12 +85,12 @@ const useStyles = makeStyles(theme => ({
 
 const SummaryCards = props => {
   const classes = useStyles()
-  const { state, dispatch } = useContext(StoreContext)
-  const cards = state.cards
+  const { state: pageState, dispatch } = useContext(StoreContext)
+  const cards = pageState.cards
 
   const [minimized, setMinimized] = useState(true)
   const closeCard = item => {
-    dispatch({ type: 'CARDS', payload: { cards: cards.filter(item => item.fips !== props.fips) } })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== props.fips) })
   }
 
   const minimizeCard = item => {
@@ -123,7 +126,7 @@ const SummaryCards = props => {
                     onClick={(e, i) => {
                       minimizeCard(i)
                     }}
-                    key={state}
+                    key={filterState}
                   />
                 )}
                 {closeIcon && (

@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     },
     borderBottom: `2px solid ${ theme.palette.links.default }`,
     background: theme.palette.grey[100],
-  }
+  },
 }))
 
 // Page ScrollTo
@@ -121,28 +121,24 @@ const PageSubMenu = ({ menuItems, ...props }) => {
   }
 
   return (
-    <Container>
-      <Grid container>
-        <Grid item md={12}>
-          <Box className={classes.root}>
-            <StickyWrapper enabled={true} top={100} bottomBoundary={0} innerZ="1000" activeClass="sticky">
-              <Paper elevation={1} square>
-                <MenuList id="page-scrollto-subnav">
-                  <MenuItem key={0}>
-                    <Link href="/explore#" title="Top">
+    <Box className={classes.root}>
+      <StickyWrapper enabled={true} top={90} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+        <Paper elevation={1} square>
+          <Container maxWidth="lg">
+            <MenuList id="page-scrollto-subnav">
+              <MenuItem key={0}>
+                <Link href="/explore#" title="Top">
                       Top
-                    </Link>
-                  </MenuItem>
-                  { subMenu.items &&
+                </Link>
+              </MenuItem>
+              { subMenu.items &&
                     subMenu.items.map((item, i) => <MenuItem key={i + 1}><Link href={`/explore#${ utils.formatToSlug(item) }`} title={item}>{item}</Link></MenuItem>)
-                  }
-                </MenuList>
-              </Paper>
-            </StickyWrapper>
-          </Box>
-        </Grid>
-      </Grid>
-    </Container>
+              }
+            </MenuList>
+          </Container>
+        </Paper>
+      </StickyWrapper>
+    </Box>
   )
 }
 

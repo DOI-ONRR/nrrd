@@ -15,141 +15,152 @@ tags:
 <Container style={{ padding: 0 }} maxWidth={false}>
   <Box mb={10}>
     <ExploreData>
-      <Revenue>
-        <MapContext>
-          <RevenueMap />
-          <SummaryCards>
-            <RevenueSummaryTrends />
-            <RevenueSummaryTopCommodities />
-          </SummaryCards>
-        </MapContext>
-        <CompareContext>
-          <Container>
-            <Grid container>
-              <Grid item md={12}>
-                <Box mb={1} color="secondary.main" borderBottom={5}>
-                  <Box component="h2" color="secondary.dark">Revenue</Box>
-                </Box>
-                <Typography variant="body1">
-                  When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. <strong>In fiscal year <Year />, ONRR collected a total of <LocationTotal location='Nationwide Federal' /> in revenue.</strong>
-                </Typography>
+      <ContextProvider params={'?dataType=Revenue'}>
+        <Revenue>
+          <MapContext>
+            <RevenueMap />
+            <SummaryCards>
+              <RevenueSummaryTrends />
+              <RevenueSummaryTopCommodities />
+            </SummaryCards>
+          </MapContext>
+          <CompareContext>
+            <PageSubMenu />
+            <Container>
+              <Grid container>
+                <Grid item md={12}>
+                  <Box mb={1} color="secondary.main" borderBottom={5}>
+                    <Box component="h2" color="secondary.dark">Revenue</Box>
+                  </Box>
+                  <Typography variant="body1">
+                    When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. <strong>In fiscal year <Year />, ONRR collected a total of <LocationTotal location='Nationwide Federal' /> in revenue.</strong>
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-          </Container>
-          <PageSubMenu />
-          <Container id="compare-revenue">
-            <Grid container>
-              <Grid item md={12}>
-                <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                  <Box component="h3" color="secondary.dark">Compare revenue</Box>
-                </Box>
-                <Box fontSize="body1.fontSize">
-                  Add more than one card to compare.  Select states, counties, and offshore regions.
-                </Box>
+            </Container>
+            <Container id="compare-revenue">
+              <Grid container>
+                <Grid item md={12}>
+                  <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+                    <Box component="h3" color="secondary.dark">Compare revenue</Box>
+                  </Box>
+                  <Box fontSize="body1.fontSize">
+                    Add more than one card to compare.  Select states, counties, and offshore regions.
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container>
-              <Grid item md={12}>
-                <DetailCards> 
-                  <RevenueDetailTrends />
-                  <RevenueDetailCommodities />
-                  <RevenueDetailTypes />
-                </DetailCards>
+              <Grid container style={{ overflowX: 'auto' }}>
+                <Grid item md={12}>
+                  <DetailCards> 
+                    <RevenueDetailTrends />
+                    <RevenueDetailCommodities />
+                    <RevenueDetailTypes />
+                  </DetailCards>
+                </Grid>
               </Grid>
-            </Grid>
-          </Container>
-        </CompareContext>
-        <NationalRevenueSummary title="Nationwide revenue summary" />
-        <TopLocations title="Top locations" />
-        <Commodities title="Top commodities" />
-        <Company title="Revenue by company" />
-      </Revenue>
-      <Disbursements>
-        <MapContext>
-          <DisbursementMap />
-          <SummaryCards>
-            <DisbursementTrend />
-            <DisbursementRecipientSummary/>
-          </SummaryCards>
-        </MapContext>
-        <CompareContext>
-          <Container>
-            <Grid container>
-              <Grid item md={12}>
-                <Box mb={1} color="secondary.main" borderBottom={5}>
-                  <Box component="h2" color="secondary.dark">Disbursements</Box>
-                </Box>
-                <Typography variant="body1">
-                  After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called "disbursement." <strong>In <Year />, disbursed a total of <LocationTotal location='Nationwide Federal' />.</strong>
-                </Typography>
+            </Container>
+          </CompareContext>
+          <RevenueOverTime title="Revenue Over Time" />       
+          <NationalRevenueSummary title="Nationwide revenue summary" />
+          <TopLocations title="Top locations" />
+          <Commodities title="Top commodities" />
+          <Company title="Revenue by company" />
+        </Revenue>
+      </ContextProvider>
+      <ContextProvider params={'?dataType=Disbursements'}>
+        <Disbursements>
+          <MapContext>
+            <DisbursementMap />
+            <SummaryCards>
+              <DisbursementTrend />
+              <DisbursementRecipientSummary/>
+            </SummaryCards>
+          </MapContext>
+          <CompareContext>
+            <PageSubMenu />
+            <Container>
+              <Grid container>
+                <Grid item md={12}>
+                  <Box mb={1} color="secondary.main" borderBottom={5}>
+                    <Box component="h2" color="secondary.dark">Disbursements</Box>
+                  </Box>
+                  <Typography variant="body1">
+                    After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called "disbursement." <strong>In <Year />, disbursed a total of <LocationTotal location='Nationwide Federal' />.</strong>
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-          </Container>
-          <PageSubMenu />
-          <Container id="compare-disbursements">
-            <Grid container>
-              <Grid item md={12}>
-                <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                  <Box component="h3" color="secondary.dark">Compare disbursements</Box>
-                </Box>
-                <Box fontSize="body1.fontSize">
-                  Add more than one card to compare.  Select states, counties, and offshore regions.
-                </Box>
+            </Container>
+            <Container id="compare-disbursements">
+              <Grid container>
+                <Grid item md={12}>
+                  <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+                    <Box component="h3" color="secondary.dark">Compare disbursements</Box>
+                  </Box>
+                  <Box fontSize="body1.fontSize">
+                    Add more than one card to compare.  Select states, counties, and offshore regions.
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container>
-              <Grid item md={12}>
-                <DetailCards>  
-                  <DisbursementDetailTrends />
-                  <DisbursementRecipients />        
-                </DetailCards>
+              <Grid container>
+                <Grid item md={12}>
+                  <DetailCards>  
+                    <DisbursementDetailTrends />
+                    <DisbursementRecipients />
+                    <DisbursementSources />  
+                  </DetailCards>
+                </Grid>
               </Grid>
-            </Grid>
-          </Container>
-        </CompareContext>
-      </Disbursements>
-      <Production>
-        <MapContext>
-          <ProductionMap />
-          <SummaryCards>
-            <Box>Production summary content</Box>
-          </SummaryCards>
-        </MapContext>
-        <CompareContext>
-          <Container>
-            <Grid container>
-              <Grid item md={12}>
-                <Box mb={1} color="secondary.main" borderBottom={5}>
-                  <Box component="h2" color="secondary.dark">Production</Box>
-                </Box>
-                <Typography variant="body1">
-                  The Office of Natural Resources Revenue collects detailed data about natural resource production (?) on federal lands and waters.
-                </Typography>
+            </Container>
+          </CompareContext>
+          <DisbursementsOverTime title="Disbursements Over Time"  /> 
+          <NationwideDisbursementSummary title="Nationwide Disbursements Summary" />
+          <DisbursementTopRecipients title="Top Recipients" />
+        </Disbursements>
+      </ContextProvider>
+      <ContextProvider params={'?dataType=Production'}>
+        <Production>
+          <MapContext>
+            <ProductionMap />
+            <SummaryCards>
+              <Box>Production summary content</Box>
+            </SummaryCards>
+          </MapContext>
+          <CompareContext>
+            <Container>
+              <Grid container>
+                <Grid item md={12}>
+                  <Box mb={1} color="secondary.main" borderBottom={5}>
+                    <Box component="h2" color="secondary.dark">Production</Box>
+                  </Box>
+                  <Typography variant="body1">
+                    The Office of Natural Resources Revenue collects detailed data about natural resource production (?) on federal lands and waters.
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-          </Container>
-          <PageSubMenu />
-          <Container id="compare-oil-production">
-            <Grid container>
-              <Grid item md={12}>
-                <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                  <Box component="h3" color="secondary.dark">Compare oil production</Box>
-                </Box>
-                <Box fontSize="body1.fontSize">
-                  Add more than one card to compare.  Select states, counties, and offshore regions.
-                </Box>
+            </Container>
+            <PageSubMenu />
+            <Container id="compare-oil-production">
+              <Grid container>
+                <Grid item md={12}>
+                  <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+                    <Box component="h3" color="secondary.dark">Compare oil production</Box>
+                  </Box>
+                  <Box fontSize="body1.fontSize">
+                    Add more than one card to compare.  Select states, counties, and offshore regions.
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container>
-              <Grid item md={12}>
-                <DetailCards> 
-                  <Box>Production child content.</Box>
-                </DetailCards>
+              <Grid container>
+                <Grid item md={12}>
+                  <DetailCards> 
+                    <Box>Production child content.</Box>
+                  </DetailCards>
+                </Grid>
               </Grid>
-            </Grid>
-          </Container>       
-        </CompareContext>
-      </Production>
+            </Container>       
+          </CompareContext>
+        </Production>
+      </ContextProvider>
     </ExploreData>
   </Box>
 </Container>

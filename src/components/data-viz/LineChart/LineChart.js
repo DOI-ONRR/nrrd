@@ -25,14 +25,40 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '100%',
-  }
-}))
+  },
+  line: {
+    fill: 'none',
+    stroke: '#ffab00',
+    'stroke-width': 3
+  },
+  
+  overlay: {
+    fill: 'none',
+    'pointer-events': 'all',
+  },
+
+/* Style the dots by assigning a fill and stroke */
+  dot: {
+    fill: '#ffab00',
+    stroke: '#fff',
+  },
+ /*
+  .focus circle {
+  fill: none;
+  stroke: steelblue;
+ */
+  
+}
+  
+ 
+))
 
 const LineChart = props => {
 
   const classes = useStyles()
   const { data, ...options } = props
-  const elemRef= useRef(null)
+  // console.debug("LINE CHART", data)
+  const elemRef = useRef(null)
   const title = options.title || ''
 
   useEffect(() => {

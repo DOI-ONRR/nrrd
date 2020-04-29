@@ -16,6 +16,9 @@ import {
 import { Autocomplete } from '@material-ui/lab'
 import { StoreContext } from '../../../store'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 import AddCardButton from './AddCardButton'
 import mapJson from './us-topology.json'
 
@@ -116,8 +119,8 @@ const getRegionProperties = input => {
 
 const AddLocationCard = props => {
   const classes = useStyles()
-  const { state } = useContext(StoreContext)
-  const year = state.year
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
 
   const [input, setInput] = useState(null)
   const [keyCount, setKeyCount] = useState(0)
@@ -187,7 +190,7 @@ const AddLocationCard = props => {
       <CardContent>
         <Autocomplete
           key={keyCount}
-          id="location-selecte"
+          id="location-select"
           autoComplete
           inputValue={input}
           options={distinctLocations}

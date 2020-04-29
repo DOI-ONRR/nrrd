@@ -16,6 +16,9 @@ import {
 import { StoreContext } from '../../../store'
 import CONSTANTS from '../../../js/constants'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 const APOLLO_QUERY = gql`
   query YearPeriod($period: String!) {
     # period query
@@ -44,7 +47,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 100,
+    height: 90,
+    '@media (max-width: 768px)': {
+      paddingTop: theme.spacing(1.5),
+    },
   },
   sliderBox: {
     width: '100%',
@@ -53,15 +59,24 @@ const useStyles = makeStyles(theme => ({
     zIndex: 101,
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    top: 0,
+    top: -12,
+    '@media (max-width: 768px)': {
+      top: -10,
+    },
   },
   sliderRoot: {
+    width: '100%',
+    display: 'block',
+    margin: '0 auto',
   },
   sliderMarkLabel: {
     fontWeight: 'bold',
-    top: '28px',
+    top: 25,
     color: theme.palette.primary.dark,
     fontSize: '1rem',
+    '@media (max-width: 768px)': {
+      top: 30,
+    },
   },
   sliderMarkLabelActive: {
     fontWeight: 'bold',
@@ -73,7 +88,7 @@ const useStyles = makeStyles(theme => ({
   },
   sliderRail: {
     height: 4,
-    backgroundColor: theme.palette.grey['500']
+    backgroundColor: theme.palette.grey['500'],
   },
   sliderMark: {
     height: 4,
@@ -116,30 +131,36 @@ const useStyles = makeStyles(theme => ({
     },
   },
   sliderYearDisplay: {
-    // border: `2px solid ${ theme.palette.links.default }`,
-    // color: theme.palette.links.default,
-    background: theme.palette.common.white,
+    color: theme.palette.grey[900],
+    background: theme.palette.grey[100],
     fontWeight: 'bold',
     width: 175,
-    borderRadius: '50px',
+    borderRadius: 4,
     margin: '0 auto',
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     position: 'relative',
-    top: theme.spacing(0),
+    top: -14,
+    '@media (max-width: 768px)': {
+      top: -5,
+    },
   },
 }))
 
 const YearSlider = props => {
   const classes = useStyles()
-  const { state } = useContext(StoreContext)
 
-  const year = state.year
-  const period = state.period
-
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  let year = filterState[DFC.YEAR]
+  const period = filterState[DFC.PERIOD]
+  const handleOnchange = year => {
+    updateDataFilter({ ...filterState, [DFC.YEAR]: year })
+  }
+  
   let periodData
   let minYear
   let maxYear
+  const customMarks = []
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { period: CONSTANTS.FISCAL_YEAR }
@@ -154,19 +175,23 @@ const YearSlider = props => {
     // set min and max trend years
     minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-  }
-
-  const customMarks = [
-    {
-      label: minYear,
-      value: minYear
-    },
-    {
-      label: maxYear,
-      value: maxYear
+    if (!year) {
+      year = maxYear
+      handleOnchange(maxYear)
     }
-  ]
+    customMarks.push(
+      {
+        label: minYear.toString(),
+        value: minYear
+      },
+      {
+        label: maxYear.toString(),
+        value: maxYear
+      }
+    )
 
+
+  
   return (
     <Box className={classes.root}>
       <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
@@ -180,11 +205,11 @@ const YearSlider = props => {
                     defaultValue={year}
                     aria-label="Year slider"
                     aria-labelledby="year-slider"
-                    aria-valuetext={year.toString()}
+                    aria-valuetext={year && year.toString()}
                     valueLabelDisplay="on"
                     step={1}
                     onChangeCommitted={(e, yr) => {
-                      props.onYear(yr)
+                      handleOnchange(yr)
                     }}
                     marks={customMarks}
                     min={minYear}
@@ -209,6 +234,8 @@ const YearSlider = props => {
       </StickyWrapper>
     </Box>
   )
+  }
+  else { return (null) }
 }
 
 export default YearSlider
