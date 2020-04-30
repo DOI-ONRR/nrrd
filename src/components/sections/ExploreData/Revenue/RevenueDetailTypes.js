@@ -79,7 +79,7 @@ const RevenueDetailTypes = props => {
                 maxColor='#B64D00'
                 circleTooltip={
                   d => {
-                    console.debug('circleLABLE yo: ', d)
+                    // console.debug('circleLABLE yo: ', d)
                     const r = []
                     r[0] = d.revenue_type
                     r[1] = utils.formatToDollarInt(d.total)

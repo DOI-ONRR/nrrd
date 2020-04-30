@@ -324,15 +324,19 @@ export default class D3CircleChart {
 
     const mouseover = function (d) {
       self._onMouseover(this, d)
-      tooltip
-        .style('opacity', 1)
+      if (circleTooltip(d.data)[0] !== undefined) {
+        tooltip
+          .style('opacity', 1)
+      }
     }
 
     const mousemove = function (d) {
-      tooltip
-        .html(`${ circleTooltip(d.data)[0] }<br>${ circleTooltip(d.data)[1] }`)
-        .style('left', d3.event.pageX + 'px')
-        .style('top', d3.event.pageY + 'px')
+      if (circleTooltip(d.data)[0] !== undefined) {
+        tooltip
+          .html(`${ circleTooltip(d.data)[0] }<br>${ circleTooltip(d.data)[1] }`)
+          .style('left', d3.event.pageX + 'px')
+          .style('top', d3.event.pageY + 'px')
+      }
     }
 
     const mouseout = function (d) {

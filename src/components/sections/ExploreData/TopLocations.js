@@ -73,9 +73,6 @@ const useStyles = makeStyles(theme => ({
           marginRight: 0,
         },
       },
-      '& .tooltip': {
-        display: 'none',
-      }
     },
   }
 }))
@@ -85,7 +82,7 @@ const TopLocations = ({ title, ...props }) => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : "State" 
+  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location } })
 

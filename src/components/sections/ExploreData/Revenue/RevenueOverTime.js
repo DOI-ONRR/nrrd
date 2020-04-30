@@ -10,12 +10,14 @@ import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import LineChart from '../../../data-viz/LineChart/LineChart.js'
+import ChipLabel from '../../ExploreData/ChipLabel'
 
 import {
   Box,
   Container,
   Grid,
-  Chip
+  Chip,
+  useTheme
 } from '@material-ui/core'
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
@@ -60,10 +62,6 @@ const useStyles = makeStyles(theme => ({
       fontWeight: 'bold',
     },
   },
-  chipLabelLine: {
-    display: 'block',
-    height: 6,
-  },
   chipContainer: {
     '& .MuiChip-root:nth-child(1) .line': {
       stroke: theme.palette.blue[300],
@@ -80,30 +78,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const ChipLabelSVG = props => {
-  return (
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" height="100px">
-      <line className="line" x1="0" x2="175" y1="0" y2="0" stroke="black" stroke-width="15" stroke-dasharray={props.strokeDasharray} />
-    </svg>
-  )
-}
-
-const ChipLabel = props => {
-  const classes = useStyles()
-  const { labelIndex, label } = props
-
-  return (
-    <>
-      <Box component="span">{label}</Box>
-      <Box component="span" className={classes.chipLabelLine}>
-        <ChipLabelSVG labelIndex={labelIndex} strokeDasharray={LINE_DASHES[labelIndex]} />
-      </Box>
-    </>
-  )
-}
-
 const RevenueOverTime = props => {
   const classes = useStyles()
+  const theme = useTheme()
   const title = props.title || ''
 
   const { state: pageState, dispatch } = useContext(StoreContext)
@@ -138,7 +115,18 @@ const RevenueOverTime = props => {
           </Box>
         </Grid>
         <Grid item md={12}>
-          <LineChart data={chartData} lineDashes={LINE_DASHES} />
+          <LineChart
+            data={chartData}
+            cards={cards}
+            chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
+            lineDashes={LINE_DASHES}
+            lineTooltip={
+              (d, i) => {
+                const r = []
+                r[0] = utils.formatToDollarInt(d)
+                return r
+              }
+            } />
           <Box mt={2} className={classes.chipContainer}>
             {
               cards.map((card, i) => {
