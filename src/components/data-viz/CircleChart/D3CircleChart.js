@@ -357,24 +357,24 @@ export default class D3CircleChart {
 
     const xLabel = svg.append('g')
       .style('fill', 'white')
-      .style('font', '12px sans-serif')
       .attr('pointer-events', 'none')
       .attr('text-anchor', 'middle')
       .selectAll('text')
       .data(root.descendants())
       .join('text')
+      .style('font-size', d => d.r / 6)
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
       .text(d => circleLabel(d.data, xAxis, yAxis)[0])
 
     const yLabel = svg.append('g')
       .style('fill', 'white')
-      .style('font', '12px sans-serif')
       .attr('pointer-events', 'none')
       .attr('text-anchor', 'middle')
       .selectAll('text')
       .data(root.descendants())
       .join('text')
+      .style('font-size', d => d.r / 6)
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
       .text(d => circleLabel(d.data, xAxis, yAxis)[1])
@@ -387,7 +387,7 @@ export default class D3CircleChart {
       view = v
 
       xLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
-      yLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k + 30 })`)
+      yLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k + d.r / 5 })`)
       node.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
       node.attr('r', d => d.r * k)
     }
@@ -1216,11 +1216,10 @@ console.debug(data)
           .transition()
           .duration(200)
           .style('background', '#e0e0e0')
-
       }
       const activeElement = element.parentNode.parentNode
       activeElement.setAttribute('tabindex', 1)
-      this.selectedData(data.data)
+      // this.selectedData(data.data)
       this._legend()
 
       this.onMouseover(this)

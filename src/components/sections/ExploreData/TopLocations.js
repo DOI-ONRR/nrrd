@@ -68,6 +68,7 @@ const useStyles = makeStyles(theme => ({
       },
       '& .chart': {
         marginRight: theme.spacing(2),
+        width: '70%',
         '@media (max-width: 426px)': {
           marginRight: 0,
         },
