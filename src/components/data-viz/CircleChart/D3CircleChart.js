@@ -298,10 +298,8 @@ export default class D3CircleChart {
     let view
 
     const svg = d3.select(chartNode).append('svg')
-      // .attr('viewBox', `-${ width * 0.75 } -${ height * 0.75 } ${ width * 1.5 } ${ height * 1.5 }`)
       .attr('viewBox', `-${ width * 0.5 } -${ height * 0.5 } ${ width } ${ height }`)
       .style('display', 'block')
-      // .style('margin', '0 -14px')
       .style('margin', '0')
       .style('padding', '0')
       .style('background', 'white')
@@ -1220,6 +1218,7 @@ console.debug(data)
           .transition()
           .duration(200)
           .style('background', '#e0e0e0')
+          .style('font-weight', 'bold')
       }
       const activeElement = element.parentNode.parentNode
       activeElement.setAttribute('tabindex', 1)
@@ -1254,6 +1253,7 @@ console.debug(data)
           .transition()
           .duration(500)
           .style('background', 'none')
+          .style('font-weight', 'normal')
       }
     }
     catch (err) {

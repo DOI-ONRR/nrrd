@@ -91,12 +91,12 @@ const DisbursementsOverTime = props => {
   const theme = useTheme()
   const title = props.title || ''
 
-  const { state: pageState } = useContext(StoreContext)
+  const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
 
   const { loading, error, data } = useQuery(APOLLO_QUERY)
   const handleDelete = props.handleDelete || ((e, val) => {
-    console.debug('handle delete')
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== val) })
   })
 
   if (loading) {
@@ -124,7 +124,7 @@ const DisbursementsOverTime = props => {
         <Grid item md={12}>
           <LineChart
             data={chartData}
-            cards={cards}
+            chipLabels={cards}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
             lineTooltip={

@@ -24,8 +24,8 @@ export default class D3LineChart {
       this.lineTooltip = options.lineTooltip
     }
 
-    if (options.cards) {
-      this.cards = options.cards
+    if (options.chipLabels) {
+      this.chipLabels = options.chipLabels
     }
 
     if (options.chartColors) {
@@ -94,7 +94,7 @@ export default class D3LineChart {
       const lineDashes = this.lineDashes
       const lineStrokes = this.lineStrokes
       const lineTooltip = this.lineTooltip
-      const cards = this.cards
+      const chipLabels = this.chipLabels
       const colors = this.chartColors
 
       console.log('whats this: ', this)
@@ -164,7 +164,7 @@ export default class D3LineChart {
           .style('color', (d, i) => colors[i])
           .html((d, i) => {
             // console.log('.html d: ', i, d)
-            return `${ cards[i].name }: ${ lineTooltip(d[yearIndex], i)[0] }`
+            return `${ chipLabels[i].name }: ${ lineTooltip(d[yearIndex], i)[0] }`
           })
       }
 

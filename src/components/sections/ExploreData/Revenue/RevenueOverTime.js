@@ -118,7 +118,7 @@ const RevenueOverTime = props => {
         <Grid item md={12}>
           <LineChart
             data={chartData}
-            cards={cards}
+            chipLabels={cards}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
             lineTooltip={
