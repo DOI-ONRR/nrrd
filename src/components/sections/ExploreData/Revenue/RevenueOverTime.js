@@ -57,6 +57,7 @@ const useStyles = makeStyles(theme => ({
   },
   chipRoot: {
     height: 40,
+    marginTop: theme.spacing(1),
     marginRight: theme.spacing(1),
     '& > span': {
       fontWeight: 'bold',
@@ -127,7 +128,7 @@ const RevenueOverTime = props => {
                 return r
               }
             } />
-          <Box mt={2} className={classes.chipContainer}>
+          <Box mt={1} className={classes.chipContainer}>
             {
               cards.map((card, i) => {
                 return (

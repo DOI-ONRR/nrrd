@@ -108,7 +108,7 @@ const TopLocations = ({ title, ...props }) => {
               <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
           </Grid>
-          <Grid item md={12}>
+          <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
                 <CircleChart
