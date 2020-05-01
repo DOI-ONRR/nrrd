@@ -12,9 +12,15 @@ export default class D3CircleChart {
     if (options.format) {
       this.format = options.format
     }
+
     if (options.circleLabel) {
       this.circleLabel = options.circleLabel
     }
+
+    if (options.circleTooltip) {
+      this.circleTooltip = options.circleTooltip
+    }
+
     // console.debug("data =========================================:", this.radius)
     this.minColor = options.minColor || 'lightblue'
     this.maxColor = options.maxColor || 'darkblue'
@@ -239,7 +245,6 @@ export default class D3CircleChart {
     return d3.scaleLinear()
       .domain([0, domain])
       .range([this.minColor, this.maxColor])
-
   }
 
   circleLabel (data, xAxis, yAxis) {
@@ -259,12 +264,31 @@ export default class D3CircleChart {
     }
   }
 
+  // Circle tooltips
+  circleTooltip (data, xAxis, yAxis) {
+    const r = [,]
+    return r
+  }
+
+  _circleTooltip (data) {
+    try {
+      const r = this.circleTooltip(data)
+      return r
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
+  }
+
   chart () {
+    const self = this
     const xAxis = this.xAxis
     const yAxis = this.yAxis
 
     const chartNode = this.container.children[0]
     const circleLabel = this.circleLabel
+    const circleTooltip = this.circleTooltip
+
     const width = this._width
     const height = this._height
     const color = this.color()
@@ -274,53 +298,85 @@ export default class D3CircleChart {
     let view
 
     const svg = d3.select(chartNode).append('svg')
-      // .attr('viewBox', `-${ width * 0.75 } -${ height * 0.75 } ${ width * 1.5 } ${ height * 1.5 }`)
       .attr('viewBox', `-${ width * 0.5 } -${ height * 0.5 } ${ width } ${ height }`)
       .style('display', 'block')
-      // .style('margin', '0 -14px')
       .style('margin', '0')
       .style('padding', '0')
       .style('background', 'white')
       .style('cursor', 'pointer')
       .on('click', () => zoom(root))
 
+    // Define the div for the tooltip
+    const tooltip = d3.select(chartNode).append('div')
+      .attr('class', 'tooltip')
+      .style('position', 'absolute')
+      .style('left', '100px')
+      .style('background', 'rgba(0, 0, 0, 0.85)')
+      .style('border-radius', '4px')
+      .style('z-index', '999')
+      .style('text-align', 'center')
+      .style('color', 'white')
+      .style('padding', '4px')
+      .style('pointer-events', 'none')
+      .style('opacity', 0)
+
+    const mouseover = function (d) {
+      self._onMouseover(this, d)
+      if (circleTooltip(d.data)[0] !== undefined) {
+        tooltip
+          .style('opacity', 1)
+      }
+    }
+
+    const mousemove = function (d) {
+      if (circleTooltip(d.data)[0] !== undefined) {
+        tooltip
+          .html(`${ circleTooltip(d.data)[0] }<br>${ circleTooltip(d.data)[1] }`)
+          .style('left', d3.event.pageX + 'px')
+          .style('top', d3.event.pageY + 'px')
+      }
+    }
+
+    const mouseout = function (d) {
+      self._onMouseout(this, d)
+      tooltip.style('opacity', 0)
+    }
+
     const node = svg.append('g')
       .selectAll('circle')
+      .attr('class', 'circle')
       .data(root.descendants().slice(1))
       .join('circle')
       .attr('fill', (d, i) => {
         // console.debug("fill attr", d,i)
         return d.children ? color(d.depth) : color(yDomain.length - i)
       })
-      .attr('pointer-events', d => !d.children ? 'none' : null)
-      .on('mouseover', function () {
-        d3.select(this).attr('stroke', '#000')
-      })
-      .on('mouseout', function () {
-        d3.select(this).attr('stroke', null)
-      })
-      .on('click', d => focus !== d && (zoom(d), d3.event.stopPropagation()))
+      // .attr('pointer-events', d => !d.children ? 'none' : null)
+      .on('mouseover', mouseover)
+      .on('mousemove', mousemove)
+      .on('mouseout', mouseout)
+      // .on('click', d => focus !== d && (zoom(d), d3.event.stopPropagation()))
 
     const xLabel = svg.append('g')
       .style('fill', 'white')
-      .style('font', '16px sans-serif')
       .attr('pointer-events', 'none')
       .attr('text-anchor', 'middle')
       .selectAll('text')
       .data(root.descendants())
       .join('text')
+      .style('font-size', d => d.r / 6)
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
       .text(d => circleLabel(d.data, xAxis, yAxis)[0])
 
     const yLabel = svg.append('g')
       .style('fill', 'white')
-      .style('font', '16px sans-serif')
       .attr('pointer-events', 'none')
       .attr('text-anchor', 'middle')
       .selectAll('text')
       .data(root.descendants())
       .join('text')
+      .style('font-size', d => d.r / 6)
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
       .text(d => circleLabel(d.data, xAxis, yAxis)[1])
@@ -333,7 +389,7 @@ export default class D3CircleChart {
       view = v
 
       xLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
-      yLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k + 30 })`)
+      yLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k + d.r / 5 })`)
       node.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
       node.attr('r', d => d.r * k)
     }
@@ -892,7 +948,7 @@ console.debug(data)
 
       //  console.debug("Group Data:", data)
       this.chart.append('g')
-        .attr('class', 'bars')
+        .attr('class', 'circles')
         .selectAll('g')
         .data(self.xDomain())
         .enter().append('g')
@@ -902,7 +958,7 @@ console.debug(data)
         .attr('class', (d, i) => {
           // console.debug("D: ", d, "I: ",i)
           // console.debug("SI: ", self.selectedIndex)
-          return i === self.selectedIndex ? 'bar active' : 'bar'
+          return i === self.selectedIndex ? 'circle active' : 'circle'
         })
 
         .attr('tabindex', (d, i) => i)
@@ -913,7 +969,7 @@ console.debug(data)
           return r
         })
         .enter().append('g')
-        .attr('class', (d, i) => 'stacked-bar-chart-' + i)
+        .attr('class', (d, i) => 'stacked-circle-chart-' + i)
         .attr('fill-opacity', (d, i) => (1 - (i / keys.length)))
         .append('rect')
         .attr('y', d => {
@@ -932,6 +988,7 @@ console.debug(data)
           self._onClick(this, d)
         })
         .on('mouseover', function (d) {
+          console.log('_chart mouseover yo!')
           //          self._onMouseover(this, d)
           // self._onClick(self)
         })
@@ -961,9 +1018,9 @@ console.debug(data)
           const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
           if (selectedElement) {
             selectedElement.attr('selected', false)
-            selectedElement.attr('class', 'bar')
+            selectedElement.attr('class', 'circle')
           }
-          d3.select(nodes[i]).attr('class', 'bar active')
+          d3.select(nodes[i]).attr('class', 'circle active')
         }
       })
     }
@@ -1121,10 +1178,10 @@ console.debug(data)
       // console.debug(data)
       if (selectedElement) {
         selectedElement.attr('selected', false)
-        selectedElement.attr('class', 'bar')
+        selectedElement.attr('class', 'circle')
       }
       const activeElement = element.parentNode.parentNode
-      activeElement.setAttribute('class', 'bar active')
+      activeElement.setAttribute('class', 'circle active')
       activeElement.setAttribute('selected', true)
       activeElement.setAttribute('tabindex', 1)
       this.selectedData(data[0].data)
@@ -1141,19 +1198,31 @@ console.debug(data)
     // console.debug('onSelect: ', d)
   }
 
-  _onMouseover = (element, data) => {
+  _onMouseover (element, data) {
     try {
-      const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
-      // console.debug(data)
+      // console.log('_onMouseover element', element)
+      // console.log('_onMouseover data: ', data)
+      const selectedElement = d3.select(element)
+      const legendRows = d3.select(this.container.children[1]).select('.legend-table').selectAll('tbody tr')
+      const selectedRowIndex = data.parent.data.children.findIndex(item => item === data.data)
+      const selectedLegendRow = legendRows._groups[0][selectedRowIndex]
+
       if (selectedElement) {
-        selectedElement.attr('selected', false)
-        selectedElement.attr('class', 'bar')
+        selectedElement.attr('class', 'circle active')
+          .transition()
+          .duration(200)
+          .style('stroke', '#000')
+          .style('stroke-width', '4px')
+          .style('opacity', 0.9)
+        d3.select(selectedLegendRow)
+          .transition()
+          .duration(200)
+          .style('background', '#e0e0e0')
+          .style('font-weight', 'bold')
       }
       const activeElement = element.parentNode.parentNode
-      // activeElement.setAttribute('class', 'bar active')
-      // activeElement.setAttribute('selected', true)
       activeElement.setAttribute('tabindex', 1)
-      this.selectedData(data[0].data)
+      // this.selectedData(data.data)
       this._legend()
 
       this.onMouseover(this)
@@ -1165,6 +1234,35 @@ console.debug(data)
 
   onMouseover (d) {
     console.debug('onSelect: ', d)
+  }
+
+  _onMouseout = (element, data) => {
+    try {
+      const selectedElement = d3.select(element)
+      const legendRows = d3.select(this.container.children[1]).select('.legend-table').selectAll('tbody tr')
+      const selectedRowIndex = data.parent.data.children.findIndex(item => item === data.data)
+      const selectedLegendRow = legendRows._groups[0][selectedRowIndex]
+
+      if (selectedElement) {
+        selectedElement.attr('class', 'circle')
+          .transition()
+          .duration(500)
+          .style('stroke', 'none')
+          .style('opacity', 1)
+        d3.select(selectedLegendRow)
+          .transition()
+          .duration(500)
+          .style('background', 'none')
+          .style('font-weight', 'normal')
+      }
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
+  }
+
+  onMouseout (d) {
+    console.debug('onMouseout: ', d)
   }
 
   _onHover = (element, data, hover) => {

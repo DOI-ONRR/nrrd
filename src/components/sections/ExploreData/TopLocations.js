@@ -68,10 +68,11 @@ const useStyles = makeStyles(theme => ({
       },
       '& .chart': {
         marginRight: theme.spacing(2),
+        width: '70%',
         '@media (max-width: 426px)': {
           marginRight: 0,
         },
-      }
+      },
     },
   }
 }))
@@ -81,7 +82,7 @@ const TopLocations = ({ title, ...props }) => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : "State" 
+  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location } })
 
@@ -107,7 +108,7 @@ const TopLocations = ({ title, ...props }) => {
               <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
           </Grid>
-          <Grid item md={12}>
+          <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
                 <CircleChart

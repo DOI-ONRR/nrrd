@@ -18,9 +18,8 @@ import {
 
 import ExploreIcon from '@material-ui/icons/Explore'
 import MapIcon from '@material-ui/icons/Map'
-import SearchIcon from '@material-ui/icons/Search'
-
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import SearchIcon from '@material-ui/icons/Search'
 
 import MapSelectControl from './MapSelectControl'
 import CONSTANTS from '../../../js/constants'
@@ -28,7 +27,7 @@ import CONSTANTS from '../../../js/constants'
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
-import { REVENUE, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { REVENUE, DISBURSEMENTS, PRODUCTION, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -70,7 +69,7 @@ const useStyles = makeStyles(theme => ({
     right: 10,
     top: 4,
     zIndex: 99,
-    '@media (max-width: 768px)': {
+    '@media (max-width: 960px)': {
       position: 'relative',
       width: '100%',
       top: 'inherit',
@@ -258,7 +257,7 @@ const ExploreDataToolbar = props => {
   const [navValue, setNavValue] = useState(null)
   const [menu, setMenu] = useState({
     showMapTools: false,
-    showSearch: false,
+    // showSearch: false,
     showExplore: false,
   })
 
@@ -277,6 +276,7 @@ const ExploreDataToolbar = props => {
           <BottomNavigation
             value={navValue}
             onChange={(event, newValue) => {
+              console.log('newVal: ', newValue)
               setNavValue(newValue)
               switch (newValue) {
               case 0:
@@ -303,8 +303,11 @@ const ExploreDataToolbar = props => {
               }} />
             <BottomNavigationAction
               label="Explore more"
-              icon={<ExploreIcon />}
-              classes={{ root: classes.botNavRoot, selected: classes.botNavSelected }} />
+              icon={<MoreVertIcon />}
+              classes={{
+                root: classes.botNavRoot,
+                selected: classes.botNavSelected
+              }} />
           </BottomNavigation>
         </Box>
       </Hidden>
@@ -356,17 +359,33 @@ const ExploreDataToolbar = props => {
                 defaultOption="Oil (bbl)"
                 label="Commodity"
                 checkbox={false}
-             dataFilterType={DFC.COMMODITY} />
-            }
-            {(menu.showExplore || matchesMdUp) &&
-              <Box className={classes.toolbarExploreMenu}>
-                <MapExploreMenu
-                  linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
-                  linkUrls={['/query-data/?type=Revenue', '/downloads/#Revenue', '/how-it-works/#revenues', '/how-it-works/federal-revenue-by-company/2018/']}
-                />
-              </Box>
+                dataFilterType={DFC.COMMODITY} />
             }
           </Box>
+        }
+
+        {(menu.showExplore || matchesMdUp) &&
+          <Box>
+
+                {dataType === REVENUE &&
+                <MapExploreMenu
+                  linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
+                  linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-revenue-works/#revenues', '/how-revenue-works/federal-revenue-by-company/2018/']}
+                />
+                }
+                {dataType === DISBURSEMENTS &&
+                <MapExploreMenu
+                  linkLabels={['Query disbursements data', 'Downloads & Documentation', 'How disbursements works']}
+                  linkUrls={['/query-data/?dataType=Disbursements', '/downloads/#Disbursements', '/how-revenue-works/#understanding-federal-disbursements']}
+                />
+                }
+                {dataType === PRODUCTION &&
+                <MapExploreMenu
+                  linkLabels={['Query production data', 'Downloads & Documentation', 'How production works']}
+                  linkUrls={['/query-data/?dataType=Production', '/downloads/#Production', '/how-revenue-works/#the-production-process']}
+                />
+                }
+              </Box>
         }
       </Box>
     </>

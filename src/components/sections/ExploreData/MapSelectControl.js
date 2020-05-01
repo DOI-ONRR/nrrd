@@ -104,9 +104,6 @@ const MapSelectControl = props => {
   }, [findSelectedOption])
 
   const handleToggle = value => () => {
-
-
-
     const currentIndex = checked.indexOf(value)
     const newChecked = [...checked]
     if (currentIndex === -1) {
@@ -116,9 +113,7 @@ const MapSelectControl = props => {
       newChecked.splice(currentIndex, 1)
     }
     setChecked(newChecked)
-    
   }
-
 
   const handleClickListItem = event => {
     setAnchorEl(event.currentTarget)
@@ -127,8 +122,6 @@ const MapSelectControl = props => {
   const handleMenuItemClick = (event, i, option) => {
     setSelectedIndex(i)
     setAnchorEl(i)
-    
-
 
     if (props.checkbox) {
       handleToggle(option)
@@ -180,7 +173,7 @@ const MapSelectControl = props => {
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
-      onClose={handleClose}
+          onClose={handleClose}
 
         >
           <List>
@@ -201,7 +194,7 @@ const MapSelectControl = props => {
               const labelId = `checkbox-list-label-${ option }`
 
               return (
-                  <ListItem key={index} role={undefined} dense button onClick={handleToggle(option)} >
+                <ListItem key={index} role={undefined} dense button onClick={handleToggle(option)} >
                   <ListItemIcon>
                     <Checkbox
                       edge="start"

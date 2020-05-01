@@ -35,13 +35,15 @@ const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: '100%',
     width: '100%',
+    minHeight: 775,
     margin: theme.spacing(1),
-    '@media (max-width: 768px)': {
+    '@media (max-width: 767px)': {
       maxWidth: '100%',
+      minHeight: 'inherit',
     }
   },
-  
-   progressContainer: {
+
+  progressContainer: {
     maxWidth: '25%',
     display: 'flex',
     '& > *': {
@@ -49,11 +51,11 @@ const useStyles = makeStyles(theme => ({
       marginRight: 'auto',
       marginLeft: 'auto',
     }
-   },
+  },
   circularProgressRoot: {
     color: theme.palette.primary.dark,
   },
-   topRecipientChart: {
+  topRecipientChart: {
     '& .chart-container': {
       display: 'flex',
       alignItems: 'top',
@@ -66,20 +68,21 @@ const useStyles = makeStyles(theme => ({
         marginTop: theme.spacing(2),
       },
     }
-   }
+  }
 }))
 
 const DisbursementTopRecipients = props => {
   const classes = useStyles()
   const theme = useTheme()
   const title = props.title || ''
-  
+
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  
-  const {loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
-  const handleDelete = props.handleDelete || ((e,val) => { console.debug('handle delete') })
 
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
+  const handleDelete = props.handleDelete || ((e, val) => {
+    console.debug('handle delete')
+  })
 
   if (loading) {
     return (
@@ -94,15 +97,15 @@ const DisbursementTopRecipients = props => {
   if (data) {
     chartData = data.fiscal_disbursement_recipient_summary
 
-  return (
+    return (
       <Container id={utils.formatToSlug(title)}>
-        <Grid item md={12}>
+        <Grid item xs={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h3" color="secondary.dark">{title}</Box>
           </Box>
-      </Grid>
-      <Grid item md={12}>
-      <Box className={classes.root}>
+        </Grid>
+        <Grid item xs={12}>
+          <Box className={classes.root}>
             <Box className={classes.topRecipientChart}>
               <CircleChart
                 data={chartData}
@@ -117,16 +120,16 @@ const DisbursementTopRecipients = props => {
                   r[1] = utils.formatToDollarInt(d.total)
                   return r
                 }
-                } 
+                }
                 yLabel={dataSet}
                 minColor={theme.palette.green[100]}
                 maxColor={theme.palette.green[600]} />
             </Box>
           </Box>
 
-    </Grid>
-    </Container>
-  )
+        </Grid>
+      </Container>
+    )
   }
   else {
     return (null)
