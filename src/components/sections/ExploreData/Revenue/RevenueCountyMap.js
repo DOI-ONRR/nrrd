@@ -8,6 +8,7 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CONSTANTS from '../../../../js/constants'
+import mapCounties from '../counties.json'
 
 const REVENUE_QUERY = gql`
   query FiscalCommodityRevenue($year: Int!, $commodities: [String!]) {
@@ -21,7 +22,7 @@ const REVENUE_QUERY = gql`
   }
 `
 
-export default props => {
+const RevenueCountyMap = props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -30,7 +31,7 @@ export default props => {
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
     variables: { year: year, commodities: commodities }
   })
-  
+  const mapFeatures = 'counties-geo'
   let mapData = [[]]
   const onZoomEnd = event => {
     console.debug("Event : ", event )
@@ -53,23 +54,19 @@ export default props => {
   return (
     <>
       {mapData &&
-        <> <Map
-          mapFeatures={props.mapFeatures}
-          mapJsonObject={props.mapJsonObject}
+       <> <Map
+       key={'county_map'+props.abbr}
+          mapFeatures={mapFeatures}
+          mapJsonObject={mapCounties}
           mapData={mapData}
           minColor={props.minColor}
           maxColor={props.maxColor}
-          mapZoom={props.mapK}
-          mapX={props.mapX}
-          mapY={props.mapY}
-          onZoomEnd={onZoomEnd}
-          onClick={props.onClick}
-          handleMapSnackbar={props.handleMapSnackbar}
-       handleMapSnackbarClose={props.handleMapSnackbarClose}
-
+       zoomTo={props.abbr}
         />
         </>
       }
     </>
   )
 }
+
+export default RevenueCountyMap

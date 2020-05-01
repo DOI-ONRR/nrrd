@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: 500,
     width: '100%',
     height: '100%',
-    position: 'absolute',
+    position: 'relative',
     left: 0,
     right: 0,
     top: 0,
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     height: 50,
     zIndex: 10,
     margin: '5px',
-    position: 'absolute',
+    position: 'relative',
     padding: theme.spacing(1),
     '@media (max-width: 768px)': {
       bottom: 5,
@@ -119,6 +119,11 @@ const Map = props => {
     if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
       map.zoom({ x: mapX, y: mapY, k: mapZoom })
     }
+
+    if(props.zoomTo) {
+      map.zoomTo(props.zoomTo)
+    }
+    
   })
   return (
     <div className={classes.map} ref={elemRef}>
