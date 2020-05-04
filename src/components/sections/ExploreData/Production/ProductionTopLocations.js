@@ -95,6 +95,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
 
   let chartData = []
   const dataSet = `FY ${ year }`
+
   if (data) {
     chartData = data.fiscal_production_summary
 
@@ -114,7 +115,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
                   maxLegendWidth='800px'
                   xAxis='state_or_area'
                   yAxis='sum'
-                  format={ d => utils.formatToDollarInt(d) }
+                  format={ d => utils.formatToCommaInt(d) }
                   circleLabel={
                     d => {
                       // console.debug('circleLABLE: ', d)
@@ -124,6 +125,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
                       return r
                     }
                   }
+                  xLabel={location}
                   yLabel={dataSet}
                   maxCircles={6}
                   minColor={theme.palette.green[100]}
