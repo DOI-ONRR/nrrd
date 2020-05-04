@@ -9,6 +9,26 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CONSTANTS from '../../../../js/constants'
 import mapCounties from '../counties.json'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import {
+  Box
+} from '@material-ui/core'
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'top',
+   // height: '100px',
+   // '& .map': {
+   //   height: '100px'
+   // }
+  }
+}))
+
+
+
 
 const REVENUE_QUERY = gql`
   query FiscalCommodityRevenue($year: Int!, $commodities: [String!]) {
@@ -23,6 +43,8 @@ const REVENUE_QUERY = gql`
 `
 
 const RevenueCountyMap = props => {
+  const classes = useStyles()
+  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -54,7 +76,7 @@ const RevenueCountyMap = props => {
   return (
     <>
       {mapData &&
-       <> <Map
+       <Box className={classes.root}> <Map className={classes.map} 
        key={'county_map'+props.abbr}
           mapFeatures={mapFeatures}
           mapJsonObject={mapCounties}
@@ -63,7 +85,7 @@ const RevenueCountyMap = props => {
           maxColor={props.maxColor}
        zoomTo={props.abbr}
         />
-        </>
+        </Box>
       }
     </>
   )
