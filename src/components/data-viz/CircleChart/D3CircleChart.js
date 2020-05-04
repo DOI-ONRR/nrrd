@@ -1199,7 +1199,7 @@ console.debug(data)
       activeElement.setAttribute('class', 'circle active')
       activeElement.setAttribute('selected', true)
       activeElement.setAttribute('tabindex', 1)
-      this.selectedData(data[0].data)
+      this.selectedData(data.data)
       this._legend()
       this.getSelected()
       this.onSelect(this)
@@ -1215,8 +1215,7 @@ console.debug(data)
 
   _onMouseover (element, data) {
     try {
-      // console.log('_onMouseover element', element)
-      // console.log('_onMouseover data: ', data)
+      // console.log('_onMouseover this: ', this)
       const selectedElement = d3.select(element)
       const legendRows = d3.select(this.container.children[1]).select('.legend-table').selectAll('tbody tr')
       const selectedRowIndex = data.parent && data.parent.data.children.findIndex(item => item === data.data)
@@ -1237,9 +1236,8 @@ console.debug(data)
       }
       const activeElement = element.parentNode.parentNode
       activeElement.setAttribute('tabindex', 1)
-      // this.selectedData(data.data)
+      this.selectedData(data[0].data)
       this._legend()
-
       this.onMouseover(this)
     }
     catch (err) {
@@ -1253,7 +1251,6 @@ console.debug(data)
 
   _onMouseout = (element, data) => {
     try {
-      console.log('D3CircleChart _onMouseOut data: ', data)
       const selectedElement = d3.select(element)
       const legendRows = d3.select(this.container.children[1]).select('.legend-table').selectAll('tbody tr')
       const selectedRowIndex = data.parent && data.parent.data.children.findIndex(item => item === data.data)
