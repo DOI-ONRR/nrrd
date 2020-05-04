@@ -97,8 +97,6 @@ export default class D3LineChart {
       const chipLabels = this.chipLabels
       const colors = this.chartColors
 
-      console.log('whats this: ', this)
-
       const x = d3.scaleLinear().domain([2003, 2019]).range([0, width])
       const y = d3.scaleLinear().domain([0, 40000000]).range([height, 0])
 

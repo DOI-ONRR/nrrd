@@ -345,10 +345,14 @@ export default class D3CircleChart {
     const node = svg.append('g')
       .selectAll('circle')
       .attr('class', 'circle')
-      .data(root.descendants().slice(1))
+      .data(root.descendants())
       .join('circle')
+      // .attr('stroke', (d, i) => {
+      //   if (i === 0) return '#000'
+      // })
       .attr('fill', (d, i) => {
         // console.debug("fill attr", d,i)
+        if (i === 0) return '#f5f5f5'
         return d.children ? color(d.depth) : color(yDomain.length - i)
       })
       // .attr('pointer-events', d => !d.children ? 'none' : null)
@@ -367,7 +371,17 @@ export default class D3CircleChart {
       .style('font-size', d => d.r / 6)
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
-      .text(d => circleLabel(d.data, xAxis, yAxis)[0])
+      // .text(d => circleLabel(d.data, xAxis, yAxis)[0] !== undefined ? circleLabel(d.data, xAxis, yAxis)[0].substring(0, d.r / 4) : '')
+      .text(d => {
+        const calcStrLength = d.r / 4
+        const strLength = (circleLabel(d.data, xAxis, yAxis)[0] !== undefined) ? circleLabel(d.data, xAxis, yAxis)[0].length : ''
+        const str = (circleLabel(d.data, xAxis, yAxis)[0] !== undefined) ? circleLabel(d.data, xAxis, yAxis)[0].substring(0, calcStrLength) : ''
+        if (calcStrLength > strLength) {
+          return str
+        } else {
+          return `${ str }...`
+        }
+      })
 
     const yLabel = svg.append('g')
       .style('fill', 'white')
@@ -380,6 +394,7 @@ export default class D3CircleChart {
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
       .text(d => circleLabel(d.data, xAxis, yAxis)[1])
+      // .call(this.wrapText, 150) // wrap text in <= 150 pixels
 
     zoomTo([root.x, root.y, root.r * 2])
 
@@ -1184,7 +1199,7 @@ console.debug(data)
       activeElement.setAttribute('class', 'circle active')
       activeElement.setAttribute('selected', true)
       activeElement.setAttribute('tabindex', 1)
-      this.selectedData(data[0].data)
+      this.selectedData(data.data)
       this._legend()
       this.getSelected()
       this.onSelect(this)
@@ -1200,14 +1215,13 @@ console.debug(data)
 
   _onMouseover (element, data) {
     try {
-      // console.log('_onMouseover element', element)
-      // console.log('_onMouseover data: ', data)
+      // console.log('_onMouseover this: ', this)
       const selectedElement = d3.select(element)
       const legendRows = d3.select(this.container.children[1]).select('.legend-table').selectAll('tbody tr')
-      const selectedRowIndex = data.parent.data.children.findIndex(item => item === data.data)
+      const selectedRowIndex = data.parent && data.parent.data.children.findIndex(item => item === data.data)
       const selectedLegendRow = legendRows._groups[0][selectedRowIndex]
 
-      if (selectedElement) {
+      if (selectedRowIndex !== null && selectedElement) {
         selectedElement.attr('class', 'circle active')
           .transition()
           .duration(200)
@@ -1222,9 +1236,8 @@ console.debug(data)
       }
       const activeElement = element.parentNode.parentNode
       activeElement.setAttribute('tabindex', 1)
-      // this.selectedData(data.data)
+      this.selectedData(data[0].data)
       this._legend()
-
       this.onMouseover(this)
     }
     catch (err) {
@@ -1240,7 +1253,7 @@ console.debug(data)
     try {
       const selectedElement = d3.select(element)
       const legendRows = d3.select(this.container.children[1]).select('.legend-table').selectAll('tbody tr')
-      const selectedRowIndex = data.parent.data.children.findIndex(item => item === data.data)
+      const selectedRowIndex = data.parent && data.parent.data.children.findIndex(item => item === data.data)
       const selectedLegendRow = legendRows._groups[0][selectedRowIndex]
 
       if (selectedElement) {
