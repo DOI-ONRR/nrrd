@@ -157,8 +157,7 @@ const PERIOD_OPTIONS_QUERY = `
       offshore_region: {_in: $offshoreRegion},
       state: {_in: $usState},
       county: {_in: $county},
-      commodity: {_in: $commodity},
-      period: {_neq: "Monthly"}
+      commodity: {_in: $commodity}
     },
     distinct_on: period,
     order_by: {period: asc}

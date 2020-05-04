@@ -1,27 +1,28 @@
 ---
 title: Query Data
 includeToc: false
-includeDataProvider: true
 ---
+
+<DataFilterProviderWrapper defaults={{dataType:'Revenue', period: 'Fiscal Year'}}>
 <Box mb={4}>
 <Container maxWidth={'xl'}>
 
 # Query data
-
-<Grid container spacing={2}>
-  <Grid item xs={12}>
-    <DataTypeToggle />
+  <Grid container spacing={2}>
+    <Grid item xs={12}>
+      <DataTypeToggle />
+    </Grid>
+    <Grid item xs={12}>
+      <DataFilterDrawer />
+    </Grid>
+    <Grid item xs={12}>
+      <DataTableGroupingToolbar />
+    </Grid>
+    <Grid item xs={12}>
+      <DataTable />
+    </Grid>
   </Grid>
-  <Grid item xs={12}>
-    <DataFilterDrawer />
-  </Grid>
-  <Grid item xs={12}>
-    <DataTableGroupingToolbar />
-  </Grid>
-  <Grid item xs={12}>
-    <DataTable />
-  </Grid>
-</Grid>
 
 </Container>
 </Box>
+</DataFilterProviderWrapper>

@@ -50,7 +50,7 @@ module.exports = {
     "import/no-webpack-loader-syntax": "off",
 
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "off",
 
     // "css-modules/no-unused-class": 1, currently using jss solution
     // "at-rule-no-unknown": [true, {
