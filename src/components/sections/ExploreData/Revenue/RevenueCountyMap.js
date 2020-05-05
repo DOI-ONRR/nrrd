@@ -20,15 +20,18 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'top',
-   // height: '100px',
-   // '& .map': {
-   //   height: '100px'
-   // }
+    '& .mapContainer': {
+      height: 100,
+      width: 245,
+    },
+    '& .mapContainer > .legend': {
+      display: 'none', // quick fix for now, will want to disable most map features for smaller maps
+    },
+    '& .mapContainer svg': {
+      pointerEvents: 'none',
+    }
   }
 }))
-
-
-
 
 const REVENUE_QUERY = gql`
   query FiscalCommodityRevenue($year: Int!, $commodities: [String!]) {
@@ -56,7 +59,7 @@ const RevenueCountyMap = props => {
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
   const onZoomEnd = event => {
-    console.debug("Event : ", event )
+    console.debug('Event : ', event)
   }
   if (loading) {}
   if (error) return `Error! ${ error.message }`
@@ -66,26 +69,27 @@ const RevenueCountyMap = props => {
       item.total
     ])
     mapData = d3.nest()
-      .key( k => k.state_or_area)
+      .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_commodity_summary)
-      .map( d => [d.key, d.value])
-
+      .map(d => [d.key, d.value])
   }
 
   return (
     <>
       {mapData &&
-       <Box className={classes.root}> <Map className={classes.map} 
-       key={'county_map'+props.abbr}
-          mapFeatures={mapFeatures}
-          mapJsonObject={mapCounties}
-          mapData={mapData}
-          minColor={props.minColor}
-          maxColor={props.maxColor}
-       zoomTo={props.abbr}
-        />
-        </Box>
+       <Box className={classes.root}>
+         <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
+         <Map
+           key={`county_map_${ props.abbr }`}
+           mapFeatures={mapFeatures}
+           mapJsonObject={mapCounties}
+           mapData={mapData}
+           minColor={props.minColor}
+           maxColor={props.maxColor}
+           zoomTo={props.abbr}
+         />
+       </Box>
       }
     </>
   )

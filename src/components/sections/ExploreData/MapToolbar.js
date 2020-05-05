@@ -31,7 +31,11 @@ import { REVENUE, DISBURSEMENTS, PRODUCTION, DATA_FILTER_CONSTANTS as DFC } from
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
     padding: 0,
+    zIndex: 250,
     '@media (max-width: 768px)': {
       position: 'relative',
       width: '100%',
@@ -58,6 +62,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'flex-start',
     transition: 'height .4s ease',
+    background: 'transparent',
     '@media (max-width: 768px)': {
       justifyContent: 'flex-start',
       width: '100%',

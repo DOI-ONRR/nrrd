@@ -110,7 +110,7 @@ const RevenueDetailCommodities = props => {
         )
         : (
           <Box className={classes.boxSection}>
-            <Box component="h4" fontWeight="bold">Commodities</Box>
+            <Box component="h4" fontWeight="bold" mb={2}>Commodities</Box>
             <Box fontSize="subtitle2.fontSize">No commodities generated revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
           </Box>
         )

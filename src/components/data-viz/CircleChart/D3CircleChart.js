@@ -307,10 +307,10 @@ export default class D3CircleChart {
       .on('click', () => zoom(root))
 
     // Define the div for the tooltip
-    const tooltip = d3.select(chartNode).append('div')
+    const tooltip = d3.select('body').append('div')
       .attr('class', 'tooltip')
       .style('position', 'absolute')
-      .style('left', '100px')
+      // .style('left', '100px')
       .style('background', 'rgba(0, 0, 0, 0.85)')
       .style('border-radius', '4px')
       .style('z-index', '999')
@@ -332,8 +332,8 @@ export default class D3CircleChart {
       if (circleTooltip(d.data)[0] !== undefined) {
         tooltip
           .html(`${ circleTooltip(d.data)[0] }<br>${ circleTooltip(d.data)[1] }`)
-          .style('left', d3.event.pageX + 'px')
-          .style('top', d3.event.pageY + 'px')
+          .style('left', (d3.event.pageX + 10) + 'px')
+          .style('top', (d3.event.pageY + 10) + 'px')
       }
     }
 
@@ -378,7 +378,8 @@ export default class D3CircleChart {
         const str = (circleLabel(d.data, xAxis, yAxis)[0] !== undefined) ? circleLabel(d.data, xAxis, yAxis)[0].substring(0, calcStrLength) : ''
         if (calcStrLength > strLength) {
           return str
-        } else {
+        }
+        else {
           return `${ str }...`
         }
       })
@@ -1215,7 +1216,6 @@ console.debug(data)
 
   _onMouseover (element, data) {
     try {
-      // console.log('_onMouseover this: ', this)
       const selectedElement = d3.select(element)
       const legendRows = d3.select(this.container.children[1]).select('.legend-table').selectAll('tbody tr')
       const selectedRowIndex = data.parent && data.parent.data.children.findIndex(item => item === data.data)
@@ -1236,9 +1236,9 @@ console.debug(data)
       }
       const activeElement = element.parentNode.parentNode
       activeElement.setAttribute('tabindex', 1)
-      this.selectedData(data[0].data)
-      this._legend()
-      this.onMouseover(this)
+      // this.selectedData(data.data)
+      // this._legend()
+      // this.onMouseover(this)
     }
     catch (err) {
       console.warn('Error: ', err)

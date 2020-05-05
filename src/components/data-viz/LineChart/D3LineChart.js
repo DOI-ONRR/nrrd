@@ -172,10 +172,10 @@ export default class D3LineChart {
       }
 
       // Define the div for the tooltip
-      const tooltip = d3.select(this.chartNode).append('div')
+      const tooltip = d3.select('body').append('div')
         .attr('class', 'tooltip')
         .style('position', 'absolute')
-        .style('left', '100px')
+        // .style('left', '100px')
         .style('background', 'rgba(0, 0, 0, 0.85)')
         .style('border-radius', '4px')
         .style('z-index', '999')
