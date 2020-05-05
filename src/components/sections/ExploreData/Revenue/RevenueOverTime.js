@@ -10,13 +10,17 @@ import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import LineChart from '../../../data-viz/LineChart/LineChart.js'
+import ChipLabel from '../../ExploreData/ChipLabel'
 
 import {
   Box,
   Container,
   Grid,
-  Chip
+  Chip,
+  useTheme
 } from '@material-ui/core'
+
+const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
   query FiscalRevenueSummary {
@@ -37,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     '@media (max-width: 768px)': {
       maxWidth: '100%',
-    }
+    },
   },
   progressContainer: {
     maxWidth: '25%',
@@ -51,10 +55,33 @@ const useStyles = makeStyles(theme => ({
   circularProgressRoot: {
     color: theme.palette.primary.dark,
   },
+  chipRoot: {
+    height: 40,
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    '& > span': {
+      fontWeight: 'bold',
+    },
+  },
+  chipContainer: {
+    '& .MuiChip-root:nth-child(1) .line': {
+      stroke: theme.palette.blue[300],
+    },
+    '& .MuiChip-root:nth-child(2) .line': {
+      stroke: theme.palette.orange[300],
+    },
+    '& .MuiChip-root:nth-child(3) .line': {
+      stroke: theme.palette.green[300],
+    },
+    '& .MuiChip-root:nth-child(4) .line': {
+      stroke: theme.palette.purple[300],
+    }
+  }
 }))
 
 const RevenueOverTime = props => {
   const classes = useStyles()
+  const theme = useTheme()
   const title = props.title || ''
 
   const { state: pageState, dispatch } = useContext(StoreContext)
@@ -89,12 +116,32 @@ const RevenueOverTime = props => {
           </Box>
         </Grid>
         <Grid item md={12}>
-
-          <LineChart data={chartData} lineDashes={['1,0', '5,5', '10,10', '20,10,5,5,5,10']} />
-          {cards.map((card, i) => {
-            return (<Chip key={'RevenueOverTimeChip_' + card.fips} variant='outlined' color='primary.dark' onDelete={ e => handleDelete(e, card.fips)} label={card.name} />)
-          })
-          }
+          <LineChart
+            data={chartData}
+            chipLabels={cards}
+            chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
+            lineDashes={LINE_DASHES}
+            lineTooltip={
+              (d, i) => {
+                const r = []
+                r[0] = utils.formatToDollarInt(d)
+                return r
+              }
+            } />
+          <Box mt={1} className={classes.chipContainer}>
+            {
+              cards.map((card, i) => {
+                return (
+                  <Chip
+                    key={`RevenueOverTimeChip_${ card.fips }`}
+                    variant='outlined'
+                    onDelete={ e => handleDelete(e, card.fips)}
+                    label={<ChipLabel labelIndex={i} label={card.name} />}
+                    classes={{ root: classes.chipRoot }} />
+                )
+              })
+            }
+          </Box>
         </Grid>
       </Container>
     )

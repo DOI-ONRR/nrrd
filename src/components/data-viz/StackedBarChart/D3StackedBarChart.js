@@ -355,7 +355,7 @@ export default class D3StackedBarChart {
   createLegend (newData, xValue) {
     try {
       const self = this
-      
+
       d3.select(this.node).selectAll('.legend-table').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
 
@@ -383,7 +383,8 @@ export default class D3StackedBarChart {
             else {
               return 'inherit'
             }
-          } else {
+          }
+          else {
             return 'capitalize'
           }
         })

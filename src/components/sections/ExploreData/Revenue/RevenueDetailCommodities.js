@@ -88,6 +88,14 @@ const RevenueDetailCommodities = props => {
                   return utils.formatToDollarInt(d)
                 }
                 }
+                circleTooltip={
+                  d => {
+                    const r = []
+                    r[0] = d.commodity
+                    r[1] = utils.formatToDollarInt(d.total)
+                    return r
+                  }
+                }
                 yLabel={dataSet}
                 maxCircles={6}
                 minColor={theme.palette.purple[100]}

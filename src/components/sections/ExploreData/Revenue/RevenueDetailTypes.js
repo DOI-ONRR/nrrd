@@ -76,7 +76,16 @@ const RevenueDetailTypes = props => {
                 yLabel={dataSet}
                 maxCircles={4}
                 minColor='#FCBA8B'
-                maxColor='#B64D00' /> 
+                maxColor='#B64D00'
+                circleTooltip={
+                  d => {
+                    // console.debug('circleLABLE yo: ', d)
+                    const r = []
+                    r[0] = d.revenue_type
+                    r[1] = utils.formatToDollarInt(d.total)
+                    return r
+                  }
+                } /> 
               <Box mt={3}>
                 <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                     Query revenue by type

@@ -10,6 +10,7 @@ import ChartTitle from '../ChartTitle'
 
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
 import D3CircleChart from './D3CircleChart.js'
+import { interpolateRgbBasis } from 'd3'
 
 const useStyles = makeStyles((theme, props) => ({
   container: {
@@ -38,7 +39,10 @@ const useStyles = makeStyles((theme, props) => ({
     },
     '& .x-axis > .tick': {
       fontSize: theme.typography.h5.fontSize,
-    }
+    },
+    '& .tooltip': {
+      pointerEvents: 'none',
+    },
   },
   legend: {
     display: 'block',

@@ -126,7 +126,7 @@ const SummaryCards = props => {
                     onClick={(e, i) => {
                       minimizeCard(i)
                     }}
-                    key={filterState}
+                    key={pageState}
                   />
                 )}
                 {closeIcon && (

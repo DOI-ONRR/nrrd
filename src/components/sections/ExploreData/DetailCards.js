@@ -53,7 +53,6 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
       maxWidth: '25%',
       width: '100%',
-      position: 'relative',
       minWidth: 275,
       '@media (max-width: 768px)': {
         maxWidth: '100%',
@@ -211,7 +210,8 @@ const DetailCards = props => {
   const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   const closeCard = fips => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== props.fips) })
+    console.log('fips: ', fips)
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== fips) })
   }
 
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
