@@ -16,13 +16,15 @@ import {
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
-import utils, { toTitleCase, aggregateSum } from '../../../js/utils'
+import utils, { toTitleCase, aggregateSum, downloadExcel} from '../../../js/utils'
 
 import DTQM from '../../../js/data-table-query-manager'
 import { useQuery } from '@apollo/react-hooks'
 
 import DataTableGroupingToolbar from './DataTableGroupingToolbar'
-import DownloadDataTable from '../../DownloadDataTable'
+
+import Button from '@material-ui/core/Button'
+import TableChart from '@material-ui/icons/TableChart'
 
 import {
   makeStyles,
@@ -165,6 +167,24 @@ const CurrencyTypeProvider = props => (
   />
 )
 
+const DownloadDataTableButton = () => {
+  const downloadStuff = () => {
+    downloadExcel()
+  }
+  return (
+    <Button
+      variant="contained"
+      color="primary"
+      aria-label="open data filters"
+      onClick={downloadStuff}
+      onKeyDown={downloadStuff}
+      startIcon={<TableChart />}
+    >
+    Download table to excel
+    </Button>
+  )
+}
+
 const DataTableImpl = data => {
   const { state } = useContext(DataFilterContext)
   const columnNames = getColumnNames(data.results[0])
@@ -175,7 +195,7 @@ const DataTableImpl = data => {
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
   const [currencyColumns, setCurrencyColumns] = useState([])
   const [aggregatedSums, setAggregatedSums] = useState()
-
+  const [defaultColumnWidths, setDefaultColumnWidths] = useState()
   const getHiddenColumns = () => {
     let yearColumns = []
     if (state[CALENDAR_YEAR] || state[FISCAL_YEAR]) {
@@ -253,6 +273,7 @@ const DataTableImpl = data => {
               <IntegratedGrouping />
               <IntegratedSummary calculator={summaryCalculator} />
               <Table />
+              <TableColumnResizing defaultColumnWidths={defaultColumnWidths} />
               <TableHeaderRow showSortingControls/>
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
@@ -365,6 +386,8 @@ const getHiddenYears = state => {
     const yearsNotSelected = allYears.filter(year => selectedYears.findIndex(selectedYear => selectedYear === year) < 0)
     hideYears = yearsNotSelected.map(year => `y${ year }`)
   }
+
+  console.log(selectedYears, hideYears)
 
   return hideYears
 }
