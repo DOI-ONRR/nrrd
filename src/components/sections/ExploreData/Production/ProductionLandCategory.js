@@ -21,13 +21,14 @@ import {
 
 // import CloseIcon from '@material-ui/icons/Close'
 // import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
-import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
+import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart.js'
 
 const APOLLO_QUERY = gql`
-  query FiscalProduction($year: Int!, $location: String!, $commodity: String!) {
-    fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}, order_by: {sum: desc}) {
+  query FiscalProduction($state: String!, $location: String!, $commodity: String!) {
+    fiscal_production_summary(where: {state_or_area: {_eq: $state}, location_type: {_eq: $location},  commodity: {_eq: $commodity}}, order_by: {sum: desc}) {
       fiscal_year
-      state_or_area
+      land_category    
+  state_or_area
       sum
       
     }
@@ -56,7 +57,7 @@ const useStyles = makeStyles(theme => ({
   circularProgressRoot: {
     color: theme.palette.primary.dark,
   },
-  topLocationsChart: {
+  LandCategoryChart: {
     '& .chart-container': {
       display: 'flex',
       // alignItems: 'top',
@@ -75,15 +76,15 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const ProductionTopLocations = ({ title, ...props }) => {
+const ProductionLandCategory = ({ title, ...props }) => {
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location, commodity } })
-  const maxLegendWidth = props.maxLegendWidth
+  const state = props.abbr
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, commodity } })
   if (loading) {
     return (
       <div className={classes.progressContainer}>
@@ -94,11 +95,11 @@ const ProductionTopLocations = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = `FY ${ year }`
+  const dataSet = commodity
 
   if (data) {
     chartData = data.fiscal_production_summary
-
+    console.debug(chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
@@ -110,26 +111,17 @@ const ProductionTopLocations = ({ title, ...props }) => {
           <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
-                <CircleChart
+                <StackedBarChart
                   data={chartData}
-                  maxLegendWidth={maxLegendWidth}
-                  xAxis='state_or_area'
+                  xAxis='fiscal_year'
+                  yGroupBy = 'land_category'
                   yAxis='sum'
                   format={ d => utils.formatToCommaInt(d) }
-                  circleLabel={
-                    d => {
-                      // console.debug('circleLABLE: ', d)
-                      const r = []
-                      r[0] = d.state_or_area
-                      r[1] = utils.formatToCommaInt(d.sum) + ' bbl'
-                      return r
-                    }
-                  }
-                  xLabel={location}
+                  xLabels={ (x, i) => {
+                    return x.map(v => '\'' + v.toString().substr(2))
+                  }}
                   yLabel={dataSet}
-                  maxCircles={6}
-                  minColor={theme.palette.green[100]}
-                  maxColor={theme.palette.green[600]} />
+                  />
               </Box>
             </Box>
           </Grid>
@@ -142,8 +134,8 @@ const ProductionTopLocations = ({ title, ...props }) => {
   }
 }
 
-export default ProductionTopLocations
+export default ProductionLandCategory
 
-ProductionTopLocations.propTypes = {
+ProductionLandCategory.propTypes = {
   title: PropTypes.string
 }

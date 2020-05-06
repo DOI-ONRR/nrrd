@@ -122,7 +122,7 @@ tags:
           <MapContext>
             <ProductionMap />
             <SummaryCards>
-              <Box>Production summary content</Box>
+            <ProductionSummaryTrends /> 
             </SummaryCards>
           </MapContext>
           <CompareContext>
@@ -143,7 +143,7 @@ tags:
               <Grid container>
                 <Grid item md={12}>
                   <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                    <Box component="h3" color="secondary.dark">Compare oil production</Box>
+                    <Box component="h3" color="secondary.dark">Compare production</Box>
                   </Box>
                   <Box fontSize="body1.fontSize">
                     Add more than one card to compare.  Select states, counties, and offshore regions.
@@ -152,13 +152,16 @@ tags:
               </Grid>
               <Grid container>
                 <Grid item md={12}>
-                  <DetailCards> 
-                    <Box>Production child content.</Box>
+                  <DetailCards>
+                    <ProductionDetailTrends />
+                     <ProductionLandCategory title="Production by land category"  />        
+                     <ProductionTopLocations title="Top locations" maxLegendWidth='800px' />        
                   </DetailCards>
                 </Grid>
               </Grid>
             </Container>       
           </CompareContext>
+          <ProductionOverTime title="Production Over Time" />               
           <ProductionTopLocations title="Top Nationwide Locations" />
         </Production>
       </ContextProvider>
