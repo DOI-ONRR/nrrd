@@ -16,6 +16,7 @@ module.exports = Object.freeze({
   },
   links: {
     default: '#1478a6',
+    hover: '#126991',
   },
   // Land category charts
   blue: {

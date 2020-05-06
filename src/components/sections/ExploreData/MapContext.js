@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -15,6 +15,7 @@ import AddCardButton from './AddCardButton'
 import YearSlider from './YearSlider'
 
 import { StoreContext } from '../../../store'
+import ExploreMoreDataButton from './ExploreMoreDataButton'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -55,7 +56,7 @@ const useStyles = makeStyles(theme => ({
       // top: -50,
     },
     '& .legend': {
-      bottom: 167,
+      bottom: 175,
     },
     '& .map-overlay': {
       left: '0',
@@ -89,7 +90,7 @@ const useStyles = makeStyles(theme => ({
     width: 310,
     position: 'absolute',
     right: 0,
-    bottom: 72,
+    bottom: 100,
     height: 'auto',
     minHeight: 335,
     zIndex: 99,
@@ -196,10 +197,13 @@ const useStyles = makeStyles(theme => ({
   },
   nonStateCardsContainer: {
     position: 'absolute',
-    bottom: 20,
-    right: 10,
+    top: -1,
+    right: 65,
     width: 285,
-    zIndex: 99,
+    zIndex: 250,
+    '& > div': {
+      marginTop: 0,
+    },
     '@media (max-width: 768px)': {
       right: 0,
       bottom: 8,
@@ -267,16 +271,19 @@ const MapContext = props => {
   const cards = pageState.cards
 
   const [mapOverlay, setMapOverlay] = useState(false)
+  const [mapActive, setMapActive] = useState(true)
 
   // handler
-  const handler = useCallback(() => {
+  const handler = () => {
     if (window.pageYOffset > 0) {
       setMapOverlay(true)
+      setMapActive(false)
     }
     else {
       setMapOverlay(false)
+      setMapActive(true)
     }
-  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
+  }
 
   // useEventListener('scroll', handler)
 
@@ -286,11 +293,11 @@ const MapContext = props => {
     return () => {
       window.removeEventListener('scroll', handler)
     }
-  }, [])
+  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
 
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
-  const [mapK, setMapK] = useState(0.25)
+  const [mapK, setMapK] = useState(0)
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
@@ -378,6 +385,7 @@ const MapContext = props => {
           cards.unshift(stateObj)
         }
         else {
+          console.log('lets see if native american makes it here', stateObj)
           cards.push(stateObj)
         }
       }
@@ -387,7 +395,7 @@ const MapContext = props => {
       }
     }
 
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== props.fips) })
+    dispatch({ type: 'CARDS', payload: cards })
   }
 
   const countyLevel = filterState[DFC.COUNTIES] === 'County'
@@ -506,6 +514,7 @@ const MapContext = props => {
             </Grid>
           }
 
+          <ExploreMoreDataButton />
           <YearSlider
             onYear={selected => {
               onYear(selected, x, y, k)

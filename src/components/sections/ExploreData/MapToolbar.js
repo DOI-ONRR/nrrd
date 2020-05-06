@@ -13,6 +13,7 @@ import {
   MenuItem,
   Paper,
   IconButton,
+  Tooltip,
   useMediaQuery
 } from '@material-ui/core'
 
@@ -20,6 +21,7 @@ import ExploreIcon from '@material-ui/icons/Explore'
 import MapIcon from '@material-ui/icons/Map'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import SearchIcon from '@material-ui/icons/Search'
+import AddIcon from '@material-ui/icons/Add'
 
 import MapSelectControl from './MapSelectControl'
 import CONSTANTS from '../../../js/constants'
@@ -72,7 +74,7 @@ const useStyles = makeStyles(theme => ({
   mapExploreMenu: {
     position: 'absolute',
     right: 10,
-    top: 4,
+    top: -1,
     zIndex: 99,
     '@media (max-width: 960px)': {
       position: 'relative',
@@ -80,16 +82,22 @@ const useStyles = makeStyles(theme => ({
       top: 'inherit',
       right: 'inherit',
     },
+    '& svg': {
+      color: theme.palette.links.default,
+    },
     '& button': {
-      color: theme.palette.common.black,
-      border: `1px solid ${ theme.palette.grey['300'] }`,
+      color: theme.palette.grey[700],
+      border: `1px solid ${ theme.palette.grey[300] }`,
       backgroundColor: theme.palette.common.white,
-      borderRadius: '50%',
+      borderRadius: 0,
+      fontSize: theme.typography.h4.fontSize,
       boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
       overflowX: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
       padding: theme.spacing(0.5),
+      height: 50,
+      minWidth: 50,
     },
     '& button:hover': {
       backgroundColor: 'rgba(0, 0, 0, 0.08)',
@@ -104,8 +112,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1),
     paddingTop: 0,
     paddingBottom: 0,
-    borderBottomLeftRadius: 4,
-    borderBottomRightRadius: 4,
+    borderRadius: 0,
     background: 'white',
     boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
     overflowX: 'hidden',
@@ -202,13 +209,15 @@ const MapExploreMenu = props => {
     <div className={classes.mapExploreMenu}>
       {matchesMdUp &&
         <>
-          <IconButton
-            aria-label="Other ways to explore data"
-            aria-controls="other-ways-to-explore-data"
-            aria-haspopup="true"
-            onClick={handleMenuClick}>
-            <MoreVertIcon />
-          </IconButton>
+          <Tooltip title="Explore more">
+            <IconButton
+              aria-label="Other ways to explore data"
+              aria-controls="other-ways-to-explore-data"
+              aria-haspopup="true"
+              onClick={handleMenuClick}>
+              <MoreVertIcon />
+            </IconButton>
+          </Tooltip>
           <Menu
             id="other-ways-to-explore-data"
             anchorEl={anchorEl}
@@ -262,7 +271,7 @@ const ExploreDataToolbar = props => {
   const [navValue, setNavValue] = useState(null)
   const [menu, setMenu] = useState({
     showMapTools: false,
-    // showSearch: false,
+    showSearch: false,
     showExplore: false,
   })
 
@@ -285,11 +294,15 @@ const ExploreDataToolbar = props => {
               setNavValue(newValue)
               switch (newValue) {
               case 0:
-                setMenu({ ...menu, showMapTools: !menu.showMapTools, showExplore: false })
+                setMenu({ ...menu, showMapTools: !menu.showMapTools, showSearch: false, showExplore: false })
                 !menu.showMapTools || setNavValue(null)
                 break
               case 1:
-                setMenu({ ...menu, showExplore: !menu.showExplore, showMapTools: false })
+                setMenu({ ...menu, showSearch: !menu.showSearch, showExplore: false, showMapTools: false })
+                !menu.showExplore || setNavValue(null)
+                break
+              case 2:
+                setMenu({ ...menu, showExplore: !menu.showExplore, showMapTools: false, showSearch: false })
                 !menu.showExplore || setNavValue(null)
                 break
               default:
@@ -306,6 +319,15 @@ const ExploreDataToolbar = props => {
                 root: classes.botNavRoot,
                 selected: classes.botNavSelected
               }} />
+
+            <BottomNavigationAction
+              label="Add locations"
+              icon={<AddIcon />}
+              classes={{
+                root: classes.botNavRoot,
+                selected: classes.botNavSelected
+              }} />
+
             <BottomNavigationAction
               label="Explore more"
               icon={<MoreVertIcon />}
@@ -369,28 +391,31 @@ const ExploreDataToolbar = props => {
           </Box>
         }
 
+        {(menu.showSearch || matchesMdUp) &&
+          <Box></Box>
+        }
+
         {(menu.showExplore || matchesMdUp) &&
           <Box>
-
-                {dataType === REVENUE &&
+            {dataType === REVENUE &&
                 <MapExploreMenu
                   linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
                   linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-revenue-works/#revenues', '/how-revenue-works/federal-revenue-by-company/2018/']}
                 />
-                }
-                {dataType === DISBURSEMENTS &&
+            }
+            {dataType === DISBURSEMENTS &&
                 <MapExploreMenu
                   linkLabels={['Query disbursements data', 'Downloads & Documentation', 'How disbursements works']}
                   linkUrls={['/query-data/?dataType=Disbursements', '/downloads/#Disbursements', '/how-revenue-works/#understanding-federal-disbursements']}
                 />
-                }
-                {dataType === PRODUCTION &&
+            }
+            {dataType === PRODUCTION &&
                 <MapExploreMenu
                   linkLabels={['Query production data', 'Downloads & Documentation', 'How production works']}
                   linkUrls={['/query-data/?dataType=Production', '/downloads/#Production', '/how-revenue-works/#the-production-process']}
                 />
-                }
-              </Box>
+            }
+          </Box>
         }
       </Box>
     </>
