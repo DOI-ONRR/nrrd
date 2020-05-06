@@ -57,23 +57,6 @@ const useStyles = makeStyles(theme => ({
   circularProgressRoot: {
     color: theme.palette.primary.dark,
   },
-  LandCategoryChart: {
-    '& .chart-container': {
-      display: 'flex',
-      // alignItems: 'top',
-      '@media (max-width: 426px)': {
-        display: 'block',
-        margin: 0,
-      },
-      '& .chart': {
-        marginRight: theme.spacing(2),
-        width: '70%',
-        '@media (max-width: 426px)': {
-          marginRight: 0,
-        },
-      },
-    },
-  }
 }))
 
 const ProductionLandCategory = ({ title, ...props }) => {
@@ -101,32 +84,22 @@ const ProductionLandCategory = ({ title, ...props }) => {
     chartData = data.fiscal_production_summary
     console.debug(chartData)
     return (
-      <Container id={utils.formatToSlug(title)}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-              <Box component="h3" color="secondary.dark">{title}</Box>
-            </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <Box className={classes.root}>
-              <Box className={classes.topLocationsChart}>
-                <StackedBarChart
-                  data={chartData}
-                  xAxis='fiscal_year'
-                  yGroupBy = 'land_category'
-                  yAxis='sum'
-                  format={ d => utils.formatToCommaInt(d) }
-                  xLabels={ (x, i) => {
-                    return x.map(v => '\'' + v.toString().substr(2))
-                  }}
-                  yLabel={dataSet}
-                  />
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
+      <Box className={classes.root}>
+        {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
+        <Box>
+          <StackedBarChart
+            data={chartData}
+            xAxis='fiscal_year'
+            yGroupBy = 'land_category'
+            yAxis='sum'
+            format={ d => utils.formatToCommaInt(d) }
+            xLabels={ (x, i) => {
+              return x.map(v => '\'' + v.toString().substr(2))
+            }}
+            yLabel={dataSet}
+          />
+        </Box>
+      </Box>
     )
   }
   else {

@@ -56,21 +56,31 @@ const useStyles = makeStyles(theme => ({
   circularProgressRoot: {
     color: theme.palette.primary.dark,
   },
-  topLocationsChart: {
+  chartHorizontal: {
     '& .chart-container': {
       display: 'flex',
       // alignItems: 'top',
-      '@media (max-width: 275px)': {
+      '@media (max-width: 426px)': {
         display: 'block',
         margin: 0,
       },
       '& .chart': {
         marginRight: theme.spacing(2),
         width: '70%',
-        '@media (max-width: 275px)': {
+        '@media (max-width: 426px)': {
           marginRight: 0,
         },
       },
+    },
+  },
+  chartVertical: {
+    '& .chart-container': {
+      display: 'block',
+      margin: 0,
+    },
+    '& .chart': {
+      margin: 0,
+      width: '100%',
     },
   }
 }))
@@ -81,9 +91,9 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   let location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
-  console.debug("props: ", props)
+  console.debug('props: ', props)
   if (props.abbr && props.abbr.length === 2) {
-    location='County'
+    location = 'County'
   }
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location, commodity } })
@@ -104,41 +114,31 @@ const ProductionTopLocations = ({ title, ...props }) => {
     chartData = data.fiscal_production_summary
 
     return (
-      <Container id={utils.formatToSlug(title)}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-              <Box component="h3" color="secondary.dark">{title}</Box>
-            </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <Box className={classes.root}>
-              <Box className={classes.topLocationsChart}>
-                <CircleChart
-                  data={chartData}
-                  maxLegendWidth={maxLegendWidth}
-                  xAxis='state_or_area'
-                  yAxis='sum'
-                  format={ d => utils.formatToCommaInt(d) }
-                  circleLabel={
-                    d => {
-                      // console.debug('circleLABLE: ', d)
-                      const r = []
-                      r[0] = d.state_or_area
-                      r[1] = utils.formatToCommaInt(d.sum) + ' bbl'
-                      return r
-                    }
-                  }
-                  xLabel={location}
-                  yLabel={dataSet}
-                  maxCircles={6}
-                  minColor={theme.palette.green[100]}
-                  maxColor={theme.palette.green[600]} />
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
+      <Box className={classes.root}>
+        {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
+        <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
+          <CircleChart
+            data={chartData}
+            maxLegendWidth={maxLegendWidth}
+            xAxis='state_or_area'
+            yAxis='sum'
+            format={ d => utils.formatToCommaInt(d) }
+            circleLabel={
+              d => {
+                // console.debug('circleLABLE: ', d)
+                const r = []
+                r[0] = d.state_or_area
+                r[1] = utils.formatToCommaInt(d.sum) + ' bbl'
+                return r
+              }
+            }
+            xLabel={location}
+            yLabel={dataSet}
+            maxCircles={6}
+            minColor={theme.palette.green[100]}
+            maxColor={theme.palette.green[600]} />
+        </Box>
+      </Box>
     )
   }
   else {

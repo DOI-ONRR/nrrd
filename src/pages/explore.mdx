@@ -161,15 +161,24 @@ tags:
                     <DetailCards>
                       <ProductionDetailTrends />
                       <ProductionLandCategory title="Production by land category"  />        
-                      <ProductionTopLocations title="Top locations" maxLegendWidth='800px' />        
+                      <ProductionTopLocations title="Top locations" vertical maxLegendWidth='800px' />        
                     </DetailCards>
                   </Grid>
                 </Grid>
               </Container>       
             </CompareContext>
             
-            <ProductionOverTime title="Production Over Time" />               
-            <ProductionTopLocations title="Top Nationwide Locations" />
+            <ProductionOverTime title="Production Over Time" />
+            <Container id="top-nationwide-locations">
+              <Grid container>
+                <Grid item md={12}>
+                  <Box mb={1} color="secondary.main" borderBottom={5}>
+                    <Box component="h2" color="secondary.dark">Top Nationwide Locations</Box>
+                  </Box>               
+                  <ProductionTopLocations horizontal />
+                </Grid>
+              </Grid>
+            </Container>
           </Box>
         </Production>
       </ContextProvider>
