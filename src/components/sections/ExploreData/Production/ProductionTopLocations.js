@@ -60,14 +60,14 @@ const useStyles = makeStyles(theme => ({
     '& .chart-container': {
       display: 'flex',
       // alignItems: 'top',
-      '@media (max-width: 426px)': {
+      '@media (max-width: 275px)': {
         display: 'block',
         margin: 0,
       },
       '& .chart': {
         marginRight: theme.spacing(2),
         width: '70%',
-        '@media (max-width: 426px)': {
+        '@media (max-width: 275px)': {
           marginRight: 0,
         },
       },

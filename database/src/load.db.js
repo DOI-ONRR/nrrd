@@ -167,12 +167,12 @@ const main = async () => {
 
 const getLocationName = (row) => {
   let location_name=''
-  if(row['State'].length > 0 && row['County'].length > 0 ) {
+  if(  row['State'] &&  row['County'] && row['State'].length > 0 && row['County'].length > 0 ) {
     location_name=STATE_NAME_MAP[row['State']]+', '+row['County']
 
-  } else if (row['State'].length > 0 && row['County'].length === 0 ) {
+  } else if (  row['State'] &&  row['County'] && row['State'].length > 0 && row['County'].length === 0 ) {
     location_name=STATE_NAME_MAP[row['State']]
-  } else if (row['Offshore Region'].length > 0) {
+  } else if (row['Offshore Region'] && row['Offshore Region'].length > 0) {
     location_name=row['Offshore Region']
   }
   return location_name
@@ -188,13 +188,10 @@ const getUnit = async (row) => {
     switch (field.trim()) {
     case 'Commodity':
       tmp = row['Commodity']||''
-      console.debug('tmp: ', tmp)
       if(tmp.match(/Prod Vol/) ) {
         let tmp1=tmp.replace(' Prod Vol ','|')
-        console.debug("temp 1: ", tmp1)
         let a=tmp1.split('|')
         unit_abbr = a[1].replace(/[\(/)]/g,'')
-        console.debug("a :", a)
         commodity = a[0]
         unit = unit_abbr
         product = a[0]+' ('+unit_abbr+')'
@@ -202,10 +199,8 @@ const getUnit = async (row) => {
     case 'Product':
       console.debug("row", row[field], "F: >"+field+"<")
       tmp = row['Product'] || ''
-      console.debug("Product: ", tmp)
       if(tmp.match(/\(/)) {
         let a=tmp.split('(')
-        console.debug(a)
         unit_abbr = a[1].replace(/[\(/)]/g,'')      
         commodity = a[0]
         unit = unit_abbr
