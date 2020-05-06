@@ -131,7 +131,8 @@ const main = async () => {
 		    const raw_row = rows[rr]
 		    let string = JSON.stringify(raw_row)
 		    string = string.replace(/[^\x00-\x7F]/g, '') // remove wingdings as microsoft is source
-		    let row = JSON.parse(string)
+		let row = JSON.parse(string)
+
                 row = await NativeAmerican(row)
   		const location = await addLocation(row, location_lookup)
 		    const location_id = location[0]
@@ -154,13 +155,77 @@ const main = async () => {
             await insertDisbursement(commodity_id, location_id, period_id, duplicate_no, raw_disbursement, row)
 		    }
 		    if (raw_volume) {
+                     let unit = await getUnit(row)
             await insertProduction(commodity_id, location_id, period_id, duplicate_no, raw_volume, row)
-          }
+                    }
+    
     
         }
 	    }
     })
 }
+
+const getLocationName = (row) => {
+  let location_name=''
+  if(row['State'].length > 0 && row['County'].length > 0 ) {
+    location_name=STATE_NAME_MAP[row['State']]+', '+row['County']
+
+  } else if (row['State'].length > 0 && row['County'].length === 0 ) {
+    location_name=STATE_NAME_MAP[row['State']]
+  } else if (row['Offshore Region'].length > 0) {
+    location_name=row['Offshore Region']
+  }
+  return location_name
+}
+
+const getUnit = async (row) => {
+  let units='';
+  let unit_abbr='';
+  let commodity=''
+  let product='';
+  let tmp=''
+  for (let field in row) {
+    switch (field.trim()) {
+    case 'Commodity':
+      tmp = row['Commodity']||''
+      console.debug('tmp: ', tmp)
+      if(tmp.match(/Prod Vol/) ) {
+        let tmp1=tmp.replace(' Prod Vol ','|')
+        console.debug("temp 1: ", tmp1)
+        let a=tmp1.split('|')
+        unit_abbr = a[1].replace(/[\(/)]/g,'')
+        console.debug("a :", a)
+        commodity = a[0]
+        unit = unit_abbr
+        product = a[0]+' ('+unit_abbr+')'
+      }
+    case 'Product':
+      console.debug("row", row[field], "F: >"+field+"<")
+      tmp = row['Product'] || ''
+      console.debug("Product: ", tmp)
+      if(tmp.match(/\(/)) {
+        let a=tmp.split('(')
+        console.debug(a)
+        unit_abbr = a[1].replace(/[\(/)]/g,'')      
+        commodity = a[0]
+        unit = unit_abbr
+        product = a[0]+' ('+unit_abbr+')'
+      } 
+      break
+    }
+  } 
+
+  
+  row['Commodity'] = commodity
+  row['Unit_Abbr'] = unit_abbr
+  row['Unit'] = unit_abbr
+  row['Product'] =product
+  
+
+
+}
+
+
 
 const NativeAmerican = async (row) => {
 
@@ -280,7 +345,7 @@ const insertProduction = async (commodity_id, location_id, period_id, duplicate_
 
 const addLocation = async (row, lookup) => {
   let fips_code = ''; let state = ''; let county = ''; let land_class = ''; let land_category = ''; let offshore_region = ''; let offshore_planning_area = ''; const offshore_planning_area_code = ''; let offshore_block = ''; let offshore_protraction = ''
-  
+  let location_name=''
   for (const field in row) {
     switch (field.trim()) {
     case 'FIPS Code':
@@ -294,7 +359,11 @@ const addLocation = async (row, lookup) => {
 	    state = row[field]
 	    break
     case 'County':
-	    county = row[field]
+
+      county = row[field]
+      county = county.replace(' Borough','')
+      county = county.replace(' County','')
+      county = county.replace(' Parish','')
 	    break
     case 'Land Class':
 	    land_class = row[field]
@@ -326,7 +395,7 @@ const addLocation = async (row, lookup) => {
 	    break
     }
   }
-
+  location_name=getLocationName(row);
   let state_name=STATE_NAME_MAP[state] || ''
   const key = fips_code + '-' + state + '-' + county + '-' + land_class + '-' + land_category + '-' + offshore_region + '-' + offshore_planning_area + '-' + offshore_planning_area_code + '-' + offshore_block + '-' + offshore_protraction
   if (lookup[key]) {
@@ -334,7 +403,7 @@ const addLocation = async (row, lookup) => {
   }
   else {
     try {
-      const insert = await db.query('insert into location(fips_code, state,state_name,county,land_class,land_category, offshore_region, offshore_planning_area, offshore_planning_area_code, offshore_block,offshore_protraction) values ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) ON CONFLICT DO NOTHING  returning location_id', [fips_code, state,state_name, county, land_class, land_category, offshore_region, offshore_planning_area, offshore_planning_area_code, offshore_block, offshore_protraction])
+      const insert = await db.query('insert into location(fips_code, state,state_name,county,land_class,land_category, offshore_region, offshore_planning_area, offshore_planning_area_code, offshore_block,offshore_protraction, location_name) values ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) ON CONFLICT DO NOTHING  returning location_id', [fips_code, state,state_name, county, land_class, land_category, offshore_region, offshore_planning_area, offshore_planning_area_code, offshore_block, offshore_protraction, location_name])
 
 	    if (insert.rows.length > 0) {
         lookup[key] = [insert.rows[0].location_id, fips_code, state, county, land_class, land_category, offshore_region, offshore_planning_area, offshore_planning_area_code, offshore_block, offshore_protraction]

@@ -97,8 +97,6 @@ export default class D3LineChart {
       const chipLabels = this.chipLabels
       const colors = this.chartColors
 
-      console.log('whats this: ', this)
-
       const x = d3.scaleLinear().domain([2003, 2019]).range([0, width])
       const y = d3.scaleLinear().domain([0, 40000000]).range([height, 0])
 
@@ -174,10 +172,10 @@ export default class D3LineChart {
       }
 
       // Define the div for the tooltip
-      const tooltip = d3.select(this.chartNode).append('div')
+      const tooltip = d3.select('body').append('div')
         .attr('class', 'tooltip')
         .style('position', 'absolute')
-        .style('left', '100px')
+        // .style('left', '100px')
         .style('background', 'rgba(0, 0, 0, 0.85)')
         .style('border-radius', '4px')
         .style('z-index', '999')

@@ -132,7 +132,7 @@ const DefaultLayout = ({ includeToc = true, children }) => {
         }
       </main>
       {data &&
-        <Box mt={3}>
+        <Box>
           <Footer data={data} />
         </Box>
       }

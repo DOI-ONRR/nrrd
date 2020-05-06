@@ -30,6 +30,10 @@ const APOLLO_QUERY = gql`
 
 const useStyles = makeStyles(theme => ({
   root: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100vw',
+    maxWidth: '100%',
     '& .sticky-outer-wrapper.sticky .slider-wrapper': {
       top: 0,
     }

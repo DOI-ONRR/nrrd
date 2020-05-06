@@ -48,6 +48,40 @@ export default class d3Map {
    *
  */
 
+  zoomTo (state) {
+    try {
+      const us = this.us
+      const svg = this._chart
+      const zoom = this.zoom
+      const path = this.path
+      console.debug('Zoom to :', state)
+      svg.selectAll('path')
+        .attr('fill-opacity', 0.1)
+      svg.selectAll(`.${ state }`)
+        .attr('fill-opacity', 9)
+      const paths = svg.selectAll('.' + state)
+      const bboxes = paths.nodes().map(d => d.getBBox())
+      const x0 = d3.min(bboxes.map(d => d.x))
+      const x1 = d3.max(bboxes.map(d => d.x + d.width))
+      const y0 = d3.min(bboxes.map(d => d.y))
+      const y1 = d3.max(bboxes.map(d => d.y + d.height))
+      const width = this.width
+      const height = this.height
+      // const width = x1 - x0
+      // const height = y1 - y0
+      console.debug('x0: ', x0, 'y0: ', y0, 'x1: ', x1, 'y1: ', y1, 'width: ', width, 'height: ', height)
+      const transform = d3.zoomIdentity
+        .translate(width / 2, height / 2)
+        .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
+        .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
+      console.log('zoomTo transform', transform)
+      this.zoom(transform)
+    }
+    catch (err) {
+      console.warn('Error in zoom: ', err)
+    }
+  }
+
   onZoom (event) {
     // console.debug('transform onZoom', event.transform)
   }
@@ -87,6 +121,8 @@ export default class d3Map {
     const maxColor = this.maxColor
     const width = this.node.children[1].scrollWidth
     const height = this.node.children[1].scrollHeight
+    this.width = width
+    this.height = height
     const mapZ = this.mapZ
     const mapX = this.mapX
     const mapY = this.mapY
@@ -115,10 +151,10 @@ export default class d3Map {
 
     const projection = d3.geoAlbersUsa()
       .translate([width / 2, height / 2]) // translate to center of screen
-      .scale([height*1.5]) // scale things down so see entire US
+      .scale([height * 1.5]) // scale things down so see entire US
 
     const path = d3.geoPath(projection)
-
+    this.path = path
     let color = () => {}
 
     // switch quick and dirty to let users change color beter to use d3.interpolateRGB??
@@ -179,9 +215,12 @@ export default class d3Map {
 
     const g = _chart.append('g')
     _chart.call(zoom)
+    console.debug('US: ', us)
+    console.debug('objects:', us.objects[mapFeatures])
     g.selectAll('path')
       .data(topojson.feature(us, us.objects[mapFeatures]).features)
       .join('path')
+      .attr('class', d => (d.properties.state) ? d.properties.state : d.id)
       .attr('fill', d => color(data.get(d.id)))
       .attr('fill-opacity', 0.9)
       .attr('d', path)
@@ -196,7 +235,7 @@ export default class d3Map {
 	  .style('cursor', 'pointer')
       })
       .on('mouseout', (d, i) => {
-        d3.selectAll('path')
+        _chart.selectAll('path')
           .style('fill-opacity', 0.9)
       })
       .append('title')

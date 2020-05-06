@@ -8,6 +8,30 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CONSTANTS from '../../../../js/constants'
+import mapCounties from '../counties.json'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import {
+  Box
+} from '@material-ui/core'
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'top',
+    '& .mapContainer': {
+      height: 100,
+      width: 245,
+    },
+    '& .mapContainer > .legend': {
+      display: 'none', // quick fix for now, will want to disable most map features for smaller maps
+    },
+    '& .mapContainer svg': {
+      pointerEvents: 'none',
+    }
+  }
+}))
 
 const REVENUE_QUERY = gql`
   query FiscalCommodityRevenue($year: Int!, $commodities: [String!]) {
@@ -21,7 +45,9 @@ const REVENUE_QUERY = gql`
   }
 `
 
-export default props => {
+const RevenueCountyMap = props => {
+  const classes = useStyles()
+  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -30,10 +56,10 @@ export default props => {
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
     variables: { year: year, commodities: commodities }
   })
-  
+  const mapFeatures = 'counties-geo'
   let mapData = [[]]
   const onZoomEnd = event => {
-    console.debug("Event : ", event )
+    console.debug('Event : ', event)
   }
   if (loading) {}
   if (error) return `Error! ${ error.message }`
@@ -43,33 +69,30 @@ export default props => {
       item.total
     ])
     mapData = d3.nest()
-      .key( k => k.state_or_area)
+      .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_commodity_summary)
-      .map( d => [d.key, d.value])
-
+      .map(d => [d.key, d.value])
   }
 
   return (
     <>
       {mapData &&
-        <> <Map
-          mapFeatures={props.mapFeatures}
-          mapJsonObject={props.mapJsonObject}
-          mapData={mapData}
-          minColor={props.minColor}
-          maxColor={props.maxColor}
-          mapZoom={props.mapK}
-          mapX={props.mapX}
-          mapY={props.mapY}
-          onZoomEnd={onZoomEnd}
-          onClick={props.onClick}
-          handleMapSnackbar={props.handleMapSnackbar}
-       handleMapSnackbarClose={props.handleMapSnackbarClose}
-
-        />
-        </>
+       <Box className={classes.root}>
+         <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
+         <Map
+           key={`county_map_${ props.abbr }`}
+           mapFeatures={mapFeatures}
+           mapJsonObject={mapCounties}
+           mapData={mapData}
+           minColor={props.minColor}
+           maxColor={props.maxColor}
+           zoomTo={props.abbr}
+         />
+       </Box>
       }
     </>
   )
 }
+
+export default RevenueCountyMap
