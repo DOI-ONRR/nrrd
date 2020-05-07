@@ -5,17 +5,19 @@ import gql from 'graphql-tag'
 import * as d3 from 'd3'
 import utils from '../../../js/utils'
 import PercentDifference from '../../utils/PercentDifference'
+import Link from '../../../components/Link'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
+import {
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
+} from '@material-ui/core'
 
 import Sparkline from '../../data-viz/Sparkline'
 
@@ -33,6 +35,7 @@ const APOLLO_QUERY = gql`
       revenue_trends(order_by: {fiscal_year: desc, current_month: desc}) {
         fiscalYear:fiscal_year
         revenue:total
+        revenue_ytd:total_ytd
         revenueType:trend_type
         month:current_month
       }
@@ -40,7 +43,12 @@ const APOLLO_QUERY = gql`
   `
 
 const useStyles = makeStyles(theme => ({
-  root: {}
+  root: {},
+  inlineSourceLinks: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: theme.spacing(1),
+  }
 }))
 
 const RevenueTrends = () => {
@@ -133,6 +141,11 @@ const RevenueTrends = () => {
             </TableBody>
           </Table>
         </TableContainer>
+
+        <Box fontStyle="italic" fontSize="h6.fontSize" className={classes.inlineSourceLinks}>
+          <Link href='/downloads/federal-revenue-by-location/'>Source file</Link>
+          <Link href='/downloads/federal-revenue-by-month/'>Source file</Link>
+        </Box>
       </Box>
     )
   }
@@ -224,7 +237,7 @@ const aggregateData = data => {
   ]
 
   const currentYear = data[0].fiscalYear
-
+  const currentMonth = data[0].month
   for (let i = 0; i < data.length; i++) {
     const item = data[i]
     if (item.revenueType.match(/Royalties/)) {
@@ -236,18 +249,27 @@ const aggregateData = data => {
     else if (item.revenueType.match(/Rents/)) {
       sumData(item, r, 2, currentYear) // sum into Rents
     }
-    else {
+    else if (item.revenueType.match(/Other Revenues/)) {
       sumData(item, r, 3, currentYear) // sum into Other Revenues
     }
-    sumData(item, r, 4, currentYear) // sum into Total
+    else if (item.revenueType.match(/All Revenue/)) {
+      sumData(item, r, 4, currentYear) // sum into Total
+    }
   }
 
   r.map((row, i) => {
     let a = []
     const years = Object.keys(row.histSum).sort()
     a = years.map((year, i) => ([year, row.histSum[year]]))
-    r[i].histData = a.slice(-10)
-    return a.slice(-10)
+    console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
+    if (currentMonth === 'December') {
+      r[i].histData = a.slice(-10)
+      return a.slice(-10)
+    }
+    else {
+      r[i].histData = a.slice(-11).slice(0, 10)
+      return a.slice(-11).slice(0, 10)
+    }
   })
 
   return r
@@ -255,8 +277,8 @@ const aggregateData = data => {
 
 const sumData = (item, r, index, currentYear) => {
   const previousYear = currentYear - 1
-  if (item.fiscalYear == currentYear) r[index].current += item.revenue
-  if (item.fiscalYear == previousYear) r[index].previous += item.revenue
+  if (item.fiscalYear == currentYear) r[index].current += item.revenue_ytd
+  if (item.fiscalYear == previousYear) r[index].previous += item.revenue_ytd
 
   if (r[index].histSum[item.fiscalYear]) {
     if (!isNaN(Number(item.revenue))) r[index].histSum[item.fiscalYear] += Number(item.revenue)

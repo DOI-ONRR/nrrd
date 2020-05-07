@@ -1,6 +1,6 @@
 module.exports = {
   extends: ["standard"],
-  plugins: ["standard", "react"],
+  plugins: ["standard", "react", "react-hooks"],
   rules: {
     "no-var": "error", // optional, recommended when using es6+
     "no-unused-vars": 1, // recommended
@@ -48,6 +48,9 @@ module.exports = {
     "react/jsx-uses-vars": "error",
 
     "import/no-webpack-loader-syntax": "off",
+
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "off",
 
     // "css-modules/no-unused-class": 1, currently using jss solution
     // "at-rule-no-unknown": [true, {

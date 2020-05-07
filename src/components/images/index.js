@@ -1,5 +1,6 @@
 import React from 'react'
 
+import HowWorksLinkIconSvg from '-!svg-react-loader!../../images/icons/how-works.svg'
 import HowMainIconOilSvg from '-!svg-react-loader!../../images/how-it-works/how-main-icon-oil.svg'
 import HowMainIconHardrockSvg from '-!svg-react-loader!../../images/how-it-works/how-main-icon-hardrock.svg'
 import HowMainIconWindSvg from '-!svg-react-loader!../../images/how-it-works/how-main-icon-wind.svg'
@@ -8,6 +9,7 @@ import HowItWorksRibbonGraphicSvg from '-!svg-react-loader!../../images/how-it-w
 import AmlUnappropGrowthSvg from '-!svg-react-loader!../../images/how-it-works/AML_unapprop-growth.svg'
 
 import OnrrLogoSvg from '-!svg-react-loader!../../images/logos/ONRR-mark.svg'
+import NrrdLogoSvg from '-!svg-react-loader!../../images/logos/NRRD-logo.svg'
 
 import IconOilSvg from '-!svg-react-loader!../../images/icons/icon-oil.svg'
 import IconCoalSvg from '-!svg-react-loader!../../images/icons/icon-coal.svg'
@@ -19,7 +21,9 @@ import IconDownloadBaseSvg from '-!svg-react-loader!../../images/icons/icon-down
 import IconDownloadXlsSvg from '-!svg-react-loader!../../images/icons/icon-download-xls.svg'
 import IconDownloadCsvSvg from '-!svg-react-loader!../../images/icons/icon-download-csv.svg'
 import IconDownloadDataSvg from '-!svg-react-loader!../../images/icons/icon-download-data.svg'
+import IconQuestionCircleSvg from '-!svg-react-loader!../../images/icons/icon-question-circle.svg'
 
+export const HowWorksLinkIconImg = props => <HowWorksLinkIconSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} />
 export const HowMainIconOilImg = props => <HowMainIconOilSvg {...props} />
 export const HowMainIconHardrockImg = props => <HowMainIconHardrockSvg {...props} />
 export const HowMainIconWindImg = props => <HowMainIconWindSvg {...props} />
@@ -29,6 +33,7 @@ export const HowItWorksRibbonGraphicImg = props => <HowItWorksRibbonGraphicSvg {
 export const AmlUnappropGrowthImg = ({ alt, ...props }) => <AmlUnappropGrowthSvg {...props} alt={alt || "Chart shows the growth of the AML fund's unappropriated balance from 1989 to 2017. It grew from around $500 million to nearly $2.5 billion dollars in 2015, before falling slightly to $2.38 billion in 2017."}/>
 
 export const OnrrLogoImg = props => <OnrrLogoSvg {...props} />
+export const NrrdLogoImg = props => <NrrdLogoSvg {...props} />
 
 export const IconOilImg = props => <IconOilSvg {...props} />
 export const IconCoalImg = props => <IconCoalSvg {...props} />
@@ -40,3 +45,4 @@ export const IconDownloadBaseImg = props => <IconDownloadBaseSvg style={{ vertic
 export const IconDownloadXlsImg = props => <IconDownloadXlsSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
 export const IconDownloadCsvImg = props => <IconDownloadCsvSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
 export const IconDownloadDataImg = props => <IconDownloadDataSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
+export const IconQuestionCircleImg = props => <IconQuestionCircleSvg style={{ width: '16px', height: '16px', marginLeft: '1.6px', fill: 'currentColor' }} {...props}/>

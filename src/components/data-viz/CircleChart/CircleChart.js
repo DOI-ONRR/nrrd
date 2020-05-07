@@ -4,25 +4,28 @@ import React, { useEffect, useRef } from 'react'
 // import utils from '../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
 
 import ChartTitle from '../ChartTitle'
 
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
 import D3CircleChart from './D3CircleChart.js'
+import { interpolateRgbBasis } from 'd3'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme, props) => ({
   container: {
     display: 'block',
     top: 0,
     left: 0,
     width: '100%',
+    height: '100%',
   },
   chart: {
     display: 'block',
     top: 0,
     left: 0,
     width: '100%',
-    height: '200px',
+    height: '100%',
     fill: theme.palette.chart.primary,
     '& .bars > .bar:hover': {
       fill: theme.palette.chart.secondary,
@@ -32,17 +35,21 @@ const useStyles = makeStyles(theme => ({
       fill: theme.palette.chart.secondary,
     },
     '& .maxExtent': {
-      fontSize: theme.typography.chartText,
+      fontSize: theme.typography.h5.fontSize,
     },
     '& .x-axis > .tick': {
-      fontSize: theme.typography.chartText,
-    }
+      fontSize: theme.typography.h5.fontSize,
+    },
+    '& .tooltip': {
+      pointerEvents: 'none',
+    },
   },
   legend: {
     display: 'block',
     top: 0,
     left: 0,
-    fontSize: theme.typography.chartText,
+    maxWidth: '100%',
+    fontSize: theme.typography.h5.fontSize,
     '& tr > td:first-child': {
       width: 10,
     },
@@ -67,12 +74,16 @@ const useStyles = makeStyles(theme => ({
     },
     '& .legend-table > tbody tr td': {
       borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+      verticalAlign: 'top',
     },
     '& .legend-table > tbody tr:last-child td': {
       border: 'none',
     },
     '& .legend-table th, & .legend-table td': {
       padding: theme.spacing(0.5),
+    },
+    '& .legend-rect': {
+      marginTop: theme.spacing(0.5),
     },
   }
 }))
@@ -82,9 +93,10 @@ const CircleChart = props => {
   // use ONRR topojson file for land
 
   const classes = useStyles()
+
   const { data, ...options } = props
   const elemRef = useRef(null)
-
+  // console.debug("CLASSES : x", classes)
   useEffect(() => {
     // stackedBarChar(elemRef.current,{}, datas);
     // console.debug("EEEEEEEEEEEEEEEEEEEE", elemRef)
@@ -100,9 +112,9 @@ const CircleChart = props => {
 
   return (
     <>
-      <div className={classes.container} ref={elemRef}>
-        <div className={classes.chart}></div>
-        <div className={classes.legend}></div>
+      <div className={`${ classes.container } chart-container`} ref={elemRef}>
+        <div className={`${ classes.chart } chart`}></div>
+        <div className={`${ classes.legend } legend`}></div>
       </div>
     </>
   )

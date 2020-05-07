@@ -2,11 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
 import { makeStyles } from '@material-ui/core/styles'
+import { Typography, Box, Tabs, Tab } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   tabsRoot: {},
@@ -53,11 +50,17 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     top: '-1px',
     borderTop: '1px solid #5c737f',
-  }
+  },
+  tabPanelBox: {
+    '@media (max-width: 426px)': {
+      padding: 0,
+    },
+  },
 }))
 
 function TabPanel (props) {
   const { children, value, index, ...other } = props
+  const classes = useStyles()
 
   return (
     <Typography
@@ -68,7 +71,7 @@ function TabPanel (props) {
       aria-labelledby={`full-width-tab-${ index }`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index && <Box p={3} className={classes.tabPanelBox}>{children}</Box>}
     </Typography>
   )
 }
@@ -83,8 +86,11 @@ function a11yProps (index) {
 const Tabtastic = props => {
   const classes = useStyles()
 
+  const urlParams = new URLSearchParams(props.selected)
+  const selectedParams = urlParams.get('tab')
+
   const { children } = props
-  const [selected, setSelected] = useState(props.selected || '')
+  const [selected, setSelected] = useState(selectedParams || '')
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   useEffect(() => {

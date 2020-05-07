@@ -1,2 +1,2 @@
 export * from './data-filter-store'
-export * from './glossary-store'
+export * from './app-status-store'

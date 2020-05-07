@@ -1,4 +1,4 @@
-const args =  require('commander');
+const args =  require('commander')
 
 args
   .option('--duplicates', 'Enable/disable duplicates', true)
@@ -29,6 +29,7 @@ else if (process.env.DB_PORT) {
   DB_PORT = process.env.DB_PORT
 }
 
+
 let DB_USER = 'postgres'
 if (args.database) {
   DB_USER = args.user
@@ -53,13 +54,15 @@ else if (process.env.DB_HOST) {
   DB_HOST = process.env.DB_HOST
 }
 
+
 const { Pool, Client } = require('pg')
 const db = new Pool({
-  user: $DB_USER,
-			 host: $DB_HOST,
-		     database: $DB_DATABSE,
-		     password: $DB_PASSWORD,
-			 port: $DB_PORT,
+  user: DB_USER,
+  host: DB_HOST,
+  database: DB_DATABASE,
+  password: DB_PASSWORD,
+  port: DB_PORT,
+  schema: 'public'
 })
 
 const main = async () => {

@@ -14,12 +14,17 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Typography
+  Typography,
+  Hidden
 } from '@material-ui/core'
 
 import { client } from './src/apollo/client'
 import { StoreProvider } from './src/store'
-import { GlossaryProvider, DataFilterProvider } from './src/stores'
+import {
+  AppStatusProvider,
+  DataFilterProvider
+} from './src/stores'
+
 import ErrorBoundary from './src/components/ErrorBoundary'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './src/js/mui/theme'
@@ -37,7 +42,8 @@ const mdxComponents = {
   TableCell,
   TableHead,
   TableRow,
-  Typography
+  Typography,
+  Hidden
 }
 
 export const wrapRootElement = ({ element }) => (
@@ -45,13 +51,13 @@ export const wrapRootElement = ({ element }) => (
     <ThemeProvider theme={theme}>
       <ApolloProvider client={client}>
         <DataFilterProvider>
-          <GlossaryProvider>
-            <StoreProvider>
+          <StoreProvider>
+            <AppStatusProvider>
               <MDXProvider components={ mdxComponents }>
                 {element}
               </MDXProvider>
-            </StoreProvider>
-          </GlossaryProvider>
+            </AppStatusProvider>
+          </StoreProvider>
         </DataFilterProvider>
       </ApolloProvider>
     </ThemeProvider>

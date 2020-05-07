@@ -1,0 +1,47 @@
+<Box component='footer' display="flex" alignItems="center" bgcolor="info.dark" pt={4} pb={4}>
+<Container maxWidth="lg">
+
+<Grid container>
+<Grid item xs={12} sm={2} >
+  <Box p={4} display={{ xs: 'none', sm: 'block' }}>
+    <DoiLogoImg></DoiLogoImg>
+  </Box>
+</Grid>
+<Grid item xs={12} sm={6}>
+<Box color="white">
+
+### Built in the open
+
+<Box>
+This site {props.data.site.siteMetadata.version} is powered by <Link href='https://revenuedata.doi.gov/downloads' style={{color:'white'}}>open data</Link> and <Link href='https://github.com/ONRR/doi-extractives-data/' style={{color:'white'}}>source code</Link>. We welcome contributions 
+and comments on <Link href='https://github.com/ONRR/doi-extractives-data/issues/new' style={{color:'white'}}>GitHub</Link>. We write about how we work on this 
+site on <Link href='https://revenuedata.doi.gov/blog' style={{color:'white'}}>our team's blog</Link>.
+</Box>
+
+<Box color='white' fontSize={'caption.fontSize'} mt={4}>
+<Link href='https://www.doi.gov/' style={{color:'white'}}>Department of the Interior</Link>&nbsp;|&nbsp;
+<Link href='https://www.doi.gov/privacy' style={{color:'white'}}>Privacy Policy</Link>&nbsp;|&nbsp; 
+<Link href='https://www.doi.gov/foia' style={{color:'white'}}>FOIA</Link>&nbsp;|&nbsp;
+<Link href='https://www.usa.gov/' style={{color:'white'}}>USA.gov</Link>
+</Box>
+
+</Box>
+</Grid>
+<Grid item xs={12} sm={4}>
+<Box color='white' borderBottom={1} pb={2}>
+<Link href='/downloads/' style={{color:'white'}} linkType='DownloadBase'>Download data</Link>
+</Box>
+<Box pt={4} color='white' fontSize={'caption.fontSize'}>
+{`${props.data.site.siteMetadata.officeName},`}<br />
+{`${props.data.site.siteMetadata.informationDataManagement.name}`}<br />
+{`${props.data.site.siteMetadata.informationDataManagement.street}`}<br />
+{`${props.data.site.siteMetadata.informationDataManagement.city} ${props.data.site.siteMetadata.informationDataManagement.zip}`}<br />
+<Link href={`mailto:${props.data.site.siteMetadata.informationDataManagement.email}`} style={{color:'white'}}>
+{props.data.site.siteMetadata.informationDataManagement.email}
+</Link>
+</Box>
+</Grid>
+</Grid>
+
+</Container>
+</Box>

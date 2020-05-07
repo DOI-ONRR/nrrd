@@ -18,6 +18,7 @@ export const fetchDataFilterFromUrl = () => {
   }
   return updatedFilter
 }
+
 export const toTitleCase = str => {
   str = str.toLowerCase().split(' ')
   for (let i = 0; i < str.length; i++) {
@@ -25,10 +26,60 @@ export const toTitleCase = str => {
   }
   return str.join(' ')
 }
+
 export const range = (start, end) => {
   return Array(end - start + 1)
     .fill()
     .map((_, idx) => start + idx)
+}
+
+export const formatToSlug = name => {
+  return slugify(name, {
+    lower: true,
+    // eslint-disable-next-line no-useless-escape
+    remove: /[$*_+~.()'"!\:@,?]/g
+  }).replace('-and-', '-')
+}
+
+export const aggregateSum = ({ data, groupBy, breakoutBy, sumByProps }) => {
+  // Clone original data so we don't change it
+  const clonedData = JSON.parse(JSON.stringify(data))
+
+  // Use a reduce function to aggregate the data
+  const aggregated = clonedData.reduce((results, current) => {
+
+    // Find the objects that match based on the criteria
+    // If it finds a match then we will sum the props of the current item to the results
+    const matches = results.filter((item, index) => {
+      let foundMatch = false
+      if (groupBy) {
+        foundMatch = item[groupBy] === current[groupBy]
+        if (foundMatch && breakoutBy) {
+          foundMatch = item[breakoutBy] === current[breakoutBy]
+        }
+      }
+      if (!groupBy && breakoutBy) {
+        foundMatch = item[breakoutBy] === current[breakoutBy]
+      }
+
+      if (foundMatch) {
+        sumByProps.forEach(prop => {
+          results[index][prop] += current[prop]
+        })
+      }
+
+      return foundMatch
+    })
+
+    // No matches found so lets just add the current item to the results array
+    if (matches.length === 0) {
+      results.push(current)
+    }
+
+    return results
+  }, [])
+
+  return aggregated
 }
 
 const utils = {

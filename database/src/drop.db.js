@@ -66,17 +66,34 @@ const main =async () => {
 //	console.log(err, res)
 	//db.end()
     //    });
-    await revenue_trends();
+  await drop_all();
+  /*
     await revenue_table();
     await disbursement_table();
     await production_table();
     await commodity_table();
     await location_table();
     await period_table();
-
+*/
 
     
 }
+
+const drop_all =async () => {
+    let statement=`
+drop owned by current_user;
+-- recreate default public scheam to build in
+create schema public;
+
+`
+    try {
+    await db.query(statement);
+    } catch (err) { console.log("drop_all: ", err);}
+    
+}
+
+
+
 
 const production_table =async () => {
     let table=`

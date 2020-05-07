@@ -1,60 +1,65 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import Link from '../../../components/Link'
 
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon
+} from '@material-ui/core'
+
+import { makeStyles } from '@material-ui/core/styles'
+
 import FiberManualRecordRoundedIcon from '@material-ui/icons/FiberManualRecordRounded'
 
-const WhatsNew = props => {
-  return (
-    <Box pt={5} pb={5}>
-      <Typography variant="h2">What's new</Typography>
-      <Typography variant="body1">
-            In our latest release on December 18, 2019, we made the following
-            changes:
-      </Typography>
+const useStyles = makeStyles(theme => ({
+  listRoot: {
+    fontSize: theme.typography.body2.fontSize,
+    '& li span': {
+      fontSize: theme.typography.body2.fontSize,
+    },
+  },
+}))
 
-      <List component="ul" aria-label="whats new list">
-        <ListItem component="li">
+const WhatsNew = props => {
+  const classes = useStyles()
+  return (
+    <Box fontWeight="normal">
+      <Box component="h2" m={0}>What's new</Box>
+      <Typography variant="body2">
+        In our latest release on March 30, 2020, we made the following changes:
+      </Typography>
+      <List component="ul" aria-label="whats new list" classes={{ root: classes.listRoot }}>
+        <ListItem component="li" disableGutters>
           <ListItemIcon>
             <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
           </ListItemIcon>
-          <ListItemText primary="Added monthly disbursements data for October 2019" />
+          <ListItemText classes={{ root: classes.listRoot }}>
+            Updated{' '}
+            <Link href='https://revenuedata.doi.gov/downloads/federal-production'>
+              fiscal year production data through 2019
+            </Link>
+          </ListItemText>
         </ListItem>
-        <ListItem component="li">
-          <ListItemIcon>
-            <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
-          </ListItemIcon>
-          <ListItemText primary="Added monthly production data for August 2019" />
-        </ListItem>
-        <ListItem component="li">
-          <ListItemIcon>
-            <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
-          </ListItemIcon>
-          <ListItemText primary="Added monthly revenue data for November 2019" />
-        </ListItem>
-        <ListItem component="li">
+        <ListItem component="li" disableGutters>
           <ListItemIcon>
             <FiberManualRecordRoundedIcon style={{ fontSize: 10 }} />
           </ListItemIcon>
           <ListItemText>
-            Added supporting information about{' '}
-            <Link to="https://revenuedata.doi.gov/how-it-works/reclamation-fund/">
-              Reclamation Fund disbursements
+            Added{' '}
+            <Link href='/how-it-works/gomesa/#revenue-sharing'>
+              2020 GOMESA disbursements to states and local governments
             </Link>
           </ListItemText>
         </ListItem>
       </List>
-      <Typography variant="body1">
+      <Typography variant="body2">
             Review our{' '}
-        <a href="https://github.com/ONRR/doi-extractives-data/releases">
+        <Link href='https://github.com/ONRR/doi-extractives-data/releases'>
               full release details
-        </a>
-            .
+        </Link>.
       </Typography>
     </Box>
 

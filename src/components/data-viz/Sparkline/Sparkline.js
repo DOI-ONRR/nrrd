@@ -16,18 +16,14 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Sparkline = props => {
-  // const spakeStyles = {
-  //   stroke: '#5c737f',
-  //   strokeWidth: 1,
-  //   fill: 'none',
-  // }
   let data = [[0, 0]]
   let highlightIndex = -1
+  let lineAnimationData
   if (props.data.length > 0) {
     data = props.data
     highlightIndex = props.highlightIndex || props.data.length - 1
+    lineAnimationData = data.slice(0, highlightIndex + 1)
   }
-
 
   const elemRef = useRef(null)
   const classes = useStyles()
@@ -36,9 +32,9 @@ const Sparkline = props => {
     const width = 70
     const height = 20
     const x = d3.scaleLinear().range([0, width - 3])
-    const y = d3.scaleLinear().range([height - 4, 0])
+    const y = d3.scaleLinear().range([height - 3, 4])
     const line = d3.line()
-      .curve(d3.curveBasis)
+      .curve(d3.curveCardinal)
       .x(function (d) {
         return x(d[0])
       })
@@ -68,12 +64,29 @@ const Sparkline = props => {
       .attr('d', line)
 
     if (highlightIndex >= 0) {
-	  svg.append('circle')
-	      .attr('class', classes.sparkcircle)
-	      .attr('cx', x(data[highlightIndex][0]))
-	      .attr('cy', y(data[highlightIndex][1]))
-	      .attr('r', 2.3)
+      svg.append('circle')
+        .attr('class', classes.sparkcircle)
+        .attr('cx', x(data[highlightIndex][0]))
+        .attr('cy', y(data[highlightIndex][1]))
+        .attr('r', 2.5)
     }
+
+    const path = svg
+      .append('path')
+      .attr('d', line(lineAnimationData))
+      .attr('stroke', '#424242')
+      .attr('stroke-width', '2')
+      .attr('fill', 'none')
+
+    const totalLength = path.node().getTotalLength()
+
+    path
+      .attr('stroke-dasharray', `${ totalLength } ${ totalLength }`)
+      .attr('stroke-dashoffset', totalLength)
+      .transition()
+      .duration(2000)
+      .ease(d3.easeLinear)
+      .attr('stroke-dashoffset', 0)
   })
 
   return (

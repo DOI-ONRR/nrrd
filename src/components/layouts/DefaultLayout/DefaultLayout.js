@@ -6,21 +6,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-
-import {
-  CssBaseline,
-  Container,
-  Grid
-} from '@material-ui/core'
+import Box from '@material-ui/core/Box'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import useTheme from '@material-ui/core/styles/useTheme'
 
 import InfoBanner from '../../content-partials/InfoBanner'
-import Footer from '../../content-partials/Footer2'
-import { Header } from '../Header'
-
+import Footer from '../../content-partials/Footer'
+import Header from '../../content-partials/Header'
+import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
-
-import GlossaryDrawer from '../GlossaryDrawer/GlossaryDrawer'
 
 const useStyles = makeStyles(theme => (
   {
@@ -82,7 +79,10 @@ const useStyles = makeStyles(theme => (
         height: 'auto',
         overflow: 'visible'
       }
-    }
+    },
+    mainContent: {
+      minHeight: 575,
+    },
   })
 )
 
@@ -91,11 +91,19 @@ const DefaultLayout = ({ includeToc = true, children }) => {
   const classes = useStyles(theme)
 
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query DefaultLayoutQuery {
       site {
         siteMetadata {
           title
           version
+          officeName
+          informationDataManagement {
+            name
+            city
+            zip
+            street
+            email
+          }
         }
       }
     }
@@ -104,11 +112,11 @@ const DefaultLayout = ({ includeToc = true, children }) => {
   return (
     <React.Fragment>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+      <LoadingStatusBackdrop />
       <InfoBanner />
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <GlossaryDrawer />
+      <Header />
       <CssBaseline />
-      <main id='main-content'>
+      <main id='main-content' className={classes.mainContent}>
         {includeToc
           ? <Container maxWidth="lg" component="section">
             <Grid container>
@@ -120,10 +128,14 @@ const DefaultLayout = ({ includeToc = true, children }) => {
               </Grid>
             </Grid>
           </Container>
-          : <React.Fragment>{ children }</React.Fragment>
+          : <>{ children }</>
         }
       </main>
-      <Footer version={data && data.site.siteMetadata.version} />
+      {data &&
+        <Box mt={3}>
+          <Footer data={data} />
+        </Box>
+      }
     </React.Fragment>
   )
 }

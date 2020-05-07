@@ -27,6 +27,7 @@ module.exports = Object.freeze({
   FEDERAL_OFFSHORE: 'Federal offshore',
   FEDERAL_ONSHORE: 'Federal onshore',
   NATIVE_AMERICAN: 'Native American',
+  NATIONWIDE_FEDERAL: 'Nationwide Federal',
   OFFSHORE: 'Offshore',
   ONSHORE: 'Onshore',
   FEDERAL: 'Federal',
@@ -37,8 +38,11 @@ module.exports = Object.freeze({
   YEARLY: 'Yearly',
   REVENUE: 'Revenue',
   DISBURSEMENTS: 'Disbursements',
+  PRODUCTION: 'Production',
   OIL: 'Oil',
   GAS: 'Gas',
   COAL: 'Coal',
 
+  TREND_LIMIT: 10,
+  MAX_CARDS: 3,
 })

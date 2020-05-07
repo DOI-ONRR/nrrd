@@ -26,14 +26,19 @@ const useStyles = makeStyles(theme => ({
     },
 
     '& .maxExtent': {
-      fontSize: theme.typography.chartText,
+      fontSize: theme.typography.h5.fontSize,
     },
     '& .x-axis > .tick': {
-      fontSize: theme.typography.body2.fontSize,
+      fontSize: '1rem',
+      fontWeight: 'normal',
     },
     '& .y-axis > .tick': {
       fontSize: theme.typography.body2.fontSize,
     },
+  },
+  horizontal: {
+    extend: 'chart',
+    height: 25,
   },
   legend: {
     display: 'block',
@@ -41,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '100%',
-    fontSize: theme.typography.chartText,
+    fontSize: theme.typography.h5.fontSize,
     '& tr > td:first-child': {
       width: 10,
     },
@@ -74,6 +79,10 @@ const useStyles = makeStyles(theme => ({
     },
     '& .legend-table th, & .legend-table td': {
       padding: theme.spacing(0.5),
+      verticalAlign: 'top',
+    },
+    '& .legend-rect': {
+      marginTop: theme.spacing(0.5),
     },
   }
 }))
@@ -99,7 +108,7 @@ const StackedBarChart = props => {
     <>
       {title && <ChartTitle>{title}</ChartTitle>}
       <div className={classes.container} ref={elemRef}>
-        <div className={classes.chart}></div>
+        <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }`}></div>
         <div className={classes.legend}></div>
       </div>
     </>

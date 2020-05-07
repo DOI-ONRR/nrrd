@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link as GatsbyLink, withPrefix } from 'gatsby'
 import { makeStyles, useTheme, Box } from '@material-ui/core'
-import { IconDownloadXlsImg, IconDownloadCsvImg, IconDownloadDataImg } from '../images'
+import { IconDownloadXlsImg, IconDownloadCsvImg, IconDownloadDataImg, IconDownloadBaseImg, HowWorksLinkIconImg } from '../images'
 
 const useStyles = makeStyles(theme => ({
   link: {
@@ -12,30 +12,51 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'none',
     }
   },
-}))
+  headerLink: {
+    color: theme.typography.body2.color,
+    textDecoration: 'none',
+    marginLeft: theme.spacing(2),
+    '&:hover': {
+      textDecoration: 'underline',
+    }
+  },
+  headerLinkBold: {
+    fontWeight: theme.typography.fontWeightBold
+  },
+})
+)
 
-const IconLink = ({ icon, children, ...props }) => (
-  <Box pl={4} mt={2} mb={2}>
-    <BaseLink {...props} disableRouting>
+const IconLink = ({ icon, children, pl = 4, ...rest }) => (
+  <Box pl={0} mt={2} mb={2}>
+    <BaseLink {...rest} disableRouting>
       <Box mr={1} display='inline-block'>{icon}</Box>
       <span>{children}</span>
     </BaseLink>
   </Box>
 )
 
-const BaseLink = ({ to, href, disableRouting, className = '', children, ...props }) => {
+const BaseLink = ({ href, disableRouting, className = '', children, linkType, ...rest }) => {
   const theme = useTheme()
-  let url = to || href
+  const styles = useStyles(theme)
+
+  const currentPathname = typeof window !== 'undefined' ? window.location.pathname : ''
+
+  let url = href
+
   const isRelative = (url.charAt(0) !== '#' && !url.includes('http') && !url.includes('mailto'))
   url = isRelative ? withPrefix(url) : url
+
+  const classes = (linkType === LinkTypeComponents.Header)
+    ? `${ styles.headerLink } ${ className } ${ (currentPathname === href) && styles.headerLinkBold }`
+    : `${ styles.link } ${ className }`
 
   return (
     <React.Fragment>
       {(!disableRouting && isRelative)
-        ? <GatsbyLink to={url} className={`${ useStyles(theme).link } ${ className }`} {...props} >
+        ? <GatsbyLink to={url} className={classes} {...rest} >
           {children}
         </GatsbyLink>
-        : <a href={url} className={`${ useStyles(theme).link } ${ className }`} {...props} >
+        : <a href={url} className={classes} {...rest}>
           {children}
         </a>
       }
@@ -45,9 +66,12 @@ const BaseLink = ({ to, href, disableRouting, className = '', children, ...props
 
 const LinkTypeComponents = {
   default: props => <BaseLink {...props} />,
+  Header: props => <BaseLink {...props} linkType={LinkTypeComponents.Header} />,
   DownloadXls: props => <IconLink icon={<IconDownloadXlsImg />} {...props} />,
   DownloadCsv: props => <IconLink icon={<IconDownloadCsvImg />} {...props} />,
-  DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />
+  DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />,
+  DownloadBase: props => <IconLink icon={<IconDownloadBaseImg />} pl={0} {...props} />,
+  HowWorks: props => <IconLink icon={<HowWorksLinkIconImg />} pl={0} {...props} />
 }
 
 const regexXlsx = RegExp('.xlsx$')
@@ -64,7 +88,11 @@ const getLinkComponent = ({ linkType, ...props }) => {
   if (regexCsv.test(props.href)) {
     return LinkTypeComponents.DownloadCsv(props)
   }
-  if (regexDownloadData.test(props.href)) {
+
+  if (props.linkType === 'DownloadBase') {
+    return LinkTypeComponents.DownloadBase(props)
+  }
+  else if (regexDownloadData.test(props.href)) {
     return LinkTypeComponents.DownloadData(props)
   }
 
@@ -88,7 +116,7 @@ Link.propTypes = {
    *
    * By default we determine the appropriate link type but you can specify a type if you want to override it.
    */
-  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'default']),
+  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'Header', 'default']),
   /**
    * Used to flag a relative link that we may not want to use Gatsby Routing for. An example is download files.
    *
