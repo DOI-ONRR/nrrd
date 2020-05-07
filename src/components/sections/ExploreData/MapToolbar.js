@@ -413,13 +413,15 @@ const ExploreDataToolbar = props => {
           </Box>
         }
 
-        {(menu.showSearch || matchesMdUp) &&
+        <Hidden mdUp>
+          {(menu.showSearch || matchesMdUp) &&
           <Box>
             {cardMenuItems &&
               cardMenuItems.map((item, i) => <MenuItem disabled={cards.some(c => c.abbr === item.name)} key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
             }
           </Box>
-        }
+          }
+        </Hidden>
 
         {(menu.showExplore || matchesMdUp) &&
           <Box>
