@@ -10,7 +10,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  TextField,
+  TextField
 } from '@material-ui/core'
 
 import { Autocomplete } from '@material-ui/lab'
@@ -211,7 +211,9 @@ const AddLocationCard = props => {
           </CardContent>
           <CardActions>
             { cardMenuItems.length > 0 &&
-              <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
+              <Box component="span" ml={1} mb={1}>
+                <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
+              </Box>
             }
           </CardActions>
         </Card>
