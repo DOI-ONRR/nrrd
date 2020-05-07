@@ -8,42 +8,41 @@ import D3Map from './D3Map.js'
 
 import { makeStyles } from '@material-ui/core/styles'
 
+import {
+  Box
+} from '@material-ui/core'
+
 const useStyles = makeStyles(theme => ({
-  map: {
-    display: 'block',
-    // top: 0,
-    // left: 0,
-    // width: '100%',
-    // height: '100%',
-    // order: '3'
-    minHeight: 500,
-    width: '100%',
+  root: {
     height: '100%',
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    paddingLeft: theme.spacing(0),
-    paddingRight: theme.spacing(0),
-    overflow: 'hidden',
-    background: theme.palette.grey[200],
-  },
-  legend: {
-    display: 'block',
-    bottom: 100,
-    left: 5,
-    width: 285,
-    height: 50,
-    zIndex: 10,
-    margin: '5px',
-    position: 'absolute',
-    padding: theme.spacing(1),
-    '@media (max-width: 768px)': {
-      bottom: 5,
+    width: '100%',
+    '& .mapContainer': {
+      height: '100%',
+      width: '100%',
     },
-    '& .tick': {
-      fontSize: theme.typography.body2,
+    '& .map': {
+      height: '100%',
+      width: '100%',
+    },
+    '& .legend': {
+      display: 'block',
+      bottom: 50,
+      left: 5,
+      width: 300,
+      height: 50,
+      zIndex: 10,
+      margin: '5px',
+      position: 'absolute',
+      padding: theme.spacing(1),
+      '& svg': {
+        top: 0,
+      },
+      '@media (max-width: 768px)': {
+        bottom: 5,
+      },
+      '& .tick': {
+        fontSize: theme.typography.body2,
+      }
     }
   }
 }))
@@ -97,7 +96,7 @@ const Map = props => {
 
   useEffect(() => {
     const us = mapJsonObject
-//    const offshore = mapJsonObject.offshore
+    //    const offshore = mapJsonObject.offshore
     const data = observableData(mapData)
     data.title = mapTitle
     map = new D3Map(
@@ -119,12 +118,18 @@ const Map = props => {
     if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
       map.zoom({ x: mapX, y: mapY, k: mapZoom })
     }
-  })
+
+    if (props.zoomTo) {
+      map.zoomTo(props.zoomTo)
+    }
+  }, [mapData, mapJsonObject])
   return (
-    <div className={classes.map} ref={elemRef}>
-      <div className={`MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 ${ classes.legend }`}></div>
-      <div className={classes.map}></div>
-    </div>
+    <Box className={classes.root}>
+      <div className='mapContainer' ref={elemRef}>
+        <div className='MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 legend'></div>
+        <div className='map'></div>
+      </div>
+    </Box>
   )
 }
 

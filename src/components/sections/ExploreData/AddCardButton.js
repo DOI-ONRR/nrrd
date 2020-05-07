@@ -1,36 +1,59 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
+  Box,
   Menu,
   MenuItem,
-  IconButton
+  IconButton,
+  Tooltip
 } from '@material-ui/core'
 
 import AddIcon from '@material-ui/icons/Add'
+
+
+import { StoreContext } from '../../../store'
 
 const useStyles = makeStyles(theme => ({
   addCardButtonContainer: {
     marginTop: theme.spacing(2),
     textAlign: 'right',
+    '& > span': {
+      flexDirection: 'column',
+    },
+    '& svg': {
+      color: theme.palette.links.default,
+    },
     '& button': {
       padding: theme.spacing(0.5),
-      color: theme.palette.common.black,
       backgroundColor: theme.palette.common.white,
-      boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+      borderRadius: 0,
+      fontSize: '1.2rem',
+      color: theme.palette.grey[700],
+      height: 50,
+      minWidth: 50,
+      boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .15)',
+    },
+    '& button:hover': {
+      backgroundColor: theme.palette.grey[100],
     },
     '@media (max-width: 768px)': {
       textAlign: 'left',
     }
   },
+  tooltipRoot: {
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+  }
 }))
 
 const AddCardButton = props => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
+  const { state: pageFilter } = useContext(StoreContext)
 
-  const { cardMenuItems } = props
+  const { cardMenuItems, onLink } = props
+  const cards = pageFilter.cards
 
   const handleMenuClick = event => {
     setAnchorEl(event.currentTarget)
@@ -39,19 +62,21 @@ const AddCardButton = props => {
   const handleClose = (index, item) => event => {
     setAnchorEl(null)
     if (typeof item !== 'undefined') {
-      props.onLink(item)
+      onLink(item)
     }
   }
 
   return (
-    <div className={classes.addCardButtonContainer}>
-      <IconButton
-        aria-label="Add additional location card menu"
-        aria-controls="add-additional-location-card-menu"
-        aria-haspopup="true"
-        onClick={handleMenuClick}>
-        <AddIcon />
-      </IconButton>
+    <Box className={classes.addCardButtonContainer}>
+      <Tooltip title="Add location" classes={{ tooltip: classes.tooltipRoot }}>
+        <IconButton
+          aria-label="Add additional location card menu"
+          aria-controls="add-additional-location-card-menu"
+          aria-haspopup="true"
+          onClick={handleMenuClick}>
+          <AddIcon />
+        </IconButton>
+      </Tooltip>
       <Menu
         id="add-additional-location-card-menu"
         anchorEl={anchorEl}
@@ -60,10 +85,10 @@ const AddCardButton = props => {
         onClose={handleClose(null)}
       >
         {
-          cardMenuItems.map((item, i) => <MenuItem key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
+          cardMenuItems.map((item, i) => <MenuItem disabled={cards.some(c => c.abbr === item.name)} key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
         }
       </Menu>
-    </div>
+    </Box>
   )
 }
 

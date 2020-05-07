@@ -35,8 +35,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: '100%',
     width: '100%',
-    minHeight: 775,
-    margin: theme.spacing(1),
+    margin: 0,
     '@media (max-width: 767px)': {
       maxWidth: '100%',
       minHeight: 'inherit',
@@ -61,7 +60,8 @@ const useStyles = makeStyles(theme => ({
       alignItems: 'top',
       '& .chart': {
         width: 'calc(100% - 400px)',
-        height: 550,
+        height: '100%',
+        marginBottom: theme.spacing(5),
       },
       '& .legend': {
         width: 400,

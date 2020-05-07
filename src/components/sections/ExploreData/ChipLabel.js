@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 const ChipLabelSVG = props => {
   return (
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" height="100px">
-      <line className="line" x1="0" x2="175" y1="0" y2="0" stroke="black" stroke-width="15" stroke-dasharray={props.strokeDasharray} />
+      <line className="line" x1="0" x2="175" y1="0" y2="0" stroke="black" strokeWidth="15" strokeDasharray={props.strokeDasharray} />
     </svg>
   )
 }
