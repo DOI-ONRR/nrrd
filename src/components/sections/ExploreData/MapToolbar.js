@@ -158,6 +158,9 @@ const useStyles = makeStyles(theme => ({
     '& svg': {
       fill: theme.palette.grey[700],
     }
+  },
+  tooltipRoot: {
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
   }
 }))
 
@@ -209,7 +212,7 @@ const MapExploreMenu = props => {
     <div className={classes.mapExploreMenu}>
       {matchesMdUp &&
         <>
-          <Tooltip title="Explore more">
+          <Tooltip title="Explore more" classes={{ tooltip: classes.tooltipRoot }}>
             <IconButton
               aria-label="Other ways to explore data"
               aria-controls="other-ways-to-explore-data"

@@ -11,7 +11,6 @@ import {
   CardContent,
   CardHeader,
   TextField,
-  Tooltip
 } from '@material-ui/core'
 
 import { Autocomplete } from '@material-ui/lab'

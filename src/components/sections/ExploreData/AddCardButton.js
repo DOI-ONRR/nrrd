@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   tooltipRoot: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
   }
 }))
 
@@ -62,8 +62,8 @@ const AddCardButton = props => {
   }
 
   return (
-    <div className={classes.addCardButtonContainer}>
-      <Tooltip title="Add location" classes={{ root: classes.tooltipRoot }}>
+    <Box className={classes.addCardButtonContainer}>
+      <Tooltip title="Add location" classes={{ tooltip: classes.tooltipRoot }}>
         <IconButton
           aria-label="Add additional location card menu"
           aria-controls="add-additional-location-card-menu"
@@ -83,7 +83,7 @@ const AddCardButton = props => {
           cardMenuItems.map((item, i) => <MenuItem key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
         }
       </Menu>
-    </div>
+    </Box>
   )
 }
 
