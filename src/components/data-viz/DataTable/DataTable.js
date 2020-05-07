@@ -16,15 +16,15 @@ import {
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
-import utils, { toTitleCase, aggregateSum, downloadExcel} from '../../../js/utils'
+import utils, { toTitleCase, aggregateSum, downloadWorkbook } from '../../../js/utils'
 
 import DTQM from '../../../js/data-table-query-manager'
 import { useQuery } from '@apollo/react-hooks'
 
 import DataTableGroupingToolbar from './DataTableGroupingToolbar'
 
+import { IconDownloadCsvImg, IconDownloadXlsImg } from '../../images'
 import Button from '@material-ui/core/Button'
-import TableChart from '@material-ui/icons/TableChart'
 
 import {
   makeStyles,
@@ -252,10 +252,39 @@ const DataTableImpl = data => {
     }
   }, [state, data])
 
+  const handleDownload = type => {
+    downloadWorkbook(type, state[DATA_TYPE], state[DATA_TYPE], columnNames.filter(col => !hiddenColumnNames.includes(col.name)), aggregatedSums)
+  }
+
   return (
     <React.Fragment>
       {(aggregatedSums && aggregatedSums.length > 0) &&
-        <Grid container>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Box component="div" display="inline" mr={2}>
+              <Button
+                variant="contained"
+                color="primary"
+                aria-label="open data filters"
+                onClick={() => handleDownload('excel')}
+                onKeyDown={() => handleDownload('excel')}
+                startIcon={<IconDownloadXlsImg />}
+              >
+              Download table
+              </Button>
+
+            </Box>
+            <Button
+              variant="contained"
+              color="primary"
+              aria-label="open data filters"
+              onClick={() => handleDownload('csv')}
+              onKeyDown={() => handleDownload('csv')}
+              startIcon={<IconDownloadCsvImg />}
+            >
+              Download table
+            </Button>
+          </Grid>
           <Grid item xs={12}>
             <TableGrid
               rows={aggregatedSums}

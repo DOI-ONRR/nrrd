@@ -9,22 +9,41 @@ import commodityNames from '../data/commodity_names.yml'
 
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
-
-export const downloadExcel = () => {
-  const workbook = new ExcelJs.Workbook()
-  const worksheet = workbook.addWorksheet('My Sheet')
-  worksheet.columns = [
+/*
+    [
     { header: 'Id', key: 'id', width: 10 },
     { header: 'Name', key: 'name', width: 32 },
     { header: 'D.O.B.', key: 'DOB', width: 10, outlineLevel: 1 }
   ]
-  worksheet.addRow({ id: 1, name: 'John Doe', dob: new Date(1970, 1, 1) })
-  worksheet.addRow({ id: 2, name: 'Jane Doe', dob: new Date(1965, 1, 7) })
+*/
+export const downloadWorkbook = (type, fileName, sheetName, cols, rows) => {
+  const workbook = new ExcelJs.Workbook()
+  const worksheet = workbook.addWorksheet(sheetName)
+  worksheet.columns = cols.map(col => ({ key: col.name, header: col.title, width: 20 }))
 
-  workbook.xlsx.writeBuffer({ base64: true }).then(result => {
-    // eslint-disable-next-line no-undef
-    saveAs(new Blob([result], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), 'test.xlsx')
+  rows.forEach((row, index) => {
+    const worksheetRow = { id: [index] }
+    Object.keys(row).forEach(colKey => {
+      if (worksheet.columns.findIndex(col => col.key === colKey) > -1) {
+        worksheetRow[colKey] = row[colKey]
+      }
+    })
+    worksheet.addRow(worksheetRow)
   })
+  switch (type) {
+  case 'excel':
+    workbook.xlsx.writeBuffer({ base64: true }).then(result => {
+      // eslint-disable-next-line no-undef
+      saveAs(new Blob([result], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), fileName)
+    })
+    break
+  case 'csv':
+    workbook.csv.writeBuffer().then(result => {
+      // eslint-disable-next-line no-undef
+      saveAs(new Blob([result], { type: 'text/plain;charset=utf-8' }), `${ fileName }.csv`)
+    })
+    break
+  }
 }
 
 export const fetchDataFilterFromUrl = () => {
@@ -66,7 +85,6 @@ export const aggregateSum = ({ data, groupBy, breakoutBy, sumByProps }) => {
 
   // Use a reduce function to aggregate the data
   const aggregated = clonedData.reduce((results, current) => {
-
     // Find the objects that match based on the criteria
     // If it finds a match then we will sum the props of the current item to the results
     const matches = results.filter((item, index) => {
