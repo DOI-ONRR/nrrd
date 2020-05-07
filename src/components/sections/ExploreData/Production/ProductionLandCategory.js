@@ -84,6 +84,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
     chartData = data.fiscal_production_summary
     console.debug(chartData)
     return (
+
       <Box className={classes.root}>
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
         <Box>
@@ -93,13 +94,15 @@ const ProductionLandCategory = ({ title, ...props }) => {
             yGroupBy = 'land_category'
             yAxis='sum'
             format={ d => utils.formatToCommaInt(d) }
-            xLabels={ (x, i) => {
-              return x.map(v => '\'' + v.toString().substr(2))
+            legendFormat={v => utils.formatToCommaInt(v)}
+            xLabels={ values => {
+              return values.map((v, i) => (i % 2 === 0) ? '\'' + v.toString().substr(2) : '')
             }}
             yLabel={dataSet}
           />
         </Box>
       </Box>
+
     )
   }
   else {
