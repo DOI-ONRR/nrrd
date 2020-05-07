@@ -210,7 +210,7 @@ const DetailCards = props => {
   const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   const closeCard = fips => {
-    console.log('fips: ', fips)
+    // console.log('fips: ', fips)
     dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== fips) })
   }
 

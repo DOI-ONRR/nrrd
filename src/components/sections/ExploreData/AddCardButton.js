@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -11,6 +11,9 @@ import {
 } from '@material-ui/core'
 
 import AddIcon from '@material-ui/icons/Add'
+
+
+import { StoreContext } from '../../../store'
 
 const useStyles = makeStyles(theme => ({
   addCardButtonContainer: {
@@ -47,8 +50,10 @@ const useStyles = makeStyles(theme => ({
 const AddCardButton = props => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
+  const { state: pageFilter } = useContext(StoreContext)
 
   const { cardMenuItems, onLink } = props
+  const cards = pageFilter.cards
 
   const handleMenuClick = event => {
     setAnchorEl(event.currentTarget)
@@ -80,7 +85,7 @@ const AddCardButton = props => {
         onClose={handleClose(null)}
       >
         {
-          cardMenuItems.map((item, i) => <MenuItem key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
+          cardMenuItems.map((item, i) => <MenuItem disabled={cards.some(c => c.abbr === item.name)} key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
         }
       </Menu>
     </Box>

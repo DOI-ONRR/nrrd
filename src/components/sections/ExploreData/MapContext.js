@@ -301,19 +301,10 @@ const MapContext = props => {
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
-  // card Menu Item for adding/removing Nationwide Federal or Native American cards
-  const nationalCard = cards && cards.some(item => item.abbr === 'Nationwide Federal')
-  const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
-  let cardMenuItems = []
-  if (!nationalCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }]
-  }
-  if (!nativeAmericanCard) {
-    cardMenuItems = [{ fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
-  }
-  if (!nationalCard && !nativeAmericanCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
-  }
+  const cardMenuItems = [
+    { fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' },
+    { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
+  ]
 
   // Map snackbar
   const [mapSnackbarState, setMapSnackbarState] = useState({
@@ -481,7 +472,7 @@ const MapContext = props => {
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
-              <MapToolbar onChange={handleChange} />
+              <MapToolbar onLink={onLink} onChange={handleChange} cardMenuItems={cardMenuItems} />
               {mapChild}
               <MapControls
                 handleClick={handleClick}

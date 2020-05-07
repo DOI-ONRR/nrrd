@@ -251,6 +251,8 @@ const MapExploreMenu = props => {
 
 // Explore data toolbar
 const ExploreDataToolbar = props => {
+  const { cardMenuItems, onLink } = props
+
   const data = useStaticQuery(graphql`
     query CommodityQuery {
       onrr {
@@ -268,7 +270,6 @@ const ExploreDataToolbar = props => {
   const classes = useStyles()
 
   const theme = useTheme()
-  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   const [navValue, setNavValue] = useState(null)
@@ -279,6 +280,23 @@ const ExploreDataToolbar = props => {
   })
 
   const { state: filterState } = useContext(DataFilterContext)
+  const { state: pageState } = useContext(StoreContext)
+
+  const cards = pageState.cards
+
+  // add locations
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = (index, item) => event => {
+    setAnchorEl(null)
+    if (typeof item !== 'undefined') {
+      onLink(item)
+    }
+  }
 
   const {
     dataType,
@@ -301,8 +319,9 @@ const ExploreDataToolbar = props => {
                 !menu.showMapTools || setNavValue(null)
                 break
               case 1:
+                setAnchorEl(newValue)
                 setMenu({ ...menu, showSearch: !menu.showSearch, showExplore: false, showMapTools: false })
-                !menu.showExplore || setNavValue(null)
+                !menu.showSearch || setNavValue(null)
                 break
               case 2:
                 setMenu({ ...menu, showExplore: !menu.showExplore, showMapTools: false, showSearch: false })
@@ -395,7 +414,11 @@ const ExploreDataToolbar = props => {
         }
 
         {(menu.showSearch || matchesMdUp) &&
-          <Box></Box>
+          <Box>
+            {cardMenuItems &&
+              cardMenuItems.map((item, i) => <MenuItem disabled={cards.some(c => c.abbr === item.name)} key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
+            }
+          </Box>
         }
 
         {(menu.showExplore || matchesMdUp) &&
