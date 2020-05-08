@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const MapSelectControl = props => {
-  const { options, label, dataFilterType, defaultOption, ...rest } = props
+  const { options, label, dataFilterType, defaultOption, disabled, ...rest } = props
 
   const classes = useStyles()
   const theme = useTheme()
@@ -132,8 +132,8 @@ const MapSelectControl = props => {
   }
 
   const handleClose = () => {
-    //updateDataFilter({ ...filterState, [dataFilterType]: option.toString() })
-    if(props.checkbox) {
+    // updateDataFilter({ ...filterState, [dataFilterType]: option.toString() })
+    if (props.checkbox) {
       updateDataFilter({ ...filterState, [dataFilterType]: checked })
     }
     setAnchorEl(null)
@@ -249,6 +249,7 @@ const MapSelectControl = props => {
                 value={option}
                 selected={index === selectedIndex}
                 onClick={event => handleMenuItemClick(event, index, option)}
+                disabled={!!disabled}
               >
                 {option}
               </MenuItem>

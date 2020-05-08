@@ -56,7 +56,7 @@ export default class d3Map {
       const path = this.path
       console.debug('Zoom to :', state)
       svg.selectAll('path')
-        .attr('fill-opacity', 0.1)
+        .attr('fill-opacity', 0)
       svg.selectAll(`.${ state }`)
         .attr('fill-opacity', 9)
       const paths = svg.selectAll('.' + state)

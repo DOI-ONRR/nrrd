@@ -332,7 +332,7 @@ export default class stackedBarChart {
       return
     }
 
-    this.chart.selectAll('#backgroundRect').remove()
+    this.chart.selectAll('#sbc__backgroundRect').remove()
     this.addBackgroundRect()
 
     this.chart.selectAll('.maxExtent').remove()
@@ -576,7 +576,7 @@ export default class stackedBarChart {
   addBackgroundRect () {
     this.chart.append('rect')
       .attr('class', 'stacked-bar-chart-background')
-      .attr('id', 'backgroundRect')
+      .attr('id', 'sbc__backgroundRect')
       .style('opacity', 0.0)
       .attr('y', 0)
       .attr('height', this._height)

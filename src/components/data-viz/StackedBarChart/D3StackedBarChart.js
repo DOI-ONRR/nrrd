@@ -76,7 +76,7 @@ export default class D3StackedBarChart {
 
   draw () {
     try {
-      this.chart.selectAll('#backgroundRect').remove()
+      this.chart.selectAll('.stacked-bar-chart-background').remove()
       this.addBackgroundRect()
       if (!this.horizontal) {
         this._maxExtend()
@@ -1137,7 +1137,7 @@ export default class D3StackedBarChart {
       return
     }
 
-    this.chart.selectAll('#backgroundRect').remove()
+    this.chart.selectAll('#backgroundRec').remove()
     this.addBackgroundRect()
 
     this.chart.selectAll('.maxExtent').remove()
@@ -1392,7 +1392,7 @@ export default class D3StackedBarChart {
   addBackgroundRect () {
     this.chart.append('rect')
       .attr('class', 'stacked-bar-chart-background')
-      .attr('id', 'backgroundRect')
+      // .attr('id', 'backgroundRect') // need unique ids for accessibility score
       .style('opacity', 0.0)
       .attr('y', 0)
       .attr('height', this._height)

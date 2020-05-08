@@ -199,7 +199,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     top: -1,
     right: 65,
-    width: 285,
+    width: 50,
     zIndex: 250,
     '& > div': {
       marginTop: 0,
@@ -390,7 +390,7 @@ const MapContext = props => {
   }
 
   const countyLevel = filterState[DFC.COUNTIES] === 'County'
-  const offshore = filterState[DFC.OFFSHORE_REGIONS] === 'On'
+  const offshore = filterState[DFC.OFFSHORE_REGIONS] === 'Show'
 
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))

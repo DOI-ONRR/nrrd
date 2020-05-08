@@ -176,8 +176,8 @@ const MAP_LEVEL_OPTIONS = [
 ]
 
 const MAP_OFFSHORE_SELECT_OPTIONS = [
-  'Off',
-  'On'
+  'Show',
+  'Hide'
 ]
 
 // const MAP_TIMEFRAME_OPTIONS = [
@@ -186,9 +186,9 @@ const MAP_OFFSHORE_SELECT_OPTIONS = [
 // ]
 
 const MAP_PERIOD_OPTIONS = [
-  CONSTANTS.CALENDAR_YEAR,
+  // CONSTANTS.CALENDAR_YEAR,
   CONSTANTS.FISCAL_YEAR,
-  CONSTANTS.MONTHLY
+  // CONSTANTS.MONTHLY
 ]
 
 // Map explore menu speed dial
@@ -378,7 +378,7 @@ const ExploreDataToolbar = props => {
 
             <MapSelectControl
               options={MAP_OFFSHORE_SELECT_OPTIONS}
-              defaultOption={ offshoreRegion || 'Off' }
+              defaultOption={ offshoreRegion || 'Hide' }
               label="Offshore data"
               dataFilterType={DFC.OFFSHORE_REGIONS} />
 
@@ -389,9 +389,11 @@ const ExploreDataToolbar = props => {
 
             <MapSelectControl
               options={MAP_PERIOD_OPTIONS}
-              defaultOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
+              // defaultOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
+              defaultOption="Fiscal year"
               label="Period"
-              dataFilterType="" />
+              dataFilterType=""
+              disabled />
 
             {(dataType === 'Revenue') &&
             <MapSelectControl
