@@ -55,9 +55,11 @@ export default class D3LineChart {
       const yScale = this.yScale()
       return d3.axisLeft(yScale)
         .ticks(5)
-        .tickFormat(function (d) {
-          return `$${ d / 1000000000 }M`
-        })
+        .tickFormat(d3.formatPrefix('.1', 1e6))
+        // .tickFormat(function (d) {
+        //   console.log('yAxis d: ', d)
+        //   return `$${ d / 1,000,000,000 }M`
+        // })
 
       // Create an axis component with d3.axisLeft
     }

@@ -376,7 +376,6 @@ const MapContext = props => {
           cards.unshift(stateObj)
         }
         else {
-          console.log('lets see if native american makes it here', stateObj)
           cards.push(stateObj)
         }
       }
