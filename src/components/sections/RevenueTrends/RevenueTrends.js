@@ -143,7 +143,7 @@ const RevenueTrends = () => {
         </TableContainer>
 
         <Box fontStyle="italic" fontSize="h6.fontSize" className={classes.inlineSourceLinks}>
-          <Link href='/downloads/revenue-by-location/'>Source file</Link>
+          <Link href='/downloads/revenue-by-month/'>Source file</Link>
           <Link href='/downloads/revenue-by-month/'>Source file</Link>
         </Box>
       </Box>
