@@ -55,11 +55,9 @@ export default class D3LineChart {
       const yScale = this.yScale()
       return d3.axisLeft(yScale)
         .ticks(5)
-        .tickFormat(d3.formatPrefix('.1', 1e6))
-        // .tickFormat(function (d) {
-        //   console.log('yAxis d: ', d)
-        //   return `$${ d / 1,000,000,000 }M`
-        // })
+        .tickFormat(d => {
+          return (d < 1000000000) ? `${ d / 1000000 }M` : `${ d / 1000000000 }B`
+        })
 
       // Create an axis component with d3.axisLeft
     }
@@ -109,7 +107,7 @@ export default class D3LineChart {
         .style('border-radius', '4px')
         .style('box-shadow', '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)')
         .append('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .attr('transform', `translate(${ margin.left + 40 }, ${ margin.top })`)
 
       svg.append('g')
         .attr('class', 'x-axis')
@@ -119,7 +117,7 @@ export default class D3LineChart {
 
       svg.append('g')
         .attr('class', 'y-axis')
-        .attr('transform', `translate(${ margin.left }, 0)`)
+        .attr('transform', 'translate(0, 0)')
         .style('font-size', '.875rem')
         .call(yAxis)
 
