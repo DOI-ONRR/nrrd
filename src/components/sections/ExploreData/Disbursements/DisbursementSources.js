@@ -107,11 +107,13 @@ const DisbursementSources = props => {
                   return r
                 }
               } />
-            <Box mt={3}>
+          {/*<Box mt={3}>
+          
               <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
                 Query Disbursements by Sources
               </ExploreDataLink>
             </Box>
+           */}
           </Box>
         </Box>
       )
