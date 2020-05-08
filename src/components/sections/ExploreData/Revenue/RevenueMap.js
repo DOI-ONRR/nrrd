@@ -30,10 +30,10 @@ export default props => {
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
     variables: { year: year, commodities: commodities }
   })
-  
+
   let mapData = [[]]
   const onZoomEnd = event => {
-    console.debug("Event : ", event )
+    console.debug('Event : ', event)
   }
   if (loading) {}
   if (error) return `Error! ${ error.message }`
@@ -43,31 +43,29 @@ export default props => {
       item.total
     ])
     mapData = d3.nest()
-      .key( k => k.state_or_area)
+      .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_commodity_summary)
-      .map( d => [d.key, d.value])
-
+      .map(d => [d.key, d.value])
   }
 
   return (
     <>
       {mapData &&
-        <> <Map
-          mapFeatures={props.mapFeatures}
-          mapJsonObject={props.mapJsonObject}
-          mapData={mapData}
-          minColor={props.minColor}
-          maxColor={props.maxColor}
-          mapZoom={props.mapK}
-          mapX={props.mapX}
-          mapY={props.mapY}
-          onZoomEnd={onZoomEnd}
-          onClick={props.onClick}
-          handleMapSnackbar={props.handleMapSnackbar}
-       handleMapSnackbarClose={props.handleMapSnackbarClose}
-
-        />
+        <>
+          <Map
+            mapFeatures={props.mapFeatures}
+            mapJsonObject={props.mapJsonObject}
+            mapData={mapData}
+            minColor={props.minColor}
+            maxColor={props.maxColor}
+            mapZoom={props.mapK}
+            mapX={props.mapX}
+            mapY={props.mapY}
+            onZoomEnd={onZoomEnd}
+            onClick={props.onClick}
+            handleMapSnackbar={props.handleMapSnackbar}
+            handleMapSnackbarClose={props.handleMapSnackbarClose} />
         </>
       }
     </>

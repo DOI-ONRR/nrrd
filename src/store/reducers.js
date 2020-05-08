@@ -11,6 +11,8 @@ const reducer = (state, action) => {
     return ({ ...state, cards: payload })
   case 'MAP_ZOOM':
     return ({ ...state, mapX: payload.mapX, mapY: payload.mapY, mapZoom: payload.mapZoom })
+  case 'MAP_ACTIVE':
+    return ({ ...state, mapActive: payload.mapActive })
   default:
     return state
   }

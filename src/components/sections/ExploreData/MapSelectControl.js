@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
     whiteSpace: 'nowrap',
     zIndex: 89,
     fontSize: theme.typography.body2,
+    borderRadius: 4,
     '@media (max-width: 768px)': {
       marginRight: 0,
     },

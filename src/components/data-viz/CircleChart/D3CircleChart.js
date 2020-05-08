@@ -319,12 +319,14 @@ export default class D3CircleChart {
       .style('padding', '4px')
       .style('pointer-events', 'none')
       .style('opacity', 0)
+      .style('display', 'none')
 
     const mouseover = function (d) {
       self._onMouseover(this, d)
       if (circleTooltip(d.data)[0] !== undefined) {
         tooltip
           .style('opacity', 1)
+          .style('display', 'block')
       }
     }
 
