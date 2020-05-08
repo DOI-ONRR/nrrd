@@ -230,7 +230,8 @@ export default class D3StackedBarChart {
           return i === self.selectedIndex ? 'bar active' : 'bar'
         })
 
-        .attr('tabindex', (d, i) => i)
+        // .attr('tabindex', (d, i) => i)
+        .attr('tabindex', 0)
         .selectAll('g')
         .data(d => {
           const yd = self.yGroupData(d)
@@ -537,7 +538,7 @@ export default class D3StackedBarChart {
       const activeElement = element.parentNode.parentNode
       activeElement.setAttribute('class', 'bar active')
       activeElement.setAttribute('selected', true)
-      activeElement.setAttribute('tabindex', 1)
+      activeElement.setAttribute('tabindex', 0)
       this.selectedData(data[0].data)
       this._legend()
       this.getSelected()
@@ -563,7 +564,7 @@ export default class D3StackedBarChart {
       const activeElement = element.parentNode.parentNode
       // activeElement.setAttribute('class', 'bar active')
       // activeElement.setAttribute('selected', true)
-      activeElement.setAttribute('tabindex', 1)
+      activeElement.setAttribute('tabindex', 0)
       this.selectedData(data[0].data)
       this._legend()
 
@@ -589,7 +590,8 @@ export default class D3StackedBarChart {
         // activeElement.setAttribute('class', 'bar active')
         const years = this.xDomain()
 
-        const tabIndex = element.parentNode.parentNode.tabIndex
+        // const tabIndex = element.parentNode.parentNode.tabIndex
+        const tabIndex = 0
         // // console.debug(years,  years[tabIndex] , tabIndex)
         this.createLegend(data[0].data, years[tabIndex])
         this.updateLegend(data[0].data, years[tabIndex])
@@ -1056,7 +1058,7 @@ export default class D3StackedBarChart {
     const activeElement = element.parentNode.parentNode
     activeElement.setAttribute('class', 'bar active')
     activeElement.setAttribute('selected', true)
-    activeElement.setAttribute('tabindex', 1)
+    activeElement.setAttribute('tabindex', 0)
     this.selectedData(data[0].data)
     this.addLegend()
     this.getSelected()

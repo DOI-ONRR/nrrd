@@ -22,7 +22,9 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
 
   if (location.pathname.includes('/downloads')) {
     return (
-      <DefaultLayout includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
+      <DefaultLayout
+        includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}
+        title={pageContext.frontmatter && pageContext.frontmatter.title}>
         {children}
         <ContactUs />
       </DefaultLayout>
@@ -31,7 +33,9 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
 
   if (includeDataProvider) {
     return (
-      <DefaultLayout includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
+      <DefaultLayout 
+        includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}
+        title={pageContext.frontmatter && pageContext.frontmatter.title}>
         <DataFilterProviderWrapper>
           {children}
         </DataFilterProviderWrapper>
@@ -39,7 +43,13 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
     )
   }
 
-  return <DefaultLayout includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>{children}</DefaultLayout>
+  return (
+    <DefaultLayout
+      includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}
+      title={pageContext.frontmatter && pageContext.frontmatter.title}>
+      {children}
+    </DefaultLayout>
+  )
 }
 
 PageLayoutManager.propTypes = {
