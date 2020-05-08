@@ -132,6 +132,7 @@ const main = async () => {
 		    let string = JSON.stringify(raw_row)
 		    string = string.replace(/[^\x00-\x7F]/g, '') // remove wingdings as microsoft is source
 		let row = JSON.parse(string)
+                let [unit, unit_abbr]= await getUnit(row)
 
                 row = await NativeAmerican(row)
   		const location = await addLocation(row, location_lookup)
@@ -155,10 +156,9 @@ const main = async () => {
             await insertDisbursement(commodity_id, location_id, period_id, duplicate_no, raw_disbursement, row)
 		    }
 		    if (raw_volume) {
-                     let unit = await getUnit(row)
-            await insertProduction(commodity_id, location_id, period_id, duplicate_no, raw_volume, row)
+                      await insertProduction(commodity_id, location_id, period_id, duplicate_no, raw_volume, unit, unit_abbr, row)
                     }
-    
+   
     
         }
 	    }
@@ -179,11 +179,12 @@ const getLocationName = (row) => {
 }
 
 const getUnit = async (row) => {
-  let units='';
+  let unit='';
   let unit_abbr='';
   let commodity=''
   let product='';
   let tmp=''
+
   for (let field in row) {
     switch (field.trim()) {
     case 'Commodity':
@@ -197,7 +198,6 @@ const getUnit = async (row) => {
         product = a[0]+' ('+unit_abbr+')'
       }
     case 'Product':
-      console.debug("row", row[field], "F: >"+field+"<")
       tmp = row['Product'] || ''
       if(tmp.match(/\(/)) {
         let a=tmp.split('(')
@@ -213,9 +213,10 @@ const getUnit = async (row) => {
   
   row['Commodity'] = commodity
   row['Unit_Abbr'] = unit_abbr
-  row['Unit'] = unit_abbr
+  row['Unit'] = unit
   row['Product'] =product
-  
+
+  return [unit, unit_abbr]
 
 
 }
@@ -315,10 +316,10 @@ const insertDisbursement = async (commodity_id, location_id, period_id, duplicat
   }
 }
 
-const insertProduction = async (commodity_id, location_id, period_id, duplicate_no, raw_volume, row) => {
+const insertProduction = async (commodity_id, location_id, period_id, duplicate_no, raw_volume,unit, unit_abbr, row) => {
   const volume = cleanValue(raw_volume)
   try {
-    const insert = await db.query('insert into production( location_id, period_id, commodity_id, duplicate_no, volume , raw_volume) values ($1 , $2 , $3 , $4 , $5, $6 )', [location_id, period_id, commodity_id, duplicate_no, volume, raw_volume])
+    const insert = await db.query('insert into production( location_id, period_id, commodity_id, duplicate_no, volume ,unit, unit_abbr, raw_volume) values ($1 , $2 , $3 , $4 , $5, $6, $7, $8 )', [location_id, period_id, commodity_id, duplicate_no, volume,unit, unit_abbr, raw_volume])
   }
   catch (err) {
     if (err.stack.match('duplicate')) {

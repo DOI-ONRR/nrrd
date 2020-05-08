@@ -62,17 +62,18 @@ tags:
                     </Grid>
                   </Grid>
                 </Container>
+                <RevenueOverTime title="Revenue over time" />         
               </CompareContext>
-              <RevenueOverTime title="Revenue Over Time" />       
               <NationalRevenueSummary title="Nationwide revenue summary" />
               <TopLocations title="Top locations" />
-              <Commodities title="Top commodities" />
+{/*              <Commodities title="Top commodities" />
               <Company title="Revenue by company" />
+*/}
             </Box>
           </Box>
         </Revenue>
       </ContextProvider>
-      <ContextProvider params={'?dataType=Disbursements'}>
+            <ContextProvider params={'?dataType=Disbursements'}>
         <Disbursements>
           <MapContext>
             <DisbursementMap />
@@ -118,10 +119,10 @@ tags:
                     </Grid>
                   </Grid>
                 </Container>
-              </CompareContext>
-              <DisbursementsOverTime title="Disbursements Over Time"  /> 
-              <NationwideDisbursementSummary title="Nationwide Disbursements Summary" />
-              <DisbursementTopRecipients title="Top Recipients" />
+                <DisbursementsOverTime title="Disbursements over time"  / >   
+              </CompareContext>         
+              <NationwideDisbursementSummary title="Nationwide disbursements summary" />
+              <DisbursementTopRecipients title="Top nationwide recipients" />
             </Box>
           </Box>
         </Disbursements>
@@ -164,7 +165,7 @@ tags:
                   </Grid>
                   <Grid container>
                     <Grid item md={12}>
-                      <DetailCards>
+                      <DetailCards>     
                         <ProductionDetailTrends />
                         <ProductionLandCategory title="Production by land category"  />        
                         <ProductionTopLocations title="Top locations" vertical maxLegendWidth='800px' />   
@@ -190,7 +191,8 @@ tags:
         </Production>
       </ContextProvider>
     </ExploreData>
-    </Box>
+  </Box>
+
 </Container>
 
 

@@ -109,10 +109,10 @@ const RevenueOverTime = props => {
     chartData = [years, ...sums]
 
     return (
-      <Container id={utils.formatToSlug(title)}>
+        <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-            <Box component="h3" color="secondary.dark">{title}</Box>
+            <Box component="h4" color="secondary.dark">{title}</Box>
           </Box>
         </Grid>
         <Grid item md={12}>

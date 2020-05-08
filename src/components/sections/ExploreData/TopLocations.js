@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
-
+import GlossaryTerm from '../../GlossaryTerm//GlossaryTerm.js'
 // utility functions
 import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
@@ -103,11 +103,11 @@ const TopLocations = ({ title, ...props }) => {
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
-          <Grid item xs={12}>
+        <Grid item xs={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
               <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
-          </Grid>
+        </Grid>
           <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
@@ -130,6 +130,7 @@ const TopLocations = ({ title, ...props }) => {
                   maxCircles={6}
                   minColor={theme.palette.green[100]}
                   maxColor={theme.palette.green[600]} />
+                  <Box >Note: Location is  <GlossaryTerm>withheld</GlossaryTerm> for Native American revenue, so it is not include in this chart </Box>
               </Box>
             </Box>
           </Grid>
