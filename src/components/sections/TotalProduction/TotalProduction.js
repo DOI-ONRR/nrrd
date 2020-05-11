@@ -185,7 +185,7 @@ const TotalProduction = props => {
         showExploreLink
       />
       <Grid container spacing={4}>
-      {/* <SectionControls
+       <SectionControls
           onToggleChange={toggleChange}
           onMenuChange={menuChange}
           maxFiscalYear={maxFiscalYear}
@@ -263,7 +263,6 @@ const TotalProduction = props => {
           />
 
         </Grid>
-       */}
       </Grid>
       <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
         <Link href='/downloads/federal-production-by-month/'>Source file</Link>
