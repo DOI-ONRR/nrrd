@@ -23,7 +23,7 @@ const ExploreDisbursements = props => {
 		  }
 		  contentCenter={
 			  <ExploreDataLink
-          to="/how-it-works/#disbursements"
+          to="/how-revenue-works/#disbursements"
           icon="works">
           How disbursements work
 			  </ExploreDataLink>

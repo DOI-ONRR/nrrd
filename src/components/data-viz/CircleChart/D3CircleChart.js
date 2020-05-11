@@ -834,7 +834,7 @@ console.debug(data)
 
   draw () {
     try {
-      this.chart.selectAll('#backgroundRect').remove()
+      this.chart.selectAll('#pc_backgroundRect').remove()
       this.addBackgroundRect()
 
       this._maxExtend()
