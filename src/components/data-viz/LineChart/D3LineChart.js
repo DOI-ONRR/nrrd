@@ -13,7 +13,7 @@ export default class D3LineChart {
     this.container = container
     this.legendNode = container.children[1]
     this.chartNode = container.children[0]
-    this.margin = (options.margin) ? options.margin : { right: 25, left: 25, top: 25, bottom: 25 }
+    this.margin = (options.margin) ? options.margin : { right: 25, left: 50, top: 25, bottom: 25 }
     this._height = (this.chartNode.clientHeight > 0) ? this.chartNode.clientHeight - this.margin.top - this.margin.bottom : 400
     this._width = (this.chartNode.clientWidth > 0) ? this.chartNode.clientWidth - this.margin.right - this.margin.left : 400
 
@@ -107,7 +107,7 @@ export default class D3LineChart {
         .style('border-radius', '4px')
         .style('box-shadow', '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)')
         .append('g')
-        .attr('transform', `translate(${ margin.left + 40 }, ${ margin.top })`)
+        .attr('transform', `translate(${ margin.left }, ${ margin.top })`)
 
       svg.append('g')
         .attr('class', 'x-axis')
