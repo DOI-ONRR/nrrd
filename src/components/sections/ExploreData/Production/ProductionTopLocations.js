@@ -112,7 +112,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
 
   if (data) {
     chartData = data.fiscal_production_summary
-
+    console.debug("CHART DATA", chartData)
     return (
       <Box className={classes.root}>
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
