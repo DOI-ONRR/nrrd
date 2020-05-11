@@ -12,6 +12,7 @@ import LandCategorySelect from '../data-filters/LandCategorySelect'
 import LandClassSelect from '../data-filters/LandClassSelect'
 import StateSelect from '../data-filters/StateSelect'
 import CountySelect from '../data-filters/CountySelect'
+import RecipientSelect from '../data-filters/RecipientSelect'
 import RevenueTypeSelect from '../data-filters/RevenueTypeSelect'
 import CommoditySelect from '../data-filters/CommoditySelect'
 import OffshoreRegionSelect from '../data-filters/OffshoreRegionSelect'
@@ -19,6 +20,7 @@ import PeriodSelect from '../data-filters/PeriodSelect'
 import YearRangeSelect from '../data-filters/YearRangeSelect'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
+import { REVENUE, DISBURSEMENT } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -86,13 +88,22 @@ export default function DataFilterDrawer () {
         >
           <Box m={2}>
             <Grid container>
-              <Grid item xs={12}>
-                <LandCategorySelect />
-              </Grid>
-              <Grid item xs={12}>
-                <LandClassSelect />
-              </Grid>
-              {state.dataType === 'Revenue' &&
+              {state.dataType !== DISBURSEMENT &&
+                <React.Fragment>
+                  <Grid item xs={12}>
+                    <LandCategorySelect />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <LandClassSelect />
+                  </Grid>
+                </React.Fragment>
+              }
+              {state.dataType === DISBURSEMENT &&
+                <Grid item xs={12}>
+                  <RecipientSelect />
+                </Grid>
+              }
+              {state.dataType === REVENUE &&
                 <Grid item xs={12}>
                   <RevenueTypeSelect />
                 </Grid>
@@ -103,9 +114,11 @@ export default function DataFilterDrawer () {
               <Grid item xs={12}>
                 <OffshoreRegionSelect />
               </Grid>
-              <Grid item xs={12}>
-                <CommoditySelect />
-              </Grid>
+              {state.dataType !== DISBURSEMENT &&
+                <Grid item xs={12}>
+                  <CommoditySelect />
+                </Grid>
+              }
               <Grid item xs={12}>
                 <PeriodSelect />
               </Grid>
@@ -119,25 +132,3 @@ export default function DataFilterDrawer () {
     </div>
   )
 }
-
-
-/* 
-
-
-              <Grid item xs={12}>
-                <CountySelect />
-              </Grid>
-            <Grid item xs={12}>
-              <LandCategorySelect />
-            </Grid>
-            <Grid item xs={12}>
-              <LandClassSelect />
-            </Grid>
-            <Grid item xs={12}>
-              <RevenueTypeSelect />
-            </Grid>
-            <Grid item xs={12}>
-              <OffshoreRegionSelect />
-            </Grid>
-
-            */

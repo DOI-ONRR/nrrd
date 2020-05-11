@@ -27,7 +27,7 @@ import CONSTANTS from '../../../js/constants'
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
-import { REVENUE, DISBURSEMENTS, PRODUCTION, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { REVENUE, DISBURSEMENT, PRODUCTION, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -373,7 +373,7 @@ const ExploreDataToolbar = props => {
                   linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-revenue-works/#revenues', '/how-revenue-works/federal-revenue-by-company/2018/']}
                 />
                 }
-                {dataType === DISBURSEMENTS &&
+                {dataType === DISBURSEMENT &&
                 <MapExploreMenu
                   linkLabels={['Query disbursements data', 'Downloads & Documentation', 'How disbursements works']}
                   linkUrls={['/query-data/?dataType=Disbursements', '/downloads/#Disbursements', '/how-revenue-works/#understanding-federal-disbursements']}

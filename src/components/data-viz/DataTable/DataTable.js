@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import {
   REVENUE,
   PRODUCTION,
-  DISBURSEMENTS,
+  DISBURSEMENT,
   DATA_TYPE,
   GROUP_BY,
   BREAKOUT_BY,
@@ -12,7 +12,8 @@ import {
   PERIOD_CALENDAR_YEAR,
   FISCAL_YEAR,
   CALENDAR_YEAR,
-  NO_BREAKOUT_BY
+  NO_BREAKOUT_BY,
+  DISPLAY_NAMES
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
@@ -73,7 +74,7 @@ const DataTable = ({ dataType, height = '100%' }) => {
   if (!state) {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
-
+  console.log(state)
   return (
     <Box className={classes.root} height={height}>
       <Grid container spacing={2} style={{ height: '100%' }}>
@@ -89,9 +90,9 @@ const DataTable = ({ dataType, height = '100%' }) => {
                   <ProductionDataTableImpl />
                 </Grid>
             }
-            {state[DATA_TYPE] === DISBURSEMENTS &&
+            {state[DATA_TYPE] === DISBURSEMENT &&
                 <Grid item xs={12}>
-
+                  <DisbursementDataTableImpl />
                 </Grid>
             }
           </React.Fragment>
@@ -149,6 +150,33 @@ const ProductionDataTableImpl = () => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
   }, [loading])
 
+  return (
+    <React.Fragment>
+      {(data && data.results.length > 0) &&
+        <DataTableImpl {...data} />
+      }
+    </React.Fragment>
+  )
+}
+const DisbursementDataTableImpl = () => {
+  const { state } = useContext(DataFilterContext)
+
+  const loadingMessage = `Loading ${ state.dataType } data from server...`
+
+  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
+
+  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
+
+  useEffect(() => {
+    if (error) {
+      showErrorMessage(`Error!: ${ error.message }`)
+    }
+  }, [error])
+
+  useEffect(() => {
+    updateLoadingStatus({ status: loading, message: loadingMessage })
+  }, [loading])
+  console.log('DisbursementDataTableImpl', data)
   return (
     <React.Fragment>
       {(data && data.results.length > 0) &&
@@ -236,7 +264,7 @@ const DataTableImpl = data => {
       setHiddenColumnNames([])
     }
 
-    if (state[DATA_TYPE] === REVENUE || state[DATA_TYPE] === DISBURSEMENTS) {
+    if (state[DATA_TYPE] === REVENUE || state[DATA_TYPE] === DISBURSEMENT) {
       setCurrencyColumns(getCurrencyColumns())
     }
     setTotalSummaryItems(getTotalSummaryItems())
@@ -322,17 +350,6 @@ const DataTableImpl = data => {
   )
 }
 
-const PLURAL_COLUMNS_MAP = {
-  'Revenue type': 'revenue types',
-  Commodity: 'commodities',
-  'Land Category': 'land categories',
-  Location: 'locations',
-  COUNTY: 'counties',
-  REGION: 'regions',
-  SOURCE: 'sources',
-  RECIPIENT: 'recipients',
-}
-
 const getColumnNames = row => {
   if (!row) {
     return []
@@ -343,7 +360,11 @@ const getColumnNames = row => {
       return { name: column, title: column.substring(1), year: parseInt(column.substring(1)) }
     }
     const titleName = toTitleCase(column).replace('_', ' ')
-    return { name: column, title: titleName, plural: PLURAL_COLUMNS_MAP[titleName] }
+    return {
+      name: column,
+      title: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].default : titleName,
+      plural: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].plural : titleName,
+    }
   })
 }
 const CustomTableSummaryRowGroupRow = ({ ...restProps }) => {

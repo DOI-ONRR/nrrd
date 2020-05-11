@@ -37,7 +37,7 @@ module.exports = Object.freeze({
   MONTHLY: 'Monthly',
   YEARLY: 'Yearly',
   REVENUE: 'Revenue',
-  DISBURSEMENTS: 'Disbursements',
+  DISBURSEMENT: 'Disbursement',
   PRODUCTION: 'Production',
   OIL: 'Oil',
   GAS: 'Gas',
