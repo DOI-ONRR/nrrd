@@ -86,7 +86,7 @@ const DisbursementRecipients = props => {
     data.DisbursementRecipientSummary.length > 0) {
     chartData = data
 
-    console.log('chartData: ', chartData)
+    // console.log('chartData: ', chartData)
 
     if (chartData.DisbursementRecipientSummary.length > 1) {
       return (<Box className={classes.root}>
@@ -103,7 +103,7 @@ const DisbursementRecipients = props => {
             }}
             circleTooltip={
               d => {
-                console.log('d: ', d)
+                // console.log('d: ', d)
                 const r = []
                 r[0] = d.recipient
                 r[1] = utils.formatToDollarInt(d.total)

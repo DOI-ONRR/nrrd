@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -15,9 +15,12 @@ import AddCardButton from './AddCardButton'
 import YearSlider from './YearSlider'
 
 import { StoreContext } from '../../../store'
+import ExploreMoreDataButton from './ExploreMoreDataButton'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
+import useEventListener from '../../../js/use-event-listener'
 
 import mapCounties from './counties.json'
 import mapStates from './states.json'
@@ -33,35 +36,61 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
     height: '600px'
   },
-  mapWrapper: {
+  mapContextWrapper: {
     position: 'relative',
-    height: 575,
+    height: 'calc(100vh - 185px)',
+    // height: 575,
     // marginBottom: theme.spacing(20),
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
+    // border: '2px solid purple',
     '@media (max-width: 768px)': {
       height: 435,
+    },
+    '& .mapContainer': {
+      position: 'fixed',
+      top: 65,
+      // position: 'absolute',
+      // top: -50,
+    },
+    '& .legend': {
+      bottom: 175,
+    },
+    '& .map-overlay': {
+      left: '0',
+      right: '0',
+      width: '100%',
+      height: '100%',
+      bottom: '0',
+      top: '0',
+      transition: '.3s ease',
+      opacity: 0,
+    },
+    '& .map-overlay.active': {
+      position: 'absolute',
+      backgroundColor: 'rgba(0, 0, 0, .3)',
+      zIndex: '300',
+      pointerEvents: 'all',
+      opacity: 1,
     }
   },
-  mapContainer: {
-    position: 'relative',
-    minWidth: 280,
-    flexBasis: '100%',
-    order: '3',
-    height: 575,
-    minHeight: 575,
-    '@media (max-width: 768px)': {
-      height: 435,
-      minHeight: 435,
-    },
+  mapWrapper: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    padding: 0,
+    overflow: 'hidden',
+    background: theme.palette.grey[200],
+    display: 'block',
+    // border: '2px solid deeppink',
   },
   cardContainer: {
     width: 310,
     position: 'absolute',
     right: 0,
-    bottom: 120,
+    bottom: 100,
     height: 'auto',
     minHeight: 335,
     zIndex: 99,
@@ -80,6 +109,7 @@ const useStyles = makeStyles(theme => ({
       overflowX: 'auto',
       height: 'auto',
       position: 'relative',
+      minHeight: 'inherit',
     },
     '& > div': {
       cursor: 'pointer',
@@ -167,10 +197,13 @@ const useStyles = makeStyles(theme => ({
   },
   nonStateCardsContainer: {
     position: 'absolute',
-    bottom: 102,
-    right: 10,
+    top: -1,
+    right: 65,
     width: 285,
-    zIndex: 99,
+    zIndex: 250,
+    '& > div': {
+      marginTop: 0,
+    },
     '@media (max-width: 768px)': {
       right: 0,
       bottom: 8,
@@ -237,25 +270,41 @@ const MapContext = props => {
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
 
+  const [mapOverlay, setMapOverlay] = useState(false)
+  const [mapActive, setMapActive] = useState(true)
+
+  // handler
+  const handler = () => {
+    if (window.pageYOffset > 0) {
+      setMapOverlay(true)
+      setMapActive(false)
+    }
+    else {
+      setMapOverlay(false)
+      setMapActive(true)
+    }
+  }
+
+  // useEventListener('scroll', handler)
+
+  useEffect(() => {
+    window.addEventListener('scroll', handler)
+
+    return () => {
+      window.removeEventListener('scroll', handler)
+    }
+  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
+
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
-  const [mapK, setMapK] = useState(0.25)
+  const [mapK, setMapK] = useState(0)
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
-  // card Menu Item for adding/removing Nationwide Federal or Native American cards
-  const nationalCard = cards && cards.some(item => item.abbr === 'Nationwide Federal')
-  const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
-  let cardMenuItems = []
-  if (!nationalCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }]
-  }
-  if (!nativeAmericanCard) {
-    cardMenuItems = [{ fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
-  }
-  if (!nationalCard && !nativeAmericanCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
-  }
+  const cardMenuItems = [
+    { fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' },
+    { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
+  ]
 
   // Map snackbar
   const [mapSnackbarState, setMapSnackbarState] = useState({
@@ -283,7 +332,7 @@ const MapContext = props => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    console.debug("YEAR ", selected)
+    console.debug('YEAR ', selected)
     updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
   }
   // setZoom
@@ -327,6 +376,7 @@ const MapContext = props => {
           cards.unshift(stateObj)
         }
         else {
+          console.log('lets see if native american makes it here', stateObj)
           cards.push(stateObj)
         }
       }
@@ -336,7 +386,7 @@ const MapContext = props => {
       }
     }
 
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== props.fips) })
+    dispatch({ type: 'CARDS', payload: cards })
   }
 
   const countyLevel = filterState[DFC.COUNTIES] === 'County'
@@ -348,7 +398,7 @@ const MapContext = props => {
 
   const handleChange = (type, name) => event => {
     setZoom(x, y, k)
-    console.debug("TYPE: ", type, "Name ", name, "Event")
+    console.debug('TYPE: ', type, 'Name ', name, 'Event')
     updateDataFilter({ ...filterState, [type]: event.target.checked })
   }
 
@@ -418,16 +468,17 @@ const MapContext = props => {
 
   return (
     <>
-      <Container className={classes.mapWrapper} maxWidth={false}>
+      <Container className={classes.mapContextWrapper} maxWidth={false}>
         <Grid container>
           <Grid item xs={12}>
-            <Box className={classes.mapContainer}>
-              <MapToolbar onChange={handleChange} />
+            <Box className={classes.mapWrapper}>
+              <MapToolbar onLink={onLink} onChange={handleChange} cardMenuItems={cardMenuItems} />
               {mapChild}
               <MapControls
                 handleClick={handleClick}
               />
             </Box>
+            <Box className={`map-overlay ${ mapOverlay ? 'active' : '' }`}></Box>
           </Grid>
           { matchesMdUp &&
             <Grid item xs={12}>
@@ -451,19 +502,18 @@ const MapContext = props => {
                   onLink={onLink} />
               </Box>
               }
-
             </Grid>
           }
-          <Grid item xs={12}>
-            <YearSlider
-              onYear={selected => {
-                onYear(selected, x, y, k)
-              }}
-            />
-          </Grid>
+
+          <ExploreMoreDataButton />
+          <YearSlider
+            onYear={selected => {
+              onYear(selected, x, y, k)
+            }}
+          />
         </Grid>
       </Container>
-      <Container maxWidth={false} style={{ padding: 0 }}>
+      <Container maxWidth={false} style={{ padding: 0, position: 'relative', background: 'white', zIndex: 250 }}>
         { matchesSmDown &&
           <>
             <Grid item xs={12}>

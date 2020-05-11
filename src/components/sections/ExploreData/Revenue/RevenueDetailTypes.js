@@ -39,7 +39,6 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueDetailTypes = props => {
-
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -85,7 +84,7 @@ const RevenueDetailTypes = props => {
                     r[1] = utils.formatToDollarInt(d.total)
                     return r
                   }
-                } /> 
+                } />
               <Box mt={3}>
                 <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                     Query revenue by type
@@ -96,7 +95,7 @@ const RevenueDetailTypes = props => {
         )
         : (
           <Box className={classes.boxSection}>
-            <Box component="h4" fontWeight="bold">Revenue types</Box>
+            <Box component="h4" fontWeight="bold" mb={2}>Revenue types</Box>
             <Box fontSize="subtitle2.fontSize">There was no revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
           </Box>
         )

@@ -174,51 +174,51 @@ const AddLocationCard = props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
 
-  let distinctLocations
-
-  if (data) {
-    distinctLocations = data.distinct_locations
-  }
-
   return (
-    <Card className={classes.addLocationCard}>
-      <CardHeader
-        title={props.title}
-        classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
-        disableTypography
-      />
-      <CardContent>
-        <Autocomplete
-          key={keyCount}
-          id="location-select"
-          autoComplete
-          inputValue={input}
-          options={distinctLocations}
-          getOptionLabel={option => option.location}
-          style={{ width: '100%' }}
-          renderInput={params => (
-            <TextField
-              {...params}
-              label="Search locations..."
-              variant="outlined"
-              fullWidth
-              onChange={handleSearch}
+    <>
+      { (data && data.distinct_locations.length > 0) &&
+        <Card className={classes.addLocationCard}>
+          <CardHeader
+            title={props.title}
+            classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+            disableTypography
+          />
+          <CardContent>
+            <Autocomplete
+              key={keyCount}
+              id="location-select"
+              autoComplete
+              inputValue={input}
+              options={data.distinct_locations}
+              getOptionLabel={option => option.location}
+              style={{ width: '100%' }}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  label="Search locations..."
+                  variant="outlined"
+                  fullWidth
+                  onChange={handleSearch}
+                />
+              )}
+              renderOption={option => renderLabel(option.location)}
+              onChange={(e, v) => handleChange(v)}
+              classes={{
+                inputRoot: classes.autoCompleteRoot,
+                focused: classes.autoCompleteFocused,
+              }}
             />
-          )}
-          renderOption={option => renderLabel(option.location)}
-          onChange={(e, v) => handleChange(v)}
-          classes={{
-            inputRoot: classes.autoCompleteRoot,
-            focused: classes.autoCompleteFocused,
-          }}
-        />
-      </CardContent>
-      <CardActions>
-        { cardMenuItems.length > 0 &&
-              <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
-        }
-      </CardActions>
-    </Card>
+          </CardContent>
+          <CardActions>
+            { cardMenuItems.length > 0 &&
+              <Box component="span" ml={1} mb={1}>
+                <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
+              </Box>
+            }
+          </CardActions>
+        </Card>
+      }
+    </>
   )
 }
 

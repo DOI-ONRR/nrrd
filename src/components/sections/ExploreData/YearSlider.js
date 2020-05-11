@@ -30,6 +30,10 @@ const APOLLO_QUERY = gql`
 
 const useStyles = makeStyles(theme => ({
   root: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100vw',
+    maxWidth: '100%',
     '& .sticky-outer-wrapper.sticky .slider-wrapper': {
       top: 0,
     }
@@ -193,7 +197,7 @@ const YearSlider = props => {
 
     return (
       <Box className={classes.root}>
-        <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+        <StickyWrapper enabled={true} top={1} bottomBoundary={0} innerZ="1000" activeClass="sticky">
           <Box className={`${ classes.sliderContainer } slider-wrapper`}>
             <Container>
               <Box className={classes.sliderYearDisplay}>{period} {year}</Box>
