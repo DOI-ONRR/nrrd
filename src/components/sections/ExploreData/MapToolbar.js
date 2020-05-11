@@ -379,7 +379,7 @@ const ExploreDataToolbar = props => {
             <MapSelectControl
               options={MAP_OFFSHORE_SELECT_OPTIONS}
               defaultOption={ offshoreRegion || 'Hide' }
-              label="Offshore data"
+              label="Offshore map"
               dataFilterType={DFC.OFFSHORE_REGIONS} />
 
             {/* <MapSelectControl

@@ -244,7 +244,7 @@ export default class D3LineChart {
       const min = this.xMin()
       const max = this.xMax()
       return d3.scaleLinear()
-        .domain([min, max]) // inpaut
+        .domain([min, max]) // input
         .range([0, width])
     }
     catch (err) {
@@ -259,7 +259,7 @@ export default class D3LineChart {
       // console.debug('yDomain yDatasets', yDatasets)
       let r = []
       r = yDatasets.reduce((r, dataset, i) => r.concat(dataset), [])
-      // console.debug('return', r)
+      // console.debug('yDomain return', r)
       return r
     }
     catch (err) {
