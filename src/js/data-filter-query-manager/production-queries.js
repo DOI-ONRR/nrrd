@@ -25,7 +25,9 @@ const VARIABLE_LIST = ''.concat(
   '$usState: [String!],',
   '$county: [String!],',
   '$commodity: [String!],',
-  '$fiscalYear: [Int!],'
+  '$period: String,',
+  '$fiscalYear: [Int!],',
+  '$calendarYear: [Int!],'
 )
 
 const LAND_CATEGORY_OPTIONS_QUERY = `
@@ -37,7 +39,9 @@ const LAND_CATEGORY_OPTIONS_QUERY = `
       state: {_in: $usState},
       county: {_in: $county},
       commodity: {_in: $commodity},
-      fiscal_year: {_in: $fiscalYear}
+      period: {_eq: $period},
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: land_category,
     order_by: {land_category: asc}
@@ -54,7 +58,9 @@ const LAND_CLASS_OPTIONS_QUERY = `
       state: {_in: $usState},
       county: {_in: $county},
       commodity: {_in: $commodity},
-      fiscal_year: {_in: $fiscalYear}
+      period: {_eq: $period},
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: land_class,
     order_by: {land_class: asc}
@@ -71,7 +77,9 @@ const US_STATE_OPTIONS_QUERY = `
       state: {_neq: ""},
       county: {_in: $county},
       commodity: {_in: $commodity},
-      fiscal_year: {_in: $fiscalYear}
+      period: {_eq: $period},
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: state,
     order_by: {state: asc}
@@ -88,7 +96,9 @@ const OFFSHORE_REGION_OPTIONS_QUERY = `
       state: {_in: $usState},
       county: {_in: $county},
       commodity: {_in: $commodity},
-      fiscal_year: {_in: $fiscalYear}
+      period: {_eq: $period},
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: offshore_region,
     order_by: {offshore_region: asc}
@@ -105,7 +115,9 @@ const COMMODITY_OPTIONS_QUERY = `
       state: {_in: $usState},
       county: {_in: $county},
       commodity: {_neq: ""},
-      fiscal_year: {_in: $fiscalYear}
+      period: {_eq: $period},
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
     },
     distinct_on: commodity,
     order_by: {commodity: asc}

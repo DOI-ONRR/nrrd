@@ -31,6 +31,8 @@
     "elasticlunr": "^0.9.5",
     "eslint-plugin-flowtype": "^2.0",
     "etl": "^0.6.8",
+    "exceljs": "^3.8.2",
+    "file-saver": "^2.0.2",
     "gatsby": "^2.19.49",
     "gatsby-image": "^2.2.29",
     "gatsby-plugin-anchor-links": "^1.1.1",
