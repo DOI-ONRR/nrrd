@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DISBURSEMENTS, DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { DISBURSEMENT, DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { fetchDataFilterFromUrl } from '../../../../js/utils'
 
@@ -18,7 +18,7 @@ export default ({ children }) => {
 
   return (
     <>
-      { type === DISBURSEMENTS && children }
+      { type === DISBURSEMENT && children }
     </>
   )
 }
