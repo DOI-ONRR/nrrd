@@ -142,7 +142,7 @@ const TotalRevenue = props => {
 
       xAxis = 'month_long'
       xLabels = (x, i) => {
-        // console.debug(x)
+        // console.debug('xLabels x: ', x)
         return x.map(v => v.substr(0, 3))
       }
     }
