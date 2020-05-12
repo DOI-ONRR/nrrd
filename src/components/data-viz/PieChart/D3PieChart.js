@@ -8,56 +8,59 @@ export default class D3PieChart {
     this._height = (node.children[0].clientHeight > 0) ? node.children[0].clientHeight : 400
     this._width = (node.children[0].clientWidth <= 0) ? 300 : node.children[0].clientWidth
     this.radius = Math.min(this._width, this._height) / 2
-    console.debug("data =========================================:", this.radius)
+    console.debug('data =========================================:', this.radius)
 
     this.color = d3.scaleOrdinal(d3.schemeCategory10)
     //      .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-    this.xAxis=options.xAxis
-    this.yAxis=options.yAxis
-    let self=this
-    let arc = d3.arc()
-        .outerRadius(self.radius - 10)
+    this.xAxis = options.xAxis
+    this.yAxis = options.yAxis
+    const self = this
+    const arc = d3.arc()
+      .outerRadius(self.radius - 10)
       .innerRadius(0)
 
-    let pie = d3.pie()
-        .value(function (d) {
-          console.debug("PIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE-----", d, d[self.yAxis])
-          return d[self.yAxis]
-        })
+    const pie = d3.pie()
+      .value(function (d) {
+        console.debug('PIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE-----', d, d[self.yAxis])
+        return d[self.yAxis]
+      })
       .sort(null)
 
-    const chartNode=node.children[0]
-    const w=this._width
-    const h=this._height
-    let svg = d3.select(chartNode).append('svg')
+    const chartNode = node.children[0]
+    const w = this._width
+    const h = this._height
+    const svg = d3.select(chartNode).append('svg')
       .attr('width', w)
       .attr('height', h)
-        .attr('transform', 'translate(' + w / 2 + ',' + h / 2 + ')')
+      .attr('transform', 'translate(' + w / 2 + ',' + h / 2 + ')')
 
-/*    svg.append('g')
+    /*    svg.append('g')
       .attr('class', 'arc')
       .attr('transform', 'translate(' + this._width / 2 + ',' + this._height / 2 + ')')
 */
-    let pieData=pie(this.data)
-    let g = svg.selectAll('arc')
-        .data(pieData)
-        .enter().append('g')
-        .attr('class', 'arc')
-
-   
-
+    const pieData = pie(this.data)
+    const g = svg.selectAll('arc')
+      .data(pieData)
+      .enter().append('g')
+      .attr('class', 'arc')
 
     g.append('path')
-    .attr('d', function(d) {
-      console.debug(d)
-      let a=arc(d)
-      
-      console.debug("added arc", a)
-      return a
-    })
-      .attr('data-legend', function(d) { return d[self.xAxis] })
-      .attr('data-legend-pos', function(d, i) { return i; })
-      .style('fill', function(d) { return self.color(d[self.xAxis]); });
+      .attr('d', function (d) {
+        console.debug(d)
+        const a = arc(d)
+
+        console.debug('added arc', a)
+        return a
+      })
+      .attr('data-legend', function (d) {
+        return d[self.xAxis]
+      })
+      .attr('data-legend-pos', function (d, i) {
+        return i
+      })
+      .style('fill', function (d) {
+        return self.color(d[self.xAxis])
+      })
     /*
       g.append('text')
       .attr('transform', function(d) {
@@ -67,20 +70,19 @@ export default class D3PieChart {
       .attr('dy', '.35em')
       .style('text-anchor', 'middle');
     */
-    
-  this.svg=svg;
+
+    this.svg = svg
   }
 
-   draw () {
+  draw () {
     try {
-      this.chart.selectAll('#backgroundRect').remove()
+      this.chart.selectAll('#pc_backgroundRect').remove()
       this.addBackgroundRect()
 
       this._maxExtend()
       this._chart()
       this._xLabels()
       this._legend()
-      
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -133,16 +135,16 @@ export default class D3PieChart {
   // addGroupLines () {
   xAxisGroup () {
     if (this.xAxisGroup) {
-      let self = this
-      
-      let groupLines = this.chart.append('g').attr('id', 'groups')
-      let groupItemWidth = (self.width / self.state.length)
-      let padding = (self.xScale.bandwidth() * 0.2)
+      const self = this
+
+      const groupLines = this.chart.append('g').attr('id', 'groups')
+      const groupItemWidth = (self.width / self.state.length)
+      const padding = (self.xScale.bandwidth() * 0.2)
       let xPos = 0
-      
+
       Object.keys(self.groups).map((name, index) => {
-        let groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
-        
+        const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
+
         groupLines.append('line')
 	  .attr('x1', xPos + padding)
 	  .attr('x2', groupLineWidth)
@@ -158,10 +160,10 @@ export default class D3PieChart {
 
 			    xPos = groupLineWidth + padding
       }
-                                  )
+      )
+    }
   }
-  }
-  
+
   _maxExtend () {
     try {
       const self = this
@@ -203,7 +205,7 @@ export default class D3PieChart {
 
       // console.debug(xwidth);
       const keys = this.yGroupings()
-      
+
       //  console.debug("Group Data:", data)
       this.chart.append('g')
         .attr('class', 'bars')
@@ -217,9 +219,9 @@ export default class D3PieChart {
           // console.debug("D: ", d, "I: ",i)
           // console.debug("SI: ", self.selectedIndex)
           return i === self.selectedIndex ? 'bar active' : 'bar'
-        }  )
-      
-        .attr('tabindex', (d, i) => i )
+        })
+
+        .attr('tabindex', (d, i) => i)
         .selectAll('g')
         .data(d => {
           const yd = self.yGroupData(d)
@@ -250,7 +252,7 @@ export default class D3PieChart {
           // self._onClick(self)
         })
         .on('mouseenter', function (d) {
-          self._onHover(this,d, true)
+          self._onHover(this, d, true)
         })
         .on('mouseleave', function (d) {
           self._onHover(this, d, false)
@@ -259,16 +261,12 @@ export default class D3PieChart {
     catch (err) {
       console.warn('Error: ', err)
     }
-    
   }
-
-
-  
 
   _legend () {
     try {
       let legend
-      
+
       if (this.legend) {
         legend = this.legend
       }
@@ -282,31 +280,25 @@ export default class D3PieChart {
     catch (err) {
       console.warn('Error: ', err)
     }
-
   }
 
-
-
-  
   select (index) {
     try {
       // console.debug("INdex: ", index, "I: ", this.selectedIndex)
       d3.selectAll('.bar').filter((d, i, nodes) => {
-
-        if(i === index) {
-          /*          this.xSelectedValue = d 
+        if (i === index) {
+          /*          this.xSelectedValue = d
                       this.ySelectedGroup = this.yGroupData(d)
                       this.selectedData(this.ySelectedGroup)
                       this.selectedIndex = index
           */
-          
+
           const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
           if (selectedElement) {
             selectedElement.attr('selected', false)
             selectedElement.attr('class', 'bar')
           }
-          d3.select(nodes[i]).attr('class','bar active')
-          
+          d3.select(nodes[i]).attr('class', 'bar active')
         }
       })
     }
@@ -314,53 +306,48 @@ export default class D3PieChart {
       console.warn('Error: ', err)
     }
   }
-  
+
   legendHeaders (h) {
     // stub for public function
     // default return headers
     return h
   }
-  
+
   _legendHeaders (xValue) {
-    try { 
-      let r=[]
+    try {
+      let r = []
       this.getSelected()
-      
-      if( this.options.yGroupBy ) {
-        
-        r=['',this.options.yGroupBy, '', xValue || this.xSelectedValue]
+
+      if (this.options.yGroupBy) {
+        r = ['', this.options.yGroupBy, '', xValue || this.xSelectedValue]
       }
       else {
-        r=['', this.yAxis, '', xValue || this.xSelectedValue]
+        r = ['', this.yAxis, '', xValue || this.xSelectedValue]
       }
-      
-      r=this.legendHeaders(r)
+
+      r = this.legendHeaders(r)
       return r
-      
     }
     catch (err) {
       console.warn('Error: ', err)
     }
-
   }
-  
-  
+
   createLegend (newData, xValue) {
     try {
       d3.selectAll('.legend-table').remove()
       d3.selectAll('.legend-rect').remove()
 
+      // const columns = this.yGroupings()
 
-      //const columns = this.yGroupings()
-      
-      //columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
-      const headers=this._legendHeaders(xValue);
+      // columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
+      const headers = this._legendHeaders(xValue)
       const table = d3.select(this.node.children[1]).append('table')
-            .attr('class', 'legend-table')
+        .attr('class', 'legend-table')
       const thead = table.append('thead')
-      
+
       table.append('tbody')
-      
+
       // append the header row
       thead.append('tr')
         .selectAll('th')
@@ -370,24 +357,23 @@ export default class D3PieChart {
         .text(function (column) {
           return column
         })
-      
     }
     catch (err) {
       console.warn('Error: ', err)
     }
   }
-  
+
   updateLegend (newData, xValue) {
     try {
-      const self=this
+      const self = this
       d3.selectAll('.legend-table tbody tr').remove()
       d3.selectAll('.legend-rect').remove()
       //      this.getSelected()
-      
-      const data = newData ||  this.selectedData()
+
+      const data = newData || this.selectedData()
 
       // console.debug('SELECTED DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:', data)
-      let headers = this._legendHeaders(xValue)
+      const headers = this._legendHeaders(xValue)
       const labels = this.yGroupings()
       const formatLegend = this.formatLegend()
       // const table = d3.selectAll('.legend-table')
@@ -395,15 +381,15 @@ export default class D3PieChart {
 
       // turn object into array to play nice with d3
       const dataArr = Object.keys(data).map((key, i) => {
-        return  ['', labels[i],undefined, data[labels[i]]]
+        return ['', labels[i], undefined, data[labels[i]]]
       }).reverse()
-      dataArr.push(['','Total',undefined, Object.keys(data).reduce((sum,key) => sum+data[key], 0)])
-      
+      dataArr.push(['', 'Total', undefined, Object.keys(data).reduce((sum, key) => sum + data[key], 0)])
+
       // create a row for each object in the data
       const tr = tbody.selectAll('tr')
-            .data(dataArr)
-            .enter()
-            .append('tr')
+        .data(dataArr)
+        .enter()
+        .append('tr')
 
       // append color blocks into tr first cell
       tr.append('td')
@@ -425,11 +411,6 @@ export default class D3PieChart {
         .html(function (d) {
           return self._legendFormat(d.value)
         })
-
-
-      
-      
-      
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -443,9 +424,10 @@ export default class D3PieChart {
 
   _legendFormat (d) {
     try {
-      if(isNaN(d)) {
+      if (isNaN(d)) {
         return d
-      } else {
+      }
+      else {
         return this.legendFormat(d)
       }
     }
@@ -456,9 +438,8 @@ export default class D3PieChart {
 
   _onClick (e, d) {
     try {
-      // console.debug('_onClick: ', e,d) 
+      // console.debug('_onClick: ', e,d)
       this.onClick(d)
-      
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -466,10 +447,9 @@ export default class D3PieChart {
   }
 
   onClick (d) {
-    // console.debug('_onClick: ', d) 
+    // console.debug('_onClick: ', d)
   }
 
-  
   _onSelect = (element, data) => {
     try {
       const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
@@ -486,7 +466,6 @@ export default class D3PieChart {
       this._legend()
       this.getSelected()
       this.onSelect(this)
-      
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -511,9 +490,8 @@ export default class D3PieChart {
       activeElement.setAttribute('tabindex', 1)
       this.selectedData(data[0].data)
       this._legend()
-      
+
       this.onMouseover(this)
-      
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -523,46 +501,38 @@ export default class D3PieChart {
   onMouseover (d) {
     console.debug('onSelect: ', d)
   }
-  
-  
-  _onHover = (element,data, hover) => {
+
+  _onHover = (element, data, hover) => {
     try {
       const activeElement = element.parentNode.parentNode
       const index = this.selectedIndex
       // console.debug(data)
       // console.debug(element)
-      
-      if(hover === true ) {
-        // activeElement.setAttribute('class', 'bar active')
-        let years=this.xDomain()
 
-        let tabIndex = element.parentNode.parentNode.tabIndex
-       // // console.debug(years,  years[tabIndex] , tabIndex)
+      if (hover === true) {
+        // activeElement.setAttribute('class', 'bar active')
+        const years = this.xDomain()
+
+        const tabIndex = element.parentNode.parentNode.tabIndex
+        // // console.debug(years,  years[tabIndex] , tabIndex)
         this.createLegend(data[0].data, years[tabIndex])
         this.updateLegend(data[0].data, years[tabIndex])
-      } else {
+      }
+      else {
         this.getSelected()
         //  activeElement.setAttribute('class', 'bar')
-        
+
         this.select(this.index)
         this.createLegend()
         this.updateLegend()
-
       }
-
-
-      
-      
     }
     catch (err) {
       console.warn('Error: ', err)
-    }      
-
+    }
   }
 
   onHover (d) {
     console.debug('onSelect: ', d)
   }
-
 }
-

@@ -56,7 +56,6 @@ const useStyles = makeStyles(theme => ({
   },
   addCardButtonContainer: {
     marginTop: theme.spacing(2),
-    textAlign: 'right',
     '& button': {
       padding: theme.spacing(0.5),
       color: theme.palette.common.black,
@@ -211,9 +210,12 @@ const AddLocationCard = props => {
           </CardContent>
           <CardActions>
             { cardMenuItems.length > 0 &&
-              <Box component="span" ml={1} mb={1}>
-                <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
-              </Box>
+              <>
+                <Box ml={1} mb={1} display="flex" flexDirection="column" align="left">
+                  <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
+                  <Box mt={2} fontSize="16px" display="block" lineHeight="16px" color="#1478a6">Add Nationwide Federal and Native American cards</Box>
+                </Box>
+              </>
             }
           </CardActions>
         </Card>
