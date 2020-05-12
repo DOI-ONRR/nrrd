@@ -54,7 +54,7 @@ export default class D3LineChart {
     try {
       const yScale = this.yScale()
       return d3.axisLeft(yScale)
-        .ticks(5)
+        .ticks(4)
         .tickFormat(d => {
           return (d < 1000000000) ? `${ d / 1000000 }M` : `${ d / 1000000000 }B`
         })
