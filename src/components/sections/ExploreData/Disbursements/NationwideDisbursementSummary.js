@@ -67,7 +67,7 @@ const NationwideDisbursementSummary = props => {
     variables: { year }
   })
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENTS } (dollars)`
+  const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENT } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData

@@ -4,5 +4,5 @@ export * from './data-filter-constants'
 
 export const REVENUE = 'Revenue'
 export const PRODUCTION = 'Production'
-export const DISBURSEMENTS = 'Disbursements'
-export const DATA_TYPES = [REVENUE, PRODUCTION, DISBURSEMENTS]
+export const DISBURSEMENT = 'Disbursements'
+export const DATA_TYPES = [REVENUE, PRODUCTION, DISBURSEMENT]

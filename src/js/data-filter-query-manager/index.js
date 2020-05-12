@@ -2,7 +2,7 @@
 import {
   REVENUE,
   PRODUCTION,
-  DISBURSEMENTS,
+  DISBURSEMENT,
   LAND_CLASS,
   LAND_CATEGORY,
   OFFSHORE_REGION,
@@ -16,12 +16,15 @@ import {
   PERIOD_CALENDAR_YEAR,
   FISCAL_YEAR,
   CALENDAR_YEAR,
-  ZERO_OPTIONS
+  ZERO_OPTIONS,
+  RECIPIENT,
+  SOURCE
 } from '../../constants'
 
 import DATA_TYPE_QUERIES from './data-type-queries'
 import REVENUE_QUERIES from './revenue-queries'
 import PRODUCTION_QUERIES from './production-queries'
+import DISBURSEMENT_QUERIES from './disbursement-queries'
 
 /**
  * This object provides various methods for quering the data filters
@@ -78,6 +81,18 @@ const VARIABLES = {
       [CALENDAR_YEAR]: (state[PERIOD] === PERIOD_CALENDAR_YEAR && state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',').map(year => parseInt(year)) : undefined,
       [FISCAL_YEAR]: (state[PERIOD] === PERIOD_FISCAL_YEAR && state[FISCAL_YEAR]) ? state[FISCAL_YEAR].split(',').map(year => parseInt(year)) : undefined,
     }
+  }),
+  [DISBURSEMENT]: state => ({
+    variables: {
+      [RECIPIENT]: (state[RECIPIENT] === ZERO_OPTIONS) ? undefined : state[RECIPIENT],
+      [OFFSHORE_REGION]: (state[SOURCE] === ZERO_OPTIONS || !state[SOURCE]) ? undefined : state[SOURCE].split(','),
+      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
+      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
+      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
+      [CALENDAR_YEAR]: (state[PERIOD] === PERIOD_CALENDAR_YEAR && state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',').map(year => parseInt(year)) : undefined,
+      [FISCAL_YEAR]: (state[PERIOD] === PERIOD_FISCAL_YEAR && state[FISCAL_YEAR]) ? state[FISCAL_YEAR].split(',').map(year => parseInt(year)) : undefined,
+    }
   })
 }
 
@@ -87,5 +102,6 @@ const VARIABLES = {
 const QUERIES = {
   [DATA_TYPE]: optionKey => DATA_TYPE_QUERIES[optionKey],
   [REVENUE]: optionKey => REVENUE_QUERIES[optionKey],
-  [PRODUCTION]: optionKey => PRODUCTION_QUERIES[optionKey]
+  [PRODUCTION]: optionKey => PRODUCTION_QUERIES[optionKey],
+  [DISBURSEMENT]: optionKey => DISBURSEMENT_QUERIES[optionKey]
 }
