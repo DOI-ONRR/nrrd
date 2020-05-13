@@ -113,6 +113,7 @@ const TotalRevenue = props => {
   let maxFiscalYear
   let maxCalendarYear
   let xGroups = {}
+  let legendHeaders
   if (data) {
     maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
@@ -120,6 +121,7 @@ const TotalRevenue = props => {
     maxCalendarYear = data.total_monthly_calendar_revenue.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
+
     if (toggle === TOGGLE_VALUES.Month) {
       if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
         chartData = data.total_monthly_fiscal_revenue
@@ -144,6 +146,12 @@ const TotalRevenue = props => {
       xLabels = (x, i) => {
         // console.debug('xLabels x: ', x)
         return x.map(v => v.substr(0, 3))
+      }
+
+      legendHeaders = (headers, row) => {
+        console.log('legendHeaders: ', headers, row)
+        const headerArr = [headers[0], '', `${ row.xLabel } ${ row.year }`]
+        return headerArr
       }
     }
     else {
@@ -191,6 +199,7 @@ const TotalRevenue = props => {
             xGroups={xGroups}
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
+            legendHeaders={legendHeaders}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
             <Link href='/downloads/revenue-by-month/'>Source file</Link>

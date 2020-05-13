@@ -22,7 +22,7 @@ import {
   US_STATE,
   REVENUE,
   PRODUCTION,
-  DISBURSEMENT,
+  DISBURSEMENTS,
   DATA_TYPE,
   GROUP_BY,
   BREAKOUT_BY,
@@ -46,7 +46,7 @@ const GROUP_BY_OPTIONS = {
     { value: US_STATE, option: 'State' },
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
-  [DISBURSEMENT]: [],
+  [DISBURSEMENTS]: [],
 }
 
 const DataTableGroupingToolbar = () => {
