@@ -347,8 +347,6 @@ export default class D3StackedBarChart {
       this.getSelected()
       const xLabels = this.xLabels(this.xDomain())
 
-      console.log('_legendHeaders: ', this.xSelectedValue)
-
       if (this.options.yGroupBy) {
         r = [this.options.yGroupBy, '', xValue || this.xSelectedValue]
       }
@@ -357,7 +355,7 @@ export default class D3StackedBarChart {
       }
 
       r = this.legendHeaders(r, { ...this.data[this.currentIndex], xLabel: xLabels[this.currentIndex] })
-      console.log('_legendHeaders r: ', r)
+
       return r
     }
     catch (err) {
@@ -594,10 +592,9 @@ export default class D3StackedBarChart {
   _onHover = (element, data, hover) => {
     try {
       // const activeElement = element.parentNode.parentNode
-      let tabIndex = this.currentIndex
+      const tabIndex = this.currentIndex
       if (hover === true) {
         const years = this.xDomain()
-        console.log('_onHover currentIndex: ', tabIndex)
 
         // const tabIndex = element.parentNode.parentNode.tabIndex
         // const tabIndex = 0
@@ -1249,7 +1246,6 @@ export default class D3StackedBarChart {
   }
 
   createTable () {
-    console.log('createTable yo!')
     d3.selectAll('.legend-table').remove()
     this.getSelected()
 

@@ -149,7 +149,6 @@ const TotalRevenue = props => {
       }
 
       legendHeaders = (headers, row) => {
-        console.log('legendHeaders: ', headers, row)
         const headerArr = [headers[0], '', `${ row.xLabel } ${ row.year }`]
         return headerArr
       }
