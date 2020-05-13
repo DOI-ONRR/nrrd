@@ -1,4 +1,4 @@
-import React, {useContext }  from 'react'
+import React, { useContext } from 'react'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 

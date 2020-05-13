@@ -90,7 +90,7 @@ const TotalDisbursements = props => {
     setPeriod(value)
   }
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENTS } (dollars)`
+  const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENT } (dollars)`
 
   const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY)
   if (loading) {

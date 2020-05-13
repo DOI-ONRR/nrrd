@@ -29,7 +29,7 @@ import CONSTANTS from '../../../js/constants'
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
-import { REVENUE, DISBURSEMENTS, PRODUCTION, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { REVENUE, DISBURSEMENT, PRODUCTION, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -176,8 +176,8 @@ const MAP_LEVEL_OPTIONS = [
 ]
 
 const MAP_OFFSHORE_SELECT_OPTIONS = [
-  'Off',
-  'On'
+  'Show',
+  'Hide'
 ]
 
 // const MAP_TIMEFRAME_OPTIONS = [
@@ -186,9 +186,9 @@ const MAP_OFFSHORE_SELECT_OPTIONS = [
 // ]
 
 const MAP_PERIOD_OPTIONS = [
-  CONSTANTS.CALENDAR_YEAR,
+  // CONSTANTS.CALENDAR_YEAR,
   CONSTANTS.FISCAL_YEAR,
-  CONSTANTS.MONTHLY
+  // CONSTANTS.MONTHLY
 ]
 
 // Map explore menu speed dial
@@ -378,8 +378,8 @@ const ExploreDataToolbar = props => {
          {(dataType != 'Disbursements') &&
             <MapSelectControl
               options={MAP_OFFSHORE_SELECT_OPTIONS}
-              defaultOption={ offshoreRegion || 'Off' }
-              label="Offshore data"
+              defaultOption={ offshoreRegion || 'Hide' }
+              label="Offshore map"
               dataFilterType={DFC.OFFSHORE_REGIONS} />
          }
             {/* <MapSelectControl
@@ -389,9 +389,11 @@ const ExploreDataToolbar = props => {
 
             <MapSelectControl
               options={MAP_PERIOD_OPTIONS}
-              defaultOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
+              // defaultOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
+              defaultOption="Fiscal year"
               label="Period"
-              dataFilterType="" />
+              dataFilterType=""
+              disabled />
 
             {(dataType === 'Revenue') &&
             <MapSelectControl
@@ -431,7 +433,7 @@ const ExploreDataToolbar = props => {
                   linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-revenue-works/#revenues', '/how-revenue-works/federal-revenue-by-company/2018/']}
                 />
             }
-            {dataType === DISBURSEMENTS &&
+            {dataType === DISBURSEMENT &&
                 <MapExploreMenu
                   linkLabels={['Query disbursements data', 'Downloads & Documentation', 'How disbursements works']}
                   linkUrls={['/query-data/?dataType=Disbursements', '/downloads/#Disbursements', '/how-revenue-works/#understanding-federal-disbursements']}

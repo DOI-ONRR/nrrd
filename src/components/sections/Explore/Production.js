@@ -8,22 +8,22 @@ const ExploreProduction = props => {
       title="production"
       contentLeft={
         <>
-          <ExploreDataLink to="/explore/#federal-production" icon="data">
+          <ExploreDataLink to="/explore/?dataType=Production" icon="data">
             Production trends on federal lands and waters
           </ExploreDataLink>
           <ExploreDataLink to="/query-data/?dataType=Production" icon="filter">
             Production in detail
           </ExploreDataLink>
-          <ExploreDataLink
-            to="/how-it-works/native-american-production/#production-on-native-american-land"
+          {/* <ExploreDataLink
+            to="/how-revenue-works/native-american-production/#production-on-native-american-land"
             icon="data"
           >
             Production trends on Native American lands
-          </ExploreDataLink>
+          </ExploreDataLink> */}
         </>
       }
       contentCenter={
-        <ExploreDataLink to="/how-it-works/#production_process" icon="works">
+        <ExploreDataLink to="/how-revenue-works/#production_process" icon="works">
           How production works
         </ExploreDataLink>
       }

@@ -2,7 +2,7 @@
 import {
   REVENUE,
   PRODUCTION,
-  DISBURSEMENTS,
+  DISBURSEMENT,
   LAND_CLASS,
   LAND_CATEGORY,
   OFFSHORE_REGION,
@@ -11,7 +11,9 @@ import {
   COMMODITY,
   REVENUE_TYPE,
   PERIOD,
-  ZERO_OPTIONS
+  ZERO_OPTIONS,
+  RECIPIENT,
+  SOURCE
 } from '../../constants'
 import gql from 'graphql-tag'
 
@@ -84,6 +86,16 @@ const VARIABLES = {
       [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
       [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
+  }),
+  [DISBURSEMENT]: state => ({
+    variables: {
+      [RECIPIENT]: (state[RECIPIENT] === ZERO_OPTIONS) ? undefined : state[RECIPIENT],
+      [OFFSHORE_REGION]: (state[SOURCE] === ZERO_OPTIONS || !state[SOURCE]) ? undefined : state[SOURCE].split(','),
+      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
+      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
+      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
+    }
   })
 }
 
@@ -100,6 +112,14 @@ const VARIABLE_LIST_REVENUE = ''.concat(
 const VARIABLE_LIST_PRODUCTION = ''.concat(
   '$landClass: String,',
   '$landCategory: String,',
+  '$offshoreRegion: [String!],',
+  '$usState: [String!],',
+  '$county: [String!],',
+  '$commodity: [String!],',
+  '$period: String,'
+)
+const VARIABLE_LIST_DISBURSEMENT = ''.concat(
+  '$recipient: String,',
   '$offshoreRegion: [String!],',
   '$usState: [String!],',
   '$county: [String!],',
@@ -131,7 +151,6 @@ const REVENUE_QUERY = `
 
 const PRODUCTION_QUERY = `
   results:query_tool_production_data(
-    limit: 50,
     where: {
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
@@ -150,10 +169,26 @@ const PRODUCTION_QUERY = `
     ${ allRevenueYears }
   }`
 
+const DISBURSEMENT_QUERY = `
+  results:query_tool_disbursement_data(
+    where: {
+      fund_type: {_eq: $recipient},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $usState},
+      county: {_in: $county},
+      period: {_eq: $period},
+    }) {
+    ${ RECIPIENT }: fund_type
+    ${ OFFSHORE_REGION }: offshore_region
+    ${ US_STATE }: state
+    ${ COUNTY }: county
+    ${ allRevenueYears }
+  }`
 /**
  * Get the queries based on data type and the data filter option
  */
 const QUERIES = {
   [REVENUE]: gql`query GetDataTableRevenue(${ VARIABLE_LIST_REVENUE }){${ REVENUE_QUERY }}`,
   [PRODUCTION]: gql`query GetDataTableProduction(${ VARIABLE_LIST_PRODUCTION }){${ PRODUCTION_QUERY }}`,
+  [DISBURSEMENT]: gql`query GetDataTableProduction(${ VARIABLE_LIST_DISBURSEMENT }){${ DISBURSEMENT_QUERY }}`,
 }
