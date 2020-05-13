@@ -157,7 +157,7 @@ const YearSlider = props => {
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   let year = filterState[DFC.YEAR]
-  const period = filterState[DFC.PERIOD]
+
   const handleOnchange = year => {
     updateDataFilter({ ...filterState, [DFC.YEAR]: year })
   }
@@ -200,7 +200,8 @@ const YearSlider = props => {
         <StickyWrapper enabled={true} top={1} bottomBoundary={0} innerZ="1000" activeClass="sticky">
           <Box className={`${ classes.sliderContainer } slider-wrapper`}>
             <Container>
-              <Box className={classes.sliderYearDisplay}>{period} {year}</Box>
+              <Box className={classes.sliderYearDisplay}>Fiscal year {year}</Box>
+
               <Box id="year-slider" className={classes.sliderBox}>
                 <Grid container spacing={4}>
                   <Grid item xs>

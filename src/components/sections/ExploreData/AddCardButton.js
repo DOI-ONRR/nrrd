@@ -12,13 +12,11 @@ import {
 
 import AddIcon from '@material-ui/icons/Add'
 
-
 import { StoreContext } from '../../../store'
 
 const useStyles = makeStyles(theme => ({
   addCardButtonContainer: {
     marginTop: theme.spacing(2),
-    textAlign: 'right',
     '& > span': {
       flexDirection: 'column',
     },

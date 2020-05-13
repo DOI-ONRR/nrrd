@@ -142,7 +142,7 @@ const TotalRevenue = props => {
 
       xAxis = 'month_long'
       xLabels = (x, i) => {
-        // console.debug(x)
+        // console.debug('xLabels x: ', x)
         return x.map(v => v.substr(0, 3))
       }
     }
@@ -193,7 +193,7 @@ const TotalRevenue = props => {
             yOrderBy={yOrderBy}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
-            <Link href='/downloads/federal-revenue-by-month/'>Source file</Link>
+            <Link href='/downloads/revenue-by-month/'>Source file</Link>
           </Box>
         </Grid>
       </Grid>

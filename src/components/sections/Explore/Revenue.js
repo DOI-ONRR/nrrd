@@ -14,16 +14,16 @@ const ExploreRevenue = props => {
           <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
             Revenue in detail
           </ExploreDataLink>
-          <ExploreDataLink
-            to="/how-it-works/federal-revenue-by-company/2018/"
+          {/* <ExploreDataLink
+            to="/how-revenue-works/federal-revenue-by-company/2018/"
             icon="data"
           >
             Revenue by company
-          </ExploreDataLink>
+          </ExploreDataLink> */}
         </>
       }
       contentCenter={
-        <ExploreDataLink to="/how-it-works/#revenues" icon="works">
+        <ExploreDataLink to="/how-revenue-works/#revenues" icon="works">
           How revenue works
         </ExploreDataLink>
       }

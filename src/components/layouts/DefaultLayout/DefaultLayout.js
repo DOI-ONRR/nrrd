@@ -19,6 +19,8 @@ import Header from '../../content-partials/Header'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
+import SEO from '../../seo'
+
 const useStyles = makeStyles(theme => (
   {
     '@global': {
@@ -86,7 +88,7 @@ const useStyles = makeStyles(theme => (
   })
 )
 
-const DefaultLayout = ({ includeToc = true, children }) => {
+const DefaultLayout = ({ includeToc = true, title, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
@@ -111,6 +113,7 @@ const DefaultLayout = ({ includeToc = true, children }) => {
 
   return (
     <React.Fragment>
+      <SEO title={title} />
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
       <InfoBanner />

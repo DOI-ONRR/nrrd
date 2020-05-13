@@ -29,8 +29,8 @@ const stackedBarChart = {
     this.groups = props.groups
     this.height = (el.clientHeight > 0) ? el.clientHeight : DEFAULT_HEIGHT
     // if we have grouping labels we need more room on the bottom
-      this.marginBottom = (props.groups) ? MARGIN_BOTTOM_GROUPS : MARGIN_BOTTOM
-      console.debug("=========================", this.state);
+    this.marginBottom = (props.groups) ? MARGIN_BOTTOM_GROUPS : MARGIN_BOTTOM
+    console.debug('=========================', this.state)
     this.maxValue = this.calcMaxValue(this.state)
 
     this.styleMap = props.styleMap
@@ -67,8 +67,8 @@ const stackedBarChart = {
       return
     }
 
-    let self = this
-      console.debug(state);
+    const self = this
+    console.debug(state)
     // Initialize all chart attributes
     self.init(el, props, state)
 
@@ -95,14 +95,14 @@ const stackedBarChart = {
       return
     }
 
-    let self = this
+    const self = this
 
     this.svg = d3.select(el).select('svg')
 
     // Initialize all chart attributes
     this.init(el, props, state)
 
-    this.svg.selectAll('#backgroundRect').remove()
+    this.svg.selectAll('#sbc_backgroundRect').remove()
     this.addBackgroundRect(props)
 
     this.svg.selectAll('#maxExtent').remove()
@@ -160,7 +160,7 @@ const stackedBarChart = {
   },
 
   getMetricLongUnit (str) {
-    let suffix = { k: 'k', M: ' million', G: ' billion' }
+    const suffix = { k: 'k', M: ' million', G: ' billion' }
 
     return str.replace(/(\.0+)?([kMG])$/, function (_, zeroes, s) {
       return suffix[s] || s
@@ -168,16 +168,16 @@ const stackedBarChart = {
   },
 
   calculateExtentValue (maxValue) {
-  	let maxValueExtent = Math.ceil(maxValue * (1 + extentPercent))
+  	const maxValueExtent = Math.ceil(maxValue * (1 + extentPercent))
   	return this.getMetricLongUnit(d3.format(setSigFigs(maxValue, maxValueExtent))(maxValueExtent))
   },
 
   addMaxExtent (props) {
-    let self = this
+    const self = this
     // Add Max Extent Number text
-    let maxExtentGroup = self.svg.append('g').attr('id', 'maxExtent')
-    let maxExtentValue = this.calculateExtentValue(this.maxValue)
-    let units = props.units || ''
+    const maxExtentGroup = self.svg.append('g').attr('id', 'maxExtent')
+    const maxExtentValue = this.calculateExtentValue(this.maxValue)
+    const units = props.units || ''
 
     maxExtentGroup.append('text')
       .attr('width', self.width)
@@ -197,7 +197,7 @@ const stackedBarChart = {
 
   // Added this to help catch hover events. To make sure it got cleared when a bar is not hovered.
   addBackgroundRect (props) {
-    let self = this
+    const self = this
     this.svg.append('rect')
       .on('mouseenter', function () {
         toggleHoveredBar(undefined, props.barHoveredCallback, false)
@@ -205,7 +205,7 @@ const stackedBarChart = {
       .on('mouseleave', function () {
         toggleHoveredBar(undefined, props.barHoveredCallback, false)
       })
-      .attr('id', 'backgroundRect')
+      .attr('id', 'sbc_backgroundRect')
       .style('opacity', 0.0)
       .attr('y', 0)
       .attr('height', self.height)
@@ -214,10 +214,10 @@ const stackedBarChart = {
   },
 
   addChart (props) {
-    let self = this
+    const self = this
 
     // Create chart
-    let stack = d3.stack()
+    const stack = d3.stack()
 		 	.keys(this.keys)
 		 	.offset(d3.stackOffsetNone)
 
@@ -232,9 +232,9 @@ const stackedBarChart = {
       .attr('selected', d => Object.keys(d)[0] === self.selectedDataKey)
       .attr('class', d => (self.styleMap && self.styleMap.bar))
       .attr('data-key', d => Object.keys(d)[0])
-      .attr('tabindex',0)
+      .attr('tabindex', 0)
       .on('keyup', function (d) {
-	  if(d3.event.keyCode == 13) {
+	  if (d3.event.keyCode == 13) {
 	      toggleSelectedBar(this, d, props.barSelectedCallback)
 	  }
       })
@@ -268,9 +268,9 @@ const stackedBarChart = {
   },
 
   addXAxis (props) {
-    let self = this
+    const self = this
 
-    let createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat(d =>
+    const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat(d =>
       (props.xAxisLabels) ? props.xAxisLabels[d] : d))
 
     self.svg.append('g')
@@ -283,15 +283,15 @@ const stackedBarChart = {
 
   addGroupLines () {
     if (this.groups) {
-      let self = this
+      const self = this
 
-      let groupLines = this.svg.append('g').attr('id', 'groups')
-      let groupItemWidth = (self.width / self.state.length)
-      let padding = (self.xScale.bandwidth() * 0.2)
+      const groupLines = this.svg.append('g').attr('id', 'groups')
+      const groupItemWidth = (self.width / self.state.length)
+      const padding = (self.xScale.bandwidth() * 0.2)
       let xPos = 0
 
       Object.keys(self.groups).map((name, index) => {
-        let groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
+        const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
 
         groupLines.append('line')
 			      .attr('x1', xPos + padding)
@@ -315,14 +315,14 @@ const stackedBarChart = {
 }
 
 const toggleSelectedBar = (element, data, callBack) => {
-  let selectedElement = element.parentNode.querySelector('[selected=true]')
+  const selectedElement = element.parentNode.querySelector('[selected=true]')
 
   if (selectedElement) {
   	selectedElement.removeAttribute('selected')
   }
 
-    element.setAttribute('selected', true)
-    element.setAttribute('tabindex',1)
+  element.setAttribute('selected', true)
+  element.setAttribute('tabindex', 1)
 
   if (callBack) {
   	callBack(data)
@@ -342,8 +342,8 @@ const toggleHoveredBar = (data, callBack, isHover) => {
  * @param {String} str the formatted string
  * @return {String} the string with a specified number of significant figures
  */
-let siValue = (function () {
-  let suffix = { k: 1000, M: 1000000, G: 1000000000 }
+const siValue = (function () {
+  const suffix = { k: 1000, M: 1000000, G: 1000000000 }
   return function (str) {
     let number
     str = str.replace(/(\.0+)?([kMG])$/, function (_, zeroes, s) {
@@ -359,26 +359,26 @@ let siValue = (function () {
   }
 })()
 
-let crawlCeil = function (ymax, ceilMax, i) {
+const crawlCeil = function (ymax, ceilMax, i) {
   // When ymax is a value less than 10, the ratio of ceilMax and ymax will never
   // be less than (1 + extentMarginOfError + extentPercent), and the function will continue
   // be called in its parent function's while loop.
 
-  let sigFig = '.' + i + 's'
+  const sigFig = '.' + i + 's'
 
   /* var sigFigCeil = +eiti.format.transform(
     sigFig,
     eiti.format.siValue
   )(ceilMax); */
 
-  let sigFigCeil = siValue(d3.format(sigFig)(ceilMax))
+  const sigFigCeil = siValue(d3.format(sigFig)(ceilMax))
 
-  let ceilIsLargerThanValue = sigFigCeil > +ymax
+  const ceilIsLargerThanValue = sigFigCeil > +ymax
   let ceilIsntTooBig = (sigFigCeil / +ymax) <= (1 + extentMarginOfError + extentPercent)
   if (!ceilIsntTooBig) {
     ceilIsntTooBig = ((sigFigCeil - ymax) < 10) // Accomodate for small numbers if the difference is smal then this should be acceptable
   }
-  let justRight = ceilIsLargerThanValue && ceilIsntTooBig
+  const justRight = ceilIsLargerThanValue && ceilIsntTooBig
   return justRight ? sigFig : ''
 }
 

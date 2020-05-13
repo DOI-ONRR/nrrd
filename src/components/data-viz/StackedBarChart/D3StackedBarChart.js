@@ -7,7 +7,7 @@ export default class D3StackedBarChart {
     this.node = node
     this.data = data
     this.options = options
-    // console.debug(options)
+    console.debug('D3StackedBarChart options: ', options)
     this._height = (node.children[0].clientHeight > 0) ? node.children[0].clientHeight : 400
     this._width = (node.children[0].clientWidth <= 0) ? 300 : node.children[0].clientWidth
     this.xAxis = options.xAxis || console.error('Error - no xAxis property set')
@@ -76,7 +76,7 @@ export default class D3StackedBarChart {
 
   draw () {
     try {
-      this.chart.selectAll('#backgroundRect').remove()
+      this.chart.selectAll('.stacked-bar-chart-background').remove()
       this.addBackgroundRect()
       if (!this.horizontal) {
         this._maxExtend()
@@ -141,7 +141,7 @@ export default class D3StackedBarChart {
   // addGroupLines () {
   xAxisGroup () {
     try {
-      console.log('xAxisGroup this: ', this)
+      // console.log('xAxisGroup this: ', this)
       if (this.xGroups) {
         const self = this
 
@@ -230,7 +230,8 @@ export default class D3StackedBarChart {
           return i === self.selectedIndex ? 'bar active' : 'bar'
         })
 
-        .attr('tabindex', (d, i) => i)
+        // .attr('tabindex', (d, i) => i)
+        .attr('tabindex', 0)
         .selectAll('g')
         .data(d => {
           const yd = self.yGroupData(d)
@@ -528,6 +529,7 @@ export default class D3StackedBarChart {
 
   _onSelect = (element, data) => {
     try {
+      console.log('_onSelect data: ', element, data)
       const selectedElement = d3.select(this.node).selectAll('.active') // element.parentNode.querySelector('[selected=true]')
       // console.debug(data)
       if (selectedElement) {
@@ -537,7 +539,7 @@ export default class D3StackedBarChart {
       const activeElement = element.parentNode.parentNode
       activeElement.setAttribute('class', 'bar active')
       activeElement.setAttribute('selected', true)
-      activeElement.setAttribute('tabindex', 1)
+      activeElement.setAttribute('tabindex', 0)
       this.selectedData(data[0].data)
       this._legend()
       this.getSelected()
@@ -555,7 +557,7 @@ export default class D3StackedBarChart {
   _onMouseover = (element, data) => {
     try {
       const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
-      // console.debug(data)
+      // console.debug('_onMouseover data: ', data)
       if (selectedElement) {
         selectedElement.attr('selected', false)
         selectedElement.attr('class', 'bar')
@@ -563,7 +565,7 @@ export default class D3StackedBarChart {
       const activeElement = element.parentNode.parentNode
       // activeElement.setAttribute('class', 'bar active')
       // activeElement.setAttribute('selected', true)
-      activeElement.setAttribute('tabindex', 1)
+      activeElement.setAttribute('tabindex', 0)
       this.selectedData(data[0].data)
       this._legend()
 
@@ -582,14 +584,16 @@ export default class D3StackedBarChart {
     try {
       const activeElement = element.parentNode.parentNode
       const index = this.selectedIndex
-      // console.debug(data)
+      console.debug('_onHover data: ', data, this)
       // console.debug(element)
 
       if (hover === true) {
         // activeElement.setAttribute('class', 'bar active')
         const years = this.xDomain()
+        console.debug('_onHover hover years: ', years)
 
-        const tabIndex = element.parentNode.parentNode.tabIndex
+        // const tabIndex = element.parentNode.parentNode.tabIndex
+        const tabIndex = 0
         // // console.debug(years,  years[tabIndex] , tabIndex)
         this.createLegend(data[0].data, years[tabIndex])
         this.updateLegend(data[0].data, years[tabIndex])
@@ -1056,16 +1060,13 @@ export default class D3StackedBarChart {
     const activeElement = element.parentNode.parentNode
     activeElement.setAttribute('class', 'bar active')
     activeElement.setAttribute('selected', true)
-    activeElement.setAttribute('tabindex', 1)
+    activeElement.setAttribute('tabindex', 0)
     this.selectedData(data[0].data)
     this.addLegend()
     this.getSelected()
     if (callBack) {
       callBack(data)
     }
-  }
-
-  onSelect (d) {
   }
 
   dep_addChart (data) {
@@ -1126,16 +1127,12 @@ export default class D3StackedBarChart {
       })
   }
 
-  onClick () {
-    // console.log('onClick fired from d3 class yo!')
-  }
-
   drawDep () {
     if (this.data === undefined) {
       return
     }
 
-    this.chart.selectAll('#backgroundRect').remove()
+    this.chart.selectAll('#backgroundRec').remove()
     this.addBackgroundRect()
 
     this.chart.selectAll('.maxExtent').remove()
@@ -1239,6 +1236,7 @@ export default class D3StackedBarChart {
   }
 
   createTable () {
+    console.log('createTable yo!')
     d3.selectAll('.legend-table').remove()
     this.getSelected()
 
@@ -1390,7 +1388,7 @@ export default class D3StackedBarChart {
   addBackgroundRect () {
     this.chart.append('rect')
       .attr('class', 'stacked-bar-chart-background')
-      .attr('id', 'backgroundRect')
+      // .attr('id', 'backgroundRect') // need unique ids for accessibility score
       .style('opacity', 0.0)
       .attr('y', 0)
       .attr('height', this._height)
