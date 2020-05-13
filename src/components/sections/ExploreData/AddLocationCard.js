@@ -29,6 +29,23 @@ const APOLLO_QUERY = gql`
       location_id
       sort_order
     }
+  
+    # new location queries
+    # states: location(
+    #   where: {state_name: {_neq: ""}}, 
+    #   distinct_on: state_name, 
+    #   order_by: {state_name: asc}
+    # ) {
+    #   state_name
+    #   location_id
+    # }
+    # counties: location(
+    #   where: {location_name: {_neq: ""}}, 
+    #   order_by: {location_name: asc}
+    # ) {
+    #   location_name
+    #   location_id
+    # }
   }
 `
 
@@ -98,6 +115,7 @@ const getRegionProperties = input => {
   input = input.length === 4 ? input = `0${ input }` : input
 
   let selectedObj
+
   if (input.length > 2) {
     selectedObj = mapJson.objects.counties.geometries.filter(obj => {
       if (obj.properties.FIPS.toLowerCase() === input.toLowerCase()) {
@@ -134,8 +152,10 @@ const AddLocationCard = props => {
   }
 
   const handleChange = val => {
+    console.log('val: ', val)
     if (val) {
       const item = getRegionProperties(val.location_id)[0]
+      console.log('item back: ', item)
       props.onLink(item)
       setInput('')
       setKeyCount(keyCount + 1)
@@ -170,8 +190,16 @@ const AddLocationCard = props => {
 
   const { loading, error, data } = useQuery(APOLLO_QUERY)
 
+  // let locations
+
   if (loading) {}
   if (error) return `Error! ${ error.message }`
+
+  if (data) {
+    // console.log('AddLocationCard data: ', data)
+    // locations = [...data.states, ...data.counties]
+    // console.log('locations: ', locations)
+  }
 
   return (
     <>
