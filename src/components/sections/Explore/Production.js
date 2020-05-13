@@ -23,12 +23,12 @@ const ExploreProduction = props => {
         </>
       }
       contentCenter={
-        <ExploreDataLink to="/how-revenue-works/#production_process" icon="works">
+        <ExploreDataLink to="/how-revenue-works/#the-production-process" icon="works">
           How production works
         </ExploreDataLink>
       }
       contentRight={
-        <ExploreDataLink to="/downloads/#production" icon="download">
+        <ExploreDataLink to="/downloads/#Production" icon="download">
           Downloads and documentation
         </ExploreDataLink>
       }

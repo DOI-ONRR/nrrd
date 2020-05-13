@@ -121,7 +121,7 @@ const AddLocationCard = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
 
-  const [input, setInput] = useState(null)
+  const [input, setInput] = useState('')
   const [keyCount, setKeyCount] = useState(0)
 
   const {
@@ -137,7 +137,7 @@ const AddLocationCard = props => {
     if (val) {
       const item = getRegionProperties(val.location_id)[0]
       props.onLink(item)
-      setInput(null)
+      setInput('')
       setKeyCount(keyCount + 1)
     }
   }
