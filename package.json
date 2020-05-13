@@ -102,7 +102,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean",
-    "build": "NODE_OPTIONS=--max_old_space_size=4096 gatsby build",
+    "build": "NODE_OPTIONS=--max_old_space_size=1024 gatsby build",
     "develop": "gatsby develop",
     "format": "eslint --fix 'src/**'",
     "start": "npm run develop",
