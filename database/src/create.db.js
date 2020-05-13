@@ -88,6 +88,8 @@ production(
   commodity_id integer references commodity, 
   volume numeric,
   raw_volume varchar(255),
+  unit varchar(255),
+  unit_abbr varchar(255),
   duplicate_no integer default 0, 
   primary key (location_id, period_id, commodity_id, duplicate_no)
   
@@ -110,6 +112,8 @@ disbursement(
   commodity_id integer references commodity, 
   disbursement numeric,
   raw_disbursement varchar(255),
+  unit varchar(20) default 'dollars',
+  unit_abbr varchar(5) default '$',
   duplicate_no integer default 0, 
   primary key (location_id, period_id, commodity_id, duplicate_no)
   
@@ -132,6 +136,8 @@ revenue(
   commodity_id integer references commodity, 
   revenue numeric,
   raw_revenue varchar(255),
+  unit varchar(20) default 'dollars',
+  unit_abbr varchar(5) default '$',
   duplicate_no integer default 0, 
   primary key (location_id, period_id, commodity_id, duplicate_no)
   

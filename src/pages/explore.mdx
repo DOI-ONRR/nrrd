@@ -57,22 +57,20 @@ tags:
                         <RevenueDetailTrends />
                         <RevenueDetailCommodities />
                         <RevenueDetailTypes />
-                      <RevenueCountyMap />
+                        <RevenueCountyMap />
                       </DetailCards>
                     </Grid>
                   </Grid>
                 </Container>
+                <RevenueOverTime title="Revenue over time" />         
               </CompareContext>
-              <RevenueOverTime title="Revenue over time" />       
               <NationalRevenueSummary title="Nationwide revenue summary" />
-              <TopLocations title="Top nationwide locations" />
-              {/* <Commodities title="Top commodities" />
-              <Company title="Revenue by company" /> */}
+              <TopLocations title="Top locations" />
             </Box>
           </Box>
         </Revenue>
       </ContextProvider>
-      <ContextProvider params={'?dataType=Disbursements'}>
+            <ContextProvider params={'?dataType=Disbursements'}>
         <Disbursements>
           <MapContext>
             <DisbursementMap />
@@ -118,20 +116,21 @@ tags:
                     </Grid>
                   </Grid>
                 </Container>
-              </CompareContext>
-              <DisbursementsOverTime title="Disbursements Over Time"  /> 
-              <NationwideDisbursementSummary title="Nationwide Disbursements Summary" />
-              <DisbursementTopRecipients title="Top Recipients" />
+                <DisbursementsOverTime title="Disbursements over time"  / >   
+              </CompareContext>         
+              <NationwideDisbursementSummary title="Nationwide disbursements summary" />
+              <DisbursementTopRecipients title="Top nationwide recipients" />
             </Box>
           </Box>
         </Disbursements>
       </ContextProvider>
+      
       <ContextProvider params={'?dataType=Production'}>
         <Production>
           <MapContext>
             <ProductionMap />
             <SummaryCards>
-              <Box>Production summary content</Box>
+              <ProductionSummaryTrends /> 
             </SummaryCards>
           </MapContext>
           <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
@@ -163,19 +162,34 @@ tags:
                   </Grid>
                   <Grid container>
                     <Grid item md={12}>
-                      <DetailCards> 
-                        <Box>Production child content.</Box>
+                      <DetailCards>     
+                        <ProductionDetailTrends />
+                        <ProductionLandCategory title="Production by land category"  />        
+                        <ProductionTopLocations title="Top locations" vertical maxLegendWidth='800px' />   
+                        <ProductionCountyMap />
                       </DetailCards>
                     </Grid>
                   </Grid>
                 </Container>       
+                <ProductionOverTime title="Production over time" />
               </CompareContext>
+              <Container id="top-nationwide-locations">
+                <Grid container>
+                  <Grid item md={12}>
+                    <Box mb={1} color="secondary.main" borderBottom={5}>
+                      <Box component="h2" color="secondary.dark">Top nationwide locations</Box>
+                    </Box>               
+                    <ProductionTopLocations horizontal />
+                  </Grid>
+                </Grid>
+              </Container>
             </Box>
           </Box>
         </Production>
       </ContextProvider>
     </ExploreData>
   </Box>
+
 </Container>
 
 

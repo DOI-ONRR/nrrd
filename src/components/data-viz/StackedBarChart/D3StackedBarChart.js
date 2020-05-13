@@ -4,8 +4,18 @@ import { isEnumMember } from 'typescript'
 
 export default class D3StackedBarChart {
   constructor (node, data, options, formatLegendFunc) {
+    try {
     this.node = node
-    this.data = data
+
+      if( data && data.length > 0 ) {
+        console.debug('data:', data)
+        this.data = data
+      }
+      else {
+        console.warn("Stacked barchart must have data, erroring out")
+        return false
+      }
+      
     this.options = options
     console.debug('D3StackedBarChart options: ', options)
     this._height = (node.children[0].clientHeight > 0) ? node.children[0].clientHeight : 400
@@ -74,7 +84,11 @@ export default class D3StackedBarChart {
     this.yScale.domain([this.yMax(), 0])
     this.chart = d3.select(this.node.children[0]).append('svg')
       .attr('height', this._height)
-      .attr('width', this._width)
+        .attr('width', this._width)
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
   }
 
   draw () {

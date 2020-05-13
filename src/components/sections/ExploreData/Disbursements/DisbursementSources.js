@@ -87,7 +87,7 @@ const DisbursementSources = props => {
     if (chartData.DisbursementSourceSummary.length > 1) {
       return (
         <Box className={classes.root}>
-          <Box component="h4" fontWeight="bold">Sources</Box>
+          <Box component="h4" fontWeight="bold">Disbursement by source</Box>
           <Box>
             <CircleChart
               data={chartData.DisbursementSourceSummary}
@@ -107,11 +107,13 @@ const DisbursementSources = props => {
                   return r
                 }
               } />
-            <Box mt={3}>
+          {/*<Box mt={3}>
+          
               <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
                 Query Disbursements by Sources
               </ExploreDataLink>
             </Box>
+           */}
           </Box>
         </Box>
       )
@@ -128,13 +130,7 @@ const DisbursementSources = props => {
   }
 
   return (
-    <Box className={classes.boxSection}>
-      <Box component="h4" fontWeight="bold">Disbursements by source</Box>
-      <Box fontSize="subtitle2.fontSize">
-           had no disbursements
-      </Box>
-    </Box>
-  )
+  null)
 }
 
 export default DisbursementSources

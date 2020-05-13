@@ -108,9 +108,7 @@ const TotalProduction = props => {
   }
 
   const { loading, error, data } = useQuery(TOTAL_PRODUCTION_QUERY)
-  if (loading) {
-    return 'Loading...'
-  }
+
   let chartData
   let xAxis = 'year'
   const yAxis = 'sum'
@@ -126,7 +124,7 @@ const TotalProduction = props => {
 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    // console.debug(data)
+    console.debug("Total Production:",data)
     maxFiscalYear = data.total_yearly_fiscal_production.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
@@ -177,7 +175,8 @@ const TotalProduction = props => {
       }
     }
   }
-
+  if(chartData.length > 0 ) {
+   
   return (
     <>
       <SectionHeader
@@ -186,7 +185,7 @@ const TotalProduction = props => {
         showExploreLink
       />
       <Grid container spacing={4}>
-        <SectionControls
+       <SectionControls
           onToggleChange={toggleChange}
           onMenuChange={menuChange}
           maxFiscalYear={maxFiscalYear}
@@ -270,6 +269,9 @@ const TotalProduction = props => {
       </Box>
     </>
   )
+  }else {
+    return(null)
+  }
 }
 
 export default TotalProduction

@@ -1,6 +1,4 @@
-
 import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
 // import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
@@ -10,9 +8,10 @@ import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles } from '@material-ui/core/styles'
 
+import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
+
 import LineChart from '../../../data-viz/LineChart/LineChart.js'
 import ChipLabel from '../../ExploreData/ChipLabel'
 
@@ -27,8 +26,9 @@ import {
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
-  query FiscalDisbursementSummary {
-    fiscal_disbursement_summary(
+  query FiscalProductionSummary($commodity: String!) {
+    fiscal_production_summary(
+      where: { commodity: {_eq: $commodity} }
       order_by: { fiscal_year: asc }
     ) {
       fiscal_year
@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     '@media (max-width: 768px)': {
       maxWidth: '100%',
-    }
+    },
   },
   progressContainer: {
     maxWidth: '25%',
@@ -61,14 +61,11 @@ const useStyles = makeStyles(theme => ({
   },
   chipRoot: {
     height: 40,
+    marginTop: theme.spacing(1),
     marginRight: theme.spacing(1),
     '& > span': {
       fontWeight: 'bold',
     },
-  },
-  chipLabelLine: {
-    display: 'block',
-    height: 6,
   },
   chipContainer: {
     '& .MuiChip-root:nth-child(1) .line': {
@@ -86,15 +83,18 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const DisbursementsOverTime = props => {
+const ProductionOverTime = props => {
   const classes = useStyles()
   const theme = useTheme()
   const title = props.title || ''
-
+  const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
+  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+     variables: { commodity: commodity }
+  })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY)
   const handleDelete = props.handleDelete || ((e, val) => {
     dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== val) })
   })
@@ -109,9 +109,9 @@ const DisbursementsOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
-    const years = [...new Set(data.fiscal_disbursement_summary.map(item => item.fiscal_year))]
-    const sums = cards.map(yData => [...new Set(data.fiscal_disbursement_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
-    // console.debug(sums, years)
+    const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
+    const sums = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
+
     chartData = [years, ...sums]
 
     return (
@@ -134,15 +134,14 @@ const DisbursementsOverTime = props => {
                 return r
               }
             } />
-          <Box mt={2} className={classes.chipContainer}>
+          <Box mt={1} className={classes.chipContainer}>
             {
               cards.map((card, i) => {
                 return (
                   <Chip
-                    key={`DisbursementOverTimeChip_${ card.fips }`}
+                    key={`ProductionOverTimeChip_${ card.fips }`}
                     variant='outlined'
-                    color='primary.dark'
-                    onDelete={e => handleDelete(e, card.fips)}
+                    onDelete={ e => handleDelete(e, card.fips)}
                     label={<ChipLabel labelIndex={i} label={card.name} />}
                     classes={{ root: classes.chipRoot }} />
                 )
@@ -158,8 +157,4 @@ const DisbursementsOverTime = props => {
   }
 }
 
-export default DisbursementsOverTime
-
-DisbursementsOverTime.propTypes = {
-  title: PropTypes.string
-}
+export default ProductionOverTime

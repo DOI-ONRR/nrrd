@@ -375,13 +375,13 @@ const ExploreDataToolbar = props => {
               defaultOption={ counties || 'State' }
               label="Map level"
               dataFilterType={DFC.COUNTIES} />
-
+         {(dataType != 'Disbursements') &&
             <MapSelectControl
               options={MAP_OFFSHORE_SELECT_OPTIONS}
               defaultOption={ offshoreRegion || 'Hide' }
               label="Offshore map"
               dataFilterType={DFC.OFFSHORE_REGIONS} />
-
+         }
             {/* <MapSelectControl
                   options={MAP_TIMEFRAME_OPTIONS}
                   label="Timeframe"
