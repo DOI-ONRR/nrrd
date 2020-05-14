@@ -5,85 +5,85 @@ import { isEnumMember } from 'typescript'
 export default class D3StackedBarChart {
   constructor (node, data, options, formatLegendFunc) {
     try {
-    this.node = node
+      this.node = node
 
-      if( data && data.length > 0 ) {
-        console.debug('data:', data)
+      if (data && data.length > 0) {
+        // console.debug('data:', data)
         this.data = data
       }
       else {
-        console.warn("Stacked barchart must have data, erroring out")
+        console.warn('Stacked barchart must have data, erroring out')
         return false
       }
-      
-    this.options = options
-    console.debug('D3StackedBarChart options: ', options)
-    this._height = (node.children[0].clientHeight > 0) ? node.children[0].clientHeight : 400
-    this._width = (node.children[0].clientWidth <= 0) ? 300 : node.children[0].clientWidth
-    this.xAxis = options.xAxis || console.error('Error - no xAxis property set')
-    this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
-    this.marginBottom = options.marginBottom || 40
-    this.marginTop = options.marginTop || 25
-    this.units = (options.units) ? options.units : ''
-    this.horizontal = options.horizontal
-    this.showLegendUnits = options.showLegendUnits
-    if (this.horizontal) {
-      const h = this._height
-      const w = this._width
-      this._width = h
-      this._height = w
 
-      // reset margins
-      this.marginLeft = 0
-      this.marginTop = 0
-      this.marginRight = 0
-      this.marginBottom = 0
-    }
-    if (options.selectedIndex === undefined) {
-      this.selectedIndex = this.xDomain().length - 1
-    }
-    else {
-      this.selectedIndex = options.selectedIndex
-    }
+      this.options = options
+      // console.debug('D3StackedBarChart options: ', options)
+      this._height = (node.children[0].clientHeight > 0) ? node.children[0].clientHeight : 400
+      this._width = (node.children[0].clientWidth <= 0) ? 300 : node.children[0].clientWidth
+      this.xAxis = options.xAxis || console.error('Error - no xAxis property set')
+      this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
+      this.marginBottom = options.marginBottom || 40
+      this.marginTop = options.marginTop || 25
+      this.units = (options.units) ? options.units : ''
+      this.horizontal = options.horizontal
+      this.showLegendUnits = options.showLegendUnits
+      if (this.horizontal) {
+        const h = this._height
+        const w = this._width
+        this._width = h
+        this._height = w
 
-    this.currentIndex = this.selectedIndex
+        // reset margins
+        this.marginLeft = 0
+        this.marginTop = 0
+        this.marginRight = 0
+        this.marginBottom = 0
+      }
+      if (options.selectedIndex === undefined) {
+        this.selectedIndex = this.xDomain().length - 1
+      }
+      else {
+        this.selectedIndex = options.selectedIndex
+      }
 
-    if (this.showLegendUnits) {
-      this.showLegendUnits = true
-    }
-    this.xGroups = (options.xGroups) ? options.xGroups : undefined
+      this.currentIndex = this.selectedIndex
 
-    this.legendReverse = (options.legendReverse) ? options.legendReverse : false
+      if (this.showLegendUnits) {
+        this.showLegendUnits = true
+      }
+      this.xGroups = (options.xGroups) ? options.xGroups : undefined
 
-    this.xLabels = options.xLabels
-    // max extent line props and defaults
-    if (options.legendFormat) {
-      this.legendFormat = options.legendFormat
-    }
-    if (options.legendHeaders) {
-      this.legendHeaders = options.legendHeaders
-    }
-    this.extentPercent = options.extentPercent || 0.05
-    this.extentMarginOfError = options.extentMarginOfError || 0.10
-    this.maxExtentLineY = options.maxExtentLineY || 20
+      this.legendReverse = (options.legendReverse) ? options.legendReverse : false
 
-    // overload methods to make chart awesome
-    if (options.onSelect) this.onSelect = options.onSelect
-    if (options.onClick) this.onClick = options.onClick
+      this.xLabels = options.xLabels
+      // max extent line props and defaults
+      if (options.legendFormat) {
+        this.legendFormat = options.legendFormat
+      }
+      if (options.legendHeaders) {
+        this.legendHeaders = options.legendHeaders
+      }
+      this.extentPercent = options.extentPercent || 0.05
+      this.extentMarginOfError = options.extentMarginOfError || 0.10
+      this.maxExtentLineY = options.maxExtentLineY || 20
 
-    this.yOrder()
-    this.xScale = d3.scaleBand()
-      .domain(this.xDomain())
-      .range([0, this._width])
-      .paddingInner(0.3)
-      .paddingOuter(0.1)
+      // overload methods to make chart awesome
+      if (options.onSelect) this.onSelect = options.onSelect
+      if (options.onClick) this.onClick = options.onClick
 
-    this.barScale = (options.barScale) ? options.barScale : 1
-    this._height = d3.max([this._height * this.barScale, 1])
-    this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
-    this.yScale.domain([this.yMax(), 0])
-    this.chart = d3.select(this.node.children[0]).append('svg')
-      .attr('height', this._height)
+      this.yOrder()
+      this.xScale = d3.scaleBand()
+        .domain(this.xDomain())
+        .range([0, this._width])
+        .paddingInner(0.3)
+        .paddingOuter(0.1)
+
+      this.barScale = (options.barScale) ? options.barScale : 1
+      this._height = d3.max([this._height * this.barScale, 1])
+      this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
+      this.yScale.domain([this.yMax(), 0])
+      this.chart = d3.select(this.node.children[0]).append('svg')
+        .attr('height', this._height)
         .attr('width', this._width)
     }
     catch (err) {
@@ -580,7 +580,7 @@ export default class D3StackedBarChart {
   _onMouseover = (element, data) => {
     try {
       const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
-      console.debug('_onMouseover data: ', data)
+      // console.debug('_onMouseover data: ', data)
       if (selectedElement) {
         selectedElement.attr('selected', false)
         selectedElement.attr('class', 'bar')

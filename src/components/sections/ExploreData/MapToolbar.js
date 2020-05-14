@@ -265,6 +265,7 @@ const ExploreDataToolbar = props => {
       }
     }
   `)
+
   const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
   const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
   const classes = useStyles()
