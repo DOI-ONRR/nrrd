@@ -67,7 +67,13 @@ const GlossaryTerm = ({ children, ...rest }) => {
   ))
 
   return (
-    <Tooltip title={termResults[0].definition} classes={{ tooltip: styles.tooltip }} leaveDelay={200} arrow placement="top">
+    <Tooltip
+      title={termResults[0].definition}
+      classes={{ tooltip: styles.tooltip }}
+      leaveDelay={200}
+      arrow
+      placement="top"
+      disableTouchListener>
       <TermDisplay tabIndex='0' className={styles.term} {...rest} />
     </Tooltip>
 

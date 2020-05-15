@@ -1,28 +1,29 @@
 import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { FixedSizeList } from 'react-window'
+import { VariableSizeList } from 'react-window'
+// import { List } from 'react-virtualized'
 
 import PropTypes from 'prop-types'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { useTheme, makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Card,
   CardActions,
   CardContent,
   CardHeader,
-  TextField
+  ListSubheader,
+  TextField,
+  useMediaQuery
 } from '@material-ui/core'
 
 import { Autocomplete } from '@material-ui/lab'
-// import { StoreContext } from '../../../store'
-
-// import { DataFilterContext } from '../../../stores/data-filter-store'
-// import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import AddCardButton from './AddCardButton'
 import mapJson from './us-topology.json'
 import mapStatesOffshore from './states-offshore.json'
+
+const GUTTER_SIZE = 5
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -99,20 +100,43 @@ const getRegionProperties = input => {
 
   let selectedObj
 
-  if (input.length > 2) {
-    selectedObj = mapJson.objects.counties.geometries.filter(obj => {
-      if (obj.properties.FIPS.toLowerCase() === input.toLowerCase()) {
-        return obj.properties
-      }
-    })
-  }
-  else {
+  switch (input.length) {
+  case 2:
     selectedObj = mapJson.objects.states.geometries.filter(obj => {
       if (obj.properties.abbr.toLowerCase() === input.toLowerCase()) {
         return obj.properties
       }
     })
+    break
+  case 3:
+    console.log('handle planning area lookup...')
+    break
+  case 5:
+    selectedObj = mapJson.objects.counties.geometries.filter(obj => {
+      if (obj.properties.FIPS.toLowerCase() === input.toLowerCase()) {
+        return obj.properties
+      }
+    })
+    break
+  default:
+    console.warn('Unable to find state, county or planning area')
+    break
   }
+
+  // if (input.length > 2) {
+  //   selectedObj = mapJson.objects.counties.geometries.filter(obj => {
+  //     if (obj.properties.FIPS.toLowerCase() === input.toLowerCase()) {
+  //       return obj.properties
+  //     }
+  //   })
+  // }
+  // else {
+  //   selectedObj = mapJson.objects.states.geometries.filter(obj => {
+  //     if (obj.properties.abbr.toLowerCase() === input.toLowerCase()) {
+  //       return obj.properties
+  //     }
+  //   })
+  // }
 
   return selectedObj
 }
@@ -122,36 +146,47 @@ const RenderRow = props => {
   return React.cloneElement(data[index], {
     style: {
       ...style,
-      width: '100%',
-      display: 'block',
-      position: 'relative',
-      height: 'auto',
-      left: -10,
-      top: -5,
+      top: style.top + GUTTER_SIZE,
+      height: style.height + GUTTER_SIZE,
+      // border: '1px solid deeppink',
     }
   })
 }
 
 const ListboxComponent = React.forwardRef((props, ref) => {
   const { children, role, ...other } = props
+
+  const theme = useTheme()
+  const smUp = useMediaQuery(theme.breakpoints.up('sm'))
   const itemData = React.Children.toArray(children)
   const itemCount = itemData.length
+  const itemSize = smUp ? 50 : 45
 
   // console.log('ListboxComponent itemCount: ', itemData, itemCount)
+  const getChildSize = child => {
+    if (React.isValidElement(child) && child.type === ListSubheader) {
+      return 45
+    }
+
+    return itemSize
+  }
 
   return (
     <div ref={ref}>
       <div {...other}>
-        <FixedSizeList
+        <VariableSizeList
           height={150}
+          width={275}
           itemCount={itemCount}
           itemData={itemData}
-          itemSize={15}
+          itemSize={index => getChildSize(itemData[index])}
           innerElementType="ul"
           role="listbox"
+          overscanCount={5}
+          debug={true}
         >
           {RenderRow}
-        </FixedSizeList>
+        </VariableSizeList>
       </div>
     </div>
   )
@@ -184,7 +219,7 @@ const AddLocationCard = props => {
   }
 
   const handleChange = val => {
-    console.log('val: ', val)
+    // console.log('val: ', val)
     try {
       const item = getRegionProperties(val.location_id)[0]
       // console.log('item back: ', item)
@@ -223,7 +258,7 @@ const AddLocationCard = props => {
     )
   }
 
-  console.log('addlocationcard data: ', data)
+  // console.log('addlocationcard data: ', data)
   const OPTIONS = data.onrr.distinct_locations
 
   return (
@@ -262,12 +297,12 @@ const AddLocationCard = props => {
       </CardContent>
       <CardActions>
         { cardMenuItems.length > 0 &&
-              <>
-                <Box ml={1} mb={1} display="flex" flexDirection="column" align="left">
-                  <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
-                  <Box mt={2} fontSize="16px" display="block" lineHeight="16px" color="#1478a6">Add Nationwide Federal and Native American cards</Box>
-                </Box>
-              </>
+          <>
+            <Box ml={1} mb={1} display="flex" flexDirection="column" align="left">
+              <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
+              <Box mt={2} fontSize="16px" display="block" lineHeight="16px" color="#1478a6">Add Nationwide Federal and Native American cards</Box>
+            </Box>
+          </>
         }
       </CardActions>
     </Card>

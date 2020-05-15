@@ -127,10 +127,12 @@ const useStyles = makeStyles(theme => ({
     },
     '& *': {
       margin: 0,
+      height: '100%',
     },
     '& nav, & nav > div': {
       paddingTop: 0,
       paddingBottom: 0,
+      height: '100%',
     }
   },
   mobileToolbar: {
