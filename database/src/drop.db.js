@@ -81,7 +81,7 @@ const main =async () => {
 
 const drop_all =async () => {
     let statement=`
-drop owned by current_user;
+drop owned by current_user cascade;
 -- recreate default public scheam to build in
 create schema public;
 
