@@ -24,9 +24,9 @@ import {
 import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
-  query TopLocations($year: Int!, $location: String! ) {
+  query TopLocations($year: Int!, $locations: [String!] ) {
     fiscal_revenue_summary(
-      where: {location_type: {_eq: $location}, fiscal_year: { _eq: $year }, location_name: {_neq: ""} }
+      where: {location_type: {_in: $locations}, fiscal_year: { _eq: $year }, location_name: {_neq: ""} }
       order_by: { fiscal_year: asc, sum: desc }
     ) {
       location_name
@@ -83,8 +83,13 @@ const TopLocations = ({ title, ...props }) => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
-
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location } })
+  const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
+  const locations = [location]
+  console.debug(offshore)
+  if (offshore !== 'Hide') {
+    locations.push('Offshore')
+  }
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, locations } })
 
   if (loading) {
     return (
