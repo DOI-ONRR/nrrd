@@ -89,6 +89,9 @@ const TopLocations = ({ title, ...props }) => {
   if (offshore !== 'Hide') {
     locations.push('Offshore')
   }
+  if (location === 'State') {
+    locations.push('Native American')
+  }
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, locations } })
 
   if (loading) {
@@ -127,6 +130,9 @@ const TopLocations = ({ title, ...props }) => {
                       // console.debug('circleLABLE: ', d)
                       const r = []
                       r[0] = d.location_name
+                      if( r[0] === 'Native American') {
+                        r[0] = 'Native American lands'
+                      }
                       r[1] = utils.formatToDollarInt(d.sum)
                       return r
                     }
@@ -135,7 +141,6 @@ const TopLocations = ({ title, ...props }) => {
                   maxCircles={6}
                   minColor={theme.palette.green[100]}
                   maxColor={theme.palette.green[600]} />
-                  <Box >Note: Location is  <GlossaryTerm>withheld</GlossaryTerm> for Native American revenue, so it is not include in this chart </Box>
               </Box>
             </Box>
           </Grid>
