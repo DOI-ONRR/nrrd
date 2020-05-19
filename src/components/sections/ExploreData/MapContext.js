@@ -344,6 +344,7 @@ const MapContext = props => {
 
   // onLink
   const onLink = (state, x, y, k) => {
+    console.log('onLink state: ', state)
     setMapK(k)
     setMapY(y)
     setMapX(x)

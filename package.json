@@ -67,6 +67,7 @@
     "react-swipeable-views": "^0.13.9",
     "react-window": "^1.8.5",
     "rehype-react": "^4.0.1",
+    "resize-observer-polyfill": "^1.5.1",
     "slugify": "^1.4.0",
     "styled-components": "^4.4.1",
     "to-case": "^2.0.0",

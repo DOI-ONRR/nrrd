@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { VariableSizeList } from 'react-window'
-// import { List } from 'react-virtualized'
 
 import PropTypes from 'prop-types'
 
@@ -23,7 +22,7 @@ import AddCardButton from './AddCardButton'
 import mapJson from './us-topology.json'
 import mapStatesOffshore from './states-offshore.json'
 
-const GUTTER_SIZE = 5
+const GUTTER_SIZE = 15
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -93,52 +92,49 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // get region details from map object
-const getRegionProperties = input => {
-  console.log('getRegionProperties input: ', input)
-  // check for fips_code that are only 4 digits, the data values should all be 5
-  input = input.length === 4 ? input = `0${ input }` : input
+const getRegionProperties = location => {
+  console.log('getRegionProperties input: ', location)
 
   let selectedObj
 
-  switch (input.length) {
-  case 2:
+  switch (location.region_type) {
+  case 'State':
     selectedObj = mapJson.objects.states.geometries.filter(obj => {
-      if (obj.properties.abbr.toLowerCase() === input.toLowerCase()) {
-        return obj.properties
+      if (parseInt(obj.properties.FIPS) === parseInt(location.fips_code)) {
+        return Object.assign(obj, { locData: location })
       }
     })
     break
-  case 3:
-    console.log('handle planning area lookup...')
-    break
-  case 5:
+  case 'County':
     selectedObj = mapJson.objects.counties.geometries.filter(obj => {
-      if (obj.properties.FIPS.toLowerCase() === input.toLowerCase()) {
-        return obj.properties
+      if (parseInt(obj.properties.FIPS) === parseInt(location.fips_code)) {
+        return Object.assign(obj, { locData: location })
+      }
+    })
+    break
+  case 'Offshore':
+    selectedObj = mapStatesOffshore.objects['states-offshore-geo'].geometries.filter(obj => {
+      if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
+        return Object.assign(obj, { locData: location })
       }
     })
     break
   default:
-    console.warn('Unable to find state, county or planning area')
+    console.warn('Unable to find state, county or offshore area')
     break
   }
 
-  // if (input.length > 2) {
-  //   selectedObj = mapJson.objects.counties.geometries.filter(obj => {
-  //     if (obj.properties.FIPS.toLowerCase() === input.toLowerCase()) {
-  //       return obj.properties
-  //     }
-  //   })
-  // }
-  // else {
-  //   selectedObj = mapJson.objects.states.geometries.filter(obj => {
-  //     if (obj.properties.abbr.toLowerCase() === input.toLowerCase()) {
-  //       return obj.properties
-  //     }
-  //   })
-  // }
-
   return selectedObj
+}
+
+const useResetCache = data => {
+  const ref = React.useRef(null)
+  React.useEffect(() => {
+    if (ref.current != null) {
+      ref.current.resetAfterIndex(0, true)
+    }
+  }, [data])
+  return ref
 }
 
 const RenderRow = props => {
@@ -147,7 +143,6 @@ const RenderRow = props => {
     style: {
       ...style,
       top: style.top + GUTTER_SIZE,
-      height: style.height + GUTTER_SIZE,
       // border: '1px solid deeppink',
     }
   })
@@ -164,12 +159,16 @@ const ListboxComponent = React.forwardRef((props, ref) => {
 
   // console.log('ListboxComponent itemCount: ', itemData, itemCount)
   const getChildSize = child => {
-    if (React.isValidElement(child) && child.type === ListSubheader) {
-      return 45
+    // console.log('getChildSize: ', child)
+    const charCount = child.props.children.props.children.length
+    if (React.isValidElement(child) && charCount > 20) {
+      return 100
     }
 
     return itemSize
   }
+
+  const listRef = useResetCache(itemCount)
 
   return (
     <div ref={ref}>
@@ -177,13 +176,14 @@ const ListboxComponent = React.forwardRef((props, ref) => {
         <VariableSizeList
           height={150}
           width={275}
+          ref={listRef}
           itemCount={itemCount}
           itemData={itemData}
           itemSize={index => getChildSize(itemData[index])}
           innerElementType="ul"
           role="listbox"
           overscanCount={5}
-          debug={true}
+          // debug={true}
         >
           {RenderRow}
         </VariableSizeList>
@@ -196,10 +196,12 @@ const AddLocationCard = props => {
   const data = useStaticQuery(graphql`
     query LocationQuery {
       onrr {
-        distinct_locations(where: {location: {_neq: ""}}) {
-          location
-          location_id
-          sort_order
+        distinct_locations: location(where: {fips_code: {_neq: ""}}) {
+          fips_code
+          location_name
+          region_type
+          state
+          state_name
         }
       }
     }
@@ -219,11 +221,11 @@ const AddLocationCard = props => {
   }
 
   const handleChange = val => {
-    // console.log('val: ', val)
+    console.log('val: ', val)
     try {
-      const item = getRegionProperties(val.location_id)[0]
-      // console.log('item back: ', item)
-      props.onLink(item)
+      const item = getRegionProperties(val)
+      console.log('item back: ', item)
+      props.onLink(item[0])
       setInput('')
       setKeyCount(keyCount + 1)
     }
@@ -276,7 +278,7 @@ const AddLocationCard = props => {
           inputValue={input}
           options={OPTIONS}
           ListboxComponent={ListboxComponent}
-          getOptionLabel={option => option.location}
+          getOptionLabel={option => option.location_name}
           style={{ width: '100%' }}
           renderInput={params => (
             <TextField
@@ -287,7 +289,7 @@ const AddLocationCard = props => {
               onChange={handleSearch}
             />
           )}
-          renderOption={option => renderLabel(option.location)}
+          renderOption={option => renderLabel(option.location_name)}
           onChange={(e, v) => handleChange(v)}
           classes={{
             inputRoot: classes.autoCompleteRoot,

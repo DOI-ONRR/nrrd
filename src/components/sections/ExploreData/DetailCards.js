@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import React, { useContext, useState } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 
 // utility functions
 import utils from '../../../js/utils'
@@ -25,7 +24,6 @@ import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
 import AddLocationCard from './AddLocationCard'
 
 import CONSTANTS from '../../../js/constants'
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -139,18 +137,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const APOLLO_QUERY = gql`
-  query ExploreDataCompareQuery {
-    # land stats
-    land_stats {
-      federal_acres
-      federal_percent
-      location
-      total_acres
-    }
-  }
-`
-
 const nonStateOrCountyCards = [
   CONSTANTS.NATIONWIDE_FEDERAL,
   CONSTANTS.NATIVE_AMERICAN
@@ -200,6 +186,18 @@ const CardTitle = props => {
 }
 
 const DetailCards = props => {
+  const data = useStaticQuery(graphql`
+    query LandStatsQuery {
+      onrr {
+        land_stats {
+          federal_acres
+          federal_percent
+          location
+          total_acres
+        }
+      }
+    }
+  `)
   const classes = useStyles()
 
   const { state: pageState, dispatch } = useContext(StoreContext)
@@ -207,7 +205,7 @@ const DetailCards = props => {
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY)
+  // const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   const closeCard = fips => {
     // console.log('fips: ', fips)
@@ -215,18 +213,10 @@ const DetailCards = props => {
   }
 
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
-  const nationalCard = cards && cards.some(item => item.abbr === 'Nationwide Federal')
-  const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
-  let cardMenuItems = []
-  if (!nationalCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }]
-  }
-  if (!nativeAmericanCard) {
-    cardMenuItems = [{ fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
-  }
-  if (!nationalCard && !nativeAmericanCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
-  }
+  const cardMenuItems = [
+    { fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' },
+    { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
+  ]
 
   // Map snackbar
   const [mapSnackbarState, setMapSnackbarState] = useState({
@@ -247,6 +237,7 @@ const DetailCards = props => {
 
   // onLink
   const onLink = state => {
+    // console.log('onLink state: ', state)
     // setMapK(k)
     // setMapY(y)
     // setMapX(x)
@@ -291,23 +282,7 @@ const DetailCards = props => {
     dispatch({ type: 'CARDS', payload: cards })
   }
 
-  // const dataSet = `FY ${ year }`
-
-  let landStatsData
-
-  if (loading) {
-    return (
-      <div className={classes.progressContainer}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-      </div>
-    )
-  }
-
-  if (error) return `Error! ${ error.message }`
-
-  if (data) {
-    landStatsData = data.land_stats
-  }
+  const landStatsData = data.onrr.land_stats
 
   return (
     <>
@@ -325,7 +300,7 @@ const DetailCards = props => {
           return (
             <Card className={classes.root} key={i}>
               <CardHeader
-                title={<CardTitle data={landStatsData} stateTitle={card.name} stateAbbr={card.abbr} state={card.abbr} />}
+                title={<CardTitle data={landStatsData} stateTitle={card.name} stateAbbr={card.abbr} state={card.state} />}
                 action={<CloseIcon
                   className={classes.closeIcon}
                   onClick={(e, i) => {
