@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import * as d3 from 'd3'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -20,8 +21,8 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import CONSTANTS from '../../../../js/constants'
 
 const DISBURSEMENT_QUERY = gql`
-  query FiscalDisbursement($year: Int!, $period: String!) {
-    fiscal_disbursement_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }}) {
+  query FiscalDisbursement($year: Int!, $period: String!, $location: String!) {
+    fiscal_disbursement_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location}}) {
       fiscal_year
       state_or_area
       sum
@@ -39,9 +40,9 @@ export default props => {
 
 
   const year = filterState[DFC.YEAR]
-
+  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
-    variables: { year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { year, period: CONSTANTS.FISCAL_YEAR, location }
   })
 
   let mapData = [[]]
@@ -49,10 +50,16 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    mapData = data.fiscal_disbursement_summary.map((item, i) => [
+    /*mapData = data.fiscal_disbursement_summary.map((item, i) => [
       item.state_or_area,
       item.sum
-    ])
+      ])*/
+    console.log(data)
+    mapData=d3.nest()
+      .key(k => k.state_or_area)
+      .rollup(v => d3.sum(v, i => i.sum))
+      .entries(data.fiscal_disbursement_summary)
+      .map(d => [d.key, d.value])
   }
 
   // console.debug("Map props", props)

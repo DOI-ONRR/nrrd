@@ -67,7 +67,7 @@ const Map = props => {
   const mapJsonObject = props.mapJsonObject
 
   const mapFeatures = props.mapFeatures || 'counties'
-  const mapData = props.mapData || []
+  //const mapData = props.mapData || []
 
   // mapData=props.offshoreData && mapData.concat(props.offshoreData);
   const elemRef = useRef(null)
@@ -91,12 +91,13 @@ const Map = props => {
   const mapZoom = props.mapZoom
   const mapX = props.mapX
   const mapY = props.mapY
-
+  const { mapData, ...options } = props
   let map
 
   useEffect(() => {
     const us = mapJsonObject
     //    const offshore = mapJsonObject.offshore
+    console.debug("OPTIONS: ", options)
     const data = observableData(mapData)
     data.title = mapTitle
     map = new D3Map(
@@ -110,7 +111,8 @@ const Map = props => {
       maxColor,
       mapZoom,
       mapX,
-      mapY
+      mapY,
+      options
     )
 
     map.onZoom = onZoom

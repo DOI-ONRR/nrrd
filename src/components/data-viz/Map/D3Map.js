@@ -18,8 +18,13 @@ export default class d3Map {
     maxColor,
     mapZ,
     mapX,
-    mapY
+    mapY,
+    options
   ) {
+
+    if (options.mapFormat) {
+      this.format = options.mapFormat
+    }
     this.node = node
     this.us = us
     this.mapFeatures = mapFeatures
@@ -108,6 +113,16 @@ export default class d3Map {
     }
   }
 
+
+  format (d) {
+      if (isNaN(d)) {
+        return ''
+      }
+      else {
+        return '$' + d3.format(',.0f')(d)
+      }
+  }
+    
   chart () {
     let _chart
     const self = this
@@ -131,7 +146,7 @@ export default class d3Map {
     const _zoom = this._zoom
 
     if (node.children[1].children[0]) {
-      this._chart = d3.select(node.children[1].children[0])
+       this._chart = d3.select(node.children[1].children[0])
       this._chart.selectAll('path').remove()
       _chart = this._chart
     }
@@ -198,13 +213,9 @@ export default class d3Map {
     }
 
     this.color = color
-    const format = d => {
-      if (isNaN(d)) {
-        return ''
-      }
-      else {
-        return '$' + d3.format(',.0f')(d)
-      }
+    const format = this.format
+    const _format = d => {
+      format(d)
     }
 
     const zoom = d3
