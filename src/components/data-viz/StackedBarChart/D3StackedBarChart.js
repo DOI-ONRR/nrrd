@@ -8,7 +8,7 @@ export default class D3StackedBarChart {
     this.node = node
 
       if( data && data.length > 0 ) {
-        console.debug('data:', data)
+        // console.debug('data:', data)
         this.data = data
       }
       else {
@@ -17,7 +17,7 @@ export default class D3StackedBarChart {
       }
       
     this.options = options
-    console.debug('D3StackedBarChart options: ', options)
+    // console.debug('D3StackedBarChart options: ', options)
     this._height = (node.children[0].clientHeight > 0) ? node.children[0].clientHeight : 400
     this._width = (node.children[0].clientWidth <= 0) ? 300 : node.children[0].clientWidth
     this.xAxis = options.xAxis || console.error('Error - no xAxis property set')

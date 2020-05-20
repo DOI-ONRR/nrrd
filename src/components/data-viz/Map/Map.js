@@ -97,7 +97,7 @@ const Map = props => {
   useEffect(() => {
     const us = mapJsonObject
     //    const offshore = mapJsonObject.offshore
-    console.debug("OPTIONS: ", options)
+    //console.debug("OPTIONS: ", options)
     const data = observableData(mapData)
     data.title = mapTitle
     map = new D3Map(

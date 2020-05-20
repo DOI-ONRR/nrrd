@@ -59,7 +59,7 @@ export default class d3Map {
       const svg = this._chart
       const zoom = this.zoom
       const path = this.path
-      console.debug('Zoom to :', state)
+      // console.debug('Zoom to :', state)
       svg.selectAll('path')
         .attr('fill-opacity', 0)
       svg.selectAll(`.${ state }`)
@@ -74,7 +74,7 @@ export default class d3Map {
       const height = this.height
       // const width = x1 - x0
       // const height = y1 - y0
-      console.debug('x0: ', x0, 'y0: ', y0, 'x1: ', x1, 'y1: ', y1, 'width: ', width, 'height: ', height)
+      // console.debug('x0: ', x0, 'y0: ', y0, 'x1: ', x1, 'y1: ', y1, 'width: ', width, 'height: ', height)
       const transform = d3.zoomIdentity
         .translate(width / 2, height / 2)
         .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
@@ -226,8 +226,8 @@ export default class d3Map {
 
     const g = _chart.append('g')
     _chart.call(zoom)
-    console.debug('US: ', us)
-    console.debug('objects:', us.objects[mapFeatures])
+    // console.debug('US: ', us)
+    // console.debug('objects:', us.objects[mapFeatures])
     g.selectAll('path')
       .data(topojson.feature(us, us.objects[mapFeatures]).features)
       .join('path')

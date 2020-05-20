@@ -84,7 +84,7 @@ const TopLocations = ({ title, ...props }) => {
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
   const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
-  const locations = [location]
+  const locations = ['State', 'Offshore', 'Native American']
   console.debug(offshore)
   if (offshore !== 'Hide') {
     locations.push('Offshore')
@@ -133,6 +133,13 @@ const TopLocations = ({ title, ...props }) => {
                       if( r[0] === 'Native American') {
                         r[0] = 'Native American lands'
                       }
+                      else if (r[0] === 'Gulf of Mexico, Central Gulf of Mexico') {
+                        r[0] = 'Central Gulf'
+                      }
+                      else if (r[0] === 'Gulf of Mexico, Western Gulf of Mexico') {
+                        r[0] = 'Western Gulf'
+                      }
+                      
                       r[1] = utils.formatToDollarInt(d.sum)
                       return r
                     }
