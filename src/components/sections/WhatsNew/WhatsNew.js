@@ -49,7 +49,7 @@ const WhatsNew = props => {
           </ListItemIcon>
           <ListItemText>
             Added{' '}
-            <Link href='/how-it-works/gomesa/#revenue-sharing'>
+            <Link href='/how-revenue-works/gomesa/#revenue-sharing'>
               2020 GOMESA disbursements to states and local governments
             </Link>
           </ListItemText>
