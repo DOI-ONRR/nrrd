@@ -22,7 +22,6 @@ import Select from '@material-ui/core/Select'
 import IconButton from '@material-ui/core/IconButton'
 import Checkbox from '@material-ui/core/Checkbox'
 import Grid from '@material-ui/core/Grid'
-import Clear from '@material-ui/icons/Clear'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -130,7 +129,7 @@ const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText }) 
             displayEmpty
           >
             <MenuItem value={'Clear'} disabled={(!state[dataFilterKey])}>
-              <Clear /><ListItemText primary={'Clear selected'} />
+              <ListItemText primary={'Clear selected'} />
             </MenuItem>
             {data &&
               data.options.map((item, i) =>
@@ -202,7 +201,7 @@ const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText })
             onClose={handleClose}
           >
             <MenuItem value={'Clear'} disabled={(selectedOptions.length === 0)}>
-              <IconButton><Clear /></IconButton><ListItemText primary={'Clear selected'} />
+              <ListItemText primary={'Clear selected'} />
             </MenuItem>
             {data &&
               data.options.map(

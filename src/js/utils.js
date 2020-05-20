@@ -4,18 +4,27 @@ import currencyFormatter from 'currency-formatter'
 import ExcelJs from 'exceljs'
 import { saveAs } from 'file-saver'
 
+// @TODO Clean up file and remove utils object and export individual methods
+
 // Import Display Name Yaml Files
 import commodityNames from '../data/commodity_names.yml'
 
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
-/*
-    [
-    { header: 'Id', key: 'id', width: 10 },
-    { header: 'Name', key: 'name', width: 32 },
-    { header: 'D.O.B.', key: 'DOB', width: 10, outlineLevel: 1 }
-  ]
-*/
+export const formatToDollarInt = value => {
+  return currencyFormatter.format(value, {
+    symbol: '$',
+    precision: 0,
+    format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
+  })
+}
+export const formatToCommaInt = value => {
+  return currencyFormatter.format(value, {
+    symbol: '',
+    precision: 0,
+    format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
+  })
+}
 export const downloadWorkbook = (type, fileName, sheetName, cols, rows) => {
   const workbook = new ExcelJs.Workbook()
   const worksheet = workbook.addWorksheet(sheetName)
