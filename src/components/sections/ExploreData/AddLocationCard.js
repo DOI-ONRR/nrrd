@@ -196,7 +196,7 @@ const AddLocationCard = props => {
   const data = useStaticQuery(graphql`
     query LocationQuery {
       onrr {
-        distinct_locations: location(where: {fips_code: {_neq: ""}}) {
+        distinct_locations: location(where: {fips_code: {_neq: ""}}, distinct_on: fips_code) {
           fips_code
           location_name
           region_type

@@ -28,7 +28,7 @@ const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
   query FiscalDisbursementSummary {
-    fiscal_disbursement_summary(
+    disbursement_summary(
       order_by: { fiscal_year: asc }
     ) {
       fiscal_year
@@ -109,12 +109,12 @@ const DisbursementsOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
-    const years = [...new Set(data.fiscal_disbursement_summary.map(item => item.fiscal_year))]
+    const years = [...new Set(data.disbursement_summary.map(item => item.fiscal_year))]
     const sums = cards.map(yData => [...new Set(
       d3.nest()
         .key(k => k.fiscal_year)
         .rollup(v => d3.sum(v, i => i.sum))
-        .entries(data.fiscal_disbursement_summary.filter(row => row.state_or_area === yData.abbr)).map(item => item.value)
+        .entries(data.disbursement_summary.filter(row => row.state_or_area === yData.abbr)).map(item => item.value)
     )])
     console.debug("sums", sums)
      console.debug(sums, years)
