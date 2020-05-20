@@ -18,7 +18,6 @@ import {
 import gql from 'graphql-tag'
 
 const allRevenueYears = `
-y2020
 y2019
 y2018
 y2017
