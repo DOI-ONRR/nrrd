@@ -27,7 +27,12 @@ tags:
           <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
             <Box name="exploreDataContent" className="explore-data-content">
               <CompareContext>
-                <PageSubMenu />
+                <PageSubMenu
+                  menuItems={[
+                    'Compare revenue',
+                    'Nationwide revenue summary',
+                    'Top locations'
+                  ]} />
                 <Container>
                   <Grid container>
                     <Grid item md={12}>
@@ -44,7 +49,7 @@ tags:
                   <Grid container>
                     <Grid item md={12}>
                       <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                        <Box component="h3" color="secondary.dark">Compare revenue</Box>
+                        <Box component="h3" color="secondary.dark" id="compare-revenue">Compare revenue</Box>
                       </Box>
                       <Box fontSize="body1.fontSize">
                         Add more than one card to compare.  Select states, counties, and offshore regions.
@@ -70,7 +75,7 @@ tags:
           </Box>
         </Revenue>
       </ContextProvider>
-            <ContextProvider params={'?dataType=Disbursements'}>
+      <ContextProvider params={'?dataType=Disbursements'}>
         <Disbursements>
           <MapContext>
             <DisbursementMap />
@@ -116,7 +121,7 @@ tags:
                     </Grid>
                   </Grid>
                 </Container>
-                <DisbursementsOverTime title="Disbursements over time"  / >   
+                <DisbursementsOverTime title="Disbursements over time"  />   
               </CompareContext>         
               <NationwideDisbursementSummary title="Nationwide disbursements summary" />
               <DisbursementTopRecipients title="Top nationwide recipients" />
@@ -124,7 +129,6 @@ tags:
           </Box>
         </Disbursements>
       </ContextProvider>
-      
       <ContextProvider params={'?dataType=Production'}>
         <Production>
           <MapContext>
@@ -189,7 +193,6 @@ tags:
       </ContextProvider>
     </ExploreData>
   </Box>
-
 </Container>
 
 
