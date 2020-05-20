@@ -127,10 +127,12 @@ const useStyles = makeStyles(theme => ({
     },
     '& *': {
       margin: 0,
+      height: '100%',
     },
     '& nav, & nav > div': {
       paddingTop: 0,
       paddingBottom: 0,
+      height: '100%',
     }
   },
   mobileToolbar: {
@@ -265,6 +267,7 @@ const ExploreDataToolbar = props => {
       }
     }
   `)
+
   const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
   const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
   const classes = useStyles()

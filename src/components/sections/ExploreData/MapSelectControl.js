@@ -51,6 +51,7 @@ const useStyles = makeStyles(theme => ({
     '& nav, & nav > div': {
       paddingTop: 0,
       paddingBottom: 0,
+      height: '100%',
     },
   },
   menuIcon: {

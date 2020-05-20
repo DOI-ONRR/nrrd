@@ -5,82 +5,85 @@ import { isEnumMember } from 'typescript'
 export default class D3StackedBarChart {
   constructor (node, data, options, formatLegendFunc) {
     try {
-    this.node = node
+      this.node = node
 
-      if( data && data.length > 0 ) {
+      if (data && data.length > 0) {
         // console.debug('data:', data)
         this.data = data
       }
       else {
-        console.warn("Stacked barchart must have data, erroring out")
+        console.warn('Stacked barchart must have data, erroring out')
         return false
       }
-      
-    this.options = options
-    // console.debug('D3StackedBarChart options: ', options)
-    this._height = (node.children[0].clientHeight > 0) ? node.children[0].clientHeight : 400
-    this._width = (node.children[0].clientWidth <= 0) ? 300 : node.children[0].clientWidth
-    this.xAxis = options.xAxis || console.error('Error - no xAxis property set')
-    this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
-    this.marginBottom = options.marginBottom || 40
-    this.marginTop = options.marginTop || 25
-    this.units = (options.units) ? options.units : ''
-    this.horizontal = options.horizontal
-    this.showLegendUnits = options.showLegendUnits
-    if (this.horizontal) {
-      const h = this._height
-      const w = this._width
-      this._width = h
-      this._height = w
 
-      // reset margins
-      this.marginLeft = 0
-      this.marginTop = 0
-      this.marginRight = 0
-      this.marginBottom = 0
-    }
-    if (options.selectedIndex === undefined) {
-      this.selectedIndex = this.xDomain().length - 1
-    }
-    else {
-      this.selectedIndex = options.selectedIndex
-    }
-    if (this.showLegendUnits) {
-      this.showLegendUnits = true
-    }
-    this.xGroups = (options.xGroups) ? options.xGroups : undefined
+      this.options = options
+      // console.debug('D3StackedBarChart options: ', options)
+      this._height = (node.children[0].clientHeight > 0) ? node.children[0].clientHeight : 400
+      this._width = (node.children[0].clientWidth <= 0) ? 300 : node.children[0].clientWidth
+      this.xAxis = options.xAxis || console.error('Error - no xAxis property set')
+      this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
+      this.marginBottom = options.marginBottom || 40
+      this.marginTop = options.marginTop || 25
+      this.units = (options.units) ? options.units : ''
+      this.horizontal = options.horizontal
+      this.showLegendUnits = options.showLegendUnits
+      if (this.horizontal) {
+        const h = this._height
+        const w = this._width
+        this._width = h
+        this._height = w
 
-    this.legendReverse = (options.legendReverse) ? options.legendReverse : false
+        // reset margins
+        this.marginLeft = 0
+        this.marginTop = 0
+        this.marginRight = 0
+        this.marginBottom = 0
+      }
+      if (options.selectedIndex === undefined) {
+        this.selectedIndex = this.xDomain().length - 1
+      }
+      else {
+        this.selectedIndex = options.selectedIndex
+      }
 
-    this.xLabels = options.xLabels
-    // max extent line props and defaults
-    if (options.legendFormat) {
-      this.legendFormat = options.legendFormat
-    }
-    if (options.legendHeaders) {
-      this.legendHeaders = options.legendHeaders
-    }
-    this.extentPercent = options.extentPercent || 0.05
-    this.extentMarginOfError = options.extentMarginOfError || 0.10
-    this.maxExtentLineY = options.maxExtentLineY || 20
+      this.currentIndex = this.selectedIndex
 
-    // overload methods to make chart awesome
-    if (options.onSelect) this.onSelect = options.onSelect
-    if (options.onClick) this.onClick = options.onClick
+      if (this.showLegendUnits) {
+        this.showLegendUnits = true
+      }
+      this.xGroups = (options.xGroups) ? options.xGroups : undefined
 
-    this.yOrder()
-    this.xScale = d3.scaleBand()
-      .domain(this.xDomain())
-      .range([0, this._width])
-      .paddingInner(0.3)
-      .paddingOuter(0.1)
+      this.legendReverse = (options.legendReverse) ? options.legendReverse : false
 
-    this.barScale = (options.barScale) ? options.barScale : 1
-    this._height = d3.max([this._height * this.barScale, 1])
-    this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
-    this.yScale.domain([this.yMax(), 0])
-    this.chart = d3.select(this.node.children[0]).append('svg')
-      .attr('height', this._height)
+      this.xLabels = options.xLabels
+      // max extent line props and defaults
+      if (options.legendFormat) {
+        this.legendFormat = options.legendFormat
+      }
+      if (options.legendHeaders) {
+        this.legendHeaders = options.legendHeaders
+      }
+      this.extentPercent = options.extentPercent || 0.05
+      this.extentMarginOfError = options.extentMarginOfError || 0.10
+      this.maxExtentLineY = options.maxExtentLineY || 20
+
+      // overload methods to make chart awesome
+      if (options.onSelect) this.onSelect = options.onSelect
+      if (options.onClick) this.onClick = options.onClick
+
+      this.yOrder()
+      this.xScale = d3.scaleBand()
+        .domain(this.xDomain())
+        .range([0, this._width])
+        .paddingInner(0.3)
+        .paddingOuter(0.1)
+
+      this.barScale = (options.barScale) ? options.barScale : 1
+      this._height = d3.max([this._height * this.barScale, 1])
+      this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
+      this.yScale.domain([this.yMax(), 0])
+      this.chart = d3.select(this.node.children[0]).append('svg')
+        .attr('height', this._height)
         .attr('width', this._width)
     }
     catch (err) {
@@ -243,6 +246,13 @@ export default class D3StackedBarChart {
           // console.debug("SI: ", self.selectedIndex)
           return i === self.selectedIndex ? 'bar active' : 'bar'
         })
+        .on('mouseenter', (d, i) => {
+          self.currentIndex = i
+        })
+        .on('mouseleave', d => {
+          self.currentIndex = self.selectedIndex
+          self._legendHeaders()
+        })
 
         // .attr('tabindex', (d, i) => i)
         .attr('tabindex', 0)
@@ -271,11 +281,9 @@ export default class D3StackedBarChart {
           self._onSelect(this, d)
           self._onClick(this, d)
         })
-        .on('mouseover', function (d) {
-          //          self._onMouseover(this, d)
-          // self._onClick(self)
+        .on('mouseover', function (d, i) {
         })
-        .on('mouseenter', function (d) {
+        .on('mouseenter', (d, i) => {
           self._onHover(this, d, true)
         })
         .on('mouseleave', function (d) {
@@ -351,6 +359,7 @@ export default class D3StackedBarChart {
     try {
       let r = []
       this.getSelected()
+      const xLabels = this.xLabels(this.xDomain())
 
       if (this.options.yGroupBy) {
         r = [this.options.yGroupBy, '', xValue || this.xSelectedValue]
@@ -359,7 +368,8 @@ export default class D3StackedBarChart {
         r = [this.yAxis, xValue || this.xSelectedValue]
       }
 
-      r = this.legendHeaders(r)
+      r = this.legendHeaders(r, { ...this.data[this.currentIndex], xLabel: xLabels[this.currentIndex] })
+
       return r
     }
     catch (err) {
@@ -434,7 +444,7 @@ export default class D3StackedBarChart {
       const legendReverse = this.legendReverse
       const data = newData || this.selectedData()
 
-      // console.debug('SELECTED DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:', data)
+      // console.log('updateLegend data: ', data)
       const headers = this._legendHeaders(xValue)
       const labels = this.yGroupings()
       const formatLegend = this.formatLegend()
@@ -543,7 +553,6 @@ export default class D3StackedBarChart {
 
   _onSelect = (element, data) => {
     try {
-      console.log('_onSelect data: ', element, data)
       const selectedElement = d3.select(this.node).selectAll('.active') // element.parentNode.querySelector('[selected=true]')
       // console.debug(data)
       if (selectedElement) {
@@ -582,7 +591,6 @@ export default class D3StackedBarChart {
       activeElement.setAttribute('tabindex', 0)
       this.selectedData(data[0].data)
       this._legend()
-
       this.onMouseover(this)
     }
     catch (err) {
@@ -592,34 +600,29 @@ export default class D3StackedBarChart {
 
   onMouseover (d) {
     console.debug('onSelect: ', d)
+    return d
   }
 
   _onHover = (element, data, hover) => {
     try {
-      const activeElement = element.parentNode.parentNode
-      const index = this.selectedIndex
-      console.debug('_onHover data: ', data, this)
-      // console.debug(element)
-
+      // const activeElement = element.parentNode.parentNode
+      const tabIndex = this.currentIndex
       if (hover === true) {
-        // activeElement.setAttribute('class', 'bar active')
         const years = this.xDomain()
-        console.debug('_onHover hover years: ', years)
 
         // const tabIndex = element.parentNode.parentNode.tabIndex
-        const tabIndex = 0
-        // // console.debug(years,  years[tabIndex] , tabIndex)
+        // const tabIndex = 0
+        // console.debug(years,  years[tabIndex] , tabIndex)
         this.createLegend(data[0].data, years[tabIndex])
         this.updateLegend(data[0].data, years[tabIndex])
       }
       else {
         this.getSelected()
-        //  activeElement.setAttribute('class', 'bar')
-
         this.select(this.index)
         this.createLegend()
         this.updateLegend()
       }
+      this.onHover(this)
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -627,7 +630,7 @@ export default class D3StackedBarChart {
   }
 
   onHover (d) {
-    console.debug('onSelect: ', d)
+    // console.debug('onSelect: ', d)
   }
 
   barOffsetX () {
@@ -1064,6 +1067,13 @@ export default class D3StackedBarChart {
     })
   }
 
+  getCurrentIndex (value) {
+    if (value) {
+      this.currentIndex = value
+    }
+    return this.currentIndex
+  }
+
   toggleSelectedBar = (element, data, callBack) => {
     const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
 
@@ -1250,7 +1260,6 @@ export default class D3StackedBarChart {
   }
 
   createTable () {
-    console.log('createTable yo!')
     d3.selectAll('.legend-table').remove()
     this.getSelected()
 
