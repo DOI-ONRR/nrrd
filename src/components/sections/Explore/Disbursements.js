@@ -23,7 +23,7 @@ const ExploreDisbursements = props => {
 		  }
 		  contentCenter={
 			  <ExploreDataLink
-          to="/how-revenue-works/#understanding-federal-disbursements"
+          to="/how-revenue-works#understanding-federal-disbursements"
           icon="works">
           How disbursements work
 			  </ExploreDataLink>
