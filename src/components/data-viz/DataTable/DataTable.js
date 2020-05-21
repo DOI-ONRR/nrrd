@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import {
   REVENUE,
   PRODUCTION,
-  DISBURSEMENT,
+  DISBURSEMENTS,
   DATA_TYPE,
   GROUP_BY,
   BREAKOUT_BY,
@@ -12,12 +12,11 @@ import {
   PERIOD_CALENDAR_YEAR,
   FISCAL_YEAR,
   CALENDAR_YEAR,
-  NO_BREAKOUT_BY,
-  DISPLAY_NAMES
+  NO_BREAKOUT_BY
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
-import utils, { toTitleCase, aggregateSum, downloadWorkbook } from '../../../js/utils'
+import utils, { toTitleCase, aggregateSum } from '../../../js/utils'
 
 import DTQM from '../../../js/data-table-query-manager'
 import { useQuery } from '@apollo/react-hooks'
@@ -30,9 +29,6 @@ import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRo
 import AllTypeProvider from './Custom/AllTypeProvider'
 
 import DataTableGroupingToolbar from './DataTableGroupingToolbar'
-
-import { IconDownloadCsvImg, IconDownloadXlsImg } from '../../images'
-import Button from '@material-ui/core/Button'
 
 import {
   makeStyles,
@@ -66,7 +62,7 @@ import {
   TableColumnResizing
 } from '@devexpress/dx-react-grid-material-ui'
 
-const allYears = ['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003']
+const allYears = ['2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003']
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -102,9 +98,9 @@ const DataTable = ({ dataType, height = '100%' }) => {
                   <ProductionDataTableImpl />
                 </Grid>
             }
-            {state[DATA_TYPE] === DISBURSEMENT &&
+            {state[DATA_TYPE] === DISBURSEMENTS &&
                 <Grid item xs={12}>
-                  <DisbursementDataTableImpl />
+
                 </Grid>
             }
           </React.Fragment>
@@ -162,33 +158,6 @@ const ProductionDataTableImpl = () => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
   }, [loading])
 
-  return (
-    <React.Fragment>
-      {(data && data.results.length > 0) &&
-        <DataTableImpl {...data} />
-      }
-    </React.Fragment>
-  )
-}
-const DisbursementDataTableImpl = () => {
-  const { state } = useContext(DataFilterContext)
-
-  const loadingMessage = `Loading ${ state.dataType } data from server...`
-
-  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
-
-  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
-
-  useEffect(() => {
-    if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
-    }
-  }, [error])
-
-  useEffect(() => {
-    updateLoadingStatus({ status: loading, message: loadingMessage })
-  }, [loading])
-  console.log('DisbursementDataTableImpl', data)
   return (
     <React.Fragment>
       {(data && data.results.length > 0) &&
@@ -287,39 +256,10 @@ const DataTableImpl = data => {
     }
   }, [state, data])
 
-  const handleDownload = type => {
-    downloadWorkbook(type, state[DATA_TYPE], state[DATA_TYPE], columnNames.filter(col => !hiddenColumnNames.includes(col.name)), aggregatedSums)
-  }
-
   return (
     <React.Fragment>
       {(aggregatedSums && aggregatedSums.length > 0) &&
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Box component="div" display="inline" mr={2}>
-              <Button
-                variant="contained"
-                color="primary"
-                aria-label="open data filters"
-                onClick={() => handleDownload('excel')}
-                onKeyDown={() => handleDownload('excel')}
-                startIcon={<IconDownloadXlsImg />}
-              >
-              Download table
-              </Button>
-
-            </Box>
-            <Button
-              variant="contained"
-              color="primary"
-              aria-label="open data filters"
-              onClick={() => handleDownload('csv')}
-              onKeyDown={() => handleDownload('csv')}
-              startIcon={<IconDownloadCsvImg />}
-            >
-              Download table
-            </Button>
-          </Grid>
+        <Grid container>
           <Grid item xs={12}>
             <TableGrid
               rows={aggregatedSums}
@@ -362,6 +302,17 @@ const DataTableImpl = data => {
   )
 }
 
+const PLURAL_COLUMNS_MAP = {
+  'Revenue type': 'revenue types',
+  Commodity: 'commodities',
+  'Land Category': 'land categories',
+  Location: 'locations',
+  COUNTY: 'counties',
+  REGION: 'regions',
+  SOURCE: 'sources',
+  RECIPIENT: 'recipients',
+}
+
 const getColumnNames = row => {
   if (!row) {
     return []
@@ -372,11 +323,7 @@ const getColumnNames = row => {
       return { name: column, title: column.substring(1), year: parseInt(column.substring(1)) }
     }
     const titleName = toTitleCase(column).replace('_', ' ')
-    return {
-      name: column,
-      title: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].default : titleName,
-      plural: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].plural : titleName,
-    }
+    return { name: column, title: titleName, plural: PLURAL_COLUMNS_MAP[titleName] }
   })
 }
 

@@ -14,6 +14,11 @@ import {
 import MinimizeIcon from '@material-ui/icons/Minimize'
 import CloseIcon from '@material-ui/icons/Close'
 
+import {
+  animateScroll as scroll,
+  scroller
+} from 'react-scroll'
+
 import { StoreContext } from '../../../store'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
@@ -112,10 +117,19 @@ const SummaryCards = props => {
     })
   )
 
+  const scrollTo = () => {
+    scroller.scrollTo('exploreDataContent', {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+      offset: -50,
+    })
+  }
+
   return (
     <>
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
-        <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })}>
+        <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })} onClick={scrollTo}>
           <CardHeader
             title={props.name}
             action={
