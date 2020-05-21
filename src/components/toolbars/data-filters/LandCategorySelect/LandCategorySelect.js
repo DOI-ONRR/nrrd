@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { LAND_CATEGORY } from '../../../../constants'
 
 import BaseDataFilterSelect from '../BaseDataFilterSelect'
+import BaseSelectInput from '../../../inputs/BaseSelectInput'
 
 const LandCategorySelect = ({ helperText, label, loadingMessage }) => (
   <BaseDataFilterSelect

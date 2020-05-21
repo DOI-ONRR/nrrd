@@ -76,7 +76,6 @@ const GlossaryTerm = ({ children, ...rest }) => {
       placement="top">
       <TermDisplay tabIndex='0' className={styles.term} {...rest} />
     </Tooltip>
-
   )
 }
 
