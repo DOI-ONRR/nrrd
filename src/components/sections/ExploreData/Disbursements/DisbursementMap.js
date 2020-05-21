@@ -22,7 +22,7 @@ import CONSTANTS from '../../../../js/constants'
 
 const DISBURSEMENT_QUERY = gql`
   query FiscalDisbursement($year: Int!, $period: String!, $location: String!) {
-    fiscal_disbursement_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location}}) {
+    disbursement_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location}}) {
       fiscal_year
       state_or_area
       sum
@@ -58,7 +58,7 @@ export default props => {
     mapData=d3.nest()
       .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.sum))
-      .entries(data.fiscal_disbursement_summary)
+      .entries(data.disbursement_summary)
       .map(d => [d.key, d.value])
   }
 
