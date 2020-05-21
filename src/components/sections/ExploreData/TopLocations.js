@@ -85,7 +85,6 @@ const TopLocations = ({ title, ...props }) => {
   const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
   const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
   const locations = ['State', 'Offshore', 'Native American']
-  console.debug(offshore)
   if (offshore !== 'Hide') {
     locations.push('Offshore')
   }
@@ -142,6 +141,14 @@ const TopLocations = ({ title, ...props }) => {
                       
                       r[1] = utils.formatToDollarInt(d.sum)
                       return r
+                    }
+                  }
+                  legendLabel={
+                    d => {
+                      if (d === 'Native American') {
+                        d = 'Native American lands'
+                      }
+                      return d
                     }
                   }
                   yLabel={dataSet}
