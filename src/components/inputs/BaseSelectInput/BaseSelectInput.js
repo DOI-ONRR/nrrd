@@ -37,10 +37,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const BaseSelectInput = ({ dataFilterKey, dataOptions, selectType, defaultOption, helperText, label, variant, ...props }) => {
-  // const { state } = useContext(DataFilterContext)
 
   // need to figure out a way to conditionally run queries for select that dont need to query
-  // 
+
+  // const { state } = useContext(DataFilterContext)
+
   // const { loading, error, data } = useQuery(DFQM.getQuery(dataFilterKey, state), DFQM.getVariables(state))
 
   // const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
