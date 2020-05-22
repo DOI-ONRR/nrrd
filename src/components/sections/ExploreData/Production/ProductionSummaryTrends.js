@@ -49,6 +49,7 @@ const ProductionSummaryTrends = props => {
   let periodData
   let fiscalData
   let highlightIndex = 0
+  let row
   let total = 0
 
   if (loading) {
@@ -94,7 +95,8 @@ const ProductionSummaryTrends = props => {
       x => x[0] === year
     )
 
-    total = data.fiscal_production_summary.length > 1 ? data.fiscal_production_summary[data.fiscal_production_summary.findIndex(x => x.fiscal_year === year)].sum : 0
+    row = data.fiscal_production_summary.length > 1 && data.fiscal_production_summary[data.fiscal_production_summary.findIndex(x => x.fiscal_year === year)]
+    total = row ? row.sum : 0
 
     return (
       <>
