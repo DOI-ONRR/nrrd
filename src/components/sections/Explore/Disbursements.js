@@ -12,12 +12,12 @@ const ExploreDisbursements = props => {
             to="/explore/#federal-disbursements"
             icon="data"
           >
-			      Disbursements trends
+			      Explore disbursements data
 		      </ExploreDataLink>
           <ExploreDataLink
 				  to="/query-data/?dataType=Disbursements"
 				  icon="filter">
-            Disbursements in detail
+            Query disbursements data
 			    </ExploreDataLink>
 		    </>
 		  }

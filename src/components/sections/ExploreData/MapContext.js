@@ -9,6 +9,8 @@ import {
   useMediaQuery
 } from '@material-ui/core'
 
+import { animateScroll as scroll } from 'react-scroll'
+
 import MapToolbar from './MapToolbar'
 import MapControls from './MapControls'
 import AddCardButton from './AddCardButton'
@@ -288,12 +290,20 @@ const MapContext = props => {
   // useEventListener('scroll', handler)
 
   useEffect(() => {
+    scrollToTop()
     window.addEventListener('scroll', handler)
 
     return () => {
       window.removeEventListener('scroll', handler)
     }
   }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
+
+  const scrollToTop = () => {
+    scroll.scrollToTop({
+      duration: 0,
+      delay: 0,
+    })
+  }
 
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()

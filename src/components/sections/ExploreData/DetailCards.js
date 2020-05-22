@@ -135,6 +135,23 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1.5),
     filter: 'invert(1)',
   },
+  cardContentContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    '& > div:nth-child(1)': {
+      minHeight: 175,
+    },
+    '& > div:nth-child(2)': {
+      minHeight: 600,
+    },
+    '& > div:nth-child(3)': {
+      minHeight: 575,
+    },
+    '& > div:nth-child(4)': {
+      minHeight: 200,
+    },
+  }
 }))
 
 const nonStateOrCountyCards = [
@@ -310,7 +327,7 @@ const DetailCards = props => {
                 classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
                 disableTypography
               />
-              <CardContent className="card-content-container">
+              <CardContent className={classes.cardContentContainer}>
                 {children}
               </CardContent>
               <CardActions></CardActions>

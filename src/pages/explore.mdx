@@ -31,7 +31,7 @@ tags:
                   menuItems={[
                     'Compare revenue',
                     'Nationwide revenue summary',
-                    'Top locations'
+                    'Top nationwide locations'
                   ]} />
                 <Container>
                   <Grid container>
@@ -87,7 +87,13 @@ tags:
           <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
             <Box name="exploreDataContent" className="explore-data-content">
               <CompareContext>
-                <PageSubMenu />
+                <PageSubMenu
+                  menuItems={[
+                    'Compare disbursements',
+                    'Nationwide disbursements summary',
+                    'Top nationwide recipients'
+                  ]}
+                 />
                 <Container>
                   <Grid container>
                     <Grid item md={12}>
@@ -140,6 +146,12 @@ tags:
           <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
             <Box name="exploreDataContent" className="explore-data-content">
               <CompareContext>
+                <PageSubMenu
+                  menuItems={[
+                    'Compare production',
+                    'Top nationwide locations'
+                  ]}
+                 />
                 <Container>
                   <Grid container>
                     <Grid item md={12}>
@@ -152,7 +164,6 @@ tags:
                     </Grid>
                   </Grid>
                 </Container>
-                <PageSubMenu />
                 <Container id="compare-oil-production">
                   <Grid container>
                     <Grid item md={12}>

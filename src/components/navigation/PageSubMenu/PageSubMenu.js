@@ -65,7 +65,7 @@ const PageSubMenu = ({ menuItems, ...props }) => {
 
   useLayoutEffect(() => {
     const timer = setTimeout(() => {
-      createSubMenu()
+      // createSubMenu()
     }, 1000)
 
     return () => clearTimeout(timer)

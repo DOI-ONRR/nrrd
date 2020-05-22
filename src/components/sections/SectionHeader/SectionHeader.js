@@ -39,7 +39,7 @@ const SectionHeader = props => {
           <Box component="span" className={classes.titleLink}>
             <ExploreDataLink
               to={`/query-data?dataType=${ props.linkLabel || props.title }`}
-              icon="filter">Filter {props.linkLabel || props.title} data</ExploreDataLink>
+              icon="filter">Query {props.linkLabel || props.title} data</ExploreDataLink>
           </Box>
         }
       </Box>

@@ -117,6 +117,8 @@ const SummaryCards = props => {
     })
   )
 
+  console.log('children: ', children)
+
   const scrollTo = () => {
     scroller.scrollTo('exploreDataContent', {
       duration: 800,
