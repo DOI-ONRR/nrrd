@@ -23,7 +23,7 @@ const ExploreRevenue = props => {
         </>
       }
       contentCenter={
-        <ExploreDataLink to="/how-revenue-works/#Revenue" icon="works">
+        <ExploreDataLink to="/how-revenue-works#understanding-federal-revenues" icon="works">
           How revenue works
         </ExploreDataLink>
       }
