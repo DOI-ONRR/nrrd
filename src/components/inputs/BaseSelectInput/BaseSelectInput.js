@@ -134,7 +134,7 @@ const BaseSingleSelectInput = ({ dataFilterKey, data, defaultOption, label, help
   const { state, updateDataFilter } = useContext(DataFilterContext)
 
   const findSelectedOption = data && data.find(item => item === defaultOption)
-  console.log('findSelectedOption: ', findSelectedOption)
+
   const [selectedOption, setSelectedOption] = useState(findSelectedOption)
 
   const handleChange = event => {
@@ -158,8 +158,6 @@ const BaseSingleSelectInput = ({ dataFilterKey, data, defaultOption, label, help
   }, [data])
 
   const handleClearAll = () => updateDataFilter({ [dataFilterKey]: ZERO_OPTIONS })
-
-  console.log('state of thangs: ', state)
 
   return (
     <FormControl variant={variant} className={classes.formControl} disabled={(data && (data.length === 0 || data.length === 1))}>
