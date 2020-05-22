@@ -87,7 +87,7 @@ const DisbursementSources = props => {
     if (chartData.DisbursementSourceSummary.length > 1) {
       return (
         <Box className={classes.root}>
-          <Box component="h4" fontWeight="bold">Disbursement by source</Box>
+          <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box>
             <CircleChart
               data={chartData.DisbursementSourceSummary}

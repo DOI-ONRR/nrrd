@@ -139,9 +139,12 @@ const main = async () => {
           let [unit, unit_abbr]= await getUnit(row)
 
           row = await NativeAmerican(row)
+          console.debug("Row: ", row)
   	  const location = await addLocation(row, location_lookup)
+          console.debug("location: ", location)
 	  const location_id = location[0]
 	  const commodity = await addCommodity(row, commodity_lookup)
+          console.debug("commodity: ", commodity)
 	  const commodity_id = commodity[0]
 	  const period = await addPeriod(row, period_lookup)
 	  const period_id = period[0]
@@ -293,7 +296,9 @@ const getUnit = async (row) => {
       if(tmp.match(/Prod Vol/) ) {
         let tmp1=tmp.replace(' Prod Vol ','|')
         let a=tmp1.split('|')
+        a[1] = a[1].replace('(ton)', '(tons)')
         unit_abbr = a[1].replace(/[\(/)]/g,'')
+        
         commodity = a[0]
         unit = unit_abbr
         product = a[0]+' ('+unit_abbr+')'
@@ -303,6 +308,7 @@ const getUnit = async (row) => {
       tmp = row['Product'] || ''
       if(tmp.match(/\(/)) {
         let a=tmp.split('(')
+        a[1] = a[1].replace('(ton)', '(tons)')
         unit_abbr = a[1].replace(/[\(/)]/g,'')      
         commodity = a[0]
         unit = unit_abbr
@@ -311,10 +317,12 @@ const getUnit = async (row) => {
       break
     default:
       if(row['Commodity']) {
-        commodity=row['Commodity']
-        unit='dollars'
-        unit_abbr='$'
-        product=commodity +' ('+unit+')'
+        /*
+          commodity=row['Commodity']
+          unit='dollars'
+          unit_abbr='$'
+          product=commodity +' ('+unit+')'
+        */
       }
       break
 

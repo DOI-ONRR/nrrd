@@ -89,7 +89,7 @@ const DisbursementRecipients = props => {
 
     if (chartData.DisbursementRecipientSummary.length > 1) {
       return (<Box className={classes.root}>
-        <Box component="h4" fontWeight="bold">Disbursements by recipients</Box>
+        <Box component="h4" fontWeight="bold">Disbursements by recipient</Box>
         <Box>
           <CircleChart
             data={chartData.DisbursementRecipientSummary}
