@@ -9,10 +9,10 @@ const ExploreRevenue = props => {
       contentLeft={
         <>
           <ExploreDataLink to="/explore/#revenue" icon="data">
-            Revenue trends
+            Explore revenue data
           </ExploreDataLink>
           <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
-            Revenue in detail
+            Query revenue data
           </ExploreDataLink>
           {/* <ExploreDataLink
             to="/how-revenue-works/federal-revenue-by-company/2018/"

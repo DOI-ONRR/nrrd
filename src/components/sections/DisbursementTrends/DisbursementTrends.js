@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const DisbursementTrends = () => {
+const DisbursementTrends = props => {
   const classes = useStyles()
   const { loading, error, data } = useQuery(APOLLO_QUERY)
 
@@ -137,7 +137,7 @@ const DisbursementTrends = () => {
     return (
       <Box component="section" className={classes.root}>
         <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
-          <Box component="h3" m={0} color="primary.dark">Disbursement trends</Box>
+          <Box component="h3" m={0} color="primary.dark">{props.title}</Box>
         </Box>
         <Box component="p" color="text.primary">
          Includes disbursements through {longCurrentYearText}
