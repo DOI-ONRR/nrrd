@@ -1,4 +1,4 @@
-
+a
 
 cf target -o doi-onrr -s dev  # unnecessary login will prompt you for org ans space
 # Login
@@ -23,7 +23,8 @@ cf restage hasura-onrr
 # 2) sandbox
 # 3) prod
 
-export DB_ENV=sandbox || onrr
+# sandbox or dev
+export DB_ENV=sandbox && export DB_PORT=7222|| export DB_ENV=onrr && export DB_PORT=7223
 
 #create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.  
 
@@ -33,16 +34,16 @@ dbname=$(cf curl /v2/apps/$myapp_guid/env | jq -r '.system_env_json.VCAP_SERVICE
 
 
 tunnel=$(cf curl /v2/apps/$myapp_guid/env | jq -r '[.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .host, .port] | join(":")')
-cf ssh -N -L 7222:$tunnel hasura-$DB_ENV
+cf ssh -N -L $DB_PORT:$tunnel hasura-$DB_ENV
 
 
 #Leave ssh tunnel running open new terminal
 
-export DB_ENV=sandbox
+aexport DB_ENV=sandbox
 myapp_guid=$(cf app --guid hasura-$DB_ENV)
 creds=$(cf curl /v2/apps/$myapp_guid/env | jq -r '[.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .username, .password] | join(":")')
 dbname=$(cf curl /v2/apps/$myapp_guid/env | jq -r '.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .db_name')
-psql postgres://$creds@localhost:7222/$dbname
+psql postgres://$creds@localhost:$DB_PORT/$dbname
 
 
 echo $creds   # username:password
@@ -77,7 +78,7 @@ cf env $DB_ENV
 # port 7223 has port to psql-onrr (target)
 
 
-pg_dump postgres://$creds@localhost:7222/$dbname -F t -f psql-sandbox.03122020.pg
+pg_dump postgres://$creds@localhost:$DB_PORT/$dbname -F t -f psql-sandbox.`date +'%F_%T'`.pg
 
 #drop existing db I'm not sure this is required in all cases
 psql postgres://$creds@localhost:7223/$dbname
