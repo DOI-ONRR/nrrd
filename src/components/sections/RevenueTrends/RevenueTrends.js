@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const RevenueTrends = () => {
+const RevenueTrends = props => {
   const classes = useStyles()
   const { loading, error, data } = useQuery(APOLLO_QUERY)
 
@@ -98,7 +98,7 @@ const RevenueTrends = () => {
     return (
       <Box component="section" className={classes.root}>
         <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
-          <Box component="h3" m={0} color="primary.dark">Revenue trends</Box>
+          <Box component="h3" m={0} color="primary.dark">{props.title}</Box>
         </Box>
         <Box component="p" color="text.primary">
           Includes federal and Native American revenue through {longCurrentYearText}

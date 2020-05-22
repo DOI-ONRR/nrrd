@@ -9,10 +9,10 @@ const ExploreProduction = props => {
       contentLeft={
         <>
           <ExploreDataLink to="/explore/?dataType=Production" icon="data">
-            Production trends on federal lands and waters
+            Explore production data
           </ExploreDataLink>
           <ExploreDataLink to="/query-data/?dataType=Production" icon="filter">
-            Production in detail
+            Query production data
           </ExploreDataLink>
           {/* <ExploreDataLink
             to="/how-revenue-works/native-american-production/#production-on-native-american-land"
