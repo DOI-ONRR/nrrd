@@ -85,11 +85,12 @@ const RevenueDetailTypes = props => {
                     return r
                   }
                 } />
-              <Box mt={3}>
-                <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
-                    Query revenue by type
+            {/*  <Box mt={3}>
+                 <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
+                Query revenue by type
                 </ExploreDataLink>
-              </Box>
+                </Box>
+             */}
             </Box>
           </Box>
         )

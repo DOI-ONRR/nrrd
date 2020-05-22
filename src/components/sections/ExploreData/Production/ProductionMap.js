@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-
+import * as d3 from 'd3'
 import Map from '../../../data-viz/Map'
 
 import { StoreContext } from '../../../../store'
@@ -34,6 +34,7 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
+    console.debug("WTF", data,'WTH', year, commodity)
     mapData = data.fiscal_production_summary.map((item, i) => [
       item.state_or_area,
       item.sum
@@ -56,6 +57,15 @@ export default props => {
           onClick={props.onClick}
           handleMapSnackbar={props.handleMapSnackbar}
           handleMapSnackbarClose={props.handleMapSnackbarClose}
+          mapFormat={ d => {
+            if (isNaN(d)) {
+              return ''
+            }
+            else {
+              return d3.format(',.0f')(d)
+            }
+     }
+              }
         />
         </>
       }

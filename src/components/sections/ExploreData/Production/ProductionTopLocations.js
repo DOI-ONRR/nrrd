@@ -24,8 +24,10 @@ import {
 import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
-  query FiscalProduction($year: Int!, $location: String!, $commodity: String!) {
-    fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}, order_by: {sum: desc}) {
+  query FiscalProduction($year: Int!, $location: String!, $commodity: String!, $state: String!) {
+    fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}, state: {_eq: $state}}, order_by: {sum: desc}) {
+      location_name
+      unit_abbr
       fiscal_year
       state_or_area
       sum
@@ -91,12 +93,14 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   let location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
+  let state=undefined
   console.debug('props: ', props)
   if (props.abbr && props.abbr.length === 2) {
     location = 'County'
+    state = props.abbr
   }
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location, commodity } })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location, commodity, state } })
   const maxLegendWidth = props.maxLegendWidth
   if (loading) {
     return (
@@ -120,16 +124,21 @@ const ProductionTopLocations = ({ title, ...props }) => {
           <CircleChart
             data={chartData}
             maxLegendWidth={maxLegendWidth}
-            xAxis='state_or_area'
+            xAxis='location_name'
             yAxis='sum'
             format={ d => utils.formatToCommaInt(d) }
             circleLabel={
               d => {
                 // console.debug('circleLABLE: ', d)
-                const r = []
-                r[0] = d.state_or_area
-                r[1] = utils.formatToCommaInt(d.sum) + ' bbl'
-                return r
+                if(location === 'State') {
+                  const r = []
+                  r[0] = d.location_name
+                  r[1] = utils.formatToCommaInt(d.sum) + ' ' + d.unit_abbr
+                  return r
+                }
+                else {
+                  return ['', '']
+                }
               }
             }
             xLabel={location}

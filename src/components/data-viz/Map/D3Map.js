@@ -18,8 +18,13 @@ export default class d3Map {
     maxColor,
     mapZ,
     mapX,
-    mapY
+    mapY,
+    options
   ) {
+
+    if (options.mapFormat) {
+      this.format = options.mapFormat
+    }
     this.node = node
     this.us = us
     this.mapFeatures = mapFeatures
@@ -54,7 +59,7 @@ export default class d3Map {
       const svg = this._chart
       const zoom = this.zoom
       const path = this.path
-      console.debug('Zoom to :', state)
+      // console.debug('Zoom to :', state)
       svg.selectAll('path')
         .attr('fill-opacity', 0)
       svg.selectAll(`.${ state }`)
@@ -69,7 +74,7 @@ export default class d3Map {
       const height = this.height
       // const width = x1 - x0
       // const height = y1 - y0
-      console.debug('x0: ', x0, 'y0: ', y0, 'x1: ', x1, 'y1: ', y1, 'width: ', width, 'height: ', height)
+      // console.debug('x0: ', x0, 'y0: ', y0, 'x1: ', x1, 'y1: ', y1, 'width: ', width, 'height: ', height)
       const transform = d3.zoomIdentity
         .translate(width / 2, height / 2)
         .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
@@ -108,6 +113,16 @@ export default class d3Map {
     }
   }
 
+
+  format (d) {
+      if (isNaN(d)) {
+        return ''
+      }
+      else {
+        return '$' + d3.format(',.0f')(d)
+      }
+  }
+    
   chart () {
     let _chart
     const self = this
@@ -131,7 +146,7 @@ export default class d3Map {
     const _zoom = this._zoom
 
     if (node.children[1].children[0]) {
-      this._chart = d3.select(node.children[1].children[0])
+       this._chart = d3.select(node.children[1].children[0])
       this._chart.selectAll('path').remove()
       _chart = this._chart
     }
@@ -198,13 +213,9 @@ export default class d3Map {
     }
 
     this.color = color
-    const format = d => {
-      if (isNaN(d)) {
-        return ''
-      }
-      else {
-        return '$' + d3.format(',.0f')(d)
-      }
+    const format = this.format
+    const _format = d => {
+      format(d)
     }
 
     const zoom = d3
@@ -215,8 +226,8 @@ export default class d3Map {
 
     const g = _chart.append('g')
     _chart.call(zoom)
-    console.debug('US: ', us)
-    console.debug('objects:', us.objects[mapFeatures])
+    // console.debug('US: ', us)
+    // console.debug('objects:', us.objects[mapFeatures])
     g.selectAll('path')
       .data(topojson.feature(us, us.objects[mapFeatures]).features)
       .join('path')
