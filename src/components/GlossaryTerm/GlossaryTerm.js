@@ -72,11 +72,12 @@ const GlossaryTerm = ({ children, ...rest }) => {
       classes={{ tooltip: styles.tooltip }}
       enterDelay={100}
       leaveDelay={250}
+      enterTouchDelay={100}
+      leaveTouchDelay={500}
       arrow
       placement="top">
       <TermDisplay tabIndex='0' className={styles.term} {...rest} />
     </Tooltip>
-
   )
 }
 

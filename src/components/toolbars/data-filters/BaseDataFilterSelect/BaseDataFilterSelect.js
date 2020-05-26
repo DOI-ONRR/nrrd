@@ -91,6 +91,7 @@ BaseDataFilterSelect.defaultProps = {
 }
 
 const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText }) => {
+  console.log('dataFilterKey, data: ', dataFilterKey, data)
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
 

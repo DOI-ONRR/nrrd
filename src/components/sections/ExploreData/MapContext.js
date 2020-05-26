@@ -199,7 +199,7 @@ const useStyles = makeStyles(theme => ({
   },
   nonStateCardsContainer: {
     position: 'absolute',
-    top: -1,
+    top: 12,
     right: 65,
     width: 50,
     zIndex: 250,
