@@ -93,19 +93,19 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  let location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
-  let state
+  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
+  const state = props.abbr
   console.debug('props: ', props)
-  if (props.abbr && props.abbr.length === 2) {
-    location = 'County'
-    state = props.abbr
-  }
+  // if (props.abbr && props.abbr.length === 2) {
+  //   location = 'County'
+  //   state = props.abbr
+  // }
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-
+  console.log('apollo query: ', year, location, commodity, state)
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location, commodity, state },
-      skip: props.state === CONSTANTS.NATIONWIDE_FEDERAL || props.state === CONSTANTS.NATIVE_AMERICAN
+      skip: props.state === CONSTANTS.NATIVE_AMERICAN
     })
 
   const maxLegendWidth = props.maxLegendWidth
