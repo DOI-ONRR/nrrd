@@ -9,6 +9,7 @@ import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import CONSTANTS from '../../../../js/constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -25,7 +26,7 @@ import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
   query FiscalProduction($year: Int!, $location: String!, $commodity: String!, $state: String!) {
-    fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}, state: {_eq: $state}}, order_by: {sum: desc}) {
+    fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", "Native American", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}, state: {_eq: $state}}, order_by: {sum: desc}) {
       location_name
       unit_abbr
       fiscal_year
@@ -93,14 +94,20 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   let location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
-  let state=undefined
+  let state
   console.debug('props: ', props)
   if (props.abbr && props.abbr.length === 2) {
     location = 'County'
     state = props.abbr
   }
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location, commodity, state } })
+
+  const { loading, error, data } = useQuery(APOLLO_QUERY,
+    {
+      variables: { year, location, commodity, state },
+      skip: props.state === CONSTANTS.NATIONWIDE_FEDERAL || props.state === CONSTANTS.NATIVE_AMERICAN
+    })
+
   const maxLegendWidth = props.maxLegendWidth
   if (loading) {
     return (
@@ -116,7 +123,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
 
   if (data) {
     chartData = data.fiscal_production_summary
-    console.debug("CHART DATA", chartData)
+    console.debug('CHART DATA', chartData)
     return (
       <Box className={classes.root}>
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
@@ -130,7 +137,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
             circleLabel={
               d => {
                 // console.debug('circleLABLE: ', d)
-                if(location === 'State') {
+                if (location === 'State') {
                   const r = []
                   r[0] = d.location_name
                   r[1] = utils.formatToCommaInt(d.sum) + ' ' + d.unit_abbr
@@ -151,7 +158,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
     )
   }
   else {
-    return null
+    return <Box className={classes.root}></Box>
   }
 }
 

@@ -4,8 +4,8 @@ import { useStaticQuery, graphql } from 'gatsby'
 // utility functions
 import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
+import { DataFilterContext } from '../../../stores/data-filter-store'
 
-// import { DataFilterContext } from '../../../stores/data-filter-store'
 // import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -138,18 +138,30 @@ const useStyles = makeStyles(theme => ({
   cardContentContainer: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    alignContent: 'stretch',
+    minHeight: 1500,
+    '& > div': {
+      // border: '2px solid deeppink',
+    },
     '& > div:nth-child(1)': {
       minHeight: 175,
+      flex: '0 0 auto',
+      alignSelf: 'auto',
     },
     '& > div:nth-child(2)': {
-      minHeight: 600,
+      flex: '2 0 165px',
+      alignSelf: 'auto',
     },
     '& > div:nth-child(3)': {
-      minHeight: 575,
+      flex: '2 0 auto',
+      alignSelf: 'auto',
     },
     '& > div:nth-child(4)': {
       minHeight: 200,
+      flex: '0 0 auto',
+      alignSelf: 'auto',
     },
   }
 }))
@@ -218,6 +230,7 @@ const DetailCards = props => {
   const classes = useStyles()
 
   const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: filterState } = useContext(DataFilterContext)
   const cards = pageState.cards
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
@@ -327,7 +340,7 @@ const DetailCards = props => {
                 classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
                 disableTypography
               />
-              <CardContent className={classes.cardContentContainer}>
+              <CardContent className={`${ classes.cardContentContainer } cardContent__${ filterState.dataType }`}>
                 {children}
               </CardContent>
               <CardActions></CardActions>

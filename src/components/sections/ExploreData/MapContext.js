@@ -92,7 +92,7 @@ const useStyles = makeStyles(theme => ({
     width: 310,
     position: 'absolute',
     right: 0,
-    bottom: 100,
+    bottom: 92,
     height: 'auto',
     minHeight: 335,
     zIndex: 99,
@@ -354,7 +354,7 @@ const MapContext = props => {
 
   // onLink
   const onLink = (state, x, y, k) => {
-    console.log('onLink state: ', state)
+    // console.log('onLink state: ', state)
     setMapK(k)
     setMapY(y)
     setMapX(x)

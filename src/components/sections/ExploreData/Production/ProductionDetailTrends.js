@@ -33,7 +33,6 @@ const APOLLO_QUERY = gql`
       fiscal_year
       state_or_area
       sum
-
     }
     # location total
     locationTotal:fiscal_production_summary(where: {state_or_area: {_eq: $state}, commodity: {_eq: $commodity} , fiscal_year: {_eq: $year}}) {
@@ -57,10 +56,8 @@ const ProductionDetailTrends = props => {
     (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, commodity: commodity,  period: CONSTANTS.FISCAL_YEAR, year: year }
+    variables: { state: stateAbbr, commodity: commodity, period: CONSTANTS.FISCAL_YEAR, year: year }
   })
-
-
 
   if (loading) return ''
 
@@ -104,35 +101,34 @@ const ProductionDetailTrends = props => {
     )
 
     locationTotalData = data.locationTotal
-    locData = locationTotalData.length > 0 ? locationTotalData.find(item => item.state_or_area === stateAbbr).sum : 0
+    locData = locationTotalData.length > 0 ? locationTotalData.map(item => item.sum).reduce((prev, next) => prev + next) : 0
   }
-  if (data && data.fiscal_production_summary &&  data.fiscal_production_summary.length > 0 ) {
-  return (
-    <>
-      <Box textAlign="center" className={classes.root} key={props.key}>
-        <Box component="h2" mt={0} mb={0}>{utils.formatToCommaInt(locData)}</Box>
-        <Box component="span" mb={4}>{year && <span>{dataSet} production</span>}</Box>
-        {sparkData.length > 1 && (
-          <Box mt={4}>
-            <Sparkline
-              data={sparkData}
-              highlightIndex={highlightIndex}
-            />
+  if (data && data.fiscal_production_summary && data.fiscal_production_summary.length > 0) {
+    return (
+      <>
+        <Box textAlign="center" className={classes.root} key={props.key}>
+          <Box component="h2" mt={0} mb={0}>{utils.formatToCommaInt(locData)}</Box>
+          <Box component="span" mb={4}>{year && <span>{dataSet} production</span>}</Box>
+          {sparkData.length > 1 && (
+            <Box mt={4}>
+              <Sparkline
+                data={sparkData}
+                highlightIndex={highlightIndex}
+              />
             Production trend ({sparkMin} - {sparkMax})
-          </Box>
-        )}
-      </Box>
-    </>
-  )
+            </Box>
+          )}
+        </Box>
+      </>
+    )
   }
   else {
     return (
       <>
         <Box textAlign="center" className={classes.root} key={props.key}>
-              <Box>{ name + ' has not produced any ' + commodity + ' since ' + sparkMin + '.'} </Box>
+          <Box>{ name + ' has not produced any ' + commodity + ' since ' + sparkMin + '.'} </Box>
         </Box>
       </>)
   }
-  
 }
 export default ProductionDetailTrends
