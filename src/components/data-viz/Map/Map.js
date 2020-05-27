@@ -94,6 +94,23 @@ const Map = props => {
   const { mapData, ...options } = props
   let map
 
+  // Ugly hack to get around not being able to merge AKR Alaska Offshore Region
+  const planningAreas = ['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK']
+  const AKR = mapData.filter((d,i) =>{
+    console.debug("WTH:",d, i)
+    if( d[0] === 'AKR' ){
+      return d[1]
+    }
+    //    }
+
+  })
+  if(AKR && AKR.length > 0) {
+    for (let ii = 0; ii < planningAreas.length; ii++) {
+      mapData.push([planningAreas[ii], AKR[0][1]])
+      //    console.debug('AKR: ', planningAreas, ' : ', AKR[0])
+    }
+  }
+
   useEffect(() => {
     const us = mapJsonObject
     //    const offshore = mapJsonObject.offshore

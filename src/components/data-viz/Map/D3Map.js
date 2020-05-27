@@ -224,16 +224,67 @@ export default class d3Map {
       .on('zoom', zoomed)
       .on('end', ended)
 
+    const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
+    
     const g = _chart.append('g')
     _chart.call(zoom)
-    console.debug('US data: ', data)
-    console.debug('objects:', us.objects[mapFeatures], mapFeatures)
+    // console.debug('US data: ', data)
+    // console.debug('objects:', us.objects[mapFeatures], mapFeatures)
     g.selectAll('path')
       .data(topojson.feature(us, us.objects[mapFeatures]).features)
       .join('path')
       .attr('class', d => (d.properties.state) ? d.properties.state : d.id)
       .attr('fill', d => color(data.get(d.id)))
       .attr('fill-opacity', 0.9)
+      .attr('d', path)
+      .attr('stroke', d => {
+        if( AKR.has(d.id)) {
+          return  color(data.get(d.id))
+        }
+        else {
+          return '#CACBCC'
+        }}
+           )
+      .attr('vector-effect', 'non-scaling-stroke')
+      .on('click', (d, i) => {
+        
+        onClick(d, i)
+      })
+      .on('mouseover', function (d, i) {
+        d3.select(this)
+          .style('fill-opacity', 0.7)
+	  .style('cursor', 'pointer')
+      })
+      .on('mouseout', (d, i) => {
+        _chart.selectAll('path')
+          .style('fill-opacity', 0.9)
+      })
+      .append('title')
+      .text(d =>{
+        if(AKR.has(d.id)) {
+          return `${ 'Alaskan Offshore Region' }  ${ format(data.get(d.id)) }`
+        }
+        else {
+        return  `${ d.properties.name }  ${ format(data.get(d.id)) }`
+        }
+      }).transition().duration(3000)
+    
+    _chart.append('path')
+      .datum(topojson.mesh(us, us.objects[mapFeatures], (a, b) => a !== b))
+      .attr('fill', 'none')
+      .attr('d', path)
+
+    //    const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
+/*    const AKR = d3.set([ 'NAV', 'ALB'])
+    let v=data.get('AKR')
+    console.debug('v                         :',v)
+    g.append('path')
+      .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function(d) {
+        return AKR.has(d.id) })))
+      .attr('fill', 'darkblue') // d => color(data.get('AKR')))
+*/
+    
+      /*.attr('fill-opacity', 0.9)
       .attr('d', path)
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
@@ -250,14 +301,8 @@ export default class d3Map {
           .style('fill-opacity', 0.9)
       })
       .append('title')
-      .text(d => `${ d.properties.name }  ${ format(data.get(d.id)) }`).transition().duration(3000)
-
-    _chart.append('path')
-      .datum(topojson.mesh(us, us.objects[mapFeatures], (a, b) => a !== b))
-      .attr('fill', 'none')
-      .attr('d', path)
-
-    
+      .text(d => `Alaska Offshore Region  ${ format(data.get('AKR')) }`).transition().duration(3000)
+*/
     const POR = d3.set(['WAO', 'NOC','CEC', 'SOC'])
     
     g.append("path")
@@ -307,7 +352,7 @@ export default class d3Map {
       .append('title')
       .text(d => `Gulf of Mexico Offshore Region  ${ format(data.get('GMR')) }`).transition().duration(3000)
 
-    const AOR = d3.set(['NOA', 'MDA', 'SOA'])
+    const AOR = d3.set(['NOA', 'MDA', 'SOA', 'FLS'])
     g.append("path")
       .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function(d) { return AOR.has(d.id) })))
       .attr('fill', d => color(data.get('AOR')))
@@ -330,28 +375,6 @@ export default class d3Map {
       .append('title')
       .text(d => `Atlantic Offshore Region  ${ format(data.get('AOR')) }`).transition().duration(3000)
 
-    const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
-    g.append('path')
-      .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function(d) { return AKR.has(d.id) })))
-      .attr('fill', 'darkblue') // d => color(data.get('AKR')))
-      .attr('fill-opacity', 0.9)
-      .attr('d', path)
-      .attr('stroke', '#CACBCC')
-      .attr('vector-effect', 'non-scaling-stroke')
-      .on('click', (d, i) => {
-        onClick(d, i)
-      })
-      .on('mouseover', function (d, i) {
-        d3.select(this)
-          .style('fill-opacity', 0.7)
-	  .style('cursor', 'pointer')
-      })
-      .on('mouseout', (d, i) => {
-        _chart.selectAll('path')
-          .style('fill-opacity', 0.9)
-      })
-      .append('title')
-      .text(d => `Alaska Offshore Region  ${ format(data.get('AKR')) }`).transition().duration(3000)
 
 
     
