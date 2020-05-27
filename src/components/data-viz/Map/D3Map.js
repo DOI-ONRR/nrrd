@@ -247,8 +247,11 @@ export default class d3Map {
            )
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        
-        onClick(d, i)
+        if( AKR.has(d.id)) {
+          //do nothing
+        } else {
+          onClick(d, i)
+        }
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
@@ -315,7 +318,7 @@ export default class d3Map {
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        onClick(d, i)
+        //onClick(d, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
@@ -338,7 +341,7 @@ export default class d3Map {
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        onClick(d, i)
+        //onClick(d, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
@@ -361,7 +364,7 @@ export default class d3Map {
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        onClick(d, i)
+        //onClick(d, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
