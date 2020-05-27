@@ -1,9 +1,9 @@
-CREATE OR REPLACE VIEW "public"."revenue_commodity_summary" AS 
+
+
+
+-- CREATE OR REPLACE VIEW "public"."revenue_commodity_summary" AS 
 ( SELECT
-        CASE
-            WHEN ((location.land_category)::text = 'Offshore'::text) THEN location.offshore_planning_area_code
-            ELSE location.state
-        END AS state_or_area,
+       fips_code AS state_or_area,
     period.fiscal_year,
     commodity.commodity,
     sum(revenue.revenue) AS total
@@ -11,23 +11,12 @@ CREATE OR REPLACE VIEW "public"."revenue_commodity_summary" AS
      JOIN location USING (location_id))
      JOIN period USING (period_id))
      JOIN commodity USING (commodity_id))
-  WHERE ((period.period)::text = 'Fiscal Year'::text)
-  GROUP BY
-        CASE
-            WHEN ((location.land_category)::text = 'Offshore'::text) THEN location.offshore_planning_area_code
-            ELSE location.state
-        END, period.fiscal_year, commodity.commodity
-  ORDER BY period.fiscal_year,
-        CASE
-            WHEN ((location.land_category)::text = 'Offshore'::text) THEN location.offshore_planning_area_code
-            ELSE location.state
-        END, (sum(revenue.revenue)) DESC)
+  WHERE ((period.period)::text = 'Fiscal Year'::text) and ((location.region_type)::text = 'Offshore'::text)
+  GROUP BY fips_code, period.fiscal_year, commodity.commodity
+  ORDER BY period.fiscal_year, (sum(revenue.revenue)) DESC)
 UNION
 ( SELECT
-        CASE
-            WHEN ((location.land_category)::text = 'Offshore'::text) THEN location.offshore_planning_area_code
-            ELSE location.fips_code
-        END AS state_or_area,
+       state AS state_or_area,
     period.fiscal_year,
     commodity.commodity,
     sum(revenue.revenue) AS total
@@ -35,17 +24,24 @@ UNION
      JOIN location USING (location_id))
      JOIN period USING (period_id))
      JOIN commodity USING (commodity_id))
-  WHERE ((period.period)::text = 'Fiscal Year'::text)
-  GROUP BY
-        CASE
-            WHEN ((location.land_category)::text = 'Offshore'::text) THEN location.offshore_planning_area_code
-            ELSE location.fips_code
-        END, period.fiscal_year, commodity.commodity
-  ORDER BY period.fiscal_year,
-        CASE
-            WHEN ((location.land_category)::text = 'Offshore'::text) THEN location.offshore_planning_area_code
-            ELSE location.fips_code
-        END, (sum(revenue.revenue)) DESC)
+  WHERE ((period.period)::text = 'Fiscal Year'::text) and ((location.region_type)::text = 'County'::text)
+  GROUP BY state, period.fiscal_year, commodity.commodity
+  ORDER BY period.fiscal_year, (sum(revenue.revenue)) DESC)
+UNION
+
+
+( SELECT
+        location.fips_code AS state_or_area,
+    period.fiscal_year,
+    commodity.commodity,
+    sum(revenue.revenue) AS total
+   FROM (((revenue
+     JOIN location USING (location_id))
+     JOIN period USING (period_id))
+     JOIN commodity USING (commodity_id))
+  WHERE ((period.period)::text = 'Fiscal Year'::text)and ((location.region_type)::text = 'County'::text)
+  GROUP BY  location.fips_code, period.fiscal_year, commodity.commodity
+  ORDER BY period.fiscal_year, (sum(revenue.revenue)) DESC)
 UNION
 ( SELECT 'Nationwide Federal'::text AS state_or_area,
     period.fiscal_year,
@@ -70,3 +66,9 @@ UNION
   WHERE (((period.period)::text = 'Fiscal Year'::text) AND ((location.land_class)::text = 'Native American'::text))
   GROUP BY 'Native American'::text, period.fiscal_year, commodity.commodity
   ORDER BY period.fiscal_year, 'Native American'::text, (sum(revenue.revenue)) DESC);
+
+
+
+
+
+
