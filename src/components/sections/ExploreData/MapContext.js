@@ -9,6 +9,8 @@ import {
   useMediaQuery
 } from '@material-ui/core'
 
+import { animateScroll as scroll } from 'react-scroll'
+
 import MapToolbar from './MapToolbar'
 import MapControls from './MapControls'
 import AddCardButton from './AddCardButton'
@@ -90,7 +92,7 @@ const useStyles = makeStyles(theme => ({
     width: 310,
     position: 'absolute',
     right: 0,
-    bottom: 100,
+    bottom: 92,
     height: 'auto',
     minHeight: 335,
     zIndex: 99,
@@ -197,7 +199,7 @@ const useStyles = makeStyles(theme => ({
   },
   nonStateCardsContainer: {
     position: 'absolute',
-    top: -1,
+    top: 12,
     right: 65,
     width: 50,
     zIndex: 250,
@@ -288,12 +290,20 @@ const MapContext = props => {
   // useEventListener('scroll', handler)
 
   useEffect(() => {
+    scrollToTop()
     window.addEventListener('scroll', handler)
 
     return () => {
       window.removeEventListener('scroll', handler)
     }
   }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
+
+  const scrollToTop = () => {
+    scroll.scrollToTop({
+      duration: 0,
+      delay: 0,
+    })
+  }
 
   const [mapX, setMapX] = useState()
   const [mapY, setMapY] = useState()
@@ -344,7 +354,7 @@ const MapContext = props => {
 
   // onLink
   const onLink = (state, x, y, k) => {
-    console.log('onLink state: ', state)
+    // console.log('onLink state: ', state)
     setMapK(k)
     setMapY(y)
     setMapX(x)

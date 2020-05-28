@@ -116,10 +116,9 @@ const DisbursementsOverTime = props => {
         .rollup(v => d3.sum(v, i => i.sum))
         .entries(data.disbursement_summary.filter(row => row.state_or_area === yData.abbr)).map(item => item.value)
     )])
-    console.debug("sums", sums)
-     console.debug(sums, years)
-     chartData = [years, ...sums]
-
+    console.debug('sums', sums)
+    console.debug(sums, years)
+    chartData = [years, ...sums]
 
     return (
       <Container id={utils.formatToSlug(title)}>
@@ -131,13 +130,12 @@ const DisbursementsOverTime = props => {
         <Grid item md={12}>
           <LineChart
             data={chartData}
-            chipLabels={cards}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = utils.formatToDollarInt(d)
+                r[0] = `${ cards[i].name }: ${ utils.formatToDollarInt(d) }`
                 return r
               }
             } />

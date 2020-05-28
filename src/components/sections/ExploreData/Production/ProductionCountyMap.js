@@ -60,6 +60,8 @@ const ProductionCountyMap = props => {
   const onZoomEnd = event => {
     console.debug('Event : ', event)
   }
+  const state = props.state
+  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -78,16 +80,20 @@ const ProductionCountyMap = props => {
     <>
       {mapData &&
        <Box className={classes.root}>
-         <Box component="h4" fontWeight="bold" mb={2}>Production by county</Box>
-         <Map
-           key={`production_county_map_${ props.abbr }`}
-           mapFeatures={mapFeatures}
-           mapJsonObject={mapCounties}
-           mapData={mapData}
-           minColor={props.minColor}
-           maxColor={props.maxColor}
-           zoomTo={props.abbr}
-         />
+         {!showCountyContent &&
+         <>
+           <Box component="h4" fontWeight="bold" mb={2}>Production by county</Box>
+           <Map
+             key={`production_county_map_${ props.abbr }`}
+             mapFeatures={mapFeatures}
+             mapJsonObject={mapCounties}
+             mapData={mapData}
+             minColor={props.minColor}
+             maxColor={props.maxColor}
+             zoomTo={props.abbr}
+           />
+         </>
+         }
        </Box>
       }
     </>

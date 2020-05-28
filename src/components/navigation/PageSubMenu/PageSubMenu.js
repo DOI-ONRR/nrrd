@@ -1,9 +1,15 @@
 import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 
+import {
+  animateScroll as scroll,
+  scroller,
+  Link
+} from 'react-scroll'
+
 import { StickyWrapper } from '../../utils/StickyWrapper'
 import useEventListener from '../../../js/use-event-listener'
 import utils from '../../../js/utils'
-import Link from '../../Link'
+// import Link from '../../Link'
 
 import {
   Box,
@@ -38,10 +44,13 @@ const useStyles = makeStyles(theme => ({
       border: 'none',
       background: 'none',
     },
-    // '& li.active': {
-    //   borderBottom: `2px solid ${ theme.palette.links.default }`,
-    //   background: theme.palette.grey[100],
-    // },
+    '& li a.active': {
+      borderBottom: `2px solid ${ theme.palette.links.default }`,
+      background: theme.palette.grey[100],
+    },
+  },
+  subMenuLink: {
+    color: theme.palette.links.default,
   },
   activeLink: {
     '&:first-child': {
@@ -58,18 +67,10 @@ const PageSubMenu = ({ menuItems, ...props }) => {
   const classes = useStyles()
 
   const [subMenu, setSubMenu] = useState({
-    scrollOffset: parseInt(props.scrollOffset) || 250,
+    scrollOffset: parseInt(props.scrollOffset) || -150,
     items: menuItems || [],
     mobileActive: false
   })
-
-  useLayoutEffect(() => {
-    const timer = setTimeout(() => {
-      createSubMenu()
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
 
   // handler
   const handler = useCallback(() => {
@@ -78,11 +79,10 @@ const PageSubMenu = ({ menuItems, ...props }) => {
     if (subMenuLinks) {
       handleScroll(subMenuLinks)
     }
-  }, [setSubMenu])
+  }, [subMenu])
 
   useEventListener('scroll', handler)
 
-  // handleScroll
   const handleScroll = subMenuLinks => {
     const fromTop = window.scrollY
 
@@ -105,18 +105,20 @@ const PageSubMenu = ({ menuItems, ...props }) => {
     })
   }
 
-  // create sub menu
-  const createSubMenu = () => {
-    const mainElem = document.getElementsByTagName('main')
+  const scrollTo = element => {
+    scroller.scrollTo(element, {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+      offset: -150
+    })
+  }
 
-    const subMenuItems = []
-    const h3Items = mainElem && Array.from(mainElem[0].querySelectorAll('h3'))
-    h3Items.forEach(item => subMenuItems.push(item.innerHTML))
-
-    setSubMenu({
-      ...subMenu,
-      items: subMenuItems,
-      mobileActive: document.documentElement.clientWidth <= 767
+  const scrollToTop = () => {
+    scroll.scrollToTop({
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
     })
   }
 
@@ -127,12 +129,22 @@ const PageSubMenu = ({ menuItems, ...props }) => {
           <Container maxWidth="lg">
             <MenuList id="page-scrollto-subnav">
               <MenuItem key={0}>
-                <Link href="/explore#" title="Top">
-                      Top
-                </Link>
+                <a className={classes.subMenuLink} title="Top" onClick={scrollToTop}>
+                  Top
+                </a>
               </MenuItem>
               { subMenu.items &&
-                    subMenu.items.map((item, i) => <MenuItem key={i + 1}><Link href={`/explore#${ utils.formatToSlug(item) }`} title={item}>{item}</Link></MenuItem>)
+                subMenu.items.map((item, i) =>
+                  <MenuItem key={i + 1}>
+                    <a
+                      href={`#${ utils.formatToSlug(item) }`}
+                      onClick={() => scrollTo(utils.formatToSlug(item))}
+                      className={classes.subMenuLink}
+                      title={item}>
+                      {item}
+                    </a>
+                  </MenuItem>
+                )
               }
             </MenuList>
           </Container>

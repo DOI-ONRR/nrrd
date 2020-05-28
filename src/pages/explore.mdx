@@ -31,7 +31,7 @@ tags:
                   menuItems={[
                     'Compare revenue',
                     'Nationwide revenue summary',
-                    'Top locations'
+                    'Top nationwide locations'
                   ]} />
                 <Container>
                   <Grid container>
@@ -49,7 +49,7 @@ tags:
                   <Grid container>
                     <Grid item md={12}>
                       <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                        <Box component="h3" color="secondary.dark" id="compare-revenue">Compare revenue</Box>
+                        <Box component="h3" color="secondary.dark">Compare revenue</Box>
                       </Box>
                       <Box fontSize="body1.fontSize">
                         Add more than one card to compare.  Select states, counties, and offshore regions.
@@ -70,7 +70,7 @@ tags:
                 <RevenueOverTime title="Revenue over time" />         
               </CompareContext>
               <NationalRevenueSummary title="Nationwide revenue summary" />
-              <TopLocations title="Top locations" />
+              <TopLocations title="Top nationwide locations" />
             </Box>
           </Box>
         </Revenue>
@@ -87,7 +87,13 @@ tags:
           <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
             <Box name="exploreDataContent" className="explore-data-content">
               <CompareContext>
-                <PageSubMenu />
+                <PageSubMenu
+                  menuItems={[
+                    'Compare disbursements',
+                    'Nationwide disbursements summary',
+                    'Top nationwide recipients'
+                  ]}
+                 />
                 <Container>
                   <Grid container>
                     <Grid item md={12}>
@@ -140,6 +146,12 @@ tags:
           <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
             <Box name="exploreDataContent" className="explore-data-content">
               <CompareContext>
+                <PageSubMenu
+                  menuItems={[
+                    'Compare production',
+                    'Top nationwide locations'
+                  ]}
+                 />
                 <Container>
                   <Grid container>
                     <Grid item md={12}>
@@ -152,7 +164,6 @@ tags:
                     </Grid>
                   </Grid>
                 </Container>
-                <PageSubMenu />
                 <Container id="compare-oil-production">
                   <Grid container>
                     <Grid item md={12}>
@@ -168,7 +179,7 @@ tags:
                     <Grid item md={12}>
                       <DetailCards>     
                         <ProductionDetailTrends />
-                        <ProductionLandCategory title="Production by land category"  />        
+                        <ProductionLandCategory title="Production over time"  />        
                         <ProductionTopLocations title="Top locations" vertical maxLegendWidth='800px' />   
                         <ProductionCountyMap />
                       </DetailCards>

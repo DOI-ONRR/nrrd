@@ -72,7 +72,7 @@ const DisbursementRecipients = props => {
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
-  
+
   if (loading) {
     return 'Loading ... '
   }
@@ -85,7 +85,6 @@ const DisbursementRecipients = props => {
     data &&
     data.DisbursementRecipientSummary.length > 0) {
     chartData = data
-
 
     if (chartData.DisbursementRecipientSummary.length > 1) {
       return (<Box className={classes.root}>
@@ -111,7 +110,7 @@ const DisbursementRecipients = props => {
             } />
 
           <Box mt={3}>
-              {/*            <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
+            {/*            <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
               Query Disbursements by Recipients
             </ExploreDataLink>
                */}
@@ -123,7 +122,7 @@ const DisbursementRecipients = props => {
     else if (chartData.DisbursementRecipientSummary.length === 1) {
       return (
         <Box className={classes.boxSection}>
-          <Box component="h4" fontWeight="bold">Disbursements by recipient</Box>
+          <Box component="h4" fontWeight="bold">Disbursements by recipients</Box>
           <Box fontSize="subtitle2.fontSize">
           All of  disbursements went to the state</Box>
         </Box>
@@ -131,7 +130,8 @@ const DisbursementRecipients = props => {
     }
   }
 
-  return (null
+  return (
+    <Box className={classes.root}></Box>
   )
 }
 
