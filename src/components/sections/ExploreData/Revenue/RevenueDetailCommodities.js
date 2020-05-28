@@ -22,17 +22,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     '& .chart-container': {
-      display: 'flex',
+      display: 'grid',
       flexDirection: 'column',
       alignItems: 'top',
-      // '& .chart': {
-      //   width: '100%',
-      //   height: 250
-      // },
-      // '& .legend': {
-      //   marginTop: theme.spacing(2),
-      //   height: 'auto',
-      // },
     },
   }
 }))

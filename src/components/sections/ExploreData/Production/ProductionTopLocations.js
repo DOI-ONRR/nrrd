@@ -9,6 +9,7 @@ import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import CONSTANTS from '../../../../js/constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -25,6 +26,7 @@ import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
   query FiscalProduction($year: Int!, $location: String!, $commodity: String!, $state: String!) {
+<<<<<<< HEAD
  state_fiscal_production_summary:  fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}, state: {_eq: $state}}, order_by: {sum: desc}) {
       location_name
       unit_abbr
@@ -34,6 +36,9 @@ const APOLLO_QUERY = gql`
       
     }
  fiscal_production_summary(where: {location_type: {_nin: ["Nationwide Federal", "County", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}, order_by: {sum: desc}) {
+=======
+    fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", "Native American", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}, state: {_eq: $state}}, order_by: {sum: desc}) {
+>>>>>>> dev
       location_name
       unit_abbr
       fiscal_year
@@ -111,7 +116,13 @@ const ProductionTopLocations = ({ title, ...props }) => {
     state=''
   }
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location, commodity, state } })
+  console.log('apollo query: ', year, location, commodity, state)
+  const { loading, error, data } = useQuery(APOLLO_QUERY,
+    {
+      variables: { year, location, commodity, state },
+      skip: props.state === CONSTANTS.NATIVE_AMERICAN
+    })
+
   const maxLegendWidth = props.maxLegendWidth
   if (loading) {
     return (
@@ -146,7 +157,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
             circleLabel={
               d => {
                 // console.debug('circleLABLE: ', d)
-                if(location === 'State') {
+                if (location === 'State') {
                   const r = []
                   r[0] = d.location_name
                   r[1] = utils.formatToCommaInt(d.sum) + ' ' + d.unit_abbr
@@ -167,7 +178,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
     )
   }
   else {
-    return null
+    return <Box className={classes.root}></Box>
   }
 }
 

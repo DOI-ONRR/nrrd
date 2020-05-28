@@ -23,7 +23,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import SearchIcon from '@material-ui/icons/Search'
 import AddIcon from '@material-ui/icons/Add'
 
-import MapSelectControl from './MapSelectControl'
+// import MapSelectControl from './MapSelectControl'
+import MapToolbarSelect from '../../inputs/MapToolbarSelect'
 import CONSTANTS from '../../../js/constants'
 
 import { StoreContext } from '../../../store'
@@ -38,6 +39,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     padding: 0,
     zIndex: 250,
+    background: theme.palette.background.paper,
+    boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
     '@media (max-width: 768px)': {
       position: 'relative',
       width: '100%',
@@ -74,7 +77,7 @@ const useStyles = makeStyles(theme => ({
   mapExploreMenu: {
     position: 'absolute',
     right: 10,
-    top: -1,
+    top: 12,
     zIndex: 99,
     '@media (max-width: 960px)': {
       position: 'relative',
@@ -214,17 +217,17 @@ const MapExploreMenu = props => {
     <div className={classes.mapExploreMenu}>
       {matchesMdUp &&
         <>
-          <Tooltip title="Explore more" classes={{ tooltip: classes.tooltipRoot }}>
+          <Tooltip title='Explore more' classes={{ tooltip: classes.tooltipRoot }}>
             <IconButton
-              aria-label="Other ways to explore data"
-              aria-controls="other-ways-to-explore-data"
-              aria-haspopup="true"
+              aria-label='Other ways to explore data'
+              aria-controls='other-ways-to-explore-data'
+              aria-haspopup='true'
               onClick={handleMenuClick}>
               <MoreVertIcon />
             </IconButton>
           </Tooltip>
           <Menu
-            id="other-ways-to-explore-data"
+            id='other-ways-to-explore-data'
             anchorEl={anchorEl}
             keepMounted
             open={Boolean(anchorEl)}
@@ -338,7 +341,7 @@ const ExploreDataToolbar = props => {
             className={classes.root}
           >
             <BottomNavigationAction
-              label="Map tools"
+              label='Map tools'
               icon={<MapIcon />}
               classes={{
                 root: classes.botNavRoot,
@@ -346,7 +349,7 @@ const ExploreDataToolbar = props => {
               }} />
 
             <BottomNavigationAction
-              label="Add locations"
+              label='Add locations'
               icon={<AddIcon />}
               classes={{
                 root: classes.botNavRoot,
@@ -354,7 +357,7 @@ const ExploreDataToolbar = props => {
               }} />
 
             <BottomNavigationAction
-              label="Explore more"
+              label='Explore more'
               icon={<MoreVertIcon />}
               classes={{
                 root: classes.botNavRoot,
@@ -367,53 +370,62 @@ const ExploreDataToolbar = props => {
       <Box className={classes.toolbar}>
         {(menu.showMapTools || matchesMdUp) &&
           <Box className={classes.toolbarControls}>
-            <MapSelectControl
-              options={MAP_DATA_TYPE_SELECT_OPTIONS}
+
+            <MapToolbarSelect
+              dataFilterKey={DFC.DATA_TYPE}
+              data={MAP_DATA_TYPE_SELECT_OPTIONS}
               defaultOption={ dataType || REVENUE }
-              label="Data type"
-              dataFilterType={DFC.DATA_TYPE} />
+              label='Data type'
+              helperText=''
+              selectType='Single' />
 
-            <MapSelectControl
-              options={MAP_LEVEL_OPTIONS}
+            <MapToolbarSelect
+              dataFilterKey={DFC.COUNTIES}
+              data={MAP_LEVEL_OPTIONS}
               defaultOption={ counties || 'State' }
-              label="Map level"
-              dataFilterType={DFC.COUNTIES} />
-         {(dataType != 'Disbursements') &&
-            <MapSelectControl
-              options={MAP_OFFSHORE_SELECT_OPTIONS}
-              defaultOption={ offshoreRegion || 'Hide' }
-              label="Offshore map"
-              dataFilterType={DFC.OFFSHORE_REGIONS} />
-         }
-            {/* <MapSelectControl
-                  options={MAP_TIMEFRAME_OPTIONS}
-                  label="Timeframe"
-                  dataFilterType={DFC.TIMEFRAME'} /> */}
+              label='Map level'
+              helperText=''
+              selectType='Single' />
 
-            <MapSelectControl
-              options={MAP_PERIOD_OPTIONS}
-              // defaultOption={dataType !== 'Disbursements' ? 'Calendar year' : 'Fiscal year'}
-              defaultOption="Fiscal year"
-              label="Period"
-              dataFilterType=""
-              disabled />
+            {(dataType !== 'Disbursements') &&
+              <MapToolbarSelect
+                dataFilterKey={DFC.OFFSHORE_REGIONS}
+                data={MAP_OFFSHORE_SELECT_OPTIONS}
+                defaultOption={ offshoreRegion || 'Hide' }
+                label='Offshore map'
+                helperText=''
+                selectType='Single' />
+            }
+            {/* <MapToolbarSelect
+                  data={MAP_TIMEFRAME_OPTIONS}
+                  label='Timeframe'
+                  dataFilterKey={DFC.TIMEFRAME'} /> */}
+
+            <MapToolbarSelect
+              dataFilterKey={DFC.OFFSHORE_REGIONS}
+              data={MAP_PERIOD_OPTIONS}
+              defaultOption={'Fiscal year'}
+              label='Fiscal year'
+              helperText=''
+              selectType='Single' />
 
             {(dataType === 'Revenue') &&
-            <MapSelectControl
-              options={revenueCommodityOptions}
-              defaultOption="Oil"
-              label="Commodity"
-              checkbox={(dataType === REVENUE) && true}
-              dataFilterType={DFC.COMMODITIES} />
+              <MapToolbarSelect
+                dataFilterKey={DFC.COMMODITIES}
+                data={revenueCommodityOptions}
+                defaultOption='Oil'
+                label='Commodity'
+                selectType='Multi'
+                helperText='' />
             }
 
             {(dataType === 'Production') &&
-              <MapSelectControl
-                options={productionCommodityOptions}
-                defaultOption="Oil (bbl)"
-                label="Commodity"
-                checkbox={false}
-                dataFilterType={DFC.COMMODITY} />
+              <MapToolbarSelect
+                dataFilterKey={DFC.COMMODITY}
+                data={productionCommodityOptions}
+                defaultOption='Oil (bbl)'
+                label='Commodity'
+                selectType='Single' />
             }
           </Box>
         }

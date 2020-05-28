@@ -13,6 +13,7 @@ export default class D3LineChart {
     this.container = container
     this.legendNode = container.children[1]
     this.chartNode = container.children[0]
+    this.breakpoint = 768
     this.margin = (options.margin) ? options.margin : { right: 25, left: 50, top: 25, bottom: 25 }
     this._height = (this.chartNode.clientHeight > 0) ? this.chartNode.clientHeight - this.margin.top - this.margin.bottom : 400
     this._width = (this.chartNode.clientWidth > 0) ? this.chartNode.clientWidth - this.margin.right - this.margin.left : 400
@@ -22,10 +23,6 @@ export default class D3LineChart {
 
     if (options.lineTooltip) {
       this.lineTooltip = options.lineTooltip
-    }
-
-    if (options.chipLabels) {
-      this.chipLabels = options.chipLabels
     }
 
     if (options.chartColors) {
@@ -39,10 +36,14 @@ export default class D3LineChart {
 
   xAxis () {
     try {
-      const xScale = this.xScale()
       const data = this.data
+      const breakpoint = this.breakpoint
+      const xScale = this.xScale()
+        .domain([data[0][0], data[0][data[0].length - 1]])
+
       return d3.axisBottom(xScale)
-        .tickValues(data[0])
+        // .tickValues(data[0])
+        .ticks(this._width < breakpoint ? 3 : 10)
         .tickFormat(d3.format('04d'))
     }
     catch (err) {
@@ -94,7 +95,6 @@ export default class D3LineChart {
       const lineDashes = this.lineDashes
       const lineStrokes = this.lineStrokes
       const lineTooltip = this.lineTooltip
-      const chipLabels = this.chipLabels
       const colors = this.chartColors
 
       const x = d3.scaleLinear().domain([2003, 2019]).range([0, width])
@@ -162,7 +162,7 @@ export default class D3LineChart {
           .style('color', (d, i) => colors[i])
           .html((d, i) => {
             // console.log('.html d: ', i, d)
-            return `${ chipLabels[i].name }: ${ lineTooltip(d[yearIndex], i)[0] }`
+            return lineTooltip(d[yearIndex], i)[0]
           })
       }
 

@@ -8,7 +8,6 @@ import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-
 import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
@@ -34,6 +33,7 @@ const APOLLO_QUERY = gql`
       fiscal_year
       state_or_area
       sum
+      unit_abbr
     }
 
   }
@@ -92,7 +92,7 @@ const ProductionOverTime = props => {
   const cards = pageState.cards
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-     variables: { commodity: commodity }
+    variables: { commodity: commodity }
   })
 
   const handleDelete = props.handleDelete || ((e, val) => {
@@ -111,6 +111,7 @@ const ProductionOverTime = props => {
   if (data && cards && cards.length > 0) {
     const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
     const sums = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
+    const units = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.unit_abbr))])
 
     chartData = [years, ...sums]
 
@@ -124,13 +125,12 @@ const ProductionOverTime = props => {
         <Grid item md={12}>
           <LineChart
             data={chartData}
-            chipLabels={cards}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = utils.formatToDollarInt(d)
+                r[0] = `${ cards[i].name }: ${ utils.formatToCommaInt(d) } (${ units[i] })`
                 return r
               }
             } />
