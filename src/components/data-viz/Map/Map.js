@@ -97,7 +97,7 @@ const Map = props => {
   // Ugly hack to get around not being able to merge AKR Alaska Offshore Region
   const planningAreas = ['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK']
   const AKR = mapData.filter((d,i) =>{
-    console.debug("WTH:",d, i)
+    // console.debug("WTH:",d, i)
     if( d[0] === 'AKR' ){
       return d[1]
     }

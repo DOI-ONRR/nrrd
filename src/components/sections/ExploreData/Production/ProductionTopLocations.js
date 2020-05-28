@@ -33,7 +33,7 @@ const APOLLO_QUERY = gql`
       sum
       
     }
- fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}, order_by: {sum: desc}) {
+ fiscal_production_summary(where: {location_type: {_nin: ["Nationwide Federal", "County", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}, order_by: {sum: desc}) {
       location_name
       unit_abbr
       fiscal_year
@@ -100,12 +100,15 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  let location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
-  let state=null
   console.debug('props: ', props)
+  let state='';
+  let location='County'
   if (props.abbr && props.abbr.length === 2) {
     location = 'County'
     state = props.abbr
+  } else {
+    location='State'
+    state=''
   }
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location, commodity, state } })
@@ -124,7 +127,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
 
   if (data) {
     console.debug("WTH: ", data)
-    if(location = 'County') {
+    if (location === 'County') {
       chartData = data.state_fiscal_production_summary
     } else {
       chartData = data.fiscal_production_summary
