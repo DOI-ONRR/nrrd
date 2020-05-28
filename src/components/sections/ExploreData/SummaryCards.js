@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     right: 0,
     transform: 'translate3d(0, 0px, 0px)',
-    minHeight: 325,
+    minHeight: 335,
     '@media (max-width: 768px)': {
       width: '100%',
       height: 'auto',
@@ -116,8 +116,6 @@ const SummaryCards = props => {
       name: props.name,
     })
   )
-
-  console.log('children: ', children)
 
   const scrollTo = () => {
     scroller.scrollTo('exploreDataContent', {

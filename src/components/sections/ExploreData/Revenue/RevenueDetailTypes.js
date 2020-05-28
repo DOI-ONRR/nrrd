@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    '& .chart-container': {
+      display: 'grid',
+    }
   }
 }))
 

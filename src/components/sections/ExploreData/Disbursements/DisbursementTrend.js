@@ -64,7 +64,7 @@ const APOLLO_QUERY = gql`
 
 const DisbursementTrend = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const classes = useStyles()  
+  const classes = useStyles()
   const year = filterState[DFC.YEAR]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
@@ -92,7 +92,7 @@ const DisbursementTrend = props => {
     sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
 
-  /*  fiscalData = data.fiscalDisbursementSummary.map((item, i) => [
+    /*  fiscalData = data.fiscalDisbursementSummary.map((item, i) => [
       item.fiscal_year,
       item.sum
       ])
@@ -101,13 +101,13 @@ const DisbursementTrend = props => {
       .key(k => k.fiscal_year)
       .rollup(v => d3.sum(v, i => i.sum))
       .entries(data.fiscalDisbursementSummary).map(item => [parseInt(item.key), item.value])
-  
-    console.debug("FDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", data)
-    
+
+    console.debug('FDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD', data)
+
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-      const sum = fiscalData.find(x =>{
-        console.debug("x[0] ", x[0], "item.fiscal_year", item.fiscal_year)
+      const sum = fiscalData.find(x => {
+        console.debug('x[0] ', x[0], 'item.fiscal_year', item.fiscal_year)
         return x[0] === item.fiscal_year
       })
       return ([
@@ -115,12 +115,12 @@ const DisbursementTrend = props => {
         sum ? sum[1] : 0
       ])
     })
-    console.debug("WTH", sparkData)
+    console.debug('WTH', sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
-    total = fiscalData[fiscalData.findIndex(x => x[0] === year)][1]
+    total = fiscalData.length > 0 ? fiscalData[fiscalData.findIndex(x => x[0] === year)][1] : 0
 
     return (
       <>

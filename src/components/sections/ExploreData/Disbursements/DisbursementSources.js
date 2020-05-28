@@ -107,8 +107,8 @@ const DisbursementSources = props => {
                   return r
                 }
               } />
-          {/*<Box mt={3}>
-          
+            {/* <Box mt={3}>
+
               <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
                 Query Disbursements by Sources
               </ExploreDataLink>
@@ -130,7 +130,8 @@ const DisbursementSources = props => {
   }
 
   return (
-  null)
+    <Box className={classes.root}>&nbsp;</Box>
+  )
 }
 
 export default DisbursementSources
