@@ -33,6 +33,15 @@ const useStyles = makeStyles(theme => ({
     '@media (max-width: 768px)': {
       maxWidth: '100%',
     },
+    '& .cardContent__Revenue': {
+      gridTemplateRows: '185px 615px 560px',
+    },
+    '& .cardContent__Disbursements': {
+      gridTemplateRows: '185px 615px 560px',
+    },
+    '& .cardContent__Production': {
+      gridTemplateRows: '185px 325px 750px',
+    },
   },
   compareCards: {
     display: 'flex',
@@ -136,32 +145,11 @@ const useStyles = makeStyles(theme => ({
     filter: 'invert(1)',
   },
   cardContentContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
-    alignContent: 'stretch',
+    display: 'grid',
     minHeight: 1500,
     '& > div': {
+      margin: 0,
       // border: '2px solid deeppink',
-    },
-    '& > div:nth-child(1)': {
-      minHeight: 175,
-      flex: '0 0 auto',
-      alignSelf: 'auto',
-    },
-    '& > div:nth-child(2)': {
-      flex: '2 0 165px',
-      alignSelf: 'auto',
-    },
-    '& > div:nth-child(3)': {
-      flex: '2 0 auto',
-      alignSelf: 'auto',
-    },
-    '& > div:nth-child(4)': {
-      minHeight: 200,
-      flex: '0 0 auto',
-      alignSelf: 'auto',
     },
   }
 }))

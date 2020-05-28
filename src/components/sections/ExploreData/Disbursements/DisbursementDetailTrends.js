@@ -110,7 +110,7 @@ const DisbursementDetailTrends = props => {
     )
 
 
-    locData = fiscalData[fiscalData.findIndex(x => x[0] === year)][1]
+    locData = fiscalData.length > 0 ? fiscalData[fiscalData.findIndex(x => x[0] === year)][1] : 0
     console.debug("sparkData: ",sparkData)
 //    locData = locationTotalData.find(item => item.state_or_area === stateAbbr)
   }

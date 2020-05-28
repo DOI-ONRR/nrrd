@@ -122,7 +122,7 @@ const DisbursementRecipients = props => {
     else if (chartData.DisbursementRecipientSummary.length === 1) {
       return (
         <Box className={classes.boxSection}>
-          <Box component="h4" fontWeight="bold">Disbursements by recipient</Box>
+          <Box component="h4" fontWeight="bold">Disbursements by recipients</Box>
           <Box fontSize="subtitle2.fontSize">
           All of  disbursements went to the state</Box>
         </Box>

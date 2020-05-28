@@ -128,7 +128,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
             lineTooltip={
               (d, i) => {
                 const r = []
-                const card = cards.filter(item => item.abbr === data.fiscal_production_summary[i].state_or_area)[0]
+                const card = cards && cards.filter(item => item.abbr === data.fiscal_production_summary[i].state_or_area)[0]
                 r[0] = `${ card.name }: ${ utils.formatToCommaInt(d) } (${ data.fiscal_production_summary[i].unit_abbr })`
                 return r
               }
