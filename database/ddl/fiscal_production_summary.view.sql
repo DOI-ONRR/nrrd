@@ -65,7 +65,7 @@ CREATE OR REPLACE VIEW "public"."fiscal_production_summary" AS
             state  as state,        
             production.unit_abbr,
             period.fiscal_year,
-            county AS state_or_area,
+            fips_code AS state_or_area,
             sum(production.volume) AS sum,
             commodity.product AS commodity
            FROM (((production
