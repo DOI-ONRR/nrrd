@@ -66,7 +66,6 @@ const ProductionCountyMap = props => {
   const onZoomEnd = event => {
     console.debug('Event : ', event)
   }
-  const state = props.state
   const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN
   if (loading) {}
   if (error) return `Error! ${ error.message }`

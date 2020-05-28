@@ -26,7 +26,6 @@ import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
   query FiscalProduction($year: Int!, $location: String!, $commodity: String!, $state: String!) {
-<<<<<<< HEAD
  state_fiscal_production_summary:  fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}, state: {_eq: $state}}, order_by: {sum: desc}) {
       location_name
       unit_abbr
@@ -36,9 +35,6 @@ const APOLLO_QUERY = gql`
       
     }
  fiscal_production_summary(where: {location_type: {_nin: ["Nationwide Federal", "County", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}, order_by: {sum: desc}) {
-=======
-    fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", "Native American", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}, state: {_eq: $state}}, order_by: {sum: desc}) {
->>>>>>> dev
       location_name
       unit_abbr
       fiscal_year
