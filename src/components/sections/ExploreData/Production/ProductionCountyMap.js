@@ -77,7 +77,7 @@ const ProductionCountyMap = props => {
     console.debug('DATA', data)
     console.debug('mapData', mapData)
     mapData = d3.nest()
-      .key(k => k.state_or_area)
+      .key(k => k.state_or_area.padStart(5,0))
       .rollup(v => d3.sum(v, i => i.sum))
       .entries(data.fiscal_production_summary)
       .map(d => [d.key, d.value])
