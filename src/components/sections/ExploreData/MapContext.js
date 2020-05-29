@@ -206,7 +206,7 @@ const useStyles = makeStyles(theme => ({
     '& > div': {
       marginTop: 0,
     },
-    '@media (max-width: 768px)': {
+    '@media (max-width: 1120px)': {
       right: 0,
       bottom: 8,
       width: '100%',
@@ -330,7 +330,7 @@ const MapContext = props => {
   }
 
   const handleMapSnackbarClose = () => {
-    setMapSnackbarState({ ...mapSnackbarState, open: false })
+    // setMapSnackbarState({ ...mapSnackbarState, open: false })
   }
 
   let x = mapX
