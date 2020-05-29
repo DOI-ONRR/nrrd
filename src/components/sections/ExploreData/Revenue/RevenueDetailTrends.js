@@ -116,6 +116,7 @@ const RevenueDetailTrends = props => {
         {sparkData.length > 1 && (
           <Box mt={4}>
             <Sparkline
+              key={'RDT' + dataSet}
               data={sparkData}
               highlightIndex={highlightIndex}
             />

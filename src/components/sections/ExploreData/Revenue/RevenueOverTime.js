@@ -116,7 +116,8 @@ const RevenueOverTime = props => {
           </Box>
         </Grid>
         <Grid item md={12}>
-          <LineChart
+        <LineChart
+            key={'ROT'}
             data={chartData}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}

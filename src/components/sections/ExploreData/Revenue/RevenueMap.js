@@ -53,7 +53,7 @@ export default props => {
     <>
       {mapData &&
         <>
-          <Map
+          <Map key={'RMAP'+year}  
             mapFeatures={props.mapFeatures}
             mapJsonObject={props.mapJsonObject}
             mapData={mapData}

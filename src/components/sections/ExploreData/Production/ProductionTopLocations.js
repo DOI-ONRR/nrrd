@@ -137,7 +137,18 @@ const ProductionTopLocations = ({ title, ...props }) => {
     if (location === 'County') {
       chartData = data.state_fiscal_production_summary
     } else {
-      chartData = data.fiscal_production_summary
+
+      
+      /* 
+         summarize fiscal_production_summary
+         
+ const sums = [...new Set(
+      d3.nest()
+        .key(k => k.fiscal_year)
+        .rollup(v => d3.sum(v, i => i.sum))
+        .entries(data.fiscal_production_summary.filter(row => row.state_or_area === state)).map(item => item.value)
+    )] */
+      chartData =  data.fiscal_production_summary
     }
       console.debug("CHART DATA", chartData)
     return (
