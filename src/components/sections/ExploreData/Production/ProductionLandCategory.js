@@ -100,7 +100,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = 'FY ' + year ' - '+commodity
+  const dataSet = 'FY ' + year + ' - '+commodity
 
   if (data) {
     const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
