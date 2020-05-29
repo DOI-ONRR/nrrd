@@ -111,7 +111,9 @@ const ProductionTopLocations = ({ title, ...props }) => {
     location='State'
     state=''
   }
+  
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  const key='PTL'+year+state+commodity
   console.log('apollo query: ', year, location, commodity, state)
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
@@ -133,7 +135,6 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const dataSet = `FY ${ year }`
 
   if (data) {
-    console.debug("WTH: ", data)
     if (location === 'County') {
       chartData = data.state_fiscal_production_summary
     } else {
@@ -156,7 +157,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
         <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
           <CircleChart
-            key={'PTL' + dataSet }
+            key={key}
             data={chartData}
             maxLegendWidth={maxLegendWidth}
             xAxis='location_name'
