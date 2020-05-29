@@ -23,7 +23,7 @@ export default props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = filterState[DFC.YEAR]
-
+  const dataSet = 'FY '+ year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year }
   })
@@ -42,7 +42,8 @@ export default props => {
   return (
     <>
       {mapData &&
-        <> <Map
+       <> <Map
+          key={'DM' + dataSet }
           mapFeatures={props.mapFeatures}
           mapJsonObject={props.mapJsonObject}
           mapData={mapData}

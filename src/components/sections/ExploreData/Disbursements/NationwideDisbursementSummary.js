@@ -59,7 +59,7 @@ const NationwideDisbursementSummary = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-
+  const dataSet = 'FY ' + year
 
   const { title } = props
 
@@ -126,7 +126,8 @@ const NationwideDisbursementSummary = props => {
                       </Box>
                     </TableCell>
                     <TableCell style={{ width: '65%' }}>
-                      <StackedBarChart
+                    <StackedBarChart
+                        key={'NDS' + dataSet }
                         data={item[1]}
                         legendFormat={v => {
                           if (v === 0) {

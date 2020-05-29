@@ -67,7 +67,7 @@ const DisbursementRecipients = props => {
   const classes = useStyles()
 
   const year = filterState[DFC.YEAR]
-
+  const dataSet = 'FY ' + year
   console.debug('DT                ', filterState)
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
@@ -91,6 +91,7 @@ const DisbursementRecipients = props => {
         <Box component="h4" fontWeight="bold">Disbursements by recipient</Box>
         <Box>
           <CircleChart
+            key={'DR' + dataSet }
             data={chartData.DisbursementRecipientSummary}
             xAxis='recipient'
             yAxis='total'

@@ -156,6 +156,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
         <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
           <CircleChart
+            key={'PTL' + dataSet }
             data={chartData}
             maxLegendWidth={maxLegendWidth}
             xAxis='location_name'

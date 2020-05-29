@@ -50,6 +50,7 @@ const ProductionCountyMap = props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
+  const dataSet = 'FY '+year
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   console.debug("Props", props)
   let state = ''
@@ -91,8 +92,8 @@ const ProductionCountyMap = props => {
          {!showCountyContent &&
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Production by county</Box>
-           <Map
-             key={`production_county_map_${ props.abbr }`}
+          <Map
+             key={'PCM' + dataSet + '_' + props.abbr }
              mapFeatures={mapFeatures}
              mapJsonObject={mapCounties}
              mapData={mapData}

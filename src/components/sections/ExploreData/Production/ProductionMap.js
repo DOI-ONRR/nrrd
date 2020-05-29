@@ -24,7 +24,7 @@ export default props => {
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const year = filterState[DFC.YEAR]
-
+  const dataSet = 'FY '+year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year, commodity }
   })
@@ -45,6 +45,7 @@ export default props => {
     <>
       {mapData &&
         <> <Map
+          key={'PM' + dataSet }
           mapFeatures={props.mapFeatures}
           mapJsonObject={props.mapJsonObject}
           mapData={mapData}

@@ -129,6 +129,7 @@ const DisbursementsOverTime = props => {
         </Grid>
         <Grid item md={12}>
           <LineChart
+            key={'DOT' }
             data={chartData}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}

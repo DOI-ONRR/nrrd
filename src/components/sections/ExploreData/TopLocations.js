@@ -118,7 +118,8 @@ const TopLocations = ({ title, ...props }) => {
           <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
-                <CircleChart
+        <CircleChart
+                  key ={'RTL' + dataSet}
                   data={chartData}
                   maxLegendWidth='800px'
                   xAxis='location_name'

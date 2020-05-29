@@ -85,6 +85,7 @@ const DisbursementRecipientSummary = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
   const year = filterState[DFC.YEAR]
+  const dataSet='FY '+year
   console.debug('DT                ', filterState)
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
@@ -157,6 +158,7 @@ const DisbursementRecipientSummary = props => {
                         </TableCell>
                         <TableCell align="right">
                           <Sparkline
+                            key={'DRS' + dataSet }
                             data={row.data}
                             highlightIndex={row.data.findIndex(
                               x => x[0] === year

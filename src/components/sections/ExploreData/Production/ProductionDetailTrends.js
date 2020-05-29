@@ -51,6 +51,7 @@ const ProductionDetailTrends = props => {
   const name = props.name
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
+
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const stateAbbr = ((props.abbr.length > 2) &&
     (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
@@ -112,6 +113,7 @@ const ProductionDetailTrends = props => {
           {sparkData.length > 1 && (
             <Box mt={4}>
               <Sparkline
+                key={'PDT' + dataSet }
                 data={sparkData}
                 highlightIndex={highlightIndex}
               />
