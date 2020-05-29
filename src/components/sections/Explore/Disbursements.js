@@ -9,7 +9,7 @@ const ExploreDisbursements = props => {
 	    contentLeft={
         <>
           <ExploreDataLink
-            to="/explore/#federal-disbursements"
+            to="/explore/?dataType=Disbursements"
             icon="data"
           >
 			      Explore disbursements data

@@ -236,23 +236,6 @@ const DetailCards = props => {
     { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
   ]
 
-  // Map snackbar
-  const [mapSnackbarState, setMapSnackbarState] = useState({
-    open: false,
-    vertical: 'bottom',
-    horizontal: 'center'
-  })
-
-  const { vertical, horizontal, open } = mapSnackbarState
-
-  const handleMapSnackbar = newState => {
-    setMapSnackbarState({ open: true, ...newState })
-  }
-
-  const handleMapSnackbarClose = () => {
-    setMapSnackbarState({ ...mapSnackbarState, open: false })
-  }
-
   // onLink
   const onLink = state => {
     // console.log('onLink state: ', state)
@@ -290,10 +273,6 @@ const DetailCards = props => {
         else {
           cards.push(stateObj)
         }
-      }
-      else {
-        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
-        setMapSnackbarState({ ...snackbarState, open: false })
       }
     }
 

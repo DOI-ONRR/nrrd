@@ -82,6 +82,7 @@ const DisbursementTrend = props => {
   let periodData
   let fiscalData
   let highlightIndex = 0
+  let foundIndex
   let total = 0
   if (
     data &&
@@ -120,7 +121,9 @@ const DisbursementTrend = props => {
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
-    total = fiscalData.length > 0 ? fiscalData[fiscalData.findIndex(x => x[0] === year)][1] : 0
+
+    foundIndex = fiscalData.findIndex(x => x[0] === year)
+    total = (foundIndex === -1 || typeof (foundIndex) === 'undefined') ? 0 : fiscalData[foundIndex][1]
 
     return (
       <>

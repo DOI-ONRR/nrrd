@@ -75,7 +75,7 @@ const DisbursementDetailTrends = props => {
   let highlightIndex = 0
   let periodData
   let fiscalData
-  let locationTotalData
+  let foundIndex
   let locData
   
   if (data) {
@@ -85,7 +85,7 @@ const DisbursementDetailTrends = props => {
     sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
 
-  /*  fiscalData = data.disbursement_summary.map((item, i) => [
+    /*  fiscalData = data.disbursement_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
     ])
@@ -109,10 +109,8 @@ const DisbursementDetailTrends = props => {
       x => x[0] === year
     )
 
-
-    locData = fiscalData.length > 0 ? fiscalData[fiscalData.findIndex(x => x[0] === year)][1] : 0
-    console.debug("sparkData: ",sparkData)
-//    locData = locationTotalData.find(item => item.state_or_area === stateAbbr)
+    foundIndex = fiscalData.findIndex(x => x[0] === year)
+    locData = (foundIndex === -1 || typeof (foundIndex) === 'undefined') ? 0 : fiscalData[foundIndex][1]
   }
 
   return (
