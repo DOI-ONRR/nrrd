@@ -325,7 +325,7 @@ const MapContext = props => {
 
   const { vertical, horizontal, open } = mapSnackbarState
 
-  const handleMapSnackbar = newState => {
+  const handleMapSnackbar = newState => () => {
     setMapSnackbarState({ open: true, ...newState })
   }
 
@@ -391,8 +391,7 @@ const MapContext = props => {
         }
       }
       else {
-        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
-        // setMapSnackbarState({ ...mapSnackbarState, open: false })
+        return handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
 
@@ -552,10 +551,11 @@ const MapContext = props => {
       <Container>
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
-          key={`${ vertical },${ horizontal }`}
           open={open}
           onClose={handleMapSnackbarClose}
           message="Only four locations can be viewed at once. Remove one of the location cards to add another location."
+          key={vertical + horizontal}
+          autoHideDuration={6000}
         />
       </Container>
     </>

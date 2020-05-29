@@ -129,7 +129,7 @@ const SummaryCards = props => {
   return (
     <>
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
-        <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })} onClick={scrollTo}>
+        <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
             title={props.name}
             action={
@@ -161,7 +161,7 @@ const SummaryCards = props => {
             </Typography>
           </CardHeader>
 
-          <CardContent>
+          <CardContent onClick={scrollTo}>
             {children}
           </CardContent>
         </Card>

@@ -109,9 +109,8 @@ const DisbursementDetailTrends = props => {
       x => x[0] === year
     )
 
-    foundIndex = fiscalData[fiscalData.findIndex(x => x[0] === year)]
+    foundIndex = fiscalData.findIndex(x => x[0] === year)
     locData = (foundIndex === -1 || typeof (foundIndex) === 'undefined') ? 0 : fiscalData[foundIndex][1]
-
   }
 
   return (
