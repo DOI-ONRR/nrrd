@@ -77,7 +77,7 @@ const DisbursementDetailTrends = props => {
   let fiscalData
   let foundIndex
   let locData
-
+  
   if (data) {
     periodData = data.period
 
@@ -121,6 +121,7 @@ const DisbursementDetailTrends = props => {
         {sparkData.length > 1 && (
           <Box mt={4}>
             <Sparkline
+              key={'DDT' + dataSet }
               data={sparkData}
               highlightIndex={highlightIndex}
             />

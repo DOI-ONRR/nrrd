@@ -66,7 +66,7 @@ const DisbursementTrend = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
   const year = filterState[DFC.YEAR]
-
+  const dataSet = 'FY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
@@ -136,6 +136,7 @@ const DisbursementTrend = props => {
             <Box component="span">
               {sparkData && (
                 <Sparkline
+                  key={'DT' + dataSet }
                   data={sparkData}
                   highlightIndex={highlightIndex}/>
               )}

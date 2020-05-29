@@ -26,7 +26,15 @@ import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
   query FiscalProduction($year: Int!, $location: String!, $commodity: String!, $state: String!) {
-    fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", "Native American", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}, state: {_eq: $state}}, order_by: {sum: desc}) {
+ state_fiscal_production_summary:  fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}, state: {_eq: $state}}, order_by: {sum: desc}) {
+      location_name
+      unit_abbr
+      fiscal_year
+      state_or_area
+      sum
+      
+    }
+ fiscal_production_summary(where: {location_type: {_nin: ["Nationwide Federal", "County", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}, order_by: {sum: desc}) {
       location_name
       unit_abbr
       fiscal_year
@@ -93,13 +101,16 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
-  const state = props.abbr
   console.debug('props: ', props)
-  // if (props.abbr && props.abbr.length === 2) {
-  //   location = 'County'
-  //   state = props.abbr
-  // }
+  let state='';
+  let location='County'
+  if (props.abbr && props.abbr.length === 2) {
+    location = 'County'
+    state = props.abbr
+  } else {
+    location='State'
+    state=''
+  }
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   console.log('apollo query: ', year, location, commodity, state)
   const { loading, error, data } = useQuery(APOLLO_QUERY,
@@ -122,13 +133,30 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const dataSet = `FY ${ year }`
 
   if (data) {
-    chartData = data.fiscal_production_summary
-    console.debug('CHART DATA', chartData)
+    console.debug("WTH: ", data)
+    if (location === 'County') {
+      chartData = data.state_fiscal_production_summary
+    } else {
+
+      
+      /* 
+         summarize fiscal_production_summary
+         
+ const sums = [...new Set(
+      d3.nest()
+        .key(k => k.fiscal_year)
+        .rollup(v => d3.sum(v, i => i.sum))
+        .entries(data.fiscal_production_summary.filter(row => row.state_or_area === state)).map(item => item.value)
+    )] */
+      chartData =  data.fiscal_production_summary
+    }
+      console.debug("CHART DATA", chartData)
     return (
       <Box className={classes.root}>
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
         <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
           <CircleChart
+            key={'PTL' + dataSet }
             data={chartData}
             maxLegendWidth={maxLegendWidth}
             xAxis='location_name'

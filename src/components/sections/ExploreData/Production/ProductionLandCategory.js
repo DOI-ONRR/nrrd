@@ -100,7 +100,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = commodity
+  const dataSet = 'FY ' + year + ' - '+commodity
 
   if (data) {
     const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
@@ -122,6 +122,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
         <Box>
           <LineChart
+            key={'PLC' + dataSet }
             data={chartData}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}

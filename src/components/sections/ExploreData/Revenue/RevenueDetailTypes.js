@@ -73,7 +73,9 @@ const RevenueDetailTypes = props => {
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Revenue types</Box>
             <Box>
-              <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
+            <CircleChart
+                key={'RDTY' + dataSet }
+                data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
                 format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
                 maxCircles={4}

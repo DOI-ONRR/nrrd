@@ -38,6 +38,7 @@ const APOLLO_QUERY = gql`
 const ProductionSummaryTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
+  const dataSet = 'FY ' + year
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, commodity: commodity, period: CONSTANTS.FISCAL_YEAR }
@@ -110,6 +111,7 @@ const ProductionSummaryTrends = props => {
               <Box component="span">
                 {sparkData && (
                   <Sparkline
+                    key={'PST' + dataSet }
                     data={sparkData}
                     highlightIndex={highlightIndex}
                   />

@@ -44,9 +44,9 @@ export default props => {
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
     variables: { year, period: CONSTANTS.FISCAL_YEAR, location }
   })
-
+  const dataSet='FY ' + year
   let mapData = [[]]
-
+  
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -66,7 +66,8 @@ export default props => {
   return (
     <>
       {mapData &&
-        <> <Map
+       <> <Map
+          key={'DM' + dataSet }
           mapFeatures={props.mapFeatures}
           mapJsonObject={props.mapJsonObject}
           mapData={mapData}

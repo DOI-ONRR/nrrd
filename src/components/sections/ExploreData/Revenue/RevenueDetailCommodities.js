@@ -74,7 +74,7 @@ const RevenueDetailCommodities = props => {
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Commodities</Box>
             <Box>
-              <CircleChart data={chartData.revenue_commodity_summary}
+              <CircleChart key={'RDC'+dataSet}  data={chartData.revenue_commodity_summary}
                 xAxis='commodity' yAxis='total'
                 format={ d => {
                   return utils.formatToDollarInt(d)
