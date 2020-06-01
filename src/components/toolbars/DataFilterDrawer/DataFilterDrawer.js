@@ -13,6 +13,7 @@ import LandCategorySelect from '../data-filters/LandCategorySelect'
 import LandClassSelect from '../data-filters/LandClassSelect'
 import StateSelect from '../data-filters/StateSelect'
 import CountySelect from '../data-filters/CountySelect'
+import SourceSelect from '../data-filters/SourceSelect'
 import RecipientSelect from '../data-filters/RecipientSelect'
 import RevenueTypeSelect from '../data-filters/RevenueTypeSelect'
 import CommoditySelect from '../data-filters/CommoditySelect'
@@ -90,16 +91,19 @@ export default function DataFilterDrawer () {
           <Box m={2}>
             <Grid container>
               {state.dataType !== DISBURSEMENT &&
-                <React.Fragment>
-                  <Grid item xs={12}>
-                    <LandTypeSelect />
-                  </Grid>
-                </React.Fragment>
+                <Grid item xs={12}>
+                  <LandTypeSelect />
+                </Grid>
               }
               {state.dataType === DISBURSEMENT &&
-                <Grid item xs={12}>
-                  <RecipientSelect />
-                </Grid>
+                <React.Fragment>
+                  <Grid item xs={12}>
+                    <RecipientSelect />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <SourceSelect />
+                  </Grid>
+                </React.Fragment>
               }
               {state.dataType === REVENUE &&
                 <Grid item xs={12}>

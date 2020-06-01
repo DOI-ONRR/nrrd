@@ -181,7 +181,6 @@ const DisbursementDataTableImpl = () => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
   }, [loading])
 
-  console.log(DISBURSEMENT)
   return (
     <React.Fragment>
       {(data && data.results.length > 0) &&
