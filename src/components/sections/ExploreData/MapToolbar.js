@@ -317,7 +317,6 @@ const ExploreDataToolbar = props => {
           <BottomNavigation
             value={navValue}
             onChange={(event, newValue) => {
-              console.log('newVal: ', newValue)
               setNavValue(newValue)
               switch (newValue) {
               case 0:

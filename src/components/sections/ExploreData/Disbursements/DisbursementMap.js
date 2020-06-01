@@ -54,7 +54,7 @@ export default props => {
       item.state_or_area,
       item.sum
       ])*/
-    console.log(data)
+    // console.log(data)
     mapData=d3.nest()
       .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.sum))

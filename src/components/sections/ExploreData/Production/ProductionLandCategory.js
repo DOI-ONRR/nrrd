@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionLandCategory = ({ title, ...props }) => {
-  console.log('ProductionLandCategory props: ', props)
+  // console.log('ProductionLandCategory props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -83,12 +83,12 @@ const ProductionLandCategory = ({ title, ...props }) => {
     location = props.state
   }
   else {
-    location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
+    location = props.fips.length === 5 ? 'County' : 'State'
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const state = props.abbr
-  console.log('useQuery vars: ', state, location, commodity)
+  // console.log('useQuery vars: ', state, location, commodity)
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, commodity } })
   if (loading) {
     return (
@@ -100,7 +100,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = 'FY ' + year + ' - '+commodity
+  const dataSet = `FY ${ year } - ${ commodity }`
 
   if (data) {
     const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
@@ -114,7 +114,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
 
     chartData = [years, sums]
 
-    console.log('chartData: ', chartData)
+    // console.log('chartData: ', chartData)
 
     return (
 
