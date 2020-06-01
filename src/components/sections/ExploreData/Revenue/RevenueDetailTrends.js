@@ -68,7 +68,7 @@ const RevenueDetailTrends = props => {
   if (error) return `Error! ${ error.message }`
 
   const dataSet = `FY ${ year }`
-
+  const dataKey = dataSet + '-' + stateAbbr
   let sparkData = []
   let sparkMin
   let sparkMax
@@ -116,7 +116,7 @@ const RevenueDetailTrends = props => {
         {sparkData.length > 1 && (
           <Box mt={4}>
             <Sparkline
-              key={'RDT' + dataSet}
+              key={'RDT' + dataKey}
               data={sparkData}
               highlightIndex={highlightIndex}
             />
