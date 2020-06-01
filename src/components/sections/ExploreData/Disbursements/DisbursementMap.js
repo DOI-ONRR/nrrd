@@ -38,24 +38,23 @@ const DISBURSEMENT_QUERY = gql`
 export default props => {
   const { state: filterState } = useContext(DataFilterContext)
 
-
   const year = filterState[DFC.YEAR]
   const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
     variables: { year, period: CONSTANTS.FISCAL_YEAR, location }
   })
-  const dataSet='FY ' + year
+  const dataSet = 'FY ' + year
   let mapData = [[]]
-  
+
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    /*mapData = data.fiscal_disbursement_summary.map((item, i) => [
+    /* mapData = data.fiscal_disbursement_summary.map((item, i) => [
       item.state_or_area,
       item.sum
-      ])*/
+      ]) */
     console.log(data)
-    mapData=d3.nest()
+    mapData = d3.nest()
       .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.sum))
       .entries(data.disbursement_summary)
@@ -67,19 +66,19 @@ export default props => {
     <>
       {mapData &&
        <> <Map
-          key={'DM' + dataSet }
-          mapFeatures={props.mapFeatures}
-          mapJsonObject={props.mapJsonObject}
-          mapData={mapData}
-          minColor={props.minColor}
-          maxColor={props.maxColor}
-          mapZoom={props.mapK}
-          mapX={props.mapX}
-          mapY={props.mapY}
-          onZoomEnd={props.onZoomEnd}
-          onClick={props.onClick}
-        />
-        </>
+         key={'DM' + dataSet }
+         mapFeatures={props.mapFeatures}
+         mapJsonObject={props.mapJsonObject}
+         mapData={mapData}
+         minColor={props.minColor}
+         maxColor={props.maxColor}
+         mapZoom={props.mapZoom}
+         mapX={props.mapX}
+         mapY={props.mapY}
+         onZoomEnd={props.onZoomEnd}
+         onClick={props.onClick}
+       />
+       </>
       }
     </>
   )

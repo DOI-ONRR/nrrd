@@ -305,9 +305,9 @@ const MapContext = props => {
     })
   }
 
-  const [mapX, setMapX] = useState()
-  const [mapY, setMapY] = useState()
-  const [mapK, setMapK] = useState(0)
+  const [mapX, setMapX] = useState(pageState.mapX || 0)
+  const [mapY, setMapY] = useState(pageState.mapY || 0)
+  const [mapK, setMapK] = useState(pageState.mapZoom)
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
@@ -350,14 +350,16 @@ const MapContext = props => {
     setMapY(y)
     setMapX(x)
     setMapK(k)
+
+    dispatch({ type: 'MAP_ZOOM', payload: { mapX: x, mapY: y, mapZoom: k } })
   }
 
   // onLink
   const onLink = (state, x, y, k) => {
-    // console.log('onLink state: ', state)
-    setMapK(k)
-    setMapY(y)
-    setMapX(x)
+    console.log('onLink state: ', state)
+    // setMapK(k)
+    // setMapY(y)
+    // setMapX(x)
     let fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
     if (fips === undefined) {
@@ -406,24 +408,25 @@ const MapContext = props => {
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   const handleChange = (type, name) => event => {
-    setZoom(x, y, k)
+    // setZoom(x, y, k)
     console.debug('TYPE: ', type, 'Name ', name, 'Event')
     updateDataFilter({ ...filterState, [type]: event.target.checked })
   }
 
   const handleClick = val => {
+    console.log('handleClick val: ', val)
     if (val === 'add' && k >= 0.25) {
       k = k + 0.25
-      x = x - 100
+      x = x - 150
     }
     if (val === 'remove' && k >= 0.25) {
       k = k - 0.25
       x = x + 100
     }
     if (val === 'refresh') {
-      k = 0.25
-      x = 0
-      y = 0
+      k = 0.75
+      x = 150
+      y = 100
     }
     setZoom(x, y, k)
   }
@@ -459,8 +462,11 @@ const MapContext = props => {
   }
 
   const onClick = (d, fips, foo, bar) => {
+    console.log('onClick ', d)
     onLink(d, x, y, k)
   }
+
+  console.log('mapJsonObject: ', mapJsonObject)
 
   const mapChild = React.cloneElement(props.children[0],
     {
@@ -474,6 +480,7 @@ const MapContext = props => {
       onZoomEnd: onZoomEnd,
       onClick: onClick
     })
+
 
   return (
     <>
