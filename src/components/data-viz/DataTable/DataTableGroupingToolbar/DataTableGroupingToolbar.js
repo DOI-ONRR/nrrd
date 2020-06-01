@@ -127,8 +127,6 @@ const DataTableGroupingToolbar = () => {
 
 export default DataTableGroupingToolbar
 
-
-
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),

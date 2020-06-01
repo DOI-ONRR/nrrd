@@ -1,6 +1,8 @@
-import gql from 'graphql-tag'
-
 export const DATA_TYPE = 'dataType'
+export const LOCATION_NAME = 'locationName'
+export const LAND_TYPE = 'landType'
+export const REGION_TYPE = 'regionType'
+export const DISTRICT_TYPE = 'districtType'
 export const LAND_CLASS = 'landClass'
 export const LAND_CATEGORY = 'landCategory'
 export const OFFSHORE_REGION = 'offshoreRegion'

@@ -15,13 +15,18 @@ module.exports = Object.freeze({
   },
   MuiTable: {
     root: {
-      marginBottom: '25px'
+      marginBottom: '25px',
+    }
+  },
+  MuiTableRow: {
+    root: {
+      backgroundColor: 'white'
     }
   },
   MuiTableCell: {
     head: {
       borderBottomColor: palette.secondary.main,
-      borderBottomWidth: '3px'
+      borderBottomWidth: '3px',
     },
     footer: {
       color: typography.body2.color,

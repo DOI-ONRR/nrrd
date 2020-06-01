@@ -13,7 +13,10 @@ import { Table } from '@devexpress/dx-react-grid-material-ui'
 
 const useStyles = makeStyles(theme => ({
   cell: {
-    borderRight: `1px solid ${ theme.palette.divider }`
+    borderRight: `1px solid ${ theme.palette.divider }`,
+    backgroundColor: 'white',
+    paddingTop: '2px;',
+    paddingBottom: '2px;'
   }
 }))
 

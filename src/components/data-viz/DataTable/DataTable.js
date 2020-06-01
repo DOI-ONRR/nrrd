@@ -7,9 +7,6 @@ import {
   DATA_TYPE,
   GROUP_BY,
   BREAKOUT_BY,
-  PERIOD,
-  PERIOD_FISCAL_YEAR,
-  PERIOD_CALENDAR_YEAR,
   FISCAL_YEAR,
   CALENDAR_YEAR,
   NO_BREAKOUT_BY,
@@ -17,19 +14,18 @@ import {
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
-import utils, { toTitleCase, aggregateSum, downloadWorkbook } from '../../../js/utils'
+import { toTitleCase, aggregateSum, downloadWorkbook } from '../../../js/utils'
 
 import DTQM from '../../../js/data-table-query-manager'
 import { useQuery } from '@apollo/react-hooks'
 
 import CustomTableCell from './Custom/CustomTableCell'
+import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
 import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRow'
 import CustomTableFixedCell from './Custom/CustomTableFixedCell'
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
 import AllTypeProvider from './Custom/AllTypeProvider'
-
-import DataTableGroupingToolbar from './DataTableGroupingToolbar'
 
 import { IconDownloadCsvImg, IconDownloadXlsImg } from '../../images'
 import Button from '@material-ui/core/Button'
@@ -47,9 +43,6 @@ import {
   IntegratedSorting,
   SummaryState,
   IntegratedSummary,
-  FilteringState,
-  IntegratedFiltering,
-  DataTypeProvider,
   TableColumnVisibility
 } from '@devexpress/dx-react-grid'
 
@@ -59,9 +52,6 @@ import {
   TableHeaderRow,
   TableFixedColumns,
   TableGroupRow,
-  GroupingPanel,
-  DragDropProvider,
-  Toolbar,
   TableSummaryRow,
   TableColumnResizing
 } from '@devexpress/dx-react-grid-material-ui'
@@ -198,27 +188,9 @@ const DisbursementDataTableImpl = () => {
   )
 }
 
-const DownloadDataTableButton = () => {
-  const downloadStuff = () => {
-    downloadExcel()
-  }
-  return (
-    <Button
-      variant="contained"
-      color="primary"
-      aria-label="open data filters"
-      onClick={downloadStuff}
-      onKeyDown={downloadStuff}
-      startIcon={<TableChart />}
-    >
-    Download table to excel
-    </Button>
-  )
-}
-
 const DataTableImpl = data => {
   const { state } = useContext(DataFilterContext)
-  const columnNames = getColumnNames(data.results[0])
+  let columnNames = getColumnNames(data.results[0], state)
   const [grouping, setGrouping] = useState([])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
   const [fixedColumns, setFixedColumns] = useState([])
@@ -234,48 +206,44 @@ const DataTableImpl = data => {
       years = years.map(item => `y${ item }`)
       yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !years.includes(item.name)))
     }
+    else {
+      // By default only show 3 years
+      yearColumns = columnNames.filter(item => item.name.startsWith('y'))
+      yearColumns = yearColumns.slice(6)
+    }
 
     const nonYearColumns = columnNames.filter(item => (!item.name.startsWith('y') && item.name !== state[GROUP_BY] && item.name !== state[BREAKOUT_BY]))
-
     return yearColumns.concat(nonYearColumns).map(item => item.name)
   }
 
-  const getCurrencyColumns = () => {
-    const years = columnNames.filter(item => item.name.startsWith('y'))
-    return years && years.map(item => item.name)
-  }
-
   const getTotalSummaryItems = () => {
-    const years = columnNames //.filter(item => item.name.startsWith('y'))
-    return years && years.map(item => ({ columnName: item.name, type: 'sum', alignByColumn: false }))
+    const years = columnNames // .filter(item => item.name.startsWith('y'))
+    return years && years.map(item => ({ columnName: item.name, type: 'totalSum', alignByColumn: false }))
   }
 
   const getGroupSummaryItems = () => {
-    const years = columnNames //.filter(item => item.name.startsWith('y'))
+    const years = columnNames // .filter(item => item.name.startsWith('y'))
     return years && years.map(item => ({ columnName: item.name, type: 'sum', showInGroupFooter: true, alignByColumn: true }))
   }
 
-  const getDefaultColumnWidths = () => {
-    const widths = 90
-	  columnNames.forEach(column => {
-	    widths.push({ columnName: column, width: 200 })
-	  })
-  }
-
   useEffect(() => {
-    if (state[GROUP_BY]) {
+    columnNames = getColumnNames(data.results[0], state)
+    if (state[GROUP_BY] && (state[BREAKOUT_BY] !== NO_BREAKOUT_BY && state[BREAKOUT_BY])) {
       setGrouping([{ columnName: state[GROUP_BY] }])
       setFixedColumns([TableGroupRow.Row, state[GROUP_BY], state[BREAKOUT_BY]])
-      setHiddenColumnNames(getHiddenColumns())
+    }
+    else if (state[GROUP_BY]) {
+      setGrouping([])
+      setFixedColumns([state[GROUP_BY]])
     }
     else {
       setGrouping([])
-      setFixedColumns([])
-      setHiddenColumnNames([])
+      setFixedColumns([columnNames[0]])
     }
-
-    setTotalSummaryItems(getTotalSummaryItems())
+    setHiddenColumnNames(getHiddenColumns())
     setGroupSummaryItems(getGroupSummaryItems())
+    setTotalSummaryItems(getTotalSummaryItems())
+
     if (data && data.results.length > 0) {
       const yearProps = columnNames.filter(item => item.name.startsWith('y'))
       setAggregatedSums(aggregateSum({
@@ -362,7 +330,7 @@ const DataTableImpl = data => {
   )
 }
 
-const getColumnNames = row => {
+const getColumnNames = (row, state) => {
   if (!row) {
     return []
   }
@@ -376,17 +344,11 @@ const getColumnNames = row => {
       name: column,
       title: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].default : titleName,
       plural: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].plural : titleName,
+      groupByName: (DISPLAY_NAMES[state.groupBy]) ? DISPLAY_NAMES[state.groupBy].plural : state.groupBy,
     }
   })
 }
 
-const CustomTableSummaryRowTotalCell = ({ ...restProps }) => {
-  // console.log(restProps, restProps.value)
-  return (
-    <Table.Cell {...restProps} />
-  )
-}
-
 const summaryCalculator = (type, rows, getValue) => {
-  return IntegratedSummary.defaultCalculator(type, rows, getValue)
+  return IntegratedSummary.defaultCalculator('sum', rows, getValue)
 }

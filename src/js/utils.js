@@ -91,35 +91,37 @@ export const formatToSlug = name => {
 export const aggregateSum = ({ data, groupBy, breakoutBy, sumByProps }) => {
   // Clone original data so we don't change it
   const clonedData = JSON.parse(JSON.stringify(data))
-
   // Use a reduce function to aggregate the data
   const aggregated = clonedData.reduce((results, current) => {
-    // Find the objects that match based on the criteria
-    // If it finds a match then we will sum the props of the current item to the results
-    const matches = results.filter((item, index) => {
-      let foundMatch = false
-      if (groupBy) {
-        foundMatch = item[groupBy] === current[groupBy]
-        if (foundMatch && breakoutBy) {
+    // If no value exists for the current item just skip it.
+    if ((groupBy && current[groupBy]) || (!groupBy && breakoutBy && current[breakoutBy])) {
+      // Find the objects that match based on the criteria
+      // If it finds a match then we will sum the props of the current item to the results
+      const matches = results.filter((item, index) => {
+        let foundMatch = false
+        if (groupBy) {
+          foundMatch = item[groupBy] === current[groupBy]
+          if (foundMatch && breakoutBy) {
+            foundMatch = item[breakoutBy] === current[breakoutBy]
+          }
+        }
+        if (!groupBy && breakoutBy) {
           foundMatch = item[breakoutBy] === current[breakoutBy]
         }
-      }
-      if (!groupBy && breakoutBy) {
-        foundMatch = item[breakoutBy] === current[breakoutBy]
-      }
 
-      if (foundMatch) {
-        sumByProps.forEach(prop => {
-          results[index][prop] += current[prop]
-        })
+        if (foundMatch) {
+          sumByProps.forEach(prop => {
+            results[index][prop] += current[prop]
+          })
+        }
+
+        return foundMatch
+      })
+
+      // No matches found so lets just add the current item to the results array
+      if (matches.length === 0) {
+        results.push(current)
       }
-
-      return foundMatch
-    })
-
-    // No matches found so lets just add the current item to the results array
-    if (matches.length === 0) {
-      results.push(current)
     }
 
     return results

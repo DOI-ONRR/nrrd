@@ -3,6 +3,10 @@ import {
   REVENUE,
   PRODUCTION,
   DISBURSEMENT,
+  LOCATION_NAME,
+  LAND_TYPE,
+  REGION_TYPE,
+  DISTRICT_TYPE,
   LAND_CLASS,
   LAND_CATEGORY,
   OFFSHORE_REGION,
@@ -18,7 +22,6 @@ import {
 import gql from 'graphql-tag'
 
 const allRevenueYears = `
-y2020
 y2019
 y2018
 y2017
@@ -66,11 +69,6 @@ export default DataTableQueryManager
 const VARIABLES = {
   [REVENUE]: state => ({
     variables: {
-      [LAND_CLASS]: (state[LAND_CLASS] === ZERO_OPTIONS) ? undefined : state[LAND_CLASS],
-      [LAND_CATEGORY]: (state[LAND_CATEGORY] === ZERO_OPTIONS) ? undefined : state[LAND_CATEGORY],
-      [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
-      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
-      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
       [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
       [REVENUE_TYPE]: (state[REVENUE_TYPE] === ZERO_OPTIONS || !state[REVENUE_TYPE]) ? undefined : state[REVENUE_TYPE].split(','),
       [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
@@ -128,21 +126,18 @@ const VARIABLE_LIST_DISBURSEMENT = ''.concat(
 )
 
 const REVENUE_QUERY = `
-  results:query_tool_data(
+  results:query_tool_revenue_data(
     where: {
-      land_class: {_eq: $landClass},
-      land_category: {_eq: $landCategory},
-      offshore_region: {_in: $offshoreRegion},
-      state: {_in: $usState},
-      county: {_in: $county},
       commodity: {_in: $commodity},
       revenue_type: {_in: $revenueType},
       period: {_eq: $period},
     }) {
-    ${ LAND_CLASS }: land_class  
-    ${ LAND_CATEGORY }: land_category
+    ${ LOCATION_NAME }: location_name  
+    ${ LAND_TYPE }: land_type
+    ${ REGION_TYPE }: region_type
+    ${ DISTRICT_TYPE }: district_type
     ${ OFFSHORE_REGION }: offshore_region
-    ${ US_STATE }: state
+    ${ US_STATE }: state_name
     ${ COUNTY }: county
     ${ REVENUE_TYPE }: revenue_type
     ${ COMMODITY }: commodity
