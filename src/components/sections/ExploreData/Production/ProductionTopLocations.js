@@ -121,7 +121,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const location = (props.abbr && props.abbr.length === 5) ? 'County' : 'State'
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  // console.log('apollo query: ', year, location, commodity, state)
+  const key = `PTL${ year }${ state }${ commodity }`
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location, commodity, state },
