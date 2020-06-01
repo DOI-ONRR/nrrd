@@ -64,7 +64,7 @@ DisbursementSourceSummary: disbursement_source_summary(
 const DisbursementSources = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-
+  const dataSet = 'FY '+year
   const classes = useStyles()
   const theme = useTheme()
 
@@ -82,14 +82,15 @@ const DisbursementSources = props => {
   const total = 0
   if (
     data &&
-    data.DisbursementSourceSummary.length > 0) {
+      data.DisbursementSourceSummary.length > 0) {
     chartData = data
     if (chartData.DisbursementSourceSummary.length > 1) {
       return (
         <Box className={classes.root}>
-          <Box component="h4" fontWeight="bold">Disbursement by source</Box>
+          <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box>
             <CircleChart
+              key={'DS' + dataSet }
               data={chartData.DisbursementSourceSummary}
               xAxis='source'
               yAxis='total'
@@ -107,8 +108,8 @@ const DisbursementSources = props => {
                   return r
                 }
               } />
-          {/*<Box mt={3}>
-          
+            {/* <Box mt={3}>
+
               <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
                 Query Disbursements by Sources
               </ExploreDataLink>
@@ -130,7 +131,8 @@ const DisbursementSources = props => {
   }
 
   return (
-  null)
+    <Box className={classes.root}>&nbsp;</Box>
+  )
 }
 
 export default DisbursementSources

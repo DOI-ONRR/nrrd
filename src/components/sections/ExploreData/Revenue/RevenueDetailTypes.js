@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    '& .chart-container': {
+      display: 'grid',
+    }
   }
 }))
 
@@ -70,7 +73,9 @@ const RevenueDetailTypes = props => {
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Revenue types</Box>
             <Box>
-              <CircleChart data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
+            <CircleChart
+                key={'RDTY' + dataSet }
+                data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
                 format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
                 maxCircles={4}
@@ -85,11 +90,12 @@ const RevenueDetailTypes = props => {
                     return r
                   }
                 } />
-              <Box mt={3}>
-                <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
-                    Query revenue by type
+            {/*  <Box mt={3}>
+                 <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
+                Query revenue by type
                 </ExploreDataLink>
-              </Box>
+                </Box>
+             */}
             </Box>
           </Box>
         )

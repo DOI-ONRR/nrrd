@@ -69,4 +69,12 @@ module.exports = Object.freeze({
       overflow: 'none',
     },
   },
+  MuiCheckbox: {
+    colorSecondary: {
+      color: palette.links.default,
+      '&$checked': {
+        color: palette.links.default,
+      },
+    },
+  }
 })

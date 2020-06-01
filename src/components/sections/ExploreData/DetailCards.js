@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import React, { useContext, useState } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 
 // utility functions
 import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
+import { DataFilterContext } from '../../../stores/data-filter-store'
 
-// import { DataFilterContext } from '../../../stores/data-filter-store'
 // import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -26,7 +25,6 @@ import AddLocationCard from './AddLocationCard'
 
 import CONSTANTS from '../../../js/constants'
 
-
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: '25%',
@@ -34,6 +32,15 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     '@media (max-width: 768px)': {
       maxWidth: '100%',
+    },
+    '& .cardContent__Revenue': {
+      gridTemplateRows: '185px 615px 560px',
+    },
+    '& .cardContent__Disbursements': {
+      gridTemplateRows: '185px 615px 560px',
+    },
+    '& .cardContent__Production': {
+      gridTemplateRows: '185px 325px 750px',
     },
   },
   compareCards: {
@@ -137,19 +144,15 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1.5),
     filter: 'invert(1)',
   },
-}))
-
-const APOLLO_QUERY = gql`
-  query ExploreDataCompareQuery {
-    # land stats
-    land_stats {
-      federal_acres
-      federal_percent
-      location
-      total_acres
-    }
+  cardContentContainer: {
+    display: 'grid',
+    minHeight: 1500,
+    '& > div': {
+      margin: 0,
+      // border: '2px solid deeppink',
+    },
   }
-`
+}))
 
 const nonStateOrCountyCards = [
   CONSTANTS.NATIONWIDE_FEDERAL,
@@ -200,14 +203,27 @@ const CardTitle = props => {
 }
 
 const DetailCards = props => {
+  const data = useStaticQuery(graphql`
+    query LandStatsQuery {
+      onrr {
+        land_stats {
+          federal_acres
+          federal_percent
+          location
+          total_acres
+        }
+      }
+    }
+  `)
   const classes = useStyles()
 
   const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: filterState } = useContext(DataFilterContext)
   const cards = pageState.cards
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY)
+  // const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   const closeCard = fips => {
     // console.log('fips: ', fips)
@@ -215,38 +231,14 @@ const DetailCards = props => {
   }
 
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
-  const nationalCard = cards && cards.some(item => item.abbr === 'Nationwide Federal')
-  const nativeAmericanCard = cards && cards.some(item => item.abbr === 'Native American')
-  let cardMenuItems = []
-  if (!nationalCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }]
-  }
-  if (!nativeAmericanCard) {
-    cardMenuItems = [{ fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
-  }
-  if (!nationalCard && !nativeAmericanCard) {
-    cardMenuItems = [{ fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' }, { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }]
-  }
-
-  // Map snackbar
-  const [mapSnackbarState, setMapSnackbarState] = useState({
-    open: false,
-    vertical: 'bottom',
-    horizontal: 'center'
-  })
-
-  const { vertical, horizontal, open } = mapSnackbarState
-
-  const handleMapSnackbar = newState => {
-    setMapSnackbarState({ open: true, ...newState })
-  }
-
-  const handleMapSnackbarClose = () => {
-    setMapSnackbarState({ ...mapSnackbarState, open: false })
-  }
+  const cardMenuItems = [
+    { fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' },
+    { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
+  ]
 
   // onLink
   const onLink = state => {
+    // console.log('onLink state: ', state)
     // setMapK(k)
     // setMapY(y)
     // setMapX(x)
@@ -282,32 +274,12 @@ const DetailCards = props => {
           cards.push(stateObj)
         }
       }
-      else {
-        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
-        setMapSnackbarState({ ...snackbarState, open: false })
-      }
     }
 
     dispatch({ type: 'CARDS', payload: cards })
   }
 
-  // const dataSet = `FY ${ year }`
-
-  let landStatsData
-
-  if (loading) {
-    return (
-      <div className={classes.progressContainer}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-      </div>
-    )
-  }
-
-  if (error) return `Error! ${ error.message }`
-
-  if (data) {
-    landStatsData = data.land_stats
-  }
+  const landStatsData = data.onrr.land_stats
 
   return (
     <>
@@ -325,7 +297,7 @@ const DetailCards = props => {
           return (
             <Card className={classes.root} key={i}>
               <CardHeader
-                title={<CardTitle data={landStatsData} stateTitle={card.name} stateAbbr={card.abbr} state={card.abbr} />}
+                title={<CardTitle data={landStatsData} stateTitle={card.name} stateAbbr={card.abbr} state={card.state} />}
                 action={<CloseIcon
                   className={classes.closeIcon}
                   onClick={(e, i) => {
@@ -335,7 +307,7 @@ const DetailCards = props => {
                 classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
                 disableTypography
               />
-              <CardContent className="card-content-container">
+              <CardContent className={`${ classes.cardContentContainer } cardContent__${ filterState.dataType }`}>
                 {children}
               </CardContent>
               <CardActions></CardActions>

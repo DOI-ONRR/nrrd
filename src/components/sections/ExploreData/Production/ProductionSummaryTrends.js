@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-
+import * as d3 from 'd3'
 import {
   Box,
   Grid,
@@ -38,7 +38,11 @@ const APOLLO_QUERY = gql`
 const ProductionSummaryTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
+  const dataSet = 'FY ' + year
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  const state = props.abbr
+  const key = dataSet + '_' + commodity + '_' + state
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, commodity: commodity, period: CONSTANTS.FISCAL_YEAR }
   })
@@ -49,6 +53,7 @@ const ProductionSummaryTrends = props => {
   let periodData
   let fiscalData
   let highlightIndex = 0
+  let row
   let total = 0
 
   if (loading) {
@@ -79,7 +84,12 @@ const ProductionSummaryTrends = props => {
       item.fiscal_year,
       item.sum
     ])
-
+    console.debug("FD1 :" , fiscalData)
+    fiscalData = d3.nest()
+      .key(k => k.fiscal_year)
+      .rollup(v => d3.sum(v, i => i.sum))
+      .entries(data.fiscal_production_summary.filter(row => row.state_or_area === state)).map(item => [parseInt(item.key), item.value])
+        console.debug("FD2 :" , fiscalData)
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
       const sum = fiscalData.find(x => x[0] === item.fiscal_year)
@@ -88,13 +98,13 @@ const ProductionSummaryTrends = props => {
         sum ? sum[1] : 0
       ])
     })
-
+    console.debug("SD1 :" , sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
 
-    total = data.fiscal_production_summary.length > 1 ? data.fiscal_production_summary[data.fiscal_production_summary.findIndex(x => x.fiscal_year === year)].sum : 0
+    total = sparkData[highlightIndex][1]
 
     return (
       <>
@@ -108,6 +118,7 @@ const ProductionSummaryTrends = props => {
               <Box component="span">
                 {sparkData && (
                   <Sparkline
+                    key={'PST' + key }
                     data={sparkData}
                     highlightIndex={highlightIndex}
                   />

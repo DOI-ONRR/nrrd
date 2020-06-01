@@ -20,6 +20,7 @@ import {
   LAND_CLASS,
   LAND_CATEGORY,
   US_STATE,
+  RECIPIENT,
   REVENUE,
   PRODUCTION,
   DISBURSEMENT,
@@ -46,7 +47,11 @@ const GROUP_BY_OPTIONS = {
     { value: US_STATE, option: 'State' },
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
-  [DISBURSEMENT]: [],
+  [DISBURSEMENT]: [
+    { value: RECIPIENT, option: 'Recipient' },
+    { value: US_STATE, option: 'State' },
+    { value: OFFSHORE_REGION, option: 'Offshore Region' },
+  ],
 }
 
 const DataTableGroupingToolbar = () => {

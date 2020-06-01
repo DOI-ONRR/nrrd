@@ -57,15 +57,17 @@ const useStyles = makeStyles(theme => ({
   topRecipientChart: {
     '& .chart-container': {
       display: 'flex',
-      alignItems: 'top',
-      '& .chart': {
-        width: 'calc(100% - 400px)',
-        height: '100%',
-        marginBottom: theme.spacing(5),
+      // alignItems: 'top',
+      '@media (max-width: 426px)': {
+        display: 'block',
+        margin: 0,
       },
-      '& .legend': {
-        width: 400,
-        marginTop: theme.spacing(2),
+      '& .chart': {
+        marginRight: theme.spacing(2),
+        width: '70%',
+        '@media (max-width: 426px)': {
+          marginRight: 0,
+        },
       },
     }
   }
@@ -107,7 +109,8 @@ const DisbursementTopRecipients = props => {
         <Grid item xs={12}>
           <Box className={classes.root}>
             <Box className={classes.topRecipientChart}>
-              <CircleChart
+        <CircleChart
+                key={'DTR' + dataSet }
                 data={chartData}
                 maxLegendWidth='800px'
                 xAxis='recipient'

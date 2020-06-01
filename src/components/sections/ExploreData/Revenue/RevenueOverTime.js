@@ -109,22 +109,22 @@ const RevenueOverTime = props => {
     chartData = [years, ...sums]
 
     return (
-        <Container id={utils.formatToSlug(title)}>
+      <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h4" color="secondary.dark">{title}</Box>
           </Box>
         </Grid>
         <Grid item md={12}>
-          <LineChart
+        <LineChart
+            key={'ROT'}
             data={chartData}
-            chipLabels={cards}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = utils.formatToDollarInt(d)
+                r[0] = `${ cards[i].name }: ${ utils.formatToDollarInt(d) }`
                 return r
               }
             } />

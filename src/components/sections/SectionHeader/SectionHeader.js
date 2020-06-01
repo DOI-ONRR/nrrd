@@ -31,6 +31,8 @@ const useStyles = makeStyles(theme => ({
 
 const SectionHeader = props => {
   const classes = useStyles()
+  // capitalize first letter for query link param
+  const niceLabel = props.linkLabel.charAt(0).toUpperCase() + props.linkLabel.slice(1) || props.title.charAt(0).toUpperCase() + props.title.slice(1)
   return (
     <>
       <Box color="secondary.main" mb={2} borderBottom={2} pb={1} className={classes.titleBar}>
@@ -38,8 +40,8 @@ const SectionHeader = props => {
         {props.showExploreLink &&
           <Box component="span" className={classes.titleLink}>
             <ExploreDataLink
-              to={`/query-data?dataType=${ props.linkLabel || props.title }`}
-              icon="filter">Filter {props.linkLabel || props.title} data</ExploreDataLink>
+              to={`/query-data?dataType=${ niceLabel }`}
+              icon="filter">Query {props.linkLabel || props.title} data</ExploreDataLink>
           </Box>
         }
       </Box>

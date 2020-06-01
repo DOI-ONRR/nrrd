@@ -126,7 +126,8 @@ const NationalRevenueSummary = props => {
                       </Box>
                     </TableCell>
                     <TableCell style={{ width: '65%' }}>
-                      <StackedBarChart
+                    <StackedBarChart
+                        key={'NRS' + year + '_' + i}
                         data={item[1]}
                         legendFormat={v => {
                           if (v === 0) {

@@ -85,6 +85,7 @@ const DisbursementRecipientSummary = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
   const year = filterState[DFC.YEAR]
+  const dataSet='FY '+year
   console.debug('DT                ', filterState)
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
@@ -99,6 +100,7 @@ const DisbursementRecipientSummary = props => {
 
   let distinctRecipients = 0
   let topRecipients = []
+  let row
   let total = 0
   if (
     data &&
@@ -108,7 +110,8 @@ const DisbursementRecipientSummary = props => {
   ) {
     periodData = data.period
 
-    total = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].sum
+    row = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)]
+    total = row ? row.sum : 0
     distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].distinct_commodities
 
     topRecipients = data.cardDisbursementRecipientSummary
@@ -155,6 +158,7 @@ const DisbursementRecipientSummary = props => {
                         </TableCell>
                         <TableCell align="right">
                           <Sparkline
+                            key={'DRS' + dataSet }
                             data={row.data}
                             highlightIndex={row.data.findIndex(
                               x => x[0] === year

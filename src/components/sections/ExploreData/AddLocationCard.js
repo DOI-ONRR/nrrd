@@ -1,36 +1,28 @@
-import React, { useState, useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import React, { useState } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import { VariableSizeList } from 'react-window'
+
 import PropTypes from 'prop-types'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { useTheme, makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Card,
   CardActions,
   CardContent,
   CardHeader,
-  TextField
+  ListSubheader,
+  TextField,
+  useMediaQuery
 } from '@material-ui/core'
 
 import { Autocomplete } from '@material-ui/lab'
-import { StoreContext } from '../../../store'
-
-import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import AddCardButton from './AddCardButton'
 import mapJson from './us-topology.json'
+import mapStatesOffshore from './states-offshore.json'
 
-const APOLLO_QUERY = gql`
-  query DistinctLocationsQuery {
-    distinct_locations(where: {location: {_neq: ""}}) {
-      location
-      location_id
-      sort_order
-    }
-  }
-`
+const GUTTER_SIZE = 15
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -90,38 +82,133 @@ const useStyles = makeStyles(theme => ({
   autoCompleteFocused: {
     color: theme.palette.primary.dark,
   },
+  listbox: {
+    boxSizing: 'border-box',
+    '& ul': {
+      padding: 0,
+      margin: 0,
+    },
+  }
 }))
 
 // get region details from map object
-const getRegionProperties = input => {
-  // check for fips_code that are only 4 digits, the data values should all be 5
-  input = input.length === 4 ? input = `0${ input }` : input
+const getRegionProperties = location => {
+  console.log('getRegionProperties input: ', location)
 
   let selectedObj
-  if (input.length > 2) {
-    selectedObj = mapJson.objects.counties.geometries.filter(obj => {
-      if (obj.properties.FIPS.toLowerCase() === input.toLowerCase()) {
-        return obj.properties
-      }
-    })
-  }
-  else {
+
+  switch (location.region_type) {
+  case 'State':
     selectedObj = mapJson.objects.states.geometries.filter(obj => {
-      if (obj.properties.abbr.toLowerCase() === input.toLowerCase()) {
-        return obj.properties
+      if (parseInt(obj.properties.FIPS) === parseInt(location.fips_code)) {
+        return Object.assign(obj, { locData: location })
       }
     })
+    break
+  case 'County':
+    selectedObj = mapJson.objects.counties.geometries.filter(obj => {
+      if (parseInt(obj.properties.FIPS) === parseInt(location.fips_code)) {
+        return Object.assign(obj, { locData: location })
+      }
+    })
+    break
+  case 'Offshore':
+    selectedObj = mapStatesOffshore.objects['states-offshore-geo'].geometries.filter(obj => {
+      if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
+        return Object.assign(obj, { locData: location })
+      }
+    })
+    break
+  default:
+    console.warn('Unable to find state, county or offshore area')
+    break
   }
 
   return selectedObj
 }
 
-const AddLocationCard = props => {
-  const classes = useStyles()
-  const { state: filterState } = useContext(DataFilterContext)
-  const year = filterState[DFC.YEAR]
+const useResetCache = data => {
+  const ref = React.useRef(null)
+  React.useEffect(() => {
+    if (ref.current != null) {
+      ref.current.resetAfterIndex(0, true)
+    }
+  }, [data])
+  return ref
+}
 
-  const [input, setInput] = useState(null)
+const RenderRow = props => {
+  const { data, index, style } = props
+  return React.cloneElement(data[index], {
+    style: {
+      ...style,
+      top: style.top + GUTTER_SIZE,
+      // border: '1px solid deeppink',
+    }
+  })
+}
+
+const ListboxComponent = React.forwardRef((props, ref) => {
+  const { children, role, ...other } = props
+
+  const theme = useTheme()
+  const smUp = useMediaQuery(theme.breakpoints.up('sm'))
+  const itemData = React.Children.toArray(children)
+  const itemCount = itemData.length
+  const itemSize = smUp ? 50 : 45
+
+  // console.log('ListboxComponent itemCount: ', itemData, itemCount)
+  const getChildSize = child => {
+    // console.log('getChildSize: ', child)
+    const charCount = child.props.children.props.children.length
+    if (React.isValidElement(child) && charCount > 20) {
+      return 100
+    }
+
+    return itemSize
+  }
+
+  const listRef = useResetCache(itemCount)
+
+  return (
+    <div ref={ref}>
+      <div {...other}>
+        <VariableSizeList
+          height={150}
+          width={275}
+          ref={listRef}
+          itemCount={itemCount}
+          itemData={itemData}
+          itemSize={index => getChildSize(itemData[index])}
+          innerElementType="ul"
+          role="listbox"
+          overscanCount={5}
+          // debug={true}
+        >
+          {RenderRow}
+        </VariableSizeList>
+      </div>
+    </div>
+  )
+})
+
+const AddLocationCard = props => {
+  const data = useStaticQuery(graphql`
+    query LocationQuery {
+      onrr {
+        distinct_locations: location(where: {fips_code: {_neq: ""}}, distinct_on: fips_code) {
+          fips_code
+          location_name
+          region_type
+          state
+          state_name
+        }
+      }
+    }
+  `)
+
+  const classes = useStyles()
+  const [input, setInput] = useState('')
   const [keyCount, setKeyCount] = useState(0)
 
   const {
@@ -134,11 +221,16 @@ const AddLocationCard = props => {
   }
 
   const handleChange = val => {
-    if (val) {
-      const item = getRegionProperties(val.location_id)[0]
-      props.onLink(item)
-      setInput(null)
+    console.log('val: ', val)
+    try {
+      const item = getRegionProperties(val)
+      console.log('item back: ', item)
+      props.onLink(item[0])
+      setInput('')
       setKeyCount(keyCount + 1)
+    }
+    catch (err) {
+      console.error('Oh no, seems there was an error trying to grab that location', err)
     }
   }
 
@@ -168,59 +260,54 @@ const AddLocationCard = props => {
     )
   }
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY)
-
-  if (loading) {}
-  if (error) return `Error! ${ error.message }`
+  // console.log('addlocationcard data: ', data)
+  const OPTIONS = data.onrr.distinct_locations
 
   return (
-    <>
-      { (data && data.distinct_locations.length > 0) &&
-        <Card className={classes.addLocationCard}>
-          <CardHeader
-            title={props.title}
-            classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
-            disableTypography
-          />
-          <CardContent>
-            <Autocomplete
-              key={keyCount}
-              id="location-select"
-              autoComplete
-              inputValue={input}
-              options={data.distinct_locations}
-              getOptionLabel={option => option.location}
-              style={{ width: '100%' }}
-              renderInput={params => (
-                <TextField
-                  {...params}
-                  label="Search locations..."
-                  variant="outlined"
-                  fullWidth
-                  onChange={handleSearch}
-                />
-              )}
-              renderOption={option => renderLabel(option.location)}
-              onChange={(e, v) => handleChange(v)}
-              classes={{
-                inputRoot: classes.autoCompleteRoot,
-                focused: classes.autoCompleteFocused,
-              }}
+    <Card className={classes.addLocationCard}>
+      <CardHeader
+        title={props.title}
+        classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
+        disableTypography
+      />
+      <CardContent>
+        <Autocomplete
+          key={keyCount}
+          id="location-select"
+          disableListWrap
+          inputValue={input}
+          options={OPTIONS}
+          ListboxComponent={ListboxComponent}
+          getOptionLabel={option => option.location_name}
+          style={{ width: '100%' }}
+          renderInput={params => (
+            <TextField
+              {...params}
+              label="Search locations..."
+              variant="outlined"
+              fullWidth
+              onChange={handleSearch}
             />
-          </CardContent>
-          <CardActions>
-            { cardMenuItems.length > 0 &&
-              <>
-                <Box ml={1} mb={1} display="flex" flexDirection="column" align="left">
-                  <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
-                  <Box mt={2} fontSize="16px" display="block" lineHeight="16px" color="#1478a6">Add Nationwide Federal and Native American cards</Box>
-                </Box>
-              </>
-            }
-          </CardActions>
-        </Card>
-      }
-    </>
+          )}
+          renderOption={option => renderLabel(option.location_name)}
+          onChange={(e, v) => handleChange(v)}
+          classes={{
+            inputRoot: classes.autoCompleteRoot,
+            focused: classes.autoCompleteFocused,
+          }}
+        />
+      </CardContent>
+      <CardActions>
+        { cardMenuItems.length > 0 &&
+          <>
+            <Box ml={1} mb={1} display="flex" flexDirection="column" align="left">
+              <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
+              <Box mt={2} fontSize="16px" display="block" lineHeight="16px" color="#1478a6">Add Nationwide Federal and Native American cards</Box>
+            </Box>
+          </>
+        }
+      </CardActions>
+    </Card>
   )
 }
 

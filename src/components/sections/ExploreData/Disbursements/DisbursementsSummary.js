@@ -41,7 +41,7 @@ const DisbursementsSummary = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
   const year = filterState[DFC.YEAR]
-  
+  const dataSet = 'FY '+year  
   const {
     distinctCommodities,
     highlightIndex,
@@ -108,7 +108,8 @@ const DisbursementsSummary = props => {
                                 </Typography>
                               </TableCell>
                               <TableCell align="right">
-                                <Sparkline
+                              <Sparkline
+                                  key={'DsS' + dataSet }
                                   data={row.data}
                                   highlightIndex={row.data.findIndex(
                                     x => x[0] === year

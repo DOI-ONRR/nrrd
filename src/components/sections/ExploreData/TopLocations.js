@@ -24,9 +24,9 @@ import {
 import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
-  query TopLocations($year: Int!, $location: String! ) {
+  query TopLocations($year: Int!, $locations: [String!] ) {
     fiscal_revenue_summary(
-      where: {location_type: {_eq: $location}, fiscal_year: { _eq: $year }, location_name: {_neq: ""} }
+      where: {location_type: {_in: $locations}, fiscal_year: { _eq: $year }, location_name: {_neq: ""} }
       order_by: { fiscal_year: asc, sum: desc }
     ) {
       location_name
@@ -83,8 +83,15 @@ const TopLocations = ({ title, ...props }) => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
-
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, location } })
+  const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
+  const locations = ['State', 'Offshore', 'Native American']
+  if (offshore !== 'Hide') {
+    locations.push('Offshore')
+  }
+  if (location === 'State') {
+    locations.push('Native American')
+  }
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, locations } })
 
   if (loading) {
     return (
@@ -111,7 +118,8 @@ const TopLocations = ({ title, ...props }) => {
           <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
-                <CircleChart
+        <CircleChart
+                  key ={'RTL' + dataSet}
                   data={chartData}
                   maxLegendWidth='800px'
                   xAxis='location_name'
@@ -122,15 +130,32 @@ const TopLocations = ({ title, ...props }) => {
                       // console.debug('circleLABLE: ', d)
                       const r = []
                       r[0] = d.location_name
+                      if( r[0] === 'Native American') {
+                        r[0] = 'Native American lands'
+                      }
+                      else if (r[0] === 'Gulf of Mexico, Central Gulf of Mexico') {
+                        r[0] = 'Central Gulf'
+                      }
+                      else if (r[0] === 'Gulf of Mexico, Western Gulf of Mexico') {
+                        r[0] = 'Western Gulf'
+                      }
+                      
                       r[1] = utils.formatToDollarInt(d.sum)
                       return r
+                    }
+                  }
+                  legendLabel={
+                    d => {
+                      if (d === 'Native American') {
+                        d = 'Native American lands'
+                      }
+                      return d
                     }
                   }
                   yLabel={dataSet}
                   maxCircles={6}
                   minColor={theme.palette.green[100]}
                   maxColor={theme.palette.green[600]} />
-                  <Box >Note: Location is  <GlossaryTerm>withheld</GlossaryTerm> for Native American revenue, so it is not include in this chart </Box>
               </Box>
             </Box>
           </Grid>

@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
+// import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -46,6 +47,7 @@ const REVENUE_QUERY = gql`
 `
 
 const RevenueCountyMap = props => {
+  console.log('RevenueCountyMap props', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -61,6 +63,8 @@ const RevenueCountyMap = props => {
   const onZoomEnd = event => {
     console.debug('Event : ', event)
   }
+  const state = props.state
+  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -79,16 +83,20 @@ const RevenueCountyMap = props => {
     <>
       {mapData &&
        <Box className={classes.root}>
-         <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
-         <Map
-           key={`county_map_${ props.abbr }`}
-           mapFeatures={mapFeatures}
-           mapJsonObject={mapCounties}
-           mapData={mapData}
-           minColor={props.minColor}
-           maxColor={props.maxColor}
-           zoomTo={props.abbr}
-         />
+         {!showCountyContent &&
+         <>
+           <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
+           <Map
+             key={`county_map_${ props.abbr }_${ year }`}
+             mapFeatures={mapFeatures}
+             mapJsonObject={mapCounties}
+             mapData={mapData}
+             minColor={props.minColor}
+             maxColor={props.maxColor}
+             zoomTo={props.abbr}
+           />
+         </>
+         }
        </Box>
       }
     </>

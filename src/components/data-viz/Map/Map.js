@@ -67,7 +67,7 @@ const Map = props => {
   const mapJsonObject = props.mapJsonObject
 
   const mapFeatures = props.mapFeatures || 'counties'
-  const mapData = props.mapData || []
+  //const mapData = props.mapData || []
 
   // mapData=props.offshoreData && mapData.concat(props.offshoreData);
   const elemRef = useRef(null)
@@ -91,12 +91,30 @@ const Map = props => {
   const mapZoom = props.mapZoom
   const mapX = props.mapX
   const mapY = props.mapY
-
+  const { mapData, ...options } = props
   let map
+
+  // Ugly hack to get around not being able to merge AKR Alaska Offshore Region
+  const planningAreas = ['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK']
+  const AKR = mapData.filter((d,i) =>{
+    // console.debug("WTH:",d, i)
+    if( d[0] === 'AKR' ){
+      return d[1]
+    }
+    //    }
+
+  })
+  if(AKR && AKR.length > 0) {
+    for (let ii = 0; ii < planningAreas.length; ii++) {
+      mapData.push([planningAreas[ii], AKR[0][1]])
+      //    console.debug('AKR: ', planningAreas, ' : ', AKR[0])
+    }
+  }
 
   useEffect(() => {
     const us = mapJsonObject
     //    const offshore = mapJsonObject.offshore
+    //console.debug("OPTIONS: ", options)
     const data = observableData(mapData)
     data.title = mapTitle
     map = new D3Map(
@@ -110,7 +128,8 @@ const Map = props => {
       maxColor,
       mapZoom,
       mapX,
-      mapY
+      mapY,
+      options
     )
 
     map.onZoom = onZoom

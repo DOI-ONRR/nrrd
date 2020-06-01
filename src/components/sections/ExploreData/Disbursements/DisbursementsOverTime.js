@@ -9,7 +9,7 @@ import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-
+import * as d3 from 'd3'
 import { makeStyles } from '@material-ui/core/styles'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -28,7 +28,7 @@ const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
   query FiscalDisbursementSummary {
-    fiscal_disbursement_summary(
+    disbursement_summary(
       order_by: { fiscal_year: asc }
     ) {
       fiscal_year
@@ -109,9 +109,15 @@ const DisbursementsOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
-    const years = [...new Set(data.fiscal_disbursement_summary.map(item => item.fiscal_year))]
-    const sums = cards.map(yData => [...new Set(data.fiscal_disbursement_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
-    // console.debug(sums, years)
+    const years = [...new Set(data.disbursement_summary.map(item => item.fiscal_year))]
+    const sums = cards.map(yData => [...new Set(
+      d3.nest()
+        .key(k => k.fiscal_year)
+        .rollup(v => d3.sum(v, i => i.sum))
+        .entries(data.disbursement_summary.filter(row => row.state_or_area === yData.abbr)).map(item => item.value)
+    )])
+    console.debug('sums', sums)
+    console.debug(sums, years)
     chartData = [years, ...sums]
 
     return (
@@ -123,14 +129,14 @@ const DisbursementsOverTime = props => {
         </Grid>
         <Grid item md={12}>
           <LineChart
+            key={'DOT' }
             data={chartData}
-            chipLabels={cards}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = utils.formatToDollarInt(d)
+                r[0] = `${ cards[i].name }: ${ utils.formatToDollarInt(d) }`
                 return r
               }
             } />

@@ -9,10 +9,10 @@ const ExploreRevenue = props => {
       contentLeft={
         <>
           <ExploreDataLink to="/explore/#revenue" icon="data">
-            Revenue trends
+            Explore revenue data
           </ExploreDataLink>
           <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
-            Revenue in detail
+            Query revenue data
           </ExploreDataLink>
           {/* <ExploreDataLink
             to="/how-revenue-works/federal-revenue-by-company/2018/"
@@ -23,12 +23,12 @@ const ExploreRevenue = props => {
         </>
       }
       contentCenter={
-        <ExploreDataLink to="/how-revenue-works/#revenues" icon="works">
+        <ExploreDataLink to="/how-revenue-works#understanding-federal-revenues" icon="works">
           How revenue works
         </ExploreDataLink>
       }
       contentRight={
-        <ExploreDataLink to="/downloads/#revenue" icon="download">
+        <ExploreDataLink to="/downloads/#Revenue" icon="download">
           Downloads and documentation
         </ExploreDataLink>
       }

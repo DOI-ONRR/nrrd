@@ -22,17 +22,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     '& .chart-container': {
-      display: 'flex',
+      display: 'grid',
       flexDirection: 'column',
       alignItems: 'top',
-      // '& .chart': {
-      //   width: '100%',
-      //   height: 250
-      // },
-      // '& .legend': {
-      //   marginTop: theme.spacing(2),
-      //   height: 'auto',
-      // },
     },
   }
 }))
@@ -82,7 +74,7 @@ const RevenueDetailCommodities = props => {
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Commodities</Box>
             <Box>
-              <CircleChart data={chartData.revenue_commodity_summary}
+              <CircleChart key={'RDC'+dataSet}  data={chartData.revenue_commodity_summary}
                 xAxis='commodity' yAxis='total'
                 format={ d => {
                   return utils.formatToDollarInt(d)
@@ -100,11 +92,12 @@ const RevenueDetailCommodities = props => {
                 maxCircles={6}
                 minColor={theme.palette.purple[100]}
                 maxColor={theme.palette.purple[600]} />
-              <Box mt={3}>
-                <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
+            {/*  <Box mt={3}>
+                 <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                       Query revenue by commodity
                 </ExploreDataLink>
               </Box>
+             */}
             </Box>
           </Box>
         )

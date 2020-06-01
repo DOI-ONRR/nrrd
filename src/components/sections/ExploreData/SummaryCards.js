@@ -14,6 +14,11 @@ import {
 import MinimizeIcon from '@material-ui/icons/Minimize'
 import CloseIcon from '@material-ui/icons/Close'
 
+import {
+  animateScroll as scroll,
+  scroller
+} from 'react-scroll'
+
 import { StoreContext } from '../../../store'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
@@ -29,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     right: 0,
     transform: 'translate3d(0, 0px, 0px)',
-    minHeight: 325,
+    minHeight: 335,
     '@media (max-width: 768px)': {
       width: '100%',
       height: 'auto',
@@ -112,6 +117,15 @@ const SummaryCards = props => {
     })
   )
 
+  const scrollTo = () => {
+    scroller.scrollTo('exploreDataContent', {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+      offset: -50,
+    })
+  }
+
   return (
     <>
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
@@ -147,7 +161,7 @@ const SummaryCards = props => {
             </Typography>
           </CardHeader>
 
-          <CardContent>
+          <CardContent onClick={scrollTo}>
             {children}
           </CardContent>
         </Card>

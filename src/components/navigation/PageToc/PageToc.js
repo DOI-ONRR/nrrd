@@ -141,6 +141,7 @@ const PageToc = props => {
 
   const handleClick = () => {
     // setToc({ ...toc, expanded: !toc.expanded })
+    console.log('handleClick: ', toc)
     if (toc.mobileActive) {
       setToc({ ...toc, expanded: !toc.expanded })
     }
@@ -275,6 +276,7 @@ const PageToc = props => {
             <nav
               id="page-toc-nav"
               aria-hidden={!toc.expanded && toc.mobileActive}
+              hidden={!toc.expanded && toc.mobileActive}
             >
               <ul className={classes.toc}>
                 <li className={classes.tocItem}>

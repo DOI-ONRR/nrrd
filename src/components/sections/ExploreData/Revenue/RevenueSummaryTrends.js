@@ -38,7 +38,7 @@ const APOLLO_QUERY = gql`
 const RevenueSummaryTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-
+  const dataSet = 'FY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, period: CONSTANTS.FISCAL_YEAR }
   })
@@ -49,6 +49,7 @@ const RevenueSummaryTrends = props => {
   let periodData
   let fiscalData
   let highlightIndex = 0
+  let row
   let total = 0
 
   if (loading) {
@@ -92,7 +93,9 @@ const RevenueSummaryTrends = props => {
       x => x[0] === year
     )
 
-    total = data.fiscal_revenue_summary.length > 1 ? data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].sum : 0
+    row = data.fiscal_revenue_summary.length > 1 && data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)]
+
+    total = row ? row.sum : 0
 
     return (
       <>
@@ -105,7 +108,8 @@ const RevenueSummaryTrends = props => {
             {sparkData.length > 1 &&
               <Box component="span">
                 {sparkData && (
-                  <Sparkline
+                    <Sparkline
+                    key={'RST' + dataSet } 
                     data={sparkData}
                     highlightIndex={highlightIndex}
                   />
@@ -117,7 +121,7 @@ const RevenueSummaryTrends = props => {
             <Typography variant="caption">
               <Box>{year}</Box>
               <Box>
-                {utils.formatToSigFig_Dollar(Math.floor(total), 3)} 
+                {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
               </Box>
             </Typography>
           </Grid>
@@ -126,7 +130,7 @@ const RevenueSummaryTrends = props => {
     )
   }
   else {
-    return (null)
+    return 'This location has no revenue.'
   }
 }
 
