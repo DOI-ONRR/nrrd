@@ -46,6 +46,10 @@ export const DISPLAY_NAMES = {
     default: 'Revenue type',
     plural: 'Revenue types',
   },
+  [LAND_TYPE]: {
+    default: 'Land type',
+    plural: 'Land types',
+  },
   [COMMODITY]: {
     default: 'Commodity',
     plural: 'Commodities',

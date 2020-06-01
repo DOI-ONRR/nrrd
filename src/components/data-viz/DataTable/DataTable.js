@@ -3,13 +3,14 @@ import React, { useContext, useState, useEffect } from 'react'
 import {
   REVENUE,
   PRODUCTION,
-  DISBURSEMENTS,
+  DISBURSEMENT,
   DATA_TYPE,
   GROUP_BY,
   BREAKOUT_BY,
   FISCAL_YEAR,
   CALENDAR_YEAR,
-  NO_BREAKOUT_BY
+  NO_BREAKOUT_BY,
+  DISPLAY_NAMES
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
@@ -82,19 +83,19 @@ const DataTable = ({ dataType, height = '100%' }) => {
         {state[DATA_TYPE] &&
           <React.Fragment>
             {state[DATA_TYPE] === REVENUE &&
-                <Grid item xs={12}>
-                  <RevenueDataTableImpl />
-                </Grid>
+              <Grid item xs={12}>
+                <RevenueDataTableImpl />
+              </Grid>
             }
             {state[DATA_TYPE] === PRODUCTION &&
-                <Grid item xs={12}>
-                  <ProductionDataTableImpl />
-                </Grid>
+              <Grid item xs={12}>
+                <ProductionDataTableImpl />
+              </Grid>
             }
-            {state[DATA_TYPE] === DISBURSEMENTS &&
-                <Grid item xs={12}>
-
-                </Grid>
+            {state[DATA_TYPE] === DISBURSEMENT &&
+              <Grid item xs={12}>
+                <DisbursementDataTableImpl />
+              </Grid>
             }
           </React.Fragment>
         }
@@ -132,6 +133,7 @@ const RevenueDataTableImpl = () => {
     </React.Fragment>
   )
 }
+
 const ProductionDataTableImpl = () => {
   const { state } = useContext(DataFilterContext)
 
@@ -151,6 +153,35 @@ const ProductionDataTableImpl = () => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
   }, [loading])
 
+  return (
+    <React.Fragment>
+      {(data && data.results.length > 0) &&
+        <DataTableImpl {...data} />
+      }
+    </React.Fragment>
+  )
+}
+
+const DisbursementDataTableImpl = () => {
+  const { state } = useContext(DataFilterContext)
+
+  const loadingMessage = `Loading ${ state.dataType } data from server...`
+
+  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
+
+  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
+
+  useEffect(() => {
+    if (error) {
+      showErrorMessage(`Error!: ${ error.message }`)
+    }
+  }, [error])
+
+  useEffect(() => {
+    updateLoadingStatus({ status: loading, message: loadingMessage })
+  }, [loading])
+
+  console.log(DISBURSEMENT)
   return (
     <React.Fragment>
       {(data && data.results.length > 0) &&

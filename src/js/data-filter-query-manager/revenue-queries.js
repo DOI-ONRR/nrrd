@@ -1,5 +1,6 @@
 import gql from 'graphql-tag'
 import {
+  LAND_TYPE,
   LAND_CATEGORY,
   COMMODITY,
   LAND_CLASS,
@@ -20,6 +21,7 @@ import {
 const GRAPHQL_VIEW = 'data_filter_revenue_options'
 
 const VARIABLE_LIST = ''.concat(
+  '$landType: String,',
   '$landClass: String,',
   '$landCategory: String,',
   '$offshoreRegion: [String!],',
@@ -32,9 +34,31 @@ const VARIABLE_LIST = ''.concat(
   '$calendarYear: [Int!],'
 )
 
+const LAND_TYPE_OPTIONS_QUERY = `
+  options:${ GRAPHQL_VIEW }(
+    where: {
+      land_type: {_neq: ""},
+      land_class: {_eq: $landClass},
+      land_category: {_neq: ""},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $usState},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
+      revenue_type: {_in: $revenueType},
+      period: {_eq: $period},
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
+    },
+    distinct_on: land_type,
+    order_by: {land_type: asc}
+  ) {
+    option:land_type
+  }`
+
 const LAND_CATEGORY_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
+      land_type: {_eq: $landType},
       land_class: {_eq: $landClass},
       land_category: {_neq: ""},
       offshore_region: {_in: $offshoreRegion},
@@ -55,6 +79,7 @@ const LAND_CATEGORY_OPTIONS_QUERY = `
 const LAND_CLASS_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
+      land_type: {_eq: $landType},
       land_class: {_neq: ""},
       land_category: {_eq: $landCategory},
       offshore_region: {_in: $offshoreRegion},
@@ -75,6 +100,7 @@ const LAND_CLASS_OPTIONS_QUERY = `
 const REVENUE_TYPE_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
+      land_type: {_eq: $landType},
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
       offshore_region: {_in: $offshoreRegion},
@@ -95,6 +121,7 @@ const REVENUE_TYPE_OPTIONS_QUERY = `
 const US_STATE_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
+      land_type: {_eq: $landType},
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
       offshore_region: {_in: $offshoreRegion},
@@ -135,6 +162,7 @@ const OFFSHORE_REGION_OPTIONS_QUERY = `
 const COMMODITY_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
+      land_type: {_eq: $landType},
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
       offshore_region: {_in: $offshoreRegion},
@@ -155,6 +183,7 @@ const COMMODITY_OPTIONS_QUERY = `
 const FISCAL_YEAR_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
+      land_type: {_eq: $landType},
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
       offshore_region: {_in: $offshoreRegion},
@@ -174,6 +203,7 @@ const FISCAL_YEAR_OPTIONS_QUERY = `
 const CALENDAR_YEAR_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
+      land_type: {_eq: $landType},
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
       offshore_region: {_in: $offshoreRegion},
@@ -193,6 +223,7 @@ const CALENDAR_YEAR_OPTIONS_QUERY = `
 const PERIOD_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
+      land_type: {_eq: $landType},
       land_class: {_eq: $landClass},
       land_category: {_eq: $landCategory},
       offshore_region: {_in: $offshoreRegion},
@@ -208,6 +239,7 @@ const PERIOD_OPTIONS_QUERY = `
   }`
 
 const REVENUE_QUERIES = {
+  [LAND_TYPE]: gql`query GetLandTypeOptionsRevenue(${ VARIABLE_LIST }){${ LAND_TYPE_OPTIONS_QUERY }}`,
   [LAND_CATEGORY]: gql`query GetLandCategoryOptionsRevenue(${ VARIABLE_LIST }){${ LAND_CATEGORY_OPTIONS_QUERY }}`,
   [LAND_CLASS]: gql`query GetLandClassOptionsRevenue(${ VARIABLE_LIST }){${ LAND_CLASS_OPTIONS_QUERY }}`,
   [REVENUE_TYPE]: gql`query GetRevenueTypeOptionsRevenue(${ VARIABLE_LIST }){${ REVENUE_TYPE_OPTIONS_QUERY }}`,

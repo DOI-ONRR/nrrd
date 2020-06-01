@@ -8,6 +8,7 @@ import FilterList from '@material-ui/icons/FilterList'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 
+import LandTypeSelect from '../data-filters/LandTypeSelect'
 import LandCategorySelect from '../data-filters/LandCategorySelect'
 import LandClassSelect from '../data-filters/LandClassSelect'
 import StateSelect from '../data-filters/StateSelect'
@@ -91,10 +92,7 @@ export default function DataFilterDrawer () {
               {state.dataType !== DISBURSEMENT &&
                 <React.Fragment>
                   <Grid item xs={12}>
-                    <LandCategorySelect />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <LandClassSelect />
+                    <LandTypeSelect />
                   </Grid>
                 </React.Fragment>
               }

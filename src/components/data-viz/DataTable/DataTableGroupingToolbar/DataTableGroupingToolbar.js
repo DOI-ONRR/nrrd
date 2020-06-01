@@ -16,6 +16,7 @@ import Select from '@material-ui/core/Select'
 
 import {
   REVENUE_TYPE,
+  LAND_TYPE,
   COMMODITY,
   LAND_CLASS,
   LAND_CATEGORY,
@@ -35,8 +36,7 @@ const GROUP_BY_OPTIONS = {
   [REVENUE]: [
     { value: REVENUE_TYPE, option: 'Revenue type' },
     { value: COMMODITY, option: 'Commodity' },
-    { value: LAND_CATEGORY, option: 'Land category' },
-    { value: LAND_CLASS, option: 'Land class' },
+    { value: LAND_TYPE, option: 'Land type' },
     { value: US_STATE, option: 'State' },
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
