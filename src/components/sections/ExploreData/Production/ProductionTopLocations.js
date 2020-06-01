@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
+import * as d3 from 'd3'
 
 // utility functions
 import utils from '../../../../js/utils'
@@ -141,21 +142,19 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const dataSet = `FY ${ year }`
 
   if (data) {
-    console.debug('WTH: ', data)
+    console.debug("WTH: ", data)
     if (location === 'County') {
-      chartData = data.state_fiscal_production_summary
+      const unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
+      chartData = d3.nest()
+        .key(k => k.location_name)
+        .rollup(v => d3.sum(v, i => i.sum))
+        .entries(data.state_fiscal_production_summary).map(item => {
+          const r = { sum: item.value, location_name: item.key, unit_abbr: unitAbbr }
+          return r
+        })
     }
     else {
-      /*
-         summarize fiscal_production_summary
-
- const sums = [...new Set(
-      d3.nest()
-        .key(k => k.fiscal_year)
-        .rollup(v => d3.sum(v, i => i.sum))
-        .entries(data.fiscal_production_summary.filter(row => row.state_or_area === state)).map(item => item.value)
-    )] */
-      chartData = data.fiscal_production_summary
+      chartData =  data.fiscal_production_summary
     }
     console.debug('CHART DATA', chartData)
     return (
@@ -163,7 +162,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
         <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
           <CircleChart
-            key={'PTL' + dataSet }
+            key={key}
             data={chartData}
             maxLegendWidth={maxLegendWidth}
             xAxis='location_name'

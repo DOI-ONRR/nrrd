@@ -55,7 +55,7 @@ const RevenueDetailTypes = props => {
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: stateAbbr, year: year }
   })
-
+  const dataKey = dataSet + '-' + stateAbbr
   let chartData
 
   if (loading) return ''
@@ -74,7 +74,7 @@ const RevenueDetailTypes = props => {
             <Box component="h4" fontWeight="bold">Revenue types</Box>
             <Box>
             <CircleChart
-                key={'RDTY' + dataSet }
+                key={'RDTY' + dataKey }
                 data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
                 format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
