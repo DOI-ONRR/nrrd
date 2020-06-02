@@ -20,7 +20,6 @@ import DTQM from '../../../js/data-table-query-manager'
 import { useQuery } from '@apollo/react-hooks'
 
 import CustomTableCell from './Custom/CustomTableCell'
-import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
 import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRow'
 import CustomTableFixedCell from './Custom/CustomTableFixedCell'
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
@@ -258,10 +257,39 @@ const DataTableImpl = data => {
     }
   }, [state, data])
 
+  const handleDownload = type => {
+    downloadWorkbook(type, state[DATA_TYPE], state[DATA_TYPE], columnNames.filter(col => !hiddenColumnNames.includes(col.name)), aggregatedSums)
+  }
+
   return (
     <React.Fragment>
       {(aggregatedSums && aggregatedSums.length > 0) &&
-        <Grid container>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Box component="div" display="inline" mr={2}>
+              <Button
+                variant="contained"
+                color="primary"
+                aria-label="open data filters"
+                onClick={() => handleDownload('excel')}
+                onKeyDown={() => handleDownload('excel')}
+                startIcon={<IconDownloadXlsImg />}
+              >
+              Download table
+              </Button>
+
+            </Box>
+            <Button
+              variant="contained"
+              color="primary"
+              aria-label="open data filters"
+              onClick={() => handleDownload('csv')}
+              onKeyDown={() => handleDownload('csv')}
+              startIcon={<IconDownloadCsvImg />}
+            >
+              Download table
+            </Button>
+          </Grid>
           <Grid item xs={12}>
             <TableGrid
               rows={aggregatedSums}
