@@ -18,3 +18,6 @@ launch.json
 downloads/disbursements/~$disbursements.xlsx
 
 report.*.json
+
+# env
+.env.*
