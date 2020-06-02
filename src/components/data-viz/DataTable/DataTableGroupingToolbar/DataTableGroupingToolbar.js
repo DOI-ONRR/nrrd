@@ -29,7 +29,8 @@ import {
   GROUP_BY,
   BREAKOUT_BY,
   NO_BREAKOUT_BY,
-  OFFSHORE_REGION
+  OFFSHORE_REGION,
+  SOURCE
 } from '../../../../constants'
 
 const GROUP_BY_OPTIONS = {
@@ -42,15 +43,13 @@ const GROUP_BY_OPTIONS = {
   ],
   [PRODUCTION]: [
     { value: COMMODITY, option: 'Commodity' },
-    { value: LAND_CATEGORY, option: 'Land category' },
-    { value: LAND_CLASS, option: 'Land class' },
+    { value: LAND_TYPE, option: 'Land type' },
     { value: US_STATE, option: 'State' },
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
   [DISBURSEMENT]: [
     { value: RECIPIENT, option: 'Recipient' },
-    { value: US_STATE, option: 'State' },
-    { value: OFFSHORE_REGION, option: 'Offshore Region' },
+    { value: SOURCE, option: 'Source' },
   ],
 }
 
@@ -59,13 +58,13 @@ const DataTableGroupingToolbar = () => {
 
   // This is where all business logic will applied for the grouping options
   const setGroupByOptions = state => {
-    let optionList = GROUP_BY_OPTIONS[state[DATA_TYPE]]
+    const optionList = GROUP_BY_OPTIONS[state[DATA_TYPE]]
     if (!optionList || optionList.length === 0) {
       return
     }
 
     // Remove any option that only has 1 value selected
-    optionList = optionList.filter(item => !(state[item.value] && state[item.value].split(',').length === 1))
+    // optionList = optionList.filter(item => !(state[item.value] && state[item.value].split(',').length === 1))
 
     const groupByValue = (optionList.findIndex(item => item.value === state[GROUP_BY]) === -1) ? optionList[0].value : state[GROUP_BY]
     let breakoutByValue = state[BREAKOUT_BY]
@@ -114,7 +113,7 @@ const DataTableGroupingToolbar = () => {
             handleChange={handleGroupByChange}
             label={'Group by'}
             currentValue={groupBy}
-            options={options.filter(item => item.value !== breakoutBy)} />
+            options={ options } />
         }
       </Grid>
       {(options && options.length > 1) &&

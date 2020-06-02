@@ -11,6 +11,7 @@ import {
   LAND_CATEGORY,
   OFFSHORE_REGION,
   US_STATE,
+  US_STATE_ABBR,
   COUNTY,
   COMMODITY,
   REVENUE_TYPE,
@@ -103,7 +104,7 @@ const VARIABLE_LIST_REVENUE = ''.concat(
   '$landType: String,',
   '$landCategory: String,',
   '$offshoreRegion: [String!],',
-  '$usState: [String!],',
+  '$state: [String!],',
   '$county: [String!],',
   '$commodity: [String!],',
   '$revenueType: [String!],',
@@ -114,7 +115,7 @@ const VARIABLE_LIST_PRODUCTION = ''.concat(
   '$landClass: String,',
   '$landCategory: String,',
   '$offshoreRegion: [String!],',
-  '$usState: [String!],',
+  '$state: [String!],',
   '$county: [String!],',
   '$commodity: [String!],',
   '$period: String,'
@@ -123,7 +124,7 @@ const VARIABLE_LIST_DISBURSEMENT = ''.concat(
   '$recipient: String,',
   '$source: String,',
   '$offshoreRegion: [String!],',
-  '$usState: [String!],',
+  '$state: [String!],',
   '$county: [String!],',
   '$commodity: [String!],',
   '$period: String,'
@@ -132,8 +133,8 @@ const VARIABLE_LIST_DISBURSEMENT = ''.concat(
 const REVENUE_QUERY = `
   results:query_tool_revenue_data(
     where: {
+      state: {_in: $state},
       land_type: {_eq: $landType},
-      state: {_in: $usState},
       offshore_region: {_in: $offshoreRegion},
       commodity: {_in: $commodity},
       revenue_type: {_in: $revenueType},
@@ -143,8 +144,8 @@ const REVENUE_QUERY = `
     ${ LAND_TYPE }: land_type
     ${ REGION_TYPE }: region_type
     ${ DISTRICT_TYPE }: district_type
-    ${ OFFSHORE_REGION }: offshore_region
-    ${ US_STATE }: state_name
+    ${ OFFSHORE_REGION }: offshore_region,
+    ${ US_STATE }: state
     ${ COUNTY }: county
     ${ REVENUE_TYPE }: revenue_type
     ${ COMMODITY }: commodity
@@ -156,7 +157,7 @@ const PRODUCTION_QUERY = `
     where: {
       land_type: {_eq: $landType},
       offshore_region: {_in: $offshoreRegion},
-      state: {_in: $usState},
+      state: {_in: $state},
       county: {_in: $county},
       commodity: {_in: $commodity},
       period: {_eq: $period},
@@ -178,7 +179,7 @@ const DISBURSEMENT_QUERY = `
       recipient: {_eq: $recipient},
       source: {_eq: $source},
       offshore_region: {_in: $offshoreRegion},
-      state: {_in: $usState},
+      state: {_in: $state},
       county: {_in: $county},
       period: {_eq: $period},
     }) {
