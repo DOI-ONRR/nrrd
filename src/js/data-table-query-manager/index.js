@@ -145,7 +145,7 @@ const REVENUE_QUERY = `
     ${ REGION_TYPE }: region_type
     ${ DISTRICT_TYPE }: district_type
     ${ OFFSHORE_REGION }: offshore_region,
-    ${ US_STATE }: state
+    ${ US_STATE }: state_name
     ${ COUNTY }: county
     ${ REVENUE_TYPE }: revenue_type
     ${ COMMODITY }: commodity
@@ -178,15 +178,13 @@ const DISBURSEMENT_QUERY = `
     where: {
       recipient: {_eq: $recipient},
       source: {_eq: $source},
-      offshore_region: {_in: $offshoreRegion},
       state: {_in: $state},
       county: {_in: $county},
       period: {_eq: $period},
     }) {
     ${ RECIPIENT }: recipient
     ${ SOURCE }: source
-    ${ OFFSHORE_REGION }: offshore_region
-    ${ US_STATE }: state
+    ${ US_STATE }: state_name
     ${ COUNTY }: county
     ${ allRevenueYears }
   }`

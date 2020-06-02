@@ -113,9 +113,11 @@ export default function DataFilterDrawer () {
               <Grid item xs={12}>
                 <StateSelect />
               </Grid>
-              <Grid item xs={12}>
-                <OffshoreRegionSelect />
-              </Grid>
+              {state.dataType !== DISBURSEMENT &&
+                <Grid item xs={12}>
+                  <OffshoreRegionSelect />
+                </Grid>
+              }
               {state.dataType !== DISBURSEMENT &&
                 <Grid item xs={12}>
                   <CommoditySelect />
