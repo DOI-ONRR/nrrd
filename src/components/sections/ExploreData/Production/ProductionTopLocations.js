@@ -148,7 +148,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
     }
     else {
 
-      const unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
+      const unitAbbr = data.fiscal_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
         .rollup(v => d3.sum(v, i => i.sum))
