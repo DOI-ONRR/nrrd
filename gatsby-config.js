@@ -2,27 +2,13 @@ const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
 // Active environment
-const activeEnv =
-  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
-
-console.log(`Using environment config: '${ activeEnv }'`)
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || 'development'
 
 const BASEURL = process.env.BASEURL || undefined
 
 require('dotenv').config({
   path: `.env.${ activeEnv }`,
 })
-
-console.log('process.env: ', process.env)
-
-// Federalist provides the google_analytics env variable
-// const GOOGLE_ANALYTICS_ID = process.env.NODE_ENV === 'production'
-//   ? 'UA-33523145-1'
-//   : undefined
-
-// const GTM_ID = process.env.NODE_ENV === 'production'
-//   ? 'GTM-NCRF98R'
-//   : undefined
 
 const config = {
   siteMetadata: {
