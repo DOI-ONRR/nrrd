@@ -113,9 +113,12 @@ export default function DataFilterDrawer () {
               <Grid item xs={12}>
                 <StateSelect />
               </Grid>
-              {(state[US_STATE] && (state[US_STATE].split(',').length === 1)) &&
-                <Grid item xs={12}>
+              {(state[US_STATE] && (state[US_STATE].split(',').length === 1))
+                ? <Grid item xs={12}>
                   <CountySelect />
+                </Grid>
+                : <Grid item xs={12}>
+                  <CountySelect helperText={'Select a single State to view County options.'} disabled={true} />
                 </Grid>
               }
               {state.dataType !== DISBURSEMENT &&

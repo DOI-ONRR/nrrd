@@ -5,13 +5,14 @@ import { COUNTY } from '../../../../constants'
 
 import BaseDataFilterSelect from '../BaseDataFilterSelect'
 
-const CountySelect = ({ helperText, label, loadingMessage }) => (
+const CountySelect = ({ helperText, label, loadingMessage, disabled }) => (
   <BaseDataFilterSelect
     dataFilterKey={COUNTY}
     selectType={'Multi'}
     label={label}
     loadingMessage={loadingMessage}
-    helperText={helperText} />
+    helperText={helperText}
+    disabled={disabled} />
 )
 
 export default CountySelect
@@ -31,6 +32,6 @@ CountySelect.propTypes = {
   loadingMessage: PropTypes.string
 }
 CountySelect.defaultProps = {
-  label: 'Counties',
+  label: 'County',
   loadingMessage: 'Updating County options from server...'
 }

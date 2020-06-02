@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, loadingMessage, noClearOption }) => {
+const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, loadingMessage, noClearOption, disabled }) => {
   const { state } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(DFQM.getQuery(dataFilterKey, state), DFQM.getVariables(state))
 
@@ -51,10 +51,10 @@ const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, lo
   return (
     <React.Fragment>
       {selectType === 'Single' &&
-        <BaseDataFilterSingleSelect dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption={noClearOption} />
+        <BaseDataFilterSingleSelect dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption={noClearOption} disabled={disabled}/>
       }
       {selectType === 'Multi' &&
-        <BaseDataFilterMultiSelector dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption={noClearOption} />
+        <BaseDataFilterMultiSelector dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption={noClearOption} disabled={disabled}/>
       }
     </React.Fragment>
   )
@@ -94,7 +94,7 @@ BaseDataFilterSelect.defaultProps = {
   noClearOption: false
 }
 
-const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText, noClearOption }) => {
+const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText, noClearOption, disabled }) => {
   // console.log('dataFilterKey, data: ', dataFilterKey, data)
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
@@ -124,7 +124,7 @@ const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText, no
   return (
     <Grid container>
       <Grid item xs={12}>
-        <FormControl className={classes.formControl} disabled={(data && data.options.length === 0)}>
+        <FormControl className={classes.formControl} disabled={((disabled) || (data && data.options.length === 0))}>
           <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
           <Select
             labelId={`${ labelSlug }-select-label`}
@@ -138,9 +138,9 @@ const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText, no
                 <ListItemText primary={'Clear selected'} />
               </MenuItem>
             }
-            {data &&
+            {(!disabled && data) &&
               data.options.map((item, i) =>
-                <MenuItem key={`${ item.option }_${ i }`} value={item.option}><ListItemText primary={item.option} /></MenuItem>)
+                <MenuItem key={`${ item.option }_${ i }`} value={(item.value) ? item.value : item.option}><ListItemText primary={item.option} /></MenuItem>)
             }
           </Select>
           {helperText &&
@@ -155,7 +155,7 @@ const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText, no
   )
 }
 
-const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText, noClearOption }) => {
+const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText, noClearOption, disabled }) => {
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
   const { state, updateDataFilter } = useContext(DataFilterContext)
@@ -192,29 +192,10 @@ const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText, n
     }
   }
 
-  const renderRow = ({ index }) => {
-    const modifiedStyle = {}
-    if (style) {
-      modifiedStyle.height = `${ parseInt(style.height) + 40 }px`
-      modifiedStyle.top = `${ parseInt(style.top) + 40 }px`
-      modifiedStyle.left = style.left
-      modifiedStyle.right = style.right
-    }
-    return ((style)
-      ? <MenuItem key={`${ data.options[index].option }_${ index }`} value={data.options[index].option} style={style}>
-        <Checkbox checked={selectedOptions.includes(data.options[index].option)} />
-        <ListItemText primary={data.options[index].option} />
-      </MenuItem>
-      : <MenuItem key={`${ data.options[index].option }_${ index }`} value={data.options[index].option}>
-        <Checkbox checked={selectedOptions.includes(data.options[index].option)} />
-        <ListItemText primary={data.options[index].option} />
-      </MenuItem>)
-  }
-
   return (
     <Grid container>
       <Grid item xs={12}>
-        <FormControl className={classes.formControl} disabled={(data && data.options.length === 0)}>
+        <FormControl className={classes.formControl} disabled={((disabled) || (data && data.options.length === 0))}>
           <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
           <Select
             labelId={`${ labelSlug }-select-label`}
@@ -231,10 +212,10 @@ const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText, n
                 <ListItemText primary={'Clear selected'} />
               </MenuItem>
             }
-            {data &&
+            {(!disabled && data) &&
               data.options.map((item, i) => (
-                <MenuItem key={`${ item.option }_${ i }`} value={item.option}>
-                  <Checkbox checked={selectedOptions.includes(item.option)} />
+                <MenuItem key={`${ item.option }_${ i }`} value={(item.value) ? item.value : item.option}>
+                  <Checkbox checked={(selectedOptions.includes(item.value) || selectedOptions.includes(item.option))} />
                   <ListItemText primary={item.option} />
                 </MenuItem>
               ))

@@ -158,6 +158,7 @@ const COUNTY_OPTIONS_QUERY = `
     distinct_on: county,
     order_by: {county: asc}
   ) {
+    value:county
     option:county
   }`
 
