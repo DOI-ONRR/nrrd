@@ -199,7 +199,8 @@ const DataTableImpl = data => {
   const [totalSummaryItems, setTotalSummaryItems] = useState([])
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
   const [aggregatedSums, setAggregatedSums] = useState()
-  const [defaultColumnWidths] = useState(columnNames ? columnNames.map(column => ({ columnName: column.name, width: 200 })) : [])
+  const [defaultColumnWidths] = useState(columnNames ? columnNames.map((column, index) =>
+    (column.name.startsWith('y')) ? ({ columnName: column.name, width: 200 }) : ({ columnName: column.name, width: 250 })) : [])
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
   const getHiddenColumns = () => {
     let yearColumns = []
