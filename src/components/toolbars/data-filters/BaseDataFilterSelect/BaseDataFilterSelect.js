@@ -19,7 +19,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import IconButton from '@material-ui/core/IconButton'
 import Checkbox from '@material-ui/core/Checkbox'
 import Grid from '@material-ui/core/Grid'
 
@@ -52,10 +51,10 @@ const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, lo
   return (
     <React.Fragment>
       {selectType === 'Single' &&
-        <BaseDataFilterSingleSelect dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption />
+        <BaseDataFilterSingleSelect dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption={noClearOption} />
       }
       {selectType === 'Multi' &&
-        <BaseDataFilterMultiSelector dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption />
+        <BaseDataFilterMultiSelector dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption={noClearOption} />
       }
     </React.Fragment>
   )
@@ -193,6 +192,25 @@ const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText, n
     }
   }
 
+  const renderRow = ({ index }) => {
+    const modifiedStyle = {}
+    if (style) {
+      modifiedStyle.height = `${ parseInt(style.height) + 40 }px`
+      modifiedStyle.top = `${ parseInt(style.top) + 40 }px`
+      modifiedStyle.left = style.left
+      modifiedStyle.right = style.right
+    }
+    return ((style)
+      ? <MenuItem key={`${ data.options[index].option }_${ index }`} value={data.options[index].option} style={style}>
+        <Checkbox checked={selectedOptions.includes(data.options[index].option)} />
+        <ListItemText primary={data.options[index].option} />
+      </MenuItem>
+      : <MenuItem key={`${ data.options[index].option }_${ index }`} value={data.options[index].option}>
+        <Checkbox checked={selectedOptions.includes(data.options[index].option)} />
+        <ListItemText primary={data.options[index].option} />
+      </MenuItem>)
+  }
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -214,11 +232,12 @@ const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText, n
               </MenuItem>
             }
             {data &&
-              data.options.map(
-                (item, i) => <MenuItem key={`${ item.option }_${ i }`} value={item.option}>
+              data.options.map((item, i) => (
+                <MenuItem key={`${ item.option }_${ i }`} value={item.option}>
                   <Checkbox checked={selectedOptions.includes(item.option)} />
                   <ListItemText primary={item.option} />
-                </MenuItem>)
+                </MenuItem>
+              ))
             }
           </Select>
           {helperText &&

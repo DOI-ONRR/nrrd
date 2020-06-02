@@ -21,6 +21,7 @@ import {
   LAND_CLASS,
   LAND_CATEGORY,
   US_STATE,
+  COUNTY,
   RECIPIENT,
   REVENUE,
   PRODUCTION,
@@ -39,17 +40,21 @@ const GROUP_BY_OPTIONS = {
     { value: COMMODITY, option: 'Commodity' },
     { value: LAND_TYPE, option: 'Land type' },
     { value: US_STATE, option: 'State' },
+    { value: COUNTY, option: 'County' },
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
   [PRODUCTION]: [
     { value: COMMODITY, option: 'Commodity' },
     { value: LAND_TYPE, option: 'Land type' },
     { value: US_STATE, option: 'State' },
+    { value: COUNTY, option: 'County' },
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
   [DISBURSEMENT]: [
     { value: RECIPIENT, option: 'Recipient' },
     { value: SOURCE, option: 'Source' },
+    { value: US_STATE, option: 'State' },
+    { value: COUNTY, option: 'County' },
   ],
 }
 

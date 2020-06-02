@@ -70,5 +70,13 @@ export const DISPLAY_NAMES = {
   [OFFSHORE_REGION]: {
     default: 'Offshore region',
     plural: 'Offshore regions',
+  },
+  [SOURCE]: {
+    default: 'Source',
+    plural: 'Sources',
+  },
+  [COUNTY]: {
+    default: 'County',
+    plural: 'Counties',
   }
 }

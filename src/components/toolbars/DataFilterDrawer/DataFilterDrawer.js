@@ -22,7 +22,7 @@ import PeriodSelect from '../data-filters/PeriodSelect'
 import YearRangeSelect from '../data-filters/YearRangeSelect'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
-import { REVENUE, DISBURSEMENT } from '../../../constants'
+import { REVENUE, DISBURSEMENT, US_STATE } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -113,6 +113,11 @@ export default function DataFilterDrawer () {
               <Grid item xs={12}>
                 <StateSelect />
               </Grid>
+              {(state[US_STATE] && (state[US_STATE].split(',').length === 1)) &&
+                <Grid item xs={12}>
+                  <CountySelect />
+                </Grid>
+              }
               {state.dataType !== DISBURSEMENT &&
                 <Grid item xs={12}>
                   <OffshoreRegionSelect />
