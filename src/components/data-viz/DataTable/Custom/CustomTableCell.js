@@ -31,7 +31,12 @@ const CustomTableCell = ({ getMessage, ...restProps }) => {
     cellValue = restProps.children.type(restProps)
   }
   else if (restProps.column.year) {
-    cellValue = (state[DATA_TYPE] !== PRODUCTION) ? formatToDollarInt(cellValue) : formatToCommaInt(cellValue)
+    if (parseInt(cellValue) === 0) {
+      cellValue = '-'
+    }
+    else {
+      cellValue = (state[DATA_TYPE] !== PRODUCTION) ? formatToDollarInt(cellValue) : formatToCommaInt(cellValue)
+    }
   }
 
   return (
