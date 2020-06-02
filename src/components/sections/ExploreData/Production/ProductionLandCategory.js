@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionLandCategory = ({ title, ...props }) => {
-  console.log('ProductionLandCategory props: ', props)
+  // console.log('ProductionLandCategory props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -83,12 +83,12 @@ const ProductionLandCategory = ({ title, ...props }) => {
     location = props.state
   }
   else {
-    location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
+    location = props.fips.length === 5 ? 'County' : 'State'
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const state = props.abbr
-  console.log('useQuery vars: ', state, location, commodity)
+  // console.log('useQuery vars: ', state, location, commodity)
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, commodity } })
   if (loading) {
     return (
@@ -100,7 +100,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = 'FY ' + year + ' - '+commodity
+  const dataSet = `FY ${ year } - ${ commodity }`
 
   if (data) {
     const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
@@ -113,32 +113,36 @@ const ProductionLandCategory = ({ title, ...props }) => {
     )]
 
     chartData = [years, sums]
+    const noChartData = chartData[0].length === 0 && chartData[1].length === 0
 
-    console.log('chartData: ', chartData)
+    if (!noChartData) {
+      return (
 
-    return (
-
-      <Box className={classes.root}>
-        {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
-        <Box>
-          <LineChart
-            key={'PLC' + dataSet }
-            data={chartData}
-            chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
-            lineDashes={LINE_DASHES}
-            lineTooltip={
-              (d, i) => {
-                const r = []
-                const card = cards && cards.filter(item => item.abbr === data.fiscal_production_summary[i].state_or_area)[0]
-                r[0] = `${ card.name }: ${ utils.formatToCommaInt(d) } (${ data.fiscal_production_summary[i].unit_abbr })`
-                return r
+        <Box className={classes.root}>
+          {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
+          <Box>
+            <LineChart
+              key={'PLC' + dataSet }
+              data={chartData}
+              chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
+              lineDashes={LINE_DASHES}
+              lineTooltip={
+                (d, i) => {
+                  const r = []
+                  const card = cards && cards.filter(item => item.abbr === data.fiscal_production_summary[i].state_or_area)[0]
+                  r[0] = `${ card.name }: ${ utils.formatToCommaInt(d) } (${ data.fiscal_production_summary[i].unit_abbr })`
+                  return r
+                }
               }
-            }
-          />
+            />
+          </Box>
         </Box>
-      </Box>
 
-    )
+      )
+    }
+    else {
+      return <Box className={classes.root}></Box>
+    }
   }
   else {
     return null

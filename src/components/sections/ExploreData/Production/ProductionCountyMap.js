@@ -45,20 +45,18 @@ const PRODUCTION_QUERY = gql`
 `
 
 const ProductionCountyMap = props => {
+  // console.log('ProductionCountyMap props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const dataSet = 'FY '+year
+  const dataSet = 'FY ' + year
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  console.debug("Props", props)
-  let state = ''
-  if (props.abbr && props.abbr.length === 2) {
-    state = props.abbr
-  }
-   
-  console.debug("year:" + year + ", commodity: " + commodity + ", state: " + state)
+
+  const state = props.state
+
+  console.debug('year:' + year + ', commodity: ' + commodity + ', state: ' + state)
   const { loading, error, data } = useQuery(PRODUCTION_QUERY, {
     variables: { year: year, commodity: commodity, state: state }
   })
@@ -67,10 +65,10 @@ const ProductionCountyMap = props => {
   const onZoomEnd = event => {
     console.debug('Event : ', event)
   }
-  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN
+  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5
   if (loading) {}
   if (error) return `Error! ${ error.message }`
-  if (data && state.length === 2 ) {
+  if (data) {
     mapData = data.fiscal_production_summary.map((item, i) => [
       item.state_or_area,
       item.sum
@@ -78,21 +76,20 @@ const ProductionCountyMap = props => {
     console.debug('DATA', data)
     console.debug('mapData', mapData)
     mapData = d3.nest()
-      .key(k => k.state_or_area.padStart(5,0))
+      .key(k => k.state_or_area.padStart(5, 0))
       .rollup(v => d3.sum(v, i => i.sum))
       .entries(data.fiscal_production_summary)
       .map(d => [d.key, d.value])
     console.debug('mapData', mapData)
 
-
-  return (
-    <>
-      {mapData &&
+    return (
+      <>
+        {mapData &&
        <Box className={classes.root}>
          {!showCountyContent &&
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Production by county</Box>
-          <Map
+           <Map
              key={'PCM' + dataSet + '_' + props.abbr }
              mapFeatures={mapFeatures}
              mapJsonObject={mapCounties}
@@ -104,12 +101,12 @@ const ProductionCountyMap = props => {
          </>
          }
        </Box>
-      }
-    </>
-  )
+        }
+      </>
+    )
   }
   else {
-    return(null)
+    return <Box className={classes.root} />
   }
 }
 
