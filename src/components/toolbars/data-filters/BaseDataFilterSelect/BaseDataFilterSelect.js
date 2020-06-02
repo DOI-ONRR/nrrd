@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, loadingMessage }) => {
+const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, loadingMessage, noClearOption }) => {
   const { state } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(DFQM.getQuery(dataFilterKey, state), DFQM.getVariables(state))
 
@@ -52,10 +52,10 @@ const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, lo
   return (
     <React.Fragment>
       {selectType === 'Single' &&
-        <BaseDataFilterSingleSelect dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} />
+        <BaseDataFilterSingleSelect dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption />
       }
       {selectType === 'Multi' &&
-        <BaseDataFilterMultiSelector dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} />
+        <BaseDataFilterMultiSelector dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption />
       }
     </React.Fragment>
   )
@@ -83,14 +83,19 @@ BaseDataFilterSelect.propTypes = {
   /**
    * The message that shows in the loading screen
    */
-  loadingMessage: PropTypes.string
+  loadingMessage: PropTypes.string,
+  /**
+   * You can choose not to have a clear selected option
+   */
+  noClearOption: PropTypes.bool
 }
 BaseDataFilterSelect.defaultProps = {
   loadingMessage: 'Updating data filters from server...',
-  selectType: 'Single'
+  selectType: 'Single',
+  noClearOption: false
 }
 
-const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText }) => {
+const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText, noClearOption }) => {
   // console.log('dataFilterKey, data: ', dataFilterKey, data)
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
@@ -129,9 +134,11 @@ const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText }) 
             onChange={handleChange}
             displayEmpty
           >
-            <MenuItem value={'Clear'} disabled={(!state[dataFilterKey])}>
-              <ListItemText primary={'Clear selected'} />
-            </MenuItem>
+            {!noClearOption &&
+              <MenuItem value={'Clear'} disabled={(!state[dataFilterKey])}>
+                <ListItemText primary={'Clear selected'} />
+              </MenuItem>
+            }
             {data &&
               data.options.map((item, i) =>
                 <MenuItem key={`${ item.option }_${ i }`} value={item.option}><ListItemText primary={item.option} /></MenuItem>)
@@ -149,7 +156,7 @@ const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText }) 
   )
 }
 
-const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText }) => {
+const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText, noClearOption }) => {
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
   const { state, updateDataFilter } = useContext(DataFilterContext)
@@ -201,9 +208,11 @@ const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText })
             onChange={handleChange}
             onClose={handleClose}
           >
-            <MenuItem value={'Clear'} disabled={(selectedOptions.length === 0)}>
-              <ListItemText primary={'Clear selected'} />
-            </MenuItem>
+            {!noClearOption &&
+              <MenuItem value={'Clear'} disabled={(!state[dataFilterKey])}>
+                <ListItemText primary={'Clear selected'} />
+              </MenuItem>
+            }
             {data &&
               data.options.map(
                 (item, i) => <MenuItem key={`${ item.option }_${ i }`} value={item.option}>
