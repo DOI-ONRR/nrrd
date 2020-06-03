@@ -1,0 +1,127 @@
+---
+title: Patterns
+layout: 'pattern-library'
+---
+
+# MUI Components based on our theme
+
+## Inputs
+
+```js live=true
+<ul style={{listStyleType:'none'}}>
+  <li>
+    <Button>MUI Button</Button>
+  </li>
+  <li>
+    <ButtonGroup>
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </ButtonGroup>
+  </li>
+  <li>
+    <Checkbox
+      checked={false}
+      value="primary"
+      inputProps={{ 'aria-label': 'primary checkbox' }}
+    />
+    <Checkbox
+      checked={true}
+      value="primary"
+      inputProps={{ 'aria-label': 'primary checkbox' }}
+    />
+  </li>
+  <li>
+    <Fab aria-label="add">
+      +
+    </Fab>
+  </li>
+  <li>
+    <FormControl component="fieldset">
+      <FormLabel component="legend">Gender</FormLabel>
+      <RadioGroup aria-label="gender" name="gender1" value={'male'}>
+        <FormControlLabel value="female" control={<Radio />} label="Female" />
+        <FormControlLabel value="male" control={<Radio />} label="Male" />
+        <FormControlLabel value="other" control={<Radio />} label="Other" />
+        <FormControlLabel
+          value="disabled"
+          disabled
+          control={<Radio />}
+          label="(Disabled option)"
+        />
+      </RadioGroup>
+    </FormControl>
+  </li>
+  <li>
+    <FormControl>
+      <InputLabel id="demo-simple-select-label">Age</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        displayEmpty
+      >
+        <MenuItem value="">
+        </MenuItem>
+        <MenuItem value={10}>Ten</MenuItem>
+        <MenuItem value={20}>Twenty</MenuItem>
+        <MenuItem value={30}>Thirty</MenuItem>
+      </Select>
+    </FormControl>
+  </li>
+  <li>
+    <h1>Slider</h1>
+    <Slider
+      defaultValue={30}
+      getAriaValueText={()=>'valuetext'}
+      aria-labelledby="discrete-slider"
+      valueLabelDisplay="auto"
+      step={10}
+      marks
+      min={10}
+      max={110}
+    />
+  </li>
+  <li>
+    <FormControlLabel
+      control={
+        <Switch
+          checked={false}
+          value="checkedB"
+        />
+      }
+      label="Switch"
+    />
+    <FormControlLabel
+      control={
+        <Switch
+          checked={true}
+          value="checkedB"
+        />
+      }
+      label="Switch checked"
+    />
+  </li>
+  <li>
+    <h1>Text fields</h1>
+    <form noValidate autoComplete="off">
+      <TextField id="standard-basic" label="Standard" />
+      <TextField id="filled-basic" label="Filled" variant="filled" />
+      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+    </form>
+  </li>
+</ul>
+```
+
+## Tabs
+
+```js live=true
+<React.Fragment>
+  <AppBar position="static">
+    <Tabs value={1} aria-label="simple tabs example">
+      <Tab label="Item One"  />
+      <Tab label="Item Two Selected" />
+      <Tab label="Item Three"  />
+    </Tabs>
+  </AppBar>
+</React.Fragment>
+```

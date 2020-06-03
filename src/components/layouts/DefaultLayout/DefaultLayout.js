@@ -1,47 +1,145 @@
 /**
- * Default Layout component that queries for data
- * with Gatsby's useStaticQuery component
+ * Default Layout component
  *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
+import React from 'react'
+import PropTypes from 'prop-types'
+import { useStaticQuery, graphql } from 'gatsby'
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import Box from '@material-ui/core/Box'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import useTheme from '@material-ui/core/styles/useTheme'
 
-import Header from "../Header/Header"
-import "./DefaultLayout.css"
+import InfoBanner from '../../content-partials/InfoBanner'
+import Footer from '../../content-partials/Footer'
+import Header from '../../content-partials/Header'
+import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
+import PageToc from '../../navigation/PageToc'
 
-const DefaultLayout = ({ children }) => {
+import SEO from '../../seo'
+
+const useStyles = makeStyles(theme => (
+  {
+    '@global': {
+      p: {
+        margin: '0.5rem 0rem'
+      },
+      hr: {
+        borderWidth: '0px 0px 10px 0px',
+        borderColor: theme.palette.secondary.main,
+        marginBottom: '1rem',
+      },
+      ul: {
+        paddingInlineStart: '22.5px'
+      },
+      'ul ul': {
+        listStyleType: 'square'
+      },
+      h1: { ...theme.typography.h1 },
+      h2: { ...theme.typography.h2 },
+      h3: { ...theme.typography.h3 },
+      h4: { ...theme.typography.h4 },
+      h5: { ...theme.typography.h5 },
+      h6: { ...theme.typography.h6 },
+    },
+    img: {
+      width: '100%'
+    },
+    skipNav: {
+      position: 'absolute',
+      top: '-1000px',
+      left: '-1000px',
+      height: '1px',
+      width: '1px',
+      textAlign: 'left',
+      overflow: 'hidden',
+
+      '&:active': {
+        left: '0',
+        top: '0',
+        padding: '5px',
+        width: 'auto',
+        height: 'auto',
+        overflow: 'visible'
+      },
+      '&:focus': {
+        left: '0',
+        top: '0',
+        padding: '5px',
+        width: 'auto',
+        height: 'auto',
+        overflow: 'visible'
+      },
+      '&:hover': {
+        left: '0',
+        top: '0',
+        padding: '5px',
+        width: 'auto',
+        height: 'auto',
+        overflow: 'visible'
+      }
+    },
+    mainContent: {
+      minHeight: 575,
+    },
+  })
+)
+
+const DefaultLayout = ({ includeToc = true, title, children }) => {
+  const theme = useTheme()
+  const classes = useStyles(theme)
+
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query DefaultLayoutQuery {
       site {
         siteMetadata {
           title
+          version
+          officeName
+          informationDataManagement {
+            name
+            city
+            zip
+            street
+            email
+          }
         }
       }
     }
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `2rem auto`,
-          maxWidth: 1280,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
+    <React.Fragment>
+      <SEO title={title} />
+      <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
+      <LoadingStatusBackdrop />
+      <InfoBanner />
+      <Header />
+      <CssBaseline />
+      <main id='main-content' className={classes.mainContent}>
+        {includeToc
+          ? <Container maxWidth="lg" component="section">
+            <Grid container>
+              <Grid item xs={12} sm={3}>
+                <PageToc scrollOffset={190}></PageToc>
+              </Grid>
+              <Grid item xs={12} sm={9}>
+                {children}
+              </Grid>
+            </Grid>
+          </Container>
+          : <>{ children }</>
+        }
+      </main>
+      {data &&
+        <Box>
+          <Footer data={data} />
+        </Box>
+      }
+    </React.Fragment>
   )
 }
 

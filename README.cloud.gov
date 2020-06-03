@@ -1,3 +1,4 @@
+a
 
 cf target -o doi-onrr -s dev  # unnecessary login will prompt you for org ans space
 # Login
@@ -15,20 +16,83 @@ cf set-env hasura-onrr HASURA_GRAPHQL_ENABLE_CONSOLE true
 cf restage hasura-onrr
 
 
+
+#DB maintaince.
+# Choose DB environment:
+# 1) dev
+# 2) sandbox
+# 3) prod
+
+# sandbox or dev
+export DB_ENV=sandbox && export DB_PORT=7222|| export DB_ENV=onrr && export DB_PORT=7223
+
 #create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.  
 
-myapp_guid=$(cf app --guid hasura-onrr)
+myapp_guid=$(cf app --guid hasura-$DB_ENV)
 creds=$(cf curl /v2/apps/$myapp_guid/env | jq -r '[.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .username, .password] | join(":")')\n
 dbname=$(cf curl /v2/apps/$myapp_guid/env | jq -r '.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .db_name')\n
 
+
 tunnel=$(cf curl /v2/apps/$myapp_guid/env | jq -r '[.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .host, .port] | join(":")')
-cf ssh -N -L 7222:$tunnel hasura-onrr
+cf ssh -N -L $DB_PORT:$tunnel hasura-$DB_ENV
+
+
+#Leave ssh tunnel running open new terminal
+
+aexport DB_ENV=sandbox
+myapp_guid=$(cf app --guid hasura-$DB_ENV)
+creds=$(cf curl /v2/apps/$myapp_guid/env | jq -r '[.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .username, .password] | join(":")')
+dbname=$(cf curl /v2/apps/$myapp_guid/env | jq -r '.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .db_name')
+psql postgres://$creds@localhost:$DB_PORT/$dbname
+
+
+echo $creds   # username:password
+#export DB_USER=<username>
+#export DB_PASSWORD=<password>
+
 
 echo $creds   # username:password
 export DB_USER=<username>
 export DB_PASSWORD=<password>
 
+export DB_USER=`echo -n $creds | cut -d: -f1`                                           
+export DB_PASSWORD=`echo -n  $creds | cut -d: -f2`
 export DB_DATABASE=$dbname
 export DB_PORT=7222
 export DB_HOST=localhost
+ 
+
+
+#
+# trouble shooting...
+
+
+cf logs <APP_NAME> --recent
+cf env $DB_ENV 
+
+#you must restage if you drop schema
+
+
+#BACK UP Restoring from database:
+# in this example port 7222 has tunnel to psql-sandbox (source) 
+# port 7223 has port to psql-onrr (target)
+
+
+pg_dump postgres://$creds@localhost:$DB_PORT/$dbname -F t -f psql-sandbox.`date +'%F_%T'`.pg
+
+#drop existing db I'm not sure this is required in all cases
+psql postgres://$creds@localhost:7223/$dbname
+cgawsbr...od8py3w7sukk91mnq=> drop owned by current_user cascade;
+cgawsbr...od8py3w7sukk91mnq=> create schema public;
+cgawsbr...od8py3w7sukk91mnq=> quit
+
+$time pg_restore --user=$DB_USER --port=$DB_PORT --host=$DB_HOST  --clean --no-owner --no-acl --dbname=$DB_DATABASE psql-sandbox.03122020.pg
+Password: <ENTER PASSWORD>
+.....
+
+
+# New objects won't be seen by hasura so if new objects be sure to restage:
+
+
+cf restage hasura-$DB_ENV (where we are in the shell  configure for hasura-onrr
 

@@ -8,9 +8,16 @@ yarn.lock
 /public
 .DS_Store
 _site
+/test-results
+/reduxcache*
 
 # vscode
 /.vscode
 launch.json
 .vscode
 downloads/disbursements/~$disbursements.xlsx
+
+report.*.json
+
+# env
+.env.*

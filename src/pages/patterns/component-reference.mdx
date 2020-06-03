@@ -1,0 +1,85 @@
+---
+title: Component Reference
+layout: pattern-library
+---
+import { graphql } from "gatsby"
+import { MDXRenderer } from "gatsby-plugin-mdx"
+// import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import MuiLink from '@material-ui/core/Link'
+import { makeStyles } from '@material-ui/core/styles'
+
+export const useStyles = makeStyles(theme => ({
+  pathToFile: {
+    color: theme.palette.primary.main
+  }
+}))
+
+
+# Component Reference
+
+<Grid container spacing={2}>
+  <Grid item xs={3}>
+    {
+      props.data.allComponentMetadata.nodes.map( (component, index) => {
+        return (
+          <div key={index}><MuiLink variant="body1" href={'#'+component.displayName}>{component.displayName}</MuiLink></div>
+        )
+      })
+    }
+  </Grid>
+  <Grid item xs={9}>
+    {
+      props.data.allComponentMetadata.nodes.map( (component, index) => {
+        const classes = useStyles()
+        return (
+          <div key={index} style={{'marginBottom': '10px'}}>
+            <MuiLink variant="body1" href='#'>Top</MuiLink><Typography variant="h2" id={component.displayName}>{component.displayName}</Typography>
+            <Typography variant="body1">
+              Path to file: <span className={classes.pathToFile}>{component.parent.relativePath}</span>
+            </Typography>
+            
+            <MDXRenderer>{component.description.childMdx.body}</MDXRenderer>
+            <PropsTable componentProps={component.childrenComponentProp} />
+          </div>
+        )
+      })
+    }
+  </Grid>
+</Grid>
+
+
+export const COMPONENT_REFERENCE_QUERY = graphql`
+  query {
+    allComponentMetadata(sort: {fields: displayName, order: ASC}) {
+      nodes {
+        displayName
+        description {
+          childMdx {
+            body
+          }
+        }
+        childrenComponentProp {
+          name
+          docblock
+          required
+          parentType {
+            name
+          }
+          type {
+            value
+          }
+          defaultValue {
+            value
+            computed
+          }
+        }
+        parent {
+          ... on File {
+            relativePath
+          }
+        }
+      }
+    }
+  }
+`

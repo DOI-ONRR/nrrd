@@ -1,9 +1,8 @@
 version: 2.1
 jobs:
-  accessibility:
+  lighthouse_audit:
     docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.2.0
+      - image: circleci/node:12.13.0-browsers
     steps:
       - checkout
       - restore_cache:
@@ -18,34 +17,26 @@ jobs:
       - run:
           name: Build gatsby
           command: npm run build
+      # - run: 
+      #     name: Javascript Linter
+      #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
       - run:
-          name: Accessibility tests
-          command: npm test
-  performance:
-    docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.2.0
-    steps:
-      - checkout
-      - restore_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install node dependencies
-          command: npm install
-      - save_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Build gatsby
-          command: npm run build
-      - run:
-          name: Performance tests
-          command: npm test
+          name: Run test reports with JUnit
+          command: |
+            mkdir -p test-results/junit
+            echo 'test-results/junit directory succesfully created...'
+            npm run test --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUPUT_DIR: "./test-results/junit"
+      - store_test_results:
+          path: ./test-results/junit
+      - store_artifacts:
+          path: ./test-results/junit
+  
   quick:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.2.0
+      - image: circleci/node:12.13.0
     steps:
       - checkout
       - restore_cache:
@@ -60,14 +51,10 @@ jobs:
       - run:
           name: Build gatsby
           command: npm run build
-      - run:
-          name: quick performance and accessibilty testing
-          command: npm test
               
-
   preview:
     docker:
-      - image: circleci/node:12.2.0
+      - image: circleci/node:12.13.0
     environment:
       TEST_REPORTS: /tmp/test-reports   
     steps:
@@ -85,13 +72,6 @@ jobs:
           name: Build gatsby
           command: npm run build
       - run:
-          name: Run tests
-          command: |
-            mkdir -p ${TEST_REPORTS}
-            echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><pre>" > ${TEST_REPORTS}/preview.test.xml 
-            npm test >> ${TEST_REPORTS}/preview.test.xml 2>&1
-            echo "<pre></note>"  >> ${TEST_REPORTS}/preview.test.xml
-      - run:
           name: deploy preview to cloud.gov
           command: |
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
@@ -106,7 +86,7 @@ jobs:
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.2.0
+      - image: circleci/node:12.13.0-browsers
     steps:
       - checkout
       - restore_cache:
@@ -145,7 +125,7 @@ jobs:
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.2.0
+      - image: circleci/node:12.13.0-browsers
     steps:
       - checkout
       - restore_cache:
@@ -159,7 +139,7 @@ jobs:
             - node_modules
       - run:
           name: Build gatsby
-          command: npm run build
+          command: GATSBY_ACTIVE_ENV=productionCloudGov npm run build
       - run:
           name: Run tests
           command: npm test
@@ -177,25 +157,23 @@ jobs:
             cf target -o "$PROD_CF_ORG" -s "$PROD_CF_SPACE"
             cf push nrrd -f ./manifest.yml
 
+
 workflows:
   audits:
     jobs:
-      - performance:
+      - lighthouse_audit:
           filters:
             branches:
-                only: dev
-      - accessibility:
-          filters:
-            branches:
-              only: dev
+              ignore:
+                - preview
+                - master
       - quick:
           filters:
             branches:
               ignore:
                 - master
                 - dev
-          
-                
+                       
   preview:
     jobs:
       - preview:
@@ -204,6 +182,7 @@ workflows:
               ignore:
                 - master
                 - dev
+  
   deploy:
     jobs:
       - deploy:
