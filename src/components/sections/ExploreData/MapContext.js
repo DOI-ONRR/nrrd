@@ -41,24 +41,27 @@ const useStyles = makeStyles(theme => ({
   mapContextWrapper: {
     position: 'relative',
     height: 'calc(100vh - 185px)',
-    // height: 575,
-    // marginBottom: theme.spacing(20),
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
-    // border: '2px solid purple',
     '@media (max-width: 768px)': {
-      height: 435,
+      height: 'calc(100vh - 132px)',
     },
     '& .mapContainer': {
       position: 'fixed',
       top: 65,
-      // position: 'absolute',
-      // top: -50,
     },
     '& .legend': {
       bottom: 175,
+      '@media (max-width: 768px)': {
+        bottom: '142px',
+        margin: '0',
+        borderRadius: '0',
+        width: '100vw',
+        left: '0',
+        minWidth: '100%',
+      },
     },
     '& .map-overlay': {
       left: '0',
@@ -86,7 +89,6 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     background: theme.palette.grey[200],
     display: 'block',
-    // border: '2px solid deeppink',
   },
   cardContainer: {
     width: 310,

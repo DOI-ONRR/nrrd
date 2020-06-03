@@ -21,7 +21,6 @@ export default class d3Map {
     mapY,
     options
   ) {
-
     if (options.mapFormat) {
       this.format = options.mapFormat
     }
@@ -113,16 +112,15 @@ export default class d3Map {
     }
   }
 
-
   format (d) {
-      if (isNaN(d)) {
-        return ''
-      }
-      else {
-        return '$' + d3.format(',.0f')(d)
-      }
+    if (isNaN(d)) {
+      return ''
+    }
+    else {
+      return '$' + d3.format(',.0f')(d)
+    }
   }
-    
+
   chart () {
     let _chart
     const self = this
@@ -146,7 +144,7 @@ export default class d3Map {
     const _zoom = this._zoom
 
     if (node.children[1].children[0]) {
-       this._chart = d3.select(node.children[1].children[0])
+      this._chart = d3.select(node.children[1].children[0])
       this._chart.selectAll('path').remove()
       _chart = this._chart
     }
@@ -225,7 +223,7 @@ export default class d3Map {
       .on('end', ended)
 
     const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
-    
+
     const g = _chart.append('g')
     _chart.call(zoom)
     // console.debug('US data: ', data)
@@ -238,18 +236,20 @@ export default class d3Map {
       .attr('fill-opacity', 0.9)
       .attr('d', path)
       .attr('stroke', d => {
-        if( AKR.has(d.id)) {
-          return  color(data.get(d.id))
+        if (AKR.has(d.id)) {
+          return color(data.get(d.id))
         }
         else {
           return '#CACBCC'
-        }}
-           )
+        }
+      }
+      )
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        if( AKR.has(d.id)) {
-          //do nothing
-        } else {
+        if (AKR.has(d.id)) {
+          // do nothing
+        }
+        else {
           onClick(d, i)
         }
       })
@@ -263,22 +263,22 @@ export default class d3Map {
           .style('fill-opacity', 0.9)
       })
       .append('title')
-      .text(d =>{
-        if(AKR.has(d.id)) {
+      .text(d => {
+        if (AKR.has(d.id)) {
           return `${ 'Alaskan Offshore Region' }  ${ format(data.get(d.id)) }`
         }
         else {
-        return  `${ d.properties.name }  ${ format(data.get(d.id)) }`
+          return `${ d.properties.name }  ${ format(data.get(d.id)) }`
         }
       }).transition().duration(3000)
-    
+
     _chart.append('path')
       .datum(topojson.mesh(us, us.objects[mapFeatures], (a, b) => a !== b))
       .attr('fill', 'none')
       .attr('d', path)
 
     //    const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
-/*    const AKR = d3.set([ 'NAV', 'ALB'])
+    /*    const AKR = d3.set([ 'NAV', 'ALB'])
     let v=data.get('AKR')
     console.debug('v                         :',v)
     g.append('path')
@@ -286,8 +286,8 @@ export default class d3Map {
         return AKR.has(d.id) })))
       .attr('fill', 'darkblue') // d => color(data.get('AKR')))
 */
-    
-      /*.attr('fill-opacity', 0.9)
+
+    /* .attr('fill-opacity', 0.9)
       .attr('d', path)
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
@@ -306,19 +306,21 @@ export default class d3Map {
       .append('title')
       .text(d => `Alaska Offshore Region  ${ format(data.get('AKR')) }`).transition().duration(3000)
 */
-    const POR = d3.set(['WAO', 'NOC','CEC', 'SOC'])
-    
-    g.append("path")
-      .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function(d) { return POR.has(d.id) })))
+    const POR = d3.set(['WAO', 'NOC', 'CEC', 'SOC'])
+
+    g.append('path')
+      .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function (d) {
+        return POR.has(d.id)
+      })))
       .attr('class', 'POR')
-      .attr('fill',d=>color(data.get('POR')) )
+      .attr('fill', d => color(data.get('POR')))
       .attr('fill', d => color(data.get('POR')))
       .attr('fill-opacity', 0.9)
       .attr('d', path)
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        //onClick(d, i)
+        // onClick(d, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
@@ -333,15 +335,17 @@ export default class d3Map {
       .text(d => `Pacific Offshore Region  ${ format(data.get('POR')) }`).transition().duration(3000)
 
     const GMR = d3.set(['WGM', 'CGM', 'EGM'])
-     g.append("path")
-      .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function(d) { return GMR.has(d.id) })))
+    g.append('path')
+      .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function (d) {
+        return GMR.has(d.id)
+      })))
       .attr('fill', d => color(data.get('GMR')))
       .attr('fill-opacity', 0.9)
       .attr('d', path)
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        //onClick(d, i)
+        // onClick(d, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
@@ -356,15 +360,17 @@ export default class d3Map {
       .text(d => `Gulf of Mexico Offshore Region  ${ format(data.get('GMR')) }`).transition().duration(3000)
 
     const AOR = d3.set(['NOA', 'MDA', 'SOA', 'FLS'])
-    g.append("path")
-      .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function(d) { return AOR.has(d.id) })))
+    g.append('path')
+      .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function (d) {
+        return AOR.has(d.id)
+      })))
       .attr('fill', d => color(data.get('AOR')))
       .attr('fill-opacity', 0.9)
       .attr('d', path)
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        //onClick(d, i)
+        // onClick(d, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
@@ -377,10 +383,6 @@ export default class d3Map {
       })
       .append('title')
       .text(d => `Atlantic Offshore Region  ${ format(data.get('AOR')) }`).transition().duration(3000)
-
-
-
-    
 
     _chart.transition().duration(3000)
 

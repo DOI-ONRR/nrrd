@@ -147,6 +147,9 @@ const useStyles = makeStyles(theme => ({
     '& div': {
       height: 60,
     },
+    '@media (max-width: 320px)': {
+      overflowY: 'hidden',
+    },
   },
   botNavRoot: {
     color: theme.palette.grey[700],

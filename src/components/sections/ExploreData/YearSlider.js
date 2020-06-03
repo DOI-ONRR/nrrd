@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     height: 90,
     '@media (max-width: 768px)': {
-      paddingTop: theme.spacing(1.5),
+      paddingTop: 0,
     },
   },
   sliderBox: {
