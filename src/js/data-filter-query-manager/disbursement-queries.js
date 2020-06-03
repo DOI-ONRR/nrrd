@@ -7,7 +7,8 @@ import {
   PERIOD,
   FISCAL_YEAR,
   CALENDAR_YEAR,
-  COMMODITY
+  COMMODITY,
+  COUNTY
 } from '../../constants'
 
 /**
@@ -20,8 +21,8 @@ const GRAPHQL_VIEW = 'data_filter_disbursements_options'
 
 const VARIABLE_LIST = ''.concat(
   '$recipient: String,',
-  '$offshoreRegion: [String!],',
-  '$usState: [String!],',
+  '$source: String,',
+  '$state: [String!],',
   '$county: [String!],',
   '$commodity: [String!],',
   '$period: String,',
@@ -32,26 +33,43 @@ const VARIABLE_LIST = ''.concat(
 const RECIPIENT_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
-      state: {_in: $usState},
-      fund_type: {_neq: ""},
-      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $state},
+      recipient: {_neq: ""},
+      source: {_eq: $source},
       county: {_in: $county},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear}
     },
-    distinct_on: fund_type,
-    order_by: {fund_type: asc}
+    distinct_on: recipient,
+    order_by: {recipient: asc}
   ) {
-    option:fund_type
+    option:recipient
+  }`
+
+const SOURCE_OPTIONS_QUERY = `
+  options:${ GRAPHQL_VIEW }(
+    where: {
+      state: {_in: $state},
+      recipient: {_eq: $recipient},
+      source: {_neq: ""},
+      county: {_in: $county},
+      period: {_eq: $period},
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear}
+    },
+    distinct_on: source,
+    order_by: {source: asc}
+  ) {
+    option:source
   }`
 
 const US_STATE_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
       state: {_neq: ""},
-      fund_type: {_eq: $recipient},
-      offshore_region: {_in: $offshoreRegion},
+      recipient: {_eq: $recipient},
+      source: {_eq: $source},
       county: {_in: $county},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
@@ -63,29 +81,29 @@ const US_STATE_OPTIONS_QUERY = `
     option:state
   }`
 
-const OFFSHORE_REGION_OPTIONS_QUERY = `
+const COUNTY_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
-      fund_type: {_eq: $recipient},
-      state: {_in: $usState},
-      county: {_in: $county},
+      state: {_in: $state},
+      recipient: {_eq: $recipient},
+      source: {_eq: $source},
+      county: {_neq: ""},
       period: {_eq: $period},
-      offshore_region: {_neq: ""},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear}
     },
-    distinct_on: offshore_region,
-    order_by: {offshore_region: asc}
+    distinct_on: county,
+    order_by: {county: asc}
   ) {
-    option:offshore_region
+    option:county
   }`
 
 const FISCAL_YEAR_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
-      fund_type: {_eq: $recipient},
-      offshore_region: {_in: $offshoreRegion},
-      state: {_in: $usState},
+      recipient: {_eq: $recipient},
+      source: {_eq: $source},
+      state: {_in: $state},
       county: {_in: $county},
       period: {_eq: $period},
       fiscal_year: {_neq: 0}
@@ -99,9 +117,9 @@ const FISCAL_YEAR_OPTIONS_QUERY = `
 const CALENDAR_YEAR_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
-      fund_type: {_eq: $recipient},
-      offshore_region: {_in: $offshoreRegion},
-      state: {_in: $usState},
+      recipient: {_eq: $recipient},
+      source: {_eq: $source},
+      state: {_in: $state},
       county: {_in: $county},
       period: {_eq: $period},
       calendar_year: {_neq: 0}
@@ -115,9 +133,9 @@ const CALENDAR_YEAR_OPTIONS_QUERY = `
 const PERIOD_OPTIONS_QUERY = `
   options:${ GRAPHQL_VIEW }(
     where: {
-      fund_type: {_eq: $recipient},
-      offshore_region: {_in: $offshoreRegion},
-      state: {_in: $usState},
+      recipient: {_eq: $recipient},
+      source: {_eq: $source},
+      state: {_in: $state},
       county: {_in: $county},
     },
     distinct_on: period,
@@ -127,12 +145,13 @@ const PERIOD_OPTIONS_QUERY = `
   }`
 
 const DISBURSEMENT_QUERIES = {
-  [US_STATE]: gql`query GetUsStateOptionsProduction(${ VARIABLE_LIST }){${ US_STATE_OPTIONS_QUERY }}`,
-  [OFFSHORE_REGION]: gql`query GetOffshoreRegionOptionsProduction(${ VARIABLE_LIST }){${ OFFSHORE_REGION_OPTIONS_QUERY }}`,
-  [RECIPIENT]: gql`query GetCommodityOptionsProduction(${ VARIABLE_LIST }){${ RECIPIENT_OPTIONS_QUERY }}`,
-  [FISCAL_YEAR]: gql`query GetFiscalYearOptionsProduction(${ VARIABLE_LIST }){${ FISCAL_YEAR_OPTIONS_QUERY }}`,
-  [CALENDAR_YEAR]: gql`query GetCalendarYearOptionsProduction(${ VARIABLE_LIST }){${ CALENDAR_YEAR_OPTIONS_QUERY }}`,
-  [PERIOD]: gql`query GetPeriodOptionsProduction(${ VARIABLE_LIST }){${ PERIOD_OPTIONS_QUERY }}`
+  [US_STATE]: gql`query GetUsStateOptionsDisbursement(${ VARIABLE_LIST }){${ US_STATE_OPTIONS_QUERY }}`,
+  [COUNTY]: gql`query GetCountyOptionsDisbursement(${ VARIABLE_LIST }){${ COUNTY_OPTIONS_QUERY }}`,
+  [RECIPIENT]: gql`query GetRecipientOptionsDisbursement(${ VARIABLE_LIST }){${ RECIPIENT_OPTIONS_QUERY }}`,
+  [SOURCE]: gql`query GetSourceOptionsDisbursement(${ VARIABLE_LIST }){${ SOURCE_OPTIONS_QUERY }}`,
+  [FISCAL_YEAR]: gql`query GetFiscalYearOptionsDisbursement(${ VARIABLE_LIST }){${ FISCAL_YEAR_OPTIONS_QUERY }}`,
+  [CALENDAR_YEAR]: gql`query GetCalendarYearOptionsDisbursement(${ VARIABLE_LIST }){${ CALENDAR_YEAR_OPTIONS_QUERY }}`,
+  [PERIOD]: gql`query GetPeriodOptionsDisbursement(${ VARIABLE_LIST }){${ PERIOD_OPTIONS_QUERY }}`
 }
 
 export default DISBURSEMENT_QUERIES

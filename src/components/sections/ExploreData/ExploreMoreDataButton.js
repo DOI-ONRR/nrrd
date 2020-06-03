@@ -3,7 +3,8 @@ import React, { useEffect, useState, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
-  Button
+  Button,
+  useMediaQuery
 } from '@material-ui/core'
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
@@ -42,6 +43,8 @@ const ExploreMoreDataButton = props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const dataType = filterState.dataType.toLowerCase()
+
+  const matchesMdUp = useMediaQuery('(min-width: 768px)')
 
   const [buttonState, setButtonState] = useState({
     label: `Explore more ${ dataType }`,
@@ -83,20 +86,24 @@ const ExploreMoreDataButton = props => {
   }
 
   return (
-    <Box className={classes.root}>
-      <Button
-        variant="contained"
-        color="secondary"
-        size="large"
-        disableRipple
-        className={classes.exploreMoreButton}
-        endIcon={buttonState.icon === 'down' ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
-        classes={{ root: classes.exploreButtonRoot }}
-        onClick={buttonState.icon === 'down' ? scrollTo : scrollToTop}
-      >
-        {buttonState.label}
-      </Button>
-    </Box>
+    <>
+      {matchesMdUp &&
+      <Box className={classes.root}>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          disableRipple
+          className={classes.exploreMoreButton}
+          endIcon={buttonState.icon === 'down' ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+          classes={{ root: classes.exploreButtonRoot }}
+          onClick={buttonState.icon === 'down' ? scrollTo : scrollToTop}
+        >
+          {buttonState.label}
+        </Button>
+      </Box>
+      }
+    </>
   )
 }
 

@@ -37,9 +37,6 @@ const useStyles = makeStyles(theme => ({
       '& svg': {
         top: 0,
       },
-      '@media (max-width: 768px)': {
-        bottom: 5,
-      },
       '& .tick': {
         fontSize: theme.typography.body2,
       }
@@ -58,6 +55,7 @@ const useStyles = makeStyles(theme => ({
  */
 
 const Map = props => {
+  console.log('Map props: ', props)
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
 
@@ -67,7 +65,7 @@ const Map = props => {
   const mapJsonObject = props.mapJsonObject
 
   const mapFeatures = props.mapFeatures || 'counties'
-  //const mapData = props.mapData || []
+  // const mapData = props.mapData || []
 
   // mapData=props.offshoreData && mapData.concat(props.offshoreData);
   const elemRef = useRef(null)
@@ -77,7 +75,7 @@ const Map = props => {
   const onClick =
         props.onClick ||
         function (d, i) {
-          // console.debug('Default onClick function', d, i)
+          console.debug('Default onClick function', d, i)
         }
   const classes = useStyles()
   const minColor = props.minColor
@@ -96,15 +94,14 @@ const Map = props => {
 
   // Ugly hack to get around not being able to merge AKR Alaska Offshore Region
   const planningAreas = ['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK']
-  const AKR = mapData.filter((d,i) =>{
+  const AKR = mapData.filter((d, i) => {
     // console.debug("WTH:",d, i)
-    if( d[0] === 'AKR' ){
+    if (d[0] === 'AKR') {
       return d[1]
     }
     //    }
-
   })
-  if(AKR && AKR.length > 0) {
+  if (AKR && AKR.length > 0) {
     for (let ii = 0; ii < planningAreas.length; ii++) {
       mapData.push([planningAreas[ii], AKR[0][1]])
       //    console.debug('AKR: ', planningAreas, ' : ', AKR[0])
@@ -114,7 +111,7 @@ const Map = props => {
   useEffect(() => {
     const us = mapJsonObject
     //    const offshore = mapJsonObject.offshore
-    //console.debug("OPTIONS: ", options)
+    // console.debug("OPTIONS: ", options)
     const data = observableData(mapData)
     data.title = mapTitle
     map = new D3Map(
@@ -134,6 +131,7 @@ const Map = props => {
 
     map.onZoom = onZoom
     map.onZoomEnd = onZoomEnd
+
     if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
       map.zoom({ x: mapX, y: mapY, k: mapZoom })
     }

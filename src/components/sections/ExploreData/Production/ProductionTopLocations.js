@@ -117,15 +117,27 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const state = props.state
-  const location = (props.abbr && props.abbr.length === 5) ? 'County' : 'State'
+  let state = ''
+  let location = 'County'
+  if (props.abbr && props.abbr.length === 2) {
+    location = 'County'
+    state = props.abbr
+  }
+  else if (props.abbr && props.abbr.length === 5) {
+    location = ''
+    state = ''
+  }
+  else {
+    location = 'State'
+    state = ''
+  }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const key = `PTL${ year }${ state }${ commodity }`
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location, commodity, state },
-      skip: props.state === CONSTANTS.NATIVE_AMERICAN || location === 'County'
+      skip: props.state === CONSTANTS.NATIVE_AMERICAN || location === ''
     })
 
   const maxLegendWidth = props.maxLegendWidth
@@ -142,7 +154,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const dataSet = `FY ${ year }`
 
   if (data) {
-    console.debug("WTH: ", data)
+    console.debug('WTH: ', data)
     if (location === 'County') {
       const unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
       chartData = d3.nest()
@@ -154,7 +166,15 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
     }
     else {
-      chartData =  data.fiscal_production_summary
+      const unitAbbr = data.fiscal_production_summary[0].unit_abbr
+      chartData = d3.nest()
+        .key(k => k.location_name)
+        .rollup(v => d3.sum(v, i => i.sum))
+        .entries(data.fiscal_production_summary).map(item => {
+          const r = { sum: item.value, location_name: item.key, unit_abbr: unitAbbr }
+          return r
+        })
+      // chartData =  data.fiscal_production_summary
     }
     console.debug('CHART DATA', chartData)
     return (

@@ -15,9 +15,9 @@ const config = {
     title: 'Natural Resources Revenue Data',
     description:
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
-    version: 'v5.4.7',
     googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID,
     googleTagManagerId: process.env.GTM_ID,
+    version: 'v6.0.0',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -124,7 +124,7 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
+            //uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
