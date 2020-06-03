@@ -17,16 +17,12 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: '100%',
     '& .mapContainer': {
-      width: '100vw',
-      height: '100vh',
-      minHeight: '100%',
-      minWidth: '100%',
+      height: '100%',
+      width: '100%',
     },
     '& .map': {
-      width: '100vw',
-      height: '100vh',
-      minHeight: '100%',
-      minWidth: '100%',
+      height: '100%',
+      width: '100%',
     },
     '& .legend': {
       display: 'block',
@@ -90,7 +86,7 @@ const Map = props => {
   const onZoomEnd = props.onZoomEnd || function () {
     // console.debug('Map   onZoomEnd default')
   }
-  const mapZ = props.mapZoom
+  const mapZoom = props.mapZoom
   const mapX = props.mapX
   const mapY = props.mapY
   const { mapData, ...options } = props
@@ -127,7 +123,7 @@ const Map = props => {
       onClick,
       minColor,
       maxColor,
-      mapZ,
+      mapZoom,
       mapX,
       mapY,
       options
@@ -136,8 +132,8 @@ const Map = props => {
     map.onZoom = onZoom
     map.onZoomEnd = onZoomEnd
 
-    if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZ)) {
-      map.zoom({ x: mapX, y: mapY, k: mapZ })
+    if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
+      map.zoom({ x: mapX, y: mapY, k: mapZoom })
     }
 
     if (props.zoomTo) {

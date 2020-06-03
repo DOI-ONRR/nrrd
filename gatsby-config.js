@@ -1,23 +1,23 @@
 const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
-// Federalist provides the BASEURL env variable for preview builds.
-// https://github.com/18F/federalist-garden-build#variables-exposed-during-builds
+// Active environment
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || 'development'
+
 const BASEURL = process.env.BASEURL || undefined
 
-// Federalist provides the google_analytics env variable
-const GOOGLE_ANALYTICS_ID = process.env.google_analytics
-  ? process.env.google_analytics[process.env.BRANCH] ||
-    process.env.google_analytics.default
-  : 'UA-33523145-1'
+require('dotenv').config({
+  path: `.env.${ activeEnv }`,
+})
 
 const config = {
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
     description:
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
+    googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID,
+    googleTagManagerId: process.env.GTM_ID,
     version: 'v6.0.0',
-    googleAnalyticsId: GOOGLE_ANALYTICS_ID,
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -124,8 +124,8 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
-            // uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
+            //uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
+            uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
             resolvers: {}

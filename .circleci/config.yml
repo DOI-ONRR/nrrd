@@ -139,7 +139,7 @@ jobs:
             - node_modules
       - run:
           name: Build gatsby
-          command: npm run build
+          command: GATSBY_ACTIVE_ENV=productionCloudGov npm run build
       - run:
           name: Run tests
           command: npm test
@@ -157,6 +157,7 @@ jobs:
             cf target -o "$PROD_CF_ORG" -s "$PROD_CF_SPACE"
             cf push nrrd -f ./manifest.yml
 
+
 workflows:
   audits:
     jobs:
@@ -172,8 +173,7 @@ workflows:
               ignore:
                 - master
                 - dev
-          
-                
+                       
   preview:
     jobs:
       - preview:
@@ -182,6 +182,7 @@ workflows:
               ignore:
                 - master
                 - dev
+  
   deploy:
     jobs:
       - deploy:
