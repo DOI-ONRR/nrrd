@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="5" failures="1" time="14.084">
+  <testsuite name="LandPercent" errors="0" failures="1" skipped="0" timestamp="2020-03-19T21:59:48" time="4.573" tests="1">
+    <testcase classname="LandPercent renders correctly" name="LandPercent renders correctly" time="0.026">
+      <failure>Invariant Violation: Could not find &quot;client&quot; in the context or passed in as an option. Wrap the root component in an &lt;ApolloProvider&gt;, or pass an ApolloClient instance in via options.
+    at new InvariantError (C:\Users\louisj\dev\nrrd\node_modules\ts-invariant\lib\invariant.esm.js:12:28)
+    at invariant (C:\Users\louisj\dev\nrrd\node_modules\ts-invariant\lib\invariant.esm.js:24:15)
+    at QueryData.OperationData.refreshClient (C:\Users\louisj\dev\nrrd\node_modules\@apollo\react-hooks\lib\react-hooks.cjs.js:62:115)
+    at QueryData.execute (C:\Users\louisj\dev\nrrd\node_modules\@apollo\react-hooks\lib\react-hooks.cjs.js:147:10)
+    at C:\Users\louisj\dev\nrrd\node_modules\@apollo\react-hooks\lib\react-hooks.cjs.js:509:55
+    at useDeepMemo (C:\Users\louisj\dev\nrrd\node_modules\@apollo\react-hooks\lib\react-hooks.cjs.js:462:14)
+    at useBaseQuery (C:\Users\louisj\dev\nrrd\node_modules\@apollo\react-hooks\lib\react-hooks.cjs.js:508:16)
+    at useQuery (C:\Users\louisj\dev\nrrd\node_modules\@apollo\react-hooks\lib\react-hooks.cjs.js:526:10)
+    at LandPercent (C:\Users\louisj\dev\nrrd\src\components\sections\ExploreData\LandPercent.js:27:36)
+    at renderWithHooks (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:6156:18)
+    at mountIndeterminateComponent (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:8690:13)
+    at beginWork$1 (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:10058:16)
+    at performUnitOfWork (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:14708:12)
+    at workLoopSync (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:14681:22)
+    at performSyncWorkOnRoot (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:14380:11)
+    at C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:2063:24
+    at unstable_runWithPriority (C:\Users\louisj\dev\nrrd\node_modules\scheduler\cjs\scheduler.development.js:697:12)
+    at runWithPriority (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:2013:10)
+    at flushSyncCallbackQueueImpl (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:2058:7)
+    at flushSyncCallbackQueue (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:2046:3)
+    at scheduleUpdateOnFiber (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:13819:9)
+    at updateContainer (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:17037:3)
+    at Object.create (C:\Users\louisj\dev\nrrd\node_modules\react-test-renderer\cjs\react-test-renderer.development.js:17777:5)
+    at Object.&lt;anonymous&gt; (C:\Users\louisj\dev\nrrd\src\components\sections\ExploreData\__tests__\LandPercent.test.js:11:8)
+    at Object.asyncJestTest (C:\Users\louisj\dev\nrrd\node_modules\jest-jasmine2\build\jasmineAsyncInstall.js:102:37)
+    at C:\Users\louisj\dev\nrrd\node_modules\jest-jasmine2\build\queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (C:\Users\louisj\dev\nrrd\node_modules\jest-jasmine2\build\queueRunner.js:26:19)
+    at C:\Users\louisj\dev\nrrd\node_modules\jest-jasmine2\build\queueRunner.js:73:41
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Site Audits via Lighthouse" errors="0" failures="0" skipped="0" timestamp="2020-03-19T21:59:49" time="12.294" tests="4">
+    <testcase classname="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" name="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" time="0.002">
+    </testcase>
+    <testcase classname="Site Audits via Lighthouse passes a performance audit through Lighthouse" name="Site Audits via Lighthouse passes a performance audit through Lighthouse" time="0">
+    </testcase>
+    <testcase classname="Site Audits via Lighthouse passes a best practice audit through Lighthouse" name="Site Audits via Lighthouse passes a best practice audit through Lighthouse" time="0.001">
+    </testcase>
+    <testcase classname="Site Audits via Lighthouse passes a SEO audit through Lighthouse" name="Site Audits via Lighthouse passes a SEO audit through Lighthouse" time="0">
+    </testcase>
+  </testsuite>
+</testsuites>
