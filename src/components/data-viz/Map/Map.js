@@ -75,7 +75,7 @@ const Map = props => {
   const onClick =
         props.onClick ||
         function (d, i) {
-          // console.debug('Default onClick function', d, i)
+          console.debug('Default onClick function', d, i)
         }
   const classes = useStyles()
   const minColor = props.minColor
@@ -131,6 +131,7 @@ const Map = props => {
 
     map.onZoom = onZoom
     map.onZoomEnd = onZoomEnd
+
     if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
       map.zoom({ x: mapX, y: mapY, k: mapZoom })
     }

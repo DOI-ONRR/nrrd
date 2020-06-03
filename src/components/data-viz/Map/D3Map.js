@@ -96,6 +96,7 @@ export default class d3Map {
 
   zoom (transform) {
     try {
+      console.log('D3Map transform: ', transform)
       if (transform) {
         const _zoom = transform
         this._chart

@@ -24,7 +24,7 @@ export default props => {
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const year = filterState[DFC.YEAR]
-  const dataSet = 'FY '+year
+  const dataSet = 'FY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year, commodity }
   })
@@ -34,7 +34,7 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.debug("WTF", data,'WTH', year, commodity)
+    console.debug('WTF', data, 'WTH', year, commodity)
     mapData = data.fiscal_production_summary.map((item, i) => [
       item.state_or_area,
       item.sum
@@ -51,7 +51,7 @@ export default props => {
           mapData={mapData}
           minColor={props.minColor}
           maxColor={props.maxColor}
-          mapZoom={props.mapK}
+          mapZoom={props.mapZoom}
           mapX={props.mapX}
           mapY={props.mapY}
           onZoomEnd={props.onZoomEnd}
@@ -65,8 +65,8 @@ export default props => {
             else {
               return d3.format(',.0f')(d)
             }
-     }
-              }
+          }
+          }
         />
         </>
       }

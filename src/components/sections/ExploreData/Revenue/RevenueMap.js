@@ -4,6 +4,8 @@ import gql from 'graphql-tag'
 
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
+
+import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -22,6 +24,7 @@ const REVENUE_QUERY = gql`
 `
 
 export default props => {
+  console.log('RevenueMap props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -53,13 +56,13 @@ export default props => {
     <>
       {mapData &&
         <>
-          <Map key={'RMAP'+year}  
+          <Map key={`RMAP${ year }`}
             mapFeatures={props.mapFeatures}
             mapJsonObject={props.mapJsonObject}
             mapData={mapData}
             minColor={props.minColor}
             maxColor={props.maxColor}
-            mapZoom={props.mapK}
+            mapZoom={props.mapZoom}
             mapX={props.mapX}
             mapY={props.mapY}
             onZoomEnd={onZoomEnd}

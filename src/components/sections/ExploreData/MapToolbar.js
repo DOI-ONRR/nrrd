@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 250,
     background: theme.palette.background.paper,
     boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
-    '@media (max-width: 768px)': {
+    '@media (max-width: 1120px)': {
       position: 'relative',
       width: '100%',
       background: theme.palette.common.white,
@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& label span': {
       margin: 0,
-      '@media (max-width: 768px)': {
+      '@media (max-width: 1120px)': {
         fontSize: '.85rem',
         lineHeight: '.85rem',
       }
@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
     right: 10,
     top: 12,
     zIndex: 99,
-    '@media (max-width: 960px)': {
+    '@media (max-width: 1120px)': {
       position: 'relative',
       width: '100%',
       top: 'inherit',
@@ -205,7 +205,7 @@ const MapExploreMenu = props => {
   const [anchorEl, setAnchorEl] = useState(null)
 
   const theme = useTheme()
-  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+  const matchesMdLgUp = useMediaQuery('(max-width:1120px)')
 
   const handleMenuClick = event => {
     setAnchorEl(event.currentTarget)
@@ -218,7 +218,7 @@ const MapExploreMenu = props => {
 
   return (
     <div className={classes.mapExploreMenu}>
-      {matchesMdUp &&
+      {!matchesMdLgUp &&
         <>
           <Tooltip title='Explore more' classes={{ tooltip: classes.tooltipRoot }}>
             <IconButton
@@ -242,7 +242,7 @@ const MapExploreMenu = props => {
           </Menu>
         </>
       }
-      {!matchesMdUp &&
+      {matchesMdLgUp &&
       <>
         <Paper>
           <MenuList>
@@ -279,7 +279,8 @@ const ExploreDataToolbar = props => {
   const classes = useStyles()
 
   const theme = useTheme()
-  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+  // const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+  const matchesMdLgUp = useMediaQuery('(max-width:1120px)')
 
   const [navValue, setNavValue] = useState(null)
   const [menu, setMenu] = useState({
@@ -315,7 +316,7 @@ const ExploreDataToolbar = props => {
 
   return (
     <>
-      <Hidden mdUp>
+      { matchesMdLgUp &&
         <Box className={classes.mobileToolbar}>
           <BottomNavigation
             value={navValue}
@@ -367,12 +368,12 @@ const ExploreDataToolbar = props => {
               }} />
           </BottomNavigation>
         </Box>
-      </Hidden>
+      }
 
       <Box className={classes.toolbar}>
-        {(menu.showMapTools || matchesMdUp) &&
+        {(menu.showMapTools || !matchesMdLgUp) &&
+          /* Map toolbar selections */
           <Box className={classes.toolbarControls}>
-
             <MapToolbarSelect
               dataFilterKey={DFC.DATA_TYPE}
               data={MAP_DATA_TYPE_SELECT_OPTIONS}
@@ -432,37 +433,37 @@ const ExploreDataToolbar = props => {
           </Box>
         }
 
-        <Hidden mdUp>
-          {(menu.showSearch || matchesMdUp) &&
+        {/* add Nationwide Federal and Native American cards menu */}
+        {menu.showSearch &&
           <Box>
             {cardMenuItems &&
               cardMenuItems.map((item, i) => <MenuItem disabled={cards.some(c => c.abbr === item.name)} key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
             }
           </Box>
-          }
-        </Hidden>
+        }
 
-        {(menu.showExplore || matchesMdUp) &&
-          <Box>
-            {dataType === REVENUE &&
-                <MapExploreMenu
-                  linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
-                  linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-revenue-works/#revenues', '/how-revenue-works/federal-revenue-by-company/2018/']}
-                />
-            }
-            {dataType === DISBURSEMENT &&
-                <MapExploreMenu
-                  linkLabels={['Query disbursements data', 'Downloads & Documentation', 'How disbursements works']}
-                  linkUrls={['/query-data/?dataType=Disbursements', '/downloads/#Disbursements', '/how-revenue-works/#understanding-federal-disbursements']}
-                />
-            }
-            {dataType === PRODUCTION &&
-                <MapExploreMenu
-                  linkLabels={['Query production data', 'Downloads & Documentation', 'How production works']}
-                  linkUrls={['/query-data/?dataType=Production', '/downloads/#Production', '/how-revenue-works/#the-production-process']}
-                />
-            }
-          </Box>
+        { /* other ways to explore menu */ }
+        {(menu.showExplore || !matchesMdLgUp) &&
+            <Box>
+              {dataType === REVENUE &&
+                  <MapExploreMenu
+                    linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
+                    linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-revenue-works/#revenues', '/how-revenue-works/federal-revenue-by-company/2018/']}
+                  />
+              }
+              {dataType === DISBURSEMENT &&
+                  <MapExploreMenu
+                    linkLabels={['Query disbursements data', 'Downloads & Documentation', 'How disbursements works']}
+                    linkUrls={['/query-data/?dataType=Disbursements', '/downloads/#Disbursements', '/how-revenue-works/#understanding-federal-disbursements']}
+                  />
+              }
+              {dataType === PRODUCTION &&
+                  <MapExploreMenu
+                    linkLabels={['Query production data', 'Downloads & Documentation', 'How production works']}
+                    linkUrls={['/query-data/?dataType=Production', '/downloads/#Production', '/how-revenue-works/#the-production-process']}
+                  />
+              }
+            </Box>
         }
       </Box>
     </>
