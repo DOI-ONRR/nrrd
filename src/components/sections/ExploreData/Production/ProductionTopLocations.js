@@ -154,7 +154,16 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
     }
     else {
-      chartData =  data.fiscal_production_summary
+
+      const unitAbbr = data.fiscal_production_summary[0].unit_abbr
+      chartData = d3.nest()
+        .key(k => k.location_name)
+        .rollup(v => d3.sum(v, i => i.sum))
+        .entries(data.fiscal_production_summary).map(item => {
+          const r = { sum: item.value, location_name: item.key, unit_abbr: unitAbbr }
+          return r
+        })
+      //chartData =  data.fiscal_production_summary
     }
     console.debug('CHART DATA', chartData)
     return (
