@@ -37,9 +37,6 @@ const useStyles = makeStyles(theme => ({
       '& svg': {
         top: 0,
       },
-      '@media (max-width: 768px)': {
-        bottom: 5,
-      },
       '& .tick': {
         fontSize: theme.typography.body2,
       }

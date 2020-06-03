@@ -54,13 +54,12 @@ const useStyles = makeStyles(theme => ({
     },
     '& .legend': {
       bottom: 175,
+      '@media (max-width: 425px)': {
+        bottom: 150,
+      },
       '@media (max-width: 768px)': {
-        bottom: '142px',
+        bottom: 162,
         margin: '0',
-        borderRadius: '0',
-        width: '100vw',
-        left: '0',
-        minWidth: '100%',
       },
     },
     '& .map-overlay': {
