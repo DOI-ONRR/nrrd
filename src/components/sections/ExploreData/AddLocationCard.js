@@ -93,7 +93,7 @@ const useStyles = makeStyles(theme => ({
 
 // get region details from map object
 const getRegionProperties = location => {
-  console.log('getRegionProperties input: ', location)
+  // console.log('getRegionProperties input: ', location)
 
   let selectedObj
 
@@ -221,10 +221,8 @@ const AddLocationCard = props => {
   }
 
   const handleChange = val => {
-    console.log('val: ', val)
     try {
       const item = getRegionProperties(val)
-      console.log('item back: ', item)
       props.onLink(item[0])
       setInput('')
       setKeyCount(keyCount + 1)

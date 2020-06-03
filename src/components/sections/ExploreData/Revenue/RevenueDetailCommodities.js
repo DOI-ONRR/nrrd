@@ -58,6 +58,7 @@ const RevenueDetailCommodities = props => {
   })
 
   const dataSet = `FY ${ year }`
+  const dataKey = dataSet + '-' + stateAbbr
   let chartData
 
   if (loading) return ''
@@ -74,7 +75,7 @@ const RevenueDetailCommodities = props => {
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Commodities</Box>
             <Box>
-              <CircleChart key={'RDC'+dataSet}  data={chartData.revenue_commodity_summary}
+            <CircleChart key={'RDC'+dataKey}  data={chartData.revenue_commodity_summary}
                 xAxis='commodity' yAxis='total'
                 format={ d => {
                   return utils.formatToDollarInt(d)

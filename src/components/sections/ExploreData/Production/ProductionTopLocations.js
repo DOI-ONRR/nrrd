@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
+import * as d3 from 'd3'
 
 // utility functions
 import utils from '../../../../js/utils'
@@ -26,22 +27,35 @@ import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
   query FiscalProduction($year: Int!, $location: String!, $commodity: String!, $state: String!) {
- state_fiscal_production_summary:  fiscal_production_summary(where: {location_type: {_eq: $location}, state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}, state: {_eq: $state}}, order_by: {sum: desc}) {
-      location_name
-      unit_abbr
-      fiscal_year
-      state_or_area
-      sum
-      
-    }
- fiscal_production_summary(where: {location_type: {_nin: ["Nationwide Federal", "County", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}, order_by: {sum: desc}) {
-      location_name
-      unit_abbr
-      fiscal_year
-      state_or_area
-      sum
-      
-    }
+    state_fiscal_production_summary: fiscal_production_summary(
+      where: {
+        location_type: {_eq: $location},
+        state_or_area: {_nin: ["Nationwide Federal", ""]}, 
+        fiscal_year: { _eq: $year },
+        commodity: {_eq: $commodity},
+        state: {_eq: $state}
+      },
+        order_by: {sum: desc}
+      ) {
+        location_name
+        unit_abbr
+        fiscal_year
+        state_or_area
+        sum
+      }
+    fiscal_production_summary(
+      where: {
+        location_type: {_nin: ["Nationwide Federal", "County", ""]}, 
+        fiscal_year: { _eq: $year }, 
+        commodity: {_eq: $commodity}
+      }, order_by: {sum: desc}
+      ) {
+        location_name
+        unit_abbr
+        fiscal_year
+        state_or_area
+        sum
+      }
   }
 `
 
@@ -97,28 +111,21 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionTopLocations = ({ title, ...props }) => {
+  // console.debug('ProductionTopLocations props: ', props)
+
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  console.debug('props: ', props)
-  let state='';
-  let location='County'
-  if (props.abbr && props.abbr.length === 2) {
-    location = 'County'
-    state = props.abbr
-  } else {
-    location='State'
-    state=''
-  }
-  
+  const state = props.state
+  const location = (props.abbr && props.abbr.length === 5) ? 'County' : 'State'
+
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const key='PTL'+year+state+commodity
-  console.log('apollo query: ', year, location, commodity, state)
+  const key = `PTL${ year }${ state }${ commodity }`
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location, commodity, state },
-      skip: props.state === CONSTANTS.NATIVE_AMERICAN
+      skip: props.state === CONSTANTS.NATIVE_AMERICAN || location === 'County'
     })
 
   const maxLegendWidth = props.maxLegendWidth
@@ -135,23 +142,30 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const dataSet = `FY ${ year }`
 
   if (data) {
+    console.debug("WTH: ", data)
     if (location === 'County') {
-      chartData = data.state_fiscal_production_summary
-    } else {
-
-      
-      /* 
-         summarize fiscal_production_summary
-         
- const sums = [...new Set(
-      d3.nest()
-        .key(k => k.fiscal_year)
+      const unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
+      chartData = d3.nest()
+        .key(k => k.location_name)
         .rollup(v => d3.sum(v, i => i.sum))
-        .entries(data.fiscal_production_summary.filter(row => row.state_or_area === state)).map(item => item.value)
-    )] */
-      chartData =  data.fiscal_production_summary
+        .entries(data.state_fiscal_production_summary).map(item => {
+          const r = { sum: item.value, location_name: item.key, unit_abbr: unitAbbr }
+          return r
+        })
     }
-      console.debug("CHART DATA", chartData)
+    else {
+
+      const unitAbbr = data.fiscal_production_summary[0].unit_abbr
+      chartData = d3.nest()
+        .key(k => k.location_name)
+        .rollup(v => d3.sum(v, i => i.sum))
+        .entries(data.fiscal_production_summary).map(item => {
+          const r = { sum: item.value, location_name: item.key, unit_abbr: unitAbbr }
+          return r
+        })
+      //chartData =  data.fiscal_production_summary
+    }
+    console.debug('CHART DATA', chartData)
     return (
       <Box className={classes.root}>
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
