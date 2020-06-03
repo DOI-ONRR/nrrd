@@ -78,5 +78,9 @@ export const DISPLAY_NAMES = {
   [COUNTY]: {
     default: 'County',
     plural: 'Counties',
+  },
+  [RECIPIENT]: {
+    default: 'Recipient',
+    plural: 'Recipients',
   }
 }

@@ -23,23 +23,23 @@ import {
 import gql from 'graphql-tag'
 
 const allRevenueYears = `
-y2019
-y2018
-y2017
-y2016
-y2015
-y2014
-y2013
-y2012
-y2011
-y2010
-y2009
-y2008
-y2007
-y2006
-y2005
+y2003
 y2004
-y2003`
+y2005
+y2006
+y2007
+y2008
+y2009
+y2010
+y2011
+y2012
+y2013
+y2014
+y2015
+y2016
+y2017
+y2018
+y2019`
 
 /**
  * This object provides various methods for quering the data filters
@@ -149,7 +149,7 @@ const REVENUE_QUERY = `
     ${ DISTRICT_TYPE }: district_type
     ${ OFFSHORE_REGION }: offshore_region,
     ${ US_STATE }: state_name
-    ${ COUNTY }: county
+    ${ COUNTY }: county_name
     ${ REVENUE_TYPE }: revenue_type
     ${ COMMODITY }: commodity
     ${ allRevenueYears }
@@ -171,7 +171,7 @@ const PRODUCTION_QUERY = `
     ${ DISTRICT_TYPE }: district_type
     ${ OFFSHORE_REGION }: offshore_region
     ${ US_STATE }: state_name
-    ${ COUNTY }: county
+    ${ COUNTY }: county_name
     ${ COMMODITY }: commodity
     ${ allRevenueYears }
   }`
@@ -188,7 +188,7 @@ const DISBURSEMENT_QUERY = `
     ${ RECIPIENT }: recipient
     ${ SOURCE }: source
     ${ US_STATE }: state_name
-    ${ COUNTY }: county
+    ${ COUNTY }: county_name
     ${ allRevenueYears }
   }`
 /**
