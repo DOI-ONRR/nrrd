@@ -16,12 +16,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Sparkline = props => {
+  console.log('Sparkline props: ', props)
   let data = [[0, 0]]
-  let highlightIndex = -1
+  let highlightIndex = 0
   let lineAnimationData
   if (props.data.length > 0) {
     data = props.data
-    highlightIndex = props.highlightIndex || props.data.length - 1
+    highlightIndex = props.highlightIndex
     lineAnimationData = data.slice(0, highlightIndex + 1)
   }
 
@@ -31,8 +32,9 @@ const Sparkline = props => {
   useEffect(() => {
     const width = 70
     const height = 20
-    const x = d3.scaleLinear().range([0, width - 3])
-    const y = d3.scaleLinear().range([height - 3, 4])
+    const margin = ({ top: 5, right: 5, bottom: 5, left: 5 })
+    const x = d3.scaleLinear().range([margin.left, width - margin.right])
+    const y = d3.scaleLinear().range([height - margin.bottom, margin.top])
     const line = d3.line()
       .curve(d3.curveCardinal)
       .x(function (d) {
