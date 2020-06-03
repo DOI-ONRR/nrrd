@@ -17,12 +17,16 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: '100%',
     '& .mapContainer': {
-      height: '100%',
-      width: '100%',
+      width: '100vw',
+      height: '100vh',
+      minHeight: '100%',
+      minWidth: '100%',
     },
     '& .map': {
-      height: '100%',
-      width: '100%',
+      width: '100vw',
+      height: '100vh',
+      minHeight: '100%',
+      minWidth: '100%',
     },
     '& .legend': {
       display: 'block',
@@ -132,8 +136,8 @@ const Map = props => {
     map.onZoom = onZoom
     map.onZoomEnd = onZoomEnd
 
-    if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
-      map.zoom({ x: mapX, y: mapY, k: mapZoom })
+    if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZ)) {
+      map.zoom({ x: mapX, y: mapY, k: mapZ })
     }
 
     if (props.zoomTo) {
