@@ -10,7 +10,8 @@ const PeriodSelect = ({ helperText, label, loadingMessage }) => (
     dataFilterKey={PERIOD}
     label={label}
     loadingMessage={loadingMessage}
-    helperText={helperText} />
+    helperText={helperText}
+    noClearOption={true} />
 )
 
 export default PeriodSelect

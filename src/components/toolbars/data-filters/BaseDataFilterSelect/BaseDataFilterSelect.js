@@ -19,7 +19,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import IconButton from '@material-ui/core/IconButton'
 import Checkbox from '@material-ui/core/Checkbox'
 import Grid from '@material-ui/core/Grid'
 
@@ -33,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, loadingMessage }) => {
+const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, loadingMessage, noClearOption, disabled }) => {
   const { state } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(DFQM.getQuery(dataFilterKey, state), DFQM.getVariables(state))
 
@@ -52,10 +51,10 @@ const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, lo
   return (
     <React.Fragment>
       {selectType === 'Single' &&
-        <BaseDataFilterSingleSelect dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} />
+        <BaseDataFilterSingleSelect dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption={noClearOption} disabled={disabled}/>
       }
       {selectType === 'Multi' &&
-        <BaseDataFilterMultiSelector dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} />
+        <BaseDataFilterMultiSelector dataFilterKey={dataFilterKey} label={label} data={data} helperText={helperText} noClearOption={noClearOption} disabled={disabled}/>
       }
     </React.Fragment>
   )
@@ -83,15 +82,20 @@ BaseDataFilterSelect.propTypes = {
   /**
    * The message that shows in the loading screen
    */
-  loadingMessage: PropTypes.string
+  loadingMessage: PropTypes.string,
+  /**
+   * You can choose not to have a clear selected option
+   */
+  noClearOption: PropTypes.bool
 }
 BaseDataFilterSelect.defaultProps = {
   loadingMessage: 'Updating data filters from server...',
-  selectType: 'Single'
+  selectType: 'Single',
+  noClearOption: false
 }
 
-const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText }) => {
-  console.log('dataFilterKey, data: ', dataFilterKey, data)
+const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText, noClearOption, disabled }) => {
+  // console.log('dataFilterKey, data: ', dataFilterKey, data)
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
 
@@ -120,7 +124,7 @@ const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText }) 
   return (
     <Grid container>
       <Grid item xs={12}>
-        <FormControl className={classes.formControl} disabled={(data && data.options.length === 0)}>
+        <FormControl className={classes.formControl} disabled={((disabled) || (data && data.options.length === 0))}>
           <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
           <Select
             labelId={`${ labelSlug }-select-label`}
@@ -129,12 +133,14 @@ const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText }) 
             onChange={handleChange}
             displayEmpty
           >
-            <MenuItem value={'Clear'} disabled={(!state[dataFilterKey])}>
-              <ListItemText primary={'Clear selected'} />
-            </MenuItem>
-            {data &&
+            {!noClearOption &&
+              <MenuItem value={'Clear'} disabled={(!state[dataFilterKey])}>
+                <ListItemText primary={'Clear selected'} />
+              </MenuItem>
+            }
+            {(!disabled && data) &&
               data.options.map((item, i) =>
-                <MenuItem key={`${ item.option }_${ i }`} value={item.option}><ListItemText primary={item.option} /></MenuItem>)
+                <MenuItem key={`${ item.option }_${ i }`} value={(item.value) ? item.value : item.option}><ListItemText primary={item.option} /></MenuItem>)
             }
           </Select>
           {helperText &&
@@ -149,7 +155,7 @@ const BaseDataFilterSingleSelect = ({ dataFilterKey, label, data, helperText }) 
   )
 }
 
-const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText }) => {
+const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText, noClearOption, disabled }) => {
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
   const { state, updateDataFilter } = useContext(DataFilterContext)
@@ -189,7 +195,7 @@ const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText })
   return (
     <Grid container>
       <Grid item xs={12}>
-        <FormControl className={classes.formControl} disabled={(data && data.options.length === 0)}>
+        <FormControl className={classes.formControl} disabled={((disabled) || (data && data.options.length === 0))}>
           <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
           <Select
             labelId={`${ labelSlug }-select-label`}
@@ -201,15 +207,18 @@ const BaseDataFilterMultiSelector = ({ dataFilterKey, label, data, helperText })
             onChange={handleChange}
             onClose={handleClose}
           >
-            <MenuItem value={'Clear'} disabled={(selectedOptions.length === 0)}>
-              <ListItemText primary={'Clear selected'} />
-            </MenuItem>
-            {data &&
-              data.options.map(
-                (item, i) => <MenuItem key={`${ item.option }_${ i }`} value={item.option}>
-                  <Checkbox checked={selectedOptions.includes(item.option)} />
+            {!noClearOption &&
+              <MenuItem value={'Clear'} disabled={(!state[dataFilterKey])}>
+                <ListItemText primary={'Clear selected'} />
+              </MenuItem>
+            }
+            {(!disabled && data) &&
+              data.options.map((item, i) => (
+                <MenuItem key={`${ item.option }_${ i }`} value={(item.value) ? item.value : item.option}>
+                  <Checkbox checked={(selectedOptions.includes(item.value) || selectedOptions.includes(item.option))} />
                   <ListItemText primary={item.option} />
-                </MenuItem>)
+                </MenuItem>
+              ))
             }
           </Select>
           {helperText &&

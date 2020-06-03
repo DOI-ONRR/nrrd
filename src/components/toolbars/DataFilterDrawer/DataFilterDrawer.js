@@ -8,10 +8,12 @@ import FilterList from '@material-ui/icons/FilterList'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 
+import LandTypeSelect from '../data-filters/LandTypeSelect'
 import LandCategorySelect from '../data-filters/LandCategorySelect'
 import LandClassSelect from '../data-filters/LandClassSelect'
 import StateSelect from '../data-filters/StateSelect'
 import CountySelect from '../data-filters/CountySelect'
+import SourceSelect from '../data-filters/SourceSelect'
 import RecipientSelect from '../data-filters/RecipientSelect'
 import RevenueTypeSelect from '../data-filters/RevenueTypeSelect'
 import CommoditySelect from '../data-filters/CommoditySelect'
@@ -20,7 +22,7 @@ import PeriodSelect from '../data-filters/PeriodSelect'
 import YearRangeSelect from '../data-filters/YearRangeSelect'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
-import { REVENUE, DISBURSEMENT } from '../../../constants'
+import { REVENUE, DISBURSEMENT, US_STATE } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -89,19 +91,19 @@ export default function DataFilterDrawer () {
           <Box m={2}>
             <Grid container>
               {state.dataType !== DISBURSEMENT &&
-                <React.Fragment>
-                  <Grid item xs={12}>
-                    <LandCategorySelect />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <LandClassSelect />
-                  </Grid>
-                </React.Fragment>
+                <Grid item xs={12}>
+                  <LandTypeSelect />
+                </Grid>
               }
               {state.dataType === DISBURSEMENT &&
-                <Grid item xs={12}>
-                  <RecipientSelect />
-                </Grid>
+                <React.Fragment>
+                  <Grid item xs={12}>
+                    <RecipientSelect />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <SourceSelect />
+                  </Grid>
+                </React.Fragment>
               }
               {state.dataType === REVENUE &&
                 <Grid item xs={12}>
@@ -111,9 +113,19 @@ export default function DataFilterDrawer () {
               <Grid item xs={12}>
                 <StateSelect />
               </Grid>
-              <Grid item xs={12}>
-                <OffshoreRegionSelect />
-              </Grid>
+              {(state[US_STATE] && (state[US_STATE].split(',').length === 1))
+                ? <Grid item xs={12}>
+                  <CountySelect />
+                </Grid>
+                : <Grid item xs={12}>
+                  <CountySelect helperText={'Select a single State to view County options.'} disabled={true} />
+                </Grid>
+              }
+              {state.dataType !== DISBURSEMENT &&
+                <Grid item xs={12}>
+                  <OffshoreRegionSelect />
+                </Grid>
+              }
               {state.dataType !== DISBURSEMENT &&
                 <Grid item xs={12}>
                   <CommoditySelect />

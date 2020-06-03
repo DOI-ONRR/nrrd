@@ -13,7 +13,10 @@ import { Table } from '@devexpress/dx-react-grid-material-ui'
 
 const useStyles = makeStyles(theme => ({
   cell: {
-    borderRight: `1px solid ${ theme.palette.divider }`
+    borderRight: `1px solid ${ theme.palette.divider }`,
+    backgroundColor: 'white',
+    paddingTop: '2px;',
+    paddingBottom: '2px;'
   }
 }))
 
@@ -28,7 +31,12 @@ const CustomTableCell = ({ getMessage, ...restProps }) => {
     cellValue = restProps.children.type(restProps)
   }
   else if (restProps.column.year) {
-    cellValue = (state[DATA_TYPE] !== PRODUCTION) ? formatToDollarInt(cellValue) : formatToCommaInt(cellValue)
+    if (parseInt(cellValue) === 0) {
+      cellValue = '-'
+    }
+    else {
+      cellValue = (state[DATA_TYPE] !== PRODUCTION) ? formatToDollarInt(cellValue) : formatToCommaInt(cellValue)
+    }
   }
 
   return (

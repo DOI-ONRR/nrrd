@@ -1,23 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { COUNTY } from '../../../../constants'
+import { LAND_TYPE } from '../../../../constants'
 
 import BaseDataFilterSelect from '../BaseDataFilterSelect'
 
-const CountySelect = ({ helperText, label, loadingMessage, disabled }) => (
+const LandTypeSelect = ({ helperText, label, loadingMessage }) => (
   <BaseDataFilterSelect
-    dataFilterKey={COUNTY}
-    selectType={'Multi'}
+    dataFilterKey={LAND_TYPE}
     label={label}
     loadingMessage={loadingMessage}
-    helperText={helperText}
-    disabled={disabled} />
+    helperText={helperText} />
 )
 
-export default CountySelect
+export default LandTypeSelect
 
-CountySelect.propTypes = {
+LandTypeSelect.propTypes = {
   /**
    * Text that displays below the select box to provide additional instructions
    */
@@ -31,7 +29,7 @@ CountySelect.propTypes = {
    */
   loadingMessage: PropTypes.string
 }
-CountySelect.defaultProps = {
-  label: 'County',
-  loadingMessage: 'Updating County options from server...'
+LandTypeSelect.defaultProps = {
+  label: 'Land type',
+  loadingMessage: 'Updating Land Type options from server...'
 }

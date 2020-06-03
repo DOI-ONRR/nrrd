@@ -1,11 +1,14 @@
-import gql from 'graphql-tag'
-
 export const DATA_TYPE = 'dataType'
+export const LOCATION_NAME = 'locationName'
+export const LAND_TYPE = 'landType'
+export const REGION_TYPE = 'regionType'
+export const DISTRICT_TYPE = 'districtType'
 export const LAND_CLASS = 'landClass'
 export const LAND_CATEGORY = 'landCategory'
 export const OFFSHORE_REGION = 'offshoreRegion'
 export const OFFSHORE_REGIONS = 'offshoreRegions'
 export const US_STATE = 'state'
+export const US_STATE_ABBR = 'stateAbbr'
 export const US_STATES = 'usStates'
 export const COUNTY = 'county'
 export const COUNTIES = 'counties'
@@ -44,6 +47,10 @@ export const DISPLAY_NAMES = {
     default: 'Revenue type',
     plural: 'Revenue types',
   },
+  [LAND_TYPE]: {
+    default: 'Land type',
+    plural: 'Land types',
+  },
   [COMMODITY]: {
     default: 'Commodity',
     plural: 'Commodities',
@@ -63,5 +70,17 @@ export const DISPLAY_NAMES = {
   [OFFSHORE_REGION]: {
     default: 'Offshore region',
     plural: 'Offshore regions',
+  },
+  [SOURCE]: {
+    default: 'Source',
+    plural: 'Sources',
+  },
+  [COUNTY]: {
+    default: 'County',
+    plural: 'Counties',
+  },
+  [RECIPIENT]: {
+    default: 'Recipient',
+    plural: 'Recipients',
   }
 }

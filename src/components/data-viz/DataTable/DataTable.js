@@ -3,20 +3,18 @@ import React, { useContext, useState, useEffect } from 'react'
 import {
   REVENUE,
   PRODUCTION,
-  DISBURSEMENTS,
+  DISBURSEMENT,
   DATA_TYPE,
   GROUP_BY,
   BREAKOUT_BY,
-  PERIOD,
-  PERIOD_FISCAL_YEAR,
-  PERIOD_CALENDAR_YEAR,
   FISCAL_YEAR,
   CALENDAR_YEAR,
-  NO_BREAKOUT_BY
+  NO_BREAKOUT_BY,
+  DISPLAY_NAMES
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
-import utils, { toTitleCase, aggregateSum } from '../../../js/utils'
+import { toTitleCase, aggregateSum, downloadWorkbook } from '../../../js/utils'
 
 import DTQM from '../../../js/data-table-query-manager'
 import { useQuery } from '@apollo/react-hooks'
@@ -28,7 +26,8 @@ import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
 import AllTypeProvider from './Custom/AllTypeProvider'
 
-import DataTableGroupingToolbar from './DataTableGroupingToolbar'
+import { IconDownloadCsvImg, IconDownloadXlsImg } from '../../images'
+import Button from '@material-ui/core/Button'
 
 import {
   makeStyles,
@@ -43,9 +42,6 @@ import {
   IntegratedSorting,
   SummaryState,
   IntegratedSummary,
-  FilteringState,
-  IntegratedFiltering,
-  DataTypeProvider,
   TableColumnVisibility
 } from '@devexpress/dx-react-grid'
 
@@ -55,9 +51,6 @@ import {
   TableHeaderRow,
   TableFixedColumns,
   TableGroupRow,
-  GroupingPanel,
-  DragDropProvider,
-  Toolbar,
   TableSummaryRow,
   TableColumnResizing
 } from '@devexpress/dx-react-grid-material-ui'
@@ -89,19 +82,19 @@ const DataTable = ({ dataType, height = '100%' }) => {
         {state[DATA_TYPE] &&
           <React.Fragment>
             {state[DATA_TYPE] === REVENUE &&
-                <Grid item xs={12}>
-                  <RevenueDataTableImpl />
-                </Grid>
+              <Grid item xs={12}>
+                <RevenueDataTableImpl />
+              </Grid>
             }
             {state[DATA_TYPE] === PRODUCTION &&
-                <Grid item xs={12}>
-                  <ProductionDataTableImpl />
-                </Grid>
+              <Grid item xs={12}>
+                <ProductionDataTableImpl />
+              </Grid>
             }
-            {state[DATA_TYPE] === DISBURSEMENTS &&
-                <Grid item xs={12}>
-
-                </Grid>
+            {state[DATA_TYPE] === DISBURSEMENT &&
+              <Grid item xs={12}>
+                <DisbursementDataTableImpl />
+              </Grid>
             }
           </React.Fragment>
         }
@@ -139,6 +132,7 @@ const RevenueDataTableImpl = () => {
     </React.Fragment>
   )
 }
+
 const ProductionDataTableImpl = () => {
   const { state } = useContext(DataFilterContext)
 
@@ -167,34 +161,45 @@ const ProductionDataTableImpl = () => {
   )
 }
 
-const DownloadDataTableButton = () => {
-  const downloadStuff = () => {
-    downloadExcel()
-  }
+const DisbursementDataTableImpl = () => {
+  const { state } = useContext(DataFilterContext)
+
+  const loadingMessage = `Loading ${ state.dataType } data from server...`
+
+  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
+
+  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
+
+  useEffect(() => {
+    if (error) {
+      showErrorMessage(`Error!: ${ error.message }`)
+    }
+  }, [error])
+
+  useEffect(() => {
+    updateLoadingStatus({ status: loading, message: loadingMessage })
+  }, [loading])
+
   return (
-    <Button
-      variant="contained"
-      color="primary"
-      aria-label="open data filters"
-      onClick={downloadStuff}
-      onKeyDown={downloadStuff}
-      startIcon={<TableChart />}
-    >
-    Download table to excel
-    </Button>
+    <React.Fragment>
+      {(data && data.results.length > 0) &&
+        <DataTableImpl {...data} />
+      }
+    </React.Fragment>
   )
 }
 
 const DataTableImpl = data => {
   const { state } = useContext(DataFilterContext)
-  const columnNames = getColumnNames(data.results[0])
+  let columnNames = getColumnNames(data.results[0], state)
   const [grouping, setGrouping] = useState([])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
   const [fixedColumns, setFixedColumns] = useState([])
   const [totalSummaryItems, setTotalSummaryItems] = useState([])
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
   const [aggregatedSums, setAggregatedSums] = useState()
-  const [defaultColumnWidths] = useState(columnNames ? columnNames.map(column => ({ columnName: column.name, width: 200 })) : [])
+  const [defaultColumnWidths] = useState(columnNames ? columnNames.map((column, index) =>
+    (column.name.startsWith('y')) ? ({ columnName: column.name, width: 200 }) : ({ columnName: column.name, width: 250 })) : [])
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
   const getHiddenColumns = () => {
     let yearColumns = []
@@ -203,48 +208,44 @@ const DataTableImpl = data => {
       years = years.map(item => `y${ item }`)
       yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !years.includes(item.name)))
     }
+    else {
+      // By default only show 3 years
+      yearColumns = columnNames.filter(item => item.name.startsWith('y'))
+      yearColumns = yearColumns.slice(6)
+    }
 
     const nonYearColumns = columnNames.filter(item => (!item.name.startsWith('y') && item.name !== state[GROUP_BY] && item.name !== state[BREAKOUT_BY]))
-
     return yearColumns.concat(nonYearColumns).map(item => item.name)
   }
 
-  const getCurrencyColumns = () => {
-    const years = columnNames.filter(item => item.name.startsWith('y'))
-    return years && years.map(item => item.name)
-  }
-
   const getTotalSummaryItems = () => {
-    const years = columnNames //.filter(item => item.name.startsWith('y'))
-    return years && years.map(item => ({ columnName: item.name, type: 'sum', alignByColumn: false }))
+    const years = columnNames // .filter(item => item.name.startsWith('y'))
+    return years && years.map(item => ({ columnName: item.name, type: 'totalSum', alignByColumn: false }))
   }
 
   const getGroupSummaryItems = () => {
-    const years = columnNames //.filter(item => item.name.startsWith('y'))
+    const years = columnNames // .filter(item => item.name.startsWith('y'))
     return years && years.map(item => ({ columnName: item.name, type: 'sum', showInGroupFooter: true, alignByColumn: true }))
   }
 
-  const getDefaultColumnWidths = () => {
-    const widths = 90
-	  columnNames.forEach(column => {
-	    widths.push({ columnName: column, width: 200 })
-	  })
-  }
-
   useEffect(() => {
-    if (state[GROUP_BY]) {
+    columnNames = getColumnNames(data.results[0], state)
+    if (state[GROUP_BY] && (state[BREAKOUT_BY] !== NO_BREAKOUT_BY && state[BREAKOUT_BY])) {
       setGrouping([{ columnName: state[GROUP_BY] }])
       setFixedColumns([TableGroupRow.Row, state[GROUP_BY], state[BREAKOUT_BY]])
-      setHiddenColumnNames(getHiddenColumns())
+    }
+    else if (state[GROUP_BY]) {
+      setGrouping([])
+      setFixedColumns([state[GROUP_BY]])
     }
     else {
       setGrouping([])
-      setFixedColumns([])
-      setHiddenColumnNames([])
+      setFixedColumns([columnNames[0]])
     }
-
-    setTotalSummaryItems(getTotalSummaryItems())
+    setHiddenColumnNames(getHiddenColumns())
     setGroupSummaryItems(getGroupSummaryItems())
+    setTotalSummaryItems(getTotalSummaryItems())
+
     if (data && data.results.length > 0) {
       const yearProps = columnNames.filter(item => item.name.startsWith('y'))
       setAggregatedSums(aggregateSum({
@@ -256,10 +257,39 @@ const DataTableImpl = data => {
     }
   }, [state, data])
 
+  const handleDownload = type => {
+    downloadWorkbook(type, state[DATA_TYPE], state[DATA_TYPE], columnNames.filter(col => !hiddenColumnNames.includes(col.name)), aggregatedSums)
+  }
+
   return (
     <React.Fragment>
       {(aggregatedSums && aggregatedSums.length > 0) &&
-        <Grid container>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Box component="div" display="inline" mr={2}>
+              <Button
+                variant="contained"
+                color="primary"
+                aria-label="open data filters"
+                onClick={() => handleDownload('excel')}
+                onKeyDown={() => handleDownload('excel')}
+                startIcon={<IconDownloadXlsImg />}
+              >
+              Download table
+              </Button>
+
+            </Box>
+            <Button
+              variant="contained"
+              color="primary"
+              aria-label="open data filters"
+              onClick={() => handleDownload('csv')}
+              onKeyDown={() => handleDownload('csv')}
+              startIcon={<IconDownloadCsvImg />}
+            >
+              Download table
+            </Button>
+          </Grid>
           <Grid item xs={12}>
             <TableGrid
               rows={aggregatedSums}
@@ -302,18 +332,7 @@ const DataTableImpl = data => {
   )
 }
 
-const PLURAL_COLUMNS_MAP = {
-  'Revenue type': 'revenue types',
-  Commodity: 'commodities',
-  'Land Category': 'land categories',
-  Location: 'locations',
-  COUNTY: 'counties',
-  REGION: 'regions',
-  SOURCE: 'sources',
-  RECIPIENT: 'recipients',
-}
-
-const getColumnNames = row => {
+const getColumnNames = (row, state) => {
   if (!row) {
     return []
   }
@@ -323,17 +342,15 @@ const getColumnNames = row => {
       return { name: column, title: column.substring(1), year: parseInt(column.substring(1)) }
     }
     const titleName = toTitleCase(column).replace('_', ' ')
-    return { name: column, title: titleName, plural: PLURAL_COLUMNS_MAP[titleName] }
+    return {
+      name: column,
+      title: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].default : titleName,
+      plural: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].plural : titleName,
+      groupByName: (DISPLAY_NAMES[state.groupBy]) ? DISPLAY_NAMES[state.groupBy].plural : state.groupBy,
+    }
   })
 }
 
-const CustomTableSummaryRowTotalCell = ({ ...restProps }) => {
-  // console.log(restProps, restProps.value)
-  return (
-    <Table.Cell {...restProps} />
-  )
-}
-
 const summaryCalculator = (type, rows, getValue) => {
-  return IntegratedSummary.defaultCalculator(type, rows, getValue)
+  return IntegratedSummary.defaultCalculator('sum', rows, getValue)
 }
