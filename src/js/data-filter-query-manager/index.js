@@ -3,6 +3,7 @@ import {
   REVENUE,
   PRODUCTION,
   DISBURSEMENT,
+  LAND_TYPE,
   LAND_CLASS,
   LAND_CATEGORY,
   OFFSHORE_REGION,
@@ -57,7 +58,7 @@ export default DataFilterQueryManager
 const VARIABLES = {
   [REVENUE]: state => ({
     variables: {
-      [LAND_CLASS]: (state[LAND_CLASS] === ZERO_OPTIONS) ? undefined : state[LAND_CLASS],
+      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS) ? undefined : state[LAND_TYPE],
       [LAND_CATEGORY]: (state[LAND_CATEGORY] === ZERO_OPTIONS) ? undefined : state[LAND_CATEGORY],
       [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
       [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
@@ -71,6 +72,7 @@ const VARIABLES = {
   }),
   [PRODUCTION]: state => ({
     variables: {
+      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS) ? undefined : state[LAND_TYPE],
       [LAND_CLASS]: (state[LAND_CLASS] === ZERO_OPTIONS) ? undefined : state[LAND_CLASS],
       [LAND_CATEGORY]: (state[LAND_CATEGORY] === ZERO_OPTIONS) ? undefined : state[LAND_CATEGORY],
       [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),

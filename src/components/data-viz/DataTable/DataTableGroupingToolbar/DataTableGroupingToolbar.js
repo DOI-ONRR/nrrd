@@ -16,10 +16,12 @@ import Select from '@material-ui/core/Select'
 
 import {
   REVENUE_TYPE,
+  LAND_TYPE,
   COMMODITY,
   LAND_CLASS,
   LAND_CATEGORY,
   US_STATE,
+  COUNTY,
   RECIPIENT,
   REVENUE,
   PRODUCTION,
@@ -28,29 +30,31 @@ import {
   GROUP_BY,
   BREAKOUT_BY,
   NO_BREAKOUT_BY,
-  OFFSHORE_REGION
+  OFFSHORE_REGION,
+  SOURCE
 } from '../../../../constants'
 
 const GROUP_BY_OPTIONS = {
   [REVENUE]: [
     { value: REVENUE_TYPE, option: 'Revenue type' },
     { value: COMMODITY, option: 'Commodity' },
-    { value: LAND_CATEGORY, option: 'Land category' },
-    { value: LAND_CLASS, option: 'Land class' },
+    { value: LAND_TYPE, option: 'Land type' },
     { value: US_STATE, option: 'State' },
+    { value: COUNTY, option: 'County' },
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
   [PRODUCTION]: [
     { value: COMMODITY, option: 'Commodity' },
-    { value: LAND_CATEGORY, option: 'Land category' },
-    { value: LAND_CLASS, option: 'Land class' },
+    { value: LAND_TYPE, option: 'Land type' },
     { value: US_STATE, option: 'State' },
+    { value: COUNTY, option: 'County' },
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
   [DISBURSEMENT]: [
     { value: RECIPIENT, option: 'Recipient' },
+    { value: SOURCE, option: 'Source' },
     { value: US_STATE, option: 'State' },
-    { value: OFFSHORE_REGION, option: 'Offshore Region' },
+    { value: COUNTY, option: 'County' },
   ],
 }
 
@@ -59,13 +63,13 @@ const DataTableGroupingToolbar = () => {
 
   // This is where all business logic will applied for the grouping options
   const setGroupByOptions = state => {
-    let optionList = GROUP_BY_OPTIONS[state[DATA_TYPE]]
+    const optionList = GROUP_BY_OPTIONS[state[DATA_TYPE]]
     if (!optionList || optionList.length === 0) {
       return
     }
 
     // Remove any option that only has 1 value selected
-    optionList = optionList.filter(item => !(state[item.value] && state[item.value].split(',').length === 1))
+    // optionList = optionList.filter(item => !(state[item.value] && state[item.value].split(',').length === 1))
 
     const groupByValue = (optionList.findIndex(item => item.value === state[GROUP_BY]) === -1) ? optionList[0].value : state[GROUP_BY]
     let breakoutByValue = state[BREAKOUT_BY]
@@ -114,7 +118,7 @@ const DataTableGroupingToolbar = () => {
             handleChange={handleGroupByChange}
             label={'Group by'}
             currentValue={groupBy}
-            options={options.filter(item => item.value !== breakoutBy)} />
+            options={ options } />
         }
       </Grid>
       {(options && options.length > 1) &&
@@ -131,8 +135,6 @@ const DataTableGroupingToolbar = () => {
 }
 
 export default DataTableGroupingToolbar
-
-
 
 const useStyles = makeStyles(theme => ({
   formControl: {
