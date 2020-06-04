@@ -124,7 +124,7 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            //uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
+            // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
@@ -158,9 +158,14 @@ const config = {
         offset: -100
       }
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        workboxConfig: {
+          maximumFileSizeToCacheInBytes: 20000000
+        },
+      },
+    },
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
