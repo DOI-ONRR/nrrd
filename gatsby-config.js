@@ -2,21 +2,28 @@ const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
 // Active environment
-const activeEnv = process.env.GATSBY_ACTIVE_ENV || 'development'
+const activeEnv = process.env.CIRCLE_BRANCH
+let BASEURL
 
-const BASEURL = process.env.BASEURL || undefined
-
-require('dotenv').config({
-  path: `.env.${ activeEnv }`,
-})
+switch (activeEnv) {
+case 'dev':
+  BASEURL = process.env.DEV_CF_BASEURL
+  break
+case 'master':
+  BASEURL = process.env.PROD_CF_BASEURL
+  break
+default:
+  BASEURL = undefined
+  break
+}
 
 const config = {
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
     description:
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
-    googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID,
-    googleTagManagerId: process.env.GTM_ID,
+    googleAnalyticsId: process.env.PROD_CF_GOOGLE_ANALYTICS_ID || '',
+    googleTagManagerId: process.env.PROD_CF_GTM_ID || '',
     version: 'v6.0.0',
     author: '',
     dataRetrieval: {
