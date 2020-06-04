@@ -141,7 +141,7 @@ jobs:
             - node_modules
       - run:
           name: Build gatsby
-          command: GATSBY_ACTIVE_ENV=productionCloudGov npm run build
+          command: npm run build
       - run:
           name: Run tests
           command: npm test
