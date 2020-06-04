@@ -1,22 +1,6 @@
 const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
-// Active environment
-// const activeEnv = process.env.CIRCLE_BRANCH
-// let BASEURL
-
-// switch (activeEnv) {
-// case 'dev':
-//   BASEURL = process.env.DEV_CF_BASEURL
-//   break
-// case 'master':
-//   BASEURL = process.env.PROD_CF_BASEURL
-//   break
-// default:
-//   BASEURL = undefined
-//   break
-// }
-
 const config = {
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
