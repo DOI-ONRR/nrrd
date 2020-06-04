@@ -104,9 +104,6 @@ jobs:
       - run:
           name: Run tests
           command: npm test
-      - run: # print the name of the branch we're on
-          name: "What branch am I on?"
-          command: echo ${CIRCLE_BRANCH}
       - run:
           name: deploy to cloud.gov
           command: |
