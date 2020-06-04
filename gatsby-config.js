@@ -1,12 +1,8 @@
 const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
-console.log('process.env: ', process.env)
-
 const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === '529-AddGoogleAnalytics') ? 'UA-33523145-1' : ''
 const GTM_ID = (process.env.CIRCLE_BRANCH === '529-AddGoogleAnalytics') ? 'GTM-NCRF98R' : ''
-
-console.log('google ids: ', GOOGLE_ANALYTICS_ID, GTM_ID)
 
 const config = {
   siteMetadata: {
