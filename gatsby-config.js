@@ -1,22 +1,13 @@
 const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
-// Active environment
-const activeEnv = process.env.GATSBY_ACTIVE_ENV || 'development'
-
-const BASEURL = process.env.BASEURL || undefined
-
-require('dotenv').config({
-  path: `.env.${ activeEnv }`,
-})
-
 const config = {
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
     description:
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
-    googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID,
-    googleTagManagerId: process.env.GTM_ID,
+    googleAnalyticsId: process.env.PROD_CF_GOOGLE_ANALYTICS_ID || '',
+    googleTagManagerId: process.env.PROD_CF_GTM_ID || '',
     version: 'v6.0.0',
     author: '',
     dataRetrieval: {
@@ -124,7 +115,7 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            //uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
+            // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
@@ -158,15 +149,20 @@ const config = {
         offset: -100
       }
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        workboxConfig: {
+          maximumFileSizeToCacheInBytes: 20000000
+        },
+      },
+    },
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
 
-if (BASEURL) {
-  config.pathPrefix = `${ BASEURL }`
-}
+// if (BASEURL) {
+//   config.pathPrefix = `${ BASEURL }`
+// }
 
 module.exports = config

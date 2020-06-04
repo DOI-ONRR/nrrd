@@ -55,6 +55,7 @@ jobs:
   preview:
     docker:
       - image: circleci/node:12.13.0
+    resource_class: xlarge
     environment:
       TEST_REPORTS: /tmp/test-reports   
     steps:
@@ -87,6 +88,7 @@ jobs:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
+    resource_class: xlarge
     steps:
       - checkout
       - restore_cache:
@@ -139,7 +141,7 @@ jobs:
             - node_modules
       - run:
           name: Build gatsby
-          command: GATSBY_ACTIVE_ENV=productionCloudGov npm run build
+          command: npm run build
       - run:
           name: Run tests
           command: npm test

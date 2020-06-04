@@ -28,7 +28,6 @@
     "currency-formatter": "^1.5.5",
     "d3": "^5.16.0",
     "d3-interpolate": "^1.4.0",
-    "dotenv": "^8.2.0",
     "elasticlunr": "^0.9.5",
     "eslint-plugin-flowtype": "^2.0",
     "etl": "^0.6.12",
@@ -104,7 +103,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean",
-    "build": "NODE_OPTIONS=--max_old_space_size=1024 gatsby build",
+    "build": "NODE_OPTIONS=--max_old_space_size=4096 gatsby build",
     "develop": "gatsby develop",
     "format": "eslint --fix 'src/**'",
     "start": "npm run develop",

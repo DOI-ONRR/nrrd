@@ -49,6 +49,7 @@ jobs:
   preview:
     docker:
     - image: circleci/node:12.13.0
+    resource_class: xlarge
     environment:
     - TEST_REPORTS: /tmp/test-reports
     steps:
@@ -99,6 +100,7 @@ jobs:
   dev:
     docker:
     - image: circleci/node:12.13.0
+    resource_class: xlarge
     steps:
     - checkout
     - restore_cache:
