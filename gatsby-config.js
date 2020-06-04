@@ -2,22 +2,20 @@ const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
 // Active environment
-const activeEnv = process.env.CIRCLE_BRANCH
-let BASEURL
+// const activeEnv = process.env.CIRCLE_BRANCH
+// let BASEURL
 
-switch (activeEnv) {
-case 'dev':
-  BASEURL = process.env.DEV_CF_BASEURL
-  break
-case 'master':
-  BASEURL = process.env.PROD_CF_BASEURL
-  break
-default:
-  BASEURL = undefined
-  break
-}
-
-console.log('BASEURL: ', BASEURL)
+// switch (activeEnv) {
+// case 'dev':
+//   BASEURL = process.env.DEV_CF_BASEURL
+//   break
+// case 'master':
+//   BASEURL = process.env.PROD_CF_BASEURL
+//   break
+// default:
+//   BASEURL = undefined
+//   break
+// }
 
 const config = {
   siteMetadata: {
@@ -179,8 +177,8 @@ const config = {
   ]
 }
 
-if (BASEURL) {
-  config.pathPrefix = `${ BASEURL }`
-}
+// if (BASEURL) {
+//   config.pathPrefix = `${ BASEURL }`
+// }
 
 module.exports = config
