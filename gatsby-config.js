@@ -6,8 +6,8 @@ const config = {
     title: 'Natural Resources Revenue Data',
     description:
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
-    googleAnalyticsId: process.env.PROD_CF_GOOGLE_ANALYTICS_ID || '',
-    googleTagManagerId: process.env.PROD_CF_GTM_ID || '',
+    googleAnalyticsId: process.env.DEV_CF_GOOGLE_ANALYTICS_ID || '',
+    googleTagManagerId: process.env.DEV_CF_GTM_ID || '',
     version: 'v6.0.0',
     author: '',
     dataRetrieval: {
@@ -160,6 +160,8 @@ const config = {
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
+
+console.log('gatsby config: ', config)
 
 // if (BASEURL) {
 //   config.pathPrefix = `${ BASEURL }`
