@@ -2,13 +2,10 @@ const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
 // Active environment
+console.log('gatsby-config process.env vars:: ', process.env)
 const activeEnv = process.env.GATSBY_ACTIVE_ENV || 'development'
 
 const BASEURL = process.env.BASEURL || undefined
-
-require('dotenv').config({
-  path: `.env.${ activeEnv }`,
-})
 
 const config = {
   siteMetadata: {
