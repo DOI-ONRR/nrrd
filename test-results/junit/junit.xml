@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="4" failures="0" time="19.995">
+  <testsuite name="Site Audits via Lighthouse" errors="0" failures="0" skipped="0" timestamp="2020-06-04T20:40:49" time="15.025" tests="4">
+    <testcase classname="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" name="Site Audits via Lighthouse passes an accessibility audit through Lighthouse" time="0.002">
+    </testcase>
+    <testcase classname="Site Audits via Lighthouse passes a performance audit through Lighthouse" name="Site Audits via Lighthouse passes a performance audit through Lighthouse" time="0.001">
+    </testcase>
+    <testcase classname="Site Audits via Lighthouse passes a best practice audit through Lighthouse" name="Site Audits via Lighthouse passes a best practice audit through Lighthouse" time="0">
+    </testcase>
+    <testcase classname="Site Audits via Lighthouse passes a SEO audit through Lighthouse" name="Site Audits via Lighthouse passes a SEO audit through Lighthouse" time="0">
+    </testcase>
+  </testsuite>
+</testsuites>
