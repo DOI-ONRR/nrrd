@@ -167,7 +167,7 @@ const CardTitle = props => {
 
   const stateTitle = props.stateTitle
   const stateAbbr = props.state ? props.state : props.stateAbbr
-  const isCounty = props.stateAbbr.length > 2
+  const isCounty = props.stateAbbr.length === 5
 
   // Get land percentage
   const getLandPercent = stateOrArea => {
