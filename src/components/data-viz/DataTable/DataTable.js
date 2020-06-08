@@ -193,6 +193,7 @@ const DataTableImpl = data => {
   const { state } = useContext(DataFilterContext)
   let columnNames = getColumnNames(data.results[0], state)
   const [grouping, setGrouping] = useState([])
+  const [groupingExtension, setGroupingExtension] = useState([])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
   const [fixedColumns, setFixedColumns] = useState([])
   const [totalSummaryItems, setTotalSummaryItems] = useState([])
@@ -232,14 +233,17 @@ const DataTableImpl = data => {
     columnNames = getColumnNames(data.results[0], state)
     if (state[GROUP_BY] && (state[BREAKOUT_BY] !== NO_BREAKOUT_BY && state[BREAKOUT_BY])) {
       setGrouping([{ columnName: state[GROUP_BY] }])
+      setGroupingExtension([{ columnName: state[GROUP_BY], showWhenGrouped: true }])
       setFixedColumns([TableGroupRow.Row, state[GROUP_BY], state[BREAKOUT_BY]])
     }
     else if (state[GROUP_BY]) {
       setGrouping([])
+      setGroupingExtension([])
       setFixedColumns([state[GROUP_BY]])
     }
     else {
       setGrouping([])
+      setGroupingExtension([])
       setFixedColumns([columnNames[0]])
     }
     setHiddenColumnNames(getHiddenColumns())
@@ -317,7 +321,7 @@ const DataTableImpl = data => {
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
               />
-              <TableGroupRow />
+              <TableGroupRow columnExtensions={groupingExtension} />
               <TableSummaryRow
                 groupRowComponent={CustomTableSummaryRowGroupRow}
                 totalRowComponent={CustomTableSummaryRowTotalRow}
