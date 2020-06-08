@@ -33,7 +33,7 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
 
   if (includeDataProvider) {
     return (
-      <DefaultLayout 
+      <DefaultLayout
         includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}
         title={pageContext.frontmatter && pageContext.frontmatter.title}>
         <DataFilterProviderWrapper>

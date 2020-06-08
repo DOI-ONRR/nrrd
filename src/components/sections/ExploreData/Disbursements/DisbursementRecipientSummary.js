@@ -86,7 +86,6 @@ const DisbursementRecipientSummary = props => {
   const classes = useStyles()
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
-  console.debug('DT                ', filterState)
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
   })

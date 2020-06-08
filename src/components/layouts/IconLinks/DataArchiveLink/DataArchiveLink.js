@@ -32,7 +32,6 @@ const DataArchiveLink = props => {
       </span>
     </Link>
   )
-  
 }
 
 DataArchiveLink.propTypes = {

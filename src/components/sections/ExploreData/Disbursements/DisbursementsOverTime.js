@@ -116,8 +116,6 @@ const DisbursementsOverTime = props => {
         .rollup(v => d3.sum(v, i => i.sum))
         .entries(data.disbursement_summary.filter(row => row.state_or_area === yData.abbr)).map(item => item.value)
     )])
-    console.debug('sums', sums)
-    console.debug(sums, years)
     chartData = [years, ...sums]
 
     return (

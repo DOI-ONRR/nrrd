@@ -52,9 +52,9 @@ export default props => {
     /* mapData = data.fiscal_disbursement_summary.map((item, i) => [
       item.state_or_area,
       item.sum
-      ])*/
+      ]) */
     // console.log(data)
-    mapData=d3.nest()
+    mapData = d3.nest()
       .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.sum))
       .entries(data.disbursement_summary)

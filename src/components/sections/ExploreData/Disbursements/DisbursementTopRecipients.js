@@ -83,7 +83,6 @@ const DisbursementTopRecipients = props => {
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
   const handleDelete = props.handleDelete || ((e, val) => {
-    console.debug('handle delete')
   })
 
   if (loading) {
@@ -109,7 +108,7 @@ const DisbursementTopRecipients = props => {
         <Grid item xs={12}>
           <Box className={classes.root}>
             <Box className={classes.topRecipientChart}>
-        <CircleChart
+              <CircleChart
                 key={'DTR' + dataSet }
                 data={chartData}
                 maxLegendWidth='800px'
@@ -117,7 +116,6 @@ const DisbursementTopRecipients = props => {
                 yAxis='total'
                 format={ d => utils.formatToDollarInt(d) }
                 circleLabel={ d => {
-                  // console.debug('circleLABLE: ', d)
                   const r = []
                   r[0] = d.recipient
                   r[1] = utils.formatToDollarInt(d.total)

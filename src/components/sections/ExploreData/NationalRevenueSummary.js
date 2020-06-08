@@ -92,8 +92,6 @@ const NationalRevenueSummary = props => {
     groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.sum, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
-
-
   }
 
   return (
@@ -126,7 +124,7 @@ const NationalRevenueSummary = props => {
                       </Box>
                     </TableCell>
                     <TableCell style={{ width: '65%' }}>
-                    <StackedBarChart
+                      <StackedBarChart
                         key={'NRS' + year + '_' + i}
                         data={item[1]}
                         legendFormat={v => {

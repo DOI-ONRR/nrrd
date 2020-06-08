@@ -343,7 +343,6 @@ const MapContext = props => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    console.debug('YEAR ', selected)
     updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
   }
   // setZoom
@@ -357,10 +356,10 @@ const MapContext = props => {
 
   // onLink
   const onLink = (state, x, y, k) => {
-    console.log('onLink state: ', state)
     // setMapK(k)
     // setMapY(y)
     // setMapX(x)
+    console.debug("WTF: ", state, x, y, k)
     let fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
     if (fips === undefined) {
@@ -382,6 +381,7 @@ const MapContext = props => {
       name: name,
       state: stateAbbr
     }
+    console.debug("WTF:" , stateObj)
     if (
       cards.filter(item => item.fips === fips).length === 0
     ) {
@@ -410,12 +410,11 @@ const MapContext = props => {
 
   const handleChange = (type, name) => event => {
     // setZoom(x, y, k)
-    console.debug('TYPE: ', type, 'Name ', name, 'Event')
     updateDataFilter({ ...filterState, [type]: event.target.checked })
   }
 
   const handleClick = val => {
-    console.log('handleClick val: ', val)
+
     if (val === 'add' && k >= 0.25) {
       k = k + 0.25
       x = x - 150
@@ -463,11 +462,8 @@ const MapContext = props => {
   }
 
   const onClick = (d, fips, foo, bar) => {
-    console.log('onClick ', d)
     onLink(d, x, y, k)
   }
-
-  console.log('mapJsonObject: ', mapJsonObject)
 
   const mapChild = React.cloneElement(props.children[0],
     {
@@ -481,7 +477,6 @@ const MapContext = props => {
       onZoomEnd: onZoomEnd,
       onClick: onClick
     })
-
 
   return (
     <>

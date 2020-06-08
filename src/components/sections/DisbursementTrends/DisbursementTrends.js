@@ -424,13 +424,10 @@ const aggregateData = data => {
   })
 
 */
-  console.debug('RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR', r)
   r.map((row, i) => {
     let a = []
     const years = Object.keys(row.histSum).sort()
-    console.debug('-----', row)
     a = years.map((year, i) => ([year, row.histSum[year]]))
-    console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
     if (currentMonth === 'December') {
       r[i].histData = a.slice(-10)
       return a.slice(-10)
@@ -444,7 +441,6 @@ const aggregateData = data => {
 }
 
 const sumData = (item, r, index, currentYear) => {
-  console.debug('IIIIIIIIIIIIIIIIIIIIIIIIIIIIItem', item)
   const previousYear = currentYear - 1
   if (item.fiscalYear === currentYear) r[index].current += item.disbursement_ytd
   if (item.fiscalYear === previousYear) r[index].previous += item.disbursement_ytd

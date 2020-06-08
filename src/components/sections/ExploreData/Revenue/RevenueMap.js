@@ -24,7 +24,6 @@ const REVENUE_QUERY = gql`
 `
 
 export default props => {
-  console.log('RevenueMap props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -33,10 +32,9 @@ export default props => {
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
     variables: { year: year, commodities: commodities }
   })
-
+  console.debug("PROPS", props)
   let mapData = [[]]
   const onZoomEnd = event => {
-    console.debug('Event : ', event)
   }
   if (loading) {}
   if (error) return `Error! ${ error.message }`

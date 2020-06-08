@@ -37,8 +37,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const BaseSelectInput = ({ dataFilterKey, dataOptions, selectType, defaultOption, helperText, label, variant, ...props }) => {
-
-  // need to figure out a way to conditionally run queries, looks like skip method should work 
+  // need to figure out a way to conditionally run queries, looks like skip method should work
   // https://www.apollographql.com/docs/react/api/react-hooks/
 
   // const { loading, error, data } = useQuery(SOME_FANCY_QUERY, {

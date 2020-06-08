@@ -77,7 +77,7 @@ const DisbursementDetailTrends = props => {
   let fiscalData
   let foundIndex
   let locData
-  
+
   if (data) {
     periodData = data.period
 

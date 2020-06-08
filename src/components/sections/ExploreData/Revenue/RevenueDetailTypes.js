@@ -73,12 +73,11 @@ const RevenueDetailTypes = props => {
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Revenue types</Box>
             <Box>
-            <CircleChart
+              <CircleChart
                 key={'RDTY' + dataKey }
                 data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
                 format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
-                maxCircles={4}
                 minColor='#FCBA8B'
                 maxColor='#B64D00'
                 circleTooltip={
@@ -90,7 +89,7 @@ const RevenueDetailTypes = props => {
                     return r
                   }
                 } />
-            {/*  <Box mt={3}>
+              {/*  <Box mt={3}>
                  <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                 Query revenue by type
                 </ExploreDataLink>

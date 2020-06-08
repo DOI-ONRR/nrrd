@@ -5,19 +5,19 @@ import utils from '../../js/utils'
  **/
 const stackedBar = {
   create (el, props, state) {
-    let self = this
+    const self = this
 
-    let svg = d3.select(el).append('svg')
+    const svg = d3.select(el).append('svg')
       .attr('height', props.height)
       .attr('width', el.clientWidth)
 
-    let stack = d3.stack()
+    const stack = d3.stack()
       .keys(self.getOrderedKeys(props.displayNames, state))
       .offset(d3.stackOffsetNone)
 
-    let series = stack(state)
+    const series = stack(state)
 
-    let xScale = d3.scaleLinear().rangeRound([0, el.clientWidth])
+    const xScale = d3.scaleLinear().rangeRound([0, el.clientWidth])
 
     if (props.maxValue) {
       xScale.domain([0, props.maxValue])
@@ -25,7 +25,7 @@ const stackedBar = {
     else {
       xScale.domain([0, d3.max(series[series.length - 1], function (d) {
         return d[1]
-      }) ])
+      })])
     }
 
     svg.selectAll('g')
@@ -48,17 +48,17 @@ const stackedBar = {
   },
 
   update (el, props, state) {
-    let self = this
+    const self = this
 
-    let svg = d3.select(el).select('svg')
+    const svg = d3.select(el).select('svg')
 
-    let stack = d3.stack()
+    const stack = d3.stack()
       .keys(self.getOrderedKeys(props.displayNames, state))
       .offset(d3.stackOffsetNone)
 
-    let series = stack(state)
+    const series = stack(state)
 
-    let xScale = d3.scaleLinear().rangeRound([0, el.clientWidth])
+    const xScale = d3.scaleLinear().rangeRound([0, el.clientWidth])
 
     if (props.maxValue) {
       xScale.domain([0, props.maxValue])
@@ -66,10 +66,10 @@ const stackedBar = {
     else {
       xScale.domain([0, d3.max(series[series.length - 1], function (d) {
         return d[1]
-      }) ])
+      })])
     }
 
-    let bars = svg.selectAll('g')
+    const bars = svg.selectAll('g')
       .data(series)
 
     // Remove Bars that we dont need
@@ -117,7 +117,7 @@ const stackedBar = {
   getOrderedKeys (displayNames, state) {
     let orderedKeys = []
     if (displayNames) {
-      for (let key in displayNames) {
+      for (const key in displayNames) {
         if (state[0][key]) {
           orderedKeys.push(key)
         }

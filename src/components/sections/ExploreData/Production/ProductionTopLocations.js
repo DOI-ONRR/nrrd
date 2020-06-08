@@ -111,8 +111,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionTopLocations = ({ title, ...props }) => {
-  // console.debug('ProductionTopLocations props: ', props)
-
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -154,7 +152,6 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const dataSet = `FY ${ year }`
 
   if (data) {
-    console.debug('WTH: ', data)
     if (location === 'County') {
       const unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
       chartData = d3.nest()
@@ -176,7 +173,6 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
       // chartData =  data.fiscal_production_summary
     }
-    console.debug('CHART DATA', chartData)
     return (
       <Box className={classes.root}>
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
@@ -190,7 +186,6 @@ const ProductionTopLocations = ({ title, ...props }) => {
             format={ d => utils.formatToCommaInt(d) }
             circleLabel={
               d => {
-                // console.debug('circleLABLE: ', d)
                 if (location === 'State') {
                   const r = []
                   r[0] = d.location_name

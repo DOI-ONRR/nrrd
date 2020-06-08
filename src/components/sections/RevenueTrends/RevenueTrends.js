@@ -261,7 +261,7 @@ const aggregateData = data => {
     let a = []
     const years = Object.keys(row.histSum).sort()
     a = years.map((year, i) => ([year, row.histSum[year]]))
-    console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
+    //    console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
     if (currentMonth === 'December') {
       r[i].histData = a.slice(-10)
       return a.slice(-10)

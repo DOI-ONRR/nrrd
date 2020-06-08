@@ -85,7 +85,6 @@ const TotalProduction = props => {
   const [selected, setSelected] = useState(undefined)
 
   const toggleChange = value => {
-    // console.debug('ON TOGGLE CHANGE: ', value)
     setSelected(undefined)
     setToggle(value)
 
@@ -97,13 +96,11 @@ const TotalProduction = props => {
     }
   }
   const menuChange = value => {
-    // console.debug('ON Menu CHANGE: ', value)
     setSelected(undefined)
     setPeriod(value)
   }
 
   const handleSelect = value => {
-    // console.debug('handle select CHANGE: ', value)
     setSelected(value.selectedIndex)
   }
 
@@ -124,7 +121,6 @@ const TotalProduction = props => {
 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.debug("Total Production:",data)
     maxFiscalYear = data.total_yearly_fiscal_production.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
@@ -151,12 +147,10 @@ const TotalProduction = props => {
         r[year] = months
         return r
       }, [])
-      console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', xGroups)
-      console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', chartData)
 
       xAxis = 'month_long'
       xLabels = (x, i) => {
-        // console.debug(x)
+
         return x.map(v => v.substr(0, 3))
       }
     }
@@ -169,108 +163,107 @@ const TotalProduction = props => {
         chartData = data.total_yearly_calendar_production
         xGroups['Calendar Year'] = chartData.filter(row => row.product === 'Oil (bbl)').map((row, i) => row.year)
       }
-      console.debug(chartData)
+
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
       }
     }
   }
-  if(chartData.length > 0 ) {
-   
-  return (
-    <>
-      <SectionHeader
-        title="Total production"
-        linkLabel="production"
-        showExploreLink
-      />
-      <Grid container spacing={4}>
-       <SectionControls
-          onToggleChange={toggleChange}
-          onMenuChange={menuChange}
-          maxFiscalYear={maxFiscalYear}
-          maxCalendarYear={maxCalendarYear}
-          monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
-          toggleValues={TOGGLE_VALUES}
-          yearlyDropdownValues={YEARLY_DROPDOWN_VALUES}
-          toggle={toggle}
-          period={period} />
-        <Grid item xs={12} md={4}>
-          <StackedBarChart
-            title={'Oil (bbl)'}
-            data={chartData.filter(row => row.product === 'Oil (bbl)')}
-            xAxis={xAxis}
-            yAxis={yAxis}
-            xGroups={xGroups}
-            yGroupBy={yGroupBy}
-            xLabels={xLabels}
-            legendFormat={v => utils.formatToCommaInt(v)}
-            onSelect={ d => handleSelect(d) }
-            selectedIndex={selected}
-            units='bbl'
-            showLegendUnits
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <StackedBarChart
-            title={'Gas (mcf)'}
-            data={chartData.filter(row => row.product === 'Gas (mcf)')}
-            xAxis={xAxis}
-            yAxis={yAxis}
-            xGroups={xGroups}
+  if (chartData.length > 0) {
+    return (
+      <>
+        <SectionHeader
+          title="Total production"
+          linkLabel="production"
+          showExploreLink
+        />
+        <Grid container spacing={4}>
+          <SectionControls
+            onToggleChange={toggleChange}
+            onMenuChange={menuChange}
+            maxFiscalYear={maxFiscalYear}
+            maxCalendarYear={maxCalendarYear}
+            monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
+            toggleValues={TOGGLE_VALUES}
+            yearlyDropdownValues={YEARLY_DROPDOWN_VALUES}
+            toggle={toggle}
+            period={period} />
+          <Grid item xs={12} md={4}>
+            <StackedBarChart
+              title={'Oil (bbl)'}
+              data={chartData.filter(row => row.product === 'Oil (bbl)')}
+              xAxis={xAxis}
+              yAxis={yAxis}
+              xGroups={xGroups}
+              yGroupBy={yGroupBy}
+              xLabels={xLabels}
+              legendFormat={v => utils.formatToCommaInt(v)}
+              onSelect={ d => handleSelect(d) }
+              selectedIndex={selected}
+              units='bbl'
+              showLegendUnits
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <StackedBarChart
+              title={'Gas (mcf)'}
+              data={chartData.filter(row => row.product === 'Gas (mcf)')}
+              xAxis={xAxis}
+              yAxis={yAxis}
+              xGroups={xGroups}
 
-            yGroupBy={yGroupBy}
-            xLabels={xLabels}
-            legendFormat={v => {
-              return utils.formatToCommaInt(v)
-            }}
-            onSelect={ d => {
-              console.log('handle select', d)
-              return handleSelect(d)
-            }
-            }
-            selectedIndex={selected}
-            units='mcf'
-            showLegendUnits
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <StackedBarChart
-            title={'Coal (tons)'}
-            data={chartData.filter(row => row.product === 'Coal (tons)')}
-            xAxis={xAxis}
-            yAxis={yAxis}
-            xGroups={xGroups}
-
-            yGroupBy={yGroupBy}
-            xLabels={xLabels}
-            legendFormat={v => {
-              if (v) {
+              yGroupBy={yGroupBy}
+              xLabels={xLabels}
+              legendFormat={v => {
                 return utils.formatToCommaInt(v)
+              }}
+              onSelect={ d => {
+                return handleSelect(d)
               }
-              else {
-                return '-'
               }
-            }}
-            onSelect={ d => {
-              console.log('handle select', d)
-              return handleSelect(d)
-            }
-            }
-            selectedIndex={selected}
-            units='tons'
-            showLegendUnits
-          />
+              selectedIndex={selected}
+              units='mcf'
+              showLegendUnits
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <StackedBarChart
+              title={'Coal (tons)'}
+              data={chartData.filter(row => row.product === 'Coal (tons)')}
+              xAxis={xAxis}
+              yAxis={yAxis}
+              xGroups={xGroups}
 
+              yGroupBy={yGroupBy}
+              xLabels={xLabels}
+              legendFormat={v => {
+                if (v) {
+                  return utils.formatToCommaInt(v)
+                }
+                else {
+                  return '-'
+                }
+              }}
+              onSelect={ d => {
+
+                return handleSelect(d)
+              }
+              }
+              selectedIndex={selected}
+              units='tons'
+              showLegendUnits
+            />
+
+          </Grid>
         </Grid>
-      </Grid>
-      <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
-        <Link href='/downloads/production-by-month/'>Source file</Link>
-      </Box>
-    </>
-  )
-  }else {
-    return(null)
+        <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
+          <Link href='/downloads/production-by-month/'>Source file</Link>
+        </Box>
+      </>
+    )
+  }
+  else {
+    return (null)
   }
 }
 

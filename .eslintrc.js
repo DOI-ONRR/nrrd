@@ -9,7 +9,7 @@ module.exports = {
     "arrow-spacing": ["error", { before: true, after: true }], // recommended
     "brace-style": ["error", "stroustrup"],
     "indent": ["error", "tab", { "SwitchCase": 1 }],
-
+    "no-console": ["error", { allow: ["warn", "error"] }],
     indent: ["error", 2],
     "comma-dangle": [
       "error",

@@ -308,7 +308,6 @@ export default class d3Map {
       .text(d => `Alaska Offshore Region  ${ format(data.get('AKR')) }`).transition().duration(3000)
 */
     const POR = d3.set(['WAO', 'NOC', 'CEC', 'SOC'])
-
     g.append('path')
       .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function (d) {
         return POR.has(d.id)
@@ -321,7 +320,9 @@ export default class d3Map {
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        // onClick(d, i)
+        console.debug("WTF: ", d)
+        const r={id: 'POR', properties:{region: 'POR', name: 'Pacific Offshore Region'}}
+         onClick(r, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
@@ -346,7 +347,7 @@ export default class d3Map {
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        // onClick(d, i)
+         onClick(d, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
@@ -371,7 +372,7 @@ export default class d3Map {
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        // onClick(d, i)
+         onClick(d, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
