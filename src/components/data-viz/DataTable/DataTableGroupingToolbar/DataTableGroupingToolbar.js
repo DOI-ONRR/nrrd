@@ -74,9 +74,12 @@ const DataTableGroupingToolbar = () => {
     const groupByValue = (optionList.findIndex(item => item.value === state[GROUP_BY]) === -1) ? optionList[0].value : state[GROUP_BY]
     let breakoutByValue = state[BREAKOUT_BY]
 
+    // Default breakout value if none is set and it does not match group by value
+    // We used to set it to the first non group by value but now it is set to no breakout
     if (breakoutByValue === groupByValue || (breakoutByValue !== NO_BREAKOUT_BY && optionList.findIndex(item => item.value === breakoutByValue) === -1)) {
-      const result = optionList.find(item => item.value !== groupByValue)
-      breakoutByValue = result && result.value
+      // const result = optionList.find(item => item.value !== groupByValue)
+      // breakoutByValue = result && result.value
+      breakoutByValue = NO_BREAKOUT_BY
     }
 
     setOptions(optionList)
