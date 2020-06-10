@@ -347,6 +347,7 @@ const MapContext = props => {
   }
   // setZoom
   const setZoom = (x, y, k) => {
+    // console.debug("WTH MapContext.setZoom: ", x,y,k);
     setMapY(y)
     setMapX(x)
     setMapK(k)
@@ -359,7 +360,7 @@ const MapContext = props => {
     // setMapK(k)
     // setMapY(y)
     // setMapX(x)
-    console.debug("WTF: ", state, x, y, k)
+    // console.debug("WTF MapContext.onLink: ", state, x, y, k)
     let fips = state.properties ? state.properties.FIPS : state.fips
     const name = state.properties ? state.properties.name : state.name
     if (fips === undefined) {
@@ -381,7 +382,7 @@ const MapContext = props => {
       name: name,
       state: stateAbbr
     }
-    console.debug("WTF:" , stateObj)
+
     if (
       cards.filter(item => item.fips === fips).length === 0
     ) {
@@ -409,12 +410,13 @@ const MapContext = props => {
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   const handleChange = (type, name) => event => {
+     // console.debug("WTH MapContext.handleChange: ", val);
     // setZoom(x, y, k)
     updateDataFilter({ ...filterState, [type]: event.target.checked })
   }
 
   const handleClick = val => {
-
+    // console.debug("WTH MapContext.handleClick: ", val);
     if (val === 'add' && k >= 0.25) {
       k = k + 0.25
       x = x - 150
@@ -469,13 +471,13 @@ const MapContext = props => {
     {
       mapFeatures: mapFeatures, // use context instead
       mapJsonObject: mapJsonObject, // use context instead
-      minColor: '#CDE3C3',
-      maxColor: '#2F4D26',
-      mapZoom: mapK,
-      mapX: mapX,
-      mapY: mapY,
-      onZoomEnd: onZoomEnd,
-      onClick: onClick
+      minColor: '#CDE3C3', //local
+      maxColor: '#2F4D26', //local
+      mapZoom: mapK, //use context
+      mapX: mapX,    // use context
+      mapY: mapY,    // use context
+      onZoomEnd: onZoomEnd, //local
+      onClick: onClick //local
     })
 
   return (

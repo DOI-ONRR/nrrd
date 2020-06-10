@@ -48,7 +48,6 @@ const RevenueDetailTypes = props => {
   const year = filterState[DFC.YEAR]
 
   const dataSet = `FY ${ year }`
-
   const stateAbbr = ((props.abbr.length > 2) &&
     (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
 

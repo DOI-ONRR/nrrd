@@ -188,7 +188,7 @@ const CardTitle = props => {
     svgImg = <IconMap className={classes.usLocationIcon} alt="US Icon" />
   }
   else {
-    svgImg = (!isCounty) ? <img src={`/maps/states/${ stateAbbr }.svg`} alt={`${ stateAbbr } State Icon`} className={classes.cardLocationIcon} /> : ''
+    svgImg = (stateAbbr.length === 2) ? <img src={`/maps/states/${ stateAbbr }.svg`} alt={`${ stateAbbr } State Icon`} className={classes.cardLocationIcon} /> : ''
   }
 
   return (

@@ -32,7 +32,6 @@ export default props => {
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
     variables: { year: year, commodities: commodities }
   })
-  console.debug("PROPS", props)
   let mapData = [[]]
   const onZoomEnd = event => {
   }
