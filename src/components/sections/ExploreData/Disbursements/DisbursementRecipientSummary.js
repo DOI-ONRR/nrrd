@@ -85,7 +85,7 @@ const DisbursementRecipientSummary = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
   const year = filterState[DFC.YEAR]
-  const dataSet='FY '+year
+  const dataSet = 'FY ' + year
   console.debug('DT                ', filterState)
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
@@ -102,6 +102,7 @@ const DisbursementRecipientSummary = props => {
   let topRecipients = []
   let row
   let total = 0
+  // console.log('DisbursementRecipientSummary data: ', data)
   if (
     data &&
     data.cardFiscalDisbursementSummary.length > 0 &&
@@ -191,7 +192,11 @@ const DisbursementRecipientSummary = props => {
 
   return (
     <Box className={classes.boxSection}>
-      <Box component="h4" fontWeight="bold">No Disbursements</Box>
+      {data.cardFiscalDisbursementSummary.length === 0 &&
+      data.cardDisbursementRecipientSummary.length === 0 &&
+      data.cardDisbursementSparkdata.length === 0 &&
+        <Box component="h4" fontWeight="bold">No Disbursements</Box>
+      }
     </Box>
   )
 }
