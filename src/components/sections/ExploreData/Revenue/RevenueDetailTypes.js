@@ -62,6 +62,7 @@ const RevenueDetailTypes = props => {
   if (error) return `Error! ${ error.message }`
 
   if (data) {
+
     chartData = data
   }
 
