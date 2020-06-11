@@ -47,10 +47,7 @@ const mdxComponents = {
   TableHead,
   TableRow,
   Typography,
-  Hidden,
-  DefaultLayout,
-  PageLayoutManager,
-  SEO
+  Hidden
 }
 
 export const wrapRootElement = ({ element }) => (

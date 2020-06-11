@@ -1,9 +1,10 @@
 const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
-// const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master' || process.env.CIRCLE_BRANCH === 'dev') ? 'UA-33523145-1' : ''
-// const GTM_ID = (process.env.CIRCLE_BRANCH === 'master' || process.env.CIRCLE_BRANCH === 'dev') ? 'GTM-NCRF98R' : ''
+// const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
+// const GTM_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'GTM-NCRF98R' : ''
 
+// use this for testing
 const GOOGLE_ANALYTICS_ID = 'UA-33523145-1'
 const GTM_ID = 'GTM-NCRF98R'
 

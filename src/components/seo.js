@@ -6,7 +6,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql, withPrefix } from 'gatsby'
@@ -39,7 +39,7 @@ const SEO = ({ description, lang, meta, title }) => {
         lang,
       }}
       title={metaTitle}
-      titleTemplate={`%s | ${ site.siteMetadata.title }`}
+      titleTemplate={`%s | ${ metaTitle }`}
       meta={[
         {
           name: 'description',
@@ -81,9 +81,7 @@ const SEO = ({ description, lang, meta, title }) => {
       <link rel="icon" type="image/x-icon" href={withPrefix('/img/favicon-32x32.png')} sizes="32x32" />
 
       {/* Digital Analytics Program roll-up, see the data at https://analytics.usa.gov */}
-      {site.siteMetadata.googleAnalyticsId &&
-        <script src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js" id="_fed_an_ua_tag"></script>
-      }
+      <script src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js" id="_fed_an_ua_tag"></script>
 
       {/* Google Tag Manager */}
       {site.siteMetadata.googleTagManagerId &&
