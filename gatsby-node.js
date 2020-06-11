@@ -56,7 +56,7 @@ const createComponentsCache = ({ graphql, reporter }) => {
               }
             }
           }
-          allComponentMetadata {
+          allComponentMetadata(filter: {displayName: {nin: ["DefaultLayout", "SEO", "PageLayoutManager"]}}) {
             nodes {
               id
               displayName
