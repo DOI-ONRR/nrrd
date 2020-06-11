@@ -197,8 +197,8 @@ const COMMODITY_OPTIONS_QUERY = `
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear}
     },
-    distinct_on: commodity,
-    order_by: {commodity: asc}
+    distinct_on: commodity_order,
+    order_by: {commodity_order: asc}
   ) {
     option:commodity
   }`
