@@ -83,7 +83,7 @@ const DisbursementTrends = props => {
     // Get the latest date then subtract 1 year to filter previous year data to compare current year data
     const currentMonth = monthLookup(fiscalYearData[0].data[0].month)
     const currentYear = fiscalYearData[0].data[0].fiscalYear
-    const currentYearDate = new Date(`${ currentMonth }-01-${ currentYear }`)
+    const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
 
     // Get previous year
     const previousYear = currentYear - 1
@@ -250,18 +250,18 @@ export default DisbursementTrends
 
 const monthLookup = month => {
   const monthNumber = {
-    January: 1,
-    February: 2,
-    March: 3,
-    April: 4,
-    May: 5,
-    June: 6,
-    July: 7,
-    August: 8,
-    September: 9,
-    October: 10,
-    November: 11,
-    December: 12
+    January: '01',
+    February: '02',
+    March: '03',
+    April: '04',
+    May: '05',
+    June: '06',
+    July: '07',
+    August: '08',
+    September: '09',
+    October: '10',
+    November: '11',
+    December: '12'
   }
 
   return monthNumber[month]
