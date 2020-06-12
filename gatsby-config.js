@@ -4,6 +4,10 @@ const { createHttpLink } = require('apollo-link-http')
 const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
 const GTM_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'GTM-NCRF98R' : ''
 
+// use this for testing
+// const GOOGLE_ANALYTICS_ID = 'UA-33523145-1'
+// const GTM_ID = 'GTM-NCRF98R'
+
 const config = {
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
@@ -50,7 +54,6 @@ const config = {
       resolve: 'gatsby-plugin-layout',
       options: {
         component: `${ __dirname }/src/components/layouts/PageLayoutManager`
-
       }
     },
     {
@@ -63,7 +66,6 @@ const config = {
     },
     'gatsby-theme-apollo',
     'gatsby-plugin-react-helmet',
-
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
