@@ -76,14 +76,13 @@ const RevenueTrends = props => {
     // Get the latest date then subtract 1 year to filter previous year data to compare current year data
     const currentMonth = monthLookup(fiscalYearData[0].data[0].month)
     const currentYear = fiscalYearData[0].data[0].fiscalYear
-    const currentYearDate = new Date(`${ currentMonth }-01-${ currentYear }`)
+    const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
 
     // Get previous year
     const previousYear = currentYear - 1
 
     // Trends
     const trends = aggregateData(data.revenue_trends)
-
     // maxMonth Min/Max Year
     const maxMonth = currentYearDate.toLocaleString('en-us', { timeZone: 'UTC', month: 'long' })
     const minYear = trends[0].histData[0][0].substring(2)
@@ -261,7 +260,7 @@ const aggregateData = data => {
     let a = []
     const years = Object.keys(row.histSum).sort()
     a = years.map((year, i) => ([year, row.histSum[year]]))
-    console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
+    // console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
     if (currentMonth === 'December') {
       r[i].histData = a.slice(-10)
       return a.slice(-10)
