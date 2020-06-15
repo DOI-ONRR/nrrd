@@ -14,12 +14,15 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import useTheme from '@material-ui/core/styles/useTheme'
 
 import InfoBanner from '../../content-partials/InfoBanner'
+import IEBanner from '../../content-partials/IEBanner'
 import Footer from '../../content-partials/Footer'
 import Header from '../../content-partials/Header'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
 import SEO from '../../seo'
+
+import { isIE } from 'react-device-detect'
 
 const useStyles = makeStyles(theme => (
   {
@@ -117,6 +120,9 @@ const DefaultLayout = ({ includeToc = true, title, children }) => {
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
       <InfoBanner />
+      {isIE &&
+        <IEBanner />
+      }
       <Header />
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>

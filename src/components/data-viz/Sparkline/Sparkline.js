@@ -16,11 +16,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Sparkline = props => {
-  console.log('Sparkline props: ', props)
   let data = [[0, 0]]
   let highlightIndex = 0
   let lineAnimationData
-  if (props.data.length > 0) {
+  if (props && props.data.length > 0) {
     data = props.data
     highlightIndex = props.highlightIndex
     lineAnimationData = data.slice(0, highlightIndex + 1)

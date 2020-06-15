@@ -162,6 +162,29 @@ const config = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-compile-es6-packages',
+      options: {
+        modules: [
+          '@pmmmwh',
+          'debug',
+          'es6.regexp.match',
+          'gatsby-plugin-layout',
+          'html-entities',
+          'query-string',
+          'regexpu-core',
+          'split-on-first',
+          'unicode-match-property-ecmascript',
+          'unicode-match-property-value-ecmascript',
+        ]
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-polyfill-io',
+      options: {
+        features: ['EventSource', 'Symbol']
+      },
+    },
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
