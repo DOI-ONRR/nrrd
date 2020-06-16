@@ -76,5 +76,5 @@ module.exports = Object.freeze({
         color: palette.links.default,
       },
     },
-  }
+  },
 })

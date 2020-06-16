@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -11,6 +11,13 @@ import {
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RefreshIcon from '@material-ui/icons/Refresh'
+
+import MapControlSwitch from '../../inputs/MapControlSwitch'
+
+// import { StoreContext } from '../../../store'
+import { DataFilterContext } from '../../../stores/data-filter-store'
+
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   buttonGroupGrouped: {
@@ -35,6 +42,11 @@ const useStyles = makeStyles(theme => ({
 
 const MapControls = props => {
   const classes = useStyles()
+  const { state: filterState } = useContext(DataFilterContext)
+
+  const {
+    dataType
+  } = filterState
 
   return (
     <Box className={classes.zoomButtonGroupContainer}>

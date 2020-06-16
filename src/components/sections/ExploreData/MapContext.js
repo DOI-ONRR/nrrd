@@ -401,8 +401,8 @@ const MapContext = props => {
     dispatch({ type: 'CARDS', payload: cards })
   }
 
-  const countyLevel = filterState[DFC.COUNTIES] === 'County'
-  const offshore = filterState[DFC.OFFSHORE_REGIONS] === 'Show'
+  const countyLevel = filterState[DFC.COUNTIES]
+  const offshore = filterState[DFC.OFFSHORE_REGIONS]
 
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))

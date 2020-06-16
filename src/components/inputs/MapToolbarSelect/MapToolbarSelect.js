@@ -12,7 +12,7 @@ import {
 
 import BaseSelectInput from '../BaseSelectInput'
 
-const BaseInput = withStyles(theme =>
+const DefaultInput = withStyles(theme =>
   createStyles({
     root: {
       marginTop: theme.spacing(0.5),
@@ -46,7 +46,7 @@ const MapToolbarSelect = ({ dataFilterKey, data, defaultOption, helperText, labe
       label={label}
       selectType={selectType}
       variant='outlined'
-      theme={<BaseInput />}
+      theme={<DefaultInput />}
     />
   )
 }

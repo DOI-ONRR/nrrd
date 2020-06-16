@@ -17,14 +17,13 @@ import {
   useMediaQuery
 } from '@material-ui/core'
 
-import ExploreIcon from '@material-ui/icons/Explore'
 import MapIcon from '@material-ui/icons/Map'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import SearchIcon from '@material-ui/icons/Search'
 import AddIcon from '@material-ui/icons/Add'
 
 // import MapSelectControl from './MapSelectControl'
 import MapToolbarSelect from '../../inputs/MapToolbarSelect'
+import MapControlSwitch from '../../inputs/MapControlSwitch'
 import CONSTANTS from '../../../js/constants'
 
 import { StoreContext } from '../../../store'
@@ -169,6 +168,19 @@ const useStyles = makeStyles(theme => ({
   },
   tooltipRoot: {
     backgroundColor: 'rgba(0, 0, 0, 0.85)',
+  },
+  mapControls: {
+    // border: '2px solid deeppink',
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderLeft: `1px solid ${ theme.palette.grey[400] }`,
+    paddingLeft: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+    '& fieldset': {
+      marginTop: theme.spacing(1.5),
+    },
   }
 }))
 
@@ -176,16 +188,6 @@ const MAP_DATA_TYPE_SELECT_OPTIONS = [
   'Revenue',
   'Disbursements',
   'Production'
-]
-
-const MAP_LEVEL_OPTIONS = [
-  'State',
-  'County'
-]
-
-const MAP_OFFSHORE_SELECT_OPTIONS = [
-  'Show',
-  'Hide'
 ]
 
 // const MAP_TIMEFRAME_OPTIONS = [
@@ -382,23 +384,6 @@ const ExploreDataToolbar = props => {
               helperText=''
               selectType='Single' />
 
-            <MapToolbarSelect
-              dataFilterKey={DFC.COUNTIES}
-              data={MAP_LEVEL_OPTIONS}
-              defaultOption={ counties || 'State' }
-              label='Map level'
-              helperText=''
-              selectType='Single' />
-
-            {(dataType !== 'Disbursements') &&
-              <MapToolbarSelect
-                dataFilterKey={DFC.OFFSHORE_REGIONS}
-                data={MAP_OFFSHORE_SELECT_OPTIONS}
-                defaultOption={ offshoreRegion || 'Hide' }
-                label='Offshore map'
-                helperText=''
-                selectType='Single' />
-            }
             {/* <MapToolbarSelect
                   data={MAP_TIMEFRAME_OPTIONS}
                   label='Timeframe'
@@ -430,6 +415,25 @@ const ExploreDataToolbar = props => {
                 label='Commodity'
                 selectType='Single' />
             }
+
+            <Box className={classes.mapControls}>
+              <MapControlSwitch
+                dataFilterKey={DFC.COUNTIES}
+                checked={counties || false}
+                label='Show counties'
+                // helperText=''
+                selectType='Single' />
+
+              <MapControlSwitch
+                dataFilterKey={DFC.OFFSHORE_REGIONS}
+                defaultOption={false}
+                checked={offshoreRegion || false}
+                label='Show offshore'
+                // helperText=''
+                disabled={dataType === 'Disbursements'}
+                selectType='Single' />
+
+            </Box>
           </Box>
         }
 
