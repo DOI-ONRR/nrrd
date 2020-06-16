@@ -23,22 +23,22 @@ exports.createPages = ({ graphql, reporter }) => {
   ])
 }
 
-exports.onCreateWebpackConfig = function onCreateWebpackConfig ({ actions, stage, loaders }) {
-  if (stage === 'develop' || stage === 'develop-html') {
-    actions.setWebpackConfig({
-      module: {
-        rules: [
-          {
-            test: /react-hot-loader/,
-            use: [
-              loaders.js()
-            ]
-          }
-        ]
-      }
-    })
-  }
-}
+// exports.onCreateWebpackConfig = function onCreateWebpackConfig ({ actions, stage, loaders }) {
+//   if (stage === 'develop' || stage === 'develop-html') {
+//     actions.setWebpackConfig({
+//       module: {
+//         rules: [
+//           {
+//             test: /react-hot-loader/,
+//             use: [
+//               loaders.js()
+//             ]
+//           }
+//         ]
+//       }
+//     })
+//   }
+// }
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({

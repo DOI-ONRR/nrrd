@@ -2,7 +2,7 @@
 	"presets": [
     ["babel-preset-gatsby", 
       {
-        // "useBuiltIns": "entry",
+        "useBuiltIns": "entry",
         "targets": {
           "browsers": [">0.25%", "not dead", "ie >= 10"]
         }

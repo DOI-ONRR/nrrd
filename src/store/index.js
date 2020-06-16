@@ -7,7 +7,9 @@ function StoreProvider ({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   // Log new state
-  useEffect(() => console.debug({ newState: state }), [state])
+  useEffect(() => {
+    console.debug({ newState: state })
+  }, [state])
 
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
