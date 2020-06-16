@@ -36,52 +36,32 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const BaseSelectInput = ({ dataFilterKey, dataOptions, selectType, defaultOption, helperText, label, variant, ...props }) => {
-
-  // need to figure out a way to conditionally run queries, looks like skip method should work 
-  // https://www.apollographql.com/docs/react/api/react-hooks/
-
-  // const { loading, error, data } = useQuery(SOME_FANCY_QUERY, {
-  //   variables: { specialVarKey: specialVarValue },
-  //   skip: false
-  // })
-
-  // const { state } = useContext(DataFilterContext)
-
-  // console.log('state: ', state)
-
-  // const { loading, error, data } = useQuery(DFQM.getQuery(dataFilterKey, state), { variables: DFQM.getVariables(state), skip: true })
-  // console.log('data: ', data)
-
-  // const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
-
-  // useEffect(() => {
-  //   if (error) {
-  //     showErrorMessage(`Error!: ${ error.message }`)
-  //   }
-  // }, [error])
-
-  // useEffect(() => {
-  //   updateLoadingStatus({ status: loading, message: 'Loading...' })
-  // }, [loading])
+const BaseSelectInput = ({ dataFilterKey, data, selectType, defaultOption, helperText, label, variant, clearSelected, ...props }) => {
+  console.log('BaseSelectInput', data)
+  if (data && !data[0].option) {
+    data = data.map(item => ({ option: item }))
+  }
+  else if (!data) {
+    data = []
+  }
 
   return (
     <>
       {selectType === 'Single' &&
         <BaseSingleSelectInput
           dataFilterKey={dataFilterKey}
-          data={dataOptions}
+          data={data}
           label={label}
           defaultOption={defaultOption}
           helperText={helperText}
           variant={variant}
           theme={props.theme}
-          clearSelected={props.clearSelected} />
+          clearSelected={clearSelected} />
       }
       {selectType === 'Multi' &&
         <BaseMultiSelectInput
           dataFilterKey={dataFilterKey}
-          data={dataOptions}
+          data={data}
           label={label}
           defaultOption={defaultOption}
           helperText={helperText}
@@ -110,18 +90,14 @@ BaseSelectInput.propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * The loading indicator
-   */
-  loading: PropTypes.boolean,
-  /**
    * Option to show/hide the clear selection option
    */
-  clearSelected: PropTypes.boolean
+  clearSelected: PropTypes.bool
 }
 
 BaseSelectInput.defaultProps = {
-  loading: false,
-  selectType: 'Single'
+  selectType: 'Single',
+  clearSelected: true
 }
 
 export default BaseSelectInput
@@ -129,13 +105,15 @@ export default BaseSelectInput
 // Single Select Input
 const BaseSingleSelectInput = ({ dataFilterKey, data, defaultOption, label, helperText, variant, clearSelected, theme }) => {
   const classes = useStyles()
-  const labelSlug = formatToSlug(label)
+  const labelSlug = formatToSlug('Commodity')
 
   const { state, updateDataFilter } = useContext(DataFilterContext)
 
-  const findSelectedOption = data && data.find(item => item === defaultOption)
-
-  const [selectedOption, setSelectedOption] = useState(findSelectedOption)
+  const getDefaultOption = () => {
+    const defaultItem = (data && data.find(item => item.default))
+    return (defaultItem) ? defaultItem.option : ''
+  }
+  const [selectedOption, setSelectedOption] = useState(getDefaultOption())
 
   const handleChange = event => {
     console.log('handleChange state: ', event.target.value)
@@ -150,7 +128,7 @@ const BaseSingleSelectInput = ({ dataFilterKey, data, defaultOption, label, help
 
   useEffect(() => {
     if (data && data.length === 0) {
-      updateDataFilter({ ...state, [dataFilterKey]: ZERO_OPTIONS })
+      updateDataFilter({ [dataFilterKey]: ZERO_OPTIONS })
     }
     else if (state[dataFilterKey] === ZERO_OPTIONS) {
       handleClearAll()
@@ -167,11 +145,11 @@ const BaseSingleSelectInput = ({ dataFilterKey, data, defaultOption, label, help
         id={`${ labelSlug }-select`}
         // IconComponent={() => <KeyboardArrowDownIcon className="MuiSvgIcon-root MuiSelect-icon" />}
         // value={selectedIndex}
-        value={(state[dataFilterKey] === ZERO_OPTIONS) ? '' : selectedOption}
+        value={(state[dataFilterKey] === ZERO_OPTIONS || !selectedOption) ? '' : selectedOption}
         onChange={handleChange}
         displayEmpty
         label={label}
-        input={theme || ''} // first attempt at overloading functions by passing a theme component it completely overrides all mui styles
+        // input={theme || ''} // first attempt at overloading functions by passing a theme component it completely overrides all mui styles
         classes={{ root: classes.selectInput }}
       >
         {clearSelected &&
@@ -182,9 +160,9 @@ const BaseSingleSelectInput = ({ dataFilterKey, data, defaultOption, label, help
         {data &&
            data.map((item, i) =>
              <MenuItem
-               key={`${ item }_${ i }`}
-               value={item}>
-               {item}
+               key={`${ item.option }_${ i }`}
+               value={item.option}>
+               {item.option}
              </MenuItem>)
         }
       </Select>
@@ -237,7 +215,7 @@ const BaseMultiSelectInput = ({ dataFilterKey, data, defaultOption, label, helpe
       handleClearAll()
     }
     else {
-      setSelectedOptions(data)
+      setSelectedOptions(data.map(item => item.option).join(','))
     }
   }, [selectAllOptions])
 
@@ -259,7 +237,7 @@ const BaseMultiSelectInput = ({ dataFilterKey, data, defaultOption, label, helpe
         labelId={`${ labelSlug }-select-label`}
         id={`${ labelSlug }-select`}
         multiple
-        value={selectedOptions.length > 0 ? selectedOptions : []}
+        value={selectedOptions.length > 0 ? selectedOptions.split(',') : []}
         renderValue={selected => selected && selected.join(', ')}
         input={theme || ''}
         onChange={handleChange}
@@ -276,10 +254,10 @@ const BaseMultiSelectInput = ({ dataFilterKey, data, defaultOption, label, helpe
         </MenuItem>
         {data &&
           data.map(
-            (item, i) => <MenuItem key={`${ item }_${ i }`} value={item}>
+            (item, i) => <MenuItem key={`${ item.option }_${ i }`} value={item.option}>
               <Checkbox
-                checked={selectedOptions.includes(item)} />
-              <ListItemText primary={item} />
+                checked={selectedOptions.includes(item.option)} />
+              <ListItemText primary={item.option} />
             </MenuItem>)
         }
       </Select>
