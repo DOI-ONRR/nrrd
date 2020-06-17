@@ -1,6 +1,7 @@
 // https://material-ui.com/customization/globals/
 const palette = require('./palette')
 const typography = require('./typography')
+const { ThemeConsumer } = require('styled-components')
 
 module.exports = Object.freeze({
   MuiButton: {
@@ -33,15 +34,6 @@ module.exports = Object.freeze({
       fontSize: typography.body2.fontSize,
       fontWeight: typography.fontWeightBold
     }
-  },
-  MuiToggleButton: {
-    root: {
-      color: palette.primary.dark,
-      '&.Mui-selected': {
-        color: 'white',
-        backgroundColor: '#5c737f',
-      },
-    },
   },
   MuiListItemIcon: {
     root: {

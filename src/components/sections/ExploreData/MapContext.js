@@ -394,7 +394,7 @@ const MapContext = props => {
     dispatch({ type: 'CARDS', payload: cards })
   }
 
-  const countyLevel = filterState[DFC.COUNTIES] || false
+  const countyLevel = filterState[DFC.COUNTIES] === 'County'
   const offshore = filterState[DFC.OFFSHORE_REGIONS] || false
 
   const theme = useTheme()

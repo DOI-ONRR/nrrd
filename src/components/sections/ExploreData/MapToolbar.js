@@ -24,6 +24,7 @@ import AddIcon from '@material-ui/icons/Add'
 // import MapSelectControl from './MapSelectControl'
 import MapToolbarSelect from '../../inputs/MapToolbarSelect'
 import MapControlSwitch from '../../inputs/MapControlSwitch'
+import MapControlToggle from '../../inputs/MapControlToggle'
 import CONSTANTS from '../../../js/constants'
 
 import { StoreContext } from '../../../store'
@@ -182,8 +183,15 @@ const useStyles = makeStyles(theme => ({
     borderLeft: `1px solid ${ theme.palette.grey[400] }`,
     paddingLeft: theme.spacing(2),
     marginLeft: theme.spacing(2),
-    '& fieldset': {
-      marginTop: theme.spacing(1.5),
+    '& fieldset:first-child': {
+      marginTop: 0,
+    },
+    '& fieldset:last-child': {
+      marginTop: theme.spacing(3),
+    },
+    '& div:first-child': {
+      marginTop: 0,
+      marginRight: theme.spacing(4),
     },
   }
 }))
@@ -193,6 +201,19 @@ const MAP_DATA_TYPE_SELECT_OPTIONS = [
   'Disbursements',
   'Production'
 ]
+
+const MAP_LEVEL_OPTIONS = {
+  options: [
+    {
+      option: 'State',
+      value: 'State'
+    },
+    {
+      option: 'County',
+      value: 'County'
+    }
+  ]
+}
 
 // const MAP_TIMEFRAME_OPTIONS = [
 //   CONSTANTS.YEARLY,
@@ -423,12 +444,10 @@ const ExploreDataToolbar = props => {
             </Box>
 
             <Box className={classes.mapControls}>
-              <MapControlSwitch
+              <MapControlToggle
                 dataFilterKey={DFC.COUNTIES}
-                checked={counties || false}
-                label='Show counties'
-                helperText=''
-                selectType='Single' />
+                data={MAP_LEVEL_OPTIONS}
+                label="Map level toggle" />
 
               <MapControlSwitch
                 dataFilterKey={DFC.OFFSHORE_REGIONS}

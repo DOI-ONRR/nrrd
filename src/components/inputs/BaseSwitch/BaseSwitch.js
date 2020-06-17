@@ -136,16 +136,16 @@ const GroupBaseSwitch = ({ dataFilterKey, dataOptions, selectType, label, legend
 }
 
 // Single switch
-const SingleBaseSwitch = ({ dataFilterKey, selectType, label, legend, helperText, isChecked, disabled }) => {
-  const { state, updateDataFilter } = useContext(DataFilterContext)
+const SingleBaseSwitch = ({ dataFilterKey, selectType, label, legend, helperText, disabled }) => {
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
 
   const [switchState, setSwitchState] = useState({
-    checked: isChecked || false
+    checked: filterState[dataFilterKey] || false
   })
 
   const handleChange = event => {
     setSwitchState({ ...switchState, [event.target.name]: event.target.checked })
-    updateDataFilter({ ...state, [dataFilterKey]: event.target.checked })
+    updateDataFilter({ ...filterState, [dataFilterKey]: event.target.checked })
   }
 
   return (
