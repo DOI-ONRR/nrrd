@@ -16,6 +16,7 @@ const DefaultInput = withStyles(theme =>
   createStyles({
     root: {
       marginTop: theme.spacing(0.5),
+      paddingTop: theme.spacing(2),
       'label + &': {
         marginTop: theme.spacing(1.5),
       },
