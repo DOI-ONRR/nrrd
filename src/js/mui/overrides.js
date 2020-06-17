@@ -69,4 +69,15 @@ module.exports = Object.freeze({
       },
     },
   },
+  MuiToggleButton: {
+    root: {
+      '&.Mui-selected': {
+        color: 'white',
+        backgroundColor: palette.links.default,
+      }
+    },
+    label: {
+      textTransform: 'Capitalize',
+    }
+  }
 })
