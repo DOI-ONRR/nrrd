@@ -14,30 +14,19 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   AppBar: {
-    root: {
-      backgroundColor: 'red',
-      boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
-    }
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
+    boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
+    backgroundColor: 'inherit'
   },
 }))
 
-const BaseToolbar = ({ children }) => {
+const BaseToolbar = ({ borderColor, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.AppBar.root}>
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+      <AppBar position="relative" className={classes.AppBar} style={(borderColor) && { border: `2px solid ${ borderColor }` }}>
+        <Toolbar variant="dense">
           {children}
         </Toolbar>
       </AppBar>

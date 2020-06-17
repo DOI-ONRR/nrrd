@@ -3,29 +3,21 @@ title: Query Data
 includeToc: false
 ---
 
-<DataFilterProviderWrapper defaults={{dataType:'Revenue', period: 'Fiscal Year', fiscalYear: '2017,2018,2019'}}>
+<DataFilterProviderWrapper defaults={{dataType:'Revenue', period: 'Fiscal Year', fiscalYear: '2017,2018,2019', groupBy:"revenueType"}}>
 <Box mb={4}>
 <Container maxWidth={'xl'}>
 
 # Query data
-  <Grid container spacing={2}>
-    <Grid item xs={12}>
-      <QueryTableToolbar />
-    </Grid>
-    <Grid item xs={12}>
-      <DataTypeToggle />
-    </Grid>
-    <Grid item xs={12}>
-      <DataFilterDrawer />
-    </Grid>
-    <Grid item xs={12}>
-      <DataTableGroupingToolbar />
-    </Grid>
-    <Grid item xs={12}>
-      <DataTable />
-    </Grid>
-  </Grid>
 
 </Container>
+<Grid container spacing={2}>
+  <Grid item xs={12}>
+    <QueryTableToolbar />
+  </Grid>
+  <Grid item xs={12}>
+    <DataTable />
+  </Grid>
+</Grid>
+
 </Box>
 </DataFilterProviderWrapper>

@@ -269,31 +269,33 @@ const DataTableImpl = data => {
     <React.Fragment>
       {(aggregatedSums && aggregatedSums.length > 0) &&
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Box component="div" display="inline" mr={2}>
+          {false &&
+            <Grid item xs={12}>
+              <Box component="div" display="inline" mr={2}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  aria-label="open data filters"
+                  onClick={() => handleDownload('excel')}
+                  onKeyDown={() => handleDownload('excel')}
+                  startIcon={<IconDownloadXlsImg />}
+                >
+                Download table
+                </Button>
+
+              </Box>
               <Button
                 variant="contained"
                 color="primary"
                 aria-label="open data filters"
-                onClick={() => handleDownload('excel')}
-                onKeyDown={() => handleDownload('excel')}
-                startIcon={<IconDownloadXlsImg />}
+                onClick={() => handleDownload('csv')}
+                onKeyDown={() => handleDownload('csv')}
+                startIcon={<IconDownloadCsvImg />}
               >
-              Download table
+                Download table
               </Button>
-
-            </Box>
-            <Button
-              variant="contained"
-              color="primary"
-              aria-label="open data filters"
-              onClick={() => handleDownload('csv')}
-              onKeyDown={() => handleDownload('csv')}
-              startIcon={<IconDownloadCsvImg />}
-            >
-              Download table
-            </Button>
-          </Grid>
+            </Grid>
+          }
           <Grid item xs={12}>
             <TableGrid
               rows={aggregatedSums}
