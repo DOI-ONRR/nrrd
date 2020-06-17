@@ -39,7 +39,7 @@ export default props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = filterState[DFC.YEAR]
-  const location = (filterState[DFC.COUNTIES] === true) ? 'Counties' : 'State'
+  const location = (filterState[DFC.COUNTIES] === true) ? 'County' : 'State'
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
     variables: { year, period: CONSTANTS.FISCAL_YEAR, location }
   })
