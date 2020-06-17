@@ -1,4 +1,4 @@
-a
+
 
 cf target -o doi-onrr -s dev  # unnecessary login will prompt you for org ans space
 # Login
@@ -8,13 +8,16 @@ cf login -a api.fr.cloud.gov --sso
 cf set-space-role mojo.nichols@onrr.gov doi-onrr dev SpaceDeveloper
 cf create-service aws-rds medium-psql onrr-psql
 cf services
+
+# README doesn't show how to get DATABASE URL or PORT - This is because we put these in config of hasura and then on the next step (bind-service they get crated.
+
 cf push hasura-onrr -c 'graphql-engine --database-url $DATABASE_URL serve --server-port $PORT' --docker-image hasura/graphql-engine --health-check-type none --no-start
 cf bind-service hasura-onrr  onrr-psql
-cf set-env hasura-onrr HASURA_GRAPHQL_ADMIN_SECRET 'SUPER SECRET PASSWORD THAT IS NOT THIS'
+cf set-env hasura-onrr HASURA_GRAPHQL_ADMIN_SECRET' 'SUPER SECRET PASSWORD THAT IS NOT THIS'
 cf start hasura-onrr
 cf set-env hasura-onrr HASURA_GRAPHQL_ENABLE_CONSOLE true
+cf set-env hasura-onrr HASURA_GRAPHQL_UNAUTHORIZED_ROLE public 
 cf restage hasura-onrr
-
 
 
 #DB maintaince.
@@ -24,7 +27,8 @@ cf restage hasura-onrr
 # 3) prod
 
 # sandbox or dev
-export DB_ENV=sandbox && export DB_PORT=7222|| export DB_ENV=onrr && export DB_PORT=7223
+export DB_ENV=sandbox && export DB_PORT=7222|| export DB_ENV=onrr && export DB_PORT=7223 || export DB_ENV=nrrd-a && export DB_PORT=7724
+
 
 #create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.  
 
@@ -68,7 +72,9 @@ export DB_HOST=localhost
 
 
 cf logs <APP_NAME> --recent
-cf env $DB_ENV 
+cf env $DB_ENV
+
+
 
 #you must restage if you drop schema
 
@@ -96,3 +102,4 @@ Password: <ENTER PASSWORD>
 
 cf restage hasura-$DB_ENV (where we are in the shell  configure for hasura-onrr
 
+update location set fips_code=concat('0',fips_code) where length(fips_code)=4 
