@@ -13,7 +13,7 @@ import {
 
 import Map from '../../../data-viz/Map'
 
-import { StoreContext } from '../../../../store'
+// import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -39,7 +39,7 @@ export default props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = filterState[DFC.YEAR]
-  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
+  const location = (filterState[DFC.COUNTIES] === true) ? 'Counties' : 'State'
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
     variables: { year, period: CONSTANTS.FISCAL_YEAR, location }
   })

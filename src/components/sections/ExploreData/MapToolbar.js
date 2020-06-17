@@ -421,7 +421,7 @@ const ExploreDataToolbar = props => {
                 dataFilterKey={DFC.COUNTIES}
                 checked={counties || false}
                 label='Show counties'
-                // helperText=''
+                helperText=''
                 selectType='Single' />
 
               <MapControlSwitch
@@ -429,7 +429,7 @@ const ExploreDataToolbar = props => {
                 defaultOption={false}
                 checked={offshoreRegion || false}
                 label='Show offshore'
-                // helperText=''
+                helperText=''
                 disabled={dataType === 'Disbursements'}
                 selectType='Single' />
 
