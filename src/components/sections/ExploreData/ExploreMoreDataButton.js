@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     position: 'absolute',
-    bottom: 105,
+    bottom: 75,
     width: '100%',
     zIndex: 500,
   },

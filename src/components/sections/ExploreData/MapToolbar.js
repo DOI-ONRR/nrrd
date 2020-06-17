@@ -71,7 +71,10 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'flex-start',
       width: '100%',
       overflowX: 'auto',
-    }
+    },
+  },
+  toolbarPageControls: {
+    marginTop: theme.spacing(0.5),
   },
   mapExploreMenu: {
     position: 'absolute',
@@ -376,28 +379,29 @@ const ExploreDataToolbar = props => {
         {(menu.showMapTools || !matchesMdLgUp) &&
           /* Map toolbar selections */
           <Box className={classes.toolbarControls}>
-            <MapToolbarSelect
-              dataFilterKey={DFC.DATA_TYPE}
-              data={MAP_DATA_TYPE_SELECT_OPTIONS}
-              defaultOption={ dataType || REVENUE }
-              label='Data type'
-              helperText=''
-              selectType='Single' />
+            <Box className={classes.toolbarPageControls}>
+              <MapToolbarSelect
+                dataFilterKey={DFC.DATA_TYPE}
+                data={MAP_DATA_TYPE_SELECT_OPTIONS}
+                defaultOption={ dataType || REVENUE }
+                label='Data type'
+                helperText=''
+                selectType='Single' />
 
-            {/* <MapToolbarSelect
+              {/* <MapToolbarSelect
                   data={MAP_TIMEFRAME_OPTIONS}
                   label='Timeframe'
                   dataFilterKey={DFC.TIMEFRAME'} /> */}
 
-            <MapToolbarSelect
-              dataFilterKey={DFC.OFFSHORE_REGIONS}
-              data={MAP_PERIOD_OPTIONS}
-              defaultOption={'Fiscal year'}
-              label='Fiscal year'
-              helperText=''
-              selectType='Single' />
+              <MapToolbarSelect
+                dataFilterKey={DFC.OFFSHORE_REGIONS}
+                data={MAP_PERIOD_OPTIONS}
+                defaultOption={'Fiscal year'}
+                label='Fiscal year'
+                helperText=''
+                selectType='Single' />
 
-            {(dataType === 'Revenue') &&
+              {(dataType === 'Revenue') &&
               <MapToolbarSelect
                 dataFilterKey={DFC.COMMODITIES}
                 data={revenueCommodityOptions}
@@ -405,16 +409,17 @@ const ExploreDataToolbar = props => {
                 label='Commodity'
                 selectType='Multi'
                 helperText='' />
-            }
+              }
 
-            {(dataType === 'Production') &&
+              {(dataType === 'Production') &&
               <MapToolbarSelect
                 dataFilterKey={DFC.COMMODITY}
                 data={productionCommodityOptions}
                 defaultOption='Oil (bbl)'
                 label='Commodity'
                 selectType='Single' />
-            }
+              }
+            </Box>
 
             <Box className={classes.mapControls}>
               <MapControlSwitch
