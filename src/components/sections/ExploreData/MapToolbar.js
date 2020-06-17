@@ -74,6 +74,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   toolbarPageControls: {
+    display: 'flex',
     marginTop: theme.spacing(0.5),
   },
   mapExploreMenu: {
