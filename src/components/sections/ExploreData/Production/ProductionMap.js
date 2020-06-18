@@ -34,7 +34,6 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.debug('WTF', data, 'WTH', year, commodity)
     mapData = data.fiscal_production_summary.map((item, i) => [
       item.state_or_area,
       item.sum

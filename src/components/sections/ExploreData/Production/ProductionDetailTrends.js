@@ -104,7 +104,6 @@ const ProductionDetailTrends = props => {
         sum ? sum[1] : 0
       ])
     })
-    console.debug("DETAIL SD1 :" , sparkData)
 
     // sparkline index
     highlightIndex = sparkData.findIndex(
