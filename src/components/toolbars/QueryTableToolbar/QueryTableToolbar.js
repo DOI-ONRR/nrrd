@@ -6,7 +6,9 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 import {
   DATA_TYPES,
   DATA_TYPE,
+  LAND_TYPE,
   COMMODITY,
+  US_STATE,
   REVENUE_TYPE,
   PERIOD,
   PERIOD_FISCAL_YEAR,
@@ -16,6 +18,7 @@ import BaseSelectInput from '../../inputs/BaseSelectInput'
 import WithDataFilterQuery from '../../inputs/withDataFilterQuery'
 import BaseToolbar from '../BaseToolbar'
 import DataTableGroupingToolbar from '../../data-viz/DataTable/DataTableGroupingToolbar'
+import YearRangeSelect from '../data-filters/YearRangeSelect'
 
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Button from '@material-ui/core/Button'
@@ -142,8 +145,12 @@ export default QueryTableToolbar
 const RevenueMainToolbar = () => {
   return (
     <BaseToolbar borderColor={'blue'} >
+      {WithDataFilterQuery(BaseSelectInput, LAND_TYPE, { selectType: 'Single', label: 'Land type' })}
       {WithDataFilterQuery(BaseSelectInput, REVENUE_TYPE, { selectType: 'Single', label: 'Revenue type' })}
+      {WithDataFilterQuery(BaseSelectInput, US_STATE, { selectType: 'Single', label: 'State' })}
       {WithDataFilterQuery(BaseSelectInput, COMMODITY, { selectType: 'Single', label: 'Commodity' })}
+      {WithDataFilterQuery(BaseSelectInput, US_STATE, { selectType: 'Single', label: 'State' })}
+      <YearRangeSelect />
     </BaseToolbar>
   )
 }
