@@ -51,14 +51,12 @@ const useStyles = makeStyles(theme => ({
     },
   },
   filtersToggle: {
-    borderColor: 'blue',
-    backgroundColor: 'blue !important',
-    opacity: '0.7',
+    borderBottom: '5px solid rgba(0, 39, 168)',
+    opacity: '0.5',
   },
   toolsToggle: {
-    borderColor: 'green',
-    backgroundColor: 'green !important',
-    opacity: '0.7',
+    borderBottom: '5px solid rgba(188, 113, 0)',
+    opacity: '0.5',
   },
   hide: {
     display: 'none',
@@ -122,10 +120,10 @@ const QueryTableToolbar = () => {
         <Box m={'8px'}>
           <ToggleButtonGroup value={period} exclusive onChange={handlePeriodChange} aria-label="period selection">
             <ToggleButton value={PERIOD_FISCAL_YEAR} aria-label="fiscal year" className={classes.toggleButton}>
-              <div>FY</div>
+              <div style={{ wordBreak: 'normal', width: 'min-content', lineHeight: 'normal' }}>Fiscal year</div>
             </ToggleButton>
             <ToggleButton value={PERIOD_CALENDAR_YEAR} aria-label="calendar year" className={classes.toggleButton}>
-              <div>CY</div>
+              <div style={{ wordBreak: 'normal', width: 'min-content', lineHeight: 'normal' }}>Calendar year</div>
             </ToggleButton>
           </ToggleButtonGroup>
         </Box>
@@ -144,7 +142,7 @@ export default QueryTableToolbar
 
 const RevenueMainToolbar = () => {
   return (
-    <BaseToolbar borderColor={'blue'} >
+    <BaseToolbar borderColor={'rgba(0, 39, 168, 0.5)'} >
       {WithDataFilterQuery(BaseSelectInput, LAND_TYPE, { selectType: 'Single', label: 'Land type' })}
       {WithDataFilterQuery(BaseSelectInput, REVENUE_TYPE, { selectType: 'Single', label: 'Revenue type' })}
       {WithDataFilterQuery(BaseSelectInput, US_STATE, { selectType: 'Single', label: 'State' })}
@@ -157,7 +155,7 @@ const RevenueMainToolbar = () => {
 
 const RevenueGroupingToolbar = () => {
   return (
-    <BaseToolbar borderColor={'green'}><DataTableGroupingToolbar /></BaseToolbar>
+    <BaseToolbar borderColor={'rgba(188, 113, 0, 0.5)'}><DataTableGroupingToolbar /></BaseToolbar>
   )
 }
 

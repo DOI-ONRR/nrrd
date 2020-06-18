@@ -25,7 +25,7 @@ const BaseToolbar = ({ borderColor, children }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="relative" className={classes.AppBar} style={(borderColor) && { border: `2px solid ${ borderColor }` }}>
+      <AppBar position="relative" className={classes.AppBar} style={(borderColor) && { borderBottom: `5px solid ${ borderColor }` }}>
         <Toolbar variant="dense">
           {children}
         </Toolbar>
