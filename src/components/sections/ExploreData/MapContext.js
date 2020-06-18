@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { useQuery } from '@apollo/react-hooks'
+import gql from 'graphql-tag'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -260,6 +262,18 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const LOCATION_QUERY = gql`
+  query locations($location: [String!]) {
+    location(where: {state: {_in: $location}, region_type: {_eq: "State"}, fips_code: {_neq: ""}}, distinct_on: fips_code, limit: 4) {
+      fips_code
+      land_category
+      location_name
+      state
+      region_type
+    }
+  }
+`
+
 const MapContext = props => {
   const classes = useStyles()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
@@ -268,6 +282,58 @@ const MapContext = props => {
 
   const [mapOverlay, setMapOverlay] = useState(false)
   const [mapActive, setMapActive] = useState(true)
+
+  const [mapX, setMapX] = useState(pageState.mapX || 0)
+  const [mapY, setMapY] = useState(pageState.mapY || 0)
+  const [mapK, setMapK] = useState(pageState.mapZoom)
+
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+
+  // Map snackbar
+  const [mapSnackbarState, setMapSnackbarState] = useState({
+    open: false,
+    vertical: 'bottom',
+    horizontal: 'center'
+  })
+
+  useEffect(() => {
+    scrollToTop()
+    window.addEventListener('scroll', handler)
+
+    return () => {
+      window.removeEventListener('scroll', handler)
+    }
+  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
+
+  // get location param, strip any trailing slash and create array
+  const location = filterState.location && filterState.location.replace(/\/$/, '').split(',')
+
+  const { loading, error, data } = useQuery(LOCATION_QUERY, {
+    variables: { location: location },
+    skip: typeof location === 'undefined' || location.length === 0
+  })
+
+  useEffect(() => {
+    if (data && data.location.length > 0) {
+      data.location.map((item, index) => {
+        const nObj = {}
+        nObj.fips = item.fips_code
+        nObj.abbr = item.state
+        nObj.name = item.location_name
+        nObj.state = item.state
+
+        onLink(nObj)
+      })
+    }
+  }, [data])
+
+  if (loading) {}
+  if (error) return `Error! ${ error.message }`
+  if (data) {
+    console.log('MapContext data: ', data)
+  }
 
   // handler
   const handler = () => {
@@ -283,15 +349,6 @@ const MapContext = props => {
 
   // useEventListener('scroll', handler)
 
-  useEffect(() => {
-    scrollToTop()
-    window.addEventListener('scroll', handler)
-
-    return () => {
-      window.removeEventListener('scroll', handler)
-    }
-  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
-
   const scrollToTop = () => {
     scroll.scrollToTop({
       duration: 0,
@@ -299,23 +356,12 @@ const MapContext = props => {
     })
   }
 
-  const [mapX, setMapX] = useState(pageState.mapX || 0)
-  const [mapY, setMapY] = useState(pageState.mapY || 0)
-  const [mapK, setMapK] = useState(pageState.mapZoom)
-
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
   const cardMenuItems = [
     { fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' },
     { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
   ]
-
-  // Map snackbar
-  const [mapSnackbarState, setMapSnackbarState] = useState({
-    open: false,
-    vertical: 'bottom',
-    horizontal: 'center'
-  })
 
   const { vertical, horizontal, open } = mapSnackbarState
 
@@ -339,6 +385,7 @@ const MapContext = props => {
     console.debug('YEAR ', selected)
     updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
   }
+
   // setZoom
   const setZoom = (x, y, k) => {
     setMapY(y)
@@ -387,7 +434,7 @@ const MapContext = props => {
         }
       }
       else {
-        return handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
 
@@ -396,10 +443,6 @@ const MapContext = props => {
 
   const countyLevel = filterState[DFC.COUNTIES] === 'County'
   const offshore = filterState[DFC.OFFSHORE_REGIONS] || false
-
-  const theme = useTheme()
-  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
-  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   const handleChange = (type, name) => event => {
     // setZoom(x, y, k)
@@ -474,7 +517,6 @@ const MapContext = props => {
       onZoomEnd: onZoomEnd,
       onClick: onClick
     })
-
 
   return (
     <>
