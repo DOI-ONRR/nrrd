@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 
 import {
+  InputBase,
   FormControl,
   FormHelperText,
   InputLabel,
@@ -14,7 +15,13 @@ import {
   Checkbox
 } from '@material-ui/core'
 
-import { makeStyles } from '@material-ui/core/styles'
+import {
+  makeStyles,
+  withStyles,
+  createStyles
+} from '@material-ui/core/styles'
+
+import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
@@ -31,12 +38,33 @@ const useStyles = makeStyles(theme => ({
   },
   selectInput: {
     minHeight: 'inherit',
-    // background: theme.palette.background.paper,
-    // padding: '8.5px 14px',
+    padding: '8.5px 14px',
   },
 }))
 
-const BaseSelectInput = ({ dataFilterKey, data, selectType, defaultOption, helperText, label, variant, clearSelected, ...props }) => {
+const BaseInput = withStyles(theme =>
+  createStyles({
+    root: {
+      marginTop: theme.spacing(0.5),
+      'label + &': {
+        marginTop: theme.spacing(1.5),
+      },
+    },
+    input: {
+      borderRadius: 4,
+      border: '1px solid #ced4da',
+      padding: '8.5px 14px',
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
+      '&:focus': {
+        borderRadius: 4,
+        borderColor: '#80bdff',
+        boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      },
+    },
+  })
+)(InputBase)
+
+const BaseSelectInput = ({ dataFilterKey, data, selectType, defaultOption, helperText, label, variant, clearSelected, theme, ...props }) => {
   console.log('BaseSelectInput', data)
   if (data && !data[0].option) {
     data = data.map(item => ({ option: item }))
@@ -54,8 +82,8 @@ const BaseSelectInput = ({ dataFilterKey, data, selectType, defaultOption, helpe
           label={label}
           defaultOption={defaultOption}
           helperText={helperText}
-          variant={variant}
-          theme={props.theme}
+          variant={variant || 'outlined'}
+          theme={theme || <BaseInput />}
           clearSelected={clearSelected} />
       }
       {selectType === 'Multi' &&
@@ -65,8 +93,8 @@ const BaseSelectInput = ({ dataFilterKey, data, selectType, defaultOption, helpe
           label={label}
           defaultOption={defaultOption}
           helperText={helperText}
-          variant={variant}
-          theme={props.theme} />
+          variant={variant || 'outlined'}
+          theme={theme || <BaseInput />} />
       }
     </>
   )
@@ -143,13 +171,12 @@ const BaseSingleSelectInput = ({ dataFilterKey, data, defaultOption, label, help
       <Select
         labelId={`${ labelSlug }-select-label`}
         id={`${ labelSlug }-select`}
-        // IconComponent={() => <KeyboardArrowDownIcon className="MuiSvgIcon-root MuiSelect-icon" />}
-        // value={selectedIndex}
+        IconComponent={() => <KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
         value={(state[dataFilterKey] === ZERO_OPTIONS || !selectedOption) ? '' : selectedOption}
         onChange={handleChange}
         displayEmpty
         label={label}
-        // input={theme || ''} // first attempt at overloading functions by passing a theme component it completely overrides all mui styles
+        input={theme}
         classes={{ root: classes.selectInput }}
       >
         {clearSelected &&
@@ -239,7 +266,7 @@ const BaseMultiSelectInput = ({ dataFilterKey, data, defaultOption, label, helpe
         multiple
         value={selectedOptions.length > 0 ? selectedOptions.split(',') : []}
         renderValue={selected => selected && selected.join(', ')}
-        input={theme || ''}
+        input={theme}
         onChange={handleChange}
         onClose={handleClose}
         classes={{ root: classes.selectInput }}
