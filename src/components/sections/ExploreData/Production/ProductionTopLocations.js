@@ -153,8 +153,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   let chartData = []
   const dataSet = `FY ${ year }`
 
-  if (data) {
-    console.debug('WTH: ', data)
+  if (data && data.length) {
     if (location === 'County') {
       const unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
       chartData = d3.nest()
@@ -176,7 +175,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
       // chartData =  data.fiscal_production_summary
     }
-    console.debug('CHART DATA', chartData)
+
     return (
       <Box className={classes.root}>
         {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
