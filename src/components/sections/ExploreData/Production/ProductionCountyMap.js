@@ -45,7 +45,7 @@ const PRODUCTION_QUERY = gql`
 `
 
 const ProductionCountyMap = props => {
-  // console.log('ProductionCountyMap props: ', props)
+
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -56,16 +56,15 @@ const ProductionCountyMap = props => {
 
   const state = props.state
 
-  console.debug('year:' + year + ', commodity: ' + commodity + ', state: ' + state)
   const { loading, error, data } = useQuery(PRODUCTION_QUERY, {
     variables: { year: year, commodity: commodity, state: state }
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
   const onZoomEnd = event => {
-    console.debug('Event : ', event)
+
   }
-  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5
+  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5 || props.fips.length === 3
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -73,14 +72,11 @@ const ProductionCountyMap = props => {
       item.state_or_area,
       item.sum
     ])
-    console.debug('DATA', data)
-    console.debug('mapData', mapData)
     mapData = d3.nest()
       .key(k => k.state_or_area.padStart(5, 0))
       .rollup(v => d3.sum(v, i => i.sum))
       .entries(data.fiscal_production_summary)
       .map(d => [d.key, d.value])
-    console.debug('mapData', mapData)
 
     return (
       <>

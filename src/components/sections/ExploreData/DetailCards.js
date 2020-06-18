@@ -167,7 +167,7 @@ const CardTitle = props => {
 
   const stateTitle = props.stateTitle
   const stateAbbr = props.state ? props.state : props.stateAbbr
-  const isCounty = props.stateAbbr.length > 2
+  const isCounty = props.stateAbbr.length === 5
 
   // Get land percentage
   const getLandPercent = stateOrArea => {
@@ -188,7 +188,7 @@ const CardTitle = props => {
     svgImg = <IconMap className={classes.usLocationIcon} alt="US Icon" />
   }
   else {
-    svgImg = (!isCounty) ? <img src={`/maps/states/${ stateAbbr }.svg`} alt={`${ stateAbbr } State Icon`} className={classes.cardLocationIcon} /> : ''
+    svgImg = (stateAbbr.length === 2) ? <img src={`/maps/states/${ stateAbbr }.svg`} alt={`${ stateAbbr } State Icon`} className={classes.cardLocationIcon} /> : ''
   }
 
   return (
