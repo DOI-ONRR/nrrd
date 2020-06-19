@@ -162,7 +162,6 @@ const config = {
         },
       },
     },
-    'gatsby-plugin-remove-trailing-slashes',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
