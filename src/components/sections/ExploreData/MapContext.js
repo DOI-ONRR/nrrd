@@ -476,30 +476,32 @@ const MapContext = props => {
     onLink(d, x, y, k)
   }
 
-  // get location param, strip any trailing slash and create array
-  const location = filterState.location && filterState.location.replace(/\/$/, '').split(',')
-
-  // filter out location based on location params
-  const filteredLocations = data.onrr.state_offshore_locations.filter(item => {
-    for (const elem of location) {
-      if (elem === item.state) {
-        return item
-      }
-    }
-  })
-
-  const stateLinks = filteredLocations.map(item => {
-    const nObj = {}
-    nObj.fips = item.fips_code
-    nObj.abbr = item.state
-    nObj.name = item.location_name
-    nObj.state = item.state
-    return nObj
-  })
-
   useEffect(() => {
-    for (const elem of stateLinks) {
-      onLink(elem)
+    // get location param, strip any trailing slash and create array
+    const locationParam = filterState.location && filterState.location.replace(/\/$/, '').split(',')
+
+    // filter out location based on location params
+    if (typeof locationParam !== 'undefined') {
+      const filteredLocations = data.onrr.state_offshore_locations.filter(item => {
+        for (const elem of locationParam) {
+          if (elem === item.state) {
+            return item
+          }
+        }
+      })
+
+      const stateLinks = filteredLocations.map(item => {
+        const nObj = {}
+        nObj.fips = item.fips_code
+        nObj.abbr = item.state
+        nObj.name = item.location_name
+        nObj.state = item.state
+        return nObj
+      })
+
+      for (const elem of stateLinks) {
+        onLink(elem)
+      }
     }
   }, [data])
 
