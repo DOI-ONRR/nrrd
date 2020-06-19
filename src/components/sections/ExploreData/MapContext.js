@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useStaticQuery, graphql } from 'gatsby'
 import gql from 'graphql-tag'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -262,19 +262,20 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const LOCATION_QUERY = gql`
-  query locations($location: [String!]) {
-    location(where: {state: {_in: $location}, region_type: {_eq: "State"}, fips_code: {_neq: ""}}, distinct_on: fips_code, limit: 4) {
-      fips_code
-      land_category
-      location_name
-      state
-      region_type
-    }
-  }
-`
-
 const MapContext = props => {
+  const data = useStaticQuery(graphql`
+    query StateLinksQuery {
+      onrr {
+        state_offshore_locations: location(where: {region_type: {_in: ["State", "Offshore"]}, fips_code: {_neq: ""}}, distinct_on: fips_code) {
+          fips_code
+          location_name
+          state
+          region_type
+        }
+      }
+    }
+  `)
+
   const classes = useStyles()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
@@ -306,34 +307,6 @@ const MapContext = props => {
       window.removeEventListener('scroll', handler)
     }
   }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
-
-  // get location param, strip any trailing slash and create array
-  const location = filterState.location && filterState.location.replace(/\/$/, '').split(',')
-
-  const { loading, error, data } = useQuery(LOCATION_QUERY, {
-    variables: { location: location },
-    skip: typeof location === 'undefined' || location.length === 0
-  })
-
-  useEffect(() => {
-    if (data && data.location.length > 0) {
-      data.location.map((item, index) => {
-        const nObj = {}
-        nObj.fips = item.fips_code
-        nObj.abbr = item.state
-        nObj.name = item.location_name
-        nObj.state = item.state
-
-        onLink(nObj)
-      })
-    }
-  }, [data])
-
-  if (loading) {}
-  if (error) return `Error! ${ error.message }`
-  if (data) {
-    console.log('MapContext data: ', data)
-  }
 
   // handler
   const handler = () => {
@@ -502,6 +475,33 @@ const MapContext = props => {
     console.log('onClick ', d)
     onLink(d, x, y, k)
   }
+
+  // get location param, strip any trailing slash and create array
+  const location = filterState.location && filterState.location.replace(/\/$/, '').split(',')
+
+  // filter out location based on location params
+  const filteredLocations = data.onrr.state_offshore_locations.filter(item => {
+    for (const elem of location) {
+      if (elem === item.state) {
+        return item
+      }
+    }
+  })
+
+  const stateLinks = filteredLocations.map(item => {
+    const nObj = {}
+    nObj.fips = item.fips_code
+    nObj.abbr = item.state
+    nObj.name = item.location_name
+    nObj.state = item.state
+    return nObj
+  })
+
+  useEffect(() => {
+    for (const elem of stateLinks) {
+      onLink(elem)
+    }
+  }, [data])
 
   console.log('mapJsonObject: ', mapJsonObject)
 

@@ -24,6 +24,7 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 const DefaultToggleButton = withStyles(theme =>
   createStyles({
     root: {
+      color: theme.palette.grey[700],
       '&.Mui-selected': {
         color: theme.palette.common.white,
         backgroundColor: theme.palette.links.default,
