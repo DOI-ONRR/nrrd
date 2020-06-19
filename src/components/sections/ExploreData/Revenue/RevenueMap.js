@@ -12,14 +12,13 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import CONSTANTS from '../../../../js/constants'
 
 const REVENUE_QUERY = gql`
-  query FiscalCommodityRevenue($year: Int!, $commodities: [String!]) {
+  query FiscalCommodityRevenue($year: Int!, $commodities: [String!], $location: [String!]) {
     revenue_commodity_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year}, commodity: {_in: $commodities }}) {
       commodity
       fiscal_year
       state_or_area
       total
     }
-
   }
 `
 
@@ -35,6 +34,7 @@ export default props => {
   })
 
   let mapData = [[]]
+
   const onZoomEnd = event => {
     console.debug('Event : ', event)
   }

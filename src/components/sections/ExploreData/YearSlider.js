@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 90,
+    height: 60,
     '@media (max-width: 768px)': {
       paddingTop: 0,
     },
@@ -63,10 +63,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 101,
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    top: -12,
-    '@media (max-width: 768px)': {
-      top: -10,
-    },
+    top: -10,
   },
   sliderRoot: {
     width: '100%',
@@ -117,16 +114,16 @@ const useStyles = makeStyles(theme => ({
     },
   },
   sliderValueLabel: {
-    width: 60,
+    width: 75,
     top: -2,
-    left: 'calc(-50% + -18px)',
+    left: 'calc(-50% + -26px)',
     transform: 'rotate(0deg)',
     fontSize: '1rem',
     cursor: 'pointer',
     backgroundColor: theme.palette.links.default,
     color: theme.palette.primary.contrastText,
     '& span': {
-      width: 60,
+      width: 75,
       transform: 'rotate(0)',
       borderRadius: 0,
       textAlign: 'center',
@@ -200,7 +197,7 @@ const YearSlider = props => {
         <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
           <Box className={`${ classes.sliderContainer } slider-wrapper`}>
             <Container>
-              <Box className={classes.sliderYearDisplay}>Fiscal year {year}</Box>
+              {/* <Box className={classes.sliderYearDisplay}>Fiscal year {year}</Box> */}
 
               <Box id="year-slider" className={classes.sliderBox}>
                 <Grid container spacing={4}>
@@ -211,6 +208,7 @@ const YearSlider = props => {
                       aria-labelledby="year-slider"
                       aria-valuetext={year && year.toString()}
                       valueLabelDisplay="on"
+                      valueLabelFormat={label => `FY ${ label }`}
                       step={1}
                       onChangeCommitted={(e, yr) => {
                         handleOnchange(yr)

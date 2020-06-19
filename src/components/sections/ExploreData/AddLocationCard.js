@@ -114,8 +114,12 @@ const getRegionProperties = location => {
     break
   case 'Offshore':
     selectedObj = mapStatesOffshore.objects['states-offshore-geo'].geometries.filter(obj => {
+      // console.log('Offshore obj: ', obj)
       if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
         return Object.assign(obj, { locData: location })
+      }
+      else {
+        console.warn(`Unable to find offshore id '${ location.fips_code }' in states-offshore-geo`)
       }
     })
     break
