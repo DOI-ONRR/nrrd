@@ -18,18 +18,32 @@ import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(3),
+    marginBottom: '0px',
     width: '-webkit-fill-available',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
   MuiSlider: {
-    color: 'black',
-    thumb: {
-      color: 'blue'
+    color: theme.palette.primary.dark,
+    marginBottom: '30px',
+    top: '-5px`'
+  },
+  thumb: {
+    color: theme.palette.primary.dark,
+  },
+  valueLabel: {
+    color: 'transparent',
+    '& span': {
+      '& span': {
+        paddingTop: '20px',
+        color: 'black',
+        fontSize: theme.typography.h5.fontSize,
+        fontWeight: theme.typography.h5.fontWeight,
+      }
     }
-  }
+  },
 }))
 
 const BaseDataFilterRangeSlider = ({ dataFilterKey, label = 'Years', helperText, loadingMessage = 'Updating...' }) => {
@@ -107,13 +121,17 @@ const BaseDataFilterRangeSliderImpl = ({ dataFilterKey, label, data, helperText 
               defaultValue={getCurrentValues()}
               getAriaValueText={getCurrentValuesText}
               aria-labelledby={`${ label }-slider`}
-              valueLabelDisplay="auto"
               step={1}
               onChangeCommitted={handleChange}
               marks
               min={yearOptions[0]}
               max={yearOptions[yearOptions.length - 1]}
-              className={classes.MuiSlider} />
+              valueLabelDisplay="on"
+              classes={{
+                root: classes.MuiSlider,
+                valueLabel: classes.valueLabel,
+                thumb: classes.thumb
+              }}/>
           }
           {helperText &&
             <FormHelperText>{helperText}</FormHelperText>

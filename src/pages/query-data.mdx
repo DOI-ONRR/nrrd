@@ -5,14 +5,10 @@ includeToc: false
 
 <DataFilterProviderWrapper defaults={{dataType:'Revenue', period: 'Fiscal Year', fiscalYear: '2017,2018,2019', groupBy:"revenueType"}}>
 <Box mb={4}>
-<Container maxWidth={'xl'}>
 
-# Query data
-
-</Container>
 <Grid container spacing={2}>
   <Grid item xs={12}>
-    <QueryTableToolbar />
+    <QueryTableToolbar label='Query data'/>
   </Grid>
   <Grid item xs={12}>
     <DataTable />

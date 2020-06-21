@@ -70,7 +70,7 @@ export default DataTableQueryManager
 const VARIABLES = {
   [REVENUE]: state => ({
     variables: {
-      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS) ? undefined : state[LAND_TYPE],
+      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS || !state[LAND_TYPE]) ? undefined : state[LAND_TYPE].split(','),
       [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
       [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
       [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
@@ -81,7 +81,7 @@ const VARIABLES = {
   }),
   [PRODUCTION]: state => ({
     variables: {
-      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS) ? undefined : state[LAND_TYPE],
+      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS || !state[LAND_TYPE]) ? undefined : state[LAND_TYPE].split(','),
       [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
       [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
       [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
@@ -103,7 +103,7 @@ const VARIABLES = {
 }
 
 const VARIABLE_LIST_REVENUE = ''.concat(
-  '$landType: String,',
+  '$landType: [String!],',
   '$landCategory: String,',
   '$offshoreRegion: [String!],',
   '$state: [String!],',
@@ -113,7 +113,7 @@ const VARIABLE_LIST_REVENUE = ''.concat(
   '$period: String,'
 )
 const VARIABLE_LIST_PRODUCTION = ''.concat(
-  '$landType: String,',
+  '$landType: [String!],',
   '$landClass: String,',
   '$landCategory: String,',
   '$offshoreRegion: [String!],',
@@ -137,7 +137,7 @@ const REVENUE_QUERY = `
     where: {
       state: {_in: $state},
       county: {_in: $county},
-      land_type: {_eq: $landType},
+      land_type: {_in: $landType},
       offshore_region: {_in: $offshoreRegion},
       commodity: {_in: $commodity},
       revenue_type: {_in: $revenueType},
@@ -158,7 +158,7 @@ const REVENUE_QUERY = `
 const PRODUCTION_QUERY = `
   results:query_tool_production_data(
     where: {
-      land_type: {_eq: $landType},
+      land_type: {_in: $landType},
       offshore_region: {_in: $offshoreRegion},
       state: {_in: $state},
       county: {_in: $county},
