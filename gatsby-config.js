@@ -4,6 +4,10 @@ const { createHttpLink } = require('apollo-link-http')
 const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
 const GTM_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'GTM-NCRF98R' : ''
 
+// use this for testing
+// const GOOGLE_ANALYTICS_ID = 'UA-33523145-1'
+// const GTM_ID = 'GTM-NCRF98R'
+
 const config = {
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
@@ -11,7 +15,7 @@ const config = {
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
     googleTagManagerId: GTM_ID,
-    version: 'v6.0.0',
+    version: 'v6.0.1',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -50,7 +54,6 @@ const config = {
       resolve: 'gatsby-plugin-layout',
       options: {
         component: `${ __dirname }/src/components/layouts/PageLayoutManager`
-
       }
     },
     {
@@ -63,7 +66,6 @@ const config = {
     },
     'gatsby-theme-apollo',
     'gatsby-plugin-react-helmet',
-
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -119,7 +121,8 @@ const config = {
         createLink: () => {
           return createHttpLink({
             // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
-            uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
+            //uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
+            uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
             resolvers: {}
@@ -164,7 +167,7 @@ const config = {
   ]
 }
 
-console.log('gatsby config: ', config)
+// console.log('gatsby config: ', config)
 
 // if (BASEURL) {
 //   config.pathPrefix = `${ BASEURL }`

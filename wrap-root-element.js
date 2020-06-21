@@ -29,6 +29,10 @@ import ErrorBoundary from './src/components/ErrorBoundary'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './src/js/mui/theme'
 
+import PageLayoutManager from './src/components/layouts/PageLayoutManager'
+import DefaultLayout from './src/components/layouts/DefaultLayout'
+import SEO from './src/components/seo'
+
 const mdxComponents = {
   pre: props => <div {...props} />,
   code: CodeBlock,

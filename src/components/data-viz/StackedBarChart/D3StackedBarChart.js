@@ -360,7 +360,8 @@ export default class D3StackedBarChart {
       let r = []
       this.getSelected()
       const xLabels = this.xLabels(this.xDomain())
-
+      // reduce this.data down to same length as yGroup
+      const rData = this.data.filter(item => item.source === this.data[0].source)
       if (this.options.yGroupBy) {
         r = [this.options.yGroupBy, '', xValue || this.xSelectedValue]
       }
@@ -368,7 +369,7 @@ export default class D3StackedBarChart {
         r = [this.yAxis, xValue || this.xSelectedValue]
       }
 
-      r = this.legendHeaders(r, { ...this.data[this.currentIndex], xLabel: xLabels[this.currentIndex] })
+      r = this.legendHeaders(r, { ...rData[this.currentIndex], xLabel: xLabels[this.currentIndex] })
 
       return r
     }

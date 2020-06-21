@@ -47,7 +47,6 @@ const REVENUE_QUERY = gql`
 `
 
 const RevenueCountyMap = props => {
-  // console.log('RevenueCountyMap props', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -60,11 +59,11 @@ const RevenueCountyMap = props => {
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
-  const onZoomEnd = event => {
-    console.debug('Event : ', event)
-  }
   const state = props.state
-  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5
+
+  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5 || props.fips.length === 3
+
+  
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -85,7 +84,7 @@ const RevenueCountyMap = props => {
        <Box className={classes.root}>
          {!showCountyContent &&
          <>
-           <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
+           <Box component="h4" fontWeight="bold" mb={2}>Revenue2 by county</Box>
            <Map
              key={`county_map_${ props.abbr }_${ year }`}
              mapFeatures={mapFeatures}

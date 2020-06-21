@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-
-import { useQuery } from '@apollo/react-hooks'
 
 import {
   InputBase,
   FormControl,
   FormHelperText,
   InputLabel,
-  ListItemIcon,
   ListItemText,
   MenuItem,
   Select,
@@ -23,11 +20,8 @@ import {
 
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
 
-import { DataFilterContext } from '../../../stores/data-filter-store'
-import { AppStatusContext } from '../../../stores/app-status-store'
 import { formatToSlug } from '../../../js/utils'
 import { ZERO_OPTIONS } from '../../../constants'
-import DFQM from '../../../js/data-filter-query-manager/index'
 
 const useStyles = makeStyles(theme => ({
   root: {},

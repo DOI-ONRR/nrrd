@@ -91,7 +91,8 @@ production(
   raw_volume varchar(255),
   unit varchar(255),
   unit_abbr varchar(255),
-  duplicate_no integer default 0, 
+  duplicate_no integer default 0,
+  row_number integer default 0,  
   primary key (location_id, period_id, commodity_id, duplicate_no)
   
 )
@@ -116,7 +117,8 @@ disbursement(
   raw_disbursement varchar(255),
   unit varchar(20) default 'dollars',
   unit_abbr varchar(5) default '$',
-  duplicate_no integer default 0, 
+  duplicate_no integer default 0,
+  row_number integer default 0, 
   primary key (location_id, period_id, commodity_id, fund_id, duplicate_no)
   
 )
@@ -140,7 +142,8 @@ revenue(
   raw_revenue varchar(255),
   unit varchar(20) default 'dollars',
   unit_abbr varchar(5) default '$',
-  duplicate_no integer default 0, 
+  duplicate_no integer default 0,
+  row_number integer default 0,  
   primary key (location_id, period_id, commodity_id, duplicate_no)
   
 )
