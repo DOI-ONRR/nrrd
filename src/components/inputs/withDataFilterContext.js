@@ -6,11 +6,11 @@ const withDataFilterContext = (BaseComponent, dataFilterKey) => ({ ...props }) =
   const { state, updateDataFilter } = useContext(DataFilterContext)
 
   const handleChange = newValue => {
-    updateDataFilter({ ...state, [dataFilterKey]: newValue })
+    updateDataFilter({ [dataFilterKey]: (newValue === '') ? undefined : newValue })
   }
 
   return (
-    <BaseComponent onChange={handleChange} defaultOption={state[dataFilterKey]} {...props} />
+    <BaseComponent onChange={handleChange} defaultSelected={state[dataFilterKey]} {...props} />
   )
 }
 

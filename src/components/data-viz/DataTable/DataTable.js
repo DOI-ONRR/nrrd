@@ -10,7 +10,9 @@ import {
   FISCAL_YEAR,
   CALENDAR_YEAR,
   NO_BREAKOUT_BY,
-  DISPLAY_NAMES
+  DISPLAY_NAMES,
+  PERIOD,
+  PERIOD_FISCAL_YEAR
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
@@ -204,8 +206,9 @@ const DataTableImpl = data => {
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
   const getHiddenColumns = () => {
     let yearColumns = []
-    if (state[CALENDAR_YEAR] || state[FISCAL_YEAR]) {
-      let years = (state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',') : state[FISCAL_YEAR].split(',')
+    const periodYear = (state[PERIOD] === PERIOD_FISCAL_YEAR)? FISCAL_YEAR : CALENDAR_YEAR
+    if (state[periodYear]) {
+      let years = state[periodYear].split(',')
       years = years.map(item => `y${ item }`)
       yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !years.includes(item.name)))
     }

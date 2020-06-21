@@ -137,7 +137,7 @@ export default BaseSelectInput
 // Single Select Input
 const BaseSingleSelectInput = ({ data, defaultSelected, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
   const classes = useStyles()
-  const labelSlug = formatToSlug('Commodity')
+  const labelSlug = formatToSlug(label)
 
   /**
    * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
@@ -147,13 +147,13 @@ const BaseSingleSelectInput = ({ data, defaultSelected, label, helperText, varia
     let defaultItem
     if (data) {
       if (defaultSelected) {
-        defaultItem = data.find(item => item.option === defaultSelected)
+        defaultItem = data.find(item => (item.option === defaultSelected || item.value === defaultSelected))
       }
       else {
         defaultItem = data.find(item => item.default)
       }
     }
-    return (defaultItem && !disabled) ? defaultItem.option : ''
+    return (defaultItem && !disabled) ? (defaultItem.value || defaultItem.option) : ''
   }
   const [selectedOption, setSelectedOption] = useState(getDefaultSelected())
 
@@ -191,7 +191,7 @@ const BaseSingleSelectInput = ({ data, defaultSelected, label, helperText, varia
            data.map((item, i) =>
              <MenuItem
                key={`${ item.option }_${ i }`}
-               value={item.option}>
+               value={item.value || item.option}>
                {item.option}
              </MenuItem>)
         }
@@ -213,6 +213,7 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
 
   const [selectedOptions, setSelectedOptions] = useState([])
   const [selectAllOptions, setSelectAllOptions] = useState(defaultSelectAll)
+  const [selectedOptionsChanged, setSelectedOptionsChanged] = useState(false)
 
   const handleChange = event => {
     if (event.target.value.includes('selectAll')) {
@@ -227,10 +228,13 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
       setSelectedOptions(event.target.value)
       setSelectAllOptions(false)
     }
+    setSelectedOptionsChanged(true)
   }
 
   const handleClose = event => {
-    onChange(selectedOptions.toString())
+    if (selectedOptionsChanged) {
+      onChange(selectedOptions.toString())
+    }
   }
 
   useEffect(() => {
@@ -263,7 +267,7 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
         </MenuItem>
         {data &&
           data.map(
-            (item, i) => <MenuItem key={`${ item.option }_${ i }`} value={item.option}>
+            (item, i) => <MenuItem key={`${ item.option }_${ i }`} value={item.value || item.option}>
               <Checkbox
                 checked={selectedOptions.includes(item.option)} />
               <ListItemText primary={item.option} />

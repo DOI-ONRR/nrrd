@@ -1,6 +1,9 @@
 import React, { useReducer, useEffect } from 'react'
 import { useActions } from './actions.js'
 import { initialState, reducer } from './reducers'
+import {
+  DATA_TYPE
+} from '../../constants'
 
 const DataFilterContext = React.createContext(initialState)
 

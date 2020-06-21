@@ -43,6 +43,10 @@ export const REVENUE_TYPE_OPTIONS = 'revenueTypeOptions'
 export const FISCAL_YEAR_OPTIONS = 'fiscalYearOptions'
 
 export const DISPLAY_NAMES = {
+  [DATA_TYPE]: {
+    default: 'Data type',
+    plural: 'Data types',
+  },
   [REVENUE_TYPE]: {
     default: 'Revenue type',
     plural: 'Revenue types',

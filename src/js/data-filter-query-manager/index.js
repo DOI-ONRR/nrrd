@@ -86,11 +86,10 @@ const VARIABLES = {
   }),
   [DISBURSEMENT]: state => ({
     variables: {
-      [RECIPIENT]: (state[RECIPIENT] === ZERO_OPTIONS) ? undefined : state[RECIPIENT],
-      [OFFSHORE_REGION]: (state[SOURCE] === ZERO_OPTIONS || !state[SOURCE]) ? undefined : state[SOURCE].split(','),
+      [RECIPIENT]: (state[RECIPIENT] === ZERO_OPTIONS || !state[RECIPIENT]) ? undefined : state[RECIPIENT].split(','),
+      [SOURCE]: (state[SOURCE] === ZERO_OPTIONS || !state[SOURCE]) ? undefined : state[SOURCE].split(','),
       [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
       [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
-      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
       [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
       [CALENDAR_YEAR]: (state[PERIOD] === PERIOD_CALENDAR_YEAR && state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',').map(year => parseInt(year)) : undefined,
       [FISCAL_YEAR]: (state[PERIOD] === PERIOD_FISCAL_YEAR && state[FISCAL_YEAR]) ? state[FISCAL_YEAR].split(',').map(year => parseInt(year)) : undefined,
