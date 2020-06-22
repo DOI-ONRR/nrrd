@@ -9,7 +9,7 @@ import { types } from './reducers'
 export const useActions = (state, dispatch) => {
   const updateDataFilter = updatedFilter => {
     let params = ''
-    // omit the following properties, might be better to store location ids in comma seperated list
+    // omit the following properties
     const propsToExclude = [
       'arcs',
       'cards',

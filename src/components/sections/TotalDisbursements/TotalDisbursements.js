@@ -106,6 +106,7 @@ const TotalDisbursements = props => {
   let maxCalendarYear
   let xGroups = {}
   let disabledInput = false
+  let legendHeaders
 
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -140,6 +141,11 @@ const TotalDisbursements = props => {
       xLabels = (x, i) => {
         // console.debug(x)
         return x.map(v => v.substr(0, 3))
+      }
+
+      legendHeaders = (headers, row) => {
+        const headerArr = [headers[0], '', `${ row.xLabel } ${ row.year }`]
+        return headerArr
       }
     }
     else {
@@ -182,6 +188,7 @@ const TotalDisbursements = props => {
             yGroupBy={yGroupBy}
             xLabels={xLabels}
             legendFormat={v => utils.formatToDollarInt(v)}
+            legendHeaders={legendHeaders}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
             <Link href='/downloads/disbursements/'>Source file</Link>

@@ -17,14 +17,14 @@ import {
   useMediaQuery
 } from '@material-ui/core'
 
-import ExploreIcon from '@material-ui/icons/Explore'
 import MapIcon from '@material-ui/icons/Map'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import SearchIcon from '@material-ui/icons/Search'
 import AddIcon from '@material-ui/icons/Add'
 
 // import MapSelectControl from './MapSelectControl'
 import MapToolbarSelect from '../../inputs/MapToolbarSelect'
+import MapControlSwitch from '../../inputs/MapControlSwitch'
+import MapControlToggle from '../../inputs/MapControlToggle'
 import CONSTANTS from '../../../js/constants'
 
 import { StoreContext } from '../../../store'
@@ -72,7 +72,11 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'flex-start',
       width: '100%',
       overflowX: 'auto',
-    }
+    },
+  },
+  toolbarPageControls: {
+    display: 'flex',
+    marginTop: theme.spacing(0.5),
   },
   mapExploreMenu: {
     position: 'absolute',
@@ -169,6 +173,26 @@ const useStyles = makeStyles(theme => ({
   },
   tooltipRoot: {
     backgroundColor: 'rgba(0, 0, 0, 0.85)',
+  },
+  mapControls: {
+    // border: '2px solid deeppink',
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderLeft: `1px solid ${ theme.palette.grey[400] }`,
+    paddingLeft: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+    '& fieldset:first-child': {
+      marginTop: 0,
+    },
+    '& fieldset:last-child': {
+      marginTop: theme.spacing(3),
+    },
+    '& div:first-child': {
+      marginTop: 0,
+      marginRight: theme.spacing(4),
+    },
   }
 }))
 
@@ -178,15 +202,18 @@ const MAP_DATA_TYPE_SELECT_OPTIONS = [
   'Production'
 ]
 
-const MAP_LEVEL_OPTIONS = [
-  'State',
-  'County'
-]
-
-const MAP_OFFSHORE_SELECT_OPTIONS = [
-  'Show',
-  'Hide'
-]
+const MAP_LEVEL_OPTIONS = {
+  options: [
+    {
+      option: 'State',
+      value: 'State'
+    },
+    {
+      option: 'County',
+      value: 'County'
+    }
+  ]
+}
 
 // const MAP_TIMEFRAME_OPTIONS = [
 //   CONSTANTS.YEARLY,
@@ -374,45 +401,29 @@ const ExploreDataToolbar = props => {
         {(menu.showMapTools || !matchesMdLgUp) &&
           /* Map toolbar selections */
           <Box className={classes.toolbarControls}>
-            <MapToolbarSelect
-              dataFilterKey={DFC.DATA_TYPE}
-              data={MAP_DATA_TYPE_SELECT_OPTIONS}
-              defaultOption={ dataType || REVENUE }
-              label='Data type'
-              helperText=''
-              selectType='Single' />
-
-            <MapToolbarSelect
-              dataFilterKey={DFC.COUNTIES}
-              data={MAP_LEVEL_OPTIONS}
-              defaultOption={ counties || 'State' }
-              label='Map level'
-              helperText=''
-              selectType='Single' />
-
-            {(dataType !== 'Disbursements') &&
+            <Box className={classes.toolbarPageControls}>
               <MapToolbarSelect
-                dataFilterKey={DFC.OFFSHORE_REGIONS}
-                data={MAP_OFFSHORE_SELECT_OPTIONS}
-                defaultOption={ offshoreRegion || 'Hide' }
-                label='Offshore map'
+                dataFilterKey={DFC.DATA_TYPE}
+                data={MAP_DATA_TYPE_SELECT_OPTIONS}
+                defaultOption={ dataType || REVENUE }
+                label='Data type'
                 helperText=''
                 selectType='Single' />
-            }
-            {/* <MapToolbarSelect
+
+              {/* <MapToolbarSelect
                   data={MAP_TIMEFRAME_OPTIONS}
                   label='Timeframe'
                   dataFilterKey={DFC.TIMEFRAME'} /> */}
 
-            <MapToolbarSelect
-              dataFilterKey={DFC.OFFSHORE_REGIONS}
-              data={MAP_PERIOD_OPTIONS}
-              defaultOption={'Fiscal year'}
-              label='Fiscal year'
-              helperText=''
-              selectType='Single' />
+              <MapToolbarSelect
+                dataFilterKey={DFC.OFFSHORE_REGIONS}
+                data={MAP_PERIOD_OPTIONS}
+                defaultOption={'Fiscal year'}
+                label='Fiscal year'
+                helperText=''
+                selectType='Single' />
 
-            {(dataType === 'Revenue') &&
+              {(dataType === 'Revenue') &&
               <MapToolbarSelect
                 dataFilterKey={DFC.COMMODITIES}
                 data={revenueCommodityOptions}
@@ -420,16 +431,34 @@ const ExploreDataToolbar = props => {
                 label='Commodity'
                 selectType='Multi'
                 helperText='' />
-            }
+              }
 
-            {(dataType === 'Production') &&
+              {(dataType === 'Production') &&
               <MapToolbarSelect
                 dataFilterKey={DFC.COMMODITY}
                 data={productionCommodityOptions}
                 defaultOption='Oil (bbl)'
                 label='Commodity'
                 selectType='Single' />
-            }
+              }
+            </Box>
+
+            <Box className={classes.mapControls}>
+              <MapControlToggle
+                dataFilterKey={DFC.COUNTIES}
+                data={MAP_LEVEL_OPTIONS}
+                label="Map level toggle" />
+
+              <MapControlSwitch
+                dataFilterKey={DFC.OFFSHORE_REGIONS}
+                defaultOption={false}
+                checked={offshoreRegion || false}
+                label='Show offshore'
+                helperText=''
+                disabled={dataType === 'Disbursements'}
+                selectType='Single' />
+
+            </Box>
           </Box>
         }
 
