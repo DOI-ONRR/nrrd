@@ -145,7 +145,7 @@ const main = async () => {
           let unit_abbr
           if(raw_volume) {
             [unit, unit_abbr]= await getUnit(row)
-                       console.debug("Row --->: ", row)
+            //console.debug("Row --->: ", row)
           }
           row = await NativeAmerican(row)
 
@@ -153,7 +153,7 @@ const main = async () => {
           // console.debug("location: ", location)
 	  const location_id = location[0]
 	  const commodity = await addCommodity(row, commodity_lookup)
-           console.debug("commodity: ", commodity)
+          // console.debug("commodity: ", commodity)
 	  const commodity_id = commodity[0]
 	  const period = await addPeriod(row, period_lookup)
 	  const period_id = period[0]
@@ -206,7 +206,9 @@ const getLocationName = (row) => {
     let county = row['County']
     county = county.replace(' Borough','')
     county = county.replace(' County','')
+    county = county.replace(' Caounty','')
     county = county.replace(' Parish','')
+    county = county.replace('St ', 'St. ')
     location_name=STATE_NAME_MAP[row['State']]+', '+county
 
   } else if (  row['State'] &&  row['State'].length > 0 ) {
@@ -269,6 +271,10 @@ const getLandType = (row) => {
     } else {
       r=row['Land Class']+' '+row['Land Category']
     }
+  } else if(  row['Onshore/Offshore'] &&  (row['State'].length > 0 || row['County'].length > 0 ) ) {
+      r='Federal '+row['Onshore/Offshore']
+  } else if(  row['Onshore/Offshore'] === 'Onshore & Offshore' ) {
+    r='Federal Onshore and Offshore' 
   } else if ( row['Land Class'] &&  row['Land Category'] && row['Land Class'].length > 0 && row['Land Category'].length === 0 ) {  
     r='Federal - not tied to a location'
   } else {
@@ -290,7 +296,7 @@ const getFipsCode = (row) => {
     offshore_planning_area_code=fips_code
   }
   else if( fips_code.length === 0 && row['State'] && row['State'].length > 0 && row['County'] && row['County'].length > 0 ) {
-    let county=row['County'].replace(/County|Borough|Parish/, '')
+    let county=row['County'].replace(/County|Borough|Parish|Caounty/, '')
     county=county.trim()
     fips_code=COUNTY_LOOKUP[row['State']+'-'+county]
     
@@ -448,7 +454,7 @@ const initLocation = lookup => {
 const insertRevenue = async (commodity_id, location_id, period_id, duplicate_no, raw_revenue, row) => {
   const revenue = cleanValue(raw_revenue)
   try {
-    const insert = await db.query('insert into revenue( location_id, period_id, commodity_id, duplicate_no, revenue , raw_revenue) values ($1 , $2 , $3 , $4 , $5, $6 )', [location_id, period_id, commodity_id, duplicate_no, revenue, raw_revenue])
+    const insert = await db.query('insert into revenue( location_id, period_id, commodity_id, duplicate_no, revenue , raw_revenue, row_number) values ($1 , $2 , $3 , $4 , $5, $6, $7 )', [location_id, period_id, commodity_id, duplicate_no, revenue, raw_revenue, row.__line])
   }
   catch (err) {
     if (err.stack.match('duplicate')) {
@@ -530,7 +536,9 @@ const addLocation = async (row, lookup) => {
       county = row[field]
       county = county.replace(' Borough','')
       county = county.replace(' County','')
+      county = county.replace(' Caounty','')
       county = county.replace(' Parish','')
+      county = county.replace('St ','St. ')
       break
     case 'Land Class':
       land_class = row[field]
@@ -624,7 +632,7 @@ const addCommodity = async (row, lookup) => {
   let disbursement_type = ''
   let disbursement_category = ''
   let commodity_order = ''
-   console.debug('Row: ', row);
+  //   console.debug('Row: ', row);
   for (let field in row) {
     field=field.trim()
     //    console.debug('FIeld:',field,':')
@@ -677,7 +685,7 @@ const addCommodity = async (row, lookup) => {
   }
   
   const key = product + '-' + commodity + '-' + revenue_type + '-' + revenue_category + '-' + mineral_lease_type + '-' + disbursement_type + '-' + fund_type + '-' + disbursement_category
-  console.debug('commodity', key)
+//  console.debug('commodity', key)
   if (lookup[key]) {
     return lookup[key]
   }
@@ -1214,32 +1222,32 @@ const STATE_FIPS_MAP =
 
 const OFFSHORE_FIPS_MAP =
       {
-        'Aleutian Arc': 'ALA',
-        'Aleutian Basin': 'ALB',
-        'Beaufort Sea': 'BFT',
-        'Bowers Basin': 'BOW',
-        'Chukchi Sea': 'CHU',
-        'Cook Inlet': 'COK',
-        'St. George Basin': 'GEO',
-        'Gulf of Alaska': 'GOA',
-        'Hope Basin': 'HOP',
-        'Kodiak': 'KOD',
-        'St. Matthew-Hall': 'MAT',
-        'North Aleutian Basin': 'NAL',
-        'Navarin Basin': 'NAV',
-        'Norton Basin': 'NOR',
-        'Shumagin': 'SHU',
-        'Florida Straits': 'FLS',
-        'Mid Atlantic': 'MDA',
-        'North Atlantic': 'NOA',
-        'South Atlantic': 'SOA',
-        'Western Gulf of Mexico': 'WGM',
-        'Central Gulf of Mexico': 'CGM',
-        'Eastern Gulf of Mexico': 'EGM',
-        'Central California': 'CEC',
-        'Northern California': 'NOC',
-        'Southern California': 'SOC',
-        'Washington-Oregon': 'WAO'
+        'Aleutian Arc': 'AKR',
+        'Aleutian Basin': 'AKR',
+        'Beaufort Sea': 'AKR',
+        'Bowers Basin': 'AKR',
+        'Chukchi Sea': 'AKR',
+        'Cook Inlet': 'AKR',
+        'St. George Basin': 'AKR',
+        'Gulf of Alaska': 'AKR',
+        'Hope Basin': 'AKR',
+        'Kodiak': 'AKR',
+        'St. Matthew-Hall': 'AKR',
+        'North Aleutian Basin': 'AKR',
+        'Navarin Basin': 'AKR',
+        'Norton Basin': 'AKR',
+        'Shumagin': 'AKR',
+        'Florida Straits': 'AOR',
+        'Mid Atlantic': 'AOR',
+        'North Atlantic': 'AOR',
+        'South Atlantic': 'AOR',
+        'Western Gulf of Mexico': 'GMR',
+        'Central Gulf of Mexico': 'GMR',
+        'Eastern Gulf of Mexico': 'GMR',
+        'Central California': 'POR',
+        'Northern California': 'POR',
+        'Southern California': 'POR',
+        'Washington-Oregon': 'POR'
       }
 
 const COUNTY_LOOKUP = {
@@ -2332,23 +2340,30 @@ const COUNTY_LOOKUP = {
  'KY-Union': '21225',
  'KY-McCreary': '21147',
  'KY-Grayson': '21085',
- 'KY-Letcher': '21133',
+  'KY-Letcher': '21133',
  'KY-Bell': '21013',
  'KY-Lee': '21129',
  'KY-Estill': '21065',
  'KY-Mccreary': '21147',
  'KY-Meade': '21163',
- 'LA-Rapides': '22079',
+  'LA-Iberia': '22045',
+  'LA-Rapides': '22079',
  'LA-Sabine': '22085',
- 'LA-South': '22721',
+  'LA-South': '22721',
+  'LA-St. Bernard': '22087',
  'LA-St Charles': '22089',
- 'LA-St. Martin': '22099',
+  'LA-St. Charles': '22089',
+  'LA-St. James': '22093',
+     'LA-St. John the Baptist': '22095',
+  'LA-St. Martin': '22099',
+ 'LA-St. Tammany': '22103',
  'LA-Natchitoches': '22069',
  'LA-Ouachita': '22073',
  'LA-Plaquemines': '22075',
  'LA-Rapides': '22079',
  'LA-South Pass': '22721',
  'LA-St. Martin': '22099',
+ 'LA-Tangipahoa': '22105',
  'LA-Terrebonne': '22109',
  'LA-Union': '22111',
  'LA-Vermilion': '22113',
@@ -4041,20 +4056,28 @@ const COUNTY_LOOKUP = {
  'SD-Douglas': '46043',
  'SD-Fall River': '46047',
  'SD-Harding': '46063',
- 'SD-Harding': '46063',
- 'TN-Scott': '47151',
- 'TN-Scott': '47151',
- 'TX-DeWitt': '48123',
- 'TX-Hemphill': '48211',
- 'TX-Grayson': '48181',
- 'TX-Gray': '48179',
- 'TX-Fayette': '48149',
- 'TX-De Witt': '48123',
- 'TX-Houston': '48225',
- 'TX-Fannin': '48147',
- 'TX-Jefferson': '48245',
- 'TX-Terry': '48445',
- 'TX-Robertson': '48395',
+  'SD-Harding': '46063',
+  'TN-Scott': '47151',
+  'TN-Scott': '47151',
+  'TX-Aransas': '48007',
+  'TX-Calhoun': '48057',
+  'TX-Cameron': '48061',
+  'TX-DeWitt': '48123',
+  'TX-Hemphill': '48211',
+  'TX-Grayson': '48181',
+  'TX-Gray': '48179',
+  'TX-Fayette': '48149',
+  'TX-De Witt': '48123',
+  'TX-Houston': '48225',
+  'TX-Fannin': '48147',
+  'TX-Jefferson': '48245',
+  'TX-Kenedy': '48261',
+  'TX-Matagorda': '48321',
+  'TX-Refugio': '48391',
+  'TX-San Patricio': '48409',
+  'TX-Victoria': '48469',
+  'TX-Terry': '48445',
+  'TX-Robertson': '48395',
  'TX-Brazoria': '48039',
  'TX-Harrison': '48203',
  'TX-Johnson': '48251',
@@ -4193,7 +4216,8 @@ const COUNTY_LOOKUP = {
  'TX-Walker': '48471',
  'TX-Denton': '48121',
  'TX-Nueces': '48355',
- 'TX-Ochiltree': '48357',
+  'TX-Ochiltree': '48357',
+  'TX-Orange': '48361',
  'TX-Kleberg': '48273',
  'TX-Lee': '48287',
  'TX-Live Oak': '48297',

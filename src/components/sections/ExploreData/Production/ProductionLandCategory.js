@@ -69,7 +69,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionLandCategory = ({ title, ...props }) => {
-  // console.log('ProductionLandCategory props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -82,8 +81,14 @@ const ProductionLandCategory = ({ title, ...props }) => {
   if (props.state === CONSTANTS.NATIONWIDE_FEDERAL || props.state === CONSTANTS.NATIVE_AMERICAN) {
     location = props.state
   }
+  else if (props.fips.length === 5) {
+    location = 'County'
+  }
+  else if (props.fips.length === 3) {
+    location = 'Offshore'
+  }
   else {
-    location = props.fips.length === 5 ? 'County' : 'State'
+    location = 'State'
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'

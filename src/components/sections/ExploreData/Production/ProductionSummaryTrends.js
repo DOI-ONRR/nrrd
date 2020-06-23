@@ -84,12 +84,10 @@ const ProductionSummaryTrends = props => {
       item.fiscal_year,
       item.sum
     ])
-    console.debug("FD1 :" , fiscalData)
     fiscalData = d3.nest()
       .key(k => k.fiscal_year)
       .rollup(v => d3.sum(v, i => i.sum))
       .entries(data.fiscal_production_summary.filter(row => row.state_or_area === state)).map(item => [parseInt(item.key), item.value])
-        console.debug("FD2 :" , fiscalData)
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
       const sum = fiscalData.find(x => x[0] === item.fiscal_year)
@@ -98,7 +96,6 @@ const ProductionSummaryTrends = props => {
         sum ? sum[1] : 0
       ])
     })
-    console.debug("SD1 :" , sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
