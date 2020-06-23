@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect} from 'react'
 import clsx from 'clsx'
 
@@ -77,6 +78,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
   if (!state) {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
+  state.dataType=(state.dataType) ? state.dataType : 'Revenue'
   const classes = useStyles()
 
   const [dataFilterToolbarOpen, setDataFilterToolbarOpen] = React.useState(true)
@@ -99,7 +101,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
   }
 
   return (
-    <>
+    <><div> WTH </div>
       <BaseToolbar>
         <Box mt={2} mb={2}>
           <Grid container direction='row' justify='flex-start' alignItems='flex-end' spacing={1}>
