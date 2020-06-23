@@ -168,13 +168,16 @@ const config = {
       options: {
         modules: [
           '@pmmmwh',
+          'core-js',
           'debug',
-          // 'es6.regexp.match',
+          'es6.regexp.match',
+          'es6.regexp.flags',
           '_fix-re-wks',
           'gatsby-plugin-layout',
           'html-entities',
           'query-string',
           'regexpu-core',
+          '_regexp-exec',
           'split-on-first',
           'unicode-match-property-ecmascript',
           'unicode-match-property-value-ecmascript',
