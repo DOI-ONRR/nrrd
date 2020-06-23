@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   toggleButtonRoot: {
     textTransform: 'capitalize',
+    color: theme.palette.grey[900],
     '& .Mui-selected': {
       backgroundColor: theme.palette.primary.dark,
     },

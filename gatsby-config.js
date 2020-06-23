@@ -163,6 +163,7 @@ const config = {
         },
       },
     },
+    'gatsby-plugin-use-query-params',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
