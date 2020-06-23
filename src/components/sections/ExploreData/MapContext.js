@@ -1,6 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import gql from 'graphql-tag'
+
+import {
+  useQueryParams,
+  StringParam,
+  ArrayParam,
+  encodeDelimitedArray,
+  decodeDelimitedArray
+} from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -262,6 +269,10 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const EncodeCommaArrayParam = array => encodeDelimitedArray(array, ',')
+
+const DecodeArrayStr = arrayStr => decodeDelimitedArray(arrayStr, ',')
+
 const MapContext = props => {
   const data = useStaticQuery(graphql`
     query StateLinksQuery {
@@ -279,6 +290,12 @@ const MapContext = props => {
   const classes = useStyles()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
+
+  // urlQuery state
+  const [queryParams, setQueryParams] = useQueryParams({
+    dataType: StringParam,
+    location: ArrayParam
+  })
   const cards = pageState.cards
 
   const [mapOverlay, setMapOverlay] = useState(false)
@@ -412,6 +429,7 @@ const MapContext = props => {
     }
 
     dispatch({ type: 'CARDS', payload: cards })
+
   }
 
   const countyLevel = filterState[DFC.COUNTIES] === 'County'
@@ -477,11 +495,11 @@ const MapContext = props => {
   }
 
   useEffect(() => {
-    // get location param, strip any trailing slash and create array
-    const locationParam = filterState.location && filterState.location.replace(/\/$/, '').split(',')
+    // get decoded location param
+    const locationParam = DecodeArrayStr(queryParams.location)
 
     // filter out location based on location params
-    if (typeof locationParam !== 'undefined') {
+    if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
       const filteredLocations = data.onrr.state_offshore_locations.filter(item => {
         for (const elem of locationParam) {
           if (elem === item.state) {
@@ -504,6 +522,13 @@ const MapContext = props => {
       }
     }
   }, [data])
+
+  useEffect(() => {
+    setQueryParams({
+      dataType: filterState.dataType,
+      location: cards.length > 0 ? EncodeCommaArrayParam(cards.map(item => item.abbr)) : []
+    })
+  }, [pageState])
 
   console.log('mapJsonObject: ', mapJsonObject)
 
