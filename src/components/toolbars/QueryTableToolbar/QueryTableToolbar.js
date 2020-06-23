@@ -101,7 +101,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
   }
 
   return (
-    <><div> WTH </div>
+    <>
       <BaseToolbar>
         <Box mt={2} mb={2}>
           <Grid container direction='row' justify='flex-start' alignItems='flex-end' spacing={1}>
