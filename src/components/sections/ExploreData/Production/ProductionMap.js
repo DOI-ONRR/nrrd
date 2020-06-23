@@ -13,6 +13,7 @@ const APOLLO_QUERY = gql`
     fiscal_production_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}) {
       fiscal_year
       state_or_area
+      unit_abbr
       sum
       
     }
@@ -30,7 +31,8 @@ export default props => {
   })
 
   let mapData = [[]]
-
+  let unit=''
+  
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -38,6 +40,7 @@ export default props => {
       item.state_or_area,
       item.sum
     ])
+    unit = data.fiscal_production_summary[0].unit_abbr
   }
 
   return (
@@ -62,7 +65,7 @@ export default props => {
               return ''
             }
             else {
-              return d3.format(',.0f')(d)
+              return d3.format(',.0f')(d) + ' ' + unit
             }
           }
           }

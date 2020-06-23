@@ -124,7 +124,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
       return (
 
         <Box className={classes.root}>
-          {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
+          {title && <Box component="h4" fontWeight="bold" mb={2}>{title + ' - ' + commodity}</Box>}
           <Box>
             <LineChart
               key={'PLC' + dataSet }

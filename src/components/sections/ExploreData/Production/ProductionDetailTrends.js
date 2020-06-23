@@ -33,12 +33,14 @@ const APOLLO_QUERY = gql`
     ) {
       fiscal_year
       state_or_area
+      unit_abbr
       sum
     }
     # location total
     locationTotal:fiscal_production_summary(where: {state_or_area: {_eq: $state}, commodity: {_eq: $commodity} , fiscal_year: {_eq: $year}}) {
       fiscal_year
       state_or_area
+      unit_abbr
       sum
     }
     period(where: {period: {_ilike: $period }}) {
@@ -75,14 +77,14 @@ const ProductionDetailTrends = props => {
   let fiscalData
   let locationTotalData
   let locData
-
+  let unit = ''
   if (data) {
     periodData = data.period
 
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-    
+    unit = data.fiscal_production_summary[0].unit_abbr
     
     fiscalData = d3.nest()
       .key(k => k.fiscal_year)
@@ -117,7 +119,7 @@ const ProductionDetailTrends = props => {
     return (
       <>
         <Box textAlign="center" className={classes.root} key={props.key}>
-          <Box component="h2" mt={0} mb={0}>{utils.formatToCommaInt(locData)}</Box>
+        <Box component="h2" mt={0} mb={0}  style={{whiteSpace: 'nowrap'}} >{utils.formatToCommaInt(locData) + ' ' + unit}</Box>
           <Box component="span" mb={4}>{year && <span>{dataSet} production</span>}</Box>
           {sparkData.length > 1 && (
             <Box mt={4}>

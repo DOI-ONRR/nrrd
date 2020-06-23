@@ -151,11 +151,11 @@ const ProductionTopLocations = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = `FY ${ year }`
-
+  const dataSet = `FY ${ year } ${commodity}`
+  let unitAbbr=''
   if (data && (data.state_fiscal_production_summary.length || data.fiscal_production_summary.length)) {
-    if (location === 'County') {
-      const unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
+    if (data.state_fiscal_production_summary.length > 0  && location === 'County') {
+      unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
         .rollup(v => d3.sum(v, i => i.sum))
@@ -165,7 +165,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
     }
     else {
-      const unitAbbr = data.fiscal_production_summary[0].unit_abbr
+      unitAbbr = data.fiscal_production_summary[0].unit_abbr
       let tmp = data.fiscal_production_summary
       if (props.abbr) {
         tmp = data.fiscal_production_summary.filter( d => d.location_name !== 'Native American lands')       
@@ -190,7 +190,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
             maxLegendWidth={maxLegendWidth}
             xAxis='location_name'
             yAxis='sum'
-            format={ d => utils.formatToCommaInt(d) }
+      format={ d =>{ return  utils.formatToCommaInt(d) + ' '+ unitAbbr } }
             circleLabel={
               d => {
                 // console.debug('circleLABLE: ', d)
