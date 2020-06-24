@@ -272,11 +272,12 @@ const DisbursementFilterToolbar = () => {
 }
 
 const RevenueGroupingToolbar = () => {
+  const dataTypeProp = { [DATA_TYPE]: REVENUE }
   return (
     <BaseToolbar borderColor={'rgba(188, 113, 0, 0.5)'}>
       <Box mt={2} mb={2}>
-        <GroupBySelectInput />
-        <BreakoutBySelectInput />
+        <GroupBySelectInput {...dataTypeProp} />
+        <BreakoutBySelectInput {...dataTypeProp} />
       </Box>
     </BaseToolbar>
   )
