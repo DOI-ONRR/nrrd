@@ -112,14 +112,14 @@ const ProductionOverTime = props => {
     const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
     const sums = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
     const units = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.unit_abbr))])
-
+    
     chartData = [years, ...sums]
 
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-            <Box component="h4" color="secondary.dark">{title + ' - ' + commodity }</Box>
+            <Box component="h4" color="secondary.dark">{title + ' (' + units[0] + ')' }</Box>
           </Box>
         </Grid>
         <Grid item md={12}>
