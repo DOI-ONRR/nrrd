@@ -4,7 +4,6 @@ import { useStaticQuery, graphql } from 'gatsby'
 import {
   useQueryParams,
   StringParam,
-  ArrayParam,
   encodeDelimitedArray,
   decodeDelimitedArray
 } from 'use-query-params'
@@ -269,15 +268,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const EncodeCommaArrayParam = array => encodeDelimitedArray(array, ',')
-
-const DecodeArrayStr = arrayStr => decodeDelimitedArray(arrayStr, ',')
-
 const MapContext = props => {
   const data = useStaticQuery(graphql`
     query StateLinksQuery {
       onrr {
-        state_offshore_locations: location(where: {region_type: {_in: ["State", "Offshore"]}, fips_code: {_neq: ""}}, distinct_on: fips_code) {
+        locations: location(where: {region_type: {_in: ["State", "Offshore", "County"]}, fips_code: {_neq: ""}}, distinct_on: fips_code) {
           fips_code
           location_name
           state
@@ -287,6 +282,11 @@ const MapContext = props => {
     }
   `)
 
+  const CommaArrayParam = {
+    encode: array => encodeDelimitedArray(array, ','),
+    decode: arrayStr => decodeDelimitedArray(arrayStr, ',')
+  }
+
   const classes = useStyles()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
@@ -294,8 +294,9 @@ const MapContext = props => {
   // urlQuery state
   const [queryParams, setQueryParams] = useQueryParams({
     dataType: StringParam,
-    location: ArrayParam
+    location: CommaArrayParam,
   })
+
   const cards = pageState.cards
 
   const [mapOverlay, setMapOverlay] = useState(false)
@@ -400,7 +401,7 @@ const MapContext = props => {
     let abbr
     if (fips && fips.length > 2) {
       abbr = fips
-      stateAbbr = state.properties.state ? state.properties.state : state.properties.region
+      stateAbbr = state.properties ? state.properties.state : state.abbr
     }
     else {
       abbr = state.properties ? state.properties.abbr : state.abbr
@@ -429,7 +430,6 @@ const MapContext = props => {
     }
 
     dispatch({ type: 'CARDS', payload: cards })
-
   }
 
   const countyLevel = filterState[DFC.COUNTIES] === 'County'
@@ -496,13 +496,15 @@ const MapContext = props => {
 
   useEffect(() => {
     // get decoded location param
-    const locationParam = DecodeArrayStr(queryParams.location)
+    const locationParam = queryParams.location
+
+    console.log('locationParam: ', locationParam)
 
     // filter out location based on location params
     if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
-      const filteredLocations = data.onrr.state_offshore_locations.filter(item => {
+      const filteredLocations = data.onrr.locations.filter(item => {
         for (const elem of locationParam) {
-          if (elem === item.state) {
+          if (elem === item.fips_code) {
             return item
           }
         }
@@ -526,9 +528,9 @@ const MapContext = props => {
   useEffect(() => {
     setQueryParams({
       dataType: filterState.dataType,
-      location: cards.length > 0 ? EncodeCommaArrayParam(cards.map(item => item.abbr)) : []
-    })
-  }, [pageState])
+      location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
+    }, 'push')
+  }, [pageState, filterState])
 
   console.log('mapJsonObject: ', mapJsonObject)
 
