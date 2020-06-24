@@ -60,6 +60,11 @@ const BaseDataFilterRangeSlider = ({ dataFilterKey, label = 'Years', helperText,
 
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
+    return () => {
+      if (loading) {
+        updateLoadingStatus({ status: false, message: loadingMessage })
+      }
+    }
   }, [loading])
 
   return (

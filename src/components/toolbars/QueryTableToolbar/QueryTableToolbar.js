@@ -110,7 +110,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
               <Typography variant="h1">{label}</Typography>
             </Box>
             }
-            <DataTypeSelectInput defaultSelected={REVENUE} />
+            <DataTypeSelectInput />
             <Box m={'8px'}>
               <ToggleButton
                 value='open'
@@ -272,12 +272,11 @@ const DisbursementFilterToolbar = () => {
 }
 
 const RevenueGroupingToolbar = () => {
-  const dataTypeProp = { [DATA_TYPE]: REVENUE }
   return (
     <BaseToolbar borderColor={'rgba(188, 113, 0, 0.5)'}>
       <Box mt={2} mb={2}>
-        <GroupBySelectInput {...dataTypeProp} />
-        <BreakoutBySelectInput {...dataTypeProp} />
+        <GroupBySelectInput />
+        <BreakoutBySelectInput />
       </Box>
     </BaseToolbar>
   )

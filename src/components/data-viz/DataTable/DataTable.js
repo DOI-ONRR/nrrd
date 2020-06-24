@@ -124,6 +124,11 @@ const RevenueDataTableImpl = () => {
 
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
+    return () => {
+      if (loading) {
+        updateLoadingStatus({ status: false, message: loadingMessage })
+      }
+    }
   }, [loading])
 
   return (
@@ -152,6 +157,11 @@ const ProductionDataTableImpl = () => {
 
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
+    return () => {
+      if (loading) {
+        updateLoadingStatus({ status: false, message: loadingMessage })
+      }
+    }
   }, [loading])
 
   return (
@@ -180,6 +190,11 @@ const DisbursementDataTableImpl = () => {
 
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
+    return () => {
+      if (loading) {
+        updateLoadingStatus({ status: false, message: loadingMessage })
+      }
+    }
   }, [loading])
 
   return (
