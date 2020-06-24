@@ -154,7 +154,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const dataSet = `FY ${ year }`
 
   if (data && (data.state_fiscal_production_summary.length || data.fiscal_production_summary.length)) {
-    if (location === 'County') {
+    if (data.state_fiscal_production_summary.length > 0  && location === 'County') {
       const unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
