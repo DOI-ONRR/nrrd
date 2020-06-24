@@ -10,7 +10,9 @@ import {
   FISCAL_YEAR,
   CALENDAR_YEAR,
   NO_BREAKOUT_BY,
-  DISPLAY_NAMES
+  DISPLAY_NAMES,
+  PERIOD,
+  PERIOD_FISCAL_YEAR
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
@@ -122,6 +124,11 @@ const RevenueDataTableImpl = () => {
 
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
+    return () => {
+      if (loading) {
+        updateLoadingStatus({ status: false, message: loadingMessage })
+      }
+    }
   }, [loading])
 
   return (
@@ -150,6 +157,11 @@ const ProductionDataTableImpl = () => {
 
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
+    return () => {
+      if (loading) {
+        updateLoadingStatus({ status: false, message: loadingMessage })
+      }
+    }
   }, [loading])
 
   return (
@@ -178,6 +190,11 @@ const DisbursementDataTableImpl = () => {
 
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
+    return () => {
+      if (loading) {
+        updateLoadingStatus({ status: false, message: loadingMessage })
+      }
+    }
   }, [loading])
 
   return (
@@ -204,8 +221,9 @@ const DataTableImpl = data => {
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
   const getHiddenColumns = () => {
     let yearColumns = []
-    if (state[CALENDAR_YEAR] || state[FISCAL_YEAR]) {
-      let years = (state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',') : state[FISCAL_YEAR].split(',')
+    const periodYear = (state[PERIOD] === PERIOD_FISCAL_YEAR)? FISCAL_YEAR : CALENDAR_YEAR
+    if (state[periodYear]) {
+      let years = state[periodYear].split(',')
       years = years.map(item => `y${ item }`)
       yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !years.includes(item.name)))
     }
@@ -269,31 +287,33 @@ const DataTableImpl = data => {
     <React.Fragment>
       {(aggregatedSums && aggregatedSums.length > 0) &&
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Box component="div" display="inline" mr={2}>
+          {false &&
+            <Grid item xs={12}>
+              <Box component="div" display="inline" mr={2}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  aria-label="open data filters"
+                  onClick={() => handleDownload('excel')}
+                  onKeyDown={() => handleDownload('excel')}
+                  startIcon={<IconDownloadXlsImg />}
+                >
+                Download table
+                </Button>
+
+              </Box>
               <Button
                 variant="contained"
                 color="primary"
                 aria-label="open data filters"
-                onClick={() => handleDownload('excel')}
-                onKeyDown={() => handleDownload('excel')}
-                startIcon={<IconDownloadXlsImg />}
+                onClick={() => handleDownload('csv')}
+                onKeyDown={() => handleDownload('csv')}
+                startIcon={<IconDownloadCsvImg />}
               >
-              Download table
+                Download table
               </Button>
-
-            </Box>
-            <Button
-              variant="contained"
-              color="primary"
-              aria-label="open data filters"
-              onClick={() => handleDownload('csv')}
-              onKeyDown={() => handleDownload('csv')}
-              startIcon={<IconDownloadCsvImg />}
-            >
-              Download table
-            </Button>
-          </Grid>
+            </Grid>
+          }
           <Grid item xs={12}>
             <TableGrid
               rows={aggregatedSums}

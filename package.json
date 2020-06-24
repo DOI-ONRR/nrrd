@@ -54,6 +54,7 @@
     "gatsby-transformer-sharp": "^2.5.2",
     "gatsby-transformer-yaml": "^2.4.1",
     "lazy.js": "^0.5.1",
+    "lodash": "^4.17.15",
     "ogr2ogr": "^2.0.0",
     "pg": "^7.18.2",
     "prop-types": "^15.7.2",
