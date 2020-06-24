@@ -47,8 +47,9 @@ const DefaultToggleButton = withStyles(theme =>
 })
 
 const BaseToggle = ({ dataFilterKey, data, label, legend, helperText, ...props }) => {
+
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const [toggleState, setToggleState] = useState(filterState[dataFilterKey] || data.options[0].value)
+  const [toggleState, setToggleState] = useState(filterState[dataFilterKey] || data[0].value)
 
   const handleChange = (event, newVal) => {
     setToggleState(newVal)
@@ -69,7 +70,7 @@ const BaseToggle = ({ dataFilterKey, data, label, legend, helperText, ...props }
           {...props}
         >
           { data &&
-            data.options.map((item, i) =>
+            data.map((item, i) =>
               <DefaultToggleButton value={item.value} aria-label={item.option}>
                 {item.option}
               </DefaultToggleButton>

@@ -30,7 +30,18 @@ import CONSTANTS from '../../../js/constants'
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
-import { REVENUE, DISBURSEMENT, PRODUCTION, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import {
+  COMMODITIES,
+  COUNTIES,
+  COUNTY,
+  DATA_FILTER_CONSTANTS as DFC,
+  DATA_TYPE,
+  DISBURSEMENT,
+  PERIOD,
+  PRODUCTION,
+  REVENUE,
+  US_STATE
+} from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -196,35 +207,24 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const MAP_DATA_TYPE_SELECT_OPTIONS = [
-  'Revenue',
-  'Disbursements',
-  'Production'
-]
-
-const MAP_LEVEL_OPTIONS = {
-  options: [
-    {
-      option: 'State',
-      value: 'State'
-    },
-    {
-      option: 'County',
-      value: 'County'
-    }
+const MAP_TOOLBAR_OPTIONS = {
+  [DATA_TYPE]: [
+    { value: REVENUE, option: 'Revenue' },
+    { value: PRODUCTION, option: 'Production' },
+    { value: DISBURSEMENT, option: 'Disbursements' },
+  ],
+  [PERIOD]: [
+    { value: CONSTANTS.FISCAL_YEAR, option: 'Fiscal year' },
+    { value: CONSTANTS.CALENDAR_YEAR, option: 'Calendar year' },
+    { value: CONSTANTS.MONTHLY, option: 'Monthly' }
+  ],
+  [COUNTIES]: [
+    { value: US_STATE, option: 'State' },
+    { value: COUNTY, option: 'County' }
   ]
 }
 
-// const MAP_TIMEFRAME_OPTIONS = [
-//   CONSTANTS.YEARLY,
-//   CONSTANTS.MONTHLY
-// ]
-
-const MAP_PERIOD_OPTIONS = [
-  // CONSTANTS.CALENDAR_YEAR,
-  CONSTANTS.FISCAL_YEAR,
-  // CONSTANTS.MONTHLY
-]
+console.log('maptoolbarOptions: ', MAP_TOOLBAR_OPTIONS)
 
 // Map explore menu speed dial
 const MapExploreMenu = props => {
@@ -403,29 +403,22 @@ const ExploreDataToolbar = props => {
           <Box className={classes.toolbarControls}>
             <Box className={classes.toolbarPageControls}>
               <MapToolbarSelect
-                dataFilterKey={DFC.DATA_TYPE}
-                data={MAP_DATA_TYPE_SELECT_OPTIONS}
-                defaultOption={ dataType || REVENUE }
+                dataFilterKey={dataType}
+                data={MAP_TOOLBAR_OPTIONS[DATA_TYPE]}
+                defaultSelected={ dataType || REVENUE }
                 label='Data type'
-                helperText=''
                 selectType='Single' />
 
-              {/* <MapToolbarSelect
-                  data={MAP_TIMEFRAME_OPTIONS}
-                  label='Timeframe'
-                  dataFilterKey={DFC.TIMEFRAME'} /> */}
-
               <MapToolbarSelect
-                dataFilterKey={DFC.OFFSHORE_REGIONS}
-                data={MAP_PERIOD_OPTIONS}
-                defaultOption={'Fiscal year'}
-                label='Fiscal year'
-                helperText=''
+                dataFilterKey={PERIOD}
+                data={MAP_TOOLBAR_OPTIONS[PERIOD]}
+                defaultSelected={'Fiscal year'}
+                label='Period'
                 selectType='Single' />
 
               {(dataType === 'Revenue') &&
               <MapToolbarSelect
-                dataFilterKey={DFC.COMMODITIES}
+                dataFilterKey={COMMODITIES}
                 data={revenueCommodityOptions}
                 defaultOption='Oil'
                 label='Commodity'
@@ -435,7 +428,7 @@ const ExploreDataToolbar = props => {
 
               {(dataType === 'Production') &&
               <MapToolbarSelect
-                dataFilterKey={DFC.COMMODITY}
+                dataFilterKey={COMMODITIES}
                 data={productionCommodityOptions}
                 defaultOption='Oil (bbl)'
                 label='Commodity'
@@ -445,8 +438,8 @@ const ExploreDataToolbar = props => {
 
             <Box className={classes.mapControls}>
               <MapControlToggle
-                dataFilterKey={DFC.COUNTIES}
-                data={MAP_LEVEL_OPTIONS}
+                dataFilterKey={COUNTIES}
+                data={MAP_TOOLBAR_OPTIONS[COUNTIES]}
                 label="Map level toggle" />
 
               <MapControlSwitch

@@ -5,49 +5,21 @@ import {
   InputBase
 } from '@material-ui/core'
 
-import {
-  withStyles,
-  createStyles
-} from '@material-ui/core/styles'
-
 import BaseSelectInput from '../BaseSelectInput'
 
-const DefaultInput = withStyles(theme =>
-  createStyles({
-    root: {
-      marginTop: theme.spacing(0.5),
-      paddingTop: theme.spacing(1.5),
-      'label + &': {
-        marginTop: 0,
-      },
-    },
-    input: {
-      borderRadius: 4,
-      backgroundColor: theme.palette.background.paper,
-      border: '1px solid #ced4da',
-      padding: '8.5px 14px',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
-      '&:focus': {
-        borderRadius: 4,
-        borderColor: '#80bdff',
-        boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-      },
-    },
-  })
-)(InputBase)
-
-const MapToolbarSelect = ({ dataFilterKey, data, defaultOption, helperText, label, selectType }) => {
+const MapToolbarSelect = ({ dataFilterKey, data, defaultSelected, helperText, label, selectType, disabled }) => {
   // try useTheme for overriding styles
   return (
     <BaseSelectInput
       dataFilterKey={dataFilterKey}
-      dataOptions={data}
-      defaultOption={defaultOption}
+      data={data}
+      defaultSelected={defaultSelected}
+      disabled={disabled}
       helperText={helperText}
       label={label}
       selectType={selectType}
+      showClearSelected={false}
       variant='outlined'
-      theme={<DefaultInput />}
     />
   )
 }

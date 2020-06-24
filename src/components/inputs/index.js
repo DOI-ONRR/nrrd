@@ -50,6 +50,7 @@ export const OffshoreRegionSelectInput = createEnhancedSelect(OFFSHORE_REGION, '
 export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
+export const MapToolbarSelect = createEnhancedSelect(DATA_TYPE, 'Single')
 
 const GROUP_BY_OPTIONS = {
   [REVENUE]: [

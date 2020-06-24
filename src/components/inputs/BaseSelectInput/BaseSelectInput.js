@@ -65,6 +65,7 @@ const BaseSelectInput = ({ data, onChange, selectType, defaultSelected, defaultS
   else if (!data) {
     data = []
   }
+
   const noop = () => {}
 
   return (
