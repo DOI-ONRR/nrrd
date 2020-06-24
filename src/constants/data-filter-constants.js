@@ -1,3 +1,5 @@
+export const QUERY_TABLE_FILTER_DEFAULT = 'query_table_filter_default'
+
 export const DATA_TYPE = 'dataType'
 export const LOCATION_NAME = 'locationName'
 export const LAND_TYPE = 'landType'

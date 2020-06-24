@@ -13,7 +13,9 @@ import {
   GROUP_BY,
   PERIOD,
   FISCAL_YEAR,
-  CALENDAR_YEAR
+  CALENDAR_YEAR,
+  DATA_TYPE,
+  QUERY_TABLE_FILTER_DEFAULT
 } from '../../constants'
 import CONSTANTS from '../../js/constants'
 
@@ -40,23 +42,30 @@ const reducer = (state, action) => {
 }
 
 const initialState = {
-  dataTypesCache: {
-    [REVENUE]: {
-      [GROUP_BY]: REVENUE_TYPE,
-      [PERIOD]: 'Fiscal Year',
-      [FISCAL_YEAR]: '2017,2018,2019',
-      [CALENDAR_YEAR]: '2017,2018,2019'
-    },
-    [PRODUCTION]: {
-      [GROUP_BY]: COMMODITY,
-      [PERIOD]: 'Fiscal Year',
-      [FISCAL_YEAR]: '2017,2018,2019',
-      [CALENDAR_YEAR]: '2016,2017,2018'
-    },
-    [DISBURSEMENT]: {
-      [GROUP_BY]: RECIPIENT,
-      [PERIOD]: 'Fiscal Year',
-      [FISCAL_YEAR]: '2017,2018,2019',
+  [QUERY_TABLE_FILTER_DEFAULT]: {
+    [DATA_TYPE]: REVENUE,
+    [GROUP_BY]: REVENUE_TYPE,
+    [PERIOD]: 'Fiscal Year',
+    [FISCAL_YEAR]: '2017,2018,2019',
+    [CALENDAR_YEAR]: '2017,2018,2019',
+    dataTypesCache: {
+      [REVENUE]: {
+        [GROUP_BY]: REVENUE_TYPE,
+        [PERIOD]: 'Fiscal Year',
+        [FISCAL_YEAR]: '2017,2018,2019',
+        [CALENDAR_YEAR]: '2017,2018,2019'
+      },
+      [PRODUCTION]: {
+        [GROUP_BY]: COMMODITY,
+        [PERIOD]: 'Fiscal Year',
+        [FISCAL_YEAR]: '2017,2018,2019',
+        [CALENDAR_YEAR]: '2016,2017,2018'
+      },
+      [DISBURSEMENT]: {
+        [GROUP_BY]: RECIPIENT,
+        [PERIOD]: 'Fiscal Year',
+        [FISCAL_YEAR]: '2017,2018,2019',
+      }
     }
   }
 }
