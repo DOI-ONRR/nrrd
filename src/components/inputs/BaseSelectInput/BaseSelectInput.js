@@ -165,7 +165,7 @@ const BaseSingleSelectInput = ({ data, defaultSelected, label, helperText, varia
 
   return (
     <FormControl variant={variant} className={classes.formControl} disabled={((disabled) || (data && data.length === 0))}>
-      <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
+      <InputLabel htmlFor={`${ labelSlug }-select-label`}>{label}</InputLabel>
       <Select
         labelId={`${ labelSlug }-select-label`}
         id={`${ labelSlug }-select`}
@@ -230,6 +230,22 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
     if (selectedOptionsChanged) {
       onChange(selectedOptions.toString())
     }
+
+    handleRenderValue(selectedOptions)
+  }
+
+  const handleRenderValue = selected => {
+    let selectedVal
+
+    if (selected && selected.length !== data.length) {
+      selectedVal = selected.join(', ')
+    }
+
+    if (selected && selected.length === data.length) {
+      selectedVal = 'All'
+    }
+
+    return selectedVal
   }
 
   useEffect(() => {
@@ -249,9 +265,10 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
       <Select
         labelId={`${ labelSlug }-select-label`}
         id={`${ labelSlug }-select`}
+        IconComponent={() => <KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
         multiple
         value={selectedOptions}
-        renderValue={selected => selected && selected.join(', ')}
+        renderValue={selected => handleRenderValue(selected)}
         input={theme}
         onChange={handleChange}
         onClose={handleClose}

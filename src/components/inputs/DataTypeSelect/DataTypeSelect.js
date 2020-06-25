@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import BaseSelectInput from '../BaseSelectInput'
 
-const MapToolbarDataTypeSelect = ({ dataFilterKey, data, defaultSelected, helperText, label, selectType, disabled }) => {
+const DataTypeSelect = ({ dataFilterKey, data, defaultSelected, helperText, label, selectType, disabled }) => {
   // try useTheme for overriding styles
   return (
     <BaseSelectInput
@@ -20,9 +20,9 @@ const MapToolbarDataTypeSelect = ({ dataFilterKey, data, defaultSelected, helper
   )
 }
 
-export default MapToolbarDataTypeSelect
+export default DataTypeSelect
 
-MapToolbarDataTypeSelect.propTypes = {
+DataTypeSelect.propTypes = {
   /**
    * The data filter key used for data filter context
    */

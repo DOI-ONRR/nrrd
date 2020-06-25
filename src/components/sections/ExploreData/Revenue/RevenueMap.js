@@ -27,7 +27,7 @@ export default props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const commodities = (filterState[DFC.COMMODITIES]) ? filterState[DFC.COMMODITIES] : undefined
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
 
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
     variables: { year: year, commodities: commodities }
@@ -41,6 +41,7 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
+    console.log('RevenueMap data: ', data)
     mapData = data.revenue_commodity_summary.map((item, i) => [
       item.state_or_area,
       item.total
