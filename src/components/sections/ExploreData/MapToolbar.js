@@ -23,7 +23,7 @@ import AddIcon from '@material-ui/icons/Add'
 
 // import MapSelectControl from './MapSelectControl'
 // import MapToolbarSelect from '../../inputs/MapToolbarDataTypeSelect'
-import MapControlSwitch from '../../inputs/MapControlSwitch'
+// import MapControlSwitch from '../../inputs/MapControlSwitch'
 import MapControlToggle from '../../inputs/MapControlToggle'
 import CONSTANTS from '../../../js/constants'
 
@@ -32,6 +32,8 @@ import {
   PeriodSelectInput,
   CommoditySelectInput
 } from '../../inputs'
+
+import OffshoreSwitch from '../../inputs/OffshoreSwitch'
 
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
@@ -46,7 +48,8 @@ import {
   PERIOD,
   PRODUCTION,
   REVENUE,
-  US_STATE
+  US_STATE,
+  OFFSHORE_REGIONS
 } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
@@ -227,6 +230,10 @@ const MAP_TOOLBAR_OPTIONS = {
   [COUNTIES]: [
     { value: US_STATE, option: 'State' },
     { value: COUNTY, option: 'County' }
+  ],
+  [OFFSHORE_REGIONS]: [
+    { value: false, option: '' },
+    { value: true, option: '' }
   ]
 }
 
@@ -343,8 +350,9 @@ const ExploreDataToolbar = props => {
 
   const {
     dataType,
+    period,
     counties,
-    offshoreRegion
+    offshoreRegions
   } = filterState
 
   return (
@@ -449,13 +457,14 @@ const ExploreDataToolbar = props => {
             <Box className={classes.mapControls}>
               <MapControlToggle
                 dataFilterKey={COUNTIES}
+                defaultSelected={counties || US_STATE}
                 data={MAP_TOOLBAR_OPTIONS[COUNTIES]}
                 label="Map level toggle" />
 
-              <MapControlSwitch
-                dataFilterKey={DFC.OFFSHORE_REGIONS}
-                defaultOption={false}
-                checked={offshoreRegion || false}
+              <OffshoreSwitch
+                dataFilterKey={OFFSHORE_REGIONS}
+                data={MAP_TOOLBAR_OPTIONS[OFFSHORE_REGIONS]}
+                defaultSelected={offshoreRegions || false}
                 label='Show offshore'
                 helperText=''
                 disabled={dataType === 'Disbursements'}

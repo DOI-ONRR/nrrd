@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -46,15 +46,19 @@ const DefaultToggleButton = withStyles(theme =>
   )
 })
 
-const BaseToggle = ({ dataFilterKey, data, label, legend, helperText, ...props }) => {
+const BaseToggle = ({ dataFilterKey, data, defaultSelected, label, legend, helperText, ...props }) => {
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const [toggleState, setToggleState] = useState(filterState[dataFilterKey] || data[0].value)
+  const [toggleState, setToggleState] = useState(defaultSelected || data[0].value)
 
   const handleChange = (event, newVal) => {
     setToggleState(newVal)
     updateDataFilter({ ...filterState, [dataFilterKey]: newVal })
   }
+
+  useEffect(() => {
+    updateDataFilter({ ...filterState, [dataFilterKey]: toggleState })
+  }, toggleState)
 
   return (
     <FormControl component="fieldset">

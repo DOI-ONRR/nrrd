@@ -5,7 +5,8 @@ import {
   useQueryParams,
   StringParam,
   encodeDelimitedArray,
-  decodeDelimitedArray
+  decodeDelimitedArray,
+  BooleanParam
 } from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -294,7 +295,10 @@ const MapContext = props => {
   // urlQuery state
   const [queryParams, setQueryParams] = useQueryParams({
     dataType: StringParam,
+    period: StringParam,
+    counties: StringParam,
     location: CommaArrayParam,
+    offshoreRegions: BooleanParam
   })
 
   const cards = pageState.cards
@@ -434,7 +438,6 @@ const MapContext = props => {
 
   const countyLevel = filterState[DFC.COUNTIES] === 'county'
   const offshore = filterState[DFC.OFFSHORE_REGIONS] || false
-
   const handleChange = (type, name) => event => {
     // setZoom(x, y, k)
     console.debug('TYPE: ', type, 'Name ', name, 'Event')
@@ -528,7 +531,10 @@ const MapContext = props => {
   useEffect(() => {
     setQueryParams({
       dataType: filterState.dataType,
+      period: filterState.period,
+      counties: filterState.counties,
       location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
+      offshoreRegions: filterState.offshoreRegions
     }, 'pushIn')
   }, [pageState, filterState])
 

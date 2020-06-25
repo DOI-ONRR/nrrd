@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 
 import BaseSwitch from '../../inputs/BaseSwitch'
 
-const MapControlSwitch = ({ dataFilterKey, checked, helperText, label, selectType, disabled }) => {
+const OffshoreSwitch = ({ dataFilterKey, data, defaultSelected, helperText, label, selectType, disabled }) => {
   return (
     <BaseSwitch
       dataFilterKey={dataFilterKey}
-      checked={checked}
+      data={data}
+      defaultSelected={defaultSelected}
       helperText={helperText}
       label={label}
       selectType={selectType}
@@ -16,9 +17,9 @@ const MapControlSwitch = ({ dataFilterKey, checked, helperText, label, selectTyp
   )
 }
 
-export default MapControlSwitch
+export default OffshoreSwitch
 
-MapControlSwitch.propTypes = {
+OffshoreSwitch.propTypes = {
   /**
    * The data filter key used for data filter context
    */
@@ -26,7 +27,7 @@ MapControlSwitch.propTypes = {
   /**
    * The checked options controls when switch is engaged or not, boolean
    */
-  checked: PropTypes.bool,
+  defaultSelected: PropTypes.bool,
   /**
    * Text that displays below the select box to provide additional instructions
    */
