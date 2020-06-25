@@ -23,7 +23,6 @@ const REVENUE_QUERY = gql`
 `
 
 export default props => {
-  console.log('RevenueMap props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -41,7 +40,6 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.log('RevenueMap data: ', data)
     mapData = data.revenue_commodity_summary.map((item, i) => [
       item.state_or_area,
       item.total

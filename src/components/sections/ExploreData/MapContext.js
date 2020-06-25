@@ -532,7 +532,7 @@ const MapContext = props => {
     }, 'pushIn')
   }, [pageState, filterState])
 
-  console.log('mapJsonObject: ', mapJsonObject)
+  // console.log('mapJsonObject: ', mapJsonObject)
 
   const mapChild = React.cloneElement(props.children[0],
     {

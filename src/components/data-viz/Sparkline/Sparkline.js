@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Sparkline = props => {
-  console.log('Sparkline props: ', props)
+  // console.log('Sparkline props: ', props)
   let data = [[0, 0]]
   let highlightIndex = 0
   let lineAnimationData
