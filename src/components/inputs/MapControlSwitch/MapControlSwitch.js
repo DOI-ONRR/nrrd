@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import BaseSwitch from '../../inputs/BaseSwitch'
 
-const MapControlSwitch = ({ dataFilterKey, data, checked, helperText, label, selectType, disabled }) => {
+const MapControlSwitch = ({ dataFilterKey, checked, helperText, label, selectType, disabled }) => {
   return (
     <BaseSwitch
       dataFilterKey={dataFilterKey}
@@ -23,10 +23,6 @@ MapControlSwitch.propTypes = {
    * The data filter key used for data filter context
    */
   dataFilterKey: PropTypes.string.isRequired,
-  /**
-   * The data option, an array of options for input
-   */
-  data: PropTypes.array.isRequired,
   /**
    * The checked options controls when switch is engaged or not, boolean
    */

@@ -71,7 +71,7 @@ const BaseToggle = ({ dataFilterKey, data, label, legend, helperText, ...props }
         >
           { data &&
             data.map((item, i) =>
-              <DefaultToggleButton value={item.value} aria-label={item.option}>
+              <DefaultToggleButton value={item.value} aria-label={item.option} key={`toogleButton__${ i }`}>
                 {item.option}
               </DefaultToggleButton>
             )

@@ -1,13 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {
-  InputBase
-} from '@material-ui/core'
-
 import BaseSelectInput from '../BaseSelectInput'
 
-const MapToolbarSelect = ({ dataFilterKey, data, defaultSelected, helperText, label, selectType, disabled }) => {
+const MapToolbarDataTypeSelect = ({ dataFilterKey, data, defaultSelected, helperText, label, selectType, disabled }) => {
   // try useTheme for overriding styles
   return (
     <BaseSelectInput
@@ -24,9 +20,9 @@ const MapToolbarSelect = ({ dataFilterKey, data, defaultSelected, helperText, la
   )
 }
 
-export default MapToolbarSelect
+export default MapToolbarDataTypeSelect
 
-MapToolbarSelect.propTypes = {
+MapToolbarDataTypeSelect.propTypes = {
   /**
    * The data filter key used for data filter context
    */

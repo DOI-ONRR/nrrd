@@ -529,7 +529,7 @@ const MapContext = props => {
     setQueryParams({
       dataType: filterState.dataType,
       location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
-    }, 'push')
+    }, 'pushIn')
   }, [pageState, filterState])
 
   console.log('mapJsonObject: ', mapJsonObject)

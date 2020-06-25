@@ -17,7 +17,9 @@ import {
   PRODUCTION,
   DISBURSEMENT,
   GROUP_BY,
-  BREAKOUT_BY
+  BREAKOUT_BY,
+  PERIOD,
+  COMMODITIES
 } from '../../constants'
 
 import BaseSelectInput from './BaseSelectInput'
@@ -50,7 +52,10 @@ export const OffshoreRegionSelectInput = createEnhancedSelect(OFFSHORE_REGION, '
 export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
-export const MapToolbarSelect = createEnhancedSelect(DATA_TYPE, 'Single')
+export const MapToolbarDataTypeSelectInput = createEnhancedSelect(DATA_TYPE, 'Single')
+export const MapToolbarPeriodSelectInput = createEnhancedSelect(PERIOD, 'Single')
+export const MapToolbarRevenueCommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
+export const MapToolbarProductionCommoditySelectInput = createEnhancedSelect(COMMODITY, 'Single')
 
 const GROUP_BY_OPTIONS = {
   [REVENUE]: [

@@ -88,5 +88,9 @@ export const DISPLAY_NAMES = {
   [RECIPIENT]: {
     default: 'Recipient',
     plural: 'Recipients',
-  }
+  },
+  [PERIOD]: {
+    default: 'Period',
+    plural: 'Periods',
+  },
 }

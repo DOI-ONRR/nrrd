@@ -22,15 +22,23 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import AddIcon from '@material-ui/icons/Add'
 
 // import MapSelectControl from './MapSelectControl'
-import MapToolbarSelect from '../../inputs/MapToolbarSelect'
+// import MapToolbarSelect from '../../inputs/MapToolbarDataTypeSelect'
 import MapControlSwitch from '../../inputs/MapControlSwitch'
 import MapControlToggle from '../../inputs/MapControlToggle'
 import CONSTANTS from '../../../js/constants'
+
+import {
+  MapToolbarDataTypeSelectInput,
+  MapToolbarPeriodSelectInput,
+  MapToolbarRevenueCommoditySelectInput,
+  MapToolbarProductionCommoditySelectInput
+} from '../../inputs'
 
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import {
+  COMMODITY,
   COMMODITIES,
   COUNTIES,
   COUNTY,
@@ -402,35 +410,37 @@ const ExploreDataToolbar = props => {
           /* Map toolbar selections */
           <Box className={classes.toolbarControls}>
             <Box className={classes.toolbarPageControls}>
-              <MapToolbarSelect
+              <MapToolbarDataTypeSelectInput
                 dataFilterKey={dataType}
                 data={MAP_TOOLBAR_OPTIONS[DATA_TYPE]}
                 defaultSelected={ dataType || REVENUE }
                 label='Data type'
-                selectType='Single' />
+                selectType='Single'
+                showClearSelected={false} />
 
-              <MapToolbarSelect
+              <MapToolbarPeriodSelectInput
                 dataFilterKey={PERIOD}
                 data={MAP_TOOLBAR_OPTIONS[PERIOD]}
-                defaultSelected={'Fiscal year'}
+                defaultSelected='Fiscal year'
                 label='Period'
-                selectType='Single' />
+                selectType='Single'
+                showClearSelected={false} />
 
               {(dataType === 'Revenue') &&
-              <MapToolbarSelect
-                dataFilterKey={COMMODITIES}
+              <MapToolbarRevenueCommoditySelectInput
+                dataFilterKey={COMMODITY}
                 data={revenueCommodityOptions}
-                defaultOption='Oil'
+                defaultSelected='Oil'
                 label='Commodity'
                 selectType='Multi'
                 helperText='' />
               }
 
               {(dataType === 'Production') &&
-              <MapToolbarSelect
-                dataFilterKey={COMMODITIES}
+              <MapToolbarProductionCommoditySelectInput
+                dataFilterKey={COMMODITY}
                 data={productionCommodityOptions}
-                defaultOption='Oil (bbl)'
+                defaultSelected='Oil (bbl)'
                 label='Commodity'
                 selectType='Single' />
               }
