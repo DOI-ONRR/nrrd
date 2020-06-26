@@ -49,7 +49,7 @@ const DefaultToggleButton = withStyles(theme =>
 const BaseToggle = ({ dataFilterKey, data, defaultSelected, label, legend, helperText, ...props }) => {
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const [toggleState, setToggleState] = useState(defaultSelected || data[0].value)
+  const [toggleState, setToggleState] = useState(defaultSelected)
 
   const handleChange = (event, newVal) => {
     setToggleState(newVal)
@@ -57,8 +57,9 @@ const BaseToggle = ({ dataFilterKey, data, defaultSelected, label, legend, helpe
   }
 
   useEffect(() => {
+    console.log('BaseToggle filterState: ', dataFilterKey)
     updateDataFilter({ ...filterState, [dataFilterKey]: toggleState })
-  }, toggleState)
+  }, [])
 
   return (
     <FormControl component="fieldset">

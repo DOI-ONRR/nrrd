@@ -205,8 +205,9 @@ const BaseSingleSelectInput = ({ data, defaultSelected, label, helperText, varia
 const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
+  const defaultSelectedOptions = defaultSelected && defaultSelected.split(',')
 
-  const [selectedOptions, setSelectedOptions] = useState([])
+  const [selectedOptions, setSelectedOptions] = useState(defaultSelectedOptions || [])
   const [selectAllOptions, setSelectAllOptions] = useState(defaultSelectAll)
   const [selectedOptionsChanged, setSelectedOptionsChanged] = useState(false)
 
@@ -230,8 +231,6 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
     if (selectedOptionsChanged) {
       onChange(selectedOptions.toString())
     }
-
-    handleRenderValue(selectedOptions)
   }
 
   const handleRenderValue = selected => {
@@ -243,6 +242,10 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
 
     if (selected && selected.length === data.length) {
       selectedVal = 'All'
+    }
+
+    if (selected && selected.length === 0) {
+      selectedVal = 'None selected'
     }
 
     return selectedVal
@@ -273,6 +276,7 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
         onChange={handleChange}
         onClose={handleClose}
         classes={{ root: classes.selectInput }}
+        displayEmpty
       >
         <MenuItem key={0} role="select-menu" value={selectAllOptions ? 'selectNone' : 'selectAll'}>
           <ListItemText primary={selectAllOptions ? 'Select none' : 'Select all'} />

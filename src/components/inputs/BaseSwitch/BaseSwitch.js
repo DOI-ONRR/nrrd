@@ -157,7 +157,7 @@ const SingleBaseSwitch = ({ dataFilterKey, defaultSelected, label, legend, helpe
 
   useEffect(() => {
     updateDataFilter({ ...filterState, [dataFilterKey]: switchState.checked })
-  }, switchState)
+  }, [switchState])
 
   return (
     <FormControl component="fieldset">

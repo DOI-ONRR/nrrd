@@ -351,6 +351,7 @@ const ExploreDataToolbar = props => {
   const {
     dataType,
     period,
+    commodity,
     counties,
     offshoreRegions
   } = filterState
@@ -436,8 +437,8 @@ const ExploreDataToolbar = props => {
               <CommoditySelectInput
                 dataFilterKey={COMMODITY}
                 data={revenueCommodityOptions}
-                // defaultSelected={COMMODITY}
-                defaultSelectAll={true}
+                defaultSelected={commodity}
+                defaultSelectAll={typeof commodity === 'undefined'}
                 label='Commodity'
                 selectType='Multi'
                 helperText='' />
@@ -447,7 +448,7 @@ const ExploreDataToolbar = props => {
               <CommoditySelectInput
                 dataFilterKey={COMMODITY}
                 data={productionCommodityOptions}
-                defaultSelected='Oil (bbl)'
+                defaultSelected={commodity || 'Oil (bbl)'}
                 label='Commodity'
                 selectType='Single'
                 showClearSelected={false} />

@@ -2,11 +2,13 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import {
+  useQueryParam,
   useQueryParams,
   StringParam,
   encodeDelimitedArray,
   decodeDelimitedArray,
-  BooleanParam
+  BooleanParam,
+  ArrayParam
 } from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -292,16 +294,17 @@ const MapContext = props => {
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
 
+  const cards = pageState.cards
+
   // urlQuery state
   const [queryParams, setQueryParams] = useQueryParams({
     dataType: StringParam,
     period: StringParam,
     counties: StringParam,
     location: CommaArrayParam,
-    offshoreRegions: BooleanParam
+    offshoreRegions: BooleanParam,
+    commodity: StringParam,
   })
-
-  const cards = pageState.cards
 
   const [mapOverlay, setMapOverlay] = useState(false)
   const [mapActive, setMapActive] = useState(true)
@@ -533,10 +536,16 @@ const MapContext = props => {
       dataType: filterState.dataType,
       period: filterState.period,
       counties: filterState.counties,
-      location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
-      offshoreRegions: filterState.offshoreRegions
+      offshoreRegions: filterState.offshoreRegions,
+      commodity: filterState.commodity
     }, 'pushIn')
-  }, [pageState, filterState])
+  }, [filterState])
+
+  useEffect(() => {
+    setQueryParams({
+      location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
+    }, 'pushIn')
+  }, [pageState])
 
   // console.log('mapJsonObject: ', mapJsonObject)
 
