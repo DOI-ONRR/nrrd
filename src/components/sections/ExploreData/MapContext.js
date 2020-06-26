@@ -510,7 +510,8 @@ const MapContext = props => {
     if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
       const filteredLocations = data.onrr.locations.filter(item => {
         for (const elem of locationParam) {
-          if (elem === item.fips_code) {
+          // strip elem of any trailing slash
+          if (elem.replace(/\/$/, '') === item.fips_code) {
             return item
           }
         }
@@ -528,6 +529,7 @@ const MapContext = props => {
       for (const elem of stateLinks) {
         onLink(elem)
       }
+
     }
   }, [data])
 
@@ -537,15 +539,10 @@ const MapContext = props => {
       period: filterState.period,
       counties: filterState.counties,
       offshoreRegions: filterState.offshoreRegions,
-      commodity: filterState.commodity
-    }, 'pushIn')
-  }, [filterState])
-
-  useEffect(() => {
-    setQueryParams({
+      commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
     }, 'pushIn')
-  }, [pageState])
+  }, [filterState, pageState])
 
   // console.log('mapJsonObject: ', mapJsonObject)
 
