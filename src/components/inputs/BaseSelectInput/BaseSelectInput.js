@@ -231,6 +231,10 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
     if (selectedOptionsChanged) {
       onChange(selectedOptions.toString())
     }
+
+    if (selectAllOptions) {
+      onChange(undefined)
+    }
   }
 
   const handleRenderValue = selected => {
