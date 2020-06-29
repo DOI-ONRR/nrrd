@@ -72,6 +72,32 @@ exports.createPages = ({ graphql, reporter, actions }) => {
   createRedirect({ fromPath: '/explore/WI/', toPath: '/explore?location=55', redirectInBrowser: true, isPermanent: true })
   createRedirect({ fromPath: '/explore/WY/', toPath: '/explore?location=56', redirectInBrowser: true, isPermanent: true })
 
+  // How it works redirects
+  createRedirect({ fromPath: '/how-it-works/revenues/', toPath: '/how-revenue-works/revenues/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/ownership/', toPath: '/how-revenue-works/ownership/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/coal/', toPath: '/how-revenue-works/coal/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/onshore-oil-gas/', toPath: '/how-revenue-works/onshore-oil-gas/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/onshore-renewables/', toPath: '/how-revenue-works/onshore-renewables/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/minerals/', toPath: '/how-revenue-works/minerals/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/federal-revenue-by-company/', toPath: '/how-revenue-works/federal-revenue-by-company/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/land-and-water-conservation-fund/', toPath: '/how-revenue-works/land-and-water-conservation-fund/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/historic-preservation-fund/', toPath: '/how-revenue-works/historic-preservation-fund/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/', toPath: '/how-revenue-works/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/audits-and-assurances/', toPath: '/how-revenue-works/audits-and-assurances/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/aml-reclamation-program/', toPath: '/how-revenue-works/aml-reclamation-program/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/coal-excise-tax/', toPath: '/how-revenue-works/coal-excise-tax/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/offshore-oil-gas/', toPath: '/how-revenue-works/offshore-oil-gas/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/offshore-renewables/', toPath: '/how-revenue-works/offshore-renewables/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/gomesa/', toPath: '/how-revenue-works/gomesa/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/federal-laws/', toPath: '/how-revenue-works/federal-laws/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/federal-reforms/', toPath: '/how-revenue-works/federal-reforms/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/native-american-ownership-governance/', toPath: '/how-revenue-works/native-american-ownership-governance/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/native-american-production/', toPath: '/how-revenue-works/native-american-production/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/native-american-revenue/', toPath: '/how-revenue-works/native-american-revenue/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/native-american-economic-impact/', toPath: '/how-revenue-works/native-american-economic-impact/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/disbursements/', toPath: '/how-revenue-works/disbursements/', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/reclamation-fund/', toPath: '/how-revenue-works/reclamation-fund/', redirectInBrowser: true, isPermanent: true })
+
   return Promise.all([
     createComponentsCache({ graphql, reporter }),
   ])
