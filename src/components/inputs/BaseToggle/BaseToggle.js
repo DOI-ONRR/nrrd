@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -85,7 +85,7 @@ const DefaultToggleButtonGroup = withStyles(theme =>
     />
   )
 })
-const BaseToggle = ({ onChange, data, label, legend, helperText, children, ...props }) => {
+const BaseToggle = ({ onChange, selected, defaultSelected, data, label, legend, helperText, children, ...props }) => {
   if (data && data.length > 0 && !data[0].option) {
     data = data.map(item => ({ option: item }))
   }
@@ -96,13 +96,19 @@ const BaseToggle = ({ onChange, data, label, legend, helperText, children, ...pr
   const noop = () => {}
   onChange = onChange || noop
 
-  const [toggleState, setToggleState] = useState(true)
+  const [toggleState, setToggleState] = useState(defaultSelected)
 
   const handleChange = (event, newVal) => {
     setToggleState(!toggleState)
     onChange(toggleState)
   }
-  console.log(data)
+
+  useEffect(() => {
+    if (selected !== toggleState) {
+      setToggleState(selected)
+    }
+  }, [selected])
+
   return (
     <FormControl style={{ minWidth: 'fit-content' }}>
       {legend &&

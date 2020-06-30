@@ -38,6 +38,8 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 
 import FilterList from '@material-ui/icons/FilterList'
+import CalendarToday from '@material-ui/icons/CalendarToday'
+import GetApp from '@material-ui/icons/GetApp'
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -82,7 +84,25 @@ const QueryTableToolbar = ({ label, ...props }) => {
   const [dataFilterToolbarOpen, setDataFilterToolbarOpen] = React.useState(true)
 
   const toggleDataFilterToolbar = event => {
+    setPeriodToolbarOpen(false)
+    setDownloadToolbarOpen(false)
     setDataFilterToolbarOpen(!dataFilterToolbarOpen)
+  }
+
+  const [periodToolbarOpen, setPeriodToolbarOpen] = React.useState(false)
+
+  const togglePeriodToolbar = event => {
+    setDataFilterToolbarOpen(false)
+    setDownloadToolbarOpen(false)
+    setPeriodToolbarOpen(!periodToolbarOpen)
+  }
+
+  const [downloadToolbarOpen, setDownloadToolbarOpen] = React.useState(false)
+
+  const toggleDownloadToolbar = event => {
+    setDataFilterToolbarOpen(false)
+    setPeriodToolbarOpen(false)
+    setDownloadToolbarOpen(!downloadToolbarOpen)
   }
 
   const handlePeriodChange = (event, newPeriod) => {
@@ -94,10 +114,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
   return (
     <>
       <BaseToolbar>
-        <DataTypeSelectInput />
         <FilterToggleInput
           value='open'
           aria-label="open data filters"
+          defaultSelected={dataFilterToolbarOpen}
           selected={dataFilterToolbarOpen}
           onChange={toggleDataFilterToolbar}>
           <Grid container spacing={0}>
@@ -109,16 +129,36 @@ const QueryTableToolbar = ({ label, ...props }) => {
             </Grid>
           </Grid>
         </FilterToggleInput>
-        <Box m={'8px'}>
-          <ToggleButtonGroup value={state[PERIOD]} exclusive onChange={handlePeriodChange} aria-label="period selection">
-            <ToggleButton value={PERIOD_FISCAL_YEAR} aria-label="fiscal year" className={classes.toggleButton}>
-              <div style={{ wordBreak: 'normal', width: 'min-content', lineHeight: 'normal' }}>Fiscal year</div>
-            </ToggleButton>
-            <ToggleButton value={PERIOD_CALENDAR_YEAR} aria-label="calendar year" className={classes.toggleButton}>
-              <div style={{ wordBreak: 'normal', width: 'min-content', lineHeight: 'normal' }}>Calendar year</div>
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </Box>
+        <FilterToggleInput
+          value='open'
+          aria-label="open period toolbar"
+          selected={periodToolbarOpen}
+          defaultSelected={periodToolbarOpen}
+          onChange={togglePeriodToolbar}>
+          <Grid container spacing={0}>
+            <Grid item xs={12}>
+              <Box component={'div'} fontSize="0.8rem" fontWeight={'400'} lineHeight={'1rem'}><CalendarToday /></Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Box component={'div'} fontSize="0.8rem" fontWeight={'400'} lineHeight={'1rem'}>Period</Box>
+            </Grid>
+          </Grid>
+        </FilterToggleInput>
+        <FilterToggleInput
+          value='open'
+          aria-label="open download toolbar"
+          selected={downloadToolbarOpen}
+          defaultSelected={downloadToolbarOpen}
+          onChange={toggleDownloadToolbar}>
+          <Grid container spacing={0}>
+            <Grid item xs={12}>
+              <Box component={'div'} fontSize="0.8rem" fontWeight={'400'} lineHeight={'1rem'}><GetApp /></Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Box component={'div'} fontSize="0.8rem" fontWeight={'400'} lineHeight={'1rem'}>Download</Box>
+            </Grid>
+          </Grid>
+        </FilterToggleInput>
       </BaseToolbar>
       { dataFilterToolbarOpen &&
         <>
@@ -133,6 +173,28 @@ const QueryTableToolbar = ({ label, ...props }) => {
           }
         </>
       }
+      { periodToolbarOpen &&
+      <BaseToolbar isSecondary={true}>
+        <Box m={'8px'}>
+          <ToggleButtonGroup value={state[PERIOD]} exclusive onChange={handlePeriodChange} aria-label="period selection">
+            <ToggleButton value={PERIOD_FISCAL_YEAR} aria-label="fiscal year" className={classes.toggleButton}>
+              <div style={{ wordBreak: 'normal', width: 'min-content', lineHeight: 'normal' }}>Fiscal year</div>
+            </ToggleButton>
+            <ToggleButton value={PERIOD_CALENDAR_YEAR} aria-label="calendar year" className={classes.toggleButton}>
+              <div style={{ wordBreak: 'normal', width: 'min-content', lineHeight: 'normal' }}>Calendar year</div>
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
+        <YearRangeSelect />
+      </BaseToolbar>
+      }
+      { downloadToolbarOpen &&
+      <BaseToolbar isSecondary={true}>
+        <Box m={'8px'}>
+          Download
+        </Box>
+      </BaseToolbar>
+      }
     </>
   )
 }
@@ -144,13 +206,13 @@ const RevenueFilterToolbar = () => {
   const countyEnabled = (state[US_STATE] && (state[US_STATE].split(',').length === 1))
   return (
     <BaseToolbar isSecondary={true} >
+      <DataTypeSelectInput />
       <LandTypeSelectInput />
       <RevenueTypeSelectInput />
       <UsStateSelectInput />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
       <OffshoreRegionSelectInput />
       <CommoditySelectInput />
-      <YearRangeSelect />
     </BaseToolbar>
   )
 }
