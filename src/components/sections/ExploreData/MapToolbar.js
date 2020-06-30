@@ -30,10 +30,11 @@ import CONSTANTS from '../../../js/constants'
 import {
   DataTypeSelectInput,
   PeriodSelectInput,
-  CommoditySelectInput
+  CommoditySelectInput,
+  OffshoreRegionSwitchInput
 } from '../../inputs'
 
-import OffshoreSwitch from '../../inputs/OffshoreSwitch'
+// import OffshoreSwitch from '../../inputs/OffshoreSwitch'
 
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
@@ -353,7 +354,7 @@ const ExploreDataToolbar = props => {
     period,
     commodity,
     counties,
-    offshoreRegions
+    offshoreRegion
   } = filterState
 
   return (
@@ -462,10 +463,10 @@ const ExploreDataToolbar = props => {
                 data={MAP_TOOLBAR_OPTIONS[COUNTIES]}
                 label="Map level toggle" />
 
-              <OffshoreSwitch
+              <OffshoreRegionSwitchInput
                 dataFilterKey={OFFSHORE_REGIONS}
                 data={MAP_TOOLBAR_OPTIONS[OFFSHORE_REGIONS]}
-                defaultSelected={offshoreRegions || false}
+                defaultSelected={offshoreRegion}
                 label='Show offshore'
                 helperText=''
                 disabled={dataType === 'Disbursements'}

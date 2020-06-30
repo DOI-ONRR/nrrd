@@ -80,6 +80,10 @@ export const DISPLAY_NAMES = {
     default: 'Offshore region',
     plural: 'Offshore regions',
   },
+  [OFFSHORE_REGIONS]: {
+    default: 'Offshore regions',
+    plural: 'Offshore regions',
+  },
   [SOURCE]: {
     default: 'Source',
     plural: 'Sources',

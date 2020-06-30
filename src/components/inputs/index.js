@@ -9,6 +9,7 @@ import {
   US_STATE,
   COUNTY,
   OFFSHORE_REGION,
+  OFFSHORE_REGIONS,
   COMMODITY,
   COMMODITIES,
   RECIPIENT,
@@ -23,6 +24,7 @@ import {
 } from '../../constants'
 
 import BaseSelectInput from './BaseSelectInput'
+import BaseSwitch from './BaseSwitch'
 import withDataFilterContext from './withDataFilterContext'
 import withDataFilterQuery from './withDataFilterQuery'
 
@@ -36,6 +38,10 @@ const createEnhancedSelect = (dataFilterKey, selectType) => compose(
   BaseComponent => props => (<BaseComponent selectType={selectType} label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
   BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSelectInput)
+
+const createEnhancedSwitch = (dataFilterKey, selectType) => compose(
+  BaseComponent => props => (<BaseComponent selectType={selectType} label={DISPLAY_NAMES[dataFilterKey].plural} {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey))(BaseSwitch)
 
 export const DataTypeSelectInput = compose(
   BaseComponent => props => (
@@ -53,6 +59,8 @@ export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
 export const PeriodSelectInput = createEnhancedSelect(PERIOD, 'Single')
+
+export const OffshoreRegionSwitchInput = createEnhancedSwitch(OFFSHORE_REGIONS, 'Single')
 
 const GROUP_BY_OPTIONS = {
   [REVENUE]: [

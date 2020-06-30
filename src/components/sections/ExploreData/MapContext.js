@@ -358,7 +358,7 @@ const MapContext = props => {
 
   const cardMenuItems = [
     { fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' },
-    { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
+    { fips: 999, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
   ]
 
   const { vertical, horizontal, open } = mapSnackbarState
@@ -395,7 +395,7 @@ const MapContext = props => {
 
   // onLink
   const onLink = (state, x, y, k) => {
-    console.log('onLink state: ', state)
+    // console.log('onLink state: ', state)
     // setMapK(k)
     // setMapY(y)
     // setMapX(x)
@@ -504,15 +504,26 @@ const MapContext = props => {
     // get decoded location param
     const locationParam = queryParams.location
 
-    console.log('locationParam: ', locationParam)
+    console.log('queryParams: ', queryParams)
 
     // filter out location based on location params
     if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
       const filteredLocations = data.onrr.locations.filter(item => {
         for (const elem of locationParam) {
           // strip elem of any trailing slash
-          if (elem.replace(/\/$/, '') === item.fips_code) {
+          const strElem = elem.replace(/\/$/, '')
+          if (strElem === item.fips_code) {
             return item
+          }
+          else {
+            // Nationwide Federal card
+            if (strElem === '99') {
+              onLink(cardMenuItems[0])
+            }
+            // Native American card
+            if (strElem === '999') {
+              onLink(cardMenuItems[1])
+            }
           }
         }
       })
@@ -529,7 +540,6 @@ const MapContext = props => {
       for (const elem of stateLinks) {
         onLink(elem)
       }
-
     }
   }, [data])
 
