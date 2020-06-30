@@ -16,10 +16,7 @@ import {
   CALENDAR_YEAR,
   DATA_TYPE,
   QUERY_TABLE_FILTER_DEFAULT,
-  EXPLORE_DATA_FILTER_DEFAULT,
-  MAP_LEVEL,
-  OFFSHORE_REGION,
-  COUNTIES
+  BREAKOUT_BY
 } from '../../constants'
 import CONSTANTS from '../../js/constants'
 
@@ -49,6 +46,7 @@ const initialState = {
   [QUERY_TABLE_FILTER_DEFAULT]: {
     [DATA_TYPE]: REVENUE,
     [GROUP_BY]: REVENUE_TYPE,
+    [BREAKOUT_BY]: COMMODITY,
     [PERIOD]: 'Fiscal Year',
     [FISCAL_YEAR]: '2017,2018,2019',
     [CALENDAR_YEAR]: '2017,2018,2019',

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -18,16 +18,31 @@ import {
   ToggleButtonGroup
 } from '@material-ui/lab'
 
-import { DataFilterContext } from '../../../stores/data-filter-store'
-
 // DefaultToggleButton Styles
 const DefaultToggleButton = withStyles(theme =>
   createStyles({
     root: {
-      color: theme.palette.grey[900],
+      borderStyle: 'none',
+      color: 'black',
+      backgroundColor: 'transparent',
+      minWidth: 'fit-content',
+      minHeight: 'inherit',
+      height: 50,
+      padding: '0 15px',
+      margin: 0,
       '&.Mui-selected': {
-        color: theme.palette.common.white,
-        backgroundColor: theme.palette.links.default,
+        color: 'black',
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: 0,
+        height: '100%',
+        margin: 0,
+        zIndex: '1',
+        fontWeight: 'bold',
+      },
+      '&.Mui-selected:hover': {
+        color: 'black',
+        backgroundColor: theme.palette.primary.main,
+        fontWeight: 'bold',
       }
     },
     label: {
@@ -35,6 +50,7 @@ const DefaultToggleButton = withStyles(theme =>
     }
   })
 )(({ classes, ...props }) => {
+  console.log(classes)
   return (
     <ToggleButton
       classes={{
@@ -46,43 +62,45 @@ const DefaultToggleButton = withStyles(theme =>
   )
 })
 
-const BaseToggle = ({ dataFilterKey, data, defaultSelected, label, legend, helperText, ...props }) => {
+const BaseToggle = ({ onChange, selected, defaultSelected, data, label, legend, helperText, children, ...props }) => {
+  if (data && data.length > 0 && !data[0].option) {
+    data = data.map(item => ({ option: item }))
+  }
+  else if (!data) {
+    data = []
+  }
 
-  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  const noop = () => {}
+  onChange = onChange || noop
+
   const [toggleState, setToggleState] = useState(defaultSelected)
 
   const handleChange = (event, newVal) => {
-    setToggleState(newVal)
-    updateDataFilter({ ...filterState, [dataFilterKey]: newVal })
+    setToggleState(!toggleState)
+    onChange(toggleState)
   }
 
   useEffect(() => {
-    console.log('BaseToggle filterState: ', dataFilterKey)
-    updateDataFilter({ ...filterState, [dataFilterKey]: toggleState })
-  }, [])
+    if (selected !== toggleState) {
+      setToggleState(selected)
+    }
+  }, [selected])
 
   return (
-    <FormControl component="fieldset">
+    <FormControl style={{ minWidth: 'fit-content' }}>
       {legend &&
         <FormLabel component="legend" style={{ transform: 'translate(0, -3px) scale(0.75)' }}>{legend}</FormLabel>
       }
-      <FormGroup>
-        <ToggleButtonGroup
-          value={toggleState}
-          exclusive
-          onChange={handleChange}
-          aria-label={label}
-          {...props}
-        >
-          { data &&
-            data.map((item, i) =>
-              <DefaultToggleButton value={item.value} aria-label={item.option} key={`toogleButton__${ i }`}>
-                {item.option}
-              </DefaultToggleButton>
-            )
-          }
-        </ToggleButtonGroup>
-      </FormGroup>
+      { data &&
+          data.map((item, i) =>
+            <DefaultToggleButton value={item.option} selected={toggleState} aria-label={item.option} onChange={handleChange}>
+              {children
+                ? <>{children}</>
+                : <>{item.option}</>
+              }
+            </DefaultToggleButton>
+          )
+      }
       {helperText &&
         <FormHelperText>{helperText}</FormHelperText>
       }

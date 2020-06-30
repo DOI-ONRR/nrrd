@@ -25,7 +25,8 @@ import { animateScroll as scroll } from 'react-scroll'
 import MapToolbar from './MapToolbar'
 import MapControls from './MapControls'
 import AddCardButton from './AddCardButton'
-import YearSlider from './YearSlider'
+// import YearSlider from './YearSlider'
+import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
 import { StoreContext } from '../../../store'
 import ExploreMoreDataButton from './ExploreMoreDataButton'
@@ -64,7 +65,7 @@ const useStyles = makeStyles(theme => ({
       top: 65,
     },
     '& .legend': {
-      bottom: 138,
+      bottom: 88,
     },
     '& .map-overlay': {
       left: '0',
@@ -575,7 +576,8 @@ const MapContext = props => {
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
-              <MapToolbar onLink={onLink} onChange={handleChange} cardMenuItems={cardMenuItems} />
+              <ExploreDataToolbar />
+              {/* <MapToolbar onLink={onLink} onChange={handleChange} cardMenuItems={cardMenuItems} /> */}
               {mapChild}
               <MapControls
                 handleClick={handleClick}
@@ -597,23 +599,15 @@ const MapContext = props => {
                   )
                 })}
               </Box>
-              { cardMenuItems.length > 0 &&
-              <Box className={classes.nonStateCardsContainer}>
-                <AddCardButton
-                  cards={cards}
-                  cardMenuItems={cardMenuItems}
-                  onLink={onLink} />
-              </Box>
-              }
             </Grid>
           }
 
           <ExploreMoreDataButton />
-          <YearSlider
+          {/* <YearSlider
             onYear={selected => {
               onYear(selected, x, y, k)
             }}
-          />
+          /> */}
         </Grid>
       </Container>
       <Container maxWidth={false} style={{ padding: 0, position: 'relative', background: 'white', zIndex: 250 }}>

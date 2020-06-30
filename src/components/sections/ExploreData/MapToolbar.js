@@ -298,25 +298,25 @@ const MapExploreMenu = props => {
   )
 }
 
-// Explore data toolbar
-const ExploreDataToolbar = props => {
+// Map toolbar
+const MapToolbar = props => {
   const { cardMenuItems, onLink } = props
 
-  const data = useStaticQuery(graphql`
-    query CommodityQuery {
-      onrr {
-        production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
-          commodity
-        }
-        revenue_commodity: revenue_commodity_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
-          commodity
-        }
-      }
-    }
-  `)
+  // const data = useStaticQuery(graphql`
+  //   query CommodityQuery {
+  //     onrr {
+  //       production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
+  //         commodity
+  //       }
+  //       revenue_commodity: revenue_commodity_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
+  //         commodity
+  //       }
+  //     }
+  //   }
+  // `)
 
-  const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
-  const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
+  // const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
+  // const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
   const classes = useStyles()
 
   const theme = useTheme()
@@ -513,4 +513,4 @@ const ExploreDataToolbar = props => {
   )
 }
 
-export default ExploreDataToolbar
+export default MapToolbar

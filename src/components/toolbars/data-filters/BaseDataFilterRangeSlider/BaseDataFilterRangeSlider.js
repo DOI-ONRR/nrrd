@@ -12,7 +12,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
-import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import Slider from '@material-ui/core/Slider'
 import Typography from '@material-ui/core/Typography'
 
@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(3),
     marginBottom: '0px',
+    minWidth: '350px',
     width: '-webkit-fill-available',
   },
   selectEmpty: {
@@ -115,13 +116,12 @@ const BaseDataFilterRangeSliderImpl = ({ dataFilterKey, label, data, helperText 
   }
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <FormControl className={classes.formControl} disabled={(data && data.options.length === 0)}>
-          <InputLabel id={`${ label }-slider`}>
-            {label.concat(': ')}<Typography display={'inline'} color={'textSecondary'}>{getCurrentValuesText()}</Typography>
-          </InputLabel>
-          {yearOptions &&
+    <Box width={'500px'}>
+      <FormControl className={classes.formControl} disabled={(data && data.options.length === 0)}>
+        <InputLabel id={`${ label }-slider`}>
+          {label.concat(': ')}<Typography display={'inline'} color={'textSecondary'}>{getCurrentValuesText()}</Typography>
+        </InputLabel>
+        {yearOptions &&
             <Slider
               defaultValue={getCurrentValues()}
               getAriaValueText={getCurrentValuesText}
@@ -137,15 +137,14 @@ const BaseDataFilterRangeSliderImpl = ({ dataFilterKey, label, data, helperText 
                 valueLabel: classes.valueLabel,
                 thumb: classes.thumb
               }}/>
-          }
-          {helperText &&
+        }
+        {helperText &&
             <FormHelperText>{helperText}</FormHelperText>
-          }
-          {(data && data.options.length === 0) &&
+        }
+        {(data && data.options.length === 0) &&
             <FormHelperText>No '{label}' match the current filter options.</FormHelperText>
-          }
-        </FormControl>
-      </Grid>
-    </Grid>
+        }
+      </FormControl>
+    </Box>
   )
 }

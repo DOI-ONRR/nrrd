@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, Children } from 'react'
 import { flowRight as compose } from 'lodash'
 
 import {
@@ -12,6 +12,7 @@ import {
   OFFSHORE_REGIONS,
   COMMODITY,
   COMMODITIES,
+  COUNTIES,
   RECIPIENT,
   SOURCE,
   DISPLAY_NAMES,
@@ -23,8 +24,11 @@ import {
   PERIOD
 } from '../../constants'
 
-import BaseSelectInput from './BaseSelectInput'
+import BaseToggle from './BaseToggle'
+import BaseMultiToggle from './BaseMultiToggle'
 import BaseSwitch from './BaseSwitch'
+import BaseSelectInput from './BaseSelectInput'
+import { DataFilterContext } from '../../stores/data-filter-store'
 import withDataFilterContext from './withDataFilterContext'
 import withDataFilterQuery from './withDataFilterQuery'
 
@@ -85,17 +89,32 @@ const GROUP_BY_OPTIONS = {
     { value: COUNTY, option: 'County' },
   ],
 }
+
 export const GroupBySelectInput = compose(
-  BaseComponent => props => (
-    <BaseComponent
-      label={'Group by'}
-      data={GROUP_BY_OPTIONS[props[DATA_TYPE]]}
-      {...props} />),
+  BaseComponent => props => {
+    const { state } = useContext(DataFilterContext)
+    return (
+      <BaseComponent
+        label={'Group by'}
+        data={GROUP_BY_OPTIONS[state[DATA_TYPE] || REVENUE]}
+        {...props} />)
+  },
   BaseComponent => withDataFilterContext(BaseComponent, GROUP_BY))(BaseSelectInput)
+
 export const BreakoutBySelectInput = compose(
-  BaseComponent => props => (
-    <BaseComponent
-      label={'Breakout by'}
-      data={GROUP_BY_OPTIONS[props[DATA_TYPE]]}
-      {...props} />),
+  BaseComponent => props => {
+    const { state } = useContext(DataFilterContext)
+    const options = GROUP_BY_OPTIONS[state[DATA_TYPE] || REVENUE]
+    const defaultSelected = options && (options.find(item => state[GROUP_BY] !== item.value))
+
+    return (
+      <BaseComponent
+        label={'Then group by'}
+        data={options}
+        defaultSelected={defaultSelected && defaultSelected.value}
+        {...props} />)
+  },
   BaseComponent => withDataFilterContext(BaseComponent, BREAKOUT_BY))(BaseSelectInput)
+
+export const FilterToggleInput = ({ children, ...props }) => <BaseToggle data={['Filter']} {...props}>{children}</BaseToggle>
+export const MapLevelToggleInput = ({ data, ...props }) => <BaseMultiToggle data={data} {...props} />

@@ -283,6 +283,7 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
         displayEmpty
       >
         <MenuItem key={0} role="select-menu" value={selectAllOptions ? 'selectNone' : 'selectAll'}>
+          <Checkbox checked={!selectAllOptions} />
           <ListItemText primary={selectAllOptions ? 'Select none' : 'Select all'} />
         </MenuItem>
         {data &&
