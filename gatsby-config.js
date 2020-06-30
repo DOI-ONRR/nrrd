@@ -168,11 +168,9 @@ const config = {
       options: {
         modules: [
           '@pmmmwh',
-          'core-js',
           'debug',
           'es6.regexp.match',
           'es6.regexp.flags',
-          '_fix-re-wks',
           'gatsby-plugin-layout',
           'html-entities',
           'query-string',
@@ -187,7 +185,7 @@ const config = {
     {
       resolve: 'gatsby-plugin-polyfill-io',
       options: {
-        features: ['default', 'es5', 'es6', 'EventSource', 'RegExp.prototype.flags', 'Symbol']
+        features: ['default', 'es5', 'es6', 'EventSource', 'RegExp.prototype.flags']
       },
     },
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
