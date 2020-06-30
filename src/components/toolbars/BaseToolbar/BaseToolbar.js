@@ -9,28 +9,27 @@ import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
-  },
-  AppBar: {
     boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
-    backgroundColor: 'inherit'
+    overflow: 'auto',
+    alignItems: 'stretch'
+  },
+  rootSecondary: {
+    backgroundColor: theme.palette.primary.main,
+    boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
+    overflow: 'auto',
   },
 }))
 
-const BaseToolbar = ({ borderColor, children }) => {
+const BaseToolbar = ({ isSecondary, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
   return (
-    <div className={classes.root}>
-      <AppBar position="relative" className={classes.AppBar} style={(borderColor) && { borderBottom: `5px solid ${ borderColor }` }}>
-        <Toolbar variant="dense">
-          <Box width='100%'>
-            {children}
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <Toolbar classes={{
+      root: (isSecondary) ? classes.rootSecondary : classes.root
+    }}>
+      {children}
+    </Toolbar>
   )
 }
 
