@@ -72,7 +72,7 @@ const BaseMultiToggle = ({ onChange, data, ...props }) => {
   else if (!data) {
     data = []
   }
-  console.log('BaseMultiToggle data: ', data)
+
   const noop = () => {}
   onChange = onChange || noop
 

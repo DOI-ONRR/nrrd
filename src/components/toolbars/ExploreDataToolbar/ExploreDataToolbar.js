@@ -262,6 +262,16 @@ const ExploreDataToolbar = props => {
             helperText='' />
           }
 
+          {(dataType === 'Production') &&
+              <CommoditySelectInput
+                dataFilterKey={COMMODITY}
+                data={productionCommodityOptions}
+                defaultSelected={commodity || 'Oil (bbl)'}
+                label='Commodity'
+                selectType='Single'
+                showClearSelected={false} />
+          }
+
           <Box className={classes.mapToolsWrapper}>
             <MapLevelToggleInput
               dataFilterKey={COUNTIES}
