@@ -221,7 +221,7 @@ const MAP_LEVEL_OPTIONS = {
 // ]
 
 const MAP_PERIOD_OPTIONS = [
-  // CONSTANTS.CALENDAR_YEAR,
+  CONSTANTS.CALENDAR_YEAR,
   CONSTANTS.FISCAL_YEAR,
   // CONSTANTS.MONTHLY
 ]
@@ -416,10 +416,10 @@ const ExploreDataToolbar = props => {
                   dataFilterKey={DFC.TIMEFRAME'} /> */}
 
               <MapToolbarSelect
-                dataFilterKey={DFC.OFFSHORE_REGIONS}
+                dataFilterKey={DFC.PERIOD}
                 data={MAP_PERIOD_OPTIONS}
-                defaultOption={'Fiscal year'}
-                label='Fiscal year'
+                defaultOption={'Fiscal Year'}
+                label='Fiscal Year'
                 helperText=''
                 selectType='Single' />
 
