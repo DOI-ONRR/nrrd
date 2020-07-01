@@ -114,6 +114,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
   return (
     <>
       <BaseToolbar>
+        <DataTypeSelectInput />
         <FilterToggleInput
           value='open'
           aria-label="open data filters"
@@ -206,7 +207,6 @@ const RevenueFilterToolbar = () => {
   const countyEnabled = (state[US_STATE] && (state[US_STATE].split(',').length === 1))
   return (
     <BaseToolbar isSecondary={true} >
-      <DataTypeSelectInput />
       <LandTypeSelectInput />
       <RevenueTypeSelectInput />
       <UsStateSelectInput />
@@ -221,29 +221,13 @@ const ProductionFilterToolbar = () => {
   const { state } = useContext(DataFilterContext)
   const countyEnabled = (state[US_STATE] && (state[US_STATE].split(',').length === 1))
   return (
-    <BaseToolbar borderColor={'rgba(0, 39, 168, 0.5)'} >
-      <Box mt={2} mb={2}>
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={4} md={3} xl={2}>
-            <LandTypeSelectInput />
-          </Grid>
-          <Grid item xs={12} sm={4} md={3} xl={2}>
-            <UsStateSelectInput />
-          </Grid>
-          <Grid item xs={12} sm={4} md={3} xl={2}>
-            <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
-          </Grid>
-          <Grid item xs={12} sm={4} md={3} xl={2}>
-            <OffshoreRegionSelectInput />
-          </Grid>
-          <Grid item xs={12} sm={4} md={3} xl={2}>
-            <CommoditySelectInput />
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} xl={12}>
-            <YearRangeSelect />
-          </Grid>
-        </Grid>
-      </Box>
+    <BaseToolbar isSecondary={true} >
+      <LandTypeSelectInput />
+      <UsStateSelectInput />
+      <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
+      <OffshoreRegionSelectInput />
+      <CommoditySelectInput />
+      <YearRangeSelect />
     </BaseToolbar>
   )
 }
@@ -252,26 +236,12 @@ const DisbursementFilterToolbar = () => {
   const { state } = useContext(DataFilterContext)
   const countyEnabled = (state[US_STATE] && (state[US_STATE].split(',').length === 1))
   return (
-    <BaseToolbar borderColor={'rgba(0, 39, 168, 0.5)'} >
-      <Box mt={2} mb={2}>
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={4} md={3} xl={2}>
-            <RecipientSelectInput />
-          </Grid>
-          <Grid item xs={12} sm={4} md={3} xl={2}>
-            <SourceSelectInput />
-          </Grid>
-          <Grid item xs={12} sm={4} md={3} xl={2}>
-            <UsStateSelectInput defaultSelectAll={false} />
-          </Grid>
-          <Grid item xs={12} sm={4} md={3} xl={2}>
-            <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} xl={12}>
-            <YearRangeSelect />
-          </Grid>
-        </Grid>
-      </Box>
+    <BaseToolbar isSecondary={true} >
+      <RecipientSelectInput />
+      <SourceSelectInput />
+      <UsStateSelectInput defaultSelectAll={false} />
+      <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
+      <YearRangeSelect />
     </BaseToolbar>
   )
 }

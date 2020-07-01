@@ -9,6 +9,11 @@ import { saveAs } from 'file-saver'
 // Import Display Name Yaml Files
 import commodityNames from '../data/commodity_names.yml'
 
+export const destructuringSwap = (list, iA, iB) => {
+  [list[iA], list[iB]] = [list[iB], list[iA]]
+  return list
+}
+
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
 export const formatToDollarInt = value => {

@@ -1,4 +1,4 @@
-import React, { useContext, Children } from 'react'
+import React, { useContext, useState } from 'react'
 import { flowRight as compose } from 'lodash'
 
 import {
@@ -20,6 +20,7 @@ import {
   BREAKOUT_BY
 } from '../../constants'
 
+import BaseButtonInput from './BaseButtonInput'
 import BaseToggle from './BaseToggle'
 import BaseSelectInput from './BaseSelectInput'
 import { DataFilterContext } from '../../stores/data-filter-store'
@@ -92,13 +93,10 @@ export const BreakoutBySelectInput = compose(
   BaseComponent => props => {
     const { state } = useContext(DataFilterContext)
     const options = GROUP_BY_OPTIONS[state[DATA_TYPE] || REVENUE]
-    const defaultSelected = options && (options.find(item => state[GROUP_BY] !== item.value))
-
     return (
       <BaseComponent
         label={'Then group by'}
         data={options}
-        defaultSelected={defaultSelected && defaultSelected.value}
         {...props} />)
   },
   BaseComponent => withDataFilterContext(BaseComponent, BREAKOUT_BY))(BaseSelectInput)

@@ -16,7 +16,8 @@ import {
   CALENDAR_YEAR,
   DATA_TYPE,
   QUERY_TABLE_FILTER_DEFAULT,
-  BREAKOUT_BY
+  BREAKOUT_BY,
+  LAND_TYPE
 } from '../../constants'
 import CONSTANTS from '../../js/constants'
 

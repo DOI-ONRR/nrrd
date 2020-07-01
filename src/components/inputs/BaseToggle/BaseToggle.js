@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import {
   FormControl,
   FormLabel,
-  FormGroup,
   FormHelperText
 } from '@material-ui/core'
 
@@ -53,7 +52,6 @@ const DefaultToggleButton = withStyles(theme =>
     }
   })
 )(({ classes, ...props }) => {
-  console.log(classes)
   return (
     <ToggleButton
       classes={{
@@ -116,7 +114,7 @@ const BaseToggle = ({ onChange, selected, defaultSelected, data, label, legend, 
       }
       { data &&
           data.map((item, i) =>
-            <DefaultToggleButton value={item.option} selected={toggleState} aria-label={item.option} onChange={handleChange}>
+            <DefaultToggleButton key={`${ i }`}value={item.option} selected={toggleState} aria-label={item.option} onChange={handleChange}>
               {children
                 ? <>{children}</>
                 : <>{item.option}</>
@@ -135,18 +133,10 @@ export default BaseToggle
 
 BaseToggle.propTypes = {
   /**
-   * The data filter key used for data filter context
-   */
-  dataFilterKey: PropTypes.string.isRequired,
-  /**
    * Data array used for building toggle items
    */
   data: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array
-  ]),
-  /**
-   * Label used for aria-label on ToggleButtonGroup
-   */
-  label: PropTypes.string.isRequired,
+  ])
 }
