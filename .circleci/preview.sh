@@ -109,7 +109,7 @@ fi
 
 
 
-# echo "cf push $BRANCH -f ./manifest.staging.yml "
-# cf push $BRANCH -f ./manifest.staging.yml   
+echo "cf push $BRANCH -f ./manifest.staging.yml "
+cf push $BRANCH -f ./manifest.staging.yml   
 
 
