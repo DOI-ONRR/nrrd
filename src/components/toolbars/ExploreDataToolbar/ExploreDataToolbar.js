@@ -2,12 +2,17 @@ import React, { useContext, useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { navigate } from '@reach/router'
 
+import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import BaseToolbar from '../BaseToolbar'
 
 import {
   Box,
-  Grid
+  Grid,
+  IconButton,
+  Menu,
+  MenuItem,
+  Tooltip
 } from '@material-ui/core'
 
 import {
@@ -18,6 +23,7 @@ import MapIcon from '@material-ui/icons/Map'
 import CalendarIcon from '@material-ui/icons/CalendarToday'
 import LocationOnIcon from '@material-ui/icons/LocationOn'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import AddIcon from '@material-ui/icons/Add'
 
 import {
   CommoditySelectInput,
@@ -51,8 +57,8 @@ import CONSTANTS from '../../../js/constants'
 const EXPLORE_DATA_TOOLBAR_OPTIONS = {
   [DATA_TYPE]: [
     { value: REVENUE, option: 'Revenue' },
-    { value: PRODUCTION, option: 'Production' },
     { value: DISBURSEMENT, option: 'Disbursements' },
+    { value: PRODUCTION, option: 'Production' },
   ],
   [PERIOD]: [
     { value: CONSTANTS.FISCAL_YEAR, option: 'Fiscal year' },
@@ -107,12 +113,15 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     borderLeft: `1px solid ${ theme.palette.grey[400] }`,
     paddingLeft: theme.spacing(2),
-    marginLeft: theme.spacing(2),
-    width: 300,
-  }
+    marginLeft: theme.spacing(3),
+    width: 350,
+  },
+  tooltipRoot: {
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+  },
 }))
 
-const ExploreDataToolbar = () => {
+const ExploreDataToolbar = props => {
   const data = useStaticQuery(graphql`
     query CommodityQuery {
       onrr {
@@ -126,16 +135,24 @@ const ExploreDataToolbar = () => {
     }
   `)
 
+  const {
+    onLink,
+    cardMenuItems
+  } = props
+
   const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
   const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
 
   const classes = useStyles()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  const { state: pageState } = useContext(StoreContext)
 
   const [exploreDataTabOpen, setExploreDataTabOpen] = useState(true)
   const [periodTabOpen, setPeriodTabOpen] = useState(false)
   const [locationTabOpen, setLocationTabOpen] = useState(false)
   const [exploreMoreTabOpen, setExploreMoreTabOpen] = useState(false)
+
+  const [anchorEl, setAnchorEl] = useState(null)
 
   const {
     dataType,
@@ -143,6 +160,10 @@ const ExploreDataToolbar = () => {
     counties,
     offshoreRegions
   } = filterState
+
+  const {
+    cards
+  } = pageState
 
   const toggleExploreDataToolbar = event => {
     setExploreDataTabOpen(!exploreDataTabOpen)
@@ -170,6 +191,17 @@ const ExploreDataToolbar = () => {
     setExploreDataTabOpen(false)
     setPeriodTabOpen(false)
     setLocationTabOpen(false)
+  }
+
+  const handleMenuClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = (index, item) => event => {
+    setAnchorEl(null)
+    if (typeof item !== 'undefined') {
+      onLink(item)
+    }
   }
 
   return (
@@ -266,12 +298,35 @@ const ExploreDataToolbar = () => {
       }
       {locationTabOpen &&
         <BaseToolbar isSecondary={true}>
-          Location toolbar yo!
+          <Box>
+            {cardMenuItems &&
+              cardMenuItems.map((item, i) => <MenuItem disabled={cards.some(c => c.abbr === item.name)} key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
+            }
+          </Box>
         </BaseToolbar>
       }
       {exploreMoreTabOpen &&
         <BaseToolbar isSecondary={true}>
-          Explore more toolbar yo!
+          <Box>
+            {dataType === REVENUE &&
+                  <MapExploreMenu
+                    linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
+                    linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-revenue-works/#revenues', '/how-revenue-works/federal-revenue-by-company/2018/']}
+                  />
+            }
+            {dataType === DISBURSEMENT &&
+                  <MapExploreMenu
+                    linkLabels={['Query disbursements data', 'Downloads & Documentation', 'How disbursements works']}
+                    linkUrls={['/query-data/?dataType=Disbursements', '/downloads/#Disbursements', '/how-revenue-works/#understanding-federal-disbursements']}
+                  />
+            }
+            {dataType === PRODUCTION &&
+                  <MapExploreMenu
+                    linkLabels={['Query production data', 'Downloads & Documentation', 'How production works']}
+                    linkUrls={['/query-data/?dataType=Production', '/downloads/#Production', '/how-revenue-works/#the-production-process']}
+                  />
+            }
+          </Box>
         </BaseToolbar>
       }
     </Box>
@@ -279,3 +334,28 @@ const ExploreDataToolbar = () => {
 }
 
 export default ExploreDataToolbar
+
+// Map explore menu speed dial
+const MapExploreMenu = props => {
+  const classes = useStyles()
+  const [anchorEl, setAnchorEl] = useState(true)
+
+  const handleMenuClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = index => event => {
+    // setAnchorEl(null)
+    navigate(props.linkUrls[index])
+  }
+
+  return (
+    <Box className={classes.mapExploreMenu}>
+      <>
+        {
+          props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
+        }
+      </>
+    </Box>
+  )
+}

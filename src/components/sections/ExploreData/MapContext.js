@@ -98,7 +98,7 @@ const useStyles = makeStyles(theme => ({
     width: 310,
     position: 'absolute',
     right: 0,
-    bottom: 92,
+    bottom: 64,
     height: 'auto',
     minHeight: 335,
     zIndex: 99,
@@ -576,7 +576,7 @@ const MapContext = props => {
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
-              <ExploreDataToolbar />
+              <ExploreDataToolbar onLink={onLink} cardMenuItems={cardMenuItems} />
               {/* <MapToolbar onLink={onLink} onChange={handleChange} cardMenuItems={cardMenuItems} /> */}
               {mapChild}
               <MapControls

@@ -241,62 +241,62 @@ const MAP_TOOLBAR_OPTIONS = {
 console.log('maptoolbarOptions: ', MAP_TOOLBAR_OPTIONS)
 
 // Map explore menu speed dial
-const MapExploreMenu = props => {
-  const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState(null)
+// const MapExploreMenu = props => {
+//   const classes = useStyles()
+//   const [anchorEl, setAnchorEl] = useState(null)
 
-  const theme = useTheme()
-  const matchesMdLgUp = useMediaQuery('(max-width:1120px)')
+//   const theme = useTheme()
+//   const matchesMdLgUp = useMediaQuery('(max-width:1120px)')
 
-  const handleMenuClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
+//   const handleMenuClick = event => {
+//     setAnchorEl(event.currentTarget)
+//   }
 
-  const handleClose = index => event => {
-    setAnchorEl(null)
-    navigate(props.linkUrls[index])
-  }
+//   const handleClose = index => event => {
+//     setAnchorEl(null)
+//     navigate(props.linkUrls[index])
+//   }
 
-  return (
-    <div className={classes.mapExploreMenu}>
-      {!matchesMdLgUp &&
-        <>
-          <Tooltip title='Explore more' classes={{ tooltip: classes.tooltipRoot }}>
-            <IconButton
-              aria-label='Other ways to explore data'
-              aria-controls='other-ways-to-explore-data'
-              aria-haspopup='true'
-              onClick={handleMenuClick}>
-              <MoreVertIcon />
-            </IconButton>
-          </Tooltip>
-          <Menu
-            id='other-ways-to-explore-data'
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose(null)}
-          >
-            {
-              props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
-            }
-          </Menu>
-        </>
-      }
-      {matchesMdLgUp &&
-      <>
-        <Paper>
-          <MenuList>
-            {
-              props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
-            }
-          </MenuList>
-        </Paper>
-      </>
-      }
-    </div>
-  )
-}
+//   return (
+//     <div className={classes.mapExploreMenu}>
+//       {!matchesMdLgUp &&
+//         <>
+//           <Tooltip title='Explore more' classes={{ tooltip: classes.tooltipRoot }}>
+//             <IconButton
+//               aria-label='Other ways to explore data'
+//               aria-controls='other-ways-to-explore-data'
+//               aria-haspopup='true'
+//               onClick={handleMenuClick}>
+//               <MoreVertIcon />
+//             </IconButton>
+//           </Tooltip>
+//           <Menu
+//             id='other-ways-to-explore-data'
+//             anchorEl={anchorEl}
+//             keepMounted
+//             open={Boolean(anchorEl)}
+//             onClose={handleClose(null)}
+//           >
+//             {
+//               props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
+//             }
+//           </Menu>
+//         </>
+//       }
+//       {matchesMdLgUp &&
+//       <>
+//         <Paper>
+//           <MenuList>
+//             {
+//               props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
+//             }
+//           </MenuList>
+//         </Paper>
+//       </>
+//       }
+//     </div>
+//   )
+// }
 
 // Map toolbar
 const MapToolbar = props => {
