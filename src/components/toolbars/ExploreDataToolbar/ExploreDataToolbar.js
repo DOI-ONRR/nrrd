@@ -25,13 +25,15 @@ import LocationOnIcon from '@material-ui/icons/LocationOn'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import AddIcon from '@material-ui/icons/Add'
 
+import ExploreDataIcon from '-!svg-react-loader!../../../img/icons/explore-data.svg'
+
 import {
   CommoditySelectInput,
   DataTypeSelectInput,
   FilterToggleInput,
   MapLevelToggleInput,
   PeriodSelectInput,
-  OffshoreRegionSwitchInput
+  OffshoreRegionsSwitchInput
 } from '../../inputs'
 
 import YearSlider from '../../sections/ExploreData/YearSlider'
@@ -106,6 +108,10 @@ const useStyles = makeStyles(theme => ({
     height: '.75em',
     marginRight: '.25em',
   },
+  exploreDataIcon: {
+    width: 24,
+    height: 24,
+  },
   yearSliderWrapper: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -119,6 +125,9 @@ const useStyles = makeStyles(theme => ({
   tooltipRoot: {
     backgroundColor: 'rgba(0, 0, 0, 0.85)',
   },
+  horizontalMenuItems: {
+    display: 'flex',
+  }
 }))
 
 const ExploreDataToolbar = props => {
@@ -214,7 +223,7 @@ const ExploreDataToolbar = props => {
           selected={exploreDataTabOpen}
           onChange={toggleExploreDataToolbar}
         >
-          <MapIcon className={classes.toolbarIcon} /> Explore data
+          <ExploreDataIcon className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} /> Explore data
         </FilterToggleInput>
         <FilterToggleInput
           value="open"
@@ -252,24 +261,24 @@ const ExploreDataToolbar = props => {
             showClearSelected={false} />
 
           {(dataType === 'Revenue') &&
-          <CommoditySelectInput
-            dataFilterKey={COMMODITY}
-            data={revenueCommodityOptions}
-            defaultSelected={commodity}
-            defaultSelectAll={typeof commodity === 'undefined'}
-            label='Commodity'
-            selectType='Multi'
-            helperText='' />
+            <CommoditySelectInput
+              dataFilterKey={COMMODITY}
+              data={revenueCommodityOptions}
+              defaultSelected={commodity}
+              defaultSelectAll={typeof commodity === 'undefined'}
+              label='Commodity'
+              selectType='Multi'
+              helperText='' />
           }
 
           {(dataType === 'Production') &&
-              <CommoditySelectInput
-                dataFilterKey={COMMODITY}
-                data={productionCommodityOptions}
-                defaultSelected={commodity || 'Oil (bbl)'}
-                label='Commodity'
-                selectType='Single'
-                showClearSelected={false} />
+            <CommoditySelectInput
+              dataFilterKey={COMMODITY}
+              data={productionCommodityOptions}
+              defaultSelected={commodity || 'Oil (bbl)'}
+              label='Commodity'
+              selectType='Single'
+              showClearSelected={false} />
           }
 
           <Box className={classes.mapToolsWrapper}>
@@ -281,10 +290,10 @@ const ExploreDataToolbar = props => {
               legend="Map level"
               size="small" />
 
-            <OffshoreRegionSwitchInput
+            <OffshoreRegionsSwitchInput
               dataFilterKey={OFFSHORE_REGIONS}
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[OFFSHORE_REGIONS]}
-              defaultSelected={offshoreRegions}
+              defaultSelected={offshoreRegions === true}
               label='Show offshore'
               helperText=''
               disabled={dataType === 'Disbursements'}
@@ -308,9 +317,16 @@ const ExploreDataToolbar = props => {
       }
       {locationTabOpen &&
         <BaseToolbar isSecondary={true}>
-          <Box>
+          <Box className={classes.horizontalMenuItems}>
             {cardMenuItems &&
-              cardMenuItems.map((item, i) => <MenuItem disabled={cards.some(c => c.abbr === item.name)} key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
+              cardMenuItems.map((item, i) =>
+                <MenuItem
+                  disabled={cards.some(c => c.abbr === item.name)}
+                  key={i}
+                  onClick={handleClose(i, item)}>
+                  {item.label}
+                </MenuItem>
+              )
             }
           </Box>
         </BaseToolbar>
@@ -360,12 +376,10 @@ const MapExploreMenu = props => {
   }
 
   return (
-    <Box className={classes.mapExploreMenu}>
-      <>
-        {
-          props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
-        }
-      </>
+    <Box className={classes.horizontalMenuItems}>
+      {
+        props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
+      }
     </Box>
   )
 }

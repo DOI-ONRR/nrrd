@@ -231,7 +231,7 @@ const TotalProduction = props => {
                 return utils.formatToCommaInt(v)
               }}
               onSelect={ d => {
-                console.log('handle select', d)
+                // console.log('handle select', d)
                 return handleSelect(d)
               }
               }
@@ -260,7 +260,7 @@ const TotalProduction = props => {
                 }
               }}
               onSelect={ d => {
-                console.log('handle select', d)
+                // console.log('handle select', d)
                 return handleSelect(d)
               }
               }

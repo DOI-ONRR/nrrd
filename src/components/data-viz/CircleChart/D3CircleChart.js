@@ -1022,7 +1022,6 @@ console.debug(data)
           self._onClick(this, d)
         })
         .on('mouseover', function (d) {
-          console.log('_chart mouseover yo!')
           //          self._onMouseover(this, d)
           // self._onClick(self)
         })

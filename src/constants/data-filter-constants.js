@@ -92,6 +92,10 @@ export const DISPLAY_NAMES = {
     default: 'County',
     plural: 'Counties',
   },
+  [COUNTIES]: {
+    default: 'Counties',
+    plural: 'Counties',
+  },
   [RECIPIENT]: {
     default: 'Recipient',
     plural: 'Recipients',

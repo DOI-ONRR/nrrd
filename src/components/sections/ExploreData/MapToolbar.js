@@ -238,8 +238,6 @@ const MAP_TOOLBAR_OPTIONS = {
   ]
 }
 
-console.log('maptoolbarOptions: ', MAP_TOOLBAR_OPTIONS)
-
 // Map explore menu speed dial
 // const MapExploreMenu = props => {
 //   const classes = useStyles()

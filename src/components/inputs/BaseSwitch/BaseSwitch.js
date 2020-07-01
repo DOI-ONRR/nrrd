@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -59,7 +59,7 @@ const DefaultSwitch = withStyles(theme =>
   )
 })
 
-const BaseSwitch = ({ dataFilterKey, data, defaultSelected, checked, selectType, label, legend, helperText, disabled }) => {
+const BaseSwitch = ({ onChange, dataFilterKey, data, defaultSelected, checked, selectType, label, legend, helperText, disabled }) => {
   return (
     <>
       {selectType === 'Single' &&
@@ -71,6 +71,7 @@ const BaseSwitch = ({ dataFilterKey, data, defaultSelected, checked, selectType,
           isChecked={checked}
           helperText={helperText}
           disabled={disabled}
+          onChange={onChange}
         />
       }
 
@@ -81,6 +82,7 @@ const BaseSwitch = ({ dataFilterKey, data, defaultSelected, checked, selectType,
           defaultSelected={defaultSelected}
           label={label}
           helperText={helperText}
+          onChange={onChange}
         />
       }
     </>
@@ -99,13 +101,14 @@ BaseSwitch.propTypes = {
 }
 
 // Group switch
-const GroupBaseSwitch = ({ dataFilterKey, defaultSelected, data, selectType, label, legend, helperText }) => {
+const GroupBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, data, selectType, label, legend, helperText }) => {
   const [state, setState] = useState({
     checked: defaultSelected
   })
 
   const handleChange = event => {
     setState({ ...state, [event.target.name]: event.target.checked })
+    onChange(event.target.checked)
   }
 
   return (
@@ -136,14 +139,18 @@ const GroupBaseSwitch = ({ dataFilterKey, defaultSelected, data, selectType, lab
 }
 
 // Single switch
-const SingleBaseSwitch = ({ dataFilterKey, defaultSelected, label, legend, helperText, disabled }) => {
+const SingleBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, label, legend, helperText, disabled }) => {
 
   const [switchState, setSwitchState] = useState({
     checked: defaultSelected
   })
 
+  const noop = () => {}
+  onChange = onChange || noop
+
   const handleChange = event => {
     setSwitchState({ ...switchState, [event.target.name]: event.target.checked })
+    onChange(event.target.checked)
   }
 
   return (

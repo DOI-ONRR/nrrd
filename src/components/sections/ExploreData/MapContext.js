@@ -303,7 +303,7 @@ const MapContext = props => {
     period: StringParam,
     counties: StringParam,
     location: CommaArrayParam,
-    offshoreRegions: BooleanParam,
+    offshoreRegions: StringParam,
     commodity: StringParam,
   })
 
@@ -441,7 +441,7 @@ const MapContext = props => {
   }
 
   const countyLevel = filterState[DFC.COUNTIES] === 'county'
-  const offshore = filterState[DFC.OFFSHORE_REGIONS] || false
+  const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
   const handleChange = (type, name) => event => {
     // setZoom(x, y, k)
     console.debug('TYPE: ', type, 'Name ', name, 'Event')
@@ -449,7 +449,6 @@ const MapContext = props => {
   }
 
   const handleClick = val => {
-    console.log('handleClick val: ', val)
     if (val === 'add' && k >= 0.25) {
       k = k + 0.25
       x = x - 150
@@ -497,7 +496,6 @@ const MapContext = props => {
   }
 
   const onClick = (d, fips, foo, bar) => {
-    console.log('onClick ', d)
     onLink(d, x, y, k)
   }
 
@@ -552,7 +550,7 @@ const MapContext = props => {
       offshoreRegions: filterState.offshoreRegions,
       commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
-    }, 'pushIn')
+    }, 'push')
   }, [filterState, pageState])
 
   // console.log('mapJsonObject: ', mapJsonObject)

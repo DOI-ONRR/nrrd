@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { DataFilterContext } from '../../stores/data-filter-store'
 
 const withDataFilterContext = (BaseComponent, dataFilterKey) => ({ ...props }) => {
+  // console.log('withDataFilterContext: ', BaseComponent, dataFilterKey, props)
   const { state, updateDataFilter } = useContext(DataFilterContext)
 
   const handleChange = newValue => {

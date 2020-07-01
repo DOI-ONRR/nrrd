@@ -21,7 +21,8 @@ import {
   DISBURSEMENT,
   GROUP_BY,
   BREAKOUT_BY,
-  PERIOD
+  PERIOD,
+  SINGLE
 } from '../../constants'
 
 import BaseToggle from './BaseToggle'
@@ -43,10 +44,6 @@ const createEnhancedSelect = (dataFilterKey, selectType) => compose(
   BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
   BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSelectInput)
 
-const createEnhancedSwitch = (dataFilterKey, selectType) => compose(
-  BaseComponent => props => (<BaseComponent selectType={selectType} label={DISPLAY_NAMES[dataFilterKey].plural} {...props} />),
-  BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey))(BaseSwitch)
-
 export const DataTypeSelectInput = compose(
   BaseComponent => props => (
     <BaseComponent
@@ -63,8 +60,6 @@ export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
 export const PeriodSelectInput = createEnhancedSelect(PERIOD, 'Single')
-
-export const OffshoreRegionSwitchInput = createEnhancedSwitch(OFFSHORE_REGIONS, 'Single')
 
 const GROUP_BY_OPTIONS = {
   [REVENUE]: [
@@ -117,4 +112,6 @@ export const BreakoutBySelectInput = compose(
   BaseComponent => withDataFilterContext(BaseComponent, BREAKOUT_BY))(BaseSelectInput)
 
 export const FilterToggleInput = ({ children, ...props }) => <BaseToggle data={['Filter']} {...props}>{children}</BaseToggle>
-export const MapLevelToggleInput = ({ data, ...props }) => <BaseMultiToggle data={data} {...props} />
+
+export const MapLevelToggleInput = withDataFilterContext(BaseMultiToggle, COUNTIES)
+export const OffshoreRegionsSwitchInput = withDataFilterContext(BaseSwitch, OFFSHORE_REGIONS)

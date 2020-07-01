@@ -50,7 +50,6 @@ const DefaultToggleButton = withStyles(theme =>
     }
   })
 )(({ classes, ...props }) => {
-  console.log(classes)
   return (
     <ToggleButton
       classes={{

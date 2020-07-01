@@ -8,6 +8,7 @@ import {
   REVENUE_TYPE,
   PRODUCTION,
   COMMODITY,
+  COUNTIES,
   DISBURSEMENT,
   RECIPIENT,
   GROUP_BY,
@@ -16,7 +17,10 @@ import {
   CALENDAR_YEAR,
   DATA_TYPE,
   QUERY_TABLE_FILTER_DEFAULT,
-  BREAKOUT_BY
+  EXPLORE_DATA_FILTER_DEFAULT,
+  BREAKOUT_BY,
+  OFFSHORE_REGIONS,
+  YEAR
 } from '../../constants'
 import CONSTANTS from '../../js/constants'
 
@@ -70,6 +74,44 @@ const initialState = {
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2017,2018,2019',
+      }
+    }
+  },
+  [EXPLORE_DATA_FILTER_DEFAULT]: {
+    [DATA_TYPE]: REVENUE,
+    [PERIOD]: 'Fiscal Year',
+    [FISCAL_YEAR]: '2019',
+    [CALENDAR_YEAR]: '2019',
+    [OFFSHORE_REGIONS]: false,
+    [COUNTIES]: 'state',
+    [YEAR]: 2019,
+    dataTypesCache: {
+      [REVENUE]: {
+        [DATA_TYPE]: REVENUE,
+        [PERIOD]: 'Fiscal Year',
+        [FISCAL_YEAR]: '2019',
+        [CALENDAR_YEAR]: '2019',
+        [OFFSHORE_REGIONS]: false,
+        [COUNTIES]: 'state',
+        [YEAR]: 2019,
+      },
+      [PRODUCTION]: {
+        [DATA_TYPE]: PRODUCTION,
+        [PERIOD]: 'Fiscal Year',
+        [FISCAL_YEAR]: '2019',
+        [CALENDAR_YEAR]: '2018',
+        [OFFSHORE_REGIONS]: false,
+        [COUNTIES]: 'state',
+        [YEAR]: 2019,
+      },
+      [DISBURSEMENT]: {
+        [DATA_TYPE]: DISBURSEMENT,
+        [GROUP_BY]: RECIPIENT,
+        [PERIOD]: 'Fiscal Year',
+        [FISCAL_YEAR]: '2019',
+        [OFFSHORE_REGIONS]: false,
+        [COUNTIES]: 'state',
+        [YEAR]: 2019,
       }
     }
   }

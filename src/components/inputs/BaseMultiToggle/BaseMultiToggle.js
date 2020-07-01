@@ -32,7 +32,6 @@ const DefaultButton = withStyles(theme =>
     }
   })
 )(({ classes, ...props }) => {
-  console.log(classes)
   return (
     <ToggleButton
       classes={{
@@ -76,8 +75,6 @@ const BaseMultiToggle = ({ onChange, data, ...props }) => {
   const noop = () => {}
   onChange = onChange || noop
 
-  console.log('BaseMultiToggle props: ', props)
-
   const {
     defaultSelected,
     label,
@@ -90,6 +87,7 @@ const BaseMultiToggle = ({ onChange, data, ...props }) => {
 
   const handleChange = (event, newVal) => {
     setToggleState(newVal)
+    onChange(newVal)
   }
 
   return (
