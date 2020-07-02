@@ -106,6 +106,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: -4,
     boxShadow: 'none',
     transition: 'none',
+    borderRadius: 4,
+    '& span': {
+      borderRadius: 4,
+    },
     '&:hover': {
       boxShadow: 'none',
       transition: 'none',
@@ -126,7 +130,7 @@ const useStyles = makeStyles(theme => ({
     '& span': {
       width: 75,
       transform: 'rotate(0)',
-      borderRadius: 0,
+      borderRadius: 4,
       textAlign: 'center',
       color: `${ theme.palette.common.white } !important`,
       backgroundColor: theme.palette.links.default,
