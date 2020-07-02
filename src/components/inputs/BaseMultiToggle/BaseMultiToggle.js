@@ -80,7 +80,8 @@ const BaseMultiToggle = ({ onChange, data, ...props }) => {
     label,
     legend,
     helperText,
-    size
+    size,
+    disabled
   } = props
 
   const [toggleState, setToggleState] = useState(defaultSelected)
@@ -91,7 +92,7 @@ const BaseMultiToggle = ({ onChange, data, ...props }) => {
   }
 
   return (
-    <FormControl style={{ minWidth: 'fit-content' }}>
+    <FormControl style={{ minWidth: 'fit-content' }} disabled={disabled}>
       {legend &&
         <FormLabel component="legend" style={{ transform: 'translate(0, -3px) scale(0.75)' }}>{legend}</FormLabel>
       }
@@ -105,7 +106,7 @@ const BaseMultiToggle = ({ onChange, data, ...props }) => {
         {
           data &&
            data.map((item, i) =>
-             <DefaultButton value={item.value} aria-label={item.option} key={`toogleButton__${ i }`}>
+             <DefaultButton value={item.value} aria-label={item.option} key={`toogleButton__${ i }`} disabled={disabled}>
                {item.option}
              </DefaultButton>
            )}

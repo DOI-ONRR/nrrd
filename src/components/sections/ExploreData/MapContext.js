@@ -284,7 +284,7 @@ const MapContext = props => {
         }
       }
     }
-  `)      
+  `)
 
   const CommaArrayParam = {
     encode: array => encodeDelimitedArray(array, ','),
@@ -574,8 +574,10 @@ const MapContext = props => {
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
-              <ExploreDataToolbar onLink={onLink} cardMenuItems={cardMenuItems} />
-              {/* <MapToolbar onLink={onLink} onChange={handleChange} cardMenuItems={cardMenuItems} /> */}
+              <ExploreDataToolbar
+                onLink={onLink}
+                cardMenuItems={cardMenuItems}
+                mapOverlay={mapOverlay} />
               {mapChild}
               <MapControls
                 handleClick={handleClick}

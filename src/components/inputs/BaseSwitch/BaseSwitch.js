@@ -8,7 +8,15 @@ import {
   Switch
 } from '@material-ui/core'
 
-import { withStyles, createStyles } from '@material-ui/styles'
+import { withStyles, createStyles, makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    minWidth: 'fit-content',
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+  }
+}))
 
 // Default FormControlLabel
 const DefaultFormControlLabel = withStyles(theme =>
@@ -31,6 +39,9 @@ const DefaultFormControlLabel = withStyles(theme =>
 // DefaultSwitch styling
 const DefaultSwitch = withStyles(theme =>
   createStyles({
+    root: {
+      margin: 0,
+    },
     switchBase: {
       '&$checked': {
         color: theme.palette.links.default,
@@ -112,7 +123,7 @@ const GroupBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, data, selec
   }
 
   return (
-    <FormControl component="fieldset">
+    <FormControl>
       {legend &&
           <FormLabel component="legend">{legend}</FormLabel>
       }
@@ -141,6 +152,7 @@ const GroupBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, data, selec
 // Single switch
 const SingleBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, label, legend, helperText, disabled }) => {
 
+  const classes = useStyles()
   const [switchState, setSwitchState] = useState({
     checked: defaultSelected
   })
@@ -154,7 +166,7 @@ const SingleBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, label, leg
   }
 
   return (
-    <FormControl component="fieldset">
+    <FormControl className={classes.formControl}>
       {legend &&
           <FormLabel component="legend">{legend}</FormLabel>
       }

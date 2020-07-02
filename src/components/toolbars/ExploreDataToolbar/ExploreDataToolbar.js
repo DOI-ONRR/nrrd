@@ -5,14 +5,12 @@ import { navigate } from '@reach/router'
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import BaseToolbar from '../BaseToolbar'
+import SearchLocationsInput from '../../inputs/SearchLocationsInput'
+import { StickyWrapper } from '../../utils/StickyWrapper'
 
 import {
   Box,
-  Grid,
-  IconButton,
-  Menu,
-  MenuItem,
-  Tooltip
+  MenuItem
 } from '@material-ui/core'
 
 import {
@@ -83,7 +81,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 999,
     position: 'relative',
   },
-  mapToolsWrapper: {
+  toolsWrapper: {
     display: 'flex',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -91,16 +89,6 @@ const useStyles = makeStyles(theme => ({
     borderLeft: `1px solid ${ theme.palette.grey[400] }`,
     paddingLeft: theme.spacing(2),
     marginLeft: theme.spacing(2),
-    '& fieldset:first-child': {
-      marginTop: 0,
-    },
-    '& fieldset:last-child': {
-      marginTop: theme.spacing(3),
-    },
-    '& div:first-child': {
-      marginTop: 0,
-      marginRight: theme.spacing(4),
-    },
   },
   toolbarIcon: {
     fill: theme.palette.links.default,
@@ -146,7 +134,8 @@ const ExploreDataToolbar = props => {
 
   const {
     onLink,
-    cardMenuItems
+    cardMenuItems,
+    mapOverlay
   } = props
 
   const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
@@ -157,7 +146,6 @@ const ExploreDataToolbar = props => {
   const { state: pageState } = useContext(StoreContext)
 
   const [exploreDataTabOpen, setExploreDataTabOpen] = useState(true)
-  const [periodTabOpen, setPeriodTabOpen] = useState(false)
   const [locationTabOpen, setLocationTabOpen] = useState(false)
   const [exploreMoreTabOpen, setExploreMoreTabOpen] = useState(false)
 
@@ -176,29 +164,19 @@ const ExploreDataToolbar = props => {
 
   const toggleExploreDataToolbar = event => {
     setExploreDataTabOpen(!exploreDataTabOpen)
-    setPeriodTabOpen(false)
     setLocationTabOpen(false)
     setExploreMoreTabOpen(false)
-  }
-
-  const togglePeriodToolbar = event => {
-    setPeriodTabOpen(!periodTabOpen)
-    setExploreMoreTabOpen(false)
-    setLocationTabOpen(false)
-    setExploreDataTabOpen(false)
   }
 
   const toggleLocationToolbar = event => {
     setLocationTabOpen(!locationTabOpen)
     setExploreMoreTabOpen(false)
-    setPeriodTabOpen(false)
     setExploreDataTabOpen(false)
   }
 
   const toggleExploreMoreToolbar = event => {
     setExploreMoreTabOpen(!exploreMoreTabOpen)
     setExploreDataTabOpen(false)
-    setPeriodTabOpen(false)
     setLocationTabOpen(false)
   }
 
@@ -215,42 +193,35 @@ const ExploreDataToolbar = props => {
 
   return (
     <Box className={classes.exploreDataToolbarWrapper}>
-      <BaseToolbar>
-        <FilterToggleInput
-          value="open"
-          aria-label="Open explore data filters"
-          defaultSelected={exploreDataTabOpen}
-          selected={exploreDataTabOpen}
-          onChange={toggleExploreDataToolbar}
-        >
-          <ExploreDataIcon className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} /> Explore data
-        </FilterToggleInput>
-        <FilterToggleInput
-          value="open"
-          aria-label="Open period filters"
-          defaultSelected={periodTabOpen}
-          selected={periodTabOpen}
-          onChange={togglePeriodToolbar}>
-          <CalendarIcon className={classes.toolbarIcon} /> Period
-        </FilterToggleInput>
-        <FilterToggleInput
-          value="open"
-          aria-label="Open location filters"
-          defaultSelected={locationTabOpen}
-          selected={locationTabOpen}
-          onChange={toggleLocationToolbar}>
-          <LocationOnIcon className={classes.toolbarIcon} /> Location
-        </FilterToggleInput>
-        <FilterToggleInput
-          value="open"
-          aria-label="Open explore more filters"
-          defaultSelected={exploreMoreTabOpen}
-          selected={exploreMoreTabOpen}
-          onChange={toggleExploreMoreToolbar}>
-          <MoreVertIcon className={classes.toolbarIcon} /> Explore more {dataType}
-        </FilterToggleInput>
-      </BaseToolbar>
-      {exploreDataTabOpen &&
+      <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+        <BaseToolbar>
+          <FilterToggleInput
+            value="open"
+            aria-label="Open explore data filters"
+            defaultSelected={exploreDataTabOpen}
+            selected={exploreDataTabOpen}
+            onChange={toggleExploreDataToolbar}
+          >
+            <ExploreDataIcon className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} /> Explore data
+          </FilterToggleInput>
+          <FilterToggleInput
+            value="open"
+            aria-label="Open location filters"
+            defaultSelected={locationTabOpen}
+            selected={locationTabOpen}
+            onChange={toggleLocationToolbar}>
+            <LocationOnIcon className={classes.toolbarIcon} /> Compare
+          </FilterToggleInput>
+          <FilterToggleInput
+            value="open"
+            aria-label="Open explore more filters"
+            defaultSelected={exploreMoreTabOpen}
+            selected={exploreMoreTabOpen}
+            onChange={toggleExploreMoreToolbar}>
+            <MoreVertIcon className={classes.toolbarIcon} /> Explore more {dataType}
+          </FilterToggleInput>
+        </BaseToolbar>
+        {exploreDataTabOpen &&
         <BaseToolbar isSecondary={true}>
           <DataTypeSelectInput
             dataFilterKey={dataType}
@@ -281,7 +252,18 @@ const ExploreDataToolbar = props => {
               showClearSelected={false} />
           }
 
-          <Box className={classes.mapToolsWrapper}>
+          <Box className={classes.toolsWrapper}>
+            <PeriodSelectInput
+              dataFilterKey={PERIOD}
+              data={EXPLORE_DATA_TOOLBAR_OPTIONS[PERIOD]}
+              defaultSelected='Fiscal year'
+              label='Period'
+              selectType='Single'
+              showClearSelected={false} />
+            <YearSlider />
+          </Box>
+          {!mapOverlay &&
+          <Box className={classes.toolsWrapper}>
             <MapLevelToggleInput
               dataFilterKey={COUNTIES}
               defaultSelected={counties || US_STATE}
@@ -299,25 +281,13 @@ const ExploreDataToolbar = props => {
               disabled={dataType === 'Disbursements'}
               selectType='Single' />
           </Box>
+          }
         </BaseToolbar>
-      }
-      {periodTabOpen &&
-        <BaseToolbar isSecondary={true}>
-          <PeriodSelectInput
-            dataFilterKey={PERIOD}
-            data={EXPLORE_DATA_TOOLBAR_OPTIONS[PERIOD]}
-            defaultSelected='Fiscal year'
-            label='Period'
-            selectType='Single'
-            showClearSelected={false} />
-          <Box className={classes.yearSliderWrapper}>
-            <YearSlider />
-          </Box>
-        </BaseToolbar>
-      }
-      {locationTabOpen &&
+        }
+        {locationTabOpen &&
         <BaseToolbar isSecondary={true}>
           <Box className={classes.horizontalMenuItems}>
+            <SearchLocationsInput onLink={onLink} />
             {cardMenuItems &&
               cardMenuItems.map((item, i) =>
                 <MenuItem
@@ -330,8 +300,8 @@ const ExploreDataToolbar = props => {
             }
           </Box>
         </BaseToolbar>
-      }
-      {exploreMoreTabOpen &&
+        }
+        {exploreMoreTabOpen &&
         <BaseToolbar isSecondary={true}>
           <Box>
             {dataType === REVENUE &&
@@ -354,7 +324,8 @@ const ExploreDataToolbar = props => {
             }
           </Box>
         </BaseToolbar>
-      }
+        }
+      </StickyWrapper>
     </Box>
   )
 }

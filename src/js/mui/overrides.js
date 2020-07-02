@@ -76,8 +76,8 @@ module.exports = Object.freeze({
       '&$selected': {
         color: 'white',
         backgroundColor: palette.links.default,
-      }
-    }, 
+      },
+    },
     label: {
       textTransform: 'Capitalize',
     }

@@ -57,13 +57,14 @@ const useStyles = makeStyles(theme => ({
     },
   },
   sliderBox: {
-    width: '100%',
     position: 'relative',
     boxSizing: 'border-box',
+    margin: '0 30px',
     zIndex: 101,
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    top: -10,
+    top: -4,
+    minWidth: 250,
   },
   sliderRoot: {
     width: '100%',

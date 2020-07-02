@@ -10,13 +10,21 @@ import {
 
 import {
   withStyles,
-  createStyles
-} from '@material-ui/styles'
+  createStyles,
+  makeStyles
+} from '@material-ui/core/styles'
 
 import {
   ToggleButton,
   ToggleButtonGroup
 } from '@material-ui/lab'
+
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: 0,
+    minWidth: 'fit-content',
+  },
+}))
 
 // DefaultToggleButton Styles
 const DefaultToggleButton = withStyles(theme =>
@@ -29,7 +37,6 @@ const DefaultToggleButton = withStyles(theme =>
       minHeight: 'inherit',
       height: 50,
       padding: '0 15px',
-      margin: 0,
       '&.Mui-selected': {
         color: 'black',
         backgroundColor: theme.palette.primary.main,
@@ -47,7 +54,7 @@ const DefaultToggleButton = withStyles(theme =>
     },
     label: {
       textTransform: 'Capitalize',
-    }
+    },
   })
 )(({ classes, ...props }) => {
   return (
@@ -69,6 +76,7 @@ const BaseToggle = ({ onChange, selected, defaultSelected, data, label, legend, 
     data = []
   }
 
+  const classes = useStyles()
   const noop = () => {}
   onChange = onChange || noop
 
@@ -86,7 +94,7 @@ const BaseToggle = ({ onChange, selected, defaultSelected, data, label, legend, 
   }, [selected])
 
   return (
-    <FormControl style={{ minWidth: 'fit-content' }}>
+    <FormControl className={classes.formControl}>
       {legend &&
         <FormLabel component="legend" style={{ transform: 'translate(0, -3px) scale(0.75)' }}>{legend}</FormLabel>
       }
