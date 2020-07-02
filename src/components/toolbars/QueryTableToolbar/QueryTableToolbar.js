@@ -120,14 +120,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
           defaultSelected={dataFilterToolbarOpen}
           selected={dataFilterToolbarOpen}
           onChange={toggleDataFilterToolbar}>
-          <Grid container spacing={0}>
-            <Grid item xs={12}>
-              <Box component={'div'} fontSize="0.8rem" fontWeight={'400'} lineHeight={'1rem'}><FilterList /></Box>
-            </Grid>
-            <Grid item xs={12}>
-              <Box component={'div'} fontSize="0.8rem" fontWeight={'400'} lineHeight={'1rem'}>Filters</Box>
-            </Grid>
-          </Grid>
+          <FilterList /> Filters
         </FilterToggleInput>
         <FilterToggleInput
           value='open'
@@ -135,14 +128,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
           selected={periodToolbarOpen}
           defaultSelected={periodToolbarOpen}
           onChange={togglePeriodToolbar}>
-          <Grid container spacing={0}>
-            <Grid item xs={12}>
-              <Box component={'div'} fontSize="0.8rem" fontWeight={'400'} lineHeight={'1rem'}><CalendarToday /></Box>
-            </Grid>
-            <Grid item xs={12}>
-              <Box component={'div'} fontSize="0.8rem" fontWeight={'400'} lineHeight={'1rem'}>Period</Box>
-            </Grid>
-          </Grid>
+          <CalendarToday /> Period
         </FilterToggleInput>
         <FilterToggleInput
           value='open'
@@ -150,14 +136,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
           selected={downloadToolbarOpen}
           defaultSelected={downloadToolbarOpen}
           onChange={toggleDownloadToolbar}>
-          <Grid container spacing={0}>
-            <Grid item xs={12}>
-              <Box component={'div'} fontSize="0.8rem" fontWeight={'400'} lineHeight={'1rem'}><GetApp /></Box>
-            </Grid>
-            <Grid item xs={12}>
-              <Box component={'div'} fontSize="0.8rem" fontWeight={'400'} lineHeight={'1rem'}>Download</Box>
-            </Grid>
-          </Grid>
+          <GetApp /> Download
         </FilterToggleInput>
       </BaseToolbar>
       { dataFilterToolbarOpen &&

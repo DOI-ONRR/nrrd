@@ -27,19 +27,30 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
   },
   MuiSlider: {
-    color: theme.palette.primary.dark,
+    color: theme.palette.links.default,
     marginBottom: '30px',
     top: '-5px`'
   },
+  MuiSliderMark: {
+    backgroundColor: 'white',
+  },
+  MuiSliderRail: {
+    backgroundColor: theme.palette.grey[500],
+  }, 
   thumb: {
-    color: theme.palette.primary.dark,
+    color: theme.palette.links.default,
+    width: 50,
+    height: 25,
+    marginTop: -12,
+    borderRadius: 4,
   },
   valueLabel: {
     color: 'transparent',
+    top: -5,
     '& span': {
       '& span': {
         paddingTop: '20px',
-        color: 'black',
+        color: 'white',
         fontSize: theme.typography.h5.fontSize,
         fontWeight: theme.typography.h5.fontWeight,
       }
@@ -135,7 +146,9 @@ const BaseDataFilterRangeSliderImpl = ({ dataFilterKey, label, data, helperText 
               classes={{
                 root: classes.MuiSlider,
                 valueLabel: classes.valueLabel,
-                thumb: classes.thumb
+                thumb: classes.thumb,
+                mark: classes.MuiSliderMark,
+                rail: classes.MuiSliderRail
               }}/>
         }
         {helperText &&

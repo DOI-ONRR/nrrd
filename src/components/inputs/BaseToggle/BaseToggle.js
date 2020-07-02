@@ -23,6 +23,12 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: 0,
     minWidth: 'fit-content',
+    '& svg': {
+      fill: theme.palette.links.default,
+      maxWidth: '.75em',
+      maxHeight: '.75em',
+      marginRight: '.25em',
+    }
   },
 }))
 
