@@ -284,7 +284,7 @@ const MapContext = props => {
         }
       }
     }
-  `)
+  `)      
 
   const CommaArrayParam = {
     encode: array => encodeDelimitedArray(array, ','),
@@ -550,7 +550,7 @@ const MapContext = props => {
       offshoreRegions: filterState.offshoreRegions,
       commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
-    }, 'push')
+    }, 'pushIn')
   }, [filterState, pageState])
 
   // console.log('mapJsonObject: ', mapJsonObject)
