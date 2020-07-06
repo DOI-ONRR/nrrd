@@ -31,13 +31,13 @@ import CONSTANTS from '../../../../js/constants'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
-  query RevenueNational($year: Int!) {
-    fiscal_revenue_type_class_summary(order_by: {class_order: asc}, where: {year: {_eq: $year}}) {
+  query RevenueNational($year: Int!, $period: String!) {
+   revenue_type_class_summary(order_by: {land_type_order: asc}, where: {year: {_eq: $year},  period: { _eq: $period} }) {
       revenue_type
-      sum
       year
-      land_class
-      class_order
+      land_type
+      land_type_order
+      total
     }
   }
 `
@@ -60,11 +60,12 @@ const RevenueNationalSummary = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  console.debug('WTH PERIOD:', period)
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year }
+    variables: { year: year, period: period }
   })
 
   const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
@@ -74,9 +75,9 @@ const RevenueNationalSummary = props => {
   let groupTotal
   let nationalRevenueData
   const xAxis = 'year'
-  const yAxis = 'sum'
-  const yGroupBy = 'land_class'
-  const xLabels = 'month'
+  const yAxis = 'total'
+  const yGroupBy = 'land_type'
+
   const units = 'dollars'
   const xGroups = {}
 
@@ -89,8 +90,8 @@ const RevenueNationalSummary = props => {
   if (data) {
     // do something wit dat data
     //    console.log('RevenueNationalSummary data: ', data)
-    groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
-    groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.sum, 0)).reduce((total, s) => total += s, 0)
+    groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
+    groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
 
 
@@ -110,7 +111,7 @@ const RevenueNationalSummary = props => {
               <TableRow>
                 <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
                 <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
-                  <span style={{ fontWeight: 'bold', float: 'right' }}>FY {year}</span></TableCell>
+                  <span style={{ fontWeight: 'bold', float: 'right' }}>{period+' '+year}</span></TableCell>
 
               </TableRow>
             </TableHead>
@@ -144,10 +145,9 @@ const RevenueNationalSummary = props => {
                           return headers
                         }
                         }
-                        barScale={item[1].reduce((sum, i) => sum += i.sum, 0) / groupTotal }
+                  barScale={item[1].reduce((total, i) => total += i.total, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}
-                        xLabels={xLabels}
                         yAxis={yAxis}
                         yGroupBy={yGroupBy}
                         yOrderBy={yOrderBy}
