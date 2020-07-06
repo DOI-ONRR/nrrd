@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import * as d3 from 'd3'
 
 import {
   Box,
@@ -19,14 +20,14 @@ import CONSTANTS from '../../../../js/constants'
 
 const APOLLO_QUERY = gql`
   query RevenueSummaryTrend($state: String!, $period: String!) {
-    fiscal_revenue_summary(
-      where: { state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, state_or_area: asc }
+    revenue_summary(
+      where: { location: { _eq: $state }, period: {_eq: $period} }
+      order_by: { year: asc, location: asc }
     ) {
-      fiscal_year
-      state_or_area
-      sum
-      distinct_commodities
+      year
+      location
+      total      
+      commodity
     }
 
     period(where: {period: {_ilike: $period }}) {
@@ -38,9 +39,10 @@ const APOLLO_QUERY = gql`
 const RevenueSummaryTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const dataSet = 'FY ' + year
+   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: props.abbr, period: period }
   })
 
   let sparkData = []
@@ -66,17 +68,17 @@ const RevenueSummaryTrends = props => {
 
   if (
     data &&
-    data.fiscal_revenue_summary.length > 0
+    data.revenue_summary.length > 0
   ) {
     periodData = data.period
 
     // set min and max trend years
-    sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-    sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-
-    fiscalData = data.fiscal_revenue_summary.map((item, i) => [
-      item.fiscal_year,
-      item.sum
+    sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, periodData[0].fiscal_year)
+    sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, periodData[periodData.length - 1].fiscal_year)
+    console.debug("WTH: ", data.revenue_summary)    
+    fiscalData = data.revenue_summary.map((item, i) => [
+      item.year,
+      item.total
     ])
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
@@ -84,7 +86,7 @@ const RevenueSummaryTrends = props => {
       const sum = fiscalData.find(x => x[0] === item.fiscal_year)
       return ([
         item.fiscal_year,
-        sum ? sum[1] : 0
+        total ? total[1] : 0
       ])
     })
 
@@ -93,9 +95,9 @@ const RevenueSummaryTrends = props => {
       x => x[0] === year
     )
 
-    row = data.fiscal_revenue_summary.length > 1 && data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)]
+    row = data.revenue_summary.length > 1 && data.revenue_summary[data.revenue_summary.findIndex(x => x.year === year)]
 
-    total = row ? row.sum : 0
+    total = row ? row.total : 0
 
     return (
       <>
