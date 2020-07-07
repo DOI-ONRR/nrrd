@@ -13,10 +13,12 @@ import {
   DISPLAY_NAMES,
   PERIOD,
   PERIOD_FISCAL_YEAR,
-  QUERY_KEY_DATA_TABLE
+  QUERY_KEY_DATA_TABLE,
+  DOWNLOAD_DATA_TABLE
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
+import { DownloadContext } from '../../../stores/download-store'
 import { toTitleCase, aggregateSum, downloadWorkbook, destructuringSwap } from '../../../js/utils'
 
 import withQueryManager from '../../withQueryManager'
@@ -123,6 +125,7 @@ const EnhancedDataTable = withQueryManager(({ data }) => {
 
 const DataTableBase = data => {
   const { state, updateDataFilter } = useContext(DataFilterContext)
+  const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
   const [grouping, setGrouping] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
@@ -190,12 +193,22 @@ const DataTableBase = data => {
 
     if (data && data.results.length > 0) {
       const yearProps = columnNames.filter(item => item.name.startsWith('y'))
-      setAggregatedSums(aggregateSum({
+      const sums = aggregateSum({
         data: data.results,
         groupBy: state[GROUP_BY],
         breakoutBy: (state[BREAKOUT_BY] === NO_BREAKOUT_BY) ? undefined : state[BREAKOUT_BY],
         sumByProps: yearProps.map(item => item.name)
-      }))
+      })
+      setAggregatedSums(sums)
+      if (sums && sums.length > 0) {
+        addDownloadData({
+          key: DOWNLOAD_DATA_TABLE,
+          data: {
+            cols: columnNames.filter(col => !hiddenColumnNames.includes(col.name)),
+            rows: sums
+          }
+        })
+      }
     }
   }, [state, data])
 
@@ -212,6 +225,8 @@ const DataTableBase = data => {
   const removeBreakoutByColumnHandler = () => {
     updateDataFilter({ [BREAKOUT_BY]: undefined })
   }
+
+
 
   return (
     <React.Fragment>

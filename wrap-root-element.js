@@ -22,7 +22,8 @@ import { client } from './src/apollo/client'
 import { StoreProvider } from './src/store'
 import {
   AppStatusProvider,
-  DataFilterProvider
+  DataFilterProvider,
+  DownloadProvider
 } from './src/stores'
 
 import ErrorBoundary from './src/components/ErrorBoundary'
@@ -33,6 +34,9 @@ import PageLayoutManager from './src/components/layouts/PageLayoutManager'
 import DefaultLayout from './src/components/layouts/DefaultLayout'
 import SEO from './src/components/seo'
 
+/**
+ * Custom components comes from the cache file we create when gatsby runs its build process
+ */
 const mdxComponents = {
   pre: props => <div {...props} />,
   code: CodeBlock,
@@ -57,9 +61,11 @@ export const wrapRootElement = ({ element }) => (
         <DataFilterProvider>
           <StoreProvider>
             <AppStatusProvider>
-              <MDXProvider components={ mdxComponents }>
-                {element}
-              </MDXProvider>
+              <DownloadProvider>
+                <MDXProvider components={ mdxComponents }>
+                  {element}
+                </MDXProvider>
+              </DownloadProvider>
             </AppStatusProvider>
           </StoreProvider>
         </DataFilterProvider>

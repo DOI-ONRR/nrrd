@@ -2,7 +2,9 @@
 import React, { useContext } from 'react'
 import clsx from 'clsx'
 
-import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DataFilterContext, DownloadContext } from '../../../stores'
+
+import { downloadWorkbook } from '../../../js/utils'
 
 import {
   DATA_TYPE,
@@ -12,8 +14,12 @@ import {
   US_STATE,
   PERIOD,
   PERIOD_FISCAL_YEAR,
-  PERIOD_CALENDAR_YEAR
+  PERIOD_CALENDAR_YEAR,
+  EXCEL,
+  CSV,
+  DOWNLOAD_DATA_TABLE
 } from '../../../constants'
+
 import {
   DataTypeSelectInput,
   LandTypeSelectInput,
@@ -27,6 +33,7 @@ import {
   FilterToggleInput
 } from '../../inputs'
 
+import BaseButtonInput from '../../inputs/BaseButtonInput'
 import BaseToolbar from '../BaseToolbar'
 import YearRangeSelect from '../data-filters/YearRangeSelect'
 
@@ -75,6 +82,7 @@ const useStyles = makeStyles(theme => ({
 
 const QueryTableToolbar = ({ label, ...props }) => {
   const { state, updateDataFilter } = useContext(DataFilterContext)
+  const downloadDataContext = useContext(DownloadContext)
   if (!state) {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
@@ -108,6 +116,29 @@ const QueryTableToolbar = ({ label, ...props }) => {
   const handlePeriodChange = (event, newPeriod) => {
     if (newPeriod !== null) {
       updateDataFilter({ ...state, [PERIOD]: newPeriod })
+    }
+  }
+
+  const handleDownloadExcel = event => {
+    console.log(downloadDataContext.state)
+    if (downloadDataContext.state[DOWNLOAD_DATA_TABLE] && state[DATA_TYPE]) {
+      downloadWorkbook(
+        EXCEL,
+        state[DATA_TYPE],
+        state[DATA_TYPE],
+        downloadDataContext.state[DOWNLOAD_DATA_TABLE].cols,
+        downloadDataContext.state[DOWNLOAD_DATA_TABLE].rows)
+    }
+  }
+
+  const handleDownloadCsv = event => {
+    if (downloadDataContext.state[DOWNLOAD_DATA_TABLE] && state[DATA_TYPE]) {
+      downloadWorkbook(
+        CSV,
+        state[DATA_TYPE],
+        state[DATA_TYPE],
+        downloadDataContext.state[DOWNLOAD_DATA_TABLE].cols,
+        downloadDataContext.state[DOWNLOAD_DATA_TABLE].rows)
     }
   }
 
@@ -191,9 +222,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
       }
       { downloadToolbarOpen &&
       <BaseToolbar isSecondary={true}>
-        <Box m={'8px'}>
-          Download
+        <Box mr={2}>
+          <BaseButtonInput onClick={handleDownloadExcel} variant='outlined' label={'Download Excel'} styleType={'text'} />
         </Box>
+        <BaseButtonInput onClick={handleDownloadCsv} variant='outlined' label={'Download Csv'} styleType={'text'} />
       </BaseToolbar>
       }
     </>

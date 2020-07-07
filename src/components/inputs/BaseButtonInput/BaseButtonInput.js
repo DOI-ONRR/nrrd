@@ -68,7 +68,7 @@ const SingleButton = ({ label, onClick, classes, disabled, ...props }) => {
   const labelSlug = formatToSlug(label)
 
   const handleOnClick = event => {
-    onClick()
+    onClick(event)
   }
 
   return (

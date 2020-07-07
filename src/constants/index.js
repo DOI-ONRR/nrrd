@@ -11,6 +11,13 @@ export const DATA_TYPES = [REVENUE, PRODUCTION, DISBURSEMENT]
 export const SINGLE = 'single'
 export const MULTI = 'multi'
 
+// Defines the available download types
+export const EXCEL = 'excel'
+export const CSV = 'csv'
+
+// Defines keys for the available downalod data
+export const DOWNLOAD_DATA_TABLE = 'data_table'
+
 // @TODO find a better way to list all years
 export const ALL_REVENUE_YEARS = `
 y2003

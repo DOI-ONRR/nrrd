@@ -10,7 +10,6 @@ const withDataFilterContext = (BaseComponent, dataFilterKey) => ({ ...props }) =
   }
 
   useEffect(() => {
-    console.log(props.defaultSelected)
     if (props.defaultSelected && (state[dataFilterKey] !== props.defaultSelected)) {
       updateDataFilter({ [dataFilterKey]: (props.defaultSelected === '') ? undefined : props.defaultSelected })
     }
