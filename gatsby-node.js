@@ -98,6 +98,13 @@ exports.createPages = ({ graphql, reporter, actions }) => {
   createRedirect({ fromPath: '/how-it-works/disbursements/', toPath: '/how-revenue-works/disbursements', redirectInBrowser: true, isPermanent: true })
   createRedirect({ fromPath: '/how-it-works/reclamation-fund/', toPath: '/how-revenue-works/reclamation', redirectInBrowser: true, isPermanent: true })
 
+  createRedirect({ fromPath: '/how-it-works/federal-revenue-by-company/2018/', toPath: '/how-revenue-works', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/federal-revenue-by-company/2017/', toPath: '/how-revenue-works', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/federal-revenue-by-company/2016/', toPath: '/how-revenue-works', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/federal-revenue-by-company/2015/', toPath: '/how-revenue-works', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/federal-revenue-by-company/2014/', toPath: '/how-revenue-works', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-it-works/federal-revenue-by-company/2013/', toPath: '/how-revenue-works', redirectInBrowser: true, isPermanent: true })
+
   return Promise.all([
     createComponentsCache({ graphql, reporter }),
   ])
