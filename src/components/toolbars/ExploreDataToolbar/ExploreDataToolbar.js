@@ -281,9 +281,8 @@ const ExploreDataToolbar = props => {
               defaultSelected={offshoreRegions === true}
               label='Show offshore'
               helperText=''
-              disabled={dataType === 'Disbursements'}
-              selectType='Single'
-              disabled={mapOverlay} />
+              disabled={dataType === 'Disbursements' || mapOverlay}
+              selectType='Single' />
           </Box>
           }
         </BaseToolbar>
