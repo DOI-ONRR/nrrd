@@ -97,8 +97,10 @@ const useStyles = makeStyles(theme => ({
     marginRight: '.25em',
   },
   exploreDataIcon: {
-    width: 24,
-    height: 24,
+    width: 23,
+    height: 23,
+    maxHeight: 'inherit !important',
+    maxWidth: 'inherit !important',
   },
   yearSliderWrapper: {
     display: 'flex',
