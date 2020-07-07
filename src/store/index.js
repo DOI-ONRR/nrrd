@@ -8,7 +8,7 @@ function StoreProvider ({ children }) {
 
   // Log new state
   useEffect(() => {
-    console.debug({ newState: state })
+    // console.debug({ newState: state })
   }, [state])
 
   return (
