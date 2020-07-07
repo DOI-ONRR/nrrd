@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  Box,
   InputBase,
   FormControl,
   FormHelperText,
   InputLabel,
   ListItemText,
+  ListSubheader,
   MenuItem,
   Select,
   Checkbox
@@ -283,9 +285,10 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
         displayEmpty
       >
         <MenuItem key={0} role="select-menu" value={selectAllOptions ? 'selectNone' : 'selectAll'}>
-          <Checkbox checked={!selectAllOptions} />
-          <ListItemText primary={selectAllOptions ? 'Select none' : 'Select all'} />
+          <Checkbox checked={selectAllOptions} />
+          <ListItemText primary='All' />
         </MenuItem>
+
         {data &&
           data.map(
             (item, i) => <MenuItem key={`${ item.option }_${ i }`} value={item.value || item.option}>
