@@ -78,7 +78,7 @@ const EXPLORE_DATA_TOOLBAR_OPTIONS = {
 const useStyles = makeStyles(theme => ({
   exploreDataToolbarWrapper: {
     backgroundColor: theme.palette.common.white,
-    zIndex: 999,
+    zIndex: 1001,
     position: 'relative',
   },
   toolsWrapper: {
