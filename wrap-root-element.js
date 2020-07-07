@@ -39,6 +39,7 @@ import SEO from './src/components/seo'
  */
 const mdxComponents = {
   pre: props => <div {...props} />,
+  p: props => <div {...props} />,
   code: CodeBlock,
   a: CustomComponents.Link,
   ...CustomComponents,

@@ -43,6 +43,7 @@ export const DataTypeSelectInput = compose(
     <BaseComponent
       label={DISPLAY_NAMES[DATA_TYPE].default}
       data={DATA_TYPES}
+      showClearSelected={false}
       {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, DATA_TYPE))(BaseSelectInput)
 export const LandTypeSelectInput = createEnhancedSelect(LAND_TYPE, 'Multi')
