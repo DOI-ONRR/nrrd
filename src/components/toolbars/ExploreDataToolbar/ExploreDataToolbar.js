@@ -272,7 +272,8 @@ const ExploreDataToolbar = props => {
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[COUNTIES]}
               label="Map level toggle"
               legend="Map level"
-              size="small" />
+              size="small"
+              disabled={mapOverlay} />
 
             <OffshoreRegionsSwitchInput
               dataFilterKey={OFFSHORE_REGIONS}
@@ -281,7 +282,8 @@ const ExploreDataToolbar = props => {
               label='Show offshore'
               helperText=''
               disabled={dataType === 'Disbursements'}
-              selectType='Single' />
+              selectType='Single'
+              disabled={mapOverlay} />
           </Box>
           }
         </BaseToolbar>
