@@ -505,7 +505,6 @@ const MapContext = props => {
     }
   }, [data])
 
-  console.log('mapJsonObject: ', mapJsonObject)
 
   const mapChild = React.cloneElement(props.children[0],
     {

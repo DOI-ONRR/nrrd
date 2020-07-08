@@ -32,5 +32,5 @@ MapControlToggle.propTypes = {
   /**
    * Label used for aria-label on ToggleButtonGroup
    */
-  label: PropTypes.object,
+  label: PropTypes.string,
 }
