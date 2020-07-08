@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
-    zIndex: 1001,
+    zIndex: 1,
     '@media (max-width: 768px)': {
       height: 'calc(100vh - 124px)',
     },
