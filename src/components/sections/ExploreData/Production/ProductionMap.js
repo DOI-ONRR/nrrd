@@ -23,6 +23,7 @@ export default props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
