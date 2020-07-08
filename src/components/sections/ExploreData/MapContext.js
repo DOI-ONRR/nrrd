@@ -52,11 +52,12 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 156px)',
+    height: 'calc(100vh - 270px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
+    zIndex: 1001,
     '@media (max-width: 768px)': {
       height: 'calc(100vh - 124px)',
     },
@@ -570,14 +571,14 @@ const MapContext = props => {
 
   return (
     <>
+      <ExploreDataToolbar
+        onLink={onLink}
+        cardMenuItems={cardMenuItems}
+        mapOverlay={mapOverlay} />
       <Container className={classes.mapContextWrapper} maxWidth={false}>
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
-              <ExploreDataToolbar
-                onLink={onLink}
-                cardMenuItems={cardMenuItems}
-                mapOverlay={mapOverlay} />
               {mapChild}
               <MapControls
                 handleClick={handleClick}
