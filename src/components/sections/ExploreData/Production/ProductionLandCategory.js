@@ -107,7 +107,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   let chartData = []
   const dataSet = `FY ${ year } - ${ commodity }`
 
-  if (data) {
+  if (data && data.fiscal_production_summary.length > 0) {
     const unit = data.fiscal_production_summary[0].unit_abbr
    
     const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]

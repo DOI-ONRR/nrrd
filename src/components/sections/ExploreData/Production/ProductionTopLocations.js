@@ -197,7 +197,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
                 if (location === 'State' && !props.abbr) {
                   const r = []
                   r[0] = d.location_name
-                  r[1] = utils.formatToCommaInt(d.sum) +  unitAbbr 
+                  r[1] = utils.formatToCommaInt(d.sum) + ' ' + unitAbbr
                   return r
                 }
                 else {

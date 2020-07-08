@@ -78,7 +78,7 @@ const ProductionDetailTrends = props => {
   let locationTotalData
   let locData
   let unit = ''
-  if (data) {
+  if (data &&  data.fiscal_production_summary.length > 0) {
     periodData = data.period
 
     // set min and max trend years
