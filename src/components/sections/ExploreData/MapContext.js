@@ -59,14 +59,14 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     zIndex: 1,
     '@media (max-width: 768px)': {
-      height: 'calc(100vh - 124px)',
+      height: 'calc(100vh - 300px)',
     },
     '& .mapContainer': {
       position: 'fixed',
       top: 65,
     },
     '& .legend': {
-      bottom: 88,
+      bottom: 140,
     },
     '& .map-overlay': {
       left: '0',
@@ -604,11 +604,6 @@ const MapContext = props => {
           }
 
           <ExploreMoreDataButton />
-          {/* <YearSlider
-            onYear={selected => {
-              onYear(selected, x, y, k)
-            }}
-          /> */}
         </Grid>
       </Container>
       <Container maxWidth={false} style={{ padding: 0, position: 'relative', background: 'white', zIndex: 250 }}>
@@ -629,11 +624,6 @@ const MapContext = props => {
                 })}
               </Box>
             </Grid>
-            { cardMenuItems.length > 0 &&
-                <Box className={classes.nonStateCardsContainer}>
-                  <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
-                </Box>
-            }
           </>
         }
       </Container>

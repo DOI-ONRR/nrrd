@@ -135,7 +135,7 @@ const ProductionSummaryTrends = props => {
     return (
       <>
         <Grid container>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography variant="caption">
               <Box>{ name + ' has not produced any ' + commodity + ' since ' + sparkMin + '.'} </Box>
             </Typography>
