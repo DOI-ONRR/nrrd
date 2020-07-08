@@ -3,14 +3,16 @@ import PropTypes from 'prop-types'
 
 import BaseToggle from '../BaseToggle'
 
-const MapControlToggle = ({ dataFilterKey, data, label }) => {
+const MapControlToggle = ({ dataFilterKey, data, defaultSelected, label, disabled }) => {
   return (
     <BaseToggle
       dataFilterKey={dataFilterKey}
+      defaultSelected={defaultSelected}
       data={data}
       label={label}
       size="small"
       legend="Map level"
+      disabled={disabled}
     />
   )
 }

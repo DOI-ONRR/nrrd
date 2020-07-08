@@ -120,7 +120,7 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
+            //uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
             //uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
             headers: {},
@@ -199,6 +199,7 @@ const config = {
         ]
       },
     },
+    'gatsby-plugin-use-query-params',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }

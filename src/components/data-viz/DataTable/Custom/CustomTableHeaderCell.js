@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import makeStyles from '@material-ui/styles/makeStyles'
 import useTheme from '@material-ui/styles/useTheme'
 import { Table } from '@devexpress/dx-react-grid-material-ui'
+import {
+  GroupBySelectInput,
+  BreakoutBySelectInput
+} from '../../../inputs'
+import {
+  DATA_TYPE,
+  REVENUE,
+  PRODUCTION,
+  DISBURSEMENT,
+  GROUP_BY,
+  BREAKOUT_BY
+} from '../../../../constants'
+
+import { DataFilterContext } from '../../../../stores/data-filter-store'
 
 const useStyles = makeStyles(theme => ({
   cell: {
@@ -16,9 +30,18 @@ const useStyles = makeStyles(theme => ({
 const CustomTableHeaderCell = ({ getMessage, ...restProps }) => {
   const theme = useTheme()
   const styles = useStyles(theme)
-  console.log(restProps)
+  const { state } = useContext(DataFilterContext)
+
   return (
-    <Table.StubHeaderCell {...restProps} classes={styles} />
+    <Table.StubHeaderCell classes={styles}>
+      {state[GROUP_BY] === restProps.column.name
+        ? <GroupBySelectInput />
+        : <>{state[BREAKOUT_BY] === restProps.column.name
+          ? <BreakoutBySelectInput />
+          : <>{restProps.children}</>
+        }</>
+      }
+    </Table.StubHeaderCell>
   )
 }
 

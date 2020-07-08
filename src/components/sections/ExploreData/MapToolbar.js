@@ -22,15 +22,36 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import AddIcon from '@material-ui/icons/Add'
 
 // import MapSelectControl from './MapSelectControl'
-import MapToolbarSelect from '../../inputs/MapToolbarSelect'
-import MapControlSwitch from '../../inputs/MapControlSwitch'
+// import MapToolbarSelect from '../../inputs/MapToolbarDataTypeSelect'
+// import MapControlSwitch from '../../inputs/MapControlSwitch'
 import MapControlToggle from '../../inputs/MapControlToggle'
 import CONSTANTS from '../../../js/constants'
+
+import {
+  DataTypeSelectInput,
+  PeriodSelectInput,
+  CommoditySelectInput,
+  OffshoreRegionSwitchInput
+} from '../../inputs'
+
+// import OffshoreSwitch from '../../inputs/OffshoreSwitch'
 
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
-import { REVENUE, DISBURSEMENT, PRODUCTION, DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import {
+  COMMODITY,
+  COUNTIES,
+  COUNTY,
+  DATA_FILTER_CONSTANTS as DFC,
+  DATA_TYPE,
+  DISBURSEMENT,
+  PERIOD,
+  PRODUCTION,
+  REVENUE,
+  US_STATE,
+  OFFSHORE_REGIONS
+} from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   toolbar: {
@@ -196,113 +217,104 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const MAP_DATA_TYPE_SELECT_OPTIONS = [
-  'Revenue',
-  'Disbursements',
-  'Production'
-]
-
-const MAP_LEVEL_OPTIONS = {
-  options: [
-    {
-      option: 'State',
-      value: 'State'
-    },
-    {
-      option: 'County',
-      value: 'County'
-    }
+const MAP_TOOLBAR_OPTIONS = {
+  [DATA_TYPE]: [
+    { value: REVENUE, option: 'Revenue' },
+    { value: PRODUCTION, option: 'Production' },
+    { value: DISBURSEMENT, option: 'Disbursements' },
+  ],
+  [PERIOD]: [
+    { value: CONSTANTS.FISCAL_YEAR, option: 'Fiscal year' },
+    // { value: CONSTANTS.CALENDAR_YEAR, option: 'Calendar year' },
+    // { value: CONSTANTS.MONTHLY, option: 'Monthly' }
+  ],
+  [COUNTIES]: [
+    { value: US_STATE, option: 'State' },
+    { value: COUNTY, option: 'County' }
+  ],
+  [OFFSHORE_REGIONS]: [
+    { value: false, option: '' },
+    { value: true, option: '' }
   ]
 }
 
-// const MAP_TIMEFRAME_OPTIONS = [
-//   CONSTANTS.YEARLY,
-//   CONSTANTS.MONTHLY
-// ]
-
-const MAP_PERIOD_OPTIONS = [
-  // CONSTANTS.CALENDAR_YEAR,
-  CONSTANTS.FISCAL_YEAR,
-  // CONSTANTS.MONTHLY
-]
-
 // Map explore menu speed dial
-const MapExploreMenu = props => {
-  const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState(null)
+// const MapExploreMenu = props => {
+//   const classes = useStyles()
+//   const [anchorEl, setAnchorEl] = useState(null)
 
-  const theme = useTheme()
-  const matchesMdLgUp = useMediaQuery('(max-width:1120px)')
+//   const theme = useTheme()
+//   const matchesMdLgUp = useMediaQuery('(max-width:1120px)')
 
-  const handleMenuClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
+//   const handleMenuClick = event => {
+//     setAnchorEl(event.currentTarget)
+//   }
 
-  const handleClose = index => event => {
-    setAnchorEl(null)
-    navigate(props.linkUrls[index])
-  }
+//   const handleClose = index => event => {
+//     setAnchorEl(null)
+//     navigate(props.linkUrls[index])
+//   }
 
-  return (
-    <div className={classes.mapExploreMenu}>
-      {!matchesMdLgUp &&
-        <>
-          <Tooltip title='Explore more' classes={{ tooltip: classes.tooltipRoot }}>
-            <IconButton
-              aria-label='Other ways to explore data'
-              aria-controls='other-ways-to-explore-data'
-              aria-haspopup='true'
-              onClick={handleMenuClick}>
-              <MoreVertIcon />
-            </IconButton>
-          </Tooltip>
-          <Menu
-            id='other-ways-to-explore-data'
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose(null)}
-          >
-            {
-              props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
-            }
-          </Menu>
-        </>
-      }
-      {matchesMdLgUp &&
-      <>
-        <Paper>
-          <MenuList>
-            {
-              props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
-            }
-          </MenuList>
-        </Paper>
-      </>
-      }
-    </div>
-  )
-}
+//   return (
+//     <div className={classes.mapExploreMenu}>
+//       {!matchesMdLgUp &&
+//         <>
+//           <Tooltip title='Explore more' classes={{ tooltip: classes.tooltipRoot }}>
+//             <IconButton
+//               aria-label='Other ways to explore data'
+//               aria-controls='other-ways-to-explore-data'
+//               aria-haspopup='true'
+//               onClick={handleMenuClick}>
+//               <MoreVertIcon />
+//             </IconButton>
+//           </Tooltip>
+//           <Menu
+//             id='other-ways-to-explore-data'
+//             anchorEl={anchorEl}
+//             keepMounted
+//             open={Boolean(anchorEl)}
+//             onClose={handleClose(null)}
+//           >
+//             {
+//               props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
+//             }
+//           </Menu>
+//         </>
+//       }
+//       {matchesMdLgUp &&
+//       <>
+//         <Paper>
+//           <MenuList>
+//             {
+//               props.linkLabels.map((item, i) => <MenuItem key={i} onClick={handleClose(i)}>{item}</MenuItem>)
+//             }
+//           </MenuList>
+//         </Paper>
+//       </>
+//       }
+//     </div>
+//   )
+// }
 
-// Explore data toolbar
-const ExploreDataToolbar = props => {
+// Map toolbar
+const MapToolbar = props => {
   const { cardMenuItems, onLink } = props
 
-  const data = useStaticQuery(graphql`
-    query CommodityQuery {
-      onrr {
-        production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
-          commodity
-        }
-        revenue_commodity: revenue_commodity_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
-          commodity
-        }
-      }
-    }
-  `)
+  // const data = useStaticQuery(graphql`
+  //   query CommodityQuery {
+  //     onrr {
+  //       production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
+  //         commodity
+  //       }
+  //       revenue_commodity: revenue_commodity_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
+  //         commodity
+  //       }
+  //     }
+  //   }
+  // `)
 
-  const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
-  const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
+  // const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
+  // const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
   const classes = useStyles()
 
   const theme = useTheme()
@@ -337,6 +349,8 @@ const ExploreDataToolbar = props => {
 
   const {
     dataType,
+    period,
+    commodity,
     counties,
     offshoreRegion
   } = filterState
@@ -402,57 +416,55 @@ const ExploreDataToolbar = props => {
           /* Map toolbar selections */
           <Box className={classes.toolbarControls}>
             <Box className={classes.toolbarPageControls}>
-              <MapToolbarSelect
-                dataFilterKey={DFC.DATA_TYPE}
-                data={MAP_DATA_TYPE_SELECT_OPTIONS}
-                defaultOption={ dataType || REVENUE }
+              <DataTypeSelectInput
+                dataFilterKey={dataType}
+                data={MAP_TOOLBAR_OPTIONS[DATA_TYPE]}
+                defaultSelected={ dataType || REVENUE }
                 label='Data type'
-                helperText=''
-                selectType='Single' />
+                selectType='Single'
+                showClearSelected={false} />
 
-              {/* <MapToolbarSelect
-                  data={MAP_TIMEFRAME_OPTIONS}
-                  label='Timeframe'
-                  dataFilterKey={DFC.TIMEFRAME'} /> */}
-
-              <MapToolbarSelect
-                dataFilterKey={DFC.OFFSHORE_REGIONS}
-                data={MAP_PERIOD_OPTIONS}
-                defaultOption={'Fiscal year'}
-                label='Fiscal year'
-                helperText=''
-                selectType='Single' />
+              <PeriodSelectInput
+                dataFilterKey={PERIOD}
+                data={MAP_TOOLBAR_OPTIONS[PERIOD]}
+                defaultSelected='Fiscal year'
+                label='Period'
+                selectType='Single'
+                showClearSelected={false} />
 
               {(dataType === 'Revenue') &&
-              <MapToolbarSelect
-                dataFilterKey={DFC.COMMODITIES}
+              <CommoditySelectInput
+                dataFilterKey={COMMODITY}
                 data={revenueCommodityOptions}
-                defaultOption='Oil'
+                defaultSelected={commodity}
+                defaultSelectAll={typeof commodity === 'undefined'}
                 label='Commodity'
                 selectType='Multi'
                 helperText='' />
               }
 
               {(dataType === 'Production') &&
-              <MapToolbarSelect
-                dataFilterKey={DFC.COMMODITY}
+              <CommoditySelectInput
+                dataFilterKey={COMMODITY}
                 data={productionCommodityOptions}
-                defaultOption='Oil (bbl)'
+                defaultSelected={commodity || 'Oil (bbl)'}
                 label='Commodity'
-                selectType='Single' />
+                selectType='Single'
+                showClearSelected={false} />
               }
             </Box>
 
             <Box className={classes.mapControls}>
               <MapControlToggle
-                dataFilterKey={DFC.COUNTIES}
-                data={MAP_LEVEL_OPTIONS}
+                dataFilterKey={COUNTIES}
+                defaultSelected={counties || US_STATE}
+                data={MAP_TOOLBAR_OPTIONS[COUNTIES]}
                 label="Map level toggle" />
 
-              <MapControlSwitch
-                dataFilterKey={DFC.OFFSHORE_REGIONS}
-                defaultOption={false}
-                checked={offshoreRegion || false}
+              <OffshoreRegionSwitchInput
+                dataFilterKey={OFFSHORE_REGIONS}
+                data={MAP_TOOLBAR_OPTIONS[OFFSHORE_REGIONS]}
+                defaultSelected={offshoreRegion}
                 label='Show offshore'
                 helperText=''
                 disabled={dataType === 'Disbursements'}
@@ -499,4 +511,4 @@ const ExploreDataToolbar = props => {
   )
 }
 
-export default ExploreDataToolbar
+export default MapToolbar

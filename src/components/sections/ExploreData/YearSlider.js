@@ -57,13 +57,14 @@ const useStyles = makeStyles(theme => ({
     },
   },
   sliderBox: {
-    width: '100%',
     position: 'relative',
     boxSizing: 'border-box',
+    margin: '0 30px',
     zIndex: 101,
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    top: -10,
+    top: -4,
+    minWidth: 250,
   },
   sliderRoot: {
     width: '100%',
@@ -105,6 +106,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: -4,
     boxShadow: 'none',
     transition: 'none',
+    borderRadius: 4,
+    '& span': {
+      borderRadius: 4,
+    },
     '&:hover': {
       boxShadow: 'none',
       transition: 'none',
@@ -125,7 +130,7 @@ const useStyles = makeStyles(theme => ({
     '& span': {
       width: 75,
       transform: 'rotate(0)',
-      borderRadius: 0,
+      borderRadius: 4,
       textAlign: 'center',
       color: `${ theme.palette.common.white } !important`,
       backgroundColor: theme.palette.links.default,
@@ -193,48 +198,40 @@ const YearSlider = props => {
     )
 
     return (
-      <Box className={classes.root}>
-        <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
-          <Box className={`${ classes.sliderContainer } slider-wrapper`}>
-            <Container>
-              {/* <Box className={classes.sliderYearDisplay}>Fiscal year {year}</Box> */}
 
-              <Box id="year-slider" className={classes.sliderBox}>
-                <Grid container spacing={4}>
-                  <Grid item xs>
-                    <Slider
-                      defaultValue={year}
-                      aria-label="Year slider"
-                      aria-labelledby="year-slider"
-                      aria-valuetext={year && year.toString()}
-                      valueLabelDisplay="on"
-                      valueLabelFormat={label => `FY ${ label }`}
-                      step={1}
-                      onChangeCommitted={(e, yr) => {
-                        handleOnchange(yr)
-                      }}
-                      marks={customMarks}
-                      min={minYear}
-                      max={maxYear}
-                      classes={{
-                        root: classes.sliderRoot,
-                        markLabel: classes.sliderMarkLabel,
-                        markLabelActive: classes.sliderMarkLabelActive,
-                        track: classes.sliderTrack,
-                        rail: classes.sliderRail,
-                        mark: classes.sliderMark,
-                        active: classes.sliderActive,
-                        thumb: classes.sliderThumb,
-                        valueLabel: classes.sliderValueLabel,
-                      }}
-                    />
-                  </Grid>
-                </Grid>
-              </Box>
-            </Container>
-          </Box>
-        </StickyWrapper>
+      <Box id="year-slider" className={classes.sliderBox}>
+        <Grid container spacing={4}>
+          <Grid item xs>
+            <Slider
+              defaultValue={year}
+              aria-label="Year slider"
+              aria-labelledby="year-slider"
+              aria-valuetext={year && year.toString()}
+              valueLabelDisplay="on"
+              valueLabelFormat={label => `FY ${ label }`}
+              step={1}
+              onChangeCommitted={(e, yr) => {
+                handleOnchange(yr)
+              }}
+              marks={customMarks}
+              min={minYear}
+              max={maxYear}
+              classes={{
+                root: classes.sliderRoot,
+                markLabel: classes.sliderMarkLabel,
+                markLabelActive: classes.sliderMarkLabelActive,
+                track: classes.sliderTrack,
+                rail: classes.sliderRail,
+                mark: classes.sliderMark,
+                active: classes.sliderActive,
+                thumb: classes.sliderThumb,
+                valueLabel: classes.sliderValueLabel,
+              }}
+            />
+          </Grid>
+        </Grid>
       </Box>
+
     )
   }
   else {

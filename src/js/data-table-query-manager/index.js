@@ -70,7 +70,7 @@ export default DataTableQueryManager
 const VARIABLES = {
   [REVENUE]: state => ({
     variables: {
-      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS) ? undefined : state[LAND_TYPE],
+      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS || !state[LAND_TYPE]) ? undefined : state[LAND_TYPE].split(','),
       [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
       [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
       [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
@@ -81,7 +81,7 @@ const VARIABLES = {
   }),
   [PRODUCTION]: state => ({
     variables: {
-      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS) ? undefined : state[LAND_TYPE],
+      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS || !state[LAND_TYPE]) ? undefined : state[LAND_TYPE].split(','),
       [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
       [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
       [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
@@ -91,19 +91,17 @@ const VARIABLES = {
   }),
   [DISBURSEMENT]: state => ({
     variables: {
-      [RECIPIENT]: (state[RECIPIENT] === ZERO_OPTIONS) ? undefined : state[RECIPIENT],
-      [SOURCE]: (state[SOURCE] === ZERO_OPTIONS) ? undefined : state[SOURCE],
-      [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
+      [RECIPIENT]: (state[RECIPIENT] === ZERO_OPTIONS || !state[RECIPIENT]) ? undefined : state[RECIPIENT].split(','),
+      [SOURCE]: (state[SOURCE] === ZERO_OPTIONS || !state[SOURCE]) ? undefined : state[SOURCE].split(','),
       [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
       [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
-      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
       [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
   })
 }
 
 const VARIABLE_LIST_REVENUE = ''.concat(
-  '$landType: String,',
+  '$landType: [String!],',
   '$landCategory: String,',
   '$offshoreRegion: [String!],',
   '$state: [String!],',
@@ -113,7 +111,7 @@ const VARIABLE_LIST_REVENUE = ''.concat(
   '$period: String,'
 )
 const VARIABLE_LIST_PRODUCTION = ''.concat(
-  '$landType: String,',
+  '$landType: [String!],',
   '$landClass: String,',
   '$landCategory: String,',
   '$offshoreRegion: [String!],',
@@ -123,12 +121,10 @@ const VARIABLE_LIST_PRODUCTION = ''.concat(
   '$period: String,'
 )
 const VARIABLE_LIST_DISBURSEMENT = ''.concat(
-  '$recipient: String,',
-  '$source: String,',
-  '$offshoreRegion: [String!],',
+  '$recipient: [String!],',
+  '$source: [String!],',
   '$state: [String!],',
   '$county: [String!],',
-  '$commodity: [String!],',
   '$period: String,'
 )
 
@@ -137,7 +133,7 @@ const REVENUE_QUERY = `
     where: {
       state: {_in: $state},
       county: {_in: $county},
-      land_type: {_eq: $landType},
+      land_type: {_in: $landType},
       offshore_region: {_in: $offshoreRegion},
       commodity: {_in: $commodity},
       revenue_type: {_in: $revenueType},
@@ -158,7 +154,7 @@ const REVENUE_QUERY = `
 const PRODUCTION_QUERY = `
   results:query_tool_production_data(
     where: {
-      land_type: {_eq: $landType},
+      land_type: {_in: $landType},
       offshore_region: {_in: $offshoreRegion},
       state: {_in: $state},
       county: {_in: $county},
@@ -179,8 +175,8 @@ const PRODUCTION_QUERY = `
 const DISBURSEMENT_QUERY = `
   results:query_tool_disbursement_data(
     where: {
-      recipient: {_eq: $recipient},
-      source: {_eq: $source},
+      recipient: {_in: $recipient},
+      source: {_in: $source},
       state: {_in: $state},
       county: {_in: $county},
       period: {_eq: $period},

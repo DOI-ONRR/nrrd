@@ -10,13 +10,17 @@ import {
   FISCAL_YEAR,
   CALENDAR_YEAR,
   NO_BREAKOUT_BY,
-  DISPLAY_NAMES
+  DISPLAY_NAMES,
+  PERIOD,
+  PERIOD_FISCAL_YEAR,
+  QUERY_KEY_DATA_TABLE
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
 import { toTitleCase, aggregateSum, downloadWorkbook } from '../../../js/utils'
 
-import DTQM from '../../../js/data-table-query-manager'
+import withQueryManager from '../../withQueryManager'
+import QueryManager from '../../../js/query-manager'
 import { useQuery } from '@apollo/react-hooks'
 
 import CustomTableCell from './Custom/CustomTableCell'
@@ -24,6 +28,7 @@ import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRo
 import CustomTableFixedCell from './Custom/CustomTableFixedCell'
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
+import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
 import AllTypeProvider from './Custom/AllTypeProvider'
 
 import { IconDownloadCsvImg, IconDownloadXlsImg } from '../../images'
@@ -83,17 +88,17 @@ const DataTable = ({ dataType, height = '100%' }) => {
           <React.Fragment>
             {state[DATA_TYPE] === REVENUE &&
               <Grid item xs={12}>
-                <RevenueDataTableImpl />
+                <EnhancedDataTable />
               </Grid>
             }
             {state[DATA_TYPE] === PRODUCTION &&
               <Grid item xs={12}>
-                <ProductionDataTableImpl />
+                <EnhancedDataTable />
               </Grid>
             }
             {state[DATA_TYPE] === DISBURSEMENT &&
               <Grid item xs={12}>
-                <DisbursementDataTableImpl />
+                <EnhancedDataTable />
               </Grid>
             }
           </React.Fragment>
@@ -105,91 +110,17 @@ const DataTable = ({ dataType, height = '100%' }) => {
 
 export default DataTable
 
-const RevenueDataTableImpl = () => {
-  const { state } = useContext(DataFilterContext)
-
-  const loadingMessage = `Loading ${ state.dataType } data from server...`
-
-  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
-
-  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
-
-  useEffect(() => {
-    if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
-    }
-  }, [error])
-
-  useEffect(() => {
-    updateLoadingStatus({ status: loading, message: loadingMessage })
-  }, [loading])
-
+const EnhancedDataTable = withQueryManager(({ data }) => {
   return (
     <React.Fragment>
       {(data && data.results.length > 0) &&
-        <DataTableImpl {...data} />
+        <DataTableBase {...data} />
       }
     </React.Fragment>
   )
-}
+}, QUERY_KEY_DATA_TABLE)
 
-const ProductionDataTableImpl = () => {
-  const { state } = useContext(DataFilterContext)
-
-  const loadingMessage = `Loading ${ state.dataType } data from server...`
-
-  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
-
-  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
-
-  useEffect(() => {
-    if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
-    }
-  }, [error])
-
-  useEffect(() => {
-    updateLoadingStatus({ status: loading, message: loadingMessage })
-  }, [loading])
-
-  return (
-    <React.Fragment>
-      {(data && data.results.length > 0) &&
-        <DataTableImpl {...data} />
-      }
-    </React.Fragment>
-  )
-}
-
-const DisbursementDataTableImpl = () => {
-  const { state } = useContext(DataFilterContext)
-
-  const loadingMessage = `Loading ${ state.dataType } data from server...`
-
-  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
-
-  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
-
-  useEffect(() => {
-    if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
-    }
-  }, [error])
-
-  useEffect(() => {
-    updateLoadingStatus({ status: loading, message: loadingMessage })
-  }, [loading])
-
-  return (
-    <React.Fragment>
-      {(data && data.results.length > 0) &&
-        <DataTableImpl {...data} />
-      }
-    </React.Fragment>
-  )
-}
-
-const DataTableImpl = data => {
+const DataTableBase = data => {
   const { state } = useContext(DataFilterContext)
   let columnNames = getColumnNames(data.results[0], state)
   const [grouping, setGrouping] = useState([])
@@ -204,8 +135,9 @@ const DataTableImpl = data => {
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
   const getHiddenColumns = () => {
     let yearColumns = []
-    if (state[CALENDAR_YEAR] || state[FISCAL_YEAR]) {
-      let years = (state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',') : state[FISCAL_YEAR].split(',')
+    const periodYear = (state[PERIOD] === PERIOD_FISCAL_YEAR) ? FISCAL_YEAR : CALENDAR_YEAR
+    if (state[periodYear]) {
+      let years = state[periodYear].split(',')
       years = years.map(item => `y${ item }`)
       yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !years.includes(item.name)))
     }
@@ -269,31 +201,33 @@ const DataTableImpl = data => {
     <React.Fragment>
       {(aggregatedSums && aggregatedSums.length > 0) &&
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Box component="div" display="inline" mr={2}>
+          {false &&
+            <Grid item xs={12}>
+              <Box component="div" display="inline" mr={2}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  aria-label="open data filters"
+                  onClick={() => handleDownload('excel')}
+                  onKeyDown={() => handleDownload('excel')}
+                  startIcon={<IconDownloadXlsImg />}
+                >
+                Download table
+                </Button>
+
+              </Box>
               <Button
                 variant="contained"
                 color="primary"
                 aria-label="open data filters"
-                onClick={() => handleDownload('excel')}
-                onKeyDown={() => handleDownload('excel')}
-                startIcon={<IconDownloadXlsImg />}
+                onClick={() => handleDownload('csv')}
+                onKeyDown={() => handleDownload('csv')}
+                startIcon={<IconDownloadCsvImg />}
               >
-              Download table
+                Download table
               </Button>
-
-            </Box>
-            <Button
-              variant="contained"
-              color="primary"
-              aria-label="open data filters"
-              onClick={() => handleDownload('csv')}
-              onKeyDown={() => handleDownload('csv')}
-              startIcon={<IconDownloadCsvImg />}
-            >
-              Download table
-            </Button>
-          </Grid>
+            </Grid>
+          }
           <Grid item xs={12}>
             <TableGrid
               rows={aggregatedSums}
@@ -317,7 +251,9 @@ const DataTableImpl = data => {
                 cellComponent={CustomTableCell}
               />
               <TableColumnResizing defaultColumnWidths={defaultColumnWidths} />
-              <TableHeaderRow showSortingControls/>
+              <TableHeaderRow
+                cellComponent={props => <CustomTableHeaderCell {...props} groupBy={state[GROUP_BY]}/>}
+                showSortingControls/>
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
               />
@@ -341,12 +277,13 @@ const getColumnNames = (row, state) => {
     return []
   }
   const filteredColumns = Object.keys(row).filter(column => !column.includes('typename'))
-  return filteredColumns.map(column => {
+  return filteredColumns.map((column, index) => {
     if (parseInt(column.substring(1)) > 1000) {
       return { name: column, title: column.substring(1), year: parseInt(column.substring(1)) }
     }
     const titleName = toTitleCase(column).replace('_', ' ')
     return {
+      addGroupingInput: true,
       name: column,
       title: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].default : titleName,
       plural: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].plural : titleName,

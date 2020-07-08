@@ -84,7 +84,7 @@ const RevenueCountyMap = props => {
        <Box className={classes.root}>
          {!showCountyContent &&
          <>
-           <Box component="h4" fontWeight="bold" mb={2}>Revenue2 by county</Box>
+           <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
            <Map
              key={`county_map_${ props.abbr }_${ year }`}
              mapFeatures={mapFeatures}
