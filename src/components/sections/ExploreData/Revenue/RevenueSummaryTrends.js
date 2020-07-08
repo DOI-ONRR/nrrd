@@ -32,6 +32,7 @@ const APOLLO_QUERY = gql`
 
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
+      period_date
     }
   }
 `
@@ -39,7 +40,7 @@ const APOLLO_QUERY = gql`
 const RevenueSummaryTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: props.abbr, period: period }
@@ -71,33 +72,36 @@ const RevenueSummaryTrends = props => {
     data.revenue_summary.length > 0
   ) {
     periodData = data.period
-
+    console.debug("PERIODDATA", periodData)
     // set min and max trend years
-    sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, periodData[0].fiscal_year)
-    sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, periodData[periodData.length - 1].fiscal_year)
+    sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0,4)))
+    sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, parseInt(periodData[periodData.length - 1].period_date.substring(0,4)))
     console.debug("WTH: ", data.revenue_summary)    
-    fiscalData = data.revenue_summary.map((item, i) => [
-      item.year,
-      item.total
-    ])
-
+    fiscalData = d3.nest()
+      .key(k => k.year)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.revenue_summary)
+      .map(d => [ parseInt(d.key), d.value ]) 
+    
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-      const sum = fiscalData.find(x => x[0] === item.fiscal_year)
+      const y = parseInt(item.period_date.substr(0,4))
+      const total = fiscalData.find(x => x[0] === y)
+      
       return ([
-        item.fiscal_year,
+        y,
         total ? total[1] : 0
       ])
     })
-
+    console.debug('wth: ',fiscalData, sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
 
-    row = data.revenue_summary.length > 1 && data.revenue_summary[data.revenue_summary.findIndex(x => x.year === year)]
+    row = fiscalData.length > 1 && fiscalData[fiscalData.findIndex(x => x[0] === year)]
 
-    total = row ? row.total : 0
+    total = row ? row[1] : 0
 
     return (
       <>

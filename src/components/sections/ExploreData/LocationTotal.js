@@ -40,9 +40,10 @@ const LocationTotal = props => {
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_summary)
       .map(d => {return ( { location_name: d.key, total: d.value } ) })
+    console.debug('WTH', totalSummary)
       return (
         <>
-        <strong>In {period.toLowerCase()} {year}, ONRR collected a total of { totalSummary[0].length > 0 && utils.formatToDollarInt(totalSummary[0].total) } in revenue from federal sources.</strong>  
+        <strong>In {period.toLowerCase()} {year}, ONRR collected a total of { totalSummary.length > 0 && utils.formatToDollarInt(totalSummary[0].total) } in revenue from federal sources.</strong>  
         </>
     )
   }
