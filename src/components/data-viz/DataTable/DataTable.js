@@ -25,6 +25,8 @@ import withQueryManager from '../../withQueryManager'
 import QueryManager from '../../../js/query-manager'
 import { useQuery } from '@apollo/react-hooks'
 
+import CustomTable from './Custom/CustomTable'
+import CustomTableHead from './Custom/CustomTableHead'
 import CustomTableCell from './Custom/CustomTableCell'
 import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRow'
 import CustomTableFixedCell from './Custom/CustomTableFixedCell'
@@ -38,6 +40,7 @@ import Button from '@material-ui/core/Button'
 
 import {
   makeStyles,
+  useTheme,
   Box,
   Grid
 } from '@material-ui/core'
@@ -77,7 +80,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const DataTable = ({ dataType, height = '100%' }) => {
+const DataTable = ({ dataType, height = '200px' }) => {
   const classes = useStyles()
   const { state } = useContext(DataFilterContext)
   if (!state) {
@@ -85,8 +88,8 @@ const DataTable = ({ dataType, height = '100%' }) => {
   }
 
   return (
-    <Box className={classes.root} height={height}>
-      <Grid container spacing={2} style={{ height: '100%' }}>
+    <Box className={classes.root}>
+      <Grid container spacing={2}>
         {state[DATA_TYPE] &&
           <React.Fragment>
             {state[DATA_TYPE] === REVENUE &&
@@ -123,7 +126,15 @@ const EnhancedDataTable = withQueryManager(({ data }) => {
   )
 }, QUERY_KEY_DATA_TABLE)
 
+const useStylesDataTable = makeStyles(theme => ({
+  root: {
+    marginBottom: 0,
+  },
+}))
+
 const DataTableBase = data => {
+  const theme = useTheme()
+  const classes = useStylesDataTable(theme)
   const { state, updateDataFilter } = useContext(DataFilterContext)
   const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
@@ -212,10 +223,6 @@ const DataTableBase = data => {
     }
   }, [state, data])
 
-  const handleDownload = type => {
-    downloadWorkbook(type, state[DATA_TYPE], state[DATA_TYPE], columnNames.filter(col => !hiddenColumnNames.includes(col.name)), aggregatedSums)
-  }
-
   const addBreakoutByColumnHandler = () => {
     const breakoutByColumnName = state[BREAKOUT_BY] || columnNames.find(item => (!item.name.startsWith('y') && item.name !== state[GROUP_BY]))
     if (breakoutByColumnName) {
@@ -226,39 +233,10 @@ const DataTableBase = data => {
     updateDataFilter({ [BREAKOUT_BY]: undefined })
   }
 
-
-
   return (
     <React.Fragment>
       {(aggregatedSums && aggregatedSums.length > 0) &&
         <Grid container spacing={3}>
-          {false &&
-            <Grid item xs={12}>
-              <Box component="div" display="inline" mr={2}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  aria-label="open data filters"
-                  onClick={() => handleDownload('excel')}
-                  onKeyDown={() => handleDownload('excel')}
-                  startIcon={<IconDownloadXlsImg />}
-                >
-                Download table
-                </Button>
-
-              </Box>
-              <Button
-                variant="contained"
-                color="primary"
-                aria-label="open data filters"
-                onClick={() => handleDownload('csv')}
-                onKeyDown={() => handleDownload('csv')}
-                startIcon={<IconDownloadCsvImg />}
-              >
-                Download table
-              </Button>
-            </Grid>
-          }
           <Grid item xs={12}>
             <TableGrid
               rows={aggregatedSums}
@@ -280,6 +258,9 @@ const DataTableBase = data => {
               <Table
                 columnExtensions={tableColumnExtensions}
                 cellComponent={CustomTableCell}
+                tableComponent={CustomTable}
+                headComponent={CustomTableHead}
+                height={550}
               />
               <TableColumnReordering
                 order={columnOrder}
