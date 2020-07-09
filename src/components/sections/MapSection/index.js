@@ -1,1 +1,1 @@
-export default  from './MapSection'
+export default from './MapSection'

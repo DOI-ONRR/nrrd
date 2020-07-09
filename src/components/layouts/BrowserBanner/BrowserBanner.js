@@ -24,9 +24,6 @@ const BrowserBanner = () => {
       </span>
     </section>
   )
-  
 }
-  
-
 
 export default BrowserBanner

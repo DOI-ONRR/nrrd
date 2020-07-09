@@ -151,7 +151,6 @@ const GroupBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, data, selec
 
 // Single switch
 const SingleBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, label, legend, helperText, disabled }) => {
-
   const classes = useStyles()
   const [switchState, setSwitchState] = useState({
     checked: defaultSelected

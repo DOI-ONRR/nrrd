@@ -92,8 +92,6 @@ const NationwideDisbursementSummary = props => {
     groupData = utils.groupBy(data.fiscal_disbursement_recipient_source_summary, 'recipient')
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.total, 0)).reduce((total, s) => total += s, 0)
     nationwideSummaryData = Object.entries(groupData)
-
-
   }
 
   return (
@@ -126,7 +124,7 @@ const NationwideDisbursementSummary = props => {
                       </Box>
                     </TableCell>
                     <TableCell style={{ width: '65%' }}>
-                    <StackedBarChart
+                      <StackedBarChart
                         key={'NDS' + dataSet }
                         data={item[1]}
                         legendFormat={v => {
