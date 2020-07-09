@@ -11,6 +11,7 @@ import {
   US_STATE,
   COUNTY,
   COMMODITY,
+  PRODUCT,
   REVENUE_TYPE,
   PERIOD,
   RECIPIENT,
@@ -63,6 +64,7 @@ const PRODUCTION_QUERY = () => `
       land_type: {_in: $${ LAND_TYPE }},
       offshore_region: {_in: $${ OFFSHORE_REGION }},
       commodity: {_in: $${ COMMODITY }},
+      product: {_in: $${ PRODUCT }},
       period: {_eq: $${ PERIOD }},
       state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }},
     }) {
@@ -73,7 +75,7 @@ const PRODUCTION_QUERY = () => `
     ${ OFFSHORE_REGION }: offshore_region
     ${ US_STATE }: state_name
     ${ COUNTY }: county_name
-    ${ COMMODITY }: commodity
+    ${ PRODUCT }: product
     ${ ALL_REVENUE_YEARS }
   }`
 
@@ -114,6 +116,7 @@ const VARIABLE_CONFIGS = {
     { [US_STATE]: MULTI },
     { [COUNTY]: MULTI },
     { [COMMODITY]: MULTI },
+    { [PRODUCT]: MULTI },
     { [STATE_OFFSHORE_NAME]: MULTI },
     { [PERIOD]: SINGLE },
   ],

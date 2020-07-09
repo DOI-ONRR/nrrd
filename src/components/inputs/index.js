@@ -10,6 +10,7 @@ import {
   COUNTY,
   OFFSHORE_REGION,
   COMMODITY,
+  PRODUCT,
   RECIPIENT,
   SOURCE,
   STATE_OFFSHORE_NAME,
@@ -53,6 +54,7 @@ export const UsStateSelectInput = createEnhancedSelect(US_STATE, 'Multi')
 export const CountySelectInput = createEnhancedSelect(COUNTY, 'Multi')
 export const OffshoreRegionSelectInput = createEnhancedSelect(OFFSHORE_REGION, 'Multi')
 export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
+export const ProductSelectInput = createEnhancedSelect(PRODUCT, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
 export const StateOffshoreSelectInput = createEnhancedSelect(STATE_OFFSHORE_NAME, 'Multi')
@@ -67,7 +69,7 @@ const GROUP_BY_OPTIONS = {
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
   [PRODUCTION]: [
-    { value: COMMODITY, option: 'Commodity' },
+    { value: PRODUCT, option: 'Product' },
     { value: LAND_TYPE, option: 'Land type' },
     { value: US_STATE, option: 'State' },
     { value: COUNTY, option: 'County' },

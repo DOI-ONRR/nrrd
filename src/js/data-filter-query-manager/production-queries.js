@@ -10,6 +10,7 @@ import {
   FISCAL_YEAR,
   CALENDAR_YEAR,
   COMMODITY,
+  PRODUCT,
   STATE_OFFSHORE_NAME
 } from '../../constants'
 
@@ -29,6 +30,7 @@ const VARIABLE_LIST = ''.concat(
   '$state: [String!],',
   '$county: [String!],',
   '$commodity: [String!],',
+  '$product: [String!],',
   '$period: String,',
   '$fiscalYear: [Int!],',
   '$calendarYear: [Int!],',
@@ -45,6 +47,7 @@ const STATE_OFFSHORE_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_in: $county},
       commodity: {_in: $commodity},
+      product: {_in: $product},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear}
@@ -65,6 +68,7 @@ const LAND_TYPE_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_in: $county},
       commodity: {_in: $commodity},
+      product: {_in: $product},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear},
@@ -86,6 +90,7 @@ const LAND_CATEGORY_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_in: $county},
       commodity: {_in: $commodity},
+      product: {_in: $product},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear},
@@ -107,6 +112,7 @@ const LAND_CLASS_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_in: $county},
       commodity: {_in: $commodity},
+      product: {_in: $product},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear},
@@ -128,6 +134,7 @@ const US_STATE_OPTIONS_QUERY = `
       state: {_neq: ""},
       county: {_in: $county},
       commodity: {_in: $commodity},
+      product: {_in: $product},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear},
@@ -149,6 +156,7 @@ const COUNTY_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_neq: ""},
       commodity: {_in: $commodity},
+      product: {_in: $product},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear},
@@ -170,6 +178,7 @@ const OFFSHORE_REGION_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_in: $county},
       commodity: {_in: $commodity},
+      product: {_in: $product},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear},
@@ -191,6 +200,7 @@ const COMMODITY_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_in: $county},
       commodity: {_neq: ""},
+      product: {_in: $product},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear},
@@ -200,6 +210,28 @@ const COMMODITY_OPTIONS_QUERY = `
     order_by: {commodity_order: asc}
   ) {
     option:commodity
+  }`
+
+const PRODUCT_OPTIONS_QUERY = `
+  options:${ GRAPHQL_VIEW }(
+    where: {
+      land_type: {_in: $landType},
+      land_class: {_eq: $landClass},
+      land_category: {_eq: $landCategory},
+      offshore_region: {_in: $offshoreRegion},
+      state: {_in: $state},
+      county: {_in: $county},
+      commodity: {_in: $commodity},
+      product: {_neq: ""},
+      period: {_eq: $period},
+      fiscal_year: {_in: $fiscalYear},
+      calendar_year: {_in: $calendarYear},
+      state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }}
+    },
+    distinct_on: commodity_order,
+    order_by: {commodity_order: asc}
+  ) {
+    option:product
   }`
 
 const FISCAL_YEAR_OPTIONS_QUERY = `
@@ -212,6 +244,7 @@ const FISCAL_YEAR_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_in: $county},
       commodity: {_in: $commodity},
+      product: {_in: $product},
       period: {_eq: $period},
       fiscal_year: {_neq: 0},
       state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }}
@@ -231,6 +264,7 @@ const CALENDAR_YEAR_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_in: $county},
       commodity: {_in: $commodity},
+      product: {_in: $product},
       period: {_eq: $period},
       calendar_year: {_neq: 0},
       state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }}
@@ -251,6 +285,7 @@ const PERIOD_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_in: $county},
       commodity: {_in: $commodity},
+      product: {_in: $product},
       state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }}
     },
     distinct_on: period,
@@ -266,6 +301,7 @@ const PRODUCTION_QUERIES = {
   [US_STATE]: gql`query GetUsStateOptionsProduction(${ VARIABLE_LIST }){${ US_STATE_OPTIONS_QUERY }}`,
   [OFFSHORE_REGION]: gql`query GetOffshoreRegionOptionsProduction(${ VARIABLE_LIST }){${ OFFSHORE_REGION_OPTIONS_QUERY }}`,
   [COMMODITY]: gql`query GetCommodityOptionsProduction(${ VARIABLE_LIST }){${ COMMODITY_OPTIONS_QUERY }}`,
+  [PRODUCT]: gql`query GetProductOptionsProduction(${ VARIABLE_LIST }){${ PRODUCT_OPTIONS_QUERY }}`,
   [FISCAL_YEAR]: gql`query GetFiscalYearOptionsProduction(${ VARIABLE_LIST }){${ FISCAL_YEAR_OPTIONS_QUERY }}`,
   [CALENDAR_YEAR]: gql`query GetCalendarYearOptionsProduction(${ VARIABLE_LIST }){${ CALENDAR_YEAR_OPTIONS_QUERY }}`,
   [PERIOD]: gql`query GetPeriodOptionsProduction(${ VARIABLE_LIST }){${ PERIOD_OPTIONS_QUERY }}`,

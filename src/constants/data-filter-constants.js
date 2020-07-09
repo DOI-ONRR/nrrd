@@ -14,6 +14,7 @@ export const US_STATE_ABBR = 'stateAbbr'
 export const US_STATES = 'usStates'
 export const COUNTY = 'county'
 export const COUNTIES = 'counties'
+export const PRODUCT = 'product'
 export const COMMODITY = 'commodity'
 export const COMMODITIES = 'commodities'
 export const REVENUE_TYPE = 'revenueType'
@@ -61,6 +62,10 @@ export const DISPLAY_NAMES = {
   [COMMODITY]: {
     default: 'Commodity',
     plural: 'Commodities',
+  },
+  [PRODUCT]: {
+    default: 'Product',
+    plural: 'Products',
   },
   [LAND_CATEGORY]: {
     default: 'Land category',

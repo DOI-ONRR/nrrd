@@ -17,7 +17,8 @@ import {
   DATA_TYPE,
   QUERY_TABLE_FILTER_DEFAULT,
   BREAKOUT_BY,
-  LAND_TYPE
+  LAND_TYPE,
+  PRODUCT
 } from '../../constants'
 import CONSTANTS from '../../js/constants'
 
@@ -61,7 +62,7 @@ const initialState = {
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
-        [GROUP_BY]: COMMODITY,
+        [GROUP_BY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2017,2018,2019',
         [CALENDAR_YEAR]: '2016,2017,2018'

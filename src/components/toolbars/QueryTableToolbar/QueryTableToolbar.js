@@ -29,6 +29,7 @@ import {
   CountySelectInput,
   OffshoreRegionSelectInput,
   CommoditySelectInput,
+  ProductSelectInput,
   RecipientSelectInput,
   SourceSelectInput,
   FilterToggleInput,
@@ -261,7 +262,7 @@ const ProductionFilterToolbar = () => {
       <LandTypeSelectInput />
       <StateOffshoreSelectInput />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
-      <CommoditySelectInput />
+      <ProductSelectInput />
       <YearRangeSelect />
     </BaseToolbar>
   )
