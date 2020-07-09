@@ -8,6 +8,7 @@ import {
   LAND_CATEGORY,
   OFFSHORE_REGION,
   US_STATE,
+  STATE_OFFSHORE_NAME,
   COUNTY,
   COMMODITY,
   REVENUE_TYPE,
@@ -68,6 +69,7 @@ const VARIABLES = {
       [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
       [CALENDAR_YEAR]: (state[PERIOD] === PERIOD_CALENDAR_YEAR && state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',').map(year => parseInt(year)) : undefined,
       [FISCAL_YEAR]: (state[PERIOD] === PERIOD_FISCAL_YEAR && state[FISCAL_YEAR]) ? state[FISCAL_YEAR].split(',').map(year => parseInt(year)) : undefined,
+      [STATE_OFFSHORE_NAME]: (state[STATE_OFFSHORE_NAME] === ZERO_OPTIONS || !state[STATE_OFFSHORE_NAME]) ? undefined : state[STATE_OFFSHORE_NAME].split(','),
     }
   }),
   [PRODUCTION]: state => ({

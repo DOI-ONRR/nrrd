@@ -18,11 +18,12 @@ import {
   SINGLE,
   MULTI,
   ALL_REVENUE_YEARS,
-  DATA_TYPE
+  DATA_TYPE,
+  STATE_OFFSHORE_NAME
 } from '../../constants'
 import gql from 'graphql-tag'
 
-// Helper functions for using a vraibel config to create the vairable list and values
+// Helper functions for using a variable config to create the vairable list and values
 import { getDataFilterVariableValues, getDataFilterVariableList } from './index'
 
 /**
@@ -30,16 +31,17 @@ import { getDataFilterVariableValues, getDataFilterVariableList } from './index'
  */
 
 // STEP 1: Define all the queries needed
-const REVENUE_QUERY = allRevenueYears => `
+const REVENUE_QUERY = () => `
   results:query_tool_revenue_data(
     where: {
-      state: {_in: $state},
-      county: {_in: $county},
-      land_type: {_in: $landType},
-      offshore_region: {_in: $offshoreRegion},
-      commodity: {_in: $commodity},
-      revenue_type: {_in: $revenueType},
-      period: {_eq: $period},
+      state: {_in: $${ US_STATE }},
+      county: {_in: $${ COUNTY }},
+      land_type: {_in: $${ LAND_TYPE }},
+      offshore_region: {_in: $${ OFFSHORE_REGION }},
+      commodity: {_in: $${ COMMODITY }},
+      revenue_type: {_in: $${ REVENUE_TYPE }},
+      period: {_eq: $${ PERIOD }},
+      state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }},
     }) {
     ${ LOCATION_NAME }: location_name  
     ${ LAND_TYPE }: land_type
@@ -50,18 +52,19 @@ const REVENUE_QUERY = allRevenueYears => `
     ${ COUNTY }: county_name
     ${ REVENUE_TYPE }: revenue_type
     ${ COMMODITY }: commodity
-    ${ allRevenueYears }
+    ${ ALL_REVENUE_YEARS }
   }`
 
-const PRODUCTION_QUERY = allRevenueYears => `
+const PRODUCTION_QUERY = () => `
   results:query_tool_production_data(
     where: {
-      land_type: {_in: $landType},
-      offshore_region: {_in: $offshoreRegion},
-      state: {_in: $state},
-      county: {_in: $county},
-      commodity: {_in: $commodity},
-      period: {_eq: $period},
+      state: {_in: $${ US_STATE }},
+      county: {_in: $${ COUNTY }},
+      land_type: {_in: $${ LAND_TYPE }},
+      offshore_region: {_in: $${ OFFSHORE_REGION }},
+      commodity: {_in: $${ COMMODITY }},
+      period: {_eq: $${ PERIOD }},
+      state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }},
     }) {
     ${ LOCATION_NAME }: location_name  
     ${ LAND_TYPE }: land_type
@@ -71,23 +74,24 @@ const PRODUCTION_QUERY = allRevenueYears => `
     ${ US_STATE }: state_name
     ${ COUNTY }: county_name
     ${ COMMODITY }: commodity
-    ${ allRevenueYears }
+    ${ ALL_REVENUE_YEARS }
   }`
 
-const DISBURSEMENT_QUERY = allRevenueYears => `
+const DISBURSEMENT_QUERY = () => `
   results:query_tool_disbursement_data(
     where: {
-      recipient: {_in: $recipient},
-      source: {_in: $source},
-      state: {_in: $state},
-      county: {_in: $county},
-      period: {_eq: $period},
+      recipient: {_in: $${ RECIPIENT }},
+      source: {_in: $${ SOURCE }},
+      state: {_in: $${ US_STATE }},
+      county: {_in: $${ COUNTY }},
+      period: {_eq: $${ PERIOD }},
+      state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }},
     }) {
     ${ RECIPIENT }: recipient
     ${ SOURCE }: source
     ${ US_STATE }: state_name
     ${ COUNTY }: county_name
-    ${ allRevenueYears }
+    ${ ALL_REVENUE_YEARS }
   }`
 
 // STEP 2: Define the function to get the variables for the query. A variable config plus helper functions can be used
@@ -101,6 +105,7 @@ const VARIABLE_CONFIGS = {
     { [COUNTY]: MULTI },
     { [COMMODITY]: MULTI },
     { [REVENUE_TYPE]: MULTI },
+    { [STATE_OFFSHORE_NAME]: MULTI },
     { [PERIOD]: SINGLE },
   ],
   [PRODUCTION]: [
@@ -109,6 +114,7 @@ const VARIABLE_CONFIGS = {
     { [US_STATE]: MULTI },
     { [COUNTY]: MULTI },
     { [COMMODITY]: MULTI },
+    { [STATE_OFFSHORE_NAME]: MULTI },
     { [PERIOD]: SINGLE },
   ],
   [DISBURSEMENT]: [
@@ -116,6 +122,7 @@ const VARIABLE_CONFIGS = {
     { [SOURCE]: MULTI },
     { [US_STATE]: MULTI },
     { [COUNTY]: MULTI },
+    { [STATE_OFFSHORE_NAME]: MULTI },
     { [PERIOD]: SINGLE },
   ],
 }
@@ -128,10 +135,10 @@ export const getVariables = (state, options) => getDataFilterVariableValues(stat
 export const getQuery = (state, options) => QUERIES[state[DATA_TYPE]](state, options)
 const QUERIES = {
   [REVENUE]: (state, options) =>
-    gql`query GetDataTableRevenue(${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) }){${ REVENUE_QUERY(ALL_REVENUE_YEARS) }}`,
+    gql`query GetDataTableRevenue(${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) }){${ REVENUE_QUERY() }}`,
   [PRODUCTION]: (state, options) =>
-    gql`query GetDataTableProduction(${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) }){${ PRODUCTION_QUERY(ALL_REVENUE_YEARS) }}`,
+    gql`query GetDataTableProduction(${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) }){${ PRODUCTION_QUERY() }}`,
   [DISBURSEMENT]: (state, options) =>
-    gql`query GetDataTableProduction(${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) }){${ DISBURSEMENT_QUERY(ALL_REVENUE_YEARS) }}`,
+    gql`query GetDataTableProduction(${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) }){${ DISBURSEMENT_QUERY() }}`,
 }
 

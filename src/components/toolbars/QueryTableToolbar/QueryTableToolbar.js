@@ -17,7 +17,8 @@ import {
   PERIOD_CALENDAR_YEAR,
   EXCEL,
   CSV,
-  DOWNLOAD_DATA_TABLE
+  DOWNLOAD_DATA_TABLE,
+  STATE_OFFSHORE_NAME
 } from '../../../constants'
 
 import {
@@ -30,7 +31,8 @@ import {
   CommoditySelectInput,
   RecipientSelectInput,
   SourceSelectInput,
-  FilterToggleInput
+  FilterToggleInput,
+  StateOffshoreSelectInput
 } from '../../inputs'
 
 import BaseButtonInput from '../../inputs/BaseButtonInput'
@@ -234,30 +236,31 @@ const QueryTableToolbar = ({ label, ...props }) => {
 
 export default QueryTableToolbar
 
+const isCountyEnabled = ({ state }) => (state[STATE_OFFSHORE_NAME] &&
+  (state[STATE_OFFSHORE_NAME].split(',').length === 1) &&
+  (!state[STATE_OFFSHORE_NAME].includes('Offshore')) &&
+  (!state[STATE_OFFSHORE_NAME].includes('Not')))
+
 const RevenueFilterToolbar = () => {
-  const { state } = useContext(DataFilterContext)
-  const countyEnabled = (state[US_STATE] && (state[US_STATE].split(',').length === 1))
+  const countyEnabled = isCountyEnabled(useContext(DataFilterContext))
   return (
     <BaseToolbar isSecondary={true} >
       <LandTypeSelectInput />
       <RevenueTypeSelectInput />
-      <UsStateSelectInput />
+      <StateOffshoreSelectInput />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
-      <OffshoreRegionSelectInput />
       <CommoditySelectInput />
     </BaseToolbar>
   )
 }
 
 const ProductionFilterToolbar = () => {
-  const { state } = useContext(DataFilterContext)
-  const countyEnabled = (state[US_STATE] && (state[US_STATE].split(',').length === 1))
+  const countyEnabled = isCountyEnabled(useContext(DataFilterContext))
   return (
     <BaseToolbar isSecondary={true} >
       <LandTypeSelectInput />
-      <UsStateSelectInput />
+      <StateOffshoreSelectInput />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
-      <OffshoreRegionSelectInput />
       <CommoditySelectInput />
       <YearRangeSelect />
     </BaseToolbar>
@@ -265,13 +268,12 @@ const ProductionFilterToolbar = () => {
 }
 
 const DisbursementFilterToolbar = () => {
-  const { state } = useContext(DataFilterContext)
-  const countyEnabled = (state[US_STATE] && (state[US_STATE].split(',').length === 1))
+  const countyEnabled = isCountyEnabled(useContext(DataFilterContext))
   return (
     <BaseToolbar isSecondary={true} >
       <RecipientSelectInput />
       <SourceSelectInput />
-      <UsStateSelectInput defaultSelectAll={false} />
+      <StateOffshoreSelectInput defaultSelectAll={false} />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
       <YearRangeSelect />
     </BaseToolbar>

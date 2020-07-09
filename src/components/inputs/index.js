@@ -12,6 +12,7 @@ import {
   COMMODITY,
   RECIPIENT,
   SOURCE,
+  STATE_OFFSHORE_NAME,
   DISPLAY_NAMES,
   REVENUE,
   PRODUCTION,
@@ -54,6 +55,7 @@ export const OffshoreRegionSelectInput = createEnhancedSelect(OFFSHORE_REGION, '
 export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
+export const StateOffshoreSelectInput = createEnhancedSelect(STATE_OFFSHORE_NAME, 'Multi')
 
 const GROUP_BY_OPTIONS = {
   [REVENUE]: [

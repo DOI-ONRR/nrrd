@@ -26,6 +26,7 @@ export const PERIOD = 'period'
 export const YEAR = 'year'
 export const RECIPIENT = 'recipient'
 export const SOURCE = 'source'
+export const STATE_OFFSHORE_NAME = 'stateOffshoreName'
 
 export const PERIOD_FISCAL_YEAR = 'Fiscal Year'
 export const PERIOD_CALENDAR_YEAR = 'Calendar Year'
@@ -88,5 +89,9 @@ export const DISPLAY_NAMES = {
   [RECIPIENT]: {
     default: 'Recipient',
     plural: 'Recipients',
+  },
+  [STATE_OFFSHORE_NAME]: {
+    default: 'State/Offshore Region',
+    plural: 'States/Offshore Regions',
   }
 }
