@@ -168,8 +168,6 @@ const config = {
   ]
 }
 
-// console.log('gatsby config: ', config)
-
 // if (BASEURL) {
 //   config.pathPrefix = `${ BASEURL }`
 // }

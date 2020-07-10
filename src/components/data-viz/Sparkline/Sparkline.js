@@ -2,17 +2,16 @@ import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 // import styles from './Sparkline.module.scss'
 import { makeStyles } from '@material-ui/core/styles'
+
 const useStyles = makeStyles(theme => ({
   sparkline: {
     strokeWidth: '1px',
     stroke: '#5c737f',
     fill: 'none',
   },
-
   sparkcircle: {
     fill: theme.palette.grey['900']
   }
-
 }))
 
 const Sparkline = props => {
@@ -20,7 +19,8 @@ const Sparkline = props => {
   let data = [[0, 0]]
   let highlightIndex = 0
   let lineAnimationData
-  if (props.data.length > 0) {
+
+  if (props && props.data.length > 0) {
     data = props.data
     highlightIndex = props.highlightIndex
     lineAnimationData = data.slice(0, highlightIndex + 1)
@@ -89,7 +89,7 @@ const Sparkline = props => {
       .duration(2000)
       .ease(d3.easeLinear)
       .attr('stroke-dashoffset', 0)
-  })
+  }, [])
 
   return (
     <div ref={elemRef}></div>

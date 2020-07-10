@@ -64,7 +64,7 @@ DisbursementSourceSummary: disbursement_source_summary(
 const DisbursementSources = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const dataSet = 'FY '+year
+  const dataSet = 'FY ' + year
   const classes = useStyles()
   const theme = useTheme()
 

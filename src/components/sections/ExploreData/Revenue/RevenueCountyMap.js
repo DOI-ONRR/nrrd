@@ -63,7 +63,6 @@ const RevenueCountyMap = props => {
 
   const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5 || props.fips.length === 3
 
-  
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {

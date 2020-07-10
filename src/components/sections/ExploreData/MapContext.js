@@ -22,10 +22,7 @@ import {
 
 import { animateScroll as scroll } from 'react-scroll'
 
-import MapToolbar from './MapToolbar'
 import MapControls from './MapControls'
-import AddCardButton from './AddCardButton'
-// import YearSlider from './YearSlider'
 import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
 import { StoreContext } from '../../../store'

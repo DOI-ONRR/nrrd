@@ -37,7 +37,7 @@ export default class D3CircleChart {
     if (options.legendLabel) {
       this.legendLabel = options.legendLabel
     }
-    
+
     const root = this.pack({ name: 'root', children: this.data })
     this._root = root
 
@@ -50,8 +50,7 @@ export default class D3CircleChart {
     try {
       const r = d3.pack()
         .size([this._width - 2, this._height - 2])
-        .padding(3)
-        (this.hierarchy(data))
+        .padding(3)(this.hierarchy(data))
       return r
     }
     catch (err) {
@@ -176,8 +175,6 @@ export default class D3CircleChart {
       console.warn('Error: ', err)
     }
   }
-  
-
 
   legend () {
     /// / console.debug(this._legend)
@@ -196,7 +193,7 @@ export default class D3CircleChart {
     const table = d3.select(this.container.children[1]).append('table').attr('class', 'legend-table')
     const thead = table.append('thead')
     const rh = thead.append('tr')
-    const legendLabel=this.legendLabel
+    const legendLabel = this.legendLabel
     rh.append('th')
       .attr('colspan', 2)
       .style('text-align', 'left')
@@ -228,7 +225,7 @@ export default class D3CircleChart {
       .style('fill-opacity', 0.8)
     tr.append('td')
       .html((row, i) => {
-        let r=legendLabel(row[xAxis])
+        const r = legendLabel(row[xAxis])
         return r
       })
     tr.append('td')
@@ -874,7 +871,7 @@ console.debug(data)
   }
 
   xLabels (values) {
-    console.debug("DWGH ",values)
+    console.debug('DWGH ', values)
     return values
   }
 

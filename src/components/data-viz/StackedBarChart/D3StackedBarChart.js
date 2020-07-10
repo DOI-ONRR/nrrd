@@ -715,7 +715,7 @@ export default class D3StackedBarChart {
         //            .key(k => k[this.xAxis])
           .key(k => k[this.options.yGroupBy])
           .rollup(v => d3.sum(v, d => d[this.yAxis]))
-          .entries(data)
+          .entries(this.data)
           .reduce((acc, d, i) => {
             acc[d.key] = d.value
             return acc
@@ -827,86 +827,86 @@ export default class D3StackedBarChart {
     }
   }
 
-  oldConstructor () {
-    this.formatLegendFunc = formatLegendFunc
-    this.onClick = options.onClick
+  // oldConstructor () {
+  //   this.formatLegendFunc = formatLegendFunc
+  //   this.onClick = options.onClick
 
-    this.formatLegend(this.formatLegendFunc)
+  //   this.formatLegend(this.formatLegendFunc)
 
-    if (options && options.columns) {
-      this._columns = options.columns
-    }
-    else {
-      this._columns = Object.keys(data[0]).filter((r, i) => r !== '__typename').sort()
-    }
+  //   if (options && options.columns) {
+  //     this._columns = options.columns
+  //   }
+  //   else {
+  //     this._columns = Object.keys(data[0]).filter((r, i) => r !== '__typename').sort()
+  //   }
 
-    if (options && options.xLabels) {
-      this.xLabels(options.xLabels)
-    }
-    else {
-      this.xLabels(this.xdomain())
-    }
+  //   if (options && options.xLabels) {
+  //     this.xLabels(options.xLabels)
+  //   }
+  //   else {
+  //     this.xLabels(this.xdomain())
+  //   }
 
-    if (options && options.yLabels) {
-      this.yLabels(options.yLabels)
-    }
-    else {
-      this.yLabels(this.yaxis())
-    }
+  //   if (options && options.yLabels) {
+  //     this.yLabels(options.yLabels)
+  //   }
+  //   else {
+  //     this.yLabels(this.yaxis())
+  //   }
 
-    if (options && options.selectedIndex) {
-      this.selectedIndex = options.selectedIndex
-    }
-    else {
-      this.selectedIndex = this.data.length - 1
-    }
+  //   if (options && options.selectedIndex) {
+  //     this.selectedIndex = options.selectedIndex
+  //   }
+  //   else {
+  //     this.selectedIndex = this.data.length - 1
+  //   }
 
-    this.selectedData(this.ydomain(data[data.length - 1]))
-    this.marginBottom = 40
-    this.marginTop = 25
-    this.maxValue = this.max(data)
-    this.minValue = this.min(data)
-    this.extentPercent = 0.05
-    this.extentMarginOfError = 0.10
-    this.maxExtentLineY = 20
-    this._colors = ['#b33040', '#d25c4d', '#f2b447', '#d9d574']
-    this.xScale = d3.scaleBand()
-      .domain(this.xdomain())
-      .range([0, this._width])
-      .paddingInner(0.3)
-      .paddingOuter(0.1)
+  //   this.selectedData(this.ydomain(data[data.length - 1]))
+  //   this.marginBottom = 40
+  //   this.marginTop = 25
+  //   this.maxValue = this.max(data)
+  //   this.minValue = this.min(data)
+  //   this.extentPercent = 0.05
+  //   this.extentMarginOfError = 0.10
+  //   this.maxExtentLineY = 20
+  //   this._colors = ['#b33040', '#d25c4d', '#f2b447', '#d9d574']
+  //   this.xScale = d3.scaleBand()
+  //     .domain(this.xdomain())
+  //     .range([0, this._width])
+  //     .paddingInner(0.3)
+  //     .paddingOuter(0.1)
 
-    this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
-    this.yScale.domain([this.maxValue, 0])
+  //   this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
+  //   this.yScale.domain([this.maxValue, 0])
 
-    this.maxBarSize = undefined
-    if (this.maxBarSize) {
-      this.barOffsetX = (this.xScale.bandwidth() > this.maxBarSize) ? (this.xScale.bandwidth() - this.maxBarSize) / 2 : 0
-      this.maxBarSize = d3.min([this.xScale.bandwidth(), this.maxBarSize])
-    }
-    else {
-      this.maxBarSize = this.xScale.bandwidth()
-    }
-    this.chart = d3.select(this.node.children[0]).append('svg')
-      .attr('height', this._height)
-      .attr('width', this._width)
-  }
+  //   this.maxBarSize = undefined
+  //   if (this.maxBarSize) {
+  //     this.barOffsetX = (this.xScale.bandwidth() > this.maxBarSize) ? (this.xScale.bandwidth() - this.maxBarSize) / 2 : 0
+  //     this.maxBarSize = d3.min([this.xScale.bandwidth(), this.maxBarSize])
+  //   }
+  //   else {
+  //     this.maxBarSize = this.xScale.bandwidth()
+  //   }
+  //   this.chart = d3.select(this.node.children[0]).append('svg')
+  //     .attr('height', this._height)
+  //     .attr('width', this._width)
+  // }
 
   xaxis () {
     return this._columns[0]
   }
 
-  xLabels (labels) {
-    try {
-      if (labels) {
-        this._xLabels = labels
-      }
-      return this._xLabels
-    }
-    catch (err) {
-      console.warn('error in xLabels:', err)
-    }
-  }
+  // xLabels (labels) {
+  //   try {
+  //     if (labels) {
+  //       this._xLabels = labels
+  //     }
+  //     return this._xLabels
+  //   }
+  //   catch (err) {
+  //     console.warn('error in xLabels:', err)
+  //   }
+  // }
 
   xdomain () {
     try {
@@ -1213,10 +1213,13 @@ export default class D3StackedBarChart {
           return (xLabels) ? xLabels[i] : d
           }))
     */
+    const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat((d, i) => {
+      return xLabels[i]
+    }))
     const rotate = this.options.xRotate || 0
     let x = -1
     const y = 8
-    if (rotate != 0) {
+    if (rotate !== 0) {
       x = -11
     }
     self.chart.append('g')

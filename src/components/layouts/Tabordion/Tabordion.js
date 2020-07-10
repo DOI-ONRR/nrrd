@@ -124,7 +124,7 @@ TabPanel.propTypes = {
 }
 
 Tab.propTypes = {
-  // The Id for the element, used to ensure expandable containers have unique Ids. 
+  // The Id for the element, used to ensure expandable containers have unique Ids.
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired
 }

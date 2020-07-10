@@ -134,4 +134,3 @@ const QUERIES = {
   [DISBURSEMENT]: (state, options) =>
     gql`query GetDataTableProduction(${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) }){${ DISBURSEMENT_QUERY(ALL_REVENUE_YEARS) }}`,
 }
-

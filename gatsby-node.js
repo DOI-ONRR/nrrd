@@ -110,13 +110,30 @@ exports.createPages = ({ graphql, reporter, actions }) => {
   ])
 }
 
-// exports.onCreateWebpackConfig = ({ actions }) => {
-//   actions.setWebpackConfig({
-//     node: {
-//       fs: 'empty'
-//     }
-//   })
+// exports.onCreateWebpackConfig = function onCreateWebpackConfig ({ actions, stage, loaders }) {
+//   if (stage === 'develop' || stage === 'develop-html') {
+//     actions.setWebpackConfig({
+//       module: {
+//         rules: [
+//           {
+//             test: /react-hot-loader/,
+//             use: [
+//               loaders.js()
+//             ]
+//           }
+//         ]
+//       }
+//     })
+//   }
 // }
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: 'empty'
+    }
+  })
+}
 
 /**
  * Creates a index file of all the components during build time so they can be easily imported for the mdx provider to use.

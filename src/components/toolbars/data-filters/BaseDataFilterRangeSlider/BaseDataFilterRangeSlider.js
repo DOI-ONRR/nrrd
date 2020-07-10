@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
   MuiSliderRail: {
     backgroundColor: theme.palette.grey[500],
-  }, 
+  },
   thumb: {
     color: theme.palette.links.default,
     width: 50,

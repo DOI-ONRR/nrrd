@@ -243,5 +243,5 @@ export default YearSlider
 
 YearSlider.propTypes = {
   // Get year that is passed into slider
-  onYear: PropTypes.func.isRequired
+  onYear: PropTypes.func
 }

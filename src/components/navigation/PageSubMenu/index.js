@@ -1,1 +1,1 @@
-import { default as PageSubMenu } from './PageSubMenu'
+export default from './PageSubMenu'
