@@ -20,7 +20,6 @@ import Header from '../../content-partials/Header'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
-
 import SEO from '../../seo'
 
 const useStyles = makeStyles(theme => (
