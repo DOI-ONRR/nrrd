@@ -1,28 +1,36 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { IEView } from 'react-device-detect'
+
+import {
+  Box
+} from '@material-ui/core'
+import {
+  makeStyles
+} from '@material-ui/styles'
+
+import WarningIcon from '@material-ui/icons/Warning'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    border: '1px solid _green',
-    margin: '0 0 1rem 0',
-    lineHeight: '1.1875rem',
-    marginBottom: '0.8rem',
-    padding: '0.8em 1.875em',
-    textAlign: 'center',
+    width: '100%',
+    height: 40,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fa842e !important',
+    padding: 0,
+    marginBottom: 10,
   }
 }))
 
-const BrowserBanner = () => {
+const BrowserBanner = ({ styles }) => {
   const classes = useStyles()
-
   return (
-    <section className={classes.root}>
-      <span>
-        <p>We try to make this website work for everyone, but some older web browsers don’t display every feature on this site.</p>
-
-        <p>If it looks like something isn't working as it should, try using a different browser, such as Chrome, Edge, or Firefox.</p>
+    <IEView>
+      <span className={classes.root}>
+        <WarningIcon style={{ marginRight: 5 }} /> Warning! This browser is not supported — Some features might not work. Try using a different browser, such as Chrome, Edge, Firefox, or Safari.
       </span>
-    </section>
+    </IEView>
   )
 }
 
