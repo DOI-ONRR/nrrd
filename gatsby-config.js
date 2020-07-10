@@ -169,42 +169,20 @@ const config = {
         modules: [
           '@pmmmwh',
           'debug',
-          // 'core-js',
-          // 'es6.array.iterator',
-          // 'es6.regexp.match',
-          // 'es7.string.pad-start',
-          // '_fix-re-wks',
           'gatsby-plugin-layout',
           'html-entities',
           'query-string',
           'regexpu-core',
-          // '_regexp-exec',
-          // '_regexp-exec-abstract',
           'split-on-first',
           'unicode-match-property-ecmascript',
           'unicode-match-property-value-ecmascript',
         ]
       }
     },
-    {
-      resolve: 'gatsby-plugin-polyfill-io',
-      options: {
-        features: [
-          'default',
-          'es5',
-          'es6',
-          'es7',
-          'EventSource',
-          'RegExp.prototype.flags'
-        ]
-      },
-    },
     'gatsby-plugin-use-query-params',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
-
-// console.log('gatsby config: ', config)
 
 // if (BASEURL) {
 //   config.pathPrefix = `${ BASEURL }`

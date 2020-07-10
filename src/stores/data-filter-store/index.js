@@ -13,7 +13,7 @@ function DataFilterProvider ({ children, defaults }) {
 
   // Log new state
   useEffect(() => {
-    // console.log('DataFilterProvider newState: ', state)
+    console.log('DataFilterProvider newState: ', state)
   }, [state])
 
   return (
