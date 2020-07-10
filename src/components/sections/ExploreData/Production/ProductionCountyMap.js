@@ -34,11 +34,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const PRODUCTION_QUERY = gql`
-  query FiscalCommodityProduction($year: Int!, $commodity: String!, $state: String!) {
-    fiscal_production_summary(where: {location_type: {_eq: "County"}, state: {_eq: $state}, fiscal_year: { _eq: $year}, commodity: {_eq: $commodity }}) {
-      fiscal_year
-      state_or_area
-      sum
+  query ProductionCountyMap($year: Int!, $product: String!, $state: String!, $period: String!) {
+    production_summary(where: {location_type: {_eq: "County"}, state: {_eq: $state}, year: { _eq: $year}, product: {_eq: $product }, period: { _eq: $period }}) {
+      year
+      location
+      total
     }
 
   }
@@ -51,13 +51,14 @@ const ProductionCountyMap = props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const dataSet = 'FY ' + year
-  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const dataSet = (period === 'Fiscal Year' ) ? 'FY ' + year : 'CY ' + year
+  const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
 
   const state = props.state
 
   const { loading, error, data } = useQuery(PRODUCTION_QUERY, {
-    variables: { year: year, commodity: commodity, state: state }
+    variables: { year: year, product: product, state: state, period: period }
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
@@ -68,14 +69,10 @@ const ProductionCountyMap = props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    mapData = data.fiscal_production_summary.map((item, i) => [
-      item.state_or_area,
-      item.sum
-    ])
     mapData = d3.nest()
-      .key(k => k.state_or_area.padStart(5, 0))
-      .rollup(v => d3.sum(v, i => i.sum))
-      .entries(data.fiscal_production_summary)
+      .key(k => k.location.padStart(5, 0))
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.production_summary)
       .map(d => [d.key, d.value])
 
     return (

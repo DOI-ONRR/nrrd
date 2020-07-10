@@ -9,11 +9,11 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 const APOLLO_QUERY = gql`
-  query FiscalProduction($year: Int!, $commodity: String!) {
-    fiscal_production_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}) {
-      fiscal_year
-      state_or_area
-      sum
+  query FiscalProduction($year: Int!, $commodity: String!, $period: String!) {
+    production_summary(where: {location: {_nin: ["Nationwide Federal", ""]}, year: { _eq: $year }, product: {_eq: $commodity}, period: { _eq: $period} }) {
+      year
+      location
+      total
       
     }
   }
@@ -27,7 +27,7 @@ export default props => {
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year, commodity }
+    variables: { year, commodity, period }
   })
 
   let mapData = [[]]
@@ -35,9 +35,10 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    mapData = data.fiscal_production_summary.map((item, i) => [
-      item.state_or_area,
-      item.sum
+    console.debug("DATA, ", data)
+    mapData = data.production_summary.map((item, i) => [
+      item.location,
+      item.total
     ])
   }
 
