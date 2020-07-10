@@ -33,7 +33,7 @@ import CustomTableFixedCell from './Custom/CustomTableFixedCell'
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
 import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
-import AllTypeProvider from './Custom/AllTypeProvider'
+import TotalProvider from './Custom/TotalProvider'
 
 import { IconDownloadCsvImg, IconDownloadXlsImg } from '../../images'
 import Button from '@material-ui/core/Button'
@@ -241,7 +241,7 @@ const DataTableBase = data => {
             <TableGrid
               rows={aggregatedSums}
               columns={columnNames}>
-              <AllTypeProvider
+              <TotalProvider
                 for={columnNames.filter(item => !item.name.startsWith('y')).map(item => item.name)}
               />
               <SortingState />
