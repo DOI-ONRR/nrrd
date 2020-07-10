@@ -16,11 +16,14 @@ import {
   PERIOD,
   RECIPIENT,
   SOURCE,
-  SINGLE,
-  MULTI,
+  SINGLE_STR,
+  MULTI_STR,
+  MULTI_INT,
   ALL_REVENUE_YEARS,
   DATA_TYPE,
-  STATE_OFFSHORE_NAME
+  STATE_OFFSHORE_NAME,
+  FISCAL_YEAR,
+  CALENDAR_YEAR
 } from '../../constants'
 import gql from 'graphql-tag'
 
@@ -43,6 +46,8 @@ const REVENUE_QUERY = () => `
       revenue_type: {_in: $${ REVENUE_TYPE }},
       period: {_eq: $${ PERIOD }},
       state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }},
+      fiscal_year: {_in: $${ FISCAL_YEAR }},
+      calendar_year: {_in: $${ CALENDAR_YEAR }}
     }) {
     ${ LOCATION_NAME }: location_name  
     ${ LAND_TYPE }: land_type
@@ -67,6 +72,8 @@ const PRODUCTION_QUERY = () => `
       product: {_in: $${ PRODUCT }},
       period: {_eq: $${ PERIOD }},
       state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }},
+      fiscal_year: {_in: $${ FISCAL_YEAR }},
+      calendar_year: {_in: $${ CALENDAR_YEAR }}
     }) {
     ${ LOCATION_NAME }: location_name  
     ${ LAND_TYPE }: land_type
@@ -88,6 +95,8 @@ const DISBURSEMENT_QUERY = () => `
       county: {_in: $${ COUNTY }},
       period: {_eq: $${ PERIOD }},
       state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }},
+      fiscal_year: {_in: $${ FISCAL_YEAR }},
+      calendar_year: {_in: $${ CALENDAR_YEAR }}
     }) {
     ${ RECIPIENT }: recipient
     ${ SOURCE }: source
@@ -101,34 +110,41 @@ const DISBURSEMENT_QUERY = () => `
 // This is a simple data filter variable config that specifies whihc variables are used by the query and the type
 const VARIABLE_CONFIGS = {
   [REVENUE]: [
-    { [LAND_TYPE]: MULTI },
-    { [OFFSHORE_REGION]: MULTI },
-    { [US_STATE]: MULTI },
-    { [COUNTY]: MULTI },
-    { [COMMODITY]: MULTI },
-    { [REVENUE_TYPE]: MULTI },
-    { [STATE_OFFSHORE_NAME]: MULTI },
-    { [PERIOD]: SINGLE },
+    { [LAND_TYPE]: MULTI_STR },
+    { [OFFSHORE_REGION]: MULTI_STR },
+    { [US_STATE]: MULTI_STR },
+    { [COUNTY]: MULTI_STR },
+    { [COMMODITY]: MULTI_STR },
+    { [REVENUE_TYPE]: MULTI_STR },
+    { [STATE_OFFSHORE_NAME]: MULTI_STR },
+    { [PERIOD]: SINGLE_STR },
+    { [FISCAL_YEAR]: MULTI_INT },
+    { [CALENDAR_YEAR]: MULTI_INT }
   ],
   [PRODUCTION]: [
-    { [LAND_TYPE]: MULTI },
-    { [OFFSHORE_REGION]: MULTI },
-    { [US_STATE]: MULTI },
-    { [COUNTY]: MULTI },
-    { [COMMODITY]: MULTI },
-    { [PRODUCT]: MULTI },
-    { [STATE_OFFSHORE_NAME]: MULTI },
-    { [PERIOD]: SINGLE },
+    { [LAND_TYPE]: MULTI_STR },
+    { [OFFSHORE_REGION]: MULTI_STR },
+    { [US_STATE]: MULTI_STR },
+    { [COUNTY]: MULTI_STR },
+    { [COMMODITY]: MULTI_STR },
+    { [PRODUCT]: MULTI_STR },
+    { [STATE_OFFSHORE_NAME]: MULTI_STR },
+    { [PERIOD]: SINGLE_STR },
+    { [FISCAL_YEAR]: MULTI_INT },
+    { [CALENDAR_YEAR]: MULTI_INT }
   ],
   [DISBURSEMENT]: [
-    { [RECIPIENT]: MULTI },
-    { [SOURCE]: MULTI },
-    { [US_STATE]: MULTI },
-    { [COUNTY]: MULTI },
-    { [STATE_OFFSHORE_NAME]: MULTI },
-    { [PERIOD]: SINGLE },
+    { [RECIPIENT]: MULTI_STR },
+    { [SOURCE]: MULTI_STR },
+    { [US_STATE]: MULTI_STR },
+    { [COUNTY]: MULTI_STR },
+    { [STATE_OFFSHORE_NAME]: MULTI_STR },
+    { [PERIOD]: SINGLE_STR },
+    { [FISCAL_YEAR]: MULTI_INT },
+    { [CALENDAR_YEAR]: MULTI_INT }
   ],
 }
+
 export const getVariables = (state, options) => getDataFilterVariableValues(state, VARIABLE_CONFIGS[state[DATA_TYPE]])
 
 // STEP 3: Define the functions to return the proper query based of the state
@@ -144,4 +160,3 @@ const QUERIES = {
   [DISBURSEMENT]: (state, options) =>
     gql`query GetDataTableProduction(${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) }){${ DISBURSEMENT_QUERY() }}`,
 }
-
