@@ -34,6 +34,7 @@ import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
 import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
 import TotalProvider from './Custom/TotalProvider'
+import CustomGroupCellContent from './Custom/CustomGroupCellContent'
 
 import { IconDownloadCsvImg, IconDownloadXlsImg } from '../../images'
 import Button from '@material-ui/core/Button'
@@ -139,6 +140,7 @@ const DataTableBase = data => {
   const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
   const [grouping, setGrouping] = useState([])
+  const [expandedGroups, setExpandedGroups] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
   const [fixedColumns, setFixedColumns] = useState([])
@@ -183,6 +185,10 @@ const DataTableBase = data => {
     if (state[GROUP_BY] && (state[BREAKOUT_BY] !== NO_BREAKOUT_BY && state[BREAKOUT_BY])) {
       setGrouping([{ columnName: state[GROUP_BY] }])
       setGroupingExtension([{ columnName: state[GROUP_BY], showWhenGrouped: true }])
+      if (data && data.results.length > 0) {
+        // Gets the unique values that will be expanded
+        setExpandedGroups([...new Set(data.results.map(item => item[state[GROUP_BY]]))])
+      }
       setFixedColumns([TableGroupRow.Row, state[GROUP_BY], state[BREAKOUT_BY]])
 
       destructuringSwap(columnNames, 0, columnNames.findIndex(item => (item.name === state[GROUP_BY])))
@@ -191,11 +197,13 @@ const DataTableBase = data => {
     else if (state[GROUP_BY]) {
       setGrouping([])
       setGroupingExtension([])
+      setExpandedGroups([])
       setFixedColumns([state[GROUP_BY]])
     }
     else {
       setGrouping([])
       setGroupingExtension([])
+      setExpandedGroups([])
       setFixedColumns([columnNames[0]])
     }
     setHiddenColumnNames(getHiddenColumns())
@@ -247,6 +255,7 @@ const DataTableBase = data => {
               <SortingState />
               <GroupingState
                 grouping={grouping}
+                expandedGroups={expandedGroups}
               />
               <SummaryState
                 totalItems={totalSummaryItems}
@@ -277,7 +286,9 @@ const DataTableBase = data => {
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
               />
-              <TableGroupRow columnExtensions={groupingExtension} />
+              <TableGroupRow
+                contentComponent={CustomGroupCellContent}
+                columnExtensions={groupingExtension} />
               <TableSummaryRow
                 groupRowComponent={CustomTableSummaryRowGroupRow}
                 totalRowComponent={CustomTableSummaryRowTotalRow}
