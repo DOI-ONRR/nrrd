@@ -117,7 +117,7 @@ const useStyles = makeStyles(theme => ({
   },
   horizontalMenuItems: {
     display: 'flex',
-  }
+  },
 }))
 
 const ExploreDataToolbar = props => {
@@ -204,7 +204,8 @@ const ExploreDataToolbar = props => {
             selected={exploreDataTabOpen}
             onChange={toggleExploreDataToolbar}
           >
-            <ExploreDataIcon className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} /> Explore data
+            <ExploreDataIcon className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} />
+            <span>Explore data</span>
           </FilterToggleInput>
           <FilterToggleInput
             value="open"
@@ -212,7 +213,8 @@ const ExploreDataToolbar = props => {
             defaultSelected={locationTabOpen}
             selected={locationTabOpen}
             onChange={toggleLocationToolbar}>
-            <LocationOnIcon className={classes.toolbarIcon} /> Compare
+            <LocationOnIcon className={classes.toolbarIcon} />
+            <span>Compare</span>
           </FilterToggleInput>
           <FilterToggleInput
             value="open"
@@ -220,7 +222,8 @@ const ExploreDataToolbar = props => {
             defaultSelected={exploreMoreTabOpen}
             selected={exploreMoreTabOpen}
             onChange={toggleExploreMoreToolbar}>
-            <MoreVertIcon className={classes.toolbarIcon} /> Explore more {dataType}
+            <MoreVertIcon className={classes.toolbarIcon} />
+            <span>Explore more {dataType}</span>
           </FilterToggleInput>
         </BaseToolbar>
         {exploreDataTabOpen &&
@@ -309,20 +312,46 @@ const ExploreDataToolbar = props => {
           <Box>
             {dataType === REVENUE &&
                   <MapExploreMenu
-                    linkLabels={['Query revenue data', 'Downloads & Documentation', 'How revenue works', 'Revenue by company']}
-                    linkUrls={['/query-data/?dataType=Revenue', '/downloads/#Revenue', '/how-revenue-works/#revenues', '/how-revenue-works/federal-revenue-by-company/2018/']}
+                    linkLabels={[
+                      'Query revenue data',
+                      'Downloads & Documentation',
+                      'How revenue works',
+                      // 'Revenue by company'
+                    ]}
+                    linkUrls={[
+                      '/query-data/?dataType=Revenue',
+                      '/downloads/#Revenue',
+                      '/how-revenue-works#understanding-federal-revenues',
+                      // '/how-revenue-works/federal-revenue-by-company/2018'
+                    ]}
                   />
             }
             {dataType === DISBURSEMENT &&
                   <MapExploreMenu
-                    linkLabels={['Query disbursements data', 'Downloads & Documentation', 'How disbursements works']}
-                    linkUrls={['/query-data/?dataType=Disbursements', '/downloads/#Disbursements', '/how-revenue-works/#understanding-federal-disbursements']}
+                    linkLabels={[
+                      'Query disbursements data',
+                      'Downloads & Documentation',
+                      'How disbursements works'
+                    ]}
+                    linkUrls={[
+                      '/query-data/?dataType=Disbursements',
+                      '/downloads/#Disbursements',
+                      '/how-revenue-works/#understanding-federal-disbursements'
+                    ]}
                   />
             }
             {dataType === PRODUCTION &&
                   <MapExploreMenu
-                    linkLabels={['Query production data', 'Downloads & Documentation', 'How production works']}
-                    linkUrls={['/query-data/?dataType=Production', '/downloads/#Production', '/how-revenue-works/#the-production-process']}
+                    linkLabels={[
+                      'Query production data',
+                      'Downloads & Documentation',
+                      'How production works'
+                    ]}
+                    linkUrls={[
+                      '/query-data/?dataType=Production',
+                      '/downloads/#Production',
+                      '/how-revenue-works/#the-production-process'
+                    ]}
                   />
             }
           </Box>
