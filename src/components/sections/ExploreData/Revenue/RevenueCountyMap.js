@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     '& .mapContainer': {
       height: 100,
       width: 245,
+      overflow: 'hidden',
     },
     '& .mapContainer > .legend': {
       display: 'none', // quick fix for now, will want to disable most map features for smaller maps

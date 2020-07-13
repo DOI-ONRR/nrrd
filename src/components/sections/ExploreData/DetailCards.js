@@ -6,6 +6,8 @@ import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
+import { isIE } from 'react-device-detect'
+
 // import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -146,7 +148,7 @@ const useStyles = makeStyles(theme => ({
     filter: 'invert(1)',
   },
   cardContentContainer: {
-    display: 'grid',
+    display: isIE ? 'block' : 'grid',
     minHeight: 1500,
     '& > div': {
       margin: 0,

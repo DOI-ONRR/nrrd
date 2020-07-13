@@ -22,7 +22,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     '& .chart-container': {
-      display: 'grid',
+      // display: 'grid',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'top',
     }
   }
 }))

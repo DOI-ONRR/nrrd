@@ -25,6 +25,7 @@
     "apollo-link-http": "^1.5.17",
     "app-root-dir": "^1.0.2",
     "babel-plugin-styled-components": "^1.10.7",
+    "browserslist": "^4.13.0",
     "currency-formatter": "^1.5.5",
     "d3": "^5.16.0",
     "d3-interpolate": "^1.4.0",
@@ -122,5 +123,10 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
-  }
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "IE 11"
+  ]
 }

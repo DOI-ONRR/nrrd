@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
   autoCompleteRoot: {
     color: theme.palette.primary.dark,
     minWidth: 250,
+    maxWidth: 250,
     marginRight: theme.spacing(1),
     borderRadius: 4,
     transition: theme.transitions.create(['border-color', 'box-shadow'])
@@ -216,7 +217,7 @@ const SearchLocationsInput = props => {
       options={OPTIONS}
       ListboxComponent={ListboxComponent}
       getOptionLabel={option => option.location_name}
-      style={{ width: '100%' }}
+      style={{ width: '100%', maxWidth: 250 }}
       renderInput={params => (
         <TextField
           {...params}
