@@ -256,6 +256,7 @@ const DataTableBase = data => {
               <GroupingState
                 grouping={grouping}
                 expandedGroups={expandedGroups}
+                onExpandedGroupsChange={setExpandedGroups}
               />
               <SummaryState
                 totalItems={totalSummaryItems}
