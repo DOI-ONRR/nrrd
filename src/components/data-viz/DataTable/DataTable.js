@@ -17,13 +17,10 @@ import {
   DOWNLOAD_DATA_TABLE
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
-import { AppStatusContext } from '../../../stores/app-status-store'
 import { DownloadContext } from '../../../stores/download-store'
-import { toTitleCase, aggregateSum, downloadWorkbook, destructuringSwap } from '../../../js/utils'
+import { toTitleCase, aggregateSum, destructuringSwap } from '../../../js/utils'
 
 import withQueryManager from '../../withQueryManager'
-import QueryManager from '../../../js/query-manager'
-import { useQuery } from '@apollo/react-hooks'
 
 import CustomTable from './Custom/CustomTable'
 import CustomTableHead from './Custom/CustomTableHead'
@@ -36,12 +33,8 @@ import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
 import TotalProvider from './Custom/TotalProvider'
 import CustomGroupCellContent from './Custom/CustomGroupCellContent'
 
-import { IconDownloadCsvImg, IconDownloadXlsImg } from '../../images'
-import Button from '@material-ui/core/Button'
-
 import {
   makeStyles,
-  useTheme,
   Box,
   Grid
 } from '@material-ui/core'
@@ -127,15 +120,7 @@ const EnhancedDataTable = withQueryManager(({ data }) => {
   )
 }, QUERY_KEY_DATA_TABLE)
 
-const useStylesDataTable = makeStyles(theme => ({
-  root: {
-    marginBottom: 0,
-  },
-}))
-
 const DataTableBase = data => {
-  const theme = useTheme()
-  const classes = useStylesDataTable(theme)
   const { state, updateDataFilter } = useContext(DataFilterContext)
   const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
