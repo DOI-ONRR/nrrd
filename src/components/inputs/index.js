@@ -59,51 +59,12 @@ export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
 export const StateOffshoreSelectInput = createEnhancedSelect(STATE_OFFSHORE_NAME, 'Multi')
 
-const GROUP_BY_OPTIONS = {
-  [REVENUE]: [
-    { value: REVENUE_TYPE, option: 'Revenue type' },
-    { value: COMMODITY, option: 'Commodity' },
-    { value: LAND_TYPE, option: 'Land type' },
-    { value: US_STATE, option: 'State' },
-    { value: COUNTY, option: 'County' },
-    { value: OFFSHORE_REGION, option: 'Offshore Region' },
-  ],
-  [PRODUCTION]: [
-    { value: PRODUCT, option: 'Product' },
-    { value: LAND_TYPE, option: 'Land type' },
-    { value: US_STATE, option: 'State' },
-    { value: COUNTY, option: 'County' },
-    { value: OFFSHORE_REGION, option: 'Offshore Region' },
-  ],
-  [DISBURSEMENT]: [
-    { value: RECIPIENT, option: 'Recipient' },
-    { value: SOURCE, option: 'Source' },
-    { value: US_STATE, option: 'State' },
-    { value: COUNTY, option: 'County' },
-  ],
-}
-
 export const GroupBySelectInput = compose(
-  BaseComponent => props => {
-    const { state } = useContext(DataFilterContext)
-    return (
-      <BaseComponent
-        label={'Group by'}
-        data={GROUP_BY_OPTIONS[state[DATA_TYPE] || REVENUE]}
-        {...props} />)
-  },
+  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[GROUP_BY].default} showClearSelected={false} {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, GROUP_BY))(BaseSelectInput)
 
 export const BreakoutBySelectInput = compose(
-  BaseComponent => props => {
-    const { state } = useContext(DataFilterContext)
-    const options = GROUP_BY_OPTIONS[state[DATA_TYPE] || REVENUE]
-    return (
-      <BaseComponent
-        label={'Then group by'}
-        data={options}
-        {...props} />)
-  },
+  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[BREAKOUT_BY].default} showClearSelected={false} {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, BREAKOUT_BY))(BaseSelectInput)
 
 export const FilterToggleInput = ({ children, ...props }) => <BaseToggle data={['Filter']} {...props}>{children}</BaseToggle>

@@ -278,6 +278,7 @@ const DataTableBase = data => {
               <TableHeaderRow
                 contentComponent={props =>
                   <CustomTableHeaderCell
+                    options={columnNames.filter(item => (!item.name.startsWith('y'))).map(item => ({ option: item.title, value: item.name }))}
                     onAddColumn={!state[BREAKOUT_BY] && addBreakoutByColumnHandler}
                     onRemoveColumn={state[BREAKOUT_BY] && removeBreakoutByColumnHandler}
                     groupBy={state[GROUP_BY]}

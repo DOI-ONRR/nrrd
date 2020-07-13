@@ -47,6 +47,14 @@ export const REVENUE_TYPE_OPTIONS = 'revenueTypeOptions'
 export const FISCAL_YEAR_OPTIONS = 'fiscalYearOptions'
 
 export const DISPLAY_NAMES = {
+  [GROUP_BY]: {
+    default: 'Group by',
+    plural: 'Group by',
+  },
+  [BREAKOUT_BY]: {
+    default: 'Then group by',
+    plural: 'Then group by',
+  },
   [DATA_TYPE]: {
     default: 'Data type',
     plural: 'Data types',

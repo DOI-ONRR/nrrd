@@ -49,15 +49,12 @@ const REVENUE_QUERY = () => `
       fiscal_year: {_in: $${ FISCAL_YEAR }},
       calendar_year: {_in: $${ CALENDAR_YEAR }}
     }) {
-    ${ LOCATION_NAME }: location_name  
-    ${ LAND_TYPE }: land_type
-    ${ REGION_TYPE }: region_type
-    ${ DISTRICT_TYPE }: district_type
-    ${ OFFSHORE_REGION }: offshore_region,
-    ${ US_STATE }: state_name
-    ${ COUNTY }: county_name
     ${ REVENUE_TYPE }: revenue_type
     ${ COMMODITY }: commodity
+    ${ LAND_TYPE }: land_type
+    ${ US_STATE }: state_name
+    ${ COUNTY }: county_name
+    ${ OFFSHORE_REGION }: offshore_region,
     ${ ALL_REVENUE_YEARS }
   }`
 
@@ -75,14 +72,11 @@ const PRODUCTION_QUERY = () => `
       fiscal_year: {_in: $${ FISCAL_YEAR }},
       calendar_year: {_in: $${ CALENDAR_YEAR }}
     }) {
-    ${ LOCATION_NAME }: location_name  
+    ${ PRODUCT }: product
     ${ LAND_TYPE }: land_type
-    ${ REGION_TYPE }: region_type
-    ${ DISTRICT_TYPE }: district_type
-    ${ OFFSHORE_REGION }: offshore_region
     ${ US_STATE }: state_name
     ${ COUNTY }: county_name
-    ${ PRODUCT }: product
+    ${ OFFSHORE_REGION }: offshore_region,
     ${ ALL_REVENUE_YEARS }
   }`
 
