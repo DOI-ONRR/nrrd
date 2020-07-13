@@ -119,16 +119,16 @@ const useStyles = makeStyles(theme => ({
     },
   },
   sliderValueLabel: {
-    width: 75,
+    width: 50,
     top: -2,
-    left: 'calc(-50% + -26px)',
+    left: 'calc(-50% + -12px)',
     transform: 'rotate(0deg)',
     fontSize: '1rem',
     cursor: 'pointer',
     backgroundColor: theme.palette.links.default,
     color: theme.palette.primary.contrastText,
     '& span': {
-      width: 75,
+      width: 50,
       transform: 'rotate(0)',
       borderRadius: 4,
       textAlign: 'center',
@@ -208,7 +208,7 @@ const YearSlider = props => {
               aria-labelledby="year-slider"
               aria-valuetext={year && year.toString()}
               valueLabelDisplay="on"
-              valueLabelFormat={label => `FY ${ label }`}
+              valueLabelFormat={label => label}
               step={1}
               onChangeCommitted={(e, yr) => {
                 handleOnchange(yr)
