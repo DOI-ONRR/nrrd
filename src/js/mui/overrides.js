@@ -14,6 +14,14 @@ module.exports = Object.freeze({
       color: palette.text.secondary,
     },
   },
+  Table: {
+    headTable: {
+      marginBottom: '0px',
+    },
+    footTable: {
+      marginBottom: '0px',
+    }
+  },
   MuiTable: {
     root: {
       marginBottom: '25px',
