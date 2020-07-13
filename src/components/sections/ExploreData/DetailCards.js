@@ -15,7 +15,8 @@ import {
   CardActions,
   CardHeader,
   CardContent,
-  CircularProgress
+  CircularProgress,
+  Grid
 } from '@material-ui/core'
 
 import CloseIcon from '@material-ui/icons/Close'
@@ -149,7 +150,6 @@ const useStyles = makeStyles(theme => ({
     minHeight: 1500,
     '& > div': {
       margin: 0,
-      // border: '2px solid deeppink',
     },
   }
 }))
