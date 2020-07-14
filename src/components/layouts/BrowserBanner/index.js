@@ -1,2 +1,1 @@
-
-export { default as BrowserBanner } from './BrowserBanner'
+export default from './BrowserBanner'

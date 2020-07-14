@@ -1,3 +1,6 @@
+export const QUERY_TABLE_FILTER_DEFAULT = 'query_table_filter_default'
+export const EXPLORE_DATA_FILTER_DEFAULT = 'explore_data_filter_default'
+
 export const DATA_TYPE = 'dataType'
 export const LOCATION_NAME = 'locationName'
 export const LAND_TYPE = 'landType'
@@ -5,6 +8,7 @@ export const REGION_TYPE = 'regionType'
 export const DISTRICT_TYPE = 'districtType'
 export const LAND_CLASS = 'landClass'
 export const LAND_CATEGORY = 'landCategory'
+export const OFFSHORE = 'offshore'
 export const OFFSHORE_REGION = 'offshoreRegion'
 export const OFFSHORE_REGIONS = 'offshoreRegions'
 export const US_STATE = 'state'
@@ -32,6 +36,7 @@ export const GROUP_BY = 'groupBy'
 export const BREAKOUT_BY = 'breakoutBy'
 export const NO_BREAKOUT_BY = 'noBreakoutBy'
 export const ZERO_OPTIONS = 'zeroOptions'
+export const MAP_LEVEL = 'Map level'
 
 export const LAND_CLASS_OPTIONS = 'landClassOptions'
 export const LAND_CATEGORY_OPTIONS = 'landCategoryOptions'
@@ -43,6 +48,10 @@ export const REVENUE_TYPE_OPTIONS = 'revenueTypeOptions'
 export const FISCAL_YEAR_OPTIONS = 'fiscalYearOptions'
 
 export const DISPLAY_NAMES = {
+  [DATA_TYPE]: {
+    default: 'Data type',
+    plural: 'Data types',
+  },
   [REVENUE_TYPE]: {
     default: 'Revenue type',
     plural: 'Revenue types',
@@ -71,6 +80,10 @@ export const DISPLAY_NAMES = {
     default: 'Offshore region',
     plural: 'Offshore regions',
   },
+  [OFFSHORE_REGIONS]: {
+    default: 'Offshore regions',
+    plural: 'Offshore regions',
+  },
   [SOURCE]: {
     default: 'Source',
     plural: 'Sources',
@@ -79,8 +92,16 @@ export const DISPLAY_NAMES = {
     default: 'County',
     plural: 'Counties',
   },
+  [COUNTIES]: {
+    default: 'Counties',
+    plural: 'Counties',
+  },
   [RECIPIENT]: {
     default: 'Recipient',
     plural: 'Recipients',
-  }
+  },
+  [PERIOD]: {
+    default: 'Period',
+    plural: 'Periods',
+  },
 }

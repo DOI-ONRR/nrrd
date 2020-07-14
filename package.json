@@ -6,6 +6,7 @@
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.44",
     "@apollo/react-hooks": "^3.1.5",
+    "@babel/polyfill": "^7.10.1",
     "@devexpress/dx-react-core": "^2.6.2",
     "@devexpress/dx-react-grid": "^2.6.2",
     "@devexpress/dx-react-grid-material-ui": "^2.6.2",
@@ -24,7 +25,7 @@
     "apollo-link-http": "^1.5.17",
     "app-root-dir": "^1.0.2",
     "babel-plugin-styled-components": "^1.10.7",
-    "babel-preset-gatsby": "^0.2.36",
+    "browserslist": "^4.13.0",
     "currency-formatter": "^1.5.5",
     "d3": "^5.16.0",
     "d3-interpolate": "^1.4.0",
@@ -45,6 +46,7 @@
     "gatsby-plugin-offline": "^3.2.1",
     "gatsby-plugin-react-helmet": "^3.3.1",
     "gatsby-plugin-sharp": "^2.6.2",
+    "gatsby-plugin-use-query-params": "^1.0.1",
     "gatsby-remark-autolink-headers": "^2.3.1",
     "gatsby-source-filesystem": "^2.3.1",
     "gatsby-source-graphql": "^2.5.1",
@@ -53,11 +55,12 @@
     "gatsby-transformer-sharp": "^2.5.2",
     "gatsby-transformer-yaml": "^2.4.1",
     "lazy.js": "^0.5.1",
+    "lodash": "^4.17.15",
     "ogr2ogr": "^2.0.0",
     "pg": "^7.18.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-device-detect": "^1.12.1",
+    "react-device-detect": "^1.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-live": "^2.2.2",
@@ -69,17 +72,20 @@
     "rehype-react": "^4.0.1",
     "resize-observer-polyfill": "^1.5.1",
     "slugify": "^1.4.0",
+    "source-map-support": "^0.5.19",
     "styled-components": "^4.4.1",
     "to-case": "^2.0.0",
     "topojson-client": "^3.1.0",
     "typeface-lato": "0.0.75",
     "typescript": "^2.8.0",
-    "url-search-params-polyfill": "^7.0.0"
+    "url-search-params-polyfill": "^7.0.0",
+    "use-query-params": "^1.1.4"
   },
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "app-root-dir": "^1.0.2",
     "babel-jest": "^24.9.0",
+    "babel-preset-gatsby": "^0.4.9",
     "chrome-launcher": "^0.13.2",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
@@ -117,5 +123,10 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
-  }
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "IE 11"
+  ]
 }

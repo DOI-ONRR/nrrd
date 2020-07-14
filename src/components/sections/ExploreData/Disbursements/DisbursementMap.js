@@ -38,10 +38,14 @@ const DISBURSEMENT_QUERY = gql`
 export default props => {
   const { state: filterState } = useContext(DataFilterContext)
 
-  const year = filterState[DFC.YEAR]
-  const location = filterState[DFC.COUNTIES] || 'State'
+  const {
+    year,
+    counties,
+    period
+  } = filterState
+
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
-    variables: { year, period: CONSTANTS.FISCAL_YEAR, location }
+    variables: { year: year, period: period, location: counties }
   })
   const dataSet = 'FY ' + year
   let mapData = [[]]
@@ -49,6 +53,7 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
+    console.log('DisbursementMap data: ', data)
     /* mapData = data.fiscal_disbursement_summary.map((item, i) => [
       item.state_or_area,
       item.sum

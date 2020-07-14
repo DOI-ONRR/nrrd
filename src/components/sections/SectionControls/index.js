@@ -1,1 +1,1 @@
-export default  from './SectionControls'
+export default from './SectionControls'

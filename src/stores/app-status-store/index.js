@@ -9,7 +9,9 @@ function AppStatusProvider ({ children }) {
   const actions = useActions(state, dispatch)
 
   // Log new state
-  useEffect(() => console.log('AppStatusProvider', { newState: state }), [state])
+  useEffect(() => {
+    // console.log('AppStatusProvider', { newState: state })
+  }, [state])
 
   return (
     <AppStatusContext.Provider value={{ state, ...actions }}>

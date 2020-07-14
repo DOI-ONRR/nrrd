@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -6,6 +6,9 @@ import * as d3 from 'd3'
 import utils from '../../../js/utils'
 import PercentDifference from '../../utils/PercentDifference'
 import Link from '../../../components/Link'
+
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -43,7 +46,6 @@ const APOLLO_QUERY = gql`
   `
 
 const useStyles = makeStyles(theme => ({
-  root: {},
   inlineSourceLinks: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -53,6 +55,10 @@ const useStyles = makeStyles(theme => ({
 
 const RevenueTrends = props => {
   const classes = useStyles()
+
+  const { state: filterState } = useContext(DataFilterContext)
+  let year
+
   const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   if (loading) return null
@@ -62,20 +68,20 @@ const RevenueTrends = props => {
     data &&
     data.revenue_trends.length > 0
   ) {
-    // Group data to match what was previously happening with gatsby static query
-    const groupedData = groupBy(data.revenue_trends, 'fiscalYear')
+    // Group data by year
+    const groupedData = utils.groupBy(data.revenue_trends, 'fiscalYear')
 
-    const fiscalYearData = groupedData.map(item => {
+    const fiscalYearData = Object.entries(groupedData).map((item, index) => {
       const newObj = {}
-      newObj.fiscalYear = item[0].fiscalYear
-      newObj.data = item
+      newObj.fiscalYear = item[0]
+      newObj.data = item[1]
 
       return newObj
     })
 
     // Get the latest date then subtract 1 year to filter previous year data to compare current year data
     const currentMonth = monthLookup(fiscalYearData[0].data[0].month)
-    const currentYear = fiscalYearData[0].data[0].fiscalYear
+    const currentYear = fiscalYearData[fiscalYearData.length - 1].fiscalYear
     const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
 
     // Get previous year
@@ -83,6 +89,7 @@ const RevenueTrends = props => {
 
     // Trends
     const trends = aggregateData(data.revenue_trends)
+
     // maxMonth Min/Max Year
     const maxMonth = currentYearDate.toLocaleString('en-us', { timeZone: 'UTC', month: 'long' })
     const minYear = trends[0].histData[0][0].substring(2)
@@ -94,8 +101,10 @@ const RevenueTrends = props => {
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
 
+    year = filterState[DFC.year] || trends[0].histData[trends[0].histData.length - 1][0]
+
     return (
-      <Box component="section" className={classes.root}>
+      <Box component="section">
         <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
           <Box component="h3" m={0} color="primary.dark">{props.title}</Box>
         </Box>
@@ -121,7 +130,10 @@ const RevenueTrends = props => {
                       </Box>
                       <Sparkline
                         key={`sparkline${ index }`}
-                        data={trend.histData} />
+                        data={trend.histData}
+                        highlightIndex={trend.histData.findIndex(
+                          x => x[0] === year
+                        )} />
                     </TableCell>
                     <TableCell align="right">
                       <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
@@ -200,11 +212,11 @@ const calculateOtherRevenues = data => {
 * @prop property field to group by, this will be the key
 *
 */
-const groupBy = (arr, prop) => {
-  const map = new Map(Array.from(arr, obj => [obj[prop], []]))
-  arr.forEach(obj => map.get(obj[prop]).push(obj))
-  return Array.from(map.values())
-}
+// const groupBy = (arr, prop) => {
+//   const map = new Map(Array.from(arr, obj => [obj[prop], []]))
+//   arr.forEach(obj => map.get(obj[prop]).push(obj))
+//   return Array.from(map.values())
+// }
 
 /**
 * calculateRevenueTypeAmountsByYear(data,index) - calculates other revenus from other revenues, inspections fees and civil penalties.
@@ -276,8 +288,8 @@ const aggregateData = data => {
 
 const sumData = (item, r, index, currentYear) => {
   const previousYear = currentYear - 1
-  if (item.fiscalYear == currentYear) r[index].current += item.revenue_ytd
-  if (item.fiscalYear == previousYear) r[index].previous += item.revenue_ytd
+  if (item.fiscalYear === currentYear) r[index].current += item.revenue_ytd
+  if (item.fiscalYear === previousYear) r[index].previous += item.revenue_ytd
 
   if (r[index].histSum[item.fiscalYear]) {
     if (!isNaN(Number(item.revenue))) r[index].histSum[item.fiscalYear] += Number(item.revenue)

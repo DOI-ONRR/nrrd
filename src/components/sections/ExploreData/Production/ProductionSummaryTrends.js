@@ -72,14 +72,12 @@ const ProductionSummaryTrends = props => {
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-
   }
-  
+
   if (
     data &&
     data.fiscal_production_summary.length > 0
   ) {
-
     fiscalData = data.fiscal_production_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
@@ -97,11 +95,9 @@ const ProductionSummaryTrends = props => {
       ])
     })
     // sparkline index
-    highlightIndex = sparkData.findIndex(
-      x => x[0] === year
-    )
+    highlightIndex = sparkData.findIndex((x, i) => x[0] === year)
 
-    total = sparkData[highlightIndex][1]
+    total = sparkData[highlightIndex]
 
     return (
       <>
@@ -127,7 +123,7 @@ const ProductionSummaryTrends = props => {
             <Typography variant="caption">
               <Box>{year}</Box>
               <Box>
-                {utils.formatToCommaInt(Math.floor(total), 3)} 
+                {utils.formatToCommaInt(Math.floor(total), 3)}
               </Box>
             </Typography>
           </Grid>
@@ -139,7 +135,7 @@ const ProductionSummaryTrends = props => {
     return (
       <>
         <Grid container>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography variant="caption">
               <Box>{ name + ' has not produced any ' + commodity + ' since ' + sparkMin + '.'} </Box>
             </Typography>

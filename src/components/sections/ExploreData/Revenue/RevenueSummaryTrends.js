@@ -108,8 +108,8 @@ const RevenueSummaryTrends = props => {
             {sparkData.length > 1 &&
               <Box component="span">
                 {sparkData && (
-                    <Sparkline
-                    key={'RST' + dataSet } 
+                  <Sparkline
+                    key={'RST' + dataSet }
                     data={sparkData}
                     highlightIndex={highlightIndex}
                   />

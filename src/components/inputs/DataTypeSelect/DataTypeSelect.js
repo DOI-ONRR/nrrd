@@ -1,24 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import BaseSwitch from '../../inputs/BaseSwitch'
+import BaseSelectInput from '../BaseSelectInput'
 
-const MapControlSwitch = ({ dataFilterKey, data, checked, helperText, label, selectType, disabled }) => {
+const DataTypeSelect = ({ dataFilterKey, data, defaultSelected, helperText, label, selectType, disabled }) => {
+  // try useTheme for overriding styles
   return (
-    <BaseSwitch
+    <BaseSelectInput
       dataFilterKey={dataFilterKey}
-      checked={checked}
+      data={data}
+      defaultSelected={defaultSelected}
+      disabled={disabled}
       helperText={helperText}
       label={label}
       selectType={selectType}
-      disabled={disabled}
+      showClearSelected={false}
+      variant='outlined'
     />
   )
 }
 
-export default MapControlSwitch
+export default DataTypeSelect
 
-MapControlSwitch.propTypes = {
+DataTypeSelect.propTypes = {
   /**
    * The data filter key used for data filter context
    */
@@ -28,9 +32,9 @@ MapControlSwitch.propTypes = {
    */
   data: PropTypes.array.isRequired,
   /**
-   * The checked options controls when switch is engaged or not, boolean
+   * Text that display as the default option of input
    */
-  checked: PropTypes.bool,
+  defaultOption: PropTypes.string,
   /**
    * Text that displays below the select box to provide additional instructions
    */

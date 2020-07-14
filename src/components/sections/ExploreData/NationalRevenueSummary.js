@@ -90,10 +90,13 @@ const NationalRevenueSummary = props => {
     // do something wit dat data
     //    console.log('NationalRevenueSummary data: ', data)
     groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
-    groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.sum, 0)).reduce((total, s) => total += s, 0)
+    groupTotal = Object.keys(groupData).map(k =>
+      groupData[k].reduce((sum, i) => {
+        sum += i.sum
+      }, 0)).reduce((total, s) => {
+      total += s
+    }, 0)
     nationalRevenueData = Object.entries(groupData)
-
-
   }
 
   return (
@@ -126,7 +129,7 @@ const NationalRevenueSummary = props => {
                       </Box>
                     </TableCell>
                     <TableCell style={{ width: '65%' }}>
-                    <StackedBarChart
+                      <StackedBarChart
                         key={'NRS' + year + '_' + i}
                         data={item[1]}
                         legendFormat={v => {
@@ -144,7 +147,9 @@ const NationalRevenueSummary = props => {
                           return headers
                         }
                         }
-                        barScale={item[1].reduce((sum, i) => sum += i.sum, 0) / groupTotal }
+                        barScale={item[1].reduce((sum, i) => {
+                          sum += i.sum
+                        }, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}
                         xLabels={xLabels}

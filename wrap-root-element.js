@@ -25,6 +25,9 @@ import {
   DataFilterProvider
 } from './src/stores'
 
+import { globalHistory, Router } from '@reach/router'
+import { QueryParamProvider } from 'use-query-params'
+
 import ErrorBoundary from './src/components/ErrorBoundary'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './src/js/mui/theme'
@@ -54,7 +57,7 @@ export const wrapRootElement = ({ element }) => (
   <ErrorBoundary>
     <ThemeProvider theme={theme}>
       <ApolloProvider client={client}>
-        <DataFilterProvider>
+        <DataFilterProvider {...{ path: '/' }} reachHistory={globalHistory}>
           <StoreProvider>
             <AppStatusProvider>
               <MDXProvider components={ mdxComponents }>

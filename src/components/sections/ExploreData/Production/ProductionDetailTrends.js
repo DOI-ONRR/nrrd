@@ -82,20 +82,19 @@ const ProductionDetailTrends = props => {
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-    
-    
+
     fiscalData = d3.nest()
       .key(k => k.fiscal_year)
       .rollup(v => d3.sum(v, i => i.sum))
       .entries(data.fiscal_production_summary.filter(row => row.state_or_area === stateAbbr)).map(item => [parseInt(item.key), item.value])
-    
-    /*console.debug ("FD ", fD)
+
+    /* console.debug ("FD ", fD)
       fiscalData = data.fiscal_production_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
-    ]) 
+    ])
     console.debug ("FisD ", fiscalData)
-    */ 
+    */
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
       const sum = fiscalData.find(x => x[0] === item.fiscal_year)

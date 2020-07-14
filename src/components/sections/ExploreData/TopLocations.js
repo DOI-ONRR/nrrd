@@ -110,15 +110,15 @@ const TopLocations = ({ title, ...props }) => {
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
-        <Grid item xs={12}>
+          <Grid item xs={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
               <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
-        </Grid>
+          </Grid>
           <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
-        <CircleChart
+                <CircleChart
                   key ={'RTL' + dataSet}
                   data={chartData}
                   maxLegendWidth='800px'
@@ -130,7 +130,7 @@ const TopLocations = ({ title, ...props }) => {
                       // console.debug('circleLABLE: ', d)
                       const r = []
                       r[0] = d.location_name
-                      if( r[0] === 'Native American') {
+                      if (r[0] === 'Native American') {
                         r[0] = 'Native American lands'
                       }
                       else if (r[0] === 'Gulf of Mexico, Central Gulf of Mexico') {
@@ -139,7 +139,7 @@ const TopLocations = ({ title, ...props }) => {
                       else if (r[0] === 'Gulf of Mexico, Western Gulf of Mexico') {
                         r[0] = 'Western Gulf'
                       }
-                      
+
                       r[1] = utils.formatToDollarInt(d.sum)
                       return r
                     }

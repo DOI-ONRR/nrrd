@@ -16,6 +16,8 @@ const useStyles = makeStyles(theme => ({
     color: theme.typography.body2.color,
     textDecoration: 'none',
     marginLeft: theme.spacing(2),
+    maxHeight: '85%',
+    display: 'inline-block',
     '&:hover': {
       textDecoration: 'underline',
     }
