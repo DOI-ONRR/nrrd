@@ -9,6 +9,11 @@ import { saveAs } from 'file-saver'
 // Import Display Name Yaml Files
 import commodityNames from '../data/commodity_names.yml'
 
+export const destructuringSwap = (list, iA, iB) => {
+  [list[iA], list[iB]] = [list[iB], list[iA]]
+  return list
+}
+
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
 export const formatToDollarInt = value => {
@@ -94,7 +99,7 @@ export const aggregateSum = ({ data, groupBy, breakoutBy, sumByProps }) => {
   // Use a reduce function to aggregate the data
   const aggregated = clonedData.reduce((results, current) => {
     // If no value exists for the current item just skip it.
-    if ((groupBy && current[groupBy]) || (!groupBy && breakoutBy && current[breakoutBy])) {
+    if (((groupBy && current[groupBy]) && (breakoutBy ? current[breakoutBy] : true)) || (!groupBy && breakoutBy && current[breakoutBy])) {
       // Find the objects that match based on the criteria
       // If it finds a match then we will sum the props of the current item to the results
       const matches = results.filter((item, index) => {

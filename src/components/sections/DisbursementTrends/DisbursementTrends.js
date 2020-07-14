@@ -366,9 +366,9 @@ const aggregateData = data => {
   const r = [
     { fund: 'U.S. Treasury', current: 0, previous: 0, histSum: {}, histData: [] },
     { fund: 'States & counties', current: 0, previous: 0, histSum: {}, histData: [] },
-    { fund: 'Reclamation fund', current: 0, previous: 0, histSum: {}, histData: [] },
+    { fund: 'Reclamation Fund', current: 0, previous: 0, histSum: {}, histData: [] },
     { fund: 'Native Americans', current: 0, previous: 0, histSum: {}, histData: [] },
-    { fund: 'Other Funds', current: 0, previous: 0, histSum: {}, histData: [] },
+    { fund: 'Other funds', current: 0, previous: 0, histSum: {}, histData: [] },
     { fund: 'Total', current: 0, previous: 0, histSum: {}, histData: [], className: 'strong' }
   ]
   const currentYear = data[0].fiscalYear

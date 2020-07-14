@@ -24,6 +24,14 @@ export default class d3Map {
     if (options.mapFormat) {
       this.format = options.mapFormat
     }
+    if (options.mapUnits) {
+      this.unit = options.mapUnits
+    }
+    else {
+      this.unit='';
+    }
+      
+
     this.node = node
     this.us = us
     this.mapFeatures = mapFeatures
@@ -412,6 +420,7 @@ export default class d3Map {
     const title = this.data.title
     const data = this.data
     const color = this.color
+    const unit = this.unit
     let legend
     if (this.node.children[0].children[0]) {
       this._legend = d3.select(this.node.children[0].children[0])
@@ -429,7 +438,7 @@ export default class d3Map {
     const width = 200
     const height = 20
     const sorted = data.values.sort((a, b) => a - b)
-    const lowest = utils.formatToSigFig_Dollar(Math.floor(sorted[0]), 3)
+    const lowest = utils.formatToSigFig_Dollar(Math.floor(sorted[0]), 3) 
     const median = utils.formatToSigFig_Dollar(
       Math.floor(sorted[Math.floor(sorted.length / 2)]),
       3
@@ -457,7 +466,7 @@ export default class d3Map {
     if (this.labels) {
       g.call(
         d3
-          .axisBottom(d3.scalePoint([lowest, median, highest], [0, width]))
+          .axisBottom(d3.scalePoint([lowest, median, highest + ' ' +unit], [0, width]))
           .tickSize(20)
       )
         .select('.domain')

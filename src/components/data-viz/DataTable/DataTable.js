@@ -13,11 +13,13 @@ import {
   DISPLAY_NAMES,
   PERIOD,
   PERIOD_FISCAL_YEAR,
-  QUERY_KEY_DATA_TABLE
+  QUERY_KEY_DATA_TABLE,
+  DOWNLOAD_DATA_TABLE
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../stores/app-status-store'
-import { toTitleCase, aggregateSum, downloadWorkbook } from '../../../js/utils'
+import { DownloadContext } from '../../../stores/download-store'
+import { toTitleCase, aggregateSum, downloadWorkbook, destructuringSwap } from '../../../js/utils'
 
 import withQueryManager from '../../withQueryManager'
 import QueryManager from '../../../js/query-manager'
@@ -57,7 +59,8 @@ import {
   TableFixedColumns,
   TableGroupRow,
   TableSummaryRow,
-  TableColumnResizing
+  TableColumnResizing,
+  TableColumnReordering
 } from '@devexpress/dx-react-grid-material-ui'
 
 const allYears = ['2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003']
@@ -121,7 +124,8 @@ const EnhancedDataTable = withQueryManager(({ data }) => {
 }, QUERY_KEY_DATA_TABLE)
 
 const DataTableBase = data => {
-  const { state } = useContext(DataFilterContext)
+  const { state, updateDataFilter } = useContext(DataFilterContext)
+  const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
   const [grouping, setGrouping] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
@@ -133,6 +137,8 @@ const DataTableBase = data => {
   const [defaultColumnWidths] = useState(columnNames ? columnNames.map((column, index) =>
     (column.name.startsWith('y')) ? ({ columnName: column.name, width: 200 }) : ({ columnName: column.name, width: 250 })) : [])
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
+  const [columnOrder, setColumnOrder] = useState(columnNames.map(item => item.name))
+
   const getHiddenColumns = () => {
     let yearColumns = []
     const periodYear = (state[PERIOD] === PERIOD_FISCAL_YEAR) ? FISCAL_YEAR : CALENDAR_YEAR
@@ -167,6 +173,9 @@ const DataTableBase = data => {
       setGrouping([{ columnName: state[GROUP_BY] }])
       setGroupingExtension([{ columnName: state[GROUP_BY], showWhenGrouped: true }])
       setFixedColumns([TableGroupRow.Row, state[GROUP_BY], state[BREAKOUT_BY]])
+
+      destructuringSwap(columnNames, 0, columnNames.findIndex(item => (item.name === state[GROUP_BY])))
+      setColumnOrder(columnNames.map(item => item.name))
     }
     else if (state[GROUP_BY]) {
       setGrouping([])
@@ -184,18 +193,40 @@ const DataTableBase = data => {
 
     if (data && data.results.length > 0) {
       const yearProps = columnNames.filter(item => item.name.startsWith('y'))
-      setAggregatedSums(aggregateSum({
+      const sums = aggregateSum({
         data: data.results,
         groupBy: state[GROUP_BY],
         breakoutBy: (state[BREAKOUT_BY] === NO_BREAKOUT_BY) ? undefined : state[BREAKOUT_BY],
         sumByProps: yearProps.map(item => item.name)
-      }))
+      })
+      setAggregatedSums(sums)
+      if (sums && sums.length > 0) {
+        addDownloadData({
+          key: DOWNLOAD_DATA_TABLE,
+          data: {
+            cols: columnNames.filter(col => !hiddenColumnNames.includes(col.name)),
+            rows: sums
+          }
+        })
+      }
     }
   }, [state, data])
 
   const handleDownload = type => {
     downloadWorkbook(type, state[DATA_TYPE], state[DATA_TYPE], columnNames.filter(col => !hiddenColumnNames.includes(col.name)), aggregatedSums)
   }
+
+  const addBreakoutByColumnHandler = () => {
+    const breakoutByColumnName = state[BREAKOUT_BY] || columnNames.find(item => (!item.name.startsWith('y') && item.name !== state[GROUP_BY]))
+    if (breakoutByColumnName) {
+      updateDataFilter({ [BREAKOUT_BY]: (breakoutByColumnName.name ? breakoutByColumnName.name : breakoutByColumnName) })
+    }
+  }
+  const removeBreakoutByColumnHandler = () => {
+    updateDataFilter({ [BREAKOUT_BY]: undefined })
+  }
+
+
 
   return (
     <React.Fragment>
@@ -250,9 +281,17 @@ const DataTableBase = data => {
                 columnExtensions={tableColumnExtensions}
                 cellComponent={CustomTableCell}
               />
+              <TableColumnReordering
+                order={columnOrder}
+              />
               <TableColumnResizing defaultColumnWidths={defaultColumnWidths} />
               <TableHeaderRow
-                cellComponent={props => <CustomTableHeaderCell {...props} groupBy={state[GROUP_BY]}/>}
+                contentComponent={props =>
+                  <CustomTableHeaderCell
+                    onAddColumn={!state[BREAKOUT_BY] && addBreakoutByColumnHandler}
+                    onRemoveColumn={state[BREAKOUT_BY] && removeBreakoutByColumnHandler}
+                    groupBy={state[GROUP_BY]}
+                    {...props} />}
                 showSortingControls/>
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}

@@ -16,6 +16,7 @@ export const US_STATE_ABBR = 'stateAbbr'
 export const US_STATES = 'usStates'
 export const COUNTY = 'county'
 export const COUNTIES = 'counties'
+export const PRODUCT = 'product'
 export const COMMODITY = 'commodity'
 export const COMMODITIES = 'commodities'
 export const REVENUE_TYPE = 'revenueType'
@@ -28,6 +29,7 @@ export const PERIOD = 'period'
 export const YEAR = 'year'
 export const RECIPIENT = 'recipient'
 export const SOURCE = 'source'
+export const STATE_OFFSHORE_NAME = 'stateOffshoreName'
 
 export const PERIOD_FISCAL_YEAR = 'Fiscal Year'
 export const PERIOD_CALENDAR_YEAR = 'Calendar Year'
@@ -64,6 +66,10 @@ export const DISPLAY_NAMES = {
     default: 'Commodity',
     plural: 'Commodities',
   },
+  [PRODUCT]: {
+    default: 'Product',
+    plural: 'Products',
+  },
   [LAND_CATEGORY]: {
     default: 'Land category',
     plural: 'Land categories',
@@ -99,6 +105,11 @@ export const DISPLAY_NAMES = {
   [RECIPIENT]: {
     default: 'Recipient',
     plural: 'Recipients',
+  },
+  [STATE_OFFSHORE_NAME]: {
+    default: 'State/Offshore Region',
+    plural: 'States/Offshore Regions',
+  }
   },
   [PERIOD]: {
     default: 'Period',

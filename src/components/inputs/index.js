@@ -1,4 +1,4 @@
-import React, { useContext, Children } from 'react'
+import React, { useContext, useState } from 'react'
 import { flowRight as compose } from 'lodash'
 
 import {
@@ -13,8 +13,10 @@ import {
   COMMODITY,
   COMMODITIES,
   COUNTIES,
+  PRODUCT,
   RECIPIENT,
   SOURCE,
+  STATE_OFFSHORE_NAME,
   DISPLAY_NAMES,
   REVENUE,
   PRODUCTION,
@@ -25,6 +27,7 @@ import {
   SINGLE
 } from '../../constants'
 
+import BaseButtonInput from './BaseButtonInput'
 import BaseToggle from './BaseToggle'
 import BaseMultiToggle from './BaseMultiToggle'
 import BaseSwitch from './BaseSwitch'
@@ -49,6 +52,7 @@ export const DataTypeSelectInput = compose(
     <BaseComponent
       label={DISPLAY_NAMES[DATA_TYPE].default}
       data={DATA_TYPES}
+      showClearSelected={false}
       {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, DATA_TYPE))(BaseSelectInput)
 export const LandTypeSelectInput = createEnhancedSelect(LAND_TYPE, 'Multi')
@@ -57,9 +61,9 @@ export const UsStateSelectInput = createEnhancedSelect(US_STATE, 'Multi')
 export const CountySelectInput = createEnhancedSelect(COUNTY, 'Multi')
 export const OffshoreRegionSelectInput = createEnhancedSelect(OFFSHORE_REGION, 'Multi')
 export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
+export const ProductSelectInput = createEnhancedSelect(PRODUCT, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
-export const PeriodSelectInput = createEnhancedSelect(PERIOD, 'Single')
 
 const GROUP_BY_OPTIONS = {
   [REVENUE]: [
@@ -71,7 +75,7 @@ const GROUP_BY_OPTIONS = {
     { value: OFFSHORE_REGION, option: 'Offshore Region' },
   ],
   [PRODUCTION]: [
-    { value: COMMODITY, option: 'Commodity' },
+    { value: PRODUCT, option: 'Product' },
     { value: LAND_TYPE, option: 'Land type' },
     { value: US_STATE, option: 'State' },
     { value: COUNTY, option: 'County' },
@@ -100,13 +104,10 @@ export const BreakoutBySelectInput = compose(
   BaseComponent => props => {
     const { state } = useContext(DataFilterContext)
     const options = GROUP_BY_OPTIONS[state[DATA_TYPE] || REVENUE]
-    const defaultSelected = options && (options.find(item => state[GROUP_BY] !== item.value))
-
     return (
       <BaseComponent
         label={'Then group by'}
         data={options}
-        defaultSelected={defaultSelected && defaultSelected.value}
         {...props} />)
   },
   BaseComponent => withDataFilterContext(BaseComponent, BREAKOUT_BY))(BaseSelectInput)

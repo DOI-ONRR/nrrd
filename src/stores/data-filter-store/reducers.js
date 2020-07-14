@@ -21,6 +21,8 @@ import {
   BREAKOUT_BY,
   OFFSHORE_REGIONS,
   YEAR
+  LAND_TYPE,
+  PRODUCT
 } from '../../constants'
 import CONSTANTS from '../../js/constants'
 
@@ -64,7 +66,7 @@ const initialState = {
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
-        [GROUP_BY]: COMMODITY,
+        [GROUP_BY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2017,2018,2019',
         [CALENDAR_YEAR]: '2016,2017,2018'
