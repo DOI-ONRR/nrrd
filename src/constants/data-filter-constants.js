@@ -117,7 +117,6 @@ export const DISPLAY_NAMES = {
   [STATE_OFFSHORE_NAME]: {
     default: 'State/Offshore Region',
     plural: 'States/Offshore Regions',
-  }
   },
   [PERIOD]: {
     default: 'Period',
