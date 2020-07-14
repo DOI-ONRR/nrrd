@@ -15,7 +15,7 @@ import CONSTANTS from '../../../../js/constants'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
-  CircularProgress,
+  Typography,
   Container,
   Grid,
   useTheme
@@ -23,7 +23,6 @@ import {
 
 // import CloseIcon from '@material-ui/icons/Close'
 // import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
-import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
   query FiscalProduction($year: Int!, $location: String!, $commodity: String!, $state: String!) {
@@ -110,7 +109,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const ProductionTopLocations = ({ title, ...props }) => {
+const ProductionOverview = ({ title, ...props }) => {
   // console.debug('ProductionTopLocations props: ', props)
 
   const classes = useStyles()
@@ -144,7 +143,6 @@ const ProductionTopLocations = ({ title, ...props }) => {
   if (loading) {
     return (
       <div className={classes.progressContainer}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
       </div>
     )
   }
@@ -178,49 +176,37 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
       // chartData =  data.fiscal_production_summary
     }
-    const dataSet = `FY ${ year } (${ unitAbbr })`
+    const dataSet = `FY ${ year } ${ unitAbbr }`
 
     return (
-      <Box className={classes.root}>
-        {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
-        <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
-          <CircleChart
-            key={key}
-            data={chartData}
-            maxLegendWidth={maxLegendWidth}
-            xAxis='location_name'
-            yAxis='sum'
-      format={ d => utils.formatToCommaInt(d) }
-            circleLabel={
-              d => {
-                // console.debug('circleLABLE: ', d)
-                if (location === 'State' && !props.abbr) {
-                  const r = []
-                  r[0] = d.location_name
-                  r[1] = utils.formatToCommaInt(d.sum) + ' ' + unitAbbr
-                  return r
-                }
-                else {
-                  return ['', '']
-                }
-              }
-            }
-            xLabel={location}
-            yLabel={dataSet}
-            maxCircles={6}
-            minColor={theme.palette.green[100]}
-            maxColor={theme.palette.green[600]} />
+      
+      <Grid item md={12}>
+        <Box mb={1} color="secondary.main" borderBottom={5}>
+          <Box component="h2" color="secondary.dark">Production { commodity }</Box>
         </Box>
-      </Box>
+        <Typography variant="body1">
+          The Office of Natural Resources Revenue collects detailed data about natural resource production (?) on federal lands and waters.
+        </Typography>
+      </Grid>
     )
   }
   else {
-    return <Box className={classes.root}></Box>
+    return (
+      <Grid item md={12}>
+        <Box mb={1} color="secondary.main" borderBottom={5}>
+          <Box component="h2" color="secondary.dark">Production</Box>
+        </Box>
+        <Typography variant="body1">
+          The Office of Natural Resources Revenue collects detailed data about natural resource production (?) on federal lands and waters.
+        </Typography>
+      </Grid>
+
+    )
   }
 }
 
-export default ProductionTopLocations
+export default ProductionOverview
 
-ProductionTopLocations.propTypes = {
+ProductionOverview.propTypes = {
   title: PropTypes.string
 }
