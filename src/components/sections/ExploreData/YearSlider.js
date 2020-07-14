@@ -59,12 +59,11 @@ const useStyles = makeStyles(theme => ({
   sliderBox: {
     position: 'relative',
     boxSizing: 'border-box',
-    margin: '0 30px',
+    margin: '10px 20px',
     zIndex: 101,
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    top: -4,
-    minWidth: 250,
+    padding: 0,
+    top: 10,
+    minWidth: 295,
   },
   sliderRoot: {
     width: '100%',
@@ -95,7 +94,7 @@ const useStyles = makeStyles(theme => ({
   sliderMark: {
     height: 4,
     backgroundColor: theme.palette.common.white,
-    width: 0,
+    width: 1,
   },
   sliderActive: {
     boxShadow: 'none',
@@ -201,6 +200,9 @@ const YearSlider = props => {
 
       <Box id="year-slider" className={classes.sliderBox}>
         <Grid container spacing={4}>
+          <Grid item>
+            {minYear}
+          </Grid>
           <Grid item xs>
             <Slider
               defaultValue={year}
@@ -213,7 +215,7 @@ const YearSlider = props => {
               onChangeCommitted={(e, yr) => {
                 handleOnchange(yr)
               }}
-              marks={customMarks}
+              marks={true}
               min={minYear}
               max={maxYear}
               classes={{
@@ -228,6 +230,9 @@ const YearSlider = props => {
                 valueLabel: classes.sliderValueLabel,
               }}
             />
+          </Grid>
+          <Grid item>
+            {maxYear}
           </Grid>
         </Grid>
       </Box>
