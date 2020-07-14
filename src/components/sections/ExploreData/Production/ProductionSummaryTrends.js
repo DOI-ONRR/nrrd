@@ -25,6 +25,7 @@ const APOLLO_QUERY = gql`
     ) {
       fiscal_year
       state_or_area
+      unit_abbr
       sum
     
     }
@@ -73,11 +74,12 @@ const ProductionSummaryTrends = props => {
     sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
   }
-
+  let unit=''
   if (
     data &&
     data.fiscal_production_summary.length > 0
   ) {
+    unit = data.fiscal_production_summary[0].unit_abbr
     fiscalData = data.fiscal_production_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
@@ -109,7 +111,7 @@ const ProductionSummaryTrends = props => {
             </Typography>
             {sparkData.length > 1 &&
               <Box component="span">
-                {sparkData && (
+                {sparkData  && (
                   <Sparkline
                     key={'PST' + key }
                     data={sparkData}
@@ -122,8 +124,8 @@ const ProductionSummaryTrends = props => {
           <Grid item xs={6} style={{ textAlign: 'right' }}>
             <Typography variant="caption">
               <Box>{year}</Box>
-              <Box>
-                {utils.formatToCommaInt(Math.floor(total), 3)}
+        <Box style={{whiteSpace: 'nowrap'}}>
+        {utils.formatToCommaInt(Math.floor(total), 3) + ' ' + unit }
               </Box>
             </Typography>
           </Grid>

@@ -20,7 +20,9 @@ import {
   EXPLORE_DATA_FILTER_DEFAULT,
   BREAKOUT_BY,
   OFFSHORE_REGIONS,
-  YEAR
+  YEAR,
+  LAND_TYPE,
+  PRODUCT
 } from '../../constants'
 import CONSTANTS from '../../js/constants'
 
@@ -50,7 +52,6 @@ const initialState = {
   [QUERY_TABLE_FILTER_DEFAULT]: {
     [DATA_TYPE]: REVENUE,
     [GROUP_BY]: REVENUE_TYPE,
-    [BREAKOUT_BY]: COMMODITY,
     [PERIOD]: 'Fiscal Year',
     [FISCAL_YEAR]: '2017,2018,2019',
     [CALENDAR_YEAR]: '2017,2018,2019',
@@ -64,7 +65,7 @@ const initialState = {
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
-        [GROUP_BY]: COMMODITY,
+        [GROUP_BY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2017,2018,2019',
         [CALENDAR_YEAR]: '2016,2017,2018'

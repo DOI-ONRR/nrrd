@@ -2,7 +2,11 @@
 import {
   PERIOD,
   QUERY_KEY_DATA_TABLE,
-  MULTI
+  MULTI,
+  FISCAL_YEAR,
+  PERIOD_FISCAL_YEAR,
+  CALENDAR_YEAR,
+  PERIOD_CALENDAR_YEAR
 } from '../../constants'
 
 import {
@@ -70,6 +74,10 @@ export const getDataFilterValue = (key, state) => {
   switch (key) {
   case PERIOD:
     return (!state[key]) ? undefined : state[key]
+  case FISCAL_YEAR:
+    return (state[PERIOD] === PERIOD_FISCAL_YEAR) ? state[key].split(',') : undefined
+  case CALENDAR_YEAR:
+    return (state[PERIOD] === PERIOD_CALENDAR_YEAR) ? state[key].split(',') : undefined
   }
   return (!state[key]) ? undefined : state[key].split(',')
 }
@@ -83,8 +91,7 @@ export const getDataFilterVariableList = (state, config) => {
   let result = ''
   config.forEach(prop => {
     const key = Object.keys(prop)[0]
-    const type = (prop[key] === MULTI) ? '[String!],' : 'String,'
-    result = result.concat(`$${ key }: ${ type }`)
+    result = result.concat(`$${ key }: ${ prop[key] }`)
   })
   return result
 }

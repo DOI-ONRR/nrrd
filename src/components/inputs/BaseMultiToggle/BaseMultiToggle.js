@@ -64,7 +64,7 @@ const DefaultToggleButtonGroup = withStyles(theme =>
   )
 })
 
-const BaseMultiToggle = ({ onChange, data, ...props }) => {
+const BaseMultiToggle = ({ onChange, data, defaultSelected, label, legend, helperText, size, disabled, ...props }) => {
   if (data && data.length > 0 && !data[0].option) {
     data = data.map(item => ({ option: item }))
   }
@@ -74,15 +74,6 @@ const BaseMultiToggle = ({ onChange, data, ...props }) => {
 
   const noop = () => {}
   onChange = onChange || noop
-
-  const {
-    defaultSelected,
-    label,
-    legend,
-    helperText,
-    size,
-    disabled
-  } = props
 
   const [toggleState, setToggleState] = useState(defaultSelected)
 
