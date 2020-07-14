@@ -12,24 +12,39 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
-import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import Slider from '@material-ui/core/Slider'
 import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(3),
+    marginBottom: '0px',
+    minWidth: '350px',
     width: '-webkit-fill-available',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
   MuiSlider: {
-    color: 'black',
-    thumb: {
-      color: 'blue'
+    color: theme.palette.primary.dark,
+    marginBottom: '30px',
+    top: '-5px`'
+  },
+  thumb: {
+    color: theme.palette.primary.dark,
+  },
+  valueLabel: {
+    color: 'transparent',
+    '& span': {
+      '& span': {
+        paddingTop: '20px',
+        color: 'black',
+        fontSize: theme.typography.h5.fontSize,
+        fontWeight: theme.typography.h5.fontWeight,
+      }
     }
-  }
+  },
 }))
 
 const BaseDataFilterRangeSlider = ({ dataFilterKey, label = 'Years', helperText, loadingMessage = 'Updating...' }) => {
@@ -46,6 +61,11 @@ const BaseDataFilterRangeSlider = ({ dataFilterKey, label = 'Years', helperText,
 
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: loadingMessage })
+    return () => {
+      if (loading) {
+        updateLoadingStatus({ status: false, message: loadingMessage })
+      }
+    }
   }, [loading])
 
   return (
@@ -96,33 +116,35 @@ const BaseDataFilterRangeSliderImpl = ({ dataFilterKey, label, data, helperText 
   }
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <FormControl className={classes.formControl} disabled={(data && data.options.length === 0)}>
-          <InputLabel id={`${ label }-slider`}>
-            {label.concat(': ')}<Typography display={'inline'} color={'textSecondary'}>{getCurrentValuesText()}</Typography>
-          </InputLabel>
-          {yearOptions &&
+    <Box width={'500px'}>
+      <FormControl className={classes.formControl} disabled={(data && data.options.length === 0)}>
+        <InputLabel id={`${ label }-slider`}>
+          {label.concat(': ')}<Typography display={'inline'} color={'textSecondary'}>{getCurrentValuesText()}</Typography>
+        </InputLabel>
+        {yearOptions &&
             <Slider
               defaultValue={getCurrentValues()}
               getAriaValueText={getCurrentValuesText}
               aria-labelledby={`${ label }-slider`}
-              valueLabelDisplay="auto"
               step={1}
               onChangeCommitted={handleChange}
               marks
               min={yearOptions[0]}
               max={yearOptions[yearOptions.length - 1]}
-              className={classes.MuiSlider} />
-          }
-          {helperText &&
+              valueLabelDisplay="on"
+              classes={{
+                root: classes.MuiSlider,
+                valueLabel: classes.valueLabel,
+                thumb: classes.thumb
+              }}/>
+        }
+        {helperText &&
             <FormHelperText>{helperText}</FormHelperText>
-          }
-          {(data && data.options.length === 0) &&
+        }
+        {(data && data.options.length === 0) &&
             <FormHelperText>No '{label}' match the current filter options.</FormHelperText>
-          }
-        </FormControl>
-      </Grid>
-    </Grid>
+        }
+      </FormControl>
+    </Box>
   )
 }

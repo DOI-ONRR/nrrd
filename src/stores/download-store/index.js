@@ -2,20 +2,20 @@ import React, { useReducer, useEffect } from 'react'
 import { useActions } from './actions.js'
 import { initialState, reducer } from './reducers'
 
-const DataFilterContext = React.createContext(initialState)
+const DownloadContext = React.createContext(initialState)
 
-function DataFilterProvider ({ children, defaults }) {
+function DownloadProvider ({ children, defaults }) {
   const [state, dispatch] = useReducer(reducer, (initialState[defaults] || {}))
   const actions = useActions(state, dispatch)
 
   // Log new state
-  useEffect(() => console.log('DataFilterProvider', state), [state])
+  useEffect(() => console.log('DownloadProvider', state), [state])
 
   return (
-    <DataFilterContext.Provider value={{ state, ...actions }}>
+    <DownloadContext.Provider value={{ state, ...actions }}>
       {children}
-    </DataFilterContext.Provider>
+    </DownloadContext.Provider>
   )
 }
 
-export { DataFilterContext, DataFilterProvider }
+export { DownloadContext, DownloadProvider }

@@ -26,8 +26,8 @@ const useStyles = makeStyles(theme => ({
 })
 )
 
-const IconLink = ({ icon, children, pl = 4, ...rest }) => (
-  <Box pl={0} mt={2} mb={2}>
+const IconLink = ({ icon, children, pl = 4, style, ...rest }) => (
+  <Box pl={0} mt={2} mb={2} style={style}>
     <BaseLink {...rest} disableRouting>
       <Box mr={1} display='inline-block'>{icon}</Box>
       <span>{children}</span>
@@ -65,8 +65,8 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
 }
 
 const LinkTypeComponents = {
-  default: props => <BaseLink {...props} />,
-  Header: props => <BaseLink {...props} linkType={LinkTypeComponents.Header} />,
+  default: ({ style, ...props }) => <BaseLink {...props} style={style}/>,
+  Header: ({ style, ...props }) => <BaseLink {...props} linkType={LinkTypeComponents.Header} style={style} />,
   DownloadXls: props => <IconLink icon={<IconDownloadXlsImg />} {...props} />,
   DownloadCsv: props => <IconLink icon={<IconDownloadCsvImg />} {...props} />,
   DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />,
@@ -76,7 +76,7 @@ const LinkTypeComponents = {
 
 const regexXlsx = RegExp('.xlsx$')
 const regexCsv = RegExp('.csv$')
-const regexDownloadData = RegExp('^/downloads/[a-zA-Z0-9]+')
+const regexDownloadData = RegExp('^/downloads/[a-zA-Z0-9#]+')
 
 const getLinkComponent = ({ linkType, ...props }) => {
   if (linkType) {
@@ -116,7 +116,7 @@ Link.propTypes = {
    *
    * By default we determine the appropriate link type but you can specify a type if you want to override it.
    */
-  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'Header', 'default']),
+  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'Header', 'HowWorks', 'default']),
   /**
    * Used to flag a relative link that we may not want to use Gatsby Routing for. An example is download files.
    *
