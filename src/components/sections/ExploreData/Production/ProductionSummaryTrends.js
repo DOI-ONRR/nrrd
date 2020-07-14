@@ -23,9 +23,16 @@ const APOLLO_QUERY = gql`
       where: { location: { _eq: $state }, product: {_eq: $product}, period: {_eq: $period }}
       order_by: { year: asc, total: asc }
     ) {
+<<<<<<< HEAD
       year
       location
       total
+=======
+      fiscal_year
+      state_or_area
+      unit_abbr
+      sum
+>>>>>>> 74-AddCYRevenue
     
     }
 
@@ -77,12 +84,16 @@ const ProductionSummaryTrends = props => {
 
     
   }
-  
+  let unit=''
   if (
     data &&
     data.production_summary.length > 0
   ) {
-
+    unit = data.production_summary[0].unit_abbr
+    fiscalData = data.production_summary.map((item, i) => [
+      item.fiscal_year,
+      item.sum
+    ])
     fiscalData = d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
@@ -117,7 +128,7 @@ const ProductionSummaryTrends = props => {
             </Typography>
             {sparkData.length > 1 &&
               <Box component="span">
-                {sparkData && (
+                {sparkData  && (
                   <Sparkline
                     key={'PST' + key }
                     data={sparkData}

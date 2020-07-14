@@ -120,7 +120,7 @@ const ProductionOverTime = props => {
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-            <Box component="h4" color="secondary.dark">{title}</Box>
+            <Box component="h4" color="secondary.dark">{title + ' (' + units[0] + ')' }</Box>
           </Box>
         </Grid>
         <Grid item md={12}>
@@ -132,7 +132,7 @@ const ProductionOverTime = props => {
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = `${ cards[i].name }: ${ utils.formatToCommaInt(d) } (${ units[i] })`
+                r[0] = `${ cards[i].name }: ${ utils.formatToCommaInt(d) } ${ units[i] }`
                 return r
               }
             } />
