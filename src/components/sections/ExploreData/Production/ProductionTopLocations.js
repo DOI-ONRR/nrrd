@@ -154,11 +154,11 @@ const ProductionTopLocations = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
-
+  let dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+  let unitAbbr=''
   if (data && (data.state_production_summary.length || data.production_summary.length)) {
     if (data.state_production_summary.length > 0  && location === 'County') {
-      const unitAbbr = data.state_production_summary[0].unit_abbr
+      unitAbbr = data.state_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
         .rollup(v => d3.sum(v, i => i.total))
@@ -182,7 +182,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
 
     }
-    const dataSet = `FY ${ year } (${ unitAbbr })`
+    dataSet = dataSet + ` (${ unitAbbr })`
 
     return (
       <Box className={classes.root}>

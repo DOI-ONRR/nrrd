@@ -27,11 +27,11 @@ const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 const APOLLO_QUERY = gql`
   query FiscalProductionSummary($commodity: String!, $period: String!) {
     production_summary(
-      where: { commodity: {_eq: $commodity}, period: $period }
+      where: { commodity: {_eq: $commodity}, period: {_eq: $period } }
       order_by: { year: asc }
     ) {
       year
-      locationi
+      location
       total
       unit_abbr
     }
@@ -109,7 +109,7 @@ const ProductionOverTime = props => {
   }
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
-  if (data && cards && cards.length > 0) {
+  if (data && data.production_summary.length > 0 && cards && cards.length > 0) {
     const years = [...new Set(data.production_summary.map(item => item.year))]
     const sums = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.abbr).map(item => item.total))])
     const units = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.abbr).map(item => item.unit_abbr))])

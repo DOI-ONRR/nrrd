@@ -23,16 +23,10 @@ const APOLLO_QUERY = gql`
       where: { location: { _eq: $state }, product: {_eq: $product}, period: {_eq: $period }}
       order_by: { year: asc, total: asc }
     ) {
-<<<<<<< HEAD
       year
       location
-      total
-=======
-      fiscal_year
-      state_or_area
       unit_abbr
-      sum
->>>>>>> 74-AddCYRevenue
+      total
     
     }
 

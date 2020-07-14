@@ -31,29 +31,17 @@ const APOLLO_QUERY = gql`
       where: { location: { _eq: $state }, product: {_eq: $product}, period: {_eq: $period}  }
       order_by: { year: asc, location: asc }
     ) {
-<<<<<<< HEAD
       year
       location
+      unit_abbr
       total
     }
     # location total
     locationTotal: production_summary(where: {location: {_eq: $state}, product: {_eq: $product} , year: {_eq: $year}, period: {_eq: $period} }) {
       year
       location
+      unit_abbr
       total
-=======
-      fiscal_year
-      state_or_area
-      unit_abbr
-      sum
-    }
-    # location total
-    locationTotal:fiscal_production_summary(where: {state_or_area: {_eq: $state}, commodity: {_eq: $commodity} , fiscal_year: {_eq: $year}}) {
-      fiscal_year
-      state_or_area
-      unit_abbr
-      sum
->>>>>>> 74-AddCYRevenue
     }
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
@@ -91,7 +79,7 @@ const ProductionDetailTrends = props => {
   let locationTotalData
   let locData
   let unit = ''
-  if (data &&  data.fiscal_production_summary.length > 0) {
+  if (data &&  data.production_summary.length > 0) {
     periodData = data.period
 
     // set min and max trend years
