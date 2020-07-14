@@ -8,8 +8,10 @@ export const DISBURSEMENT = 'Disbursements'
 export const DATA_TYPES = [REVENUE, PRODUCTION, DISBURSEMENT]
 
 // Defines single or multiple select for inputs properties, also used to resolve values for queries in query manager
-export const SINGLE = 'single'
-export const MULTI = 'multi'
+export const SINGLE_STR = 'String,'
+export const MULTI_STR = '[String!],'
+export const SINGLE_INT = 'Int,'
+export const MULTI_INT = '[Int!],'
 
 // Defines the available download types
 export const EXCEL = 'excel'

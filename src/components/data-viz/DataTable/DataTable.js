@@ -17,24 +17,21 @@ import {
   DOWNLOAD_DATA_TABLE
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
-import { AppStatusContext } from '../../../stores/app-status-store'
 import { DownloadContext } from '../../../stores/download-store'
-import { toTitleCase, aggregateSum, downloadWorkbook, destructuringSwap } from '../../../js/utils'
+import { toTitleCase, aggregateSum, destructuringSwap } from '../../../js/utils'
 
 import withQueryManager from '../../withQueryManager'
-import QueryManager from '../../../js/query-manager'
-import { useQuery } from '@apollo/react-hooks'
 
+import CustomTable from './Custom/CustomTable'
+import CustomTableHead from './Custom/CustomTableHead'
 import CustomTableCell from './Custom/CustomTableCell'
 import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRow'
 import CustomTableFixedCell from './Custom/CustomTableFixedCell'
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
 import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
-import AllTypeProvider from './Custom/AllTypeProvider'
-
-import { IconDownloadCsvImg, IconDownloadXlsImg } from '../../images'
-import Button from '@material-ui/core/Button'
+import TotalProvider from './Custom/TotalProvider'
+import CustomGroupCellContent from './Custom/CustomGroupCellContent'
 
 import {
   makeStyles,
@@ -77,7 +74,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const DataTable = ({ dataType, height = '100%' }) => {
+const DataTable = ({ dataType, height = '200px' }) => {
   const classes = useStyles()
   const { state } = useContext(DataFilterContext)
   if (!state) {
@@ -85,8 +82,8 @@ const DataTable = ({ dataType, height = '100%' }) => {
   }
 
   return (
-    <Box className={classes.root} height={height}>
-      <Grid container spacing={2} style={{ height: '100%' }}>
+    <Box className={classes.root}>
+      <Grid container spacing={2}>
         {state[DATA_TYPE] &&
           <React.Fragment>
             {state[DATA_TYPE] === REVENUE &&
@@ -128,6 +125,7 @@ const DataTableBase = data => {
   const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
   const [grouping, setGrouping] = useState([])
+  const [expandedGroups, setExpandedGroups] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
   const [fixedColumns, setFixedColumns] = useState([])
@@ -172,6 +170,10 @@ const DataTableBase = data => {
     if (state[GROUP_BY] && (state[BREAKOUT_BY] !== NO_BREAKOUT_BY && state[BREAKOUT_BY])) {
       setGrouping([{ columnName: state[GROUP_BY] }])
       setGroupingExtension([{ columnName: state[GROUP_BY], showWhenGrouped: true }])
+      if (data && data.results.length > 0) {
+        // Gets the unique values that will be expanded
+        setExpandedGroups([...new Set(data.results.map(item => item[state[GROUP_BY]]))])
+      }
       setFixedColumns([TableGroupRow.Row, state[GROUP_BY], state[BREAKOUT_BY]])
 
       destructuringSwap(columnNames, 0, columnNames.findIndex(item => (item.name === state[GROUP_BY])))
@@ -180,11 +182,13 @@ const DataTableBase = data => {
     else if (state[GROUP_BY]) {
       setGrouping([])
       setGroupingExtension([])
+      setExpandedGroups([])
       setFixedColumns([state[GROUP_BY]])
     }
     else {
       setGrouping([])
       setGroupingExtension([])
+      setExpandedGroups([])
       setFixedColumns([columnNames[0]])
     }
     setHiddenColumnNames(getHiddenColumns())
@@ -212,10 +216,6 @@ const DataTableBase = data => {
     }
   }, [state, data])
 
-  const handleDownload = type => {
-    downloadWorkbook(type, state[DATA_TYPE], state[DATA_TYPE], columnNames.filter(col => !hiddenColumnNames.includes(col.name)), aggregatedSums)
-  }
-
   const addBreakoutByColumnHandler = () => {
     const breakoutByColumnName = state[BREAKOUT_BY] || columnNames.find(item => (!item.name.startsWith('y') && item.name !== state[GROUP_BY]))
     if (breakoutByColumnName) {
@@ -226,49 +226,22 @@ const DataTableBase = data => {
     updateDataFilter({ [BREAKOUT_BY]: undefined })
   }
 
-
-
   return (
     <React.Fragment>
       {(aggregatedSums && aggregatedSums.length > 0) &&
         <Grid container spacing={3}>
-          {false &&
-            <Grid item xs={12}>
-              <Box component="div" display="inline" mr={2}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  aria-label="open data filters"
-                  onClick={() => handleDownload('excel')}
-                  onKeyDown={() => handleDownload('excel')}
-                  startIcon={<IconDownloadXlsImg />}
-                >
-                Download table
-                </Button>
-
-              </Box>
-              <Button
-                variant="contained"
-                color="primary"
-                aria-label="open data filters"
-                onClick={() => handleDownload('csv')}
-                onKeyDown={() => handleDownload('csv')}
-                startIcon={<IconDownloadCsvImg />}
-              >
-                Download table
-              </Button>
-            </Grid>
-          }
           <Grid item xs={12}>
             <TableGrid
               rows={aggregatedSums}
               columns={columnNames}>
-              <AllTypeProvider
+              <TotalProvider
                 for={columnNames.filter(item => !item.name.startsWith('y')).map(item => item.name)}
               />
               <SortingState />
               <GroupingState
                 grouping={grouping}
+                expandedGroups={expandedGroups}
+                onExpandedGroupsChange={setExpandedGroups}
               />
               <SummaryState
                 totalItems={totalSummaryItems}
@@ -280,6 +253,9 @@ const DataTableBase = data => {
               <Table
                 columnExtensions={tableColumnExtensions}
                 cellComponent={CustomTableCell}
+                tableComponent={CustomTable}
+                headComponent={CustomTableHead}
+                height={550}
               />
               <TableColumnReordering
                 order={columnOrder}
@@ -288,6 +264,7 @@ const DataTableBase = data => {
               <TableHeaderRow
                 contentComponent={props =>
                   <CustomTableHeaderCell
+                    options={columnNames.filter(item => (!item.name.startsWith('y'))).map(item => ({ option: item.title, value: item.name }))}
                     onAddColumn={!state[BREAKOUT_BY] && addBreakoutByColumnHandler}
                     onRemoveColumn={state[BREAKOUT_BY] && removeBreakoutByColumnHandler}
                     groupBy={state[GROUP_BY]}
@@ -296,7 +273,9 @@ const DataTableBase = data => {
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
               />
-              <TableGroupRow columnExtensions={groupingExtension} />
+              <TableGroupRow
+                contentComponent={CustomGroupCellContent}
+                columnExtensions={groupingExtension} />
               <TableSummaryRow
                 groupRowComponent={CustomTableSummaryRowGroupRow}
                 totalRowComponent={CustomTableSummaryRowTotalRow}

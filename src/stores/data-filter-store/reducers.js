@@ -52,7 +52,6 @@ const initialState = {
   [QUERY_TABLE_FILTER_DEFAULT]: {
     [DATA_TYPE]: REVENUE,
     [GROUP_BY]: REVENUE_TYPE,
-    [BREAKOUT_BY]: COMMODITY,
     [PERIOD]: 'Fiscal Year',
     [FISCAL_YEAR]: '2017,2018,2019',
     [CALENDAR_YEAR]: '2017,2018,2019',
