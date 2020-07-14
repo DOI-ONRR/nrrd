@@ -11,20 +11,16 @@ import {
   OFFSHORE_REGION,
   OFFSHORE_REGIONS,
   COMMODITY,
-  COMMODITIES,
   COUNTIES,
   PRODUCT,
   RECIPIENT,
   SOURCE,
   STATE_OFFSHORE_NAME,
   DISPLAY_NAMES,
-  REVENUE,
-  PRODUCTION,
-  DISBURSEMENT,
   GROUP_BY,
   BREAKOUT_BY,
   PERIOD,
-  SINGLE
+  PERIOD_TYPES
 } from '../../constants'
 
 import BaseButtonInput from './BaseButtonInput'
@@ -47,6 +43,15 @@ const createEnhancedSelect = (dataFilterKey, selectType) => compose(
   BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
   BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSelectInput)
 
+export const PeriodSelectInput = compose(
+  BaseComponent => props => (
+    <BaseComponent
+      label={DISPLAY_NAMES[PERIOD].default}
+      data={PERIOD_TYPES}
+      showClearSelected={false}
+      {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, PERIOD))(BaseSelectInput)
+
 export const DataTypeSelectInput = compose(
   BaseComponent => props => (
     <BaseComponent
@@ -64,6 +69,7 @@ export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
 export const ProductSelectInput = createEnhancedSelect(PRODUCT, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
+export const StateOffshoreSelectInput = createEnhancedSelect(STATE_OFFSHORE_NAME, 'Multi')
 
 export const GroupBySelectInput = compose(
   BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[GROUP_BY].default} showClearSelected={false} {...props} />),

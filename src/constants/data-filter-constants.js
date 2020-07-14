@@ -34,6 +34,7 @@ export const STATE_OFFSHORE_NAME = 'stateOffshoreName'
 export const PERIOD_FISCAL_YEAR = 'Fiscal Year'
 export const PERIOD_CALENDAR_YEAR = 'Calendar Year'
 export const PERIOD_MONTHLY_YEAR = 'Monthly'
+export const PERIOD_TYPES = [PERIOD_FISCAL_YEAR, PERIOD_CALENDAR_YEAR]
 export const GROUP_BY = 'groupBy'
 export const BREAKOUT_BY = 'breakoutBy'
 export const NO_BREAKOUT_BY = 'noBreakoutBy'
