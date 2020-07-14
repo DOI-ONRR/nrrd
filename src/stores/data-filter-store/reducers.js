@@ -20,7 +20,7 @@ import {
   EXPLORE_DATA_FILTER_DEFAULT,
   BREAKOUT_BY,
   OFFSHORE_REGIONS,
-  YEAR
+  YEAR,
   LAND_TYPE,
   PRODUCT
 } from '../../constants'
