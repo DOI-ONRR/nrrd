@@ -107,7 +107,9 @@ const ProductionLandCategory = ({ title, ...props }) => {
   let chartData = []
   const dataSet = `FY ${ year } - ${ commodity }`
 
-  if (data) {
+  if (data && data.fiscal_production_summary.length > 0) {
+    const unit = data.fiscal_production_summary[0].unit_abbr
+   
     const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
     // const sums = [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === state).map(item => item.sum))]
     const sums = [...new Set(
@@ -124,7 +126,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
       return (
 
         <Box className={classes.root}>
-          {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
+          {title && <Box component="h4" fontWeight="bold" mb={2}>{title + ' (' + unit + ')'}</Box>}
           <Box>
             <LineChart
               key={'PLC' + dataSet }

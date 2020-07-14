@@ -41,14 +41,37 @@ then
     BRANCH_HISTORY=`for branch in \`git branch -r | grep -v HEAD\`;do echo -e \`git show --format="%ci %cr" $branch | head -n 1\` \\\t$branch; done | sort  | cut -f2 | grep -v origin/dev | sed 's/origin\///'`
     FOUND_FLAG=0
     ## Loop through history  until first match in preview history.(ie oldest committed branch)
-    for branch in $BRANCH_HISTORY
+    for preview in $PREVIEWS
     do
-
+        HAS_BRANCH=0
+        for branch in $BRANCH_HISTORY
+        do
+            ## echo "Compare $branch with $preview"
+            if [ $branch == $preview ]
+            then 
+                echo "$preview has branch"
+                HAS_BRANCH=1
+                break
+                
+            fi
+            
+        done
+        # if preview doesn't have branch remove preview
+        if [ "$HAS_BRANCH" -eq 0 ]
+        then
+            echo "preview $preview no longer has branch remove preview"
+            echo "cf delete -f $preview"
+                echo "cf delete-route -f app.cloud.gov --hostname $preview"
+                cf delete -f $preview
+                cf delete-route -f app.cloud.gov --hostname $preview
+        fi
+        
+        
         if [ "$FOUND_FLAG" -eq 0 ]
         then 
-            for preview in $PREVIEWS
+            for branch in $BRANCH_HISTORY
             do
-               ## echo "Compare $branch with $preview"
+                ## echo "Compare $branch with $preview"
                 if [ $branch == $preview ]
                 then 
                     echo "The oldest preview is $preview"
@@ -58,9 +81,16 @@ then
                     
                 fi
                 
-            done 
+            done
+            if [ "$FOUND_FLAG" -eq 0 ]
+            then
+                echo "preview $preview no longer has branch remove preview"
+                echo "cf delete -f $preview"
+                echo "cf delete-route -f app.cloud.gov --hostname $preview"
+                cf delete -f $preview
+                cf delete-route -f app.cloud.gov --hostname $preview
+            fi
         fi
-        
     done
 fi
 
