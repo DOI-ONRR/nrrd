@@ -59,14 +59,15 @@ const useStyles = makeStyles(theme => ({
   sliderBox: {
     position: 'relative',
     boxSizing: 'border-box',
-    margin: '10px 20px',
+    margin: '0 20px',
     zIndex: 101,
     padding: 0,
-    top: 10,
+    top: 6,
     minWidth: 295,
+    flexGrow: 1,
   },
   sliderRoot: {
-    width: '100%',
+    width: '85%',
     display: 'block',
     margin: '0 auto',
   },
@@ -199,7 +200,7 @@ const YearSlider = props => {
     return (
 
       <Box id="year-slider" className={classes.sliderBox}>
-        <Grid container spacing={4}>
+        <Grid container spacing={2}>
           <Grid item>
             {minYear}
           </Grid>
