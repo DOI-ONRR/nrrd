@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Sparkline = props => {
+const Sparkline = React.memo(props => {
   // console.log('Sparkline props: ', props)
   let data = [[0, 0]]
   let highlightIndex = 0
@@ -94,6 +94,6 @@ const Sparkline = props => {
   return (
     <div ref={elemRef}></div>
   )
-}
+})
 
 export default Sparkline
