@@ -35,7 +35,7 @@ export default props => {
   
   if (loading) {}
   if (error) return `Error! ${ error.message }`
-  if (data) {
+  if (data && data.fiscal_production_summary.length > 0) {
     mapData = data.fiscal_production_summary.map((item, i) => [
       item.state_or_area,
       item.sum
