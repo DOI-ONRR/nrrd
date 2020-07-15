@@ -86,6 +86,10 @@ const useStyles = makeStyles(theme => (
     mainContent: {
       minHeight: 575,
     },
+    mainColumn: {
+      paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(3),
+    }
   })
 )
 
@@ -129,7 +133,9 @@ const DefaultLayout = ({ includeToc = true, title, children }) => {
                 <PageToc scrollOffset={190}></PageToc>
               </Grid>
               <Grid item xs={12} sm={9}>
-                {children}
+                <Box className={classes.mainColumn}>
+                  {children}
+                </Box>
               </Grid>
             </Grid>
           </Container>
