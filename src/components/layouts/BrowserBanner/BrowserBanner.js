@@ -19,7 +19,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     backgroundColor: '#fa842e !important',
     padding: 0,
-    marginBottom: 10,
+    margin: 0,
+    position: 'relative',
+    zIndex: 250,
+    border: 0,
   }
 }))
 
