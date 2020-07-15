@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'top',
     '& .mapContainer': {
       height: 100,
-      width: 245,
+      width: '100%',
       overflow: 'hidden',
     },
     '& .mapContainer > .legend': {
