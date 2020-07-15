@@ -7,7 +7,7 @@ import {
   REVENUE,
   REVENUE_TYPE,
   PRODUCTION,
-  COMMODITY,
+  COUNTY,
   COUNTIES,
   DISBURSEMENT,
   RECIPIENT,
@@ -18,13 +18,12 @@ import {
   DATA_TYPE,
   QUERY_TABLE_FILTER_DEFAULT,
   EXPLORE_DATA_FILTER_DEFAULT,
-  BREAKOUT_BY,
+  ADDITIONAL_COLUMNS,
   OFFSHORE_REGIONS,
   YEAR,
   LAND_TYPE,
   PRODUCT
 } from '../../constants'
-import CONSTANTS from '../../js/constants'
 
 const types = Object.freeze({
   UPDATE_DATA_FILTER: 'UPDATE_DATA_FILTER',
@@ -65,7 +64,8 @@ const initialState = {
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
-        [GROUP_BY]: PRODUCT,
+        [GROUP_BY]: LAND_TYPE,
+        [ADDITIONAL_COLUMNS]: [PRODUCT],
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2017,2018,2019',
         [CALENDAR_YEAR]: '2016,2017,2018'

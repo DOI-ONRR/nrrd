@@ -37,6 +37,7 @@ export const PERIOD_MONTHLY_YEAR = 'Monthly'
 export const PERIOD_TYPES = [PERIOD_FISCAL_YEAR, PERIOD_CALENDAR_YEAR]
 export const GROUP_BY = 'groupBy'
 export const BREAKOUT_BY = 'breakoutBy'
+export const ADDITIONAL_COLUMNS = 'additionalColumns'
 export const NO_BREAKOUT_BY = 'noBreakoutBy'
 export const ZERO_OPTIONS = 'zeroOptions'
 export const MAP_LEVEL = 'Map level'
