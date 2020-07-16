@@ -179,6 +179,14 @@ const DataTableBase = ({ data, showSummaryRow }) => {
       item.name !== state[BREAKOUT_BY] &&
       (state[ADDITIONAL_COLUMNS] && !state[ADDITIONAL_COLUMNS].includes(item.name)))
     )
+
+    if (state[ADDITIONAL_COLUMNS]) {
+      state[ADDITIONAL_COLUMNS].forEach(column => {
+        if (state[column] && state[column].split(',').length === 1) {
+          nonYearColumns.push(columnNames.filter(item => item.name === column)[0])
+        }
+      })
+    }
     return yearColumns.concat(nonYearColumns).map(item => item.name)
   }
 
@@ -267,6 +275,15 @@ const DataTableBase = ({ data, showSummaryRow }) => {
     updateDataFilter({ [BREAKOUT_BY]: undefined })
   }
 
+  // Returns a list of options available for the group by and breakout columns
+  const getGroupByOptions = () => {
+    const options = columnNames.filter(item => (
+      !item.name.startsWith('y') &&
+      (!state[ADDITIONAL_COLUMNS] || !state[ADDITIONAL_COLUMNS].includes(item.name))
+    ))
+    return options.map(item => ({ option: item.title, value: item.name }))
+  }
+
   return (
     <React.Fragment>
       {(aggregatedSums && aggregatedSums.length > 0) &&
@@ -305,9 +322,7 @@ const DataTableBase = ({ data, showSummaryRow }) => {
               <TableHeaderRow
                 contentComponent={props =>
                   <CustomTableHeaderCell
-                    options={columnNames.filter(item =>
-                      (!item.name.startsWith('y') && (state[ADDITIONAL_COLUMNS] && !state[ADDITIONAL_COLUMNS].includes(item.name)))
-                    ).map(item => ({ option: item.title, value: item.name }))}
+                    options={getGroupByOptions()}
                     onAddColumn={!state[BREAKOUT_BY] && addBreakoutByColumnHandler}
                     onRemoveColumn={state[BREAKOUT_BY] && removeBreakoutByColumnHandler}
                     {...props} />}
