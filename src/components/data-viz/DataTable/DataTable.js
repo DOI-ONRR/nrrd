@@ -265,7 +265,7 @@ const DataTableBase = ({ data, showSummaryRow }) => {
       columnNames.find(item =>
         (!item.name.startsWith('y') &&
         item.name !== state[GROUP_BY] &&
-        (state[ADDITIONAL_COLUMNS] && !state[ADDITIONAL_COLUMNS].includes(item.name))))
+        (!state[ADDITIONAL_COLUMNS] || !state[ADDITIONAL_COLUMNS].includes(item.name))))
 
     if (breakoutByColumnName) {
       updateDataFilter({ [BREAKOUT_BY]: (breakoutByColumnName.name ? breakoutByColumnName.name : breakoutByColumnName) })
