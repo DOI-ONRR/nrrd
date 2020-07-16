@@ -278,6 +278,8 @@ const MapContext = props => {
           fips_code
           location_name
           state
+          state_name
+          county
           region_type
         }
       }
@@ -356,8 +358,8 @@ const MapContext = props => {
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
   const cardMenuItems = [
-    { fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' },
-    { fips: 999, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
+    { fips_code: '99', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', state: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
+    { fips_code: '999', state: 'Native American', state_name: 'Native American', location_name: 'Native American', state: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
   ]
 
   const { vertical, horizontal, open } = mapSnackbarState
@@ -394,33 +396,34 @@ const MapContext = props => {
 
   // onLink
   const onLink = (state, x, y, k) => {
-    // console.log('onLink state: ', state)
-    // setMapK(k)
-    // setMapY(y)
-    // setMapX(x)
-    let fips = state.properties ? state.properties.FIPS : state.fips
-    const name = state.properties ? state.properties.name : state.name
-    if (fips === undefined) {
-      fips = state.id
+    console.log('onLink state: ', state)
+    
+    // decern betweeen topo json and location data fips
+    let fips = state.properties ? state.properties.FIPS : state.fips_code
+    let locations = data.onrr.locations
+    // let locationData = [...locations, cardMenuItems[0], cardMenuItems[1]]
+
+    // filter out location from location data
+    let location = locations.filter(item => item.fips_code === fips)
+
+    if (fips === '99' ||  fips === '999') {
+      location = [...location, state]
     }
-    let stateAbbr
-    let abbr
-    if (fips && fips.length > 2) {
-      abbr = fips
-      stateAbbr = state.properties ? state.properties.state : state.abbr
-    }
-    else {
-      abbr = state.properties ? state.properties.abbr : state.abbr
-      stateAbbr = state.properties ? state.properties.abbr : state.abbr
-    }
+
+    console.log('onLink location: ', location)
+
     const stateObj = {
-      fips: fips,
-      abbr: abbr,
-      name: name,
-      state: stateAbbr
+      fips_code: location[0].fips_code,
+      abbr: location[0].state,
+      name: location[0].state_name,
+      locationName: location[0].location_name,
+      state: location[0].state,
+      regionType: location[0].region_type,
+      county: location[0].county
     }
+
     if (
-      cards.filter(item => item.fips === fips).length === 0
+      cards.filter(item => item.fips_code === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
         if (stateObj.abbr && stateObj.abbr.match(/Nationwide Federal/)) {
@@ -431,6 +434,7 @@ const MapContext = props => {
         }
       }
       else {
+        // TODO: snackbar not triggering atm
         handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
@@ -500,12 +504,13 @@ const MapContext = props => {
   useEffect(() => {
     // get decoded location param
     const locationParam = queryParams.location
+    let filteredLocations
 
     console.log('queryParams: ', queryParams)
 
     // filter out location based on location params
     if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
-      const filteredLocations = data.onrr.locations.filter(item => {
+      filteredLocations = data.onrr.locations.filter(item => {
         for (const elem of locationParam) {
           // strip elem of any trailing slash
           const strElem = elem.replace(/\/$/, '')
@@ -527,10 +532,12 @@ const MapContext = props => {
 
       const stateLinks = filteredLocations.map(item => {
         const nObj = {}
-        nObj.fips = item.fips_code
+        nObj.fips_code = item.fips_code
         nObj.abbr = item.state
         nObj.name = item.location_name
         nObj.state = item.state
+        nObj.county = item.county
+        nObj.regionType = item.region_type
         return nObj
       })
 
@@ -538,7 +545,7 @@ const MapContext = props => {
         onLink(elem)
       }
     }
-  }, [data])
+  }, [])
 
   useEffect(() => {
     setQueryParams({
@@ -547,7 +554,7 @@ const MapContext = props => {
       counties: filterState.counties,
       offshoreRegions: filterState.offshoreRegions,
       commodity: filterState.commodity,
-      location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
+      location: cards.length > 0 ? cards.map(item => item.fips_code) : undefined,
     }, 'pushIn')
   }, [filterState, pageState])
 
@@ -587,12 +594,17 @@ const MapContext = props => {
             <Grid item xs={12}>
               <Box className={classes.cardContainer}>
                 {cards.map((state, i) => {
+                  console.log('state yo: ', state)
                   return (
                     React.cloneElement(props.children[1], {
                       key: i,
-                      fips: state.fips,
                       abbr: state.abbr,
+                      county: state.county,
+                      fips_code: state.fips_code,
+                      locationName: state.locationName,
                       name: state.name,
+                      regionType: state.regionType,
+                      state: state.state
                     })
                   )
                 })}
@@ -612,9 +624,13 @@ const MapContext = props => {
                   return (
                     React.cloneElement(props.children[1], {
                       key: i,
-                      fips: state.fips,
                       abbr: state.abbr,
+                      county: state.county,
+                      fips_code: state.fips_code,
+                      locationName: state.locationName,
                       name: state.name,
+                      regionType: state.regionType,
+                      state: state.state
                     })
 
                   )

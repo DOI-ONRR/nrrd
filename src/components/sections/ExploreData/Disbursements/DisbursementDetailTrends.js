@@ -60,7 +60,7 @@ const DisbursementDetailTrends = props => {
   })
 
   const closeCard = item => {
-    props.closeCard(props.fips)
+    props.closeCard(props.fips_code)
   }
 
   if (loading) return 'Loading...'

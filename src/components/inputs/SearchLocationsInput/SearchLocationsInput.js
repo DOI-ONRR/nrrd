@@ -221,7 +221,7 @@ const SearchLocationsInput = props => {
       renderInput={params => (
         <TextField
           {...params}
-          label="Search locations..."
+          label="Add state or county"
           variant="outlined"
           fullWidth
           onChange={handleSearch}

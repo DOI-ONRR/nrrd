@@ -48,6 +48,7 @@ const REVENUE_QUERY = gql`
 `
 
 const RevenueCountyMap = props => {
+  console.log('RevenueCountyMap props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -62,7 +63,7 @@ const RevenueCountyMap = props => {
   let mapData = [[]]
   const state = props.state
 
-  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5 || props.fips.length === 3
+  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.regionType === 'County' || props.regionType === 'Offshore'
 
   if (loading) {}
   if (error) return `Error! ${ error.message }`
