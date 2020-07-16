@@ -177,7 +177,7 @@ const DataTableBase = ({ data, showSummaryRow }) => {
       (!item.name.startsWith('y') &&
       item.name !== state[GROUP_BY] &&
       item.name !== state[BREAKOUT_BY] &&
-      (state[ADDITIONAL_COLUMNS] && !state[ADDITIONAL_COLUMNS].includes(item.name)))
+      (!state[ADDITIONAL_COLUMNS] || !state[ADDITIONAL_COLUMNS].includes(item.name)))
     )
 
     if (state[ADDITIONAL_COLUMNS]) {
