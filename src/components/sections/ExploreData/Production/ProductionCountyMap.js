@@ -45,7 +45,6 @@ const PRODUCTION_QUERY = gql`
 `
 
 const ProductionCountyMap = props => {
-
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)

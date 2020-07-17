@@ -14,6 +14,14 @@ module.exports = Object.freeze({
       color: palette.text.secondary,
     },
   },
+  Table: {
+    headTable: {
+      marginBottom: '0px',
+    },
+    footTable: {
+      marginBottom: '0px',
+    }
+  },
   MuiTable: {
     root: {
       marginBottom: '25px',
@@ -70,14 +78,16 @@ module.exports = Object.freeze({
     },
   },
   MuiToggleButton: {
+    textTransform: 'capitalize',
     root: {
-      '&.Mui-selected': {
+      color: 'black',
+      '&$selected': {
         color: 'white',
         backgroundColor: palette.links.default,
-      }
+      },
     },
     label: {
       textTransform: 'Capitalize',
-    }
+    },
   }
 })

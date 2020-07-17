@@ -106,11 +106,9 @@ const ProductionSummaryTrends = props => {
     })
 
     // sparkline index
-    highlightIndex = sparkData.findIndex(
-      x => x[0] === year
-    )
+    highlightIndex = sparkData.findIndex((x, i) => x[0] === year)
 
-    total = sparkData[highlightIndex][1]
+    total = sparkData[highlightIndex]
 
     return (
       <>
@@ -148,7 +146,7 @@ const ProductionSummaryTrends = props => {
     return (
       <>
         <Grid container>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography variant="caption">
               <Box>{ name + ' has not produced any ' + product + ' since ' + sparkMin + '.'} </Box>
             </Typography>

@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'top',
     '& .mapContainer': {
       height: 100,
-      width: 245,
+      width: '100%',
+      overflow: 'hidden',
     },
     '& .mapContainer > .legend': {
       display: 'none', // quick fix for now, will want to disable most map features for smaller maps
@@ -65,7 +66,6 @@ const RevenueCountyMap = props => {
 
   const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5 || props.fips.length === 3
 
-  
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {

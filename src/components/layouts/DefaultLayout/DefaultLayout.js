@@ -14,6 +14,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import useTheme from '@material-ui/core/styles/useTheme'
 
 import InfoBanner from '../../content-partials/InfoBanner'
+import BrowserBanner from '../BrowserBanner'
 import Footer from '../../content-partials/Footer'
 import Header from '../../content-partials/Header'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
@@ -117,6 +118,7 @@ const DefaultLayout = ({ includeToc = true, title, children }) => {
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
       <InfoBanner />
+      <BrowserBanner />
       <Header />
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>

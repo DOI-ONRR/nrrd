@@ -1,1 +1,1 @@
-export default from  './BaseDataFilterRangeSlider'
+export default from './BaseDataFilterRangeSlider'

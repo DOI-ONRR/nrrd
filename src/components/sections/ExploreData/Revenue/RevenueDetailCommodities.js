@@ -22,7 +22,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     '& .chart-container': {
-      display: 'grid',
+      // display: 'grid',
+      display: 'flex',
       flexDirection: 'column',
       alignItems: 'top',
     },
@@ -93,7 +94,7 @@ const RevenueDetailCommodities = props => {
                 maxCircles={6}
                 minColor={theme.palette.purple[100]}
                 maxColor={theme.palette.purple[600]} />
-            {/*  <Box mt={3}>
+              {/*  <Box mt={3}>
                  <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                       Query revenue by commodity
                 </ExploreDataLink>

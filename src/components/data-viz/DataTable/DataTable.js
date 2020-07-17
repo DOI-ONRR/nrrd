@@ -10,24 +10,28 @@ import {
   FISCAL_YEAR,
   CALENDAR_YEAR,
   NO_BREAKOUT_BY,
-  DISPLAY_NAMES
+  DISPLAY_NAMES,
+  PERIOD,
+  PERIOD_FISCAL_YEAR,
+  QUERY_KEY_DATA_TABLE,
+  DOWNLOAD_DATA_TABLE
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
-import { AppStatusContext } from '../../../stores/app-status-store'
-import { toTitleCase, aggregateSum, downloadWorkbook } from '../../../js/utils'
+import { DownloadContext } from '../../../stores/download-store'
+import { toTitleCase, aggregateSum, destructuringSwap } from '../../../js/utils'
 
-import DTQM from '../../../js/data-table-query-manager'
-import { useQuery } from '@apollo/react-hooks'
+import withQueryManager from '../../withQueryManager'
 
+import CustomTable from './Custom/CustomTable'
+import CustomTableHead from './Custom/CustomTableHead'
 import CustomTableCell from './Custom/CustomTableCell'
 import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRow'
 import CustomTableFixedCell from './Custom/CustomTableFixedCell'
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
-import AllTypeProvider from './Custom/AllTypeProvider'
-
-import { IconDownloadCsvImg, IconDownloadXlsImg } from '../../images'
-import Button from '@material-ui/core/Button'
+import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
+import TotalProvider from './Custom/TotalProvider'
+import CustomGroupCellContent from './Custom/CustomGroupCellContent'
 
 import {
   makeStyles,
@@ -52,7 +56,8 @@ import {
   TableFixedColumns,
   TableGroupRow,
   TableSummaryRow,
-  TableColumnResizing
+  TableColumnResizing,
+  TableColumnReordering
 } from '@devexpress/dx-react-grid-material-ui'
 
 const allYears = ['2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003']
@@ -69,7 +74,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const DataTable = ({ dataType, height = '100%' }) => {
+const DataTable = ({ dataType, height = '200px' }) => {
   const classes = useStyles()
   const { state } = useContext(DataFilterContext)
   if (!state) {
@@ -77,23 +82,23 @@ const DataTable = ({ dataType, height = '100%' }) => {
   }
 
   return (
-    <Box className={classes.root} height={height}>
-      <Grid container spacing={2} style={{ height: '100%' }}>
+    <Box className={classes.root}>
+      <Grid container spacing={2}>
         {state[DATA_TYPE] &&
           <React.Fragment>
             {state[DATA_TYPE] === REVENUE &&
               <Grid item xs={12}>
-                <RevenueDataTableImpl />
+                <EnhancedDataTable />
               </Grid>
             }
             {state[DATA_TYPE] === PRODUCTION &&
               <Grid item xs={12}>
-                <ProductionDataTableImpl />
+                <EnhancedDataTable />
               </Grid>
             }
             {state[DATA_TYPE] === DISBURSEMENT &&
               <Grid item xs={12}>
-                <DisbursementDataTableImpl />
+                <EnhancedDataTable />
               </Grid>
             }
           </React.Fragment>
@@ -105,94 +110,22 @@ const DataTable = ({ dataType, height = '100%' }) => {
 
 export default DataTable
 
-const RevenueDataTableImpl = () => {
-  const { state } = useContext(DataFilterContext)
-
-  const loadingMessage = `Loading ${ state.dataType } data from server...`
-
-  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
-
-  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
-
-  useEffect(() => {
-    if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
-    }
-  }, [error])
-
-  useEffect(() => {
-    updateLoadingStatus({ status: loading, message: loadingMessage })
-  }, [loading])
-
+const EnhancedDataTable = withQueryManager(({ data }) => {
   return (
     <React.Fragment>
       {(data && data.results.length > 0) &&
-        <DataTableImpl {...data} />
+        <DataTableBase {...data} />
       }
     </React.Fragment>
   )
-}
+}, QUERY_KEY_DATA_TABLE)
 
-const ProductionDataTableImpl = () => {
-  const { state } = useContext(DataFilterContext)
-
-  const loadingMessage = `Loading ${ state.dataType } data from server...`
-
-  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
-
-  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
-
-  useEffect(() => {
-    if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
-    }
-  }, [error])
-
-  useEffect(() => {
-    updateLoadingStatus({ status: loading, message: loadingMessage })
-  }, [loading])
-
-  return (
-    <React.Fragment>
-      {(data && data.results.length > 0) &&
-        <DataTableImpl {...data} />
-      }
-    </React.Fragment>
-  )
-}
-
-const DisbursementDataTableImpl = () => {
-  const { state } = useContext(DataFilterContext)
-
-  const loadingMessage = `Loading ${ state.dataType } data from server...`
-
-  const { loading, error, data } = useQuery(DTQM.getQuery(state), DTQM.getVariables(state))
-
-  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
-
-  useEffect(() => {
-    if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
-    }
-  }, [error])
-
-  useEffect(() => {
-    updateLoadingStatus({ status: loading, message: loadingMessage })
-  }, [loading])
-
-  return (
-    <React.Fragment>
-      {(data && data.results.length > 0) &&
-        <DataTableImpl {...data} />
-      }
-    </React.Fragment>
-  )
-}
-
-const DataTableImpl = data => {
-  const { state } = useContext(DataFilterContext)
+const DataTableBase = data => {
+  const { state, updateDataFilter } = useContext(DataFilterContext)
+  const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
   const [grouping, setGrouping] = useState([])
+  const [expandedGroups, setExpandedGroups] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
   const [fixedColumns, setFixedColumns] = useState([])
@@ -202,10 +135,13 @@ const DataTableImpl = data => {
   const [defaultColumnWidths] = useState(columnNames ? columnNames.map((column, index) =>
     (column.name.startsWith('y')) ? ({ columnName: column.name, width: 200 }) : ({ columnName: column.name, width: 250 })) : [])
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
+  const [columnOrder, setColumnOrder] = useState(columnNames.map(item => item.name))
+
   const getHiddenColumns = () => {
     let yearColumns = []
-    if (state[CALENDAR_YEAR] || state[FISCAL_YEAR]) {
-      let years = (state[CALENDAR_YEAR]) ? state[CALENDAR_YEAR].split(',') : state[FISCAL_YEAR].split(',')
+    const periodYear = (state[PERIOD] === PERIOD_FISCAL_YEAR) ? FISCAL_YEAR : CALENDAR_YEAR
+    if (state[periodYear]) {
+      let years = state[periodYear].split(',')
       years = years.map(item => `y${ item }`)
       yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !years.includes(item.name)))
     }
@@ -234,16 +170,25 @@ const DataTableImpl = data => {
     if (state[GROUP_BY] && (state[BREAKOUT_BY] !== NO_BREAKOUT_BY && state[BREAKOUT_BY])) {
       setGrouping([{ columnName: state[GROUP_BY] }])
       setGroupingExtension([{ columnName: state[GROUP_BY], showWhenGrouped: true }])
+      if (data && data.results.length > 0) {
+        // Gets the unique values that will be expanded
+        setExpandedGroups([...new Set(data.results.map(item => item[state[GROUP_BY]]))])
+      }
       setFixedColumns([TableGroupRow.Row, state[GROUP_BY], state[BREAKOUT_BY]])
+
+      destructuringSwap(columnNames, 0, columnNames.findIndex(item => (item.name === state[GROUP_BY])))
+      setColumnOrder(columnNames.map(item => item.name))
     }
     else if (state[GROUP_BY]) {
       setGrouping([])
       setGroupingExtension([])
+      setExpandedGroups([])
       setFixedColumns([state[GROUP_BY]])
     }
     else {
       setGrouping([])
       setGroupingExtension([])
+      setExpandedGroups([])
       setFixedColumns([columnNames[0]])
     }
     setHiddenColumnNames(getHiddenColumns())
@@ -252,17 +197,33 @@ const DataTableImpl = data => {
 
     if (data && data.results.length > 0) {
       const yearProps = columnNames.filter(item => item.name.startsWith('y'))
-      setAggregatedSums(aggregateSum({
+      const sums = aggregateSum({
         data: data.results,
         groupBy: state[GROUP_BY],
         breakoutBy: (state[BREAKOUT_BY] === NO_BREAKOUT_BY) ? undefined : state[BREAKOUT_BY],
         sumByProps: yearProps.map(item => item.name)
-      }))
+      })
+      setAggregatedSums(sums)
+      if (sums && sums.length > 0) {
+        addDownloadData({
+          key: DOWNLOAD_DATA_TABLE,
+          data: {
+            cols: columnNames.filter(col => !hiddenColumnNames.includes(col.name)),
+            rows: sums
+          }
+        })
+      }
     }
   }, [state, data])
 
-  const handleDownload = type => {
-    downloadWorkbook(type, state[DATA_TYPE], state[DATA_TYPE], columnNames.filter(col => !hiddenColumnNames.includes(col.name)), aggregatedSums)
+  const addBreakoutByColumnHandler = () => {
+    const breakoutByColumnName = state[BREAKOUT_BY] || columnNames.find(item => (!item.name.startsWith('y') && item.name !== state[GROUP_BY]))
+    if (breakoutByColumnName) {
+      updateDataFilter({ [BREAKOUT_BY]: (breakoutByColumnName.name ? breakoutByColumnName.name : breakoutByColumnName) })
+    }
+  }
+  const removeBreakoutByColumnHandler = () => {
+    updateDataFilter({ [BREAKOUT_BY]: undefined })
   }
 
   return (
@@ -270,40 +231,17 @@ const DataTableImpl = data => {
       {(aggregatedSums && aggregatedSums.length > 0) &&
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Box component="div" display="inline" mr={2}>
-              <Button
-                variant="contained"
-                color="primary"
-                aria-label="open data filters"
-                onClick={() => handleDownload('excel')}
-                onKeyDown={() => handleDownload('excel')}
-                startIcon={<IconDownloadXlsImg />}
-              >
-              Download table
-              </Button>
-
-            </Box>
-            <Button
-              variant="contained"
-              color="primary"
-              aria-label="open data filters"
-              onClick={() => handleDownload('csv')}
-              onKeyDown={() => handleDownload('csv')}
-              startIcon={<IconDownloadCsvImg />}
-            >
-              Download table
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
             <TableGrid
               rows={aggregatedSums}
               columns={columnNames}>
-              <AllTypeProvider
+              <TotalProvider
                 for={columnNames.filter(item => !item.name.startsWith('y')).map(item => item.name)}
               />
               <SortingState />
               <GroupingState
                 grouping={grouping}
+                expandedGroups={expandedGroups}
+                onExpandedGroupsChange={setExpandedGroups}
               />
               <SummaryState
                 totalItems={totalSummaryItems}
@@ -315,13 +253,29 @@ const DataTableImpl = data => {
               <Table
                 columnExtensions={tableColumnExtensions}
                 cellComponent={CustomTableCell}
+                tableComponent={CustomTable}
+                headComponent={CustomTableHead}
+                height={550}
+              />
+              <TableColumnReordering
+                order={columnOrder}
               />
               <TableColumnResizing defaultColumnWidths={defaultColumnWidths} />
-              <TableHeaderRow showSortingControls/>
+              <TableHeaderRow
+                contentComponent={props =>
+                  <CustomTableHeaderCell
+                    options={columnNames.filter(item => (!item.name.startsWith('y'))).map(item => ({ option: item.title, value: item.name }))}
+                    onAddColumn={!state[BREAKOUT_BY] && addBreakoutByColumnHandler}
+                    onRemoveColumn={state[BREAKOUT_BY] && removeBreakoutByColumnHandler}
+                    groupBy={state[GROUP_BY]}
+                    {...props} />}
+                showSortingControls/>
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
               />
-              <TableGroupRow columnExtensions={groupingExtension} />
+              <TableGroupRow
+                contentComponent={CustomGroupCellContent}
+                columnExtensions={groupingExtension} />
               <TableSummaryRow
                 groupRowComponent={CustomTableSummaryRowGroupRow}
                 totalRowComponent={CustomTableSummaryRowTotalRow}
@@ -341,12 +295,13 @@ const getColumnNames = (row, state) => {
     return []
   }
   const filteredColumns = Object.keys(row).filter(column => !column.includes('typename'))
-  return filteredColumns.map(column => {
+  return filteredColumns.map((column, index) => {
     if (parseInt(column.substring(1)) > 1000) {
       return { name: column, title: column.substring(1), year: parseInt(column.substring(1)) }
     }
     const titleName = toTitleCase(column).replace('_', ' ')
     return {
+      addGroupingInput: true,
       name: column,
       title: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].default : titleName,
       plural: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].plural : titleName,

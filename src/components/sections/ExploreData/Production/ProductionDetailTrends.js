@@ -97,9 +97,9 @@ const ProductionDetailTrends = props => {
       fiscalData = data.fiscal_production_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
-    ]) 
+    ])
     console.debug ("FisD ", fiscalData)
-    */ 
+    */
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
       const y = parseInt(item.period_date.substr(0,4))

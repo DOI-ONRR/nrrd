@@ -29,7 +29,7 @@ const CodeBlock = ({ children, className, live, render }) => {
         <LiveProvider
           code={children}
           transformCode={code => '/** @jsx mdx */' + code}
-          scope={{ mdx, ...components }}
+          scope={{ mdx, ...CustomComponents }}
         >
           <LivePreview />
           <LiveError />

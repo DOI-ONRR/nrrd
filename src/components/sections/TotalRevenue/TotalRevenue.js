@@ -106,7 +106,7 @@ const TotalRevenue = props => {
   const findXGroupYear = (monthNumber, xGroups) => {
     for (const elem of xGroups) {
       const foundElem = elem.filter(item => item.includes(monthNumber))
-      console.log('foundElem: ', foundElem)
+      // console.log('foundElem: ', foundElem)
     }
   }
 

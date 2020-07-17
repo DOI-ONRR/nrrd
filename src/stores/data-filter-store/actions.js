@@ -8,7 +8,7 @@ import { types } from './reducers'
 
 export const useActions = (state, dispatch) => {
   const updateDataFilter = updatedFilter => {
-    let params = ''
+    const params = ''
     // omit the following properties
     const propsToExclude = [
       'arcs',

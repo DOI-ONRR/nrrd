@@ -86,11 +86,10 @@ const PieChart = props => {
   const classes = useStyles()
   const { data, ...options } = props
   const elemRef = useRef(null)
-  
-  
+
   useEffect(() => {
     // stackedBarChar(elemRef.current,{}, datas);
-    console.debug("EEEEEEEEEEEEEEEEEEEE", elemRef)
+    console.debug('EEEEEEEEEEEEEEEEEEEE', elemRef)
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
     //  const chart2 = new BarChart2(elemRef.current, data2, options)
@@ -98,10 +97,9 @@ const PieChart = props => {
     console.debug(elemRef.current)
     const chart = new D3PieChart(elemRef.current, data, options)
     // chart.selected(selected);
-    //chart.draw(data)
-
+    // chart.draw(data)
   }, [elemRef])
-  
+
   return (
     <>
       <div className={classes.container} ref={elemRef}>
