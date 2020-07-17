@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     position: 'absolute',
-    bottom: 75,
+    bottom: 25,
     width: '100%',
     zIndex: 500,
   },
@@ -31,11 +31,31 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.links.default,
     color: theme.palette.common.white,
     minWidth: 250,
+    padding: 4,
     fontSize: theme.typography.h3.fontSize,
     '&:hover': {
       background: theme.palette.links.hover,
     }
-  }
+  },
+  exploreButtonLabel: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    lineHeight: 1.25,
+    padding: '5px 16px',
+  },
+  buttonScrollLabel: {
+    fontSize: 14,
+    position: 'relative',
+  },
+  buttonScrollIcon: {
+    height: 20,
+    '& svg': {
+      position: 'relative',
+      top: -10,
+      fontSize: 40,
+    },
+  },
 }))
 
 const ExploreMoreDataButton = props => {
@@ -95,11 +115,19 @@ const ExploreMoreDataButton = props => {
           size="large"
           disableRipple
           className={classes.exploreMoreButton}
-          endIcon={buttonState.icon === 'down' ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
-          classes={{ root: classes.exploreButtonRoot }}
+          classes={{
+            root: classes.exploreButtonRoot,
+            label: classes.exploreButtonLabel
+          }}
           onClick={buttonState.icon === 'down' ? scrollTo : scrollToTop}
         >
           {buttonState.label}
+          <span className={classes.buttonScrollLabel}>
+            { buttonState.icon === 'down' ? 'Scroll down' : 'Scroll up' }
+          </span>
+          <span className={classes.buttonScrollIcon}>
+            {buttonState.icon === 'down' ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+          </span>
         </Button>
       </Box>
       }

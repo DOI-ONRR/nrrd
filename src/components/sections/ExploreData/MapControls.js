@@ -12,8 +12,6 @@ import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RefreshIcon from '@material-ui/icons/Refresh'
 
-import MapControlSwitch from '../../inputs/MapControlSwitch'
-
 // import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
@@ -27,10 +25,11 @@ const useStyles = makeStyles(theme => ({
   },
   zoomButtonGroupContainer: {
     position: 'absolute',
-    bottom: 146,
+    bottom: 150,
+    height: 100,
     left: 10,
     '@media (max-width: 768px)': {
-      bottom: 150,
+      bottom: 100,
       left: 5,
     },
     '& svg': {

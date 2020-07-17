@@ -109,7 +109,7 @@ const DisbursementTopRecipients = props => {
         <Grid item xs={12}>
           <Box className={classes.root}>
             <Box className={classes.topRecipientChart}>
-        <CircleChart
+              <CircleChart
                 key={'DTR' + dataSet }
                 data={chartData}
                 maxLegendWidth='800px'

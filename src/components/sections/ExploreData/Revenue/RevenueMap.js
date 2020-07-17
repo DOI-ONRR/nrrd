@@ -12,7 +12,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import CONSTANTS from '../../../../js/constants'
 
 const REVENUE_QUERY = gql`
-  query FiscalCommodityRevenue($year: Int!, $commodities: [String!], $location: [String!], $period: String!) {
+  query MapRevenue($year: Int!, $commodities: [String!], $location: [String!], $period: String!) {
     revenue_summary(where: {location: {_nin: ["Nationwide Federal", ""]}, year: { _eq: $year}, commodity: {_in: $commodities }, period: { _eq: $period}}) {
       commodity
       year
@@ -23,13 +23,14 @@ const REVENUE_QUERY = gql`
 `
 
 export default props => {
-  console.log('RevenueMap props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const commodities = (filterState[DFC.COMMODITIES]) ? filterState[DFC.COMMODITIES] : undefined
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  //const commodities = (filterState[DFC.COMMODITIES]) ? filterState[DFC.COMMODITIES] : undefined
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  console.debug('WTH PERIOD:', period)
+
+
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
     variables: { year: year, commodities: commodities, period: period }
   })

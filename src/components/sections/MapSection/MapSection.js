@@ -4,10 +4,10 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   containerBottom: {
-    minWidth:'280px',
-    flexBasis:'100%',		    
+    minWidth: '280px',
+    flexBasis: '100%',
     height: '600px',
-    order:'3', 
+    order: '3',
   }
 }))
 

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -8,9 +8,15 @@ import {
   Switch
 } from '@material-ui/core'
 
-import { withStyles, createStyles } from '@material-ui/styles'
+import { withStyles, createStyles, makeStyles } from '@material-ui/core/styles'
 
-import { DataFilterContext } from '../../../stores/data-filter-store'
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    minWidth: 'fit-content',
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+  }
+}))
 
 // Default FormControlLabel
 const DefaultFormControlLabel = withStyles(theme =>
@@ -33,6 +39,9 @@ const DefaultFormControlLabel = withStyles(theme =>
 // DefaultSwitch styling
 const DefaultSwitch = withStyles(theme =>
   createStyles({
+    root: {
+      margin: 0,
+    },
     switchBase: {
       '&$checked': {
         color: theme.palette.links.default,
@@ -61,26 +70,30 @@ const DefaultSwitch = withStyles(theme =>
   )
 })
 
-const BaseSwitch = ({ dataFilterKey, dataOptions, checked, selectType, label, legend, helperText, disabled }) => {
+const BaseSwitch = ({ onChange, dataFilterKey, data, defaultSelected, checked, selectType, label, legend, helperText, disabled }) => {
   return (
     <>
       {selectType === 'Single' &&
         <SingleBaseSwitch
           dataFilterKey={dataFilterKey}
-          data={dataOptions}
+          data={data}
+          defaultSelected={defaultSelected}
           label={label}
           isChecked={checked}
           helperText={helperText}
           disabled={disabled}
+          onChange={onChange}
         />
       }
 
       {selectType === 'Group' &&
         <GroupBaseSwitch
           dataFilterKey={dataFilterKey}
-          data={dataOptions}
+          data={data}
+          defaultSelected={defaultSelected}
           label={label}
           helperText={helperText}
+          onChange={onChange}
         />
       }
     </>
@@ -99,23 +112,24 @@ BaseSwitch.propTypes = {
 }
 
 // Group switch
-const GroupBaseSwitch = ({ dataFilterKey, dataOptions, selectType, label, legend, helperText }) => {
+const GroupBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, data, selectType, label, legend, helperText }) => {
   const [state, setState] = useState({
-    checked: false
+    checked: defaultSelected
   })
 
   const handleChange = event => {
     setState({ ...state, [event.target.name]: event.target.checked })
+    onChange(event.target.checked)
   }
 
   return (
-    <FormControl component="fieldset">
+    <FormControl>
       {legend &&
           <FormLabel component="legend">{legend}</FormLabel>
       }
       <FormGroup>
-        {dataOptions &&
-          dataOptions.map((item, i) =>
+        {data &&
+          data.map((item, i) =>
             <DefaultFormControlLabel
               control={
                 <DefaultSwitch
@@ -136,20 +150,22 @@ const GroupBaseSwitch = ({ dataFilterKey, dataOptions, selectType, label, legend
 }
 
 // Single switch
-const SingleBaseSwitch = ({ dataFilterKey, selectType, label, legend, helperText, disabled }) => {
-  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-
+const SingleBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, label, legend, helperText, disabled }) => {
+  const classes = useStyles()
   const [switchState, setSwitchState] = useState({
-    checked: filterState[dataFilterKey] || false
+    checked: defaultSelected
   })
+
+  const noop = () => {}
+  onChange = onChange || noop
 
   const handleChange = event => {
     setSwitchState({ ...switchState, [event.target.name]: event.target.checked })
-    updateDataFilter({ ...filterState, [dataFilterKey]: event.target.checked })
+    onChange(event.target.checked)
   }
 
   return (
-    <FormControl component="fieldset">
+    <FormControl className={classes.formControl}>
       {legend &&
           <FormLabel component="legend">{legend}</FormLabel>
       }

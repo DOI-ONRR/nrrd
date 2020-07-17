@@ -167,7 +167,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
       unitAbbr = data.fiscal_production_summary[0].unit_abbr
       let tmp = data.fiscal_production_summary
       if (props.abbr) {
-        tmp = data.fiscal_production_summary.filter( d => d.location_name !== 'Native American lands')       
+        tmp = data.fiscal_production_summary.filter(d => d.location_name !== 'Native American lands')
       }
       chartData = d3.nest()
         .key(k => k.location_name)

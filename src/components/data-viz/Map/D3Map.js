@@ -199,10 +199,10 @@ export default class d3Map {
           d3.interpolateReds(t)
       )
       break
-    case 'gray':
+    case 'grey':
       color = d3.scaleSequentialQuantile(
         data.values, t =>
-          d3.interpolategrays(t)
+          d3.interpolateGreys(t)
       )
       break
     default:
@@ -259,7 +259,6 @@ export default class d3Map {
           const r = { id: 'AKR', properties: { region: 'AKR', name: 'Alaska Offshore' } }
           onClick(r, i)
 
-         
           // do nothing
         }
         else {
@@ -319,7 +318,7 @@ export default class d3Map {
       .append('title')
       .text(d => `Alaska Offshore Region  ${ format(data.get('AKR')) }`).transition().duration(3000)
     */
-    
+
     const POR = d3.set(['WAO', 'NOC', 'CEC', 'SOC'])
     g.append('path')
       .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function (d) {
@@ -360,7 +359,7 @@ export default class d3Map {
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
         const r = { id: 'GMR', properties: { region: 'GMR', name: 'Gulf of Mexico' } }
-        onClick(r, i)     
+        onClick(r, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
@@ -386,8 +385,7 @@ export default class d3Map {
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
         const r = { id: 'AOR', properties: { region: 'AOR', name: 'Atlantic' } }
-        onClick(r, i)      
-
+        onClick(r, i)
       })
       .on('mouseover', function (d, i) {
         d3.select(this)
