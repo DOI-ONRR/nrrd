@@ -16,7 +16,8 @@ import {
   PERIOD_FISCAL_YEAR,
   QUERY_KEY_DATA_TABLE,
   DOWNLOAD_DATA_TABLE,
-  PRODUCT
+  PRODUCT,
+  GROUP_BY_STICKY
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'
@@ -140,18 +141,94 @@ const DataTableBase = ({ data, showSummaryRow }) => {
     (column.name.startsWith('y')) ? ({ columnName: column.name, width: 200 }) : ({ columnName: column.name, width: 250 })) : [])
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
 
+  const _groupBySticky = state[GROUP_BY_STICKY]
+  const getGroupBy = () => {
+    if (state[_groupBySticky] && state[_groupBySticky].split(',').length === 1) {
+      if (state[GROUP_BY]) {
+        return state[GROUP_BY]
+      }
+      else {
+        const groupByColumnName = columnNames.find(item =>
+          (!item.name.startsWith('y') &&
+          item.name !== _groupBySticky &&
+          (!_additionalColumns || !_additionalColumns.includes(item.name))))
+
+        if (groupByColumnName) {
+          return (groupByColumnName.name ? groupByColumnName.name : groupByColumnName)
+        }
+      }
+    }
+    return _groupBySticky || state[GROUP_BY]
+  }
+  const getUniqueGroupBy = () => {
+    if (_groupBy && _breakoutBy !== _groupBy && _groupBy !== _groupBySticky) {
+      return _groupBy
+    }
+    const groupByColumnName = columnNames.find(item =>
+      (!item.name.startsWith('y') &&
+        item.name !== _groupBySticky &&
+        item.name !== _breakoutBy &&
+        (!_additionalColumns || !_additionalColumns.includes(item.name))))
+
+    if (groupByColumnName) {
+      return (groupByColumnName.name ? groupByColumnName.name : groupByColumnName)
+    }
+  }
+  const _groupBy = getGroupBy()
+  const getUniqueBreakoutBy = () => {
+    if (_breakoutBy && _breakoutBy !== _groupBy && _breakoutBy !== _groupBySticky) {
+      return _breakoutBy
+    }
+    const breakoutByColumnName = columnNames.find(item =>
+      (!item.name.startsWith('y') &&
+        item.name !== _groupBySticky &&
+        item.name !== _groupBy &&
+        (!_additionalColumns || !_additionalColumns.includes(item.name))))
+
+    if (breakoutByColumnName) {
+      return (breakoutByColumnName.name ? breakoutByColumnName.name : breakoutByColumnName)
+    }
+  }
+  const _breakoutBy = state[BREAKOUT_BY]
+  const _additionalColumns = state[ADDITIONAL_COLUMNS]
+
+  useEffect(() => {
+    if (state[GROUP_BY_STICKY] !== _groupBy) {
+      if (_breakoutBy === _groupBy) {
+        updateDataFilter({ [GROUP_BY]: _groupBy, [BREAKOUT_BY]: getUniqueBreakoutBy() })
+      }
+      else {
+        updateDataFilter({ [GROUP_BY]: _groupBy })
+      }
+    }
+    else if (state[GROUP_BY_STICKY] === _groupBy && state[GROUP_BY]) {
+      updateDataFilter({ [GROUP_BY]: undefined })
+    }
+  }, [_groupBy])
+
+  useEffect(() => {
+    if (state[GROUP_BY_STICKY] === _groupBy) {
+      if (_groupBy) {
+        updateDataFilter({ [GROUP_BY]: undefined })
+      }
+    }
+    else if (_breakoutBy === _groupBy) {
+      updateDataFilter({ [GROUP_BY]: getUniqueGroupBy() })
+    }
+  }, [_breakoutBy])
+
   const getColumnOrder = () => {
-    if (state[GROUP_BY]) {
-      destructuringSwap(columnNames, 0, columnNames.findIndex(item => (item.name === state[GROUP_BY])))
-      if (state[BREAKOUT_BY]) {
-        destructuringSwap(columnNames, 1, columnNames.findIndex(item => (item.name === state[BREAKOUT_BY])))
+    if (_groupBy) {
+      destructuringSwap(columnNames, 0, columnNames.findIndex(item => (item.name === _groupBy)))
+      if (_breakoutBy) {
+        destructuringSwap(columnNames, 1, columnNames.findIndex(item => (item.name === _breakoutBy)))
       }
     }
     // Place additional columns after the group abd breakout columns if they exist
-    if (state[ADDITIONAL_COLUMNS]) {
-      let indexOffset = state[GROUP_BY] ? 1 : 0
-      indexOffset = state[BREAKOUT_BY] ? indexOffset + 1 : indexOffset
-      state[ADDITIONAL_COLUMNS].forEach((columnName, index) => {
+    if (_additionalColumns) {
+      let indexOffset = _groupBy ? 1 : 0
+      indexOffset = _breakoutBy ? indexOffset + 1 : indexOffset
+      _additionalColumns.forEach((columnName, index) => {
         destructuringSwap(columnNames, indexOffset, columnNames.findIndex(item => (item.name === columnName)))
       })
     }
@@ -175,13 +252,13 @@ const DataTableBase = ({ data, showSummaryRow }) => {
 
     const nonYearColumns = columnNames.filter(item =>
       (!item.name.startsWith('y') &&
-      item.name !== state[GROUP_BY] &&
-      item.name !== state[BREAKOUT_BY] &&
-      (!state[ADDITIONAL_COLUMNS] || !state[ADDITIONAL_COLUMNS].includes(item.name)))
+      item.name !== _groupBy &&
+      item.name !== _breakoutBy &&
+      (!_additionalColumns || !_additionalColumns.includes(item.name)))
     )
 
-    if (state[ADDITIONAL_COLUMNS]) {
-      state[ADDITIONAL_COLUMNS].forEach(column => {
+    if (_additionalColumns) {
+      _additionalColumns.forEach(column => {
         if (state[column] && state[column].split(',').length === 1) {
           nonYearColumns.push(columnNames.filter(item => item.name === column)[0])
         }
@@ -202,20 +279,20 @@ const DataTableBase = ({ data, showSummaryRow }) => {
 
   useEffect(() => {
     columnNames = getColumnNames(data.results[0], state)
-    if (state[GROUP_BY] && (state[BREAKOUT_BY] !== NO_BREAKOUT_BY && state[BREAKOUT_BY])) {
-      setGrouping([{ columnName: state[GROUP_BY] }])
-      setGroupingExtension([{ columnName: state[GROUP_BY], showWhenGrouped: true }])
+    if (_groupBy && (_breakoutBy !== NO_BREAKOUT_BY && _breakoutBy)) {
+      setGrouping([{ columnName: _groupBy }])
+      setGroupingExtension([{ columnName: _groupBy, showWhenGrouped: true }])
       if (data && data.results.length > 0) {
         // Gets the unique values that will be expanded
-        setExpandedGroups([...new Set(data.results.map(item => item[state[GROUP_BY]]))])
+        setExpandedGroups([...new Set(data.results.map(item => item[_groupBy]))])
       }
-      setFixedColumns([TableGroupRow.Row, state[GROUP_BY], state[BREAKOUT_BY]])
+      setFixedColumns([TableGroupRow.Row, _groupBy, _breakoutBy])
     }
-    else if (state[GROUP_BY]) {
+    else if (_groupBy) {
       setGrouping([])
       setGroupingExtension([])
       setExpandedGroups([])
-      setFixedColumns([state[GROUP_BY]])
+      setFixedColumns([_groupBy])
     }
     else {
       setGrouping([])
@@ -231,14 +308,14 @@ const DataTableBase = ({ data, showSummaryRow }) => {
     if (data && data.results.length > 0) {
       const yearProps = columnNames.filter(item => item.name.startsWith('y'))
       let groupByProps = []
-      if (state[GROUP_BY]) {
-        groupByProps = groupByProps.concat(state[GROUP_BY])
+      if (_groupBy) {
+        groupByProps = groupByProps.concat(_groupBy)
       }
-      if (state[BREAKOUT_BY]) {
-        groupByProps = groupByProps.concat(state[BREAKOUT_BY])
+      if (_breakoutBy) {
+        groupByProps = groupByProps.concat(_breakoutBy)
       }
-      if (state[ADDITIONAL_COLUMNS]) {
-        groupByProps = groupByProps.concat(state[ADDITIONAL_COLUMNS])
+      if (_additionalColumns) {
+        groupByProps = groupByProps.concat(_additionalColumns)
       }
       const sums = aggregateSum({
         data: data.results,
@@ -261,15 +338,7 @@ const DataTableBase = ({ data, showSummaryRow }) => {
   }, [state, data])
 
   const addBreakoutByColumnHandler = () => {
-    const breakoutByColumnName = state[BREAKOUT_BY] ||
-      columnNames.find(item =>
-        (!item.name.startsWith('y') &&
-        item.name !== state[GROUP_BY] &&
-        (!state[ADDITIONAL_COLUMNS] || !state[ADDITIONAL_COLUMNS].includes(item.name))))
-
-    if (breakoutByColumnName) {
-      updateDataFilter({ [BREAKOUT_BY]: (breakoutByColumnName.name ? breakoutByColumnName.name : breakoutByColumnName) })
-    }
+    updateDataFilter({ [BREAKOUT_BY]: getUniqueBreakoutBy() })
   }
   const removeBreakoutByColumnHandler = () => {
     updateDataFilter({ [BREAKOUT_BY]: undefined })
@@ -278,8 +347,9 @@ const DataTableBase = ({ data, showSummaryRow }) => {
   // Returns a list of options available for the group by and breakout columns
   const getGroupByOptions = () => {
     const options = columnNames.filter(item => (
+      item.name !== _groupBySticky &&
       !item.name.startsWith('y') &&
-      (!state[ADDITIONAL_COLUMNS] || !state[ADDITIONAL_COLUMNS].includes(item.name))
+      (!_additionalColumns || !_additionalColumns.includes(item.name))
     ))
     return options.map(item => ({ option: item.title, value: item.name }))
   }
@@ -323,8 +393,8 @@ const DataTableBase = ({ data, showSummaryRow }) => {
                 contentComponent={props =>
                   <CustomTableHeaderCell
                     options={getGroupByOptions()}
-                    onAddColumn={!state[BREAKOUT_BY] && addBreakoutByColumnHandler}
-                    onRemoveColumn={state[BREAKOUT_BY] && removeBreakoutByColumnHandler}
+                    onAddColumn={!_breakoutBy && addBreakoutByColumnHandler}
+                    onRemoveColumn={_breakoutBy && removeBreakoutByColumnHandler}
                     {...props} />}
                 showSortingControls/>
               <TableColumnVisibility

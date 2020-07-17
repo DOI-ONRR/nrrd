@@ -36,6 +36,7 @@ export const PERIOD_CALENDAR_YEAR = 'Calendar Year'
 export const PERIOD_MONTHLY_YEAR = 'Monthly'
 export const PERIOD_TYPES = [PERIOD_FISCAL_YEAR, PERIOD_CALENDAR_YEAR]
 export const GROUP_BY = 'groupBy'
+export const GROUP_BY_STICKY = 'groupBySticky'
 export const BREAKOUT_BY = 'breakoutBy'
 export const ADDITIONAL_COLUMNS = 'additionalColumns'
 export const NO_BREAKOUT_BY = 'noBreakoutBy'
@@ -53,6 +54,10 @@ export const FISCAL_YEAR_OPTIONS = 'fiscalYearOptions'
 
 export const DISPLAY_NAMES = {
   [GROUP_BY]: {
+    default: 'Group by',
+    plural: 'Group by',
+  },
+  [GROUP_BY_STICKY]: {
     default: 'Group by',
     plural: 'Group by',
   },
