@@ -16,7 +16,7 @@ import {
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 
-const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, options, ...restProps }) => {
+const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, groupByOptions, breakoutByOptions, ...restProps }) => {
   const { state } = useContext(DataFilterContext)
 
   const GroupByStickyColumnHeader = () => {
@@ -38,7 +38,7 @@ const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, option
     return (
       <Grid container alignItems="flex-start">
         <Grid item xs={(onAddColumn) ? 7 : 12}>
-          <GroupBySelectInput data={options} />
+          <GroupBySelectInput data={groupByOptions} />
         </Grid>
         {onAddColumn &&
           <Grid item xs={5}>
@@ -53,7 +53,7 @@ const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, option
     return (
       <Grid container alignItems="flex-start">
         <Grid item xs={(onRemoveColumn) ? 7 : 12}>
-          <BreakoutBySelectInput data={options} />
+          <BreakoutBySelectInput data={breakoutByOptions} />
         </Grid>
         {onRemoveColumn &&
           <Grid item xs={5}>

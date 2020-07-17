@@ -353,6 +353,16 @@ const DataTableBase = ({ data, showSummaryRow }) => {
     ))
     return options.map(item => ({ option: item.title, value: item.name }))
   }
+  // Returns a list of options available for the group by and breakout columns
+  const getBreakoutByOptions = () => {
+    const options = columnNames.filter(item => (
+      item.name !== _groupBySticky &&
+      item.name !== _groupBy &&
+      !item.name.startsWith('y') &&
+      (!_additionalColumns || !_additionalColumns.includes(item.name))
+    ))
+    return options.map(item => ({ option: item.title, value: item.name }))
+  }
 
   return (
     <React.Fragment>
@@ -392,7 +402,8 @@ const DataTableBase = ({ data, showSummaryRow }) => {
               <TableHeaderRow
                 contentComponent={props =>
                   <CustomTableHeaderCell
-                    options={getGroupByOptions()}
+                    groupByOptions={getGroupByOptions()}
+                    breakoutByOptions={getBreakoutByOptions()}
                     onAddColumn={!_breakoutBy && addBreakoutByColumnHandler}
                     onRemoveColumn={_breakoutBy && removeBreakoutByColumnHandler}
                     {...props} />}
