@@ -52,13 +52,12 @@ const RevenueDetailTypes = props => {
 
   const dataSet = `FY ${ year }`
 
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, year: year }
+    variables: { state: state, year: year }
   })
-  const dataKey = dataSet + '-' + stateAbbr
+  const dataKey = dataSet + '-' + props.name
   let chartData
 
   if (loading) return ''

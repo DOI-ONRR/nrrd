@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
     padding: 10,
-    height: 40,
+    height: 45,
     fontSize: '1.2rem',
     '& .MuiCardHeader-action': {
       marginTop: 0,
@@ -97,19 +97,19 @@ const SummaryCards = props => {
   const cards = pageState.cards
 
   const card = {
-    abbr: props.abbr,
     county: props.county,
-    fips_code: props.fips_code,
+    fipsCode: props.fipsCode,
     locationName: props.locationName,
     name: props.name,
     regionType: props.regionType,
+    districtType: props.districtType,
     state: props.state
   }
  
   const [minimized, setMinimized] = useState(true)
 
   const closeCard = item => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips_code !== props.fips_code) })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== props.fipsCode) })
   }
 
   const minimizeCard = item => {
@@ -125,12 +125,12 @@ const SummaryCards = props => {
 
   const children = React.Children.map(props.children, child =>
     React.cloneElement(child, {
-      abbr: props.abbr,
       county: props.county,
-      fips_code: props.fips_code,
+      fipsCode: props.fipsCode,
       locationName: props.locationName,
       name: props.name,
       regionType: props.regionType,
+      districtType: props.districtType,
       state: props.state
     })
   )

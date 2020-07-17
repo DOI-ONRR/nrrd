@@ -36,11 +36,15 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueSummaryTrends = props => {
+  console.log('RevenueSummaryTrends props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
+
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, period: CONSTANTS.FISCAL_YEAR }
   })
 
   let sparkData = []

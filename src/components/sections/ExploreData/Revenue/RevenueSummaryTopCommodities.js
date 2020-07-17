@@ -81,8 +81,10 @@ const RevenueSummaryTopCommodities = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
 
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
   let sparkData = []

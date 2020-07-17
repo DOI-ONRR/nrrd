@@ -41,11 +41,11 @@ const ProductionSummaryTrends = props => {
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const state = props.abbr
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
   const key = dataSet + '_' + commodity + '_' + state
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, commodity: commodity, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, commodity: commodity, period: CONSTANTS.FISCAL_YEAR }
   })
   const name = props.name
   let sparkData = []

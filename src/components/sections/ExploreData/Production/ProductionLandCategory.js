@@ -69,6 +69,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionLandCategory = ({ title, ...props }) => {
+  console.log('ProductionLandCategory props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -77,22 +78,14 @@ const ProductionLandCategory = ({ title, ...props }) => {
   const { state: pageState } = useContext(StoreContext)
   const cards = pageState.cards
 
-  let location
-  if (props.state === CONSTANTS.NATIONWIDE_FEDERAL || props.state === CONSTANTS.NATIVE_AMERICAN) {
+  let location = props.regionType
+
+  if (location === '') {
     location = props.state
-  }
-  else if (props.fips.length === 5) {
-    location = 'County'
-  }
-  else if (props.fips.length === 3) {
-    location = 'Offshore'
-  }
-  else {
-    location = 'State'
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const state = props.abbr
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
   // console.log('useQuery vars: ', state, location, commodity)
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, commodity } })
   if (loading) {

@@ -30,7 +30,6 @@ export const YEAR = 'year'
 export const RECIPIENT = 'recipient'
 export const SOURCE = 'source'
 export const STATE_OFFSHORE_NAME = 'stateOffshoreName'
-export const USA = 'USA'
 
 export const PERIOD_FISCAL_YEAR = 'Fiscal Year'
 export const PERIOD_CALENDAR_YEAR = 'Calendar Year'

@@ -281,6 +281,7 @@ const MapContext = props => {
           state_name
           county
           region_type
+          district_type
         }
       }
     }
@@ -358,8 +359,8 @@ const MapContext = props => {
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
   const cardMenuItems = [
-    { fips_code: '99', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', state: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
-    { fips_code: '999', state: 'Native American', state_name: 'Native American', location_name: 'Native American', state: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
+    { fips_code: '99', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
+    { fips_code: '999', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
   ]
 
   const { vertical, horizontal, open } = mapSnackbarState
@@ -397,33 +398,28 @@ const MapContext = props => {
   // onLink
   const onLink = (state, x, y, k) => {
     console.log('onLink state: ', state)
-    
+
     // decern betweeen topo json and location data fips
-    let fips = state.properties ? state.properties.FIPS : state.fips_code
-    let locations = data.onrr.locations
-    // let locationData = [...locations, cardMenuItems[0], cardMenuItems[1]]
+    const fips = state.properties ? state.id : state.fips_code
+    const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
 
     // filter out location from location data
-    let location = locations.filter(item => item.fips_code === fips)
-
-    if (fips === '99' ||  fips === '999') {
-      location = [...location, state]
-    }
+    const location = locations.filter(item => item.fips_code === fips)
 
     console.log('onLink location: ', location)
 
     const stateObj = {
-      fips_code: location[0].fips_code,
-      abbr: location[0].state,
+      fipsCode: location[0].fips_code,
       name: location[0].state_name,
       locationName: location[0].location_name,
       state: location[0].state,
       regionType: location[0].region_type,
+      districtType: location[0].district_type,
       county: location[0].county
     }
 
     if (
-      cards.filter(item => item.fips_code === fips).length === 0
+      cards.filter(item => item.fipsCode === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
         if (stateObj.abbr && stateObj.abbr.match(/Nationwide Federal/)) {
@@ -538,6 +534,7 @@ const MapContext = props => {
         nObj.state = item.state
         nObj.county = item.county
         nObj.regionType = item.region_type
+        nObj.districtType = item.district_type
         return nObj
       })
 
@@ -545,7 +542,7 @@ const MapContext = props => {
         onLink(elem)
       }
     }
-  }, [])
+  }, [data])
 
   useEffect(() => {
     setQueryParams({
@@ -554,7 +551,7 @@ const MapContext = props => {
       counties: filterState.counties,
       offshoreRegions: filterState.offshoreRegions,
       commodity: filterState.commodity,
-      location: cards.length > 0 ? cards.map(item => item.fips_code) : undefined,
+      location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
     }, 'pushIn')
   }, [filterState, pageState])
 
@@ -600,10 +597,11 @@ const MapContext = props => {
                       key: i,
                       abbr: state.abbr,
                       county: state.county,
-                      fips_code: state.fips_code,
+                      fipsCode: state.fipsCode,
                       locationName: state.locationName,
                       name: state.name,
                       regionType: state.regionType,
+                      districtType: state.districtType,
                       state: state.state
                     })
                   )
@@ -626,10 +624,11 @@ const MapContext = props => {
                       key: i,
                       abbr: state.abbr,
                       county: state.county,
-                      fips_code: state.fips_code,
+                      fipsCode: state.fipsCode,
                       locationName: state.locationName,
                       name: state.name,
                       regionType: state.regionType,
+                      districtType: state.districtType,
                       state: state.state
                     })
 

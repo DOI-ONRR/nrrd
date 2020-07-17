@@ -116,27 +116,16 @@ const ProductionOverview = ({ title, ...props }) => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  let state = ''
-  let location = 'County'
-  if (props.abbr && props.abbr.length === 2) {
-    location = 'County'
-    state = props.abbr
-  }
-  else if (props.abbr && props.abbr.length === 5) {
-    location = ''
-    state = ''
-  }
-  else {
-    location = 'State'
-    state = ''
-  }
+  const location = props.regionType
+
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const key = `PTL${ year }${ state }${ commodity }`
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location, commodity, state },
-      skip: props.state === CONSTANTS.NATIVE_AMERICAN || location === ''
+      skip: props.state === CONSTANTS.NATIVE_AMERICAN || location === CONSTANTS.OFFSHORE
     })
 
   const maxLegendWidth = props.maxLegendWidth
@@ -149,9 +138,9 @@ const ProductionOverview = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  let unitAbbr=''
+  let unitAbbr = ''
   if (data && (data.state_fiscal_production_summary.length || data.fiscal_production_summary.length)) {
-    if (data.state_fiscal_production_summary.length > 0  && location === 'County') {
+    if (data.state_fiscal_production_summary.length > 0 && location === 'County') {
       unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
@@ -164,8 +153,8 @@ const ProductionOverview = ({ title, ...props }) => {
     else {
       unitAbbr = data.fiscal_production_summary[0].unit_abbr
       let tmp = data.fiscal_production_summary
-      if (props.abbr) {
-        tmp = data.fiscal_production_summary.filter( d => d.location_name !== 'Native American lands')       
+      if (props.fipsCode) {
+        tmp = data.fiscal_production_summary.filter(d => d.location_name !== 'Native American lands')
       }
       chartData = d3.nest()
         .key(k => k.location_name)
@@ -179,7 +168,7 @@ const ProductionOverview = ({ title, ...props }) => {
     const dataSet = `FY ${ year } ${ unitAbbr }`
 
     return (
-      
+
       <Grid item md={12}>
         <Box mb={1} color="secondary.main" borderBottom={5}>
           <Box component="h2" color="secondary.dark">Production { commodity }</Box>

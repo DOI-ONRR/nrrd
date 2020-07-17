@@ -52,11 +52,10 @@ const RevenueDetailTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
 
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, period: CONSTANTS.FISCAL_YEAR, year: year }
+    variables: { state: state, period: CONSTANTS.FISCAL_YEAR, year: year }
   })
 
   const closeCard = item => {
@@ -68,7 +67,7 @@ const RevenueDetailTrends = props => {
   if (error) return `Error! ${ error.message }`
 
   const dataSet = `FY ${ year }`
-  const dataKey = dataSet + '-' + stateAbbr
+  const dataKey = dataSet + '-' + props.state
   let sparkData = []
   let sparkMin
   let sparkMax
@@ -105,7 +104,7 @@ const RevenueDetailTrends = props => {
     )
 
     locationTotalData = data.locationTotal
-    locData = locationTotalData.length > 0 ? locationTotalData.find(item => item.state_or_area === stateAbbr).sum : 0
+    locData = locationTotalData.length > 0 ? locationTotalData.find(item => item.state_or_area === state).sum : 0
   }
 
   return (

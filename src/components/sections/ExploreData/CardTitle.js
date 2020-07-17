@@ -2,42 +2,54 @@ import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
-  Box
+  Grid
 } from '@material-ui/core'
 
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import CONSTANTS from '../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
+  cardTitle: {
+    fontSize: '1.25rem',
+    marginTop: theme.spacing(1),
+  },
+  cardSubtitle: {
+    fontSize: '.85rem',
+    position: 'relative',
+    top: -6,
+  }
 }))
 
 const CardTitle = props => {
-
   console.log('CardTitle props: ', props)
-
+  const classes = useStyles()
   const card = props.card
-  const cardType= props.cardType
-
-  let cardTitle
-  
-  switch (card.regionType) {
-    case 'State':
-      cardTitle = `${ card.name }, ${ DFC.USA }`
-      break
-    case 'County':
-      cardTitle = `${ card.county } ${ card.regionType }, ${ card.abbr }`
-      break
-    case 'Offshore': 
-      cardTitle = 'Offshore yo'
-      break
-    default:
-      cardTitle = card.name
-      break
-  }
 
   return (
-    <Box component="span">
-      {cardTitle}
-    </Box>
+    <>
+      { card.regionType === 'State' &&
+        <Grid container>
+          <Grid item xs={12} className={classes.cardTitle}>{card.name}</Grid>
+          <Grid item xs={12} className={classes.cardSubtitle}>{CONSTANTS.USA}</Grid>
+        </Grid>
+      }
+      { card.regionType === 'County' &&
+        <Grid container>
+          <Grid item xs={12} className={classes.cardTitle}>{card.county} {card.districtType}</Grid>
+          <Grid item xs={12} className={classes.cardSubtitle}>{card.name}</Grid>
+        </Grid>
+      }
+      { card.regionType === 'Offshore' &&
+        <Grid container>
+          <Grid item xs={12} className={classes.cardTitle}>{card.locationName}</Grid>
+          <Grid item xs={12} className={classes.cardSubtitle}>{card.regionType}</Grid>
+        </Grid>
+      }
+      { card.regionType === '' &&
+        <Grid container>
+          <Grid item xs={12} className={classes.cardTitle}>{card.locationName}</Grid>
+        </Grid>
+      }
+    </>
   )
 }
 

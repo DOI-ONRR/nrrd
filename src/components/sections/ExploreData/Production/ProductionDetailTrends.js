@@ -56,11 +56,10 @@ const ProductionDetailTrends = props => {
   const year = filterState[DFC.YEAR]
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, commodity: commodity, period: CONSTANTS.FISCAL_YEAR, year: year }
+    variables: { state: state, commodity: commodity, period: CONSTANTS.FISCAL_YEAR, year: year }
   })
 
   if (loading) return ''

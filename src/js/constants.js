@@ -42,6 +42,9 @@ module.exports = Object.freeze({
   OIL: 'Oil',
   GAS: 'Gas',
   COAL: 'Coal',
+  STATE: 'State',
+  COUNTY: 'County',
+  USA: 'USA',
 
   TREND_LIMIT: 10,
   MAX_CARDS: 3,

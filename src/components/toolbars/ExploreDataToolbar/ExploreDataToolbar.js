@@ -271,7 +271,7 @@ const ExploreDataToolbar = props => {
           <Box className={classes.toolsWrapper}>
             <MapLevelToggleInput
               dataFilterKey={COUNTIES}
-              defaultSelected={counties || US_STATE}
+              defaultSelected={counties || CONSTANTS.STATE}
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[COUNTIES]}
               label="Map level toggle"
               legend="Map level"

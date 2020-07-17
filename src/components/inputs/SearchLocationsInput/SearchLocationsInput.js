@@ -12,8 +12,9 @@ import {
 } from '@material-ui/core'
 
 import { Autocomplete } from '@material-ui/lab'
-
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
+
+import CONSTANTS from '../../../js/constants'
 
 import mapJson from '../../sections/ExploreData/us-topology.json'
 import mapStatesOffshore from '../../sections/ExploreData/states-offshore.json'
@@ -154,6 +155,7 @@ const SearchLocationsInput = props => {
           region_type
           state
           state_name
+          county
         }
       }
     }
@@ -180,8 +182,29 @@ const SearchLocationsInput = props => {
     }
   }
 
+  const renderOptionLabel = item => {
+    console.log('renderOptionLabel item: ', item)
+    let optionLabel
+    switch (item.region_type) {
+    case 'State':
+      optionLabel = item.state_name
+      break
+    case 'County':
+      optionLabel = `${ item.county } ${ CONSTANTS.COUNTY }, ${ item.state_name }`
+      break
+    case 'Offshore':
+      optionLabel = `${ item.location_name } ${ item.region_type }`
+      break
+    default:
+      optionLabel = item.location_name
+      break
+    }
+
+    return optionLabel
+  }
+
   const renderLabel = item => {
-    const label = item
+    const label = renderOptionLabel(item)
     const searchString = input
 
     if (searchString) {
@@ -227,7 +250,7 @@ const SearchLocationsInput = props => {
           onChange={handleSearch}
         />
       )}
-      renderOption={option => renderLabel(option.location_name)}
+      renderOption={option => renderLabel(option)}
       onChange={(e, v) => handleChange(v)}
       popupIcon={<KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
       classes={{

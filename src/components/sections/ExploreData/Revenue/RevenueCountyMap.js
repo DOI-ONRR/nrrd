@@ -87,13 +87,13 @@ const RevenueCountyMap = props => {
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
            <Map
-             key={`county_map_${ props.abbr }_${ year }`}
+             key={`county_map_${ props.name }_${ year }`}
              mapFeatures={mapFeatures}
              mapJsonObject={mapCounties}
              mapData={mapData}
              minColor={props.minColor}
              maxColor={props.maxColor}
-             zoomTo={props.abbr}
+             zoomTo={props.fipsCode}
            />
          </>
          }
