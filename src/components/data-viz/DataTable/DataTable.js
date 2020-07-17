@@ -98,7 +98,7 @@ const DataTable = ({ dataType, height = '200px' }) => {
             }
             {state[DATA_TYPE] === PRODUCTION &&
               <Grid item xs={12}>
-                <EnhancedDataTable showSummaryRow={showSummaryRow}/>
+                <EnhancedDataTable showOnlySubtotalRow={!showSummaryRow} showSummaryRow={showSummaryRow}/>
               </Grid>
             }
             {state[DATA_TYPE] === DISBURSEMENT &&
@@ -115,17 +115,17 @@ const DataTable = ({ dataType, height = '200px' }) => {
 
 export default DataTable
 
-const EnhancedDataTable = withQueryManager(({ data, showSummaryRow }) => {
+const EnhancedDataTable = withQueryManager(({ data, showSummaryRow, showOnlySubtotalRow }) => {
   return (
     <React.Fragment>
       {(data && data.results.length > 0) &&
-        <DataTableBase showSummaryRow={showSummaryRow} data ={data} />
+        <DataTableBase showOnlySubtotalRow={showOnlySubtotalRow} showSummaryRow={showSummaryRow} data ={data} />
       }
     </React.Fragment>
   )
 }, QUERY_KEY_DATA_TABLE)
 
-const DataTableBase = ({ data, showSummaryRow }) => {
+const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
   const { state, updateDataFilter } = useContext(DataFilterContext)
   const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
@@ -414,7 +414,14 @@ const DataTableBase = ({ data, showSummaryRow }) => {
               <TableGroupRow
                 contentComponent={CustomGroupCellContent}
                 columnExtensions={groupingExtension} />
-              {showSummaryRow &&
+              {showOnlySubtotalRow &&
+                <TableSummaryRow
+                  groupRowComponent={CustomTableSummaryRowGroupRow}
+                  totalRowComponent={() => <></>}
+                  itemComponent={CustomTableSummaryRowItem}
+                />
+              }
+              {(showSummaryRow && !showOnlySubtotalRow) &&
                 <TableSummaryRow
                   groupRowComponent={CustomTableSummaryRowGroupRow}
                   totalRowComponent={CustomTableSummaryRowTotalRow}
