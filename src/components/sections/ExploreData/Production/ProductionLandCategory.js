@@ -139,7 +139,12 @@ const ProductionLandCategory = ({ title, ...props }) => {
               lineTooltip={
                 (d, i) => {
                   const r = []
-                  const card = cards && cards.filter(item => item.fipsCode === data.fiscal_production_summary[i].state_or_area)[0]
+                  const card = cards && cards.filter(item => {
+                    const fips = (item.fipsCode === '99' || item.fipsCode === '999') ? item.state : item.fipsCode
+                    if (fips === data.fiscal_production_summary[i].state_or_area) {
+                      return item
+                    }
+                  })[0]
                   r[0] = `${ card.name }: ${ utils.formatToCommaInt(d) } (${ data.fiscal_production_summary[i].unit_abbr })`
                   return r
                 }
