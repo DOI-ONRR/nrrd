@@ -27,18 +27,19 @@ import LineChart from '../../../data-viz/LineChart/LineChart'
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
-  query FiscalProduction($state: String!, $location: String!, $commodity: String!) {
-    fiscal_production_summary(
+  query ProductionLandCategory($state: String!, $location: String!, $product: String!, $period: String!) {
+    production_summary(
       where: {
-        state_or_area: {_eq: $state}, 
+        location: {_eq: $state}, 
         location_type: {_eq: $location}, 
-        commodity: {_eq: $commodity}}, 
-        order_by: {fiscal_year: asc}
+        product: {_eq: $product},
+        period: {_eq: $period}},
+        order_by: {year: asc}
     ) {
-      fiscal_year
+      year
       land_category    
-      state_or_area
-      sum
+      location
+      total
       unit_abbr
     }
   }
@@ -73,7 +74,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const { state: pageState } = useContext(StoreContext)
   const cards = pageState.cards
 
@@ -91,10 +92,10 @@ const ProductionLandCategory = ({ title, ...props }) => {
     location = 'State'
   }
 
-  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  const product = (filterState[DFC.PRODUCT]) ? filterState[DFC.PRODUCT] : 'Oil (bbl)'
   const state = props.abbr
   // console.log('useQuery vars: ', state, location, commodity)
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, commodity } })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, product, period } })
   if (loading) {
     return (
       <div className={classes.progressContainer}>
@@ -105,20 +106,20 @@ const ProductionLandCategory = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = `FY ${ year } - ${ commodity }`
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year } - ${ product }` : `CY ${ year } - ${ product}`
 
-  if (data && data.fiscal_production_summary.length > 0) {
-    const unit = data.fiscal_production_summary[0].unit_abbr
+  if (data && data.production_summary.length > 0) {
+    const unit = data.production_summary[0].unit_abbr
    
-    const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
-    // const sums = [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === state).map(item => item.sum))]
+    const years = [...new Set(data.production_summary.map(item => item.year))]
+    // const sums = [...new Set(data.production_summary.filter(row => row.state_or_area === state).map(item => item.sum))]
     const sums = [...new Set(
       d3.nest()
-        .key(k => k.fiscal_year)
-        .rollup(v => d3.sum(v, i => i.sum))
-        .entries(data.fiscal_production_summary.filter(row => row.state_or_area === state)).map(item => item.value)
+        .key(k => k.year)
+        .rollup(v => d3.sum(v, i => i.total))
+        .entries(data.production_summary.filter(row => row.location === state)).map(item => item.value)
     )]
-
+    
     chartData = [years, sums]
     const noChartData = chartData[0].length === 0 && chartData[1].length === 0
 
@@ -136,8 +137,8 @@ const ProductionLandCategory = ({ title, ...props }) => {
               lineTooltip={
                 (d, i) => {
                   const r = []
-                  const card = cards && cards.filter(item => item.abbr === data.fiscal_production_summary[i].state_or_area)[0]
-                  r[0] = `${ card.name }: ${ utils.formatToCommaInt(d) } (${ data.fiscal_production_summary[i].unit_abbr })`
+                  const card = cards && cards.filter(item => item.abbr === data.production_summary[i].location)[0]
+                  r[0] = `${ card.name }: ${ utils.formatToCommaInt(d) } (${ data.production_summary[i].unit_abbr })`
                   return r
                 }
               }

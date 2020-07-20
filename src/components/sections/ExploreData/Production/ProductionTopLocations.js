@@ -26,13 +26,13 @@ import {
 import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
-  query Production($year: Int!, $location: String!, $commodity: String!, $state: String!, $period: String!) {
+  query ProductionTopLocations($year: Int!, $location: String!, $commodity: String!, $state: String!, $period: String!) {
     state_production_summary: production_summary(
       where: {
         location_type: {_eq: $location},
         year: { _eq: $year },
         product: {_eq: $commodity},
-        location: {_eq: $state},
+        state: {_eq: $state},
         period: {_eq: $period}
       },
         order_by: {total: desc}
@@ -112,7 +112,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionTopLocations = ({ title, ...props }) => {
-  // console.debug('ProductionTopLocations props: ', props)
 
   const classes = useStyles()
   const theme = useTheme()
@@ -168,7 +167,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
     }
     else {
-      const unitAbbr = data.production_summary[0].unit_abbr
+      unitAbbr = data.production_summary[0].unit_abbr
       let tmp = data.production_summary
       if (props.abbr) {
         tmp = data.production_summary.filter( d => d.location_name !== 'Native American lands')       
@@ -180,7 +179,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
           const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
           return r
         })
-
+      
     }
     dataSet = dataSet + ` (${ unitAbbr })`
 
@@ -197,7 +196,6 @@ const ProductionTopLocations = ({ title, ...props }) => {
             format={ d => utils.formatToCommaInt(d) }
             circleLabel={
               d => {
-                // console.debug('circleLABLE: ', d)
                 if (location === 'State' && !props.abbr) {
                   const r = []
                   r[0] = d.location_name

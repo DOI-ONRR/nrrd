@@ -108,7 +108,7 @@ const ProductionSummaryTrends = props => {
     // sparkline index
     highlightIndex = sparkData.findIndex((x, i) => x[0] === year)
 
-    total = sparkData[highlightIndex]
+    total = sparkData[highlightIndex][1]
 
     return (
       <>
