@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const CardTitle = props => {
-  console.log('CardTitle props: ', props)
+  // console.log('CardTitle props: ', props)
   const classes = useStyles()
   const card = props.card
 

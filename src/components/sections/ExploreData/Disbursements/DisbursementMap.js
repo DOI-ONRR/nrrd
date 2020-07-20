@@ -53,7 +53,7 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.log('DisbursementMap data: ', data)
+    // console.log('DisbursementMap data: ', data)
     /* mapData = data.fiscal_disbursement_summary.map((item, i) => [
       item.state_or_area,
       item.sum

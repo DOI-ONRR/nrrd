@@ -90,7 +90,7 @@ const RevenueOverTime = props => {
   const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   const handleDelete = props.handleDelete || ((e, val) => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== val) })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== val) })
   })
 
   if (loading) {
@@ -103,10 +103,13 @@ const RevenueOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
+    // console.log('data: ', data)
     const years = [...new Set(data.fiscal_revenue_summary.map(item => item.fiscal_year))]
-    const sums = cards.map(yData => [...new Set(data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
+    const sums = cards.map(yData => [...new Set(data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.fipsCode).map(item => item.sum))])
 
     chartData = [years, ...sums]
+
+    // console.log('chartData: ', chartData)
 
     return (
       <Container id={utils.formatToSlug(title)}>
@@ -133,9 +136,9 @@ const RevenueOverTime = props => {
               cards.map((card, i) => {
                 return (
                   <Chip
-                    key={`RevenueOverTimeChip_${ card.fips }`}
+                    key={`RevenueOverTimeChip_${ card.fipsCode }`}
                     variant='outlined'
-                    onDelete={ e => handleDelete(e, card.fips)}
+                    onDelete={ e => handleDelete(e, card.fipsCode)}
                     label={<ChipLabel labelIndex={i} label={card.name} />}
                     classes={{ root: classes.chipRoot }} />
                 )

@@ -48,7 +48,7 @@ const REVENUE_QUERY = gql`
 `
 
 const RevenueCountyMap = props => {
-  console.log('RevenueCountyMap props: ', props)
+  // console.log('RevenueCountyMap props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)

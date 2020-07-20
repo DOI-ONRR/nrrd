@@ -18,6 +18,7 @@ import CONSTANTS from '../../../js/constants'
 
 import mapJson from '../../sections/ExploreData/us-topology.json'
 import mapStatesOffshore from '../../sections/ExploreData/states-offshore.json'
+import { validateOperation } from 'apollo-link/lib/linkUtils'
 
 const GUTTER_SIZE = 15
 
@@ -46,7 +47,7 @@ const getRegionProperties = location => {
   switch (location.region_type) {
   case 'State':
     selectedObj = mapJson.objects.states.geometries.filter(obj => {
-      if (parseInt(obj.properties.FIPS) === parseInt(location.fips_code)) {
+      if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
         return Object.assign(obj, { locData: location })
       }
     })
@@ -59,8 +60,8 @@ const getRegionProperties = location => {
     })
     break
   case 'Offshore':
+    // console.log('mapStatesOffshore: ', mapStatesOffshore)
     selectedObj = mapStatesOffshore.objects['states-offshore-geo'].geometries.filter(obj => {
-      // console.log('Offshore obj: ', obj)
       if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
         return Object.assign(obj, { locData: location })
       }
@@ -111,7 +112,6 @@ const ListboxComponent = React.forwardRef((props, ref) => {
 
   // console.log('ListboxComponent itemCount: ', itemData, itemCount)
   const getChildSize = child => {
-    // console.log('getChildSize: ', child)
     const charCount = child.props.children.props.children.length
     if (React.isValidElement(child) && charCount > 20) {
       return 100
@@ -183,7 +183,6 @@ const SearchLocationsInput = props => {
   }
 
   const renderOptionLabel = item => {
-    console.log('renderOptionLabel item: ', item)
     let optionLabel
     switch (item.region_type) {
     case 'State':

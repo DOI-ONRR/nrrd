@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionLandCategory = ({ title, ...props }) => {
-  console.log('ProductionLandCategory props: ', props)
+  // console.log('ProductionLandCategory props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)

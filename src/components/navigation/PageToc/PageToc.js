@@ -143,7 +143,6 @@ const PageToc = props => {
 
   const handleClick = () => {
     // setToc({ ...toc, expanded: !toc.expanded })
-    console.log('handleClick: ', toc)
     if (toc.mobileActive) {
       setToc({ ...toc, expanded: !toc.expanded })
     }

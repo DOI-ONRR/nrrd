@@ -406,8 +406,6 @@ const MapContext = props => {
     // filter out location from location data
     const location = locations.filter(item => item.fips_code === fips)
 
-    console.log('onLink location: ', location)
-
     const stateObj = {
       fipsCode: location[0].fips_code,
       name: location[0].state_name,
@@ -591,7 +589,6 @@ const MapContext = props => {
             <Grid item xs={12}>
               <Box className={classes.cardContainer}>
                 {cards.map((state, i) => {
-                  console.log('state yo: ', state)
                   return (
                     React.cloneElement(props.children[1], {
                       key: i,
