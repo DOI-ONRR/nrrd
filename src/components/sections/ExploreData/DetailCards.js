@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
   closeIcon: {
     color: 'white',
     position: 'relative',
-    top: theme.spacing(1.75),
+    top: 5,
     right: theme.spacing(1),
     cursor: 'pointer',
     maxWidth: 20,
@@ -96,9 +96,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
     padding: 10,
-    height: 75,
+    height: 60,
     fontSize: '1.2rem',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     '& .MuiCardHeader-action': {
       marginTop: 0,
     },
@@ -155,12 +155,12 @@ const useStyles = makeStyles(theme => ({
     '& span > div': {
       fontSize: theme.typography.caption.fontSize,
       position: 'relative',
-      top: -15,
+      top: 0,
     },
   },
   landPercentage: {
     position: 'relative',
-    top: -10,
+    top: -8,
   }
 }))
 
