@@ -83,7 +83,7 @@ const AddCardButton = props => {
         onClose={handleClose(null)}
       >
         {
-          cardMenuItems.map((item, i) => <MenuItem disabled={cards.some(c => c.abbr === item.name)} key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
+          cardMenuItems.map((item, i) => <MenuItem disabled={cards.some(c => c.state === item.name)} key={i} onClick={handleClose(i, item)}>{item.label}</MenuItem>)
         }
       </Menu>
     </Box>

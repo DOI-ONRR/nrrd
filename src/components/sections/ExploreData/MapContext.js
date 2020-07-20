@@ -420,7 +420,7 @@ const MapContext = props => {
       cards.filter(item => item.fipsCode === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        if (stateObj.abbr && stateObj.abbr.match(/Nationwide Federal/)) {
+        if (stateObj.state && stateObj.state.match(/Nationwide Federal/)) {
           cards.unshift(stateObj)
         }
         else {
@@ -527,7 +527,6 @@ const MapContext = props => {
       const stateLinks = filteredLocations.map(item => {
         const nObj = {}
         nObj.fips_code = item.fips_code
-        nObj.abbr = item.state
         nObj.name = item.location_name
         nObj.state = item.state
         nObj.county = item.county
@@ -592,7 +591,6 @@ const MapContext = props => {
                   return (
                     React.cloneElement(props.children[1], {
                       key: i,
-                      abbr: state.abbr,
                       county: state.county,
                       fipsCode: state.fipsCode,
                       locationName: state.locationName,
@@ -619,7 +617,6 @@ const MapContext = props => {
                   return (
                     React.cloneElement(props.children[1], {
                       key: i,
-                      abbr: state.abbr,
                       county: state.county,
                       fipsCode: state.fipsCode,
                       locationName: state.locationName,

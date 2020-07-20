@@ -116,9 +116,22 @@ const ProductionOverview = ({ title, ...props }) => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const location = props.regionType
 
-  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+  let state = ''
+  let location = CONSTANTS.COUNTY
+
+  if (props.regionType === CONSTANTS.STATE) {
+    location = CONSTANTS.COUNTY
+    state = props.state
+  }
+  else if (props.regionType === CONSTANTS.COUNTY) {
+    location = ''
+    state = ''
+  }
+  else {
+    location = 'State'
+    state = ''
+  }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const key = `PTL${ year }${ state }${ commodity }`
@@ -140,7 +153,7 @@ const ProductionOverview = ({ title, ...props }) => {
   let chartData = []
   let unitAbbr = ''
   if (data && (data.state_fiscal_production_summary.length || data.fiscal_production_summary.length)) {
-    if (data.state_fiscal_production_summary.length > 0 && location === 'County') {
+    if (data.state_fiscal_production_summary.length > 0 && location === CONSTANTS.COUNTY) {
       unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)

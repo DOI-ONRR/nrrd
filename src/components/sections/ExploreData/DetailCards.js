@@ -255,7 +255,6 @@ const DetailCards = props => {
 
     const stateObj = {
       fipsCode: location[0].fips_code,
-      abbr: location[0].state,
       name: location[0].state_name,
       locationName: location[0].location_name,
       state: location[0].state,
@@ -268,7 +267,7 @@ const DetailCards = props => {
       cards.filter(item => item.fipsCode === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        if (stateObj.abbr && stateObj.abbr.match(/Nationwide Federal/)) {
+        if (stateObj.state && stateObj.state.match(/Nationwide Federal/)) {
           cards.unshift(stateObj)
         }
         else {
@@ -293,7 +292,6 @@ const DetailCards = props => {
           const children = React.Children.map(props.children, child =>
             React.cloneElement(child, {
               key: i,
-              abbr: card.abbr,
               county: card.county,
               fipsCode: card.fipsCode,
               locationName: card.locationName,

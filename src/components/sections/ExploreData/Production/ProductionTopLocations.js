@@ -111,18 +111,34 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionTopLocations = ({ title, ...props }) => {
-  // console.debug('ProductionTopLocations props: ', props)
+  console.debug('ProductionTopLocations props: ', props)
 
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
 
-  const location = props.regionType
-  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+  let location = CONSTANTS.COUNTY
+  let state = ''
+
+  switch (props.regionType) {
+  case CONSTANTS.STATE:
+    location = CONSTANTS.COUNTY
+    state = ''
+    break
+  case CONSTANTS.COUNTY:
+    location = ''
+    state = ''
+    break
+  default:
+    location = CONSTANTS.STATE
+    state = ''
+    break
+  }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const key = `PTL${ year }${ state }${ commodity }`
+
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location, commodity, state },

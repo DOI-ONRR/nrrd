@@ -77,18 +77,18 @@ const ProductionDetailTrends = props => {
   let locationTotalData
   let locData
   let unit = ''
-  if (data &&  data.fiscal_production_summary.length > 0) {
+  if (data && data.fiscal_production_summary.length > 0) {
     periodData = data.period
 
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
     sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
     unit = data.fiscal_production_summary[0].unit_abbr
-    
+
     fiscalData = d3.nest()
       .key(k => k.fiscal_year)
       .rollup(v => d3.sum(v, i => i.sum))
-      .entries(data.fiscal_production_summary.filter(row => row.state_or_area === stateAbbr)).map(item => [parseInt(item.key), item.value])
+      .entries(data.fiscal_production_summary.filter(row => row.state_or_area === state)).map(item => [parseInt(item.key), item.value])
 
     /* console.debug ("FD ", fD)
       fiscalData = data.fiscal_production_summary.map((item, i) => [
@@ -118,7 +118,7 @@ const ProductionDetailTrends = props => {
     return (
       <>
         <Box textAlign="center" className={classes.root} key={props.key}>
-        <Box component="h2" mt={0} mb={0}  style={{whiteSpace: 'nowrap'}} >{utils.formatToCommaInt(locData) + ' ' + unit}</Box>
+          <Box component="h2" mt={0} mb={0} style={{ whiteSpace: 'nowrap' }} >{utils.formatToCommaInt(locData) + ' ' + unit}</Box>
           <Box component="span" mb={4}>{year && <span>{dataSet} production</span>}</Box>
           {sparkData.length > 1 && (
             <Box mt={4}>

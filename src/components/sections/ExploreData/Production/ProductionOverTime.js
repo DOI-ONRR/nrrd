@@ -96,7 +96,7 @@ const ProductionOverTime = props => {
   })
 
   const handleDelete = props.handleDelete || ((e, val) => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== val) })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== val) })
   })
 
   if (loading) {
@@ -109,10 +109,12 @@ const ProductionOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
+
+    console.debug('ProductionOverTime data: ', data)
     const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
-    const sums = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
-    const units = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.unit_abbr))])
-    
+    const sums = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.fipsCode).map(item => item.sum))])
+    const units = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.fipsCode).map(item => item.unit_abbr))])
+
     chartData = [years, ...sums]
 
     return (

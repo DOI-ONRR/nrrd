@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionLandCategory = ({ title, ...props }) => {
-  // console.log('ProductionLandCategory props: ', props)
+  console.log('ProductionLandCategory props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -78,10 +78,18 @@ const ProductionLandCategory = ({ title, ...props }) => {
   const { state: pageState } = useContext(StoreContext)
   const cards = pageState.cards
 
-  let location = props.regionType
-
-  if (location === '') {
+  let location
+  if (props.state === CONSTANTS.NATIONWIDE_FEDERAL || props.state === CONSTANTS.NATIVE_AMERICAN) {
     location = props.state
+  }
+  else if (props.regionType === CONSTANTS.COUNTY) {
+    location = 'County'
+  }
+  else if (props.regionType === CONSTANTS.OFFSHORE) {
+    location = 'Offshore'
+  }
+  else {
+    location = 'State'
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
@@ -115,6 +123,8 @@ const ProductionLandCategory = ({ title, ...props }) => {
     chartData = [years, sums]
     const noChartData = chartData[0].length === 0 && chartData[1].length === 0
 
+    console.log('ProductionLandCategory data: ', data)
+
     if (!noChartData) {
       return (
 
@@ -129,7 +139,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
               lineTooltip={
                 (d, i) => {
                   const r = []
-                  const card = cards && cards.filter(item => item.abbr === data.fiscal_production_summary[i].state_or_area)[0]
+                  const card = cards && cards.filter(item => item.fipsCode === data.fiscal_production_summary[i].state_or_area)[0]
                   r[0] = `${ card.name }: ${ utils.formatToCommaInt(d) } (${ data.fiscal_production_summary[i].unit_abbr })`
                   return r
                 }
