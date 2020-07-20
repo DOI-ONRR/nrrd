@@ -45,21 +45,21 @@ const getRegionProperties = location => {
   let selectedObj
 
   switch (location.region_type) {
-  case 'State':
+  case CONSTANTS.STATE:
     selectedObj = mapJson.objects.states.geometries.filter(obj => {
       if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
         return Object.assign(obj, { locData: location })
       }
     })
     break
-  case 'County':
+  case CONSTANTS.COUNTY:
     selectedObj = mapJson.objects.counties.geometries.filter(obj => {
       if (parseInt(obj.properties.FIPS) === parseInt(location.fips_code)) {
         return Object.assign(obj, { locData: location })
       }
     })
     break
-  case 'Offshore':
+  case CONSTANTS.OFFSHORE:
     // console.log('mapStatesOffshore: ', mapStatesOffshore)
     selectedObj = mapStatesOffshore.objects['states-offshore-geo'].geometries.filter(obj => {
       if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
@@ -185,13 +185,13 @@ const SearchLocationsInput = props => {
   const renderOptionLabel = item => {
     let optionLabel
     switch (item.region_type) {
-    case 'State':
+    case CONSTANTS.STATE:
       optionLabel = item.state_name
       break
-    case 'County':
+    case CONSTANTS.COUNTY:
       optionLabel = `${ item.county } ${ CONSTANTS.COUNTY }, ${ item.state_name }`
       break
-    case 'Offshore':
+    case CONSTANTS.OFFSHORE:
       optionLabel = `${ item.location_name } ${ item.region_type }`
       break
     default:

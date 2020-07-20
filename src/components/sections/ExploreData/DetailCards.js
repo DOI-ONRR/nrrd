@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
     padding: 10,
-    height: 60,
+    height: 75,
     fontSize: '1.2rem',
     alignItems: 'center',
     '& .MuiCardHeader-action': {
@@ -137,6 +137,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 50,
     marginRight: theme.spacing(1.5),
     filter: 'invert(1)',
+    marginTop: 15,
   },
   cardContentContainer: {
     display: isIE ? 'block' : 'grid',
