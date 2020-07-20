@@ -112,8 +112,18 @@ const ProductionOverTime = props => {
 
     console.debug('ProductionOverTime data: ', data)
     const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
-    const sums = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.fipsCode).map(item => item.sum))])
-    const units = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.fipsCode).map(item => item.unit_abbr))])
+    const sums = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => {
+      const fips = (yData.fipsCode === '99' || yData.fipsCode === '999') ? yData.state : yData.fipsCode
+      if (row.state_or_area === fips) {
+        return row
+      }
+    }).map(item => item.sum))])
+    const units = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => {
+      const fips = (yData.fipsCode === '99' || yData.fipsCode === '999') ? yData.state : yData.fipsCode
+      if (row.state_or_area === fips) {
+        return row
+      }
+    }).map(item => item.unit_abbr))])
 
     chartData = [years, ...sums]
 

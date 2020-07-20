@@ -103,13 +103,18 @@ const RevenueOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
-    // console.log('data: ', data)
+
     const years = [...new Set(data.fiscal_revenue_summary.map(item => item.fiscal_year))]
-    const sums = cards.map(yData => [...new Set(data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.fipsCode).map(item => item.sum))])
+    const sums = cards.map(yData => [...new Set(data.fiscal_revenue_summary.filter(row => {
+      const fips = (yData.fipsCode === '99' || yData.fipsCode === '999') ? yData.state : yData.fipsCode
+      if (row.state_or_area === fips) {
+        return row
+      }
+    }).map(item => item.sum))])
 
     chartData = [years, ...sums]
 
-    // console.log('chartData: ', chartData)
+    console.log('chartData: ', chartData)
 
     return (
       <Container id={utils.formatToSlug(title)}>
