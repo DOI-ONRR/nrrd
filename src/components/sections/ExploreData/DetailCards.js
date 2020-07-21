@@ -172,7 +172,7 @@ const nonStateOrCountyCards = [
 
 // Detail Card title
 const DetailCardTitle = props => {
-  // console.log('DetailCardTitle props: ', props)
+  console.log('DetailCardTitle props: ', props)
   const classes = useStyles()
 
   const landStatsData = props.data
@@ -215,6 +215,17 @@ const DetailCards = props => {
           total_acres
         }
       }
+      onrr {
+        locations: location(where: {region_type: {_in: ["State", "Offshore", "County"]}, fips_code: {_neq: ""}}, distinct_on: fips_code) {
+          fips_code
+          location_name
+          state
+          state_name
+          county
+          region_type
+          district_type
+        }
+      }
     }
   `)
   const classes = useStyles()
@@ -239,20 +250,15 @@ const DetailCards = props => {
   ]
 
   // onLink
-  const onLink = (state, x, y, k) => {
-    // console.log('onLink state: ', state)
+  const onLink = state => {
+    console.log('onLink state: ', state)
 
     // decern betweeen topo json and location data fips
     const fips = state.properties ? state.id : state.fips_code
-    const locations = data.onrr.locations
-    // let locationData = [...locations, cardMenuItems[0], cardMenuItems[1]]
+    const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
 
     // filter out location from location data
-    let location = locations.filter(item => item.fips_code === fips)
-
-    if (fips === 99 || fips === 999) {
-      location = [...location, state]
-    }
+    const location = locations.filter(item => item.fips_code === fips)
 
     const stateObj = {
       fipsCode: location[0].fips_code,
@@ -260,7 +266,7 @@ const DetailCards = props => {
       locationName: location[0].location_name,
       state: location[0].state,
       regionType: location[0].region_type,
-      districtType: location[0].districtType,
+      districtType: location[0].district_type,
       county: location[0].county
     }
 

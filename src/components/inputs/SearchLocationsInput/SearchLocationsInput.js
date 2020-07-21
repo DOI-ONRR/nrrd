@@ -171,6 +171,7 @@ const SearchLocationsInput = props => {
   }
 
   const handleChange = val => {
+    console.log('handleChange val: ', val)
     try {
       const item = getRegionProperties(val)
       onLink(item[0])
@@ -229,6 +230,8 @@ const SearchLocationsInput = props => {
   }
 
   const OPTIONS = data.onrr.distinct_locations
+
+  console.log('OPTIONS: ', OPTIONS)
 
   return (
     <Autocomplete
