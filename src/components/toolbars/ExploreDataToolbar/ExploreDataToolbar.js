@@ -256,15 +256,26 @@ const ExploreDataToolbar = props => {
               selectType='Single'
               showClearSelected={false} />
           }
-
-          <Box className={classes.toolsWrapper}>
+         <Box className={classes.toolsWrapper}>
+         {(dataType === 'Revenue' || dataType === 'Production') &&
             <PeriodSelectInput
               dataFilterKey={PERIOD}
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[PERIOD]}
               defaultSelected='Fiscal Year'
               label='Period'
               selectType='Single'
-              showClearSelected={false} />
+           showClearSelected={false} />
+          }
+          {(dataType === 'Disbursements') &&
+           
+            <PeriodSelectInput
+              dataFilterKey={PERIOD}
+              data={['Fiscal Year']}
+              defaultSelected='Fiscal Year'
+              label='Period'
+              selectType='Single'
+           showClearSelected={false} />
+          } 
             <YearSlider />
           </Box>
           {!mapOverlay &&
