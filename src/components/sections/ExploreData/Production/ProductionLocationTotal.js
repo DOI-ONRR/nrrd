@@ -2,29 +2,35 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import { StoreContext } from '../../../../store'
 import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 const LOCATION_TOTAL_QUERY = gql`
-  query NationwideFederal($locations: [String!], $year: Int!) {
-    fiscal_disbursement_summary(where: {state_or_area: {_in: $locations, _neq: ""}, fiscal_year: {_eq: $year}}) {
+  query NationwideFederal($locations: [String!], $year: Int!, $commodity: String!) {
+    fiscal_production_summary(where: {
+      state_or_area: {_in: $locations, _neq: ""}, 
+      fiscal_year: {_eq: $year},
+      commodity: {_eq: $commodity}
+      }) {
       fiscal_year
       state_or_area
       sum
+      unit_abbr
+      commodity
     }
   }
 `
 
-const DisbursementLocationTotal = props => {
+const ProductionLocationTotal = props => {
   const { locations } = props
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
+  const commodity = filterState[DFC.COMMODITY]
 
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { locations: locations, year: year }
+    variables: { locations: locations, year: year, commodity: commodity }
   })
 
   if (loading) return ''
@@ -32,8 +38,8 @@ const DisbursementLocationTotal = props => {
 
   if (
     data &&
-    data.fiscal_disbursement_summary.length > 0) {
-    const locationData = data.fiscal_disbursement_summary
+    data.fiscal_production_summary.length > 0) {
+    const locationData = data.fiscal_production_summary
     let total
     if (locationData.length === 1) {
       total = locationData[0].sum
@@ -43,7 +49,7 @@ const DisbursementLocationTotal = props => {
     }
     return (
       <>
-        { utils.formatToDollarInt(total) }
+        { utils.formatToCommaInt(total) }
       </>
     )
   }
@@ -52,4 +58,4 @@ const DisbursementLocationTotal = props => {
   }
 }
 
-export default DisbursementLocationTotal
+export default ProductionLocationTotal

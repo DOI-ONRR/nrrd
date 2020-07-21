@@ -231,8 +231,6 @@ const SearchLocationsInput = props => {
 
   const OPTIONS = data.onrr.distinct_locations
 
-  console.log('OPTIONS: ', OPTIONS)
-
   return (
     <Autocomplete
       key={keyCount}
