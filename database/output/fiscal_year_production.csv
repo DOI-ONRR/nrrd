@@ -1,9 +1,10 @@
-Fiscal Year,0,2003,0,"",0,2003-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),3626044,0,2
-Fiscal Year,0,2003,0,"",0,2003-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),11455234,0,3
-Fiscal Year,0,2003,0,"",0,2003-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),555614297,0,4
-Fiscal Year,0,2003,0,"",0,2003-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),4432757167,0,5
-Fiscal Year,0,2003,0,"",0,2003-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),30685447,0,6
-Fiscal Year,0,2003,0,"",0,2003-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),62738248,0,7
+period,calendar_year,fiscal_year,month,month_long,fiscal_month,period_date,location_name,fips_code,state,state_name,county,land_class,land_category,land_type,region_type,district_type,offshore_region,commodity,product,volume,duplicate_no,row_number
+Fiscal Year,0,2003,0,"",0,2003-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),3626044,0,2
+Fiscal Year,0,2003,0,"",0,2003-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),11455234,0,3
+Fiscal Year,0,2003,0,"",0,2003-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),555614297,0,4
+Fiscal Year,0,2003,0,"",0,2003-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),4432757167,0,5
+Fiscal Year,0,2003,0,"",0,2003-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),30685447,0,6
+Fiscal Year,0,2003,0,"",0,2003-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),62738248,0,7
 Fiscal Year,0,2003,0,"",0,2003-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),24551,0,8
 Fiscal Year,0,2003,0,"",0,2003-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),525460,0,9
 Fiscal Year,0,2003,0,"",0,2003-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),52586893,0,10
@@ -680,12 +681,12 @@ Fiscal Year,0,2003,0,"",0,2003-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2003,0,"",0,2003-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),11276860,0,681
 Fiscal Year,0,2003,0,"",0,2003-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),7671287,0,682
 Fiscal Year,0,2003,0,"",0,2003-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),269568,0,683
-Fiscal Year,0,2004,0,"",0,2004-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),4176537,0,684
-Fiscal Year,0,2004,0,"",0,2004-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),15116252,0,685
-Fiscal Year,0,2004,0,"",0,2004-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),548309610,0,686
-Fiscal Year,0,2004,0,"",0,2004-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),4166600396,0,687
-Fiscal Year,0,2004,0,"",0,2004-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),28014619,0,688
-Fiscal Year,0,2004,0,"",0,2004-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),54813081,0,689
+Fiscal Year,0,2004,0,"",0,2004-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),4176537,0,684
+Fiscal Year,0,2004,0,"",0,2004-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),15116252,0,685
+Fiscal Year,0,2004,0,"",0,2004-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),548309610,0,686
+Fiscal Year,0,2004,0,"",0,2004-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),4166600396,0,687
+Fiscal Year,0,2004,0,"",0,2004-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),28014619,0,688
+Fiscal Year,0,2004,0,"",0,2004-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),54813081,0,689
 Fiscal Year,0,2004,0,"",0,2004-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),35114,0,690
 Fiscal Year,0,2004,0,"",0,2004-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),424402,0,691
 Fiscal Year,0,2004,0,"",0,2004-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),49363734,0,692
@@ -1373,12 +1374,12 @@ Fiscal Year,0,2004,0,"",0,2004-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2004,0,"",0,2004-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),11283185,0,1374
 Fiscal Year,0,2004,0,"",0,2004-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),7373654,0,1375
 Fiscal Year,0,2004,0,"",0,2004-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),264126,0,1376
-Fiscal Year,0,2005,0,"",0,2005-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),4094215,0,1377
-Fiscal Year,0,2005,0,"",0,2005-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),23297401,0,1378
-Fiscal Year,0,2005,0,"",0,2005-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),507086548,0,1379
-Fiscal Year,0,2005,0,"",0,2005-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),3497889537,0,1380
-Fiscal Year,0,2005,0,"",0,2005-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),26421341,0,1381
-Fiscal Year,0,2005,0,"",0,2005-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),52510793,0,1382
+Fiscal Year,0,2005,0,"",0,2005-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),4094215,0,1377
+Fiscal Year,0,2005,0,"",0,2005-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),23297401,0,1378
+Fiscal Year,0,2005,0,"",0,2005-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),507086548,0,1379
+Fiscal Year,0,2005,0,"",0,2005-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),3497889537,0,1380
+Fiscal Year,0,2005,0,"",0,2005-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),26421341,0,1381
+Fiscal Year,0,2005,0,"",0,2005-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),52510793,0,1382
 Fiscal Year,0,2005,0,"",0,2005-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),28791,0,1383
 Fiscal Year,0,2005,0,"",0,2005-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),373830,0,1384
 Fiscal Year,0,2005,0,"",0,2005-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),45206429,0,1385
@@ -2085,12 +2086,12 @@ Fiscal Year,0,2005,0,"",0,2005-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2005,0,"",0,2005-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),11653068,0,2086
 Fiscal Year,0,2005,0,"",0,2005-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),4943551,0,2087
 Fiscal Year,0,2005,0,"",0,2005-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),329286,0,2088
-Fiscal Year,0,2006,0,"",0,2006-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),3436220,0,2089
-Fiscal Year,0,2006,0,"",0,2006-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),24778006,0,2090
-Fiscal Year,0,2006,0,"",0,2006-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),434449712,0,2091
-Fiscal Year,0,2006,0,"",0,2006-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2762642409,0,2092
-Fiscal Year,0,2006,0,"",0,2006-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),26015236,0,2093
-Fiscal Year,0,2006,0,"",0,2006-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),49790549,0,2094
+Fiscal Year,0,2006,0,"",0,2006-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),3436220,0,2089
+Fiscal Year,0,2006,0,"",0,2006-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),24778006,0,2090
+Fiscal Year,0,2006,0,"",0,2006-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),434449712,0,2091
+Fiscal Year,0,2006,0,"",0,2006-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2762642409,0,2092
+Fiscal Year,0,2006,0,"",0,2006-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),26015236,0,2093
+Fiscal Year,0,2006,0,"",0,2006-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),49790549,0,2094
 Fiscal Year,0,2006,0,"",0,2006-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),29500,0,2095
 Fiscal Year,0,2006,0,"",0,2006-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),361885,0,2096
 Fiscal Year,0,2006,0,"",0,2006-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),41305488,0,2097
@@ -2804,12 +2805,12 @@ Fiscal Year,0,2006,0,"",0,2006-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2006,0,"",0,2006-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),11150537,0,2805
 Fiscal Year,0,2006,0,"",0,2006-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),3461791,0,2806
 Fiscal Year,0,2006,0,"",0,2006-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),126750,0,2807
-Fiscal Year,0,2007,0,"",0,2007-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),2550717,0,2808
-Fiscal Year,0,2007,0,"",0,2007-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),24902614,0,2809
-Fiscal Year,0,2007,0,"",0,2007-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),475597834,0,2810
-Fiscal Year,0,2007,0,"",0,2007-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2813467546,0,2811
-Fiscal Year,0,2007,0,"",0,2007-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),25144085,0,2812
-Fiscal Year,0,2007,0,"",0,2007-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),46295506,0,2813
+Fiscal Year,0,2007,0,"",0,2007-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),2550717,0,2808
+Fiscal Year,0,2007,0,"",0,2007-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),24902614,0,2809
+Fiscal Year,0,2007,0,"",0,2007-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),475597834,0,2810
+Fiscal Year,0,2007,0,"",0,2007-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2813467546,0,2811
+Fiscal Year,0,2007,0,"",0,2007-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),25144085,0,2812
+Fiscal Year,0,2007,0,"",0,2007-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),46295506,0,2813
 Fiscal Year,0,2007,0,"",0,2007-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),26330,0,2814
 Fiscal Year,0,2007,0,"",0,2007-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),286375,0,2815
 Fiscal Year,0,2007,0,"",0,2007-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),37688315,0,2816
@@ -3542,12 +3543,12 @@ Fiscal Year,0,2007,0,"",0,2007-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2007,0,"",0,2007-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),11119685,0,3543
 Fiscal Year,0,2007,0,"",0,2007-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),2806905,0,3544
 Fiscal Year,0,2007,0,"",0,2007-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),48568,0,3545
-Fiscal Year,0,2008,0,"",0,2008-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),2816900,0,3546
-Fiscal Year,0,2008,0,"",0,2008-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),30201392,0,3547
-Fiscal Year,0,2008,0,"",0,2008-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),443439918,0,3548
-Fiscal Year,0,2008,0,"",0,2008-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2585089202,0,3549
-Fiscal Year,0,2008,0,"",0,2008-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),24022774,0,3550
-Fiscal Year,0,2008,0,"",0,2008-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),46337875,0,3551
+Fiscal Year,0,2008,0,"",0,2008-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),2816900,0,3546
+Fiscal Year,0,2008,0,"",0,2008-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),30201392,0,3547
+Fiscal Year,0,2008,0,"",0,2008-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),443439918,0,3548
+Fiscal Year,0,2008,0,"",0,2008-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2585089202,0,3549
+Fiscal Year,0,2008,0,"",0,2008-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),24022774,0,3550
+Fiscal Year,0,2008,0,"",0,2008-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),46337875,0,3551
 Fiscal Year,0,2008,0,"",0,2008-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),23770,0,3552
 Fiscal Year,0,2008,0,"",0,2008-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),234634,0,3553
 Fiscal Year,0,2008,0,"",0,2008-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),34798419,0,3554
@@ -4292,12 +4293,12 @@ Fiscal Year,0,2008,0,"",0,2008-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2008,0,"",0,2008-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),11502931,0,4293
 Fiscal Year,0,2008,0,"",0,2008-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),3045566,0,4294
 Fiscal Year,0,2008,0,"",0,2008-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),15560,0,4295
-Fiscal Year,0,2009,0,"",0,2009-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),1999350,0,4296
-Fiscal Year,0,2009,0,"",0,2009-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),29600072,0,4297
-Fiscal Year,0,2009,0,"",0,2009-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),512447755,0,4298
-Fiscal Year,0,2009,0,"",0,2009-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2318138247,0,4299
-Fiscal Year,0,2009,0,"",0,2009-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),22785951,0,4300
-Fiscal Year,0,2009,0,"",0,2009-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),42055841,0,4301
+Fiscal Year,0,2009,0,"",0,2009-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),1999350,0,4296
+Fiscal Year,0,2009,0,"",0,2009-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),29600072,0,4297
+Fiscal Year,0,2009,0,"",0,2009-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),512447755,0,4298
+Fiscal Year,0,2009,0,"",0,2009-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2318138247,0,4299
+Fiscal Year,0,2009,0,"",0,2009-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),22785951,0,4300
+Fiscal Year,0,2009,0,"",0,2009-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),42055841,0,4301
 Fiscal Year,0,2009,0,"",0,2009-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),29406,0,4302
 Fiscal Year,0,2009,0,"",0,2009-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),189910,0,4303
 Fiscal Year,0,2009,0,"",0,2009-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),30249083,0,4304
@@ -5043,12 +5044,12 @@ Fiscal Year,0,2009,0,"",0,2009-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2009,0,"",0,2009-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),11890900,0,5044
 Fiscal Year,0,2009,0,"",0,2009-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),1436759,0,5045
 Fiscal Year,0,2009,0,"",0,2009-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),8360,0,5046
-Fiscal Year,0,2010,0,"",0,2010-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),1479266,0,5047
-Fiscal Year,0,2010,0,"",0,2010-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),30233734,0,5048
-Fiscal Year,0,2010,0,"",0,2010-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),579827543,0,5049
-Fiscal Year,0,2010,0,"",0,2010-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2321553614,0,5050
-Fiscal Year,0,2010,0,"",0,2010-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),22097574,0,5051
-Fiscal Year,0,2010,0,"",0,2010-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),41933020,0,5052
+Fiscal Year,0,2010,0,"",0,2010-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),1479266,0,5047
+Fiscal Year,0,2010,0,"",0,2010-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),30233734,0,5048
+Fiscal Year,0,2010,0,"",0,2010-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),579827543,0,5049
+Fiscal Year,0,2010,0,"",0,2010-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2321553614,0,5050
+Fiscal Year,0,2010,0,"",0,2010-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),22097574,0,5051
+Fiscal Year,0,2010,0,"",0,2010-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),41933020,0,5052
 Fiscal Year,0,2010,0,"",0,2010-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),25838,0,5053
 Fiscal Year,0,2010,0,"",0,2010-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),234859,0,5054
 Fiscal Year,0,2010,0,"",0,2010-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),25166631,0,5055
@@ -5783,12 +5784,12 @@ Fiscal Year,0,2010,0,"",0,2010-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2010,0,"",0,2010-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),14768401,0,5784
 Fiscal Year,0,2010,0,"",0,2010-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),1347208,0,5785
 Fiscal Year,0,2010,0,"",0,2010-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),8460,0,5786
-Fiscal Year,0,2011,0,"",0,2011-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),1163866,0,5787
-Fiscal Year,0,2011,0,"",0,2011-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),32258882,0,5788
-Fiscal Year,0,2011,0,"",0,2011-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),503110096,0,5789
-Fiscal Year,0,2011,0,"",0,2011-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1933016174,0,5790
-Fiscal Year,0,2011,0,"",0,2011-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),20282661,0,5791
-Fiscal Year,0,2011,0,"",0,2011-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),38171618,0,5792
+Fiscal Year,0,2011,0,"",0,2011-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),1163866,0,5787
+Fiscal Year,0,2011,0,"",0,2011-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),32258882,0,5788
+Fiscal Year,0,2011,0,"",0,2011-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),503110096,0,5789
+Fiscal Year,0,2011,0,"",0,2011-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1933016174,0,5790
+Fiscal Year,0,2011,0,"",0,2011-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),20282661,0,5791
+Fiscal Year,0,2011,0,"",0,2011-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),38171618,0,5792
 Fiscal Year,0,2011,0,"",0,2011-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),22619,0,5793
 Fiscal Year,0,2011,0,"",0,2011-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),251653,0,5794
 Fiscal Year,0,2011,0,"",0,2011-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),14726650,0,5795
@@ -6528,12 +6529,12 @@ Fiscal Year,0,2011,0,"",0,2011-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2011,0,"",0,2011-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),21641432,0,6529
 Fiscal Year,0,2011,0,"",0,2011-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),1956917,0,6530
 Fiscal Year,0,2011,0,"",0,2011-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),9360,0,6531
-Fiscal Year,0,2012,0,"",0,2012-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),719723,0,6532
-Fiscal Year,0,2012,0,"",0,2012-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),23975866,0,6533
-Fiscal Year,0,2012,0,"",0,2012-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),456992688,0,6534
-Fiscal Year,0,2012,0,"",0,2012-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1577358938,0,6535
-Fiscal Year,0,2012,0,"",0,2012-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),17826279,0,6536
-Fiscal Year,0,2012,0,"",0,2012-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),29578551,0,6537
+Fiscal Year,0,2012,0,"",0,2012-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),719723,0,6532
+Fiscal Year,0,2012,0,"",0,2012-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),23975866,0,6533
+Fiscal Year,0,2012,0,"",0,2012-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),456992688,0,6534
+Fiscal Year,0,2012,0,"",0,2012-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1577358938,0,6535
+Fiscal Year,0,2012,0,"",0,2012-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),17826279,0,6536
+Fiscal Year,0,2012,0,"",0,2012-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),29578551,0,6537
 Fiscal Year,0,2012,0,"",0,2012-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),17291,0,6538
 Fiscal Year,0,2012,0,"",0,2012-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),236326,0,6539
 Fiscal Year,0,2012,0,"",0,2012-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),14054266,0,6540
@@ -7278,12 +7279,12 @@ Fiscal Year,0,2012,0,"",0,2012-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2012,0,"",0,2012-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),33301100,0,7279
 Fiscal Year,0,2012,0,"",0,2012-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),1687139,0,7280
 Fiscal Year,0,2012,0,"",0,2012-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),7360,0,7281
-Fiscal Year,0,2013,0,"",0,2013-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),640896,0,7282
-Fiscal Year,0,2013,0,"",0,2013-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),26421937,0,7283
-Fiscal Year,0,2013,0,"",0,2013-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),468863641,0,7284
-Fiscal Year,0,2013,0,"",0,2013-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1394366836,0,7285
-Fiscal Year,0,2013,0,"",0,2013-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),18565033,0,7286
-Fiscal Year,0,2013,0,"",0,2013-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),27022927,0,7287
+Fiscal Year,0,2013,0,"",0,2013-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),640896,0,7282
+Fiscal Year,0,2013,0,"",0,2013-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),26421937,0,7283
+Fiscal Year,0,2013,0,"",0,2013-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),468863641,0,7284
+Fiscal Year,0,2013,0,"",0,2013-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1394366836,0,7285
+Fiscal Year,0,2013,0,"",0,2013-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),18565033,0,7286
+Fiscal Year,0,2013,0,"",0,2013-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),27022927,0,7287
 Fiscal Year,0,2013,0,"",0,2013-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),28740,0,7288
 Fiscal Year,0,2013,0,"",0,2013-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),814304,0,7289
 Fiscal Year,0,2013,0,"",0,2013-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),14110220,0,7290
@@ -8027,12 +8028,12 @@ Fiscal Year,0,2013,0,"",0,2013-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2013,0,"",0,2013-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),49209895,0,8028
 Fiscal Year,0,2013,0,"",0,2013-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),1364907,0,8029
 Fiscal Year,0,2013,0,"",0,2013-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),7520,0,8030
-Fiscal Year,0,2014,0,"",0,2014-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),651146,0,8031
-Fiscal Year,0,2014,0,"",0,2014-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),31999756,0,8032
-Fiscal Year,0,2014,0,"",0,2014-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),494812694,0,8033
-Fiscal Year,0,2014,0,"",0,2014-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1273603529,0,8034
-Fiscal Year,0,2014,0,"",0,2014-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),18466240,0,8035
-Fiscal Year,0,2014,0,"",0,2014-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),27453123,0,8036
+Fiscal Year,0,2014,0,"",0,2014-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),651146,0,8031
+Fiscal Year,0,2014,0,"",0,2014-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),31999756,0,8032
+Fiscal Year,0,2014,0,"",0,2014-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),494812694,0,8033
+Fiscal Year,0,2014,0,"",0,2014-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1273603529,0,8034
+Fiscal Year,0,2014,0,"",0,2014-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),18466240,0,8035
+Fiscal Year,0,2014,0,"",0,2014-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),27453123,0,8036
 Fiscal Year,0,2014,0,"",0,2014-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),19943,0,8037
 Fiscal Year,0,2014,0,"",0,2014-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),889448,0,8038
 Fiscal Year,0,2014,0,"",0,2014-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),15030125,0,8039
@@ -8770,12 +8771,12 @@ Fiscal Year,0,2014,0,"",0,2014-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2014,0,"",0,2014-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),59727194,0,8771
 Fiscal Year,0,2014,0,"",0,2014-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),1338910,0,8772
 Fiscal Year,0,2014,0,"",0,2014-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),8240,0,8773
-Fiscal Year,0,2015,0,"",0,2015-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),608252,0,8774
-Fiscal Year,0,2015,0,"",0,2015-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),31533821,0,8775
-Fiscal Year,0,2015,0,"",0,2015-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),539636554,0,8776
-Fiscal Year,0,2015,0,"",0,2015-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1303679855,0,8777
-Fiscal Year,0,2015,0,"",0,2015-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),14430291,0,8778
-Fiscal Year,0,2015,0,"",0,2015-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),21261576,0,8779
+Fiscal Year,0,2015,0,"",0,2015-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),608252,0,8774
+Fiscal Year,0,2015,0,"",0,2015-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),31533821,0,8775
+Fiscal Year,0,2015,0,"",0,2015-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),539636554,0,8776
+Fiscal Year,0,2015,0,"",0,2015-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1303679855,0,8777
+Fiscal Year,0,2015,0,"",0,2015-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),14430291,0,8778
+Fiscal Year,0,2015,0,"",0,2015-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),21261576,0,8779
 Fiscal Year,0,2015,0,"",0,2015-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),17638,0,8780
 Fiscal Year,0,2015,0,"",0,2015-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),960396,0,8781
 Fiscal Year,0,2015,0,"",0,2015-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),16205732,0,8782
@@ -9522,12 +9523,12 @@ Fiscal Year,0,2015,0,"",0,2015-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2015,0,"",0,2015-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),63552852,0,9523
 Fiscal Year,0,2015,0,"",0,2015-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),986842,0,9524
 Fiscal Year,0,2015,0,"",0,2015-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),5280,0,9525
-Fiscal Year,0,2016,0,"",0,2016-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),570047,0,9526
-Fiscal Year,0,2016,0,"",0,2016-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),32441292,0,9527
-Fiscal Year,0,2016,0,"",0,2016-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),575986291,0,9528
-Fiscal Year,0,2016,0,"",0,2016-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1238081768,0,9529
-Fiscal Year,0,2016,0,"",0,2016-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),4790589,0,9530
-Fiscal Year,0,2016,0,"",0,2016-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),6384109,0,9531
+Fiscal Year,0,2016,0,"",0,2016-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),570047,0,9526
+Fiscal Year,0,2016,0,"",0,2016-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),32441292,0,9527
+Fiscal Year,0,2016,0,"",0,2016-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),575986291,0,9528
+Fiscal Year,0,2016,0,"",0,2016-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1238081768,0,9529
+Fiscal Year,0,2016,0,"",0,2016-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),4790589,0,9530
+Fiscal Year,0,2016,0,"",0,2016-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),6384109,0,9531
 Fiscal Year,0,2016,0,"",0,2016-01-01,"Louisiana, Central Gulf of Mexico",,LA,Louisiana,Central Gulf of Mexico,Federal,Offshore,Federal Offshore,County,Parish,"",Salt,Salt (tons),10655,0,9532
 Fiscal Year,0,2016,0,"",0,2016-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),816704,0,9533
 Fiscal Year,0,2016,0,"",0,2016-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),14560968,0,9534
@@ -10259,12 +10260,12 @@ Fiscal Year,0,2016,0,"",0,2016-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2016,0,"",0,2016-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),60429535,0,10260
 Fiscal Year,0,2016,0,"",0,2016-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),1702515,0,10261
 Fiscal Year,0,2016,0,"",0,2016-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),5412,0,10262
-Fiscal Year,0,2017,0,"",0,2017-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),519781,0,10263
-Fiscal Year,0,2017,0,"",0,2017-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),30050369,0,10264
-Fiscal Year,0,2017,0,"",0,2017-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),622337638,0,10265
-Fiscal Year,0,2017,0,"",0,2017-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1151017174,0,10266
-Fiscal Year,0,2017,0,"",0,2017-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),4054439,0,10267
-Fiscal Year,0,2017,0,"",0,2017-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),5858630,0,10268
+Fiscal Year,0,2017,0,"",0,2017-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),519781,0,10263
+Fiscal Year,0,2017,0,"",0,2017-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),30050369,0,10264
+Fiscal Year,0,2017,0,"",0,2017-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),622337638,0,10265
+Fiscal Year,0,2017,0,"",0,2017-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1151017174,0,10266
+Fiscal Year,0,2017,0,"",0,2017-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),4054439,0,10267
+Fiscal Year,0,2017,0,"",0,2017-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),5858630,0,10268
 Fiscal Year,0,2017,0,"",0,2017-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),768078,0,10269
 Fiscal Year,0,2017,0,"",0,2017-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),16244285,0,10270
 Fiscal Year,0,2017,0,"",0,2017-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),101659,0,10271
@@ -10971,12 +10972,12 @@ Fiscal Year,0,2017,0,"",0,2017-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2017,0,"",0,2017-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),67409609,0,10972
 Fiscal Year,0,2017,0,"",0,2017-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),968237,0,10973
 Fiscal Year,0,2017,0,"",0,2017-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),5876,0,10974
-Fiscal Year,0,2018,0,"",0,2018-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),495854,0,10975
-Fiscal Year,0,2018,0,"",0,2018-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),24917525,0,10976
-Fiscal Year,0,2018,0,"",0,2018-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),615467741,0,10977
-Fiscal Year,0,2018,0,"",0,2018-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),963728578,0,10978
-Fiscal Year,0,2018,0,"",0,2018-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),3568672,0,10979
-Fiscal Year,0,2018,0,"",0,2018-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),5100015,0,10980
+Fiscal Year,0,2018,0,"",0,2018-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),495854,0,10975
+Fiscal Year,0,2018,0,"",0,2018-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),24917525,0,10976
+Fiscal Year,0,2018,0,"",0,2018-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),615467741,0,10977
+Fiscal Year,0,2018,0,"",0,2018-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),963728578,0,10978
+Fiscal Year,0,2018,0,"",0,2018-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),3568672,0,10979
+Fiscal Year,0,2018,0,"",0,2018-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),5100015,0,10980
 Fiscal Year,0,2018,0,"",0,2018-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),595499,0,10981
 Fiscal Year,0,2018,0,"",0,2018-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),14720033,0,10982
 Fiscal Year,0,2018,0,"",0,2018-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),257435,0,10983
@@ -11679,12 +11680,12 @@ Fiscal Year,0,2018,0,"",0,2018-01-01,Not tied to a location,"","","","",Native A
 Fiscal Year,0,2018,0,"",0,2018-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,Oil (bbl),84296323,0,11680
 Fiscal Year,0,2018,0,"",0,2018-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel,Sand/Gravel (tons),967140,0,11681
 Fiscal Year,0,2018,0,"",0,2018-01-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Sand/Gravel-Cubic Yards,Sand/Gravel-Cubic Yards (cyd),5096,0,11682
-Fiscal Year,0,2019,0,"",0,2019-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),490683,0,11683
-Fiscal Year,0,2019,0,"",0,2019-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),23331480,0,11684
-Fiscal Year,0,2019,0,"",0,2019-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),681098667,0,11685
-Fiscal Year,0,2019,0,"",0,2019-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1032125547,0,11686
-Fiscal Year,0,2019,0,"",0,2019-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),2952284,0,11687
-Fiscal Year,0,2019,0,"",0,2019-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),4281937,0,11688
+Fiscal Year,0,2019,0,"",0,2019-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),490683,0,11683
+Fiscal Year,0,2019,0,"",0,2019-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),23331480,0,11684
+Fiscal Year,0,2019,0,"",0,2019-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),681098667,0,11685
+Fiscal Year,0,2019,0,"",0,2019-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1032125547,0,11686
+Fiscal Year,0,2019,0,"",0,2019-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),2952284,0,11687
+Fiscal Year,0,2019,0,"",0,2019-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),4281937,0,11688
 Fiscal Year,0,2019,0,"",0,2019-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),585124,0,11689
 Fiscal Year,0,2019,0,"",0,2019-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),17252973,0,11690
 Fiscal Year,0,2019,0,"",0,2019-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),529565,0,11691

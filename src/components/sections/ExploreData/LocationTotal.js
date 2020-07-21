@@ -4,39 +4,51 @@ import gql from 'graphql-tag'
 
 import { StoreContext } from '../../../store'
 import utils from '../../../js/utils'
+import * as d3 from 'd3'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const LOCATION_TOTAL_QUERY = gql`
-  query NationwideFederal($stateOrArea: String!, $year: Int!) {
-    fiscal_revenue_summary(where: {state_or_area: {_eq: $stateOrArea, _neq: ""}, fiscal_year: {_eq: $year}}) {
-      fiscal_year
-      state_or_area
-      sum
-    }
+  query NationwideFederal($location: String!, $year: Int!, $period: String!) {
+   revenue_summary  (
+          where: {location_type: {_eq: $location}, year: { _eq: $year }, location_name: {_neq: ""}, period: {_eq: $period } }
+    ) {
+      location_name
+      year
+      location
+      total
   }
+}
 `
 
 const LocationTotal = props => {
   const { location } = props
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { stateOrArea: location, year: year }
+    variables: {location: location, year: year, period }
   })
 
   if (loading) return ''
   if (error) return `Error loading revenue data table ${ error.message }`
-
+  let totalSummary = []
   if (data) {
-    return (
-      <>
-        { data.fiscal_revenue_summary.length > 0 && utils.formatToDollarInt(data.fiscal_revenue_summary[0].sum) }
-      </>
+    totalSummary = d3.nest()
+      .key(k => k.location_name)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.revenue_summary)
+      .map(d => {return ( { location_name: d.key, total: d.value } ) })
+    console.debug('WTH', totalSummary)
+      return (
+        <>
+        <strong>In {period.toLowerCase()} {year}, ONRR collected a total of { totalSummary.length > 0 && utils.formatToDollarInt(totalSummary[0].total) } in revenue from federal sources.</strong>  
+        </>
     )
   }
+  
 }
+
 
 export default LocationTotal

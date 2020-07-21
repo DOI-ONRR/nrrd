@@ -31,15 +31,15 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query RevenueCommodityQuery($year: Int!, $state: String!) {
+  query RevenueCommodityQuery($year: Int!, $state: String!, $period: String!) {
     # Revenue commodity summary
-    revenue_commodity_summary(
-      where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, total: desc }
+    revenue_summary(
+      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period} }
+      order_by: { year: asc, total: desc }
     ) {
-      fiscal_year
+      year
       commodity
-      state_or_area
+      location
       total
     }
   }
@@ -50,15 +50,15 @@ const RevenueDetailCommodities = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const stateAbbr = ((props.abbr.length > 2) &&
     (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year: year, state: stateAbbr }
+    variables: { year: year, state: stateAbbr, period: period }
   })
 
-  const dataSet = `FY ${ year }`
+  const dataSet = (period === 'Fiscal Year') ?  `FY ${ year }` : `CY ${ year }`
   const dataKey = dataSet + '-' + stateAbbr
   let chartData
 
@@ -71,12 +71,12 @@ const RevenueDetailCommodities = props => {
 
   return (
     <>
-      { chartData.revenue_commodity_summary.length > 0
+      { chartData.revenue_summary.length > 0
         ? (
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Commodities</Box>
             <Box>
-              <CircleChart key={'RDC' + dataKey} data={chartData.revenue_commodity_summary}
+            <CircleChart key={'RDC'+dataKey}  data={chartData.revenue_summary}
                 xAxis='commodity' yAxis='total'
                 format={ d => {
                   return utils.formatToDollarInt(d)

@@ -36,11 +36,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const REVENUE_QUERY = gql`
-  query FiscalCommodityRevenue($year: Int!, $commodities: [String!]) {
-    revenue_commodity_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year}, commodity: {_in: $commodities }}) {
+  query FiscalCommodityRevenue($year: Int!, $commodities: [String!], $period: String!) {
+    revenue_summary(
+      where: {location: {_nin: ["Nationwide Federal", ""]}, year: { _eq: $year}, commodity: {_in: $commodities }, period: { _eq: $period} }
+    ) {
       commodity
-      fiscal_year
-      state_or_area
+      year
+      location
       total
     }
 
@@ -54,9 +56,9 @@ const RevenueCountyMap = props => {
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const commodities = (filterState[DFC.COMMODITIES]) ? filterState[DFC.COMMODITIES] : undefined
-
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
-    variables: { year: year, commodities: commodities }
+    variables: { year: year, commodities: commodities, period: period }
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
@@ -67,14 +69,15 @@ const RevenueCountyMap = props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    mapData = data.revenue_commodity_summary.map((item, i) => [
-      item.state_or_area,
+   /* mapData = data.revenue_summary.map((item, i) => [
+      item.location,
       item.total
     ])
+   */
     mapData = d3.nest()
-      .key(k => k.state_or_area)
+      .key(k => k.location)
       .rollup(v => d3.sum(v, i => i.total))
-      .entries(data.revenue_commodity_summary)
+      .entries(data.revenue_summary)
       .map(d => [d.key, d.value])
   }
 
@@ -86,7 +89,7 @@ const RevenueCountyMap = props => {
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
            <Map
-             key={`county_map_${ props.abbr }_${ year }`}
+             key={`county_map_${ props.abbr }_{$period}_${ year }`}
              mapFeatures={mapFeatures}
              mapJsonObject={mapCounties}
              mapData={mapData}

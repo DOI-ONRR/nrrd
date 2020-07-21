@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import * as d3 from 'd3'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -40,37 +41,20 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query TopCommodities($state: String!, $year: Int!, $period: String!) {
-    fiscal_revenue_summary(
-      where: { state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, state_or_area: asc }
+  query TopCommodities($state: String!, $period: String!) {
+       revenue_summary(
+      where: { location: { _eq: $state }, period: {_eq: $period} }
+      order_by: { year: asc, location: asc }
     ) {
-      fiscal_year
-      state_or_area
-      sum
-      distinct_commodities
-    }
-    revenue_commodity_summary(
-      limit: 3
-      where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, total: desc }
-    ) {
-      fiscal_year
+      year
+      location
+      total      
       commodity
-      state_or_area
-      total
-    }
-    commodity_sparkdata: revenue_commodity_summary(
-      where: { state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc }
-    ) {
-      fiscal_year
-      commodity
-      total
     }
 
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
+      period_date
     }
   }
 `
@@ -79,9 +63,9 @@ const RevenueSummaryTopCommodities = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: props.abbr, period: period }
   })
 
   let sparkData = []
@@ -90,30 +74,29 @@ const RevenueSummaryTopCommodities = props => {
   let periodData
   let distinctCommodities = 0
   let topCommodities = []
+  let currentCommodities = []
 
   if (loading) {}
 
   if (error) return `Error! ${ error.message }`
 
-  if (
-    data &&
-    data.fiscal_revenue_summary.length > 0 &&
-    data.revenue_commodity_summary.length > 0 &&
-    data.commodity_sparkdata.length > 0
-  ) {
+  if (data && data.revenue_summary.length > 0) {
+    console.debug("DWGH", data)
     periodData = data.period
 
-    fiscalData = data.fiscal_revenue_summary.map((item, i) => [
-      item.fiscal_year,
-      item.sum
-    ])
+    fiscalData =  d3.nest()
+      .key(k => k.year)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.revenue_summary)
+      .map(d => [ parseInt(d.key), d.value ]) 
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-      const sum = fiscalData.find(x => x[0] === item.fiscal_year)
+      let  y = parseInt(item.period_date.substr(0,4))
+      const total = fiscalData.find(x => x[0] === y)
       return ([
-        item.fiscal_year,
-        sum ? sum[1] : 0
+        y,
+        total ? total[1] : 0
       ])
     })
 
@@ -121,9 +104,35 @@ const RevenueSummaryTopCommodities = props => {
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
-
-    distinctCommodities = data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)].distinct_commodities
-
+    topCommodities = data.revenue_summary.filter( row => row.year === year)
+      .map((f) => f.commodity)
+      .map((com, i) => {
+        const s = d3.nest()
+              .key(k => k.year)
+              .rollup(v => d3.sum(v, i => i.total))
+              .entries(data.revenue_summary.filter(item => item.commodity === com))
+              .map(d => [parseInt(d.key), d.value])
+        const d = periodData.map((row, i) => {
+          const y=parseInt(row.period_date.substr(0,4))
+          const t = s.find(x => x[0] === y)
+          return (
+            [y, t ? t[1] : 0]
+          )
+        })
+        return { commodity: com, data: d }
+      })
+    console.debug("WTH topCommodities", topCommodities)
+    currentCommodities = d3.nest()
+      .key(k => k.commodity)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.revenue_summary.filter(item => item.year === year))
+      .map(d => [d.key, d.value])
+          .sort((a, b) => a[1] > b[1] ? -1 : 1)
+    
+    console.debug("WTH currentCommodities", currentCommodities)
+    distinctCommodities = currentCommodities.length
+    
+    /*
     topCommodities = data.revenue_commodity_summary
       .map((item, i) => item.commodity)
       .map((com, i) => {
@@ -136,9 +145,9 @@ const RevenueSummaryTopCommodities = props => {
           )
         })
         return { commodity: com, data: d }
-      })
+        }) */
+    
   }
-
   return (
     <>
       {topCommodities.length > 0 &&
@@ -161,10 +170,15 @@ const RevenueSummaryTopCommodities = props => {
                 aria-label="top commodities table"
               >
                 <TableBody>
-                  {
-                    topCommodities.map((row, i) => {
+       {
+         currentCommodities.map((com,j) => {
+           if( j < 3 ) {
+                                             
+             return topCommodities.filter(f => f.commodity === com[0]).map((row, i) => {
+               console.debug("ROOOOOOOOOOOOOOOOOOOOW", row)
+               
                       return (
-                        <TableRow key={i}>
+                        <TableRow key={j}>
                           <TableCell component="th" scope="row">
                             <Typography style={{ fontSize: '.8rem' }}>
                               {row.commodity}
@@ -180,10 +194,11 @@ const RevenueSummaryTopCommodities = props => {
                           </TableCell>
                           <TableCell align="right">
                             <Typography style={{ fontSize: '.8rem' }}>
-                              {utils.formatToSigFig_Dollar(
+                          {
+                            utils.formatToSigFig_Dollar(
                                 Math.floor(
                                   // eslint-disable-next-line standard/computed-property-even-spacing
-                                  topCommodities[i].data[
+                                  row.data[
                                     row.data.findIndex(x => x[0] === year)
                                   ][1]
                                 ),
@@ -193,8 +208,10 @@ const RevenueSummaryTopCommodities = props => {
                           </TableCell>
                         </TableRow>
                       )
-                    })}
-                </TableBody>
+             })}
+         })
+       }
+              </TableBody>
               </Table>
             </Paper>
           </Grid>
