@@ -27,12 +27,12 @@ import LineChart from '../../../data-viz/LineChart/LineChart'
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
-  query ProductionLandCategory($state: String!, $location: String!, $product: String!, $period: String!) {
+  query ProductionLandCategory($state: String!, $location: String!, $commodity: String!, $period: String!) {
     production_summary(
       where: {
         location: {_eq: $state}, 
         location_type: {_eq: $location}, 
-        product: {_eq: $product},
+        product: {_eq: $commodity},
         period: {_eq: $period}},
         order_by: {year: asc}
     ) {
@@ -92,10 +92,10 @@ const ProductionLandCategory = ({ title, ...props }) => {
     location = 'State'
   }
 
-  const product = (filterState[DFC.PRODUCT]) ? filterState[DFC.PRODUCT] : 'Oil (bbl)'
+  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const state = props.abbr
   // console.log('useQuery vars: ', state, location, commodity)
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, product, period } })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, commodity, period } })
   if (loading) {
     return (
       <div className={classes.progressContainer}>
@@ -106,10 +106,10 @@ const ProductionLandCategory = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = (period === 'Fiscal Year') ? `FY ${ year } - ${ product }` : `CY ${ year } - ${ product}`
-
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year } - ${ commodity }` : `CY ${ year } - ${ commodity}`
+  let unit = ''
   if (data && data.production_summary.length > 0) {
-    const unit = data.production_summary[0].unit_abbr
+    unit = data.production_summary[0].unit_abbr
    
     const years = [...new Set(data.production_summary.map(item => item.year))]
     // const sums = [...new Set(data.production_summary.filter(row => row.state_or_area === state).map(item => item.sum))]
@@ -130,7 +130,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
           {title && <Box component="h4" fontWeight="bold" mb={2}>{title + ' (' + unit + ')'}</Box>}
           <Box>
             <LineChart
-              key={'PLC' + dataSet }
+              key={'PLC' + dataSet + commodity }
               data={chartData}
               chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
               lineDashes={LINE_DASHES}
