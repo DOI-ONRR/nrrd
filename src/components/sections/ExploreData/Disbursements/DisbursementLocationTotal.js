@@ -1,16 +1,18 @@
 import React, { useContext } from 'react'
+import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import { StoreContext } from '../../../../store'
 import utils from '../../../../js/utils'
+import * as d3 from 'd3'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import CONSTANTS from '../../../../js/constants'
 
 const LOCATION_TOTAL_QUERY = gql`
-  query NationwideFederal($locations: [String!], $year: Int!) {
-    fiscal_disbursement_summary(where: {state_or_area: {_in: $locations, _neq: ""}, fiscal_year: {_eq: $year}}) {
+  query NationwideFederal($location: [String!], $year: Int!, $period: String!) {
+    disbursement_summary(where: {fiscal_year: {_eq: $year}, state_or_area: {_in: $location}}) {
       fiscal_year
       state_or_area
       sum
@@ -19,37 +21,53 @@ const LOCATION_TOTAL_QUERY = gql`
 `
 
 const DisbursementLocationTotal = props => {
-  const { locations } = props
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
 
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { locations: locations, year: year }
+    variables: { location: [CONSTANTS.NATIONWIDE_FEDERAL, CONSTANTS.NATIVE_AMERICAN], year: year, period }
   })
 
   if (loading) return ''
   if (error) return `Error loading revenue data table ${ error.message }`
+  let nationwideSummary = []
+  let nativeSummary = []
 
-  if (
-    data &&
-    data.fiscal_disbursement_summary.length > 0) {
-    const locationData = data.fiscal_disbursement_summary
-    let total
-    if (locationData.length === 1) {
-      total = locationData[0].sum
-    }
-    else {
-      total = locationData.reduce((acc, val) => acc.sum + val.sum)
-    }
+  if (data) {
+    console.log('DisbursementLocationTotal data: ', data)
+    const groupedLocationData = utils.groupBy(data.disbursement_summary, 'state_or_area')
+
+    console.log('DisbursementLocationTotal groupedData: ', groupedLocationData)
+
+    nationwideSummary = d3.nest()
+      .key(k => k.state_or_area)
+      .rollup(v => d3.sum(v, i => i.sum))
+      .entries(groupedLocationData[CONSTANTS.NATIONWIDE_FEDERAL])
+      .map(d => {
+        return ({ location_name: d.key, total: d.value })
+      })
+
+    console.log('disbursement nationwideSummary: ', nationwideSummary)
+
+    nativeSummary = d3.nest()
+      .key(k => k.state_or_area)
+      .rollup(v => d3.sum(v, i => i.sum))
+      .entries(groupedLocationData[CONSTANTS.NATIVE_AMERICAN])
+      .map(d => {
+        return ({ location_name: d.key, total: d.value })
+      })
+
     return (
       <>
-        { utils.formatToDollarInt(total) }
+        After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called "disbursement." <strong>In {period.toLowerCase()} {year}, ONRR disbursed {utils.formatToDollarInt(nationwideSummary[0].total)} from federal sources and {utils.formatToDollarInt(nativeSummary[0].total)} from Native American sources for a total of {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
       </>
     )
-  }
-  else {
-    return null
   }
 }
 
 export default DisbursementLocationTotal
+
+DisbursementLocationTotal.propTypes = {
+  location: PropTypes.array
+}

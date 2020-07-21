@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import utils from '../../../js/utils'
+import utils from '../../../../js/utils'
 import * as d3 from 'd3'
 
-import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import CONSTANTS from '../../../../js/constants'
 
 const LOCATION_TOTAL_QUERY = gql`
   query NationwideFederal($location: [String!], $year: Int!, $period: String!) {
@@ -27,14 +28,13 @@ const LOCATION_TOTAL_QUERY = gql`
   }
 `
 
-const LocationTotal = props => {
-  const { location } = props
+const RevenueLocationTotal = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
 
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { location: location, year: year, period }
+    variables: { location: [CONSTANTS.NATIONWIDE_FEDERAL, CONSTANTS.NATIVE_AMERICAN], year: year, period }
   })
 
   if (loading) return ''
@@ -49,7 +49,7 @@ const LocationTotal = props => {
     nationwideSummary = d3.nest()
       .key(k => k.location_name)
       .rollup(v => d3.sum(v, i => i.total))
-      .entries(groupedLocationData['Nationwide Federal'])
+      .entries(groupedLocationData[CONSTANTS.NATIONWIDE_FEDERAL])
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       })
@@ -57,7 +57,7 @@ const LocationTotal = props => {
     nativeSummary = d3.nest()
       .key(k => k.location_name)
       .rollup(v => d3.sum(v, i => i.total))
-      .entries(groupedLocationData['Native American'])
+      .entries(groupedLocationData[CONSTANTS.NATIVE_AMERICAN])
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       })
@@ -70,8 +70,8 @@ const LocationTotal = props => {
   }
 }
 
-export default LocationTotal
+export default RevenueLocationTotal
 
-LocationTotal.propTypes = {
+RevenueLocationTotal.propTypes = {
   location: PropTypes.array
 }

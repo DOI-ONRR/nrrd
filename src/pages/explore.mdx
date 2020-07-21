@@ -40,7 +40,7 @@ tags:
                           <Box component="h2" color="secondary.dark">Revenue</Box>
                         </Box>
                         <Typography variant="body1">
-                          When companies extract natural resources on federal or Native American lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any resource owner. The Office of Natural Resources Revenue (ONRR) collects and disburses these revenues. <strong>In <Period /> <Year />, ONRR collected <LocationTotal locations={['Nationwide Federal']} /> from federal sources and <LocationTotal locations={['Native American']} /> from Native American sources for a total of <LocationTotal locations={['Nationwide Federal', 'Native American']} /></strong>.
+                          <RevenueLocationTotal />
                         </Typography>
                       </Grid>
                     </Grid>
@@ -101,7 +101,7 @@ tags:
                           <Box component="h2" color="secondary.dark">Disbursements</Box>
                         </Box>
                         <Typography variant="body1">
-                          After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called "disbursement." <strong>In <Period /> <Year />, ONRR disbursed  <DisbursementLocationTotal locations={['Nationwide Federal']} /> from federal sources and  <DisbursementLocationTotal locations={['Native American']} /> from Native American sources for a total of <DisbursementLocationTotal locations={['Nationwide Federal', 'Native American']} /></strong>.
+                          <DisbursementLocationTotal />
                         </Typography>
                       </Grid>
                     </Grid>
@@ -159,7 +159,7 @@ tags:
                           <Box component="h2" color="secondary.dark">Production</Box>
                         </Box>
                         <Typography variant="body1">
-                          The Office of Natural Resources Revenue (ONRR) collects detailed data about the volume of mineral and energy commodities companies produce from federal and Native American lands and waters. <strong>For <Period /> <Year />, companies reported to ONRR that they produced <ProductionLocationTotal locations={['Nationwide Federal']} /> (units) of <Product /> from federal sources and <ProductionLocationTotal locations={['Native American']} /> (units) of <Product /> from Native American sources for a total of <ProductionLocationTotal locations={['Nationwide Federal', 'Native American']} /> (units) of <Product /></strong>.
+                          <ProductionLocationTotal />
                         </Typography>
                       </Grid>
                     </Grid>

@@ -61,7 +61,7 @@ const EXPLORE_DATA_TOOLBAR_OPTIONS = {
     { value: PRODUCTION, option: 'Production' },
   ],
   [PERIOD]: [
-    { value: CONSTANTS.FISCAL_YEAR, option: 'Fiscal year' },
+    { value: CONSTANTS.FISCAL_YEAR, option: 'Fiscal Year' },
     // { value: CONSTANTS.CALENDAR_YEAR, option: 'Calendar year' },
     // { value: CONSTANTS.MONTHLY, option: 'Monthly' }
   ],
@@ -261,7 +261,7 @@ const ExploreDataToolbar = props => {
             <PeriodSelectInput
               dataFilterKey={PERIOD}
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[PERIOD]}
-              defaultSelected='Fiscal year'
+              defaultSelected='Fiscal Year'
               label='Period'
               selectType='Single'
               showClearSelected={false} />
