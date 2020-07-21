@@ -1,4 +1,3 @@
-period,calendar_year,fiscal_year,month,month_long,fiscal_month,period_date,location_name,fips_code,state,state_name,county,land_class,land_category,land_type,region_type,district_type,offshore_region,commodity,product,volume,duplicate_no,row_number
 Calendar Year,2003,0,0,"",0,2003-01-01,"California, Lassen",06035,CA,California,Lassen,Federal,Onshore,Federal Onshore,County,County,"","Geothermal - Direct Utilization, Millions of BTUs","Geothermal - Direct Utilization, Millions of BTUs",288029,0,2
 Calendar Year,2003,0,0,"",0,2003-01-01,"California, Mono",06051,CA,California,Mono,Federal,Onshore,Federal Onshore,County,County,"","Geothermal - Electrical Generation, Kilowatt Hours","Geothermal - Electrical Generation, Kilowatt Hours",95893248,0,3
 Calendar Year,2003,0,0,"",0,2003-01-01,"California, Imperial",06025,CA,California,Imperial,Federal,Onshore,Federal Onshore,County,County,"","Geothermal - Electrical Generation, Kilowatt Hours","Geothermal - Electrical Generation, Kilowatt Hours",390347006,0,4
@@ -291,12 +290,12 @@ Calendar Year,2019,0,0,"",0,2019-01-01,"Nevada, Churchill",32001,NV,Nevada,Churc
 Calendar Year,2019,0,0,"",0,2019-01-01,"Utah, Millard",49027,UT,Utah,Millard,Federal,Onshore,Federal Onshore,County,County,"","Geothermal - Electrical Generation, Kilowatt Hours","Geothermal - Electrical Generation, Kilowatt Hours",25003931,0,291
 Calendar Year,2019,0,0,"",0,2019-01-01,"Utah, Beaver",49001,UT,Utah,Beaver,Federal,Onshore,Federal Onshore,County,County,"","Geothermal - Electrical Generation, Kilowatt Hours","Geothermal - Electrical Generation, Kilowatt Hours",118789620,0,292
 Calendar Year,2019,0,0,"",0,2019-01-01,"Utah, Beaver",49001,UT,Utah,Beaver,Federal,Onshore,Federal Onshore,County,County,"","Geothermal - Electrical Generation, Thousands of Pounds","Geothermal - Electrical Generation, Thousands of Pounds",2694591969,0,293
-Calendar Year,2003,0,0,"",0,2003-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),11728280,0,294
-Calendar Year,2003,0,0,"",0,2003-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),58402713,0,295
-Calendar Year,2003,0,0,"",0,2003-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),4431831018,0,296
-Calendar Year,2003,0,0,"",0,2003-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),3832242,0,297
-Calendar Year,2003,0,0,"",0,2003-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),29737476,0,298
-Calendar Year,2003,0,0,"",0,2003-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),561770508,0,299
+Calendar Year,2003,0,0,"",0,2003-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),11728280,0,294
+Calendar Year,2003,0,0,"",0,2003-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),58402713,0,295
+Calendar Year,2003,0,0,"",0,2003-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),4431831018,0,296
+Calendar Year,2003,0,0,"",0,2003-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),3832242,0,297
+Calendar Year,2003,0,0,"",0,2003-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),29737476,0,298
+Calendar Year,2003,0,0,"",0,2003-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),561770508,0,299
 Calendar Year,2003,0,0,"",0,2003-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),53256489,0,300
 Calendar Year,2003,0,0,"",0,2003-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),501604,0,301
 Calendar Year,2003,0,0,"",0,2003-01-01,"Alabama, Bibb",01007,AL,Alabama,Bibb,Federal,Onshore,Federal Onshore,County,County,"",Clay,Clay (tons),55212,0,302
@@ -951,12 +950,12 @@ Calendar Year,2003,0,0,"",0,2003-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2003,0,0,"",0,2003-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Bi-Carbonate,Sodium Bi-Carbonate (tons),34101,0,951
 Calendar Year,2003,0,0,"",0,2003-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),57479,0,952
 Calendar Year,2003,0,0,"",0,2003-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),24331,0,953
-Calendar Year,2004,0,0,"",0,2004-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),17831418,0,954
-Calendar Year,2004,0,0,"",0,2004-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),54647898,0,955
-Calendar Year,2004,0,0,"",0,2004-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),4007929340,0,956
-Calendar Year,2004,0,0,"",0,2004-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),4307538,0,957
-Calendar Year,2004,0,0,"",0,2004-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),27507983,0,958
-Calendar Year,2004,0,0,"",0,2004-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),535286617,0,959
+Calendar Year,2004,0,0,"",0,2004-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),17831418,0,954
+Calendar Year,2004,0,0,"",0,2004-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),54647898,0,955
+Calendar Year,2004,0,0,"",0,2004-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),4007929340,0,956
+Calendar Year,2004,0,0,"",0,2004-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),4307538,0,957
+Calendar Year,2004,0,0,"",0,2004-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),27507983,0,958
+Calendar Year,2004,0,0,"",0,2004-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),535286617,0,959
 Calendar Year,2004,0,0,"",0,2004-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),49573429,0,960
 Calendar Year,2004,0,0,"",0,2004-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),3801,0,961
 Calendar Year,2004,0,0,"",0,2004-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),388329,0,962
@@ -1630,12 +1629,12 @@ Calendar Year,2004,0,0,"",0,2004-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2004,0,0,"",0,2004-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Bi-Carbonate,Sodium Bi-Carbonate (tons),23402,0,1630
 Calendar Year,2004,0,0,"",0,2004-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),47990,0,1631
 Calendar Year,2004,0,0,"",0,2004-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),5393,0,1632
-Calendar Year,2005,0,0,"",0,2005-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),24279892,0,1633
-Calendar Year,2005,0,0,"",0,2005-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),54185608,0,1634
-Calendar Year,2005,0,0,"",0,2005-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),3155299025,0,1635
-Calendar Year,2005,0,0,"",0,2005-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),3851170,0,1636
-Calendar Year,2005,0,0,"",0,2005-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),26542513,0,1637
-Calendar Year,2005,0,0,"",0,2005-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),466800633,0,1638
+Calendar Year,2005,0,0,"",0,2005-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),24279892,0,1633
+Calendar Year,2005,0,0,"",0,2005-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),54185608,0,1634
+Calendar Year,2005,0,0,"",0,2005-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),3155299025,0,1635
+Calendar Year,2005,0,0,"",0,2005-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),3851170,0,1636
+Calendar Year,2005,0,0,"",0,2005-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),26542513,0,1637
+Calendar Year,2005,0,0,"",0,2005-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),466800633,0,1638
 Calendar Year,2005,0,0,"",0,2005-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),42741888,0,1639
 Calendar Year,2005,0,0,"",0,2005-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),390683,0,1640
 Calendar Year,2005,0,0,"",0,2005-01-01,"Alabama, Bibb",01007,AL,Alabama,Bibb,Federal,Onshore,Federal Onshore,County,County,"",Clay,Clay (tons),45640,0,1641
@@ -2317,12 +2316,12 @@ Calendar Year,2005,0,0,"",0,2005-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2005,0,0,"",0,2005-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),30796,0,2317
 Calendar Year,2005,0,0,"",0,2005-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),4830,0,2318
 Calendar Year,2005,0,0,"",0,2005-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),27077,0,2319
-Calendar Year,2006,0,0,"",0,2006-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),24290324,0,2320
-Calendar Year,2006,0,0,"",0,2006-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),47153866,0,2321
-Calendar Year,2006,0,0,"",0,2006-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2921692145,0,2322
-Calendar Year,2006,0,0,"",0,2006-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),3242345,0,2323
-Calendar Year,2006,0,0,"",0,2006-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),25992104,0,2324
-Calendar Year,2006,0,0,"",0,2006-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),471875011,0,2325
+Calendar Year,2006,0,0,"",0,2006-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),24290324,0,2320
+Calendar Year,2006,0,0,"",0,2006-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),47153866,0,2321
+Calendar Year,2006,0,0,"",0,2006-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2921692145,0,2322
+Calendar Year,2006,0,0,"",0,2006-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),3242345,0,2323
+Calendar Year,2006,0,0,"",0,2006-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),25992104,0,2324
+Calendar Year,2006,0,0,"",0,2006-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),471875011,0,2325
 Calendar Year,2006,0,0,"",0,2006-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),39875345,0,2326
 Calendar Year,2006,0,0,"",0,2006-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),343676,0,2327
 Calendar Year,2006,0,0,"",0,2006-01-01,"Alabama, Bibb",01007,AL,Alabama,Bibb,Federal,Onshore,Federal Onshore,County,County,"",Clay,Clay (tons),66074,0,2328
@@ -3013,12 +3012,12 @@ Calendar Year,2006,0,0,"",0,2006-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2006,0,0,"",0,2006-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),42464,0,3013
 Calendar Year,2006,0,0,"",0,2006-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),30692,0,3014
 Calendar Year,2006,0,0,"",0,2006-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),123548,0,3015
-Calendar Year,2007,0,0,"",0,2007-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),25819639,0,3016
-Calendar Year,2007,0,0,"",0,2007-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),45563257,0,3017
-Calendar Year,2007,0,0,"",0,2007-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2813193092,0,3018
-Calendar Year,2007,0,0,"",0,2007-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),2383565,0,3019
-Calendar Year,2007,0,0,"",0,2007-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),24624089,0,3020
-Calendar Year,2007,0,0,"",0,2007-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),467914464,0,3021
+Calendar Year,2007,0,0,"",0,2007-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),25819639,0,3016
+Calendar Year,2007,0,0,"",0,2007-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),45563257,0,3017
+Calendar Year,2007,0,0,"",0,2007-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2813193092,0,3018
+Calendar Year,2007,0,0,"",0,2007-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),2383565,0,3019
+Calendar Year,2007,0,0,"",0,2007-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),24624089,0,3020
+Calendar Year,2007,0,0,"",0,2007-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),467914464,0,3021
 Calendar Year,2007,0,0,"",0,2007-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),36868368,0,3022
 Calendar Year,2007,0,0,"",0,2007-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),272400,0,3023
 Calendar Year,2007,0,0,"",0,2007-01-01,"Alabama, Bibb",01007,AL,Alabama,Bibb,Federal,Onshore,Federal Onshore,County,County,"",Clay,Clay (tons),38065,0,3024
@@ -3728,12 +3727,12 @@ Calendar Year,2007,0,0,"",0,2007-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2007,0,0,"",0,2007-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),102619,0,3728
 Calendar Year,2007,0,0,"",0,2007-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),13936,0,3729
 Calendar Year,2007,0,0,"",0,2007-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),74641,0,3730
-Calendar Year,2008,0,0,"",0,2008-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),31778122,0,3731
-Calendar Year,2008,0,0,"",0,2008-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),46922654,0,3732
-Calendar Year,2008,0,0,"",0,2008-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2330481618,0,3733
-Calendar Year,2008,0,0,"",0,2008-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),2917412,0,3734
-Calendar Year,2008,0,0,"",0,2008-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),24031880,0,3735
-Calendar Year,2008,0,0,"",0,2008-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),423338316,0,3736
+Calendar Year,2008,0,0,"",0,2008-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),31778122,0,3731
+Calendar Year,2008,0,0,"",0,2008-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),46922654,0,3732
+Calendar Year,2008,0,0,"",0,2008-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2330481618,0,3733
+Calendar Year,2008,0,0,"",0,2008-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),2917412,0,3734
+Calendar Year,2008,0,0,"",0,2008-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),24031880,0,3735
+Calendar Year,2008,0,0,"",0,2008-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),423338316,0,3736
 Calendar Year,2008,0,0,"",0,2008-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),5110,0,3737
 Calendar Year,2008,0,0,"",0,2008-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),34097018,0,3738
 Calendar Year,2008,0,0,"",0,2008-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),4321,0,3739
@@ -4452,12 +4451,12 @@ Calendar Year,2008,0,0,"",0,2008-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2008,0,0,"",0,2008-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),87978,0,4452
 Calendar Year,2008,0,0,"",0,2008-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),24850,0,4453
 Calendar Year,2008,0,0,"",0,2008-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),139262,0,4454
-Calendar Year,2009,0,0,"",0,2009-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),29609015,0,4455
-Calendar Year,2009,0,0,"",0,2009-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),41282846,0,4456
-Calendar Year,2009,0,0,"",0,2009-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2451144637,0,4457
-Calendar Year,2009,0,0,"",0,2009-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),1823426,0,4458
-Calendar Year,2009,0,0,"",0,2009-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),22306733,0,4459
-Calendar Year,2009,0,0,"",0,2009-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),570225034,0,4460
+Calendar Year,2009,0,0,"",0,2009-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),29609015,0,4455
+Calendar Year,2009,0,0,"",0,2009-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),41282846,0,4456
+Calendar Year,2009,0,0,"",0,2009-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2451144637,0,4457
+Calendar Year,2009,0,0,"",0,2009-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),1823426,0,4458
+Calendar Year,2009,0,0,"",0,2009-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),22306733,0,4459
+Calendar Year,2009,0,0,"",0,2009-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),570225034,0,4460
 Calendar Year,2009,0,0,"",0,2009-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),10,0,4461
 Calendar Year,2009,0,0,"",0,2009-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),28155107,0,4462
 Calendar Year,2009,0,0,"",0,2009-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),2155,0,4463
@@ -5174,12 +5173,12 @@ Calendar Year,2009,0,0,"",0,2009-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2009,0,0,"",0,2009-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),58172,0,5174
 Calendar Year,2009,0,0,"",0,2009-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),31532,0,5175
 Calendar Year,2009,0,0,"",0,2009-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),139689,0,5176
-Calendar Year,2010,0,0,"",0,2010-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),29657632,0,5177
-Calendar Year,2010,0,0,"",0,2010-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),41257762,0,5178
-Calendar Year,2010,0,0,"",0,2010-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2250601707,0,5179
-Calendar Year,2010,0,0,"",0,2010-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),1337999,0,5180
-Calendar Year,2010,0,0,"",0,2010-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),21710279,0,5181
-Calendar Year,2010,0,0,"",0,2010-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),566588111,0,5182
+Calendar Year,2010,0,0,"",0,2010-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),29657632,0,5177
+Calendar Year,2010,0,0,"",0,2010-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),41257762,0,5178
+Calendar Year,2010,0,0,"",0,2010-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),2250601707,0,5179
+Calendar Year,2010,0,0,"",0,2010-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),1337999,0,5180
+Calendar Year,2010,0,0,"",0,2010-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),21710279,0,5181
+Calendar Year,2010,0,0,"",0,2010-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),566588111,0,5182
 Calendar Year,2010,0,0,"",0,2010-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),22767537,0,5183
 Calendar Year,2010,0,0,"",0,2010-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),237163,0,5184
 Calendar Year,2010,0,0,"",0,2010-01-01,"Alabama, Jefferson",01073,AL,Alabama,Jefferson,Federal,Onshore,Federal Onshore,County,County,"",Coal,Coal (tons),415959,0,5185
@@ -5887,12 +5886,12 @@ Calendar Year,2010,0,0,"",0,2010-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2010,0,0,"",0,2010-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),83421,0,5887
 Calendar Year,2010,0,0,"",0,2010-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),22152,0,5888
 Calendar Year,2010,0,0,"",0,2010-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),120768,0,5889
-Calendar Year,2011,0,0,"",0,2011-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),31745191,0,5890
-Calendar Year,2011,0,0,"",0,2011-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),36591564,0,5891
-Calendar Year,2011,0,0,"",0,2011-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1826636459,0,5892
-Calendar Year,2011,0,0,"",0,2011-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),1057867,0,5893
-Calendar Year,2011,0,0,"",0,2011-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),19820270,0,5894
-Calendar Year,2011,0,0,"",0,2011-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),481689764,0,5895
+Calendar Year,2011,0,0,"",0,2011-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),31745191,0,5890
+Calendar Year,2011,0,0,"",0,2011-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),36591564,0,5891
+Calendar Year,2011,0,0,"",0,2011-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1826636459,0,5892
+Calendar Year,2011,0,0,"",0,2011-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),1057867,0,5893
+Calendar Year,2011,0,0,"",0,2011-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),19820270,0,5894
+Calendar Year,2011,0,0,"",0,2011-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),481689764,0,5895
 Calendar Year,2011,0,0,"",0,2011-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),14054084,0,5896
 Calendar Year,2011,0,0,"",0,2011-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),241755,0,5897
 Calendar Year,2011,0,0,"",0,2011-01-01,"Alabama, Jefferson",01073,AL,Alabama,Jefferson,Federal,Onshore,Federal Onshore,County,County,"",Coal,Coal (tons),19465,0,5898
@@ -6603,12 +6602,12 @@ Calendar Year,2011,0,0,"",0,2011-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2011,0,0,"",0,2011-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),5647,0,6603
 Calendar Year,2011,0,0,"",0,2011-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),51234,0,6604
 Calendar Year,2011,0,0,"",0,2011-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),245058,0,6605
-Calendar Year,2012,0,0,"",0,2012-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),21960983,0,6606
-Calendar Year,2012,0,0,"",0,2012-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),27267157,0,6607
-Calendar Year,2012,0,0,"",0,2012-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1535391170,0,6608
-Calendar Year,2012,0,0,"",0,2012-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),627109,0,6609
-Calendar Year,2012,0,0,"",0,2012-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),17684997,0,6610
-Calendar Year,2012,0,0,"",0,2012-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),464556112,0,6611
+Calendar Year,2012,0,0,"",0,2012-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),21960983,0,6606
+Calendar Year,2012,0,0,"",0,2012-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),27267157,0,6607
+Calendar Year,2012,0,0,"",0,2012-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1535391170,0,6608
+Calendar Year,2012,0,0,"",0,2012-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),627109,0,6609
+Calendar Year,2012,0,0,"",0,2012-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),17684997,0,6610
+Calendar Year,2012,0,0,"",0,2012-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),464556112,0,6611
 Calendar Year,2012,0,0,"",0,2012-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),14393793,0,6612
 Calendar Year,2012,0,0,"",0,2012-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),317736,0,6613
 Calendar Year,2012,0,0,"",0,2012-01-01,"Alabama, Jefferson",01073,AL,Alabama,Jefferson,Federal,Onshore,Federal Onshore,County,County,"",Coal,Coal (tons),44260,0,6614
@@ -7327,12 +7326,12 @@ Calendar Year,2012,0,0,"",0,2012-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2012,0,0,"",0,2012-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),111861,0,7327
 Calendar Year,2012,0,0,"",0,2012-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),24189,0,7328
 Calendar Year,2012,0,0,"",0,2012-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),96420,0,7329
-Calendar Year,2013,0,0,"",0,2013-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),27502417,0,7330
-Calendar Year,2013,0,0,"",0,2013-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),29293579,0,7331
-Calendar Year,2013,0,0,"",0,2013-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1327911360,0,7332
-Calendar Year,2013,0,0,"",0,2013-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),669149,0,7333
-Calendar Year,2013,0,0,"",0,2013-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),18571785,0,7334
-Calendar Year,2013,0,0,"",0,2013-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),458983133,0,7335
+Calendar Year,2013,0,0,"",0,2013-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),27502417,0,7330
+Calendar Year,2013,0,0,"",0,2013-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),29293579,0,7331
+Calendar Year,2013,0,0,"",0,2013-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1327911360,0,7332
+Calendar Year,2013,0,0,"",0,2013-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),669149,0,7333
+Calendar Year,2013,0,0,"",0,2013-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),18571785,0,7334
+Calendar Year,2013,0,0,"",0,2013-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),458983133,0,7335
 Calendar Year,2013,0,0,"",0,2013-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),13581912,0,7336
 Calendar Year,2013,0,0,"",0,2013-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),1584,0,7337
 Calendar Year,2013,0,0,"",0,2013-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),901065,0,7338
@@ -8042,12 +8041,12 @@ Calendar Year,2013,0,0,"",0,2013-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2013,0,0,"",0,2013-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),121115,0,8042
 Calendar Year,2013,0,0,"",0,2013-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),27739,0,8043
 Calendar Year,2013,0,0,"",0,2013-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),110039,0,8044
-Calendar Year,2014,0,0,"",0,2014-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),28313384,0,8045
-Calendar Year,2014,0,0,"",0,2014-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),31264456,0,8046
-Calendar Year,2014,0,0,"",0,2014-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1276874932,0,8047
-Calendar Year,2014,0,0,"",0,2014-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),625303,0,8048
-Calendar Year,2014,0,0,"",0,2014-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),18506540,0,8049
-Calendar Year,2014,0,0,"",0,2014-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),510457202,0,8050
+Calendar Year,2014,0,0,"",0,2014-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),28313384,0,8045
+Calendar Year,2014,0,0,"",0,2014-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),31264456,0,8046
+Calendar Year,2014,0,0,"",0,2014-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1276874932,0,8047
+Calendar Year,2014,0,0,"",0,2014-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),625303,0,8048
+Calendar Year,2014,0,0,"",0,2014-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),18506540,0,8049
+Calendar Year,2014,0,0,"",0,2014-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),510457202,0,8050
 Calendar Year,2014,0,0,"",0,2014-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),15447523,0,8051
 Calendar Year,2014,0,0,"",0,2014-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),7693,0,8052
 Calendar Year,2014,0,0,"",0,2014-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),886332,0,8053
@@ -8754,12 +8753,12 @@ Calendar Year,2014,0,0,"",0,2014-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2014,0,0,"",0,2014-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),136506,0,8754
 Calendar Year,2014,0,0,"",0,2014-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),41442,0,8755
 Calendar Year,2014,0,0,"",0,2014-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),157852,0,8756
-Calendar Year,2015,0,0,"",0,2015-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),14808085,0,8757
-Calendar Year,2015,0,0,"",0,2015-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),32249526,0,8758
-Calendar Year,2015,0,0,"",0,2015-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1307091440,0,8759
-Calendar Year,2015,0,0,"",0,2015-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),609910,0,8760
-Calendar Year,2015,0,0,"",0,2015-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),11451040,0,8761
-Calendar Year,2015,0,0,"",0,2015-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),552963732,0,8762
+Calendar Year,2015,0,0,"",0,2015-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),14808085,0,8757
+Calendar Year,2015,0,0,"",0,2015-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),32249526,0,8758
+Calendar Year,2015,0,0,"",0,2015-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1307091440,0,8759
+Calendar Year,2015,0,0,"",0,2015-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),609910,0,8760
+Calendar Year,2015,0,0,"",0,2015-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),11451040,0,8761
+Calendar Year,2015,0,0,"",0,2015-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),552963732,0,8762
 Calendar Year,2015,0,0,"",0,2015-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),4266,0,8763
 Calendar Year,2015,0,0,"",0,2015-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),16637831,0,8764
 Calendar Year,2015,0,0,"",0,2015-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),5730,0,8765
@@ -9471,12 +9470,12 @@ Calendar Year,2015,0,0,"",0,2015-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2015,0,0,"",0,2015-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),43245,0,9471
 Calendar Year,2015,0,0,"",0,2015-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),20447,0,9472
 Calendar Year,2015,0,0,"",0,2015-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),163887,0,9473
-Calendar Year,2016,0,0,"",0,2016-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),4501303,0,9474
-Calendar Year,2016,0,0,"",0,2016-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),31705672,0,9475
-Calendar Year,2016,0,0,"",0,2016-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1220567982,0,9476
-Calendar Year,2016,0,0,"",0,2016-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),548341,0,9477
-Calendar Year,2016,0,0,"",0,2016-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),6142614,0,9478
-Calendar Year,2016,0,0,"",0,2016-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),585814888,0,9479
+Calendar Year,2016,0,0,"",0,2016-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),4501303,0,9474
+Calendar Year,2016,0,0,"",0,2016-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),31705672,0,9475
+Calendar Year,2016,0,0,"",0,2016-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1220567982,0,9476
+Calendar Year,2016,0,0,"",0,2016-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),548341,0,9477
+Calendar Year,2016,0,0,"",0,2016-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),6142614,0,9478
+Calendar Year,2016,0,0,"",0,2016-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),585814888,0,9479
 Calendar Year,2016,0,0,"",0,2016-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),90,0,9480
 Calendar Year,2016,0,0,"",0,2016-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),14662968,0,9481
 Calendar Year,2016,0,0,"",0,2016-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),12143,0,9482
@@ -10168,12 +10167,12 @@ Calendar Year,2016,0,0,"",0,2016-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2016,0,0,"",0,2016-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),11784,0,10168
 Calendar Year,2016,0,0,"",0,2016-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),22568,0,10169
 Calendar Year,2016,0,0,"",0,2016-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),198502,0,10170
-Calendar Year,2017,0,0,"",0,2017-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),3949957,0,10171
-Calendar Year,2017,0,0,"",0,2017-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),28957071,0,10172
-Calendar Year,2017,0,0,"",0,2017-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1078193510,0,10173
-Calendar Year,2017,0,0,"",0,2017-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),513417,0,10174
-Calendar Year,2017,0,0,"",0,2017-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),5713059,0,10175
-Calendar Year,2017,0,0,"",0,2017-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),613645353,0,10176
+Calendar Year,2017,0,0,"",0,2017-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),3949957,0,10171
+Calendar Year,2017,0,0,"",0,2017-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),28957071,0,10172
+Calendar Year,2017,0,0,"",0,2017-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1078193510,0,10173
+Calendar Year,2017,0,0,"",0,2017-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),513417,0,10174
+Calendar Year,2017,0,0,"",0,2017-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),5713059,0,10175
+Calendar Year,2017,0,0,"",0,2017-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),613645353,0,10176
 Calendar Year,2017,0,0,"",0,2017-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),172413,0,10177
 Calendar Year,2017,0,0,"",0,2017-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),15867215,0,10178
 Calendar Year,2017,0,0,"",0,2017-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),244799,0,10179
@@ -10854,12 +10853,12 @@ Calendar Year,2017,0,0,"",0,2017-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2017,0,0,"",0,2017-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),25591,0,10854
 Calendar Year,2017,0,0,"",0,2017-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),11221,0,10855
 Calendar Year,2017,0,0,"",0,2017-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),162435,0,10856
-Calendar Year,2018,0,0,"",0,2018-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),3427708,0,10857
-Calendar Year,2018,0,0,"",0,2018-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),24231976,0,10858
-Calendar Year,2018,0,0,"",0,2018-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),992850382,0,10859
-Calendar Year,2018,0,0,"",0,2018-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),498217,0,10860
-Calendar Year,2018,0,0,"",0,2018-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),4873810,0,10861
-Calendar Year,2018,0,0,"",0,2018-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),641994348,0,10862
+Calendar Year,2018,0,0,"",0,2018-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),3427708,0,10857
+Calendar Year,2018,0,0,"",0,2018-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),24231976,0,10858
+Calendar Year,2018,0,0,"",0,2018-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),992850382,0,10859
+Calendar Year,2018,0,0,"",0,2018-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),498217,0,10860
+Calendar Year,2018,0,0,"",0,2018-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),4873810,0,10861
+Calendar Year,2018,0,0,"",0,2018-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),641994348,0,10862
 Calendar Year,2018,0,0,"",0,2018-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),300094,0,10863
 Calendar Year,2018,0,0,"",0,2018-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),15015569,0,10864
 Calendar Year,2018,0,0,"",0,2018-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),433789,0,10865
@@ -11536,12 +11535,12 @@ Calendar Year,2018,0,0,"",0,2018-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2018,0,0,"",0,2018-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),12543,0,11536
 Calendar Year,2018,0,0,"",0,2018-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),16867,0,11537
 Calendar Year,2018,0,0,"",0,2018-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),167512,0,11538
-Calendar Year,2019,0,0,"",0,2019-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Gas,Gas (mcf),2875859,0,11539
-Calendar Year,2019,0,0,"",0,2019-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Gas,Gas (mcf),23664439,0,11540
-Calendar Year,2019,0,0,"",0,2019-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1032248053,0,11541
-Calendar Year,2019,0,0,"",0,2019-01-01,Alaska Offshore,AKR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Alaska Offshore,Oil,Oil (bbl),479710,0,11542
-Calendar Year,2019,0,0,"",0,2019-01-01,Pacific,POR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Pacific,Oil,Oil (bbl),4449432,0,11543
-Calendar Year,2019,0,0,"",0,2019-01-01,Gull of Mexico,GMR,"","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),690624093,0,11544
+Calendar Year,2019,0,0,"",0,2019-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Gas,Gas (mcf),2875859,0,11539
+Calendar Year,2019,0,0,"",0,2019-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Gas,Gas (mcf),23664439,0,11540
+Calendar Year,2019,0,0,"",0,2019-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Gas,Gas (mcf),1032248053,0,11541
+Calendar Year,2019,0,0,"",0,2019-01-01,"Offshore Alaska, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Alaska,Oil,Oil (bbl),479710,0,11542
+Calendar Year,2019,0,0,"",0,2019-01-01,"Offshore Pacific, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Pacific,Oil,Oil (bbl),4449432,0,11543
+Calendar Year,2019,0,0,"",0,2019-01-01,"Offshore Gulf, undefined","","","","",Federal,Offshore,Federal Offshore,Offshore,Area,Offshore Gulf,Oil,Oil (bbl),690624093,0,11544
 Calendar Year,2019,0,0,"",0,2019-01-01,"Alaska, North Slope",02185,AK,Alaska,North Slope,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),519452,0,11545
 Calendar Year,2019,0,0,"",0,2019-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Gas,Gas (mcf),17930364,0,11546
 Calendar Year,2019,0,0,"",0,2019-01-01,"Alaska, Kenai Peninsula",02122,AK,Alaska,Kenai Peninsula,Federal,Onshore,Federal Onshore,County,Borough,"",Oil,Oil (bbl),506960,0,11547
@@ -12201,3 +12200,4 @@ Calendar Year,2019,0,0,"",0,2019-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sw
 Calendar Year,2019,0,0,"",0,2019-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sodium Sesquicarbonate,Sodium Sesquicarbonate (tons),85810,0,12201
 Calendar Year,2019,0,0,"",0,2019-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Sulfide,Sulfide (tons),9811,0,12202
 Calendar Year,2019,0,0,"",0,2019-01-01,"Wyoming, Sweetwater",56037,WY,Wyoming,Sweetwater,Federal,Onshore,Federal Onshore,County,County,"",Trona Ore,Trona Ore (tons),126541,0,12203
+ 

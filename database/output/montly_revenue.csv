@@ -1,4 +1,3 @@
-period,calendar_year,fiscal_year,month,month_long,fiscal_month,period_date,location_name,fips_code,state,state_name,county,land_class,land_category,land_type,region_type,district_type,offshore_region,commodity,product,revenue,duplicate_no,row_number
 Monthly,2008,2008,1,January,4,2008-01-01,Not tied to a location,"","","","",Federal,Offshore,Federal - not tied to a location,"","","",Oil & Gas,"",352786866,0,2
 Monthly,2008,2008,1,January,4,2008-01-01,Not tied to a location,"",Not tied to a location,"","",Federal,Offshore,Federal Offshore,"","","",Gas,"",1514528,0,3
 Monthly,2008,2008,1,January,4,2008-01-01,Not tied to a location,"",Not tied to a location,"","",Federal,Offshore,Federal Offshore,"","","",NGL,"",2386.45,0,4
@@ -7872,3 +7871,4 @@ Monthly,2020,2020,6,June,9,2020-06-01,Not tied to a location,"","","","",Native 
 Monthly,2020,2020,6,June,9,2020-06-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",NGL,"",513176.53,0,7872
 Monthly,2020,2020,6,June,9,2020-06-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Oil,"",11188724.42,0,7873
 Monthly,2020,2020,6,June,9,2020-06-01,Not tied to a location,"","","","",Native American,Onshore,Native American,"","","",Other Products,"",351523.66,0,7874
+ 
