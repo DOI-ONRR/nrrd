@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import { isEqual } from 'lodash'
+import PropTypes, { object } from 'prop-types'
+import { isEqual, isEqualWith } from 'lodash'
 
 import {
   InputBase,
@@ -66,7 +66,7 @@ const BaseSelectInput = ({
     data = data.map(item => ({ option: item }))
   }
   else if (!data) {
-    data = []
+    return (<></>)
   }
 
   const noop = () => {}
@@ -132,7 +132,30 @@ BaseSelectInput.defaultProps = {
   defaultSelectAll: true
 }
 
-export default BaseSelectInput
+const areEqual = (prevProps, nextProps) => {
+  const areDataValuesEqual = (item1, item2) => {
+    let equal = (!item1 && !item2)
+    if (item1 && item2) {
+      if (item1.length !== item2.length) {
+        equal = false
+      }
+      else {
+        if (typeof item1[0] === 'string' && typeof item2[0] === 'string') {
+          equal = isEqual(item1, item2)
+        }
+        else {
+          equal = isEqual(item1.map(item => item.option), item2.map(item => item.option))
+        }
+      }
+    }
+
+    return equal
+  }
+
+  return isEqualWith(prevProps.data, nextProps.data, areDataValuesEqual) && isEqual(prevProps.selected, nextProps.selected)
+}
+
+export default React.memo(BaseSelectInput, areEqual)
 
 // Single Select Input
 const BaseSingleSelectInput = ({ data, defaultSelected, selected, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
@@ -146,7 +169,10 @@ const BaseSingleSelectInput = ({ data, defaultSelected, selected, label, helperT
   const getDefaultSelected = () => {
     let defaultItem
     if (data) {
-      if (defaultSelected) {
+      if (selected) {
+        defaultItem = { option: selected }
+      }
+      else if (defaultSelected) {
         defaultItem = data.find(item => (item.option === defaultSelected || item.value === defaultSelected))
       }
       else {
@@ -218,7 +244,31 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
   const labelSlug = formatToSlug(label)
   const defaultSelectedOptions = defaultSelected && defaultSelected.split(',')
 
-  const [selectedOptions, setSelectedOptions] = useState(defaultSelectedOptions || [])
+  /**
+   * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
+   * If not it will check to see if an option has been set as default = true
+   */
+  const getDefaultSelected = () => {
+    let defaultItems
+    if (data) {
+      if (selected) {
+        if (typeof selected === 'string') {
+          defaultItems = selected.split(',')
+        }
+        else {
+          defaultItems = selected
+        }
+      }
+      else if (defaultSelectedOptions) {
+        defaultItems = defaultSelectedOptions
+      }
+      else {
+        defaultItems = []
+      }
+    }
+    return (defaultItems && !disabled) ? defaultItems : []
+  }
+  const [selectedOptions, setSelectedOptions] = useState(getDefaultSelected())
   const [selectAllOptions, setSelectAllOptions] = useState(defaultSelectAll)
   const [selectedOptionsChanged, setSelectedOptionsChanged] = useState(false)
 
@@ -248,18 +298,21 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
     }
   }
 
-  const handleRenderValue = selected => {
+  const handleRenderValue = renderValues => {
     let selectedVal
-
-    if (selected && selected.length !== data.length) {
-      selectedVal = selected.join(', ')
+    if (label === 'Recipient') {
+      // console.log(selected, renderValues, selectedOptions)
     }
 
-    if (selected && selected.length === data.length) {
+    if (renderValues && renderValues.length !== data.length) {
+      selectedVal = renderValues.join(', ')
+    }
+
+    if (renderValues && renderValues.length === data.length) {
       selectedVal = 'All'
     }
 
-    if (selected && selected.length === 0) {
+    if (renderValues && renderValues.length === 0) {
       selectedVal = 'None selected'
     }
 
@@ -279,9 +332,15 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
 
   useEffect(() => {
     if (selected && !isEqual(selected, selectedOptions)) {
-      handleChange(selected)
+      if (typeof selected === 'string') {
+        handleChange(selected.split(','))
+      }
+      else {
+        handleChange(selected)
+      }
     }
   }, [selected])
+
   return (
     <FormControl className={classes.formControl} variant={variant} disabled={((disabled) || (data && data.length === 0))}>
       <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
@@ -291,7 +350,7 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
         IconComponent={() => <KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
         multiple
         value={selectedOptions}
-        renderValue={selected => handleRenderValue(selected)}
+        renderValue={renderValues => handleRenderValue(renderValues)}
         input={theme}
         onChange={e => handleChange(e.target.value)}
         onClose={handleClose}

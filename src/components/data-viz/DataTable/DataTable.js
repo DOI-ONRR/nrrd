@@ -197,7 +197,7 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
       if (_breakoutBy === _groupBy) {
         updateDataFilter({ [GROUP_BY]: _groupBy, [BREAKOUT_BY]: getUniqueBreakoutBy() })
       }
-      else {
+      else if (state[GROUP_BY] !== _groupBy) {
         updateDataFilter({ [GROUP_BY]: _groupBy })
       }
     }
@@ -218,10 +218,17 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
   }, [_breakoutBy])
 
   const getColumnOrder = () => {
+    let swapIndex
     if (_groupBy) {
-      destructuringSwap(columnNames, 0, columnNames.findIndex(item => (item.name === _groupBy)))
+      swapIndex = columnNames.findIndex(item => (item.name === _groupBy))
+      if (swapIndex > -1) {
+        destructuringSwap(columnNames, 0, swapIndex)
+      }
       if (_breakoutBy) {
-        destructuringSwap(columnNames, 1, columnNames.findIndex(item => (item.name === _breakoutBy)))
+        swapIndex = columnNames.findIndex(item => (item.name === _breakoutBy))
+        if (swapIndex > -1) {
+          destructuringSwap(columnNames, 1, swapIndex)
+        }
       }
     }
     // Place additional columns after the group abd breakout columns if they exist
@@ -229,9 +236,13 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
       let indexOffset = _groupBy ? 1 : 0
       indexOffset = _breakoutBy ? indexOffset + 1 : indexOffset
       _additionalColumns.forEach((columnName, index) => {
-        destructuringSwap(columnNames, indexOffset, columnNames.findIndex(item => (item.name === columnName)))
+        swapIndex = columnNames.findIndex(item => (item.name === columnName))
+        if (swapIndex > -1) {
+          destructuringSwap(columnNames, indexOffset, swapIndex)
+        }
       })
     }
+
     return columnNames.map(item => item.name)
   }
   const [columnOrder, setColumnOrder] = useState(getColumnOrder())
@@ -439,6 +450,7 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
 
 const getColumnNames = (row, state) => {
   if (!row) {
+    console.log(row, state)
     return []
   }
   const filteredColumns = Object.keys(row).filter(column => !column.includes('typename'))

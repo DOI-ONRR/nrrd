@@ -16,7 +16,7 @@ const withDataFilterContext = (BaseComponent, dataFilterKey) => ({ ...props }) =
   }
 
   return (
-    <BaseComponent onChange={handleChange} defaultSelected={props.defaultSelected || state[dataFilterKey]} selected={state[dataFilterKey]} {...props} />
+    <BaseComponent onChange={handleChange} defaultSelected={props.defaultSelected} selected={state[dataFilterKey]} {...props} />
   )
 }
 
