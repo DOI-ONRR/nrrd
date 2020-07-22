@@ -53,6 +53,10 @@ export const REVENUE_TYPE_OPTIONS = 'revenueTypeOptions'
 export const FISCAL_YEAR_OPTIONS = 'fiscalYearOptions'
 
 export const DISPLAY_NAMES = {
+  [LOCATION_NAME]: {
+    default: 'Location',
+    plural: 'Location',
+  },
   [GROUP_BY]: {
     default: 'Group by',
     plural: 'Group by',
