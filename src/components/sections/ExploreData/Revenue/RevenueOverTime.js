@@ -5,6 +5,9 @@ import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import * as d3 from 'd3'
 
 import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -23,13 +26,14 @@ import {
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
-  query FiscalRevenueSummary {
-    fiscal_revenue_summary(
-      order_by: { fiscal_year: asc }
+  query RevenueOverTime($period: String!) {
+    revenue_summary(
+      where: {period: {_eq: $period} }
+      order_by: { year: asc }
     ) {
-      fiscal_year
-      state_or_area
-      sum
+      year
+      location
+      total
     }
 
   }
@@ -83,11 +87,13 @@ const RevenueOverTime = props => {
   const classes = useStyles()
   const theme = useTheme()
   const title = props.title || ''
-
+  const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
-
-  const { loading, error, data } = useQuery(APOLLO_QUERY)
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { period: period }
+  })
 
   const handleDelete = props.handleDelete || ((e, val) => {
     dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== val) })
@@ -103,8 +109,13 @@ const RevenueOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
+    const years = [...new Set(d3.nest()
+      .key(k => k.year)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.revenue_summary)
+      .map(d => parseInt(d.key))
+    )]
 
-    const years = [...new Set(data.fiscal_revenue_summary.map(item => item.fiscal_year))]
     const sums = cards.map(yData => [...new Set(data.fiscal_revenue_summary.filter(row => {
       const fips = (yData.fipsCode === '99' || yData.fipsCode === '999') ? yData.state : yData.fipsCode
       if (row.state_or_area === fips) {
@@ -112,8 +123,9 @@ const RevenueOverTime = props => {
       }
     }).map(item => item.sum))])
 
+    //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]
-
+    console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>

@@ -18,6 +18,7 @@ import {
   STATE_OFFSHORE_NAME,
   DISPLAY_NAMES,
   GROUP_BY,
+  GROUP_BY_STICKY,
   BREAKOUT_BY,
   PERIOD,
   PERIOD_TYPES
@@ -70,6 +71,10 @@ export const ProductSelectInput = createEnhancedSelect(PRODUCT, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
 export const StateOffshoreSelectInput = createEnhancedSelect(STATE_OFFSHORE_NAME, 'Multi')
+
+export const GroupByStickySelectInput = compose(
+  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[GROUP_BY_STICKY].default} showClearSelected={false} {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, GROUP_BY_STICKY))(BaseSelectInput)
 
 export const GroupBySelectInput = compose(
   BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[GROUP_BY].default} showClearSelected={false} {...props} />),

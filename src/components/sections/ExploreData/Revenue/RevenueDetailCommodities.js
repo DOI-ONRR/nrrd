@@ -3,13 +3,11 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
-import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -31,15 +29,15 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query RevenueCommodityQuery($year: Int!, $state: String!) {
+  query RevenueCommodityQuery($year: Int!, $state: String!, $period: String!) {
     # Revenue commodity summary
-    revenue_commodity_summary(
-      where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, total: desc }
+    revenue_summary(
+      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period} },
+      order_by: { year: asc, total: desc }
     ) {
-      fiscal_year
+      year
       commodity
-      state_or_area
+      location
       total
     }
   }
@@ -51,14 +49,14 @@ const RevenueDetailCommodities = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-
   const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year: year, state: state }
+    variables: { year: year, state: state, period: period }
   })
 
-  const dataSet = `FY ${ year }`
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
   const dataKey = dataSet + '-' + state
   let chartData
 
@@ -71,12 +69,12 @@ const RevenueDetailCommodities = props => {
 
   return (
     <>
-      { chartData.revenue_commodity_summary.length > 0
+      { chartData.revenue_summary.length > 0
         ? (
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Commodities</Box>
             <Box>
-              <CircleChart key={'RDC' + dataKey} data={chartData.revenue_commodity_summary}
+              <CircleChart key={'RDC' + dataKey} data={chartData.revenue_summary}
                 xAxis='commodity' yAxis='total'
                 format={ d => {
                   return utils.formatToDollarInt(d)

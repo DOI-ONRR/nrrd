@@ -62,7 +62,7 @@ const EXPLORE_DATA_TOOLBAR_OPTIONS = {
   ],
   [PERIOD]: [
     { value: CONSTANTS.FISCAL_YEAR, option: 'Fiscal Year' },
-    // { value: CONSTANTS.CALENDAR_YEAR, option: 'Calendar year' },
+    { value: CONSTANTS.CALENDAR_YEAR, option: 'Calendar Year' },
     // { value: CONSTANTS.MONTHLY, option: 'Monthly' }
   ],
   [COUNTIES]: [
@@ -122,7 +122,7 @@ const useStyles = makeStyles(theme => ({
 
 const ExploreDataToolbar = props => {
   const data = useStaticQuery(graphql`
-    query CommodityQuery {
+    query DistinctCommodityQuery {
       onrr {
         production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
           commodity
@@ -256,15 +256,26 @@ const ExploreDataToolbar = props => {
               selectType='Single'
               showClearSelected={false} />
           }
-
-          <Box className={classes.toolsWrapper}>
+         <Box className={classes.toolsWrapper}>
+         {(dataType === 'Revenue' || dataType === 'Production') &&
             <PeriodSelectInput
               dataFilterKey={PERIOD}
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[PERIOD]}
               defaultSelected='Fiscal Year'
               label='Period'
               selectType='Single'
-              showClearSelected={false} />
+           showClearSelected={false} />
+          }
+          {(dataType === 'Disbursements') &&
+           
+            <PeriodSelectInput
+              dataFilterKey={PERIOD}
+              data={['Fiscal Year']}
+              defaultSelected='Fiscal Year'
+              label='Period'
+              selectType='Single'
+           showClearSelected={false} />
+          } 
             <YearSlider />
           </Box>
           {!mapOverlay &&
