@@ -84,7 +84,7 @@ const RevenueSummaryTopCommodities = props => {
   const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: DFC.PERIOD_FISCAL_YEAR }
   })
 
   let sparkData = []
