@@ -6,6 +6,7 @@ import {
   InputBase,
   FormControl,
   FormHelperText,
+  Grid,
   InputLabel,
   ListItemText,
   ListSubheader,
@@ -31,6 +32,15 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     minWidth: 150,
     maxWidth: 275,
+    '& .MuiInputLabel-outlined': {
+      transform: 'translate(14px, -6px) scale(0.75)'
+    }
+  },
+  formHelperTextRoot: {
+    fontSize: '.75rem',
+    '& $disabled': {
+      fontSize: '.75rem',
+    },
   },
   selectInput: {
     minHeight: 'inherit',
@@ -51,6 +61,7 @@ const BaseInput = withStyles(theme =>
       border: '1px solid #ced4da',
       padding: '8.5px 14px',
       transition: theme.transitions.create(['border-color', 'box-shadow']),
+      minWidth: 130,
       '&:focus': {
         borderRadius: 4,
         borderColor: '#80bdff',
@@ -269,7 +280,11 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
   }, [data])
 
   return (
-    <FormControl className={classes.formControl} variant={variant} disabled={((disabled) || (data && data.length === 0))}>
+    <FormControl
+      className={classes.formControl}
+      variant={variant}
+      disabled={((disabled) || (data && data.length === 0))}
+      style={{ top: disabled ? 10 : 0 }}>
       <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
       <Select
         labelId={`${ labelSlug }-select-label`}
@@ -299,10 +314,10 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
         }
       </Select>
       {helperText &&
-            <FormHelperText>{helperText}</FormHelperText>
+            <FormHelperText classes={{ root: classes.formHelperTextRoot }}>{helperText}</FormHelperText>
       }
       {(data && data.length === 0) &&
-            <FormHelperText>No '{label}' match the current filter options.</FormHelperText>
+            <FormHelperText classes={{ root: classes.formHelperTextRoot }}>No '{label}' match the current filter options.</FormHelperText>
       }
     </FormControl>
   )

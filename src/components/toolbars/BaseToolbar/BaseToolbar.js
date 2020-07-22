@@ -22,6 +22,9 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     top: -1,
     minHeight: 71,
+    alignItems: 'center',
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0.5)
   },
 }))
 
