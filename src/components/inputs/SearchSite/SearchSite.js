@@ -9,8 +9,17 @@ import OutlinedInput from '@material-ui/core/OutlinedInput'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    display: 'inline',
     flexWrap: 'wrap',
+  },
+  searchBox: {
+    backgroundColor: 'white',
+    marginLeft: '16px'
+  },
+  searchBoxMobile: {
+    backgroundColor: 'white',
+    marginRight: '30px',
+    marginLeft: '16px'
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -23,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Search = props => {
+const SearchSite = props => {
   const classes = useStyles()
 
   let searchPath = '/search-results/'
@@ -39,19 +48,21 @@ const Search = props => {
 
   return (
     <Fragment>
-      <form action={searchPath} className={classes.searchForm}>
+      <form action={searchPath} className={classes.root}>
         <OutlinedInput
           id="search-input"
           margin="dense"
           title="search input"
           type="search"
-          className={props.isMobile ? classes.searchBoxMobile : classes.searchBox}
-          classes={{ focused: classes.inputFocused }}
+          classes={{
+            root: (props.isMobile) ? classes.searchBoxMobile : classes.searchBox,
+            focused: classes.inputFocused
+          }}
           placeholder={props.isMobile ? '' : 'Search'}
           name="q"
           role="search"
-          startAdornment={
-            <InputAdornment position="start">
+          endAdornment={
+            <InputAdornment position="end">
               <SearchIcon />
             </InputAdornment>
           }
@@ -61,4 +72,4 @@ const Search = props => {
   )
 }
 
-export default Search
+export default SearchSite
