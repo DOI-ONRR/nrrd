@@ -301,7 +301,8 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
       setFixedColumns([columnNames[0]])
     }
     setColumnOrder(getColumnOrder())
-    setHiddenColumnNames(getHiddenColumns())
+    const hiddenCols = getHiddenColumns()
+    setHiddenColumnNames(hiddenCols)
     setGroupSummaryItems(getGroupSummaryItems())
     setTotalSummaryItems(getTotalSummaryItems())
 
@@ -328,7 +329,7 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
           addDownloadData({
             key: DOWNLOAD_DATA_TABLE,
             data: {
-              cols: columnNames.filter(col => !hiddenColumnNames.includes(col.name)),
+              cols: columnNames.filter(col => !hiddenCols.includes(col.name)),
               rows: sums
             }
           })
