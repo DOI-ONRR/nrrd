@@ -166,7 +166,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
           return r
         })
     }
-    else {
+    else if (! props.abbr) { //Don't show top locations for any card except state
       unitAbbr = data.production_summary[0].unit_abbr
       let tmp = data.production_summary
       if (props.abbr) {
@@ -182,39 +182,43 @@ const ProductionTopLocations = ({ title, ...props }) => {
       
     }
     dataSet = dataSet + ` (${ unitAbbr })`
-
-    return (
-      <Box className={classes.root}>
-        {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
-        <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
+    if(chartData.length > 0) {
+      return (
+          <Box className={classes.root}>
+          {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
+          <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
           <CircleChart
-            key={key}
-            data={chartData}
-            maxLegendWidth={maxLegendWidth}
-            xAxis='location_name'
-            yAxis='total'
-            format={ d => utils.formatToCommaInt(d) }
-            circleLabel={
-              d => {
+        key={key}
+        data={chartData}
+        maxLegendWidth={maxLegendWidth}
+        xAxis='location_name'
+        yAxis='total'
+        format={ d => utils.formatToCommaInt(d) }
+        circleLabel={
+          d => {
                 if (location === 'State' && !props.abbr) {
                   const r = []
                   r[0] = d.location_name
                   r[1] = utils.formatToCommaInt(d.total) + ' ' + d.unit_abbr
                   return r
                 }
-                else {
-                  return ['', '']
-                }
-              }
+            else {
+              return ['', '']
             }
-            xLabel={location}
+          }
+        }
+        xLabel={location}
             yLabel={dataSet}
-            maxCircles={6}
-            minColor={theme.palette.green[100]}
-            maxColor={theme.palette.green[600]} />
-        </Box>
-      </Box>
-    )
+        maxCircles={6}
+        minColor={theme.palette.green[100]}
+        maxColor={theme.palette.green[600]} />
+          </Box>
+          </Box>
+      )
+    }
+    else {
+      return <Box className={classes.root}></Box>
+    }
   }
   else {
     return <Box className={classes.root}></Box>

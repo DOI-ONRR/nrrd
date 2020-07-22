@@ -79,7 +79,7 @@ const ProductionCountyMap = props => {
   const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5 || props.fips.length === 3
   if (loading) {}
   if (error) return `Error! ${ error.message }`
-  if (data) {
+  if (data && data.production_summary.length > 0) {
     mapData = d3.nest()
       .key(k => k.location.padStart(5, 0))
       .rollup(v => d3.sum(v, i => i.total))
@@ -90,7 +90,7 @@ const ProductionCountyMap = props => {
       <>
         {mapData &&
        <Box className={classes.root}>
-         {!showCountyContent &&
+         {location === 'County' &&
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Production by county</Box>
            <Map
