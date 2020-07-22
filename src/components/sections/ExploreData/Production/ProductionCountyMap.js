@@ -46,18 +46,30 @@ const PRODUCTION_QUERY = gql`
 
 const ProductionCountyMap = props => {
   const classes = useStyles()
-  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  const dataSet = (period === 'Fiscal Year' ) ? 'FY ' + year : 'CY ' + year
+  const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-
-  const state = props.state
+  let state = ''
+  let location = 'County'
+  if (props.abbr && props.abbr.length === 2) {
+    location = 'County'
+    state = props.abbr
+  }
+  else if (props.abbr && props.abbr.length === 5) {
+    location = ''
+    state = ''
+  }
+  else {
+    location = 'State'
+    state = ''
+  }
 
   const { loading, error, data } = useQuery(PRODUCTION_QUERY, {
-    variables: { year: year, product: product, state: state, period: period }
+    variables: { year: year, product: product, state: state, period: period },
+    skip: props.state === CONSTANTS.NATIVE_AMERICAN || location === ''
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
