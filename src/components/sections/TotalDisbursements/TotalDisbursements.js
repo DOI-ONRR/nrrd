@@ -110,7 +110,7 @@ const TotalDisbursements = props => {
 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.log('TotalDisbursements data: ', data)
+    // console.log('TotalDisbursements data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })

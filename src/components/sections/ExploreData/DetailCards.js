@@ -172,7 +172,7 @@ const nonStateOrCountyCards = [
 
 // Detail Card title
 const DetailCardTitle = props => {
-  console.log('DetailCardTitle props: ', props)
+  // console.log('DetailCardTitle props: ', props)
   const classes = useStyles()
 
   const landStatsData = props.data
@@ -251,7 +251,7 @@ const DetailCards = props => {
 
   // onLink
   const onLink = state => {
-    console.log('onLink state: ', state)
+    // console.log('onLink state: ', state)
 
     // decern betweeen topo json and location data fips
     const fips = state.properties ? state.id : state.fips_code

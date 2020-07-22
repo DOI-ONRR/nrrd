@@ -46,7 +46,7 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueDetailCommodities = props => {
-  console.log('RevenueDetailCommodities props: ', props)
+  // console.log('RevenueDetailCommodities props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
