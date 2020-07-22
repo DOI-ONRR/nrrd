@@ -171,7 +171,7 @@ const SearchLocationsInput = props => {
   }
 
   const handleChange = val => {
-    console.log('handleChange val: ', val)
+    // console.log('handleChange val: ', val)
     try {
       const item = getRegionProperties(val)
       onLink(item[0])

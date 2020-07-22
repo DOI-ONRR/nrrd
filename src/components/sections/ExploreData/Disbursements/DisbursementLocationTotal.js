@@ -35,10 +35,7 @@ const DisbursementLocationTotal = props => {
   let nativeSummary = []
 
   if (data) {
-    console.log('DisbursementLocationTotal data: ', data)
     const groupedLocationData = utils.groupBy(data.disbursement_summary, 'state_or_area')
-
-    console.log('DisbursementLocationTotal groupedData: ', groupedLocationData)
 
     nationwideSummary = d3.nest()
       .key(k => k.state_or_area)
@@ -47,8 +44,6 @@ const DisbursementLocationTotal = props => {
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       })
-
-    console.log('disbursement nationwideSummary: ', nationwideSummary)
 
     nativeSummary = d3.nest()
       .key(k => k.state_or_area)

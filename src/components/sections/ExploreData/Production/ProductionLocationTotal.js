@@ -36,8 +36,6 @@ const ProductionLocationTotal = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const product = filterState[DFC.COMMODITY]
 
-  console.log('ProductionLocationTotal queryVars: ', location, year, period, product)
-
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
     variables: { location: [CONSTANTS.NATIONWIDE_FEDERAL, CONSTANTS.NATIVE_AMERICAN], year: year, period: period, product: product }
   })
@@ -65,7 +63,6 @@ const ProductionLocationTotal = props => {
         .rollup(v => d3.sum(v, i => i.total))
         .entries(groupedLocationData[CONSTANTS.NATIVE_AMERICAN])
         .map(d => {
-          console.log('d: ', d)
           return ({ location_name: d.key, total: d.value })
         })
     }

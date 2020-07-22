@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionLandCategory = ({ title, ...props }) => {
-  console.log('ProductionLandCategory props: ', props)
+  // console.log('ProductionLandCategory props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -123,7 +123,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
     chartData = [years, sums]
     const noChartData = chartData[0].length === 0 && chartData[1].length === 0
 
-    console.log('ProductionLandCategory data: ', data)
+    // console.log('ProductionLandCategory data: ', data)
 
     if (!noChartData) {
       return (
