@@ -109,11 +109,11 @@ const ProductionLandCategory = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = (period === 'Fiscal Year') ? `FY ${ year } - ${ commodity }` : `CY ${ year } - ${ commodity}`
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year } - ${ commodity }` : `CY ${ year } - ${ commodity }`
   let unit = ''
   if (data && data.production_summary.length > 0) {
     unit = data.production_summary[0].unit_abbr
-   
+
     const years = [...new Set(data.production_summary.map(item => item.year))]
     // const sums = [...new Set(data.production_summary.filter(row => row.state_or_area === state).map(item => item.sum))]
     const sums = [...new Set(
@@ -122,7 +122,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
         .rollup(v => d3.sum(v, i => i.total))
         .entries(data.production_summary.filter(row => row.location === state)).map(item => item.value)
     )]
-    
+
     chartData = [years, sums]
     const noChartData = chartData[0].length === 0 && chartData[1].length === 0
 
@@ -142,7 +142,10 @@ const ProductionLandCategory = ({ title, ...props }) => {
               lineTooltip={
                 (d, i) => {
                   const r = []
-                  const card = cards && cards.filter(item => item.name === data.production_summary[i].location)[0]
+                  const card = cards && cards.filter(item =>
+                    (item.fipsCode === '99' || item.fipsCode === '999')
+                      ? item.name === data.production_summary[i].location
+                      : item.fipsCode === data.production_summary[i].location)[0]
                   r[0] = `${ card.name }: ${ utils.formatToCommaInt(d) } (${ data.production_summary[i].unit_abbr })`
                   return r
                 }
