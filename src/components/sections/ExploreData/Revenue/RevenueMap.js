@@ -29,7 +29,8 @@ export default props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
 
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
-    variables: { year: year, commodities: commodities }
+    variables: { year: year, commodities: commodities },
+    // skip: commodities === undefined
   })
 
   let mapData = [[]]

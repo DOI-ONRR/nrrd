@@ -12,7 +12,8 @@ import {
   ListSubheader,
   MenuItem,
   Select,
-  Checkbox
+  Checkbox,
+  Tooltip
 } from '@material-ui/core'
 
 import {
@@ -22,6 +23,7 @@ import {
 } from '@material-ui/core/styles'
 
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
+import HelpIcon from '@material-ui/icons/Help'
 
 import { formatToSlug } from '../../../js/utils'
 import { ZERO_OPTIONS } from '../../../constants'
@@ -34,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 275,
     '& .MuiInputLabel-outlined': {
       transform: 'translate(14px, -6px) scale(0.75)'
-    }
+    },
   },
   formHelperTextRoot: {
     fontSize: '.75rem',
@@ -45,6 +47,16 @@ const useStyles = makeStyles(theme => ({
   selectInput: {
     minHeight: 'inherit',
     padding: '8.5px 14px',
+    marginBottom: theme.spacing(0.5),
+  },
+  iconRoot: {
+    fill: theme.palette.links.default,
+  },
+  iconFontSizeSmall: {
+    fontSize: 20,
+  },
+  tooltipRoot: {
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
   },
 }))
 
@@ -268,7 +280,25 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
     return selectedVal
   }
 
+  const helperContent = () => {
+    return (
+      <>
+        {helperText &&
+          <Box component="span" className={classes.formHelperTextRoot}>
+            {helperText}
+          </Box>
+        }
+        {(data && data.length === 0) &&
+          <Box component="span" className={classes.formHelperTextRoot}>
+            No {label} match the current filter options.
+          </Box>
+        }
+      </>
+    )
+  }
+
   useEffect(() => {
+    console.log('BaseSelectInput selectedOptions', selectedOptions)
     if (!disabled) {
       if (selectAllOptions) {
         setSelectedOptions(data.map(item => item.option))
@@ -283,8 +313,7 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
     <FormControl
       className={classes.formControl}
       variant={variant}
-      disabled={((disabled) || (data && data.length === 0))}
-      style={{ top: disabled ? 10 : 0 }}>
+      disabled={((disabled) || (data && data.length === 0))}>
       <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
       <Select
         labelId={`${ labelSlug }-select-label`}
@@ -296,7 +325,10 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
         input={theme}
         onChange={handleChange}
         onClose={handleClose}
-        classes={{ root: classes.selectInput }}
+        classes={{
+          root: classes.selectInput,
+          disabled: classes.selectDisabled
+        }}
         displayEmpty
       >
         <MenuItem key={0} role="select-menu" value={selectAllOptions ? 'selectNone' : 'selectAll'}>
@@ -313,11 +345,22 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
             </MenuItem>)
         }
       </Select>
-      {helperText &&
-            <FormHelperText classes={{ root: classes.formHelperTextRoot }}>{helperText}</FormHelperText>
-      }
-      {(data && data.length === 0) &&
-            <FormHelperText classes={{ root: classes.formHelperTextRoot }}>No '{label}' match the current filter options.</FormHelperText>
+
+      {(helperText || (data && data.length === 0)) &&
+        <Tooltip
+          title={helperContent()}
+          placement="bottom-start"
+          classes={{
+            tooltip: classes.tooltipRoot,
+            arrow: classes.tooltipArrow,
+          }}>
+          <HelpIcon
+            fontSize="small"
+            classes={{
+              root: classes.iconRoot,
+              fontSizeSmall: classes.iconFontSizeSmall
+            }} />
+        </Tooltip>
       }
     </FormControl>
   )

@@ -546,7 +546,7 @@ const MapContext = props => {
       period: filterState.period,
       counties: filterState.counties,
       offshoreRegions: filterState.offshoreRegions,
-      commodity: filterState.commodity,
+      commodity: filterState.commodity || 'All',
       location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
     }, 'pushIn')
   }, [filterState, pageState])

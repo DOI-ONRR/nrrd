@@ -61,7 +61,8 @@ const initialState = {
         [GROUP_BY]: REVENUE_TYPE,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2017,2018,2019',
-        [CALENDAR_YEAR]: '2017,2018,2019'
+        [CALENDAR_YEAR]: '2017,2018,2019',
+        [COMMODITY]: 'All',
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
