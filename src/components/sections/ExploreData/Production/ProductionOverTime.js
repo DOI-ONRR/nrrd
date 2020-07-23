@@ -25,14 +25,14 @@ import {
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
-  query FiscalProductionSummary($commodity: String!) {
-    fiscal_production_summary(
-      where: { commodity: {_eq: $commodity} }
-      order_by: { fiscal_year: asc }
+  query FiscalProductionSummary($commodity: String!, $period: String!) {
+    production_summary(
+      where: { commodity: {_eq: $commodity}, period: {_eq: $period } }
+      order_by: { year: asc }
     ) {
-      fiscal_year
-      state_or_area
-      sum
+      year
+      location
+      total
       unit_abbr
     }
 
@@ -91,8 +91,9 @@ const ProductionOverTime = props => {
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { commodity: commodity }
+    variables: { commodity: commodity, period: period }
   })
 
   const handleDelete = props.handleDelete || ((e, val) => {
@@ -108,11 +109,11 @@ const ProductionOverTime = props => {
   }
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
-  if (data && cards && cards.length > 0) {
-    const years = [...new Set(data.fiscal_production_summary.map(item => item.fiscal_year))]
-    const sums = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
-    const units = cards.map(yData => [...new Set(data.fiscal_production_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.unit_abbr))])
-    
+  if (data && data.production_summary.length > 0 && cards && cards.length > 0) {
+    const years = [...new Set(data.production_summary.map(item => item.year))]
+    const sums = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.abbr).map(item => item.total))])
+    const units = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.abbr).map(item => item.unit_abbr))])
+
     chartData = [years, ...sums]
 
     return (
@@ -124,7 +125,7 @@ const ProductionOverTime = props => {
         </Grid>
         <Grid item md={12}>
           <LineChart
-            key={'POT' + cards.length }
+            key={'POT' + period + cards.length } 
             data={chartData}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
