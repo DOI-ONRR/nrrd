@@ -34,6 +34,7 @@ export const SearchResults = () => {
   `
   )
   const index = Index.load(data.siteSearchIndex.index)
+  console.log(index)
   let urlParams = new URLSearchParams()
   if (typeof window !== 'undefined' && window) {
     urlParams = new URLSearchParams(window.location.search)

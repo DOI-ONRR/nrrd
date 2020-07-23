@@ -90,7 +90,7 @@ const RevenueOverTime = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { period: period }
   })
@@ -116,7 +116,7 @@ const RevenueOverTime = props => {
       .map(d => parseInt(d.key))
     )]
 
-    const sums = cards.map(yData => [...new Set(data.fiscal_revenue_summary.filter(row => {
+    const sums = cards.map(yData => [...new Set(data.revenue_summary.filter(row => {
       const fips = (yData.fipsCode === '99' || yData.fipsCode === '999') ? yData.state : yData.fipsCode
       if (row.state_or_area === fips) {
         return row

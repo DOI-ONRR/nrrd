@@ -258,6 +258,7 @@ const ExploreDataToolbar = props => {
           }
          <Box className={classes.toolsWrapper}>
          {(dataType === 'Revenue' || dataType === 'Production') &&
+          
             <PeriodSelectInput
               dataFilterKey={PERIOD}
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[PERIOD]}
