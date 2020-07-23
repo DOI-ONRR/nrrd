@@ -101,9 +101,7 @@ const RevenueDetailTrends = props => {
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
-
-    locationTotalData = data.locationTotal
-    locData = locationTotalData.length > 0 ? locationTotalData.find(item => item.state_or_area === state).sum : 0
+    locData = sparkData[highlightIndex][1]
   }
 
   return (
