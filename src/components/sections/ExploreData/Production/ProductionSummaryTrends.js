@@ -132,7 +132,7 @@ const ProductionSummaryTrends = props => {
             <Typography variant="caption">
               <Box>{dataSet}</Box>
               <Box>
-                {utils.formatToCommaInt(Math.floor(total), 3)}
+                {utils.formatToCommaInt(Math.floor(total), 3)} ({unit})
               </Box>
             </Typography>
           </Grid>
