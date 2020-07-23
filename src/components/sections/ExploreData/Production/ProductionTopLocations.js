@@ -166,7 +166,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
           return r
         })
     }
-    else if (! props.abbr) { //Don't show top locations for any card except state
+    else {  // uncomment to get if (! props.abbr) { //Don't show top locations for any card except state
       unitAbbr = data.production_summary[0].unit_abbr
       let tmp = data.production_summary
       if (props.abbr) {
@@ -222,7 +222,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   }
   else {
     return <Box className={classes.root}></Box>
-  }
+    }
 }
 
 export default ProductionTopLocations
