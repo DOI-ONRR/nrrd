@@ -30,11 +30,10 @@ const LOCATION_TOTAL_QUERY = gql`
 `
 
 const ProductionLocationTotal = props => {
-  const { location } = props
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-  const product = filterState[DFC.COMMODITY]
+  const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
 
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
     variables: { location: [CONSTANTS.NATIONWIDE_FEDERAL, CONSTANTS.NATIVE_AMERICAN], year: year, period: period, product: product }
