@@ -511,16 +511,16 @@ const MapContext = props => {
           if (strElem === item.fips_code) {
             return item
           }
-          // else {
-          //   // Nationwide Federal card
-          //   if (strElem === '99') {
-          //     onLink(cardMenuItems[0])
-          //   }
-          //   // Native American card
-          //   if (strElem === '999') {
-          //     onLink(cardMenuItems[1])
-          //   }
-          // }
+          else {
+            // Nationwide Federal card
+            if (strElem === 'NF') {
+              onLink(cardMenuItems[0])
+            }
+            // Native American card
+            if (strElem === 'NA') {
+              onLink(cardMenuItems[1])
+            }
+          }
         }
       })
 
