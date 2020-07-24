@@ -112,7 +112,7 @@ const AddLocationCard = props => {
             {
               cardMenuItems.map((item, i) =>
                 <MenuItem
-                  disabled={cards.some(c => c.abbr === item.name)}
+                  disabled={cards.some(c => c.locationName === item.location_name)}
                   key={i}
                   onClick={handleClose(i, item)}>
                   {item.label}

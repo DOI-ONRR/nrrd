@@ -12,15 +12,23 @@ import CONSTANTS from '../../../../js/constants'
 
 const LOCATION_TOTAL_QUERY = gql`
   query NationwideFederal($location: [String!], $year: Int!, $period: String!) {
-    disbursement_summary(where: {fiscal_year: {_eq: $year}, state_or_area: {_in: $location}}) {
-      fiscal_year
-      state_or_area
-      sum
+   revenue_summary (
+      where: {
+        location_type: {_in: $location},
+        year: { _eq: $year },
+        location_name: {_neq: ""},
+        period: {_eq: $period}
+      }
+    ) {
+      location_name
+      year
+      location
+      total
     }
   }
 `
 
-const DisbursementLocationTotal = props => {
+const RevenueLocationTotal = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
@@ -35,19 +43,20 @@ const DisbursementLocationTotal = props => {
   let nativeSummary = []
 
   if (data) {
-    const groupedLocationData = utils.groupBy(data.disbursement_summary, 'state_or_area')
+    // console.log('LocationTotal data: ', data)
+    const groupedLocationData = utils.groupBy(data.revenue_summary, 'location_name')
 
     nationwideSummary = d3.nest()
-      .key(k => k.state_or_area)
-      .rollup(v => d3.sum(v, i => i.sum))
+      .key(k => k.location_name)
+      .rollup(v => d3.sum(v, i => i.total))
       .entries(groupedLocationData[CONSTANTS.NATIONWIDE_FEDERAL])
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       })
 
     nativeSummary = d3.nest()
-      .key(k => k.state_or_area)
-      .rollup(v => d3.sum(v, i => i.sum))
+      .key(k => k.location_name)
+      .rollup(v => d3.sum(v, i => i.total))
       .entries(groupedLocationData[CONSTANTS.NATIVE_AMERICAN])
       .map(d => {
         return ({ location_name: d.key, total: d.value })
@@ -55,14 +64,14 @@ const DisbursementLocationTotal = props => {
 
     return (
       <>
-        After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called "disbursement." <strong>In {period.toLowerCase()} {year}, ONRR disbursed {utils.formatToDollarInt(nationwideSummary[0].total)} from federal sources and {utils.formatToDollarInt(nativeSummary[0].total)} from Native American sources for a total of {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
+        When companies extract natural resources on federal or Native American lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any resource owner. The Office of Natural Resources Revenue (ONRR) collects and disburses these revenues. <strong>In {period.toLowerCase()} {year}, ONRR collected {utils.formatToDollarInt(nationwideSummary[0].total)} from federal sources and {utils.formatToDollarInt(nativeSummary[0].total)} from Native American sources for a total of {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
       </>
     )
   }
 }
 
-export default DisbursementLocationTotal
+export default RevenueLocationTotal
 
-DisbursementLocationTotal.propTypes = {
+RevenueLocationTotal.propTypes = {
   location: PropTypes.array
 }

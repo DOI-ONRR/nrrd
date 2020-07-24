@@ -114,7 +114,7 @@ const DisbursementsOverTime = props => {
       d3.nest()
         .key(k => k.fiscal_year)
         .rollup(v => d3.sum(v, i => i.sum))
-        .entries(data.disbursement_summary.filter(row => row.state_or_area === yData.abbr)).map(item => item.value)
+        .entries(data.disbursement_summary.filter(row => row.state_or_area === yData.state)).map(item => item.value)
     )])
     console.debug('sums', sums)
     console.debug(sums, years)

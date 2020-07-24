@@ -4,12 +4,12 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
+// import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import CONSTANTS from '../../../../js/constants'
+// import CONSTANTS from '../../../../js/constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -55,20 +55,21 @@ const ProductionDetailTrends = props => {
   const name = props.name
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+
+  console.log('ProductionDetailTrends state, product, period, year: ', state, product, period, year)
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, product: product, period: period, year: year }
+    variables: { state: state, product: product, period: period, year: year }
   })
 
   if (loading) return ''
 
   if (error) return `Error! ${ error.message }`
 
-  const dataSet = (period === 'Fiscal Year') ?  `FY ${ year }` : `CY ${ year }`
+  const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
 
   let sparkData = []
   let sparkMin
@@ -79,21 +80,21 @@ const ProductionDetailTrends = props => {
   let locationTotalData
   let locData
   let unit = ''
-  if (data &&  data.production_summary.length > 0) {
+  if (data && data.production_summary.length > 0) {
     periodData = data.period
 
     // set min and max trend years
-        sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0,4)))
+    sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0, 4)))
     sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
-      unit = data.production_summary[0].unit_abbr
-    
+    unit = data.production_summary[0].unit_abbr
+
     fiscalData = d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.production_summary)
-      .map(d => [ parseInt(d.key), d.value ]) 
-    
-    /*console.debug ("FD ", fD)
+      .map(d => [parseInt(d.key), d.value])
+
+    /* console.debug ("FD ", fD)
       fiscalData = data.fiscal_production_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
@@ -102,15 +103,15 @@ const ProductionDetailTrends = props => {
     */
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-      const y = parseInt(item.period_date.substr(0,4))
+      const y = parseInt(item.period_date.substr(0, 4))
       const total = fiscalData.find(x => x[0] === y)
-      
+
       return ([
         y,
         total ? total[1] : 0
       ])
     })
-    
+
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
@@ -123,7 +124,7 @@ const ProductionDetailTrends = props => {
     return (
       <>
         <Box textAlign="center" className={classes.root} key={props.key}>
-        <Box component="h2" mt={0} mb={0}  style={{whiteSpace: 'nowrap'}} >{utils.formatToCommaInt(locData) + ' ' + unit}</Box>
+          <Box component="h2" mt={0} mb={0} style={{ whiteSpace: 'nowrap' }} >{utils.formatToCommaInt(locData) + ' ' + unit}</Box>
           <Box component="span" mb={4}>{year && <span>{dataSet} production</span>}</Box>
           {sparkData.length > 1 && (
             <Box mt={4}>
@@ -132,7 +133,7 @@ const ProductionDetailTrends = props => {
                 data={sparkData}
                 highlightIndex={highlightIndex}
               />
-            Production trend ({sparkMin} - {sparkMax})
+              Production trend ({sparkMin} - {sparkMax})
             </Box>
           )}
         </Box>

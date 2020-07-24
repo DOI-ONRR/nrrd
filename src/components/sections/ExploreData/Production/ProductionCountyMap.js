@@ -76,7 +76,7 @@ const ProductionCountyMap = props => {
   const onZoomEnd = event => {
 
   }
-  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5 || props.fips.length === 3
+  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.regionType === 'County' || props.regionType === 'Offshore'
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data && data.production_summary.length > 0) {
@@ -94,13 +94,13 @@ const ProductionCountyMap = props => {
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Production by county</Box>
            <Map
-             key={'PCM' + dataSet + '_' + props.abbr }
+             key={'PCM' + dataSet + '_' + props.fipsCode }
              mapFeatures={mapFeatures}
              mapJsonObject={mapCounties}
              mapData={mapData}
              minColor={props.minColor}
              maxColor={props.maxColor}
-             zoomTo={props.abbr}
+             zoomTo={props.fipscode}
            />
          </>
          }

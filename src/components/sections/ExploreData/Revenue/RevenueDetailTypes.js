@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 const APOLLO_QUERY = gql`
   query RevenueTypes($state: String!, $year: Int!, $period: String!) {
     revenue_type_summary(
-      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period} }
+      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period} },
       order_by: { year: asc, total: desc }
     ) {
       year
@@ -52,13 +52,14 @@ const RevenueDetailTypes = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
 
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+
+  console.log('RevenueDetailTypes queryVars: ', state, year)
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, year: year, period: period }
+    variables: { state: state, year: year, period: period }
   })
-  const dataKey = dataSet + '-' + stateAbbr
+  const dataKey = dataSet + '-' + props.name
   let chartData
 
   if (loading) return ''

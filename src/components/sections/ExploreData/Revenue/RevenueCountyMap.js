@@ -10,7 +10,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CONSTANTS from '../../../../js/constants'
 import mapCounties from '../counties.json'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -45,13 +45,12 @@ const REVENUE_QUERY = gql`
       location
       total
     }
-
   }
 `
 
 const RevenueCountyMap = props => {
+  // console.log('RevenueCountyMap props: ', props)
   const classes = useStyles()
-  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -64,12 +63,12 @@ const RevenueCountyMap = props => {
   let mapData = [[]]
   const state = props.state
 
-  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.fips.length === 5 || props.fips.length === 3
+  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.regionType === 'County' || props.regionType === 'Offshore'
 
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-   /* mapData = data.revenue_summary.map((item, i) => [
+    /* mapData = data.revenue_summary.map((item, i) => [
       item.location,
       item.total
     ])
@@ -89,13 +88,13 @@ const RevenueCountyMap = props => {
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
            <Map
-             key={`county_map_${ props.abbr }_{$period}_${ year }`}
+             key={`county_map_${ props.name }_${ year }`}
              mapFeatures={mapFeatures}
              mapJsonObject={mapCounties}
              mapData={mapData}
              minColor={props.minColor}
              maxColor={props.maxColor}
-             zoomTo={props.abbr}
+             zoomTo={props.fipsCode}
            />
          </>
          }

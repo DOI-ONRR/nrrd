@@ -42,8 +42,8 @@ const useStyles = makeStyles(theme => ({
 
 const APOLLO_QUERY = gql`
   query TopCommodities($state: String!, $period: String!) {
-       revenue_summary(
-      where: { location: { _eq: $state }, period: {_eq: $period} }
+    revenue_summary(
+      where: { location: { _eq: $state }, period: {_eq: $period} },
       order_by: { year: asc, location: asc }
     ) {
       year
@@ -51,7 +51,6 @@ const APOLLO_QUERY = gql`
       total      
       commodity
     }
-
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
       period_date
@@ -60,12 +59,16 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueSummaryTopCommodities = props => {
+  // console.log('RevenueSummaryTopCommodities props: ', props)
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, period: period }
+    variables: { state: state, period: period }
   })
 
   let sparkData = []
@@ -81,18 +84,18 @@ const RevenueSummaryTopCommodities = props => {
   if (error) return `Error! ${ error.message }`
 
   if (data && data.revenue_summary.length > 0) {
-    console.debug("DWGH", data)
+    console.debug('DWGH', data)
     periodData = data.period
 
-    fiscalData =  d3.nest()
+    fiscalData = d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_summary)
-      .map(d => [ parseInt(d.key), d.value ]) 
+      .map(d => [parseInt(d.key), d.value])
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-      let  y = parseInt(item.period_date.substr(0,4))
+      const y = parseInt(item.period_date.substr(0, 4))
       const total = fiscalData.find(x => x[0] === y)
       return ([
         y,
@@ -104,16 +107,16 @@ const RevenueSummaryTopCommodities = props => {
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
-    topCommodities = data.revenue_summary.filter( row => row.year === year)
-      .map((f) => f.commodity)
+    topCommodities = data.revenue_summary.filter(row => row.year === year)
+      .map(f => f.commodity)
       .map((com, i) => {
         const s = d3.nest()
-              .key(k => k.year)
-              .rollup(v => d3.sum(v, i => i.total))
-              .entries(data.revenue_summary.filter(item => item.commodity === com))
-              .map(d => [parseInt(d.key), d.value])
+          .key(k => k.year)
+          .rollup(v => d3.sum(v, i => i.total))
+          .entries(data.revenue_summary.filter(item => item.commodity === com))
+          .map(d => [parseInt(d.key), d.value])
         const d = periodData.map((row, i) => {
-          const y=parseInt(row.period_date.substr(0,4))
+          const y = parseInt(row.period_date.substr(0, 4))
           const t = s.find(x => x[0] === y)
           return (
             [y, t ? t[1] : 0]
@@ -121,17 +124,17 @@ const RevenueSummaryTopCommodities = props => {
         })
         return { commodity: com, data: d }
       })
-    console.debug("WTH topCommodities", topCommodities)
+    console.debug('WTH topCommodities', topCommodities)
     currentCommodities = d3.nest()
       .key(k => k.commodity)
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_summary.filter(item => item.year === year))
       .map(d => [d.key, d.value])
-          .sort((a, b) => a[1] > b[1] ? -1 : 1)
-    
-    console.debug("WTH currentCommodities", currentCommodities)
+      .sort((a, b) => a[1] > b[1] ? -1 : 1)
+
+    console.debug('WTH currentCommodities', currentCommodities)
     distinctCommodities = currentCommodities.length
-    
+
     /*
     topCommodities = data.revenue_commodity_summary
       .map((item, i) => item.commodity)
@@ -146,7 +149,6 @@ const RevenueSummaryTopCommodities = props => {
         })
         return { commodity: com, data: d }
         }) */
-    
   }
   return (
     <>
@@ -170,48 +172,48 @@ const RevenueSummaryTopCommodities = props => {
                 aria-label="top commodities table"
               >
                 <TableBody>
-       {
-         currentCommodities.map((com,j) => {
-           if( j < 3 ) {
-                                             
-             return topCommodities.filter(f => f.commodity === com[0]).map((row, i) => {
-               console.debug("ROOOOOOOOOOOOOOOOOOOOW", row)
-               
-                      return (
-                        <TableRow key={j}>
-                          <TableCell component="th" scope="row">
-                            <Typography style={{ fontSize: '.8rem' }}>
-                              {row.commodity}
-                            </Typography>
-                          </TableCell>
-                          <TableCell align="right">
-                            <Sparkline
-                              data={row.data}
-                              highlightIndex={row.data.findIndex(
-                                x => x[0] === year
-                              )}
-                            />
-                          </TableCell>
-                          <TableCell align="right">
-                            <Typography style={{ fontSize: '.8rem' }}>
-                          {
-                            utils.formatToSigFig_Dollar(
-                                Math.floor(
-                                  // eslint-disable-next-line standard/computed-property-even-spacing
-                                  row.data[
-                                    row.data.findIndex(x => x[0] === year)
-                                  ][1]
-                                ),
-                                3
-                              )}
-                            </Typography>
-                          </TableCell>
-                        </TableRow>
-                      )
-             })}
-         })
-       }
-              </TableBody>
+                  {
+                    currentCommodities.map((com, j) => {
+                      if (j < 3) {
+                        return topCommodities.filter(f => f.commodity === com[0]).map((row, i) => {
+                          console.debug('ROOOOOOOOOOOOOOOOOOOOW', row)
+
+                          return (
+                            <TableRow key={j}>
+                              <TableCell component="th" scope="row">
+                                <Typography style={{ fontSize: '.8rem' }}>
+                                  {row.commodity}
+                                </Typography>
+                              </TableCell>
+                              <TableCell align="right">
+                                <Sparkline
+                                  data={row.data}
+                                  highlightIndex={row.data.findIndex(
+                                    x => x[0] === year
+                                  )}
+                                />
+                              </TableCell>
+                              <TableCell align="right">
+                                <Typography style={{ fontSize: '.8rem' }}>
+                                  {
+                                    utils.formatToSigFig_Dollar(
+                                      Math.floor(
+                                        // eslint-disable-next-line standard/computed-property-even-spacing
+                                        row.data[
+                                          row.data.findIndex(x => x[0] === year)
+                                        ][1]
+                                      ),
+                                      3
+                                    )}
+                                </Typography>
+                              </TableCell>
+                            </TableRow>
+                          )
+                        })
+                      }
+                    })
+                  }
+                </TableBody>
               </Table>
             </Paper>
           </Grid>

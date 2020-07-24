@@ -68,9 +68,11 @@ const DisbursementRecipients = props => {
 
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
-  console.debug('DT                ', filterState)
+
+  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
   if (loading) {

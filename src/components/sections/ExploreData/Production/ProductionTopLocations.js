@@ -112,34 +112,36 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionTopLocations = ({ title, ...props }) => {
-
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  
+
+  let location = CONSTANTS.COUNTY
   let state = ''
-  let location = 'County'
-  if (props.abbr && props.abbr.length === 2) {
-    location = 'County'
-    state = props.abbr
-  }
-  else if (props.abbr && props.abbr.length === 5) {
+
+  switch (props.regionType) {
+  case CONSTANTS.STATE:
+    location = CONSTANTS.COUNTY
+    state = ''
+    break
+  case CONSTANTS.COUNTY:
     location = ''
     state = ''
-  }
-  else {
-    location = 'State'
+    break
+  default:
+    location = CONSTANTS.STATE
     state = ''
+    break
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const key = `PTL${ year }${ state }${ commodity }${period}`
+  const key = `PTL${ year }${ state }${ commodity }${ period }`
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location, commodity, state, period },
-      skip: props.state === CONSTANTS.NATIVE_AMERICAN || location === ''
+      skip: props.state === CONSTANTS.NATIVE_AMERICAN || props.regionType === CONSTANTS.COUNTY || props.regionType === CONSTANTS.OFFSHORE
     })
 
   const maxLegendWidth = props.maxLegendWidth
@@ -154,9 +156,9 @@ const ProductionTopLocations = ({ title, ...props }) => {
 
   let chartData = []
   let dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
-  let unitAbbr=''
+  let unitAbbr = ''
   if (data && (data.state_production_summary.length || data.production_summary.length)) {
-    if (data.state_production_summary.length > 0  && location === 'County') {
+    if (data.state_production_summary.length > 0 && location === 'County') {
       unitAbbr = data.state_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
@@ -166,11 +168,11 @@ const ProductionTopLocations = ({ title, ...props }) => {
           return r
         })
     }
-    else {  // uncomment to get if (! props.abbr) { //Don't show top locations for any card except state
+    else { // uncomment to get if (! props.abbr) { //Don't show top locations for any card except state
       unitAbbr = data.production_summary[0].unit_abbr
       let tmp = data.production_summary
       if (props.abbr) {
-        tmp = data.production_summary.filter( d => d.location_name !== 'Native American lands')       
+        tmp = data.production_summary.filter(d => d.location_name !== 'Native American lands')
       }
       chartData = d3.nest()
         .key(k => k.location_name)
@@ -179,41 +181,40 @@ const ProductionTopLocations = ({ title, ...props }) => {
           const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
           return r
         })
-      
     }
     dataSet = dataSet + ` (${ unitAbbr })`
-    if(chartData.length > 0) {
+    if (chartData.length > 0) {
       return (
-          <Box className={classes.root}>
+        <Box className={classes.root}>
           {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
           <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
-          <CircleChart
-        key={key}
-        data={chartData}
-        maxLegendWidth={maxLegendWidth}
-        xAxis='location_name'
-        yAxis='total'
-        format={ d => utils.formatToCommaInt(d) }
-        circleLabel={
-          d => {
-                if (location === 'State' && !props.abbr) {
-                  const r = []
-                  r[0] = d.location_name
-                  r[1] = utils.formatToCommaInt(d.total) + ' ' + d.unit_abbr
-                  return r
+            <CircleChart
+              key={key}
+              data={chartData}
+              maxLegendWidth={maxLegendWidth}
+              xAxis='location_name'
+              yAxis='total'
+              format={ d => utils.formatToCommaInt(d) }
+              circleLabel={
+                d => {
+                  if (location === 'State' && !props.abbr) {
+                    const r = []
+                    r[0] = d.location_name
+                    r[1] = utils.formatToCommaInt(d.total) + ' ' + d.unit_abbr
+                    return r
+                  }
+                  else {
+                    return ['', '']
+                  }
                 }
-            else {
-              return ['', '']
-            }
-          }
-        }
-        xLabel={location}
-            yLabel={dataSet}
-        maxCircles={6}
-        minColor={theme.palette.green[100]}
-        maxColor={theme.palette.green[600]} />
+              }
+              xLabel={location}
+              yLabel={dataSet}
+              maxCircles={6}
+              minColor={theme.palette.green[100]}
+              maxColor={theme.palette.green[600]} />
           </Box>
-          </Box>
+        </Box>
       )
     }
     else {
@@ -222,7 +223,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   }
   else {
     return <Box className={classes.root}></Box>
-    }
+  }
 }
 
 export default ProductionTopLocations

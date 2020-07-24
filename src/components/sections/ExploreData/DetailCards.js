@@ -6,6 +6,8 @@ import utils from '../../../js/utils'
 import { StoreContext } from '../../../store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
+import CardTitle from './CardTitle'
+
 import { isIE } from 'react-device-detect'
 
 // import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -85,7 +87,7 @@ const useStyles = makeStyles(theme => ({
   closeIcon: {
     color: 'white',
     position: 'relative',
-    top: theme.spacing(1.75),
+    top: 5,
     right: theme.spacing(1),
     cursor: 'pointer',
     maxWidth: 20,
@@ -96,6 +98,7 @@ const useStyles = makeStyles(theme => ({
     padding: 10,
     height: 75,
     fontSize: '1.2rem',
+    alignItems: 'center',
     '& .MuiCardHeader-action': {
       marginTop: 0,
     },
@@ -103,25 +106,13 @@ const useStyles = makeStyles(theme => ({
       margin: 0,
     },
     '& span:first-child': {
-      marginTop: theme.spacing(1),
+      marginTop: 0,
       marginRight: theme.spacing(1),
+      fontSize: '1.25rem',
     },
   },
   cardHeaderContent: {
     fontSize: theme.typography.h3.fontSize,
-  },
-  detailCardHeaderContent: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    '& svg': {
-      maxWidth: 50,
-      maxHeight: 50,
-      fill: theme.palette.common.white,
-    },
-    '& span > div': {
-      fontSize: theme.typography.caption.fontSize,
-    },
   },
   progressContainer: {
     maxWidth: '25%',
@@ -146,6 +137,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 50,
     marginRight: theme.spacing(1.5),
     filter: 'invert(1)',
+    marginTop: 15,
   },
   cardContentContainer: {
     display: isIE ? 'block' : 'grid',
@@ -153,6 +145,23 @@ const useStyles = makeStyles(theme => ({
     '& > div': {
       margin: 0,
     },
+  },
+  detailCardHeaderContent: {
+    display: 'flex',
+    '& svg': {
+      maxWidth: 50,
+      maxHeight: 50,
+      fill: theme.palette.common.white,
+    },
+    '& span > div': {
+      fontSize: theme.typography.caption.fontSize,
+      position: 'relative',
+      top: 0,
+    },
+  },
+  landPercentage: {
+    position: 'relative',
+    top: -8,
   }
 }))
 
@@ -161,44 +170,35 @@ const nonStateOrCountyCards = [
   CONSTANTS.NATIVE_AMERICAN
 ]
 
-// Card title
-const CardTitle = props => {
+// Detail Card title
+const DetailCardTitle = props => {
+  // console.log('DetailCardTitle props: ', props)
   const classes = useStyles()
 
   const landStatsData = props.data
 
-  const stateTitle = props.stateTitle
-  const stateAbbr = props.state ? props.state : props.stateAbbr
-  const isCounty = props.stateAbbr.length === 5
-
   // Get land percentage
   const getLandPercent = stateOrArea => {
-    const loc = stateOrArea === 'Nationwide Federal' ? 'National' : stateOrArea
+    const loc = stateOrArea === '99' ? 'National' : stateOrArea
     const landStat = landStatsData.find(item => item.location === loc)
-    if (landStat) return <Box>{ `${ utils.round(landStat.federal_percent, 1) }% federal` }</Box>
-  }
-
-  let cardTitle = `${ props.stateTitle }`
-
-  if (isCounty && !nonStateOrCountyCards.includes(stateTitle)) {
-    cardTitle = `${ stateTitle }, ${ stateAbbr }`
+    if (landStat) return <Box>{ `${ utils.round(landStat.federal_percent, 1) }% federal land` }</Box>
   }
 
   let svgImg
 
-  if (nonStateOrCountyCards.includes(stateTitle)) {
+  if (nonStateOrCountyCards.includes(props.card.state)) {
     svgImg = <IconMap className={classes.usLocationIcon} alt="US Icon" />
   }
   else {
-    svgImg = (stateAbbr.length === 2) ? <img src={`/maps/states/${ stateAbbr }.svg`} alt={`${ stateAbbr } State Icon`} className={classes.cardLocationIcon} /> : ''
+    svgImg = (props.card.regionType === 'State') ? <img src={`/maps/states/${ props.card.fipsCode }.svg`} alt={`${ props.card.fipsCode } State Icon`} className={classes.cardLocationIcon} /> : ''
   }
 
   return (
     <div className={classes.detailCardHeaderContent}>
       {svgImg}
       <span>
-        {cardTitle}
-        {getLandPercent(stateAbbr)}
+        <CardTitle card={props.card} />
+        <span className={classes.landPercentage}>{getLandPercent(props.card.fipsCode)}</span>
       </span>
     </div>
   )
@@ -215,6 +215,17 @@ const DetailCards = props => {
           total_acres
         }
       }
+      onrr {
+        locations: location(where: {region_type: {_in: ["State", "Offshore", "County"]}, fips_code: {_neq: ""}}, distinct_on: fips_code) {
+          fips_code
+          location_name
+          state
+          state_name
+          county
+          region_type
+          district_type
+        }
+      }
     }
   `)
   const classes = useStyles()
@@ -229,52 +240,50 @@ const DetailCards = props => {
 
   const closeCard = fips => {
     // console.log('fips: ', fips)
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== fips) })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== fips) })
   }
 
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
   const cardMenuItems = [
-    { fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' },
-    { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
+    { fips_code: '99', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
+    { fips_code: '999', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
   ]
 
   // onLink
   const onLink = state => {
     // console.log('onLink state: ', state)
-    // setMapK(k)
-    // setMapY(y)
-    // setMapX(x)
-    let fips = state.properties ? state.properties.FIPS : state.fips
-    const name = state.properties ? state.properties.name : state.name
-    if (fips === undefined) {
-      fips = state.id
-    }
-    let stateAbbr
-    let abbr
-    if (fips && fips.length > 2) {
-      abbr = fips
-      stateAbbr = state.properties.state ? state.properties.state : state.properties.region
-    }
-    else {
-      abbr = state.properties ? state.properties.abbr : state.abbr
-      stateAbbr = state.properties ? state.properties.abbr : state.abbr
-    }
+
+    // decern betweeen topo json and location data fips
+    const fips = state.properties ? state.id : state.fips_code
+    const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
+
+    // filter out location from location data
+    const location = locations.filter(item => item.fips_code === fips)
+
     const stateObj = {
-      fips: fips,
-      abbr: abbr,
-      name: name,
-      state: stateAbbr
+      fipsCode: location[0].fips_code,
+      name: location[0].state_name,
+      locationName: location[0].location_name,
+      state: location[0].state,
+      regionType: location[0].region_type,
+      districtType: location[0].district_type,
+      county: location[0].county
     }
+
     if (
-      cards.filter(item => item.fips === fips).length === 0
+      cards.filter(item => item.fipsCode === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        if (stateObj.abbr && stateObj.abbr.match(/Nationwide Federal/)) {
+        if (stateObj.state && stateObj.state.match(/Nationwide Federal/)) {
           cards.unshift(stateObj)
         }
         else {
           cards.push(stateObj)
         }
+      }
+      else {
+        // TODO: snackbar not triggering atm
+        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
 
@@ -290,20 +299,22 @@ const DetailCards = props => {
           const children = React.Children.map(props.children, child =>
             React.cloneElement(child, {
               key: i,
-              fips: card.fips,
-              abbr: card.abbr,
+              county: card.county,
+              fipsCode: card.fipsCode,
+              locationName: card.locationName,
               name: card.name,
+              regionType: card.regionType,
               state: card.state
             })
           )
           return (
             <Card className={classes.root} key={i}>
               <CardHeader
-                title={<CardTitle data={landStatsData} stateTitle={card.name} stateAbbr={card.abbr} state={card.state} />}
+                title={<DetailCardTitle card={card} cardType="detail" data={landStatsData} />}
                 action={<CloseIcon
                   className={classes.closeIcon}
                   onClick={(e, i) => {
-                    closeCard(card.fips)
+                    closeCard(card.fipsCode)
                   }}
                 />}
                 classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
