@@ -52,7 +52,7 @@ const RevenueDetailTypes = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
 
-  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+  const state = props.fipsCode
 
   console.log('RevenueDetailTypes queryVars: ', state, year)
 

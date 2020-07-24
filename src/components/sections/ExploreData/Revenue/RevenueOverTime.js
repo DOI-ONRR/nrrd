@@ -116,12 +116,7 @@ const RevenueOverTime = props => {
       .map(d => parseInt(d.key))
     )]
 
-    const sums = cards.map(yData => [...new Set(data.revenue_summary.filter(row => {
-      const fips = (yData.fipsCode === '99' || yData.fipsCode === '999') ? yData.name : yData.fipsCode
-      if (row.location === fips) {
-        return row
-      }
-    }).map(item => item.total))])
+    const sums = cards.map(yData => [...new Set(data.revenue_summary.filter(row => row.location === yData.fipsCode).map(item => item.total))])
 
     //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]

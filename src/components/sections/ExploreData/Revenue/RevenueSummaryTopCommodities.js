@@ -65,7 +65,7 @@ const RevenueSummaryTopCommodities = props => {
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
 
-  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+  const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, period: period }

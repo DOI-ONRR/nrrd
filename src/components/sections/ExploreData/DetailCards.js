@@ -179,7 +179,7 @@ const DetailCardTitle = props => {
 
   // Get land percentage
   const getLandPercent = stateOrArea => {
-    const loc = stateOrArea === '99' ? 'National' : stateOrArea
+    const loc = stateOrArea === 'NF' ? 'National' : stateOrArea
     const landStat = landStatsData.find(item => item.location === loc)
     if (landStat) return <Box>{ `${ utils.round(landStat.federal_percent, 1) }% federal land` }</Box>
   }
@@ -245,8 +245,8 @@ const DetailCards = props => {
 
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
   const cardMenuItems = [
-    { fips_code: '99', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
-    { fips_code: '999', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
+    { fips_code: 'NF', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
+    { fips_code: 'NA', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
   ]
 
   // onLink

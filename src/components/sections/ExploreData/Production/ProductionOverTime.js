@@ -112,18 +112,8 @@ const ProductionOverTime = props => {
   let chartData = [[]]
   if (data && cards && data.production_summary.length > 0 && cards.length > 0) {
     const years = [...new Set(data.production_summary.map(item => item.year))]
-    const sums = cards.map(yData => [...new Set(data.production_summary.filter(row => {
-      const fips = (yData.fipsCode === '99' || yData.fipsCode === '999') ? yData.name : yData.fipsCode
-      if (row.location === fips) {
-        return row
-      }
-    }).map(item => item.total))])
-    const units = cards.map(yData => [...new Set(data.production_summary.filter(row => {
-      const fips = (yData.fipsCode === '99' || yData.fipsCode === '999') ? yData.name : yData.fipsCode
-      if (row.location === fips) {
-        return row
-      }
-    }).map(item => item.unit_abbr))])
+    const sums = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.fipsCode).map(item => item.total))])
+    const units = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.fipsCode).map(item => item.unit_abbr))])
 
     chartData = [years, ...sums]
 

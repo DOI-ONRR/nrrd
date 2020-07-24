@@ -359,8 +359,8 @@ const MapContext = props => {
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
   const cardMenuItems = [
-    { fips_code: '99', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
-    { fips_code: '999', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
+    { fips_code: 'NF', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
+    { fips_code: 'NA', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
   ]
 
   const { vertical, horizontal, open } = mapSnackbarState
@@ -511,16 +511,16 @@ const MapContext = props => {
           if (strElem === item.fips_code) {
             return item
           }
-          else {
-            // Nationwide Federal card
-            if (strElem === '99') {
-              onLink(cardMenuItems[0])
-            }
-            // Native American card
-            if (strElem === '999') {
-              onLink(cardMenuItems[1])
-            }
-          }
+          // else {
+          //   // Nationwide Federal card
+          //   if (strElem === '99') {
+          //     onLink(cardMenuItems[0])
+          //   }
+          //   // Native American card
+          //   if (strElem === '999') {
+          //     onLink(cardMenuItems[1])
+          //   }
+          // }
         }
       })
 

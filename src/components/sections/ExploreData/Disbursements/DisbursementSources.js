@@ -68,7 +68,7 @@ const DisbursementSources = props => {
   const classes = useStyles()
   const theme = useTheme()
 
-  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+  const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
