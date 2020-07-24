@@ -26,7 +26,7 @@ const DisbursementLocationTotal = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
 
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { location: [CONSTANTS.NATIONWIDE_FEDERAL, CONSTANTS.NATIVE_AMERICAN], year: year, period }
+    variables: { location: ['NF', 'NA'], year: year, period }
   })
 
   if (loading) return ''
@@ -40,7 +40,7 @@ const DisbursementLocationTotal = props => {
     nationwideSummary = d3.nest()
       .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.sum))
-      .entries(groupedLocationData[CONSTANTS.NATIONWIDE_FEDERAL])
+      .entries(groupedLocationData.NF)
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       })
@@ -48,7 +48,7 @@ const DisbursementLocationTotal = props => {
     nativeSummary = d3.nest()
       .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.sum))
-      .entries(groupedLocationData[CONSTANTS.NATIVE_AMERICAN])
+      .entries(groupedLocationData.NA)
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       })
