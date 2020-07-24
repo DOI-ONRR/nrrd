@@ -142,7 +142,7 @@ const RevenueOverTime = props => {
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = `${ cards[i].name }: ${ utils.formatToDollarInt(d) }`
+                r[0] = `${ cards[i].locationName }: ${ utils.formatToDollarInt(d) }`
                 return r
               }
             } />
@@ -154,7 +154,7 @@ const RevenueOverTime = props => {
                     key={`RevenueOverTimeChip_${ card.fipsCode }`}
                     variant='outlined'
                     onDelete={ e => handleDelete(e, card.fipsCode)}
-                    label={<ChipLabel labelIndex={i} label={card.name} />}
+                    label={<ChipLabel labelIndex={i} label={card.locationName} />}
                     classes={{ root: classes.chipRoot }} />
                 )
               })
