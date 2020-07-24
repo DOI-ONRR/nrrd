@@ -14,7 +14,7 @@ const LOCATION_TOTAL_QUERY = gql`
   query NationwideFederal($location: [String!], $year: Int!, $period: String!) {
    revenue_summary (
       where: {
-        location_type: {_in: $location},
+        location: {_in: $location},
         year: { _eq: $year },
         location_name: {_neq: ""},
         period: {_eq: $period}
@@ -34,7 +34,7 @@ const RevenueLocationTotal = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
 
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { location: [CONSTANTS.NATIONWIDE_FEDERAL, CONSTANTS.NATIVE_AMERICAN], year: year, period }
+    variables: { location: [DFC.NATIONWIDE_FEDERAL_ABBR, DFC.NATIVE_AMERICAN_ABBR], year: year, period }
   })
 
   if (loading) return ''
@@ -44,12 +44,12 @@ const RevenueLocationTotal = props => {
 
   if (data) {
     // console.log('LocationTotal data: ', data)
-    const groupedLocationData = utils.groupBy(data.revenue_summary, 'location_name')
+    const groupedLocationData = utils.groupBy(data.revenue_summary, 'location')
 
     nationwideSummary = d3.nest()
       .key(k => k.location_name)
       .rollup(v => d3.sum(v, i => i.total))
-      .entries(groupedLocationData[CONSTANTS.NATIONWIDE_FEDERAL])
+      .entries(groupedLocationData[DFC.NATIONWIDE_FEDERAL_ABBR])
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       })
@@ -57,7 +57,7 @@ const RevenueLocationTotal = props => {
     nativeSummary = d3.nest()
       .key(k => k.location_name)
       .rollup(v => d3.sum(v, i => i.total))
-      .entries(groupedLocationData[CONSTANTS.NATIVE_AMERICAN])
+      .entries(groupedLocationData[DFC.NATIVE_AMERICAN_ABBR])
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       })
