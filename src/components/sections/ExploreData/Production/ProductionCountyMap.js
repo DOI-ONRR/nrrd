@@ -7,7 +7,7 @@ import * as d3 from 'd3'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import CONSTANTS from '../../../../js/constants'
+// import CONSTANTS from '../../../../js/constants'
 import mapCounties from '../counties.json'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -69,14 +69,14 @@ const ProductionCountyMap = props => {
 
   const { loading, error, data } = useQuery(PRODUCTION_QUERY, {
     variables: { year: year, product: product, state: state, period: period },
-    skip: props.state === CONSTANTS.NATIVE_AMERICAN || location === ''
+    skip: props.state === DFC.NATIVE_AMERICAN_ABBR || location === ''
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
   const onZoomEnd = event => {
 
   }
-  const showCountyContent = state === CONSTANTS.NATIONWIDE_FEDERAL || state === CONSTANTS.NATIVE_AMERICAN || props.regionType === 'County' || props.regionType === 'Offshore'
+  const showCountyContent = state === DFC.NATIONWIDE_FEDERAL_ABBR || state === DFC.NATIVE_AMERICAN_ABBR || props.regionType === 'County' || props.regionType === 'Offshore'
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data && data.production_summary.length > 0) {
