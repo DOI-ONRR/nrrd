@@ -133,7 +133,7 @@ const ProductionOverTime = props => {
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = `${ cards[i].name }: ${ utils.formatToCommaInt(d) } (${ units[i] })`
+                r[0] = `${ cards[i].locationName }: ${ utils.formatToCommaInt(d) } (${ units[i] })`
                 return r
               }
             } />
