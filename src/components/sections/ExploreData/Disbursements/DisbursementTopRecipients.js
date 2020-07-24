@@ -101,7 +101,6 @@ const DisbursementTopRecipients = props => {
 
     return (
       <Container id={utils.formatToSlug(title)}>
-        blah
         <Grid item xs={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h3" color="secondary.dark">{title}</Box>
