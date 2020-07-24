@@ -108,7 +108,7 @@ const RevenueOverTime = props => {
   }
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
-  if (data && cards && cards.length > 0) {
+  if (data && cards && cards.length > 0 && data.revenue_summary.length > 0) {
     const years = [...new Set(d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
@@ -117,11 +117,11 @@ const RevenueOverTime = props => {
     )]
 
     const sums = cards.map(yData => [...new Set(data.revenue_summary.filter(row => {
-      const fips = (yData.fipsCode === '99' || yData.fipsCode === '999') ? yData.state : yData.fipsCode
-      if (row.state_or_area === fips) {
+      const fips = (yData.fipsCode === '99' || yData.fipsCode === '999') ? yData.name : yData.fipsCode
+      if (row.location === fips) {
         return row
       }
-    }).map(item => item.sum))])
+    }).map(item => item.total))])
 
     //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]
