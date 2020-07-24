@@ -145,7 +145,7 @@ const ProductionOverTime = props => {
                     key={`ProductionOverTimeChip_${ card.fipsCode }`}
                     variant='outlined'
                     onDelete={ e => handleDelete(e, card.fipsCode)}
-                    label={<ChipLabel labelIndex={i} label={card.name} />}
+                    label={<ChipLabel labelIndex={i} label={card.locationName} />}
                     classes={{ root: classes.chipRoot }} />
                 )
               })
