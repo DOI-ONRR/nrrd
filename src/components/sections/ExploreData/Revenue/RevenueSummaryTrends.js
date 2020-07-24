@@ -40,8 +40,8 @@ const RevenueSummaryTrends = props => {
   // console.log('RevenueSummaryTrends props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+  const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY ' + year : 'CY ' + year
   const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, period: CONSTANTS.FISCAL_YEAR }
@@ -126,7 +126,7 @@ const RevenueSummaryTrends = props => {
           </Grid>
           <Grid item xs={6} style={{ textAlign: 'right' }}>
             <Typography variant="caption">
-              <Box>{year}</Box>
+              <Box>{dataSet}</Box>
               <Box>
                 {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
               </Box>
