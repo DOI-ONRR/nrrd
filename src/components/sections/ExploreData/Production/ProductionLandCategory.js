@@ -96,7 +96,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const state = (props.fipsCode === '99' || props.fipsCode === '999') ? props.name : props.fipsCode
+  const state = props.fipsCode
   // console.log('useQuery vars: ', state, location, commodity)
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, commodity, period } })
   if (loading) {
