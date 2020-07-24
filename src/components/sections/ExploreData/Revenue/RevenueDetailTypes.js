@@ -49,12 +49,10 @@ const RevenueDetailTypes = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+  const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
 
-  const state = props.fipsCode
-
-  console.log('RevenueDetailTypes queryVars: ', state, year)
+  const state = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_ABBR || props.fipsCode === DFC.NATIVE_AMERICAN_ABBR) ? props.name : props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year, period: period }
