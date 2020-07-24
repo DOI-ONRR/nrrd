@@ -88,16 +88,44 @@ const NationwideDisbursementSummary = props => {
 
   if (data) {
     // do something wit dat data
-    // console.log('NationwideDisbursementSummary data: ', data)
+    console.log('NationwideDisbursementSummary data: ', data)
     groupData = utils.groupBy(data.fiscal_disbursement_recipient_source_summary, 'recipient')
-    groupTotal = Object.keys(groupData).map(k =>
+    console.debug("WTH", groupData)
+    
+    /*groupTotal = Object.keys(groupData).map(k =>
       groupData[k].reduce((sum, i) => {
         sum += i.total
       }, 0)).reduce((total, s) => {
       total += s
-    }, 0)
+      }, 0)
+    */
+    groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.total, 0)).reduce((total, s) => total += s, 0)
+    /*
+    // Have to keep long form with return (calc) for some reason. 
+    groupTotal = Object.keys(groupData).map(k => {
+      //console.debug("K: ", k, "groupData[k]", groupData[k] )
+      let st= groupData[k].reduce((sum, i) => {
+        //console.debug("sum", sum, "i", i)
+        return (sum += i.total)
+      }, 0)
+      //console.debug("ST, ", st)
+      return st
+    }
+    ).reduce((total, s) => {
+      //  console.debug("total, ", total, s)
+      return ( total += s)
+      }, 0)
+    */
     nationwideSummaryData = Object.entries(groupData)
-  }
+  //  console.debug("groupTotal: ", groupTotal)
+/* debug    nationwideSummaryData.map((item, i) => {
+      let barScale=item[1].reduce((sum, i) => { return (sum += i.total) }, 0) / groupTotal
+      console.debug("barScale: ", barScale)
+      console.debug("item: ", item)
+    })
+*/
+    
+
 
   return (
     <Container id={utils.formatToSlug(title)}>
@@ -147,9 +175,7 @@ const NationwideDisbursementSummary = props => {
                           return headers
                         }
                         }
-                        barScale={item[1].reduce((sum, i) => {
-                          sum += i.total
-                        }, 0) / groupTotal }
+                  barScale={item[1].reduce((sum, i) => sum += i.total, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}
                         xLabels={xLabels}
@@ -170,6 +196,7 @@ const NationwideDisbursementSummary = props => {
       </Grid>
     </Container>
   )
+  } else {return(null) }
 }
 
 export default NationwideDisbursementSummary
