@@ -26,9 +26,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query RevenueDetailTrends($state: String!, $period: String!, $year: Int!) {
+  query RevenueDetailTrends($state: String!, $period: String!, $year: Int!, $commodities: [String!] ) {
     revenue_summary(
-      where: { location: { _eq: $state }, period: {_eq: $period} }
+      where: { location: { _eq: $state }, period: {_eq: $period}, commodity: {_in: $commodities}  }
       order_by: { year: asc, location: asc }
     ) {
       year
@@ -48,11 +48,21 @@ const RevenueDetailTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  let commodityText = ''
+  if (commodities && commodities.length === 1) {
+    commodityText = commodities[0].toLowerCase() + ' revenue'
+  }
+  else if (commodities && commodities.length > 1 ) {
+    commodityText = 'revenue from the selected commodities'
+  }
+
+  
   const stateAbbr = ((props.abbr.length > 2) &&
     (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, period: period, year: year }
+    variables: { state: stateAbbr, period: period, year: year, commodities: commodities }
   })
 
   const closeCard = item => {
@@ -74,7 +84,8 @@ const RevenueDetailTrends = props => {
   let locationTotalData
   let locData
 
-  if (data) {
+  if (data &&
+      data.revenue_summary.length > 0) {
     periodData = data.period
 
     // set min and max trend years
@@ -103,7 +114,7 @@ const RevenueDetailTrends = props => {
       x => x[0] === year
     )
     locData = sparkData[highlightIndex][1]  
-  }
+
 
   return (
     <>
@@ -123,6 +134,10 @@ const RevenueDetailTrends = props => {
       </Box>
     </>
   )
+  } else {
+    return (<span>{name} has had no federal {commodityText} since 2003.</span>)
+  }
+  
 }
 
 export default RevenueDetailTrends

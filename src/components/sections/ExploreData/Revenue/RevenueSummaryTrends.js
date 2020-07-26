@@ -19,9 +19,9 @@ import utils from '../../../../js/utils'
 import CONSTANTS from '../../../../js/constants'
 
 const APOLLO_QUERY = gql`
-  query RevenueSummaryTrend($state: String!, $period: String!) {
+  query RevenueSummaryTrend($state: String!, $period: String!, $commodities: [String!]) {
     revenue_summary(
-      where: { location: { _eq: $state }, period: {_eq: $period} }
+      where: { location: { _eq: $state }, period: {_eq: $period}, commodity: {_in: $commodities} }
       order_by: { year: asc, location: asc }
     ) {
       year
@@ -42,9 +42,20 @@ const RevenueSummaryTrends = props => {
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
+  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : undefined
+   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  let commodityText= ''
+  if (commodities && commodities.length === 1) {
+    commodityText = commodities[0].toLowerCase()+' revenue'
+  } else if ( commodities && commodities.length > 1 ) {
+    commodityText = 'revenue from the selected commodities'
+  }
+  
+  console.debug("COMMODITies: ",commodities);
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, period: period }
+    variables: { state: props.abbr, period: period, commodities:commodities  }
   })
+  const name = props.name
 
   let sparkData = []
   let sparkMin
@@ -136,7 +147,7 @@ const RevenueSummaryTrends = props => {
     )
   }
   else {
-    return 'This location has no revenue.'
+    return (<span>{name} has had no federal {commodityText} since 2003.</span>)
   }
 }
 
