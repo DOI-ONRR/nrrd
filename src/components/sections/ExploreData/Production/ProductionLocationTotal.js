@@ -78,12 +78,12 @@ const ProductionLocationTotal = props => {
     }
 
     const unit = groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS] ? groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS][0].unit_abbr : 'units'
-    const product = groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS] ? groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS][0].product : productName
+    const product = groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS] ? groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS][0].commodity : productName
     const nativeTotal = nativeSummary.length > 0 ? nativeSummary[0].total : 0
 
     return (
       <>
-        The Office of Natural Resources Revenue (ONRR) collects detailed data about the volume of mineral and energy commodities companies produce from federal and Native American lands and waters. <strong>For {period.toLowerCase()} {year}, companies reported to ONRR that they produced {utils.formatToCommaInt(nationwideSummary[0].total)} {unit} of {product.toLowerCase()} from federal sources and {utils.formatToCommaInt(nativeTotal)} {unit} of {product.toLowerCase()} from Native American sources for a total of {utils.formatToCommaInt(nationwideSummary[0].total + nativeTotal)} {unit} of {product}.</strong>
+        The Office of Natural Resources Revenue (ONRR) collects detailed data about the volume of mineral and energy commodities companies produce from federal and Native American lands and waters. <strong>For {period.toLowerCase()} {year}, companies reported to ONRR that they produced {utils.formatToCommaInt(nationwideSummary[0].total)} {unit} of {product.toLowerCase()} from federal sources and {utils.formatToCommaInt(nativeTotal)} {unit} of {product.toLowerCase()} from Native American sources for a total of {utils.formatToCommaInt(nationwideSummary[0].total + nativeTotal)} {unit} of {product.toLowerCase()}.</strong>
       </>
     )
   }
