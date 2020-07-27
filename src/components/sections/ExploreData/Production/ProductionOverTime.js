@@ -7,6 +7,7 @@ import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import * as d3 from 'd3'
 
 import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -111,8 +112,24 @@ const ProductionOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && data.production_summary.length > 0 && cards.length > 0) {
-    const years = [...new Set(data.production_summary.map(item => item.year))]
-    const sums = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.fipsCode).map(item => item.total))])
+    // const years = [...new Set(data.production_summary.map(item => item.year))]
+    // const sums = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.fipsCode).map(item => item.total))])
+
+    const years = [...new Set(d3.nest()
+      .key(k => k.year)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.production_summary)
+      .map(d => parseInt(d.key))
+    )]
+
+    const sums = cards.map(yData => [...new Set(
+      d3.nest()
+        .key(k => k.year)
+        .rollup(v => d3.sum(v, i => i.total))
+        .entries(data.production_summary.filter(row => row.location === yData.fipsCode))
+        .map(d => d.value))
+    ])
+
     const units = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.fipsCode).map(item => item.unit_abbr))])
 
     chartData = [years, ...sums]
