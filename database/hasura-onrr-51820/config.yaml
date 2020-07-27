@@ -1,6 +1,5 @@
 version: 2
 endpoint: https://hasura-onrr.app.cloud.gov/console
-admin_secret: The admin secret for onrr hasura instance is January 2020
 metadata_directory: metadata
 actions:
   kind: synchronous

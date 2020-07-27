@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 const APOLLO_QUERY = gql`
   # summary card queries
   query FiscalRevenue($year: Int!, $period: String!, $state: [String!]) {
-    cardFiscalDisbursementSummary: fiscal_disbursement_summary(
+    cardFiscalDisbursementSummary: disbursement_summary(
       where: { state_or_area: { _in: $state } }
       order_by: { fiscal_year: asc, state_or_area: asc }
     ) {
