@@ -69,14 +69,14 @@ const ProductionCountyMap = props => {
 
   const { loading, error, data } = useQuery(PRODUCTION_QUERY, {
     variables: { year: year, product: product, state: state, period: period },
-    skip: props.state === DFC.NATIVE_AMERICAN_ABBR || location === ''
+    skip: props.state === DFC.NATIVE_AMERICAN_FIPS || location === ''
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
   const onZoomEnd = event => {
 
   }
-  const showCountyContent = state === DFC.NATIONWIDE_FEDERAL_ABBR || state === DFC.NATIVE_AMERICAN_ABBR || props.regionType === 'County' || props.regionType === 'Offshore'
+  const showCountyContent = state === DFC.NATIONWIDE_FEDERAL_FIPS || state === DFC.NATIVE_AMERICAN_FIPS || props.regionType === 'County' || props.regionType === 'Offshore'
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data && data.production_summary.length > 0) {
