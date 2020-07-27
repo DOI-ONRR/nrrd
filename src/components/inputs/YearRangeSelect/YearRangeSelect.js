@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DataFilterContext } from '../../../stores/data-filter-store'
 import {
   PERIOD_FISCAL_YEAR,
   FISCAL_YEAR,
   PERIOD_CALENDAR_YEAR,
   CALENDAR_YEAR
-} from '../../../../constants'
+} from '../../../constants'
 
 import BaseDataFilterRangeSlider from '../BaseDataFilterRangeSlider'
 

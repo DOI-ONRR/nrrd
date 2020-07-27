@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from 'react'
 
 import { useQuery } from '@apollo/react-hooks'
 
-import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { AppStatusContext } from '../../../../stores/app-status-store'
-import DFQM from '../../../../js/data-filter-query-manager/index'
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { AppStatusContext } from '../../../stores/app-status-store'
+import DFQM from '../../../js/data-filter-query-manager'
 
-import { range } from '../../../../js/utils'
+import { range } from '../../../js/utils'
 
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import InputLabel from '@material-ui/core/InputLabel'
@@ -129,14 +129,10 @@ const BaseDataFilterRangeSliderImpl = ({ dataFilterKey, label, data, helperText 
   return (
     <Box width={'500px'}>
       <FormControl className={classes.formControl} disabled={(data && data.options.length === 0)}>
-        <InputLabel id={`${ label }-slider`}>
-          {label.concat(': ')}<Typography display={'inline'} color={'textSecondary'}>{getCurrentValuesText()}</Typography>
-        </InputLabel>
         {yearOptions &&
             <Slider
               defaultValue={getCurrentValues()}
               getAriaValueText={getCurrentValuesText}
-              aria-labelledby={`${ label }-slider`}
               step={1}
               onChangeCommitted={handleChange}
               marks
