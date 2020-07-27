@@ -133,7 +133,7 @@ const ProductionOverTime = props => {
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = `${ cards[i].name }: ${ utils.formatToCommaInt(d) } (${ units[i] })`
+                r[0] = `${ cards[i].locationName }: ${ utils.formatToCommaInt(d) } (${ units[i] })`
                 return r
               }
             } />
@@ -145,7 +145,7 @@ const ProductionOverTime = props => {
                     key={`ProductionOverTimeChip_${ card.fipsCode }`}
                     variant='outlined'
                     onDelete={ e => handleDelete(e, card.fipsCode)}
-                    label={<ChipLabel labelIndex={i} label={card.name} />}
+                    label={<ChipLabel labelIndex={i} label={card.locationName} />}
                     classes={{ root: classes.chipRoot }} />
                 )
               })

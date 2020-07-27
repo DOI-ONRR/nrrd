@@ -29,6 +29,7 @@ import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
 import AddLocationCard from './AddLocationCard'
 
 import CONSTANTS from '../../../js/constants'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -166,8 +167,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const nonStateOrCountyCards = [
-  CONSTANTS.NATIONWIDE_FEDERAL,
-  CONSTANTS.NATIVE_AMERICAN
+  DFC.NATIONWIDE_FEDERAL_ABBR,
+  DFC.NATIVE_AMERICAN_ABBR
 ]
 
 // Detail Card title

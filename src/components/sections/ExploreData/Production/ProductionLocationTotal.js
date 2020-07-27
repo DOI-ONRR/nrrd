@@ -14,7 +14,7 @@ const LOCATION_TOTAL_QUERY = gql`
   query NationwideFederal($location: [String!], $year: Int!, $period: String!, $product: String!) {
     production_summary(where: {
       year: {_eq: $year},
-      location_name: {_in: $location},
+      location: {_in: $location},
       period: {_eq: $period},
       product: {_eq: $product}
       }) {
@@ -25,6 +25,7 @@ const LOCATION_TOTAL_QUERY = gql`
       year
       commodity
       product
+      location
     }
   }
 `
@@ -35,8 +36,11 @@ const ProductionLocationTotal = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
 
+
+  console.log('ProductionLocationTotal queryVars: ', [DFC.NATIONWIDE_FEDERAL_ABBR, DFC.NATIVE_AMERICAN_ABBR], year, period, product)
+
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { location: [CONSTANTS.NATIONWIDE_FEDERAL, CONSTANTS.NATIVE_AMERICAN], year: year, period: period, product: product }
+    variables: { location: [DFC.NATIONWIDE_FEDERAL_ABBR, DFC.NATIVE_AMERICAN_ABBR], year: year, period: period, product: product }
   })
 
   if (loading) return ''
@@ -45,29 +49,30 @@ const ProductionLocationTotal = props => {
   let nativeSummary = []
 
   if (data) {
-    // console.log('ProductionLocationTotal data: ', data)
-    const groupedLocationData = utils.groupBy(data.production_summary, 'location_name')
+    const groupedLocationData = utils.groupBy(data.production_summary, 'location')
+
+    console.log('groupedLocationData: ', groupedLocationData)
 
     nationwideSummary = d3.nest()
-      .key(k => k.location_name)
+      .key(k => k.location)
       .rollup(v => d3.sum(v, i => i.total))
-      .entries(groupedLocationData[CONSTANTS.NATIONWIDE_FEDERAL])
+      .entries(groupedLocationData[DFC.NATIONWIDE_FEDERAL_ABBR])
       .map(d => {
-        return ({ location_name: d.key, total: d.value })
+        return ({ location: d.key, total: d.value })
       })
 
-    if (groupedLocationData[CONSTANTS.NATIVE_AMERICAN]) {
+    if (groupedLocationData[DFC.NATIVE_AMERICAN_ABBR]) {
       nativeSummary = d3.nest()
-        .key(k => k.location_name)
+        .key(k => k.location)
         .rollup(v => d3.sum(v, i => i.total))
-        .entries(groupedLocationData[CONSTANTS.NATIVE_AMERICAN])
+        .entries(groupedLocationData[DFC.NATIVE_AMERICAN_ABBR])
         .map(d => {
-          return ({ location_name: d.key, total: d.value })
+          return ({ location: d.key, total: d.value })
         })
     }
 
-    const unit = groupedLocationData[CONSTANTS.NATIONWIDE_FEDERAL][0].unit_abbr
-    const product = groupedLocationData[CONSTANTS.NATIONWIDE_FEDERAL][0].commodity
+    const unit = groupedLocationData[DFC.NATIONWIDE_FEDERAL_ABBR][0].unit_abbr
+    const product = groupedLocationData[DFC.NATIONWIDE_FEDERAL_ABBR][0].product
     const nativeTotal = nativeSummary.length > 0 ? nativeSummary[0].total : 0
 
     return (
