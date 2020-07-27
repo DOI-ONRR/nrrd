@@ -114,7 +114,7 @@ const DisbursementsOverTime = props => {
       d3.nest()
         .key(k => k.fiscal_year)
         .rollup(v => d3.sum(v, i => i.sum))
-        .entries(data.disbursement_summary.filter(row => row.state_or_area === yData.abbr)).map(item => item.value)
+        .entries(data.disbursement_summary.filter(row => row.state_or_area === yData.fipsCode)).map(item => item.value)
     )])
     console.debug('sums', sums)
     console.debug(sums, years)
@@ -136,7 +136,7 @@ const DisbursementsOverTime = props => {
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = `${ cards[i].name }: ${ utils.formatToDollarInt(d) }`
+                r[0] = `${ cards[i].locationName }: ${ utils.formatToDollarInt(d) }`
                 return r
               }
             } />
@@ -145,11 +145,11 @@ const DisbursementsOverTime = props => {
               cards.map((card, i) => {
                 return (
                   <Chip
-                    key={`DisbursementOverTimeChip_${ card.fips }`}
+                    key={`DisbursementOverTimeChip_${ card.fipsCode }`}
                     variant='outlined'
                     color='primary.dark'
-                    onDelete={e => handleDelete(e, card.fips)}
-                    label={<ChipLabel labelIndex={i} label={card.name} />}
+                    onDelete={e => handleDelete(e, card.fipsCode)}
+                    label={<ChipLabel labelIndex={i} label={card.locationName} />}
                     classes={{ root: classes.chipRoot }} />
                 )
               })

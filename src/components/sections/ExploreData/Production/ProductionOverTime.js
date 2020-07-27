@@ -25,9 +25,9 @@ import {
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
-  query FiscalProductionSummary($commodity: String!, $period: String!) {
+  query FiscalProductionSummary($product: String!, $period: String!) {
     production_summary(
-      where: { commodity: {_eq: $commodity}, period: {_eq: $period } }
+      where: { product: {_eq: $product}, period: {_eq: $period } }
       order_by: { year: asc }
     ) {
       year
@@ -90,14 +90,15 @@ const ProductionOverTime = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
-  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const product = (filterState[DFC.PRODUCT]) ? filterState[DFC.PRODUCT] : 'Oil (bbl)'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { commodity: commodity, period: period }
+    variables: { product: product, period: period }
   })
 
   const handleDelete = props.handleDelete || ((e, val) => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== val) })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== val) })
   })
 
   if (loading) {
@@ -109,10 +110,10 @@ const ProductionOverTime = props => {
   }
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
-  if (data && data.production_summary.length > 0 && cards && cards.length > 0) {
+  if (data && cards && data.production_summary.length > 0 && cards.length > 0) {
     const years = [...new Set(data.production_summary.map(item => item.year))]
-    const sums = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.abbr).map(item => item.total))])
-    const units = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.abbr).map(item => item.unit_abbr))])
+    const sums = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.fipsCode).map(item => item.total))])
+    const units = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.fipsCode).map(item => item.unit_abbr))])
 
     chartData = [years, ...sums]
 
@@ -125,14 +126,14 @@ const ProductionOverTime = props => {
         </Grid>
         <Grid item md={12}>
           <LineChart
-            key={'POT' + period + cards.length } 
+            key={'POT' + period + cards.length }
             data={chartData}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = `${ cards[i].name }: ${ utils.formatToCommaInt(d) } ${ units[i] }`
+                r[0] = `${ cards[i].locationName }: ${ utils.formatToCommaInt(d) } (${ units[i] })`
                 return r
               }
             } />
@@ -141,10 +142,10 @@ const ProductionOverTime = props => {
               cards.map((card, i) => {
                 return (
                   <Chip
-                    key={`ProductionOverTimeChip_${ card.fips }`}
+                    key={`ProductionOverTimeChip_${ card.fipsCode }`}
                     variant='outlined'
-                    onDelete={ e => handleDelete(e, card.fips)}
-                    label={<ChipLabel labelIndex={i} label={card.name} />}
+                    onDelete={ e => handleDelete(e, card.fipsCode)}
+                    label={<ChipLabel labelIndex={i} label={card.locationName} />}
                     classes={{ root: classes.chipRoot }} />
                 )
               })

@@ -9,7 +9,9 @@ import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import CONSTANTS from '../../../../js/constants'
+
 import * as d3 from 'd3'
+
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -70,22 +72,23 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionLandCategory = ({ title, ...props }) => {
+  // console.log('ProductionLandCategory props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const { state: pageState } = useContext(StoreContext)
   const cards = pageState.cards
 
   let location
-  if (props.state === CONSTANTS.NATIONWIDE_FEDERAL || props.state === CONSTANTS.NATIVE_AMERICAN) {
+  if (props.state === DFC.NATIONWIDE_FEDERAL || props.state === DFC.NATIVE_AMERICAN) {
     location = props.state
   }
-  else if (props.fips.length === 5) {
+  else if (props.regionType === DFC.COUNTY) {
     location = 'County'
   }
-  else if (props.fips.length === 3) {
+  else if (props.regionType === DFC.OFFSHORE) {
     location = 'Offshore'
   }
   else {
@@ -93,7 +96,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const state = props.abbr
+  const state = props.fipsCode
   // console.log('useQuery vars: ', state, location, commodity)
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, commodity, period } })
   if (loading) {
@@ -106,11 +109,11 @@ const ProductionLandCategory = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = (period === 'Fiscal Year') ? `FY ${ year } - ${ commodity }` : `CY ${ year } - ${ commodity}`
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year } - ${ commodity }` : `CY ${ year } - ${ commodity }`
   let unit = ''
   if (data && data.production_summary.length > 0) {
     unit = data.production_summary[0].unit_abbr
-   
+
     const years = [...new Set(data.production_summary.map(item => item.year))]
     // const sums = [...new Set(data.production_summary.filter(row => row.state_or_area === state).map(item => item.sum))]
     const sums = [...new Set(
@@ -119,9 +122,11 @@ const ProductionLandCategory = ({ title, ...props }) => {
         .rollup(v => d3.sum(v, i => i.total))
         .entries(data.production_summary.filter(row => row.location === state)).map(item => item.value)
     )]
-    
+
     chartData = [years, sums]
     const noChartData = chartData[0].length === 0 && chartData[1].length === 0
+
+    // console.log('ProductionLandCategory data: ', data)
 
     if (!noChartData) {
       return (
@@ -137,7 +142,10 @@ const ProductionLandCategory = ({ title, ...props }) => {
               lineTooltip={
                 (d, i) => {
                   const r = []
-                  const card = cards && cards.filter(item => item.abbr === data.production_summary[i].location)[0]
+                  const card = cards && cards.filter(item =>
+                    (item.fipsCode === '99' || item.fipsCode === '999')
+                      ? item.name === data.production_summary[i].location
+                      : item.fipsCode === data.production_summary[i].location)[0]
                   r[0] = `${ card.name }: ${ utils.formatToCommaInt(d) } (${ data.production_summary[i].unit_abbr })`
                   return r
                 }

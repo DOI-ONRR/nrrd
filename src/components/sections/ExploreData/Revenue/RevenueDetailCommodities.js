@@ -3,13 +3,11 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
-import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -34,7 +32,7 @@ const APOLLO_QUERY = gql`
   query RevenueCommodityQuery($year: Int!, $state: String!, $period: String!) {
     # Revenue commodity summary
     revenue_summary(
-      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period} }
+      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period} },
       order_by: { year: asc, total: desc }
     ) {
       year
@@ -46,20 +44,20 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueDetailCommodities = props => {
+  // console.log('RevenueDetailCommodities props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
+  const state = props.fipsCode
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year: year, state: stateAbbr, period: period }
+    variables: { year: year, state: state, period: period }
   })
 
-  const dataSet = (period === 'Fiscal Year') ?  `FY ${ year }` : `CY ${ year }`
-  const dataKey = dataSet + '-' + stateAbbr
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+  const dataKey = dataSet + '-' + state
   let chartData
 
   if (loading) return ''
@@ -76,7 +74,7 @@ const RevenueDetailCommodities = props => {
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Commodities</Box>
             <Box>
-            <CircleChart key={'RDC'+dataKey}  data={chartData.revenue_summary}
+              <CircleChart key={'RDC' + dataKey} data={chartData.revenue_summary}
                 xAxis='commodity' yAxis='total'
                 format={ d => {
                   return utils.formatToDollarInt(d)

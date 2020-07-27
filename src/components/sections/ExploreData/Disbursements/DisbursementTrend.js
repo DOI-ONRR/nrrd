@@ -1,129 +1,112 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-
-import Sparkline from '../../../data-viz/Sparkline'
-
-import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
-
-import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import * as d3 from 'd3'
-
 import {
   Box,
   Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
   Typography
 } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
 
+import Sparkline from '../../../data-viz/Sparkline'
+
+import { StoreContext } from '../../../../store'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
+import utils from '../../../../js/utils'
 import CONSTANTS from '../../../../js/constants'
 
-const useStyles = makeStyles(theme => ({
-  table: {
-    width: '100%',
-    marginBottom: 0,
-    '& th': {
-      padding: 5,
-      lineHeight: 1
-    },
-    '& td': {
-      padding: 0,
-    },
-  },
-  paper: {
-    width: '100%'
-  },
-}))
-
 const APOLLO_QUERY = gql`
-  # summary card queries
-  query FiscalDisbursement($year: Int!, $period: String!, $state: [String!]) {
-     fiscalDisbursementSummary: disbursement_summary(
-      where: { state_or_area: { _in: $state } }
-      order_by: { fiscal_year: asc, state_or_area: asc }
+  query ProductionSummaryTrend($state: String!, $product: String!, $period: String!) {
+    production_summary(
+      where: { location: { _eq: $state }, product: {_eq: $product}, period: {_eq: $period }}
+      order_by: { year: asc, total: asc }
     ) {
-      fiscal_year
-      state_or_area
-      sum
-      distinct_commodities
+      year
+      location
+      unit_abbr
+      total
+    
     }
 
-    # period query
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
+      period_date
     }
   }
 `
 
 const DisbursementTrend = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const classes = useStyles()
   const year = filterState[DFC.YEAR]
-  const dataSet = 'FY ' + year
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+  const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY ' + year : 'CY ' + year
+  const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  const state = props.fipsCode
+  const key = `${ dataSet }_${ product }_${ state }`
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, product: product, period: period }
   })
-
-  if (loading) {
-    return 'Loading ... '
-  }
-  if (error) return `Error! ${ error.message }`
-
+  const name = props.name
   let sparkData = []
   let sparkMin
   let sparkMax
   let periodData
   let fiscalData
   let highlightIndex = 0
-  let foundIndex
+  let row
   let total = 0
+
+  if (loading) {
+    return (
+      <Grid container>
+        <Typography style={{ fontSize: '.8rem' }}>
+        Loading....{' '}
+        </Typography>
+      </Grid>
+    )
+  }
+
+  if (error) return `Error! ${ error.message }`
+  if (data && data.period) {
+    periodData = data.period
+    // set min and max trend years
+    sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0, 4)))
+    sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
+  }
+  let unit = ''
   if (
     data &&
-    data.fiscalDisbursementSummary.length > 0) {
-    periodData = data.period
-
-    // set min and max trend years
-    sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-    sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-
-    /*  fiscalData = data.fiscalDisbursementSummary.map((item, i) => [
+    data.production_summary.length > 0
+  ) {
+    unit = data.production_summary[0].unit_abbr
+    fiscalData = data.production_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
-      ])
-*/
+    ])
     fiscalData = d3.nest()
-      .key(k => k.fiscal_year)
-      .rollup(v => d3.sum(v, i => i.sum))
-      .entries(data.fiscalDisbursementSummary).map(item => [parseInt(item.key), item.value])
-
-    console.debug('FDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD', data)
+      .key(k => k.year)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.production_summary)
+      .map(d => [parseInt(d.key), d.value])
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-      const sum = fiscalData.find(x => {
-        console.debug('x[0] ', x[0], 'item.fiscal_year', item.fiscal_year)
-        return x[0] === item.fiscal_year
-      })
+      const y = parseInt(item.period_date.substr(0, 4))
+      const total = fiscalData.find(x => x[0] === y)
+
       return ([
-        item.fiscal_year,
-        sum ? sum[1] : 0
+        y,
+        total ? total[1] : 0
       ])
     })
-    console.debug('WTH', sparkData)
-    // sparkline index
-    highlightIndex = sparkData.findIndex(
-      x => x[0] === year
-    )
 
-    foundIndex = fiscalData.findIndex(x => x[0] === year)
-    total = (foundIndex === -1 || typeof (foundIndex) === 'undefined') ? 0 : fiscalData[foundIndex][1]
+    // sparkline index
+    highlightIndex = sparkData.findIndex((x, i) => x[0] === year)
+
+    total = sparkData[highlightIndex][1]
 
     return (
       <>
@@ -133,20 +116,23 @@ const DisbursementTrend = props => {
               <Box>Trend</Box>
               <Box>({sparkMin} - {sparkMax})</Box>
             </Typography>
-            <Box component="span">
-              {sparkData && (
-                <Sparkline
-                  key={'DT' + dataSet }
-                  data={sparkData}
-                  highlightIndex={highlightIndex}/>
-              )}
-            </Box>
+            {sparkData.length > 1 &&
+              <Box component="span">
+                {sparkData && (
+                  <Sparkline
+                    key={'PST' + key }
+                    data={sparkData}
+                    highlightIndex={highlightIndex}
+                  />
+                )}
+              </Box>
+            }
           </Grid>
           <Grid item xs={6} style={{ textAlign: 'right' }}>
             <Typography variant="caption">
-              <Box>{year}</Box>
+              <Box>{dataSet}</Box>
               <Box>
-                {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
+                {utils.formatToCommaInt(Math.floor(total), 3)} ({unit})
               </Box>
             </Typography>
           </Grid>
@@ -154,8 +140,18 @@ const DisbursementTrend = props => {
       </>
     )
   }
-
-  return (<></>)
+  else {
+    return (
+      <>
+        <Grid container>
+          <Grid item xs={12}>
+            <Typography variant="caption">
+              <Box>{ name + ' has not produced any ' + product + ' since ' + sparkMin + '.'} </Box>
+            </Typography>
+          </Grid>
+        </Grid>
+      </>)
+  }
 }
 
 export default DisbursementTrend

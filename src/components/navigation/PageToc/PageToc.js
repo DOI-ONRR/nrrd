@@ -31,6 +31,8 @@ const useStyles = makeStyles(theme => ({
     paddingRight: theme.spacing(2),
     paddingTop: theme.spacing(2),
     fontSize: '1.1rem',
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
     '& nav > ul': {
       listStyle: 'none',
       padding: 0
@@ -141,7 +143,6 @@ const PageToc = props => {
 
   const handleClick = () => {
     // setToc({ ...toc, expanded: !toc.expanded })
-    console.log('handleClick: ', toc)
     if (toc.mobileActive) {
       setToc({ ...toc, expanded: !toc.expanded })
     }

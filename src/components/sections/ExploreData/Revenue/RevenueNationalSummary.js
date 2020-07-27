@@ -32,13 +32,13 @@ import CONSTANTS from '../../../../js/constants'
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   query RevenueNational($year: Int!, $period: String!) {
-   revenue_type_class_summary(order_by: {land_type_order: asc}, where: {year: {_eq: $year},  period: { _eq: $period} }) {
-      revenue_type
-      year
-      land_type
-      land_type_order
-      total
-    }
+   revenue_type_class_summary(order_by: {land_type_order: asc}, where: {year: {_eq: $year}, period: { _eq: $period} }) {
+    revenue_type
+    year
+    land_type
+    land_type_order
+    total
+   }
   }
 `
 
@@ -93,8 +93,6 @@ const RevenueNationalSummary = props => {
     groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
-
-
   }
 
   return (
@@ -111,7 +109,7 @@ const RevenueNationalSummary = props => {
               <TableRow>
                 <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
                 <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
-                  <span style={{ fontWeight: 'bold', float: 'right' }}>{period+' '+year}</span></TableCell>
+                  <span style={{ fontWeight: 'bold', float: 'right' }}>{period + ' ' + year}</span></TableCell>
 
               </TableRow>
             </TableHead>
@@ -127,7 +125,7 @@ const RevenueNationalSummary = props => {
                       </Box>
                     </TableCell>
                     <TableCell style={{ width: '65%' }}>
-                    <StackedBarChart
+                      <StackedBarChart
                         key={'NRS' + year + '_' + i}
                         data={item[1]}
                         legendFormat={v => {
@@ -145,7 +143,7 @@ const RevenueNationalSummary = props => {
                           return headers
                         }
                         }
-                  barScale={item[1].reduce((total, i) => total += i.total, 0) / groupTotal }
+                        barScale={item[1].reduce((total, i) => total += i.total, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}
                         yAxis={yAxis}
