@@ -172,7 +172,7 @@ const BaseSlider = ({ data, onChange, defaultValue, selected, label, ...restProp
   )
 
   const RangeValueIndex1 = ({ value }) => (
-    <div style={{ position: 'relative', top: '10px', paddingTop: '5px', paddingBottom: '2px' }}>
+    <div style={{ position: 'relative', top: '12px', paddingTop: '3px', paddingBottom: '4px' }}>
       {value}
     </div>
   )
