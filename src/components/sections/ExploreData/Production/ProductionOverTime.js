@@ -127,8 +127,15 @@ const ProductionOverTime = props => {
         .key(k => k.year)
         .rollup(v => d3.sum(v, i => i.total))
         .entries(data.production_summary.filter(row => row.location === yData.fipsCode))
-        .map(d => d.value))
-    ])
+        .map(d => ({ year: parseInt(d.key), value: d.value }))
+    )])
+
+    for (const [i, arr] of sums.entries()) {
+      sums[i] = years.map(year => {
+        const sum = sums[i].find(x => x.year === year)
+        return sum ? sum.value : 0
+      })
+    }
 
     const units = cards.map(yData => [...new Set(data.production_summary.filter(row => row.location === yData.fipsCode).map(item => item.unit_abbr))])
 

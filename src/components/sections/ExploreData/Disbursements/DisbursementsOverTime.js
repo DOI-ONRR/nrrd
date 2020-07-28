@@ -109,15 +109,25 @@ const DisbursementsOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
+
     const years = [...new Set(data.disbursement_summary.map(item => item.fiscal_year))]
     const sums = cards.map(yData => [...new Set(
       d3.nest()
         .key(k => k.fiscal_year)
         .rollup(v => d3.sum(v, i => i.sum))
-        .entries(data.disbursement_summary.filter(row => row.state_or_area === yData.fipsCode)).map(item => item.value)
+        .entries(data.disbursement_summary.filter(row => row.state_or_area === yData.fipsCode))
+        .map(d => ({ year: parseInt(d.key), value: d.value }))
     )])
-    console.debug('sums', sums)
-    console.debug(sums, years)
+
+    for (const [i, arr] of sums.entries()) {
+      sums[i] = years.map(year => {
+        const sum = sums[i].find(x => x.year === year)
+        return sum ? sum.value : 0
+      })
+    }
+
+    console.log('year, sums: ', years, sums)
+
     chartData = [years, ...sums]
 
     return (

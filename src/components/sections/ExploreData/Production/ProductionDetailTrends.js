@@ -82,7 +82,6 @@ const ProductionDetailTrends = props => {
   let unit = ''
   if (data && data.production_summary.length > 0) {
     periodData = data.period
-
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0, 4)))
     sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
@@ -144,7 +143,7 @@ const ProductionDetailTrends = props => {
     return (
       <>
         <Box textAlign="center" className={classes.root} key={props.key}>
-          <Box>{ name + ' has not produced any ' + product + ' since ' + sparkMin + '.'} </Box>
+          <Box>{`${ name } has not produced any ${ product } since ${ sparkMin || 2003 }.`}</Box>
         </Box>
       </>)
   }
