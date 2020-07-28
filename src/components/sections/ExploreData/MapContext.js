@@ -302,7 +302,7 @@ const MapContext = props => {
   const [queryParams, setQueryParams] = useQueryParams({
     dataType: StringParam,
     period: StringParam,
-    counties: StringParam,
+    mapLevel: StringParam,
     location: CommaArrayParam,
     offshoreRegions: StringParam,
     commodity: StringParam,
@@ -436,7 +436,7 @@ const MapContext = props => {
     dispatch({ type: 'CARDS', payload: cards })
   }
 
-  const countyLevel = filterState[DFC.COUNTIES] === 'county'
+  const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
   const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
   const handleChange = (type, name) => event => {
     // setZoom(x, y, k)
@@ -545,7 +545,7 @@ const MapContext = props => {
     setQueryParams({
       dataType: filterState.dataType,
       period: filterState.period,
-      counties: filterState.counties,
+      mapLevel: filterState.mapLevel,
       offshoreRegions: filterState.offshoreRegions,
       commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,

@@ -21,7 +21,8 @@ import {
   GROUP_BY_STICKY,
   BREAKOUT_BY,
   PERIOD,
-  PERIOD_TYPES
+  PERIOD_TYPES,
+  MAP_LEVEL
 } from '../../constants'
 
 import BaseButtonInput from './BaseButtonInput'
@@ -86,5 +87,5 @@ export const BreakoutBySelectInput = compose(
 
 export const FilterToggleInput = ({ children, ...props }) => <BaseToggle data={['Filter']} {...props}>{children}</BaseToggle>
 
-export const MapLevelToggleInput = withDataFilterContext(BaseMultiToggle, COUNTIES)
+export const MapLevelToggleInput = withDataFilterContext(BaseMultiToggle, MAP_LEVEL)
 export const OffshoreRegionsSwitchInput = withDataFilterContext(BaseSwitch, OFFSHORE_REGIONS)
