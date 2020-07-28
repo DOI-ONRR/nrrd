@@ -9,7 +9,13 @@ import {
   CALENDAR_YEAR
 } from '../../../constants'
 
+import BaseSlider from '../BaseSlider'
+import { createEnhancedSlider } from '../index'
+
 import BaseDataFilterRangeSlider from '../BaseDataFilterRangeSlider'
+
+const FiscalYearSlider = createEnhancedSlider(FISCAL_YEAR)
+const CalendarYearSlider = createEnhancedSlider(CALENDAR_YEAR)
 
 const YearRangeSelect = ({ helperText, label, loadingMessage }) => {
   const { state } = useContext(DataFilterContext)
@@ -17,18 +23,10 @@ const YearRangeSelect = ({ helperText, label, loadingMessage }) => {
   return (
     <React.Fragment>
       {state.period === PERIOD_FISCAL_YEAR &&
-        <BaseDataFilterRangeSlider
-          dataFilterKey={FISCAL_YEAR}
-          label={'Fiscal years'}
-          loadingMessage={'Updating Fiscal year options from server...'}
-          helperText={helperText} />
+        <FiscalYearSlider selected={[2017, 2019]} />
       }
       {state.period === PERIOD_CALENDAR_YEAR &&
-        <BaseDataFilterRangeSlider
-          dataFilterKey={CALENDAR_YEAR}
-          label={'Calendar years'}
-          loadingMessage={'Updating Calendar year options from server...'}
-          helperText={helperText} />
+        <CalendarYearSlider selected={[2017, 2019]} />
       }
     </React.Fragment>
   )

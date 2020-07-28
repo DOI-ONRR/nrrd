@@ -1,28 +1,13 @@
 import React, { useState, useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+
 import PropTypes from 'prop-types'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Slider,
   Box,
   Grid
 } from '@material-ui/core'
-
-import CONSTANTS from '../../../js/constants'
-
-import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
-
-const APOLLO_QUERY = gql`
-  query YearPeriod($period: String!) {
-    # period query
-    period(where: {period: {_ilike: $period }}) {
-      fiscal_year
-    }
-  }
-`
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,9 +48,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   sliderRoot: {
-    width: '85%',
     display: 'block',
-    margin: '0 auto',
   },
   sliderMarkLabel: {
     fontWeight: 'bold',
@@ -82,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
   sliderTrack: {
     height: 4,
-    backgroundColor: 'transparent',
+    backgroundColor: theme.palette.links.default,
   },
   sliderRail: {
     height: 4,
@@ -103,6 +86,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: 'none',
     transition: 'none',
     borderRadius: 4,
+    backgroundColor: theme.palette.links.default,
     '& span': {
       borderRadius: 4,
     },
@@ -121,7 +105,7 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(0deg)',
     fontSize: '1rem',
     cursor: 'pointer',
-    backgroundColor: theme.palette.links.default,
+    backgroundColor: 'transparent',
     color: theme.palette.primary.contrastText,
     '& span': {
       width: 50,
@@ -129,8 +113,16 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 4,
       textAlign: 'center',
       color: `${ theme.palette.common.white } !important`,
-      backgroundColor: theme.palette.links.default,
+      backgroundColor: 'transparent',
     },
+    '& div': {
+      width: 50,
+      transform: 'rotate(0)',
+      borderRadius: 4,
+      textAlign: 'center',
+      color: `${ theme.palette.common.white } !important`,
+      backgroundColor: theme.palette.links.default,
+    }
   },
   sliderYearDisplay: {
     color: theme.palette.grey[900],
@@ -150,61 +142,65 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const BaseSlider = ({data, ...restProps}) => {
-  const classes = useStyles()
-
-  const handleChange = event => {
-    onChange()
+const BaseSlider = ({ data, onChange, defaultValue, selected, label, ...restProps }) => {
+  const theme = useTheme()
+  const classes = useStyles(theme)
+  const noop = () => {}
+  onChange = onChange || noop
+  if (data && data.length > 0 && !data[0].option) {
+    data = data.map(item => ({ option: item }))
+  }
+  else if (!data) {
+    data = []
   }
 
-  let periodData
-  let minYear
-  let maxYear
-  const customMarks = []
+  const handleChange = (event, newValue) => {
+    setSelectedOptions(newValue)
+  }
+  const handleChangeCommit = (event, newValue) => {
+    onChange(newValue.toString())
+  }
+  const [selectedOptions, setSelectedOptions] = useState(selected)
 
-  if (data) {
-    periodData = data.period
+  const minValue = (data && data.length > 0) ? data[0].option : undefined
+  const maxValue = (data && data.length > 0) ? data.slice(-1)[0].option : undefined
 
-    // set min and max trend years
-    minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-    maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-    if (!year) {
-      year = maxYear
-      handleOnchange(maxYear)
-    }
-    customMarks.push(
-      {
-        label: minYear.toString(),
-        value: minYear
-      },
-      {
-        label: maxYear.toString(),
-        value: maxYear
-      }
-    )
+  const RangeValueIndex0 = ({ value }) => (
+    <div style={{ position: 'relative', top: '-10px', paddingTop: '2px', paddingBottom: '5px' }}>
+      {value}
+    </div>
+  )
 
-    return (
+  const RangeValueIndex1 = ({ value }) => (
+    <div style={{ position: 'relative', top: '10px', paddingTop: '5px', paddingBottom: '2px' }}>
+      {value}
+    </div>
+  )
 
-      <Box id="year-slider" className={classes.sliderBox}>
-        <Grid container spacing={2}>
-          <Grid item>
-            {minYear}
-          </Grid>
-          <Grid item xs>
+  return (
+    <Box id="year-slider" className={classes.sliderBox}>
+      <Grid container spacing={2}>
+        <Grid item>
+          {minValue}
+        </Grid>
+        <Grid item xs>
+          <Box paddingRight={2} paddingLeft={2}>
             <Slider
-              defaultValue={year}
-              aria-label="Year slider"
-              aria-labelledby="year-slider"
-              aria-valuetext={year && year.toString()}
-              valueLabelDisplay="on"
-              valueLabelFormat={label => label}
+              defaultValue={defaultValue || 1}
+              value={selectedOptions || undefined}
+              getAriaLabel={() => label}
+              getAriaValueText={() => selectedOptions.toString()}
+              valueLabelDisplay={(data.length > 0) ? 'on' : 'off'}
+              valueLabelFormat={(value, index) => (index === 0)
+                ? <RangeValueIndex0 value={value} />
+                : <RangeValueIndex1 value={value} />
+              }
               step={1}
-              onChangeCommitted={(e, yr) => {
-                handleOnchange(yr)
-              }}
+              onChange={handleChange}
+              onChangeCommitted={handleChangeCommit}
               marks={true}
-              min={minYear}
-              max={maxYear}
+              min={minValue}
+              max={maxValue}
               classes={{
                 root: classes.sliderRoot,
                 markLabel: classes.sliderMarkLabel,
@@ -217,23 +213,15 @@ const BaseSlider = ({data, ...restProps}) => {
                 valueLabel: classes.sliderValueLabel,
               }}
             />
-          </Grid>
-          <Grid item>
-            {maxYear}
-          </Grid>
+          </Box>
         </Grid>
-      </Box>
+        <Grid item>
+          {maxValue}
+        </Grid>
+      </Grid>
+    </Box>
 
-    )
-  }
-  else {
-    return (null)
-  }
+  )
 }
 
 export default BaseSlider
-
-BaseSlider.propTypes = {
-  // Get year that is passed into slider
-  onYear: PropTypes.func
-}

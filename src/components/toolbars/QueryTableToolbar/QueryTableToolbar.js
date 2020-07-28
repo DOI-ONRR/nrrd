@@ -95,6 +95,7 @@ const useStyles = makeStyles(theme => ({
     borderLeft: `1px solid ${ theme.palette.grey[400] }`,
     paddingLeft: theme.spacing(2),
     marginLeft: theme.spacing(2),
+    width: '-webkit-fill-available'
   },
   hide: {
     display: 'none',

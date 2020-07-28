@@ -29,6 +29,7 @@ import BaseToggle from './BaseToggle'
 import BaseMultiToggle from './BaseMultiToggle'
 import BaseSwitch from './BaseSwitch'
 import BaseSelectInput from './BaseSelectInput'
+import BaseSlider from './BaseSlider'
 import { DataFilterContext } from '../../stores/data-filter-store'
 import withDataFilterContext from './withDataFilterContext'
 import withDataFilterQuery from './withDataFilterQuery'
@@ -43,6 +44,17 @@ const createEnhancedSelect = (dataFilterKey, selectType) => compose(
   BaseComponent => props => (<BaseComponent selectType={selectType} label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
   BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSelectInput)
+
+/**
+ * A factory method for building slider components with a DataFilterContext and a DataFilterQuery.
+ *
+ * @param {String} dataFilterKey
+ * @param {String} selectType
+ */
+export const createEnhancedSlider = dataFilterKey => compose(
+  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
+  BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSlider)
 
 export const PeriodSelectInput = compose(
   BaseComponent => props => (
