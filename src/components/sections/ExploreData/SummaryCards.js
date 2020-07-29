@@ -20,6 +20,7 @@ import {
 } from 'react-scroll'
 
 import { StoreContext } from '../../../store'
+import CardTitle from './CardTitle'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -34,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     right: 0,
     transform: 'translate3d(0, 0px, 0px)',
-    minHeight: 335,
+    minHeight: 340,
     '@media (max-width: 768px)': {
       width: '100%',
       height: 'auto',
@@ -53,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
     padding: 10,
-    height: 40,
+    height: 45,
     fontSize: '1.2rem',
     '& .MuiCardHeader-action': {
       marginTop: 0,
@@ -89,13 +90,26 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const SummaryCards = props => {
+  // console.log('SummaryCards props: ', props)
+
   const classes = useStyles()
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
 
+  const card = {
+    county: props.county,
+    fipsCode: props.fipsCode,
+    locationName: props.locationName,
+    name: props.name,
+    regionType: props.regionType,
+    districtType: props.districtType,
+    state: props.state
+  }
+ 
   const [minimized, setMinimized] = useState(true)
+
   const closeCard = item => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== props.fips) })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== props.fipsCode) })
   }
 
   const minimizeCard = item => {
@@ -111,9 +125,13 @@ const SummaryCards = props => {
 
   const children = React.Children.map(props.children, child =>
     React.cloneElement(child, {
-      fips: props.fips,
-      abbr: props.abbr,
+      county: props.county,
+      fipsCode: props.fipsCode,
+      locationName: props.locationName,
       name: props.name,
+      regionType: props.regionType,
+      districtType: props.districtType,
+      state: props.state
     })
   )
 
@@ -131,7 +149,7 @@ const SummaryCards = props => {
       <Slide direction="left" in={true} mountOnEnter unmountOnExit>
         <Card className={clsx(classes.card, minimizeIcon && { minimized: !minimized }, { [classes.cardMinimized]: !minimized })}>
           <CardHeader
-            title={props.name}
+            title={<CardTitle card={card} />}
             action={
               <>
                 {minimizeIcon && (

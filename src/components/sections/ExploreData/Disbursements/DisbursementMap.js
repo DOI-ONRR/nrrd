@@ -37,15 +37,20 @@ const DISBURSEMENT_QUERY = gql`
 
 export default props => {
   const { state: filterState } = useContext(DataFilterContext)
+  const CapitlizeString = word => {
+
+    return word[0].toUpperCase() + word.substr(1)
+  }
 
   const {
     year,
     counties,
     period
   } = filterState
-
+  const  location = CapitlizeString(counties)
+  console.debug("COUNTIES ... ", location)
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
-    variables: { year: year, period: period, location: counties }
+    variables: { year: year, period: period, location: location }
   })
   const dataSet = 'FY ' + year
   let mapData = [[]]
@@ -53,7 +58,7 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.log('DisbursementMap data: ', data)
+    // console.log('DisbursementMap data: ', data)
     /* mapData = data.fiscal_disbursement_summary.map((item, i) => [
       item.state_or_area,
       item.sum
