@@ -91,6 +91,8 @@ const DisbursementTrends = props => {
     const currentYear = fiscalYearData[fiscalYearData.length - 1].fiscalYear
     const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
 
+    console.debug("currentYearDate", currentYearDate);
+        console.debug("fiscalYearData", fiscalYearData);
     // Get previous year
     const previousYear = currentYear - 1
 

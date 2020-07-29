@@ -100,7 +100,8 @@ const RevenueTrends = props => {
     const longCurrentYearText = `${ maxMonth } ${ currentYear }`
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
-
+    console.debug("Fitler State", filterState, "DFC.year", DFC.YEAR, " OR ", trends[0], "WTH ", DFC)
+    
     year = filterState[DFC.year] || trends[0].histData[trends[0].histData.length - 1][0]
 
     return (

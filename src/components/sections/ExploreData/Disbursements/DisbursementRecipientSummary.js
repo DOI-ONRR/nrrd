@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 const APOLLO_QUERY = gql`
   # summary card queries
   query FiscalRevenue($year: Int!, $period: String!, $state: [String!]) {
-    cardFiscalDisbursementSummary: fiscal_disbursement_summary(
+    cardFiscalDisbursementSummary: disbursement_summary(
       where: { state_or_area: { _in: $state } }
       order_by: { fiscal_year: asc, state_or_area: asc }
     ) {
@@ -86,9 +86,11 @@ const DisbursementRecipientSummary = props => {
   const classes = useStyles()
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
-  console.debug('DT                ', filterState)
+
+  const state = props.fipsCode
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
   if (loading) {

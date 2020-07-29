@@ -12,11 +12,13 @@ import {
 } from '@material-ui/core'
 
 import { Autocomplete } from '@material-ui/lab'
-
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
+
+import CONSTANTS from '../../../js/constants'
 
 import mapJson from '../../sections/ExploreData/us-topology.json'
 import mapStatesOffshore from '../../sections/ExploreData/states-offshore.json'
+import { validateOperation } from 'apollo-link/lib/linkUtils'
 
 const GUTTER_SIZE = 15
 
@@ -43,23 +45,23 @@ const getRegionProperties = location => {
   let selectedObj
 
   switch (location.region_type) {
-  case 'State':
+  case CONSTANTS.STATE:
     selectedObj = mapJson.objects.states.geometries.filter(obj => {
-      if (parseInt(obj.properties.FIPS) === parseInt(location.fips_code)) {
+      if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
         return Object.assign(obj, { locData: location })
       }
     })
     break
-  case 'County':
+  case CONSTANTS.COUNTY:
     selectedObj = mapJson.objects.counties.geometries.filter(obj => {
       if (parseInt(obj.properties.FIPS) === parseInt(location.fips_code)) {
         return Object.assign(obj, { locData: location })
       }
     })
     break
-  case 'Offshore':
+  case CONSTANTS.OFFSHORE:
+    // console.log('mapStatesOffshore: ', mapStatesOffshore)
     selectedObj = mapStatesOffshore.objects['states-offshore-geo'].geometries.filter(obj => {
-      // console.log('Offshore obj: ', obj)
       if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
         return Object.assign(obj, { locData: location })
       }
@@ -110,7 +112,6 @@ const ListboxComponent = React.forwardRef((props, ref) => {
 
   // console.log('ListboxComponent itemCount: ', itemData, itemCount)
   const getChildSize = child => {
-    // console.log('getChildSize: ', child)
     const charCount = child.props.children.props.children.length
     if (React.isValidElement(child) && charCount > 20) {
       return 100
@@ -154,6 +155,7 @@ const SearchLocationsInput = props => {
           region_type
           state
           state_name
+          county
         }
       }
     }
@@ -169,6 +171,7 @@ const SearchLocationsInput = props => {
   }
 
   const handleChange = val => {
+    // console.log('handleChange val: ', val)
     try {
       const item = getRegionProperties(val)
       onLink(item[0])
@@ -180,8 +183,28 @@ const SearchLocationsInput = props => {
     }
   }
 
+  const renderOptionLabel = item => {
+    let optionLabel
+    switch (item.region_type) {
+    case CONSTANTS.STATE:
+      optionLabel = item.state_name
+      break
+    case CONSTANTS.COUNTY:
+      optionLabel = `${ item.county } ${ CONSTANTS.COUNTY }, ${ item.state_name }`
+      break
+    case CONSTANTS.OFFSHORE:
+      optionLabel = `${ item.location_name } ${ item.region_type }`
+      break
+    default:
+      optionLabel = item.location_name
+      break
+    }
+
+    return optionLabel
+  }
+
   const renderLabel = item => {
-    const label = item
+    const label = renderOptionLabel(item)
     const searchString = input
 
     if (searchString) {
@@ -221,13 +244,13 @@ const SearchLocationsInput = props => {
       renderInput={params => (
         <TextField
           {...params}
-          label="Search locations..."
+          label="Add state or county"
           variant="outlined"
           fullWidth
           onChange={handleSearch}
         />
       )}
-      renderOption={option => renderLabel(option.location_name)}
+      renderOption={option => renderLabel(option)}
       onChange={(e, v) => handleChange(v)}
       popupIcon={<KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
       classes={{

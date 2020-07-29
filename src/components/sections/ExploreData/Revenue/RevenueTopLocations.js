@@ -25,9 +25,9 @@ import {
 import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
-  query RevenueTopLocations($year: Int!, $locations: [String!], $period: String! ) {
+  query RevenueTopLocations($year: Int!, $locations: [String!], $period: String!) {
     revenue_summary(
-      where: {location_type: {_in: $locations}, year: { _eq: $year }, location_name: {_neq: ""}, period: {_eq: $period} }
+      where: {location_type: {_in: $locations}, year: { _eq: $year }, location_name: {_neq: ""}, period: {_eq: $period} },
       order_by: { year: asc, total: desc }
     ) {
       location_name
@@ -105,28 +105,30 @@ const RevenueTopLocations = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = (period === 'Fiscal Year') ?  `FY ${ year }` : `CY ${ year }`
-  
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+
   if (data) {
-    //chartData = data.revenue_summary
+    // chartData = data.revenue_summary
     chartData = d3.nest()
       .key(k => k.location_name)
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_summary)
-      .map(d => {return ( { location_name: d.key, total: d.value } ) })
-    console.debug("CHART DATA", chartData)
+      .map(d => {
+        return ({ location_name: d.key, total: d.value })
+      })
+    console.debug('CHART DATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
-        <Grid item xs={12}>
+          <Grid item xs={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
               <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
-        </Grid>
+          </Grid>
           <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
-        <CircleChart
+                <CircleChart
                   key ={'RTL' + dataSet}
                   data={chartData}
                   maxLegendWidth='800px'
@@ -138,7 +140,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
                       // console.debug('circleLABLE: ', d)
                       const r = []
                       r[0] = d.location_name
-                      if( r[0] === 'Native American') {
+                      if (r[0] === 'Native American') {
                         r[0] = 'Native American lands'
                       }
                       else if (r[0] === 'Gulf of Mexico, Central Gulf of Mexico') {
@@ -147,7 +149,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
                       else if (r[0] === 'Gulf of Mexico, Western Gulf of Mexico') {
                         r[0] = 'Western Gulf'
                       }
-                      
+
                       r[1] = utils.formatToDollarInt(d.total)
                       return r
                     }

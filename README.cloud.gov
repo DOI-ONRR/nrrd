@@ -104,3 +104,4 @@ Password: <ENTER PASSWORD>
 cf restage hasura-$DB_ENV (where we are in the shell  configure for hasura-onrr
 
 update location set fips_code=concat('0',fips_code) where length(fips_code)=4 
+ 
