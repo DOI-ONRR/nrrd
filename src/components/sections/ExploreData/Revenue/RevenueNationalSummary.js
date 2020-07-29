@@ -32,7 +32,7 @@ import CONSTANTS from '../../../../js/constants'
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   query RevenueNational($year: Int!, $period: String!) {
-   revenue_type_class_summary(order_by: {land_type_order: asc}, where: {year: {_eq: $year}, period: { _eq: $period} }) {
+   revenue_type_class_summary(order_by: {land_type_order: asc, revenue_type_order: asc}, where: {year: {_eq: $year}, period: { _eq: $period} }) {
     revenue_type
     year
     land_type
@@ -61,7 +61,7 @@ const RevenueNationalSummary = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  console.debug('WTH PERIOD:', period)
+  // console.debug('WTH PERIOD:', period)
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
@@ -88,10 +88,9 @@ const RevenueNationalSummary = props => {
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-    // do something wit dat data
-    //    console.log('RevenueNationalSummary data: ', data)
     groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
+
     nationalRevenueData = Object.entries(groupData)
   }
 
