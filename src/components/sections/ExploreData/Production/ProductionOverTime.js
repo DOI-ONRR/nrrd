@@ -91,9 +91,9 @@ const ProductionOverTime = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
-  const product = (filterState[DFC.PRODUCT]) ? filterState[DFC.PRODUCT] : 'Oil (bbl)'
+  const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-
+    
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { product: product, period: period }
   })
@@ -143,7 +143,7 @@ const ProductionOverTime = props => {
         </Grid>
         <Grid item md={12}>
           <LineChart
-            key={'POT' + period + cards.length }
+            key={'POT' + period + cards.length + product }
             data={chartData}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
