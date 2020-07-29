@@ -1,6 +1,5 @@
 
 import React, { useContext } from 'react'
-import clsx from 'clsx'
 
 import { DataFilterContext, DownloadContext } from '../../../stores'
 
@@ -11,8 +10,6 @@ import {
   REVENUE,
   PRODUCTION,
   DISBURSEMENT,
-  US_STATE,
-  PERIOD,
   PERIOD_FISCAL_YEAR,
   PERIOD_CALENDAR_YEAR,
   EXCEL,
@@ -27,9 +24,7 @@ import {
   DataTypeSelectInput,
   LandTypeSelectInput,
   RevenueTypeSelectInput,
-  UsStateSelectInput,
   CountySelectInput,
-  OffshoreRegionSelectInput,
   CommoditySelectInput,
   ProductSelectInput,
   RecipientSelectInput,
@@ -41,7 +36,6 @@ import {
   CalendarYearSlider
 } from '../../inputs'
 
-import YearRangeSelect from '../../inputs/YearRangeSelect'
 import BaseButtonInput from '../../inputs/BaseButtonInput'
 
 import {
@@ -49,7 +43,6 @@ import {
   IconDownloadBaseImg,
   IconDownloadXlsImg,
   IconDownloadCsvImg,
-  IconDownloadDataImg
 } from '../../images'
 
 import BaseToolbar from '../BaseToolbar'
@@ -58,14 +51,8 @@ import Link from '../../Link'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import useTheme from '@material-ui/core/styles/useTheme'
 import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
-import ToggleButton from '@material-ui/lab/ToggleButton'
 
 import FilterList from '@material-ui/icons/FilterList'
-import CalendarToday from '@material-ui/icons/CalendarToday'
-import GetApp from '@material-ui/icons/GetApp'
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -292,7 +279,6 @@ const ProductionFilterToolbar = () => {
       <StateOffshoreSelectInput />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
       <ProductSelectInput />
-      <YearRangeSelect />
     </BaseToolbar>
   )
 }
@@ -305,7 +291,6 @@ const DisbursementFilterToolbar = () => {
       <SourceSelectInput />
       <StateOffshoreSelectInput defaultSelectAll={false} />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
-      <YearRangeSelect />
     </BaseToolbar>
   )
 }
