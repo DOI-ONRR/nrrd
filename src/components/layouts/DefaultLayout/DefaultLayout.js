@@ -17,6 +17,7 @@ import InfoBanner from '../../content-partials/InfoBanner'
 import BrowserBanner from '../BrowserBanner'
 import Footer from '../../content-partials/Footer'
 import Header from '../../content-partials/Header'
+import ErrorMessage from '../../info/ErrorMessage'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
@@ -126,6 +127,7 @@ const DefaultLayout = ({ includeToc = true, title, children }) => {
       <Header />
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>
+        <ErrorMessage />
         {includeToc
           ? <Container maxWidth="lg" component="section">
             <Grid container>
