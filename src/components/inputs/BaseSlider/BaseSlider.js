@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react'
 
 import PropTypes from 'prop-types'
 
+import { range } from '../../../js/utils'
+
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Slider,
@@ -158,7 +160,7 @@ const BaseSlider = ({ data, onChange, defaultValue, selected, label, ...restProp
     setSelectedOptions(newValue)
   }
   const handleChangeCommit = (event, newValue) => {
-    onChange(newValue.toString())
+    onChange(range(newValue[0], newValue[1]).toString())
   }
   const [selectedOptions, setSelectedOptions] = useState(selected)
 

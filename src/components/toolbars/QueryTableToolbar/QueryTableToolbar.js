@@ -19,7 +19,7 @@ import {
   CSV,
   DOWNLOAD_DATA_TABLE,
   STATE_OFFSHORE_NAME,
-  PERIOD_TYPES,
+  PERIOD_TYPES
 
 } from '../../../constants'
 
@@ -44,12 +44,17 @@ import BaseButtonInput from '../../inputs/BaseButtonInput'
 
 import {
   FilterTableIconImg,
-  IconDownloadBaseImg
+  IconDownloadBaseImg,
+  IconDownloadXlsImg,
+  IconDownloadCsvImg,
+  IconDownloadDataImg,
 } from '../../images'
 
 import BaseToolbar from '../BaseToolbar'
+import Link from '../../Link'
 
 import makeStyles from '@material-ui/core/styles/makeStyles'
+import useTheme from '@material-ui/core/styles/useTheme'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -121,7 +126,8 @@ const QueryTableToolbar = ({ label, ...props }) => {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
   state.dataType = (state.dataType) ? state.dataType : 'Revenue'
-  const classes = useStyles()
+  const theme = useTheme()
+  const classes = useStyles(theme)
 
   const [queryDataToolbarOpen, setQueryDataToolbarOpen] = React.useState(true)
 
@@ -225,9 +231,26 @@ const QueryTableToolbar = ({ label, ...props }) => {
       { downloadToolbarOpen &&
       <BaseToolbar isSecondary={true}>
         <Box mr={2}>
-          <BaseButtonInput onClick={handleDownloadExcel} variant='outlined' label={'Download Excel'} styleType={'text'} />
+          <BaseButtonInput onClick={handleDownloadExcel} variant='text' styleType={'text'} style={{ color: theme.palette.links.default }}>
+            <IconDownloadXlsImg style={{ marginRight: '5px', fill: theme.palette.links.default }} />Download filterd data (Excel)
+          </BaseButtonInput>
         </Box>
-        <BaseButtonInput onClick={handleDownloadCsv} variant='outlined' label={'Download Csv'} styleType={'text'} />
+        <Box mr={2}>
+          <BaseButtonInput onClick={handleDownloadCsv} variant='text' styleType={'text'} style={{ color: theme.palette.links.default }}>
+            <IconDownloadCsvImg style={{ marginRight: '5px', fill: theme.palette.links.default }} />Download filtered data (csv)
+          </BaseButtonInput>
+        </Box>
+        <Box mr={2}>
+          {state[DATA_TYPE] === REVENUE &&
+            <Link href={'./downloads/#Revenue'} linkType='DownloadData'>Source file and documentation</Link>
+          }
+          {state[DATA_TYPE] === PRODUCTION &&
+            <Link href={'./downloads/#Production'} linkType='DownloadData'>Source file and documentation</Link>
+          }
+          {state[DATA_TYPE] === DISBURSEMENT &&
+            <Link href={'./downloads/#Disbursements'} linkType='DownloadData'>Source file and documentation</Link>
+          }
+        </Box>
       </BaseToolbar>
       }
     </>

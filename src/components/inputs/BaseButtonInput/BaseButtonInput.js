@@ -59,13 +59,13 @@ BaseButtonInput.propTypes = {
   /**
    * Text that displays on the component
    */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
 }
 
 export default BaseButtonInput
 
-const SingleButton = ({ label, onClick, classes, disabled, ...props }) => {
-  const labelSlug = formatToSlug(label)
+const SingleButton = ({ label, onClick, classes, disabled, children, ...props }) => {
+  const labelSlug = label ? formatToSlug(label) : undefined
 
   const handleOnClick = event => {
     onClick(event)
@@ -80,6 +80,7 @@ const SingleButton = ({ label, onClick, classes, disabled, ...props }) => {
       onClick={handleOnClick}
       {...props} >
       {label}
+      {children}
     </Button>
   )
 }

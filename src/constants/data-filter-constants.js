@@ -137,4 +137,8 @@ export const DISPLAY_NAMES = {
     default: 'Fiscal year',
     plural: 'Fiscal years',
   },
+  [CALENDAR_YEAR]: {
+    default: 'Calendar year',
+    plural: 'Calendar years',
+  },
 }
