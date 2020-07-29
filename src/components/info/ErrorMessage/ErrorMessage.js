@@ -37,10 +37,11 @@ const ErrorMessage = () => {
 
   const theme = useTheme()
   const classes = useStyles(theme)
-  const { state } = useContext(AppStatusContext)
+  const { state, deleteErrorMessage } = useContext(AppStatusContext)
   const [open, setOpen] = useState(false)
 
   const handleClose = () => {
+    deleteErrorMessage()
     setOpen(false)
   }
 
