@@ -225,14 +225,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
       { downloadToolbarOpen &&
       <BaseToolbar isSecondary={true}>
         <Box mr={2}>
-          <BaseButtonInput onClick={handleDownloadExcel} variant='text' styleType={'text'} style={{ color: theme.palette.links.default }}>
-            <IconDownloadXlsImg style={{ marginRight: '5px', fill: theme.palette.links.default }} />Download filterd data (Excel)
-          </BaseButtonInput>
+          <Link href={'#'} onClick={handleDownloadExcel} linkType='DownloadXls'>Download filterd data (Excel)</Link>
         </Box>
         <Box mr={2}>
-          <BaseButtonInput onClick={handleDownloadCsv} variant='text' styleType={'text'} style={{ color: theme.palette.links.default }}>
-            <IconDownloadCsvImg style={{ marginRight: '5px', fill: theme.palette.links.default }} />Download filtered data (csv)
-          </BaseButtonInput>
+          <Link href={'#'} onClick={handleDownloadCsv} linkType='DownloadCsv'>Download filterd data (csv)</Link>
         </Box>
         <Box mr={2}>
           {state[DATA_TYPE] === REVENUE &&
