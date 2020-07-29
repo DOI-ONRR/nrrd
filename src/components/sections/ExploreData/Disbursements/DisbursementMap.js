@@ -48,7 +48,7 @@ export default props => {
     period
   } = filterState
   const  location = CapitlizeString(counties)
-  console.debug("COUNTIES ... ", location)
+
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
     variables: { year: year, period: period, location: location }
   })
