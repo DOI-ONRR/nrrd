@@ -46,8 +46,8 @@ const APOLLO_QUERY = gql`
 const RevenueDetailTrends = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
-  const year = filterState[DFC.YEAR]
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const year = parseInt(filterState[DFC.YEAR])
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
@@ -96,6 +96,8 @@ const RevenueDetailTrends = props => {
         sum ? sum[1] : 0
       ])
     })
+
+    console.log('sparkData: ', sparkData)
 
     // sparkline index
     highlightIndex = sparkData.findIndex(

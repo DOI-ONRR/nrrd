@@ -2,13 +2,11 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import {
-  useQueryParam,
   useQueryParams,
   StringParam,
   encodeDelimitedArray,
   decodeDelimitedArray,
-  BooleanParam,
-  ArrayParam
+  NumberParam
 } from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -306,6 +304,7 @@ const MapContext = props => {
     location: CommaArrayParam,
     offshoreRegions: StringParam,
     commodity: StringParam,
+    year: NumberParam,
   })
 
   const [mapOverlay, setMapOverlay] = useState(false)
@@ -549,6 +548,7 @@ const MapContext = props => {
       offshoreRegions: filterState.offshoreRegions,
       commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
+      year: filterState.year
     }, 'pushIn')
   }, [filterState, pageState])
 

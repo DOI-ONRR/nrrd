@@ -37,20 +37,15 @@ const DISBURSEMENT_QUERY = gql`
 
 export default props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const CapitlizeString = word => {
-
-    return word[0].toUpperCase() + word.substr(1)
-  }
 
   const {
     year,
-    counties,
+    mapLevel,
     period
   } = filterState
-  const  location = CapitlizeString(counties)
 
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
-    variables: { year: year, period: period, location: location }
+    variables: { year: year, period: period, location: mapLevel }
   })
   const dataSet = 'FY ' + year
   let mapData = [[]]
