@@ -90,13 +90,13 @@ const RevenueOverTime = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { period: period }
   })
-  
+
   const handleDelete = props.handleDelete || ((e, val) => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== val) })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== val) })
   })
 
   if (loading) {
@@ -109,25 +109,19 @@ const RevenueOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0 && data.revenue_summary.length > 0) {
-
-
+    console.log('RevenueOverTime data: ', data)
     const years = [...new Set(d3.nest()
-          .key(k => k.year)
-          .rollup(v => d3.sum(v, i => i.total))
-          .entries(data.revenue_summary)
-          .map(d=>parseInt(d.key))
-                             )]
-    const sums = cards.map(yData => [...new Set(
-      d3.nest()
-        .key(k => k.year)
-        .rollup(v => d3.sum(v, i => i.total))
-        .entries(data.revenue_summary.filter( row => row.location === yData.abbr))
-        .map(d => d.value)
-    )])
+      .key(k => k.year)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.revenue_summary)
+      .map(d => parseInt(d.key))
+    )]
+
+    const sums = cards.map(yData => [...new Set(data.revenue_summary.filter(row => row.location === yData.fipsCode).map(item => item.total))])
 
     //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]
-    console.debug("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA", chartData)
+    console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
@@ -144,7 +138,7 @@ const RevenueOverTime = props => {
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = `${ cards[i].name }: ${ utils.formatToDollarInt(d) }`
+                r[0] = `${ cards[i].locationName }: ${ utils.formatToDollarInt(d) }`
                 return r
               }
             } />
@@ -153,10 +147,10 @@ const RevenueOverTime = props => {
               cards.map((card, i) => {
                 return (
                   <Chip
-                    key={`RevenueOverTimeChip_${ card.fips }`}
+                    key={`RevenueOverTimeChip_${ card.fipsCode }`}
                     variant='outlined'
-                    onDelete={ e => handleDelete(e, card.fips)}
-                    label={<ChipLabel labelIndex={i} label={card.name} />}
+                    onDelete={ e => handleDelete(e, card.fipsCode)}
+                    label={<ChipLabel labelIndex={i} label={card.locationName} />}
                     classes={{ root: classes.chipRoot }} />
                 )
               })

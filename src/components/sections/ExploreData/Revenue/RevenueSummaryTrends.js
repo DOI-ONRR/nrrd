@@ -29,7 +29,6 @@ const APOLLO_QUERY = gql`
       total      
       commodity
     }
-
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
       period_date
@@ -38,12 +37,15 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueSummaryTrends = props => {
+  // console.log('RevenueSummaryTrends props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
+  const state = props.fipsCode
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : undefined
-   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
+
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   let commodityText= ''
   if (commodities && commodities.length === 1) {
     commodityText = commodities[0].toLowerCase()+' revenue'
@@ -51,10 +53,10 @@ const RevenueSummaryTrends = props => {
     commodityText = 'revenue from the selected commodities'
   }
   
-  console.debug("COMMODITies: ",commodities);
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, period: period, commodities:commodities  }
-  })
+    variables: { state: state, period: period, commodities:commodities  }
+  )
+
   const name = props.name
 
   let sparkData = []
@@ -83,28 +85,28 @@ const RevenueSummaryTrends = props => {
     data.revenue_summary.length > 0
   ) {
     periodData = data.period
-    console.debug("PERIODDATA", periodData)
+    console.debug('PERIODDATA', periodData)
     // set min and max trend years
-    sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0,4)))
-    sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, parseInt(periodData[periodData.length - 1].period_date.substring(0,4)))
-    console.debug("WTH: ", data.revenue_summary)    
+    sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0, 4)))
+    sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
+    console.debug('WTH: ', data.revenue_summary)
     fiscalData = d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_summary)
-      .map(d => [ parseInt(d.key), d.value ]) 
-    
+      .map(d => [parseInt(d.key), d.value])
+
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-      const y = parseInt(item.period_date.substr(0,4))
+      const y = parseInt(item.period_date.substr(0, 4))
       const total = fiscalData.find(x => x[0] === y)
-      
+
       return ([
         y,
         total ? total[1] : 0
       ])
     })
-    console.debug('wth: ',fiscalData, sparkData)
+    console.debug('wth: ', fiscalData, sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
@@ -136,7 +138,7 @@ const RevenueSummaryTrends = props => {
           </Grid>
           <Grid item xs={6} style={{ textAlign: 'right' }}>
             <Typography variant="caption">
-              <Box>{year}</Box>
+              <Box>{dataSet}</Box>
               <Box>
                 {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
               </Box>

@@ -28,7 +28,8 @@ const useStyles = makeStyles(theme => ({
 const APOLLO_QUERY = gql`
   query RevenueDetailTrends($state: String!, $period: String!, $year: Int!, $commodities: [String!] ) {
     revenue_summary(
-      where: { location: { _eq: $state }, period: {_eq: $period}, commodity: {_in: $commodities}  }
+
+      where: { location: { _eq: $state }, period: {_eq: $period}, commodity: {_in: $commodities}  },
       order_by: { year: asc, location: asc }
     ) {
       year
@@ -48,8 +49,10 @@ const RevenueDetailTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  let commodityText = ''
+    const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+    const state = props.fipsCode
+    const name = props.name
+    let commodityText = ''
   if (commodities && commodities.length === 1) {
     commodityText = commodities[0].toLowerCase() + ' revenue'
   }
@@ -58,23 +61,21 @@ const RevenueDetailTrends = props => {
   }
 
   
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, period: period, year: year, commodities: commodities }
-  })
+    variables: { state: state, period: period, year: year, commodities: commodities }
+
 
   const closeCard = item => {
-    props.closeCard(props.fips)
+    props.closeCard(props.fips_code)
   }
 
   if (loading) return ''
 
   if (error) return `Error! ${ error.message }`
 
-  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }`:`CY ${ year }`
-  const dataKey = dataSet + '-' + stateAbbr
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+  const dataKey = dataSet + '-' + state
   let sparkData = []
   let sparkMin
   let sparkMax
@@ -89,11 +90,11 @@ const RevenueDetailTrends = props => {
     periodData = data.period
 
     // set min and max trend years
-    sparkMin = periodData.reduce((min, p) => parseInt(periodData[0].period_date.substring(0,4)) < min ? parseInt(periodData[0].period_date.substring(0,4)) : min, parseInt(periodData[0].period_date.substring(0,4)))
-    sparkMax = periodData.reduce((max, p) =>  parseInt(periodData[0].period_date.substring(0,4)) > max ? parseInt(periodData[0].period_date.substring(0,4)) : max, parseInt(periodData[periodData.length - 1].period_date.substring(0,4)))
+    sparkMin = periodData.reduce((min, p) => parseInt(periodData[0].period_date.substring(0, 4)) < min ? parseInt(periodData[0].period_date.substring(0, 4)) : min, parseInt(periodData[0].period_date.substring(0, 4)))
+    sparkMax = periodData.reduce((max, p) => parseInt(periodData[0].period_date.substring(0, 4)) > max ? parseInt(periodData[0].period_date.substring(0, 4)) : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
 
-    console.debug("sparkMin", sparkMin, periodData)
-    fiscalData =d3.nest()
+    console.debug('sparkMin', sparkMin, periodData)
+    fiscalData = d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_summary)
@@ -101,7 +102,7 @@ const RevenueDetailTrends = props => {
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-       const y = parseInt(item.period_date.substr(0,4))
+      const y = parseInt(item.period_date.substr(0, 4))
       const sum = fiscalData.find(x => x[0] === y)
       return ([
         y,
