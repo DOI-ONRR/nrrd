@@ -9,13 +9,10 @@ import {
   CALENDAR_YEAR
 } from '../../../constants'
 
-import BaseSlider from '../BaseSlider'
-import { createEnhancedSlider } from '../index'
-
-import BaseDataFilterRangeSlider from '../BaseDataFilterRangeSlider'
-
-const FiscalYearSlider = createEnhancedSlider(FISCAL_YEAR)
-const CalendarYearSlider = createEnhancedSlider(CALENDAR_YEAR)
+import {
+  FiscalYearSlider,
+  CalendarYearSlider
+} from '../index'
 
 const YearRangeSelect = ({ helperText, label, loadingMessage }) => {
   const { state } = useContext(DataFilterContext)
@@ -33,22 +30,3 @@ const YearRangeSelect = ({ helperText, label, loadingMessage }) => {
 }
 
 export default YearRangeSelect
-
-YearRangeSelect.propTypes = {
-  /**
-   * Text that displays below the select box to provide additional instructions
-   */
-  helperText: PropTypes.string,
-  /**
-   * Text that displays on the component
-   */
-  label: PropTypes.string,
-  /**
-   * The message that shows in the loading screen
-   */
-  loadingMessage: PropTypes.string
-}
-YearRangeSelect.defaultProps = {
-  label: 'Years',
-  loadingMessage: 'Updating Year options from server...'
-}

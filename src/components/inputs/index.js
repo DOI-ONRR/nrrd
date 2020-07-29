@@ -21,7 +21,9 @@ import {
   GROUP_BY_STICKY,
   BREAKOUT_BY,
   PERIOD,
-  PERIOD_TYPES
+  PERIOD_TYPES,
+  FISCAL_YEAR,
+  CALENDAR_YEAR
 } from '../../constants'
 
 import BaseButtonInput from './BaseButtonInput'
@@ -35,17 +37,6 @@ import withDataFilterContext from './withDataFilterContext'
 import withDataFilterQuery from './withDataFilterQuery'
 
 /**
- * A factory method for building select components with a DataFilterContext and a DataFilterQuery.
- *
- * @param {String} dataFilterKey
- * @param {String} selectType
- */
-const createEnhancedSelect = (dataFilterKey, selectType) => compose(
-  BaseComponent => props => (<BaseComponent selectType={selectType} label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
-  BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
-  BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSelectInput)
-
-/**
  * A factory method for building slider components with a DataFilterContext and a DataFilterQuery.
  *
  * @param {String} dataFilterKey
@@ -55,6 +46,20 @@ export const createEnhancedSlider = dataFilterKey => compose(
   BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
   BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSlider)
+
+export const FiscalYearSlider = createEnhancedSlider(FISCAL_YEAR)
+export const CalendarYearSlider = createEnhancedSlider(CALENDAR_YEAR)
+
+/**
+ * A factory method for building select components with a DataFilterContext and a DataFilterQuery.
+ *
+ * @param {String} dataFilterKey
+ * @param {String} selectType
+ */
+const createEnhancedSelect = (dataFilterKey, selectType) => compose(
+  BaseComponent => props => (<BaseComponent selectType={selectType} label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
+  BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSelectInput)
 
 export const PeriodSelectInput = compose(
   BaseComponent => props => (
