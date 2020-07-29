@@ -63,7 +63,8 @@ const RevenueDetailTrends = props => {
   
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: period, year: year, commodities: commodities }
+      variables: { state: state, period: period, year: year, commodities: commodities }
+  })
 
 
   const closeCard = item => {
@@ -116,6 +117,7 @@ const RevenueDetailTrends = props => {
     )
     locData = sparkData[highlightIndex][1]  
 
+      console.debug("DWGHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
 
   return (
     <>

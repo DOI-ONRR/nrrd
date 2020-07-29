@@ -21,7 +21,7 @@ import CONSTANTS from '../../../../js/constants'
 const APOLLO_QUERY = gql`
   query RevenueSummaryTrend($state: String!, $period: String!, $commodities: [String!]) {
     revenue_summary(
-      where: { location: { _eq: $state }, period: {_eq: $period}, commodity: {_in: $commodities} }
+      where: { location: { _eq: $state }, period: {_eq: $period}, commodity: {_in: $commodities} },
       order_by: { year: asc, location: asc }
     ) {
       year
@@ -55,7 +55,7 @@ const RevenueSummaryTrends = props => {
   
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, period: period, commodities:commodities  }
-  )
+  })
 
   const name = props.name
 
