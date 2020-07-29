@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import PropTypes from 'prop-types'
+import { isEqual, isEqualWith } from 'lodash'
 
 import { range } from '../../../js/utils'
 
@@ -144,9 +144,27 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const BaseSlider = ({ data, onChange, defaultValue, selected, label, ...restProps }) => {
+const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restProps }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
+
+  const convertStringToArrayNums = values => {
+    values = values.split(',').map(num => +num)
+    if (values.length > 2) {
+      values = [values[0], values.slice(-1)[0]]
+    }
+    return values
+  }
+
+  if (typeof selected === 'string') {
+    selected = convertStringToArrayNums(selected)
+  }
+  if (typeof defaultSelected === 'string') {
+    defaultSelected = convertStringToArrayNums(defaultSelected)
+  }
+
+  const [selectedOptions, setSelectedOptions] = useState(selected || defaultSelected)
+
   const noop = () => {}
   onChange = onChange || noop
   if (data && data.length > 0 && !data[0].option) {
@@ -162,18 +180,23 @@ const BaseSlider = ({ data, onChange, defaultValue, selected, label, ...restProp
   const handleChangeCommit = (event, newValue) => {
     onChange(range(newValue[0], newValue[1]).toString())
   }
-  const [selectedOptions, setSelectedOptions] = useState(selected)
+
+  useEffect(() => {
+    if (selected && !isEqual(selected, selectedOptions)) {
+      handleChange(undefined, selected)
+    }
+  }, [selected])
 
   const minValue = (data && data.length > 0) ? data[0].option : undefined
   const maxValue = (data && data.length > 0) ? data.slice(-1)[0].option : undefined
 
-  const RangeValueIndex0 = ({ value }) => (
+  const RangeValueIndexEven = ({ value }) => (
     <div style={{ position: 'relative', top: '-10px', paddingTop: '2px', paddingBottom: '5px' }}>
       {value}
     </div>
   )
 
-  const RangeValueIndex1 = ({ value }) => (
+  const RangeValueIndexOdd = ({ value }) => (
     <div style={{ position: 'relative', top: '12px', paddingTop: '3px', paddingBottom: '4px' }}>
       {value}
     </div>
@@ -188,14 +211,14 @@ const BaseSlider = ({ data, onChange, defaultValue, selected, label, ...restProp
         <Grid item xs>
           <Box paddingRight={2} paddingLeft={2}>
             <Slider
-              defaultValue={defaultValue || 1}
+              defaultValue={defaultSelected || 1}
               value={selectedOptions || undefined}
               getAriaLabel={() => label}
-              getAriaValueText={() => selectedOptions.toString()}
+              getAriaValueText={() => selectedOptions ? selectedOptions.toString() : ''}
               valueLabelDisplay={(data.length > 0) ? 'on' : 'off'}
-              valueLabelFormat={(value, index) => (index === 0)
-                ? <RangeValueIndex0 value={value} />
-                : <RangeValueIndex1 value={value} />
+              valueLabelFormat={(value, index) => (index % 2 === 0)
+                ? <RangeValueIndexEven value={value} />
+                : <RangeValueIndexOdd value={value} />
               }
               step={1}
               onChange={handleChange}
@@ -226,4 +249,27 @@ const BaseSlider = ({ data, onChange, defaultValue, selected, label, ...restProp
   )
 }
 
-export default BaseSlider
+const areEqual = (prevProps, nextProps) => {
+  const areDataValuesEqual = (item1, item2) => {
+    let equal = (!item1 && !item2)
+    if (item1 && item2) {
+      if (item1.length !== item2.length) {
+        equal = false
+      }
+      else {
+        if (typeof item1[0] === 'string' && typeof item2[0] === 'string') {
+          equal = isEqual(item1, item2)
+        }
+        else {
+          equal = isEqual(item1.map(item => item.option), item2.map(item => item.option))
+        }
+      }
+    }
+
+    return equal
+  }
+
+  return isEqualWith(prevProps.data, nextProps.data, areDataValuesEqual) && isEqual(prevProps.selected, nextProps.selected)
+}
+
+export default React.memo(BaseSlider, areEqual)

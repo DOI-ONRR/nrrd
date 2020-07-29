@@ -36,7 +36,9 @@ import {
   SourceSelectInput,
   FilterToggleInput,
   StateOffshoreSelectInput,
-  PeriodSelectInput
+  PeriodSelectInput,
+  FiscalYearSlider,
+  CalendarYearSlider
 } from '../../inputs'
 
 import YearRangeSelect from '../../inputs/YearRangeSelect'
@@ -47,7 +49,7 @@ import {
   IconDownloadBaseImg,
   IconDownloadXlsImg,
   IconDownloadCsvImg,
-  IconDownloadDataImg,
+  IconDownloadDataImg
 } from '../../images'
 
 import BaseToolbar from '../BaseToolbar'
@@ -211,7 +213,12 @@ const QueryTableToolbar = ({ label, ...props }) => {
               ? <PeriodSelectInput data={PERIOD_TYPES.filter(type => type !== PERIOD_CALENDAR_YEAR)}/>
               : <PeriodSelectInput />
             }
-            <YearRangeSelect />
+            {state.period === PERIOD_FISCAL_YEAR &&
+              <FiscalYearSlider />
+            }
+            {state.period === PERIOD_CALENDAR_YEAR &&
+              <CalendarYearSlider />
+            }
           </Box>
         </BaseToolbar>
       }
