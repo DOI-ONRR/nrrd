@@ -33,7 +33,7 @@ import CONSTANTS from '../../../../js/constants'
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   query RevenueNational($year: Int!, $period: String!, $commodities: [String!]) {
-   revenue_type_class_summary(order_by: {land_type_order: asc}, where: {year: {_eq: $year}, period: { _eq: $period}, commodity: {_in: $commodities}  }) {
+   revenue_type_class_summary(order_by: {revenue_type_order: asc, land_type_order: asc}, where: {year: {_eq: $year}, period: { _eq: $period}, commodity: {_in: $commodities}  }) {
     revenue_type
     year
     land_type
