@@ -147,6 +147,7 @@ const useStyles = makeStyles(theme => ({
 const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restProps }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
+  let selectedArrayNums, defaultArrayNums;
 
   const convertStringToArrayNums = values => {
     values = values.split(',').map(num => +num)
@@ -157,13 +158,13 @@ const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restP
   }
 
   if (typeof selected === 'string') {
-    selected = convertStringToArrayNums(selected)
+    selectedArrayNums = convertStringToArrayNums(selected)
   }
   if (typeof defaultSelected === 'string') {
-    defaultSelected = convertStringToArrayNums(defaultSelected)
+    defaultArrayNums = convertStringToArrayNums(defaultSelected)
   }
 
-  const [selectedOptions, setSelectedOptions] = useState(selected || defaultSelected)
+  const [selectedOptions, setSelectedOptions] = useState(selectedArrayNums || defaultArrayNums)
 
   const noop = () => {}
   onChange = onChange || noop
@@ -182,8 +183,8 @@ const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restP
   }
 
   useEffect(() => {
-    if (selected && !isEqual(selected, selectedOptions)) {
-      handleChange(undefined, selected)
+    if (selectedArrayNums && !isEqual(selectedArrayNums, selectedOptions)) {
+      handleChange(undefined, selectedArrayNums)
     }
   }, [selected])
 

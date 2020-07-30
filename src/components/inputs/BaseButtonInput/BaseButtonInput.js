@@ -11,7 +11,10 @@ import {
 import { formatToSlug } from '../../../js/utils'
 
 const useDefaultStyles = makeStyles(theme => ({
-  root: {},
+  root: {
+    color: 'white',
+    backgroundColor: theme.palette.links.default
+  },
 }))
 
 const useLinkStyles = makeStyles(theme => ({
