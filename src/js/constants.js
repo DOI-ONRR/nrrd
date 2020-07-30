@@ -32,8 +32,8 @@ module.exports = Object.freeze({
   ONSHORE: 'Onshore',
   FEDERAL: 'Federal',
 
-  CALENDAR_YEAR: 'Calendar year',
-  FISCAL_YEAR: 'Fiscal year',
+  CALENDAR_YEAR: 'Calendar Year',
+  FISCAL_YEAR: 'Fiscal Year',
   MONTHLY: 'Monthly',
   YEARLY: 'Yearly',
   REVENUE: 'Revenue',
@@ -42,6 +42,9 @@ module.exports = Object.freeze({
   OIL: 'Oil',
   GAS: 'Gas',
   COAL: 'Coal',
+  STATE: 'State',
+  COUNTY: 'County',
+  USA: 'USA',
 
   TREND_LIMIT: 10,
   MAX_CARDS: 3,

@@ -1,4 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+
+import {
+  useQueryParam,
+  useQueryParams,
+  StringParam,
+  encodeDelimitedArray,
+  decodeDelimitedArray,
+  BooleanParam,
+  ArrayParam
+} from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -11,10 +22,8 @@ import {
 
 import { animateScroll as scroll } from 'react-scroll'
 
-import MapToolbar from './MapToolbar'
 import MapControls from './MapControls'
-import AddCardButton from './AddCardButton'
-import YearSlider from './YearSlider'
+import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
 import { StoreContext } from '../../../store'
 import ExploreMoreDataButton from './ExploreMoreDataButton'
@@ -40,27 +49,21 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 185px)',
+    height: 'calc(100vh - 270px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
+    zIndex: 1,
     '@media (max-width: 768px)': {
-      height: 'calc(100vh - 132px)',
+      height: 'calc(100vh - 300px)',
     },
     '& .mapContainer': {
       position: 'fixed',
       top: 65,
     },
     '& .legend': {
-      bottom: 175,
-      '@media (max-width: 425px)': {
-        bottom: 150,
-      },
-      '@media (max-width: 768px)': {
-        bottom: 162,
-        margin: '0',
-      },
+      bottom: 140,
     },
     '& .map-overlay': {
       left: '0',
@@ -93,7 +96,7 @@ const useStyles = makeStyles(theme => ({
     width: 310,
     position: 'absolute',
     right: 0,
-    bottom: 92,
+    bottom: 64,
     height: 'auto',
     minHeight: 335,
     zIndex: 99,
@@ -268,13 +271,69 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const MapContext = props => {
+  const data = useStaticQuery(graphql`
+    query StateLinksQuery {
+      onrr {
+        locations: location(where: {region_type: {_in: ["State", "Offshore", "County"]}, fips_code: {_neq: ""}}, distinct_on: fips_code) {
+          fips_code
+          location_name
+          state
+          state_name
+          county
+          region_type
+          district_type
+        }
+      }
+    }
+  `)
+
+  const CommaArrayParam = {
+    encode: array => encodeDelimitedArray(array, ','),
+    decode: arrayStr => decodeDelimitedArray(arrayStr, ',')
+  }
+
   const classes = useStyles()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
+
   const cards = pageState.cards
+
+  // urlQuery state
+  const [queryParams, setQueryParams] = useQueryParams({
+    dataType: StringParam,
+    period: StringParam,
+    counties: StringParam,
+    location: CommaArrayParam,
+    offshoreRegions: StringParam,
+    commodity: StringParam,
+  })
 
   const [mapOverlay, setMapOverlay] = useState(false)
   const [mapActive, setMapActive] = useState(true)
+
+  const [mapX, setMapX] = useState(pageState.mapX || 0)
+  const [mapY, setMapY] = useState(pageState.mapY || 0)
+  const [mapK, setMapK] = useState(pageState.mapZoom)
+
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+
+  // Map snackbar
+  const [mapSnackbarState, setMapSnackbarState] = useState({
+    open: false,
+    vertical: 'bottom',
+    horizontal: 'center'
+  })
+
+  useEffect(() => {
+    scrollToTop()
+    window.addEventListener('scroll', handler)
+
+    return () => {
+      window.removeEventListener('scroll', handler)
+    }
+  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
 
   // handler
   const handler = () => {
@@ -290,15 +349,6 @@ const MapContext = props => {
 
   // useEventListener('scroll', handler)
 
-  useEffect(() => {
-    scrollToTop()
-    window.addEventListener('scroll', handler)
-
-    return () => {
-      window.removeEventListener('scroll', handler)
-    }
-  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
-
   const scrollToTop = () => {
     scroll.scrollToTop({
       duration: 0,
@@ -306,23 +356,12 @@ const MapContext = props => {
     })
   }
 
-  const [mapX, setMapX] = useState(pageState.mapX || 0)
-  const [mapY, setMapY] = useState(pageState.mapY || 0)
-  const [mapK, setMapK] = useState(pageState.mapZoom)
-
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
   const cardMenuItems = [
-    { fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' },
-    { fips: undefined, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
+    { fips_code: 'NF', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
+    { fips_code: 'NA', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
   ]
-
-  // Map snackbar
-  const [mapSnackbarState, setMapSnackbarState] = useState({
-    open: false,
-    vertical: 'bottom',
-    horizontal: 'center'
-  })
 
   const { vertical, horizontal, open } = mapSnackbarState
 
@@ -346,6 +385,7 @@ const MapContext = props => {
     console.debug('YEAR ', selected)
     updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
   }
+
   // setZoom
   const setZoom = (x, y, k) => {
     setMapY(y)
@@ -358,35 +398,29 @@ const MapContext = props => {
   // onLink
   const onLink = (state, x, y, k) => {
     console.log('onLink state: ', state)
-    // setMapK(k)
-    // setMapY(y)
-    // setMapX(x)
-    let fips = state.properties ? state.properties.FIPS : state.fips
-    const name = state.properties ? state.properties.name : state.name
-    if (fips === undefined) {
-      fips = state.id
-    }
-    let stateAbbr
-    let abbr
-    if (fips && fips.length > 2) {
-      abbr = fips
-      stateAbbr = state.properties.state ? state.properties.state : state.properties.region
-    }
-    else {
-      abbr = state.properties ? state.properties.abbr : state.abbr
-      stateAbbr = state.properties ? state.properties.abbr : state.abbr
-    }
+
+    // decern betweeen topo json and location data fips
+    const fips = state.properties ? state.id : state.fips_code
+    const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
+
+    // filter out location from location data
+    const location = locations.filter(item => item.fips_code === fips)
+
     const stateObj = {
-      fips: fips,
-      abbr: abbr,
-      name: name,
-      state: stateAbbr
+      fipsCode: location[0].fips_code,
+      name: location[0].state_name,
+      locationName: location[0].location_name,
+      state: location[0].state,
+      regionType: location[0].region_type,
+      districtType: location[0].district_type,
+      county: location[0].county
     }
+
     if (
-      cards.filter(item => item.fips === fips).length === 0
+      cards.filter(item => item.fipsCode === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        if (stateObj.abbr && stateObj.abbr.match(/Nationwide Federal/)) {
+        if (stateObj.state && stateObj.state.match(/Nationwide Federal/)) {
           cards.unshift(stateObj)
         }
         else {
@@ -394,20 +428,16 @@ const MapContext = props => {
         }
       }
       else {
-        return handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        // TODO: snackbar not triggering atm
+        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
 
     dispatch({ type: 'CARDS', payload: cards })
   }
 
-  const countyLevel = filterState[DFC.COUNTIES] === 'County'
-  const offshore = filterState[DFC.OFFSHORE_REGIONS] === 'Show'
-
-  const theme = useTheme()
-  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
-  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
-
+  const countyLevel = filterState[DFC.COUNTIES] === 'county'
+  const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
   const handleChange = (type, name) => event => {
     // setZoom(x, y, k)
     console.debug('TYPE: ', type, 'Name ', name, 'Event')
@@ -415,7 +445,6 @@ const MapContext = props => {
   }
 
   const handleClick = val => {
-    console.log('handleClick val: ', val)
     if (val === 'add' && k >= 0.25) {
       k = k + 0.25
       x = x - 150
@@ -463,11 +492,67 @@ const MapContext = props => {
   }
 
   const onClick = (d, fips, foo, bar) => {
-    console.log('onClick ', d)
     onLink(d, x, y, k)
   }
 
-  console.log('mapJsonObject: ', mapJsonObject)
+  useEffect(() => {
+    // get decoded location param
+    const locationParam = queryParams.location
+    let filteredLocations
+
+    console.log('queryParams: ', queryParams)
+
+    // filter out location based on location params
+    if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
+      filteredLocations = data.onrr.locations.filter(item => {
+        for (const elem of locationParam) {
+          // strip elem of any trailing slash
+          const strElem = elem.replace(/\/$/, '')
+          if (strElem === item.fips_code) {
+            return item
+          }
+          else {
+            // Nationwide Federal card
+            if (strElem === 'NF') {
+              onLink(cardMenuItems[0])
+            }
+            // Native American card
+            if (strElem === 'NA') {
+              onLink(cardMenuItems[1])
+            }
+          }
+        }
+      })
+
+      const stateLinks = filteredLocations.map(item => {
+        const nObj = {}
+        nObj.fips_code = item.fips_code
+        nObj.name = item.location_name
+        nObj.state = item.state
+        nObj.county = item.county
+        nObj.regionType = item.region_type
+        nObj.districtType = item.district_type
+        return nObj
+      })
+
+      for (const elem of stateLinks) {
+        onLink(elem)
+      }
+    }
+  }, [data])
+
+  useEffect(() => {
+    setQueryParams({
+      dataType: filterState.dataType,
+      period: filterState.period,
+      counties: filterState.counties,
+      offshoreRegions: filterState.offshoreRegions,
+      commodity: filterState.commodity,
+      location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
+    }, 'pushIn')
+  }, [filterState, pageState])
+
+  // console.log('mapJsonObject: ', mapJsonObject)
 
   const mapChild = React.cloneElement(props.children[0],
     {
@@ -482,14 +567,16 @@ const MapContext = props => {
       onClick: onClick
     })
 
-
   return (
     <>
+      <ExploreDataToolbar
+        onLink={onLink}
+        cardMenuItems={cardMenuItems}
+        mapOverlay={mapOverlay} />
       <Container className={classes.mapContextWrapper} maxWidth={false}>
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
-              <MapToolbar onLink={onLink} onChange={handleChange} cardMenuItems={cardMenuItems} />
               {mapChild}
               <MapControls
                 handleClick={handleClick}
@@ -504,30 +591,21 @@ const MapContext = props => {
                   return (
                     React.cloneElement(props.children[1], {
                       key: i,
-                      fips: state.fips,
-                      abbr: state.abbr,
+                      county: state.county,
+                      fipsCode: state.fipsCode,
+                      locationName: state.locationName,
                       name: state.name,
+                      regionType: state.regionType,
+                      districtType: state.districtType,
+                      state: state.state
                     })
                   )
                 })}
               </Box>
-              { cardMenuItems.length > 0 &&
-              <Box className={classes.nonStateCardsContainer}>
-                <AddCardButton
-                  cards={cards}
-                  cardMenuItems={cardMenuItems}
-                  onLink={onLink} />
-              </Box>
-              }
             </Grid>
           }
 
           <ExploreMoreDataButton />
-          <YearSlider
-            onYear={selected => {
-              onYear(selected, x, y, k)
-            }}
-          />
         </Grid>
       </Container>
       <Container maxWidth={false} style={{ padding: 0, position: 'relative', background: 'white', zIndex: 250 }}>
@@ -539,20 +617,19 @@ const MapContext = props => {
                   return (
                     React.cloneElement(props.children[1], {
                       key: i,
-                      fips: state.fips,
-                      abbr: state.abbr,
+                      county: state.county,
+                      fipsCode: state.fipsCode,
+                      locationName: state.locationName,
                       name: state.name,
+                      regionType: state.regionType,
+                      districtType: state.districtType,
+                      state: state.state
                     })
 
                   )
                 })}
               </Box>
             </Grid>
-            { cardMenuItems.length > 0 &&
-                <Box className={classes.nonStateCardsContainer}>
-                  <AddCardButton onLink={onLink} cardMenuItems={cardMenuItems} />
-                </Box>
-            }
           </>
         }
       </Container>

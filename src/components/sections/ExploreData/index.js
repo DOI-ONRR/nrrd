@@ -1,1 +1,1 @@
-export default from './ExploreData.js'
+export { default as ExploreData } from './ExploreData.js'

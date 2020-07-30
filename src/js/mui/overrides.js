@@ -1,6 +1,7 @@
 // https://material-ui.com/customization/globals/
 const palette = require('./palette')
 const typography = require('./typography')
+const { ThemeConsumer } = require('styled-components')
 
 module.exports = Object.freeze({
   MuiButton: {
@@ -12,6 +13,14 @@ module.exports = Object.freeze({
     underlineHover: {
       color: palette.text.secondary,
     },
+  },
+  Table: {
+    headTable: {
+      marginBottom: '0px',
+    },
+    footTable: {
+      marginBottom: '0px',
+    }
   },
   MuiTable: {
     root: {
@@ -33,15 +42,6 @@ module.exports = Object.freeze({
       fontSize: typography.body2.fontSize,
       fontWeight: typography.fontWeightBold
     }
-  },
-  MuiToggleButton: {
-    root: {
-      color: palette.primary.dark,
-      '&.Mui-selected': {
-        color: 'white',
-        backgroundColor: '#5c737f',
-      },
-    },
   },
   MuiListItemIcon: {
     root: {
@@ -75,6 +75,19 @@ module.exports = Object.freeze({
       '&$checked': {
         color: palette.links.default,
       },
+    },
+  },
+  MuiToggleButton: {
+    textTransform: 'capitalize',
+    root: {
+      color: 'black',
+      '&$selected': {
+        color: 'white',
+        backgroundColor: palette.links.default,
+      },
+    },
+    label: {
+      textTransform: 'Capitalize',
     },
   }
 })

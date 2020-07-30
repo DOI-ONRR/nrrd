@@ -63,5 +63,13 @@ module.exports = Object.freeze({
     500: '#5f4339',
     600: '#30211c'
   },
+  grey: {
+    100: '#f5f5f5',
+    200: '#eeeeee',
+    300: '#e0e0e0',
+    400: '#bdbdbd',
+    500: '#9e9e9e',
+    600: '#757575'
+  },
   tonalOffset: 0.5,
 })

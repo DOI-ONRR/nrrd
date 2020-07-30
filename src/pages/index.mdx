@@ -10,144 +10,146 @@ tag:
 - Production
 ---
 
-<Container maxWidth="lg">
-  <Grid container spacing={0}>
-    <Grid item xs={12} md={7}>
-      <Box 
-        component="p" 
-        pt={3} 
-        pb={6}
-        pr={{ xs: 0, md: 3 }}
-        style={{ 
-          fontWeight: 'normal', 
-          fontSize: '1.4rem', 
-          lineHeight: '2.25rem' }}>
-        When companies extract energy and mineral resources on property
-        leased from the federal government and Native Americans, they pay{' '}
-      <GlossaryTerm>bonuses</GlossaryTerm>,{' '}
-      <GlossaryTerm>rent</GlossaryTerm>, and{' '}
-      <GlossaryTerm>royalties</GlossaryTerm>. The
-        Office of Natural Resources Revenue (ONRR) collects and{' '}
-      <GlossaryTerm>disburses</GlossaryTerm>{' '}
-        revenue from federal lands and waters to different agencies,
-        funds, and local governments for public use. All revenue collected
-        from extraction on Native American lands is disbursed to Native
-        American tribes, nations, or individuals.
-      </Box>
-    </Grid>
-    <Grid item xs={12} md={5}>
-      <Hidden mdDown>
-      <Box bgcolor="primary.main" mt={3} mb={5} p={4} borderRadius={10}>
-        <WhatsNew />
-      </Box>
-      </Hidden>
-    </Grid>
-  </Grid>
-</Container>
-<Container maxWidth="lg">
-  <Box mb={2}>
+<DataFilterProviderWrapper defaults='explore_data_filter_default'>
+  <Container maxWidth="lg">
     <Grid container spacing={0}>
-      <Grid item xs={12} md={12}>
-        <Tabtastic selected={props.location.search}>
-          <TabtasticTab label="Revenue">
-            <Grid container m={0} spacing={4}>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h2">
-                  Revenue
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Box pt={3.5}>
-                  <LocationLink
-                    linkTitle="Revenue by location"
-                    linkUrl="/explore?dataType=Revenue"
-                      />
-                </Box>
-              </Grid>
-              <Grid item sm={12}>
-                <Box component="p" pr={{ md: '35%' }}>
-                  The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
-                </Box>
-              </Grid>
-              <Grid item xs={12} md={8}>
-                <TotalRevenue />
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <RevenueTrends title="Revenue trends" />
-              </Grid>
-              <Grid item xs={12}>
-                <ExploreRevenue />
-              </Grid>
-            </Grid>
-          </TabtasticTab>
-          <TabtasticTab label="Disbursements">
-            <Grid container spacing={4}>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h2">
-                  Disbursements
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Box pt={3.5}>
-                  <LocationLink
-                    linkTitle="Disbursements by location"
-                    linkUrl="/explore?dataType=Disbursements" />
-                </Box>
-              </Grid>
-              <Grid item sm={12}>
-                <Box component="p" pr={{ md: '35%' }}>
-                  The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.
-                </Box>
-              </Grid>
-              <Grid item xs={12} md={8}>
-                <TotalDisbursements />
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <DisbursementTrends title="Disbursement trends" />
-              </Grid>
-              <Grid item xs={12}>
-                <ExploreDisbursements />
-              </Grid>
-            </Grid>
-          </TabtasticTab>
-          <TabtasticTab label="Production">
-            <Grid container spacing={4}>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h2">
-                  Production
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Box pt={3.5}>
-                  <LocationLink
-                    linkTitle="Production by location"
-                    linkUrl="/explore?dataType=Production" />
-                </Box>
-              </Grid>
-              <Grid item sm={12}>
-                <Box component="p" pr={{ md: '35%' }}>
-                  The volume of major commodities extracted on federal lands and waters and Native American lands.
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <TotalProduction />
-              </Grid>
-              <Grid item xs={12}>
-                <ExploreProduction />
-              </Grid>
-            </Grid>
-          </TabtasticTab>
-        </Tabtastic>
+      <Grid item xs={12} md={7}>
+        <Box 
+          component="p" 
+          pt={3} 
+          pb={6}
+          pr={{ xs: 0, md: 3 }}
+          style={{ 
+            fontWeight: 'normal', 
+            fontSize: '1.4rem', 
+            lineHeight: '2.25rem' }}>
+          When companies extract energy and mineral resources on property
+          leased from the federal government and Native Americans, they pay{' '}
+        <GlossaryTerm>bonuses</GlossaryTerm>,{' '}
+        <GlossaryTerm>rent</GlossaryTerm>, and{' '}
+        <GlossaryTerm>royalties</GlossaryTerm>. The
+          Office of Natural Resources Revenue (ONRR) collects and{' '}
+        <GlossaryTerm>disburses</GlossaryTerm>{' '}
+          revenue from federal lands and waters to different agencies,
+          funds, and local governments for public use. All revenue collected
+          from extraction on Native American lands is disbursed to Native
+          American tribes, nations, or individuals.
+        </Box>
+      </Grid>
+      <Grid item xs={12} md={5}>
+        <Hidden mdDown>
+        <Box bgcolor="primary.main" mt={4} mb={4} pt={0.5} pb={2} pl={3} pr={3} borderRadius={10}>
+          <WhatsNew />
+        </Box>
+        </Hidden>
       </Grid>
     </Grid>
-  </Box>
-</Container>
-<Hidden mdUp>
-  <Container maxWidth={false} component="section" style={{ backgroundColor: '#f0f6fa' }}>
-    <Container maxWidth="lg">
-      <Box pt={4} pb={4}>
-        <WhatsNew />
-      </Box>
-    </Container>
   </Container>
-</Hidden>
+  <Container maxWidth="lg">
+    <Box mb={2}>
+      <Grid container spacing={0}>
+        <Grid item xs={12} md={12}>
+          <Tabtastic selected={props.location.search}>
+            <TabtasticTab label="Revenue">
+              <Grid container m={0} spacing={4}>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="h2">
+                    Revenue
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Box pt={3.5}>
+                    <LocationLink
+                      linkTitle="Revenue by location"
+                      linkUrl="/explore?dataType=Revenue"
+                        />
+                  </Box>
+                </Grid>
+                <Grid item sm={12}>
+                  <Box component="p" pr={{ md: '35%' }}>
+                    The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={8}>
+                  <TotalRevenue />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <RevenueTrends title="Revenue trends" />
+                </Grid>
+                <Grid item xs={12}>
+                  <ExploreRevenue />
+                </Grid>
+              </Grid>
+            </TabtasticTab>
+            <TabtasticTab label="Disbursements">
+              <Grid container spacing={4}>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="h2">
+                    Disbursements
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Box pt={3.5}>
+                    <LocationLink
+                      linkTitle="Disbursements by location"
+                      linkUrl="/explore?dataType=Disbursements" />
+                  </Box>
+                </Grid>
+                <Grid item sm={12}>
+                  <Box component="p" pr={{ md: '35%' }}>
+                    The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={8}>
+                  <TotalDisbursements />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <DisbursementTrends title="Disbursement trends" />
+                </Grid>
+                <Grid item xs={12}>
+                  <ExploreDisbursements />
+                </Grid>
+              </Grid>
+            </TabtasticTab>
+            <TabtasticTab label="Production">
+              <Grid container spacing={4}>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="h2">
+                    Production
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Box pt={3.5}>
+                    <LocationLink
+                      linkTitle="Production by location"
+                      linkUrl="/explore?dataType=Production" />
+                  </Box>
+                </Grid>
+                <Grid item sm={12}>
+                  <Box component="p" pr={{ md: '35%' }}>
+                    The volume of major commodities extracted on federal lands and waters and Native American lands.
+                  </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <TotalProduction />
+                </Grid>
+                <Grid item xs={12}>
+                  <ExploreProduction />
+                </Grid>
+              </Grid>
+            </TabtasticTab>
+          </Tabtastic>
+        </Grid>
+      </Grid>
+    </Box>
+  </Container>
+  <Hidden mdUp>
+    <Container maxWidth={false} component="section" style={{ backgroundColor: '#f0f6fa' }}>
+      <Container maxWidth="lg">
+        <Box pt={4} pb={4}>
+          <WhatsNew />
+        </Box>
+      </Container>
+    </Container>
+  </Hidden>
+</DataFilterProviderWrapper>

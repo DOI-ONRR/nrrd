@@ -52,15 +52,14 @@ const DisbursementDetailTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
 
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
+  const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, period: CONSTANTS.FISCAL_YEAR, year: year }
+    variables: { state: state, period: CONSTANTS.FISCAL_YEAR, year: year }
   })
 
   const closeCard = item => {
-    props.closeCard(props.fips)
+    props.closeCard(props.fips_code)
   }
 
   if (loading) return 'Loading...'
@@ -77,7 +76,7 @@ const DisbursementDetailTrends = props => {
   let fiscalData
   let foundIndex
   let locData
-  
+
   if (data) {
     periodData = data.period
 

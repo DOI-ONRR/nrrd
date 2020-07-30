@@ -1,32 +1,21 @@
 const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
-// Active environment
-const activeEnv = process.env.CIRCLE_BRANCH
-let BASEURL
+const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
+const GTM_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'GTM-NCRF98R' : ''
 
-switch (activeEnv) {
-case 'dev':
-  BASEURL = process.env.DEV_CF_BASEURL
-  break
-case 'master':
-  BASEURL = process.env.PROD_CF_BASEURL
-  break
-default:
-  BASEURL = undefined
-  break
-}
-
-console.log('BASEURL: ', BASEURL)
+// use this for testing
+// const GOOGLE_ANALYTICS_ID = 'UA-33523145-1'
+// const GTM_ID = 'GTM-NCRF98R'
 
 const config = {
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
     description:
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
-    googleAnalyticsId: process.env.PROD_CF_GOOGLE_ANALYTICS_ID || '',
-    googleTagManagerId: process.env.PROD_CF_GTM_ID || '',
-    version: 'v6.0.0',
+    googleAnalyticsId: GOOGLE_ANALYTICS_ID,
+    googleTagManagerId: GTM_ID,
+    version: 'v6.0.2',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -65,7 +54,6 @@ const config = {
       resolve: 'gatsby-plugin-layout',
       options: {
         component: `${ __dirname }/src/components/layouts/PageLayoutManager`
-
       }
     },
     {
@@ -78,7 +66,6 @@ const config = {
     },
     'gatsby-theme-apollo',
     'gatsby-plugin-react-helmet',
-
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -135,6 +122,8 @@ const config = {
           return createHttpLink({
             // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
+            // uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
+            //uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
             resolvers: {}
@@ -175,12 +164,13 @@ const config = {
         },
       },
     },
+    'gatsby-plugin-use-query-params',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
 
-if (BASEURL) {
-  config.pathPrefix = `${ BASEURL }`
-}
+// if (BASEURL) {
+//   config.pathPrefix = `${ BASEURL }`
+// }
 
 module.exports = config

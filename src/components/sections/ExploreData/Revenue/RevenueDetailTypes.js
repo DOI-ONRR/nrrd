@@ -22,20 +22,23 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     '& .chart-container': {
-      display: 'grid',
+      // display: 'grid',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'top',
     }
   }
 }))
 
 const APOLLO_QUERY = gql`
-  query RevenueTypes($state: String!, $year: Int!) {
+  query RevenueTypes($state: String!, $year: Int!, $period: String!) {
     revenue_type_summary(
-      where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, total: desc }
+      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period} },
+      order_by: { year: asc, total: desc }
     ) {
-      fiscal_year
+      year
       revenue_type
-      state_or_area
+      location
       total
     }
   }
@@ -46,16 +49,15 @@ const RevenueDetailTypes = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+  const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
 
-  const dataSet = `FY ${ year }`
-
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
+  const state = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS || props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? props.name : props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, year: year }
+    variables: { state: state, year: year, period: period }
   })
-  const dataKey = dataSet + '-' + stateAbbr
+  const dataKey = dataSet + '-' + props.name
   let chartData
 
   if (loading) return ''
@@ -68,12 +70,12 @@ const RevenueDetailTypes = props => {
 
   return (
     <>
-      { chartData.revenue_type_summary.length > 0
+      { chartData && chartData.revenue_type_summary.length > 0
         ? (
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Revenue types</Box>
             <Box>
-            <CircleChart
+              <CircleChart
                 key={'RDTY' + dataKey }
                 data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
                 format={ d => utils.formatToDollarInt(d) }
@@ -90,7 +92,7 @@ const RevenueDetailTypes = props => {
                     return r
                   }
                 } />
-            {/*  <Box mt={3}>
+              {/*  <Box mt={3}>
                  <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
                 Query revenue by type
                 </ExploreDataLink>

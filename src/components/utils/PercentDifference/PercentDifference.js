@@ -36,5 +36,4 @@ const PercentDifference = ({ currentAmount, previousAmount }) => {
   )
 }
 
-
 export default PercentDifference

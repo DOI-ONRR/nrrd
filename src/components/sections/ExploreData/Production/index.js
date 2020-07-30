@@ -1,1 +1,1 @@
-import { default as Production } from './Production'
+export { default as Production } from './Production'

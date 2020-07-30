@@ -27,7 +27,7 @@ const LoadingStatusBackdrop = () => {
             <CircularProgress color="inherit" disableShrink />
           </Grid>
           {state.loadingMessages.length > 0 &&
-            state.loadingMessages.map((item, i) => <Grid key={i} item xs={12}>{ item.message }</Grid>)
+            <Grid item xs={12}>Updating...</Grid>
           }
         </Grid>
       </Backdrop>

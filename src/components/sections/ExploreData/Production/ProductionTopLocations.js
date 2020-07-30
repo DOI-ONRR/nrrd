@@ -26,35 +26,36 @@ import {
 import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
-  query FiscalProduction($year: Int!, $location: String!, $commodity: String!, $state: String!) {
-    state_fiscal_production_summary: fiscal_production_summary(
+  query ProductionTopLocations($year: Int!, $location: String!, $commodity: String!, $state: String!, $period: String!) {
+    state_production_summary: production_summary(
       where: {
         location_type: {_eq: $location},
-        state_or_area: {_nin: ["Nationwide Federal", ""]}, 
-        fiscal_year: { _eq: $year },
-        commodity: {_eq: $commodity},
-        state: {_eq: $state}
+        year: { _eq: $year },
+        product: {_eq: $commodity},
+        state: {_eq: $state},
+        period: {_eq: $period}
       },
-        order_by: {sum: desc}
+        order_by: {total: desc}
       ) {
         location_name
         unit_abbr
-        fiscal_year
-        state_or_area
-        sum
+        year
+        location
+        total
       }
-    fiscal_production_summary(
+    production_summary(
       where: {
         location_type: {_nin: ["Nationwide Federal", "County", ""]}, 
-        fiscal_year: { _eq: $year }, 
-        commodity: {_eq: $commodity}
-      }, order_by: {sum: desc}
+        year: { _eq: $year }, 
+        product: {_eq: $commodity},
+        period: {_eq: $period}
+      }, order_by: {total: desc}
       ) {
         location_name
         unit_abbr
-        fiscal_year
-        state_or_area
-        sum
+        year
+        location
+        total
       }
   }
 `
@@ -111,33 +112,36 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionTopLocations = ({ title, ...props }) => {
-  // console.debug('ProductionTopLocations props: ', props)
-
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+
+  let location = CONSTANTS.COUNTY
   let state = ''
-  let location = 'County'
-  if (props.abbr && props.abbr.length === 2) {
-    location = 'County'
-    state = props.abbr
-  }
-  else if (props.abbr && props.abbr.length === 5) {
+
+  switch (props.regionType) {
+  case CONSTANTS.STATE:
+    location = CONSTANTS.COUNTY
+    state = ''
+    break
+  case CONSTANTS.COUNTY:
     location = ''
     state = ''
-  }
-  else {
-    location = 'State'
+    break
+  default:
+    location = CONSTANTS.STATE
     state = ''
+    break
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const key = `PTL${ year }${ state }${ commodity }`
+  const key = `PTL${ year }${ state }${ commodity }${ period }`
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
-      variables: { year, location, commodity, state },
-      skip: props.state === CONSTANTS.NATIVE_AMERICAN || location === ''
+      variables: { year, location, commodity, state, period },
+      skip: props.state === DFC.NATIVE_AMERICAN_FIPS || props.regionType === CONSTANTS.COUNTY || props.regionType === CONSTANTS.OFFSHORE || props.regionType === CONSTANTS.STATE
     })
 
   const maxLegendWidth = props.maxLegendWidth
@@ -151,65 +155,71 @@ const ProductionTopLocations = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = `FY ${ year }`
-
-  if (data) {
-    console.debug('WTH: ', data)
-    if (location === 'County') {
-      const unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
+  let dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+  let unitAbbr = ''
+  if (data && (data.state_production_summary.length || data.production_summary.length)) {
+    if (data.state_production_summary.length > 0 && location === 'County') {
+      unitAbbr = data.state_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
-        .rollup(v => d3.sum(v, i => i.sum))
-        .entries(data.state_fiscal_production_summary).map(item => {
-          const r = { sum: item.value, location_name: item.key, unit_abbr: unitAbbr }
+        .rollup(v => d3.sum(v, i => i.total))
+        .entries(data.state_production_summary).map(item => {
+          const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
           return r
         })
     }
-    else {
-      const unitAbbr = data.fiscal_production_summary[0].unit_abbr
+    else { // uncomment to get if (! props.abbr) { //Don't show top locations for any card except state
+      unitAbbr = data.production_summary[0].unit_abbr
+      let tmp = data.production_summary
+      if (props.abbr) {
+        tmp = data.production_summary.filter(d => d.location_name !== 'Native American lands')
+      }
       chartData = d3.nest()
         .key(k => k.location_name)
-        .rollup(v => d3.sum(v, i => i.sum))
-        .entries(data.fiscal_production_summary).map(item => {
-          const r = { sum: item.value, location_name: item.key, unit_abbr: unitAbbr }
+        .rollup(v => d3.sum(v, i => i.total))
+        .entries(tmp).map(item => {
+          const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
           return r
         })
-      // chartData =  data.fiscal_production_summary
     }
-    console.debug('CHART DATA', chartData)
-    return (
-      <Box className={classes.root}>
-        {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
-        <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
-          <CircleChart
-            key={key}
-            data={chartData}
-            maxLegendWidth={maxLegendWidth}
-            xAxis='location_name'
-            yAxis='sum'
-            format={ d => utils.formatToCommaInt(d) }
-            circleLabel={
-              d => {
-                // console.debug('circleLABLE: ', d)
-                if (location === 'State') {
-                  const r = []
-                  r[0] = d.location_name
-                  r[1] = utils.formatToCommaInt(d.sum) + ' ' + d.unit_abbr
-                  return r
-                }
-                else {
-                  return ['', '']
+    dataSet = dataSet + ` (${ unitAbbr })`
+    if (chartData.length > 0) {
+      return (
+        <Box className={classes.root}>
+          {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
+          <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
+            <CircleChart
+              key={key}
+              data={chartData}
+              maxLegendWidth={maxLegendWidth}
+              xAxis='location_name'
+              yAxis='total'
+              format={ d => utils.formatToCommaInt(d) }
+              circleLabel={
+                d => {
+                  if (location === 'State' && !props.abbr) {
+                    const r = []
+                    r[0] = d.location_name
+                    r[1] = utils.formatToCommaInt(d.total) + ' ' + d.unit_abbr
+                    return r
+                  }
+                  else {
+                    return ['', '']
+                  }
                 }
               }
-            }
-            xLabel={location}
-            yLabel={dataSet}
-            maxCircles={6}
-            minColor={theme.palette.green[100]}
-            maxColor={theme.palette.green[600]} />
+              xLabel={location}
+              yLabel={dataSet}
+              maxCircles={6}
+              minColor={theme.palette.green[100]}
+              maxColor={theme.palette.green[600]} />
+          </Box>
         </Box>
-      </Box>
-    )
+      )
+    }
+    else {
+      return <Box className={classes.root}></Box>
+    }
   }
   else {
     return <Box className={classes.root}></Box>
