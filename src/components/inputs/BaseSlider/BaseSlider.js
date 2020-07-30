@@ -178,8 +178,13 @@ const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restP
   const handleChange = (event, newValue) => {
     setSelectedOptions(newValue)
   }
+
   const handleChangeCommit = (event, newValue) => {
-    onChange(range(newValue[0], newValue[1]).toString())
+    const rangeValues = range(newValue[0], newValue[1])
+    if (rangeValues.length === 1) {
+      rangeValues.push(rangeValues[0])
+    }
+    onChange(rangeValues.toString())
   }
 
   useEffect(() => {
@@ -202,7 +207,7 @@ const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restP
       {value}
     </div>
   )
-
+    
   return (
     <Box id="year-slider" className={classes.sliderBox}>
       <Grid container spacing={2}>
