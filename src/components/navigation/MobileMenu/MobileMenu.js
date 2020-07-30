@@ -72,16 +72,24 @@ const MobileMenu = ({ children, ...rest }) => {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
     >
       <List classes={{ root: classes.listRoot }}>
         {
-          React.Children.map(children, (child, index) => (
-            <ListItem button key={index} disableGutters>
-              <ListItemLink href={child.props.href} className={classes.listItemLink}>{child.props.children}</ListItemLink>
-            </ListItem>
-          ))
+          React.Children.map(children, (child, index) => {
+
+            if (child.props.href) {
+              return (
+                <ListItem button key={index} disableGutters>
+                  <ListItemLink href={child.props.href} className={classes.listItemLink}>{child.props.children}</ListItemLink>
+                </ListItem>
+              )
+            }
+            return (
+              <>
+                {child}
+              </>
+            )
+          })
         }
         <ListItem button key={children.length + 1} disableGutters>
           <ListItemIcon onClick={toggleDrawer(anchor, false)}>

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { downloadExcel } from '../../js/utils'
+import { downloadWorkbook as downloadExcel } from '../../js/utils'
 
 import Button from '@material-ui/core/Button'
 import TableChart from '@material-ui/icons/TableChart'

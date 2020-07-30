@@ -13,7 +13,7 @@ import {
 
 import Map from '../../../data-viz/Map'
 
-import { StoreContext } from '../../../../store'
+// import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -37,11 +37,20 @@ const DISBURSEMENT_QUERY = gql`
 
 export default props => {
   const { state: filterState } = useContext(DataFilterContext)
+  const CapitlizeString = word => {
 
-  const year = filterState[DFC.YEAR]
-  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
+    return word[0].toUpperCase() + word.substr(1)
+  }
+
+  const {
+    year,
+    counties,
+    period
+  } = filterState
+  const  location = CapitlizeString(counties)
+  console.debug("COUNTIES ... ", location)
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
-    variables: { year, period: CONSTANTS.FISCAL_YEAR, location }
+    variables: { year: year, period: period, location: location }
   })
   const dataSet = 'FY ' + year
   let mapData = [[]]
@@ -49,12 +58,13 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
+    // console.log('DisbursementMap data: ', data)
     /* mapData = data.fiscal_disbursement_summary.map((item, i) => [
       item.state_or_area,
       item.sum
-      ])*/
+      ]) */
     // console.log(data)
-    mapData=d3.nest()
+    mapData = d3.nest()
       .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.sum))
       .entries(data.disbursement_summary)

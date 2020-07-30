@@ -324,7 +324,7 @@ export default class stackedBarChart {
   }
 
   onClick () {
-    console.log('onClick fired from d3 class yo!')
+    // console.log('onClick fired from d3 class yo!')
   }
 
   draw () {
@@ -476,8 +476,6 @@ export default class stackedBarChart {
     const dataArr = Object.keys(data).map((key, i) => {
       return ['', labels[i], data[key]]
     }).reverse()
-
-    console.log('dataArr: ', dataArr)
 
     // create a row for each object in the data
     const tr = tbody.selectAll('tr')

@@ -9,11 +9,12 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 const APOLLO_QUERY = gql`
-  query FiscalProduction($year: Int!, $commodity: String!) {
-    fiscal_production_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, commodity: {_eq: $commodity}}) {
-      fiscal_year
-      state_or_area
-      sum
+  query FiscalProduction($year: Int!, $commodity: String!, $period: String!) {
+    production_summary(where: {location: {_nin: ["Nationwide Federal", ""]}, year: { _eq: $year }, product: {_eq: $commodity}, period: { _eq: $period} }) {
+      year
+      location
+      unit_abbr
+      total
       
     }
   }
@@ -23,21 +24,24 @@ export default props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year, commodity }
+    variables: { year, commodity, period }
   })
 
   let mapData = [[]]
-
+  let unit=''
+  
   if (loading) {}
   if (error) return `Error! ${ error.message }`
-  if (data) {
-    mapData = data.fiscal_production_summary.map((item, i) => [
-      item.state_or_area,
-      item.sum
+  if (data && data.production_summary.length > 0) {
+    mapData = data.production_summary.map((item, i) => [
+      item.location,
+      item.total
     ])
+    unit = data.production_summary[0].unit_abbr
   }
 
   return (
@@ -52,7 +56,8 @@ export default props => {
           maxColor={props.maxColor}
           mapZoom={props.mapZoom}
           mapX={props.mapX}
-          mapY={props.mapY}
+       mapY={props.mapY}
+       mapUnits={unit}
           onZoomEnd={props.onZoomEnd}
           onClick={props.onClick}
           handleMapSnackbar={props.handleMapSnackbar}
@@ -62,7 +67,7 @@ export default props => {
               return ''
             }
             else {
-              return d3.format(',.0f')(d)
+              return d3.format(',.0f')(d) + ' ' + unit
             }
           }
           }

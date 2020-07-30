@@ -9,6 +9,11 @@ import { saveAs } from 'file-saver'
 // Import Display Name Yaml Files
 import commodityNames from '../data/commodity_names.yml'
 
+export const destructuringSwap = (list, iA, iB) => {
+  [list[iA], list[iB]] = [list[iB], list[iA]]
+  return list
+}
+
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
 export const formatToDollarInt = value => {
@@ -88,26 +93,35 @@ export const formatToSlug = name => {
   }).replace('-and-', '-')
 }
 
-export const aggregateSum = ({ data, groupBy, breakoutBy, sumByProps }) => {
+export const aggregateSum = ({ data, groupByProps, sumByProps }) => {
+  const doesCurrentItemExist = current => {
+    let exists = true
+    groupByProps.forEach(prop => {
+      if (exists) {
+        exists = current[prop]
+      }
+    })
+    return exists
+  }
+  const findCurrentItemMatch = (current, item) => {
+    let foundMatch = true
+    groupByProps.forEach(prop => {
+      if (foundMatch) {
+        foundMatch = (item[prop] === current[prop])
+      }
+    })
+    return foundMatch
+  }
   // Clone original data so we don't change it
   const clonedData = JSON.parse(JSON.stringify(data))
   // Use a reduce function to aggregate the data
   const aggregated = clonedData.reduce((results, current) => {
     // If no value exists for the current item just skip it.
-    if ((groupBy && current[groupBy]) || (!groupBy && breakoutBy && current[breakoutBy])) {
+    if (doesCurrentItemExist(current)) {
       // Find the objects that match based on the criteria
       // If it finds a match then we will sum the props of the current item to the results
       const matches = results.filter((item, index) => {
-        let foundMatch = false
-        if (groupBy) {
-          foundMatch = item[groupBy] === current[groupBy]
-          if (foundMatch && breakoutBy) {
-            foundMatch = item[breakoutBy] === current[breakoutBy]
-          }
-        }
-        if (!groupBy && breakoutBy) {
-          foundMatch = item[breakoutBy] === current[breakoutBy]
-        }
+        const foundMatch = findCurrentItemMatch(current, item)
 
         if (foundMatch) {
           sumByProps.forEach(prop => {

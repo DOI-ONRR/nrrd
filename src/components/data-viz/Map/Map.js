@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
  */
 
 const Map = props => {
-  console.log('Map props: ', props)
+  // console.log('Map props: ', props)
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
 

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import * as d3 from 'd3'
 
 import {
   Box,
@@ -19,28 +20,31 @@ import CONSTANTS from '../../../../js/constants'
 
 const APOLLO_QUERY = gql`
   query RevenueSummaryTrend($state: String!, $period: String!) {
-    fiscal_revenue_summary(
-      where: { state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, state_or_area: asc }
+    revenue_summary(
+      where: { location: { _eq: $state }, period: {_eq: $period} },
+      order_by: { year: asc, location: asc }
     ) {
-      fiscal_year
-      state_or_area
-      sum
-      distinct_commodities
+      year
+      location
+      total      
+      commodity
     }
-
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
+      period_date
     }
   }
 `
 
 const RevenueSummaryTrends = props => {
+  // console.log('RevenueSummaryTrends props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const dataSet = 'FY ' + year
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+  const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY ' + year : 'CY ' + year
+  const state = props.fipsCode
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, period: CONSTANTS.FISCAL_YEAR }
   })
 
   let sparkData = []
@@ -66,36 +70,39 @@ const RevenueSummaryTrends = props => {
 
   if (
     data &&
-    data.fiscal_revenue_summary.length > 0
+    data.revenue_summary.length > 0
   ) {
     periodData = data.period
-
+    console.debug('PERIODDATA', periodData)
     // set min and max trend years
-    sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-    sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-
-    fiscalData = data.fiscal_revenue_summary.map((item, i) => [
-      item.fiscal_year,
-      item.sum
-    ])
+    sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0, 4)))
+    sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
+    console.debug('WTH: ', data.revenue_summary)
+    fiscalData = d3.nest()
+      .key(k => k.year)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.revenue_summary)
+      .map(d => [parseInt(d.key), d.value])
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-      const sum = fiscalData.find(x => x[0] === item.fiscal_year)
+      const y = parseInt(item.period_date.substr(0, 4))
+      const total = fiscalData.find(x => x[0] === y)
+
       return ([
-        item.fiscal_year,
-        sum ? sum[1] : 0
+        y,
+        total ? total[1] : 0
       ])
     })
-
+    console.debug('wth: ', fiscalData, sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
 
-    row = data.fiscal_revenue_summary.length > 1 && data.fiscal_revenue_summary[data.fiscal_revenue_summary.findIndex(x => x.fiscal_year === year)]
+    row = fiscalData.length > 1 && fiscalData[fiscalData.findIndex(x => x[0] === year)]
 
-    total = row ? row.sum : 0
+    total = row ? row[1] : 0
 
     return (
       <>
@@ -108,8 +115,8 @@ const RevenueSummaryTrends = props => {
             {sparkData.length > 1 &&
               <Box component="span">
                 {sparkData && (
-                    <Sparkline
-                    key={'RST' + dataSet } 
+                  <Sparkline
+                    key={'RST' + dataSet }
                     data={sparkData}
                     highlightIndex={highlightIndex}
                   />
@@ -119,7 +126,7 @@ const RevenueSummaryTrends = props => {
           </Grid>
           <Grid item xs={6} style={{ textAlign: 'right' }}>
             <Typography variant="caption">
-              <Box>{year}</Box>
+              <Box>{dataSet}</Box>
               <Box>
                 {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
               </Box>

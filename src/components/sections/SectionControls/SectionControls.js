@@ -16,15 +16,6 @@ const useStyles = makeStyles(theme => ({
   selectEmpty: {
     marginTop: theme.spacing(2)
   },
-  toggleButtonRoot: {
-    textTransform: 'capitalize',
-    '& .Mui-selected': {
-      backgroundColor: theme.palette.primary.dark,
-    },
-  },
-  toggleButtonSelected: {
-    backgroundColor: `${ theme.palette.primary.dark } !important`,
-  },
   periodFormControlContainer: {
     textAlign: 'right',
     '@media (max-width: 426px)': {
@@ -73,11 +64,9 @@ const SectionControls = props => {
                 key={i}
                 value={item}
                 aria-label={item}
-                disableRipple
-                classes={{
-                  root: classes.toggleButtonRoot,
-                  selected: classes.toggleButtonSelected,
-                }}>{ item === TOGGLE_VALUES.Year ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }</ToggleButton>
+                disableRipple>
+                { item === TOGGLE_VALUES.Year ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }
+              </ToggleButton>
             ))
           }
         </ToggleButtonGroup>

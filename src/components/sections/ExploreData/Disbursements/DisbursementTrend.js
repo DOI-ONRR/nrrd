@@ -68,7 +68,7 @@ const DisbursementTrend = props => {
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: props.fipsCode, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
   if (loading) {

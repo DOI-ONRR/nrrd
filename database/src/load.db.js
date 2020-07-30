@@ -173,9 +173,14 @@ const main = async () => {
             const fund_id = fund[0]
             await insertDisbursement(commodity_id, location_id, period_id, fund_id, duplicate_no, raw_disbursement, row)
 	  }
-	  if (raw_volume) {
-            
-            await insertProduction(commodity_id, location_id, period_id, duplicate_no, raw_volume, unit, unit_abbr, row)
+	    if (raw_volume) {
+/*		if(row.Product.match(/Geo/) ) {
+		console.debug("ROW: ", row)
+		    console.debug("Unit: ", unit)
+		}
+*/
+				
+  await insertProduction(commodity_id, location_id, period_id, duplicate_no, raw_volume, unit, unit_abbr, row)
           }
           
           
@@ -289,12 +294,20 @@ const getFipsCode = (row) => {
 //  console.debug('WTF '+ fips_code.length +'=== 0 &&'+ row['State'] +' && '+row['State'].length +' > 0 &&'+ row['County']+' && '+row['County'].length+ ' === 0' )
   if( fips_code.length === 0 && row['State'] && row['State'].length > 0 && row['County'].length === 0 ) {
 
-    fips_code=STATE_FIPS_MAP[row['State']]
+      //    fips_code=STATE_FIPS_MAP[row['State']]
+      // use state abbrev for now
+      fips_code=row['State']
+      
   }
   else if( fips_code.length === 0 && row['Offshore Planning Area'] && row['Offshore Planning Area'].length > 0) {
     fips_code=OFFSHORE_FIPS_MAP[row['Offshore Planning Area']]
     offshore_planning_area_code=fips_code
   }
+    else if( fips_code.length === 0 && row['Offshore Region'] && row['Offshore Region'].length > 0 && (!row['Offshore Planning Area']) ) {
+	fips_code=OFFSHORE_FIPS_MAP[row['Offshore Region']]
+	offshore_planning_area_code=fips_code
+
+    }
   else if( fips_code.length === 0 && row['State'] && row['State'].length > 0 && row['County'] && row['County'].length > 0 ) {
     let county=row['County'].replace(/County|Borough|Parish|Caounty/, '')
     county=county.trim()
@@ -333,7 +346,10 @@ const getUnit = async (row) => {
         unit = unit_abbr
         product = a[0]+' ('+unit_abbr+')'
       } else {
-        commodity = tmp
+          commodity = tmp
+	  unit_abbr = UNIT_MAP[commodity]
+	  unit = UNIT_MAP[commodity]
+
         product = tmp
       }
       break
@@ -351,7 +367,10 @@ const getUnit = async (row) => {
         product = a[0]+' ('+unit_abbr+')'
       }
       else {
-        commodity = tmp
+          commodity = tmp
+	  unit_abbr = UNIT_MAP[commodity]
+	  unit = UNIT_MAP[commodity]
+	  
         product = tmp
       }
       break
@@ -1098,7 +1117,15 @@ const COMMODITY_MAP = {
   'Oil & Gas (Non-Royalty)': 'Oil & Gas (Non-Royalty)'
 }
 
+const UNIT_MAP = {
+    "Geothermal - Direct Utilization, Millions of BTUs": "MMBtu",
+    "Geothermal - Electrical Generation, Kilowatt Hours": "kWh",
+    "Geothermal - Electrical Generation, Other": "Other",
+    "Geothermal - Electrical Generation, Thousands of Pounds": "lbs, thousand",
+    "Geothermal - Direct Utilization, Hundreds of Gallons": "gal hundreds"
 
+    
+}
 
 const STATE_NAME_MAP = {
   "AL": "Alabama",
@@ -1247,7 +1274,12 @@ const OFFSHORE_FIPS_MAP =
         'Central California': 'POR',
         'Northern California': 'POR',
         'Southern California': 'POR',
-        'Washington-Oregon': 'POR'
+          'Washington-Oregon': 'POR',
+	  "Offshore Alaska": 'AKR' , 
+	  "Offshore Pacific":'POR' , 
+	  "Offshore Gulf":  'GMR', 
+
+
       }
 
 const COUNTY_LOOKUP = {

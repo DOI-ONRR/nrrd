@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import * as d3 from 'd3'
 import utils from '../../../js/utils'
 import PercentDifference from '../../utils/PercentDifference'
+
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -61,6 +64,9 @@ const useStyles = makeStyles(theme => ({
 
 const DisbursementTrends = props => {
   const classes = useStyles()
+  const { state: filterState } = useContext(DataFilterContext)
+  let year
+
   const { loading, error, data } = useQuery(APOLLO_QUERY)
 
   if (loading) return null
@@ -69,22 +75,24 @@ const DisbursementTrends = props => {
     data &&
     data.disbursement_trends.length > 0
   ) {
-    // Group data to match what was previously happening with gatsby static query
-    const groupedData = groupBy(data.disbursement_trends, 'fiscalYear')
+    // Group data by year
+    const groupedData = utils.groupBy(data.disbursement_trends, 'fiscalYear')
 
-    const fiscalYearData = groupedData.map(item => {
+    const fiscalYearData = Object.entries(groupedData).map(item => {
       const newObj = {}
-      newObj.fiscalYear = item[0].fiscalYear
-      newObj.data = item
+      newObj.fiscalYear = item[0]
+      newObj.data = item[1]
 
       return newObj
     })
 
     // Get the latest date then subtract 1 year to filter previous year data to compare current year data
     const currentMonth = monthLookup(fiscalYearData[0].data[0].month)
-    const currentYear = fiscalYearData[0].data[0].fiscalYear
+    const currentYear = fiscalYearData[fiscalYearData.length - 1].fiscalYear
     const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
 
+    console.debug("currentYearDate", currentYearDate);
+        console.debug("fiscalYearData", fiscalYearData);
     // Get previous year
     const previousYear = currentYear - 1
 
@@ -102,38 +110,8 @@ const DisbursementTrends = props => {
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
 
-    /*  if (
-    data &&
-    data.allYearlyDisbursements.length > 0 &&
-    data.currentMonthlyDisbursements.length > 0
-  ) {
-    const dataYearly = data.allYearlyDisbursements
+    year = filterState[DFC.year] || trends[0].histData[trends[0].histData.length - 1][0]
 
-    const currentMonthly = data.currentMonthlyDisbursements.map(obj =>
-      ({
-        ...obj,
-        month: monthLookup(obj.period.month_long),
-        fiscalMonth: fiscalMonthLookup(obj.period.month_long),
-        date: monthlyDate(obj)
-      }))
-
-    const maxMonth = getMaxMonth(currentMonthly).toLocaleString(undefined, { month: 'long' })
-
-    const calendarYear = getMaxMonth(currentMonthly).getFullYear()
-    const currentYear = getCurrentYear(currentMonthly)
-    const currentTrends = aggregateMonthlyData(currentMonthly, currentYear)
-
-    const previousYear = getPreviousYear(currentMonthly)
-
-    const trends = aggregateData(dataYearly)
-
-    const minYear = trends[0].histData[0][0].substring(2)
-    const maxYear = trends[0].histData[trends[0].histData.length - 1][0].substring(2)
-
-    const currentFiscalYearText = `FY${ currentYear.toString().substring(2) } so far`
-    const longCurrentText = `${ maxMonth } ${ calendarYear }`
-    const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
-*/
     return (
       <Box component="section" className={classes.root}>
         <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
@@ -161,7 +139,10 @@ const DisbursementTrends = props => {
                       </Box>
                       <Sparkline
                         key={`sparkline${ index }`}
-                        data={trend.histData} />
+                        data={trend.histData}
+                        highlightIndex={trend.histData.findIndex(
+                          x => x[0] === year
+                        )} />
                     </TableCell>
                     <TableCell align="right">
                       <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
@@ -387,9 +368,9 @@ const aggregateData = data => {
   const r = [
     { fund: 'U.S. Treasury', current: 0, previous: 0, histSum: {}, histData: [] },
     { fund: 'States & counties', current: 0, previous: 0, histSum: {}, histData: [] },
-    { fund: 'Reclamation fund', current: 0, previous: 0, histSum: {}, histData: [] },
+    { fund: 'Reclamation Fund', current: 0, previous: 0, histSum: {}, histData: [] },
     { fund: 'Native Americans', current: 0, previous: 0, histSum: {}, histData: [] },
-    { fund: 'Other Funds', current: 0, previous: 0, histSum: {}, histData: [] },
+    { fund: 'Other funds', current: 0, previous: 0, histSum: {}, histData: [] },
     { fund: 'Total', current: 0, previous: 0, histSum: {}, histData: [], className: 'strong' }
   ]
   const currentYear = data[0].fiscalYear

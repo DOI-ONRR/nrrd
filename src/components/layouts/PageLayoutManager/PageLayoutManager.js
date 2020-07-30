@@ -11,7 +11,7 @@ import PatternLibraryLayout from '../PatternLibraryLayout'
 import ContactUs from '../../content-partials/ContactUs'
 
 const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
-
+  // console.log('PageLayoutManager pageContext: ', pageContext)
   if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
 
   const layout = pageContext.frontmatter && pageContext.frontmatter.layout
@@ -34,7 +34,7 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
 
   if (includeDataProvider) {
     return (
-      <DefaultLayout 
+      <DefaultLayout
         includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}
         title={pageContext.frontmatter && pageContext.frontmatter.title}>
         <DataFilterProviderWrapper>

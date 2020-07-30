@@ -64,12 +64,14 @@ DisbursementSourceSummary: disbursement_source_summary(
 const DisbursementSources = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const dataSet = 'FY '+year
+  const dataSet = 'FY ' + year
   const classes = useStyles()
   const theme = useTheme()
 
+  const state = props.fipsCode
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
   })
 
   if (loading) {

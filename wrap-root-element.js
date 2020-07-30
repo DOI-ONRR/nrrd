@@ -22,19 +22,19 @@ import { client } from './src/apollo/client'
 import { StoreProvider } from './src/store'
 import {
   AppStatusProvider,
-  DataFilterProvider
+  DownloadProvider
 } from './src/stores'
 
 import ErrorBoundary from './src/components/ErrorBoundary'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './src/js/mui/theme'
 
-import PageLayoutManager from './src/components/layouts/PageLayoutManager'
-import DefaultLayout from './src/components/layouts/DefaultLayout'
-import SEO from './src/components/seo'
-
+/**
+ * Custom components comes from the cache file we create when gatsby runs its build process
+ */
 const mdxComponents = {
   pre: props => <div {...props} />,
+  p: props => <div {...props} />,
   code: CodeBlock,
   a: CustomComponents.Link,
   ...CustomComponents,
@@ -54,15 +54,15 @@ export const wrapRootElement = ({ element }) => (
   <ErrorBoundary>
     <ThemeProvider theme={theme}>
       <ApolloProvider client={client}>
-        <DataFilterProvider>
-          <StoreProvider>
-            <AppStatusProvider>
+        <StoreProvider>
+          <AppStatusProvider>
+            <DownloadProvider>
               <MDXProvider components={ mdxComponents }>
                 {element}
               </MDXProvider>
-            </AppStatusProvider>
-          </StoreProvider>
-        </DataFilterProvider>
+            </DownloadProvider>
+          </AppStatusProvider>
+        </StoreProvider>
       </ApolloProvider>
     </ThemeProvider>
   </ErrorBoundary>

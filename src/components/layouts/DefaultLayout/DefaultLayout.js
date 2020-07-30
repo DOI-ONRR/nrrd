@@ -14,6 +14,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import useTheme from '@material-ui/core/styles/useTheme'
 
 import InfoBanner from '../../content-partials/InfoBanner'
+import BrowserBanner from '../BrowserBanner'
 import Footer from '../../content-partials/Footer'
 import Header from '../../content-partials/Header'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
@@ -85,6 +86,10 @@ const useStyles = makeStyles(theme => (
     mainContent: {
       minHeight: 575,
     },
+    mainColumn: {
+      paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(3),
+    }
   })
 )
 
@@ -117,6 +122,7 @@ const DefaultLayout = ({ includeToc = true, title, children }) => {
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
       <InfoBanner />
+      <BrowserBanner />
       <Header />
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>
@@ -127,7 +133,9 @@ const DefaultLayout = ({ includeToc = true, title, children }) => {
                 <PageToc scrollOffset={190}></PageToc>
               </Grid>
               <Grid item xs={12} sm={9}>
-                {children}
+                <Box className={classes.mainColumn}>
+                  {children}
+                </Box>
               </Grid>
             </Grid>
           </Container>
