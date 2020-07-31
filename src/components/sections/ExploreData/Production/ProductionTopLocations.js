@@ -115,7 +115,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionTopLocations = ({ title, ...props }) => {
-  console.log('ProudctionTopLocations props: ', props)
+  // console.log('ProudctionTopLocations props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -163,6 +163,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   let chartData = []
   let dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
   let unitAbbr = ''
+
   if (data && (data.state_production_summary.length || data.production_summary.length)) {
     if (data.state_production_summary.length > 0 && locationType === CONSTANTS.COUNTY) {
       unitAbbr = data.state_production_summary[0].unit_abbr
@@ -175,21 +176,24 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
     }
     else { // Don't show top locations for any card except state and nationwide federal
-      unitAbbr = data.production_summary[0].unit_abbr
-      let tmp = data.production_summary
-      if (props.fipsCode) {
-        tmp = data.production_summary.filter(d => d.location !== 'NA')
+      // quick and dirty - most definately probably a better way to handle this
+      if (locationType !== CONSTANTS.COUNTY) {
+        unitAbbr = data.production_summary[0].unit_abbr
+        let tmp = data.production_summary
+        if (props.fipsCode) {
+          tmp = data.production_summary.filter(d => d.location !== 'NA')
+        }
+        chartData = d3.nest()
+          .key(k => k.location_name)
+          .rollup(v => d3.sum(v, i => i.total))
+          .entries(tmp).map(item => {
+            const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
+            return r
+          })
       }
-      chartData = d3.nest()
-        .key(k => k.location_name)
-        .rollup(v => d3.sum(v, i => i.total))
-        .entries(tmp).map(item => {
-          const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
-          return r
-        })
     }
     dataSet = dataSet + ` (${ unitAbbr })`
-    console.log('ProductionTopLocations chartData: ', chartData)
+
     if (chartData.length > 0) {
       return (
         <Box className={classes.root}>
@@ -204,7 +208,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
               format={ d => utils.formatToCommaInt(d) }
               circleLabel={
                 d => {
-                  if (locationType === CONSTANTS.STATE || locationType === CONSTANTS.COUNTY || props.horizontal) {
+                  if (props.horizontal) {
                     const r = []
                     r[0] = d.location_name
                     r[1] = utils.formatToCommaInt(d.total) + ' ' + d.unit_abbr

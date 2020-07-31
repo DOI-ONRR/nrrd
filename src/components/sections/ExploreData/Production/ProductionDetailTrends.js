@@ -18,6 +18,7 @@ import {
 
 import Sparkline from '../../../data-viz/Sparkline'
 import * as d3 from 'd3'
+import { checkPropTypes } from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -52,7 +53,7 @@ const APOLLO_QUERY = gql`
 
 const ProductionDetailTrends = props => {
   const classes = useStyles()
-  const name = props.name
+  const name = props.locationName
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR

@@ -38,6 +38,7 @@ const APOLLO_QUERY = gql`
 `
 
 const ProductionSummaryTrends = props => {
+  // console.log('ProductionSummaryTrends: ', props)
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
@@ -49,7 +50,7 @@ const ProductionSummaryTrends = props => {
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, product: product, period: period }
   })
-  const name = props.name
+  const name = props.locationName
   let sparkData = []
   let sparkMin
   let sparkMax
