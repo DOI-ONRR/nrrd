@@ -141,7 +141,7 @@ const ProductionOverTime = props => {
 
     chartData = [years, ...sums]
 
-    console.log('chartData: ', chartData)
+    // console.log('chartData: ', chartData)
 
     return (
       <Container id={utils.formatToSlug(title)}>

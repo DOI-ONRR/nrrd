@@ -78,7 +78,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionLandCategory = ({ title, ...props }) => {
-  console.log('ProductionLandCategory props: ', props)
+  // console.log('ProductionLandCategory props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -106,7 +106,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
     break
   }
 
-  console.log('ProductionLandCategory useQuery vars: ', state, locationType, commodity, period)
+  // console.log('ProductionLandCategory useQuery vars: ', state, locationType, commodity, period)
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location: locationType, commodity, period } })
   if (loading) {
@@ -122,7 +122,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year } - ${ commodity }` : `CY ${ year } - ${ commodity }`
   let unit = ''
   if (data && data.production_summary.length > 0) {
-    console.log('ProductionLandCategory data: ', data)
+    // console.log('ProductionLandCategory data: ', data)
     unit = data.production_summary[0].unit_abbr
 
     const yearVar = (period === DFC.PERIOD_FISCAL_YEAR) ? 'fiscal_year' : 'calendar_year'
@@ -158,8 +158,6 @@ const ProductionLandCategory = ({ title, ...props }) => {
               lineDashes={LINE_DASHES}
               lineTooltip={
                 (d, i) => {
-                  const cardTest = cards && cards.filter(item => item.fipsCode === data.production_summary[i].location)[0]
-                  console.log('filtered card: ', cardTest)
                   const r = []
                   const card = cards && cards.filter(item => item.fipsCode === data.production_summary[i].location)[0]
                   r[0] = `${ card.locationName }: ${ utils.formatToCommaInt(d) } (${ data.production_summary[i].unit_abbr })`
