@@ -17,6 +17,7 @@ import InfoBanner from '../../content-partials/InfoBanner'
 import BrowserBanner from '../BrowserBanner'
 import Footer from '../../content-partials/Footer'
 import Header from '../../content-partials/Header'
+import ErrorMessage from '../../info/ErrorMessage'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
@@ -86,6 +87,10 @@ const useStyles = makeStyles(theme => (
     mainContent: {
       minHeight: 575,
     },
+    mainColumn: {
+      paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(3),
+    }
   })
 )
 
@@ -122,6 +127,7 @@ const DefaultLayout = ({ includeToc = true, title, children }) => {
       <Header />
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>
+        <ErrorMessage />
         {includeToc
           ? <Container maxWidth="lg" component="section">
             <Grid container>
@@ -129,7 +135,9 @@ const DefaultLayout = ({ includeToc = true, title, children }) => {
                 <PageToc scrollOffset={190}></PageToc>
               </Grid>
               <Grid item xs={12} sm={9}>
-                {children}
+                <Box className={classes.mainColumn}>
+                  {children}
+                </Box>
               </Grid>
             </Grid>
           </Container>

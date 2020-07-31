@@ -7,24 +7,24 @@ import {
   REVENUE,
   REVENUE_TYPE,
   PRODUCTION,
-  COMMODITY,
   COUNTIES,
   DISBURSEMENT,
   RECIPIENT,
   GROUP_BY,
+  GROUP_BY_STICKY,
+  BREAKOUT_BY,
+  ADDITIONAL_COLUMNS,
   PERIOD,
   FISCAL_YEAR,
   CALENDAR_YEAR,
   DATA_TYPE,
   QUERY_TABLE_FILTER_DEFAULT,
   EXPLORE_DATA_FILTER_DEFAULT,
-  BREAKOUT_BY,
   OFFSHORE_REGIONS,
   YEAR,
   LAND_TYPE,
   PRODUCT
 } from '../../constants'
-import CONSTANTS from '../../js/constants'
 
 const types = Object.freeze({
   UPDATE_DATA_FILTER: 'UPDATE_DATA_FILTER',
@@ -32,7 +32,7 @@ const types = Object.freeze({
 
 const reducer = (state, action) => {
   const { type, payload } = action
-
+  console.log('Data Filer Provider action', type, payload)
   switch (type) {
   case types.UPDATE_DATA_FILTER: {
     const dataType = payload.dataType || state.dataType
@@ -66,7 +66,7 @@ const initialState = {
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
-        [GROUP_BY]: PRODUCT,
+        [GROUP_BY_STICKY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2017,2018,2019',
         [CALENDAR_YEAR]: '2016,2017,2018'

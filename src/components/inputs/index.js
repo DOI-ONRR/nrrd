@@ -18,9 +18,12 @@ import {
   STATE_OFFSHORE_NAME,
   DISPLAY_NAMES,
   GROUP_BY,
+  GROUP_BY_STICKY,
   BREAKOUT_BY,
   PERIOD,
-  PERIOD_TYPES
+  PERIOD_TYPES,
+  FISCAL_YEAR,
+  CALENDAR_YEAR
 } from '../../constants'
 
 import BaseButtonInput from './BaseButtonInput'
@@ -28,9 +31,24 @@ import BaseToggle from './BaseToggle'
 import BaseMultiToggle from './BaseMultiToggle'
 import BaseSwitch from './BaseSwitch'
 import BaseSelectInput from './BaseSelectInput'
+import BaseSlider from './BaseSlider'
 import { DataFilterContext } from '../../stores/data-filter-store'
 import withDataFilterContext from './withDataFilterContext'
 import withDataFilterQuery from './withDataFilterQuery'
+
+/**
+ * A factory method for building slider components with a DataFilterContext and a DataFilterQuery.
+ *
+ * @param {String} dataFilterKey
+ * @param {String} selectType
+ */
+export const createEnhancedSlider = dataFilterKey => compose(
+  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
+  BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSlider)
+
+export const FiscalYearSlider = createEnhancedSlider(FISCAL_YEAR)
+export const CalendarYearSlider = createEnhancedSlider(CALENDAR_YEAR)
 
 /**
  * A factory method for building select components with a DataFilterContext and a DataFilterQuery.
@@ -70,6 +88,10 @@ export const ProductSelectInput = createEnhancedSelect(PRODUCT, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
 export const StateOffshoreSelectInput = createEnhancedSelect(STATE_OFFSHORE_NAME, 'Multi')
+
+export const GroupByStickySelectInput = compose(
+  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[GROUP_BY_STICKY].default} showClearSelected={false} {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, GROUP_BY_STICKY))(BaseSelectInput)
 
 export const GroupBySelectInput = compose(
   BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[GROUP_BY].default} showClearSelected={false} {...props} />),

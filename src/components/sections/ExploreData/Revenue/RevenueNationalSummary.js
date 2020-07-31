@@ -5,12 +5,12 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import Link from '../../Link'
+import Link from '../../../Link'
 
-import { StoreContext } from '../../../store'
+import { StoreContext } from '../../../../store'
 
-import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -24,21 +24,21 @@ import {
   TableCell
 } from '@material-ui/core'
 
-import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
-import utils from '../../../js/utils'
-import CONSTANTS from '../../../js/constants'
+import utils from '../../../../js/utils'
+import CONSTANTS from '../../../../js/constants'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
-  query NationalRevenue($year: Int!) {
-    fiscal_revenue_type_class_summary(order_by: {class_order: asc}, where: {year: {_eq: $year}}) {
-      revenue_type
-      sum
-      year
-      land_class
-      class_order
-    }
+  query RevenueNational($year: Int!, $period: String!) {
+   revenue_type_class_summary(order_by: {land_type_order: asc}, where: {year: {_eq: $year}, period: { _eq: $period} }) {
+    revenue_type
+    year
+    land_type
+    land_type_order
+    total
+   }
   }
 `
 
@@ -56,15 +56,16 @@ const useStyles = makeStyles(theme => ({
   root: {},
 }))
 
-const NationalRevenueSummary = props => {
+const RevenueNationalSummary = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  console.debug('WTH PERIOD:', period)
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year }
+    variables: { year: year, period: period }
   })
 
   const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
@@ -74,9 +75,9 @@ const NationalRevenueSummary = props => {
   let groupTotal
   let nationalRevenueData
   const xAxis = 'year'
-  const yAxis = 'sum'
-  const yGroupBy = 'land_class'
-  const xLabels = 'month'
+  const yAxis = 'total'
+  const yGroupBy = 'land_type'
+
   const units = 'dollars'
   const xGroups = {}
 
@@ -88,14 +89,9 @@ const NationalRevenueSummary = props => {
 
   if (data) {
     // do something wit dat data
-    //    console.log('NationalRevenueSummary data: ', data)
-    groupData = utils.groupBy(data.fiscal_revenue_type_class_summary, 'revenue_type')
-    groupTotal = Object.keys(groupData).map(k =>
-      groupData[k].reduce((sum, i) => {
-        sum += i.sum
-      }, 0)).reduce((total, s) => {
-      total += s
-    }, 0)
+    //    console.log('RevenueNationalSummary data: ', data)
+    groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
+    groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
   }
 
@@ -113,7 +109,7 @@ const NationalRevenueSummary = props => {
               <TableRow>
                 <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
                 <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
-                  <span style={{ fontWeight: 'bold', float: 'right' }}>FY {year}</span></TableCell>
+                  <span style={{ fontWeight: 'bold', float: 'right' }}>{period + ' ' + year}</span></TableCell>
 
               </TableRow>
             </TableHead>
@@ -147,12 +143,9 @@ const NationalRevenueSummary = props => {
                           return headers
                         }
                         }
-                        barScale={item[1].reduce((sum, i) => {
-                          sum += i.sum
-                        }, 0) / groupTotal }
+                        barScale={item[1].reduce((total, i) => total += i.total, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}
-                        xLabels={xLabels}
                         yAxis={yAxis}
                         yGroupBy={yGroupBy}
                         yOrderBy={yOrderBy}
@@ -172,8 +165,8 @@ const NationalRevenueSummary = props => {
   )
 }
 
-export default NationalRevenueSummary
+export default RevenueNationalSummary
 
-NationalRevenueSummary.propTypes = {
+RevenueNationalSummary.propTypes = {
   title: PropTypes.string
 }

@@ -5,6 +5,9 @@ import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import * as d3 from 'd3'
 
 import { makeStyles } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -23,15 +26,12 @@ import {
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
-  query FiscalRevenueSummary {
-    fiscal_revenue_summary(
-      order_by: { fiscal_year: asc }
-    ) {
-      fiscal_year
-      state_or_area
-      sum
+  query RevenueOverTime($period: String!) {
+    revenue_summary(where: {period: {_eq: $period}, location: {_neq: ""}}, order_by: {year: asc}) {
+      year
+      location
+      total
     }
-
   }
 `
 const useStyles = makeStyles(theme => ({
@@ -83,14 +83,16 @@ const RevenueOverTime = props => {
   const classes = useStyles()
   const theme = useTheme()
   const title = props.title || ''
-
+  const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
-
-  const { loading, error, data } = useQuery(APOLLO_QUERY)
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { period: period }
+  })
 
   const handleDelete = props.handleDelete || ((e, val) => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== val) })
+    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== val) })
   })
 
   if (loading) {
@@ -102,12 +104,28 @@ const RevenueOverTime = props => {
   }
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
-  if (data && cards && cards.length > 0) {
-    const years = [...new Set(data.fiscal_revenue_summary.map(item => item.fiscal_year))]
-    const sums = cards.map(yData => [...new Set(data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum))])
+  if (data && cards && cards.length > 0 && data.revenue_summary.length > 0) {
+    console.log('RevenueOverTime data: ', data)
 
+    const years = [...new Set(d3.nest()
+      .key(k => k.year)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.revenue_summary)
+      .map(d => parseInt(d.key))
+    )]
+
+    const sums = cards.map(yData => [...new Set(
+      d3.nest()
+        .key(k => k.year)
+        .rollup(v => d3.sum(v, i => i.total))
+        .entries(data.revenue_summary.filter(row => row.location === yData.fipsCode))
+        .map(d => d.value))
+    ])
+
+
+    //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]
-
+    console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
@@ -124,7 +142,7 @@ const RevenueOverTime = props => {
             lineTooltip={
               (d, i) => {
                 const r = []
-                r[0] = `${ cards[i].name }: ${ utils.formatToDollarInt(d) }`
+                r[0] = `${ cards[i].locationName }: ${ utils.formatToDollarInt(d) }`
                 return r
               }
             } />
@@ -133,10 +151,10 @@ const RevenueOverTime = props => {
               cards.map((card, i) => {
                 return (
                   <Chip
-                    key={`RevenueOverTimeChip_${ card.fips }`}
+                    key={`RevenueOverTimeChip_${ card.fipsCode }`}
                     variant='outlined'
-                    onDelete={ e => handleDelete(e, card.fips)}
-                    label={<ChipLabel labelIndex={i} label={card.name} />}
+                    onDelete={ e => handleDelete(e, card.fipsCode)}
+                    label={<ChipLabel labelIndex={i} label={card.locationName} />}
                     classes={{ root: classes.chipRoot }} />
                 )
               })

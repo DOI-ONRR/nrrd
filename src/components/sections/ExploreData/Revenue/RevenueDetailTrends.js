@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import * as d3 from 'd3'
 
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
@@ -26,23 +27,18 @@ const useStyles = makeStyles(theme => ({
 
 const APOLLO_QUERY = gql`
   query RevenueDetailTrends($state: String!, $period: String!, $year: Int!) {
-    fiscal_revenue_summary(
-      where: { state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, state_or_area: asc }
+    revenue_summary(
+      where: { location: { _eq: $state }, period: {_eq: $period} },
+      order_by: { year: asc, location: asc }
     ) {
-      fiscal_year
-      state_or_area
-      sum
-      distinct_commodities
-    }
-    # location total
-    locationTotal:fiscal_revenue_summary(where: {state_or_area: {_eq: $state}, fiscal_year: {_eq: $year}}) {
-      fiscal_year
-      state_or_area
-      sum
+      year
+      location
+      total
+      commodity
     }
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
+      period_date
     }
   }
 `
@@ -51,24 +47,23 @@ const RevenueDetailTrends = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, period: CONSTANTS.FISCAL_YEAR, year: year }
+    variables: { state: state, period: CONSTANTS.FISCAL_YEAR, year: year }
   })
 
   const closeCard = item => {
-    props.closeCard(props.fips)
+    props.closeCard(props.fips_code)
   }
 
   if (loading) return ''
 
   if (error) return `Error! ${ error.message }`
 
-  const dataSet = `FY ${ year }`
-  const dataKey = dataSet + '-' + stateAbbr
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+  const dataKey = dataSet + '-' + state
   let sparkData = []
   let sparkMin
   let sparkMax
@@ -82,19 +77,22 @@ const RevenueDetailTrends = props => {
     periodData = data.period
 
     // set min and max trend years
-    sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-    sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+    sparkMin = periodData.reduce((min, p) => parseInt(periodData[0].period_date.substring(0, 4)) < min ? parseInt(periodData[0].period_date.substring(0, 4)) : min, parseInt(periodData[0].period_date.substring(0, 4)))
+    sparkMax = periodData.reduce((max, p) => parseInt(periodData[0].period_date.substring(0, 4)) > max ? parseInt(periodData[0].period_date.substring(0, 4)) : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
 
-    fiscalData = data.fiscal_revenue_summary.map((item, i) => [
-      item.fiscal_year,
-      item.sum
-    ])
+    console.debug('sparkMin', sparkMin, periodData)
+    fiscalData = d3.nest()
+      .key(k => k.year)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.revenue_summary)
+      .map(d => [parseInt(d.key), d.value])
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-      const sum = fiscalData.find(x => x[0] === item.fiscal_year)
+      const y = parseInt(item.period_date.substr(0, 4))
+      const sum = fiscalData.find(x => x[0] === y)
       return ([
-        item.fiscal_year,
+        y,
         sum ? sum[1] : 0
       ])
     })
@@ -103,9 +101,7 @@ const RevenueDetailTrends = props => {
     highlightIndex = sparkData.findIndex(
       x => x[0] === year
     )
-
-    locationTotalData = data.locationTotal
-    locData = locationTotalData.length > 0 ? locationTotalData.find(item => item.state_or_area === stateAbbr).sum : 0
+    locData = sparkData[highlightIndex][1]
   }
 
   return (

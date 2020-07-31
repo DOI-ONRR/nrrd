@@ -31,14 +31,14 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query RevenueTypes($state: String!, $year: Int!) {
+  query RevenueTypes($state: String!, $year: Int!, $period: String!) {
     revenue_type_summary(
-      where: { fiscal_year: { _eq: $year }, state_or_area: { _eq: $state } }
-      order_by: { fiscal_year: asc, total: desc }
+      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period} },
+      order_by: { year: asc, total: desc }
     ) {
-      fiscal_year
+      year
       revenue_type
-      state_or_area
+      location
       total
     }
   }
@@ -49,16 +49,15 @@ const RevenueDetailTypes = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+  const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
 
-  const dataSet = `FY ${ year }`
-
-  const stateAbbr = ((props.abbr.length > 2) &&
-    (props.abbr !== 'Nationwide Federal' || props.abbr !== 'Native American')) ? props.abbr : props.state
+  const state = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS || props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? props.name : props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: stateAbbr, year: year }
+    variables: { state: state, year: year, period: period }
   })
-  const dataKey = dataSet + '-' + stateAbbr
+  const dataKey = dataSet + '-' + props.name
   let chartData
 
   if (loading) return ''
@@ -81,7 +80,7 @@ const RevenueDetailTypes = props => {
                 data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
                 format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
-                maxCircles={4}
+                maxCircles={6}
                 minColor='#FCBA8B'
                 maxColor='#B64D00'
                 circleTooltip={

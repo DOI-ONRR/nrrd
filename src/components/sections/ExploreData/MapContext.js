@@ -278,7 +278,10 @@ const MapContext = props => {
           fips_code
           location_name
           state
+          state_name
+          county
           region_type
+          district_type
         }
       }
     }
@@ -356,8 +359,8 @@ const MapContext = props => {
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
   const cardMenuItems = [
-    { fips: 99, abbr: 'Nationwide Federal', name: 'Nationwide Federal', label: 'Add Nationwide Federal card' },
-    { fips: 999, abbr: 'Native American', name: 'Native American', label: 'Add Native American card' }
+    { fips_code: 'NF', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
+    { fips_code: 'NA', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
   ]
 
   const { vertical, horizontal, open } = mapSnackbarState
@@ -394,36 +397,30 @@ const MapContext = props => {
 
   // onLink
   const onLink = (state, x, y, k) => {
-    // console.log('onLink state: ', state)
-    // setMapK(k)
-    // setMapY(y)
-    // setMapX(x)
-    let fips = state.properties ? state.properties.FIPS : state.fips
-    const name = state.properties ? state.properties.name : state.name
-    if (fips === undefined) {
-      fips = state.id
-    }
-    let stateAbbr
-    let abbr
-    if (fips && fips.length > 2) {
-      abbr = fips
-      stateAbbr = state.properties ? state.properties.state : state.abbr
-    }
-    else {
-      abbr = state.properties ? state.properties.abbr : state.abbr
-      stateAbbr = state.properties ? state.properties.abbr : state.abbr
-    }
+    console.log('onLink state: ', state)
+
+    // decern betweeen topo json and location data fips
+    const fips = state.properties ? state.id : state.fips_code
+    const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
+
+    // filter out location from location data
+    const location = locations.filter(item => item.fips_code === fips)
+
     const stateObj = {
-      fips: fips,
-      abbr: abbr,
-      name: name,
-      state: stateAbbr
+      fipsCode: location[0].fips_code,
+      name: location[0].state_name,
+      locationName: location[0].location_name,
+      state: location[0].state,
+      regionType: location[0].region_type,
+      districtType: location[0].district_type,
+      county: location[0].county
     }
+
     if (
-      cards.filter(item => item.fips === fips).length === 0
+      cards.filter(item => item.fipsCode === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        if (stateObj.abbr && stateObj.abbr.match(/Nationwide Federal/)) {
+        if (stateObj.state && stateObj.state.match(/Nationwide Federal/)) {
           cards.unshift(stateObj)
         }
         else {
@@ -431,6 +428,7 @@ const MapContext = props => {
         }
       }
       else {
+        // TODO: snackbar not triggering atm
         handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
@@ -500,12 +498,13 @@ const MapContext = props => {
   useEffect(() => {
     // get decoded location param
     const locationParam = queryParams.location
+    let filteredLocations
 
     console.log('queryParams: ', queryParams)
 
     // filter out location based on location params
     if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
-      const filteredLocations = data.onrr.locations.filter(item => {
+      filteredLocations = data.onrr.locations.filter(item => {
         for (const elem of locationParam) {
           // strip elem of any trailing slash
           const strElem = elem.replace(/\/$/, '')
@@ -514,11 +513,11 @@ const MapContext = props => {
           }
           else {
             // Nationwide Federal card
-            if (strElem === '99') {
+            if (strElem === 'NF') {
               onLink(cardMenuItems[0])
             }
             // Native American card
-            if (strElem === '999') {
+            if (strElem === 'NA') {
               onLink(cardMenuItems[1])
             }
           }
@@ -527,10 +526,12 @@ const MapContext = props => {
 
       const stateLinks = filteredLocations.map(item => {
         const nObj = {}
-        nObj.fips = item.fips_code
-        nObj.abbr = item.state
+        nObj.fips_code = item.fips_code
         nObj.name = item.location_name
         nObj.state = item.state
+        nObj.county = item.county
+        nObj.regionType = item.region_type
+        nObj.districtType = item.district_type
         return nObj
       })
 
@@ -546,8 +547,8 @@ const MapContext = props => {
       period: filterState.period,
       counties: filterState.counties,
       offshoreRegions: filterState.offshoreRegions,
-      commodity: filterState.commodity || 'All',
-      location: cards.length > 0 ? cards.map(item => item.fips) : undefined,
+      commodity: filterState.commodity,
+      location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
     }, 'pushIn')
   }, [filterState, pageState])
 
@@ -590,9 +591,13 @@ const MapContext = props => {
                   return (
                     React.cloneElement(props.children[1], {
                       key: i,
-                      fips: state.fips,
-                      abbr: state.abbr,
+                      county: state.county,
+                      fipsCode: state.fipsCode,
+                      locationName: state.locationName,
                       name: state.name,
+                      regionType: state.regionType,
+                      districtType: state.districtType,
+                      state: state.state
                     })
                   )
                 })}
@@ -612,9 +617,13 @@ const MapContext = props => {
                   return (
                     React.cloneElement(props.children[1], {
                       key: i,
-                      fips: state.fips,
-                      abbr: state.abbr,
+                      county: state.county,
+                      fipsCode: state.fipsCode,
+                      locationName: state.locationName,
                       name: state.name,
+                      regionType: state.regionType,
+                      districtType: state.districtType,
+                      state: state.state
                     })
 
                   )

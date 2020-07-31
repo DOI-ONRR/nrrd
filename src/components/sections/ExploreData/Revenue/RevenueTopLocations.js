@@ -2,13 +2,14 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
-import GlossaryTerm from '../../GlossaryTerm//GlossaryTerm.js'
+import GlossaryTerm from '../../../GlossaryTerm//GlossaryTerm.js'
 // utility functions
-import utils from '../../../js/utils'
-import { StoreContext } from '../../../store'
+import utils from '../../../../js/utils'
+import { StoreContext } from '../../../../store'
+import * as d3 from 'd3'
 
-import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -21,18 +22,18 @@ import {
 
 // import CloseIcon from '@material-ui/icons/Close'
 // import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
-import CircleChart from '../../data-viz/CircleChart/CircleChart.js'
+import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
-  query TopLocations($year: Int!, $locations: [String!] ) {
-    fiscal_revenue_summary(
-      where: {location_type: {_in: $locations}, fiscal_year: { _eq: $year }, location_name: {_neq: ""} }
-      order_by: { fiscal_year: asc, sum: desc }
+  query RevenueTopLocations($year: Int!, $locations: [String!], $period: String!) {
+    revenue_summary(
+      where: {location_type: {_in: $locations}, year: { _eq: $year }, location_name: {_neq: ""}, period: {_eq: $period} },
+      order_by: { year: asc, total: desc }
     ) {
       location_name
-      fiscal_year
-      state_or_area
-      sum
+      year
+      location
+      total
     }
   }
 `
@@ -77,12 +78,13 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const TopLocations = ({ title, ...props }) => {
+const RevenueTopLocations = ({ title, ...props }) => {
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
   const locations = ['State', 'Offshore', 'Native American']
   if (offshore !== 'Hide') {
@@ -91,7 +93,7 @@ const TopLocations = ({ title, ...props }) => {
   if (location === 'State') {
     locations.push('Native American')
   }
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, locations } })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, locations, period } })
 
   if (loading) {
     return (
@@ -103,10 +105,18 @@ const TopLocations = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = `FY ${ year }`
-  if (data) {
-    chartData = data.fiscal_revenue_summary
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
 
+  if (data) {
+    // chartData = data.revenue_summary
+    chartData = d3.nest()
+      .key(k => k.location_name)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.revenue_summary)
+      .map(d => {
+        return ({ location_name: d.key, total: d.value })
+      })
+    console.debug('CHART DATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
@@ -123,7 +133,7 @@ const TopLocations = ({ title, ...props }) => {
                   data={chartData}
                   maxLegendWidth='800px'
                   xAxis='location_name'
-                  yAxis='sum'
+                  yAxis='total'
                   format={ d => utils.formatToDollarInt(d) }
                   circleLabel={
                     d => {
@@ -140,7 +150,7 @@ const TopLocations = ({ title, ...props }) => {
                         r[0] = 'Western Gulf'
                       }
 
-                      r[1] = utils.formatToDollarInt(d.sum)
+                      r[1] = utils.formatToDollarInt(d.total)
                       return r
                     }
                   }
@@ -168,8 +178,8 @@ const TopLocations = ({ title, ...props }) => {
   }
 }
 
-export default TopLocations
+export default RevenueTopLocations
 
-TopLocations.propTypes = {
+RevenueTopLocations.propTypes = {
   title: PropTypes.string
 }

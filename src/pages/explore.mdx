@@ -40,7 +40,7 @@ tags:
                           <Box component="h2" color="secondary.dark">Revenue</Box>
                         </Box>
                         <Typography variant="body1">
-                          When companies extract natural resources on federal lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any landowner. <strong>In fiscal year <Year />, ONRR collected a total of <LocationTotal location='Nationwide Federal' /> in revenue from federal sources.</strong>
+                          <RevenueLocationTotal />
                         </Typography>
                       </Grid>
                     </Grid>
@@ -69,8 +69,8 @@ tags:
                   </Container>
                   <RevenueOverTime title="Revenue over time" />         
                 </CompareContext>
-                <NationalRevenueSummary title="Nationwide revenue summary" />
-                <TopLocations title="Top nationwide locations" />
+                <RevenueNationalSummary title="Nationwide revenue summary" />
+                <RevenueTopLocations title="Top nationwide locations" />
               </Box>
             </Box>
           </Revenue>
@@ -101,7 +101,7 @@ tags:
                           <Box component="h2" color="secondary.dark">Disbursements</Box>
                         </Box>
                         <Typography variant="body1">
-                          After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called "disbursement." <strong>In <Year />, ONRR disbursed a total of <DisbursementLocationTotal location='Nationwide Federal' /> from federal sources.</strong>
+                          <DisbursementLocationTotal />
                         </Typography>
                       </Grid>
                     </Grid>
@@ -159,7 +159,7 @@ tags:
                           <Box component="h2" color="secondary.dark">Production</Box>
                         </Box>
                         <Typography variant="body1">
-                          The Office of Natural Resources Revenue collects detailed data about natural resource production (?) on federal lands and waters.
+                          <ProductionLocationTotal />
                         </Typography>
                       </Grid>
                     </Grid>
@@ -196,7 +196,6 @@ tags:
                       </Box>               
                       <ProductionTopLocations horizontal />
                     </Grid>
-                  <ProductionOverview />
                   </Grid>
                 </Container>
               </Box>
@@ -207,5 +206,3 @@ tags:
     </Box>
   </Container>
 </DataFilterProviderWrapper>
-
-

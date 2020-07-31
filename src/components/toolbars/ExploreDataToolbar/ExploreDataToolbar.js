@@ -61,8 +61,8 @@ const EXPLORE_DATA_TOOLBAR_OPTIONS = {
     { value: PRODUCTION, option: 'Production' },
   ],
   [PERIOD]: [
-    { value: CONSTANTS.FISCAL_YEAR, option: 'Fiscal year' },
-    // { value: CONSTANTS.CALENDAR_YEAR, option: 'Calendar year' },
+    { value: CONSTANTS.FISCAL_YEAR, option: 'Fiscal Year' },
+    { value: CONSTANTS.CALENDAR_YEAR, option: 'Calendar Year' },
     // { value: CONSTANTS.MONTHLY, option: 'Monthly' }
   ],
   [COUNTIES]: [
@@ -122,7 +122,7 @@ const useStyles = makeStyles(theme => ({
 
 const ExploreDataToolbar = props => {
   const data = useStaticQuery(graphql`
-    query CommodityQuery {
+    query DistinctCommodityQuery {
       onrr {
         production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
           commodity
@@ -256,22 +256,34 @@ const ExploreDataToolbar = props => {
               selectType='Single'
               showClearSelected={false} />
           }
-
-          <Box className={classes.toolsWrapper}>
+         <Box className={classes.toolsWrapper}>
+         {(dataType === 'Revenue' || dataType === 'Production') &&
+          
             <PeriodSelectInput
               dataFilterKey={PERIOD}
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[PERIOD]}
-              defaultSelected='Fiscal year'
+              defaultSelected='Fiscal Year'
               label='Period'
               selectType='Single'
-              showClearSelected={false} />
+           showClearSelected={false} />
+          }
+          {(dataType === 'Disbursements') &&
+           
+            <PeriodSelectInput
+              dataFilterKey={PERIOD}
+              data={['Fiscal Year']}
+              defaultSelected='Fiscal Year'
+              label='Period'
+              selectType='Single'
+           showClearSelected={false} />
+          } 
             <YearSlider />
           </Box>
           {!mapOverlay &&
           <Box className={classes.toolsWrapper}>
             <MapLevelToggleInput
               dataFilterKey={COUNTIES}
-              defaultSelected={counties || US_STATE}
+              defaultSelected={counties || CONSTANTS.STATE}
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[COUNTIES]}
               label="Map level toggle"
               legend="Map level"
@@ -297,7 +309,7 @@ const ExploreDataToolbar = props => {
             {cardMenuItems &&
               cardMenuItems.map((item, i) =>
                 <MenuItem
-                  disabled={cards.some(c => c.abbr === item.name)}
+                  disabled={cards.some(c => c.locationName === item.location_name)}
                   key={i}
                   onClick={handleClose(i, item)}>
                   {item.label}
