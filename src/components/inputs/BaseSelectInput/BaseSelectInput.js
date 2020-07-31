@@ -51,6 +51,10 @@ const useStyles = makeStyles(theme => ({
   },
   iconRoot: {
     fill: theme.palette.links.default,
+    position: 'absolute',
+    top: -10,
+    right: 0,
+    cursor: 'pointer',
   },
   iconFontSizeSmall: {
     fontSize: 20,
@@ -349,7 +353,6 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
       {(helperText || (data && data.length === 0)) &&
         <Tooltip
           title={helperContent()}
-          placement="bottom-start"
           classes={{
             tooltip: classes.tooltipRoot,
             arrow: classes.tooltipArrow,
