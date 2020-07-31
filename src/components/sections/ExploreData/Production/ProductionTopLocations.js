@@ -204,7 +204,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
               format={ d => utils.formatToCommaInt(d) }
               circleLabel={
                 d => {
-                  if (props.horizontal) {
+                  if (locationType === CONSTANTS.STATE || locationType === CONSTANTS.COUNTY || props.horizontal) {
                     const r = []
                     r[0] = d.location_name
                     r[1] = utils.formatToCommaInt(d.total) + ' ' + d.unit_abbr
