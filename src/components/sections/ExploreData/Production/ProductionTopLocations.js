@@ -115,7 +115,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionTopLocations = ({ title, ...props }) => {
-  // console.log('ProudctionTopLocations props: ', props)
+  console.log('ProudctionTopLocations props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -189,6 +189,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
     }
     dataSet = dataSet + ` (${ unitAbbr })`
+    console.log('ProductionTopLocations chartData: ', chartData)
     if (chartData.length > 0) {
       return (
         <Box className={classes.root}>
@@ -203,7 +204,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
               format={ d => utils.formatToCommaInt(d) }
               circleLabel={
                 d => {
-                  if (locationType === DFC.STATE && !props.fipsCode) {
+                  if (props.horizontal) {
                     const r = []
                     r[0] = d.location_name
                     r[1] = utils.formatToCommaInt(d.total) + ' ' + d.unit_abbr
