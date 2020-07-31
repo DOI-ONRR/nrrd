@@ -3,6 +3,7 @@ import PropTypes, { object } from 'prop-types'
 import { isEqual, isEqualWith } from 'lodash'
 
 import {
+  Box,
   InputBase,
   FormControl,
   FormHelperText,

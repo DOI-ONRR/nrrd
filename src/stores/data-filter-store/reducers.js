@@ -62,7 +62,6 @@ const initialState = {
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2017,2018,2019',
         [CALENDAR_YEAR]: '2017,2018,2019',
-        [COMMODITY]: 'All',
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
