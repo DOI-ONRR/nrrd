@@ -46,7 +46,7 @@ const APOLLO_QUERY = gql`
 const RevenueDetailTrends = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
-  const year = parseInt(filterState[DFC.YEAR])
+  const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const state = props.fipsCode
 
@@ -101,7 +101,7 @@ const RevenueDetailTrends = props => {
 
     // sparkline index
     highlightIndex = sparkData.findIndex(
-      x => x[0] === year
+      x => x[0] === parseInt(year)
     )
     locData = sparkData[highlightIndex][1]
   }

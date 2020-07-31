@@ -141,6 +141,8 @@ const ProductionOverTime = props => {
 
     chartData = [years, ...sums]
 
+    console.log('chartData: ', chartData)
+
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>

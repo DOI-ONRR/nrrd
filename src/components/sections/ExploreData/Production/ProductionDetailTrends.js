@@ -59,7 +59,7 @@ const ProductionDetailTrends = props => {
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const state = props.fipsCode
 
-  console.log('ProductionDetailTrends state, product, period, year: ', state, product, period, year)
+  // console.log('ProductionDetailTrends state, product, period, year: ', state, product, period, year)
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, product: product, period: period, year: year }
@@ -113,7 +113,7 @@ const ProductionDetailTrends = props => {
 
     // sparkline index
     highlightIndex = sparkData.findIndex(
-      x => x[0] === year
+      x => x[0] === parseInt(year)
     )
 
     locationTotalData = data.locationTotal

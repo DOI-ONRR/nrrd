@@ -39,7 +39,7 @@ const APOLLO_QUERY = gql`
 
 const ProductionSummaryTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const year = parseInt(filterState[DFC.YEAR])
+  const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY ' + year : 'CY ' + year
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
@@ -104,7 +104,7 @@ const ProductionSummaryTrends = props => {
     })
 
     // sparkline index
-    highlightIndex = sparkData.findIndex((x, i) => x[0] === year)
+    highlightIndex = sparkData.findIndex((x, i) => x[0] === parseInt(year))
 
     total = sparkData[highlightIndex][1]
 

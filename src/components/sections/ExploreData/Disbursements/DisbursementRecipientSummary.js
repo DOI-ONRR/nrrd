@@ -84,7 +84,7 @@ const APOLLO_QUERY = gql`
 const DisbursementRecipientSummary = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
-  const year = parseInt(filterState[DFC.YEAR])
+  const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
 
   const state = props.fipsCode
@@ -164,7 +164,7 @@ const DisbursementRecipientSummary = props => {
                             key={'DRS' + dataSet }
                             data={row.data}
                             highlightIndex={row.data.findIndex(
-                              x => x[0] === year
+                              x => x[0] === parseInt(year)
                             )}
                           />
                         </TableCell>
@@ -174,7 +174,7 @@ const DisbursementRecipientSummary = props => {
                               Math.floor(
                                 // eslint-disable-next-line standard/computed-property-even-spacing
                                 topRecipients[i].data[
-                                  row.data.findIndex(x => x[0] === year)
+                                  row.data.findIndex(x => x[0] === parseInt(year))
                                 ][1]
                               ),
                               3

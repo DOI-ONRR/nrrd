@@ -304,7 +304,7 @@ const MapContext = props => {
     location: CommaArrayParam,
     offshoreRegions: StringParam,
     commodity: StringParam,
-    year: NumberParam,
+    year: StringParam,
   })
 
   const [mapOverlay, setMapOverlay] = useState(false)
