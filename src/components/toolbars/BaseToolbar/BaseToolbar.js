@@ -21,10 +21,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'auto',
     position: 'relative',
     top: -1,
-    minHeight: 'inherit',
-    alignItems: 'flex-start',
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
+    minHeight: 71,
   },
 }))
 
