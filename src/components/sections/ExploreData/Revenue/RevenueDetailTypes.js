@@ -80,7 +80,7 @@ const RevenueDetailTypes = props => {
                 data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
                 format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
-                maxCircles={4}
+                maxCircles={6}
                 minColor='#FCBA8B'
                 maxColor='#B64D00'
                 circleTooltip={

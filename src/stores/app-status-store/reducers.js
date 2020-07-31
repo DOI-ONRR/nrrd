@@ -7,6 +7,7 @@ const types = Object.freeze({
   ADD_LOADING_MESSAGE: 'ADD_LOADING_MESSAGE',
   DELETE_LOADING_MESSAGE: 'DELETE_LOADING_MESSAGE',
   SHOW_ERROR_MESSAGE: 'SHOW_ERROR_MESSAGE',
+  DELETE_ERROR_MESSAGE: 'DELETE_ERROR_MESSAGE',
 })
 
 const reducer = (state, action) => {
@@ -24,6 +25,8 @@ const reducer = (state, action) => {
     return ({ ...state })
   }
   case types.SHOW_ERROR_MESSAGE:
+    return ({ ...state, ...payload })
+  case types.DELETE_ERROR_MESSAGE:
     return ({ ...state, ...payload })
   default:
     return state

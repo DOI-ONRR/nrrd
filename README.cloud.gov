@@ -29,7 +29,7 @@ cf restage hasura-onrr
 # 3) prod
 
 # sandbox or dev
-export DB_ENV=sandbox && export DB_PORT=7222|| export DB_ENV=onrr && export DB_PORT=7223 || export DB_ENV=nrrd-a && export DB_PORT=7724
+export DB_ENV=sandbox && export DB_PORT=7222|| export DB_ENV=onrr && export DB_PORT=7223 || export DB_ENV=nrrd-a && export DB_PORT=7724 || export DB_ENV=nrrd-b && export DB_PORT=7725
 
 
 #create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.  
@@ -63,7 +63,6 @@ export DB_PASSWORD=<password>
 export DB_USER=`echo -n $creds | cut -d: -f1`                                           
 export DB_PASSWORD=`echo -n  $creds | cut -d: -f2`
 export DB_DATABASE=$dbname
-export DB_PORT=7222
 export DB_HOST=localhost
  
 
