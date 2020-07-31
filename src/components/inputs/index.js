@@ -21,10 +21,10 @@ import {
   GROUP_BY_STICKY,
   BREAKOUT_BY,
   PERIOD,
-  MAP_LEVEL
+  MAP_LEVEL,
   FISCAL_YEAR,
-  CALENDAR_YEAR
-  PERIOD_TYPES,
+  CALENDAR_YEAR,
+  PERIOD_TYPES
 } from '../../constants'
 
 import BaseButtonInput from './BaseButtonInput'
