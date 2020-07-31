@@ -181,4 +181,12 @@ export const DISPLAY_NAMES = {
     default: 'Period',
     plural: 'Periods',
   },
+  [FISCAL_YEAR]: {
+    default: 'Fiscal year',
+    plural: 'Fiscal years',
+  },
+  [CALENDAR_YEAR]: {
+    default: 'Calendar year',
+    plural: 'Calendar years',
+  },
 }

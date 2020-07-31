@@ -12,7 +12,7 @@ const withQueryManager = (BaseComponent, queryKey) => ({ ...props }) => {
 
   useEffect(() => {
     if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
+      showErrorMessage('We encountered a connection error retrieving the data. Check your internet connection and refresh your browser to try again.')
     }
   }, [error])
 
