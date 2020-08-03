@@ -45,7 +45,8 @@ const APOLLO_QUERY = gql`
       }
     production_summary(
       where: {
-        location_type: {_nin: ["Nationwide Federal", "County", ""]}, 
+        location_type: {_nin: ["Nationwide Federal", "County", ""]},
+        location: {_neq: "null"},
         year: { _eq: $year }, 
         product: {_eq: $commodity},
         period: {_eq: $period}
@@ -138,6 +139,8 @@ const ProductionTopLocations = ({ title, ...props }) => {
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const key = `PTL${ year }${ state }${ commodity }${ period }`
+
+  console.log('ProductionTopLocations queryVars year, location, commodity, state, period: ', year, location, commodity, state, period)
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location, commodity, state, period },
@@ -158,6 +161,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   let dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
   let unitAbbr = ''
   if (data && (data.state_production_summary.length || data.production_summary.length)) {
+    console.log('ProductionTopLocations data: ', data)
     if (data.state_production_summary.length > 0 && location === 'County') {
       unitAbbr = data.state_production_summary[0].unit_abbr
       chartData = d3.nest()
@@ -183,6 +187,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
         })
     }
     dataSet = dataSet + ` (${ unitAbbr })`
+    console.log('ProductionTopLocations chartData: ', chartData)
     if (chartData.length > 0) {
       return (
         <Box className={classes.root}>
