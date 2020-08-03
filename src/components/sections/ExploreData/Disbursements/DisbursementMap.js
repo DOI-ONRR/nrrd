@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import * as d3 from 'd3'
-
+import utils from '../../../../js/utils'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Container,
@@ -80,7 +80,8 @@ export default props => {
          mapZoom={props.mapZoom}
          mapX={props.mapX}
          mapY={props.mapY}
-         onZoomEnd={props.onZoomEnd}
+       onZoomEnd={props.onZoomEnd}
+        legendFormat={utils.formatToSigFig_Dollar}
          onClick={props.onClick}
        />
        </>

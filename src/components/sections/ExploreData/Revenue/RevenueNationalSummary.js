@@ -61,7 +61,6 @@ const RevenueNationalSummary = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  // console.debug('WTH PERIOD:', period)
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {

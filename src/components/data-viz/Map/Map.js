@@ -81,10 +81,13 @@ const Map = props => {
   const minColor = props.minColor
   const maxColor = props.maxColor
   const onZoom = props.onZoom || function () {
-    // console.debug('Map   onZoom default')
+     console.debug('Map   onZoom default')
   }
   const onZoomEnd = props.onZoomEnd || function () {
-    // console.debug('Map   onZoomEnd default')
+    console.debug('Map   onZoomEnd default')
+  }
+    const zoomIn = props.zoomIn || function () {
+	console.debug('Map   zoomIn default')
   }
   const mapZoom = props.mapZoom
   const mapX = props.mapX
@@ -139,6 +142,10 @@ const Map = props => {
     if (props.zoomTo) {
       map.zoomTo(props.zoomTo)
     }
+      if (props.zoomIn) {
+	  map.zoomIn(props.zoomIn)
+      }
+
   }, [mapData, mapJsonObject])
   return (
     <Box className={classes.root}>

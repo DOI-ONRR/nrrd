@@ -89,5 +89,5 @@ module.exports = Object.freeze({
     label: {
       textTransform: 'Capitalize',
     },
-  }
+  },
 })
