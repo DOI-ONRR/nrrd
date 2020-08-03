@@ -49,7 +49,8 @@ const APOLLO_QUERY = gql`
     production_summary(
       where: {
         location_type: {_nin: ["Nationwide Federal", "County", ""]},
-        year: { _eq: $year },
+        location: {_neq: "null"},
+        year: { _eq: $year }, 
         product: {_eq: $commodity},
         period: {_eq: $period}
       }, order_by: {total: desc}
@@ -165,7 +166,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   let unitAbbr = ''
 
   if (data && (data.state_production_summary.length || data.production_summary.length)) {
-    if (data.state_production_summary.length > 0 && locationType === CONSTANTS.COUNTY) {
+    if (data.state_production_summary.length > 0 && location === 'County') {
       unitAbbr = data.state_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
