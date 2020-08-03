@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core'
 
 import Sparkline from '../../../data-viz/Sparkline'
+import LocationName from '../LocationName'
 
 import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -51,6 +52,16 @@ const ProductionSummaryTrends = props => {
     variables: { state: state, product: product, period: period }
   })
   const name = props.locationName
+  const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
+  const location = {
+    county: props.county,
+    districtType: props.districtType,
+    fipsCode: props.fipsCode,
+    name: props.name,
+    regionType: props.regionType,
+    locationName: props.locationName
+  }
+
   let sparkData = []
   let sparkMin
   let sparkMax
@@ -147,7 +158,7 @@ const ProductionSummaryTrends = props => {
         <Grid container>
           <Grid item xs={12}>
             <Typography variant="caption">
-              <Box>{ name + ' has not produced any ' + product + ' since ' + sparkMin + '.'} </Box>
+              <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } has not produced any ${ product } since ${ sparkMin }.`} </Box>
             </Typography>
           </Grid>
         </Grid>

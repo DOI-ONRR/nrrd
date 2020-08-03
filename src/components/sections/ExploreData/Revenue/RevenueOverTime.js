@@ -105,7 +105,6 @@ const RevenueOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0 && data.revenue_summary.length > 0) {
-    console.log('RevenueOverTime data: ', data)
 
     const years = [...new Set(d3.nest()
       .key(k => k.year)

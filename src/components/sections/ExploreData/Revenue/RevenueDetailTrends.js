@@ -97,8 +97,6 @@ const RevenueDetailTrends = props => {
       ])
     })
 
-    console.log('sparkData: ', sparkData)
-
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === parseInt(year)

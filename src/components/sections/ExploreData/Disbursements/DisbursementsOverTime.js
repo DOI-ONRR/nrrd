@@ -126,8 +126,6 @@ const DisbursementsOverTime = props => {
       })
     }
 
-    console.log('year, sums: ', years, sums)
-
     chartData = [years, ...sums]
 
     return (

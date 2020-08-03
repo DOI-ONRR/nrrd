@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import Sparkline from '../../../data-viz/Sparkline'
+import LocationName from '../LocationName'
 
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
@@ -77,6 +78,7 @@ const APOLLO_QUERY = gql`
     # period query
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
+      period_date
     }
   }
 `
@@ -88,6 +90,16 @@ const DisbursementRecipientSummary = props => {
   const dataSet = 'FY ' + year
 
   const state = props.fipsCode
+  const nativeAmerican = props.fipscode === 'NA'
+
+  const location = {
+    county: props.county,
+    districtType: props.districtType,
+    fipsCode: props.fipsCode,
+    name: props.name,
+    regionType: props.regionType,
+    locationName: props.locationName
+  }
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
@@ -113,9 +125,9 @@ const DisbursementRecipientSummary = props => {
   ) {
     periodData = data.period
 
-    row = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)]
+    row = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === parseInt(year))]
     total = row ? row.sum : 0
-    distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === year)].distinct_commodities
+    distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === parseInt(year))].distinct_commodities
 
     topRecipients = data.cardDisbursementRecipientSummary
       .map((item, i) => item.recipient)
@@ -191,16 +203,19 @@ const DisbursementRecipientSummary = props => {
       </>
     )
   }
-
-  return (
-    <Box className={classes.boxSection}>
-      {data.cardFiscalDisbursementSummary.length === 0 &&
-      data.cardDisbursementRecipientSummary.length === 0 &&
-      data.cardDisbursementSparkdata.length === 0 &&
-        <Box component="h4" fontWeight="bold">No Disbursements</Box>
-      }
-    </Box>
-  )
+  else {
+    return (
+      <Box className={classes.boxSection}>
+        {data.cardFiscalDisbursementSummary.length === 0 &&
+        data.cardDisbursementRecipientSummary.length === 0 &&
+        data.cardDisbursementSparkdata.length === 0 &&
+          <Typography variant="caption">
+            <Box><LocationName location={location} />{` ${ nativeAmerican ? 'land' : '' } had no disbursements in ${ year }.`}</Box>
+          </Typography>
+        }
+      </Box>
+    )
+  }
 }
 
 export default DisbursementRecipientSummary

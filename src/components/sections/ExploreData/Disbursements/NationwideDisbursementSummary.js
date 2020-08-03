@@ -91,8 +91,6 @@ const NationwideDisbursementSummary = props => {
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-    // do something wit dat data
-    console.log('NationwideDisbursementSummary data: ', data)
     groupData = utils.groupBy(data.fiscal_disbursement_recipient_source_summary, 'recipient')
     console.debug('WTH', groupData)
 
@@ -128,7 +126,6 @@ const NationwideDisbursementSummary = props => {
       console.debug("item: ", item)
     })
 */
-    console.log('nationwideSummaryData: ', nationwideSummaryData)
 
     return (
       <Container id={utils.formatToSlug(title)}>

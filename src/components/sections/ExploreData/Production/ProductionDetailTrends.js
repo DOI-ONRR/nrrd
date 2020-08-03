@@ -17,6 +17,7 @@ import {
 } from '@material-ui/core'
 
 import Sparkline from '../../../data-viz/Sparkline'
+import LocationName from '../LocationName'
 import * as d3 from 'd3'
 import { checkPropTypes } from 'prop-types'
 
@@ -54,6 +55,7 @@ const APOLLO_QUERY = gql`
 const ProductionDetailTrends = props => {
   const classes = useStyles()
   const name = props.locationName
+  const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
@@ -71,6 +73,15 @@ const ProductionDetailTrends = props => {
   if (error) return `Error! ${ error.message }`
 
   const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
+
+  const location = {
+    county: props.county,
+    districtType: props.districtType,
+    fipsCode: props.fipsCode,
+    name: props.name,
+    regionType: props.regionType,
+    locationName: props.locationName
+  }
 
   let sparkData = []
   let sparkMin
@@ -144,7 +155,7 @@ const ProductionDetailTrends = props => {
     return (
       <>
         <Box textAlign="center" className={classes.root} key={props.key}>
-          <Box>{`${ name } has not produced any ${ product } since ${ sparkMin || 2003 }.`}</Box>
+          <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } has not produced any ${ product } since ${ sparkMin || 2003 }.`}</Box>
         </Box>
       </>)
   }

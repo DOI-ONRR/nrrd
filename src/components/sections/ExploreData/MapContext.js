@@ -499,7 +499,7 @@ const MapContext = props => {
     const locationParam = queryParams.location
     let filteredLocations
 
-    console.log('queryParams: ', queryParams)
+    // console.log('queryParams: ', queryParams)
 
     // filter out location based on location params
     if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
