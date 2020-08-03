@@ -22,7 +22,7 @@ import {
 } from '@material-ui/core/styles'
 
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
-import HelpIcon from '@material-ui/icons/Help'
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
 
 import { formatToSlug } from '../../../js/utils'
 import { ZERO_OPTIONS } from '../../../constants'
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(0.5),
   },
   iconRoot: {
-    fill: theme.palette.links.default,
+    fill: theme.palette.common.black,
     position: 'absolute',
     top: -10,
     right: 0,
@@ -430,7 +430,7 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
             tooltip: classes.tooltipRoot,
             arrow: classes.tooltipArrow,
           }}>
-          <HelpIcon
+          <HelpOutlineIcon
             fontSize="small"
             classes={{
               root: classes.iconRoot,
