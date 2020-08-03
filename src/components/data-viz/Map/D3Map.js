@@ -30,7 +30,13 @@ export default class d3Map {
     else {
       this.unit='';
     }
-      
+
+      if (options.onZoomEnd) {
+	  this.onZoomEnd=options.onZoomEnd
+      }
+      if (options.legendFormat) {
+	  this.legendFormat=options.legendFormat
+      }
 
     this.node = node
     this.us = us
@@ -60,6 +66,12 @@ export default class d3Map {
    *
  */
 
+    legendFormat(value) {
+	return(value)
+	
+    }
+	
+    
   zoomTo (state) {
     try {
       const us = this.us
@@ -93,13 +105,38 @@ export default class d3Map {
       console.warn('Error in zoom: ', err)
     }
   }
+ zoomIn () {
+    try {
+      const us = this.us
+      const svg = this._chart
+      const zoom = this.zoom
+      const path = this.path
+      // console.debug('Zoom to :', state)
+      svg.selectAll('path')
+        .attr('fill-opacity', 0)
+      svg.selectAll(`.${ state }`)
+        .attr('fill-opacity', 9)
+      // const width = x1 - x0
+      // const height = y1 - y0
+      // console.debug('x0: ', x0, 'y0: ', y0, 'x1: ', x1, 'y1: ', y1, 'width: ', width, 'height: ', height)
+      const transform = d3.zoomIdentity
+     //   .translate(width / 2, height / 2)
+     //   .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
+     //   .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
+      console.log('zoomIn transform', transform)
+      this.zoom(transform)
+    }
+    catch (err) {
+      console.warn('Error in zoom: ', err)
+    }
+  }
 
   onZoom (event) {
     // console.debug('transform onZoom', event.transform)
   }
 
   onZoomEnd (event) {
-    // console.debug('transform onZoomEnd', event.transform)
+     console.debug('transform onZoomEnd', event.transform)
   }
 
   zoom (transform) {
@@ -151,7 +188,9 @@ export default class d3Map {
     const vwidth = width //* 1.5
     const vheight = height //* 1.5
     const _zoom = this._zoom
-
+      const onZoom = this.onZoom
+      const onZoomEnd = this.onZoomEnd
+      
     if (node.children[1].children[0]) {
       this._chart = d3.select(node.children[1].children[0])
       this._chart.selectAll('path').remove()
@@ -402,14 +441,15 @@ export default class d3Map {
     _chart.transition().duration(3000)
 
     function zoomed () {
-      g.selectAll('path')
+	console.debug( d3.event.transform)
+	g.selectAll('path')
         .attr('transform', d3.event.transform)
 
-      self.onZoom(d3.event)
+      onZoom(d3.event)
     }
     function ended () {
       //      console.debug('end')
-      self.onZoomEnd(d3.event)
+      onZoomEnd(d3.event)
     }
 
     this._chart = _chart
@@ -420,7 +460,8 @@ export default class d3Map {
     const title = this.data.title
     const data = this.data
     const color = this.color
-    const unit = this.unit
+      const unit = this.unit
+      const legendFormat = this.legendFormat
     let legend
     if (this.node.children[0].children[0]) {
       this._legend = d3.select(this.node.children[0].children[0])
@@ -438,12 +479,12 @@ export default class d3Map {
     const width = 200
     const height = 20
     const sorted = data.values.sort((a, b) => a - b)
-    const lowest = utils.formatToSigFig_Dollar(Math.floor(sorted[0]), 3) 
-    const median = utils.formatToSigFig_Dollar(
+    const lowest = legendFormat(Math.floor(sorted[0]), 3) 
+    const median = legendFormat(
       Math.floor(sorted[Math.floor(sorted.length / 2)]),
       3
     )
-    const highest = utils.formatToSigFig_Dollar(
+    const highest = legendFormat(
       Math.floor(sorted[sorted.length - 1]),
       3
     )
