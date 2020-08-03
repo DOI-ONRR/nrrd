@@ -59,8 +59,6 @@ const ProductionDetailTrends = props => {
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const state = props.fipsCode
 
-  console.log('ProductionDetailTrends state, product, period, year: ', state, product, period, year)
-
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, product: product, period: period, year: year }
   })
