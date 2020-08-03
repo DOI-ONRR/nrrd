@@ -106,7 +106,7 @@ const DisbursementRecipientSummary = props => {
   })
 
   if (loading) {
-    return 'Loading ... '
+    return ''
   }
   if (error) return `Error! ${ error.message }`
 
