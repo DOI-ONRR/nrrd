@@ -78,7 +78,7 @@ const RevenueSummaryTopCommodities = props => {
   let distinctCommodities = 0
   let topCommodities = []
   let currentCommodities = []
-
+  const dataKey=period + '-' +year + '-' + state
   if (loading) {}
 
   if (error) return `Error! ${ error.message }`
@@ -184,7 +184,8 @@ const RevenueSummaryTopCommodities = props => {
                                 </Typography>
                               </TableCell>
                               <TableCell align="right">
-                                <Sparkline
+                                  <Sparkline
+			      key={dataKey}
                                   data={row.data}
                                   highlightIndex={row.data.findIndex(
                                     x => x[0] === year

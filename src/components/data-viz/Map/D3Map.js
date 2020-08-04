@@ -37,7 +37,7 @@ export default class d3Map {
       if (options.legendFormat) {
 	  this.legendFormat=options.legendFormat
       }
-
+      this.zoomStarted=false
     this.node = node
     this.us = us
     this.mapFeatures = mapFeatures
@@ -115,7 +115,7 @@ export default class d3Map {
 
   zoom (transform) {
     try {
-	//      console.log('zoom(transform): ', transform)
+	       // console.log('zoom(transform): ', transform)
       if (transform) {
         const _zoom = transform
         this._chart
@@ -416,18 +416,24 @@ export default class d3Map {
 
       function zoomed () {
 	  let sourceEvent= d3.event.sourceEvent
-	  if(! sourceEvent && sourceEvent.type === 'mousemove') {
+	 // console.log('zoomed(): outside ', d3.event, self.zoomStarted)
+	  if(sourceEvent.type === 'wheel' ) {
 	g.selectAll('path')
         .attr('transform', d3.event.transform)
 	      onZoom(d3.event)
-
+	   //   console.log('zoomed(): ', d3.event)
+	      self.zoomStarted=true
 	} else {
-	    
+	    // console.log('zoomed(): else ', d3.event, self.zoomStarted)
 	}
       }
-      function ended () {
-	  onZoomEnd(d3.event)
-
+    function ended () {
+		  console.log('ended(): outside ', d3.event, self.zoomStarted)
+	  if(self.zoomStarted) {
+	      onZoomEnd(d3.event)
+	      self.zoomStarted=false
+	      // console.log('ended(): ', d3.event)
+	  }
       }
     
 
