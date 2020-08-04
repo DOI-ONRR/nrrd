@@ -382,7 +382,7 @@ const MapContext = props => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    console.debug('YEAR ', selected)
+     // console.debug('YEAR ', selected)
     updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
   }
 
@@ -395,25 +395,30 @@ const MapContext = props => {
     dispatch({ type: 'MAP_ZOOM', payload: { mapX: x, mapY: y, mapZoom: k } })
   }
 
-  // onLink
+    // onLink
+    
   const onLink = (state, x, y, k) => {
-    console.log('onLink state: ', state)
+       // console.log('onLink state: ', state)
+           // console.log('WTH onLink state: ', state)
 
     // decern betweeen topo json and location data fips
-    const fips = state.properties ? state.id : state.fips_code
-    const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
+      const fips = state.properties ? state.id : state.fips_code
+      const name = state.properties ? state.properties.name : state.state_name
+      const abbr = state.properties ? state.properties.name : state.state
 
+    const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
+      
     // filter out location from location data
     const location = locations.filter(item => item.fips_code === fips)
 
     const stateObj = {
-      fipsCode: location[0].fips_code,
-      name: location[0].state_name,
-      locationName: location[0].location_name,
-      state: location[0].state,
-      regionType: location[0].region_type,
-      districtType: location[0].district_type,
-      county: location[0].county
+	fipsCode: (location[0]) ? location[0].fips_code : fips   ,
+      name: (location[0]) ?  location[0].state_name : name,
+      locationName:  (location[0]) ? location[0].location_name : name,
+      state:(location[0]) ? location[0].state : abbr,
+      regionType: (location[0]) ? location[0].region_type : 'State',
+      districtType:(location[0]) ? location[0].district_type : 'State',
+      county: (location[0]) ? location[0].county : fips
     }
 
     if (
@@ -440,7 +445,7 @@ const MapContext = props => {
   const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
   const handleChange = (type, name) => event => {
     // setZoom(x, y, k)
-    console.debug('TYPE: ', type, 'Name ', name, 'Event')
+     // console.debug('TYPE: ', type, 'Name ', name, 'Event')
     updateDataFilter({ ...filterState, [type]: event.target.checked })
   }
 
@@ -491,7 +496,7 @@ const MapContext = props => {
       k = event.transform.k
        setZoom(x, y, k)
   
-      console.debug("OnZoomEnd", event)
+       // console.debug("OnZoomEnd", event)
   }
 
   const onClick = (d, fips, foo, bar) => {
@@ -503,7 +508,7 @@ const MapContext = props => {
     const locationParam = queryParams.location
     let filteredLocations
 
-    console.log('queryParams: ', queryParams)
+     // console.log('queryParams: ', queryParams)
 
     // filter out location based on location params
     if (typeof locationParam !== 'undefined' && locationParam.length > 0) {

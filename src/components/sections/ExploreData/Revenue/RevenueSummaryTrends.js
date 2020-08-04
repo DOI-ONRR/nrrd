@@ -73,11 +73,11 @@ const RevenueSummaryTrends = props => {
     data.revenue_summary.length > 0
   ) {
     periodData = data.period
-    console.debug('PERIODDATA', periodData)
+     // console.debug('PERIODDATA', periodData)
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0, 4)))
     sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
-    console.debug('WTH: ', data.revenue_summary)
+     // console.debug('WTH: ', data.revenue_summary)
     fiscalData = d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
@@ -94,7 +94,7 @@ const RevenueSummaryTrends = props => {
         total ? total[1] : 0
       ])
     })
-    console.debug('wth: ', fiscalData, sparkData)
+     // console.debug('wth: ', fiscalData, sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === year

@@ -84,7 +84,7 @@ const RevenueSummaryTopCommodities = props => {
   if (error) return `Error! ${ error.message }`
 
   if (data && data.revenue_summary.length > 0) {
-    console.debug('DWGH', data)
+     // console.debug('DWGH', data)
     periodData = data.period
 
     fiscalData = d3.nest()
@@ -124,7 +124,7 @@ const RevenueSummaryTopCommodities = props => {
         })
         return { commodity: com, data: d }
       })
-    console.debug('WTH topCommodities', topCommodities)
+     // console.debug('WTH topCommodities', topCommodities)
     currentCommodities = d3.nest()
       .key(k => k.commodity)
       .rollup(v => d3.sum(v, i => i.total))
@@ -132,7 +132,7 @@ const RevenueSummaryTopCommodities = props => {
       .map(d => [d.key, d.value])
       .sort((a, b) => a[1] > b[1] ? -1 : 1)
 
-    console.debug('WTH currentCommodities', currentCommodities)
+     // console.debug('WTH currentCommodities', currentCommodities)
     distinctCommodities = currentCommodities.length
 
     /*
@@ -176,8 +176,6 @@ const RevenueSummaryTopCommodities = props => {
                     currentCommodities.map((com, j) => {
                       if (j < 3) {
                         return topCommodities.filter(f => f.commodity === com[0]).map((row, i) => {
-                          console.debug('ROOOOOOOOOOOOOOOOOOOOW', row)
-
                           return (
                             <TableRow key={j}>
                               <TableCell component="th" scope="row">

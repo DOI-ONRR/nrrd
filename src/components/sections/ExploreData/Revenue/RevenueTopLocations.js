@@ -116,7 +116,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       })
-    console.debug('CHART DATA', chartData)
+     // console.debug('CHART DATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
