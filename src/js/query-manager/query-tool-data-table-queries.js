@@ -6,6 +6,7 @@ import {
   LAND_TYPE,
   OFFSHORE_REGION,
   US_STATE,
+  US_STATE_NAME,
   COUNTY,
   COUNTY_NAME,
   COMMODITY,
@@ -88,34 +89,39 @@ const PRODUCTION_QUERY = variableConfig => {
     ) {
     aggregate {
       ${ PRODUCT }:count(columns: ${ DB_COLS[PRODUCT] }, distinct: true)
-      ${ US_STATE }:count(columns: ${ DB_COLS[US_STATE] }, distinct: true)
-      ${ COUNTY }:count(columns: ${ DB_COLS[COUNTY] }, distinct: true)
+      ${ COUNTY }:count(columns: ${ DB_COLS[COUNTY_NAME] }, distinct: true)
       ${ LAND_TYPE }:count(columns: ${ DB_COLS[LAND_TYPE] }, distinct: true)
       ${ STATE_OFFSHORE_NAME }:count(columns: ${ DB_COLS[STATE_OFFSHORE_NAME] }, distinct: true)
-      ${ FISCAL_YEAR }:count(columns: ${ DB_COLS[FISCAL_YEAR] }, distinct: true)
-      ${ CALENDAR_YEAR }:count(columns: ${ DB_COLS[CALENDAR_YEAR] }, distinct: true)
     }
   }`)
 }
 
-const DISBURSEMENT_QUERY = () => `
+const DISBURSEMENT_QUERY = variableConfig => {
+  const whereClause = getDataFilterWhereClauses(variableConfig)
+  return (`
   results:query_tool_disbursement_data(
     where: {
-      recipient: {_in: $${ RECIPIENT }},
-      source: {_in: $${ SOURCE }},
-      state: {_in: $${ US_STATE }},
-      county: {_in: $${ COUNTY }},
-      period: {_eq: $${ PERIOD }},
-      state_offshore_name: {_in: $${ STATE_OFFSHORE_NAME }},
-      fiscal_year: {_in: $${ FISCAL_YEAR }},
-      calendar_year: {_in: $${ CALENDAR_YEAR }}
+      ${ whereClause }
     }) {
-    ${ RECIPIENT }: recipient
-    ${ SOURCE }: source
-    ${ US_STATE }: state_name
-    ${ COUNTY }: county_name
+    ${ RECIPIENT }: ${ DB_COLS[RECIPIENT] }
+    ${ SOURCE }: ${ DB_COLS[SOURCE] }
+    ${ US_STATE }: ${ DB_COLS[US_STATE_NAME] }
+    ${ COUNTY }: ${ DB_COLS[COUNTY_NAME] },
     ${ ALL_REVENUE_YEARS }
-  }`
+  }
+  counts:query_tool_disbursement_data_aggregate (
+    where: {
+      ${ whereClause }
+    }
+    ) {
+    aggregate {
+      ${ RECIPIENT }:count(columns: ${ DB_COLS[RECIPIENT] }, distinct: true)
+      ${ COUNTY }:count(columns: ${ DB_COLS[COUNTY_NAME] }, distinct: true)
+      ${ SOURCE }:count(columns: ${ DB_COLS[SOURCE] }, distinct: true)
+      ${ US_STATE }:count(columns: ${ DB_COLS[US_STATE_NAME] }, distinct: true)
+    }
+  }`)
+}
 
 // STEP 2: Define the function to get the variables for the query. A variable config plus helper functions can be used
 
@@ -146,9 +152,8 @@ const VARIABLE_CONFIGS = {
   [DISBURSEMENT]: [
     { [RECIPIENT]: MULTI_STR },
     { [SOURCE]: MULTI_STR },
-    { [US_STATE]: MULTI_STR },
+    { [US_STATE_NAME]: MULTI_STR },
     { [COUNTY]: MULTI_STR },
-    { [STATE_OFFSHORE_NAME]: MULTI_STR },
     { [PERIOD]: SINGLE_STR },
     { [FISCAL_YEAR]: MULTI_INT },
     { [CALENDAR_YEAR]: MULTI_INT }
@@ -173,9 +178,9 @@ const QUERIES = {
       (${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) })
       {${ PRODUCTION_QUERY(VARIABLE_CONFIGS[state[DATA_TYPE]]) }}`,
   [DISBURSEMENT]: (state, options) =>
-    gql`query GetDataTableProduction
+    gql`query GetDataTableDisbursement
       (${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) })
-      {${ DISBURSEMENT_QUERY() }}`,
+      {${ DISBURSEMENT_QUERY(VARIABLE_CONFIGS[state[DATA_TYPE]]) }}`,
 }
 
 /*

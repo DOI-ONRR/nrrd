@@ -10,12 +10,15 @@ import {
   COMMODITY,
   REVENUE_TYPE,
   US_STATE,
+  US_STATE_NAME,
   COUNTY,
   COUNTY_NAME,
   STATE_OFFSHORE_NAME,
   OFFSHORE_REGION,
   LAND_TYPE,
-  PRODUCT
+  PRODUCT,
+  RECIPIENT,
+  SOURCE
 } from '../../constants'
 
 import {
@@ -53,6 +56,7 @@ export default QueryManager
 export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
   [COMMODITY]: 'commodity',
   [US_STATE]: 'state',
+  [US_STATE_NAME]: 'state_name',
   [COUNTY]: 'county',
   [COUNTY_NAME]: 'county_name',
   [LAND_TYPE]: 'land_type',
@@ -62,7 +66,9 @@ export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
   [STATE_OFFSHORE_NAME]: 'state_offshore_name',
   [FISCAL_YEAR]: 'fiscal_year',
   [CALENDAR_YEAR]: 'calendar_year',
-  [PRODUCT]: 'product'
+  [PRODUCT]: 'product',
+  [RECIPIENT]: 'recipient',
+  [SOURCE]: 'source'
 }
 
 /**

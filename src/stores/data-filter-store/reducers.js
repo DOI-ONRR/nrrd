@@ -47,8 +47,7 @@ const reducer = (state, action) => {
   }
   case types.UPDATE_QUERY_DATA_FILTER_COUNTS: {
     const currentQueryCounts = state[QUERY_COUNTS] || {}
-    console.log(payload)
-    return ({ ...state, [QUERY_COUNTS]: Object.assign(currentQueryCounts, { [payload.queryKey]: payload.counts }) })
+    return ({ ...state, [QUERY_COUNTS]: Object.assign(currentQueryCounts, payload.counts) })
   }
   default:
     return state

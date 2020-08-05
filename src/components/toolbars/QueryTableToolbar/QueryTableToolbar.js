@@ -33,7 +33,8 @@ import {
   StateOffshoreSelectInput,
   PeriodSelectInput,
   FiscalYearSlider,
-  CalendarYearSlider
+  CalendarYearSlider,
+  StateNameSelectInput
 } from '../../inputs'
 
 import BaseButtonInput from '../../inputs/BaseButtonInput'
@@ -285,7 +286,7 @@ const DisbursementFilterToolbar = () => {
     <BaseToolbar isSecondary={true} >
       <RecipientSelectInput />
       <SourceSelectInput />
-      <StateOffshoreSelectInput defaultSelectAll={false} />
+      <StateNameSelectInput defaultSelectAll={false} />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
     </BaseToolbar>
   )

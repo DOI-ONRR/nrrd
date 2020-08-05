@@ -36,7 +36,7 @@ const withQueryManager = (BaseComponent, queryKey) => ({ ...props }) => {
 
   return (
     <>
-      <BaseComponent data={data} queryKey={queryKey} {...props} />
+      <BaseComponent data={data} {...props} />
     </>
   )
 }
