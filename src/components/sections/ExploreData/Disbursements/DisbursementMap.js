@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import * as d3 from 'd3'
-
+import utils from '../../../../js/utils'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Container,
@@ -37,20 +37,15 @@ const DISBURSEMENT_QUERY = gql`
 
 export default props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const CapitlizeString = word => {
-
-    return word[0].toUpperCase() + word.substr(1)
-  }
 
   const {
     year,
-    counties,
+    mapLevel,
     period
   } = filterState
-  const  location = CapitlizeString(counties)
-  console.debug("COUNTIES ... ", location)
+
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
-    variables: { year: year, period: period, location: location }
+    variables: { year: year, period: period, location: mapLevel }
   })
   const dataSet = 'FY ' + year
   let mapData = [[]]
@@ -85,7 +80,8 @@ export default props => {
          mapZoom={props.mapZoom}
          mapX={props.mapX}
          mapY={props.mapY}
-         onZoomEnd={props.onZoomEnd}
+       onZoomEnd={props.onZoomEnd}
+        legendFormat={utils.formatToSigFig_Dollar}
          onClick={props.onClick}
        />
        </>

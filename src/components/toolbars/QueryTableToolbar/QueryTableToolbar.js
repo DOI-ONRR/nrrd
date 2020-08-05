@@ -43,7 +43,7 @@ import {
   FilterTableIconImg,
   IconDownloadBaseImg,
   IconDownloadXlsImg,
-  IconDownloadCsvImg,
+  IconDownloadCsvImg
 } from '../../images'
 
 import BaseToolbar from '../BaseToolbar'
@@ -194,8 +194,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
         </FilterToggleInput>
       </BaseToolbar>
       { queryDataToolbarOpen &&
-        <BaseToolbar isSecondary={true} >
-          <DataTypeSelectInput />
+        <BaseToolbar isSecondary={true}>
+          <Box>
+            <DataTypeSelectInput />
+          </Box>
           <Box className={classes.toolsWrapper}>
             {state[DATA_TYPE] === DISBURSEMENT
               ? <PeriodSelectInput data={PERIOD_TYPES.filter(type => type !== PERIOD_CALENDAR_YEAR)}/>

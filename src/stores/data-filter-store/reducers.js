@@ -24,7 +24,9 @@ import {
   YEAR,
   LAND_TYPE,
   PRODUCT,
-  QUERY_COUNTS
+  QUERY_COUNTS,
+  MAP_LEVEL,
+  STATE
 } from '../../constants'
 
 const types = Object.freeze({
@@ -67,7 +69,7 @@ const initialState = {
         [GROUP_BY]: REVENUE_TYPE,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2017,2018,2019',
-        [CALENDAR_YEAR]: '2017,2018,2019'
+        [CALENDAR_YEAR]: '2017,2018,2019',
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
@@ -90,7 +92,7 @@ const initialState = {
     [FISCAL_YEAR]: '2019',
     [CALENDAR_YEAR]: '2019',
     [OFFSHORE_REGIONS]: false,
-    [COUNTIES]: 'state',
+    [MAP_LEVEL]: STATE,
     [YEAR]: 2019,
     dataTypesCache: {
       [REVENUE]: {
@@ -99,7 +101,7 @@ const initialState = {
         [FISCAL_YEAR]: '2019',
         [CALENDAR_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
-        [COUNTIES]: 'state',
+        [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
       },
       [PRODUCTION]: {
@@ -108,7 +110,7 @@ const initialState = {
         [FISCAL_YEAR]: '2019',
         [CALENDAR_YEAR]: '2018',
         [OFFSHORE_REGIONS]: false,
-        [COUNTIES]: 'state',
+        [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
       },
       [DISBURSEMENT]: {
@@ -117,7 +119,7 @@ const initialState = {
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
-        [COUNTIES]: 'state',
+        [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
       }
     }

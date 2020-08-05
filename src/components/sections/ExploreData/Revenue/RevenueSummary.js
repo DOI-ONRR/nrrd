@@ -110,7 +110,7 @@ const RevenueSummary = props => {
                                 <Sparkline
                                   data={row.data}
                                   highlightIndex={row.data.findIndex(
-                                    x => x[0] === year
+                                    x => x[0] === parseInt(year)
                                   )}
                                 />
                               </TableCell>
@@ -120,7 +120,7 @@ const RevenueSummary = props => {
                                     Math.floor(
                                       // eslint-disable-next-line standard/computed-property-even-spacing
                                       topCommodities[i].data[
-                                        row.data.findIndex(x => x[0] === year)
+                                        row.data.findIndex(x => x[0] === parseInt(year))
                                       ][1]
                                     ),
                                     3

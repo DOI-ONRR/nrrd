@@ -41,8 +41,14 @@ const APOLLO_QUERY = gql`
       year
       land_category    
       location
+      location_name
       total
       unit_abbr
+    }
+
+    period(where: {period: {_ilike: $period }}) {
+      fiscal_year
+      calendar_year
     }
   }
 `
@@ -81,24 +87,28 @@ const ProductionLandCategory = ({ title, ...props }) => {
   const { state: pageState } = useContext(StoreContext)
   const cards = pageState.cards
 
-  let location
-  if (props.state === DFC.NATIONWIDE_FEDERAL || props.state === DFC.NATIVE_AMERICAN) {
-    location = props.state
-  }
-  else if (props.regionType === DFC.COUNTY) {
-    location = 'County'
-  }
-  else if (props.regionType === DFC.OFFSHORE) {
-    location = 'Offshore'
-  }
-  else {
-    location = 'State'
+  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  let locationType
+  const state = props.fipsCode || ''
+
+  switch (props.regionType) {
+  case CONSTANTS.STATE:
+    locationType = CONSTANTS.STATE
+    break
+  case CONSTANTS.COUNTY:
+    locationType = CONSTANTS.COUNTY
+    break
+  case CONSTANTS.OFFSHORE:
+    locationType = CONSTANTS.OFFSHORE
+    break
+  default:
+    locationType = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS || props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) && props.state
+    break
   }
 
-  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const state = props.fipsCode
-  // console.log('useQuery vars: ', state, location, commodity)
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location, commodity, period } })
+  // console.log('ProductionLandCategory useQuery vars: ', state, locationType, commodity, period)
+
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location: locationType, commodity, period } })
   if (loading) {
     return (
       <div className={classes.progressContainer}>
@@ -109,24 +119,31 @@ const ProductionLandCategory = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  const dataSet = (period === 'Fiscal Year') ? `FY ${ year } - ${ commodity }` : `CY ${ year } - ${ commodity }`
+  const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year } - ${ commodity }` : `CY ${ year } - ${ commodity }`
   let unit = ''
   if (data && data.production_summary.length > 0) {
+    // console.log('ProductionLandCategory data: ', data)
     unit = data.production_summary[0].unit_abbr
 
-    const years = [...new Set(data.production_summary.map(item => item.year))]
-    // const sums = [...new Set(data.production_summary.filter(row => row.state_or_area === state).map(item => item.sum))]
-    const sums = [...new Set(
+    const yearVar = (period === DFC.PERIOD_FISCAL_YEAR) ? 'fiscal_year' : 'calendar_year'
+    const years = [...new Set(data.period.map(item => item[yearVar]))]
+
+    let sums = [...new Set(
       d3.nest()
         .key(k => k.year)
         .rollup(v => d3.sum(v, i => i.total))
-        .entries(data.production_summary.filter(row => row.location === state)).map(item => item.value)
+        .entries(data.production_summary.filter(row => row.location === state))
+        .map(item => ({ year: parseInt(item.key), value: item.value }))
     )]
 
-    chartData = [years, sums]
-    const noChartData = chartData[0].length === 0 && chartData[1].length === 0
+    sums = years.map(year => {
+      const sum = sums.find(x => x.year === year)
+      return sum ? sum.value : 0
+    })
 
-    // console.log('ProductionLandCategory data: ', data)
+    chartData = [years, sums]
+
+    const noChartData = chartData[0].length === 0 && chartData[1].length === 0
 
     if (!noChartData) {
       return (
@@ -135,18 +152,15 @@ const ProductionLandCategory = ({ title, ...props }) => {
           {title && <Box component="h4" fontWeight="bold" mb={2}>{title + ' (' + unit + ')'}</Box>}
           <Box>
             <LineChart
-              key={'PLC' + dataSet + commodity }
+              key={'PLC' + dataSet + period + commodity}
               data={chartData}
               chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
               lineDashes={LINE_DASHES}
               lineTooltip={
                 (d, i) => {
                   const r = []
-                  const card = cards && cards.filter(item =>
-                    (item.fipsCode === '99' || item.fipsCode === '999')
-                      ? item.name === data.production_summary[i].location
-                      : item.fipsCode === data.production_summary[i].location)[0]
-                  r[0] = `${ card.name }: ${ utils.formatToCommaInt(d) } (${ data.production_summary[i].unit_abbr })`
+                  const card = cards && cards.filter(item => item.fipsCode === data.production_summary[i].location)[0]
+                  r[0] = `${ card.locationName }: ${ utils.formatToCommaInt(d) } (${ data.production_summary[i].unit_abbr })`
                   return r
                 }
               }
