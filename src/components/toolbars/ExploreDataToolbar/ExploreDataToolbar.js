@@ -49,7 +49,8 @@ import {
   PRODUCTION,
   REVENUE,
   US_STATE,
-  OFFSHORE_REGIONS
+  OFFSHORE_REGIONS,
+  MAP_LEVEL
 } from '../../../constants'
 
 import CONSTANTS from '../../../js/constants'
@@ -61,13 +62,13 @@ const EXPLORE_DATA_TOOLBAR_OPTIONS = {
     { value: PRODUCTION, option: 'Production' },
   ],
   [PERIOD]: [
-    { value: CONSTANTS.FISCAL_YEAR, option: 'Fiscal Year' },
-    { value: CONSTANTS.CALENDAR_YEAR, option: 'Calendar Year' },
+    { value: CONSTANTS.FISCAL_YEAR, option: DFC.PERIOD_FISCAL_YEAR },
+    { value: CONSTANTS.CALENDAR_YEAR, option: DFC.PERIOD_CALENDAR_YEAR },
     // { value: CONSTANTS.MONTHLY, option: 'Monthly' }
   ],
-  [COUNTIES]: [
-    { value: US_STATE, option: 'State' },
-    { value: COUNTY, option: 'County' }
+  [MAP_LEVEL]: [
+    { value: DFC.STATE, option: DFC.STATE },
+    { value: DFC.COUNTY_CAPITALIZED, option: DFC.COUNTY_CAPITALIZED }
   ],
   [OFFSHORE_REGIONS]: [
     { value: false, option: '' },
@@ -157,6 +158,7 @@ const ExploreDataToolbar = props => {
     dataType,
     commodity,
     counties,
+    mapLevel,
     offshoreRegions
   } = filterState
 
@@ -256,35 +258,35 @@ const ExploreDataToolbar = props => {
               selectType='Single'
               showClearSelected={false} />
           }
-         <Box className={classes.toolsWrapper}>
-         {(dataType === 'Revenue' || dataType === 'Production') &&
-          
+          <Box className={classes.toolsWrapper}>
+            {(dataType === 'Revenue' || dataType === 'Production') &&
+
             <PeriodSelectInput
               dataFilterKey={PERIOD}
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[PERIOD]}
               defaultSelected='Fiscal Year'
               label='Period'
               selectType='Single'
-           showClearSelected={false} />
-          }
-          {(dataType === 'Disbursements') &&
-           
+              showClearSelected={false} />
+            }
+            {(dataType === 'Disbursements') &&
+
             <PeriodSelectInput
               dataFilterKey={PERIOD}
               data={['Fiscal Year']}
               defaultSelected='Fiscal Year'
               label='Period'
               selectType='Single'
-           showClearSelected={false} />
-          } 
+              showClearSelected={false} />
+            }
             <YearSlider />
           </Box>
           {!mapOverlay &&
           <Box className={classes.toolsWrapper}>
             <MapLevelToggleInput
-              dataFilterKey={COUNTIES}
-              defaultSelected={counties || CONSTANTS.STATE}
-              data={EXPLORE_DATA_TOOLBAR_OPTIONS[COUNTIES]}
+              dataFilterKey={MAP_LEVEL}
+              defaultSelected={mapLevel || DFC.STATE}
+              data={EXPLORE_DATA_TOOLBAR_OPTIONS[MAP_LEVEL]}
               label="Map level toggle"
               legend="Map level"
               size="small"

@@ -36,8 +36,6 @@ const ProductionLocationTotal = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
 
-  console.log('ProductionLocationTotal queryVars: ', [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], year, period, product)
-
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
     variables: { location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], year: year, period: period, product: product }
   })
