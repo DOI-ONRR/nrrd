@@ -16,6 +16,21 @@ export const destructuringSwap = (list, iA, iB) => {
 
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
+export const  formatToDollarFloat = (value, precision) => {
+    return currencyFormatter.format(value, {
+      symbol: '$',
+      precision: precision,
+      format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
+    })
+  }
+export const   getMetricLongUnit = (str) => {
+    const suffix = { k: 'k', M: ' million', G: ' billion' }
+
+    return str.replace(/[kMG]/g, match => {
+      return suffix[match] || match
+    })
+}
+
 export const formatToDollarInt = value => {
   return currencyFormatter.format(value, {
     symbol: '$',
@@ -23,6 +38,7 @@ export const formatToDollarInt = value => {
     format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
   })
 }
+
 export const formatToCommaInt = value => {
   return currencyFormatter.format(value, {
     symbol: '',
@@ -188,13 +204,6 @@ const utils = {
     })
   },
 
-  formatToDollarFloat: (value, precision) => {
-    return currencyFormatter.format(value, {
-      symbol: '$',
-      precision: precision,
-      format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
-    })
-  },
 
   formatToCommaInt: value => {
     return currencyFormatter.format(value, {
@@ -281,17 +290,12 @@ const utils = {
     if (suffix == 0) {
       suffix = ''
     }
-    const dollarNum = this.formatToDollarFloat(num, precision - 1)
-    const r = this.getMetricLongUnit(dollarNum + suffix)
+
+    const dollarNum = formatToDollarFloat(num, precision - 1)
+    const r = getMetricLongUnit(dollarNum + suffix)
     return r
   },
-  getMetricLongUnit (str) {
-    const suffix = { k: 'k', M: ' million', G: ' billion' }
 
-    return str.replace(/[kMG]/g, match => {
-      return suffix[match] || match
-    })
-  },
   hashLinkScroll () {
     const scrollToElement = () => {
       const { hash } = window.location

@@ -167,8 +167,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const nonStateOrCountyCards = [
-  DFC.NATIONWIDE_FEDERAL_ABBR,
-  DFC.NATIVE_AMERICAN_ABBR
+  DFC.NATIONWIDE_FEDERAL_FIPS,
+  DFC.NATIVE_AMERICAN_FIPS
 ]
 
 // Detail Card title

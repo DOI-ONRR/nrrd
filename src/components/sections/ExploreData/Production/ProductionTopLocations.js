@@ -141,7 +141,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location, commodity, state, period },
-      skip: props.state === DFC.NATIVE_AMERICAN_ABBR || props.regionType === CONSTANTS.COUNTY || props.regionType === CONSTANTS.OFFSHORE || props.regionType === CONSTANTS.STATE
+      skip: props.state === DFC.NATIVE_AMERICAN_FIPS || props.regionType === CONSTANTS.COUNTY || props.regionType === CONSTANTS.OFFSHORE || props.regionType === CONSTANTS.STATE
     })
 
   const maxLegendWidth = props.maxLegendWidth

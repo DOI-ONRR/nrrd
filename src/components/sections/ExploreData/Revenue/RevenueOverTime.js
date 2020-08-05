@@ -27,15 +27,11 @@ const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
   query RevenueOverTime($period: String!) {
-    revenue_summary(
-      where: {period: {_eq: $period} }
-      order_by: { year: asc }
-    ) {
+    revenue_summary(where: {period: {_eq: $period}, location: {_neq: ""}}, order_by: {year: asc}) {
       year
       location
       total
     }
-
   }
 `
 const useStyles = makeStyles(theme => ({
@@ -110,6 +106,7 @@ const RevenueOverTime = props => {
   let chartData = [[]]
   if (data && cards && cards.length > 0 && data.revenue_summary.length > 0) {
     console.log('RevenueOverTime data: ', data)
+
     const years = [...new Set(d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
@@ -117,7 +114,14 @@ const RevenueOverTime = props => {
       .map(d => parseInt(d.key))
     )]
 
-    const sums = cards.map(yData => [...new Set(data.revenue_summary.filter(row => row.location === yData.fipsCode).map(item => item.total))])
+    const sums = cards.map(yData => [...new Set(
+      d3.nest()
+        .key(k => k.year)
+        .rollup(v => d3.sum(v, i => i.total))
+        .entries(data.revenue_summary.filter(row => row.location === yData.fipsCode))
+        .map(d => d.value))
+    ])
+
 
     //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]

@@ -1,6 +1,5 @@
 
 import React, { useContext } from 'react'
-import clsx from 'clsx'
 
 import { DataFilterContext, DownloadContext } from '../../../stores'
 
@@ -11,45 +10,49 @@ import {
   REVENUE,
   PRODUCTION,
   DISBURSEMENT,
-  US_STATE,
-  PERIOD,
   PERIOD_FISCAL_YEAR,
   PERIOD_CALENDAR_YEAR,
   EXCEL,
   CSV,
   DOWNLOAD_DATA_TABLE,
-  STATE_OFFSHORE_NAME
+  STATE_OFFSHORE_NAME,
+  PERIOD_TYPES
+
 } from '../../../constants'
 
 import {
   DataTypeSelectInput,
   LandTypeSelectInput,
   RevenueTypeSelectInput,
-  UsStateSelectInput,
   CountySelectInput,
-  OffshoreRegionSelectInput,
   CommoditySelectInput,
   ProductSelectInput,
   RecipientSelectInput,
   SourceSelectInput,
   FilterToggleInput,
-  StateOffshoreSelectInput
+  StateOffshoreSelectInput,
+  PeriodSelectInput,
+  FiscalYearSlider,
+  CalendarYearSlider
 } from '../../inputs'
 
 import BaseButtonInput from '../../inputs/BaseButtonInput'
+
+import {
+  FilterTableIconImg,
+  IconDownloadBaseImg,
+  IconDownloadXlsImg,
+  IconDownloadCsvImg
+} from '../../images'
+
 import BaseToolbar from '../BaseToolbar'
-import YearRangeSelect from '../data-filters/YearRangeSelect'
+import Link from '../../Link'
 
 import makeStyles from '@material-ui/core/styles/makeStyles'
+import useTheme from '@material-ui/core/styles/useTheme'
 import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
-import ToggleButton from '@material-ui/lab/ToggleButton'
 
 import FilterList from '@material-ui/icons/FilterList'
-import CalendarToday from '@material-ui/icons/CalendarToday'
-import GetApp from '@material-ui/icons/GetApp'
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -78,8 +81,30 @@ const useStyles = makeStyles(theme => ({
     borderBottom: '5px solid rgba(188, 113, 0)',
     opacity: '0.5',
   },
+  toolsWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderLeft: `1px solid ${ theme.palette.grey[400] }`,
+    paddingLeft: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+    width: '-webkit-fill-available'
+  },
   hide: {
     display: 'none',
+  },
+  toolbarIcon: {
+    fill: theme.palette.links.default,
+    width: '.75em',
+    height: '.75em',
+    marginRight: '.25em',
+  },
+  exploreDataIcon: {
+    width: 23,
+    height: 23,
+    maxHeight: 'inherit !important',
+    maxWidth: 'inherit !important',
   },
 }))
 
@@ -90,40 +115,34 @@ const QueryTableToolbar = ({ label, ...props }) => {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
   state.dataType = (state.dataType) ? state.dataType : 'Revenue'
-  const classes = useStyles()
+  const theme = useTheme()
+  const classes = useStyles(theme)
 
-  const [dataFilterToolbarOpen, setDataFilterToolbarOpen] = React.useState(true)
+  const [queryDataToolbarOpen, setQueryDataToolbarOpen] = React.useState(true)
 
-  const toggleDataFilterToolbar = event => {
-    setPeriodToolbarOpen(false)
+  const toggleQueryDataToolbar = event => {
     setDownloadToolbarOpen(false)
-    setDataFilterToolbarOpen(!dataFilterToolbarOpen)
+    setDataFilterToolbarOpen(false)
+    setQueryDataToolbarOpen(!queryDataToolbarOpen)
   }
 
-  const [periodToolbarOpen, setPeriodToolbarOpen] = React.useState(false)
+  const [dataFilterToolbarOpen, setDataFilterToolbarOpen] = React.useState(false)
 
-  const togglePeriodToolbar = event => {
-    setDataFilterToolbarOpen(false)
+  const toggleDataFilterToolbar = event => {
     setDownloadToolbarOpen(false)
-    setPeriodToolbarOpen(!periodToolbarOpen)
+    setQueryDataToolbarOpen(false)
+    setDataFilterToolbarOpen(!dataFilterToolbarOpen)
   }
 
   const [downloadToolbarOpen, setDownloadToolbarOpen] = React.useState(false)
 
   const toggleDownloadToolbar = event => {
     setDataFilterToolbarOpen(false)
-    setPeriodToolbarOpen(false)
+    setQueryDataToolbarOpen(false)
     setDownloadToolbarOpen(!downloadToolbarOpen)
   }
 
-  const handlePeriodChange = (event, newPeriod) => {
-    if (newPeriod !== null) {
-      updateDataFilter({ ...state, [PERIOD]: newPeriod })
-    }
-  }
-
   const handleDownloadExcel = event => {
-    console.log(downloadDataContext.state)
     if (downloadDataContext.state[DOWNLOAD_DATA_TABLE] && state[DATA_TYPE]) {
       downloadWorkbook(
         EXCEL,
@@ -148,22 +167,21 @@ const QueryTableToolbar = ({ label, ...props }) => {
   return (
     <>
       <BaseToolbar>
-        <DataTypeSelectInput />
+        <FilterToggleInput
+          value='open'
+          aria-label="open query data tools"
+          defaultSelected={queryDataToolbarOpen}
+          selected={queryDataToolbarOpen}
+          onChange={toggleQueryDataToolbar}>
+          <FilterTableIconImg className={ `${ classes.toolbarIcon }, ${ classes.exploreDataIcon }` } /><span>Query data</span>
+        </FilterToggleInput>
         <FilterToggleInput
           value='open'
           aria-label="open data filters"
           defaultSelected={dataFilterToolbarOpen}
           selected={dataFilterToolbarOpen}
           onChange={toggleDataFilterToolbar}>
-          <FilterList /> Filters
-        </FilterToggleInput>
-        <FilterToggleInput
-          value='open'
-          aria-label="open period toolbar"
-          selected={periodToolbarOpen}
-          defaultSelected={periodToolbarOpen}
-          onChange={togglePeriodToolbar}>
-          <CalendarToday /> Period
+          <FilterList className={ `${ classes.toolbarIcon }, ${ classes.exploreDataIcon }` }/> <span>More filters</span>
         </FilterToggleInput>
         <FilterToggleInput
           value='open'
@@ -171,9 +189,28 @@ const QueryTableToolbar = ({ label, ...props }) => {
           selected={downloadToolbarOpen}
           defaultSelected={downloadToolbarOpen}
           onChange={toggleDownloadToolbar}>
-          <GetApp /> Download
+          <IconDownloadBaseImg className={ `${ classes.toolbarIcon }, ${ classes.exploreDataIcon }` } style={ { fill: classes.toolbarIcon.fill } }/> <span>Download</span>
         </FilterToggleInput>
       </BaseToolbar>
+      { queryDataToolbarOpen &&
+        <BaseToolbar isSecondary={true}>
+          <Box>
+            <DataTypeSelectInput />
+          </Box>
+          <Box className={classes.toolsWrapper}>
+            {state[DATA_TYPE] === DISBURSEMENT
+              ? <PeriodSelectInput data={PERIOD_TYPES.filter(type => type !== PERIOD_CALENDAR_YEAR)}/>
+              : <PeriodSelectInput />
+            }
+            {state.period === PERIOD_FISCAL_YEAR &&
+              <FiscalYearSlider />
+            }
+            {state.period === PERIOD_CALENDAR_YEAR &&
+              <CalendarYearSlider />
+            }
+          </Box>
+        </BaseToolbar>
+      }
       { dataFilterToolbarOpen &&
         <>
           {state[DATA_TYPE] === REVENUE &&
@@ -187,27 +224,25 @@ const QueryTableToolbar = ({ label, ...props }) => {
           }
         </>
       }
-      { periodToolbarOpen &&
-      <BaseToolbar isSecondary={true}>
-        <Box m={'8px'}>
-          <ToggleButtonGroup value={state[PERIOD]} exclusive onChange={handlePeriodChange} aria-label="period selection">
-            <ToggleButton value={PERIOD_FISCAL_YEAR} aria-label="fiscal year" className={classes.toggleButton}>
-              <div style={{ wordBreak: 'normal', width: 'min-content', lineHeight: 'normal' }}>Fiscal year</div>
-            </ToggleButton>
-            <ToggleButton value={PERIOD_CALENDAR_YEAR} aria-label="calendar year" className={classes.toggleButton}>
-              <div style={{ wordBreak: 'normal', width: 'min-content', lineHeight: 'normal' }}>Calendar year</div>
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </Box>
-        <YearRangeSelect />
-      </BaseToolbar>
-      }
       { downloadToolbarOpen &&
       <BaseToolbar isSecondary={true}>
         <Box mr={2}>
-          <BaseButtonInput onClick={handleDownloadExcel} variant='outlined' label={'Download Excel'} styleType={'text'} />
+          <Link href={'#'} onClick={handleDownloadExcel} linkType='DownloadXls'>Download filterd data (Excel)</Link>
         </Box>
-        <BaseButtonInput onClick={handleDownloadCsv} variant='outlined' label={'Download Csv'} styleType={'text'} />
+        <Box mr={2}>
+          <Link href={'#'} onClick={handleDownloadCsv} linkType='DownloadCsv'>Download filterd data (csv)</Link>
+        </Box>
+        <Box mr={2}>
+          {state[DATA_TYPE] === REVENUE &&
+            <Link href={'./downloads/#Revenue'} linkType='DownloadData'>Source file and documentation</Link>
+          }
+          {state[DATA_TYPE] === PRODUCTION &&
+            <Link href={'./downloads/#Production'} linkType='DownloadData'>Source file and documentation</Link>
+          }
+          {state[DATA_TYPE] === DISBURSEMENT &&
+            <Link href={'./downloads/#Disbursements'} linkType='DownloadData'>Source file and documentation</Link>
+          }
+        </Box>
       </BaseToolbar>
       }
     </>
@@ -242,7 +277,6 @@ const ProductionFilterToolbar = () => {
       <StateOffshoreSelectInput />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
       <ProductSelectInput />
-      <YearRangeSelect />
     </BaseToolbar>
   )
 }
@@ -255,7 +289,6 @@ const DisbursementFilterToolbar = () => {
       <SourceSelectInput />
       <StateOffshoreSelectInput defaultSelectAll={false} />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
-      <YearRangeSelect />
     </BaseToolbar>
   )
 }

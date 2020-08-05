@@ -63,7 +63,7 @@ const RevenueCountyMap = props => {
   let mapData = [[]]
   const state = props.state
 
-  const showCountyContent = state === DFC.NATIONWIDE_FEDERAL_ABBR || state === DFC.NATIVE_AMERICAN_ABBR || props.regionType === 'County' || props.regionType === 'Offshore'
+  const showCountyContent = state === DFC.NATIONWIDE_FEDERAL_FIPS || state === DFC.NATIVE_AMERICAN_FIPS || props.regionType === 'County' || props.regionType === 'Offshore'
 
   if (loading) {}
   if (error) return `Error! ${ error.message }`
