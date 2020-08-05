@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { object } from 'prop-types'
+import { isEqual, isEqualWith } from 'lodash'
 
 import {
   Box,
@@ -8,10 +9,10 @@ import {
   FormHelperText,
   InputLabel,
   ListItemText,
-  ListSubheader,
   MenuItem,
   Select,
-  Checkbox
+  Checkbox,
+  Tooltip
 } from '@material-ui/core'
 
 import {
@@ -21,6 +22,7 @@ import {
 } from '@material-ui/core/styles'
 
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
 
 import { formatToSlug } from '../../../js/utils'
 import { ZERO_OPTIONS } from '../../../constants'
@@ -31,10 +33,33 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     minWidth: 150,
     maxWidth: 275,
+    '& .MuiInputLabel-outlined': {
+      transform: 'translate(14px, -6px) scale(0.75)'
+    },
+  },
+  formHelperTextRoot: {
+    fontSize: '.75rem',
+    '& $disabled': {
+      fontSize: '.75rem',
+    },
   },
   selectInput: {
     minHeight: 'inherit',
     padding: '8.5px 14px',
+    marginBottom: theme.spacing(0.5),
+  },
+  iconRoot: {
+    fill: theme.palette.common.black,
+    position: 'absolute',
+    top: -10,
+    right: 0,
+    cursor: 'pointer',
+  },
+  iconFontSizeSmall: {
+    fontSize: 20,
+  },
+  tooltipRoot: {
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
   },
 }))
 
@@ -51,6 +76,7 @@ const BaseInput = withStyles(theme =>
       border: '1px solid #ced4da',
       padding: '8.5px 14px',
       transition: theme.transitions.create(['border-color', 'box-shadow']),
+      minWidth: 130,
       '&:focus': {
         borderRadius: 4,
         borderColor: '#80bdff',
@@ -60,12 +86,14 @@ const BaseInput = withStyles(theme =>
   })
 )(InputBase)
 
-const BaseSelectInput = ({ data, onChange, selectType, defaultSelected, defaultSelectAll, helperText, label, variant, showClearSelected, theme, disabled, ...props }) => {
+const BaseSelectInput = ({
+  data, onChange, selectType, defaultSelected, selected, defaultSelectAll, helperText, label, variant, showClearSelected, theme, disabled, ...props
+}) => {
   if (data && data.length > 0 && !data[0].option) {
     data = data.map(item => ({ option: item }))
   }
   else if (!data) {
-    data = []
+    return (<></>)
   }
 
   const noop = () => {}
@@ -76,6 +104,7 @@ const BaseSelectInput = ({ data, onChange, selectType, defaultSelected, defaultS
         <BaseSingleSelectInput
           data={data}
           label={label}
+          selected={selected}
           defaultSelected={defaultSelected}
           helperText={helperText}
           variant={variant || 'outlined'}
@@ -89,6 +118,7 @@ const BaseSelectInput = ({ data, onChange, selectType, defaultSelected, defaultS
           data={data}
           label={label}
           defaultSelected={defaultSelected}
+          selected={selected}
           defaultSelectAll={defaultSelectAll}
           helperText={helperText}
           variant={variant || 'outlined'}
@@ -129,10 +159,33 @@ BaseSelectInput.defaultProps = {
   defaultSelectAll: true
 }
 
-export default BaseSelectInput
+const areEqual = (prevProps, nextProps) => {
+  const areDataValuesEqual = (item1, item2) => {
+    let equal = (!item1 && !item2)
+    if (item1 && item2) {
+      if (item1.length !== item2.length) {
+        equal = false
+      }
+      else {
+        if (typeof item1[0] === 'string' && typeof item2[0] === 'string') {
+          equal = isEqual(item1, item2)
+        }
+        else {
+          equal = isEqual(item1.map(item => item.option), item2.map(item => item.option))
+        }
+      }
+    }
+
+    return equal
+  }
+
+  return isEqualWith(prevProps.data, nextProps.data, areDataValuesEqual) && isEqual(prevProps.selected, nextProps.selected)
+}
+
+export default React.memo(BaseSelectInput, areEqual)
 
 // Single Select Input
-const BaseSingleSelectInput = ({ data, defaultSelected, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
+const BaseSingleSelectInput = ({ data, defaultSelected, selected, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
 
@@ -143,7 +196,10 @@ const BaseSingleSelectInput = ({ data, defaultSelected, label, helperText, varia
   const getDefaultSelected = () => {
     let defaultItem
     if (data) {
-      if (defaultSelected) {
+      if (selected) {
+        defaultItem = { option: selected }
+      }
+      else if (defaultSelected) {
         defaultItem = data.find(item => (item.option === defaultSelected || item.value === defaultSelected))
       }
       else {
@@ -154,16 +210,22 @@ const BaseSingleSelectInput = ({ data, defaultSelected, label, helperText, varia
   }
   const [selectedOption, setSelectedOption] = useState(getDefaultSelected())
 
-  const handleChange = event => {
-    if (event.target.value.includes('Clear')) {
+  const handleChange = value => {
+    if (value.includes('Clear')) {
       setSelectedOption()
       onChange()
     }
     else {
-      setSelectedOption(event.target.value.toString())
-      onChange(event.target.value.toString())
+      setSelectedOption(value.toString())
+      onChange(value.toString())
     }
   }
+
+  useEffect(() => {
+    if (selected && !isEqual(selected, selectedOption)) {
+      handleChange(selected)
+    }
+  }, [selected])
 
   return (
     <FormControl variant={variant} className={classes.formControl} disabled={((disabled) || (data && data.length === 0))}>
@@ -173,7 +235,7 @@ const BaseSingleSelectInput = ({ data, defaultSelected, label, helperText, varia
         id={`${ labelSlug }-select`}
         IconComponent={() => <KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
         value={(selectedOption === ZERO_OPTIONS || !selectedOption) ? '' : selectedOption}
-        onChange={handleChange}
+        onChange={e => handleChange(e.target.value)}
         displayEmpty
         label={label}
         input={theme}
@@ -204,26 +266,50 @@ const BaseSingleSelectInput = ({ data, defaultSelected, label, helperText, varia
 }
 
 // Multi select input
-const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
+const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAll, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
   const classes = useStyles()
   const labelSlug = formatToSlug(label)
   const defaultSelectedOptions = defaultSelected && defaultSelected.split(',')
 
-  const [selectedOptions, setSelectedOptions] = useState(defaultSelectedOptions || [])
+  /**
+   * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
+   * If not it will check to see if an option has been set as default = true
+   */
+  const getDefaultSelected = () => {
+    let defaultItems
+    if (data) {
+      if (selected) {
+        if (typeof selected === 'string') {
+          defaultItems = selected.split(',')
+        }
+        else {
+          defaultItems = selected
+        }
+      }
+      else if (defaultSelectedOptions) {
+        defaultItems = defaultSelectedOptions
+      }
+      else {
+        defaultItems = []
+      }
+    }
+    return (defaultItems && !disabled) ? defaultItems : []
+  }
+  const [selectedOptions, setSelectedOptions] = useState(getDefaultSelected())
   const [selectAllOptions, setSelectAllOptions] = useState(defaultSelectAll)
   const [selectedOptionsChanged, setSelectedOptionsChanged] = useState(false)
 
-  const handleChange = event => {
-    if (event.target.value.includes('selectAll')) {
+  const handleChange = value => {
+    if (value.includes('selectAll')) {
       setSelectedOptions(data.map(item => item.option))
       setSelectAllOptions(true)
     }
-    else if (event.target.value.includes('selectNone')) {
+    else if (value.includes('selectNone')) {
       setSelectedOptions([])
       setSelectAllOptions(false)
     }
     else {
-      setSelectedOptions(event.target.value)
+      setSelectedOptions(value)
       setSelectAllOptions(false)
     }
     setSelectedOptionsChanged(true)
@@ -239,25 +325,46 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
     }
   }
 
-  const handleRenderValue = selected => {
+  const handleRenderValue = renderValues => {
     let selectedVal
-
-    if (selected && selected.length !== data.length) {
-      selectedVal = selected.join(', ')
+    if (label === 'Recipient') {
+      // console.log(selected, renderValues, selectedOptions)
     }
 
-    if (selected && selected.length === data.length) {
+    if (renderValues && renderValues.length !== data.length) {
+      selectedVal = renderValues.join(', ')
+    }
+
+    if (renderValues && renderValues.length === data.length) {
       selectedVal = 'All'
     }
 
-    if (selected && selected.length === 0) {
+    if (renderValues && renderValues.length === 0) {
       selectedVal = 'None selected'
     }
 
     return selectedVal
   }
 
+  const helperContent = () => {
+    return (
+      <>
+        {helperText &&
+          <Box component="span" className={classes.formHelperTextRoot}>
+            {helperText}
+          </Box>
+        }
+        {(data && data.length === 0) &&
+          <Box component="span" className={classes.formHelperTextRoot}>
+            No {label} match the current filter options.
+          </Box>
+        }
+      </>
+    )
+  }
+
   useEffect(() => {
+    console.log('BaseSelectInput selectedOptions', selectedOptions)
     if (!disabled) {
       if (selectAllOptions) {
         setSelectedOptions(data.map(item => item.option))
@@ -268,8 +375,22 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
     }
   }, [data])
 
+  useEffect(() => {
+    if (selected && !isEqual(selected, selectedOptions)) {
+      if (typeof selected === 'string') {
+        handleChange(selected.split(','))
+      }
+      else {
+        handleChange(selected)
+      }
+    }
+  }, [selected])
+
   return (
-    <FormControl className={classes.formControl} variant={variant} disabled={((disabled) || (data && data.length === 0))}>
+    <FormControl
+      className={classes.formControl}
+      variant={variant}
+      disabled={((disabled) || (data && data.length === 0))}>
       <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
       <Select
         labelId={`${ labelSlug }-select-label`}
@@ -277,11 +398,14 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
         IconComponent={() => <KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
         multiple
         value={selectedOptions}
-        renderValue={selected => handleRenderValue(selected)}
+        renderValue={renderValues => handleRenderValue(renderValues)}
         input={theme}
-        onChange={handleChange}
+        onChange={e => handleChange(e.target.value)}
         onClose={handleClose}
-        classes={{ root: classes.selectInput }}
+        classes={{
+          root: classes.selectInput,
+          disabled: classes.selectDisabled
+        }}
         displayEmpty
       >
         <MenuItem key={0} role="select-menu" value={selectAllOptions ? 'selectNone' : 'selectAll'}>
@@ -298,11 +422,21 @@ const BaseMultiSelectInput = ({ data, defaultSelected, defaultSelectAll, label, 
             </MenuItem>)
         }
       </Select>
-      {helperText &&
-            <FormHelperText>{helperText}</FormHelperText>
-      }
-      {(data && data.length === 0) &&
-            <FormHelperText>No '{label}' match the current filter options.</FormHelperText>
+
+      {(helperText || (data && data.length === 0)) &&
+        <Tooltip
+          title={helperContent()}
+          classes={{
+            tooltip: classes.tooltipRoot,
+            arrow: classes.tooltipArrow,
+          }}>
+          <HelpOutlineIcon
+            fontSize="small"
+            classes={{
+              root: classes.iconRoot,
+              fontSizeSmall: classes.iconFontSizeSmall
+            }} />
+        </Tooltip>
       }
     </FormControl>
   )

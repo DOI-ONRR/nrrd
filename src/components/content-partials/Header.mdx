@@ -16,6 +16,7 @@
               <Box mt={1} mb={3.5}>
                 <Link href='/' linkType='Header'>Home</Link>
                 <Link href='/about' linkType='Header'>About</Link>
+                <SearchSite />
               </Box>
             </Grid>
             <Grid container justify='flex-end'>
@@ -30,6 +31,7 @@
           <Grid item xs={4} sm={8}>
             <Grid container justify='flex-end'>
               <MobileMenu>
+                <SearchSite isMobile={true} />
                 <Link href='/explore' linkType='Header'>Explore data</Link>
                 <Link href='/query-data' linkType='Header'>Query data</Link>
                 <Link href='/downloads' linkType='Header'>Download data</Link>

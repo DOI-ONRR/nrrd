@@ -52,9 +52,8 @@ const REVENUE_QUERY = () => `
     ${ REVENUE_TYPE }: revenue_type
     ${ COMMODITY }: commodity
     ${ LAND_TYPE }: land_type
-    ${ US_STATE }: state_name
+    ${ STATE_OFFSHORE_NAME }: state_offshore_name
     ${ COUNTY }: county_name
-    ${ OFFSHORE_REGION }: offshore_region,
     ${ ALL_REVENUE_YEARS }
   }`
 
@@ -74,9 +73,8 @@ const PRODUCTION_QUERY = () => `
     }) {
     ${ PRODUCT }: product
     ${ LAND_TYPE }: land_type
-    ${ US_STATE }: state_name
+    ${ STATE_OFFSHORE_NAME }: state_offshore_name
     ${ COUNTY }: county_name
-    ${ OFFSHORE_REGION }: offshore_region,
     ${ ALL_REVENUE_YEARS }
   }`
 

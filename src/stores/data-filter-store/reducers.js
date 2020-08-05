@@ -32,7 +32,7 @@ const types = Object.freeze({
 
 const reducer = (state, action) => {
   const { type, payload } = action
-
+  console.log('Data Filer Provider action', type, payload)
   switch (type) {
   case types.UPDATE_DATA_FILTER: {
     const dataType = payload.dataType || state.dataType
@@ -61,7 +61,7 @@ const initialState = {
         [GROUP_BY]: REVENUE_TYPE,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2017,2018,2019',
-        [CALENDAR_YEAR]: '2017,2018,2019'
+        [CALENDAR_YEAR]: '2017,2018,2019',
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,

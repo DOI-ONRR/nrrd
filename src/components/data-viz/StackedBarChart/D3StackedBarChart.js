@@ -55,7 +55,7 @@ export default class D3StackedBarChart {
 
       this.legendReverse = (options.legendReverse) ? options.legendReverse : false
 
-      this.xLabels = options.xLabels
+      this.xLabels = (typeof options.xLabels === "function") ? options.xLabels : this.xLabels
       // max extent line props and defaults
       if (options.legendFormat) {
         this.legendFormat = options.legendFormat

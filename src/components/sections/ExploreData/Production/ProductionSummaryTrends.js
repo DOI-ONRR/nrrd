@@ -18,20 +18,21 @@ import utils from '../../../../js/utils'
 import CONSTANTS from '../../../../js/constants'
 
 const APOLLO_QUERY = gql`
-  query ProductionSummaryTrend($state: String!, $commodity: String!, $period: String!) {
-    fiscal_production_summary(
-      where: { state_or_area: { _eq: $state }, commodity: {_eq: $commodity} }
-      order_by: { fiscal_year: asc, state_or_area: asc }
+  query ProductionSummaryTrend($state: String!, $product: String!, $period: String!) {
+    production_summary(
+      where: { location: { _eq: $state }, product: {_eq: $product}, period: {_eq: $period }}
+      order_by: { year: asc, total: asc }
     ) {
-      fiscal_year
-      state_or_area
+      year
+      location
       unit_abbr
-      sum
+      total
     
     }
 
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
+      period_date
     }
   }
 `
@@ -39,13 +40,14 @@ const APOLLO_QUERY = gql`
 const ProductionSummaryTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const dataSet = 'FY ' + year
-  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  const state = props.abbr
-  const key = dataSet + '_' + commodity + '_' + state
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+  const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY ' + year : 'CY ' + year
+  const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
+  const state = props.fipsCode
+  const key = `${ dataSet }_${ product }_${ state }`
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.abbr, commodity: commodity, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, product: product, period: period }
   })
   const name = props.name
   let sparkData = []
@@ -71,35 +73,40 @@ const ProductionSummaryTrends = props => {
   if (data && data.period) {
     periodData = data.period
     // set min and max trend years
-    sparkMin = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-    sparkMax = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+    sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0, 4)))
+    sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
   }
-  let unit=''
+  let unit = ''
   if (
     data &&
-    data.fiscal_production_summary.length > 0
+    data.production_summary.length > 0
   ) {
-    unit = data.fiscal_production_summary[0].unit_abbr
-    fiscalData = data.fiscal_production_summary.map((item, i) => [
+    unit = data.production_summary[0].unit_abbr
+    fiscalData = data.production_summary.map((item, i) => [
       item.fiscal_year,
       item.sum
     ])
     fiscalData = d3.nest()
-      .key(k => k.fiscal_year)
-      .rollup(v => d3.sum(v, i => i.sum))
-      .entries(data.fiscal_production_summary.filter(row => row.state_or_area === state)).map(item => [parseInt(item.key), item.value])
+      .key(k => k.year)
+      .rollup(v => d3.sum(v, i => i.total))
+      .entries(data.production_summary)
+      .map(d => [parseInt(d.key), d.value])
+
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
-      const sum = fiscalData.find(x => x[0] === item.fiscal_year)
+      const y = parseInt(item.period_date.substr(0, 4))
+      const total = fiscalData.find(x => x[0] === y)
+
       return ([
-        item.fiscal_year,
-        sum ? sum[1] : 0
+        y,
+        total ? total[1] : 0
       ])
     })
+
     // sparkline index
     highlightIndex = sparkData.findIndex((x, i) => x[0] === year)
 
-    total = sparkData[highlightIndex]
+    total = sparkData[highlightIndex][1]
 
     return (
       <>
@@ -111,7 +118,7 @@ const ProductionSummaryTrends = props => {
             </Typography>
             {sparkData.length > 1 &&
               <Box component="span">
-                {sparkData  && (
+                {sparkData && (
                   <Sparkline
                     key={'PST' + key }
                     data={sparkData}
@@ -123,9 +130,9 @@ const ProductionSummaryTrends = props => {
           </Grid>
           <Grid item xs={6} style={{ textAlign: 'right' }}>
             <Typography variant="caption">
-              <Box>{year}</Box>
-        <Box style={{whiteSpace: 'nowrap'}}>
-        {utils.formatToCommaInt(Math.floor(total), 3) + ' ' + unit }
+              <Box>{dataSet}</Box>
+              <Box>
+                {utils.formatToCommaInt(Math.floor(total), 3)} ({unit})
               </Box>
             </Typography>
           </Grid>
@@ -139,7 +146,7 @@ const ProductionSummaryTrends = props => {
         <Grid container>
           <Grid item xs={12}>
             <Typography variant="caption">
-              <Box>{ name + ' has not produced any ' + commodity + ' since ' + sparkMin + '.'} </Box>
+              <Box>{ name + ' has not produced any ' + product + ' since ' + sparkMin + '.'} </Box>
             </Typography>
           </Grid>
         </Grid>

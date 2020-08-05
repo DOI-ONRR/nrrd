@@ -18,9 +18,14 @@ export const useActions = (state, dispatch) => {
     console.error(message)
     dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: { isError: true, message: message } })
   }
+  const deleteErrorMessage = (message = 'An error has occurred.') => {
+    console.error(message)
+    dispatch({ type: types.DELETE_ERROR_MESSAGE, payload: { isError: false, message: undefined } })
+  }
 
   return {
     updateLoadingStatus,
-    showErrorMessage
+    showErrorMessage,
+    deleteErrorMessage
   }
 }
