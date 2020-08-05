@@ -416,8 +416,8 @@ export default class d3Map {
 
       function zoomed () {
 	  let sourceEvent= d3.event.sourceEvent
-	 // console.log('zoomed(): outside ', d3.event, self.zoomStarted)
-	  if(sourceEvent.type === 'wheel' ) {
+//	  console.log('zoomed(): outside ', d3.event, self.zoomStarted)
+	  if(sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 ) {
 	g.selectAll('path')
         .attr('transform', d3.event.transform)
 	      onZoom(d3.event)
@@ -428,7 +428,7 @@ export default class d3Map {
 	}
       }
     function ended () {
-		  console.log('ended(): outside ', d3.event, self.zoomStarted)
+	//	  console.log('ended(): outside ', d3.event, self.zoomStarted)
 	  if(self.zoomStarted) {
 	      onZoomEnd(d3.event)
 	      self.zoomStarted=false
