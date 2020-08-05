@@ -2,13 +2,11 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import {
-  useQueryParam,
   useQueryParams,
   StringParam,
   encodeDelimitedArray,
   decodeDelimitedArray,
-  BooleanParam,
-  ArrayParam
+  NumberParam
 } from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -302,10 +300,11 @@ const MapContext = props => {
   const [queryParams, setQueryParams] = useQueryParams({
     dataType: StringParam,
     period: StringParam,
-    counties: StringParam,
+    mapLevel: StringParam,
     location: CommaArrayParam,
     offshoreRegions: StringParam,
     commodity: StringParam,
+    year: StringParam,
   })
 
   const [mapOverlay, setMapOverlay] = useState(false)
@@ -436,7 +435,7 @@ const MapContext = props => {
     dispatch({ type: 'CARDS', payload: cards })
   }
 
-  const countyLevel = filterState[DFC.COUNTIES] === 'county'
+  const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
   const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
   const handleChange = (type, name) => event => {
     // setZoom(x, y, k)
@@ -503,7 +502,7 @@ const MapContext = props => {
     const locationParam = queryParams.location
     let filteredLocations
 
-    console.log('queryParams: ', queryParams)
+    // console.log('queryParams: ', queryParams)
 
     // filter out location based on location params
     if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
@@ -548,10 +547,11 @@ const MapContext = props => {
     setQueryParams({
       dataType: filterState.dataType,
       period: filterState.period,
-      counties: filterState.counties,
+      mapLevel: filterState.mapLevel,
       offshoreRegions: filterState.offshoreRegions,
       commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
+      year: filterState.year
     }, 'pushIn')
   }, [filterState, pageState])
 

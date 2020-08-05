@@ -113,7 +113,7 @@ const RevenueDetailTrends = props => {
 
     // sparkline index
     highlightIndex = sparkData.findIndex(
-      x => x[0] === year
+      x => x[0] === parseInt(year)
     )
     locData = sparkData[highlightIndex][1]  
 

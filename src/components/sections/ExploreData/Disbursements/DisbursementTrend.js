@@ -119,10 +119,10 @@ const DisbursementTrend = props => {
     console.debug('WTH', sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
-      x => x[0] === year
+      x => x[0] === parseInt(year)
     )
 
-    foundIndex = fiscalData.findIndex(x => x[0] === year)
+    foundIndex = fiscalData.findIndex(x => x[0] === parseInt(year))
     total = (foundIndex === -1 || typeof (foundIndex) === 'undefined') ? 0 : fiscalData[foundIndex][1]
 
     return (
