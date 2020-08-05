@@ -1,12 +1,21 @@
-
 import {
   PERIOD,
   QUERY_KEY_DATA_TABLE,
-  MULTI,
   FISCAL_YEAR,
   PERIOD_FISCAL_YEAR,
   CALENDAR_YEAR,
-  PERIOD_CALENDAR_YEAR
+  PERIOD_CALENDAR_YEAR,
+  MULTI_STR,
+  MULTI_INT,
+  COMMODITY,
+  REVENUE_TYPE,
+  US_STATE,
+  COUNTY,
+  COUNTY_NAME,
+  STATE_OFFSHORE_NAME,
+  OFFSHORE_REGION,
+  LAND_TYPE,
+  PRODUCT
 } from '../../constants'
 
 import {
@@ -39,6 +48,24 @@ const QueryManager = {
 export default QueryManager
 
 /**
+ * Crosswalk object to map data filter keys to database columns
+ */
+export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
+  [COMMODITY]: 'commodity',
+  [US_STATE]: 'state',
+  [COUNTY]: 'county',
+  [COUNTY_NAME]: 'county_name',
+  [LAND_TYPE]: 'land_type',
+  [OFFSHORE_REGION]: 'offshore_region',
+  [REVENUE_TYPE]: 'revenue_type',
+  [PERIOD]: 'period',
+  [STATE_OFFSHORE_NAME]: 'state_offshore_name',
+  [FISCAL_YEAR]: 'fiscal_year',
+  [CALENDAR_YEAR]: 'calendar_year',
+  [PRODUCT]: 'product'
+}
+
+/**
  * All the queries that can be accessed via query key
  */
 const QUERIES = {
@@ -50,6 +77,36 @@ const QUERIES = {
  */
 const VARIABLES = {
   [QUERY_KEY_DATA_TABLE]: (state, options) => getVariablesQueryToolDataTable(state, options)
+}
+
+/**
+ * Helper method to get all the where clause statements for queries
+ * @param {array} config
+ * @param {array} excludeProps
+ */
+export const getDataFilterWhereClauses = (config, excludeProps) => {
+  let results = ''
+
+  const getClause = (key, type) => {
+    switch (type) {
+    case MULTI_INT:
+    case MULTI_STR:
+      return `{_in: $${ key }}`
+    }
+    return `{_eq: $${ key }}`
+  }
+
+  config.forEach(prop => {
+    const key = Object.keys(prop)[0]
+    if (!excludeProps || !excludeProps.includes(key)) {
+      if (DATA_FILTER_KEY_TO_DB_COLUMNS[key]) {
+        results =
+          results.concat(`${ DATA_FILTER_KEY_TO_DB_COLUMNS[key] }: ${ getClause(key, prop[key]) },`)
+      }
+    }
+  })
+
+  return results
 }
 
 /**
