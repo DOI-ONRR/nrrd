@@ -24,17 +24,19 @@ import {
   YEAR,
   LAND_TYPE,
   PRODUCT,
+  QUERY_COUNTS,
   MAP_LEVEL,
   STATE
 } from '../../constants'
 
 const types = Object.freeze({
   UPDATE_DATA_FILTER: 'UPDATE_DATA_FILTER',
+  UPDATE_QUERY_DATA_FILTER_COUNTS: 'UPDATE_QUERY_DATA_FILTER_COUNTS',
 })
 
 const reducer = (state, action) => {
   const { type, payload } = action
-  console.log('Data Filer Provider action', type, payload)
+
   switch (type) {
   case types.UPDATE_DATA_FILTER: {
     const dataType = payload.dataType || state.dataType
@@ -43,7 +45,11 @@ const reducer = (state, action) => {
 
     const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
 
-    return ({ dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
+    return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
+  }
+  case types.UPDATE_QUERY_DATA_FILTER_COUNTS: {
+    const currentQueryCounts = state[QUERY_COUNTS] || {}
+    return ({ ...state, [QUERY_COUNTS]: Object.assign(currentQueryCounts, payload.counts) })
   }
   default:
     return state

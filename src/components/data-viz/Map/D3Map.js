@@ -37,7 +37,7 @@ export default class d3Map {
       if (options.legendFormat) {
 	  this.legendFormat=options.legendFormat
       }
-
+      this.zoomStarted=false
     this.node = node
     this.us = us
     this.mapFeatures = mapFeatures
@@ -98,32 +98,6 @@ export default class d3Map {
         .translate(width / 2, height / 2)
         .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
         .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
-      console.log('zoomTo transform', transform)
-      this.zoom(transform)
-    }
-    catch (err) {
-      console.warn('Error in zoom: ', err)
-    }
-  }
- zoomIn () {
-    try {
-      const us = this.us
-      const svg = this._chart
-      const zoom = this.zoom
-      const path = this.path
-      // console.debug('Zoom to :', state)
-      svg.selectAll('path')
-        .attr('fill-opacity', 0)
-      svg.selectAll(`.${ state }`)
-        .attr('fill-opacity', 9)
-      // const width = x1 - x0
-      // const height = y1 - y0
-      // console.debug('x0: ', x0, 'y0: ', y0, 'x1: ', x1, 'y1: ', y1, 'width: ', width, 'height: ', height)
-      const transform = d3.zoomIdentity
-     //   .translate(width / 2, height / 2)
-     //   .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
-     //   .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
-      console.log('zoomIn transform', transform)
       this.zoom(transform)
     }
     catch (err) {
@@ -141,7 +115,7 @@ export default class d3Map {
 
   zoom (transform) {
     try {
-      console.log('D3Map transform: ', transform)
+	       // console.log('zoom(transform): ', transform)
       if (transform) {
         const _zoom = transform
         this._chart
@@ -440,17 +414,28 @@ export default class d3Map {
 
     _chart.transition().duration(3000)
 
-    function zoomed () {
-	console.debug( d3.event.transform)
+      function zoomed () {
+	  let sourceEvent= d3.event.sourceEvent
+//	  console.log('zoomed(): outside ', d3.event, self.zoomStarted)
+	  if(sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 ) {
 	g.selectAll('path')
         .attr('transform', d3.event.transform)
-
-      onZoom(d3.event)
-    }
+	      onZoom(d3.event)
+	   //   console.log('zoomed(): ', d3.event)
+	      self.zoomStarted=true
+	} else {
+	    // console.log('zoomed(): else ', d3.event, self.zoomStarted)
+	}
+      }
     function ended () {
-      //      console.debug('end')
-      onZoomEnd(d3.event)
-    }
+	//	  console.log('ended(): outside ', d3.event, self.zoomStarted)
+	  if(self.zoomStarted) {
+	      onZoomEnd(d3.event)
+	      self.zoomStarted=false
+	      // console.log('ended(): ', d3.event)
+	  }
+      }
+    
 
     this._chart = _chart
     return _chart
