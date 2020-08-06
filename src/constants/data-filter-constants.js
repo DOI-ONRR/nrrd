@@ -34,6 +34,7 @@ export const RECIPIENT = 'recipient'
 export const SOURCE = 'source'
 export const STATE_OFFSHORE_NAME = 'stateOffshoreName'
 export const MAP_LEVEL = 'mapLevel'
+export const LOCAL_RECIPIENT = 'localRecipient'
 
 export const PERIOD_FISCAL_YEAR = 'Fiscal Year'
 export const PERIOD_CALENDAR_YEAR = 'Calendar Year'
@@ -196,4 +197,8 @@ export const DISPLAY_NAMES = {
     default: 'Calendar year',
     plural: 'Calendar years',
   },
+  [LOCAL_RECIPIENT]: {
+    default: 'Local recipient',
+    plural: 'Local recipients'
+  }
 }
