@@ -16,8 +16,8 @@ import {
   CSV,
   DOWNLOAD_DATA_TABLE,
   STATE_OFFSHORE_NAME,
-  PERIOD_TYPES
-
+  PERIOD_TYPES,
+  LAND_TYPE
 } from '../../../constants'
 
 import {
@@ -37,13 +37,11 @@ import {
   StateNameSelectInput
 } from '../../inputs'
 
-import BaseButtonInput from '../../inputs/BaseButtonInput'
+import ClearAllFiltersBtn from '../../inputs/ClearAllFiltersBtn'
 
 import {
   FilterTableIconImg,
-  IconDownloadBaseImg,
-  IconDownloadXlsImg,
-  IconDownloadCsvImg
+  IconDownloadBaseImg
 } from '../../images'
 
 import BaseToolbar from '../BaseToolbar'
@@ -264,6 +262,7 @@ const RevenueFilterToolbar = () => {
       <RevenueTypeSelectInput />
       <StateOffshoreSelectInput />
       <CommoditySelectInput />
+      <ClearAllFiltersBtn />
     </BaseToolbar>
   )
 }
@@ -274,6 +273,7 @@ const ProductionFilterToolbar = () => {
       <LandTypeSelectInput />
       <StateOffshoreSelectInput />
       <ProductSelectInput />
+      <ClearAllFiltersBtn />
     </BaseToolbar>
   )
 }
@@ -286,6 +286,7 @@ const DisbursementFilterToolbar = () => {
       <SourceSelectInput />
       <StateNameSelectInput defaultSelectAll={false} />
       <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
+      <ClearAllFiltersBtn />
     </BaseToolbar>
   )
 }
