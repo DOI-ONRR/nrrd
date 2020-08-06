@@ -22,7 +22,8 @@ import {
   DATA_TYPE,
   STATE_OFFSHORE_NAME,
   FISCAL_YEAR,
-  CALENDAR_YEAR
+  CALENDAR_YEAR,
+  LOCAL_RECIPIENT
 } from '../../constants'
 import gql from 'graphql-tag'
 
@@ -106,7 +107,7 @@ const DISBURSEMENT_QUERY = variableConfig => {
     ${ RECIPIENT }: ${ DB_COLS[RECIPIENT] }
     ${ SOURCE }: ${ DB_COLS[SOURCE] }
     ${ US_STATE }: ${ DB_COLS[US_STATE_NAME] }
-    ${ COUNTY }: ${ DB_COLS[COUNTY_NAME] },
+    ${ LOCAL_RECIPIENT }: ${ DB_COLS[LOCAL_RECIPIENT] }
     ${ ALL_REVENUE_YEARS }
   }
   counts:query_tool_disbursement_data_aggregate (
@@ -116,9 +117,9 @@ const DISBURSEMENT_QUERY = variableConfig => {
     ) {
     aggregate {
       ${ RECIPIENT }:count(columns: ${ DB_COLS[RECIPIENT] }, distinct: true)
-      ${ COUNTY }:count(columns: ${ DB_COLS[COUNTY_NAME] }, distinct: true)
       ${ SOURCE }:count(columns: ${ DB_COLS[SOURCE] }, distinct: true)
       ${ US_STATE }:count(columns: ${ DB_COLS[US_STATE_NAME] }, distinct: true)
+      ${ LOCAL_RECIPIENT }:count(columns: ${ DB_COLS[LOCAL_RECIPIENT] }, distinct: true)
     }
   }`)
 }
@@ -153,7 +154,7 @@ const VARIABLE_CONFIGS = {
     { [RECIPIENT]: MULTI_STR },
     { [SOURCE]: MULTI_STR },
     { [US_STATE_NAME]: MULTI_STR },
-    { [COUNTY]: MULTI_STR },
+    { [LOCAL_RECIPIENT]: MULTI_STR },
     { [PERIOD]: SINGLE_STR },
     { [FISCAL_YEAR]: MULTI_INT },
     { [CALENDAR_YEAR]: MULTI_INT }

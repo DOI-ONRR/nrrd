@@ -18,7 +18,8 @@ import {
   LAND_TYPE,
   PRODUCT,
   RECIPIENT,
-  SOURCE
+  SOURCE,
+  LOCAL_RECIPIENT
 } from '../../constants'
 
 import {
@@ -68,7 +69,8 @@ export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
   [CALENDAR_YEAR]: 'calendar_year',
   [PRODUCT]: 'product',
   [RECIPIENT]: 'recipient',
-  [SOURCE]: 'source'
+  [SOURCE]: 'source',
+  [LOCAL_RECIPIENT]: 'local_recipient'
 }
 
 /**

@@ -279,13 +279,11 @@ const ProductionFilterToolbar = () => {
 }
 
 const DisbursementFilterToolbar = () => {
-  const countyEnabled = isCountyEnabled(useContext(DataFilterContext))
   return (
     <BaseToolbar isSecondary={true} >
       <RecipientSelectInput />
       <SourceSelectInput />
       <StateNameSelectInput defaultSelectAll={false} />
-      <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
     </BaseToolbar>
   )
 }
