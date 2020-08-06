@@ -97,10 +97,10 @@ const RevenueSummaryTrends = props => {
      // console.debug('wth: ', fiscalData, sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
-      x => x[0] === year
+      x => x[0] === parseInt(year)
     )
 
-    row = fiscalData.length > 1 && fiscalData[fiscalData.findIndex(x => x[0] === year)]
+    row = fiscalData.length > 1 && fiscalData[fiscalData.findIndex(x => x[0] === parseInt(year))]
 
     total = row ? row[1] : 0
 

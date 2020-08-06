@@ -112,7 +112,7 @@ const DisbursementsSummary = props => {
                                   key={'DsS' + dataSet }
                                   data={row.data}
                                   highlightIndex={row.data.findIndex(
-                                    x => x[0] === year
+                                    x => x[0] === parseInt(year)
                                   )}
                                 />
                               </TableCell>
@@ -122,7 +122,7 @@ const DisbursementsSummary = props => {
                                     Math.floor(
                                       // eslint-disable-next-line standard/computed-property-even-spacing
                                       topCommodities[i].data[
-                                        row.data.findIndex(x => x[0] === year)
+                                        row.data.findIndex(x => x[0] === parseInt(year))
                                       ][1]
                                     ),
                                     3
