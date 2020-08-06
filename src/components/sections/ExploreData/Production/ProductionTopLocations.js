@@ -164,7 +164,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   let unitAbbr = ''
 
   if (data && (data.state_production_summary.length || data.production_summary.length)) {
-    if (data.state_production_summary.length > 0 && location === CONSTANTS.COUNTY) {
+    if (data.state_production_summary.length > 0 && locationType === CONSTANTS.COUNTY) {
       unitAbbr = data.state_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
