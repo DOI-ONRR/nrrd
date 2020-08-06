@@ -46,7 +46,7 @@ const RevenueSummaryTrends = props => {
   const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
 
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  let commodityText= ''
+  let commodityText= 'revenue'
   if (commodities && commodities.length === 1) {
     commodityText = commodities[0].toLowerCase()+' revenue'
   } else if ( commodities && commodities.length > 1 ) {

@@ -52,7 +52,7 @@ const RevenueDetailTrends = props => {
     const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
     const state = props.fipsCode
     const name = props.name
-    let commodityText = ''
+    let commodityText = 'revenue'
   if (commodities && commodities.length === 1) {
     commodityText = commodities[0].toLowerCase() + ' revenue'
   }

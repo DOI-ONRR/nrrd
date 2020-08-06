@@ -75,7 +75,7 @@ const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].sp
 	  .map(d => ({ revenue_type: d.key, total: d.value}))
       
 
-      console.debug("Chart Data", chartData)
+
   }
 
   return (
