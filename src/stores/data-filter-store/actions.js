@@ -13,8 +13,12 @@ export const useActions = (state, dispatch) => {
   const updateQueryDataFilterCounts = updatedCounts =>
     dispatch({ type: types.UPDATE_QUERY_DATA_FILTER_COUNTS, payload: updatedCounts })
 
+  const clearAllFilters = () =>
+    dispatch({ type: types.CLEAR_ALL_FILTERS })
+
   return {
     updateDataFilter,
-    updateQueryDataFilterCounts
+    updateQueryDataFilterCounts,
+    clearAllFilters
   }
 }
