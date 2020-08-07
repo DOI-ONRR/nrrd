@@ -254,7 +254,7 @@ export default class D3CircleChart {
   }
 
     color () {
-	console.debug("yDomain()", this.yDomain())
+//	console.debug("yDomain()", this.yDomain())
     const domain = d3.min([this.yDomain().length, this.maxCircles])
     return d3.scaleLinear()
       .domain([-1, domain])
@@ -306,7 +306,7 @@ export default class D3CircleChart {
     const width = this._width
     const height = this._height
       const color = this.color()
-            console.debug("color legend", color(2), color(1), color(0) )
+//            console.debug("color legend", color(2), color(1), color(0) )
 
     const yDomain = this.yDomain()
     const root = this._root

@@ -671,7 +671,6 @@ export default class D3StackedBarChart {
 	//      const domain = [...(new Set(r.sort((a, b) => a - b)))]
 	const domain = [...(new Set(r))]
 	this._xDomain = domain
-	console.debug("domain: ", domain, ".... from: ",r, "..from: ", this.data)
       return domain
     }
     catch (err) {
