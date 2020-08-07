@@ -83,9 +83,9 @@ const RevenueTopLocations = ({ title, ...props }) => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const location = (filterState[DFC.COUNTIES]) ? filterState[DFC.COUNTIES] : 'State'
+  const location = (filterState[DFC.MAP_LEVEL]) ? filterState[DFC.MAP_LEVEL] : 'State'
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
+  const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.MAP_LEVEL] : 'Hide'
   const locations = ['State', 'Offshore', 'Native American']
   if (offshore !== 'Hide') {
     locations.push('Offshore')
@@ -116,7 +116,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       })
-    console.debug('CHART DATA', chartData)
+     // console.debug('CHART DATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>

@@ -21,9 +21,11 @@ import {
   GROUP_BY_STICKY,
   BREAKOUT_BY,
   PERIOD,
-  PERIOD_TYPES,
+  MAP_LEVEL,
   FISCAL_YEAR,
-  CALENDAR_YEAR
+  CALENDAR_YEAR,
+  US_STATE_NAME,
+  PERIOD_TYPES
 } from '../../constants'
 
 import BaseButtonInput from './BaseButtonInput'
@@ -88,6 +90,7 @@ export const ProductSelectInput = createEnhancedSelect(PRODUCT, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
 export const StateOffshoreSelectInput = createEnhancedSelect(STATE_OFFSHORE_NAME, 'Multi')
+export const StateNameSelectInput = createEnhancedSelect(US_STATE_NAME, 'Multi')
 
 export const GroupByStickySelectInput = compose(
   BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[GROUP_BY_STICKY].default} showClearSelected={false} {...props} />),
@@ -103,5 +106,5 @@ export const BreakoutBySelectInput = compose(
 
 export const FilterToggleInput = ({ children, ...props }) => <BaseToggle data={['Filter']} {...props}>{children}</BaseToggle>
 
-export const MapLevelToggleInput = withDataFilterContext(BaseMultiToggle, COUNTIES)
+export const MapLevelToggleInput = withDataFilterContext(BaseMultiToggle, MAP_LEVEL)
 export const OffshoreRegionsSwitchInput = withDataFilterContext(BaseSwitch, OFFSHORE_REGIONS)

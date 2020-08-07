@@ -141,7 +141,7 @@ const DisbursementTrends = props => {
                         key={`sparkline${ index }`}
                         data={trend.histData}
                         highlightIndex={trend.histData.findIndex(
-                          x => x[0] === year
+                          x => x[0] === parseInt(year)
                         )} />
                     </TableCell>
                     <TableCell align="right">

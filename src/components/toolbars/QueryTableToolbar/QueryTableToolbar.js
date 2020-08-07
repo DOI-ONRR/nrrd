@@ -33,7 +33,8 @@ import {
   StateOffshoreSelectInput,
   PeriodSelectInput,
   FiscalYearSlider,
-  CalendarYearSlider
+  CalendarYearSlider,
+  StateNameSelectInput
 } from '../../inputs'
 
 import BaseButtonInput from '../../inputs/BaseButtonInput'
@@ -257,38 +258,32 @@ const isCountyEnabled = ({ state }) => (state[STATE_OFFSHORE_NAME] &&
   (!state[STATE_OFFSHORE_NAME].includes('Not')))
 
 const RevenueFilterToolbar = () => {
-  const countyEnabled = isCountyEnabled(useContext(DataFilterContext))
   return (
     <BaseToolbar isSecondary={true} >
       <LandTypeSelectInput />
       <RevenueTypeSelectInput />
       <StateOffshoreSelectInput />
-      <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
       <CommoditySelectInput />
     </BaseToolbar>
   )
 }
 
 const ProductionFilterToolbar = () => {
-  const countyEnabled = isCountyEnabled(useContext(DataFilterContext))
   return (
     <BaseToolbar isSecondary={true} >
       <LandTypeSelectInput />
       <StateOffshoreSelectInput />
-      <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
       <ProductSelectInput />
     </BaseToolbar>
   )
 }
 
 const DisbursementFilterToolbar = () => {
-  const countyEnabled = isCountyEnabled(useContext(DataFilterContext))
   return (
     <BaseToolbar isSecondary={true} >
       <RecipientSelectInput />
       <SourceSelectInput />
-      <StateOffshoreSelectInput defaultSelectAll={false} />
-      <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
+      <StateNameSelectInput defaultSelectAll={false} />
     </BaseToolbar>
   )
 }

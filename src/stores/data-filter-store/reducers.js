@@ -23,16 +23,20 @@ import {
   OFFSHORE_REGIONS,
   YEAR,
   LAND_TYPE,
-  PRODUCT
+  PRODUCT,
+  QUERY_COUNTS,
+  MAP_LEVEL,
+  STATE
 } from '../../constants'
 
 const types = Object.freeze({
   UPDATE_DATA_FILTER: 'UPDATE_DATA_FILTER',
+  UPDATE_QUERY_DATA_FILTER_COUNTS: 'UPDATE_QUERY_DATA_FILTER_COUNTS',
 })
 
 const reducer = (state, action) => {
   const { type, payload } = action
-  console.log('Data Filer Provider action', type, payload)
+
   switch (type) {
   case types.UPDATE_DATA_FILTER: {
     const dataType = payload.dataType || state.dataType
@@ -41,7 +45,11 @@ const reducer = (state, action) => {
 
     const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
 
-    return ({ dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
+    return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
+  }
+  case types.UPDATE_QUERY_DATA_FILTER_COUNTS: {
+    const currentQueryCounts = state[QUERY_COUNTS] || {}
+    return ({ ...state, [QUERY_COUNTS]: Object.assign(currentQueryCounts, payload.counts) })
   }
   default:
     return state
@@ -84,7 +92,7 @@ const initialState = {
     [FISCAL_YEAR]: '2019',
     [CALENDAR_YEAR]: '2019',
     [OFFSHORE_REGIONS]: false,
-    [COUNTIES]: 'state',
+    [MAP_LEVEL]: STATE,
     [YEAR]: 2019,
     dataTypesCache: {
       [REVENUE]: {
@@ -93,7 +101,7 @@ const initialState = {
         [FISCAL_YEAR]: '2019',
         [CALENDAR_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
-        [COUNTIES]: 'state',
+        [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
       },
       [PRODUCTION]: {
@@ -102,7 +110,7 @@ const initialState = {
         [FISCAL_YEAR]: '2019',
         [CALENDAR_YEAR]: '2018',
         [OFFSHORE_REGIONS]: false,
-        [COUNTIES]: 'state',
+        [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
       },
       [DISBURSEMENT]: {
@@ -111,7 +119,7 @@ const initialState = {
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
-        [COUNTIES]: 'state',
+        [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
       }
     }

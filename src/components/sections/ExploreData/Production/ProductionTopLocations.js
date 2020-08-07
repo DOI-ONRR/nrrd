@@ -16,8 +16,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   CircularProgress,
-  Container,
-  Grid,
   useTheme
 } from '@material-ui/core'
 
@@ -29,10 +27,15 @@ const APOLLO_QUERY = gql`
   query ProductionTopLocations($year: Int!, $location: String!, $commodity: String!, $state: String!, $period: String!) {
     state_production_summary: production_summary(
       where: {
+        # location_type - State, County, Offshore, Native American, Nationwide Federal
         location_type: {_eq: $location},
+        # year - 2019
         year: { _eq: $year },
+        # prduct ex - Oil (bbl)
         product: {_eq: $commodity},
+        # fipsCode
         state: {_eq: $state},
+        # Fiscal Year/Calendar Year
         period: {_eq: $period}
       },
         order_by: {total: desc}
@@ -45,7 +48,8 @@ const APOLLO_QUERY = gql`
       }
     production_summary(
       where: {
-        location_type: {_nin: ["Nationwide Federal", "County", ""]}, 
+        location_type: {_nin: ["Nationwide Federal", "County", ""]},
+        location: {_neq: "null"},
         year: { _eq: $year }, 
         product: {_eq: $commodity},
         period: {_eq: $period}
@@ -112,39 +116,40 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductionTopLocations = ({ title, ...props }) => {
+  // console.log('ProudctionTopLocations props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
 
-  let location = CONSTANTS.COUNTY
-  let state = ''
+  let locationType
+  const state = props.fipsCode || ''
 
   switch (props.regionType) {
   case CONSTANTS.STATE:
-    location = CONSTANTS.COUNTY
-    state = ''
+    locationType = CONSTANTS.COUNTY
     break
   case CONSTANTS.COUNTY:
-    location = ''
-    state = ''
+    locationType = ''
+    break
+  case CONSTANTS.OFFSHORE:
+    locationType = ''
     break
   default:
-    location = CONSTANTS.STATE
-    state = ''
+    locationType = props.fipsCode === 'NF' ? CONSTANTS.STATE : ''
     break
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const key = `PTL${ year }${ state }${ commodity }${ period }`
+
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
-      variables: { year, location, commodity, state, period },
-      skip: props.state === DFC.NATIVE_AMERICAN_FIPS || props.regionType === CONSTANTS.COUNTY || props.regionType === CONSTANTS.OFFSHORE || props.regionType === CONSTANTS.STATE
+      variables: { year, location: locationType, commodity, state, period },
+      skip: props.fipsCode === DFC.NATIVE_AMERICAN_FIPS || props.regionType === CONSTANTS.COUNTY || props.regionType === CONSTANTS.OFFSHORE
     })
 
-  const maxLegendWidth = props.maxLegendWidth
   if (loading) {
     return (
       <div className={classes.progressContainer}>
@@ -155,10 +160,11 @@ const ProductionTopLocations = ({ title, ...props }) => {
   if (error) return `Error! ${ error.message }`
 
   let chartData = []
-  let dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+  let dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
   let unitAbbr = ''
+
   if (data && (data.state_production_summary.length || data.production_summary.length)) {
-    if (data.state_production_summary.length > 0 && location === 'County') {
+    if (data.state_production_summary.length > 0 && locationType === CONSTANTS.COUNTY) {
       unitAbbr = data.state_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
@@ -168,21 +174,25 @@ const ProductionTopLocations = ({ title, ...props }) => {
           return r
         })
     }
-    else { // uncomment to get if (! props.abbr) { //Don't show top locations for any card except state
-      unitAbbr = data.production_summary[0].unit_abbr
-      let tmp = data.production_summary
-      if (props.abbr) {
-        tmp = data.production_summary.filter(d => d.location_name !== 'Native American lands')
+    else { // Don't show top locations for any card except state and nationwide federal
+      // quick and dirty - most definately probably a better way to handle this
+      if (locationType !== CONSTANTS.COUNTY) {
+        unitAbbr = data.production_summary[0].unit_abbr
+        let tmp = data.production_summary
+        if (props.fipsCode) {
+          tmp = data.production_summary.filter(d => d.location !== 'NA')
+        }
+        chartData = d3.nest()
+          .key(k => k.location_name)
+          .rollup(v => d3.sum(v, i => i.total))
+          .entries(tmp).map(item => {
+            const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
+            return r
+          })
       }
-      chartData = d3.nest()
-        .key(k => k.location_name)
-        .rollup(v => d3.sum(v, i => i.total))
-        .entries(tmp).map(item => {
-          const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
-          return r
-        })
     }
     dataSet = dataSet + ` (${ unitAbbr })`
+
     if (chartData.length > 0) {
       return (
         <Box className={classes.root}>
@@ -191,13 +201,13 @@ const ProductionTopLocations = ({ title, ...props }) => {
             <CircleChart
               key={key}
               data={chartData}
-              maxLegendWidth={maxLegendWidth}
+              maxLegendWidth={props.maxLegendWidth}
               xAxis='location_name'
               yAxis='total'
               format={ d => utils.formatToCommaInt(d) }
               circleLabel={
                 d => {
-                  if (location === 'State' && !props.abbr) {
+                  if (props.horizontal) {
                     const r = []
                     r[0] = d.location_name
                     r[1] = utils.formatToCommaInt(d.total) + ' ' + d.unit_abbr
@@ -208,7 +218,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
                   }
                 }
               }
-              xLabel={location}
+              xLabel={locationType}
               yLabel={dataSet}
               maxCircles={6}
               minColor={theme.palette.green[100]}

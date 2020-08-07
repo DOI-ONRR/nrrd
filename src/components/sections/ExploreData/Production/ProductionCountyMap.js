@@ -6,10 +6,11 @@ import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import CONSTANTS from '../../../../js/constants'
 
 // import CONSTANTS from '../../../../js/constants'
 import mapCounties from '../counties.json'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -35,7 +36,15 @@ const useStyles = makeStyles(theme => ({
 
 const PRODUCTION_QUERY = gql`
   query ProductionCountyMap($year: Int!, $product: String!, $state: String!, $period: String!) {
-    production_summary(where: {location_type: {_eq: "County"}, state: {_eq: $state}, year: { _eq: $year}, product: {_eq: $product }, period: { _eq: $period }}) {
+    production_summary(
+      where: {
+        location_type: {_eq: "County"},
+        location: {_neq: "null"},
+        state: {_eq: $state},
+        year: { _eq: $year},
+        product: {_eq: $product },
+        period: { _eq: $period }
+      }) {
       year
       location
       total
@@ -49,34 +58,40 @@ const ProductionCountyMap = props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+  const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY ' + year : 'CY ' + year
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-  let state = ''
-  let location = 'County'
-  if (props.abbr && props.abbr.length === 2) {
-    location = 'County'
-    state = props.abbr
-  }
-  else if (props.abbr && props.abbr.length === 5) {
-    location = ''
-    state = ''
-  }
-  else {
-    location = 'State'
-    state = ''
+
+  const {
+    fipsCode,
+    regionType,
+    minColor,
+    maxColor
+  } = props
+
+  let locationType
+  switch (regionType) {
+  case CONSTANTS.STATE:
+    locationType = CONSTANTS.STATE
+    break
+  case CONSTANTS.COUNTY:
+    locationType = CONSTANTS.COUNTY
+    break
+  case CONSTANTS.OFFSHORE:
+    locationType = CONSTANTS.OFFSHORE
+    break
+  default:
+    locationType = CONSTANTS.COUNTY
+    break
   }
 
   const { loading, error, data } = useQuery(PRODUCTION_QUERY, {
-    variables: { year: year, product: product, state: state, period: period },
-    skip: props.state === DFC.NATIVE_AMERICAN_FIPS || location === ''
+    variables: { year: year, product: product, state: fipsCode, period: period },
+    skip: fipsCode === DFC.NATIVE_AMERICAN_FIPS || locationType === ''
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
-  const onZoomEnd = event => {
 
-  }
-  const showCountyContent = state === DFC.NATIONWIDE_FEDERAL_FIPS || state === DFC.NATIVE_AMERICAN_FIPS || props.regionType === 'County' || props.regionType === 'Offshore'
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data && data.production_summary.length > 0) {
@@ -90,17 +105,17 @@ const ProductionCountyMap = props => {
       <>
         {mapData &&
        <Box className={classes.root}>
-         {location === 'County' &&
+         {(locationType === CONSTANTS.COUNTY || locationType === CONSTANTS.STATE) &&
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Production by county</Box>
            <Map
-             key={'PCM' + dataSet + '_' + props.fipsCode }
+             key={'PCM' + dataSet + '_' + fipsCode }
              mapFeatures={mapFeatures}
              mapJsonObject={mapCounties}
              mapData={mapData}
-             minColor={props.minColor}
-             maxColor={props.maxColor}
-             zoomTo={props.fipscode}
+             minColor={minColor}
+             maxColor={maxColor}
+             zoomTo={fipsCode}
            />
          </>
          }

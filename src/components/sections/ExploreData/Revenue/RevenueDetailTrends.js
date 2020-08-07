@@ -47,7 +47,7 @@ const RevenueDetailTrends = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
@@ -63,7 +63,7 @@ const RevenueDetailTrends = props => {
   if (error) return `Error! ${ error.message }`
 
   const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
-  const dataKey = dataSet + '-' + state
+  const dataKey = dataSet + '-' + state 
   let sparkData = []
   let sparkMin
   let sparkMax
@@ -80,7 +80,7 @@ const RevenueDetailTrends = props => {
     sparkMin = periodData.reduce((min, p) => parseInt(periodData[0].period_date.substring(0, 4)) < min ? parseInt(periodData[0].period_date.substring(0, 4)) : min, parseInt(periodData[0].period_date.substring(0, 4)))
     sparkMax = periodData.reduce((max, p) => parseInt(periodData[0].period_date.substring(0, 4)) > max ? parseInt(periodData[0].period_date.substring(0, 4)) : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
 
-    console.debug('sparkMin', sparkMin, periodData)
+     // console.debug('sparkMin', sparkMin, periodData)
     fiscalData = d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
@@ -99,7 +99,7 @@ const RevenueDetailTrends = props => {
 
     // sparkline index
     highlightIndex = sparkData.findIndex(
-      x => x[0] === year
+      x => x[0] === parseInt(year)
     )
     locData = sparkData[highlightIndex][1]
   }
