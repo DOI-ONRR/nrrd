@@ -407,6 +407,9 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
           disabled: classes.selectDisabled
         }}
         displayEmpty
+        MenuProps={{
+          disableAutoFocusItem: true
+        }}
       >
         <MenuItem key={0} role="select-menu" value={selectAllOptions ? 'selectNone' : 'selectAll'}>
           <Checkbox checked={selectAllOptions} />
