@@ -128,6 +128,18 @@ const ExploreDataToolbar = props => {
         production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
           commodity
         }
+        production_top_commodity_list: fiscal_production_summary(
+          where: {
+            commodity: {_neq: "", _in: ["Oil (bbl)", "Gas (mcf)", "Coal (tons)"]}
+          }, distinct_on: commodity, order_by: {commodity: desc}) {
+          commodity
+        }
+        production_commodity_list: fiscal_production_summary(
+          where: {
+            commodity: {_neq: "", _nin: ["Oil (bbl)", "Gas (mcf)", "Coal (tons)"]}
+          }, distinct_on: commodity, order_by: {commodity: asc}) {
+            commodity
+        }
         # replacing in favor of commodity view which has the commodity_order field to order by
         # revenue_commodity: revenue_commodity_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
         #   commodity
@@ -169,6 +181,8 @@ const ExploreDataToolbar = props => {
   const {
     cards
   } = pageState
+
+  const commodityList = [...data.onrr.production_top_commodity_list.map(item => item.commodity), ...data.onrr.production_commodity_list.map(item => item.commodity)]
 
   const toggleExploreDataToolbar = event => {
     setExploreDataTabOpen(!exploreDataTabOpen)
@@ -256,7 +270,7 @@ const ExploreDataToolbar = props => {
           {(dataType === 'Production') &&
             <CommoditySelectInput
               dataFilterKey={COMMODITY}
-              data={productionCommodityOptions}
+              data={commodityList}
               defaultSelected={commodity || 'Oil (bbl)'}
               label='Commodity'
               selectType='Single'
