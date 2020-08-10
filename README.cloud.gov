@@ -83,8 +83,9 @@ cf env $DB_ENV
 # in this example port 7222 has tunnel to psql-sandbox (source) 
 # port 7223 has port to psql-onrr (target)
 
+export DATE=`date +'%F_%T'`
 
-pg_dump postgres://$creds@localhost:$DB_PORT/$dbname -F t -f psql-sandbox.`date +'%F_%T'`.pg
+pg_dump postgres://$creds@localhost:$DB_PORT/$dbname -F t -f psql-sandbox.$DATE.pg
 
 #drop existing db I'm not sure this is required in all cases
 psql postgres://$creds@localhost:7223/$dbname
@@ -92,7 +93,7 @@ cgawsbr...od8py3w7sukk91mnq=> drop owned by current_user cascade;
 cgawsbr...od8py3w7sukk91mnq=> create schema public;
 cgawsbr...od8py3w7sukk91mnq=> quit
 
-$time pg_restore --user=$DB_USER --port=$DB_PORT --host=$DB_HOST  --clean --no-owner --no-acl --dbname=$DB_DATABASE psql-sandbox.03122020.pg
+$time pg_restore --user=$DB_USER --port=$DB_PORT --host=$DB_HOST  --clean --no-owner --no-acl --dbname=$DB_DATABASE psql-sandbox.$DATE.pg
 Password: <ENTER PASSWORD>
 .....
 

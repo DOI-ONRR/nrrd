@@ -16,8 +16,8 @@ import {
   CSV,
   DOWNLOAD_DATA_TABLE,
   STATE_OFFSHORE_NAME,
-  PERIOD_TYPES
-
+  PERIOD_TYPES,
+  LAND_TYPE
 } from '../../../constants'
 
 import {
@@ -33,16 +33,15 @@ import {
   StateOffshoreSelectInput,
   PeriodSelectInput,
   FiscalYearSlider,
-  CalendarYearSlider
+  CalendarYearSlider,
+  StateNameSelectInput
 } from '../../inputs'
 
-import BaseButtonInput from '../../inputs/BaseButtonInput'
+import ClearAllFiltersBtn from '../../inputs/ClearAllFiltersBtn'
 
 import {
   FilterTableIconImg,
-  IconDownloadBaseImg,
-  IconDownloadXlsImg,
-  IconDownloadCsvImg
+  IconDownloadBaseImg
 } from '../../images'
 
 import BaseToolbar from '../BaseToolbar'
@@ -257,38 +256,35 @@ const isCountyEnabled = ({ state }) => (state[STATE_OFFSHORE_NAME] &&
   (!state[STATE_OFFSHORE_NAME].includes('Not')))
 
 const RevenueFilterToolbar = () => {
-  const countyEnabled = isCountyEnabled(useContext(DataFilterContext))
   return (
     <BaseToolbar isSecondary={true} >
       <LandTypeSelectInput />
       <RevenueTypeSelectInput />
       <StateOffshoreSelectInput />
-      <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
       <CommoditySelectInput />
+      <ClearAllFiltersBtn />
     </BaseToolbar>
   )
 }
 
 const ProductionFilterToolbar = () => {
-  const countyEnabled = isCountyEnabled(useContext(DataFilterContext))
   return (
     <BaseToolbar isSecondary={true} >
       <LandTypeSelectInput />
       <StateOffshoreSelectInput />
-      <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
       <ProductSelectInput />
+      <ClearAllFiltersBtn />
     </BaseToolbar>
   )
 }
 
 const DisbursementFilterToolbar = () => {
-  const countyEnabled = isCountyEnabled(useContext(DataFilterContext))
   return (
     <BaseToolbar isSecondary={true} >
       <RecipientSelectInput />
       <SourceSelectInput />
-      <StateOffshoreSelectInput defaultSelectAll={false} />
-      <CountySelectInput helperText={countyEnabled ? undefined : 'Select a single State to view County options.'} disabled={!countyEnabled} />
+      <StateNameSelectInput defaultSelectAll={false} />
+      <ClearAllFiltersBtn />
     </BaseToolbar>
   )
 }

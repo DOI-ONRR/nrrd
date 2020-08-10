@@ -106,6 +106,7 @@ const RevenueOverTime = props => {
   let chartData = [[]]
   if (data && cards && cards.length > 0 && data.revenue_summary.length > 0) {
 
+
     const years = [...new Set(d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
@@ -131,7 +132,7 @@ const RevenueOverTime = props => {
 
     //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]
-    console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
+     // console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
