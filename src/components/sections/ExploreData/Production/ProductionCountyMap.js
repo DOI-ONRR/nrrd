@@ -36,7 +36,15 @@ const useStyles = makeStyles(theme => ({
 
 const PRODUCTION_QUERY = gql`
   query ProductionCountyMap($year: Int!, $product: String!, $state: String!, $period: String!) {
-    production_summary(where: {location_type: {_eq: "County"}, state: {_eq: $state}, year: { _eq: $year}, product: {_eq: $product }, period: { _eq: $period }}) {
+    production_summary(
+      where: {
+        location_type: {_eq: "County"},
+        location: {_neq: "null"},
+        state: {_eq: $state},
+        year: { _eq: $year},
+        product: {_eq: $product },
+        period: { _eq: $period }
+      }) {
       year
       location
       total

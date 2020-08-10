@@ -1,5 +1,6 @@
 export const QUERY_TABLE_FILTER_DEFAULT = 'query_table_filter_default'
 export const EXPLORE_DATA_FILTER_DEFAULT = 'explore_data_filter_default'
+export const QUERY_COUNTS = 'queryCounts'
 
 export const DATA_TYPE = 'dataType'
 export const LOCATION_NAME = 'locationName'
@@ -14,7 +15,9 @@ export const OFFSHORE_REGIONS = 'offshoreRegions'
 export const US_STATE = 'state'
 export const US_STATE_ABBR = 'stateAbbr'
 export const US_STATES = 'usStates'
+export const US_STATE_NAME = 'usStateName'
 export const COUNTY = 'county'
+export const COUNTY_NAME = 'county_name'
 export const COUNTIES = 'counties'
 export const PRODUCT = 'product'
 export const COMMODITY = 'commodity'
@@ -31,6 +34,7 @@ export const RECIPIENT = 'recipient'
 export const SOURCE = 'source'
 export const STATE_OFFSHORE_NAME = 'stateOffshoreName'
 export const MAP_LEVEL = 'mapLevel'
+export const LOCAL_RECIPIENT = 'localRecipient'
 
 export const PERIOD_FISCAL_YEAR = 'Fiscal Year'
 export const PERIOD_CALENDAR_YEAR = 'Calendar Year'
@@ -149,6 +153,10 @@ export const DISPLAY_NAMES = {
     default: 'State',
     plural: 'States',
   },
+  [US_STATE_NAME]: {
+    default: 'State',
+    plural: 'States',
+  },
   [OFFSHORE_REGION]: {
     default: 'Offshore region',
     plural: 'Offshore regions',
@@ -189,4 +197,8 @@ export const DISPLAY_NAMES = {
     default: 'Calendar year',
     plural: 'Calendar years',
   },
+  [LOCAL_RECIPIENT]: {
+    default: 'Local recipient',
+    plural: 'Local recipients'
+  }
 }

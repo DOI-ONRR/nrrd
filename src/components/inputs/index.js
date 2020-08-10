@@ -24,6 +24,7 @@ import {
   MAP_LEVEL,
   FISCAL_YEAR,
   CALENDAR_YEAR,
+  US_STATE_NAME,
   PERIOD_TYPES
 } from '../../constants'
 
@@ -89,6 +90,7 @@ export const ProductSelectInput = createEnhancedSelect(PRODUCT, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
 export const StateOffshoreSelectInput = createEnhancedSelect(STATE_OFFSHORE_NAME, 'Multi')
+export const StateNameSelectInput = createEnhancedSelect(US_STATE_NAME, 'Multi')
 
 export const GroupByStickySelectInput = compose(
   BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[GROUP_BY_STICKY].default} showClearSelected={false} {...props} />),
