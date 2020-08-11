@@ -15,8 +15,6 @@ For more information about the history of the site, see [about this site](https:
 ## Contributing
 Content and feature suggestions are welcome via [GitHub Issues](https://github.com/ONRR/nrrd/issues). Code contributions are welcome via [pull request](https://help.github.com/articles/using-pull-requests/), although of course we cannot guarantee your changes will be included in the site.
 
-See [CONTRIBUTING](CONTRIBUTING.md) for more information about how to pitch in.
-
 ### Public domain
 
 This project is in the worldwide [public domain](LICENSE.md). As stated in [CONTRIBUTING](CONTRIBUTING.md):
