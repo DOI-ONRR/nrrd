@@ -210,12 +210,29 @@ const ProductionTopLocations = ({ title, ...props }) => {
                   if (props.horizontal) {
                     const r = []
                     r[0] = d.location_name
+                    if (r[0] === 'Native American') {
+                      r[0] = 'Native American lands'
+                    }
+                    else if (r[0] === 'Gulf of Mexico, Central Gulf of Mexico') {
+                      r[0] = 'Central Gulf'
+                    }
+                    else if (r[0] === 'Gulf of Mexico, Western Gulf of Mexico') {
+                      r[0] = 'Western Gulf'
+                    }
                     r[1] = utils.formatToCommaInt(d.total) + ' ' + d.unit_abbr
                     return r
                   }
                   else {
                     return ['', '']
                   }
+                }
+              }
+              legendLabel={
+                d => {
+                  if (d === 'Native American') {
+                    d = 'Native American lands'
+                  }
+                  return d
                 }
               }
               xLabel={locationType}
