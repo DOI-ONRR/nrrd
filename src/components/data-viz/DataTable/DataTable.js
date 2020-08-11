@@ -138,13 +138,22 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
   const [expandedGroups, setExpandedGroups] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
-  const [fixedColumns, setFixedColumns] = useState([])
+  const [fixedColumsn, setFixedColumns] = useState([])
+  const [sorting, setSorting] = useState([]) // { columnName: 'city', direction: 'asc' }
   const [totalSummaryItems, setTotalSummaryItems] = useState([])
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
   const [aggregatedSums, setAggregatedSums] = useState()
   const [defaultColumnWidths] = useState(columnNames ? columnNames.map((column, index) =>
     (column.name.startsWith('y')) ? ({ columnName: column.name, width: 200 }) : ({ columnName: column.name, width: 250 })) : [])
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
+
+  const getSortingColumns = hiddenCols => {
+    if (state[DATA_TYPE] === REVENUE) {
+      const yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !hiddenCols.includes(item.name))).map(item => item.name)
+      return [{ columnName: yearColumns.slice(-1)[0], direction: 'desc' }]
+    }
+    return []
+  }
 
   // Return true if we don't have a count for the column
   // Later we can implement a different approach if needed
@@ -186,7 +195,7 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
     return _groupBySticky || state[GROUP_BY]
   }
   const _groupBy = getGroupBy()
-  console.log(_groupBy)
+
   const getUniqueGroupBy = () => {
     if (_groupBy && _breakoutBy !== _groupBy && _groupBy !== _groupBySticky && columnIsNotNull(_groupBy)) {
       return _groupBy
@@ -340,6 +349,7 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
     setColumnOrder(getColumnOrder())
 
     setHiddenColumnNames(hiddenCols)
+    setSorting(getSortingColumns(hiddenCols))
     setGroupSummaryItems(getGroupSummaryItems())
     setTotalSummaryItems(getTotalSummaryItems())
 
@@ -415,7 +425,10 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
               <TotalProvider
                 for={columnNames.filter(item => !item.name.startsWith('y')).map(item => item.name)}
               />
-              <SortingState />
+              <SortingState
+                sorting={sorting}
+                onSortingChange={setSorting}
+              />
               <GroupingState
                 grouping={grouping}
                 expandedGroups={expandedGroups}
