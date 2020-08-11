@@ -364,7 +364,6 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
   }
 
   useEffect(() => {
-    console.log('BaseSelectInput selectedOptions', selectedOptions)
     if (!disabled) {
       if (selectAllOptions) {
         setSelectedOptions(data.map(item => item.option))
@@ -376,13 +375,18 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
   }, [data])
 
   useEffect(() => {
-    if (selected && !isEqual(selected, selectedOptions)) {
+    if (selected) {
       if (typeof selected === 'string') {
-        handleChange(selected.split(','))
+        if (!isEqual(selected.split(','), selectedOptions)) {
+          handleChange(selected.split(','))
+        }
       }
-      else {
+      else if (!isEqual(selected, selectedOptions)) {
         handleChange(selected)
       }
+    }
+    else if (!selected && selectedOptions && selectedOptions.length > 0) {
+      handleChange((defaultSelectAll ? ['selectAll'] : []))
     }
   }, [selected])
 

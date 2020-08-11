@@ -180,11 +180,13 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
         return getNewGroupByColumn()
       }
     }
-
+    else if (!_groupBySticky && !state[GROUP_BY]) {
+      return getNewGroupByColumn()
+    }
     return _groupBySticky || state[GROUP_BY]
   }
   const _groupBy = getGroupBy()
-
+  console.log(_groupBy)
   const getUniqueGroupBy = () => {
     if (_groupBy && _breakoutBy !== _groupBy && _groupBy !== _groupBySticky && columnIsNotNull(_groupBy)) {
       return _groupBy

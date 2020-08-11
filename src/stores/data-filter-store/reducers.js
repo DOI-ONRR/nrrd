@@ -22,7 +22,6 @@ import {
   EXPLORE_DATA_FILTER_DEFAULT,
   OFFSHORE_REGIONS,
   YEAR,
-  LAND_TYPE,
   PRODUCT,
   QUERY_COUNTS,
   MAP_LEVEL,
@@ -32,6 +31,7 @@ import {
 const types = Object.freeze({
   UPDATE_DATA_FILTER: 'UPDATE_DATA_FILTER',
   UPDATE_QUERY_DATA_FILTER_COUNTS: 'UPDATE_QUERY_DATA_FILTER_COUNTS',
+  CLEAR_ALL_FILTERS: 'CLEAR_ALL_FILTERS',
 })
 
 const reducer = (state, action) => {
@@ -50,6 +50,20 @@ const reducer = (state, action) => {
   case types.UPDATE_QUERY_DATA_FILTER_COUNTS: {
     const currentQueryCounts = state[QUERY_COUNTS] || {}
     return ({ ...state, [QUERY_COUNTS]: Object.assign(currentQueryCounts, payload.counts) })
+  }
+  case types.CLEAR_ALL_FILTERS: {
+    const dataType = state.dataType
+
+    const dataTypeCache = {
+      [DATA_TYPE]: state[DATA_TYPE],
+      [PERIOD]: state[PERIOD],
+      [FISCAL_YEAR]: state[FISCAL_YEAR],
+      [CALENDAR_YEAR]: state[CALENDAR_YEAR]
+    }
+
+    const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
+
+    return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
   }
   default:
     return state
