@@ -571,7 +571,7 @@ const MapContext = props => {
       mapZoom: mapK,
       mapX: mapX,
       mapY: mapY,
-	onZoomEnd: onZoomEnd,
+      onZoomEnd: onZoomEnd,
       onClick: onClick
     })
 
