@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+Sconsoimport React, { useContext } from 'react'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
@@ -117,7 +117,6 @@ const RevenueDetailTrends = props => {
     )
     locData = sparkData[highlightIndex][1]  
 
-      console.debug("DWGHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
 
   return (
     <>

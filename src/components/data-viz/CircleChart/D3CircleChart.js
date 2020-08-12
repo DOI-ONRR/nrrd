@@ -188,7 +188,6 @@ export default class D3CircleChart {
     const yAxis = this.yAxis
     const self = this
       const color = this.color()
-      console.debug("color legend", color(2), color(1), color(0) )
     const yDomain = this.yDomain()
     const columns = ['', this.xLabel.replace('_', ' '), this.yLabel.replace('_', ' ')]
     const table = d3.select(this.container.children[1]).append('table').attr('class', 'legend-table')
