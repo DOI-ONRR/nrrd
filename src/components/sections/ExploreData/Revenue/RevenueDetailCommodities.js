@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-
+import * as d3 from 'd3'
 import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -29,10 +29,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query RevenueCommodityQuery($year: Int!, $state: String!, $period: String!) {
+  query RevenueCommodityQuery($year: Int!, $state: String!, $period: String!, $commodities: [String!]) {
     # Revenue commodity summary
     revenue_summary(
-      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period} },
+      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period}, commodity: {_in: $commodities} },
       order_by: { year: asc, total: desc }
     ) {
       year
@@ -51,25 +51,27 @@ const RevenueDetailCommodities = props => {
   const year = filterState[DFC.YEAR]
   const state = props.fipsCode
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year: year, state: state, period: period }
+      variables: { year: year, state: state, period: period, commodities }
   })
 
   const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
-  const dataKey = dataSet + '-' + state
+    const dataKey = dataSet + '-' + state +  (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
   let chartData
 
   if (loading) return ''
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-    chartData = data
+      chartData = data
+      
   }
 
   return (
     <>
-      { chartData.revenue_summary.length > 0
+	  { (chartData.revenue_summary.length > 0 )
         ? (
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Commodities</Box>
@@ -103,8 +105,6 @@ const RevenueDetailCommodities = props => {
         )
         : (
           <Box className={classes.boxSection}>
-            <Box component="h4" fontWeight="bold" mb={2}>Commodities</Box>
-            <Box fontSize="subtitle2.fontSize">No commodities generated revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
           </Box>
         )
       }
