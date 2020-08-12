@@ -187,7 +187,7 @@ export default class D3CircleChart {
     const xAxis = this.xAxis
     const yAxis = this.yAxis
     const self = this
-    const color = this.color()
+      const color = this.color()
     const yDomain = this.yDomain()
     const columns = ['', this.xLabel.replace('_', ' '), this.yLabel.replace('_', ' ')]
     const table = d3.select(this.container.children[1]).append('table').attr('class', 'legend-table')
@@ -252,10 +252,11 @@ export default class D3CircleChart {
     return value
   }
 
-  color () {
+    color () {
+//	console.debug("yDomain()", this.yDomain())
     const domain = d3.min([this.yDomain().length, this.maxCircles])
     return d3.scaleLinear()
-      .domain([0, domain])
+      .domain([-1, domain])
       .range([this.minColor, this.maxColor])
   }
 
@@ -303,7 +304,9 @@ export default class D3CircleChart {
 
     const width = this._width
     const height = this._height
-    const color = this.color()
+      const color = this.color()
+//            console.debug("color legend", color(2), color(1), color(0) )
+
     const yDomain = this.yDomain()
     const root = this._root
     let focus = root
@@ -366,8 +369,9 @@ export default class D3CircleChart {
       // })
       .attr('fill', (d, i) => {
         // console.debug("fill attr", d,i)
-        if (i === 0) return '#f5f5f5'
-        return d.children ? color(d.depth) : color(yDomain.length - i)
+          if (i === 0) return '#f5f5f5'
+	  // color(yDomain.length - i + 1) add one more because first circle is root node 
+        return d.children ? color(d.depth) : color(yDomain.length - i + 1) 
       })
       // .attr('pointer-events', d => !d.children ? 'none' : null)
       .on('mouseover', mouseover)

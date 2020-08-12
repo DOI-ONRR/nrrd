@@ -26,9 +26,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query RevenueDetailTrends($state: String!, $period: String!, $year: Int!) {
+  query RevenueDetailTrends($state: String!, $period: String!, $year: Int!, $commodities: [String!] ) {
     revenue_summary(
-      where: { location: { _eq: $state }, period: {_eq: $period} },
+
+      where: { location: { _eq: $state }, period: {_eq: $period}, commodity: {_in: $commodities}  },
       order_by: { year: asc, location: asc }
     ) {
       year
@@ -47,12 +48,24 @@ const RevenueDetailTrends = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-  const state = props.fipsCode
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+    const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+    const state = props.fipsCode
+    const name = props.name
+    let commodityText = 'revenue'
+  if (commodities && commodities.length === 1) {
+    commodityText = commodities[0].toLowerCase() + ' revenue'
+  }
+  else if (commodities && commodities.length > 1 ) {
+    commodityText = 'revenue from the selected commodities'
+  }
+
+  
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: CONSTANTS.FISCAL_YEAR, year: year }
+      variables: { state: state, period: period, year: year, commodities: commodities }
   })
+
 
   const closeCard = item => {
     props.closeCard(props.fips_code)
@@ -73,7 +86,8 @@ const RevenueDetailTrends = props => {
   let locationTotalData
   let locData
 
-  if (data) {
+  if (data &&
+      data.revenue_summary.length > 0) {
     periodData = data.period
 
     // set min and max trend years
@@ -101,8 +115,8 @@ const RevenueDetailTrends = props => {
     highlightIndex = sparkData.findIndex(
       x => x[0] === parseInt(year)
     )
-    locData = sparkData[highlightIndex][1]
-  }
+    locData = sparkData[highlightIndex][1]  
+
 
   return (
     <>
@@ -122,6 +136,10 @@ const RevenueDetailTrends = props => {
       </Box>
     </>
   )
+  } else {
+    return (<span>{name} has had no federal {commodityText} since 2003.</span>)
+  }
+  
 }
 
 export default RevenueDetailTrends
