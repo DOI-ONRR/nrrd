@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 // get region details from map object
 const getRegionProperties = location => {
   // console.log('getRegionProperties input: ', location)
-
+  const offshoreRegions = ['AKR', 'AOR', 'GMR', 'POR']
   let selectedObj
 
   switch (location.region_type) {
@@ -61,14 +61,20 @@ const getRegionProperties = location => {
     break
   case CONSTANTS.OFFSHORE:
     // console.log('mapStatesOffshore: ', mapStatesOffshore)
-    selectedObj = mapStatesOffshore.objects['states-offshore-geo'].geometries.filter(obj => {
-      if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
-        return Object.assign(obj, { locData: location })
-      }
-      else {
-        console.warn(`Unable to find offshore id '${ location.fips_code }' in states-offshore-geo`)
-      }
-    })
+    if (offshoreRegions.includes(location.fips_code)) {
+      return { id: location.fips_code, properties: { region: location.fips_code, name: location.location_name } }
+    }
+    else {
+      selectedObj = mapStatesOffshore.objects['states-offshore-geo'].geometries.filter(obj => {
+        // console.log('offshore obj: ', obj)
+        if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
+          return Object.assign(obj, { locData: location })
+        }
+        else {
+          console.warn(`Unable to find offshore id '${ location.fips_code }' in states-offshore-geo`)
+        }
+      })
+    }
     break
   default:
     console.warn('Unable to find state, county or offshore area')
@@ -174,7 +180,7 @@ const SearchLocationsInput = props => {
     // console.log('handleChange val: ', val)
     try {
       const item = getRegionProperties(val)
-      onLink(item[0])
+      onLink(item[0] ? item[0] : item)
       setInput('')
       setKeyCount(keyCount + 1)
     }
