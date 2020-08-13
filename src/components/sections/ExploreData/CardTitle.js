@@ -40,13 +40,13 @@ const CardTitle = props => {
       {/* Counties */}
       { (fips && fips.length === 5) &&
         <Grid container>
-          {(card.county && card.districtType) &&
+          {(card.county) &&
             <>
               <Grid item xs={12} className={classes.cardTitle}>{card.county} {card.districtType}</Grid>
               <Grid item xs={12} className={classes.cardSubtitle}>{card.name}</Grid>
             </>
           }
-          {(!card.county && !card.districtType) &&
+          {(card.county === '') &&
             <>
               <Grid item xs={12} className={classes.cardTitle}>{card.locationName}</Grid>
               <Grid item xs={12} className={classes.cardSubtitle}>{state[0].properties.name}</Grid>
