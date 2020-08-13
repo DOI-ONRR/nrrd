@@ -167,7 +167,8 @@ export default class D3StackedBarChart {
         const padding = (self.xScale.bandwidth() * 0.2)
         let xPos = 0
 
-        Object.keys(self.xGroups).map((name, index) => {
+          Object.keys(self.xGroups).sort().map((name, index) => {
+	      
           const groupLineWidth = xPos + (groupItemWidth * self.xGroups[name].length) - padding
 
           groupLines.append('line')
@@ -667,8 +668,9 @@ export default class D3StackedBarChart {
       const r = this.data.map((row, i) => {
         return row[this.xAxis]
       })
-      const domain = [...(new Set(r.sort((a, b) => a - b)))]
-      this._xDomain = domain
+	//      const domain = [...(new Set(r.sort((a, b) => a - b)))]
+	const domain = [...(new Set(r))]
+	this._xDomain = domain
       return domain
     }
     catch (err) {

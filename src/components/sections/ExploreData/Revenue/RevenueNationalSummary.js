@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import * as d3 from 'd3'
 
 import Link from '../../../Link'
 
@@ -31,8 +32,8 @@ import CONSTANTS from '../../../../js/constants'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
-  query RevenueNational($year: Int!, $period: String!) {
-   revenue_type_class_summary(order_by: {land_type_order: asc, revenue_type_order: asc}, where: {year: {_eq: $year}, period: { _eq: $period} }) {
+  query RevenueNational($year: Int!, $period: String!, $commodities: [String!]) {
+   revenue_type_class_summary(order_by: {revenue_type_order: asc, land_type_order: asc}, where: {year: {_eq: $year}, period: { _eq: $period}, commodity: {_in: $commodities}  }) {
     revenue_type
     year
     land_type
@@ -61,10 +62,12 @@ const RevenueNationalSummary = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  const commodity_key= (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY]: 'All'
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year, period: period }
+    variables: { year: year, period: period, commodities: commodities  }
   })
 
   const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
@@ -89,8 +92,8 @@ const RevenueNationalSummary = props => {
   if (data) {
     groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
-
     nationalRevenueData = Object.entries(groupData)
+
   }
 
   return (
@@ -124,7 +127,7 @@ const RevenueNationalSummary = props => {
                     </TableCell>
                     <TableCell style={{ width: '65%' }}>
                       <StackedBarChart
-                        key={'NRS' + year + '_' + i}
+                        key={'NRS' + year + '_' + i + commodity_key}
                         data={item[1]}
                         legendFormat={v => {
                           if (v === 0) {
