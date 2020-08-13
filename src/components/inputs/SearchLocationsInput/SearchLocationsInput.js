@@ -11,6 +11,9 @@ import {
   useMediaQuery
 } from '@material-ui/core'
 
+import parse from 'autosuggest-highlight/parse'
+import match from 'autosuggest-highlight/match'
+
 import { Autocomplete } from '@material-ui/lab'
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
 
@@ -177,7 +180,7 @@ const SearchLocationsInput = props => {
   }
 
   const handleChange = val => {
-    // console.log('handleChange val: ', val)
+    console.log('handleChange val: ', val)
     try {
       const item = getRegionProperties(val)
       onLink(item[0] ? item[0] : item)
@@ -209,33 +212,7 @@ const SearchLocationsInput = props => {
     return optionLabel
   }
 
-  const renderLabel = item => {
-    const label = renderOptionLabel(item)
-    const searchString = input
-
-    if (searchString) {
-      const index = label.toLowerCase().indexOf(searchString.toLowerCase())
-
-      if (index !== -1) {
-        const length = searchString.length
-        const prefix = label.substring(0, index)
-        const suffix = label.substring(index + length)
-        const match = label.substring(index, index + length)
-
-        return (
-          <span>
-            {prefix}<Box variant="span" fontWeight="bold" display="inline">{match}</Box>{suffix}
-          </span>
-        )
-      }
-    }
-
-    return (
-      <span>{label}</span>
-    )
-  }
-
-  const OPTIONS = data.onrr.distinct_locations
+  const OPTIONS = data.onrr.distinct_locations.map(location => ({ ...location, locationLabel: renderOptionLabel(location) }))
 
   return (
     <Autocomplete
@@ -245,7 +222,7 @@ const SearchLocationsInput = props => {
       inputValue={input}
       options={OPTIONS}
       ListboxComponent={ListboxComponent}
-      getOptionLabel={option => option.location_name}
+      getOptionLabel={option => option.locationLabel}
       style={{ width: '100%', maxWidth: 250 }}
       renderInput={params => (
         <TextField
@@ -256,7 +233,20 @@ const SearchLocationsInput = props => {
           onChange={handleSearch}
         />
       )}
-      renderOption={option => renderLabel(option)}
+      renderOption={(option, { inputValue }) => {
+        const matches = match(option.locationLabel, inputValue)
+        const parts = parse(option.locationLabel, matches)
+
+        return (
+          <div>
+            {parts.map((part, index) => (
+              <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 }}>
+                {part.text}
+              </span>
+            ))}
+          </div>
+        )
+      }}
       onChange={(e, v) => handleChange(v)}
       popupIcon={<KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
       classes={{
