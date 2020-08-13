@@ -21,26 +21,23 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const CardTitle = props => {
-  console.log('CardTitle props: ', props)
   const classes = useStyles()
   const card = props.card
   const fips = props.card.fipsCode
   const states = mapStates.objects['states-geo'].geometries
 
-  // console.log('mapStates: ', states)
-
   const state = states.filter(state => state.id === card.state)
-
-  // console.log('state obj: ', state)
 
   return (
     <>
+      {/* States */}
       { (fips && fips.length === 2) &&
         <Grid container>
           <Grid item xs={12} className={classes.cardTitle}>{card.name}</Grid>
           <Grid item xs={12} className={classes.cardSubtitle}>{CONSTANTS.USA}</Grid>
         </Grid>
       }
+      {/* Counties */}
       { (fips && fips.length === 5) &&
         <Grid container>
           {(card.county && card.districtType) &&
@@ -57,17 +54,13 @@ const CardTitle = props => {
           }
         </Grid>
       }
+      {/* Offshore */}
       { (fips && fips.length === 3) &&
         <Grid container>
           <Grid item xs={12} className={classes.cardTitle}>{card.locationName}</Grid>
           <Grid item xs={12} className={classes.cardSubtitle}>{card.regionType}</Grid>
         </Grid>
       }
-      {/* { card.regionType === '' &&
-        <Grid container>
-          <Grid item xs={12} className={classes.cardTitle}>{card.locationName}</Grid>
-        </Grid>
-      } */}
     </>
   )
 }
