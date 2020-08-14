@@ -8,18 +8,30 @@ import {
 } from '@material-ui/core'
 
 const LocationName = ({ location }) => {
+  console.log('LocationName: ', location)
+  const fips = location.fipsCode
   return (
     <>
-      { (location.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS || location.fipsCode === DFC.NATIVE_AMERICAN_FIPS) &&
+      { (fips === DFC.NATIONWIDE_FEDERAL_FIPS || fips === DFC.NATIVE_AMERICAN_FIPS) &&
         <Box component="span">{location.locationName}</Box>
       }
-      { location.regionType === DFC.STATE &&
+      {/* State */}
+      { (fips && fips.length === 2) &&
         <Box component="span">{location.name}</Box>
       }
-      { location.regionType === DFC.COUNTY_CAPITALIZED &&
-        <Box component="span">{location.county} {DFC.COUNTY_CAPITALIZED}</Box>
+      {/* County */}
+      { (fips && fips.length === 5) &&
+        <>
+          {(location.county) &&
+            <Box component="span">{location.county} {DFC.COUNTY_CAPITALIZED}</Box>
+          }
+          {(location.county === '') &&
+            <Box component="span">{location.locationName}</Box>
+          }
+        </>
       }
-      { location.regionType === DFC.OFFSHORE_CAPITALIZED &&
+      {/* Offshore */}
+      { (fips && fips.length === 3) &&
         <Box component="span">{location.locationName}</Box>
       }
     </>
