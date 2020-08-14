@@ -192,7 +192,10 @@ const TotalDisbursements = props => {
             legendHeaders={legendHeaders}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
-            <Link href='/downloads/disbursements/'>Source file</Link>
+            { (toggle === TOGGLE_VALUES.Month)
+              ? <Link href='/downloads/disbursements-by-month/'>Source file</Link>
+              : <Link href='/downloads/disbursements/'>Source file</Link>
+            }
           </Box>
         </Grid>
       </Grid>
