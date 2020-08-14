@@ -397,14 +397,15 @@ const MapContext = props => {
     // onLink
     
   const onLink = (state, x, y, k) => {
-       // console.log('onLink state: ', state)
-           // console.log('WTH onLink state: ', state)
-
+      
     // decern betweeen topo json and location data fips
       const fips = state.properties ? state.id : state.fips_code
       const name = state.properties ? state.properties.name : state.state_name
-      const abbr = state.properties ? state.properties.name : state.state
-
+      const abbr = state.properties ? state.properties.state : state.state
+      let region='State'
+      if(fips.length===5) {
+	  region='County'
+      }
     const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
       
     // filter out location from location data
@@ -415,11 +416,11 @@ const MapContext = props => {
       name: (location[0]) ?  location[0].state_name : name,
       locationName:  (location[0]) ? location[0].location_name : name,
       state:(location[0]) ? location[0].state : abbr,
-      regionType: (location[0]) ? location[0].region_type : 'State',
-      districtType:(location[0]) ? location[0].district_type : 'State',
-      county: (location[0]) ? location[0].county : fips
+      regionType: (location[0]) ? location[0].region_type : region,
+      districtType:(location[0]) ? location[0].district_type : '',
+      county: (location[0]) ? location[0].county : ''
     }
-
+      console.debug("stateObject: ", stateObj);
     if (
       cards.filter(item => item.fipsCode === fips).length === 0
     ) {
@@ -571,7 +572,7 @@ const MapContext = props => {
       mapZoom: mapK,
       mapX: mapX,
       mapY: mapY,
-	onZoomEnd: onZoomEnd,
+      onZoomEnd: onZoomEnd,
       onClick: onClick
     })
 
