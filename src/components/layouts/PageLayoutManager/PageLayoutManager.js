@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import DefaultLayout from '../DefaultLayout'
 import DataFilterProviderWrapper from '../../DataFilterProviderWrapper'
 import PatternLibraryLayout from '../PatternLibraryLayout'
+import NoPageFoundLayout from '../NoPageFoundLayout'
 
 import ContactUs from '../../content-partials/ContactUs'
 
@@ -19,6 +20,14 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
 
   if (layout === 'pattern-library') {
     return <PatternLibraryLayout>{children}</PatternLibraryLayout>
+  }
+
+  if (layout === 'no-page-found') {
+    return (
+      <NoPageFoundLayout>
+        {children}
+      </NoPageFoundLayout>
+    )
   }
 
   if (location.pathname.includes('/downloads')) {
