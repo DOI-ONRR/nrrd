@@ -235,7 +235,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
                   return d
                 }
               }
-              xLabel={locationType}
+              xLabel={'Location name'}
               yLabel={dataSet}
               maxCircles={6}
               minColor={theme.palette.green[100]}
