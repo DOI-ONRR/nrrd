@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes, { object } from 'prop-types'
+import PropTypes from 'prop-types'
 import { isEqual, isEqualWith } from 'lodash'
 
 import {

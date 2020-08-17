@@ -18,7 +18,8 @@ import {
   DOWNLOAD_DATA_TABLE,
   PRODUCT,
   GROUP_BY_STICKY,
-  QUERY_COUNTS
+  QUERY_COUNTS,
+  COMMODITY_ORDER
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'
@@ -30,7 +31,6 @@ import CustomTable from './Custom/CustomTable'
 import CustomTableHead from './Custom/CustomTableHead'
 import CustomTableCell from './Custom/CustomTableCell'
 import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRow'
-import CustomTableFixedCell from './Custom/CustomTableFixedCell'
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
 import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
@@ -57,7 +57,6 @@ import {
   Grid as TableGrid,
   VirtualTable as Table,
   TableHeaderRow,
-  TableFixedColumns,
   TableGroupRow,
   TableSummaryRow,
   TableColumnResizing,
@@ -138,7 +137,8 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
   const [expandedGroups, setExpandedGroups] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
-  const [fixedColumsn, setFixedColumns] = useState([])
+  // eslint-disable-next-line no-unused-vars
+  const [fixedColumns, setFixedColumns] = useState([])
   const [sorting, setSorting] = useState([]) // { columnName: 'city', direction: 'asc' }
   const [totalSummaryItems, setTotalSummaryItems] = useState([])
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
@@ -148,9 +148,12 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
 
   const getSortingColumns = hiddenCols => {
-    if (state[DATA_TYPE] === REVENUE) {
+    if (state[DATA_TYPE] === REVENUE || state[DATA_TYPE] === DISBURSEMENT) {
       const yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !hiddenCols.includes(item.name))).map(item => item.name)
       return [{ columnName: yearColumns.slice(-1)[0], direction: 'desc' }]
+    }
+    else if (state[DATA_TYPE] === PRODUCTION) {
+      return [{ columnName: COMMODITY_ORDER, direction: 'asc' }]
     }
     return []
   }

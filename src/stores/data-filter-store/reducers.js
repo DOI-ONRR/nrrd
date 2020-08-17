@@ -82,21 +82,21 @@ const initialState = {
         [DATA_TYPE]: REVENUE,
         [GROUP_BY]: REVENUE_TYPE,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2017,2018,2019',
-        [CALENDAR_YEAR]: '2017,2018,2019',
+        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
         [GROUP_BY_STICKY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2017,2018,2019',
-        [CALENDAR_YEAR]: '2016,2017,2018'
+        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+        [CALENDAR_YEAR]: '2014,2015,2016,2017,2018'
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2017,2018,2019',
+        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
       }
     }
   },
