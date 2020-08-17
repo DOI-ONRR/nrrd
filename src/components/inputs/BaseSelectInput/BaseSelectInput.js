@@ -293,10 +293,11 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
         defaultItems = []
       }
     }
+
     return (defaultItems && !disabled) ? defaultItems : []
   }
   const [selectedOptions, setSelectedOptions] = useState(getDefaultSelected())
-  const [selectAllOptions, setSelectAllOptions] = useState(defaultSelectAll)
+  const [selectAllOptions, setSelectAllOptions] = useState((selected) ? false : defaultSelectAll)
   const [selectedOptionsChanged, setSelectedOptionsChanged] = useState(false)
 
   const handleChange = value => {
@@ -327,9 +328,6 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
 
   const handleRenderValue = renderValues => {
     let selectedVal
-    if (label === 'Recipient') {
-      // console.log(selected, renderValues, selectedOptions)
-    }
 
     if (renderValues && renderValues.length !== data.length) {
       selectedVal = renderValues.join(', ')
