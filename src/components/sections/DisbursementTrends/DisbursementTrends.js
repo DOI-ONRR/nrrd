@@ -91,13 +91,15 @@ const DisbursementTrends = props => {
     const currentYear = fiscalYearData[fiscalYearData.length - 1].fiscalYear
     const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
 
-    console.debug("currentYearDate", currentYearDate);
-        console.debug("fiscalYearData", fiscalYearData);
+    // console.debug('currentYearDate', currentYearDate)
+    // console.debug('fiscalYearData', fiscalYearData)
     // Get previous year
     const previousYear = currentYear - 1
 
     // Trends
     const trends = aggregateData(data.disbursement_trends)
+
+    console.log('DisbursementTrends trends: ', trends)
 
     // maxMonth Min/Max Year
     const maxMonth = currentYearDate.toLocaleString('en-us', { timeZone: 'UTC', month: 'long' })
@@ -110,7 +112,7 @@ const DisbursementTrends = props => {
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
 
-    year = filterState[DFC.year] || trends[0].histData[trends[0].histData.length - 1][0]
+    year = filterState[DFC.YEAR] || trends[0].histData[trends[0].histData.length - 1][0]
 
     return (
       <Box component="section" className={classes.root}>
@@ -141,8 +143,9 @@ const DisbursementTrends = props => {
                         key={`sparkline${ index }`}
                         data={trend.histData}
                         highlightIndex={trend.histData.findIndex(
-                          x => x[0] === parseInt(year)
-                        )} />
+                          x => parseInt(x[0]) === parseInt(year)
+                        )}
+                      />
                     </TableCell>
                     <TableCell align="right">
                       <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
@@ -405,13 +408,13 @@ const aggregateData = data => {
   })
 
 */
-  console.debug('RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR', r)
+  // console.debug('RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR', r)
   r.map((row, i) => {
     let a = []
     const years = Object.keys(row.histSum).sort()
-    console.debug('-----', row)
+    // console.debug('-----', row)
     a = years.map((year, i) => ([year, row.histSum[year]]))
-    console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
+    // console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
     if (currentMonth === 'December') {
       r[i].histData = a.slice(-10)
       return a.slice(-10)
@@ -425,7 +428,7 @@ const aggregateData = data => {
 }
 
 const sumData = (item, r, index, currentYear) => {
-  console.debug('IIIIIIIIIIIIIIIIIIIIIIIIIIIIItem', item)
+  // console.debug('IIIIIIIIIIIIIIIIIIIIIIIIIIIIItem', item)
   const previousYear = currentYear - 1
   if (item.fiscalYear === currentYear) r[index].current += item.disbursement_ytd
   if (item.fiscalYear === previousYear) r[index].previous += item.disbursement_ytd

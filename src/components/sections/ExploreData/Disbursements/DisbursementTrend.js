@@ -103,12 +103,12 @@ const DisbursementTrend = props => {
       .rollup(v => d3.sum(v, i => i.sum))
       .entries(data.fiscalDisbursementSummary).map(item => [parseInt(item.key), item.value])
 
-    console.debug('FDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD', data)
+    // console.debug('FDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD', data)
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
       const sum = fiscalData.find(x => {
-        console.debug('x[0] ', x[0], 'item.fiscal_year', item.fiscal_year)
+        // console.debug('x[0] ', x[0], 'item.fiscal_year', item.fiscal_year)
         return x[0] === item.fiscal_year
       })
       return ([
@@ -116,7 +116,7 @@ const DisbursementTrend = props => {
         sum ? sum[1] : 0
       ])
     })
-    console.debug('WTH', sparkData)
+    // console.debug('WTH', sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === parseInt(year)
