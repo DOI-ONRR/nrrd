@@ -18,7 +18,8 @@ import {
   DOWNLOAD_DATA_TABLE,
   PRODUCT,
   GROUP_BY_STICKY,
-  QUERY_COUNTS
+  QUERY_COUNTS,
+  RECIPIENT
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'
@@ -142,8 +143,15 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
   const [totalSummaryItems, setTotalSummaryItems] = useState([])
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
   const [aggregatedSums, setAggregatedSums] = useState()
-  const [defaultColumnWidths] = useState(columnNames ? columnNames.map((column, index) =>
-    (column.name.startsWith('y')) ? ({ columnName: column.name, width: 200 }) : ({ columnName: column.name, width: 250 })) : [])
+  const getDefaultColumnWidths = () => {
+    return (
+      columnNames.map((column, index) =>
+        (column.name.startsWith('y'))
+          ? ({ columnName: column.name, width: 200 })
+          : (column.name === RECIPIENT) ? ({ columnName: column.name, width: 350 }) : ({ columnName: column.name, width: 250 }))
+    )
+  }
+  const [defaultColumnWidths] = useState(columnNames ? getDefaultColumnWidths() : [])
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
 
   // Return true if we don't have a count for the column
