@@ -127,14 +127,14 @@ const ListboxComponent = React.forwardRef((props, ref) => {
       <div {...other}>
         <VariableSizeList
           height={150}
-          width={275}
+          width={300}
           ref={listRef}
           itemCount={itemCount}
           itemData={itemData}
           itemSize={index => getChildSize(itemData[index])}
           innerElementType="ul"
           role="listbox"
-          overscanCount={5}
+          overscanCount={10}
           // debug={true}
         >
           {RenderRow}
@@ -149,7 +149,43 @@ const SearchLocationsInput = props => {
   const data = useStaticQuery(graphql`
     query LocationQuery {
       onrr {
-        distinct_locations: location(where: {fips_code: {_neq: ""}}, distinct_on: fips_code) {
+        state_locations: location(
+          where: {
+            fips_code: {_neq: ""},
+            region_type: {_eq: "State"}
+          },
+          distinct_on: fips_code,  
+        ) {
+          fips_code
+          location_name
+          region_type
+          state
+          state_name
+          county
+        }
+
+        county_locations: location(
+          where: {
+            fips_code: {_neq: ""},
+            region_type: {_eq: "County"}
+          },
+          distinct_on: fips_code,  
+        ) {
+          fips_code
+          location_name
+          region_type
+          state
+          state_name
+          county
+        }
+
+        offshore_locations: location(
+          where: {
+            fips_code: {_neq: ""},
+            region_type: {_eq: "Offshore"}
+          },
+          distinct_on: fips_code,  
+        ) {
           fips_code
           location_name
           region_type
@@ -229,7 +265,7 @@ const SearchLocationsInput = props => {
     )
   }
 
-  const OPTIONS = data.onrr.distinct_locations
+  const OPTIONS = [...data.onrr.state_locations, ...data.onrr.county_locations, ...data.onrr.offshore_locations]
 
   return (
     <Autocomplete
