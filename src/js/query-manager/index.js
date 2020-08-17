@@ -19,7 +19,8 @@ import {
   PRODUCT,
   RECIPIENT,
   SOURCE,
-  LOCAL_RECIPIENT
+  LOCAL_RECIPIENT,
+  COMMODITY_ORDER
 } from '../../constants'
 
 import {
@@ -56,6 +57,7 @@ export default QueryManager
  */
 export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
   [COMMODITY]: 'commodity',
+  [COMMODITY_ORDER]: 'commodity_order',
   [US_STATE]: 'state',
   [US_STATE_NAME]: 'state_name',
   [COUNTY]: 'county',
