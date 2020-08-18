@@ -165,7 +165,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
                     }
                   }
                   yLabel={dataSet}
-                  maxCircles={6}
+                  maxCircles={16}
                   minColor={theme.palette.green[100]}
                   maxColor={theme.palette.green[600]} />
               </Box>
