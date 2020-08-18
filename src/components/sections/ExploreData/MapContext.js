@@ -395,7 +395,6 @@ const MapContext = props => {
   }
 
   // onLink
-
   const onLink = (state, x, y, k) => {
     // decern betweeen topo json and location data fips
     const fips = state.properties ? state.id : state.fips_code

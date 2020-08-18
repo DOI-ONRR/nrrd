@@ -100,9 +100,9 @@ const RevenueTrends = props => {
     const longCurrentYearText = `${ maxMonth } ${ currentYear }`
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
-    console.debug("Fitler State", filterState, "DFC.year", DFC.YEAR, " OR ", trends[0], "WTH ", DFC)
-    
-    year = filterState[DFC.year] || trends[0].histData[trends[0].histData.length - 1][0]
+    // console.debug("Fitler State", filterState, "DFC.year", DFC.YEAR, " OR ", trends[0], "WTH ", DFC)
+
+    year = filterState[DFC.YEAR] || trends[0].histData[trends[0].histData.length - 1][0]
 
     return (
       <Box component="section">
@@ -133,7 +133,7 @@ const RevenueTrends = props => {
                         key={`sparkline${ index }`}
                         data={trend.histData}
                         highlightIndex={trend.histData.findIndex(
-                          x => x[0] === parseInt(year)
+                          x => parseInt(x[0]) === parseInt(year)
                         )} />
                     </TableCell>
                     <TableCell align="right">
