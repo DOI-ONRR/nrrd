@@ -94,7 +94,7 @@ const useStyles = makeStyles(theme => (
   })
 )
 
-const DefaultLayout = ({ includeToc = true, title, children }) => {
+const DefaultLayout = ({ includeToc, title, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
@@ -118,7 +118,7 @@ const DefaultLayout = ({ includeToc = true, title, children }) => {
   `)
 
   return (
-    <React.Fragment>
+    <>
       <SEO title={title} />
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
@@ -149,7 +149,7 @@ const DefaultLayout = ({ includeToc = true, title, children }) => {
           <Footer data={data} />
         </Box>
       }
-    </React.Fragment>
+    </>
   )
 }
 

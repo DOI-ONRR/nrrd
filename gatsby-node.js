@@ -17,6 +17,13 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
+// set custom layout for 404 page
+// exports.onCreatePage = ({ page }) => {
+//   if (page.path.startsWith('/404')) {
+//     page.layout = '404Layout'
+//   }
+// }
+
 exports.createPages = ({ graphql, reporter, actions }) => {
   const { createRedirect } = actions
 
