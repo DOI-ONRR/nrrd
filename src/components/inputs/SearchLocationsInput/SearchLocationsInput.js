@@ -136,14 +136,14 @@ const ListboxComponent = React.forwardRef((props, ref) => {
       <div {...other}>
         <VariableSizeList
           height={150}
-          width={275}
+          width={300}
           ref={listRef}
           itemCount={itemCount}
           itemData={itemData}
           itemSize={index => getChildSize(itemData[index])}
           innerElementType="ul"
           role="listbox"
-          overscanCount={5}
+          overscanCount={10}
           // debug={true}
         >
           {RenderRow}
@@ -158,7 +158,43 @@ const SearchLocationsInput = props => {
   const data = useStaticQuery(graphql`
     query LocationQuery {
       onrr {
-        distinct_locations: location(where: {fips_code: {_neq: ""}}, distinct_on: fips_code) {
+        state_locations: location(
+          where: {
+            fips_code: {_neq: ""},
+            region_type: {_eq: "State"}
+          },
+          distinct_on: fips_code,  
+        ) {
+          fips_code
+          location_name
+          region_type
+          state
+          state_name
+          county
+        }
+
+        county_locations: location(
+          where: {
+            fips_code: {_neq: ""},
+            region_type: {_eq: "County"}
+          },
+          distinct_on: fips_code,  
+        ) {
+          fips_code
+          location_name
+          region_type
+          state
+          state_name
+          county
+        }
+
+        offshore_locations: location(
+          where: {
+            fips_code: {_neq: ""},
+            region_type: {_eq: "Offshore"}
+          },
+          distinct_on: fips_code,  
+        ) {
           fips_code
           location_name
           region_type
@@ -202,7 +238,7 @@ const SearchLocationsInput = props => {
       optionLabel = `${ item.county } ${ CONSTANTS.COUNTY }, ${ item.state_name }`
       break
     case CONSTANTS.OFFSHORE:
-      optionLabel = `${ item.location_name } ${ item.region_type }`
+      optionLabel = item.location_name.includes('Offshore') ? item.location_name : `${ item.location_name } ${ item.region_type }`
       break
     default:
       optionLabel = item.location_name
@@ -212,7 +248,11 @@ const SearchLocationsInput = props => {
     return optionLabel
   }
 
-  const OPTIONS = data.onrr.distinct_locations.map(location => ({ ...location, locationLabel: renderOptionLabel(location) }))
+  const stateLocations = data.onrr.state_locations.map(location => ({ ...location, locationLabel: renderOptionLabel(location) }))
+  const countyLocations = data.onrr.county_locations.map(location => ({ ...location, locationLabel: renderOptionLabel(location) }))
+  const offshoreLocations = data.onrr.offshore_locations.map(location => ({ ...location, locationLabel: renderOptionLabel(location) }))
+
+  const OPTIONS = [...stateLocations, ...countyLocations, ...offshoreLocations]
 
   return (
     <Autocomplete
