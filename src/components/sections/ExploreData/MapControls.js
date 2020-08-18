@@ -24,14 +24,10 @@ const useStyles = makeStyles(theme => ({
     margin: 0,
   },
   zoomButtonGroupContainer: {
-    position: 'absolute',
-    bottom: 150,
+    position: 'fixed',
+    bottom: 145,
     height: 100,
     left: 10,
-    '@media (max-width: 768px)': {
-      bottom: 100,
-      left: 5,
-    },
     '& svg': {
       height: '.75em',
       width: '.75em',

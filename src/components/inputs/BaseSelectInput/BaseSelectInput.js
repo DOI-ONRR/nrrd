@@ -76,9 +76,9 @@ const BaseInput = withStyles(theme =>
       border: '1px solid #ced4da',
       padding: '8.5px 14px',
       transition: theme.transitions.create(['border-color', 'box-shadow']),
-      minWidth: 130,
-      '@media (max-width: 768px)': {
-        minWidth: 'inherit',
+      minWidth: 'inherit',
+      '@media (min-width: 1024px)': {
+        minWidth: 130,
       },
       '&:focus': {
         borderRadius: 4,
