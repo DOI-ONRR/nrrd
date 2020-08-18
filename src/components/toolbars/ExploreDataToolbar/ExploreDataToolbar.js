@@ -315,7 +315,7 @@ const ExploreDataToolbar = props => {
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[OFFSHORE_REGIONS]}
               defaultSelected={offshoreRegions === true}
               label='Show offshore'
-              helperText=''
+              helperText='Disbursements from offshore production go to the states and counties that surround the offshore area.'
               disabled={dataType === 'Disbursements' || mapOverlay}
               selectType='Single' />
           </Box>

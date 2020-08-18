@@ -2,20 +2,37 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  Box,
   FormGroup,
   FormControl,
   FormControlLabel,
-  Switch
+  Switch,
+  Tooltip
 } from '@material-ui/core'
 
 import { withStyles, createStyles, makeStyles } from '@material-ui/core/styles'
+
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
     minWidth: 'fit-content',
     marginTop: theme.spacing(2),
     marginLeft: theme.spacing(2),
-  }
+  },
+  iconRoot: {
+    fill: theme.palette.common.black,
+    position: 'absolute',
+    top: -10,
+    right: 0,
+    cursor: 'pointer',
+  },
+  iconFontSizeSmall: {
+    fontSize: 20,
+  },
+  tooltipRoot: {
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+  },
 }))
 
 // Default FormControlLabel
@@ -164,6 +181,16 @@ const SingleBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, label, leg
     onChange(event.target.checked)
   }
 
+  const helperContent = () => {
+    return (
+      <>
+        <Box component="span" className={classes.formHelperTextRoot}>
+          {helperText}
+        </Box>
+      </>
+    )
+  }
+
   return (
     <FormControl className={classes.formControl}>
       {legend &&
@@ -182,8 +209,21 @@ const SingleBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, label, leg
           label={label}
         />
       </FormGroup>
-      {helperText &&
-        <FormHelperText>{helperText}</FormHelperText>
+
+      {(helperText && disabled) &&
+        <Tooltip
+          title={helperContent()}
+          classes={{
+            tooltip: classes.tooltipRoot,
+            arrow: classes.tooltipArrow,
+          }}>
+          <HelpOutlineIcon
+            fontSize="small"
+            classes={{
+              root: classes.iconRoot,
+              fontSizeSmall: classes.iconFontSizeSmall
+            }} />
+        </Tooltip>
       }
     </FormControl>
   )
