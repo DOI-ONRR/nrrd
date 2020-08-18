@@ -28,7 +28,7 @@ const APOLLO_QUERY = gql`
   query RevenueTopLocations($year: Int!, $locations: [String!], $period: String!,  $commodities: [String!]) {
     revenue_summary(
       where: {location_type: {_in: $locations}, year: { _eq: $year }, location_name: {_neq: ""}, period: {_eq: $period}, commodity: {_in: $commodities}  },
-      order_by: { year: asc, total: desc }
+      order_by: {  total: desc }
     ) {
       location_name
       year
@@ -117,8 +117,8 @@ const RevenueTopLocations = ({ title, ...props }) => {
       .entries(data.revenue_summary)
       .map(d => {
         return ({ location_name: d.key, total: d.value })
-      })
-     // console.debug('CHART DATA', chartData)
+      }).sort((a, b) => (a.total < b.total) ? 1 : -1)
+
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
