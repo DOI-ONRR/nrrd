@@ -61,7 +61,12 @@ const useStyles = makeStyles(theme => ({
       top: 65,
     },
     '& .legend': {
-      bottom: 140,
+      bottom: '136px',
+      width: '100%',
+      margin: '0',
+      textAlign: 'center',
+      display: 'flex',
+      left: '0',
     },
     '& .map-overlay': {
       left: '0',
