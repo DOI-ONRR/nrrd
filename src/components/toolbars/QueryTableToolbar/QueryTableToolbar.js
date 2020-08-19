@@ -5,7 +5,12 @@ import { DataFilterContext, DownloadContext } from '../../../stores'
 
 import { downloadWorkbook } from '../../../js/utils'
 
+import PeriodFilter from '../../inputs/Filters/PeriodFilter'
+import CalendarYearFilter from '../../inputs/Filters/CalendarYearFilter'
+import CommodityFilter from '../../inputs/Filters/CommodityFilter'
+
 import {
+  QK_QUERY_TOOL,
   DATA_TYPE,
   REVENUE,
   PRODUCTION,
@@ -17,11 +22,11 @@ import {
   DOWNLOAD_DATA_TABLE,
   STATE_OFFSHORE_NAME,
   PERIOD_TYPES,
-  LAND_TYPE
+  REVENUE_BY_COMPANY,
 } from '../../../constants'
 
 import {
-  DataTypeSelectInput,
+  DataTypePlusSelectInput,
   LandTypeSelectInput,
   RevenueTypeSelectInput,
   CountySelectInput,
@@ -34,8 +39,10 @@ import {
   PeriodSelectInput,
   FiscalYearSlider,
   CalendarYearSlider,
-  StateNameSelectInput
+  StateNameSelectInput,
 } from '../../inputs'
+
+import BaseSelectInput from '../../inputs/BaseSelectInput'
 
 import ClearAllFiltersBtn from '../../inputs/ClearAllFiltersBtn'
 
@@ -194,18 +201,18 @@ const QueryTableToolbar = ({ label, ...props }) => {
       { queryDataToolbarOpen &&
         <BaseToolbar isSecondary={true}>
           <Box>
-            <DataTypeSelectInput />
+            <DataTypePlusSelectInput />
           </Box>
           <Box className={classes.toolsWrapper}>
             {state[DATA_TYPE] === DISBURSEMENT
               ? <PeriodSelectInput data={PERIOD_TYPES.filter(type => type !== PERIOD_CALENDAR_YEAR)}/>
-              : <PeriodSelectInput />
+              : <PeriodFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
             {state.period === PERIOD_FISCAL_YEAR &&
-              <FiscalYearSlider />
+              <div />
             }
             {state.period === PERIOD_CALENDAR_YEAR &&
-              <CalendarYearSlider />
+              <CalendarYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
           </Box>
         </BaseToolbar>
@@ -220,6 +227,9 @@ const QueryTableToolbar = ({ label, ...props }) => {
           }
           {state[DATA_TYPE] === DISBURSEMENT &&
             <DisbursementFilterToolbar />
+          }
+          {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
+            <RevenueByCompanyFilterToolbar />
           }
         </>
       }
@@ -285,6 +295,14 @@ const DisbursementFilterToolbar = () => {
       <SourceSelectInput />
       <StateNameSelectInput defaultSelectAll={false} />
       <ClearAllFiltersBtn />
+    </BaseToolbar>
+  )
+}
+
+const RevenueByCompanyFilterToolbar = () => {
+  return (
+    <BaseToolbar isSecondary={true} >
+      <CommodityFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
     </BaseToolbar>
   )
 }

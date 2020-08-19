@@ -2,8 +2,10 @@ import React, { useContext, useState } from 'react'
 import { flowRight as compose } from 'lodash'
 
 import {
+  DATA_FILTER_KEY,
   DATA_TYPE,
   DATA_TYPES,
+  DATA_TYPES_PLUS,
   LAND_TYPE,
   REVENUE_TYPE,
   US_STATE,
@@ -25,7 +27,8 @@ import {
   FISCAL_YEAR,
   CALENDAR_YEAR,
   US_STATE_NAME,
-  PERIOD_TYPES
+  PERIOD_TYPES,
+  QK_QUERY_TOOL
 } from '../../constants'
 
 import BaseButtonInput from './BaseButtonInput'
@@ -37,6 +40,19 @@ import BaseSlider from './BaseSlider'
 import { DataFilterContext } from '../../stores/data-filter-store'
 import withDataFilterContext from './withDataFilterContext'
 import withDataFilterQuery from './withDataFilterQuery'
+import withQueryManager from '../withQueryManager'
+
+/**
+ * A factory method for building input components with a DataFilterContext and a QueryManager.
+ *
+ * @param {compnent} baseInput
+ * @param {String} queryKey
+ * @param {String} dataFilterKey
+ */
+export const createEnhancedInput = (baseInput, queryKey, dataFilterKey) => compose(
+  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
+  BaseComponent => withQueryManager(BaseComponent, queryKey, { [DATA_FILTER_KEY]: dataFilterKey }))(baseInput)
 
 /**
  * A factory method for building slider components with a DataFilterContext and a DataFilterQuery.
@@ -77,6 +93,14 @@ export const DataTypeSelectInput = compose(
     <BaseComponent
       label={DISPLAY_NAMES[DATA_TYPE].default}
       data={DATA_TYPES}
+      showClearSelected={false}
+      {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, DATA_TYPE))(BaseSelectInput)
+export const DataTypePlusSelectInput = compose(
+  BaseComponent => props => (
+    <BaseComponent
+      label={DISPLAY_NAMES[DATA_TYPE].default}
+      data={DATA_TYPES_PLUS}
       showClearSelected={false}
       {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, DATA_TYPE))(BaseSelectInput)

@@ -25,7 +25,9 @@ import {
   PRODUCT,
   QUERY_COUNTS,
   MAP_LEVEL,
-  STATE
+  STATE,
+  REVENUE_BY_COMPANY,
+  COMPANY_NAME
 } from '../../constants'
 
 const types = Object.freeze({
@@ -97,6 +99,12 @@ const initialState = {
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+      },
+      [REVENUE_BY_COMPANY]: {
+        [DATA_TYPE]: REVENUE_BY_COMPANY,
+        [GROUP_BY]: COMPANY_NAME,
+        [PERIOD]: 'Calendar Year',
+        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
       }
     }
   },
