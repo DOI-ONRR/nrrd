@@ -30,6 +30,7 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import useEventListener from '../../../js/use-event-listener'
+import useWindowSize from '../../../js/hooks/useWindowSize'
 
 import mapCounties from './counties.json'
 import mapStates from './states.json'
@@ -63,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     '& .legend': {
       bottom: 142,
       '@media (max-width: 768px)': {
-        bottom: 200,
+        bottom: 210,
       },
     },
     '& .map-overlay': {
@@ -295,6 +296,10 @@ const MapContext = props => {
 
   const classes = useStyles()
   const theme = useTheme()
+  const size = useWindowSize()
+
+  console.log('size width/height: ', size.width, size.height)
+
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
@@ -316,7 +321,6 @@ const MapContext = props => {
 
   const [mapOverlay, setMapOverlay] = useState(false)
   const [mapActive, setMapActive] = useState(true)
-
 
   const [mapX, setMapX] = useState(pageState.mapX || 0)
   const [mapY, setMapY] = useState(pageState.mapY || 0)
@@ -406,7 +410,7 @@ const MapContext = props => {
     const abbr = state.properties ? state.properties.state : state.state
     let region = 'State'
     if (fips.length === 5) {
-	  region = 'County'
+	    region = 'County'
     }
     const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
 
