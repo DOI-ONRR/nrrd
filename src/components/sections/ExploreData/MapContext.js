@@ -298,8 +298,6 @@ const MapContext = props => {
   const theme = useTheme()
   const size = useWindowSize()
 
-  console.log('size width/height: ', size.width, size.height)
-
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
