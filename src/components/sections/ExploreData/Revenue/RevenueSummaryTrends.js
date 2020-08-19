@@ -123,8 +123,7 @@ const RevenueSummaryTrends = props => {
       x => x[0] === parseInt(year)
     )
 
-    row = fiscalData.length > 1 && fiscalData[fiscalData.findIndex(x => x[0] === parseInt(year))]
-
+    row = fiscalData.length > 0 && fiscalData[fiscalData.findIndex(x => x[0] === parseInt(year))]
     total = row ? row[1] : 0
 
     return (
