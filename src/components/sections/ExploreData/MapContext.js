@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
       top: 65,
     },
     '& .legend': {
-      bottom: 175,
+      bottom: 142,
       '@media (max-width: 768px)': {
         bottom: 200,
       },
@@ -294,6 +294,10 @@ const MapContext = props => {
   }
 
   const classes = useStyles()
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
 
@@ -313,13 +317,10 @@ const MapContext = props => {
   const [mapOverlay, setMapOverlay] = useState(false)
   const [mapActive, setMapActive] = useState(true)
 
+
   const [mapX, setMapX] = useState(pageState.mapX || 0)
   const [mapY, setMapY] = useState(pageState.mapY || 0)
   const [mapK, setMapK] = useState(pageState.mapZoom)
-
-  const theme = useTheme()
-  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
-  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   // Map snackbar
   const [mapSnackbarState, setMapSnackbarState] = useState({
