@@ -17,6 +17,13 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
+// set custom layout for 404 page
+// exports.onCreatePage = ({ page }) => {
+//   if (page.path.startsWith('/404')) {
+//     page.layout = '404Layout'
+//   }
+// }
+
 exports.createPages = ({ graphql, reporter, actions }) => {
   const { createRedirect } = actions
 
@@ -105,27 +112,14 @@ exports.createPages = ({ graphql, reporter, actions }) => {
   createRedirect({ fromPath: '/how-it-works/federal-revenue-by-company/2014/', toPath: '/how-revenue-works', redirectInBrowser: true, isPermanent: true })
   createRedirect({ fromPath: '/how-it-works/federal-revenue-by-company/2013/', toPath: '/how-revenue-works', redirectInBrowser: true, isPermanent: true })
 
+  // How revenue works
+  createRedirect({ fromPath: '/how-revenue-works/land-and-water-conservation-fund/', toPath: '/how-revenue-works/lwcf', redirectInBrowser: true, isPermanent: true })
+  createRedirect({ fromPath: '/how-revenue-works/historic-preservation-fund/', toPath: '/how-revenue-works/hpf', redirectInBrowser: true, isPermanent: true })
+
   return Promise.all([
     createComponentsCache({ graphql, reporter }),
   ])
 }
-
-// exports.onCreateWebpackConfig = function onCreateWebpackConfig ({ actions, stage, loaders }) {
-//   if (stage === 'develop' || stage === 'develop-html') {
-//     actions.setWebpackConfig({
-//       module: {
-//         rules: [
-//           {
-//             test: /react-hot-loader/,
-//             use: [
-//               loaders.js()
-//             ]
-//           }
-//         ]
-//       }
-//     })
-//   }
-// }
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
