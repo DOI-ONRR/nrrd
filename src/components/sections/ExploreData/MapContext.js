@@ -402,6 +402,13 @@ const MapContext = props => {
     dispatch({ type: 'MAP_ZOOM', payload: { mapX: x, mapY: y, mapZoom: k } })
   }
 
+  // check width, set zoom
+  useEffect(() => {
+    if (size.width <= 425) {
+      setZoom(125, 150, 0.45)
+    }
+  }, [size.width])
+
   // onLink
   const onLink = (state, x, y, k) => {
     // decern betweeen topo json and location data fips
