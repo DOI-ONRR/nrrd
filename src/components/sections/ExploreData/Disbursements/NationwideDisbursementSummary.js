@@ -92,7 +92,6 @@ const NationwideDisbursementSummary = props => {
 
   if (data) {
     groupData = utils.groupBy(data.fiscal_disbursement_recipient_source_summary, 'recipient')
-    console.debug('WTH', groupData)
 
     /* groupTotal = Object.keys(groupData).map(k =>
       groupData[k].reduce((sum, i) => {
