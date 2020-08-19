@@ -404,8 +404,13 @@ const MapContext = props => {
 
   // check width, set zoom
   useEffect(() => {
+    // mobile zoom
     if (size.width <= 425) {
-      setZoom(125, 150, 0.45)
+      setZoom(115, 150, 0.45)
+    }
+    // tablet zoom
+    if (size.width <= 768 && size.width > 425) {
+      setZoom(125, 75, 0.75)
     }
   }, [size.width])
 
