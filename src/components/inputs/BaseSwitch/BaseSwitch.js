@@ -23,8 +23,8 @@ const useStyles = makeStyles(theme => ({
   iconRoot: {
     fill: theme.palette.common.black,
     position: 'absolute',
-    top: -10,
-    right: 0,
+    top: 10,
+    right: -10,
     cursor: 'pointer',
   },
   iconFontSizeSmall: {
