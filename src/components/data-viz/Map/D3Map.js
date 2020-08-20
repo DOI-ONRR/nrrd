@@ -28,16 +28,16 @@ export default class d3Map {
       this.unit = options.mapUnits
     }
     else {
-      this.unit='';
+      this.unit = ''
     }
 
-      if (options.onZoomEnd) {
-	  this.onZoomEnd=options.onZoomEnd
-      }
-      if (options.legendFormat) {
-	  this.legendFormat=options.legendFormat
-      }
-      this.zoomStarted=false
+    if (options.onZoomEnd) {
+	  this.onZoomEnd = options.onZoomEnd
+    }
+    if (options.legendFormat) {
+	  this.legendFormat = options.legendFormat
+    }
+    this.zoomStarted = false
     this.node = node
     this.us = us
     this.mapFeatures = mapFeatures
@@ -66,12 +66,10 @@ export default class d3Map {
    *
  */
 
-    legendFormat(value) {
-	return(value)
-	
-    }
-	
-    
+  legendFormat (value) {
+    return (value)
+  }
+
   zoomTo (state) {
     try {
       const us = this.us
@@ -110,7 +108,7 @@ export default class d3Map {
   }
 
   onZoomEnd (event) {
-     console.debug('transform onZoomEnd', event.transform)
+    console.debug('transform onZoomEnd', event.transform)
   }
 
   zoom (transform) {
@@ -162,9 +160,9 @@ export default class d3Map {
     const vwidth = width //* 1.5
     const vheight = height //* 1.5
     const _zoom = this._zoom
-      const onZoom = this.onZoom
-      const onZoomEnd = this.onZoomEnd
-      
+    const onZoom = this.onZoom
+    const onZoomEnd = this.onZoomEnd
+
     if (node.children[1].children[0]) {
       this._chart = d3.select(node.children[1].children[0])
       this._chart.selectAll('path').remove()
@@ -414,28 +412,28 @@ export default class d3Map {
 
     _chart.transition().duration(3000)
 
-      function zoomed () {
-	  let sourceEvent= d3.event.sourceEvent
-//	  console.log('zoomed(): outside ', d3.event, self.zoomStarted)
-	  if(sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 ) {
-	g.selectAll('path')
-        .attr('transform', d3.event.transform)
+    function zoomed () {
+      const sourceEvent = d3.event.sourceEvent
+
+	  if (sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 || sourceEvent.type === 'touchmove') {
+        g.selectAll('path')
+          .attr('transform', d3.event.transform)
 	      onZoom(d3.event)
 	   //   console.log('zoomed(): ', d3.event)
-	      self.zoomStarted=true
-	} else {
-	    // console.log('zoomed(): else ', d3.event, self.zoomStarted)
-	}
+	      self.zoomStarted = true
       }
+      else {
+	    // console.log('zoomed(): else ', d3.event, self.zoomStarted)
+      }
+    }
     function ended () {
-	//	  console.log('ended(): outside ', d3.event, self.zoomStarted)
-	  if(self.zoomStarted) {
+      //	  console.log('ended(): outside ', d3.event, self.zoomStarted)
+	  if (self.zoomStarted) {
 	      onZoomEnd(d3.event)
-	      self.zoomStarted=false
+	      self.zoomStarted = false
 	      // console.log('ended(): ', d3.event)
 	  }
-      }
-    
+    }
 
     this._chart = _chart
     return _chart
@@ -445,8 +443,8 @@ export default class d3Map {
     const title = this.data.title
     const data = this.data
     const color = this.color
-      const unit = this.unit
-      const legendFormat = this.legendFormat
+    const unit = this.unit
+    const legendFormat = this.legendFormat
     let legend
     if (this.node.children[0].children[0]) {
       this._legend = d3.select(this.node.children[0].children[0])
@@ -464,7 +462,7 @@ export default class d3Map {
     const width = 200
     const height = 20
     const sorted = data.values.sort((a, b) => a - b)
-    const lowest = legendFormat(Math.floor(sorted[0]), 3) 
+    const lowest = legendFormat(Math.floor(sorted[0]), 3)
     const median = legendFormat(
       Math.floor(sorted[Math.floor(sorted.length / 2)]),
       3
@@ -492,7 +490,7 @@ export default class d3Map {
     if (this.labels) {
       g.call(
         d3
-          .axisBottom(d3.scalePoint([lowest, median, highest + ' ' +unit], [0, width]))
+          .axisBottom(d3.scalePoint([lowest, median, highest + ' ' + unit], [0, width]))
           .tickSize(20)
       )
         .select('.domain')
