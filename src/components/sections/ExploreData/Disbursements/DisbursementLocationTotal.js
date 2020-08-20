@@ -37,21 +37,31 @@ const DisbursementLocationTotal = props => {
   if (data) {
     const groupedLocationData = utils.groupBy(data.disbursement_summary, 'state_or_area')
 
-    nationwideSummary = d3.nest()
-      .key(k => k.state_or_area)
-      .rollup(v => d3.sum(v, i => i.sum))
-      .entries(groupedLocationData.NF)
-      .map(d => {
-        return ({ location_name: d.key, total: d.value })
-      })
+    if (groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS] && groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS].length > 0) {
+      nationwideSummary = d3.nest()
+        .key(k => k.state_or_area)
+        .rollup(v => d3.sum(v, i => i.sum))
+        .entries(groupedLocationData.NF)
+        .map(d => {
+          return ({ location_name: d.key, total: d.value })
+        })
+    }
+    else {
+      nationwideSummary = [{ location: DFC.NATIONWIDE_FEDERAL_FIPS, total: 0 }]
+    }
 
-    nativeSummary = d3.nest()
-      .key(k => k.state_or_area)
-      .rollup(v => d3.sum(v, i => i.sum))
-      .entries(groupedLocationData.NA)
-      .map(d => {
-        return ({ location_name: d.key, total: d.value })
-      })
+    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS] && groupedLocationData[DFC.NATIVE_AMERICAN_FIPS].length > 0) {
+      nativeSummary = d3.nest()
+        .key(k => k.state_or_area)
+        .rollup(v => d3.sum(v, i => i.sum))
+        .entries(groupedLocationData.NA)
+        .map(d => {
+          return ({ location_name: d.key, total: d.value })
+        })
+    }
+    else {
+      nativeSummary.total = [{ location: DFC.NATIVE_AMERICAN_FIPS, total: 0 }]
+    }
 
     return (
       <>
