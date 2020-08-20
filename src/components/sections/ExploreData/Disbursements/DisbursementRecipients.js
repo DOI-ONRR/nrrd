@@ -40,7 +40,8 @@ const useStyles = makeStyles(theme => ({
       },
       '& .legend': {
         marginTop: theme.spacing(2),
-        height: 'auto',
+          height: 'auto',
+	  fontSize: 'small'
       },
     },
   }
@@ -102,6 +103,24 @@ const DisbursementRecipients = props => {
             format={ d => {
               return utils.formatToDollarInt(d)
             }}
+	     legendLabel={
+                    d => {
+			if (d.match('Native')) {
+                            d = 'Native American'
+			}
+			else if (d.match('governments') ) {
+			    d = 'State and local'
+			}
+			else if (d.match('Land') ) {
+			    d = 'LWCF'
+			}
+			else if (d.match('Historic') ) {
+			    d = 'HPF'
+			}
+			
+                      return d
+                    }
+                  } 
             circleTooltip={
               d => {
                 // console.log('d: ', d)
