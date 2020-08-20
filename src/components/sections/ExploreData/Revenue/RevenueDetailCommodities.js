@@ -8,6 +8,7 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
+import Link from '../../../../components/Link'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -44,34 +45,65 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueDetailCommodities = props => {
-  // console.log('RevenueDetailCommodities props: ', props)
+  console.log('RevenueDetailCommodities props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const state = props.fipsCode
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-      variables: { year: year, state: state, period: period, commodities }
+    variables: { year: year, state: state, period: period, commodities }
   })
 
   const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
-    const dataKey = dataSet + '-' + state +  (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
+  const dataKey = dataSet + '-' + state + (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
+
+  const getQueryParams = fipsCode => {
+    let params
+
+    // Nationwide Federal
+    if (fipsCode === 'NF') {
+      params = `/query-data?dataType=${ DFC.REVENUE }&period=${ period }&landType=${ DFC.NATIONWIDE_FEDERAL }&groupBy=${ DFC.COMMODITY }`
+    }
+
+    // Native American
+    if (fipsCode === 'NA') {
+      params = `/query-data?dataType=${ DFC.REVENUE }&period=${ period }&landType=${ DFC.NATIVE_AMERICAN }&groupBy=${ DFC.COMMODITY }`
+    }
+
+    // State
+    if (fipsCode.length === 2 && (fipsCode !== 'NF' && fipsCode !== 'NA')) {
+      params = `/query-data?dataType=${ DFC.REVENUE }&period=${ period }&stateOffshoreName=New Mexico&groupBy=${ DFC.COMMODITY }`
+    }
+
+    // County
+    if (fipsCode.length === 5) {
+      params = `/query-data?dataType=${ DFC.REVENUE }&period=${ period }&county=Washoe County,NV&groupBy=${ DFC.COMMODITY }`
+    }
+
+    // Offshore
+    if (fipsCode.length === 3) {
+      params = `/query-data?dataType=${ DFC.REVENUE }&period=${ period }&county=Pacific Region&groupBy=${ DFC.COMMODITY }`
+    }
+
+    return params
+  }
+
   let chartData
 
   if (loading) return ''
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-      chartData = data
-      
+    chartData = data
   }
 
   return (
     <>
-	  { (chartData.revenue_summary.length > 0 )
+	  { (chartData.revenue_summary.length > 0)
         ? (
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Commodities</Box>
@@ -94,12 +126,12 @@ const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].sp
                 maxCircles={6}
                 minColor={theme.palette.purple[100]}
                 maxColor={theme.palette.purple[600]} />
-              {/*  <Box mt={3}>
-                 <ExploreDataLink to="/query-data/?dataType=Revenue" icon="filter">
-                      Query revenue by commodity
-                </ExploreDataLink>
+              <Box mt={3}>
+                <Link href={getQueryParams(state)} linkType="FilterTable">
+                  Query revenue by commodity
+                </Link>
               </Box>
-             */}
+
             </Box>
           </Box>
         )
