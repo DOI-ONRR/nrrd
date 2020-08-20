@@ -65,6 +65,8 @@ const useStyles = makeStyles(theme => ({
       bottom: 142,
       '@media (max-width: 768px)': {
         bottom: 210,
+        transform: 'scale(0.75)',
+        left: -28,
       },
     },
     '& .map-overlay': {
