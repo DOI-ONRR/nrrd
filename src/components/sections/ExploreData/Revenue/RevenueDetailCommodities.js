@@ -51,45 +51,66 @@ const RevenueDetailCommodities = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const state = props.fipsCode
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.FISCAL_YEAR_LABEL
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  let locationName = props.locationName
+
+  if (state.length === 3) {
+    locationName = `${ props.regionType } ${ props.locationName }`
+  }
+
+  if (state.length === 5) {
+    locationName = props.name
+  }
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year: year, state: state, period: period, commodities }
   })
 
-  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+  const dataSet = (period === DFC.FISCAL_YEAR_LABEL) ? `FY ${ year }` : `CY ${ year }`
   const dataKey = dataSet + '-' + state + (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
 
-  const getQueryParams = fipsCode => {
-    let params
+  // get year range from selected year
+  const getYearRange = (start, end) => {
+    return new Array(end - start + 1).fill().map((_, idx) => start + idx)
+  }
 
-    // Nationwide Federal
-    if (fipsCode === 'NF') {
-      params = `/query-data?dataType=${ DFC.REVENUE }&period=${ period }&landType=${ DFC.NATIONWIDE_FEDERAL }&groupBy=${ DFC.COMMODITY }`
-    }
+  const periodParam = (period === DFC.FISCAL_YEAR_LABEL) ? DFC.FISCAL_YEAR : DFC.CALENDAR_YEAR
+  const yearRange = getYearRange((parseInt(year) - 5), parseInt(year))
 
-    // Native American
-    if (fipsCode === 'NA') {
-      params = `/query-data?dataType=${ DFC.REVENUE }&period=${ period }&landType=${ DFC.NATIVE_AMERICAN }&groupBy=${ DFC.COMMODITY }`
-    }
+  // Get query url
+  const getQueryUrl = (baseSegment, fipsCode) => {
+    const sharedParams = `/${ baseSegment }/?dataType=${ DFC.REVENUE }&period=${ period }&${ periodParam }=${ yearRange }`
+    let queryLink
 
     // State
-    if (fipsCode.length === 2 && (fipsCode !== 'NF' && fipsCode !== 'NA')) {
-      params = `/query-data?dataType=${ DFC.REVENUE }&period=${ period }&stateOffshoreName=New Mexico&groupBy=${ DFC.COMMODITY }`
-    }
+    if (fipsCode.length === 2) {
+    // Nationwide Federal
+      if (fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS) {
+        queryLink = `${ sharedParams }&groupBy=${ DFC.COMMODITY }&landType=Federal - not tied to a lease,Federal Offshore,Federal Onshore`
+      }
 
-    // County
-    if (fipsCode.length === 5) {
-      params = `/query-data?dataType=${ DFC.REVENUE }&period=${ period }&county=Washoe County,NV&groupBy=${ DFC.COMMODITY }`
+      // Native American
+      else if (fipsCode === DFC.NATIVE_AMERICAN_FIPS) {
+        queryLink = `${ sharedParams }&groupBy=${ DFC.COMMODITY }&landType=${ DFC.NATIVE_AMERICAN }`
+      }
+
+      else {
+        queryLink = `${ sharedParams }&groupBy=${ DFC.COMMODITY }&stateOffshoreName=${ locationName }`
+      }
     }
 
     // Offshore
     if (fipsCode.length === 3) {
-      params = `/query-data?dataType=${ DFC.REVENUE }&period=${ period }&county=Pacific Region&groupBy=${ DFC.COMMODITY }`
+      queryLink = `${ sharedParams }&groupBy=${ DFC.COMMODITY }&stateOffshoreName=${ locationName }`
     }
 
-    return params
+    // County
+    if (fipsCode.length === 5) {
+      queryLink = `${ sharedParams }&groupBy=${ DFC.COUNTY }&stateOffshoreName=${ locationName }`
+    }
+
+    return queryLink
   }
 
   let chartData
@@ -127,7 +148,7 @@ const RevenueDetailCommodities = props => {
                 minColor={theme.palette.purple[100]}
                 maxColor={theme.palette.purple[600]} />
               <Box mt={3}>
-                <Link href={getQueryParams(state)} linkType="FilterTable">
+                <Link href={getQueryUrl('query-data', state)} linkType="FilterTable">
                   Query revenue by commodity
                 </Link>
               </Box>

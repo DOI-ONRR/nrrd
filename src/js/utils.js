@@ -16,19 +16,19 @@ export const destructuringSwap = (list, iA, iB) => {
 
 // const extentPercent = 0.05
 // const extentMarginOfError = 0.1
-export const  formatToDollarFloat = (value, precision) => {
-    return currencyFormatter.format(value, {
-      symbol: '$',
-      precision: precision,
-      format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
-    })
-  }
-export const   getMetricLongUnit = (str) => {
-    const suffix = { k: 'k', M: ' million', G: ' billion' }
+export const formatToDollarFloat = (value, precision) => {
+  return currencyFormatter.format(value, {
+    symbol: '$',
+    precision: precision,
+    format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
+  })
+}
+export const getMetricLongUnit = str => {
+  const suffix = { k: 'k', M: ' million', G: ' billion' }
 
-    return str.replace(/[kMG]/g, match => {
-      return suffix[match] || match
-    })
+  return str.replace(/[kMG]/g, match => {
+    return suffix[match] || match
+  })
 }
 
 export const formatToDollarInt = value => {
@@ -203,7 +203,6 @@ const utils = {
       format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
     })
   },
-
 
   formatToCommaInt: value => {
     return currencyFormatter.format(value, {

@@ -45,6 +45,7 @@ const IconLink = ({ icon, children, pl = 4, style, ...rest }) => (
 )
 
 const BaseLink = ({ href, disableRouting, className = '', children, linkType, ...rest }) => {
+  console.log('BaseLink href: ', rest)
   const theme = useTheme()
   const styles = useStyles(theme)
 
@@ -81,7 +82,7 @@ const LinkTypeComponents = {
   DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />,
   DownloadBase: props => <IconLink icon={<IconDownloadBaseImg />} pl={0} {...props} />,
   HowWorks: props => <IconLink icon={<HowWorksLinkIconImg />} pl={0} {...props} />,
-  FilterTable: props => <IconLink icon={<FilterTableIconImg />} pl={0} {...props} />
+  FilterTable: props => <IconLink icon={<FilterTableIconImg style={{ position: 'relative', top: 5 }} />} pl={0} {...props} />
 }
 
 const regexXlsx = RegExp('.xlsx$')
