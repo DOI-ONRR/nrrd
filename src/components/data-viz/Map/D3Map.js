@@ -415,11 +415,11 @@ export default class d3Map {
     function zoomed () {
       const sourceEvent = d3.event.sourceEvent
 
-	  if (sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 || sourceEvent.type === 'touchmove') {
+	    if (sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 || sourceEvent.type === 'touchmove') {
         g.selectAll('path')
           .attr('transform', d3.event.transform)
 	      onZoom(d3.event)
-	   //   console.log('zoomed(): ', d3.event)
+	      // console.log('zoomed(): ', d3.event)
 	      self.zoomStarted = true
       }
       else {

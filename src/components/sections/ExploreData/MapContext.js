@@ -61,12 +61,12 @@ const useStyles = makeStyles(theme => ({
       position: 'fixed',
       top: 65,
     },
-    '& .legend': {
+    '& .legend-wrap': {
       bottom: 142,
       '@media (max-width: 768px)': {
         bottom: 210,
-        transform: 'scale(0.75)',
-        left: -28,
+        transform: 'scale(0.9)',
+        left: -5,
       },
     },
     '& .map-overlay': {
@@ -406,7 +406,7 @@ const MapContext = props => {
   useEffect(() => {
     // mobile zoom
     if (size.width <= 425) {
-      setZoom(115, 150, 0.45)
+      setZoom(105, 150, 0.45)
     }
     // tablet zoom
     if (size.width <= 768 && size.width > 425) {

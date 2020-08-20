@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
       height: '100%',
       width: '100%',
     },
-    '& .legend': {
+    '& .legend-wrap': {
       display: 'block',
       bottom: 50,
       left: 5,
@@ -149,7 +149,7 @@ const Map = props => {
   return (
     <Box className={classes.root}>
       <div className='mapContainer' ref={elemRef}>
-        <div className='MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 legend'></div>
+        <div className='MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 legend-wrap'></div>
         <div className='map'></div>
       </div>
     </Box>
