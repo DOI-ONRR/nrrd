@@ -301,7 +301,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[OFFSHORE_REGIONS]}
               defaultSelected={offshoreRegions === true}
               label='Show offshore'
-              helperText=''
+              helperText='Disbursements from offshore production go to the states and counties that surround the offshore area.'
               disabled={dataType === 'Disbursements' || mapOverlay}
               selectType='Single' />
           </Box>

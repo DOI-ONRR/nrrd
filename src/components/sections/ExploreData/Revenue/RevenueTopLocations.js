@@ -72,6 +72,7 @@ const useStyles = makeStyles(theme => ({
         width: '70%',
         '@media (max-width: 426px)': {
           marginRight: 0,
+          width: '100%',
         },
       },
     },
@@ -85,9 +86,9 @@ const RevenueTopLocations = ({ title, ...props }) => {
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const location = (filterState[DFC.MAP_LEVEL]) ? filterState[DFC.MAP_LEVEL] : 'State'
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-    const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
-    const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-    const commodity_key= (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
+  const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  const commodity_key = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
   const locations = ['State', 'Offshore', 'Native American']
   if (offshore !== 'Hide') {
     locations.push('Offshore')
@@ -95,7 +96,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
   if (location === 'State') {
     locations.push('Native American')
   }
-    const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, locations, period, commodities } })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, locations, period, commodities } })
 
   if (loading) {
     return (
