@@ -225,5 +225,5 @@ const QUERIES = {
   DATA_FILTERS: (state, variableConfig, options) =>
     gql`query GetQueryToolFilter_${ options[DATA_FILTER_KEY] }
         (${ getDataFilterVariableList(state, variableConfig) })
-        {${ getDataFilterQuery(VIEWS[state[DATA_TYPE]], options[DATA_FILTER_KEY], getDataFilterWhereClauses(variableConfig)) }}`,
+        {${ getDataFilterQuery(VIEWS[state[DATA_TYPE]], options[DATA_FILTER_KEY], getDataFilterWhereClauses(variableConfig, [options[DATA_FILTER_KEY]])) }}`,
 }

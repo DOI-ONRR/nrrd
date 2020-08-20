@@ -5,9 +5,10 @@ import { DataFilterContext, DownloadContext } from '../../../stores'
 
 import { downloadWorkbook } from '../../../js/utils'
 
-import PeriodFilter from '../../inputs/Filters/PeriodFilter'
-import CalendarYearFilter from '../../inputs/Filters/CalendarYearFilter'
-import CommodityFilter from '../../inputs/Filters/CommodityFilter'
+import PeriodFilter from '../../inputs/filters/PeriodFilter'
+import CalendarYearFilter from '../../inputs/filters/CalendarYearFilter'
+import CommodityFilter from '../../inputs/filters/CommodityFilter'
+import CompanyNameFilter from '../../inputs/filters/CompanyNameFilter'
 
 import {
   QK_QUERY_TOOL,
@@ -22,7 +23,7 @@ import {
   DOWNLOAD_DATA_TABLE,
   STATE_OFFSHORE_NAME,
   PERIOD_TYPES,
-  REVENUE_BY_COMPANY,
+  REVENUE_BY_COMPANY
 } from '../../../constants'
 
 import {
@@ -39,7 +40,7 @@ import {
   PeriodSelectInput,
   FiscalYearSlider,
   CalendarYearSlider,
-  StateNameSelectInput,
+  StateNameSelectInput
 } from '../../inputs'
 
 import BaseSelectInput from '../../inputs/BaseSelectInput'
@@ -201,7 +202,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
       { queryDataToolbarOpen &&
         <BaseToolbar isSecondary={true}>
           <Box>
-            <DataTypePlusSelectInput />
+            <CompanyNameFilter queryKey={QK_QUERY_TOOL} style={{ minWidth: 350 }}/>
           </Box>
           <Box className={classes.toolsWrapper}>
             {state[DATA_TYPE] === DISBURSEMENT
@@ -302,6 +303,7 @@ const DisbursementFilterToolbar = () => {
 const RevenueByCompanyFilterToolbar = () => {
   return (
     <BaseToolbar isSecondary={true} >
+      <CompanyNameFilter queryKey={QK_QUERY_TOOL} />
       <CommodityFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
     </BaseToolbar>
   )
