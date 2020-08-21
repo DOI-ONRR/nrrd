@@ -9,6 +9,7 @@ import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import LocationName from '../LocationName'
 
 import CONSTANTS from '../../../../js/constants'
 
@@ -26,9 +27,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query RevenueDetailTrends($state: String!, $period: String!, $year: Int!) {
+  query RevenueDetailTrends($state: String!, $period: String!, $year: Int!, $commodities: [String!] ) {
     revenue_summary(
-      where: { location: { _eq: $state }, period: {_eq: $period} },
+
+      where: { location: { _eq: $state }, period: {_eq: $period}, commodity: {_in: $commodities}  },
       order_by: { year: asc, location: asc }
     ) {
       year
@@ -44,14 +46,34 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueDetailTrends = props => {
+  // console.log('RevenueDetailTrends props: ', props)
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const state = props.fipsCode
+  const name = props.locationName
+
+  const location = {
+    county: props.county,
+    districtType: props.districtType,
+    fipsCode: props.fipsCode,
+    name: props.name,
+    regionType: props.regionType,
+    locationName: props.locationName
+  }
+
+  let commodityText = 'revenue'
+  if (commodities && commodities.length === 1) {
+    commodityText = commodities[0].toLowerCase() + ' revenue'
+  }
+  else if (commodities && commodities.length > 1) {
+    commodityText = 'revenue from the selected commodities'
+  }
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: CONSTANTS.FISCAL_YEAR, year: year }
+    variables: { state: state, period: period, year: year, commodities: commodities }
   })
 
   const closeCard = item => {
@@ -73,14 +95,15 @@ const RevenueDetailTrends = props => {
   let locationTotalData
   let locData
 
-  if (data) {
+  if (data &&
+      data.revenue_summary.length > 0) {
     periodData = data.period
 
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => parseInt(periodData[0].period_date.substring(0, 4)) < min ? parseInt(periodData[0].period_date.substring(0, 4)) : min, parseInt(periodData[0].period_date.substring(0, 4)))
     sparkMax = periodData.reduce((max, p) => parseInt(periodData[0].period_date.substring(0, 4)) > max ? parseInt(periodData[0].period_date.substring(0, 4)) : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
 
-    console.debug('sparkMin', sparkMin, periodData)
+    // console.debug('sparkMin', sparkMin, periodData)
     fiscalData = d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
@@ -99,29 +122,32 @@ const RevenueDetailTrends = props => {
 
     // sparkline index
     highlightIndex = sparkData.findIndex(
-      x => x[0] === year
+      x => x[0] === parseInt(year)
     )
     locData = sparkData[highlightIndex][1]
-  }
 
-  return (
-    <>
-      <Box textAlign="center" className={classes.root} key={props.key}>
-        <Box component="h2" mt={0} mb={0}>{utils.formatToDollarInt(locData)}</Box>
-        <Box component="span" mb={4}>{year && <span>{dataSet} revenue</span>}</Box>
-        {sparkData.length > 1 && (
-          <Box mt={4}>
-            <Sparkline
-              key={'RDT' + dataKey}
-              data={sparkData}
-              highlightIndex={highlightIndex}
-            />
+    return (
+      <>
+        <Box textAlign="center" className={classes.root} key={props.key}>
+          <Box component="h2" mt={0} mb={0}>{utils.formatToDollarInt(locData)}</Box>
+          <Box component="span" mb={4}>{year && <span>{dataSet} revenue</span>}</Box>
+          {sparkData.length > 1 && (
+            <Box mt={4}>
+              <Sparkline
+                key={'RDT' + dataKey}
+                data={sparkData}
+                highlightIndex={highlightIndex}
+              />
             Revenue trend ({sparkMin} - {sparkMax})
-          </Box>
-        )}
-      </Box>
-    </>
-  )
+            </Box>
+          )}
+        </Box>
+      </>
+    )
+  }
+  else {
+    return (<span><LocationName location={location} /> has had no federal {commodityText} since 2003.</span>)
+  }
 }
 
 export default RevenueDetailTrends

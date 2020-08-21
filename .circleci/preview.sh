@@ -97,7 +97,7 @@ fi
 echo "The candidate to remove from stage is $CANDIDATE"
 
 
-if [ "$count" -gt 9 ]
+if [ "$count" -gt 7 ]
 then
     echo "cf delete -f $CANDIDATE"
     echo "cf delete-route -f app.cloud.gov --hostname $CANDIDATE"

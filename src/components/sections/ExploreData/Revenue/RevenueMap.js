@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
-
+import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -34,7 +34,6 @@ export default props => {
   })
 
   let mapData = [[]]
-
   const onZoomEnd = event => {
     console.debug('Event : ', event)
   }
@@ -52,6 +51,7 @@ export default props => {
       .map(d => [d.key, d.value])
   }
 
+    
   return (
     <>
       {mapData &&
@@ -65,8 +65,9 @@ export default props => {
             mapZoom={props.mapZoom}
             mapX={props.mapX}
             mapY={props.mapY}
-            onZoomEnd={onZoomEnd}
-            onClick={props.onClick}
+            onZoomEnd={props.onZoomEnd}
+       onClick={props.onClick}
+       legendFormat={utils.formatToSigFig_Dollar}
             handleMapSnackbar={props.handleMapSnackbar}
             handleMapSnackbarClose={props.handleMapSnackbarClose} />
         </>

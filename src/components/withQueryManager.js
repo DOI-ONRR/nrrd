@@ -6,13 +6,22 @@ import { DataFilterContext } from '../stores/data-filter-store'
 import { AppStatusContext } from '../stores/app-status-store'
 
 const withQueryManager = (BaseComponent, queryKey) => ({ ...props }) => {
-  const { state } = useContext(DataFilterContext)
+  const { state, updateQueryDataFilterCounts } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(QueryManager.getQuery(queryKey, state), QueryManager.getVariables(queryKey, state))
   const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
 
   useEffect(() => {
+    if (data && data.counts && !loading) {
+      updateQueryDataFilterCounts({
+        queryKey: queryKey,
+        counts: data.counts.aggregate
+      })
+    }
+  }, [data])
+
+  useEffect(() => {
     if (error) {
-      showErrorMessage(`Error!: ${ error.message }`)
+      showErrorMessage('We encountered a connection error retrieving the data. Check your internet connection and refresh your browser to try again.')
     }
   }, [error])
 

@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
+// import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -17,6 +17,7 @@ import {
 } from '@material-ui/core'
 
 import Sparkline from '../../../data-viz/Sparkline'
+import LocationName from '../LocationName'
 
 const useStyles = makeStyles(theme => ({
   boxTopSection: {
@@ -53,6 +54,16 @@ const DisbursementDetailTrends = props => {
   const year = filterState[DFC.YEAR]
 
   const state = props.fipsCode
+  const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
+
+  const location = {
+    county: props.county,
+    districtType: props.districtType,
+    fipsCode: props.fipsCode,
+    name: props.name,
+    regionType: props.regionType,
+    locationName: props.locationName
+  }
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, period: CONSTANTS.FISCAL_YEAR, year: year }
@@ -77,7 +88,8 @@ const DisbursementDetailTrends = props => {
   let foundIndex
   let locData
 
-  if (data) {
+  if (data && data.disbursement_summary && data.disbursement_summary.length > 0) {
+    // console.log('DisbursementDetailTrends data: ', data)
     periodData = data.period
 
     // set min and max trend years
@@ -105,31 +117,40 @@ const DisbursementDetailTrends = props => {
 
     // sparkline index
     highlightIndex = sparkData.findIndex(
-      x => x[0] === year
+      x => x[0] === parseInt(year)
     )
 
-    foundIndex = fiscalData.findIndex(x => x[0] === year)
+    foundIndex = fiscalData.findIndex(x => x[0] === parseInt(year))
     locData = (foundIndex === -1 || typeof (foundIndex) === 'undefined') ? 0 : fiscalData[foundIndex][1]
-  }
 
-  return (
-    <>
-      <Box textAlign="center" className={classes.boxTopSection} key={props.key}>
-        <Box component="h2" mt={0} mb={0}>{locData && utils.formatToDollarInt(locData)}</Box>
-        <Box component="span" mb={4}>{year && <span>{dataSet} Disbursements</span>}</Box>
-        {sparkData.length > 1 && (
-          <Box mt={4}>
-            <Sparkline
-              key={'DDT' + dataSet }
-              data={sparkData}
-              highlightIndex={highlightIndex}
-            />
-            Disbursement trend ({sparkMin} - {sparkMax})
-          </Box>
-        )}
-      </Box>
-    </>
-  )
+    return (
+      <>
+        <Box textAlign="center" className={classes.boxTopSection} key={props.key}>
+          <Box component="h2" mt={0} mb={0}>{locData && utils.formatToDollarInt(locData)}</Box>
+          <Box component="span" mb={4}>{year && <span>{dataSet} Disbursements</span>}</Box>
+          {sparkData.length > 1 && (
+            <Box mt={4}>
+              <Sparkline
+                key={'DDT' + dataSet }
+                data={sparkData}
+                highlightIndex={highlightIndex}
+              />
+              Disbursement trend ({sparkMin} - {sparkMax})
+            </Box>
+          )}
+        </Box>
+      </>
+    )
+  }
+  else {
+    return (
+      <>
+        <Box textAlign="center" className={classes.root} key={props.key}>
+          <Box><LocationName location={location} />{` ${ nativeAmerican ? 'land' : '' } had no disbursements in ${ year }.`}</Box>
+        </Box>
+      </>
+    )
+  }
 }
 
 export default DisbursementDetailTrends

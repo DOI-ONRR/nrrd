@@ -78,13 +78,13 @@ const RevenueSummaryTopCommodities = props => {
   let distinctCommodities = 0
   let topCommodities = []
   let currentCommodities = []
-
+  const dataKey=period + '-' +year + '-' + state
   if (loading) {}
 
   if (error) return `Error! ${ error.message }`
 
   if (data && data.revenue_summary.length > 0) {
-    console.debug('DWGH', data)
+     // console.debug('DWGH', data)
     periodData = data.period
 
     fiscalData = d3.nest()
@@ -105,9 +105,9 @@ const RevenueSummaryTopCommodities = props => {
 
     // sparkline index
     highlightIndex = sparkData.findIndex(
-      x => x[0] === year
+      x => x[0] === parseInt(year)
     )
-    topCommodities = data.revenue_summary.filter(row => row.year === year)
+    topCommodities = data.revenue_summary.filter(row => row.year === parseInt(year))
       .map(f => f.commodity)
       .map((com, i) => {
         const s = d3.nest()
@@ -124,15 +124,15 @@ const RevenueSummaryTopCommodities = props => {
         })
         return { commodity: com, data: d }
       })
-    console.debug('WTH topCommodities', topCommodities)
+     // console.debug('WTH topCommodities', topCommodities)
     currentCommodities = d3.nest()
       .key(k => k.commodity)
       .rollup(v => d3.sum(v, i => i.total))
-      .entries(data.revenue_summary.filter(item => item.year === year))
+      .entries(data.revenue_summary.filter(item => item.year === parseInt(year)))
       .map(d => [d.key, d.value])
       .sort((a, b) => a[1] > b[1] ? -1 : 1)
 
-    console.debug('WTH currentCommodities', currentCommodities)
+     // console.debug('WTH currentCommodities', currentCommodities)
     distinctCommodities = currentCommodities.length
 
     /*
@@ -176,8 +176,6 @@ const RevenueSummaryTopCommodities = props => {
                     currentCommodities.map((com, j) => {
                       if (j < 3) {
                         return topCommodities.filter(f => f.commodity === com[0]).map((row, i) => {
-                          console.debug('ROOOOOOOOOOOOOOOOOOOOW', row)
-
                           return (
                             <TableRow key={j}>
                               <TableCell component="th" scope="row">
@@ -186,10 +184,11 @@ const RevenueSummaryTopCommodities = props => {
                                 </Typography>
                               </TableCell>
                               <TableCell align="right">
-                                <Sparkline
+                                  <Sparkline
+			      key={dataKey}
                                   data={row.data}
                                   highlightIndex={row.data.findIndex(
-                                    x => x[0] === year
+                                    x => x[0] === parseInt(year)
                                   )}
                                 />
                               </TableCell>
@@ -200,7 +199,7 @@ const RevenueSummaryTopCommodities = props => {
                                       Math.floor(
                                         // eslint-disable-next-line standard/computed-property-even-spacing
                                         row.data[
-                                          row.data.findIndex(x => x[0] === year)
+                                          row.data.findIndex(x => x[0] === parseInt(year))
                                         ][1]
                                       ),
                                       3

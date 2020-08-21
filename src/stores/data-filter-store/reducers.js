@@ -22,17 +22,21 @@ import {
   EXPLORE_DATA_FILTER_DEFAULT,
   OFFSHORE_REGIONS,
   YEAR,
-  LAND_TYPE,
-  PRODUCT
+  PRODUCT,
+  QUERY_COUNTS,
+  MAP_LEVEL,
+  STATE
 } from '../../constants'
 
 const types = Object.freeze({
   UPDATE_DATA_FILTER: 'UPDATE_DATA_FILTER',
+  UPDATE_QUERY_DATA_FILTER_COUNTS: 'UPDATE_QUERY_DATA_FILTER_COUNTS',
+  CLEAR_ALL_FILTERS: 'CLEAR_ALL_FILTERS',
 })
 
 const reducer = (state, action) => {
   const { type, payload } = action
-  console.log('Data Filer Provider action', type, payload)
+
   switch (type) {
   case types.UPDATE_DATA_FILTER: {
     const dataType = payload.dataType || state.dataType
@@ -41,7 +45,25 @@ const reducer = (state, action) => {
 
     const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
 
-    return ({ dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
+    return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
+  }
+  case types.UPDATE_QUERY_DATA_FILTER_COUNTS: {
+    const currentQueryCounts = state[QUERY_COUNTS] || {}
+    return ({ ...state, [QUERY_COUNTS]: Object.assign(currentQueryCounts, payload.counts) })
+  }
+  case types.CLEAR_ALL_FILTERS: {
+    const dataType = state.dataType
+
+    const dataTypeCache = {
+      [DATA_TYPE]: state[DATA_TYPE],
+      [PERIOD]: state[PERIOD],
+      [FISCAL_YEAR]: state[FISCAL_YEAR],
+      [CALENDAR_YEAR]: state[CALENDAR_YEAR]
+    }
+
+    const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
+
+    return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
   }
   default:
     return state
@@ -60,21 +82,21 @@ const initialState = {
         [DATA_TYPE]: REVENUE,
         [GROUP_BY]: REVENUE_TYPE,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2017,2018,2019',
-        [CALENDAR_YEAR]: '2017,2018,2019'
+        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
         [GROUP_BY_STICKY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2017,2018,2019',
-        [CALENDAR_YEAR]: '2016,2017,2018'
+        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+        [CALENDAR_YEAR]: '2014,2015,2016,2017,2018'
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2017,2018,2019',
+        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
       }
     }
   },
@@ -84,7 +106,7 @@ const initialState = {
     [FISCAL_YEAR]: '2019',
     [CALENDAR_YEAR]: '2019',
     [OFFSHORE_REGIONS]: false,
-    [COUNTIES]: 'state',
+    [MAP_LEVEL]: STATE,
     [YEAR]: 2019,
     dataTypesCache: {
       [REVENUE]: {
@@ -93,7 +115,7 @@ const initialState = {
         [FISCAL_YEAR]: '2019',
         [CALENDAR_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
-        [COUNTIES]: 'state',
+        [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
       },
       [PRODUCTION]: {
@@ -102,7 +124,7 @@ const initialState = {
         [FISCAL_YEAR]: '2019',
         [CALENDAR_YEAR]: '2018',
         [OFFSHORE_REGIONS]: false,
-        [COUNTIES]: 'state',
+        [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
       },
       [DISBURSEMENT]: {
@@ -111,7 +133,7 @@ const initialState = {
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
-        [COUNTIES]: 'state',
+        [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
       }
     }

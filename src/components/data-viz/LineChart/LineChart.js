@@ -66,7 +66,7 @@ const useStyles = makeStyles(theme => ({
 const LineChart = props => {
   const classes = useStyles()
   const { data, ...options } = props
-  console.debug('LINE CHART', data)
+   // console.debug('LINE CHART', data)
   const elemRef = useRef(null)
   const title = options.title || ''
 

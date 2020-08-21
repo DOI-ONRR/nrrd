@@ -2,13 +2,11 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import {
-  useQueryParam,
   useQueryParams,
   StringParam,
   encodeDelimitedArray,
   decodeDelimitedArray,
-  BooleanParam,
-  ArrayParam
+  NumberParam
 } from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -32,6 +30,7 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import useEventListener from '../../../js/use-event-listener'
+import useWindowSize from '../../../js/hooks/useWindowSize'
 
 import mapCounties from './counties.json'
 import mapStates from './states.json'
@@ -62,8 +61,13 @@ const useStyles = makeStyles(theme => ({
       position: 'fixed',
       top: 65,
     },
-    '& .legend': {
-      bottom: 140,
+    '& .legend-wrap': {
+      bottom: 142,
+      '@media (max-width: 768px)': {
+        bottom: 210,
+        transform: 'scale(0.9)',
+        left: -5,
+      },
     },
     '& .map-overlay': {
       left: '0',
@@ -126,7 +130,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         boxSizing: 'border-box',
         minWidth: 285,
-        minHeight: 325,
+        minHeight: 330,
         marginBottom: theme.spacing(1),
         bottom: 0,
       },
@@ -293,6 +297,12 @@ const MapContext = props => {
   }
 
   const classes = useStyles()
+  const theme = useTheme()
+  const size = useWindowSize()
+
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
 
@@ -302,10 +312,11 @@ const MapContext = props => {
   const [queryParams, setQueryParams] = useQueryParams({
     dataType: StringParam,
     period: StringParam,
-    counties: StringParam,
+    mapLevel: StringParam,
     location: CommaArrayParam,
     offshoreRegions: StringParam,
     commodity: StringParam,
+    year: StringParam,
   })
 
   const [mapOverlay, setMapOverlay] = useState(false)
@@ -314,10 +325,6 @@ const MapContext = props => {
   const [mapX, setMapX] = useState(pageState.mapX || 0)
   const [mapY, setMapY] = useState(pageState.mapY || 0)
   const [mapK, setMapK] = useState(pageState.mapZoom)
-
-  const theme = useTheme()
-  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
-  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   // Map snackbar
   const [mapSnackbarState, setMapSnackbarState] = useState({
@@ -382,7 +389,7 @@ const MapContext = props => {
     setMapK(k)
     setMapY(y)
     setMapX(x)
-    console.debug('YEAR ', selected)
+    // console.debug('YEAR ', selected)
     updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
   }
 
@@ -395,27 +402,43 @@ const MapContext = props => {
     dispatch({ type: 'MAP_ZOOM', payload: { mapX: x, mapY: y, mapZoom: k } })
   }
 
+  // check width, set zoom
+  useEffect(() => {
+    // mobile zoom
+    if (size.width <= 425) {
+      setZoom(105, 150, 0.45)
+    }
+    // tablet zoom
+    if (size.width <= 768 && size.width > 425) {
+      setZoom(125, 75, 0.75)
+    }
+  }, [size.width])
+
   // onLink
   const onLink = (state, x, y, k) => {
-    console.log('onLink state: ', state)
-
     // decern betweeen topo json and location data fips
     const fips = state.properties ? state.id : state.fips_code
+    const name = state.properties ? state.properties.name : state.state_name
+    const abbr = state.properties ? state.properties.state : state.state
+    let region = 'State'
+    if (fips.length === 5) {
+	    region = 'County'
+    }
     const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
 
     // filter out location from location data
     const location = locations.filter(item => item.fips_code === fips)
 
     const stateObj = {
-      fipsCode: location[0].fips_code,
-      name: location[0].state_name,
-      locationName: location[0].location_name,
-      state: location[0].state,
-      regionType: location[0].region_type,
-      districtType: location[0].district_type,
-      county: location[0].county
+      fipsCode: (location[0]) ? location[0].fips_code : fips,
+      name: (location[0]) ? location[0].state_name : name,
+      locationName: (location[0]) ? location[0].location_name : name,
+      state: (location[0]) ? location[0].state : abbr,
+      regionType: (location[0]) ? location[0].region_type : region,
+      districtType: (location[0]) ? location[0].district_type : '',
+      county: (location[0]) ? location[0].county : ''
     }
-
+    console.debug('stateObject: ', stateObj)
     if (
       cards.filter(item => item.fipsCode === fips).length === 0
     ) {
@@ -436,11 +459,11 @@ const MapContext = props => {
     dispatch({ type: 'CARDS', payload: cards })
   }
 
-  const countyLevel = filterState[DFC.COUNTIES] === 'county'
+  const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
   const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
   const handleChange = (type, name) => event => {
     // setZoom(x, y, k)
-    console.debug('TYPE: ', type, 'Name ', name, 'Event')
+    // console.debug('TYPE: ', type, 'Name ', name, 'Event')
     updateDataFilter({ ...filterState, [type]: event.target.checked })
   }
 
@@ -489,6 +512,9 @@ const MapContext = props => {
     x = event.transform.x
     y = event.transform.y
     k = event.transform.k
+    setZoom(x, y, k)
+
+    // console.debug("OnZoomEnd", event)
   }
 
   const onClick = (d, fips, foo, bar) => {
@@ -500,7 +526,7 @@ const MapContext = props => {
     const locationParam = queryParams.location
     let filteredLocations
 
-    console.log('queryParams: ', queryParams)
+    // console.log('queryParams: ', queryParams)
 
     // filter out location based on location params
     if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
@@ -545,10 +571,11 @@ const MapContext = props => {
     setQueryParams({
       dataType: filterState.dataType,
       period: filterState.period,
-      counties: filterState.counties,
+      mapLevel: filterState.mapLevel,
       offshoreRegions: filterState.offshoreRegions,
       commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
+      year: filterState.year
     }, 'pushIn')
   }, [filterState, pageState])
 

@@ -17,14 +17,14 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: '100%',
     '& .mapContainer': {
-      height: '100%',
+      height: 'calc(100vh + 65px)',
       width: '100%',
     },
     '& .map': {
       height: '100%',
       width: '100%',
     },
-    '& .legend': {
+    '& .legend-wrap': {
       display: 'block',
       bottom: 50,
       left: 5,
@@ -81,10 +81,13 @@ const Map = props => {
   const minColor = props.minColor
   const maxColor = props.maxColor
   const onZoom = props.onZoom || function () {
-    // console.debug('Map   onZoom default')
+    console.debug('Map   onZoom default')
   }
   const onZoomEnd = props.onZoomEnd || function () {
-    // console.debug('Map   onZoomEnd default')
+    console.debug('Map   onZoomEnd default')
+  }
+  const zoomIn = props.zoomIn || function () {
+    console.debug('Map   zoomIn default')
   }
   const mapZoom = props.mapZoom
   const mapX = props.mapX
@@ -139,11 +142,14 @@ const Map = props => {
     if (props.zoomTo) {
       map.zoomTo(props.zoomTo)
     }
+    if (props.zoomIn) {
+	  map.zoomIn(props.zoomIn)
+    }
   }, [mapData, mapJsonObject])
   return (
     <Box className={classes.root}>
       <div className='mapContainer' ref={elemRef}>
-        <div className='MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 legend'></div>
+        <div className='MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 legend-wrap'></div>
         <div className='map'></div>
       </div>
     </Box>

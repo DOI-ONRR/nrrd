@@ -49,7 +49,8 @@ import {
   PRODUCTION,
   REVENUE,
   US_STATE,
-  OFFSHORE_REGIONS
+  OFFSHORE_REGIONS,
+  MAP_LEVEL
 } from '../../../constants'
 
 import CONSTANTS from '../../../js/constants'
@@ -61,13 +62,13 @@ const EXPLORE_DATA_TOOLBAR_OPTIONS = {
     { value: PRODUCTION, option: 'Production' },
   ],
   [PERIOD]: [
-    { value: CONSTANTS.FISCAL_YEAR, option: 'Fiscal Year' },
-    { value: CONSTANTS.CALENDAR_YEAR, option: 'Calendar Year' },
+    { value: CONSTANTS.FISCAL_YEAR, option: DFC.PERIOD_FISCAL_YEAR },
+    { value: CONSTANTS.CALENDAR_YEAR, option: DFC.PERIOD_CALENDAR_YEAR },
     // { value: CONSTANTS.MONTHLY, option: 'Monthly' }
   ],
-  [COUNTIES]: [
-    { value: US_STATE, option: 'State' },
-    { value: COUNTY, option: 'County' }
+  [MAP_LEVEL]: [
+    { value: DFC.STATE, option: DFC.STATE },
+    { value: DFC.COUNTY_CAPITALIZED, option: DFC.COUNTY_CAPITALIZED }
   ],
   [OFFSHORE_REGIONS]: [
     { value: false, option: '' },
@@ -124,11 +125,14 @@ const ExploreDataToolbar = props => {
   const data = useStaticQuery(graphql`
     query DistinctCommodityQuery {
       onrr {
-        production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
-          commodity
-        }
-        revenue_commodity: revenue_commodity_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
-          commodity
+
+ProductionCommodityOptions: production_commodity_options(where: {product: {_neq: ""}}, order_by: {commodity_order: asc}) {
+    product
+  }
+       
+  # replacing in favor of commodity view which has the commodity_order field to order by
+        RevenueCommodityOptions: revenue_commodity_options(where: {commodity: {_neq: ""}}, order_by:  {commodity_order: asc}) {
+           commodity
         }
       }
     }
@@ -140,8 +144,9 @@ const ExploreDataToolbar = props => {
     mapOverlay
   } = props
 
-  const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
-  const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
+  const productionCommodityOptions = data.onrr.ProductionCommodityOptions.map(item => item.product)
+  // const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
+  const revenueCommodityOptions = data.onrr.RevenueCommodityOptions.map(item => item.commodity)
 
   const classes = useStyles()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
@@ -156,13 +161,14 @@ const ExploreDataToolbar = props => {
   const {
     dataType,
     commodity,
-    counties,
+    mapLevel,
     offshoreRegions
   } = filterState
 
   const {
     cards
   } = pageState
+
 
   const toggleExploreDataToolbar = event => {
     setExploreDataTabOpen(!exploreDataTabOpen)
@@ -256,35 +262,35 @@ const ExploreDataToolbar = props => {
               selectType='Single'
               showClearSelected={false} />
           }
-         <Box className={classes.toolsWrapper}>
-         {(dataType === 'Revenue' || dataType === 'Production') &&
-          
+          <Box className={classes.toolsWrapper}>
+            {(dataType === 'Revenue' || dataType === 'Production') &&
+
             <PeriodSelectInput
               dataFilterKey={PERIOD}
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[PERIOD]}
               defaultSelected='Fiscal Year'
               label='Period'
               selectType='Single'
-           showClearSelected={false} />
-          }
-          {(dataType === 'Disbursements') &&
-           
+              showClearSelected={false} />
+            }
+            {(dataType === 'Disbursements') &&
+
             <PeriodSelectInput
               dataFilterKey={PERIOD}
               data={['Fiscal Year']}
               defaultSelected='Fiscal Year'
               label='Period'
               selectType='Single'
-           showClearSelected={false} />
-          } 
+              showClearSelected={false} />
+            }
             <YearSlider />
           </Box>
           {!mapOverlay &&
           <Box className={classes.toolsWrapper}>
             <MapLevelToggleInput
-              dataFilterKey={COUNTIES}
-              defaultSelected={counties || CONSTANTS.STATE}
-              data={EXPLORE_DATA_TOOLBAR_OPTIONS[COUNTIES]}
+              dataFilterKey={MAP_LEVEL}
+              defaultSelected={mapLevel || DFC.STATE}
+              data={EXPLORE_DATA_TOOLBAR_OPTIONS[MAP_LEVEL]}
               label="Map level toggle"
               legend="Map level"
               size="small"
@@ -295,7 +301,7 @@ const ExploreDataToolbar = props => {
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[OFFSHORE_REGIONS]}
               defaultSelected={offshoreRegions === true}
               label='Show offshore'
-              helperText=''
+              helperText='Disbursements from offshore production go to the states and counties that surround the offshore area.'
               disabled={dataType === 'Disbursements' || mapOverlay}
               selectType='Single' />
           </Box>

@@ -26,8 +26,8 @@ import {
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
-  query RevenueOverTime($period: String!) {
-    revenue_summary(where: {period: {_eq: $period}, location: {_neq: ""}}, order_by: {year: asc}) {
+  query RevenueOverTime($period: String!, $commodities: [String!]) {
+    revenue_summary(where: {period: {_eq: $period}, commodity: {_in: $commodities}, location: {_neq: ""}}, order_by: {year: asc}) {
       year
       location
       total
@@ -86,9 +86,12 @@ const RevenueOverTime = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+    const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+     const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+    const commodity_key= (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
+    
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { period: period }
+      variables: { period: period, commodities: commodities }
   })
 
   const handleDelete = props.handleDelete || ((e, val) => {
@@ -105,7 +108,7 @@ const RevenueOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0 && data.revenue_summary.length > 0) {
-    console.log('RevenueOverTime data: ', data)
+
 
     const years = [...new Set(d3.nest()
       .key(k => k.year)
@@ -119,13 +122,20 @@ const RevenueOverTime = props => {
         .key(k => k.year)
         .rollup(v => d3.sum(v, i => i.total))
         .entries(data.revenue_summary.filter(row => row.location === yData.fipsCode))
-        .map(d => d.value))
-    ])
+        .map(d => ({ year: parseInt(d.key), value: d.value }))
+    )])
+
+    for (const [i, arr] of sums.entries()) {
+      sums[i] = years.map(year => {
+        const sum = sums[i].find(x => x.year === year)
+        return sum ? sum.value : 0
+      })
+    }
 
 
     //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]
-    console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
+     // console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
@@ -135,7 +145,7 @@ const RevenueOverTime = props => {
         </Grid>
         <Grid item md={12}>
           <LineChart
-            key={'ROT'}
+            key={'ROT'+commodity_key + period}
             data={chartData}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
@@ -151,7 +161,7 @@ const RevenueOverTime = props => {
               cards.map((card, i) => {
                 return (
                   <Chip
-                    key={`RevenueOverTimeChip_${ card.fipsCode }`}
+                     key={`RevenueOverTimeChip_${ card.fipsCode }`}
                     variant='outlined'
                     onDelete={ e => handleDelete(e, card.fipsCode)}
                     label={<ChipLabel labelIndex={i} label={card.locationName} />}

@@ -17,7 +17,10 @@ import {
   QUERY_KEY_DATA_TABLE,
   DOWNLOAD_DATA_TABLE,
   PRODUCT,
-  GROUP_BY_STICKY
+  GROUP_BY_STICKY,
+  QUERY_COUNTS,
+  COMMODITY_ORDER,
+  RECIPIENT,
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'
@@ -29,7 +32,6 @@ import CustomTable from './Custom/CustomTable'
 import CustomTableHead from './Custom/CustomTableHead'
 import CustomTableCell from './Custom/CustomTableCell'
 import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRow'
-import CustomTableFixedCell from './Custom/CustomTableFixedCell'
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
 import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
@@ -56,7 +58,6 @@ import {
   Grid as TableGrid,
   VirtualTable as Table,
   TableHeaderRow,
-  TableFixedColumns,
   TableGroupRow,
   TableSummaryRow,
   TableColumnResizing,
@@ -119,13 +120,17 @@ const EnhancedDataTable = withQueryManager(({ data, showSummaryRow, showOnlySubt
   return (
     <React.Fragment>
       {(data && data.results.length > 0) &&
-        <DataTableBase showOnlySubtotalRow={showOnlySubtotalRow} showSummaryRow={showSummaryRow} data ={data} />
+        <DataTableBase
+          showOnlySubtotalRow={showOnlySubtotalRow}
+          showSummaryRow={showSummaryRow}
+          data ={data}
+        />
       }
     </React.Fragment>
   )
 }, QUERY_KEY_DATA_TABLE)
 
-const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
+const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow }) => {
   const { state, updateDataFilter } = useContext(DataFilterContext)
   const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
@@ -133,89 +138,129 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
   const [expandedGroups, setExpandedGroups] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
+  // eslint-disable-next-line no-unused-vars
   const [fixedColumns, setFixedColumns] = useState([])
+  const [sorting, setSorting] = useState([]) // { columnName: 'city', direction: 'asc' }
   const [totalSummaryItems, setTotalSummaryItems] = useState([])
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
   const [aggregatedSums, setAggregatedSums] = useState()
-  const [defaultColumnWidths] = useState(columnNames ? columnNames.map((column, index) =>
-    (column.name.startsWith('y')) ? ({ columnName: column.name, width: 200 }) : ({ columnName: column.name, width: 250 })) : [])
+  const getDefaultColumnWidths = () => {
+    return (
+      columnNames.map((column, index) =>
+        (column.name.startsWith('y'))
+          ? ({ columnName: column.name, width: 200 })
+          : (column.name === RECIPIENT) ? ({ columnName: column.name, width: 350 }) : ({ columnName: column.name, width: 250 }))
+    )
+  }
+  const [defaultColumnWidths] = useState(columnNames ? getDefaultColumnWidths() : [])
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
 
+  const getSortingColumns = hiddenCols => {
+    if (state[DATA_TYPE] === REVENUE || state[DATA_TYPE] === DISBURSEMENT) {
+      const yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !hiddenCols.includes(item.name))).map(item => item.name)
+      return [{ columnName: yearColumns.slice(-1)[0], direction: 'desc' }]
+    }
+    else if (state[DATA_TYPE] === PRODUCTION) {
+      return [{ columnName: COMMODITY_ORDER, direction: 'asc' }]
+    }
+    return []
+  }
+
+  // Return true if we don't have a count for the column
+  // Later we can implement a different approach if needed
+  const columnIsNotNull = columnName => {
+    if (state[QUERY_COUNTS]) {
+      return (state[QUERY_COUNTS][columnName] > 0)
+    }
+    return true
+  }
+
   const _groupBySticky = state[GROUP_BY_STICKY]
+  const _breakoutBy = state[BREAKOUT_BY]
+  const _additionalColumns = state[ADDITIONAL_COLUMNS]
   const getGroupBy = () => {
+    const getNewGroupByColumn = () => {
+      const groupByColumnName = columnNames.find(item =>
+        (!item.name.startsWith('y') &&
+        item.name !== _groupBySticky &&
+        item.name !== _breakoutBy &&
+        columnIsNotNull(item.name) &&
+        (!_additionalColumns || !_additionalColumns.includes(item.name))))
+
+      if (groupByColumnName) {
+        return (groupByColumnName.name ? groupByColumnName.name : groupByColumnName)
+      }
+    }
+
     if (state[_groupBySticky] && state[_groupBySticky].split(',').length === 1) {
-      if (state[GROUP_BY]) {
+      if (state[GROUP_BY] && columnIsNotNull(state[GROUP_BY])) {
         return state[GROUP_BY]
       }
       else {
-        const groupByColumnName = columnNames.find(item =>
-          (!item.name.startsWith('y') &&
-          item.name !== _groupBySticky &&
-          (!_additionalColumns || !_additionalColumns.includes(item.name))))
-
-        if (groupByColumnName) {
-          return (groupByColumnName.name ? groupByColumnName.name : groupByColumnName)
-        }
+        return getNewGroupByColumn()
       }
+    }
+    else if (!_groupBySticky && !state[GROUP_BY]) {
+      return getNewGroupByColumn()
     }
     return _groupBySticky || state[GROUP_BY]
   }
+  const _groupBy = getGroupBy()
+
   const getUniqueGroupBy = () => {
-    if (_groupBy && _breakoutBy !== _groupBy && _groupBy !== _groupBySticky) {
+    if (_groupBy && _breakoutBy !== _groupBy && _groupBy !== _groupBySticky && columnIsNotNull(_groupBy)) {
       return _groupBy
     }
     const groupByColumnName = columnNames.find(item =>
       (!item.name.startsWith('y') &&
         item.name !== _groupBySticky &&
         item.name !== _breakoutBy &&
+        columnIsNotNull(item.name) &&
         (!_additionalColumns || !_additionalColumns.includes(item.name))))
 
     if (groupByColumnName) {
       return (groupByColumnName.name ? groupByColumnName.name : groupByColumnName)
     }
   }
-  const _groupBy = getGroupBy()
   const getUniqueBreakoutBy = () => {
-    if (_breakoutBy && _breakoutBy !== _groupBy && _breakoutBy !== _groupBySticky) {
+    if (_breakoutBy && _breakoutBy !== _groupBy && _breakoutBy !== _groupBySticky && columnIsNotNull(_breakoutBy)) {
       return _breakoutBy
     }
     const breakoutByColumnName = columnNames.find(item =>
       (!item.name.startsWith('y') &&
         item.name !== _groupBySticky &&
         item.name !== _groupBy &&
+        columnIsNotNull(item.name) &&
         (!_additionalColumns || !_additionalColumns.includes(item.name))))
 
     if (breakoutByColumnName) {
       return (breakoutByColumnName.name ? breakoutByColumnName.name : breakoutByColumnName)
     }
   }
-  const _breakoutBy = state[BREAKOUT_BY]
-  const _additionalColumns = state[ADDITIONAL_COLUMNS]
 
+  // Logic to update group by and breakout by columns
   useEffect(() => {
     if (state[GROUP_BY_STICKY] !== _groupBy) {
-      if (_breakoutBy === _groupBy) {
+      if (_groupBy && !columnIsNotNull(_groupBy)) {
+        updateDataFilter({ [GROUP_BY]: getUniqueGroupBy() })
+      }
+      else if (_groupBy && _breakoutBy === _groupBy && state[GROUP_BY] === _groupBy) {
         updateDataFilter({ [GROUP_BY]: _groupBy, [BREAKOUT_BY]: getUniqueBreakoutBy() })
       }
       else if (state[GROUP_BY] !== _groupBy) {
         updateDataFilter({ [GROUP_BY]: _groupBy })
       }
+      else if (_breakoutBy && state[BREAKOUT_BY] !== _breakoutBy && _breakoutBy === _groupBy) {
+        updateDataFilter({ [GROUP_BY]: getUniqueGroupBy(), [BREAKOUT_BY]: _breakoutBy })
+      }
+      else if (_breakoutBy && !columnIsNotNull(_breakoutBy)) {
+        updateDataFilter({ [BREAKOUT_BY]: getUniqueBreakoutBy() })
+      }
     }
     else if (state[GROUP_BY_STICKY] === _groupBy && state[GROUP_BY]) {
       updateDataFilter({ [GROUP_BY]: undefined })
     }
-  }, [_groupBy])
-
-  useEffect(() => {
-    if (state[GROUP_BY_STICKY] === _groupBy) {
-      if (_groupBy) {
-        updateDataFilter({ [GROUP_BY]: undefined })
-      }
-    }
-    else if (_breakoutBy === _groupBy) {
-      updateDataFilter({ [GROUP_BY]: getUniqueGroupBy() })
-    }
-  }, [_breakoutBy])
+  }, [_groupBy, _breakoutBy, state])
 
   const getColumnOrder = () => {
     let swapIndex
@@ -290,6 +335,7 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
 
   useEffect(() => {
     columnNames = getColumnNames(data.results[0], state)
+    const hiddenCols = getHiddenColumns()
     if (_groupBy && (_breakoutBy !== NO_BREAKOUT_BY && _breakoutBy)) {
       setGrouping([{ columnName: _groupBy }])
       setGroupingExtension([{ columnName: _groupBy, showWhenGrouped: true }])
@@ -312,8 +358,9 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
       setFixedColumns([columnNames[0]])
     }
     setColumnOrder(getColumnOrder())
-    const hiddenCols = getHiddenColumns()
+
     setHiddenColumnNames(hiddenCols)
+    setSorting(getSortingColumns(hiddenCols))
     setGroupSummaryItems(getGroupSummaryItems())
     setTotalSummaryItems(getTotalSummaryItems())
 
@@ -361,6 +408,7 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
     const options = columnNames.filter(item => (
       item.name !== _groupBySticky &&
       !item.name.startsWith('y') &&
+      columnIsNotNull(item.name) &&
       (!_additionalColumns || !_additionalColumns.includes(item.name))
     ))
     return options.map(item => ({ option: item.title, value: item.name }))
@@ -370,6 +418,7 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
     const options = columnNames.filter(item => (
       item.name !== _groupBySticky &&
       item.name !== _groupBy &&
+      columnIsNotNull(item.name) &&
       !item.name.startsWith('y') &&
       (!_additionalColumns || !_additionalColumns.includes(item.name))
     ))
@@ -387,7 +436,10 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
               <TotalProvider
                 for={columnNames.filter(item => !item.name.startsWith('y')).map(item => item.name)}
               />
-              <SortingState />
+              <SortingState
+                sorting={sorting}
+                onSortingChange={setSorting}
+              />
               <GroupingState
                 grouping={grouping}
                 expandedGroups={expandedGroups}
@@ -440,18 +492,17 @@ const DataTableBase = ({ data, showSummaryRow, showOnlySubtotalRow }) => {
                   itemComponent={CustomTableSummaryRowItem}
                 />
               }
-              <TableFixedColumns leftColumns={fixedColumns} cellComponent={CustomTableFixedCell} />
+
             </TableGrid>
           </Grid>
         </Grid>
       }
     </React.Fragment>
   )
-}
+})
 
 const getColumnNames = (row, state) => {
   if (!row) {
-    console.log(row, state)
     return []
   }
   const filteredColumns = Object.keys(row).filter(column => !column.includes('typename'))

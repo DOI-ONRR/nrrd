@@ -36,8 +36,6 @@ const ProductionLocationTotal = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
 
-  console.log('ProductionLocationTotal queryVars: ', [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], year, period, product)
-
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
     variables: { location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], year: year, period: period, product: product }
   })
@@ -51,7 +49,7 @@ const ProductionLocationTotal = props => {
   if (data) {
     const groupedLocationData = utils.groupBy(data.production_summary, 'location')
 
-    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS]) {
+    if (groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS] && groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS].length > 0) {
       nationwideSummary = d3.nest()
         .key(k => k.location)
         .rollup(v => d3.sum(v, i => i.total))
@@ -64,7 +62,7 @@ const ProductionLocationTotal = props => {
       nationwideSummary = [{ location: DFC.NATIONWIDE_FEDERAL_FIPS, total: 0 }]
     }
 
-    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS]) {
+    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS] && groupedLocationData[DFC.NATIVE_AMERICAN_FIPS].length > 0) {
       nativeSummary = d3.nest()
         .key(k => k.location)
         .rollup(v => d3.sum(v, i => i.total))

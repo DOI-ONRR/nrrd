@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import * as d3 from 'd3'
 
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
@@ -31,9 +32,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const APOLLO_QUERY = gql`
-  query RevenueTypes($state: String!, $year: Int!, $period: String!) {
+  query RevenueTypes($state: String!, $year: Int!, $period: String!, $commodities: [String!]) {
     revenue_type_summary(
-      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period} },
+      where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period}, commodity: {_in: $commodities} },
       order_by: { year: asc, total: desc }
     ) {
       year
@@ -46,16 +47,17 @@ const APOLLO_QUERY = gql`
 
 const RevenueDetailTypes = props => {
   const classes = useStyles()
-  const theme = useTheme()
+    const theme = useTheme()
+
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
-
-  const state = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS || props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? props.name : props.fipsCode
+const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  const state = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_ABBR || props.fipsCode === DFC.NATIVE_AMERICAN_ABBR) ? props.name : props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: period }
+      variables: { state: state, year: year, period: period,  commodities:  commodities}
   })
   const dataKey = dataSet + '-' + props.name
   let chartData
@@ -65,22 +67,30 @@ const RevenueDetailTypes = props => {
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-    chartData = data
+      //       chartData = data
+      chartData = d3.nest()
+	  .key(k => k.revenue_type)
+	  .rollup(v => d3.sum(v, i => i.total))
+	  .entries(data.revenue_type_summary)
+	  .map(d => ({ revenue_type: d.key, total: d.value}))
+      
+
+
   }
 
   return (
     <>
-      { chartData && chartData.revenue_type_summary.length > 0
+      { chartData && chartData.length > 0
         ? (
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Revenue types</Box>
             <Box>
               <CircleChart
                 key={'RDTY' + dataKey }
-                data={chartData.revenue_type_summary} xAxis='revenue_type' yAxis='total'
+                data={chartData} xAxis='revenue_type' yAxis='total'
                 format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
-                maxCircles={4}
+                maxCircles={6}
                 minColor='#FCBA8B'
                 maxColor='#B64D00'
                 circleTooltip={
@@ -103,8 +113,6 @@ const RevenueDetailTypes = props => {
         )
         : (
           <Box className={classes.boxSection}>
-            <Box component="h4" fontWeight="bold" mb={2}>Revenue types</Box>
-            <Box fontSize="subtitle2.fontSize">There was no revenue on federal land in {props.cardTitle} in {dataSet}.</Box>
           </Box>
         )
       }

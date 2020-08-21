@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes, { object } from 'prop-types'
+import PropTypes from 'prop-types'
 import { isEqual, isEqualWith } from 'lodash'
 
 import {
+  Box,
   InputBase,
   FormControl,
   FormHelperText,
@@ -10,7 +11,8 @@ import {
   ListItemText,
   MenuItem,
   Select,
-  Checkbox
+  Checkbox,
+  Tooltip
 } from '@material-ui/core'
 
 import {
@@ -20,6 +22,7 @@ import {
 } from '@material-ui/core/styles'
 
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
 
 import { formatToSlug } from '../../../js/utils'
 import { ZERO_OPTIONS } from '../../../constants'
@@ -30,10 +33,33 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     minWidth: 150,
     maxWidth: 275,
+    '& .MuiInputLabel-outlined': {
+      transform: 'translate(14px, -6px) scale(0.75)'
+    },
+  },
+  formHelperTextRoot: {
+    fontSize: '.75rem',
+    '& $disabled': {
+      fontSize: '.75rem',
+    },
   },
   selectInput: {
     minHeight: 'inherit',
     padding: '8.5px 14px',
+    marginBottom: theme.spacing(0.5),
+  },
+  iconRoot: {
+    fill: theme.palette.common.black,
+    position: 'absolute',
+    top: -10,
+    right: 0,
+    cursor: 'pointer',
+  },
+  iconFontSizeSmall: {
+    fontSize: 20,
+  },
+  tooltipRoot: {
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
   },
 }))
 
@@ -50,6 +76,10 @@ const BaseInput = withStyles(theme =>
       border: '1px solid #ced4da',
       padding: '8.5px 14px',
       transition: theme.transitions.create(['border-color', 'box-shadow']),
+      minWidth: 'inherit',
+      '@media (min-width: 1440px)': {
+        minWidth: 130,
+      },
       '&:focus': {
         borderRadius: 4,
         borderColor: '#80bdff',
@@ -266,10 +296,11 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
         defaultItems = []
       }
     }
+
     return (defaultItems && !disabled) ? defaultItems : []
   }
   const [selectedOptions, setSelectedOptions] = useState(getDefaultSelected())
-  const [selectAllOptions, setSelectAllOptions] = useState(defaultSelectAll)
+  const [selectAllOptions, setSelectAllOptions] = useState((selected) ? false : defaultSelectAll)
   const [selectedOptionsChanged, setSelectedOptionsChanged] = useState(false)
 
   const handleChange = value => {
@@ -300,9 +331,6 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
 
   const handleRenderValue = renderValues => {
     let selectedVal
-    if (label === 'Recipient') {
-      // console.log(selected, renderValues, selectedOptions)
-    }
 
     if (renderValues && renderValues.length !== data.length) {
       selectedVal = renderValues.join(', ')
@@ -319,6 +347,23 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
     return selectedVal
   }
 
+  const helperContent = () => {
+    return (
+      <>
+        {helperText &&
+          <Box component="span" className={classes.formHelperTextRoot}>
+            {helperText}
+          </Box>
+        }
+        {(data && data.length === 0) &&
+          <Box component="span" className={classes.formHelperTextRoot}>
+            No {label} match the current filter options.
+          </Box>
+        }
+      </>
+    )
+  }
+
   useEffect(() => {
     if (!disabled) {
       if (selectAllOptions) {
@@ -331,18 +376,26 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
   }, [data])
 
   useEffect(() => {
-    if (selected && !isEqual(selected, selectedOptions)) {
+    if (selected) {
       if (typeof selected === 'string') {
-        handleChange(selected.split(','))
+        if (!isEqual(selected.split(','), selectedOptions)) {
+          handleChange(selected.split(','))
+        }
       }
-      else {
+      else if (!isEqual(selected, selectedOptions)) {
         handleChange(selected)
       }
+    }
+    else if (!selected && selectedOptions && selectedOptions.length > 0) {
+      handleChange((defaultSelectAll ? ['selectAll'] : []))
     }
   }, [selected])
 
   return (
-    <FormControl className={classes.formControl} variant={variant} disabled={((disabled) || (data && data.length === 0))}>
+    <FormControl
+      className={classes.formControl}
+      variant={variant}
+      disabled={((disabled) || (data && data.length === 0))}>
       <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
       <Select
         labelId={`${ labelSlug }-select-label`}
@@ -354,8 +407,14 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
         input={theme}
         onChange={e => handleChange(e.target.value)}
         onClose={handleClose}
-        classes={{ root: classes.selectInput }}
+        classes={{
+          root: classes.selectInput,
+          disabled: classes.selectDisabled
+        }}
         displayEmpty
+        MenuProps={{
+          disableAutoFocusItem: true
+        }}
       >
         <MenuItem key={0} role="select-menu" value={selectAllOptions ? 'selectNone' : 'selectAll'}>
           <Checkbox checked={selectAllOptions} />
@@ -371,11 +430,21 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
             </MenuItem>)
         }
       </Select>
-      {helperText &&
-            <FormHelperText>{helperText}</FormHelperText>
-      }
-      {(data && data.length === 0) &&
-            <FormHelperText>No '{label}' match the current filter options.</FormHelperText>
+
+      {(helperText || (data && data.length === 0)) &&
+        <Tooltip
+          title={helperContent()}
+          classes={{
+            tooltip: classes.tooltipRoot,
+            arrow: classes.tooltipArrow,
+          }}>
+          <HelpOutlineIcon
+            fontSize="small"
+            classes={{
+              root: classes.iconRoot,
+              fontSizeSmall: classes.iconFontSizeSmall
+            }} />
+        </Tooltip>
       }
     </FormControl>
   )
