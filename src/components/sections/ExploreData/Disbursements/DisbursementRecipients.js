@@ -131,9 +131,9 @@ const DisbursementRecipients = props => {
               }
             } />
 	      <>{ state === 'NF' &&
-		  <Box fontSize='.8rem' fontStyle='italic' mt={1} >* <GlossaryTerm>LWCF</GlossaryTerm> Land and Water conservation Fund</Box>} </>
+		  <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
 	      <>{ state === 'NF' &&
-		<Box fontSize='.8rem' fontStyle='italic' >** <GlossaryTerm>HPF</GlossaryTerm> Historic Preservation Fund</Box>
+		<Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
               }
 	      </>
 
