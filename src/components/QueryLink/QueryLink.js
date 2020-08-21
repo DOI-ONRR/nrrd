@@ -42,16 +42,27 @@ const QueryLink = props => {
     let sharedParams
     let queryLink
 
+    const params = {
+      [DFC.DATA_TYPE]: dataType,
+      [DFC.PERIOD]: period,
+      [periodParam]: yearRange,
+      [DFC.GROUP_BY]: (fipsCode && fipsCode === 5) ? DFC.COUNTY : props.groupBy
+    }
+
+    const queryString = Object.keys(params).map(key => `${ key }=${ params[key] }`).join('&')
+
+    console.log('queryString: ', queryString)
+
     // check dataType
     switch (dataType) {
     case DFC.REVENUE:
-      sharedParams = `/${ baseSegment }/?dataType=${ dataType }&period=${ period }&${ periodParam }=${ yearRange }`
+      sharedParams = `/${ baseSegment }/?${ queryString }`
       break
-    case DFC.DISBURSEMENT:
-      sharedParams = `/${ baseSegment }/?dataType=${ dataType }&period=${ period }&${ periodParam }=${ yearRange }`
+    case DFC.DISBURSEMENTS:
+      sharedParams = `/${ baseSegment }/?${ queryString }`
       break
     case DFC.PRODUCTION:
-      sharedParams = `/${ baseSegment }/?dataType=${ dataType }&period=${ period }&${ periodParam }=${ yearRange }&commodity=${ DFC.OIL }`
+      sharedParams = `/${ baseSegment }/?${ queryString }&product=Oil (bbl)`
       break
     default:
       sharedParams = `/${ baseSegment }`
@@ -64,43 +75,43 @@ const QueryLink = props => {
       if (fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS) {
         switch (dataType) {
         case DFC.REVENUE:
-          queryLink = `${ sharedParams }&groupBy=${ props.groupBy }&landType=Federal - not tied to a lease,Federal Offshore,Federal Onshore`
+          queryLink = `${ sharedParams }&landType=Federal - not tied to a lease,Federal Offshore,Federal Onshore`
           break
         case DFC.DISBURSEMENT:
-          queryLink = `${ sharedParams }&groupBy=${ props.groupBy }&recipient=Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury`
+          queryLink = `${ sharedParams }&recipient=Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury`
           break
         case DFC.PRODUCTION:
-          queryLink = `${ sharedParams }&groupBy=${ props.groupBy }&landType=${ DFC.NATIVE_AMERICAN }`
+          queryLink = `${ sharedParams }&landType=Federal - not tied to a lease,Federal Offshore,Federal Onshore&groupBySticky=product`
           break
         default:
-          queryLink = `${ sharedParams }&groupBy=${ props.groupBy }`
+          queryLink = `${ sharedParams }`
           break
         }
       }
 
       // Native American
       else if (fipsCode === DFC.NATIVE_AMERICAN_FIPS) {
-        queryLink = `${ sharedParams }&groupBy=${ props.groupBy }&landType=${ DFC.NATIVE_AMERICAN }`
+        queryLink = `${ sharedParams }&landType=${ DFC.NATIVE_AMERICAN }`
       }
 
       else {
-        queryLink = `${ sharedParams }&groupBy=${ props.groupBy }&stateOffshoreName=${ locationName }`
+        queryLink = `${ sharedParams }&stateOffshoreName=${ locationName }`
       }
     }
 
     // Offshore
     if (fipsCode && fipsCode.length === 3) {
-      queryLink = `${ sharedParams }&groupBy=${ props.groupBy }&stateOffshoreName=${ locationName }`
+      queryLink = `${ sharedParams }&stateOffshoreName=${ locationName }`
     }
 
     // County
     if (fipsCode && fipsCode.length === 5) {
-      queryLink = `${ sharedParams }&groupBy=${ DFC.COUNTY }&stateOffshoreName=${ locationName }`
+      queryLink = `${ sharedParams }&stateOffshoreName=${ locationName }`
     }
 
     // non card links
     if (!fipsCode) {
-      queryLink = `${ sharedParams }&groupBy=${ props.groupBy }`
+      queryLink = `${ sharedParams }`
     }
 
     return queryLink

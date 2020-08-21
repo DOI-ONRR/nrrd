@@ -5,9 +5,7 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import Link from '../../../Link'
-
-import { StoreContext } from '../../../../store'
+import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -132,6 +130,11 @@ const NationwideDisbursementSummary = props => {
           <Grid item md={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
               <Box component="h3" color="secondary.dark">{title}</Box>
+            </Box>
+            <Box align="right">
+              <QueryLink groupBy={DFC.RECIPIENT} linkType="FilterTable" {...props}>
+                Query nationwide disbursements
+              </QueryLink>
             </Box>
           </Grid>
           <Grid item md={12}>

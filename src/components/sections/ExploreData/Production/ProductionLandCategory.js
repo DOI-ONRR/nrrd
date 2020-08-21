@@ -5,6 +5,9 @@ import PropTypes from 'prop-types'
 
 // utility functions
 import utils from '../../../../js/utils'
+
+import QueryLink from '../../../../components/QueryLink'
+
 import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -166,6 +169,9 @@ const ProductionLandCategory = ({ title, ...props }) => {
               }
             />
           </Box>
+          <QueryLink groupBy={DFC.STATE_OFFSHORE_NAME} linkType="FilterTable" {...props}>
+              Query production over time
+          </QueryLink>
         </Box>
 
       )

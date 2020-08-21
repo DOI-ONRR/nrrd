@@ -3,9 +3,12 @@ import PropTypes from 'prop-types'
 // import { graphql } from 'gatsby'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+
+import QueryLink from '../../../../components/QueryLink'
+
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -104,6 +107,11 @@ const DisbursementTopRecipients = props => {
         <Grid item xs={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h3" color="secondary.dark">{title}</Box>
+          </Box>
+          <Box align="right">
+            <QueryLink groupBy={DFC.RECIPIENT} linkType="FilterTable" {...props}>
+                Query nationwide revenue
+            </QueryLink>
           </Box>
         </Grid>
         <Grid item xs={12}>

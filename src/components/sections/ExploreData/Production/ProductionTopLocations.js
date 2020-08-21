@@ -4,9 +4,10 @@ import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 import * as d3 from 'd3'
 
+import QueryLink from '../../../../components/QueryLink'
+
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -243,6 +244,9 @@ const ProductionTopLocations = ({ title, ...props }) => {
               minColor={theme.palette.green[100]}
               maxColor={theme.palette.green[600]} />
           </Box>
+          <QueryLink groupBy={DFC.STATE_OFFSHORE_NAME} linkType="FilterTable" {...props}>
+              Query production by location
+          </QueryLink>
         </Box>
       )
     }
