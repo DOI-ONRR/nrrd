@@ -15,7 +15,7 @@ const config = {
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
     googleTagManagerId: GTM_ID,
-    version: 'v6.0.2',
+    version: 'v6.1.0',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',

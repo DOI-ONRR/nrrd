@@ -73,6 +73,7 @@ const useStyles = makeStyles(theme => ({
         width: '70%',
         '@media (max-width: 426px)': {
           marginRight: 0,
+          width: '100%',
         },
       },
     },
@@ -88,7 +89,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
+  const commodity_key = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
   const locations = ['State', 'Offshore', 'Native American']
   if (offshore !== 'Hide') {
     locations.push('Offshore')
@@ -171,7 +172,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
                     }
                   }
                   yLabel={dataSet}
-                  maxCircles={16}
+                  maxCircles={6}
                   minColor={theme.palette.green[100]}
                   maxColor={theme.palette.green[600]} />
               </Box>

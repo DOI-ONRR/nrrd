@@ -1,0 +1,10 @@
+create table revenue_by_company (
+calendar_year int not null,
+corporate_name varchar(255) not null,
+revenue_type varchar(255) not null,
+commodity varchar(255) not null,
+raw_revenue varchar(255) not null,
+revenue numeric,
+primary key (calendar_year, corporate_name, revenue_type, commodity)
+)
+

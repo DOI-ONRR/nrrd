@@ -73,7 +73,7 @@ const GlossaryTerm = ({ children, ...rest }) => {
       enterDelay={100}
       leaveDelay={250}
       enterTouchDelay={100}
-      leaveTouchDelay={500}
+      leaveTouchDelay={3000}
       arrow
       placement="top">
       <TermDisplay tabIndex='0' className={styles.term} {...rest} />

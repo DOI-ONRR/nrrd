@@ -61,12 +61,6 @@ const RevenueDetailCommodities = props => {
     variables: { year: year, state: state, period: period, commodities }
   })
 
-  const location = {
-    fipsCode: props.fipsCode,
-    locationName: props.locationName,
-    name: props.name
-  }
-
   let chartData
 
   if (loading) return ''
