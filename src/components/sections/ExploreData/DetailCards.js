@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
       gridTemplateRows: '185px 750px 850px',
     },
     '& .cardContent__Disbursements': {
-      gridTemplateRows: '185px 675px 560px',
+      gridTemplateRows: '185px 855px 650px',
     },
     '& .cardContent__Production': {
       gridTemplateRows: '185px 325px 835px',
