@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core'
 
 const QueryLink = props => {
-  console.log('QueryLink props: ', props)
+  // console.log('QueryLink props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.FISCAL_YEAR_LABEL
@@ -50,8 +50,7 @@ const QueryLink = props => {
     }
 
     const queryString = Object.keys(params).map(key => `${ key }=${ params[key] }`).join('&')
-
-    console.log('queryString: ', queryString)
+    const productString = encodeURIComponent('Oil (bbl)')
 
     // check dataType
     switch (dataType) {
@@ -62,7 +61,7 @@ const QueryLink = props => {
       sharedParams = `/${ baseSegment }/?${ queryString }`
       break
     case DFC.PRODUCTION:
-      sharedParams = `/${ baseSegment }/?${ queryString }&product=Oil (bbl)`
+      sharedParams = `/${ baseSegment }/?${ queryString }&product=${ productString }`
       break
     default:
       sharedParams = `/${ baseSegment }`
@@ -73,15 +72,19 @@ const QueryLink = props => {
     if (fipsCode && fipsCode.length === 2) {
       // Nationwide Federal
       if (fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS) {
+        const revenueLandTypeString = encodeURIComponent('Federal - not tied to a lease,Federal Offshore,Federal Onshore')
+        const disbursementString = encodeURIComponent('Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury')
+        const productionLandTypeString = encodeURIComponent('Federal - not tied to a lease,Federal Offshore,Federal Onshore&groupBySticky=product')
+
         switch (dataType) {
         case DFC.REVENUE:
-          queryLink = `${ sharedParams }&landType=Federal - not tied to a lease,Federal Offshore,Federal Onshore`
+          queryLink = `${ sharedParams }&landType=${ revenueLandTypeString }`
           break
         case DFC.DISBURSEMENT:
-          queryLink = `${ sharedParams }&recipient=Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury`
+          queryLink = `${ sharedParams }&recipient=${ disbursementString }`
           break
         case DFC.PRODUCTION:
-          queryLink = `${ sharedParams }&landType=Federal - not tied to a lease,Federal Offshore,Federal Onshore&groupBySticky=product`
+          queryLink = `${ sharedParams }&landType=${ productionLandTypeString }`
           break
         default:
           queryLink = `${ sharedParams }`
