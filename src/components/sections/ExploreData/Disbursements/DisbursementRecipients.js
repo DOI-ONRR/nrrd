@@ -7,7 +7,7 @@ import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
 
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
-
+import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm.js'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -130,6 +130,12 @@ const DisbursementRecipients = props => {
                 return r
               }
             } />
+	      <>{ state === 'N F' &&
+		<Box mt={3} >* <GlossaryTerm>LWCF</GlossaryTerm> Land and Water conservation Fund</Box>} </>
+	      <>{ state === 'N F' &&
+		<Box mt={3}>** <GlossaryTerm>HPF</GlossaryTerm></Box>
+              }
+	      </>
 
           <Box mt={3}>
             {/*            <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
