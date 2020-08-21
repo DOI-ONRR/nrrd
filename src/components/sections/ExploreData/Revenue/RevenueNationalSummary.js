@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import * as d3 from 'd3'
 
-import Link from '../../../Link'
+import QueryLink from '../../../../components/QueryLink'
 
 import { StoreContext } from '../../../../store'
 
@@ -63,11 +63,11 @@ const RevenueNationalSummary = props => {
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  const commodity_key= (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY]: 'All'
+  const commodity_key = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'All'
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year, period: period, commodities: commodities  }
+    variables: { year: year, period: period, commodities: commodities }
   })
 
   const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
@@ -93,7 +93,6 @@ const RevenueNationalSummary = props => {
     groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
-
   }
 
   return (
@@ -102,6 +101,11 @@ const RevenueNationalSummary = props => {
         <Grid item xs={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h3" color="secondary.dark">{title}</Box>
+          </Box>
+          <Box align="right">
+            <QueryLink groupBy={DFC.REVENUE_TYPE} linkType="FilterTable" {...props}>
+                Query nationwide revenue
+            </QueryLink>
           </Box>
         </Grid>
         <Grid item xs={12} style={{ overflowX: 'auto' }}>

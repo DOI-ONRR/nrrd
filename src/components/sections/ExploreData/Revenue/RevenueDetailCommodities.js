@@ -8,7 +8,7 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
-import Link from '../../../../components/Link'
+import QueryLink from '../../../../components/QueryLink'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -53,64 +53,18 @@ const RevenueDetailCommodities = props => {
   const state = props.fipsCode
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.FISCAL_YEAR_LABEL
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  let locationName = props.locationName
 
-  if (state.length === 3) {
-    locationName = `${ props.regionType } ${ props.locationName }`
-  }
-
-  if (state.length === 5) {
-    locationName = props.name
-  }
+  const dataSet = (period === DFC.FISCAL_YEAR_LABEL) ? `FY ${ year }` : `CY ${ year }`
+  const dataKey = dataSet + '-' + state + (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year: year, state: state, period: period, commodities }
   })
 
-  const dataSet = (period === DFC.FISCAL_YEAR_LABEL) ? `FY ${ year }` : `CY ${ year }`
-  const dataKey = dataSet + '-' + state + (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
-
-  // get year range from selected year
-  const getYearRange = (start, end) => {
-    return new Array(end - start + 1).fill().map((_, idx) => start + idx)
-  }
-
-  const periodParam = (period === DFC.FISCAL_YEAR_LABEL) ? DFC.FISCAL_YEAR : DFC.CALENDAR_YEAR
-  const yearRange = getYearRange((parseInt(year) - 5), parseInt(year))
-
-  // Get query url
-  const getQueryUrl = (baseSegment, fipsCode) => {
-    const sharedParams = `/${ baseSegment }/?dataType=${ DFC.REVENUE }&period=${ period }&${ periodParam }=${ yearRange }`
-    let queryLink
-
-    // State
-    if (fipsCode.length === 2) {
-    // Nationwide Federal
-      if (fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS) {
-        queryLink = `${ sharedParams }&groupBy=${ DFC.COMMODITY }&landType=Federal - not tied to a lease,Federal Offshore,Federal Onshore`
-      }
-
-      // Native American
-      else if (fipsCode === DFC.NATIVE_AMERICAN_FIPS) {
-        queryLink = `${ sharedParams }&groupBy=${ DFC.COMMODITY }&landType=${ DFC.NATIVE_AMERICAN }`
-      }
-
-      else {
-        queryLink = `${ sharedParams }&groupBy=${ DFC.COMMODITY }&stateOffshoreName=${ locationName }`
-      }
-    }
-
-    // Offshore
-    if (fipsCode.length === 3) {
-      queryLink = `${ sharedParams }&groupBy=${ DFC.COMMODITY }&stateOffshoreName=${ locationName }`
-    }
-
-    // County
-    if (fipsCode.length === 5) {
-      queryLink = `${ sharedParams }&groupBy=${ DFC.COUNTY }&stateOffshoreName=${ locationName }`
-    }
-
-    return queryLink
+  const location = {
+    fipsCode: props.fipsCode,
+    locationName: props.locationName,
+    name: props.name
   }
 
   let chartData
@@ -147,12 +101,9 @@ const RevenueDetailCommodities = props => {
                 maxCircles={6}
                 minColor={theme.palette.purple[100]}
                 maxColor={theme.palette.purple[600]} />
-              <Box mt={3}>
-                <Link href={getQueryUrl('query-data', state)} linkType="FilterTable">
-                  Query revenue by commodity
-                </Link>
-              </Box>
-
+              <QueryLink groupBy={DFC.COMMODITY} linkType="FilterTable" {...props}>
+                Query revenue by commodity
+              </QueryLink>
             </Box>
           </Box>
         )
