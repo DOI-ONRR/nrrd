@@ -225,8 +225,8 @@ export default class D3CircleChart {
       .style('fill-opacity', 0.8)
     tr.append('td')
       .html((row, i) => {
-        const r = legendLabel(row[xAxis])
-        return r
+          const r = legendLabel(row[xAxis])
+	  return r
       })
     tr.append('td')
       .style('text-align', 'right')
