@@ -51,27 +51,26 @@ const RevenueDetailCommodities = props => {
   const year = filterState[DFC.YEAR]
   const state = props.fipsCode
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-      variables: { year: year, state: state, period: period, commodities }
+    variables: { year: year, state: state, period: period, commodities }
   })
 
   const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
-    const dataKey = dataSet + '-' + state +  (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
+  const dataKey = dataSet + '-' + state + (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
   let chartData
 
   if (loading) return ''
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-      chartData = data
-      
+    chartData = data
   }
 
   return (
     <>
-	  { (chartData.revenue_summary.length > 0 )
+	  { (chartData.revenue_summary.length > 0)
         ? (
           <Box className={classes.root}>
             <Box component="h4" fontWeight="bold">Commodities</Box>
