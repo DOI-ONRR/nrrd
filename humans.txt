@@ -14,8 +14,12 @@
 
 
 ## CONTRIBUTORS
+    Sarah Aranda -- UX Intern -- Virtual Student Federal Service
     Jerome Louis -- Contract Developer
+    Brandi Nichols -- UX Intern -- Virtual Student Federal Service
     Mojo Nichols -- Contract Developer
+    Timothy Tomas -- UX Intern -- Virtual Student Federal Service
+    Jamie Wang -- UX Intern -- Virtual Student Federal Service
 
 # PAST TEAM
 

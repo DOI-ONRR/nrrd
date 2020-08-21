@@ -30,6 +30,7 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import useEventListener from '../../../js/use-event-listener'
+import useWindowSize from '../../../js/hooks/useWindowSize'
 
 import mapCounties from './counties.json'
 import mapStates from './states.json'
@@ -60,8 +61,13 @@ const useStyles = makeStyles(theme => ({
       position: 'fixed',
       top: 65,
     },
-    '& .legend': {
-      bottom: 140,
+    '& .legend-wrap': {
+      bottom: 142,
+      '@media (max-width: 768px)': {
+        bottom: 210,
+        transform: 'scale(0.9)',
+        left: -5,
+      },
     },
     '& .map-overlay': {
       left: '0',
@@ -124,7 +130,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         boxSizing: 'border-box',
         minWidth: 285,
-        minHeight: 325,
+        minHeight: 330,
         marginBottom: theme.spacing(1),
         bottom: 0,
       },
@@ -291,6 +297,12 @@ const MapContext = props => {
   }
 
   const classes = useStyles()
+  const theme = useTheme()
+  const size = useWindowSize()
+
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
 
@@ -313,10 +325,6 @@ const MapContext = props => {
   const [mapX, setMapX] = useState(pageState.mapX || 0)
   const [mapY, setMapY] = useState(pageState.mapY || 0)
   const [mapK, setMapK] = useState(pageState.mapZoom)
-
-  const theme = useTheme()
-  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
-  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   // Map snackbar
   const [mapSnackbarState, setMapSnackbarState] = useState({
@@ -394,6 +402,18 @@ const MapContext = props => {
     dispatch({ type: 'MAP_ZOOM', payload: { mapX: x, mapY: y, mapZoom: k } })
   }
 
+  // check width, set zoom
+  useEffect(() => {
+    // mobile zoom
+    if (size.width <= 425) {
+      setZoom(105, 150, 0.45)
+    }
+    // tablet zoom
+    if (size.width <= 768 && size.width > 425) {
+      setZoom(125, 75, 0.75)
+    }
+  }, [size.width])
+
   // onLink
   const onLink = (state, x, y, k) => {
     // decern betweeen topo json and location data fips
@@ -402,7 +422,7 @@ const MapContext = props => {
     const abbr = state.properties ? state.properties.state : state.state
     let region = 'State'
     if (fips.length === 5) {
-	  region = 'County'
+	    region = 'County'
     }
     const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
 

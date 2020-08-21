@@ -46,21 +46,31 @@ const RevenueLocationTotal = props => {
     // console.log('LocationTotal data: ', data)
     const groupedLocationData = utils.groupBy(data.revenue_summary, 'location')
 
-    nationwideSummary = d3.nest()
-      .key(k => k.location_name)
-      .rollup(v => d3.sum(v, i => i.total))
-      .entries(groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS])
-      .map(d => {
-        return ({ location_name: d.key, total: d.value })
-      })
+    if (groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS] && groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS].length > 0) {
+      nationwideSummary = d3.nest()
+        .key(k => k.location_name)
+        .rollup(v => d3.sum(v, i => i.total))
+        .entries(groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS])
+        .map(d => {
+          return ({ location_name: d.key, total: d.value })
+        })
+    }
+    else {
+      nationwideSummary = [{ location: DFC.NATIONWIDE_FEDERAL_FIPS, total: 0 }]
+    }
 
-    nativeSummary = d3.nest()
-      .key(k => k.location_name)
-      .rollup(v => d3.sum(v, i => i.total))
-      .entries(groupedLocationData[DFC.NATIVE_AMERICAN_FIPS])
-      .map(d => {
-        return ({ location_name: d.key, total: d.value })
-      })
+    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS] && groupedLocationData[DFC.NATIVE_AMERICAN_FIPS].length > 0) {
+      nativeSummary = d3.nest()
+        .key(k => k.location_name)
+        .rollup(v => d3.sum(v, i => i.total))
+        .entries(groupedLocationData[DFC.NATIVE_AMERICAN_FIPS])
+        .map(d => {
+          return ({ location_name: d.key, total: d.value })
+        })
+    }
+    else {
+      nativeSummary.total = [{ location: DFC.NATIVE_AMERICAN_FIPS, total: 0 }]
+    }
 
     return (
       <>
