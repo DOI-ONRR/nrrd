@@ -112,10 +112,10 @@ const DisbursementRecipients = props => {
 			    d = 'State and local'
 			}
 			else if (d.match('Land') ) {
-			    d = 'LWCF'
+			    d = 'LWCF*'
 			}
 			else if (d.match('Historic') ) {
-			    d = 'HPF'
+			    d = 'HPF**'
 			}
 			
                       return d
@@ -130,10 +130,10 @@ const DisbursementRecipients = props => {
                 return r
               }
             } />
-	      <>{ state === 'N F' &&
-		<Box mt={3} >* <GlossaryTerm>LWCF</GlossaryTerm> Land and Water conservation Fund</Box>} </>
-	      <>{ state === 'N F' &&
-		<Box mt={3}>** <GlossaryTerm>HPF</GlossaryTerm></Box>
+	      <>{ state === 'NF' &&
+		  <Box fontSize='.8rem' fontStyle='italic' mt={1} >* <GlossaryTerm>LWCF</GlossaryTerm> Land and Water conservation Fund</Box>} </>
+	      <>{ state === 'NF' &&
+		<Box fontSize='.8rem' fontStyle='italic' >** <GlossaryTerm>HPF</GlossaryTerm> Historic Preservation Fund</Box>
               }
 	      </>
 
