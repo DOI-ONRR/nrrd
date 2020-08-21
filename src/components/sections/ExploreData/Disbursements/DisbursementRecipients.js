@@ -6,7 +6,8 @@ import CircleChart from '../../../data-viz/CircleChart/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 
 import utils from '../../../../js/utils'
-
+import { StoreContext } from '../../../../store'
+import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm.js'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -39,7 +40,8 @@ const useStyles = makeStyles(theme => ({
       },
       '& .legend': {
         marginTop: theme.spacing(2),
-        height: 'auto',
+          height: 'auto',
+	  fontSize: 'small'
       },
     },
   }
@@ -101,6 +103,24 @@ const DisbursementRecipients = props => {
             format={ d => {
               return utils.formatToDollarInt(d)
             }}
+	     legendLabel={
+                    d => {
+			if (d.match('Native')) {
+                            d = 'Native American'
+			}
+			else if (d.match('governments') ) {
+			    d = 'State and local'
+			}
+			else if (d.match('Land') ) {
+			    d = 'LWCF*'
+			}
+			else if (d.match('Historic') ) {
+			    d = 'HPF**'
+			}
+			
+                      return d
+                    }
+                  } 
             circleTooltip={
               d => {
                 // console.log('d: ', d)
@@ -110,6 +130,12 @@ const DisbursementRecipients = props => {
                 return r
               }
             } />
+	      <>{ state === 'NF' &&
+		  <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
+	      <>{ state === 'NF' &&
+		<Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
+              }
+	      </>
 
           <QueryLink groupBy={DFC.RECIPIENT} linkType="FilterTable" {...props}>
             Query disbursements by recipient
