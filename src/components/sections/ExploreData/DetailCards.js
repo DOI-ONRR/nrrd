@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '100%',
     },
     '& .cardContent__Revenue': {
-      gridTemplateRows: '185px 750px 850px',
+      gridTemplateRows: '185px 660px 750px',
     },
     '& .cardContent__Disbursements': {
       gridTemplateRows: '185px 855px 650px',
