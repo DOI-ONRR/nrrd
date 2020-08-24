@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core'
 
 const QueryLink = props => {
-  // console.log('QueryLink props: ', props)
+  console.log('QueryLink props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.FISCAL_YEAR_LABEL
@@ -46,7 +46,7 @@ const QueryLink = props => {
       [DFC.DATA_TYPE]: dataType,
       [DFC.PERIOD]: period,
       [periodParam]: yearRange,
-      [DFC.GROUP_BY]: (fipsCode && fipsCode === 5) ? DFC.COUNTY : props.groupBy
+      [DFC.GROUP_BY]: (fipsCode && fipsCode.length === 5) ? DFC.COUNTY : props.groupBy
     }
 
     const queryString = Object.keys(params).map(key => `${ key }=${ params[key] }`).join('&')
