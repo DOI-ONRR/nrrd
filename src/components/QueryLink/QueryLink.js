@@ -19,13 +19,15 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const QueryLink = props => {
-  console.log('QueryLink props: ', props)
+  // console.log('QueryLink props: ', props)
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
+  // console.log('filterState: ', filterState)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.FISCAL_YEAR_LABEL
   const state = props.fipsCode
   const dataType = filterState.dataType
+  const commodity = filterState.commodity
 
   let locationName = props.locationName
 
@@ -59,12 +61,12 @@ const QueryLink = props => {
     }
 
     const queryString = Object.keys(params).map(key => `${ key }=${ params[key] }`).join('&')
-    const productString = encodeURIComponent('Oil (bbl)')
+    const productString = commodity ? encodeURIComponent(commodity) : encodeURIComponent('Oil (bbl)')
 
     // check dataType
     switch (dataType) {
     case DFC.REVENUE:
-      sharedParams = `/${ baseSegment }/?${ queryString }`
+      sharedParams = commodity ? `/${ baseSegment }/?${ queryString }&commodity=${ commodity }` : `/${ baseSegment }/?${ queryString }`
       break
     case DFC.DISBURSEMENTS:
       sharedParams = `/${ baseSegment }/?${ queryString }`
