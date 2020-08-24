@@ -85,7 +85,7 @@ const QueryLink = props => {
       if (fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS) {
         const revenueLandTypeString = encodeURIComponent('Federal - not tied to a lease,Federal Offshore,Federal Onshore')
         const disbursementString = encodeURIComponent('Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury')
-        const productionLandTypeString = encodeURIComponent('Federal - not tied to a lease,Federal Offshore,Federal Onshore&groupBySticky=product')
+        const productionLandTypeString = encodeURIComponent('Federal - not tied to a lease,Federal Offshore,Federal Onshore,Mixed Exploratory')
 
         switch (dataType) {
         case DFC.REVENUE:
@@ -95,7 +95,7 @@ const QueryLink = props => {
           queryLink = `${ sharedParams }&recipient=${ disbursementString }`
           break
         case DFC.PRODUCTION:
-          queryLink = `${ sharedParams }&landType=${ productionLandTypeString }`
+          queryLink = `${ sharedParams }&landType=${ productionLandTypeString }&groupBySticky=product`
           break
         default:
           queryLink = `${ sharedParams }`
