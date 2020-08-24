@@ -74,7 +74,7 @@ const QueryLink = props => {
       sharedParams = commodity ? `/${ baseSegment }/?${ queryString }&commodity=${ commodity }` : `/${ baseSegment }/?${ queryString }`
       break
     case DFC.DISBURSEMENTS:
-      sharedParams = `/${ baseSegment }/?${ queryString }`
+      sharedParams = props.recipient ? `/${ baseSegment }/?${ queryString }&recipient=${ props.recipient }` : `/${ baseSegment }/?${ queryString }`
       break
     case DFC.PRODUCTION:
       sharedParams = `/${ baseSegment }/?${ queryString }&product=${ productString }`

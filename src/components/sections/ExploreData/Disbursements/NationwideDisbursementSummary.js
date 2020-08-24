@@ -192,7 +192,7 @@ const NationwideDisbursementSummary = props => {
           </Grid>
           <Grid item sm={12}>
             <Box align="right">
-              <QueryLink groupBy={DFC.RECIPIENT} linkType="FilterTable" {...props}>
+              <QueryLink groupBy={DFC.RECIPIENT} recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury" linkType="FilterTable" {...props}>
                 Query nationwide disbursements
               </QueryLink>
             </Box>
