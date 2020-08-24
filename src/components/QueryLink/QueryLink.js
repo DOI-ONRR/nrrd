@@ -10,8 +10,17 @@ import {
   Box
 } from '@material-ui/core'
 
+import { makeStyles } from '@material-ui/styles'
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    fontSize: '1rem',
+  }
+}))
+
 const QueryLink = props => {
   console.log('QueryLink props: ', props)
+  const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.FISCAL_YEAR_LABEL
@@ -122,7 +131,7 @@ const QueryLink = props => {
 
   return (
     <>
-      <Box mt={3}>
+      <Box mt={3} className={classes.root}>
         <Link href={getQueryUrl('query-data', state)} linkType={props.linkType}>
           { props.children }
         </Link>
