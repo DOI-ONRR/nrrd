@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { VariableSizeList } from 'react-window'
 import { isEqual, isEqualWith } from 'lodash'
 
@@ -20,8 +20,12 @@ const useStyles = makeStyles(theme => ({
   autoCompleteRoot: {
     color: theme.palette.primary.dark,
     marginRight: theme.spacing(1),
+    minWidth: 150,
     borderRadius: 4,
-    transition: theme.transitions.create(['border-color', 'box-shadow'])
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    '& .MuiInputLabel-outlined': {
+      transform: 'translate(14px, -6px) scale(0.75)'
+    },
   },
   autoCompleteFocused: {
     borderRadius: 4,
@@ -41,10 +45,47 @@ const useResetCache = data => {
   return ref
 }
 
-const BaseSearchSelect = ({ data, label, onChange, ...props }) => {
+const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, disabled, ...props }) => {
   const noop = () => {}
   const classes = useStyles()
+  /**
+   * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
+   * If not it will check to see if an option has been set as default = true
+   */
+  const getDefaultSelected = () => {
+    let defaultItem
+    if (data) {
+      if (selected) {
+        defaultItem = { option: selected }
+      }
+      else if (defaultSelected) {
+        defaultItem = data.find(item => (item.option === defaultSelected || item.value === defaultSelected))
+      }
+      else {
+        defaultItem = data.find(item => item.default)
+      }
+    }
+    return (defaultItem && !disabled) ? (defaultItem.value || defaultItem.option) : ''
+  }
+  const [selectedOption, setSelectedOption] = useState(getDefaultSelected())
+
   const handleOnChange = onChange || noop
+
+  const labelSlug = formatToSlug(label)
+
+  const handleChange = item => {
+    if (item) {
+      console.log(item)
+      setSelectedOption(item.option)
+      handleOnChange(item.option)
+    }
+  }
+
+  useEffect(() => {
+    if (selected && !isEqual(selected, selectedOption)) {
+      handleChange(selected)
+    }
+  }, [selected])
 
   if (data && data.length > 0 && !data[0].option) {
     data = data.map(item => ({ option: item }))
@@ -52,18 +93,20 @@ const BaseSearchSelect = ({ data, label, onChange, ...props }) => {
   else if (!data) {
     return (<></>)
   }
-  const labelSlug = formatToSlug(label)
 
-  const handleChange = item => {
-    console.log('handleChange', item.option)
-    // handleOnChange(item.option)
-  }
-
+  console.log(selectedOption)
   return (
     <Autocomplete
-      id="combo-box-demo"
+      disableListWrap
+      id={labelSlug}
       options={data}
-      getOptionLabel={option => option.option}
+      getOptionLabel={item => (item.label ? item.label : (item.option) ? item.option : item)}
+      getOptionSelected={(item, value) => {
+        if (item.option === value) {
+          console.log(item, value)
+        }
+        return item.option === value
+      }}
       popupIcon={<KeyboardArrowDown />}
       renderInput={params => (
         <TextField {...params} label={label} variant="outlined" fullWidth />
@@ -72,6 +115,7 @@ const BaseSearchSelect = ({ data, label, onChange, ...props }) => {
         inputRoot: classes.autoCompleteRoot,
         focused: classes.autoCompleteFocused,
       }}
+      onChange={(e, v) => handleChange(v)}
       size="small"
       {...props}
     />

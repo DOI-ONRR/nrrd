@@ -23,7 +23,7 @@ import {
   DOWNLOAD_DATA_TABLE,
   STATE_OFFSHORE_NAME,
   PERIOD_TYPES,
-  REVENUE_BY_COMPANY
+  REVENUE_BY_COMPANY,
 } from '../../../constants'
 
 import {
@@ -40,7 +40,7 @@ import {
   PeriodSelectInput,
   FiscalYearSlider,
   CalendarYearSlider,
-  StateNameSelectInput
+  StateNameSelectInput,
 } from '../../inputs'
 
 import BaseSelectInput from '../../inputs/BaseSelectInput'
@@ -202,7 +202,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
       { queryDataToolbarOpen &&
         <BaseToolbar isSecondary={true}>
           <Box>
-            <CompanyNameFilter queryKey={QK_QUERY_TOOL} style={{ minWidth: 350 }}/>
+            <DataTypePlusSelectInput />
           </Box>
           <Box className={classes.toolsWrapper}>
             {state[DATA_TYPE] === DISBURSEMENT
