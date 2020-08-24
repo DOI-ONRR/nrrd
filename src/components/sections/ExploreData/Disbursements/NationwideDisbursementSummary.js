@@ -127,17 +127,12 @@ const NationwideDisbursementSummary = props => {
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
-          <Grid item md={12}>
+          <Grid item sm={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
               <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
-            <Box align="right">
-              <QueryLink groupBy={DFC.RECIPIENT} linkType="FilterTable" {...props}>
-                Query nationwide disbursements
-              </QueryLink>
-            </Box>
           </Grid>
-          <Grid item md={12}>
+          <Grid item sm={12}>
             <Table>
               <TableHead>
                 <TableRow>
@@ -194,6 +189,13 @@ const NationwideDisbursementSummary = props => {
                 }
               </TableBody>
             </Table>
+          </Grid>
+          <Grid item sm={12}>
+            <Box align="right">
+              <QueryLink groupBy={DFC.RECIPIENT} linkType="FilterTable" {...props}>
+                Query nationwide disbursements
+              </QueryLink>
+            </Box>
           </Grid>
         </Grid>
       </Container>

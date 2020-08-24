@@ -102,11 +102,6 @@ const RevenueNationalSummary = props => {
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h3" color="secondary.dark">{title}</Box>
           </Box>
-          <Box align="right">
-            <QueryLink groupBy={DFC.REVENUE_TYPE} linkType="FilterTable" {...props}>
-                Query nationwide revenue
-            </QueryLink>
-          </Box>
         </Grid>
         <Grid item xs={12} style={{ overflowX: 'auto' }}>
           <Table>
@@ -164,6 +159,13 @@ const RevenueNationalSummary = props => {
               }
             </TableBody>
           </Table>
+        </Grid>
+        <Grid item xs={12}>
+          <Box align="right">
+            <QueryLink groupBy={DFC.REVENUE_TYPE} linkType="FilterTable" {...props}>
+                Query nationwide revenue
+            </QueryLink>
+          </Box>
         </Grid>
       </Grid>
     </Container>

@@ -108,11 +108,6 @@ const DisbursementTopRecipients = props => {
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h3" color="secondary.dark">{title}</Box>
           </Box>
-          <Box align="right">
-            <QueryLink groupBy={DFC.RECIPIENT} linkType="FilterTable" {...props}>
-                Query nationwide revenue
-            </QueryLink>
-          </Box>
         </Grid>
         <Grid item xs={12}>
           <Box className={classes.root}>
@@ -137,7 +132,13 @@ const DisbursementTopRecipients = props => {
                 maxColor={theme.palette.green[600]} />
             </Box>
           </Box>
-
+        </Grid>
+        <Grid item xs={12}>
+          <Box align="right">
+            <QueryLink groupBy={DFC.RECIPIENT} linkType="FilterTable" {...props}>
+                Query nationwide disbursements
+            </QueryLink>
+          </Box>
         </Grid>
       </Container>
     )

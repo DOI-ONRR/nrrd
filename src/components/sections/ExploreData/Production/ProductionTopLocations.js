@@ -244,9 +244,11 @@ const ProductionTopLocations = ({ title, ...props }) => {
               minColor={theme.palette.green[100]}
               maxColor={theme.palette.green[600]} />
           </Box>
-          <QueryLink groupBy={DFC.STATE_OFFSHORE_NAME} linkType="FilterTable" {...props}>
+          <Box align="right">
+            <QueryLink groupBy={DFC.STATE_OFFSHORE_NAME} linkType="FilterTable" {...props}>
               Query production by location
-          </QueryLink>
+            </QueryLink>
+          </Box>
         </Box>
       )
     }
