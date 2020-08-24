@@ -169,7 +169,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
               }
             />
           </Box>
-          <QueryLink groupBy={DFC.STATE_OFFSHORE_NAME} linkType="FilterTable" {...props}>
+          <QueryLink groupBy={(props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? DFC.DATA_TYPE : DFC.STATE_OFFSHORE_NAME} linkType="FilterTable" {...props}>
               Query production over time
           </QueryLink>
         </Box>

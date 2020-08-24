@@ -50,6 +50,11 @@ const QueryLink = props => {
 
   // Get query url
   const getQueryUrl = (baseSegment, fipsCode) => {
+    const isCounty = fipsCode && fipsCode.length === 5
+    const isNativeAmerican = fipsCode && fipsCode === DFC.NATIVE_AMERICAN_FIPS
+    const isNationwideFederal = fipsCode && fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS
+    const isState = fipsCode && fipsCode.length === 2 && !isNativeAmerican && !isNationwideFederal
+
     let sharedParams
     let queryLink
 
@@ -57,7 +62,7 @@ const QueryLink = props => {
       [DFC.DATA_TYPE]: dataType,
       [DFC.PERIOD]: period,
       [periodParam]: yearRange,
-      [DFC.GROUP_BY]: (fipsCode && (fipsCode.length === 5 || (dataType === DFC.PRODUCTION && fipsCode.length === 2))) ? DFC.COUNTY : props.groupBy
+      [DFC.GROUP_BY]: (fipsCode && (fipsCode.length === 5 || isState)) ? DFC.COUNTY : props.groupBy
     }
 
     const queryString = Object.keys(params).map(key => `${ key }=${ params[key] }`).join('&')
