@@ -114,7 +114,7 @@ const QueryLink = props => {
       }
 
       else {
-        queryLink = `${ sharedParams }&stateOffshoreName=${ locationName }`
+        queryLink = `${ sharedParams }&stateOffshoreName=${ locationName }&usStateName=${ locationName }`
       }
     }
 
