@@ -16,7 +16,7 @@ const LocationName = ({ location }) => {
         <Box component="span">{location.locationName}</Box>
       }
       {/* State */}
-      { (fips && fips.length === 2) &&
+      { (fips && fips.length === 2 && (fips !== DFC.NATIONWIDE_FEDERAL_FIPS && fips !== DFC.NATIVE_AMERICAN_FIPS)) &&
         <Box component="span">{location.name}</Box>
       }
       {/* County */}

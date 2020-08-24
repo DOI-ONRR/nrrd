@@ -49,7 +49,7 @@ const ProductionLocationTotal = props => {
   if (data) {
     const groupedLocationData = utils.groupBy(data.production_summary, 'location')
 
-    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS]) {
+    if (groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS] && groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS].length > 0) {
       nationwideSummary = d3.nest()
         .key(k => k.location)
         .rollup(v => d3.sum(v, i => i.total))
@@ -62,7 +62,7 @@ const ProductionLocationTotal = props => {
       nationwideSummary = [{ location: DFC.NATIONWIDE_FEDERAL_FIPS, total: 0 }]
     }
 
-    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS]) {
+    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS] && groupedLocationData[DFC.NATIVE_AMERICAN_FIPS].length > 0) {
       nativeSummary = d3.nest()
         .key(k => k.location)
         .rollup(v => d3.sum(v, i => i.total))

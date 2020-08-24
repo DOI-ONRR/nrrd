@@ -125,27 +125,14 @@ const ExploreDataToolbar = props => {
   const data = useStaticQuery(graphql`
     query DistinctCommodityQuery {
       onrr {
-        production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
-          commodity
-        }
-        production_top_commodity_list: fiscal_production_summary(
-          where: {
-            commodity: {_neq: "", _in: ["Oil (bbl)", "Gas (mcf)", "Coal (tons)"]}
-          }, distinct_on: commodity, order_by: {commodity: desc}) {
-          commodity
-        }
-        production_commodity_list: fiscal_production_summary(
-          where: {
-            commodity: {_neq: "", _nin: ["Oil (bbl)", "Gas (mcf)", "Coal (tons)"]}
-          }, distinct_on: commodity, order_by: {commodity: asc}) {
-            commodity
-        }
-        # replacing in favor of commodity view which has the commodity_order field to order by
-        # revenue_commodity: revenue_commodity_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
-        #   commodity
-        # }
-        commodityOptions: commodity(where: {commodity: {_neq: ""}}, distinct_on: commodity_order, order_by: {commodity_order: asc}) {
-          commodity
+
+ProductionCommodityOptions: production_commodity_options(where: {product: {_neq: ""}}, order_by: {commodity_order: asc}) {
+    product
+  }
+       
+  # replacing in favor of commodity view which has the commodity_order field to order by
+        RevenueCommodityOptions: revenue_commodity_options(where: {commodity: {_neq: ""}}, order_by:  {commodity_order: asc}) {
+           commodity
         }
       }
     }
@@ -157,9 +144,9 @@ const ExploreDataToolbar = props => {
     mapOverlay
   } = props
 
-  const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
+  const productionCommodityOptions = data.onrr.ProductionCommodityOptions.map(item => item.product)
   // const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
-  const commodityOptions = data.onrr.commodityOptions.map(item => item.commodity)
+  const revenueCommodityOptions = data.onrr.RevenueCommodityOptions.map(item => item.commodity)
 
   const classes = useStyles()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
@@ -182,7 +169,6 @@ const ExploreDataToolbar = props => {
     cards
   } = pageState
 
-  const commodityList = [...data.onrr.production_top_commodity_list.map(item => item.commodity), ...data.onrr.production_commodity_list.map(item => item.commodity)]
 
   const toggleExploreDataToolbar = event => {
     setExploreDataTabOpen(!exploreDataTabOpen)
@@ -259,7 +245,7 @@ const ExploreDataToolbar = props => {
           {(dataType === 'Revenue') &&
             <CommoditySelectInput
               dataFilterKey={COMMODITY}
-              data={commodityOptions}
+              data={revenueCommodityOptions}
               defaultSelected={commodity}
               defaultSelectAll={typeof commodity === 'undefined'}
               label='Commodity'
@@ -270,7 +256,7 @@ const ExploreDataToolbar = props => {
           {(dataType === 'Production') &&
             <CommoditySelectInput
               dataFilterKey={COMMODITY}
-              data={commodityList}
+              data={productionCommodityOptions}
               defaultSelected={commodity || 'Oil (bbl)'}
               label='Commodity'
               selectType='Single'
@@ -315,7 +301,7 @@ const ExploreDataToolbar = props => {
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[OFFSHORE_REGIONS]}
               defaultSelected={offshoreRegions === true}
               label='Show offshore'
-              helperText=''
+              helperText='Disbursements from offshore production go to the states and counties that surround the offshore area.'
               disabled={dataType === 'Disbursements' || mapOverlay}
               selectType='Single' />
           </Box>

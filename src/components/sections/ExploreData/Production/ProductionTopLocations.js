@@ -29,6 +29,7 @@ const APOLLO_QUERY = gql`
       where: {
         # location_type - State, County, Offshore, Native American, Nationwide Federal
         location_type: {_eq: $location},
+        location_name: { _neq: "Not tied to a lease" },
         # year - 2019
         year: { _eq: $year },
         # prduct ex - Oil (bbl)
@@ -50,6 +51,7 @@ const APOLLO_QUERY = gql`
       where: {
         location_type: {_nin: ["Nationwide Federal", "County", ""]},
         location: {_neq: "null"},
+        location_name: { _neq: "Not tied to a lease" },
         year: { _eq: $year }, 
         product: {_eq: $commodity},
         period: {_eq: $period}
@@ -235,7 +237,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
                   return d
                 }
               }
-              xLabel={locationType}
+              xLabel={'Location name'}
               yLabel={dataSet}
               maxCircles={6}
               minColor={theme.palette.green[100]}
