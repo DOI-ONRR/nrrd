@@ -162,7 +162,9 @@ const RevenueNationalSummary = props => {
         </Grid>
         <Grid item xs={12}>
           <Box align="right">
-            <QueryLink groupBy={DFC.REVENUE_TYPE} linkType="FilterTable" {...props}>
+            <QueryLink
+              groupBy={DFC.REVENUE_TYPE}
+              linkType="FilterTable" {...props}>
                 Query nationwide revenue
             </QueryLink>
           </Box>

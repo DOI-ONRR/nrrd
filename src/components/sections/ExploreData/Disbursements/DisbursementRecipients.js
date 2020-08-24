@@ -87,6 +87,7 @@ const DisbursementRecipients = props => {
     data &&
     data.DisbursementRecipientSummary.length > 0) {
     chartData = data
+    console.log(`DisbursementRecipients ${ props.locationName } data: `, data)
 
     if (chartData.DisbursementRecipientSummary.length > 1) {
       return (<Box className={classes.root}>

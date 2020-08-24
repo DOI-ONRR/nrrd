@@ -18,6 +18,7 @@ import {
 
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
+import QueryLink from '../../../../components/QueryLink'
 
 const useStyles = makeStyles(theme => ({
   boxTopSection: {
@@ -138,6 +139,26 @@ const DisbursementDetailTrends = props => {
               Disbursement trend ({sparkMin} - {sparkMax})
             </Box>
           )}
+
+          {(state === DFC.NATIVE_AMERICAN_FIPS) &&
+            <Box>
+              <QueryLink
+                groupBy={DFC.RECIPIENT}
+                linkType="FilterTable" {...props}
+                recipient="Native American tribes and individuals">
+                  Query disbursements
+              </QueryLink>
+            </Box>
+          }
+          {(state.length === 5) &&
+            <Box>
+              <QueryLink
+                groupBy={DFC.LOCAL_RECIPIENT}
+                linkType="FilterTable" {...props}>
+                  Query disbursements
+              </QueryLink>
+            </Box>
+          }
         </Box>
       </>
     )

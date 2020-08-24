@@ -95,7 +95,11 @@ const RevenueDetailCommodities = props => {
                 maxCircles={6}
                 minColor={theme.palette.purple[100]}
                 maxColor={theme.palette.purple[600]} />
-              <QueryLink groupBy={DFC.COMMODITY} linkType="FilterTable" {...props}>
+              <QueryLink
+                groupBy={DFC.COMMODITY}
+                landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                linkType="FilterTable"
+                {...props}>
                 Query revenue by commodity
               </QueryLink>
             </Box>

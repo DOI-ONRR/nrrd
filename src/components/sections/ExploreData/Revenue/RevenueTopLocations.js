@@ -175,7 +175,9 @@ const RevenueTopLocations = ({ title, ...props }) => {
           </Grid>
           <Grid item xs={12}>
             <Box align="right">
-              <QueryLink groupBy={DFC.STATE_OFFSHORE_NAME} linkType="FilterTable" {...props}>
+              <QueryLink
+                groupBy={DFC.STATE_OFFSHORE_NAME}
+                linkType="FilterTable" {...props}>
                 Query nationwide revenue
               </QueryLink>
             </Box>

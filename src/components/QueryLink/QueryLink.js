@@ -29,13 +29,19 @@ const QueryLink = props => {
   const dataType = filterState.dataType
   const commodity = filterState.commodity
 
+  const isCounty = state && state.length === 5
+  const isNativeAmerican = state && state === DFC.NATIVE_AMERICAN_FIPS
+  const isNationwideFederal = state && state === DFC.NATIONWIDE_FEDERAL_FIPS
+  const isState = state && state.length === 2 && !isNativeAmerican && !isNationwideFederal
+  const isOffshore = state && state.length === 3
+
   let locationName = props.locationName
 
-  if (state && state.length === 3) {
+  if (isOffshore) {
     locationName = `${ props.regionType } ${ props.locationName }`
   }
 
-  if (state && state.length === 5) {
+  if (isCounty) {
     locationName = props.name
   }
 
@@ -50,88 +56,29 @@ const QueryLink = props => {
 
   // Get query url
   const getQueryUrl = (baseSegment, fipsCode) => {
-    const isCounty = fipsCode && fipsCode.length === 5
-    const isNativeAmerican = fipsCode && fipsCode === DFC.NATIVE_AMERICAN_FIPS
-    const isNationwideFederal = fipsCode && fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS
-    const isState = fipsCode && fipsCode.length === 2 && !isNativeAmerican && !isNationwideFederal
-
-    let sharedParams
-    let queryLink
-
+    // Parameter mapping
     const params = {
       [DFC.DATA_TYPE]: dataType,
       [DFC.PERIOD]: period,
       [periodParam]: yearRange,
-      [DFC.GROUP_BY]: (fipsCode && (fipsCode.length === 5 || isState)) ? DFC.COUNTY : props.groupBy
+      [DFC.GROUP_BY]: props[DFC.GROUP_BY] || DFC.COUNTY,
+      [DFC.COMMODITY]: (dataType === DFC.REVENUE) ? (commodity || undefined) : undefined,
+      [DFC.RECIPIENT]: props[DFC.RECIPIENT] || undefined,
+      [DFC.PRODUCT]: (dataType === DFC.PRODUCTION) ? (commodity || 'Oil (bbl)') : undefined,
+      [DFC.LAND_TYPE]: props[DFC.LAND_TYPE] || undefined,
+      [DFC.STATE_OFFSHORE_NAME]: (isState || isCounty || isOffshore) ? locationName : undefined,
+      [DFC.US_STATE_NAME]: (isState || isCounty || isOffshore) ? locationName : undefined,
     }
 
-    const queryString = Object.keys(params).map(key => `${ key }=${ params[key] }`).join('&')
-    const productString = commodity ? encodeURIComponent(commodity) : encodeURIComponent('Oil (bbl)')
+    const queryArr = []
+    Object.keys(params).map(key => {
+      // encode url
+      if (params[key] !== undefined) queryArr.push(`${ key }=${ params[key] }`)
+    })
 
-    // check dataType
-    switch (dataType) {
-    case DFC.REVENUE:
-      sharedParams = commodity ? `/${ baseSegment }/?${ queryString }&commodity=${ commodity }` : `/${ baseSegment }/?${ queryString }`
-      break
-    case DFC.DISBURSEMENTS:
-      sharedParams = props.recipient ? `/${ baseSegment }/?${ queryString }&recipient=${ props.recipient }` : `/${ baseSegment }/?${ queryString }`
-      break
-    case DFC.PRODUCTION:
-      sharedParams = `/${ baseSegment }/?${ queryString }&product=${ productString }`
-      break
-    default:
-      sharedParams = `/${ baseSegment }`
-      break
-    }
+    const queryString = queryArr.join('&')
 
-    // State
-    if (fipsCode && fipsCode.length === 2) {
-      // Nationwide Federal
-      if (fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS) {
-        const revenueLandTypeString = encodeURIComponent('Federal - not tied to a lease,Federal Offshore,Federal Onshore')
-        const disbursementString = encodeURIComponent('Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury')
-        const productionLandTypeString = encodeURIComponent('Federal - not tied to a lease,Federal Offshore,Federal Onshore,Mixed Exploratory')
-
-        switch (dataType) {
-        case DFC.REVENUE:
-          queryLink = `${ sharedParams }&landType=${ revenueLandTypeString }`
-          break
-        case DFC.DISBURSEMENT:
-          queryLink = `${ sharedParams }&recipient=${ disbursementString }`
-          break
-        case DFC.PRODUCTION:
-          queryLink = `${ sharedParams }&landType=${ productionLandTypeString }&groupBySticky=product`
-          break
-        default:
-          queryLink = `${ sharedParams }`
-          break
-        }
-      }
-
-      // Native American
-      else if (fipsCode === DFC.NATIVE_AMERICAN_FIPS) {
-        queryLink = `${ sharedParams }&landType=${ DFC.NATIVE_AMERICAN }`
-      }
-
-      else {
-        queryLink = `${ sharedParams }&stateOffshoreName=${ locationName }&usStateName=${ locationName }`
-      }
-    }
-
-    // Offshore
-    if (fipsCode && fipsCode.length === 3) {
-      queryLink = `${ sharedParams }&stateOffshoreName=${ locationName }`
-    }
-
-    // County
-    if (fipsCode && fipsCode.length === 5) {
-      queryLink = `${ sharedParams }&stateOffshoreName=${ locationName }`
-    }
-
-    // non card links
-    if (!fipsCode) {
-      queryLink = `${ sharedParams }`
-    }
+    const queryLink = `/${ baseSegment }?${ queryString }`
 
     return queryLink
   }

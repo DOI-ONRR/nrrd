@@ -99,7 +99,11 @@ const RevenueDetailTypes = props => {
                     return r
                   }
                 } />
-              <QueryLink groupBy={DFC.REVENUE_TYPE} linkType="FilterTable" {...props}>
+              <QueryLink
+                groupBy={DFC.REVENUE_TYPE}
+                landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                linkType="FilterTable"
+                {...props}>
                 Query revenue by type
               </QueryLink>
             </Box>
