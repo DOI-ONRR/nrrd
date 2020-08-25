@@ -56,6 +56,11 @@ const RevenueDetailTypes = props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const state = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_ABBR || props.fipsCode === DFC.NATIVE_AMERICAN_ABBR) ? props.name : props.fipsCode
 
+  const isCounty = props.fipsCode && props.fipsCode.length === 5
+  const isNativeAmerican = props.fipsCode && props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
+  const isNationwideFederal = props.fipsCode && props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS
+  const isState = props.fipsCode && props.fipsCode.length === 2 && !isNativeAmerican && !isNationwideFederal
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year, period: period, commodities: commodities }
   })
@@ -99,13 +104,25 @@ const RevenueDetailTypes = props => {
                     return r
                   }
                 } />
-              <QueryLink
-                groupBy={DFC.REVENUE_TYPE}
-                landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-                linkType="FilterTable"
-                {...props}>
-                Query revenue by type
-              </QueryLink>
+              {!isCounty &&
+                <QueryLink
+                  groupBy={DFC.REVENUE_TYPE}
+                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                  linkType="FilterTable"
+                  {...props}>
+                  Query revenue by type
+                </QueryLink>
+              }
+              {isCounty &&
+                <QueryLink
+                  groupBy={DFC.COUNTY}
+                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                  linkType="FilterTable"
+                  breakoutBy={DFC.REVENUE_TYPE}
+                  {...props}>
+                  Query revenue by type
+                </QueryLink>
+              }
             </Box>
           </Box>
         )

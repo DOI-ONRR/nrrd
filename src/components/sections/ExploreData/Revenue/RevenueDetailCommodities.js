@@ -14,6 +14,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
+import { defaultCurrency } from 'currency-formatter'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,6 +58,11 @@ const RevenueDetailCommodities = props => {
   const dataSet = (period === DFC.FISCAL_YEAR_LABEL) ? `FY ${ year }` : `CY ${ year }`
   const dataKey = dataSet + '-' + state + (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
 
+  const isCounty = state && state.length === 5
+  const isNativeAmerican = state && state === DFC.NATIVE_AMERICAN_FIPS
+  const isNationwideFederal = state && state === DFC.NATIONWIDE_FEDERAL_FIPS
+  const isState = state && state.length === 2 && !isNativeAmerican && !isNationwideFederal
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year: year, state: state, period: period, commodities }
   })
@@ -95,13 +101,25 @@ const RevenueDetailCommodities = props => {
                 maxCircles={6}
                 minColor={theme.palette.purple[100]}
                 maxColor={theme.palette.purple[600]} />
-              <QueryLink
-                groupBy={DFC.COMMODITY}
-                landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-                linkType="FilterTable"
-                {...props}>
-                Query revenue by commodity
-              </QueryLink>
+              {!isCounty &&
+                <QueryLink
+                  groupBy={DFC.COMMODITY}
+                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                  linkType="FilterTable"
+                  {...props}>
+                  Query revenue by commodity
+                </QueryLink>
+              }
+              {isCounty &&
+                <QueryLink
+                  groupBy={DFC.COUNTY}
+                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                  linkType="FilterTable"
+                  breakoutBy={DFC.COMMODITY}
+                  {...props}>
+                  Query revenue by commodity
+                </QueryLink>
+              }
             </Box>
           </Box>
         )

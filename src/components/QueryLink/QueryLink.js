@@ -68,6 +68,7 @@ const QueryLink = props => {
       [DFC.LAND_TYPE]: props[DFC.LAND_TYPE] || undefined,
       [DFC.STATE_OFFSHORE_NAME]: (isState || isCounty || isOffshore) ? locationName : undefined,
       [DFC.US_STATE_NAME]: (isState || isCounty || isOffshore) ? locationName : undefined,
+      [DFC.BREAKOUT_BY]: props.breakoutBy || undefined
     }
 
     const queryArr = []
