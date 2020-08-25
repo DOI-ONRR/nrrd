@@ -10,7 +10,7 @@ import QueryLink from '../../../../components/QueryLink'
 
 import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { DATA_FILTER_CONSTANTS as DFC, NATIVE_AMERICAN_FIPS } from '../../../../constants'
 import CONSTANTS from '../../../../js/constants'
 
 import * as d3 from 'd3'
@@ -94,6 +94,11 @@ const ProductionLandCategory = ({ title, ...props }) => {
   let locationType
   const state = props.fipsCode || ''
 
+  const isCounty = state && state.length === 5
+  const isNativeAmerican = state && state === DFC.NATIVE_AMERICAN_FIPS
+  const isNationwideFederal = state && state === DFC.NATIONWIDE_FEDERAL_FIPS
+  const isState = state && state.length === 2 && !isNativeAmerican && !isNationwideFederal
+
   switch (props.regionType) {
   case CONSTANTS.STATE:
     locationType = CONSTANTS.STATE
@@ -169,11 +174,22 @@ const ProductionLandCategory = ({ title, ...props }) => {
               }
             />
           </Box>
-          <QueryLink
-            groupBy={(props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? DFC.DATA_TYPE : DFC.STATE_OFFSHORE_NAME}
-            linkType="FilterTable" {...props}>
-              Query production over time
-          </QueryLink>
+          {(isNativeAmerican || isNationwideFederal) &&
+            <QueryLink
+              groupBy={(props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? DFC.DATA_TYPE : DFC.STATE_OFFSHORE_NAME}
+              linkType="FilterTable" {...props}
+              landType={(props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? DFC.NATIVE_AMERICAN : 'Federal Offshore,Federal Onshore,Mixed Exploratory'}>
+                Query production over time
+            </QueryLink>
+          }
+
+          {(isCounty || isState) &&
+            <QueryLink
+              groupBy={DFC.COUNTY}
+              linkType="FilterTable" {...props}>
+                Query production over time
+            </QueryLink>
+          }
         </Box>
 
       )

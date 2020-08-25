@@ -50,7 +50,7 @@ const QueryLink = props => {
     return new Array(end - start + 1).fill().map((_, idx) => start + idx)
   }
 
-  const periodParam = (period === DFC.FISCAL_YEAR_LABEL) ? DFC.FISCAL_YEAR : DFC.CALENDAR_YEAR
+  const periodKey = (period === DFC.FISCAL_YEAR_LABEL) ? DFC.FISCAL_YEAR : DFC.CALENDAR_YEAR
 
   const yearRange = getYearRange((parseInt(year) - 5), parseInt(year))
 
@@ -60,7 +60,7 @@ const QueryLink = props => {
     const params = {
       [DFC.DATA_TYPE]: dataType,
       [DFC.PERIOD]: period,
-      [periodParam]: yearRange,
+      [periodKey]: yearRange,
       [DFC.GROUP_BY]: props[DFC.GROUP_BY] || DFC.COUNTY,
       [DFC.COMMODITY]: (dataType === DFC.REVENUE) ? (commodity || undefined) : undefined,
       [DFC.RECIPIENT]: props[DFC.RECIPIENT] || undefined,
