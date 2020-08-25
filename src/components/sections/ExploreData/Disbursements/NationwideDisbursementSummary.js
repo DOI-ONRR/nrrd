@@ -128,8 +128,18 @@ const NationwideDisbursementSummary = props => {
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
           <Grid item sm={12}>
-            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-              <Box component="h3" color="secondary.dark">{title}</Box>
+            <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+              <Box component="h3" color="secondary.dark" display="inline">{title}</Box>
+              <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+                <QueryLink groupBy={DFC.RECIPIENT} recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury" linkType="FilterTable" {...props}>
+                Query nationwide disbursements
+                </QueryLink>
+              </Box>
+            </Box>
+            <Box display={{ xs: 'block', sm: 'none' }} align="left">
+              <QueryLink groupBy={DFC.RECIPIENT} recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury" linkType="FilterTable" {...props}>
+                Query nationwide disbursements
+              </QueryLink>
             </Box>
           </Grid>
           <Grid item sm={12}>
@@ -189,13 +199,6 @@ const NationwideDisbursementSummary = props => {
                 }
               </TableBody>
             </Table>
-          </Grid>
-          <Grid item sm={12}>
-            <Box align="right">
-              <QueryLink groupBy={DFC.RECIPIENT} recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury" linkType="FilterTable" {...props}>
-                Query nationwide disbursements
-              </QueryLink>
-            </Box>
           </Grid>
         </Grid>
       </Container>

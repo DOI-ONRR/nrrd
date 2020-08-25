@@ -99,8 +99,22 @@ const RevenueNationalSummary = props => {
     <Container id={utils.formatToSlug(title)}>
       <Grid container>
         <Grid item xs={12}>
-          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-            <Box component="h3" color="secondary.dark">{title}</Box>
+          <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+            <Box component="h3" color="secondary.dark" display="inline" align="left">{title}</Box>
+            <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+              <QueryLink
+                groupBy={DFC.REVENUE_TYPE}
+                linkType="FilterTable" {...props}>
+                  Query nationwide revenue
+              </QueryLink>
+            </Box>
+          </Box>
+          <Box display={{ xs: 'block', sm: 'none' }} align="left">
+            <QueryLink
+              groupBy={DFC.REVENUE_TYPE}
+              linkType="FilterTable" {...props}>
+                  Query nationwide revenue
+            </QueryLink>
           </Box>
         </Grid>
         <Grid item xs={12} style={{ overflowX: 'auto' }}>
@@ -159,15 +173,6 @@ const RevenueNationalSummary = props => {
               }
             </TableBody>
           </Table>
-        </Grid>
-        <Grid item xs={12}>
-          <Box align="right">
-            <QueryLink
-              groupBy={DFC.REVENUE_TYPE}
-              linkType="FilterTable" {...props}>
-                Query nationwide revenue
-            </QueryLink>
-          </Box>
         </Grid>
       </Grid>
     </Container>

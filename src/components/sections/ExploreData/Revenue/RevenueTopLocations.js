@@ -125,8 +125,22 @@ const RevenueTopLocations = ({ title, ...props }) => {
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
           <Grid item xs={12}>
-            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-              <Box component="h3" color="secondary.dark">{title}</Box>
+            <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+              <Box component="h3" color="secondary.dark" display="inline">{title}</Box>
+              <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+                <QueryLink
+                  groupBy={DFC.STATE_OFFSHORE_NAME}
+                  linkType="FilterTable" {...props}>
+                Query nationwide revenue
+                </QueryLink>
+              </Box>
+            </Box>
+            <Box display={{ xs: 'block', sm: 'none' }} align="left">
+              <QueryLink
+                groupBy={DFC.STATE_OFFSHORE_NAME}
+                linkType="FilterTable" {...props}>
+                Query nationwide revenue
+              </QueryLink>
             </Box>
           </Grid>
           <Grid item xs={12}>
@@ -171,15 +185,6 @@ const RevenueTopLocations = ({ title, ...props }) => {
                   minColor={theme.palette.green[100]}
                   maxColor={theme.palette.green[600]} />
               </Box>
-            </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <Box align="right">
-              <QueryLink
-                groupBy={DFC.STATE_OFFSHORE_NAME}
-                linkType="FilterTable" {...props}>
-                Query nationwide revenue
-              </QueryLink>
             </Box>
           </Grid>
         </Grid>

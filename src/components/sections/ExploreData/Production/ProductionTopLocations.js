@@ -199,7 +199,23 @@ const ProductionTopLocations = ({ title, ...props }) => {
     if (chartData.length > 0) {
       return (
         <Box className={classes.root}>
-          {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
+          {title &&
+            <>
+              <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+                <Box component="h3" color="secondary.dark" display="inline">{title}</Box>
+                <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+                  <QueryLink groupBy={DFC.STATE_OFFSHORE_NAME} linkType="FilterTable" {...props}>
+                    Query production by location
+                  </QueryLink>
+                </Box>
+              </Box>
+              <Box display={{ xs: 'block', sm: 'none' }} align="left">
+                <QueryLink groupBy={DFC.STATE_OFFSHORE_NAME} linkType="FilterTable" {...props}>
+                  Query production by location
+                </QueryLink>
+              </Box>
+            </>
+          }
           <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
             <CircleChart
               key={key}
@@ -243,11 +259,6 @@ const ProductionTopLocations = ({ title, ...props }) => {
               maxCircles={6}
               minColor={theme.palette.green[100]}
               maxColor={theme.palette.green[600]} />
-          </Box>
-          <Box>
-            <QueryLink groupBy={DFC.STATE_OFFSHORE_NAME} linkType="FilterTable" {...props}>
-              Query production by location
-            </QueryLink>
           </Box>
         </Box>
       )
