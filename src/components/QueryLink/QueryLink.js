@@ -73,8 +73,7 @@ const QueryLink = props => {
 
     const queryArr = []
     Object.keys(params).map(key => {
-      // encode url
-      if (params[key] !== undefined) queryArr.push(`${ key }=${ params[key] }`)
+      if (params[key] !== undefined) queryArr.push(`${ key }=${ encodeURIComponent(params[key]) }`)
     })
 
     const queryString = queryArr.join('&')
