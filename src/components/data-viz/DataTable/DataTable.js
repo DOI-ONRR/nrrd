@@ -111,6 +111,7 @@ const DataTable = ({ dataType, height = '200px' }) => {
             }
             {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
               <Grid item xs={12}>
+                <EnhancedDataTable showSummaryRow={true}/>
               </Grid>
             }
           </React.Fragment>

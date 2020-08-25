@@ -9,6 +9,7 @@ import PeriodFilter from '../../inputs/filters/PeriodFilter'
 import CalendarYearFilter from '../../inputs/filters/CalendarYearFilter'
 import CommodityFilter from '../../inputs/filters/CommodityFilter'
 import CompanyNameFilter from '../../inputs/filters/CompanyNameFilter'
+import RevenueTypeFilter from '../../inputs/filters/RevenueTypeFilter'
 
 import {
   QK_QUERY_TOOL,
@@ -23,7 +24,7 @@ import {
   DOWNLOAD_DATA_TABLE,
   STATE_OFFSHORE_NAME,
   PERIOD_TYPES,
-  REVENUE_BY_COMPANY,
+  REVENUE_BY_COMPANY
 } from '../../../constants'
 
 import {
@@ -40,7 +41,7 @@ import {
   PeriodSelectInput,
   FiscalYearSlider,
   CalendarYearSlider,
-  StateNameSelectInput,
+  StateNameSelectInput
 } from '../../inputs'
 
 import BaseSelectInput from '../../inputs/BaseSelectInput'
@@ -303,8 +304,9 @@ const DisbursementFilterToolbar = () => {
 const RevenueByCompanyFilterToolbar = () => {
   return (
     <BaseToolbar isSecondary={true} >
-      <CompanyNameFilter queryKey={QK_QUERY_TOOL} />
+      <CompanyNameFilter queryKey={QK_QUERY_TOOL}  style={{ width: '300px' }} />
       <CommodityFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
+      <RevenueTypeFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
     </BaseToolbar>
   )
 }

@@ -94,19 +94,14 @@ const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, di
     return (<></>)
   }
 
-  console.log(selectedOption)
+  console.log(props)
   return (
     <Autocomplete
       disableListWrap
       id={labelSlug}
       options={data}
       getOptionLabel={item => (item.label ? item.label : (item.option) ? item.option : item)}
-      getOptionSelected={(item, value) => {
-        if (item.option === value) {
-          console.log(item, value)
-        }
-        return item.option === value
-      }}
+      getOptionSelected={(item, value) => item.option === value}
       popupIcon={<KeyboardArrowDown />}
       renderInput={params => (
         <TextField {...params} label={label} variant="outlined" fullWidth />
@@ -117,6 +112,7 @@ const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, di
       }}
       onChange={(e, v) => handleChange(v)}
       size="small"
+      value={selectedOption}
       {...props}
     />
   )

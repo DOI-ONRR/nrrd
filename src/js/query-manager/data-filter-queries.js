@@ -4,7 +4,8 @@ import {
   COMMODITY_ORDER,
   PERIOD,
   CALENDAR_YEAR,
-  COMPANY_NAME
+  COMPANY_NAME,
+  REVENUE_TYPE
 } from '../../constants'
 
 import {
@@ -51,6 +52,16 @@ const DATA_FILTER_QUERIES = {
       order_by: {${ DB_COLS[COMPANY_NAME] }: asc}
       ) {
         option: ${ DB_COLS[COMPANY_NAME] }
+      }`),
+  [REVENUE_TYPE]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[REVENUE_TYPE] },
+      order_by: {${ DB_COLS[REVENUE_TYPE] }: asc}
+      ) {
+        option: ${ DB_COLS[REVENUE_TYPE] }
       }`)
 }
 
