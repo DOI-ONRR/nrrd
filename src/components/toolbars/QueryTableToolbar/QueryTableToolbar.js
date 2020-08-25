@@ -5,11 +5,11 @@ import { DataFilterContext, DownloadContext } from '../../../stores'
 
 import { downloadWorkbook } from '../../../js/utils'
 
-import PeriodFilter from '../../inputs/filters/PeriodFilter'
-import CalendarYearFilter from '../../inputs/filters/CalendarYearFilter'
-import CommodityFilter from '../../inputs/filters/CommodityFilter'
-import CompanyNameFilter from '../../inputs/filters/CompanyNameFilter'
-import RevenueTypeFilter from '../../inputs/filters/RevenueTypeFilter'
+import PeriodFilter from '../../inputs/Filters/PeriodFilter'
+import CalendarYearFilter from '../../inputs/Filters/CalendarYearFilter'
+import CommodityFilter from '../../inputs/Filters/CommodityFilter'
+import CompanyNameFilter from '../../inputs/Filters/CompanyNameFilter'
+import RevenueTypeFilter from '../../inputs/Filters/RevenueTypeFilter'
 
 import {
   QK_QUERY_TOOL,
