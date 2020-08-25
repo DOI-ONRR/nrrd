@@ -59,7 +59,7 @@ const QueryLink = props => {
   const getQueryUrl = (baseSegment, fipsCode) => {
     // Parameter mapping
     const params = {
-      [DFC.DATA_TYPE]: dataType,
+      [DFC.DATA_TYPE]: props.dataType || dataType,
       [DFC.PERIOD]: period,
       [periodKey]: yearRange,
       [DFC.GROUP_BY]: props[DFC.GROUP_BY] || DFC.COUNTY,

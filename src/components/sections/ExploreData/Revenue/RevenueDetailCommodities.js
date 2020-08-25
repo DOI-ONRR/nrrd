@@ -101,25 +101,14 @@ const RevenueDetailCommodities = props => {
                 maxCircles={6}
                 minColor={theme.palette.purple[100]}
                 maxColor={theme.palette.purple[600]} />
-              {!isCounty &&
-                <QueryLink
-                  groupBy={DFC.COMMODITY}
-                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-                  linkType="FilterTable"
-                  {...props}>
+              <QueryLink
+                groupBy={isCounty ? DFC.COUNTY : DFC.COMMODITY}
+                landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                linkType="FilterTable"
+                breakoutBy={DFC.COMMODITY}
+                {...props}>
                   Query revenue by commodity
-                </QueryLink>
-              }
-              {isCounty &&
-                <QueryLink
-                  groupBy={DFC.COUNTY}
-                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-                  linkType="FilterTable"
-                  breakoutBy={DFC.COMMODITY}
-                  {...props}>
-                  Query revenue by commodity
-                </QueryLink>
-              }
+              </QueryLink>
             </Box>
           </Box>
         )
