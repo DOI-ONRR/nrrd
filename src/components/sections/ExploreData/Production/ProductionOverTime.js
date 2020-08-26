@@ -93,7 +93,7 @@ const ProductionOverTime = props => {
   const cards = pageState.cards
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-    
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { product: product, period: period }
   })

@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
       },
       '& .legend': {
         marginTop: theme.spacing(2),
-          height: 'auto',
+        height: 'auto',
 	  fontSize: 'small'
       },
     },
@@ -104,23 +104,23 @@ const DisbursementRecipients = props => {
               return utils.formatToDollarInt(d)
             }}
 	     legendLabel={
-                    d => {
-			if (d.match('Native')) {
-                            d = 'Native American'
-			}
-			else if (d.match('governments') ) {
+              d => {
+                if (d.match('Native')) {
+                  d = 'Native American'
+                }
+                else if (d.match('governments')) {
 			    d = 'State and local'
-			}
-			else if (d.match('Land') ) {
+                }
+                else if (d.match('Land')) {
 			    d = 'LWCF*'
-			}
-			else if (d.match('Historic') ) {
+                }
+                else if (d.match('Historic')) {
 			    d = 'HPF**'
-			}
-			
-                      return d
-                    }
-                  } 
+                }
+
+                return d
+              }
+            }
             circleTooltip={
               d => {
                 // console.log('d: ', d)
@@ -134,7 +134,7 @@ const DisbursementRecipients = props => {
 		  <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
 	      <>{ state === 'NF' &&
 		<Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
-              }
+          }
 	      </>
 
           <Box mt={3}>

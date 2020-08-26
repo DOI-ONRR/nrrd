@@ -69,6 +69,8 @@ export default class D3LineChart {
 
   // Line chart tooltip
   lineTooltip (data, xAxis, yAxis) {
+    // eslint-disable-next-line no-sparse-arrays
+    // eslint-disable-next-line comma-spacing
     const r = [,]
     return r
   }

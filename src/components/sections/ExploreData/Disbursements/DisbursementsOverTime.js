@@ -109,7 +109,6 @@ const DisbursementsOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
-
     const years = [...new Set(data.disbursement_summary.map(item => item.fiscal_year))]
     const sums = cards.map(yData => [...new Set(
       d3.nest()

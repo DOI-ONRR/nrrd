@@ -100,6 +100,7 @@ const NationwideDisbursementSummary = props => {
       total += s
       }, 0)
     */
+    // eslint-disable-next-line no-return-assign
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.total, 0)).reduce((total, s) => total += s, 0)
     /*
     // Have to keep long form with return (calc) for some reason.
@@ -174,6 +175,7 @@ const NationwideDisbursementSummary = props => {
                           return headers
                         }
                         }
+                        // eslint-disable-next-line no-return-assign
                         barScale={item[1].reduce((sum, i) => sum += i.total, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}

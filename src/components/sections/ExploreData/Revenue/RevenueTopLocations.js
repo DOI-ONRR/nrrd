@@ -88,7 +88,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  const commodity_key = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
+  const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
   const locations = ['State', 'Offshore', 'Native American']
   if (offshore !== 'Hide') {
     locations.push('Offshore')
@@ -132,7 +132,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
                 <CircleChart
-                  key ={'RTL' + dataSet + commodity_key}
+                  key ={'RTL' + dataSet + commodityKey}
                   data={chartData}
                   maxLegendWidth='800px'
                   xAxis='location_name'

@@ -86,12 +86,12 @@ const RevenueOverTime = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, dispatch } = useContext(StoreContext)
   const cards = pageState.cards
-    const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-     const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-    const commodity_key= (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
-    
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-      variables: { period: period, commodities: commodities }
+    variables: { period: period, commodities: commodities }
   })
 
   const handleDelete = props.handleDelete || ((e, val) => {
@@ -108,8 +108,6 @@ const RevenueOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0 && data.revenue_summary.length > 0) {
-
-
     const years = [...new Set(d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
@@ -132,10 +130,9 @@ const RevenueOverTime = props => {
       })
     }
 
-
     //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]
-     // console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
+    // console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
@@ -145,7 +142,7 @@ const RevenueOverTime = props => {
         </Grid>
         <Grid item md={12}>
           <LineChart
-            key={'ROT'+commodity_key + period}
+            key={'ROT' + commodityKey + period}
             data={chartData}
             chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
             lineDashes={LINE_DASHES}
@@ -161,7 +158,7 @@ const RevenueOverTime = props => {
               cards.map((card, i) => {
                 return (
                   <Chip
-                     key={`RevenueOverTimeChip_${ card.fipsCode }`}
+                    key={`RevenueOverTimeChip_${ card.fipsCode }`}
                     variant='outlined'
                     onDelete={ e => handleDelete(e, card.fipsCode)}
                     label={<ChipLabel labelIndex={i} label={card.locationName} />}

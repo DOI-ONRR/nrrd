@@ -80,8 +80,8 @@ export default props => {
          mapZoom={props.mapZoom}
          mapX={props.mapX}
          mapY={props.mapY}
-       onZoomEnd={props.onZoomEnd}
-        legendFormat={utils.formatToSigFig_Dollar}
+         onZoomEnd={props.onZoomEnd}
+         legendFormat={utils.formatToSigFig_Dollar}
          onClick={props.onClick}
        />
        </>

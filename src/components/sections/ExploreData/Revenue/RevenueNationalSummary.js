@@ -63,11 +63,11 @@ const RevenueNationalSummary = props => {
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  const commodity_key= (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY]: 'All'
+  const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'All'
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year, period: period, commodities: commodities  }
+    variables: { year: year, period: period, commodities: commodities }
   })
 
   const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
@@ -91,9 +91,9 @@ const RevenueNationalSummary = props => {
 
   if (data) {
     groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
+    // eslint-disable-next-line no-return-assign
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
-
   }
 
   return (
@@ -127,7 +127,7 @@ const RevenueNationalSummary = props => {
                     </TableCell>
                     <TableCell style={{ width: '65%' }}>
                       <StackedBarChart
-                        key={'NRS' + year + '_' + i + commodity_key}
+                        key={'NRS' + year + '_' + i + commodityKey}
                         data={item[1]}
                         legendFormat={v => {
                           if (v === 0) {
@@ -144,6 +144,7 @@ const RevenueNationalSummary = props => {
                           return headers
                         }
                         }
+                        // eslint-disable-next-line no-return-assign
                         barScale={item[1].reduce((total, i) => total += i.total, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}

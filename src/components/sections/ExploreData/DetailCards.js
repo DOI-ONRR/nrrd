@@ -284,7 +284,7 @@ const DetailCards = props => {
       }
       else {
         // TODO: snackbar not triggering atm
-        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        // handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
 

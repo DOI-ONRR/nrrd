@@ -105,7 +105,7 @@ const SummaryCards = props => {
     districtType: props.districtType,
     state: props.state
   }
- 
+
   const [minimized, setMinimized] = useState(true)
 
   const closeCard = item => {

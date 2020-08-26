@@ -32,8 +32,8 @@ export default props => {
   })
 
   let mapData = [[]]
-  let unit=''
-  
+  let unit = ''
+
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data && data.production_summary.length > 0) {
@@ -56,13 +56,13 @@ export default props => {
           maxColor={props.maxColor}
           mapZoom={props.mapZoom}
           mapX={props.mapX}
-       mapY={props.mapY}
-       mapUnits={unit}
+          mapY={props.mapY}
+          mapUnits={unit}
           onZoomEnd={props.onZoomEnd}
           onClick={props.onClick}
           handleMapSnackbar={props.handleMapSnackbar}
-       handleMapSnackbarClose={props.handleMapSnackbarClose}
-       legendFormat={utils.formatToCommaInt}
+          handleMapSnackbarClose={props.handleMapSnackbarClose}
+          legendFormat={utils.formatToCommaInt}
           mapFormat={ d => {
             if (isNaN(d)) {
               return ''

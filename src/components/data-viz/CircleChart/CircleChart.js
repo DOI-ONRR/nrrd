@@ -4,13 +4,13 @@ import React, { useEffect, useRef } from 'react'
 // import utils from '../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
-import clsx from 'clsx'
+// import clsx from 'clsx'
 
-import ChartTitle from '../ChartTitle'
+// import ChartTitle from '../ChartTitle'
 
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
-import D3CircleChart from './D3CircleChart.js'
-import { interpolateRgbBasis } from 'd3'
+// import D3CircleChart from './D3CircleChart.js'
+// import { interpolateRgbBasis } from 'd3'
 
 const useStyles = makeStyles((theme, props) => ({
   container: {
@@ -105,7 +105,7 @@ const CircleChart = props => {
     //  const chart2 = new BarChart2(elemRef.current, data2, options)
     //    chart2.draw(data2)
     //  console.debug(elemRef.current)
-    const chart = new D3CircleChart(elemRef.current, data, options)
+    // const chart = new D3CircleChart(elemRef.current, data, options)
     // chart.selected(selected);
     // chart.draw(data)
   }, [elemRef])

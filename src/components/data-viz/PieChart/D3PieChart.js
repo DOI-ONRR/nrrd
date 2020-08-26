@@ -146,11 +146,11 @@ export default class D3PieChart {
         const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
 
         groupLines.append('line')
-	  .attr('x1', xPos + padding)
-	  .attr('x2', groupLineWidth)
-	  .attr('stroke', '#a7bcc7')
-	  .attr('stroke-width', 1)
-	 		      .attr('transform', 'translate(' + [0, self.height - 4 - self.marginBottom / 2] + ')')
+          .attr('x1', xPos + padding)
+          .attr('x2', groupLineWidth)
+          .attr('stroke', '#a7bcc7')
+          .attr('stroke-width', 1)
+          .attr('transform', 'translate(' + [0, self.height - 4 - self.marginBottom / 2] + ')')
 
         groupLines.append('text')
           .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))

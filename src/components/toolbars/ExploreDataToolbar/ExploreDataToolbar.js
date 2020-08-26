@@ -169,7 +169,6 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
     cards
   } = pageState
 
-
   const toggleExploreDataToolbar = event => {
     setExploreDataTabOpen(!exploreDataTabOpen)
     setLocationTabOpen(false)

@@ -391,7 +391,7 @@ export default class stackedBarChart {
     const rotate = this.options.xRotate || 0
     let x = -1
     const y = 8
-    if (rotate != 0) {
+    if (rotate !== 0) {
       x = -11
     }
     self.chart.append('g')

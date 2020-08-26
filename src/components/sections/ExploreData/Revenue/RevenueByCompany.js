@@ -85,6 +85,7 @@ const RevenueByCompany = props => {
 
   if (data) {
     groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
+    // eslint-disable-next-line no-return-assign
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
 
     nationalRevenueData = Object.entries(groupData)
@@ -138,6 +139,7 @@ const RevenueByCompany = props => {
                           return headers
                         }
                         }
+                        // eslint-disable-next-line no-return-assign
                         barScale={item[1].reduce((total, i) => total += i.total, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}

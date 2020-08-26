@@ -47,17 +47,17 @@ const APOLLO_QUERY = gql`
 
 const RevenueDetailTypes = props => {
   const classes = useStyles()
-    const theme = useTheme()
+  const theme = useTheme()
 
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
-const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const state = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_ABBR || props.fipsCode === DFC.NATIVE_AMERICAN_ABBR) ? props.name : props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-      variables: { state: state, year: year, period: period,  commodities:  commodities}
+    variables: { state: state, year: year, period: period, commodities: commodities }
   })
   const dataKey = dataSet + '-' + props.name
   let chartData
@@ -67,15 +67,12 @@ const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].sp
   if (error) return `Error! ${ error.message }`
 
   if (data) {
-      //       chartData = data
-      chartData = d3.nest()
+    //       chartData = data
+    chartData = d3.nest()
 	  .key(k => k.revenue_type)
 	  .rollup(v => d3.sum(v, i => i.total))
 	  .entries(data.revenue_type_summary)
-	  .map(d => ({ revenue_type: d.key, total: d.value}))
-      
-
-
+	  .map(d => ({ revenue_type: d.key, total: d.value }))
   }
 
   return (

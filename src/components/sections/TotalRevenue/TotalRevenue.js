@@ -138,8 +138,7 @@ const TotalRevenue = props => {
       }
       else {
         chartData = data.total_monthly_last_twelve_revenue
-	  console.debug("monthly last chart Data: ", data.total_monthly_last_twelve_revenue)
-
+	  console.debug('monthly last chart Data: ', data.total_monthly_last_twelve_revenue)
       }
 
       xGroups = chartData.reduce((g, row, i) => {
@@ -168,7 +167,7 @@ const TotalRevenue = props => {
         xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)
       }
       else {
-          chartData = data.total_yearly_calendar_revenue
+        chartData = data.total_yearly_calendar_revenue
         xGroups['Calendar Year'] = chartData.map((row, i) => row.year)
       }
       xAxis = 'year'
