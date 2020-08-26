@@ -20,6 +20,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = ({ graphql, reporter, actions }) => {
   const { createRedirect } = actions
 
+  // Create redirects from Redirect.mdx frontmatter
   new Promise((resolve, reject) => {
     resolve(
       graphql(`
