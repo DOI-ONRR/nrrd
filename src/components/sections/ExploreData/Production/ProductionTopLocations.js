@@ -244,6 +244,17 @@ const ProductionTopLocations = ({ title, ...props }) => {
               minColor={theme.palette.green[100]}
               maxColor={theme.palette.green[600]} />
           </Box>
+          {props.vertical &&
+            <Box>
+              <QueryLink
+                groupBy={(state === DFC.NATIONWIDE_FEDERAL_FIPS) ? DFC.LAND_TYPE : DFC.COUNTY}
+                linkType="FilterTable"
+                landType={(state === DFC.NATIVE_AMERICAN_FIPS) ? DFC.NATIVE_AMERICAN : 'Federal Offshore,Federal Onshore,Mixed Exploratory'}
+                {...props}>
+                Query production by location
+              </QueryLink>
+            </Box>
+          }
         </Box>
       )
     }
