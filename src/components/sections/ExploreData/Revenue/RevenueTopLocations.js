@@ -2,10 +2,9 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
-import GlossaryTerm from '../../../GlossaryTerm//GlossaryTerm.js'
+
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 import * as d3 from 'd3'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'

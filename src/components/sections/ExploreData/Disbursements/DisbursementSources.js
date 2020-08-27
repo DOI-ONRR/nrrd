@@ -3,23 +3,15 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
-import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
-  Box,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography
+  Box
 } from '@material-ui/core'
 
 import CONSTANTS from '../../../../js/constants'
@@ -81,7 +73,6 @@ const DisbursementSources = props => {
 
   let chartData = []
 
-  const total = 0
   if (
     data &&
       data.DisbursementSourceSummary.length > 0) {

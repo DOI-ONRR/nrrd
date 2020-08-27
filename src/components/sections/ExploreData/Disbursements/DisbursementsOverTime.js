@@ -7,8 +7,6 @@ import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
 import { StoreContext } from '../../../../store'
-import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import * as d3 from 'd3'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -118,6 +116,7 @@ const DisbursementsOverTime = props => {
         .map(d => ({ year: parseInt(d.key), value: d.value }))
     )])
 
+    // eslint-disable-next-line no-unused-vars
     for (const [i, arr] of sums.entries()) {
       sums[i] = years.map(year => {
         const sum = sums[i].find(x => x.year === year)

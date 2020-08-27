@@ -6,7 +6,6 @@ import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -112,10 +111,10 @@ const DisbursementRecipientSummary = props => {
 
   let periodData
 
-  let distinctRecipients = 0
+  // let distinctRecipients = 0
   let topRecipients = []
-  let row
-  let total = 0
+  // let row
+  // let total = 0
   // console.log('DisbursementRecipientSummary data: ', data)
   if (
     data &&
@@ -125,9 +124,9 @@ const DisbursementRecipientSummary = props => {
   ) {
     periodData = data.period
 
-    row = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === parseInt(year))]
-    total = row ? row.sum : 0
-    distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === parseInt(year))].distinct_commodities
+    // row = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === parseInt(year))]
+    // total = row ? row.sum : 0
+    // distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === parseInt(year))].distinct_commodities
 
     topRecipients = data.cardDisbursementRecipientSummary
       .map((item, i) => item.recipient)

@@ -5,13 +5,9 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import Link from '../../../Link'
-
-import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Container,
@@ -26,7 +22,6 @@ import {
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils.js'
-import CONSTANTS from '../../../../js/constants'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONWIDE_DISBURSEMENT_SUMMARY_QUERY = gql`
@@ -46,17 +41,15 @@ const disbursementTypeDescriptions = [
   'Supports the establishment of critical infrastructure projects like dams and power plants.',
   // eslint-disable-next-line max-len
   'ONRR disburses 100% of revenue collected from resource extraction on Native American lands back to tribes, nations, and individuals.',
+  // eslint-disable-next-line max-len
   'Provides matching grants to states and local governments to buy and develop public outdoor recreation areas across the 50 states. <a href="/how-revenue-works/lwcf" style="color: #1478a6">How this fund works</a>',
+  // eslint-disable-next-line max-len
   'Helps preserve U.S. historical and archaeological sites and cultural heritage through grants to state and tribal historic preservation offices. <a href="/how-revenue-works/hpf" style="color: #1478a6">How this fund works</a>',
+  // eslint-disable-next-line max-len
   'Some funds are directed back to federal agencies that administer these lands to help cover operational costs. The Ultra-Deepwater Research Program and the Mescal Settlement Agreement also receive $50 million each.',
 ]
 
-const useStyles = makeStyles(theme => ({
-  root: {},
-}))
-
 const NationwideDisbursementSummary = props => {
-  const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
@@ -67,7 +60,7 @@ const NationwideDisbursementSummary = props => {
     variables: { year }
   })
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENT } (dollars)`
+  // const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENT } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
@@ -78,7 +71,7 @@ const NationwideDisbursementSummary = props => {
   const yGroupBy = 'source'
   const xLabels = 'month'
   const units = 'dollars'
-  const xGroups = {}
+  // const xGroups = {}
 
   const createMarkup = markup => {
     return { __html: markup }

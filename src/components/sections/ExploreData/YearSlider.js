@@ -1,19 +1,15 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 
-import { StickyWrapper } from '../../utils/StickyWrapper'
-
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Slider,
-  Container,
   Box,
   Grid
 } from '@material-ui/core'
 
-import { StoreContext } from '../../../store'
 import CONSTANTS from '../../../js/constants'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'

@@ -11,12 +11,10 @@ import {
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
 
-import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import utils from '../../../../js/utils'
-import CONSTANTS from '../../../../js/constants'
 
 const APOLLO_QUERY = gql`
   query ProductionSummaryTrend($state: String!, $product: String!, $period: String!) {
@@ -51,7 +49,7 @@ const ProductionSummaryTrends = props => {
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, product: product, period: period }
   })
-  const name = props.locationName
+
   const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
   const location = {
     county: props.county,
@@ -68,7 +66,6 @@ const ProductionSummaryTrends = props => {
   let periodData
   let fiscalData
   let highlightIndex = 0
-  let row
   let total = 0
 
   if (loading) {

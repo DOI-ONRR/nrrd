@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -103,12 +103,12 @@ const TotalRevenue = props => {
     setPeriod(value)
   }
 
-  const findXGroupYear = (monthNumber, xGroups) => {
-    for (const elem of xGroups) {
-      const foundElem = elem.filter(item => item.includes(monthNumber))
-      // console.log('foundElem: ', foundElem)
-    }
-  }
+  // const findXGroupYear = (monthNumber, xGroups) => {
+  //   for (const elem of xGroups) {
+  //     const foundElem = elem.filter(item => item.includes(monthNumber))
+  //     // console.log('foundElem: ', foundElem)
+  //   }
+  // }
 
   if (error) return `Error! ${ error.message }`
   let chartData

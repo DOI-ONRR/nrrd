@@ -1,5 +1,4 @@
 import * as d3 from 'd3'
-import utils from '../../js/utils'
 
 const DEFAULT_HEIGHT = 200
 const MARGIN_BOTTOM = 40
@@ -94,8 +93,6 @@ const stackedBarChart = {
     if (state === undefined) {
       return
     }
-
-    const self = this
 
     this.svg = d3.select(el).select('svg')
 

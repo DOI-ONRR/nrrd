@@ -14,8 +14,6 @@ import {
   Typography
 } from '@material-ui/core'
 
-import { StoreContext } from '../../../../store'
-import CONSTANTS from '../../../../js/constants'
 import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -71,9 +69,8 @@ const RevenueSummaryTopCommodities = props => {
     variables: { state: state, period: period }
   })
 
-  let sparkData = []
-  let fiscalData
-  let highlightIndex = 0
+  // let sparkData = []
+  // let fiscalData
   let periodData
   let distinctCommodities = 0
   let topCommodities = []
@@ -87,26 +84,22 @@ const RevenueSummaryTopCommodities = props => {
     // console.debug('DWGH', data)
     periodData = data.period
 
-    fiscalData = d3.nest()
-      .key(k => k.year)
-      .rollup(v => d3.sum(v, i => i.total))
-      .entries(data.revenue_summary)
-      .map(d => [parseInt(d.key), d.value])
+    // fiscalData = d3.nest()
+    //   .key(k => k.year)
+    //   .rollup(v => d3.sum(v, i => i.total))
+    //   .entries(data.revenue_summary)
+    //   .map(d => [parseInt(d.key), d.value])
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
-    sparkData = periodData.map((item, i) => {
-      const y = parseInt(item.period_date.substr(0, 4))
-      const total = fiscalData.find(x => x[0] === y)
-      return ([
-        y,
-        total ? total[1] : 0
-      ])
-    })
+    // sparkData = periodData.map((item, i) => {
+    //   const y = parseInt(item.period_date.substr(0, 4))
+    //   const total = fiscalData.find(x => x[0] === y)
+    //   return ([
+    //     y,
+    //     total ? total[1] : 0
+    //   ])
+    // })
 
-    // sparkline index
-    highlightIndex = sparkData.findIndex(
-      x => x[0] === parseInt(year)
-    )
     topCommodities = data.revenue_summary.filter(row => row.year === parseInt(year))
       .map(f => f.commodity)
       .map((com, i) => {

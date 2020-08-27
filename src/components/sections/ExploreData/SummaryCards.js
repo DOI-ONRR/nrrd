@@ -15,15 +15,11 @@ import MinimizeIcon from '@material-ui/icons/Minimize'
 import CloseIcon from '@material-ui/icons/Close'
 
 import {
-  animateScroll as scroll,
   scroller
 } from 'react-scroll'
 
 import { StoreContext } from '../../../store'
 import CardTitle from './CardTitle'
-
-import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   root: {

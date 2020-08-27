@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-// import Link from '../../../utils/temp-link'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
 
 import ExploreDataIcon from '-!svg-react-loader!../../../../img/icons/explore-data.svg'
 import FilterTableIcon from '-!svg-react-loader!../../../../img/icons/filter-table.svg'

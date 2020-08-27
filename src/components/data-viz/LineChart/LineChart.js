@@ -73,6 +73,7 @@ const LineChart = props => {
   useEffect(() => {
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
+    // eslint-disable-next-line no-unused-vars
     const chart = new D3LineChart(elemRef.current, data, options)
   })
 

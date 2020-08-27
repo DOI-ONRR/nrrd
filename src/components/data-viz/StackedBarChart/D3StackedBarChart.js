@@ -1,6 +1,6 @@
 'use strict'
 import * as d3 from 'd3'
-import { isEnumMember } from 'typescript'
+// import { isEnumMember } from 'typescript'
 
 export default class D3StackedBarChart {
   constructor (node, data, options, formatLegendFunc) {
@@ -441,15 +441,10 @@ export default class D3StackedBarChart {
       const self = this
       d3.select(this.node).selectAll('.legend-table tbody tr').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
-      //      this.getSelected()
+
       const legendReverse = this.legendReverse
       const data = newData || this.selectedData()
-
-      // console.log('updateLegend data: ', data)
-      const headers = this._legendHeaders(xValue)
       const labels = this.yGroupings()
-      const formatLegend = this.formatLegend()
-      // const table = d3.selectAll('.legend-table')
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
 
       // turn object into array to play nice with d3
@@ -699,9 +694,7 @@ export default class D3StackedBarChart {
         this.yOrderBy = this.options.yOrderBy
       }
       else if (typeof (this.options.yOrderBy) === 'string') {
-        // console.debug(this.options.yOrderBy)
-        const r = d3.nest()
-        //            .key(k => k[this.xAxis])
+        d3.nest()
           .key(k => k[this.options.yGroupBy])
           .rollup(v => d3.sum(v, d => d[this.yAxis]))
           .entries(this.data)
@@ -709,11 +702,9 @@ export default class D3StackedBarChart {
             acc[d.key] = d.value
             return acc
           }, {})
-        // console.debug('else if', r)
       }
       else {
-        const r = d3.nest()
-        //            .key(k => k[this.xAxis])
+        d3.nest()
           .key(k => k[this.options.yGroupBy])
           .rollup(v => d3.sum(v, d => d[this.yAxis]))
           .entries(this.data)
@@ -922,7 +913,6 @@ export default class D3StackedBarChart {
 
   ydomain (row) {
     try {
-      const r = []
       const allowed = this.yaxis()
       const filtered = Object.keys(row)
         .filter(key => allowed.includes(key))
@@ -1104,8 +1094,6 @@ export default class D3StackedBarChart {
     const stack = d3.stack()
 	  .keys(this.yaxis())
 	  .offset(d3.stackOffsetNone)
-
-    const xwidth = self.xScale.bandwidth()
 
     // console.debug(xwidth);
     const keys = this.yaxis()

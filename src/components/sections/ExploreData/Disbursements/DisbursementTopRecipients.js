@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -18,7 +17,6 @@ import {
   Box,
   Container,
   Grid,
-  Chip,
   useTheme
 } from '@material-ui/core'
 
@@ -82,9 +80,6 @@ const DisbursementTopRecipients = props => {
   const year = filterState[DFC.YEAR]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
-  const handleDelete = props.handleDelete || ((e, val) => {
-    console.debug('handle delete')
-  })
 
   if (loading) {
     return (

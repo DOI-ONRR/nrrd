@@ -189,7 +189,6 @@ export default class D3CircleChart {
     const self = this
     const color = this.color()
     const yDomain = this.yDomain()
-    const columns = ['', this.xLabel.replace('_', ' '), this.yLabel.replace('_', ' ')]
     const table = d3.select(this.container.children[1]).append('table').attr('class', 'legend-table')
     const thead = table.append('thead')
     const rh = thead.append('tr')
@@ -261,6 +260,7 @@ export default class D3CircleChart {
   }
 
   circleLabel (data, xAxis, yAxis) {
+    // eslint-disable-next-line no-sparse-arrays
     const r = ['', '']
     return r
   }
@@ -305,12 +305,12 @@ export default class D3CircleChart {
     const width = this._width
     const height = this._height
     const color = this.color()
-    //            console.debug("color legend", color(2), color(1), color(0) )
 
     const yDomain = this.yDomain()
     const root = this._root
+    // eslint-disable-next-line no-unused-vars
     let focus = root
-    let view
+    // let view
 
     const svg = d3.select(chartNode).append('svg')
       .attr('viewBox', `-${ width * 0.5 } -${ height * 0.5 } ${ width } ${ height }`)
@@ -420,7 +420,7 @@ export default class D3CircleChart {
     function zoomTo (v) {
       const k = width / v[2]
 
-      view = v
+      // const view = v
 
       xLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k })`)
       yLabel.attr('transform', d => `translate(${ (d.x - v[0]) * k },${ (d.y - v[1]) * k + d.r / 5 })`)
@@ -429,43 +429,7 @@ export default class D3CircleChart {
     }
 
     function zoom (d) {
-      const focus0 = focus
-
       focus = d
-
-      const transition = svg.transition()
-        .duration(d3.event.altKey ? 7500 : 750)
-        .tween('zoom', d => {
-          const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2])
-          return t => zoomTo(i(t))
-        })
-
-    /* xLabel
-        .filter(function (d) {
-          return d.parent === focus || this.style.display === 'inline'
-        })
-        .transition(transition)
-        .style('fill-opacity', d => d.parent === focus ? 1 : 0)
-        .on('start', function (d) {
-          if (d.parent === focus) this.style.display = 'inline'
-        })
-        .on('end', function (d) {
-          if (d.parent !== focus) this.style.display = 'none'
-        })
-
-      yLabel
-        .filter(function (d) {
-          return d.parent === focus || this.style.display === 'inline'
-        })
-        .transition(transition)
-        .style('fill-opacity', d => d.parent === focus ? 1 : 0)
-        .on('start', function (d) {
-          if (d.parent === focus) this.style.display = 'inline'
-        })
-        .on('end', function (d) {
-          if (d.parent !== focus) this.style.display = 'none'
-        })
-    */
     }
 
     return svg.node()
@@ -473,7 +437,6 @@ export default class D3CircleChart {
 
   // eslint-disable-next-line camelcase
   dep_chart () {
-    const xAxis = this.xAxis
     const yAxis = this.yAxis
     const data = this.pack(this.data)
     const chartNode = this.container.children[0]
@@ -600,254 +563,6 @@ export default class D3CircleChart {
       simulation.alpha(1).restart()
     }
   }
-
-  //     /*
-  // // append the svg object to the body of the page
-
-  // // Read data
-  //   // Filter a bit the data -> more than 1 million inhabitants
-  // //  data = data.filter(function(d){ return d.value>10000000 })
-  //     console.debug("========================",data)
-  //   // Color palette for continents?
-
-  //     /*
-  // var color = d3.scaleOrdinal()
-  //     .domain(["", "Europe", "Africa", "Oceania", "Americas"])
-  //     .range(d3.schemeSet1);
-  //     */
-  //     const    pack = data => d3.pack()
-  //       .size([width - 2, height - 2])
-  //       .padding(3)
-  //     (d3.hierarchy(data)
-  //      .sum(d => d[yAxis])
-  //      .sort((a, b) => b[yAxis] - a[yAxis]))
-
-  //     const root= pack(data);
-
-  //     console.debug('ROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOt ',root)
-  //     // Size scale for countries
-  //   var size = d3.scaleLinear()
-  //     .domain([0,6597880000])
-  //     .range([7,55])  // circle will be between 7 and 55 px wide
-
-  //   // create a tooltip
-  //   var Tooltip = d3.select("#my_dataviz")
-  //     .append("div")
-  //     .style("opacity", 0)
-  //     .attr("class", "tooltip")
-  //     .style("background-color", "white")
-  //     .style("border", "solid")
-  //     .style("border-width", "2px")
-  //     .style("border-radius", "5px")
-  //     .style("padding", "5px")
-
-  //   // Three function that change the tooltip when user hover / move / leave a cell
-  //   var mouseover = function(d) {
-  //     Tooltip
-  //       .style("opacity", 1)
-  //   }
-  //   var mousemove = function(d) {
-  //     Tooltip
-  //       .html('<u>' + d.key + '</u>' + "<br>" + d.value + " inhabitants")
-  //       .style("left", (d3.mouse(this)[0]+20) + "px")
-  //       .style("top", (d3.mouse(this)[1]) + "px")
-  //   }
-  //   var mouseleave = function(d) {
-  //     Tooltip
-  //       .style("opacity", 0)
-  //   }
-
-  //   // Initialize the circle: all located at the center of the svg area
-  //   var node = svg.append("g")
-  //     .selectAll("circle")
-  //     .data(data)
-  //     .enter()
-  //     .append("circle")
-  //       .attr("class", "node")
-  //       .attr("r", function(d){ return size(d[yAxis])})
-  //       .attr("cx", width / 2)
-  //       .attr("cy", height / 2)
-  //       .style("fill", function(d){ return color(d[yAxis])})
-  //       .style("fill-opacity", 0.8)
-  //       .attr("stroke", "black")
-  //       .style("stroke-width", 1)
-  //       .on("mouseover", mouseover) // What to do when hovered
-  //       .on("mousemove", mousemove)
-  //       .on("mouseleave", mouseleave)
-  //       .call(d3.drag() // call specific function when circle is dragged
-  //            .on("start", dragstarted)
-  //            .on("drag", dragged)
-  //            .on("end", dragended));
-
-  //   // Features of the forces applied to the nodes:
-  //   var simulation = d3.forceSimulation()
-  //       .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-  //       .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
-  //       .force("collide", d3.forceCollide().strength(.2).radius(function(d){
-  //             console.debug('collide ',d)
-  //         return (size(d[yAxis])+3)
-  //       }).iterations(1)) // Force that avoids circle overlapping
-
-  //   // Apply these forces to the nodes and update their positions.
-  //   // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-  //   simulation
-  //       .nodes(data)
-  //       .on("tick", function(d){
-  //         node
-  //           .attr("cx", function(d){
-  //             console.debug('simulation',d)
-  //             return d.x })
-  //             .attr("cy", function(d){ return d.y; })
-  //       });
-
-  //   // What happens when a circle is dragged?
-  //   function dragstarted(d) {
-  //     if (!d3.event.active) simulation.alphaTarget(.03).restart();
-  //     console.debug("drag start", d)
-  //     d.fx = d.x;
-  //     d.fy = d.y;
-  //   }
-  //   function dragged(d) {
-  //     d.fx = d3.event.x;
-  //     d.fy = d3.event.y;
-  //   }
-  //   function dragended(d) {
-  //     if (!d3.event.active) simulation.alphaTarget(.03);
-  //     d.fx = null;
-  //     d.fy = null;
-  //   }
-  // */
-
-  //     /*
-  //     console.debug('hhData: ', hData)
-  //     const vData=d3.stratify()([{name:'data', children:hData}])
-  //     console.debug(vData)
-
-  //     const vLayout = d3.pack().size([w, h])
-  //     const vRoot = d3.hierarchy(vData).sum(function (d) { return d });
-  //     const vNodes = vRoot.descendants()
-  //     vLayout(vNodes)
-  //     var vSlices = g.selectAll('circle').data(vNodes).enter().append('circle');
-  //     // Draw on screen
-  //     vSlices.attr('cx', function (d) { return d.x; })
-  //       .attr('cy', function (d) { return d.y; })
-  //       .attr('r', function (d) { return d.r; });
-  //     this.svg=svg;
-  //     */
-  //   }
-
-  /*
-
-// set the dimensions and margins of the graph
-var width = 460
-var height = 460
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-
-// Read data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/11_SevCatOneNumNestedOneObsPerGroup.csv", function(data) {
-
-  // Filter a bit the data -> more than 1 million inhabitants
-  data = data.filter(function(d){ return d.value>10000000 })
-console.debug(data)
-  // Color palette for continents?
-  var color = d3.scaleOrdinal()
-    .domain(["Asia", "Europe", "Africa", "Oceania", "Americas"])
-    .range(d3.schemeSet1);
-
-  // Size scale for countries
-  var size = d3.scaleLinear()
-    .domain([0, 1400000000])
-    .range([7,55])  // circle will be between 7 and 55 px wide
-
-  // create a tooltip
-  var Tooltip = d3.select("#my_dataviz")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
-
-  // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function(d) {
-    Tooltip
-      .style("opacity", 1)
-  }
-  var mousemove = function(d) {
-    Tooltip
-      .html('<u>' + d.key + '</u>' + "<br>" + d.value + " inhabitants")
-      .style("left", (d3.mouse(this)[0]+20) + "px")
-      .style("top", (d3.mouse(this)[1]) + "px")
-  }
-  var mouseleave = function(d) {
-    Tooltip
-      .style("opacity", 0)
-  }
-
-  // Initialize the circle: all located at the center of the svg area
-  var node = svg.append("g")
-    .selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle")
-      .attr("class", "node")
-      .attr("r", function(d){ return size(d.value)})
-      .attr("cx", width / 2)
-      .attr("cy", height / 2)
-      .style("fill", function(d){ return color(d.region)})
-      .style("fill-opacity", 0.8)
-      .attr("stroke", "black")
-      .style("stroke-width", 1)
-      .on("mouseover", mouseover) // What to do when hovered
-      .on("mousemove", mousemove)
-      .on("mouseleave", mouseleave)
-      .call(d3.drag() // call specific function when circle is dragged
-           .on("start", dragstarted)
-           .on("drag", dragged)
-           .on("end", dragended));
-
-  // Features of the forces applied to the nodes:
-  var simulation = d3.forceSimulation()
-      .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-      .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
-      .force("collide", d3.forceCollide().strength(.2).radius(function(d){ return (size(d.value)+3) }).iterations(1)) // Force that avoids circle overlapping
-
-  // Apply these forces to the nodes and update their positions.
-  // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-  simulation
-      .nodes(data)
-      .on("tick", function(d){
-        node
-            .attr("cx", function(d){ return d.x; })
-            .attr("cy", function(d){ return d.y; })
-      });
-
-  // What happens when a circle is dragged?
-  function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(.03).restart();
-    d.fx = d.x;
-    d.fy = d.y;
-  }
-  function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-  }
-  function dragended(d) {
-    if (!d3.event.active) simulation.alphaTarget(.03);
-    d.fx = null;
-    d.fy = null;
-  }
-
-})
-
-*/
 
   draw () {
     try {
@@ -1125,15 +840,10 @@ console.debug(data)
       const self = this
       d3.selectAll('.legend-table tbody tr').remove()
       d3.selectAll('.legend-rect').remove()
-      //      this.getSelected()
 
       const data = newData || this.selectedData()
-
-      // console.debug('SELECTED DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:', data)
       const headers = this._legendHeaders(xValue)
       const labels = this.yGroupings()
-      const formatLegend = this.formatLegend()
-      // const table = d3.selectAll('.legend-table')
       const tbody = d3.selectAll('.legend-table tbody')
 
       // turn object into array to play nice with d3
@@ -1299,24 +1009,14 @@ console.debug(data)
 
   _onHover = (element, data, hover) => {
     try {
-      const activeElement = element.parentNode.parentNode
-      const index = this.selectedIndex
-      // console.debug(data)
-      // console.debug(element)
-
       if (hover === true) {
-        // activeElement.setAttribute('class', 'bar active')
         const years = this.xDomain()
-
         const tabIndex = element.parentNode.parentNode.tabIndex
-        // // console.debug(years,  years[tabIndex] , tabIndex)
         this.createLegend(data[0].data, years[tabIndex])
         this.updateLegend(data[0].data, years[tabIndex])
       }
       else {
         this.getSelected()
-        //  activeElement.setAttribute('class', 'bar')
-
         this.select(this.index)
         this.createLegend()
         this.updateLegend()

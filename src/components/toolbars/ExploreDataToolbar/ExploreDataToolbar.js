@@ -17,11 +17,8 @@ import {
   makeStyles
 } from '@material-ui/styles'
 
-import MapIcon from '@material-ui/icons/Map'
-import CalendarIcon from '@material-ui/icons/CalendarToday'
 import LocationOnIcon from '@material-ui/icons/LocationOn'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import AddIcon from '@material-ui/icons/Add'
 
 import ExploreDataIcon from '-!svg-react-loader!../../../img/icons/explore-data.svg'
 
@@ -36,19 +33,14 @@ import {
 
 import YearSlider from '../../sections/ExploreData/YearSlider'
 
-import MapControlToggle from '../../inputs/MapControlToggle'
-
 import {
   COMMODITY,
-  COUNTIES,
-  COUNTY,
   DATA_FILTER_CONSTANTS as DFC,
   DATA_TYPE,
   DISBURSEMENT,
   PERIOD,
   PRODUCTION,
   REVENUE,
-  US_STATE,
   OFFSHORE_REGIONS,
   MAP_LEVEL
 } from '../../../constants'
@@ -149,14 +141,12 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
   const revenueCommodityOptions = data.onrr.RevenueCommodityOptions.map(item => item.commodity)
 
   const classes = useStyles()
-  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState } = useContext(StoreContext)
 
   const [exploreDataTabOpen, setExploreDataTabOpen] = useState(true)
   const [locationTabOpen, setLocationTabOpen] = useState(false)
   const [exploreMoreTabOpen, setExploreMoreTabOpen] = useState(false)
-
-  const [anchorEl, setAnchorEl] = useState(null)
 
   const {
     dataType,
@@ -187,12 +177,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
     setLocationTabOpen(false)
   }
 
-  const handleMenuClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
   const handleClose = (index, item) => event => {
-    setAnchorEl(null)
     if (typeof item !== 'undefined') {
       onLink(item)
     }
@@ -384,14 +369,8 @@ export default ExploreDataToolbar
 // Map explore menu speed dial
 const MapExploreMenu = props => {
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState(true)
-
-  const handleMenuClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
 
   const handleClose = index => event => {
-    // setAnchorEl(null)
     navigate(props.linkUrls[index])
   }
 

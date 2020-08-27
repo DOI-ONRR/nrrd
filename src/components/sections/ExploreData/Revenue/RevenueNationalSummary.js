@@ -4,16 +4,10 @@ import PropTypes from 'prop-types'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-import * as d3 from 'd3'
-
-import Link from '../../../Link'
-
-import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Container,
@@ -28,12 +22,20 @@ import {
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils'
-import CONSTANTS from '../../../../js/constants'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   query RevenueNational($year: Int!, $period: String!, $commodities: [String!]) {
-   revenue_type_class_summary(order_by: {revenue_type_order: asc, land_type_order: asc}, where: {year: {_eq: $year}, period: { _eq: $period}, commodity: {_in: $commodities}  }) {
+   revenue_type_class_summary(
+     order_by: {
+       revenue_type_order: asc,
+       land_type_order: asc},
+        where: {
+          year: {_eq: $year},
+          period: { _eq: $period},
+          commodity: {_in: $commodities}  
+        }
+  ) {
     revenue_type
     year
     land_type
@@ -53,12 +55,7 @@ const revenueTypeDescriptions = [
   'This includes other fees leaseholders pay such as permit fees and AML fees.'
 ]
 
-const useStyles = makeStyles(theme => ({
-  root: {},
-}))
-
 const RevenueNationalSummary = props => {
-  const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
@@ -70,7 +67,6 @@ const RevenueNationalSummary = props => {
     variables: { year: year, period: period, commodities: commodities }
   })
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
@@ -81,7 +77,6 @@ const RevenueNationalSummary = props => {
   const yGroupBy = 'land_type'
 
   const units = 'dollars'
-  const xGroups = {}
 
   if (loading) {
     return 'Loading...'

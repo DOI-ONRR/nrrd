@@ -5,14 +5,9 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import Link from '../../../Link'
-
-import { StoreContext } from '../../../../store'
-
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Container,
@@ -27,7 +22,6 @@ import {
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils'
-import CONSTANTS from '../../../../js/constants'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
@@ -49,12 +43,7 @@ const revenueTypeDescriptions = [
   'This includes other fees leaseholders pay such as permit fees and AML fees.'
 ]
 
-const useStyles = makeStyles(theme => ({
-  root: {},
-}))
-
 const RevenueByCompany = props => {
-  const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
@@ -64,7 +53,6 @@ const RevenueByCompany = props => {
     variables: { year: year, period: period }
   })
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
@@ -75,7 +63,6 @@ const RevenueByCompany = props => {
   const yGroupBy = 'land_type'
 
   const units = 'dollars'
-  const xGroups = {}
 
   if (loading) {
     return 'Loading...'

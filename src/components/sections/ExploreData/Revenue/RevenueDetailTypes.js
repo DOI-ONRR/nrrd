@@ -4,15 +4,13 @@ import gql from 'graphql-tag'
 import * as d3 from 'd3'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
-import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -47,7 +45,6 @@ const APOLLO_QUERY = gql`
 
 const RevenueDetailTypes = props => {
   const classes = useStyles()
-  const theme = useTheme()
 
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]

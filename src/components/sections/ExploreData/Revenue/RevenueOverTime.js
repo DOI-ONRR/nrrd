@@ -123,6 +123,7 @@ const RevenueOverTime = props => {
         .map(d => ({ year: parseInt(d.key), value: d.value }))
     )])
 
+    // eslint-disable-next-line no-unused-vars
     for (const [i, arr] of sums.entries()) {
       sums[i] = years.map(year => {
         const sum = sums[i].find(x => x.year === year)
