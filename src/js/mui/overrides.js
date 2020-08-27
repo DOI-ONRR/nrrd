@@ -1,7 +1,6 @@
 // https://material-ui.com/customization/globals/
 const palette = require('./palette')
 const typography = require('./typography')
-const { ThemeConsumer } = require('styled-components')
 
 module.exports = Object.freeze({
   MuiButton: {
