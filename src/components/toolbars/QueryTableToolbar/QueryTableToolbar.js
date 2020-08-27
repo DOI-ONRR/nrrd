@@ -253,6 +253,9 @@ const QueryTableToolbar = ({ label, ...props }) => {
           {state[DATA_TYPE] === DISBURSEMENT &&
             <Link href={'./downloads/#Disbursements'} linkType='DownloadData'>Source file and documentation</Link>
           }
+          {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
+            <Link href={'./downloads/federal-revenue-by-company/'} linkType='DownloadData'>Source file and documentation</Link>
+          }
         </Box>
       </BaseToolbar>
       }
