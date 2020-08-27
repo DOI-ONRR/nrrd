@@ -15,7 +15,7 @@ const config = {
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
     googleTagManagerId: GTM_ID,
-    version: 'v6.1.0',
+    version: 'v6.1.1',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -120,9 +120,9 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
+            uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             // uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
-            uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
+            // uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
             // uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
