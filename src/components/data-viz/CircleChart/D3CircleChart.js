@@ -1,3 +1,5 @@
+/* eslint-disable comma-spacing */
+/* eslint-disable no-sparse-arrays */
 'use strict'
 import * as d3 from 'd3'
 
@@ -261,7 +263,6 @@ export default class D3CircleChart {
   }
 
   circleLabel (data, xAxis, yAxis) {
-    // eslint-disable-next-line no-sparse-arrays
     const r = [,]
     return r
   }
