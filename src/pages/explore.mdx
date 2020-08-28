@@ -12,197 +12,199 @@ tags:
 - Revenue by company
 ---
 <DataFilterProviderWrapper defaults='explore_data_filter_default'>
-  <Container style={{ padding: 0 }} maxWidth={false}>
-    <Box style={{ background: 'white' }}>
-      <ExploreData>
-        <ContextProvider params={'?dataType=Revenue'}>
-          <Revenue>
-            <MapContext>
-              <RevenueMap />
-              <SummaryCards>
-                <RevenueSummaryTrends />
-                <RevenueSummaryTopCommodities />
-              </SummaryCards>
-            </MapContext>
-            <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
-              <Box name="exploreDataContent" className="explore-data-content">
-                <CompareContext>
-                  <PageSubMenu
-                    menuItems={[
-                      'Compare revenue',
-                      'Nationwide revenue summary',
-                      'Top nationwide locations'
-                    ]} />
-                  <Container>
+  <ExploreDataProviderWrapper>
+    <Container style={{ padding: 0 }} maxWidth={false}>
+      <Box style={{ background: 'white' }}>
+        <ExploreData>
+          <ContextProvider params={'?dataType=Revenue'}>
+            <Revenue>
+              <MapContext>
+                <RevenueMap />
+                <SummaryCards>
+                  <RevenueSummaryTrends />
+                  <RevenueSummaryTopCommodities />
+                </SummaryCards>
+              </MapContext>
+              <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
+                <Box name="exploreDataContent" className="explore-data-content">
+                  <CompareContext>
+                    <PageSubMenu
+                      menuItems={[
+                        'Compare revenue',
+                        'Nationwide revenue summary',
+                        'Top nationwide locations'
+                      ]} />
+                    <Container>
+                      <Grid container>
+                        <Grid item md={12}>
+                          <Box mb={1} color="secondary.main" borderBottom={5}>
+                            <Box component="h2" color="secondary.dark">Revenue</Box>
+                          </Box>
+                          <Typography variant="body1">
+                            <RevenueLocationTotal />
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Container>
+                    <Container id="compare-revenue">
+                      <Grid container>
+                        <Grid item md={12}>
+                          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+                            <Box component="h3" color="secondary.dark">Compare revenue</Box>
+                          </Box>
+                          <Box fontSize="body1.fontSize">
+                            Add more than one card to compare.  Select states, counties, and offshore regions.
+                          </Box>
+                        </Grid>
+                      </Grid>
+                      <Grid container style={{ overflowX: 'auto' }}>
+                        <Grid item md={12}>
+                          <DetailCards>
+                            <RevenueDetailTrends />
+                            <RevenueDetailCommodities />
+                            <RevenueDetailTypes />
+                            <RevenueCountyMap />
+                          </DetailCards>
+                        </Grid>
+                      </Grid>
+                    </Container>
+                    <RevenueOverTime title="Revenue over time" />         
+                  </CompareContext>
+                  <RevenueNationalSummary title="Nationwide revenue summary" />
+                  <RevenueTopLocations title="Top nationwide locations" />
+                </Box>
+              </Box>
+            </Revenue>
+          </ContextProvider>
+          <ContextProvider params={'?dataType=Disbursements'}>
+            <Disbursements>
+              <MapContext>
+                <DisbursementMap />
+                <SummaryCards>
+                  <DisbursementTrend />
+                  <DisbursementRecipientSummary/>
+                </SummaryCards>
+              </MapContext>
+              <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
+                <Box name="exploreDataContent" className="explore-data-content">
+                  <CompareContext>
+                    <PageSubMenu
+                      menuItems={[
+                        'Compare disbursements',
+                        'Nationwide disbursements summary',
+                        'Top nationwide recipients'
+                      ]}
+                    />
+                    <Container>
+                      <Grid container>
+                        <Grid item md={12}>
+                          <Box mb={1} color="secondary.main" borderBottom={5}>
+                            <Box component="h2" color="secondary.dark">Disbursements</Box>
+                          </Box>
+                          <Typography variant="body1">
+                            <DisbursementLocationTotal />
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Container>
+                    <Container id="compare-disbursements">
+                      <Grid container>
+                        <Grid item md={12}>
+                          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+                            <Box component="h3" color="secondary.dark">Compare disbursements</Box>
+                          </Box>
+                          <Box fontSize="body1.fontSize">
+                            Add more than one card to compare.  Select states, counties, and offshore regions.
+                          </Box>
+                        </Grid>
+                      </Grid>
+                      <Grid container>
+                        <Grid item md={12}>
+                          <DetailCards>
+                            <DisbursementDetailTrends />
+                            <DisbursementRecipients />
+                            <DisbursementSources />  
+                          </DetailCards>
+                        </Grid>
+                      </Grid>
+                    </Container>
+                    <DisbursementsOverTime title="Disbursements over time"  />   
+                  </CompareContext>         
+                  <NationwideDisbursementSummary title="Nationwide disbursements summary" />
+                  <DisbursementTopRecipients title="Top nationwide recipients" />
+                </Box>
+              </Box>
+            </Disbursements>
+          </ContextProvider>
+          <ContextProvider params={'?dataType=Production'}>
+            <Production>
+              <MapContext>
+                <ProductionMap />
+                <SummaryCards>
+                  <ProductionSummaryTrends /> 
+                </SummaryCards>
+              </MapContext>
+              <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
+                <Box name="exploreDataContent" className="explore-data-content">
+                  <CompareContext>
+                    <PageSubMenu
+                      menuItems={[
+                        'Compare production',
+                        'Top nationwide locations'
+                      ]}
+                    />
+                    <Container>
+                      <Grid container>
+                        <Grid item md={12}>
+                          <Box mb={1} color="secondary.main" borderBottom={5}>
+                            <Box component="h2" color="secondary.dark">Production</Box>
+                          </Box>
+                          <Typography variant="body1">
+                            <ProductionLocationTotal />
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Container>
+                    <Container id="compare-production">
+                      <Grid container>
+                        <Grid item md={12}>
+                          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+                            <Box component="h3" color="secondary.dark">Compare production</Box>
+                          </Box>
+                          <Box fontSize="body1.fontSize">
+                            Add more than one card to compare.  Select states, counties, and offshore regions.
+                          </Box>
+                        </Grid>
+                      </Grid>
+                      <Grid container>
+                        <Grid item md={12}>
+                          <DetailCards>     
+                            <ProductionDetailTrends />
+                            <ProductionLandCategory title="Production over time"  />        
+                            <ProductionTopLocations title="Top locations" vertical maxLegendWidth='800px' />   
+                            <ProductionCountyMap />
+                          </DetailCards>
+                        </Grid>
+                      </Grid>
+                    </Container>       
+                    <ProductionOverTime title="Production over time" />
+                  </CompareContext>
+                  <Container id="top-nationwide-locations">
                     <Grid container>
                       <Grid item md={12}>
                         <Box mb={1} color="secondary.main" borderBottom={5}>
-                          <Box component="h2" color="secondary.dark">Revenue</Box>
-                        </Box>
-                        <Typography variant="body1">
-                          <RevenueLocationTotal />
-                        </Typography>
+                          <Box component="h2" color="secondary.dark">Top nationwide locations</Box>
+                        </Box>               
+                        <ProductionTopLocations horizontal />
                       </Grid>
                     </Grid>
                   </Container>
-                  <Container id="compare-revenue">
-                    <Grid container>
-                      <Grid item md={12}>
-                        <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                          <Box component="h3" color="secondary.dark">Compare revenue</Box>
-                        </Box>
-                        <Box fontSize="body1.fontSize">
-                          Add more than one card to compare.  Select states, counties, and offshore regions.
-                        </Box>
-                      </Grid>
-                    </Grid>
-                    <Grid container style={{ overflowX: 'auto' }}>
-                      <Grid item md={12}>
-                        <DetailCards>
-                          <RevenueDetailTrends />
-                          <RevenueDetailCommodities />
-                          <RevenueDetailTypes />
-                          <RevenueCountyMap />
-                        </DetailCards>
-                      </Grid>
-                    </Grid>
-                  </Container>
-                  <RevenueOverTime title="Revenue over time" />         
-                </CompareContext>
-                <RevenueNationalSummary title="Nationwide revenue summary" />
-                <RevenueTopLocations title="Top nationwide locations" />
+                </Box>
               </Box>
-            </Box>
-          </Revenue>
-        </ContextProvider>
-        <ContextProvider params={'?dataType=Disbursements'}>
-          <Disbursements>
-            <MapContext>
-              <DisbursementMap />
-              <SummaryCards>
-                <DisbursementTrend />
-                <DisbursementRecipientSummary/>
-              </SummaryCards>
-            </MapContext>
-            <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
-              <Box name="exploreDataContent" className="explore-data-content">
-                <CompareContext>
-                  <PageSubMenu
-                    menuItems={[
-                      'Compare disbursements',
-                      'Nationwide disbursements summary',
-                      'Top nationwide recipients'
-                    ]}
-                  />
-                  <Container>
-                    <Grid container>
-                      <Grid item md={12}>
-                        <Box mb={1} color="secondary.main" borderBottom={5}>
-                          <Box component="h2" color="secondary.dark">Disbursements</Box>
-                        </Box>
-                        <Typography variant="body1">
-                          <DisbursementLocationTotal />
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Container>
-                  <Container id="compare-disbursements">
-                    <Grid container>
-                      <Grid item md={12}>
-                        <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                          <Box component="h3" color="secondary.dark">Compare disbursements</Box>
-                        </Box>
-                        <Box fontSize="body1.fontSize">
-                          Add more than one card to compare.  Select states, counties, and offshore regions.
-                        </Box>
-                      </Grid>
-                    </Grid>
-                    <Grid container>
-                      <Grid item md={12}>
-                        <DetailCards>
-                          <DisbursementDetailTrends />
-                          <DisbursementRecipients />
-                          <DisbursementSources />  
-                        </DetailCards>
-                      </Grid>
-                    </Grid>
-                  </Container>
-                  <DisbursementsOverTime title="Disbursements over time"  />   
-                </CompareContext>         
-                <NationwideDisbursementSummary title="Nationwide disbursements summary" />
-                <DisbursementTopRecipients title="Top nationwide recipients" />
-              </Box>
-            </Box>
-          </Disbursements>
-        </ContextProvider>
-        <ContextProvider params={'?dataType=Production'}>
-          <Production>
-            <MapContext>
-              <ProductionMap />
-              <SummaryCards>
-                <ProductionSummaryTrends /> 
-              </SummaryCards>
-            </MapContext>
-            <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
-              <Box name="exploreDataContent" className="explore-data-content">
-                <CompareContext>
-                  <PageSubMenu
-                    menuItems={[
-                      'Compare production',
-                      'Top nationwide locations'
-                    ]}
-                  />
-                  <Container>
-                    <Grid container>
-                      <Grid item md={12}>
-                        <Box mb={1} color="secondary.main" borderBottom={5}>
-                          <Box component="h2" color="secondary.dark">Production</Box>
-                        </Box>
-                        <Typography variant="body1">
-                          <ProductionLocationTotal />
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Container>
-                  <Container id="compare-production">
-                    <Grid container>
-                      <Grid item md={12}>
-                        <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                          <Box component="h3" color="secondary.dark">Compare production</Box>
-                        </Box>
-                        <Box fontSize="body1.fontSize">
-                          Add more than one card to compare.  Select states, counties, and offshore regions.
-                        </Box>
-                      </Grid>
-                    </Grid>
-                    <Grid container>
-                      <Grid item md={12}>
-                        <DetailCards>     
-                          <ProductionDetailTrends />
-                          <ProductionLandCategory title="Production over time"  />        
-                          <ProductionTopLocations title="Top locations" vertical maxLegendWidth='800px' />   
-                          <ProductionCountyMap />
-                        </DetailCards>
-                      </Grid>
-                    </Grid>
-                  </Container>       
-                  <ProductionOverTime title="Production over time" />
-                </CompareContext>
-                <Container id="top-nationwide-locations">
-                  <Grid container>
-                    <Grid item md={12}>
-                      <Box mb={1} color="secondary.main" borderBottom={5}>
-                        <Box component="h2" color="secondary.dark">Top nationwide locations</Box>
-                      </Box>               
-                      <ProductionTopLocations horizontal />
-                    </Grid>
-                  </Grid>
-                </Container>
-              </Box>
-            </Box>
-          </Production>
-        </ContextProvider>
-      </ExploreData>
-    </Box>
-  </Container>
+            </Production>
+          </ContextProvider>
+        </ExploreData>
+      </Box>
+    </Container>
+  </ExploreDataProviderWrapper>
 </DataFilterProviderWrapper>

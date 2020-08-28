@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
+import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import CONSTANTS from '../../../../js/constants'
@@ -79,7 +79,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-  const { state: pageState } = useContext(StoreContext)
+  const { state: pageState } = useContext(ExploreDataContext)
   const cards = pageState.cards
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'

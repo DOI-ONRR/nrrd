@@ -12,7 +12,7 @@ import {
 
 import AddIcon from '@material-ui/icons/Add'
 
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 
 const useStyles = makeStyles(theme => ({
   addCardButtonContainer: {
@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 const AddCardButton = props => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
-  const { state: pageFilter } = useContext(StoreContext)
+  const { state: pageFilter } = useContext(ExploreDataContext)
 
   const { cardMenuItems, onLink } = props
   const cards = pageFilter.cards
