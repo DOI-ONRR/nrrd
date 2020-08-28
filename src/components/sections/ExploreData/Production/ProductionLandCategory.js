@@ -24,8 +24,6 @@ import {
   useTheme
 } from '@material-ui/core'
 
-// import CloseIcon from '@material-ui/icons/Close'
-// import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart.js'
 import LineChart from '../../../data-viz/LineChart/LineChart'
 

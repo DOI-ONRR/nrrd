@@ -21,9 +21,6 @@ import {
   useTheme
 } from '@material-ui/core'
 
-// import CloseIcon from '@material-ui/icons/Close'
-// import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
-
 const APOLLO_QUERY = gql`
   query FiscalProduction($year: Int!, $location: String!, $commodity: String!, $state: String!) {
     state_fiscal_production_summary: fiscal_production_summary(
