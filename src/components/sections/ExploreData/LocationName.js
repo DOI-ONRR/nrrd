@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core'
 
 const LocationName = ({ location }) => {
-  console.log('LocationName: ', location)
+  // console.log('LocationName: ', location)
   const fips = location.fipsCode
   return (
     <>
