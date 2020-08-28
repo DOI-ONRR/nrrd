@@ -51,7 +51,6 @@ export default props => {
       .map(d => [d.key, d.value])
   }
 
-    
   return (
     <>
       {mapData &&
@@ -66,8 +65,8 @@ export default props => {
             mapX={props.mapX}
             mapY={props.mapY}
             onZoomEnd={props.onZoomEnd}
-       onClick={props.onClick}
-       legendFormat={utils.formatToSigFig_Dollar}
+            onClick={props.onClick}
+            legendFormat={utils.formatToSigFig_Dollar}
             handleMapSnackbar={props.handleMapSnackbar}
             handleMapSnackbarClose={props.handleMapSnackbarClose} />
         </>

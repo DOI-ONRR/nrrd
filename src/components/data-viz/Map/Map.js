@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& .legend-wrap': {
       display: 'block',
-      bottom: 50,
+      // bottom: 50,
       left: 5,
       width: 300,
       height: 50,
