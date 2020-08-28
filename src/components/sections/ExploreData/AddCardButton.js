@@ -48,10 +48,10 @@ const useStyles = makeStyles(theme => ({
 const AddCardButton = props => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState(null)
-  const { state: pageFilter } = useContext(ExploreDataContext)
+  const { state: pageState } = useContext(ExploreDataContext)
 
   const { cardMenuItems, onLink } = props
-  const cards = pageFilter.cards
+  const cards = pageState.cards
 
   const handleMenuClick = event => {
     setAnchorEl(event.currentTarget)

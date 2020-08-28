@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
       overflow: 'hidden',
     },
-    '& .mapContainer > .legend': {
+    '& .mapContainer > .legend-wrap': {
       display: 'none', // quick fix for now, will want to disable most map features for smaller maps
     },
     '& .mapContainer svg': {
