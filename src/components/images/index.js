@@ -27,9 +27,9 @@ import IconQuestionCircleSvg from '-!svg-react-loader!../../images/icons/icon-qu
 import IconUsMapSvg from '-!svg-react-loader!../../images/icons/icon-us-map.svg'
 
 // Maps US States
+import MapStateallSvg from '-!svg-react-loader!../../images/maps/states/all.svg'
 import MapStateAKSvg from '-!svg-react-loader!../../images/maps/states/AK.svg'
 import MapStateALSvg from '-!svg-react-loader!../../images/maps/states/AL.svg'
-import MapStateallSvg from '-!svg-react-loader!../../images/maps/states/all.svg'
 import MapStateARSvg from '-!svg-react-loader!../../images/maps/states/AR.svg'
 import MapStateAZSvg from '-!svg-react-loader!../../images/maps/states/AZ.svg'
 import MapStateCASvg from '-!svg-react-loader!../../images/maps/states/CA.svg'

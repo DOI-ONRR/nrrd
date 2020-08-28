@@ -81,7 +81,7 @@ import AddLocationCard from './AddLocationCard'
 
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
-const components = {
+const imgComponents = {
   AK: MapStateAKImg,
   AL: MapStateALImg,
   AR: MapStateARImg,
@@ -294,7 +294,7 @@ const DetailCardTitle = props => {
   let svgImg
 
   const getImageComponent = fips => {
-    const StateImgComponent = components[fips]
+    const StateImgComponent = imgComponents[fips]
     return <StateImgComponent alt={`${ fips } State Icon`} className={classes.cardLocationIcon} />
   }
 
