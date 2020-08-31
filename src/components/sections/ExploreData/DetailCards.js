@@ -279,7 +279,7 @@ const nonStateOrCountyCards = [
 
 // Detail Card title
 const DetailCardTitle = props => {
-  console.log('DetailCardTitle props: ', props)
+  // console.log('DetailCardTitle props: ', props)
   const classes = useStyles()
 
   const landStatsData = props.data
