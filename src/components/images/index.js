@@ -13,6 +13,8 @@ import AmlUnappropGrowthSvg from '-!svg-react-loader!../../images/how-it-works/A
 import OnrrLogoSvg from '-!svg-react-loader!../../images/logos/ONRR-mark.svg'
 import NrrdLogoSvg from '-!svg-react-loader!../../images/logos/NRRD-logo.svg'
 
+import Rig404Svg from '-!svg-react-loader!../../images/svg/rig-404.svg'
+
 import IconOilSvg from '-!svg-react-loader!../../images/icons/icon-oil.svg'
 import IconCoalSvg from '-!svg-react-loader!../../images/icons/icon-coal.svg'
 import IconHardrockSvg from '-!svg-react-loader!../../images/icons/icon-hardrock.svg'
@@ -80,7 +82,6 @@ import MapStateWISvg from '-!svg-react-loader!../../images/maps/states/WI.svg'
 import MapStateWVSvg from '-!svg-react-loader!../../images/maps/states/WV.svg'
 import MapStateWYSvg from '-!svg-react-loader!../../images/maps/states/WY.svg'
 
-
 export const FilterTableIconImg = props => <FilterTableIconSvg {...props} />
 
 export const HowWorksLinkIconImg = props => <HowWorksLinkIconSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} />
@@ -94,6 +95,8 @@ export const AmlUnappropGrowthImg = ({ alt, ...props }) => <AmlUnappropGrowthSvg
 
 export const OnrrLogoImg = props => <OnrrLogoSvg {...props} />
 export const NrrdLogoImg = props => <NrrdLogoSvg {...props} />
+
+export const Rig404Img = props => <Rig404Svg {...props} />
 
 export const IconOilImg = props => <IconOilSvg {...props} />
 export const IconCoalImg = props => <IconCoalSvg {...props} />
