@@ -27,6 +27,7 @@ import IconDownloadCsvSvg from '-!svg-react-loader!../../images/icons/icon-downl
 import IconDownloadDataSvg from '-!svg-react-loader!../../images/icons/icon-download-data.svg'
 import IconQuestionCircleSvg from '-!svg-react-loader!../../images/icons/icon-question-circle.svg'
 import IconUsMapSvg from '-!svg-react-loader!../../images/icons/icon-us-map.svg'
+import IconExploreDataSvg from '-!svg-react-loader!../../images/icons/explore-data.svg'
 
 // Maps US States
 import MapStateallSvg from '-!svg-react-loader!../../images/maps/states/all.svg'
@@ -110,6 +111,7 @@ export const IconDownloadCsvImg = props => <IconDownloadCsvSvg style={{ vertical
 export const IconDownloadDataImg = props => <IconDownloadDataSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
 export const IconQuestionCircleImg = props => <IconQuestionCircleSvg style={{ width: '16px', height: '16px', marginLeft: '1.6px', fill: 'currentColor' }} {...props}/>
 export const IconUsMapImg = props => <IconUsMapSvg {...props} />
+export const IconExploreDataImg = props => <IconExploreDataSvg {...props} />
 
 export const MapStateallImg = props => <MapStateallSvg {...props} />
 export const MapStateAKImg = props => <MapStateAKSvg {...props} />

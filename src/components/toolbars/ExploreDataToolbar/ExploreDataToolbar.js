@@ -17,13 +17,10 @@ import {
   makeStyles
 } from '@material-ui/styles'
 
-import MapIcon from '@material-ui/icons/Map'
-import CalendarIcon from '@material-ui/icons/CalendarToday'
 import LocationOnIcon from '@material-ui/icons/LocationOn'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import AddIcon from '@material-ui/icons/Add'
 
-import ExploreDataIcon from '-!svg-react-loader!../../../img/icons/explore-data.svg'
+import { IconExploreDataImg } from '../../images'
 
 import {
   CommoditySelectInput,
@@ -210,7 +207,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
             selected={exploreDataTabOpen}
             onChange={toggleExploreDataToolbar}
           >
-            <ExploreDataIcon className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} />
+            <IconExploreDataImg className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} />
             <span>Explore data</span>
           </FilterToggleInput>
           <FilterToggleInput
