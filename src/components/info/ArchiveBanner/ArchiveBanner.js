@@ -1,12 +1,11 @@
 import React from 'react'
-// import Link from '../../utils/temp-link'
+
 import { Link } from 'gatsby'
 import { makeStyles } from '@material-ui/core/styles'
 
 import GlossaryTerm from '../../GlossaryTerm/GlossaryTerm'
 
-// import styles from './ArchiveBanner.module.scss'
-import DataArchiveIcon from '-!svg-react-loader!../../../img/svg/icon-archive.svg'
+import { IconArchiveImg } from '../../images'
 
 // TODO: update styles, should be able to utilize main theme
 const useStyles = makeStyles(theme => ({
@@ -35,7 +34,7 @@ const ArchiveBanner = () => {
   return (
     <div className={classes.root}>
       <p className={classes.content}>
-        <DataArchiveIcon/> This content was created as part of <GlossaryTerm>USEITI</GlossaryTerm> and is no longer being updated
+        <IconArchiveImg /> This content was created as part of <GlossaryTerm>USEITI</GlossaryTerm> and is no longer being updated
         . <Link to="/archive">Learn more about USEITI.</Link>
       </p>
     </div>

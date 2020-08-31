@@ -73,7 +73,6 @@ function SEO ({ description, lang, meta, title }) {
           },
         ].concat(meta)}
       >
-        {/* <title>Home | Natural Resources Revenue Data</title> */}
         <link rel="icon" type="image/x-icon" href={withPrefix('/img/favicon.ico')} />
         <link rel="icon" type="image/x-icon" href={withPrefix('/img/favicon-16x16.png')} sizes="16x16" />
         <link rel="icon" type="image/x-icon" href={withPrefix('/img/favicon-32x32.png')} sizes="32x32" />
