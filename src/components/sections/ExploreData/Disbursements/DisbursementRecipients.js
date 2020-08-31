@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
+import QueryLink from '../../../../components/QueryLink'
 
 import utils from '../../../../js/utils'
 
@@ -77,6 +78,7 @@ const DisbursementRecipients = props => {
     data &&
     data.DisbursementRecipientSummary.length > 0) {
     chartData = data
+    console.log(`DisbursementRecipients ${ props.locationName } data: `, data)
 
     if (chartData.DisbursementRecipientSummary.length > 1) {
       return (<Box className={classes.root}>
@@ -92,19 +94,19 @@ const DisbursementRecipients = props => {
             format={ d => {
               return utils.formatToDollarInt(d)
             }}
-	          legendLabel={
+	     legendLabel={
               d => {
                 if (d.match('Native')) {
                   d = 'Native American'
                 }
                 else if (d.match('governments')) {
-			            d = 'State and local'
+			    d = 'State and local'
                 }
                 else if (d.match('Land')) {
-			            d = 'LWCF*'
+			    d = 'LWCF*'
                 }
                 else if (d.match('Historic')) {
-			            d = 'HPF**'
+			    d = 'HPF**'
                 }
 
                 return d
@@ -122,9 +124,16 @@ const DisbursementRecipients = props => {
 	      <>{ state === 'NF' &&
 		        <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
 	      <>{ state === 'NF' &&
-		        <Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
+		<Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
           }
 	      </>
+
+          <QueryLink
+            groupBy={DFC.RECIPIENT}
+            linkType="FilterTable" {...props}
+            recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury">
+            Query disbursements by recipient
+          </QueryLink>
         </Box>
       </Box>
       )

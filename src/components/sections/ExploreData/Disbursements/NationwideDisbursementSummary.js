@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
+import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -123,12 +124,22 @@ const NationwideDisbursementSummary = props => {
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
-          <Grid item md={12}>
-            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-              <Box component="h3" color="secondary.dark">{title}</Box>
+          <Grid item sm={12}>
+            <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+              <Box component="h3" color="secondary.dark" display="inline">{title}</Box>
+              <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+                <QueryLink groupBy={DFC.RECIPIENT} recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury" linkType="FilterTable" {...props}>
+                Query nationwide disbursements
+                </QueryLink>
+              </Box>
+            </Box>
+            <Box display={{ xs: 'block', sm: 'none' }} align="left">
+              <QueryLink groupBy={DFC.RECIPIENT} recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury" linkType="FilterTable" {...props}>
+                Query nationwide disbursements
+              </QueryLink>
             </Box>
           </Grid>
-          <Grid item md={12}>
+          <Grid item sm={12}>
             <Table>
               <TableHead>
                 <TableRow>

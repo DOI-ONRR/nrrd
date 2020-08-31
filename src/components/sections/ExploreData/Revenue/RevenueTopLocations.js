@@ -10,6 +10,8 @@ import * as d3 from 'd3'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
+import QueryLink from '../../../../components/QueryLink'
+
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -123,15 +125,29 @@ const RevenueTopLocations = ({ title, ...props }) => {
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
           <Grid item xs={12}>
-            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-              <Box component="h3" color="secondary.dark">{title}</Box>
+            <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+              <Box component="h3" color="secondary.dark" display="inline">{title}</Box>
+              <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+                <QueryLink
+                  groupBy={DFC.STATE_OFFSHORE_NAME}
+                  linkType="FilterTable" {...props}>
+                Query nationwide revenue
+                </QueryLink>
+              </Box>
+            </Box>
+            <Box display={{ xs: 'block', sm: 'none' }} align="left">
+              <QueryLink
+                groupBy={DFC.STATE_OFFSHORE_NAME}
+                linkType="FilterTable" {...props}>
+                Query nationwide revenue
+              </QueryLink>
             </Box>
           </Grid>
           <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
                 <CircleChart
-                  key ={'RTL' + dataSet + commodityKey}
+                  key ={`RTL${ dataSet }${ commodityKey }`}
                   data={chartData}
                   maxLegendWidth='800px'
                   xAxis='location_name'
