@@ -3,10 +3,9 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
-import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
+import QueryLink from '../../../../components/QueryLink'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -110,13 +109,9 @@ const DisbursementSources = props => {
                   return r
                 }
               } />
-            {/* <Box mt={3}>
-
-              <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
-                Query Disbursements by Sources
-              </ExploreDataLink>
-            </Box>
-           */}
+            <QueryLink groupBy={DFC.SOURCE} linkType="FilterTable" {...props}>
+              Query disbursements by source
+            </QueryLink>
           </Box>
         </Box>
       )
