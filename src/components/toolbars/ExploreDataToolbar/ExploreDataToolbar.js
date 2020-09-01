@@ -40,15 +40,13 @@ import MapControlToggle from '../../inputs/MapControlToggle'
 
 import {
   COMMODITY,
-  COUNTIES,
-  COUNTY,
   DATA_FILTER_CONSTANTS as DFC,
   DATA_TYPE,
   DISBURSEMENT,
+  DISBURSEMENTS,
   PERIOD,
   PRODUCTION,
   REVENUE,
-  US_STATE,
   OFFSHORE_REGIONS,
   MAP_LEVEL
 } from '../../../constants'
@@ -56,7 +54,7 @@ import {
 const EXPLORE_DATA_TOOLBAR_OPTIONS = {
   [DATA_TYPE]: [
     { value: REVENUE, option: 'Revenue' },
-    { value: DISBURSEMENT, option: 'Disbursements' },
+    { value: DISBURSEMENTS, option: 'Disbursements' },
     { value: PRODUCTION, option: 'Production' },
   ],
   [PERIOD]: [
@@ -166,7 +164,6 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
   const {
     cards
   } = pageState
-
 
   const toggleExploreDataToolbar = event => {
     setExploreDataTabOpen(!exploreDataTabOpen)
