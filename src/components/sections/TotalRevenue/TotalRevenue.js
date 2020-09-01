@@ -13,7 +13,7 @@ import SectionControls from '../../sections/SectionControls'
 import Link from '../../../components/Link/'
 
 import utils from '../../../js/utils'
-import CONSTANTS from '../../../js/constants'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const TOTAL_REVENUE_QUERY = gql`
   query TotalYearlyRevenue {
@@ -79,7 +79,7 @@ const TotalRevenue = props => {
 
   // const period = state.period
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
+  const chartTitle = props.chartTitle || `${ DFC.REVENUE } (dollars)`
   const yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
   const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY)
 

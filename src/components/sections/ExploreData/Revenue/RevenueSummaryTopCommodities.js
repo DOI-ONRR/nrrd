@@ -15,7 +15,6 @@ import {
 } from '@material-ui/core'
 
 import { StoreContext } from '../../../../store'
-import CONSTANTS from '../../../../js/constants'
 import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'

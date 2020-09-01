@@ -27,7 +27,6 @@ import {
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils'
-import CONSTANTS from '../../../../js/constants'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
@@ -64,7 +63,7 @@ const RevenueByCompany = props => {
     variables: { year: year, period: period }
   })
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
+  const chartTitle = props.chartTitle || `${ DFC.REVENUE } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData

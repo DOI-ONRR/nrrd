@@ -9,8 +9,6 @@ import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import CONSTANTS from '../../../../js/constants'
-
 const REVENUE_QUERY = gql`
   query MapRevenue($year: Int!, $commodities: [String!], $location: [String!], $period: String!) {
     revenue_summary(where: {location: {_nin: ["Nationwide Federal", ""]}, year: { _eq: $year}, commodity: {_in: $commodities }, period: { _eq: $period}}) {

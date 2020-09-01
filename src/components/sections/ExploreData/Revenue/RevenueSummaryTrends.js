@@ -17,7 +17,6 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import utils from '../../../../js/utils'
-import CONSTANTS from '../../../../js/constants'
 
 const APOLLO_QUERY = gql`
   query RevenueSummaryTrend($state: String!, $period: String!, $commodities: [String!]) {

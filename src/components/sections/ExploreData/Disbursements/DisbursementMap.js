@@ -18,8 +18,6 @@ import Map from '../../../data-viz/Map'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import CONSTANTS from '../../../../js/constants'
-
 const DISBURSEMENT_QUERY = gql`
   query FiscalDisbursement($year: Int!, $period: String!, $location: String!) {
     disbursement_summary(where: {state_or_area: {_nin: ["Nationwide Federal", ""]}, fiscal_year: { _eq: $year }, location_type: { _eq: $location}}) {

@@ -10,7 +10,6 @@ import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import CONSTANTS from '../../../../js/constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -20,9 +19,6 @@ import {
   Grid,
   useTheme
 } from '@material-ui/core'
-
-// import CloseIcon from '@material-ui/icons/Close'
-// import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
 
 const APOLLO_QUERY = gql`
   query FiscalProduction($year: Int!, $location: String!, $commodity: String!, $state: String!) {
@@ -118,18 +114,18 @@ const ProductionOverview = ({ title, ...props }) => {
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
 
   let state = ''
-  let location = CONSTANTS.COUNTY
+  let location = DFC.COUNTY_CAPITALIZED
 
-  if (props.regionType === CONSTANTS.STATE) {
-    location = CONSTANTS.COUNTY
+  if (props.regionType === DFC.STATE) {
+    location = DFC.COUNTY_CAPITALIZED
     state = props.state
   }
-  else if (props.regionType === CONSTANTS.COUNTY) {
+  else if (props.regionType === DFC.COUNTY_CAPITALIZED) {
     location = ''
     state = ''
   }
   else {
-    location = 'State'
+    location = DFC.STATE
     state = ''
   }
 
@@ -138,7 +134,7 @@ const ProductionOverview = ({ title, ...props }) => {
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location, commodity, state },
-      skip: props.state === DFC.NATIVE_AMERICAN_FIPS || location === CONSTANTS.OFFSHORE
+      skip: props.state === DFC.NATIVE_AMERICAN_FIPS || location === DFC.OFFSHORE_CAPITALIZED
     })
 
   const maxLegendWidth = props.maxLegendWidth
@@ -153,7 +149,7 @@ const ProductionOverview = ({ title, ...props }) => {
   let chartData = []
   let unitAbbr = ''
   if (data && (data.state_fiscal_production_summary.length || data.fiscal_production_summary.length)) {
-    if (data.state_fiscal_production_summary.length > 0 && location === CONSTANTS.COUNTY) {
+    if (data.state_fiscal_production_summary.length > 0 && location === DFC.COUNTY_CAPITALIZED) {
       unitAbbr = data.state_fiscal_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)

@@ -8,7 +8,6 @@ import * as d3 from 'd3'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import CONSTANTS from '../../../../js/constants'
 
 const LOCATION_TOTAL_QUERY = gql`
   query NationwideFederal($location: [String!], $year: Int!, $period: String!) {

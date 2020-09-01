@@ -11,8 +11,6 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import LocationName from '../LocationName'
 
-import CONSTANTS from '../../../../js/constants'
-
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box

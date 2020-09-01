@@ -28,7 +28,6 @@ import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
 
 import AddLocationCard from './AddLocationCard'
 
-import CONSTANTS from '../../../js/constants'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
