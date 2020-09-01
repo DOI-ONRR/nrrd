@@ -63,7 +63,11 @@ const RevenueByCompany = props => {
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
-  let groupTotal
+    let groupTotal
+    let remainingTotal
+    let totalTotal
+    let remainingPercent
+    
   let nationalRevenueData
   const xAxis = 'year'
   const yAxis = 'revenue'
@@ -86,6 +90,9 @@ const RevenueByCompany = props => {
 	console.debug("groupTotal: ", groupTotal)
 	nationalRevenueData = Object.entries(groupData)
 	console.debug("company data", nationalRevenueData)
+	remainingTotal = Object.keys(groupData).filter( (d,i) => i > 9).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0)
+	totalTotal=Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0) * 100
+	remainingPercent = remainingTotal / totalTotal 
   }
 
   return (
@@ -156,8 +163,45 @@ const RevenueByCompany = props => {
                     </TableCell>
                   </TableRow>
                 )
-              })
+              }) 
               }
+		  { nationalRevenueData &&  <>
+		<TableRow>
+		     <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box component="h4" mt={0}>Other companies</Box>
+                      <Box component="p">
+
+                      </Box>
+                    </TableCell>
+          	      <TableCell style={{ verticalAlign: 'top' }}>
+			  <Box  mt={0}>{utils.formatToDollarInt(remainingTotal)}</Box>
+		    </TableCell>
+		      <TableCell style={{ verticalAlign: 'top' }}>
+			  <Box  mt={0}>{remainingPercent.toFixed(2)}%</Box>
+    		    </TableCell>
+                    <TableCell style={{ width: '65%' }}>
+		    </TableCell>
+
+		    </TableRow>    
+		<TableRow>
+		     <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box component="h4" mt={0}>Total</Box>
+                      <Box component="p">
+
+                      </Box>
+                    </TableCell>
+          	      <TableCell style={{ verticalAlign: 'top' }}>
+			  <Box  mt={0}>{utils.formatToDollarInt(totalTotal)}</Box>
+		    </TableCell>
+		      <TableCell style={{ verticalAlign: 'top' }}>
+			  <Box  mt={0}>100%</Box>
+		    </TableCell>
+
+			  <TableCell style={{ width: '65%' }}>
+			  </TableCell>
+		    </TableRow>    
+	     	</>
+		  }
             </TableBody>
           </Table>
         </Grid>
