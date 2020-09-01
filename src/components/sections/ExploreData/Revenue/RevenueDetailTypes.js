@@ -55,9 +55,9 @@ const RevenueDetailTypes = props => {
   const state = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_ABBR || props.fipsCode === DFC.NATIVE_AMERICAN_ABBR) ? props.name : props.fipsCode
 
   const isCounty = props.fipsCode && props.fipsCode.length === 5
-  const isNativeAmerican = props.fipsCode && props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
-  const isNationwideFederal = props.fipsCode && props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS
-  const isState = props.fipsCode && props.fipsCode.length === 2 && !isNativeAmerican && !isNationwideFederal
+  // const isNativeAmerican = props.fipsCode && props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
+  // const isNationwideFederal = props.fipsCode && props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS
+  // const isState = props.fipsCode && props.fipsCode.length === 2 && !isNativeAmerican && !isNationwideFederal
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year, period: period, commodities: commodities }
