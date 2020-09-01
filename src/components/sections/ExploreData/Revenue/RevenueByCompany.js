@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import Link from '../../../Link'
-
+import QueryLink from '../../../../components/QueryLink'
 import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -91,8 +91,9 @@ const RevenueByCompany = props => {
 	nationalRevenueData = Object.entries(groupData)
 	console.debug("company data", nationalRevenueData)
 	remainingTotal = Object.keys(groupData).filter( (d,i) => i > 9).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0)
-	totalTotal=Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0) * 100
-	remainingPercent = remainingTotal / totalTotal 
+	totalTotal=Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0) 
+	console.debug("total:", totalTotal ,"remaining total", remainingTotal)  
+	remainingPercent = remainingTotal / totalTotal * 100
   }
 
   return (
@@ -132,7 +133,7 @@ const RevenueByCompany = props => {
 		      <TableCell style={{ verticalAlign: 'top' }}>
 			  <Box  mt={0}>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
 		    </TableCell>
-                    <TableCell style={{ width: '65%' }}>
+                      <TableCell style={{ width: '45%' }}>
                       <StackedBarChart
                         key={'NRS' + year + '_' + i}
                         data={item[1]}
@@ -179,7 +180,15 @@ const RevenueByCompany = props => {
 		      <TableCell style={{ verticalAlign: 'top' }}>
 			  <Box  mt={0}>{remainingPercent.toFixed(2)}%</Box>
     		    </TableCell>
-                    <TableCell style={{ width: '65%' }}>
+                    <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
+			 <QueryLink
+                  groupBy={DFC.REVENUE_TYPE}
+                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                  linkType="FilterTable"
+                  {...props}>
+			     Query revenue data for by all { nationalRevenueData.length } companies.
+                </QueryLink>
+
 		    </TableCell>
 
 		    </TableRow>    
@@ -197,7 +206,7 @@ const RevenueByCompany = props => {
 			  <Box  mt={0}>100%</Box>
 		    </TableCell>
 
-			  <TableCell style={{ width: '65%' }}>
+		    <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
 			  </TableCell>
 		    </TableRow>    
 	     	</>
