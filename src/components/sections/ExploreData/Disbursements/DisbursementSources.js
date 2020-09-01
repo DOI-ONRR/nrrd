@@ -109,7 +109,11 @@ const DisbursementSources = props => {
                   return r
                 }
               } />
-            <QueryLink groupBy={DFC.SOURCE} linkType="FilterTable" {...props}>
+            <QueryLink
+              groupBy={DFC.SOURCE}
+              linkType="FilterTable"
+              recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury"
+              {...props}>
               Query disbursements by source
             </QueryLink>
           </Box>
