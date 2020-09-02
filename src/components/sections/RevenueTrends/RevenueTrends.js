@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import * as d3 from 'd3'
 import utils from '../../../js/utils'
 import PercentDifference from '../../utils/PercentDifference'
 import Link from '../../../components/Link'
@@ -23,8 +22,6 @@ import {
 } from '@material-ui/core'
 
 import Sparkline from '../../data-viz/Sparkline'
-
-const TREND_LIMIT = 10
 
 /**
 * RevenueTrends - react functional component that generates revenue trends graph
@@ -187,56 +184,6 @@ const monthLookup = month => {
   }
 
   return monthNumber[month]
-}
-
-/**
-* calculateOtherRevenues(data) - calculates other revenus from other revenues, inspections fees and civil penalties.
-*
-*  @param {object} data item
-*
-*  @example
-*            calculateOtherRevenues(yearData);
-*
-**/
-
-const calculateOtherRevenues = data => {
-  const otherRevenuesAmount = (data.amountByRevenueType['Other Revenues']) ? data.amountByRevenueType['Other Revenues'] : 0
-  const inspectionFeesAmount = (data.amountByRevenueType['Inspection Fees']) ? data.amountByRevenueType['Inspection Fees'] : 0
-  const civilPenaltiesAmount = (data.amountByRevenueType['Civil Penalties']) ? data.amountByRevenueType['Civil Penalties'] : 0
-
-  data.amountByRevenueType['Other Revenues'] = otherRevenuesAmount + inspectionFeesAmount + civilPenaltiesAmount
-}
-
-/**
-* Group by defined property and return object with key, value
-* @param array of items to do groupings
-* @prop property field to group by, this will be the key
-*
-*/
-// const groupBy = (arr, prop) => {
-//   const map = new Map(Array.from(arr, obj => [obj[prop], []]))
-//   arr.forEach(obj => map.get(obj[prop]).push(obj))
-//   return Array.from(map.values())
-// }
-
-/**
-* calculateRevenueTypeAmountsByYear(data,index) - calculates other revenus from other revenues, inspections fees and civil penalties.
-*
-*
-**/
-
-const calculateRevenueTypeAmountsByYear = (yearData, index) => {
-  const fiscalYear = yearData.fiscalYear
-  const sums = yearData.data.reduce((total, item) => {
-    total[item.revenueType] =
-      (total[item.revenueType] !== undefined)
-        ? total[item.revenueType] + item.revenue
-        : item.revenue
-
-    return total
-  }, {})
-
-  return { year: fiscalYear, amountByRevenueType: sums }
 }
 
 const aggregateData = data => {

@@ -6,21 +6,13 @@ import CircleChart from '../../../data-viz/CircleChart/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
-import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm.js'
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
-  Box,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography
+  Box
 } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
@@ -48,7 +40,7 @@ const APOLLO_QUERY = gql`
   # summary card queries
   query DisbursementRecipientSummary($year: Int!, $period: String!, $state: [String!]) {
 
-DisbursementRecipientSummary: disbursement_recipient_summary(
+    DisbursementRecipientSummary: disbursement_recipient_summary(
       where: { fiscal_year: { _eq: $year }, state_or_area: { _in: $state } }
       order_by: { fiscal_year: asc, total: desc }
     ) {
@@ -80,7 +72,6 @@ const DisbursementRecipients = props => {
 
   let chartData = []
 
-  const total = 0
   if (
     data &&
     data.DisbursementRecipientSummary.length > 0) {
@@ -129,7 +120,7 @@ const DisbursementRecipients = props => {
               }
             } />
 	      <>{ state === 'NF' &&
-		  <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
+		        <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
 	      <>{ state === 'NF' &&
 		<Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
           }

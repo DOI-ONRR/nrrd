@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { VariableSizeList } from 'react-window'
 
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 import { useTheme, makeStyles } from '@material-ui/core/styles'
 import {
-  Box,
   TextField,
   useMediaQuery
 } from '@material-ui/core'

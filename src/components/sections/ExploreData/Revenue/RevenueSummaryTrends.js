@@ -12,7 +12,6 @@ import {
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
 
-import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -42,7 +41,6 @@ const RevenueSummaryTrends = props => {
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const state = props.fipsCode
-  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : undefined
   const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
 
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
@@ -57,8 +55,6 @@ const RevenueSummaryTrends = props => {
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, period: period, commodities: commodities }
   })
-
-  const name = props.locationName
 
   const location = {
     county: props.county,

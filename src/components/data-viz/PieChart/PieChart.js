@@ -88,16 +88,10 @@ const PieChart = props => {
   const elemRef = useRef(null)
 
   useEffect(() => {
-    // stackedBarChar(elemRef.current,{}, datas);
-    console.debug('EEEEEEEEEEEEEEEEEEEE', elemRef)
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
-    //  const chart2 = new BarChart2(elemRef.current, data2, options)
-    //    chart2.draw(data2)
-    console.debug(elemRef.current)
+    // eslint-disable-next-line no-unused-vars
     const chart = new D3PieChart(elemRef.current, data, options)
-    // chart.selected(selected);
-    // chart.draw(data)
   }, [elemRef])
 
   return (

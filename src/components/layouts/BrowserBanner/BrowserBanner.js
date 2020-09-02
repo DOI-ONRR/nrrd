@@ -2,9 +2,6 @@ import React from 'react'
 import { IEView } from 'react-device-detect'
 
 import {
-  Box
-} from '@material-ui/core'
-import {
   makeStyles
 } from '@material-ui/styles'
 
@@ -31,7 +28,8 @@ const BrowserBanner = ({ styles }) => {
   return (
     <IEView>
       <span className={classes.root}>
-        <WarningIcon style={{ marginRight: 5 }} /> Warning! This browser is not supported — Some features might not work. Try using a different browser, such as Chrome, Edge, Firefox, or Safari.
+        <WarningIcon style={{ marginRight: 5 }} /> Warning! This browser is not supported — Some features might not work. Try using a different browser,
+        such as Chrome, Edge, Firefox, or Safari.
       </span>
     </IEView>
   )
