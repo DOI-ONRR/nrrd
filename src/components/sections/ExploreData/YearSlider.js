@@ -10,8 +10,6 @@ import {
   Grid
 } from '@material-ui/core'
 
-import { StoreContext } from '../../../store'
-
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 

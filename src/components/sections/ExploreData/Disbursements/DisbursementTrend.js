@@ -16,23 +16,6 @@ import {
   Typography
 } from '@material-ui/core'
 
-const useStyles = makeStyles(theme => ({
-  table: {
-    width: '100%',
-    marginBottom: 0,
-    '& th': {
-      padding: 5,
-      lineHeight: 1
-    },
-    '& td': {
-      padding: 0,
-    },
-  },
-  paper: {
-    width: '100%'
-  },
-}))
-
 const APOLLO_QUERY = gql`
   # summary card queries
   query FiscalDisbursement($year: Int!, $period: String!, $state: [String!]) {
