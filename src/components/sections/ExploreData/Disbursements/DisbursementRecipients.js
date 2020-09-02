@@ -6,21 +6,13 @@ import CircleChart from '../../../data-viz/CircleChart/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
-import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm.js'
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
-  Box,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography
+  Box
 } from '@material-ui/core'
 
 import CONSTANTS from '../../../../js/constants'
@@ -86,7 +78,6 @@ const DisbursementRecipients = props => {
 
   let chartData = []
 
-  const total = 0
   if (
     data &&
     data.DisbursementRecipientSummary.length > 0) {

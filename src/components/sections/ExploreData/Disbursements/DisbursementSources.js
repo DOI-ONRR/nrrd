@@ -11,14 +11,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
-  Box,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography
+  Box
 } from '@material-ui/core'
 
 import CONSTANTS from '../../../../js/constants'
@@ -80,7 +73,6 @@ const DisbursementSources = props => {
 
   let chartData = []
 
-  const total = 0
   if (
     data &&
       data.DisbursementSourceSummary.length > 0) {

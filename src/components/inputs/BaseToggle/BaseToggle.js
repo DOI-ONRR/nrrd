@@ -14,8 +14,7 @@ import {
 } from '@material-ui/core/styles'
 
 import {
-  ToggleButton,
-  ToggleButtonGroup
+  ToggleButton
 } from '@material-ui/lab'
 
 const useStyles = makeStyles(theme => ({

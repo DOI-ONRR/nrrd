@@ -70,10 +70,6 @@ const DisbursementDetailTrends = props => {
     variables: { state: state, period: CONSTANTS.FISCAL_YEAR, year: year }
   })
 
-  const closeCard = item => {
-    props.closeCard(props.fips_code)
-  }
-
   if (loading) return 'Loading...'
 
   if (error) return `Error! ${ error.message }`

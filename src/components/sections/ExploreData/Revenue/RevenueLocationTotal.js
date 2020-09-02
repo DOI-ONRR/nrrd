@@ -8,7 +8,6 @@ import * as d3 from 'd3'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import CONSTANTS from '../../../../js/constants'
 
 const LOCATION_TOTAL_QUERY = gql`
   query NationwideFederal($location: [String!], $year: Int!, $period: String!) {
@@ -74,7 +73,11 @@ const RevenueLocationTotal = props => {
 
     return (
       <>
-        When companies extract natural resources on federal or Native American lands and waters, they pay royalties, rents, bonuses, and other fees, much like they would to any resource owner. The Office of Natural Resources Revenue (ONRR) collects and disburses these revenues. <strong>In {period.toLowerCase()} {year}, ONRR collected {utils.formatToDollarInt(nationwideSummary[0].total)} from federal sources and {utils.formatToDollarInt(nativeSummary[0].total)} from Native American sources for a total of {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
+        When companies extract natural resources on federal or Native American lands and waters, they pay royalties, rents, bonuses, and other fees,
+        much like they would to any resource owner. The Office of Natural Resources Revenue (ONRR) collects and disburses these revenues.
+        <strong>In {period.toLowerCase()} {year}, ONRR collected {utils.formatToDollarInt(nationwideSummary[0].total)} from federal sources
+        and {utils.formatToDollarInt(nativeSummary[0].total)} from Native American sources for a total of
+        {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
       </>
     )
   }
