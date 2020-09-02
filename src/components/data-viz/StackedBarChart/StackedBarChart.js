@@ -37,8 +37,14 @@ const useStyles = makeStyles(theme => ({
     },
   },
   horizontal: {
-    extend: 'chart',
+    position: 'relative',
     height: 25,
+    background: theme.palette.grey[100],
+    '& svg': {
+      position: 'absolute',
+      top: 13,
+      left: -9,
+    }
   },
   legend: {
     display: 'block',

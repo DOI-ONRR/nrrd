@@ -55,7 +55,7 @@ export default class D3StackedBarChart {
 
       this.legendReverse = (options.legendReverse) ? options.legendReverse : false
 
-      this.xLabels = (typeof options.xLabels === "function") ? options.xLabels : this.xLabels
+      this.xLabels = (typeof options.xLabels === 'function') ? options.xLabels : this.xLabels
       // max extent line props and defaults
       if (options.legendFormat) {
         this.legendFormat = options.legendFormat
@@ -167,8 +167,7 @@ export default class D3StackedBarChart {
         const padding = (self.xScale.bandwidth() * 0.2)
         let xPos = 0
 
-          Object.keys(self.xGroups).sort().map((name, index) => {
-	      
+        Object.keys(self.xGroups).sort().map((name, index) => {
           const groupLineWidth = xPos + (groupItemWidth * self.xGroups[name].length) - padding
 
           groupLines.append('line')
@@ -293,12 +292,9 @@ export default class D3StackedBarChart {
 
       // transform bars to horizontal if prop set
       if (this.horizontal) {
-        const rotate = '90 ' + (this._height / 2 - 5) + ' 0'
         this.chart
-          .attr('transform', 'rotate(' + rotate + ')')
-          .attr('width', 20)
-          .style('position', 'relative')
-          .style('left', -5)
+          .attr('transform', `rotate(90.1 ${ this._height / 2 } 0)`)
+          .attr('width', 25)
       }
     }
     catch (err) {
@@ -668,9 +664,9 @@ export default class D3StackedBarChart {
       const r = this.data.map((row, i) => {
         return row[this.xAxis]
       })
-	//      const domain = [...(new Set(r.sort((a, b) => a - b)))]
-	const domain = [...(new Set(r))]
-	this._xDomain = domain
+      //      const domain = [...(new Set(r.sort((a, b) => a - b)))]
+      const domain = [...(new Set(r))]
+      this._xDomain = domain
       return domain
     }
     catch (err) {
