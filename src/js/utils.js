@@ -286,7 +286,7 @@ const utils = {
     const num = d3.format(`.${ precision + 2 }s`)(value)
 
     let suffix = num.substring(num.length - 1)
-    if (suffix == 0) {
+    if (suffix === 0) {
       suffix = ''
     }
 

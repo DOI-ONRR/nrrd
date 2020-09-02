@@ -10,8 +10,6 @@ import CardTitle from './CardTitle'
 
 import { isIE } from 'react-device-detect'
 
-// import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
-
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -146,8 +144,8 @@ const useStyles = makeStyles(theme => ({
     '& .cardContent__Revenue': {
       gridTemplateRows: '185px 660px auto',
     },
-    '& .cardContent__Disbursements': {
-      gridTemplateRows: '185px 855px 650px',
+    '& .cardContent__Disbursement': {
+      gridTemplateRows: '185px 768px 560px',
     },
     '& .cardContent__Production': {
       gridTemplateRows: '185px 325px 835px',
@@ -279,7 +277,6 @@ const nonStateOrCountyCards = [
 
 // Detail Card title
 const DetailCardTitle = props => {
-  // console.log('DetailCardTitle props: ', props)
   const classes = useStyles()
 
   const landStatsData = props.data
@@ -357,8 +354,24 @@ const DetailCards = props => {
 
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
   const cardMenuItems = [
-    { fips_code: 'NF', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
-    { fips_code: 'NA', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
+    {
+      fips_code: 'NF',
+      state: 'Nationwide Federal',
+      state_name: 'Nationwide Federal',
+      location_name: 'Nationwide Federal',
+      region_type: '',
+      county: '',
+      label: 'Add Nationwide Federal card'
+    },
+    {
+      fips_code: 'NA',
+      state: 'Native American',
+      state_name: 'Native American',
+      location_name: 'Native American',
+      region_type: '',
+      county: '',
+      label: 'Add Native American card'
+    }
   ]
 
   // onLink
@@ -395,7 +408,7 @@ const DetailCards = props => {
       }
       else {
         // TODO: snackbar not triggering atm
-        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        // handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
 

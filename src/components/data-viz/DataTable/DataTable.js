@@ -20,7 +20,7 @@ import {
   GROUP_BY_STICKY,
   QUERY_COUNTS,
   COMMODITY_ORDER,
-  RECIPIENT,
+  RECIPIENT
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'

@@ -69,7 +69,7 @@ export default class D3LineChart {
 
   // Line chart tooltip
   lineTooltip (data, xAxis, yAxis) {
-    const r = [,]
+    const r = ['', '']
     return r
   }
 
@@ -98,7 +98,7 @@ export default class D3LineChart {
       const colors = this.chartColors
 
       const x = d3.scaleLinear().domain([2003, 2019]).range([0, width])
-      const y = d3.scaleLinear().domain([0, 40000000]).range([height, 0])
+      // const y = d3.scaleLinear().domain([0, 40000000]).range([height, 0])
 
       const svg = d3.select(this.chartNode).append('svg')
         .attr('width', width + margin.left + margin.right)
@@ -239,7 +239,7 @@ export default class D3LineChart {
 
   xScale () {
     try {
-      const n = this.xDomain().length
+      // const n = this.xDomain().length
       const width = this._width
       const min = this.xMin()
       const max = this.xMax()

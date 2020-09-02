@@ -1,5 +1,5 @@
 import * as d3 from 'd3'
-import { isEnumMember } from 'typescript'
+// import { isEnumMember } from 'typescript'
 
 export default class stackedBarChart {
   constructor (node, data, options, formatLegendFunc) {
@@ -101,7 +101,6 @@ export default class stackedBarChart {
 
   ydomain (row) {
     try {
-      const r = []
       const allowed = this.yaxis()
       const filtered = Object.keys(row)
         .filter(key => allowed.includes(key))
@@ -275,8 +274,6 @@ export default class stackedBarChart {
 	  .keys(this.yaxis())
 	  .offset(d3.stackOffsetNone)
 
-    const xwidth = self.xScale.bandwidth()
-
     // console.debug(xwidth);
     const keys = this.yaxis()
     this.chart.append('g')
@@ -391,7 +388,7 @@ export default class stackedBarChart {
     const rotate = this.options.xRotate || 0
     let x = -1
     const y = 8
-    if (rotate != 0) {
+    if (rotate !== 0) {
       x = -11
     }
     self.chart.append('g')
@@ -464,7 +461,6 @@ export default class stackedBarChart {
 
     const data = this.selectedData()
     const columns = this.options.columnNames
-    const totalColumns = ['Total', 'Value']
     columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
 
     const labels = this.yLabels()

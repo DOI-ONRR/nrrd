@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { VariableSizeList } from 'react-window'
 
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 import { useTheme, makeStyles } from '@material-ui/core/styles'
 import {
-  Box,
   TextField,
   useMediaQuery
 } from '@material-ui/core'
@@ -21,7 +20,7 @@ import CONSTANTS from '../../../js/constants'
 
 import mapJson from '../../sections/ExploreData/us-topology.json'
 import mapStatesOffshore from '../../sections/ExploreData/states-offshore.json'
-import { validateOperation } from 'apollo-link/lib/linkUtils'
+// import { validateOperation } from 'apollo-link/lib/linkUtils'
 
 const GUTTER_SIZE = 15
 

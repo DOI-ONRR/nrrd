@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import {
   animateScroll as scroll,
-  scroller,
-  Link
+  scroller
 } from 'react-scroll'
 
 import { StickyWrapper } from '../../utils/StickyWrapper'
@@ -14,7 +13,6 @@ import utils from '../../../js/utils'
 import {
   Box,
   Container,
-  Grid,
   MenuList,
   MenuItem,
   Paper
@@ -66,6 +64,7 @@ const useStyles = makeStyles(theme => ({
 const PageSubMenu = ({ menuItems, ...props }) => {
   const classes = useStyles()
 
+  // eslint-disable-next-line no-unused-vars
   const [subMenu, setSubMenu] = useState({
     scrollOffset: parseInt(props.scrollOffset) || -150,
     items: menuItems || [],
