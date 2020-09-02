@@ -8,7 +8,7 @@ import utils from '../../../../js/utils'
 import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC, NATIVE_AMERICAN_FIPS } from '../../../../constants'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import CONSTANTS from '../../../../js/constants'
 
 import * as d3 from 'd3'

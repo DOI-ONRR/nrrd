@@ -164,6 +164,12 @@ const config = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-remove-console',
+      options: {
+        exclude: ['error', 'warn'], // <- will remove all console calls except these
+      }
+    },
     'gatsby-plugin-use-query-params',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
