@@ -93,7 +93,7 @@ const ProductionOverTime = props => {
   const cards = pageState.cards
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-    
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { product: product, period: period }
   })
@@ -130,6 +130,7 @@ const ProductionOverTime = props => {
         .map(d => ({ year: parseInt(d.key), value: d.value }))
     )])
 
+    // eslint-disable-next-line no-unused-vars
     for (const [i, arr] of sums.entries()) {
       sums[i] = years.map(year => {
         const sum = sums[i].find(x => x.year === year)

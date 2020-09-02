@@ -66,13 +66,14 @@ const useStyles = makeStyles(theme => ({
 const LineChart = props => {
   const classes = useStyles()
   const { data, ...options } = props
-   // console.debug('LINE CHART', data)
+  // console.debug('LINE CHART', data)
   const elemRef = useRef(null)
   const title = options.title || ''
 
   useEffect(() => {
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
+    // eslint-disable-next-line no-unused-vars
     const chart = new D3LineChart(elemRef.current, data, options)
   })
 

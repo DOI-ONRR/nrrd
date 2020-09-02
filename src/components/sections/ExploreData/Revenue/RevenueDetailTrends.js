@@ -5,13 +5,10 @@ import gql from 'graphql-tag'
 import * as d3 from 'd3'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import LocationName from '../LocationName'
-
-import CONSTANTS from '../../../../js/constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -53,7 +50,6 @@ const RevenueDetailTrends = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const state = props.fipsCode
-  const name = props.locationName
 
   const location = {
     county: props.county,
@@ -76,10 +72,6 @@ const RevenueDetailTrends = props => {
     variables: { state: state, period: period, year: year, commodities: commodities }
   })
 
-  const closeCard = item => {
-    props.closeCard(props.fips_code)
-  }
-
   if (loading) return ''
 
   if (error) return `Error! ${ error.message }`
@@ -92,7 +84,6 @@ const RevenueDetailTrends = props => {
   let highlightIndex = 0
   let periodData
   let fiscalData
-  let locationTotalData
   let locData
 
   if (data &&
@@ -100,7 +91,9 @@ const RevenueDetailTrends = props => {
     periodData = data.period
 
     // set min and max trend years
+    // eslint-disable-next-line max-len
     sparkMin = periodData.reduce((min, p) => parseInt(periodData[0].period_date.substring(0, 4)) < min ? parseInt(periodData[0].period_date.substring(0, 4)) : min, parseInt(periodData[0].period_date.substring(0, 4)))
+    // eslint-disable-next-line max-len
     sparkMax = periodData.reduce((max, p) => parseInt(periodData[0].period_date.substring(0, 4)) > max ? parseInt(periodData[0].period_date.substring(0, 4)) : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
 
     // console.debug('sparkMin', sparkMin, periodData)
