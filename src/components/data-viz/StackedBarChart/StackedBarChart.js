@@ -39,8 +39,6 @@ const useStyles = makeStyles(theme => ({
   horizontal: {
     position: 'relative',
     height: 25,
-    border: `2px solid ${ theme.palette.grey[400] }`,
-    borderRadius: 4,
     '& .horizontal-stacked-bar-chart': {
       position: 'absolute',
       top: 0,
