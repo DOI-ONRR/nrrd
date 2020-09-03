@@ -22,8 +22,6 @@ import {
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
-import CONSTANTS from '../../../../js/constants'
-
 const useStyles = makeStyles(theme => ({
   table: {
     width: '100%',
@@ -101,7 +99,7 @@ const DisbursementRecipientSummary = props => {
   }
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
   })
 
   if (loading) {

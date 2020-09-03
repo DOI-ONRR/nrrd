@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 import { makeStyles } from '@material-ui/core/styles'
 
 import { Grid, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core'
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
-
-import CONSTANTS from '../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -65,7 +65,7 @@ const SectionControls = props => {
                 value={item}
                 aria-label={item}
                 disableRipple>
-                { item === TOGGLE_VALUES.Year ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }
+                { item === TOGGLE_VALUES.Year ? DFC.YEARLY : DFC.MONTHLY_CAPITALIZED }
               </ToggleButton>
             ))
           }
@@ -86,7 +86,7 @@ const SectionControls = props => {
             {
               (props.toggle === TOGGLE_VALUES.Year)
                 ? Object.values(YEARLY_DROPDOWN_VALUES).map((item, i) => (
-                  <MenuItem key={i} value={item}>{ item === YEARLY_DROPDOWN_VALUES.Calendar ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
+                  <MenuItem key={i} value={item}>{ item === YEARLY_DROPDOWN_VALUES.Calendar ? DFC.PERIOD_CALENDAR_YEAR : DFC.PERIOD_FISCAL_YEAR }</MenuItem>
                 ))
                 : Object.values(MONTHLY_DROPDOWN_VALUES).map((item, i) => (
                   <MenuItem value={item} key={i}>

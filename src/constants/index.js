@@ -2,10 +2,6 @@ import * as DATA_FILTER_CONSTANTS from './data-filter-constants'
 export { DATA_FILTER_CONSTANTS }
 export * from './data-filter-constants'
 
-// export const REVENUE = 'Revenue'
-// export const PRODUCTION = 'Production'
-// export const DISBURSEMENT = 'Disbursements'
-
 // Defines single or multiple select for inputs properties, also used to resolve values for queries in query manager
 export const SINGLE_STR = 'String,'
 export const MULTI_STR = '[String!],'

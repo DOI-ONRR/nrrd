@@ -16,8 +16,6 @@ import {
   Typography
 } from '@material-ui/core'
 
-import CONSTANTS from '../../../../js/constants'
-
 const APOLLO_QUERY = gql`
   # summary card queries
   query FiscalDisbursement($year: Int!, $period: String!, $state: [String!]) {
@@ -43,7 +41,7 @@ const DisbursementTrend = props => {
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.fipsCode, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: props.fipsCode, year: year, period: DFC.FISCAL_YEAR_LABEL }
   })
 
   if (loading) {
