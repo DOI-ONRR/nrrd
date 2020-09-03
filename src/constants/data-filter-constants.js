@@ -102,6 +102,7 @@ export const COAL = 'Coal'
 export const STATE = 'State'
 export const COUNTY_CAPITALIZED = 'County'
 export const USA = 'USA'
+export const DATA_TYPES = [REVENUE, PRODUCTION, DISBURSEMENTS]
 
 export const TREND_LIMIT = 10
 export const MAX_CARDS = 3

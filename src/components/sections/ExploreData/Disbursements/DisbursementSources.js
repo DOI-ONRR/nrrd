@@ -11,17 +11,8 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
-  Box,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography
+  Box
 } from '@material-ui/core'
-
-import CONSTANTS from '../../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,7 +61,7 @@ const DisbursementSources = props => {
   const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
   })
 
   if (loading) {
@@ -80,7 +71,6 @@ const DisbursementSources = props => {
 
   let chartData = []
 
-  const total = 0
   if (
     data &&
       data.DisbursementSourceSummary.length > 0) {
@@ -109,7 +99,11 @@ const DisbursementSources = props => {
                   return r
                 }
               } />
-            <QueryLink groupBy={DFC.SOURCE} linkType="FilterTable" {...props}>
+            <QueryLink
+              groupBy={DFC.SOURCE}
+              linkType="FilterTable"
+              recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury"
+              {...props}>
               Query disbursements by source
             </QueryLink>
           </Box>

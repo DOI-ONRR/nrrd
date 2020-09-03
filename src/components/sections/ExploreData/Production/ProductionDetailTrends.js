@@ -9,8 +9,6 @@ import utils from '../../../../js/utils'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-// import CONSTANTS from '../../../../js/constants'
-
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
@@ -19,7 +17,6 @@ import {
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
 import * as d3 from 'd3'
-import { checkPropTypes } from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,7 +51,6 @@ const APOLLO_QUERY = gql`
 
 const ProductionDetailTrends = props => {
   const classes = useStyles()
-  const name = props.locationName
   const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]

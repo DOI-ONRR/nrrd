@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -13,7 +13,7 @@ import SectionControls from '../../sections/SectionControls'
 import Link from '../../../components/Link/'
 
 import utils from '../../../js/utils'
-import CONSTANTS from '../../../js/constants'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const TOTAL_REVENUE_QUERY = gql`
   query TotalYearlyRevenue {
@@ -79,7 +79,7 @@ const TotalRevenue = props => {
 
   // const period = state.period
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
+  const chartTitle = props.chartTitle || `${ DFC.REVENUE } (dollars)`
   const yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
   const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY)
 
@@ -103,12 +103,12 @@ const TotalRevenue = props => {
     setPeriod(value)
   }
 
-  const findXGroupYear = (monthNumber, xGroups) => {
-    for (const elem of xGroups) {
-      const foundElem = elem.filter(item => item.includes(monthNumber))
-      // console.log('foundElem: ', foundElem)
-    }
-  }
+  // const findXGroupYear = (monthNumber, xGroups) => {
+  //   for (const elem of xGroups) {
+  //     const foundElem = elem.filter(item => item.includes(monthNumber))
+  //     // console.log('foundElem: ', foundElem)
+  //   }
+  // }
 
   if (error) return `Error! ${ error.message }`
   let chartData
@@ -138,8 +138,7 @@ const TotalRevenue = props => {
       }
       else {
         chartData = data.total_monthly_last_twelve_revenue
-	  console.debug("monthly last chart Data: ", data.total_monthly_last_twelve_revenue)
-
+	  console.debug('monthly last chart Data: ', data.total_monthly_last_twelve_revenue)
       }
 
       xGroups = chartData.reduce((g, row, i) => {
@@ -168,7 +167,7 @@ const TotalRevenue = props => {
         xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)
       }
       else {
-          chartData = data.total_yearly_calendar_revenue
+        chartData = data.total_yearly_calendar_revenue
         xGroups['Calendar Year'] = chartData.map((row, i) => row.year)
       }
       xAxis = 'year'

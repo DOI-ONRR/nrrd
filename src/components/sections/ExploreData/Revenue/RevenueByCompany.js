@@ -5,14 +5,9 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import Link from '../../../Link'
-
-import { StoreContext } from '../../../../store'
-
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Container,
@@ -27,7 +22,6 @@ import {
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils'
-import CONSTANTS from '../../../../js/constants'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
@@ -49,12 +43,7 @@ const revenueTypeDescriptions = [
   'This includes other fees leaseholders pay such as permit fees and AML fees.'
 ]
 
-const useStyles = makeStyles(theme => ({
-  root: {},
-}))
-
 const RevenueByCompany = props => {
-  const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
@@ -64,7 +53,7 @@ const RevenueByCompany = props => {
     variables: { year: year, period: period }
   })
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
+  const chartTitle = props.chartTitle || `${ DFC.REVENUE } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
@@ -75,7 +64,6 @@ const RevenueByCompany = props => {
   const yGroupBy = 'land_type'
 
   const units = 'dollars'
-  const xGroups = {}
 
   if (loading) {
     return 'Loading...'
@@ -85,6 +73,7 @@ const RevenueByCompany = props => {
 
   if (data) {
     groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
+    // eslint-disable-next-line no-return-assign
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
 
     nationalRevenueData = Object.entries(groupData)
@@ -138,6 +127,7 @@ const RevenueByCompany = props => {
                           return headers
                         }
                         }
+                        // eslint-disable-next-line no-return-assign
                         barScale={item[1].reduce((total, i) => total += i.total, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}

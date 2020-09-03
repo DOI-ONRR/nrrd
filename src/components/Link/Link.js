@@ -131,7 +131,7 @@ Link.propTypes = {
    *
    * By default we determine the appropriate link type but you can specify a type if you want to override it.
    */
-  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'Header', 'HowWorks', 'default']),
+  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'FilterTable', 'Header', 'HowWorks', 'default']),
   /**
    * Used to flag a relative link that we may not want to use Gatsby Routing for. An example is download files.
    *

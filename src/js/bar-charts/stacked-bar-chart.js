@@ -1,5 +1,4 @@
 import * as d3 from 'd3'
-import utils from '../../js/utils'
 
 const DEFAULT_HEIGHT = 200
 const MARGIN_BOTTOM = 40
@@ -87,15 +86,13 @@ const stackedBarChart = {
     self.addGroupLines()
 
     // Redraw based on the new size whenever the browser window is resized.
-      	// window.addEventListener("resize", utils.throttle(self.update.bind(self), 200));
+    // window.addEventListener("resize", utils.throttle(self.update.bind(self), 200));
   },
 
   update (el, props, state) {
     if (state === undefined) {
       return
     }
-
-    const self = this
 
     this.svg = d3.select(el).select('svg')
 
@@ -111,7 +108,7 @@ const stackedBarChart = {
     this.svg.selectAll('#bars').remove()
     this.addChart(props)
 
- 		this.svg.selectAll('g.x.axis').remove()
+    this.svg.selectAll('g.x.axis').remove()
     this.addXAxis(props)
 
     // Add Grouping Lines
@@ -132,12 +129,12 @@ const stackedBarChart = {
       let sum = 0
       Object.entries(d).forEach(
 				    ([key, values]) => {
-			    		Object.entries(values[0]).forEach(
-				    		([key, value]) => {
-				    			sum += value
-				    		}
-				    	)
-				    }
+          Object.entries(values[0]).forEach(
+            ([key, value]) => {
+              sum += value
+            }
+          )
+        }
       )
       return (sum)
     })
@@ -148,12 +145,12 @@ const stackedBarChart = {
       let data = 0
       Object.entries(d).forEach(
 				    ([key, values]) => {
-			    		Object.entries(values[0]).forEach(
-				    		([key, value]) => {
-				    			data += value
-				    		}
-				    	)
-				    }
+          Object.entries(values[0]).forEach(
+            ([key, value]) => {
+              data += value
+            }
+          )
+        }
       )
       return (data)
     })
@@ -168,8 +165,8 @@ const stackedBarChart = {
   },
 
   calculateExtentValue (maxValue) {
-  	const maxValueExtent = Math.ceil(maxValue * (1 + extentPercent))
-  	return this.getMetricLongUnit(d3.format(setSigFigs(maxValue, maxValueExtent))(maxValueExtent))
+    const maxValueExtent = Math.ceil(maxValue * (1 + extentPercent))
+    return this.getMetricLongUnit(d3.format(setSigFigs(maxValue, maxValueExtent))(maxValueExtent))
   },
 
   addMaxExtent (props) {
@@ -218,8 +215,8 @@ const stackedBarChart = {
 
     // Create chart
     const stack = d3.stack()
-		 	.keys(this.keys)
-		 	.offset(d3.stackOffsetNone)
+      .keys(this.keys)
+      .offset(d3.stackOffsetNone)
 
     this.svg.append('g')
       .attr('id', 'bars')
@@ -234,7 +231,7 @@ const stackedBarChart = {
       .attr('data-key', d => Object.keys(d)[0])
       .attr('tabindex', 0)
       .on('keyup', function (d) {
-	  if (d3.event.keyCode == 13) {
+	  if (d3.event.keyCode === 13) {
 	      toggleSelectedBar(this, d, props.barSelectedCallback)
 	  }
       })
@@ -318,20 +315,20 @@ const toggleSelectedBar = (element, data, callBack) => {
   const selectedElement = element.parentNode.querySelector('[selected=true]')
 
   if (selectedElement) {
-  	selectedElement.removeAttribute('selected')
+    selectedElement.removeAttribute('selected')
   }
 
   element.setAttribute('selected', true)
   element.setAttribute('tabindex', 1)
 
   if (callBack) {
-  	callBack(data)
+    callBack(data)
   }
 }
 
 const toggleHoveredBar = (data, callBack, isHover) => {
   if (callBack) {
-  	callBack(data, isHover)
+    callBack(data, isHover)
   }
 }
 
@@ -390,7 +387,7 @@ const crawlCeil = function (ymax, ceilMax, i) {
  * @param {Number} ymax
  * @param {Number} ceilMax ymax + extent of the data set
  */
-var setSigFigs = function (ymax, ceilMax) {
+const setSigFigs = function (ymax, ceilMax) {
   let sigFigs = ''
   let SF = 0
   while (sigFigs.length < 3) {

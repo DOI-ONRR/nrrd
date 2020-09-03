@@ -15,7 +15,6 @@ import {
 } from '@material-ui/core'
 
 import { StoreContext } from '../../../../store'
-import CONSTANTS from '../../../../js/constants'
 import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -71,42 +70,37 @@ const RevenueSummaryTopCommodities = props => {
     variables: { state: state, period: period }
   })
 
-  let sparkData = []
-  let fiscalData
-  let highlightIndex = 0
+  // let sparkData = []
+  // let fiscalData
   let periodData
   let distinctCommodities = 0
   let topCommodities = []
   let currentCommodities = []
-  const dataKey=period + '-' +year + '-' + state
+  const dataKey = period + '-' + year + '-' + state
   if (loading) {}
 
   if (error) return `Error! ${ error.message }`
 
   if (data && data.revenue_summary.length > 0) {
-     // console.debug('DWGH', data)
+    // console.debug('DWGH', data)
     periodData = data.period
 
-    fiscalData = d3.nest()
-      .key(k => k.year)
-      .rollup(v => d3.sum(v, i => i.total))
-      .entries(data.revenue_summary)
-      .map(d => [parseInt(d.key), d.value])
+    // fiscalData = d3.nest()
+    //   .key(k => k.year)
+    //   .rollup(v => d3.sum(v, i => i.total))
+    //   .entries(data.revenue_summary)
+    //   .map(d => [parseInt(d.key), d.value])
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
-    sparkData = periodData.map((item, i) => {
-      const y = parseInt(item.period_date.substr(0, 4))
-      const total = fiscalData.find(x => x[0] === y)
-      return ([
-        y,
-        total ? total[1] : 0
-      ])
-    })
+    // sparkData = periodData.map((item, i) => {
+    //   const y = parseInt(item.period_date.substr(0, 4))
+    //   const total = fiscalData.find(x => x[0] === y)
+    //   return ([
+    //     y,
+    //     total ? total[1] : 0
+    //   ])
+    // })
 
-    // sparkline index
-    highlightIndex = sparkData.findIndex(
-      x => x[0] === parseInt(year)
-    )
     topCommodities = data.revenue_summary.filter(row => row.year === parseInt(year))
       .map(f => f.commodity)
       .map((com, i) => {
@@ -124,7 +118,7 @@ const RevenueSummaryTopCommodities = props => {
         })
         return { commodity: com, data: d }
       })
-     // console.debug('WTH topCommodities', topCommodities)
+    // console.debug('WTH topCommodities', topCommodities)
     currentCommodities = d3.nest()
       .key(k => k.commodity)
       .rollup(v => d3.sum(v, i => i.total))
@@ -132,7 +126,7 @@ const RevenueSummaryTopCommodities = props => {
       .map(d => [d.key, d.value])
       .sort((a, b) => a[1] > b[1] ? -1 : 1)
 
-     // console.debug('WTH currentCommodities', currentCommodities)
+    // console.debug('WTH currentCommodities', currentCommodities)
     distinctCommodities = currentCommodities.length
 
     /*
@@ -184,8 +178,8 @@ const RevenueSummaryTopCommodities = props => {
                                 </Typography>
                               </TableCell>
                               <TableCell align="right">
-                                  <Sparkline
-			      key={dataKey}
+                                <Sparkline
+			                            key={dataKey}
                                   data={row.data}
                                   highlightIndex={row.data.findIndex(
                                     x => x[0] === parseInt(year)
