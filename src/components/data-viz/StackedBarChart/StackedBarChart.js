@@ -40,10 +40,12 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     height: 25,
     background: theme.palette.grey[100],
-    '& svg': {
+    '& .horizontal-stacked-bar-chart': {
       position: 'absolute',
-      top: 13,
-      left: -9,
+      top: 1,
+      left: 5,
+      transform: 'rotate(90deg)',
+      transformOrigin: 'bottom left',
     }
   },
   legend: {
