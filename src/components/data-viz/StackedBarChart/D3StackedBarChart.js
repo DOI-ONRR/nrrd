@@ -295,7 +295,7 @@ export default class D3StackedBarChart {
         this.chart
           .attr('class', 'horizontal-stacked-bar-chart')
           .attr('width', 25)
-          .style('top', `${ -this._height }`)
+          .style('top', `${ -this._height }px`)
       }
     }
     catch (err) {

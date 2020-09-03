@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.grey[100],
     '& .horizontal-stacked-bar-chart': {
       position: 'absolute',
-      top: 1,
+      top: 0,
       left: 5,
       transform: 'rotate(90deg)',
       transformOrigin: 'bottom left',
