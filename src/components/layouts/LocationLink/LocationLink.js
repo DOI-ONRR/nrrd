@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
-import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
+import { IconUsMapImg } from '../../images'
 import { Typography } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
@@ -37,7 +37,7 @@ const LocationLink = props => {
   return (
     <Grid container className={classes.root} spacing={1} direction="row">
       <Grid item>
-        <IconMap className={classes.iconMap} />
+        <IconUsMapImg className={classes.iconMap} />
       </Grid>
       <Grid item>
         <Typography variant="body1">

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
 import { makeStyles } from '@material-ui/core/styles'
-// import styles from './DataArchiveLink.module.scss'
-import DataArchiveIcon from '-!svg-react-loader!../../../../img/svg/icon-archive.svg'
+import { IconArchiveImg } from '../../../images'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,7 +23,7 @@ const DataArchiveLink = props => {
 
   return (
     <Link to={props.to} className={classes.root}>
-      <DataArchiveIcon />
+      <IconArchiveImg />
       <span>
         {props.children === undefined
           ? 'Data archive'
