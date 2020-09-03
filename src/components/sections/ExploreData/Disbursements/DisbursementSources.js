@@ -14,8 +14,6 @@ import {
   Box
 } from '@material-ui/core'
 
-import CONSTANTS from '../../../../js/constants'
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -63,7 +61,7 @@ const DisbursementSources = props => {
   const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
   })
 
   if (loading) {
@@ -101,7 +99,11 @@ const DisbursementSources = props => {
                   return r
                 }
               } />
-            <QueryLink groupBy={DFC.SOURCE} linkType="FilterTable" {...props}>
+            <QueryLink
+              groupBy={DFC.SOURCE}
+              linkType="FilterTable"
+              recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury"
+              {...props}>
               Query disbursements by source
             </QueryLink>
           </Box>

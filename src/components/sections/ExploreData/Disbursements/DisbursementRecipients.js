@@ -15,8 +15,6 @@ import {
   Box
 } from '@material-ui/core'
 
-import CONSTANTS from '../../../../js/constants'
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -43,7 +41,11 @@ const APOLLO_QUERY = gql`
   query DisbursementRecipientSummary($year: Int!, $period: String!, $state: [String!]) {
 
     DisbursementRecipientSummary: disbursement_recipient_summary(
-      where: { fiscal_year: { _eq: $year }, state_or_area: { _in: $state } }
+      where: { 
+        fiscal_year: { _eq: $year }, 
+        state_or_area: { _in: $state },
+        recipient: {_neq: "Native American tribes and individuals"}
+      }
       order_by: { fiscal_year: asc, total: desc }
     ) {
       fiscal_year
@@ -64,7 +66,7 @@ const DisbursementRecipients = props => {
   const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
   })
 
   if (loading) {
@@ -78,7 +80,6 @@ const DisbursementRecipients = props => {
     data &&
     data.DisbursementRecipientSummary.length > 0) {
     chartData = data
-    console.log(`DisbursementRecipients ${ props.locationName } data: `, data)
 
     if (chartData.DisbursementRecipientSummary.length > 1) {
       return (<Box className={classes.root}>
@@ -94,19 +95,19 @@ const DisbursementRecipients = props => {
             format={ d => {
               return utils.formatToDollarInt(d)
             }}
-	     legendLabel={
+	          legendLabel={
               d => {
                 if (d.match('Native')) {
                   d = 'Native American'
                 }
                 else if (d.match('governments')) {
-			    d = 'State and local'
+			            d = 'State and local'
                 }
                 else if (d.match('Land')) {
-			    d = 'LWCF*'
+			            d = 'LWCF*'
                 }
                 else if (d.match('Historic')) {
-			    d = 'HPF**'
+			            d = 'HPF**'
                 }
 
                 return d
@@ -114,19 +115,19 @@ const DisbursementRecipients = props => {
             }
             circleTooltip={
               d => {
-                // console.log('d: ', d)
                 const r = []
                 r[0] = d.recipient
                 r[1] = utils.formatToDollarInt(d.total)
                 return r
               }
             } />
-	      <>{ state === 'NF' &&
-		        <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
-	      <>{ state === 'NF' &&
-		<Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
+
+          <>{ state === DFC.NATIONWIDE_FEDERAL_FIPS &&
+            <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
+          <>{ state === DFC.NATIONWIDE_FEDERAL_FIPS &&
+            <Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
           }
-	      </>
+          </>
 
           <QueryLink
             groupBy={DFC.RECIPIENT}

@@ -14,6 +14,7 @@ import {
   Typography
 } from '@material-ui/core'
 
+import { StoreContext } from '../../../../store'
 import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'

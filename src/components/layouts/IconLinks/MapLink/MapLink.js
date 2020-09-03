@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-// import Link from '../../../utils/temp-link'
 
 import { makeStyles } from '@material-ui/core/styles'
-// import styles from './MapLink.module.scss'
 
-import MapIcon from '-!svg-react-loader!../../../../img/svg/icon-us-map.svg'
+import { IconUsMapImg } from '../../../images'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,7 +23,7 @@ const MapLink = props => {
   const classes = useStyles()
   return (
     <Link to={props.to} className={classes.root}>
-      <MapIcon />
+      <IconUsMapImg />
       <span>
         {props.children === undefined
           ? 'Data by state'

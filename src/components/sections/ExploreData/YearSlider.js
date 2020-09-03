@@ -10,8 +10,6 @@ import {
   Grid
 } from '@material-ui/core'
 
-import CONSTANTS from '../../../js/constants'
-
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
@@ -166,7 +164,7 @@ const YearSlider = props => {
   const customMarks = []
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { period: CONSTANTS.FISCAL_YEAR }
+    variables: { period: DFC.FISCAL_YEAR_LABEL }
   })
 
   if (loading) {}

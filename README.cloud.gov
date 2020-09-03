@@ -21,6 +21,7 @@ cf set-env hasura-onrr HASURA_GRAPHQL_ENABLE_CONSOLE true
 cf set-env hasura-onrr HASURA_GRAPHQL_UNAUTHORIZED_ROLE public 
 cf restage hasura-onrr
 
+cf env hasura-onrr # to see the password for our Hasura instance!
 
 #DB maintaince.
 # Choose DB environment:

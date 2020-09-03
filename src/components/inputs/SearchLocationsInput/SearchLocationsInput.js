@@ -16,11 +16,10 @@ import match from 'autosuggest-highlight/match'
 import { Autocomplete } from '@material-ui/lab'
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
 
-import CONSTANTS from '../../../js/constants'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import mapJson from '../../sections/ExploreData/us-topology.json'
 import mapStatesOffshore from '../../sections/ExploreData/states-offshore.json'
-// import { validateOperation } from 'apollo-link/lib/linkUtils'
 
 const GUTTER_SIZE = 15
 
@@ -47,21 +46,21 @@ const getRegionProperties = location => {
   let selectedObj
 
   switch (location.region_type) {
-  case CONSTANTS.STATE:
+  case DFC.STATE:
     selectedObj = mapJson.objects.states.geometries.filter(obj => {
       if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
         return Object.assign(obj, { locData: location })
       }
     })
     break
-  case CONSTANTS.COUNTY:
+  case DFC.COUNTY_CAPITALIZED:
     selectedObj = mapJson.objects.counties.geometries.filter(obj => {
       if (parseInt(obj.properties.FIPS) === parseInt(location.fips_code)) {
         return Object.assign(obj, { locData: location })
       }
     })
     break
-  case CONSTANTS.OFFSHORE:
+  case DFC.OFFSHORE_CAPITALIZED:
     // console.log('mapStatesOffshore: ', mapStatesOffshore)
     if (offshoreRegions.includes(location.fips_code)) {
       return { id: location.fips_code, properties: { region: location.fips_code, name: location.location_name } }
@@ -230,13 +229,13 @@ const SearchLocationsInput = props => {
   const renderOptionLabel = item => {
     let optionLabel
     switch (item.region_type) {
-    case CONSTANTS.STATE:
+    case DFC.STATE:
       optionLabel = item.state_name
       break
-    case CONSTANTS.COUNTY:
-      optionLabel = `${ item.county } ${ CONSTANTS.COUNTY }, ${ item.state_name }`
+    case DFC.COUNTY_CAPITALIZED:
+      optionLabel = `${ item.county } ${ DFC.COUNTY_CAPITALIZED }, ${ item.state_name }`
       break
-    case CONSTANTS.OFFSHORE:
+    case DFC.OFFSHORE_CAPITALIZED:
       optionLabel = item.location_name.includes('Offshore') ? item.location_name : `${ item.location_name } ${ item.region_type }`
       break
     default:
