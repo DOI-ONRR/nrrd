@@ -15,8 +15,6 @@ import {
   Box
 } from '@material-ui/core'
 
-import CONSTANTS from '../../../../js/constants'
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -68,7 +66,7 @@ const DisbursementRecipients = props => {
   const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
   })
 
   if (loading) {

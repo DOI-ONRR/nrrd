@@ -38,6 +38,7 @@ import {
   DATA_FILTER_CONSTANTS as DFC,
   DATA_TYPE,
   DISBURSEMENT,
+  DISBURSEMENTS,
   PERIOD,
   PRODUCTION,
   REVENUE,
@@ -45,18 +46,16 @@ import {
   MAP_LEVEL
 } from '../../../constants'
 
-import CONSTANTS from '../../../js/constants'
-
 const EXPLORE_DATA_TOOLBAR_OPTIONS = {
   [DATA_TYPE]: [
     { value: REVENUE, option: 'Revenue' },
-    { value: DISBURSEMENT, option: 'Disbursements' },
+    { value: DISBURSEMENTS, option: 'Disbursements' },
     { value: PRODUCTION, option: 'Production' },
   ],
   [PERIOD]: [
-    { value: CONSTANTS.FISCAL_YEAR, option: DFC.PERIOD_FISCAL_YEAR },
-    { value: CONSTANTS.CALENDAR_YEAR, option: DFC.PERIOD_CALENDAR_YEAR },
-    // { value: CONSTANTS.MONTHLY, option: 'Monthly' }
+    { value: DFC.FISCAL_YEAR_LABEL, option: DFC.PERIOD_FISCAL_YEAR },
+    { value: DFC.PERIOD_CALENDAR_YEAR, option: DFC.PERIOD_CALENDAR_YEAR },
+    // { value: DFC.PERIOD_MONTHLY_YEAR, option: DFC.PERIOD_MONTHLY_YEAR }
   ],
   [MAP_LEVEL]: [
     { value: DFC.STATE, option: DFC.STATE },

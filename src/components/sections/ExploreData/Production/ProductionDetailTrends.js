@@ -9,8 +9,6 @@ import utils from '../../../../js/utils'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-// import CONSTANTS from '../../../../js/constants'
-
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
