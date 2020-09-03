@@ -5,4 +5,5 @@ WORKDIR /app
 COPY ./package.json .
 RUN npm install
 COPY . .
+RUN gatsby clean
 CMD ["gatsby", "develop", "-H", "0.0.0.0" ]

@@ -12,3 +12,4 @@ services:
     environment:
       - NODE_ENV=development
       - GATSBY_WEBPACK_PUBLICPATH=/
+      - GATSBY_TELEMETRY_DISABLED=1
