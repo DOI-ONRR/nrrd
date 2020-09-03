@@ -82,7 +82,7 @@ module.exports = Object.freeze({
       color: 'black',
       '&$selected': {
         color: 'white',
-        backgroundColor: palette.links.default,
+        backgroundColor: `${ palette.links.default }`,
       },
     },
     label: {
