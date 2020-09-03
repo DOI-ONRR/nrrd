@@ -15,7 +15,7 @@ tags:
   <Container style={{ padding: 0 }} maxWidth={false}>
     <Box style={{ background: 'white' }}>
       <ExploreData>
-        <ContextProvider params={'?dataType=Revenue'}>
+        <ContextDisplay params={'?dataType=Revenue'}>
           <Revenue>
             <MapContext>
               <RevenueMap />
@@ -74,8 +74,8 @@ tags:
               </Box>
             </Box>
           </Revenue>
-        </ContextProvider>
-        <ContextProvider params={'?dataType=Disbursements'}>
+        </ContextDisplay>
+        <ContextDisplay params={'?dataType=Disbursements'}>
           <Disbursements>
             <MapContext>
               <DisbursementMap />
@@ -134,8 +134,8 @@ tags:
               </Box>
             </Box>
           </Disbursements>
-        </ContextProvider>
-        <ContextProvider params={'?dataType=Production'}>
+        </ContextDisplay>
+        <ContextDisplay params={'?dataType=Production'}>
           <Production>
             <MapContext>
               <ProductionMap />
@@ -219,7 +219,7 @@ tags:
               </Box>
             </Box>
           </Production>
-        </ContextProvider>
+        </ContextDisplay>
       </ExploreData>
     </Box>
   </Container>
