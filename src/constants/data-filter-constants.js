@@ -105,6 +105,8 @@ export const STATE = 'State'
 export const COUNTY_CAPITALIZED = 'County'
 export const USA = 'USA'
 export const DATA_TYPES = [REVENUE, PRODUCTION, DISBURSEMENTS]
+export const REVENUE_BY_COMPANY = 'Revenue by company'
+export const DATA_TYPES_PLUS = [REVENUE, PRODUCTION, DISBURSEMENT, REVENUE_BY_COMPANY]
 
 export const TREND_LIMIT = 10
 export const MAX_CARDS = 3
