@@ -18,7 +18,7 @@ import {
   scroller
 } from 'react-scroll'
 
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import CardTitle from './CardTitle'
 
 const useStyles = makeStyles(theme => ({
@@ -89,7 +89,7 @@ const SummaryCards = props => {
   // console.log('SummaryCards props: ', props)
 
   const classes = useStyles()
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
 
   const card = {
@@ -105,7 +105,7 @@ const SummaryCards = props => {
   const [minimized, setMinimized] = useState(true)
 
   const closeCard = item => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== props.fipsCode) })
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== props.fipsCode) })
   }
 
   const minimizeCard = item => {

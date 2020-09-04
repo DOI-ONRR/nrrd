@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
+import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import * as d3 from 'd3'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -89,12 +89,12 @@ const DisbursementsOverTime = props => {
   const theme = useTheme()
   const title = props.title || ''
 
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
 
   const { loading, error, data } = useQuery(APOLLO_QUERY)
   const handleDelete = props.handleDelete || ((e, val) => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== val) })
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fips !== val) })
   })
 
   if (loading) {
