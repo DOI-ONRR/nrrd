@@ -21,7 +21,6 @@ import {
   Box,
   Container,
   Grid,
-  Chip,
   useTheme
 } from '@material-ui/core'
 
@@ -85,9 +84,6 @@ const DisbursementTopRecipients = props => {
   const year = filterState[DFC.YEAR]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
-  const handleDelete = props.handleDelete || ((e, val) => {
-    console.debug('handle delete')
-  })
 
   if (loading) {
     return (

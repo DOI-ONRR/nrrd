@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 import * as d3 from 'd3'
 import Map from '../../../data-viz/Map'
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 

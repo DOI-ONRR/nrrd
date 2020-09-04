@@ -1,19 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-// import Link from '../../../utils/temp-link'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
 
-import ExploreDataIcon from '-!svg-react-loader!../../../../img/icons/explore-data.svg'
-import FilterTableIcon from '-!svg-react-loader!../../../../img/icons/filter-table.svg'
-import HowWorksIcon from '-!svg-react-loader!../../../../img/icons/how-works.svg'
-import DownloadDataIcon from '-!svg-react-loader!../../../../img/svg/icon-download-buttonup.svg'
+import {
+  IconExploreDataImg,
+  FilterTableIconImg,
+  HowWorksLinkIconImg,
+  IconDownloadDataImg
+} from '../../../images'
 
 const useStyles = makeStyles(theme => ({
   root: {
+  },
+  exploreDataIcon: {
+    color: theme.palette.links.default,
   },
   exploreDataLink: {
     textDecoration: 'none',
@@ -51,18 +54,19 @@ const useStyles = makeStyles(theme => ({
 
 const ExploreDataLink = props => {
   const classes = useStyles()
+
   const getIcon = icon => {
     switch (icon) {
     case 'data':
-      return (<ExploreDataIcon />)
+      return (<IconExploreDataImg className={classes.exploreDataIcon} />)
     case 'filter':
-      return (<FilterTableIcon />)
+      return (<FilterTableIconImg className={classes.exploreDataIcon} />)
     case 'works':
-      return (<HowWorksIcon />)
+      return (<HowWorksLinkIconImg className={classes.exploreDataIcon} />)
     case 'download':
-      return (<DownloadDataIcon />)
+      return (<IconDownloadDataImg className={classes.exploreDataIcon} />)
     default:
-      return (<ExploreDataIcon />)
+      return (<IconExploreDataImg className={classes.exploreDataIcon} />)
     }
   }
 

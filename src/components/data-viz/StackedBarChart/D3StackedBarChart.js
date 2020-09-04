@@ -1,6 +1,6 @@
 'use strict'
 import * as d3 from 'd3'
-import { isEnumMember } from 'typescript'
+// import { isEnumMember } from 'typescript'
 
 export default class D3StackedBarChart {
   constructor (node, data, options, formatLegendFunc) {
@@ -55,7 +55,7 @@ export default class D3StackedBarChart {
 
       this.legendReverse = (options.legendReverse) ? options.legendReverse : false
 
-      this.xLabels = (typeof options.xLabels === "function") ? options.xLabels : this.xLabels
+      this.xLabels = (typeof options.xLabels === 'function') ? options.xLabels : this.xLabels
       // max extent line props and defaults
       if (options.legendFormat) {
         this.legendFormat = options.legendFormat
@@ -167,8 +167,7 @@ export default class D3StackedBarChart {
         const padding = (self.xScale.bandwidth() * 0.2)
         let xPos = 0
 
-          Object.keys(self.xGroups).sort().map((name, index) => {
-	      
+        Object.keys(self.xGroups).sort().map((name, index) => {
           const groupLineWidth = xPos + (groupItemWidth * self.xGroups[name].length) - padding
 
           groupLines.append('line')
@@ -442,15 +441,10 @@ export default class D3StackedBarChart {
       const self = this
       d3.select(this.node).selectAll('.legend-table tbody tr').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
-      //      this.getSelected()
+
       const legendReverse = this.legendReverse
       const data = newData || this.selectedData()
-
-      // console.log('updateLegend data: ', data)
-      const headers = this._legendHeaders(xValue)
       const labels = this.yGroupings()
-      const formatLegend = this.formatLegend()
-      // const table = d3.selectAll('.legend-table')
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
 
       // turn object into array to play nice with d3
@@ -668,9 +662,9 @@ export default class D3StackedBarChart {
       const r = this.data.map((row, i) => {
         return row[this.xAxis]
       })
-	//      const domain = [...(new Set(r.sort((a, b) => a - b)))]
-	const domain = [...(new Set(r))]
-	this._xDomain = domain
+      //      const domain = [...(new Set(r.sort((a, b) => a - b)))]
+      const domain = [...(new Set(r))]
+      this._xDomain = domain
       return domain
     }
     catch (err) {
@@ -700,9 +694,7 @@ export default class D3StackedBarChart {
         this.yOrderBy = this.options.yOrderBy
       }
       else if (typeof (this.options.yOrderBy) === 'string') {
-        // console.debug(this.options.yOrderBy)
-        const r = d3.nest()
-        //            .key(k => k[this.xAxis])
+        d3.nest()
           .key(k => k[this.options.yGroupBy])
           .rollup(v => d3.sum(v, d => d[this.yAxis]))
           .entries(this.data)
@@ -710,11 +702,9 @@ export default class D3StackedBarChart {
             acc[d.key] = d.value
             return acc
           }, {})
-        // console.debug('else if', r)
       }
       else {
-        const r = d3.nest()
-        //            .key(k => k[this.xAxis])
+        d3.nest()
           .key(k => k[this.options.yGroupBy])
           .rollup(v => d3.sum(v, d => d[this.yAxis]))
           .entries(this.data)
@@ -923,7 +913,6 @@ export default class D3StackedBarChart {
 
   ydomain (row) {
     try {
-      const r = []
       const allowed = this.yaxis()
       const filtered = Object.keys(row)
         .filter(key => allowed.includes(key))
@@ -1096,6 +1085,7 @@ export default class D3StackedBarChart {
     }
   }
 
+  // eslint-disable-next-line camelcase
   dep_addChart (data) {
     if (data) {
       this.data = data
@@ -1104,8 +1094,6 @@ export default class D3StackedBarChart {
     const stack = d3.stack()
 	  .keys(this.yaxis())
 	  .offset(d3.stackOffsetNone)
-
-    const xwidth = self.xScale.bandwidth()
 
     // console.debug(xwidth);
     const keys = this.yaxis()

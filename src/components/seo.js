@@ -9,7 +9,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { useStaticQuery, graphql, withPrefix } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 
 function SEO ({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
@@ -73,10 +73,6 @@ function SEO ({ description, lang, meta, title }) {
           },
         ].concat(meta)}
       >
-        {/* <title>Home | Natural Resources Revenue Data</title> */}
-        <link rel="icon" type="image/x-icon" href={withPrefix('/img/favicon.ico')} />
-        <link rel="icon" type="image/x-icon" href={withPrefix('/img/favicon-16x16.png')} sizes="16x16" />
-        <link rel="icon" type="image/x-icon" href={withPrefix('/img/favicon-32x32.png')} sizes="32x32" />
 
         {/* Digital Analytics Program roll-up, see the data at https://analytics.usa.gov */}
         <script src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js" id="_fed_an_ua_tag"></script>

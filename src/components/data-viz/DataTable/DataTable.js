@@ -22,7 +22,7 @@ import {
   QUERY_COUNTS,
   COMMODITY_ORDER,
   RECIPIENT,
-  COMPANY_NAME,
+  COMPANY_NAME
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'

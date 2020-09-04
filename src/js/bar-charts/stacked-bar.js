@@ -44,7 +44,7 @@ const stackedBar = {
       })
 
     // Redraw based on the new size whenever the browser window is resized.
-      	// window.addEventListener("resize", utils.throttle(self.update.bind(self), 200));
+    // window.addEventListener("resize", utils.throttle(self.update.bind(self), 200));
   },
 
   update (el, props, state) {

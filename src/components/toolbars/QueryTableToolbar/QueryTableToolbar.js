@@ -22,7 +22,6 @@ import {
   EXCEL,
   CSV,
   DOWNLOAD_DATA_TABLE,
-  STATE_OFFSHORE_NAME,
   PERIOD_TYPES,
   REVENUE_BY_COMPANY
 } from '../../../constants'
@@ -31,7 +30,6 @@ import {
   DataTypePlusSelectInput,
   LandTypeSelectInput,
   RevenueTypeSelectInput,
-  CountySelectInput,
   CommoditySelectInput,
   ProductSelectInput,
   RecipientSelectInput,
@@ -39,12 +37,8 @@ import {
   FilterToggleInput,
   StateOffshoreSelectInput,
   PeriodSelectInput,
-  FiscalYearSlider,
-  CalendarYearSlider,
   StateNameSelectInput
 } from '../../inputs'
-
-import BaseSelectInput from '../../inputs/BaseSelectInput'
 
 import ClearAllFiltersBtn from '../../inputs/ClearAllFiltersBtn'
 
@@ -117,7 +111,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const QueryTableToolbar = ({ label, ...props }) => {
-  const { state, updateDataFilter } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
   const downloadDataContext = useContext(DownloadContext)
   if (!state) {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
@@ -265,10 +259,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
 
 export default QueryTableToolbar
 
-const isCountyEnabled = ({ state }) => (state[STATE_OFFSHORE_NAME] &&
-  (state[STATE_OFFSHORE_NAME].split(',').length === 1) &&
-  (!state[STATE_OFFSHORE_NAME].includes('Offshore')) &&
-  (!state[STATE_OFFSHORE_NAME].includes('Not')))
+// const isCountyEnabled = ({ state }) => (state[STATE_OFFSHORE_NAME] &&
+//   (state[STATE_OFFSHORE_NAME].split(',').length === 1) &&
+//   (!state[STATE_OFFSHORE_NAME].includes('Offshore')) &&
+//   (!state[STATE_OFFSHORE_NAME].includes('Not')))
 
 const RevenueFilterToolbar = () => {
   return (
@@ -307,7 +301,7 @@ const DisbursementFilterToolbar = () => {
 const RevenueByCompanyFilterToolbar = () => {
   return (
     <BaseToolbar isSecondary={true} >
-      <CompanyNameFilter queryKey={QK_QUERY_TOOL}  style={{ width: '300px' }} />
+      <CompanyNameFilter queryKey={QK_QUERY_TOOL} style={{ width: '300px' }} />
       <CommodityFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
       <RevenueTypeFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
     </BaseToolbar>

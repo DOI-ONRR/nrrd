@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-import * as d3 from 'd3'
+
 import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -14,7 +14,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
-import { defaultCurrency } from 'currency-formatter'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,9 +58,9 @@ const RevenueDetailCommodities = props => {
   const dataKey = dataSet + '-' + state + (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
 
   const isCounty = state && state.length === 5
-  const isNativeAmerican = state && state === DFC.NATIVE_AMERICAN_FIPS
-  const isNationwideFederal = state && state === DFC.NATIONWIDE_FEDERAL_FIPS
-  const isState = state && state.length === 2 && !isNativeAmerican && !isNationwideFederal
+  // const isNativeAmerican = state && state === DFC.NATIVE_AMERICAN_FIPS
+  // const isNationwideFederal = state && state === DFC.NATIONWIDE_FEDERAL_FIPS
+  // const isState = state && state.length === 2 && !isNativeAmerican && !isNationwideFederal
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year: year, state: state, period: period, commodities }
