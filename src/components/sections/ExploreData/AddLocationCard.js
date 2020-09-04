@@ -12,7 +12,7 @@ import {
   MenuItem
 } from '@material-ui/core'
 
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import SearchLocationsInput from '../../inputs/SearchLocationsInput'
 
 const useStyles = makeStyles(theme => ({
@@ -78,7 +78,7 @@ const useStyles = makeStyles(theme => ({
 
 const AddLocationCard = props => {
   const classes = useStyles()
-  const { state: pageState } = useContext(StoreContext)
+  const { state: pageState } = useContext(ExploreDataContext)
 
   const { cards } = pageState
 
