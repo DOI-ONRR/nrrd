@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
+import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import * as d3 from 'd3'
@@ -84,7 +84,7 @@ const RevenueOverTime = props => {
   const theme = useTheme()
   const title = props.title || ''
   const { state: filterState } = useContext(DataFilterContext)
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
@@ -95,7 +95,7 @@ const RevenueOverTime = props => {
   })
 
   const handleDelete = props.handleDelete || ((e, val) => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== val) })
+    updateExploreDataCards({ ...pageState, cards: cards })
   })
 
   if (loading) {

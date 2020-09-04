@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 // utility functions
 import utils from '../../../js/utils'
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import CardTitle from './CardTitle'
@@ -339,17 +339,14 @@ const DetailCards = props => {
   `)
   const classes = useStyles()
 
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const { state: filterState } = useContext(DataFilterContext)
   const cards = pageState.cards
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
-  // const { loading, error, data } = useQuery(APOLLO_QUERY)
-
   const closeCard = fips => {
-    // console.log('fips: ', fips)
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== fips) })
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   }
 
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
@@ -412,7 +409,7 @@ const DetailCards = props => {
       }
     }
 
-    dispatch({ type: 'CARDS', payload: cards })
+    updateExploreDataCards({ ...pageState, cards: cards })
   }
 
   const landStatsData = data.onrr.land_stats
