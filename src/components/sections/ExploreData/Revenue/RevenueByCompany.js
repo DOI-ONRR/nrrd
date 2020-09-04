@@ -136,7 +136,9 @@ const RevenueByCompany = props => {
                       <TableCell style={{ width: '45%' }}>
                       <StackedBarChart
                         key={'NRS' + year + '_' + i}
-                        data={item[1]}
+                          data={item[1]}
+			  collapsibleLegend={true}
+			  collapsedLegend={true}
                         legendFormat={v => {
                           if (v === 0) {
                             return '-'
