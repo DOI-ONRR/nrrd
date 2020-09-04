@@ -6,7 +6,6 @@
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.44",
     "@apollo/react-hooks": "^3.1.5",
-    "@babel/polyfill": "^7.10.1",
     "@devexpress/dx-react-core": "^2.6.2",
     "@devexpress/dx-react-grid": "^2.6.2",
     "@devexpress/dx-react-grid-material-ui": "^2.6.2",

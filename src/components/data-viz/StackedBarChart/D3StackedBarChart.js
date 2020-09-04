@@ -290,14 +290,12 @@ export default class D3StackedBarChart {
           self._onHover(this, d, false)
         })
 
-      // transform bars to horizontal if prop set
+      // horizontal chart
       if (this.horizontal) {
-        const rotate = '90 ' + (this._height / 2 - 5) + ' 0'
         this.chart
-          .attr('transform', 'rotate(' + rotate + ')')
-          .attr('width', 20)
-          .style('position', 'relative')
-          .style('left', -5)
+          .attr('class', 'horizontal-stacked-bar-chart')
+          .attr('width', 25)
+          .style('top', `${ -this._height }px`)
       }
     }
     catch (err) {
