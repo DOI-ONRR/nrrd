@@ -117,6 +117,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "jest",
+    "test-ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit",
     "test-watch": "jest --watchAll",
     "lint": "eslint src"
   },

@@ -21,12 +21,8 @@ jobs:
       #     name: Javascript Linter
       #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
       - run:
-          name: Install jest cli
-          command: npm install -g jest-cli
-      - run:
           name: Run tests with JUnit as reporter
-          command: |
-            jest --ci --runInBand --reporters=default --reporters=jest-junit
+          command: npm run test-ci
           environment:
             JEST_JUNIT_OUPUT_DIR: "./test-results/junit"
       - store_test_results:
