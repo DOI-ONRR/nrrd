@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  lighthouse_audit:
+  unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
     steps:
@@ -21,15 +21,16 @@ jobs:
       #     name: Javascript Linter
       #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
       - run:
-          name: Run test reports with JUnit
+          name: Install JUnit coverage reporter
+          command: yarn add --dev jest-junit
+      - run:
+          name: Run tests with JUnit as reporter
           command: |
-            mkdir -p test-results/junit
-            echo 'test-results/junit directory succesfully created...'
-            npm run test --ci --runInBand --reporters=default --reporters=jest-junit
+            jest --ci --runInBand --reporters=default --reporters=jest-junit
           environment:
             JEST_JUNIT_OUPUT_DIR: "./test-results/junit"
       - store_test_results:
-          path: ./test-results/junit
+          path: ./test-results/junit/
       - store_artifacts:
           path: ./test-results/junit
   
@@ -166,7 +167,7 @@ jobs:
 workflows:
   audits:
     jobs:
-      - lighthouse_audit:
+      - unit_tests:
           filters:
             branches:
               ignore:

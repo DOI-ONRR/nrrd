@@ -4,11 +4,6 @@ import currencyFormatter from 'currency-formatter'
 import ExcelJs from 'exceljs'
 import { saveAs } from 'file-saver'
 
-// @TODO Clean up file and remove utils object and export individual methods
-
-// Import Display Name Yaml Files
-import commodityNames from '../data/commodity_names.yml'
-
 export const destructuringSwap = (list, iA, iB) => {
   [list[iA], list[iB]] = [list[iB], list[iA]]
   return list
@@ -183,9 +178,6 @@ const utils = {
       },
       false
     )
-  },
-  getDisplayName_CommodityName: key => {
-    return commodityNames[key] || key
   },
 
   formatToSlug: name => {
