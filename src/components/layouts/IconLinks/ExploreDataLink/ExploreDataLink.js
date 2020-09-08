@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: 'middle',
     marginRight: '8px',
     '& span': {
-      fontSize: theme.typography.body1.fontSize,
       marginRight: '1rem',
       verticalAlign: 'baseline',
       position: 'relative',
