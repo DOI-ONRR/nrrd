@@ -196,7 +196,7 @@ export default class D3CircleChart {
     rh.append('th')
       .attr('colspan', 2)
       .style('text-align', 'left')
-      .style('text-transform', 'capitalize')
+      // .style('text-transform', 'capitalize')
       .text(this.xLabel)
     rh.append('th')
       .style('text-align', 'right')
