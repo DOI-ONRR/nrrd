@@ -110,12 +110,13 @@ const DisbursementSources = props => {
         </Box>
       )
     }
-    else if (chartData.DisbursementSourceSummary.length === 1) {
+      else if (chartData.DisbursementSourceSummary.length === 1) {
+	  let source=chartData.DisbursementSourceSummary[0].source
       return (
         <Box className={classes.boxSection}>
           <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box fontSize="subtitle2.fontSize">
-            All of  disbursements were from onshore production</Box>
+          All of  disbursements were from {source.toLowerCase()} production</Box>
         </Box>
       )
     }
