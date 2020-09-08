@@ -14,9 +14,9 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-      # - run: 
-      #     name: Javascript Linter
-      #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
+      - run: 
+          name: Javascript Linter
+          command: eslint --format junit -o test-results/js-lint-results.xml
       - run:
           name: Run tests with JUnit as reporter
           command: npm test --ci --reporters=default --reporters=jest-junit
