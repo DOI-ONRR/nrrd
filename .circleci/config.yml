@@ -16,7 +16,7 @@ jobs:
             - node_modules
       - run: 
           name: Javascript Linter
-          command: eslint --format junit -o test-results/js-lint-results.xml
+          command: npm run lint --format junit -o test-results/js-lint-results.xml
       - run:
           name: Run tests with JUnit as reporter
           command: npm test --ci --reporters=default --reporters=jest-junit
