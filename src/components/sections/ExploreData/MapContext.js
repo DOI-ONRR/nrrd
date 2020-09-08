@@ -22,7 +22,7 @@ import { animateScroll as scroll } from 'react-scroll'
 import MapControls from './MapControls'
 import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import ExploreMoreDataButton from './ExploreMoreDataButton'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
@@ -302,7 +302,7 @@ const MapContext = props => {
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   const { state: filterState } = useContext(DataFilterContext)
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: pageState, updateExploreDataCards, updateExploreDataMapZoom } = useContext(ExploreDataContext)
 
   const cards = pageState.cards
 
@@ -405,7 +405,7 @@ const MapContext = props => {
     setMapX(x)
     setMapK(k)
 
-    dispatch({ type: 'MAP_ZOOM', payload: { mapX: x, mapY: y, mapZoom: k } })
+    updateExploreDataMapZoom({ ...pageState, mapZoom: { mapX: x, mapY: y, mapZoom: k } })
   }
 
   // check width, set zoom
@@ -444,7 +444,7 @@ const MapContext = props => {
       districtType: (location[0]) ? location[0].district_type : '',
       county: (location[0]) ? location[0].county : ''
     }
-    console.debug('stateObject: ', stateObj)
+    // console.debug('stateObject: ', stateObj)
     if (
       cards.filter(item => item.fipsCode === fips).length === 0
     ) {
@@ -462,7 +462,7 @@ const MapContext = props => {
       }
     }
 
-    dispatch({ type: 'CARDS', payload: cards })
+    updateExploreDataCards({ ...pageState, cards: cards })
   }
 
   const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED

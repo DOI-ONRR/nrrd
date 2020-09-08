@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { navigate } from '@reach/router'
 
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import BaseToolbar from '../BaseToolbar'
 import SearchLocationsInput from '../../inputs/SearchLocationsInput'
@@ -141,7 +141,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
 
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
-  const { state: pageState } = useContext(StoreContext)
+  const { state: pageState } = useContext(ExploreDataContext)
 
   const [exploreDataTabOpen, setExploreDataTabOpen] = useState(true)
   const [locationTabOpen, setLocationTabOpen] = useState(false)
