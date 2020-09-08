@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
   periodToggleButton: {
     '&:hover': {
       backgroundColor: `${ theme.palette.links.default } !important`,
+      color: theme.palette.common.white,
     },
   }
 }))
