@@ -19,13 +19,11 @@ jobs:
       #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
       - run:
           name: Run tests with JUnit as reporter
-          command: npm test -- --ci --runInBand --reporters=default --reporters=jest-junit
-          environment:
-            JEST_JUNIT_OUPUT_DIR: "./test-results/junit"
+          command: npm test --ci --reporters=default --reporters=jest-junit
       - store_test_results:
-          path: ./test-results/junit
+          path: ./test-results
       - store_artifacts:
-          path: ./test-results/junit
+          path: ./test-results
   
   quick:
     docker:
