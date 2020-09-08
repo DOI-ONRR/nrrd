@@ -19,10 +19,6 @@ const useStyles = makeStyles(theme => ({
   },
   menuLink: {
     color: theme.palette.links.default,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline'
-    }
   },
   iconMap: {
     fill: theme.palette.links.default,
