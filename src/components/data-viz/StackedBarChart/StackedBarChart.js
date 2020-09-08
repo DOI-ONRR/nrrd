@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import ChartTitle from '../ChartTitle'
 import BarChart from './D3StackedBarChart.js'
-import { Collapse } from '@material-ui/core';
+import { Collapse, Button } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'block',
@@ -106,15 +106,16 @@ const StackedBarChart = props => {
     console.debug("SBC collapsed", collapsed, ' <> ', props)
   return (
     <>
-      {title && <ChartTitle>{title}</ChartTitle>}
+	{title && <ChartTitle>{title}</ChartTitle>}
+	<Button>Default</Button>
       <div className={classes.container} ref={elemRef}>
           <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }`}></div>
 	  
-	
+	<Button>Default2</Button>
 
-
+	  <Button variant='text'>show</Button> 
 	  <Collapse in={! collapsed} >
-              <div className={classes.legend}></div>
+	      <div className={classes.legend}></div>
 	  </Collapse>	  
       </div>
     </>
