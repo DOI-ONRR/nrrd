@@ -18,6 +18,8 @@
     Jerome Louis -- Contract Developer
     Brandi Nichols -- UX Intern -- Virtual Student Federal Service
     Mojo Nichols -- Contract Developer
+    Devyn Powell -- Data Intern
+    Matthew Sao -- Data Intern
     Timothy Tomas -- UX Intern -- Virtual Student Federal Service
     Jamie Wang -- UX Intern -- Virtual Student Federal Service
 
