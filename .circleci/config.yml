@@ -14,21 +14,18 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-      - run:
-          name: Build gatsby
-          command: npm run build
       # - run: 
       #     name: Javascript Linter
       #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
       - run:
           name: Run tests with JUnit as reporter
-          environment:
-            JEST_JUNIT_OUPUT_DIR: "./test-results/junit.xml"
           command: npm test -- --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUPUT_DIR: "./test-results/junit"
       - store_test_results:
-          path: ./test-results
+          path: ./test-results/junit
       - store_artifacts:
-          path: ./test-results
+          path: ./test-results/junit
   
   quick:
     docker:
