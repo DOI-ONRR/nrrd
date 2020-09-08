@@ -21,6 +21,9 @@ jobs:
       #     name: Javascript Linter
       #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
       - run:
+          name: Install unit test framework
+          command: npm add --save-dev jest jest-junit
+      - run:
           name: Run tests with JUnit as reporter
           command: |
             jest --ci --runInBand --reporters=default --reporters=jest-junit
@@ -170,12 +173,6 @@ workflows:
               ignore:
                 - preview
                 - master
-      - quick:
-          filters:
-            branches:
-              ignore:
-                - master
-                - dev
                        
   preview:
     jobs:
