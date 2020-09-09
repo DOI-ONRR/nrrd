@@ -118,7 +118,7 @@
     "serve": "gatsby serve",
     "test": "jest",
     "test-watch": "jest --watchAll",
-    "lint": "eslint ./src/ --format junit --output-file ~/reports/eslint.xml"
+    "lint": "eslint ./src/ --format junit --output-file ./test-results/eslint.xml"
   },
   "repository": {
     "type": "git",

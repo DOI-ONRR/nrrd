@@ -9,13 +9,13 @@ jobs:
       - run: npm install eslint
       - run:
           command: |
-            mkdir -p ~/reports
+            mkdir -p ./test-results
             npm run lint
           when: always
       - store_test_results:
-          path: ~/reports
+          path: ./test-results
       - store_artifacts:
-          path: ~/reports 
+          path: ./test-results 
   unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
