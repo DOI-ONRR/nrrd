@@ -7,15 +7,15 @@ jobs:
     steps:
       - checkout
       - run: npm install eslint
-      - run: 
+      - run:
           command: |
             mkdir -p ~/reports
-            eslint ./src/ --format junit --output-file ~/test-results/eslint.xml
+            eslint ./src/ --format junit --output-file ~/reports/eslint.xml
           when: always
       - store_test_results:
-        path: ./test-results
+          path: ~/reports
       - store_artifacts:
-        path: ./test-results
+          path: ~/reports 
   unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
