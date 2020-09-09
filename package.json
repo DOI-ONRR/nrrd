@@ -116,7 +116,7 @@
     "format": "eslint --fix 'src/**'",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "jest --testPathIgnorePatterns=src",
+    "test": "jest",
     "test-unit-tests": "jest --testPathPattern=src",
     "test-lighthouse": "jest --testPathPattern=lighthouse",
     "test-watch": "jest --watchAll",
