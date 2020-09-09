@@ -12,9 +12,9 @@ jobs:
             mkdir -p ~/reports
             eslint ./src/ --format junit --output-file ~/test-results/eslint.xml
           when: always
-    - store_test_results:
+      - store_test_results:
         path: ./test-results
-    - store_artifacts:
+      - store_artifacts:
         path: ./test-results
   unit_tests:
     docker:
