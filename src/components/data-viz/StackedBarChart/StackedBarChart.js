@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
       fontSize: theme.typography.h5.fontSize,
     },
     '& .x-axis > .tick': {
-      fontSize: '.95rem',
+      fontSize: '.85rem',
       fontWeight: 'normal',
     },
     '& .x-axis > .tick:nth-child(odd)': {
@@ -104,6 +104,8 @@ const StackedBarChart = props => {
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
 
+  console.log('StackedBarChart props: ', props)
+
   const classes = useStyles()
   const size = useWindowSize()
 
@@ -132,7 +134,7 @@ const StackedBarChart = props => {
     <>
       {title && <ChartTitle>{title}</ChartTitle>}
       <div className={classes.container} ref={elemRef}>
-        <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }`}></div>
+        <div className={`${ classes.chart } ${ options.horizontal ? classes.horizontal : '' }`}></div>
         <div className={classes.legend}></div>
       </div>
     </>
