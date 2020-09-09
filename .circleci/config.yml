@@ -42,8 +42,11 @@ jobs:
       - image: circleci/node:12.13.0-browsers
     steps:
       - run:
+          name: Install jest cli
+          command: npm install -g jest-cli
+      - run:
           name: Install node dependencies
-          command: yarn add --dev jest jest-cli jest-junit lighthouse
+          command: npm install --dev jest jest-junit lighthouse
       - run:
           name: Run tests with JUnit as reporter
           command: jest --ci --runInBand --reporters=default --reporters=jest-junit --testPathPattern=lighthouse
