@@ -57,7 +57,18 @@ export default class D3LineChart {
       return d3.axisLeft(yScale)
         .ticks(4)
         .tickFormat(d => {
-          return (d < 1000000000) ? `${ d / 1000000 }M` : `${ d / 1000000000 }B`
+          if (d > 1000000000) {
+            return `${ d / 1000000000 }B`
+          }
+          else if (d >= 1000000 && d < 1000000000) {
+            return `${ d / 1000000 }M`
+          }
+          else if (d < 1000000 && d >= 1000) {
+            return `${ d / 1000 }K`
+          }
+          else if (d < 1000) {
+            return `${ d / 100 }`
+          }
         })
 
       // Create an axis component with d3.axisLeft
