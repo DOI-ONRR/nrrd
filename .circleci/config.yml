@@ -43,7 +43,7 @@ jobs:
     steps:
       - run:
           name: Install node dependencies
-          command: yarn add --dev jest-junit lighthouse
+          command: yarn add --dev jest jest-cli jest-junit lighthouse
       - run:
           name: Run tests with JUnit as reporter
           command: jest --ci --runInBand --reporters=default --reporters=jest-junit --testPathPattern=lighthouse
