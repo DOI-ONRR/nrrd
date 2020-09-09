@@ -10,7 +10,7 @@ jobs:
       - run:
           command: |
             mkdir -p ~/reports
-            eslint ./src/ --format junit --output-file ~/reports/eslint.xml
+            npm lint ./src/ --format junit --output-file ~/reports/eslint.xml
           when: always
       - store_test_results:
           path: ~/reports
