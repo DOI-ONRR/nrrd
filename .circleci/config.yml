@@ -48,12 +48,12 @@ jobs:
           name: Install node dependencies
           command: npm install
       - save_cache:
-        key: v3-node-modules-{{ checksum "package-lock.json" }}
-        paths:
-          - node_modules
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
       - run:
           name: Run lighthouse audit
-          command: npm run test-lighthouse
+          command: npm run lighthouse
       - store_test_results:
           path: ./test-results
       - store_artifacts:
