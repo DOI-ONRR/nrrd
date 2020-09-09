@@ -30,7 +30,8 @@ const useStyles = makeStyles(theme => ({
     },
     '@media (max-width: 768px)': {
       '& svg': {
-        maxHeight: '70px !important',
+        // maxHeight: '70px !important',
+        maxWidth: 200,
       },
     },
   },
