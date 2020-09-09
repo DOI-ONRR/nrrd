@@ -116,7 +116,7 @@
     "format": "eslint --fix 'src/**'",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "jest",
+    "test": "jest --testPathPattern=__tests__",
     "test-watch": "jest --watchAll",
     "lint": "eslint ./src/ --format junit --output-file ./test-results/eslint.xml"
   },

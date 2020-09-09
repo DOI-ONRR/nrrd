@@ -32,7 +32,7 @@ jobs:
             - node_modules
       - run:
           name: Run tests with JUnit as reporter
-          command: npm test --ci --reporters=default --reporters=jest-junit
+          command: npm test --ci --reporters=default --reporters=jest-junit --testPathIgnorePatterns=__tests__
       - store_test_results:
           path: ./test-results
       - store_artifacts:
@@ -53,7 +53,7 @@ jobs:
             - node_modules
       - run:
           name: Run tests with JUnit as reporter
-          command: npm test ./__tests__/lighthouse.test.js --ci --reporters=default --reporters=jest-junit
+          command: npm test --ci --reporters=default --reporters=jest-junit --testPathPattern=__tests__
       - store_test_results:
           path: ./test-results
       - store_artifacts:
