@@ -37,6 +37,27 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./test-results
+  lighthouse:
+    docker:
+      - image: circleci/node:12.13.0-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run tests with JUnit as reporter
+          command: npm test ./__tests__/lighthouse.test.js --ci --reporters=default --reporters=jest-junit
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./test-results
   
   quick:
     docker:
@@ -177,12 +198,18 @@ workflows:
               ignore:
                 - preview
                 - master
+      - lighthouse:
+          filters:
+            branches:
+              ignore:
+                - preview
+                - master
       - lint:
-        filters:
-          branches:
-            ignore:
-              - preview
-              - master
+          filters:
+            branches:
+              ignore:
+                - preview
+                - master
                        
   preview:
     jobs:
