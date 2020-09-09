@@ -104,8 +104,6 @@ const StackedBarChart = props => {
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
 
-  console.log('StackedBarChart props: ', props)
-
   const classes = useStyles()
   const size = useWindowSize()
 
