@@ -117,7 +117,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "jest",
-    "test-lighthouse": "jest --testPathPattern=__tests__",
+    "test-unit-tests": "jest --testPathPattern=src",
+    "test-lighthouse": "jest --testPathPattern=lighthouse",
     "test-watch": "jest --watchAll",
     "lint": "eslint ./src/ --format junit --output-file ./test-results/eslint.xml"
   },
