@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import ChartTitle from '../ChartTitle'
 import BarChart from './D3StackedBarChart.js'
+import useWindowSize from '../../../js/hooks/useWindowSize'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -31,6 +32,11 @@ const useStyles = makeStyles(theme => ({
     '& .x-axis > .tick': {
       fontSize: '1rem',
       fontWeight: 'normal',
+    },
+    '& .x-axis > .tick:nth-child(odd)': {
+      '@media (max-width: 375px)': {
+        display: 'none',
+      },
     },
     '& .y-axis > .tick': {
       fontSize: theme.typography.body2.fontSize,
@@ -99,17 +105,26 @@ const StackedBarChart = props => {
   // use ONRR topojson file for land
 
   const classes = useStyles()
+  const size = useWindowSize()
 
   const { data, ...options } = props
   const elemRef = useRef(null)
   const title = options.title || ''
-  useEffect(() => {
+
+  const drawChart = () => {
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
     const chart = new BarChart(elemRef.current, data, options)
     chart.draw(data)
-    //  }, [elemRef]) What does this do? Other then cause it to not update
+  }
+
+  useEffect(() => {
+    drawChart()
   })
+
+  useEffect(() => {
+    drawChart()
+  }, [size.width])
 
   return (
     <>
