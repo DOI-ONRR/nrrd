@@ -14,11 +14,8 @@ then
     echo "Conflict occurred aborting merge - Did you merge staging with your branch before pushing?"
     git merge --abort
     exit $CONFLICT
-else 
-    echo "cf push preview-nrrd -f ./manifest.staging.yml "
-    cf push preview-nrrd -f ./manifest.staging.yml   
-    echo "$BRANCH merge is successful commiting change: Changes can be viewed at https://preview-nrrd.app.cloud.gov"
-    
+else
+    git push origin staging
 
 fi
 
