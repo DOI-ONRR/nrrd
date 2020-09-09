@@ -43,10 +43,10 @@ jobs:
     steps:
       - run:
           name: Install node dependencies
-          command: npm install jest jest-junit lighthouse
+          command: yarn add --dev jest-junit lighthouse
       - run:
           name: Run tests with JUnit as reporter
-          command: npm test -- --testPathPattern=lighthouse
+          command: jest --ci --runInBand --reporters=default --reporters=jest-junit --testPathPattern=lighthouse
       - store_test_results:
           path: ./test-results
       - store_artifacts:
