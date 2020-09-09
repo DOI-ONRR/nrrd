@@ -2,14 +2,15 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
-import GlossaryTerm from '../../../GlossaryTerm//GlossaryTerm.js'
+
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 import * as d3 from 'd3'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+
+import QueryLink from '../../../../components/QueryLink'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -20,15 +21,13 @@ import {
   useTheme
 } from '@material-ui/core'
 
-// import CloseIcon from '@material-ui/icons/Close'
-// import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
 import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
   query RevenueTopLocations($year: Int!, $locations: [String!], $period: String!,  $commodities: [String!]) {
     revenue_summary(
       where: {location_type: {_in: $locations}, year: { _eq: $year }, location_name: {_neq: ""}, period: {_eq: $period}, commodity: {_in: $commodities}  },
-      order_by: { year: asc, total: desc }
+      order_by: {  total: desc }
     ) {
       location_name
       year
@@ -72,6 +71,7 @@ const useStyles = makeStyles(theme => ({
         width: '70%',
         '@media (max-width: 426px)': {
           marginRight: 0,
+          width: '100%',
         },
       },
     },
@@ -85,9 +85,9 @@ const RevenueTopLocations = ({ title, ...props }) => {
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const location = (filterState[DFC.MAP_LEVEL]) ? filterState[DFC.MAP_LEVEL] : 'State'
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-    const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
-    const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-    const commodity_key= (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
+  const offshore = (filterState[DFC.OFFSHORE_REGIONS]) ? filterState[DFC.COUNTIES] : 'Hide'
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
   const locations = ['State', 'Offshore', 'Native American']
   if (offshore !== 'Hide') {
     locations.push('Offshore')
@@ -95,7 +95,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
   if (location === 'State') {
     locations.push('Native American')
   }
-    const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, locations, period, commodities } })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, locations, period, commodities } })
 
   if (loading) {
     return (
@@ -117,21 +117,35 @@ const RevenueTopLocations = ({ title, ...props }) => {
       .entries(data.revenue_summary)
       .map(d => {
         return ({ location_name: d.key, total: d.value })
-      })
-     // console.debug('CHART DATA', chartData)
+      }).sort((a, b) => (a.total < b.total) ? 1 : -1)
+
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
           <Grid item xs={12}>
-            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-              <Box component="h3" color="secondary.dark">{title}</Box>
+            <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+              <Box component="h3" color="secondary.dark" display="inline">{title}</Box>
+              <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+                <QueryLink
+                  groupBy={DFC.STATE_OFFSHORE_NAME}
+                  linkType="FilterTable" {...props}>
+                Query nationwide revenue
+                </QueryLink>
+              </Box>
+            </Box>
+            <Box display={{ xs: 'block', sm: 'none' }} align="left">
+              <QueryLink
+                groupBy={DFC.STATE_OFFSHORE_NAME}
+                linkType="FilterTable" {...props}>
+                Query nationwide revenue
+              </QueryLink>
             </Box>
           </Grid>
           <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
                 <CircleChart
-                  key ={'RTL' + dataSet + commodity_key}
+                  key ={`RTL${ dataSet }${ commodityKey }`}
                   data={chartData}
                   maxLegendWidth='800px'
                   xAxis='location_name'

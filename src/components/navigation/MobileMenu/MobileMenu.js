@@ -76,7 +76,6 @@ const MobileMenu = ({ children, ...rest }) => {
       <List classes={{ root: classes.listRoot }}>
         {
           React.Children.map(children, (child, index) => {
-
             if (child.props.href) {
               return (
                 <ListItem button key={index} disableGutters>

@@ -10,6 +10,7 @@ import {
   COUNTY,
   COUNTY_NAME,
   COMMODITY,
+  COMMODITY_ORDER,
   PRODUCT,
   REVENUE_TYPE,
   PERIOD,
@@ -78,9 +79,10 @@ const PRODUCTION_QUERY = variableConfig => {
       ${ whereClause }
     }) {
     ${ PRODUCT }: ${ DB_COLS[PRODUCT] }
+    ${ COMMODITY_ORDER }: ${ DB_COLS[COMMODITY_ORDER] }
     ${ LAND_TYPE }: ${ DB_COLS[LAND_TYPE] }
     ${ STATE_OFFSHORE_NAME }: ${ DB_COLS[STATE_OFFSHORE_NAME] }
-    ${ COUNTY }: ${ DB_COLS[COUNTY] }
+    ${ COUNTY }: ${ DB_COLS[COUNTY_NAME] }
     ${ ALL_REVENUE_YEARS }
   }
   counts:query_tool_production_data_aggregate (

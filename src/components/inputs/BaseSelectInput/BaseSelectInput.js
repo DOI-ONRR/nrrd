@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes, { object } from 'prop-types'
+import PropTypes from 'prop-types'
 import { isEqual, isEqualWith } from 'lodash'
 
 import {
@@ -76,7 +76,10 @@ const BaseInput = withStyles(theme =>
       border: '1px solid #ced4da',
       padding: '8.5px 14px',
       transition: theme.transitions.create(['border-color', 'box-shadow']),
-      minWidth: 130,
+      minWidth: 'inherit',
+      '@media (min-width: 1440px)': {
+        minWidth: 130,
+      },
       '&:focus': {
         borderRadius: 4,
         borderColor: '#80bdff',
@@ -293,10 +296,11 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
         defaultItems = []
       }
     }
+
     return (defaultItems && !disabled) ? defaultItems : []
   }
   const [selectedOptions, setSelectedOptions] = useState(getDefaultSelected())
-  const [selectAllOptions, setSelectAllOptions] = useState(defaultSelectAll)
+  const [selectAllOptions, setSelectAllOptions] = useState((selected) ? false : defaultSelectAll)
   const [selectedOptionsChanged, setSelectedOptionsChanged] = useState(false)
 
   const handleChange = value => {
@@ -327,9 +331,6 @@ const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAl
 
   const handleRenderValue = renderValues => {
     let selectedVal
-    if (label === 'Recipient') {
-      // console.log(selected, renderValues, selectedOptions)
-    }
 
     if (renderValues && renderValues.length !== data.length) {
       selectedVal = renderValues.join(', ')

@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 import {
   Box,
   Grid
@@ -14,7 +16,6 @@ import SectionControls from '../../sections/SectionControls'
 import Link from '../../../components/Link'
 
 import utils from '../../../js/utils'
-import CONSTANTS from '../../../js/constants'
 
 const TOGGLE_VALUES = {
   Year: 'year',
@@ -90,7 +91,7 @@ const TotalDisbursements = props => {
     setPeriod(value)
   }
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.DISBURSEMENT } (dollars)`
+  const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } (dollars)`
 
   const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY)
   if (loading) {
@@ -192,7 +193,10 @@ const TotalDisbursements = props => {
             legendHeaders={legendHeaders}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
-            <Link href='/downloads/disbursements/'>Source file</Link>
+            { (toggle === TOGGLE_VALUES.Month)
+              ? <Link href='/downloads/disbursements-by-month/'>Source file</Link>
+              : <Link href='/downloads/disbursements/'>Source file</Link>
+            }
           </Box>
         </Grid>
       </Grid>

@@ -5,11 +5,9 @@ import gql from 'graphql-tag'
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-
-import CONSTANTS from '../../../../js/constants'
 
 const REVENUE_QUERY = gql`
   query MapRevenue($year: Int!, $commodities: [String!], $location: [String!], $period: String!) {
@@ -34,9 +32,7 @@ export default props => {
   })
 
   let mapData = [[]]
-  const onZoomEnd = event => {
-    console.debug('Event : ', event)
-  }
+
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -51,7 +47,6 @@ export default props => {
       .map(d => [d.key, d.value])
   }
 
-    
   return (
     <>
       {mapData &&
@@ -66,8 +61,8 @@ export default props => {
             mapX={props.mapX}
             mapY={props.mapY}
             onZoomEnd={props.onZoomEnd}
-       onClick={props.onClick}
-       legendFormat={utils.formatToSigFig_Dollar}
+            onClick={props.onClick}
+            legendFormat={utils.formatToSigFig_Dollar}
             handleMapSnackbar={props.handleMapSnackbar}
             handleMapSnackbarClose={props.handleMapSnackbarClose} />
         </>

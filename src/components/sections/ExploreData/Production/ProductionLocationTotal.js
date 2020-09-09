@@ -8,7 +8,6 @@ import * as d3 from 'd3'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-// import CONSTANTS from '../../../../js/constants'
 
 const LOCATION_TOTAL_QUERY = gql`
   query NationwideFederal($location: [String!], $year: Int!, $period: String!, $product: String!) {
@@ -49,7 +48,7 @@ const ProductionLocationTotal = props => {
   if (data) {
     const groupedLocationData = utils.groupBy(data.production_summary, 'location')
 
-    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS]) {
+    if (groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS] && groupedLocationData[DFC.NATIONWIDE_FEDERAL_FIPS].length > 0) {
       nationwideSummary = d3.nest()
         .key(k => k.location)
         .rollup(v => d3.sum(v, i => i.total))
@@ -62,7 +61,7 @@ const ProductionLocationTotal = props => {
       nationwideSummary = [{ location: DFC.NATIONWIDE_FEDERAL_FIPS, total: 0 }]
     }
 
-    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS]) {
+    if (groupedLocationData[DFC.NATIVE_AMERICAN_FIPS] && groupedLocationData[DFC.NATIVE_AMERICAN_FIPS].length > 0) {
       nativeSummary = d3.nest()
         .key(k => k.location)
         .rollup(v => d3.sum(v, i => i.total))
@@ -81,7 +80,11 @@ const ProductionLocationTotal = props => {
 
     return (
       <>
-        The Office of Natural Resources Revenue (ONRR) collects detailed data about the volume of mineral and energy commodities companies produce from federal and Native American lands and waters. <strong>For {period.toLowerCase()} {year}, companies reported to ONRR that they produced {utils.formatToCommaInt(nationwideSummary[0].total)} {unit} of {product.toLowerCase()} from federal sources and {utils.formatToCommaInt(nativeTotal)} {unit} of {product.toLowerCase()} from Native American sources for a total of {utils.formatToCommaInt(nationwideSummary[0].total + nativeTotal)} {unit} of {product.toLowerCase()}.</strong>
+        The Office of Natural Resources Revenue (ONRR) collects detailed data about the volume of mineral and energy commodities companies
+        produce from federal and Native American lands and waters. <strong>For {period.toLowerCase()} {year}, companies reported to ONRR
+        that they produced {utils.formatToCommaInt(nationwideSummary[0].total)} {unit} of {product.toLowerCase()} from federal sources and
+        {utils.formatToCommaInt(nativeTotal)} {unit} of {product.toLowerCase()} from Native American sources for a total of
+        {utils.formatToCommaInt(nationwideSummary[0].total + nativeTotal)} {unit} of {product.toLowerCase()}.</strong>
       </>
     )
   }

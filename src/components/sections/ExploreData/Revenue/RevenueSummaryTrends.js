@@ -10,13 +10,12 @@ import {
 } from '@material-ui/core'
 
 import Sparkline from '../../../data-viz/Sparkline'
+import LocationName from '../LocationName'
 
-import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import utils from '../../../../js/utils'
-import CONSTANTS from '../../../../js/constants'
 
 const APOLLO_QUERY = gql`
   query RevenueSummaryTrend($state: String!, $period: String!, $commodities: [String!]) {
@@ -42,22 +41,29 @@ const RevenueSummaryTrends = props => {
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const state = props.fipsCode
-  const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : undefined
   const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
 
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  let commodityText= 'revenue'
+  let commodityText = 'revenue'
   if (commodities && commodities.length === 1) {
-    commodityText = commodities[0].toLowerCase()+' revenue'
-  } else if ( commodities && commodities.length > 1 ) {
+    commodityText = commodities[0].toLowerCase() + ' revenue'
+  }
+  else if (commodities && commodities.length > 1) {
     commodityText = 'revenue from the selected commodities'
   }
-  
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: period, commodities:commodities  }
+    variables: { state: state, period: period, commodities: commodities }
   })
 
-  const name = props.name
+  const location = {
+    county: props.county,
+    districtType: props.districtType,
+    fipsCode: props.fipsCode,
+    name: props.name,
+    regionType: props.regionType,
+    locationName: props.locationName
+  }
 
   let sparkData = []
   let sparkMin
@@ -85,11 +91,11 @@ const RevenueSummaryTrends = props => {
     data.revenue_summary.length > 0
   ) {
     periodData = data.period
-     // console.debug('PERIODDATA', periodData)
+    // console.debug('PERIODDATA', periodData)
     // set min and max trend years
     sparkMin = periodData.reduce((min, p) => p.year < min ? p.year : min, parseInt(periodData[0].period_date.substring(0, 4)))
     sparkMax = periodData.reduce((max, p) => p.year > max ? p.year : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
-     // console.debug('WTH: ', data.revenue_summary)
+    // console.debug('WTH: ', data.revenue_summary)
     fiscalData = d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
@@ -106,14 +112,13 @@ const RevenueSummaryTrends = props => {
         total ? total[1] : 0
       ])
     })
-     // console.debug('wth: ', fiscalData, sparkData)
+    // console.debug('wth: ', fiscalData, sparkData)
     // sparkline index
     highlightIndex = sparkData.findIndex(
       x => x[0] === parseInt(year)
     )
 
-    row = fiscalData.length > 1 && fiscalData[fiscalData.findIndex(x => x[0] === parseInt(year))]
-
+    row = fiscalData.length > 0 && fiscalData[fiscalData.findIndex(x => x[0] === parseInt(year))]
     total = row ? row[1] : 0
 
     return (
@@ -149,7 +154,7 @@ const RevenueSummaryTrends = props => {
     )
   }
   else {
-    return (<span>{name} has had no federal {commodityText} since 2003.</span>)
+    return (<span><LocationName location={location} /> has had no federal {commodityText} since 2003.</span>)
   }
 }
 

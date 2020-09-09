@@ -4,11 +4,10 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import utils from '../../../../js/utils'
-// import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import CONSTANTS from '../../../../js/constants'
+
 import * as d3 from 'd3'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -18,6 +17,7 @@ import {
 
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
+import QueryLink from '../../../../components/QueryLink'
 
 const useStyles = makeStyles(theme => ({
   boxTopSection: {
@@ -66,12 +66,8 @@ const DisbursementDetailTrends = props => {
   }
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: CONSTANTS.FISCAL_YEAR, year: year }
+    variables: { state: state, period: DFC.FISCAL_YEAR_LABEL, year: year }
   })
-
-  const closeCard = item => {
-    props.closeCard(props.fips_code)
-  }
 
   if (loading) return 'Loading...'
 
@@ -138,6 +134,26 @@ const DisbursementDetailTrends = props => {
               Disbursement trend ({sparkMin} - {sparkMax})
             </Box>
           )}
+
+          {(state === DFC.NATIVE_AMERICAN_FIPS) &&
+            <Box>
+              <QueryLink
+                groupBy={DFC.RECIPIENT}
+                linkType="FilterTable" {...props}
+                recipient="Native American tribes and individuals">
+                  Query disbursements
+              </QueryLink>
+            </Box>
+          }
+          {(state.length === 5) &&
+            <Box>
+              <QueryLink
+                groupBy={DFC.LOCAL_RECIPIENT}
+                linkType="FilterTable" {...props}>
+                  Query disbursements
+              </QueryLink>
+            </Box>
+          }
         </Box>
       </>
     )

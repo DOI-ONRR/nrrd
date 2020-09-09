@@ -62,6 +62,42 @@ jobs:
       - checkout
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run: 
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: deploy preview to cloud.gov
+          command: |
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            cp Staticfile ./public
+            bash .circleci/preview.sh
+
+      # Upload test results
+      
+      - store_test_results:
+          path: /tmp/test-reports
+
+  stage:
+    docker:
+      - image: circleci/node:12.13.0
+    resource_class: xlarge
+    environment:
+      TEST_REPORTS: /tmp/test-reports   
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Merge to staging
+          command: bash ./circleci/preview.sh
       - run:
           name: Install node dependencies
           command: npm install
@@ -77,8 +113,11 @@ jobs:
           command: |
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
             sudo dpkg -i cf-cli_amd64.deb
-            bash .circleci/preview.sh
-
+            cp Staticfile ./public
+	    cf api https://api.fr.cloud.gov
+            cf auth "$STAGING_CF_USERNAME" "$STAGING_CF_PASSWORD"
+            cf target -o "$STAGING_CF_ORG" -s "$STAGING_CF_SPACE"
+	    cf push preview-nrrd -f ./manifest.yml
       # Upload test results
       
       - store_test_results:
@@ -109,11 +148,12 @@ jobs:
       - run:
           name: deploy to cloud.gov
           command: |
-            pwd && ls -l	
+            pwd && ls -l
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb	  
+            sudo dpkg -i cf-cli_amd64.deb  
             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+            cp Staticfile ./public
             cf api https://api.fr.cloud.gov
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
@@ -149,9 +189,10 @@ jobs:
       - run:
           name: deploy preview to cloud.gov
           command: |
-            pwd && ls -l	
+            pwd && ls -l
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb	  
+            sudo dpkg -i cf-cli_amd64.deb
+            cp Staticfile ./public
             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
             cf api https://api.fr.cloud.gov
@@ -176,9 +217,19 @@ workflows:
                 - master
                 - dev
                        
-  preview:
+  #preview:
+  #  jobs:
+  #    - preview:
+  #        filters:
+  #          branches:
+  #            ignore:
+  #              - master
+  #              - dev
+  #
+  
+  stage:
     jobs:
-      - preview:
+      - stage:
           filters:
             branches:
               ignore:

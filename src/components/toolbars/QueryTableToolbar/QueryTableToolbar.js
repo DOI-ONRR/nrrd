@@ -15,16 +15,13 @@ import {
   EXCEL,
   CSV,
   DOWNLOAD_DATA_TABLE,
-  STATE_OFFSHORE_NAME,
-  PERIOD_TYPES,
-  LAND_TYPE
+  PERIOD_TYPES
 } from '../../../constants'
 
 import {
   DataTypeSelectInput,
   LandTypeSelectInput,
   RevenueTypeSelectInput,
-  CountySelectInput,
   CommoditySelectInput,
   ProductSelectInput,
   RecipientSelectInput,
@@ -108,7 +105,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const QueryTableToolbar = ({ label, ...props }) => {
-  const { state, updateDataFilter } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
   const downloadDataContext = useContext(DownloadContext)
   if (!state) {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
@@ -226,10 +223,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
       { downloadToolbarOpen &&
       <BaseToolbar isSecondary={true}>
         <Box mr={2}>
-          <Link href={'#'} onClick={handleDownloadExcel} linkType='DownloadXls'>Download filterd data (Excel)</Link>
+          <Link href={'#'} onClick={handleDownloadExcel} linkType='DownloadXls'>Download filtered data (Excel)</Link>
         </Box>
         <Box mr={2}>
-          <Link href={'#'} onClick={handleDownloadCsv} linkType='DownloadCsv'>Download filterd data (csv)</Link>
+          <Link href={'#'} onClick={handleDownloadCsv} linkType='DownloadCsv'>Download filtered data (csv)</Link>
         </Box>
         <Box mr={2}>
           {state[DATA_TYPE] === REVENUE &&
@@ -250,10 +247,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
 
 export default QueryTableToolbar
 
-const isCountyEnabled = ({ state }) => (state[STATE_OFFSHORE_NAME] &&
-  (state[STATE_OFFSHORE_NAME].split(',').length === 1) &&
-  (!state[STATE_OFFSHORE_NAME].includes('Offshore')) &&
-  (!state[STATE_OFFSHORE_NAME].includes('Not')))
+// const isCountyEnabled = ({ state }) => (state[STATE_OFFSHORE_NAME] &&
+//   (state[STATE_OFFSHORE_NAME].split(',').length === 1) &&
+//   (!state[STATE_OFFSHORE_NAME].includes('Offshore')) &&
+//   (!state[STATE_OFFSHORE_NAME].includes('Not')))
 
 const RevenueFilterToolbar = () => {
   return (

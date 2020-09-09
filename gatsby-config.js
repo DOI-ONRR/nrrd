@@ -15,7 +15,7 @@ const config = {
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
     googleTagManagerId: GTM_ID,
-    version: 'v6.0.2',
+    version: 'v6.1.1',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -163,6 +163,12 @@ const config = {
           maximumFileSizeToCacheInBytes: 20000000
         },
       },
+    },
+    {
+      resolve: 'gatsby-plugin-remove-console',
+      options: {
+        exclude: ['error', 'warn'], // <- will remove all console calls except these
+      }
     },
     'gatsby-plugin-use-query-params',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array

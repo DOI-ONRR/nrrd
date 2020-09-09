@@ -5,8 +5,7 @@ import {
   useQueryParams,
   StringParam,
   encodeDelimitedArray,
-  decodeDelimitedArray,
-  NumberParam
+  decodeDelimitedArray
 } from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -23,13 +22,13 @@ import { animateScroll as scroll } from 'react-scroll'
 import MapControls from './MapControls'
 import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import ExploreMoreDataButton from './ExploreMoreDataButton'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
-import useEventListener from '../../../js/use-event-listener'
+import useWindowSize from '../../../js/hooks/useWindowSize'
 
 import mapCounties from './counties.json'
 import mapStates from './states.json'
@@ -60,8 +59,13 @@ const useStyles = makeStyles(theme => ({
       position: 'fixed',
       top: 65,
     },
-    '& .legend': {
-      bottom: 140,
+    '& .legend-wrap': {
+      bottom: 142,
+      '@media (max-width: 768px)': {
+        bottom: 210,
+        transform: 'scale(0.9)',
+        left: -5,
+      },
     },
     '& .map-overlay': {
       left: '0',
@@ -124,7 +128,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         boxSizing: 'border-box',
         minWidth: 285,
-        minHeight: 325,
+        minHeight: 330,
         marginBottom: theme.spacing(1),
         bottom: 0,
       },
@@ -291,8 +295,14 @@ const MapContext = props => {
   }
 
   const classes = useStyles()
-  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const theme = useTheme()
+  const size = useWindowSize()
+
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
+
+  const { state: filterState } = useContext(DataFilterContext)
+  const { state: pageState, updateExploreDataCards, updateExploreDataMapZoom } = useContext(ExploreDataContext)
 
   const cards = pageState.cards
 
@@ -308,15 +318,12 @@ const MapContext = props => {
   })
 
   const [mapOverlay, setMapOverlay] = useState(false)
+  // eslint-disable-next-line no-unused-vars
   const [mapActive, setMapActive] = useState(true)
 
   const [mapX, setMapX] = useState(pageState.mapX || 0)
   const [mapY, setMapY] = useState(pageState.mapY || 0)
   const [mapK, setMapK] = useState(pageState.mapZoom)
-
-  const theme = useTheme()
-  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
-  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   // Map snackbar
   const [mapSnackbarState, setMapSnackbarState] = useState({
@@ -358,8 +365,24 @@ const MapContext = props => {
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
   const cardMenuItems = [
-    { fips_code: 'NF', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
-    { fips_code: 'NA', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
+    {
+      fips_code: 'NF',
+      state: 'Nationwide Federal',
+      state_name: 'Nationwide Federal',
+      location_name: 'Nationwide Federal',
+      region_type: '',
+      county: '',
+      label: 'Add Nationwide Federal card'
+    },
+    {
+      fips_code: 'NA',
+      state: 'Native American',
+      state_name: 'Native American',
+      location_name: 'Native American',
+      region_type: '',
+      county: '',
+      label: 'Add Native American card'
+    }
   ]
 
   const { vertical, horizontal, open } = mapSnackbarState
@@ -376,51 +399,52 @@ const MapContext = props => {
   let y = mapY
   let k = mapK
 
-  // onYear
-  const onYear = (selected, x, y, k) => {
-    setMapK(k)
-    setMapY(y)
-    setMapX(x)
-     // console.debug('YEAR ', selected)
-    updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
-  }
-
   // setZoom
   const setZoom = (x, y, k) => {
     setMapY(y)
     setMapX(x)
     setMapK(k)
 
-    dispatch({ type: 'MAP_ZOOM', payload: { mapX: x, mapY: y, mapZoom: k } })
+    updateExploreDataMapZoom({ ...pageState, mapZoom: { mapX: x, mapY: y, mapZoom: k } })
   }
 
-    // onLink
-    
+  // check width, set zoom
+  useEffect(() => {
+    // mobile zoom
+    if (size.width <= 425) {
+      setZoom(105, 150, 0.45)
+    }
+    // tablet zoom
+    if (size.width <= 768 && size.width > 425) {
+      setZoom(125, 75, 0.75)
+    }
+  }, [size.width])
+
+  // onLink
   const onLink = (state, x, y, k) => {
-      
     // decern betweeen topo json and location data fips
-      const fips = state.properties ? state.id : state.fips_code
-      const name = state.properties ? state.properties.name : state.state_name
-      const abbr = state.properties ? state.properties.state : state.state
-      let region='State'
-      if(fips.length===5) {
-	  region='County'
-      }
+    const fips = state.properties ? state.id : state.fips_code
+    const name = state.properties ? state.properties.name : state.state_name
+    const abbr = state.properties ? state.properties.state : state.state
+    let region = 'State'
+    if (fips.length === 5) {
+	    region = 'County'
+    }
     const locations = [...data.onrr.locations, cardMenuItems[0], cardMenuItems[1]]
-      
+
     // filter out location from location data
     const location = locations.filter(item => item.fips_code === fips)
 
     const stateObj = {
-	fipsCode: (location[0]) ? location[0].fips_code : fips   ,
-      name: (location[0]) ?  location[0].state_name : name,
-      locationName:  (location[0]) ? location[0].location_name : name,
-      state:(location[0]) ? location[0].state : abbr,
+      fipsCode: (location[0]) ? location[0].fips_code : fips,
+      name: (location[0]) ? location[0].state_name : name,
+      locationName: (location[0]) ? location[0].location_name : name,
+      state: (location[0]) ? location[0].state : abbr,
       regionType: (location[0]) ? location[0].region_type : region,
-      districtType:(location[0]) ? location[0].district_type : '',
+      districtType: (location[0]) ? location[0].district_type : '',
       county: (location[0]) ? location[0].county : ''
     }
-      console.debug("stateObject: ", stateObj);
+    // console.debug('stateObject: ', stateObj)
     if (
       cards.filter(item => item.fipsCode === fips).length === 0
     ) {
@@ -438,16 +462,11 @@ const MapContext = props => {
       }
     }
 
-    dispatch({ type: 'CARDS', payload: cards })
+    updateExploreDataCards({ ...pageState, cards: cards })
   }
 
   const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
   const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
-  const handleChange = (type, name) => event => {
-    // setZoom(x, y, k)
-     // console.debug('TYPE: ', type, 'Name ', name, 'Event')
-    updateDataFilter({ ...filterState, [type]: event.target.checked })
-  }
 
   const handleClick = val => {
     if (val === 'add' && k >= 0.25) {
@@ -493,10 +512,10 @@ const MapContext = props => {
   const onZoomEnd = event => {
     x = event.transform.x
     y = event.transform.y
-      k = event.transform.k
-       setZoom(x, y, k)
-  
-       // console.debug("OnZoomEnd", event)
+    k = event.transform.k
+    setZoom(x, y, k)
+
+    // console.debug("OnZoomEnd", event)
   }
 
   const onClick = (d, fips, foo, bar) => {

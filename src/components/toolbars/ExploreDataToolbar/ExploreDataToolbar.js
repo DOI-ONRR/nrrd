@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { navigate } from '@reach/router'
 
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import BaseToolbar from '../BaseToolbar'
 import SearchLocationsInput from '../../inputs/SearchLocationsInput'
@@ -17,13 +17,10 @@ import {
   makeStyles
 } from '@material-ui/styles'
 
-import MapIcon from '@material-ui/icons/Map'
-import CalendarIcon from '@material-ui/icons/CalendarToday'
 import LocationOnIcon from '@material-ui/icons/LocationOn'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import AddIcon from '@material-ui/icons/Add'
 
-import ExploreDataIcon from '-!svg-react-loader!../../../img/icons/explore-data.svg'
+import { IconExploreDataImg } from '../../images'
 
 import {
   CommoditySelectInput,
@@ -36,35 +33,29 @@ import {
 
 import YearSlider from '../../sections/ExploreData/YearSlider'
 
-import MapControlToggle from '../../inputs/MapControlToggle'
-
 import {
   COMMODITY,
-  COUNTIES,
-  COUNTY,
   DATA_FILTER_CONSTANTS as DFC,
   DATA_TYPE,
   DISBURSEMENT,
+  DISBURSEMENTS,
   PERIOD,
   PRODUCTION,
   REVENUE,
-  US_STATE,
   OFFSHORE_REGIONS,
   MAP_LEVEL
 } from '../../../constants'
 
-import CONSTANTS from '../../../js/constants'
-
 const EXPLORE_DATA_TOOLBAR_OPTIONS = {
   [DATA_TYPE]: [
     { value: REVENUE, option: 'Revenue' },
-    { value: DISBURSEMENT, option: 'Disbursements' },
+    { value: DISBURSEMENTS, option: 'Disbursements' },
     { value: PRODUCTION, option: 'Production' },
   ],
   [PERIOD]: [
-    { value: CONSTANTS.FISCAL_YEAR, option: DFC.PERIOD_FISCAL_YEAR },
-    { value: CONSTANTS.CALENDAR_YEAR, option: DFC.PERIOD_CALENDAR_YEAR },
-    // { value: CONSTANTS.MONTHLY, option: 'Monthly' }
+    { value: DFC.FISCAL_YEAR_LABEL, option: DFC.PERIOD_FISCAL_YEAR },
+    { value: DFC.PERIOD_CALENDAR_YEAR, option: DFC.PERIOD_CALENDAR_YEAR },
+    // { value: DFC.PERIOD_MONTHLY_YEAR, option: DFC.PERIOD_MONTHLY_YEAR }
   ],
   [MAP_LEVEL]: [
     { value: DFC.STATE, option: DFC.STATE },
@@ -125,27 +116,14 @@ const ExploreDataToolbar = props => {
   const data = useStaticQuery(graphql`
     query DistinctCommodityQuery {
       onrr {
-        production_commodity: fiscal_production_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
-          commodity
-        }
-        production_top_commodity_list: fiscal_production_summary(
-          where: {
-            commodity: {_neq: "", _in: ["Oil (bbl)", "Gas (mcf)", "Coal (tons)"]}
-          }, distinct_on: commodity, order_by: {commodity: desc}) {
-          commodity
-        }
-        production_commodity_list: fiscal_production_summary(
-          where: {
-            commodity: {_neq: "", _nin: ["Oil (bbl)", "Gas (mcf)", "Coal (tons)"]}
-          }, distinct_on: commodity, order_by: {commodity: asc}) {
-            commodity
-        }
-        # replacing in favor of commodity view which has the commodity_order field to order by
-        # revenue_commodity: revenue_commodity_summary(where: {commodity: {_neq: ""}}, distinct_on: commodity) {
-        #   commodity
-        # }
-        commodityOptions: commodity(where: {commodity: {_neq: ""}}, distinct_on: commodity_order, order_by: {commodity_order: asc}) {
-          commodity
+
+ProductionCommodityOptions: production_commodity_options(where: {product: {_neq: ""}}, order_by: {commodity_order: asc}) {
+    product
+  }
+       
+  # replacing in favor of commodity view which has the commodity_order field to order by
+        RevenueCommodityOptions: revenue_commodity_options(where: {commodity: {_neq: ""}}, order_by:  {commodity_order: asc}) {
+           commodity
         }
       }
     }
@@ -157,19 +135,17 @@ const ExploreDataToolbar = props => {
     mapOverlay
   } = props
 
-  const productionCommodityOptions = data.onrr.production_commodity.map(item => item.commodity)
+  const productionCommodityOptions = data.onrr.ProductionCommodityOptions.map(item => item.product)
   // const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
-  const commodityOptions = data.onrr.commodityOptions.map(item => item.commodity)
+  const revenueCommodityOptions = data.onrr.RevenueCommodityOptions.map(item => item.commodity)
 
   const classes = useStyles()
-  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { state: pageState } = useContext(StoreContext)
+  const { state: filterState } = useContext(DataFilterContext)
+  const { state: pageState } = useContext(ExploreDataContext)
 
   const [exploreDataTabOpen, setExploreDataTabOpen] = useState(true)
   const [locationTabOpen, setLocationTabOpen] = useState(false)
   const [exploreMoreTabOpen, setExploreMoreTabOpen] = useState(false)
-
-  const [anchorEl, setAnchorEl] = useState(null)
 
   const {
     dataType,
@@ -181,8 +157,6 @@ const ExploreDataToolbar = props => {
   const {
     cards
   } = pageState
-
-  const commodityList = [...data.onrr.production_top_commodity_list.map(item => item.commodity), ...data.onrr.production_commodity_list.map(item => item.commodity)]
 
   const toggleExploreDataToolbar = event => {
     setExploreDataTabOpen(!exploreDataTabOpen)
@@ -202,12 +176,7 @@ const ExploreDataToolbar = props => {
     setLocationTabOpen(false)
   }
 
-  const handleMenuClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
-
   const handleClose = (index, item) => event => {
-    setAnchorEl(null)
     if (typeof item !== 'undefined') {
       onLink(item)
     }
@@ -224,7 +193,7 @@ const ExploreDataToolbar = props => {
             selected={exploreDataTabOpen}
             onChange={toggleExploreDataToolbar}
           >
-            <ExploreDataIcon className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} />
+            <IconExploreDataImg className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} />
             <span>Explore data</span>
           </FilterToggleInput>
           <FilterToggleInput
@@ -259,7 +228,7 @@ const ExploreDataToolbar = props => {
           {(dataType === 'Revenue') &&
             <CommoditySelectInput
               dataFilterKey={COMMODITY}
-              data={commodityOptions}
+              data={revenueCommodityOptions}
               defaultSelected={commodity}
               defaultSelectAll={typeof commodity === 'undefined'}
               label='Commodity'
@@ -270,7 +239,7 @@ const ExploreDataToolbar = props => {
           {(dataType === 'Production') &&
             <CommoditySelectInput
               dataFilterKey={COMMODITY}
-              data={commodityList}
+              data={productionCommodityOptions}
               defaultSelected={commodity || 'Oil (bbl)'}
               label='Commodity'
               selectType='Single'
@@ -315,7 +284,7 @@ const ExploreDataToolbar = props => {
               data={EXPLORE_DATA_TOOLBAR_OPTIONS[OFFSHORE_REGIONS]}
               defaultSelected={offshoreRegions === true}
               label='Show offshore'
-              helperText=''
+              helperText='Disbursements from offshore production go to the states and counties that surround the offshore area.'
               disabled={dataType === 'Disbursements' || mapOverlay}
               selectType='Single' />
           </Box>
@@ -399,14 +368,8 @@ export default ExploreDataToolbar
 // Map explore menu speed dial
 const MapExploreMenu = props => {
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState(true)
-
-  const handleMenuClick = event => {
-    setAnchorEl(event.currentTarget)
-  }
 
   const handleClose = index => event => {
-    // setAnchorEl(null)
     navigate(props.linkUrls[index])
   }
 

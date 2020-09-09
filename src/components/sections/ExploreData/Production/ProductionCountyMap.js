@@ -6,9 +6,7 @@ import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import CONSTANTS from '../../../../js/constants'
 
-// import CONSTANTS from '../../../../js/constants'
 import mapCounties from '../counties.json'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -25,7 +23,7 @@ const useStyles = makeStyles(theme => ({
       height: 100,
       width: 245,
     },
-    '& .mapContainer > .legend': {
+    '& .mapContainer > .legend-wrap': {
       display: 'none', // quick fix for now, will want to disable most map features for smaller maps
     },
     '& .mapContainer svg': {
@@ -71,17 +69,17 @@ const ProductionCountyMap = props => {
 
   let locationType
   switch (regionType) {
-  case CONSTANTS.STATE:
-    locationType = CONSTANTS.STATE
+  case DFC.STATE:
+    locationType = DFC.STATE
     break
-  case CONSTANTS.COUNTY:
-    locationType = CONSTANTS.COUNTY
+  case DFC.COUNTY_CAPITALIZED:
+    locationType = DFC.COUNTY_CAPITALIZED
     break
-  case CONSTANTS.OFFSHORE:
-    locationType = CONSTANTS.OFFSHORE
+  case DFC.OFFSHORE_CAPITALIZED:
+    locationType = DFC.OFFSHORE_CAPITALIZED
     break
   default:
-    locationType = CONSTANTS.COUNTY
+    locationType = DFC.COUNTY_CAPITALIZED
     break
   }
 
@@ -105,7 +103,7 @@ const ProductionCountyMap = props => {
       <>
         {mapData &&
        <Box className={classes.root}>
-         {(locationType === CONSTANTS.COUNTY || locationType === CONSTANTS.STATE) &&
+         {(locationType === DFC.COUNTY_CAPITALIZED || locationType === DFC.STATE) &&
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Production by county</Box>
            <Map
