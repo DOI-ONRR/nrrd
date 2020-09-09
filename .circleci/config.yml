@@ -32,7 +32,7 @@ jobs:
             - node_modules
       - run:
           name: Run tests with JUnit as reporter
-          command: npm test -- --testPathPattern=src
+          command: npm run test-unit-tests
       - store_test_results:
           path: ./test-results
       - store_artifacts:
@@ -46,7 +46,7 @@ jobs:
           command: npm install jest jest-junit lighthouse
       - run:
           name: Run tests with JUnit as reporter
-          command: npm test-lighthouse  -- --testPathPattern=lighthouse
+          command: npm test -- --testPathPattern=lighthouse
       - store_test_results:
           path: ./test-results
       - store_artifacts:
