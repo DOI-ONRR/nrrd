@@ -32,7 +32,7 @@ jobs:
             - node_modules
       - run:
           name: Run tests with JUnit as reporter
-          command: npm test --testPathPattern=src --ci --reporters=default --reporters=jest-junit 
+          command: npm test -- --testPathPattern=src --ci --reporters=default --reporters=jest-junit
       - store_test_results:
           path: ./test-results
       - store_artifacts:
