@@ -32,7 +32,7 @@ jobs:
             - node_modules
       - run:
           name: Run tests with JUnit as reporter
-          command: npm test-unit-tests --ci --reporters=default --reporters=jest-junit
+          command: jest --ci --reporters=default --reporters=jest-junit --testPathPattern=src
       - store_test_results:
           path: ./test-results
       - store_artifacts:
@@ -186,12 +186,6 @@ workflows:
   audits:
     jobs:
       - unit_tests:
-          filters:
-            branches:
-              ignore:
-                - preview
-                - master
-      - lighthouse:
           filters:
             branches:
               ignore:
