@@ -1,5 +1,13 @@
 version: 2.1
 jobs:
+  lint:
+    docker:
+      - image: circleci/node:12.4
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm install eslint
+      - run: npm run lint
   unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -14,9 +22,6 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-      - run: 
-          name: Javascript Linter
-          command: npm run lint --format junit -o test-results/js-lint-results.xml
       - run:
           name: Run tests with JUnit as reporter
           command: npm test --ci --reporters=default --reporters=jest-junit
@@ -164,6 +169,12 @@ workflows:
               ignore:
                 - preview
                 - master
+      - lint:
+        filters:
+          branches:
+            ignore:
+              - preview
+              - master
                        
   preview:
     jobs:
