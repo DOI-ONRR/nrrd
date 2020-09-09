@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
       fontSize: theme.typography.h5.fontSize,
     },
     '& .x-axis > .tick': {
-      fontSize: '1rem',
+      fontSize: '.95rem',
       fontWeight: 'normal',
     },
     '& .x-axis > .tick:nth-child(odd)': {
@@ -118,10 +118,12 @@ const StackedBarChart = props => {
     chart.draw(data)
   }
 
+  // init drawing of chart
   useEffect(() => {
     drawChart()
   })
 
+  // redraw chart on resize event
   useEffect(() => {
     drawChart()
   }, [size.width])

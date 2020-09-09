@@ -143,7 +143,7 @@ export default class D3StackedBarChart {
       }
       self.chart.append('g')
         .attr('class', 'x-axis')
-        .attr('transform', 'translate(0,' + (self._height - self.marginBottom) + ')')
+        .attr('transform', 'translate(1,' + (self._height - self.marginBottom) + ')')
         .call(createXAxis())
         .selectAll('text')
         .attr('transform', 'rotate(' + rotate + ')')
