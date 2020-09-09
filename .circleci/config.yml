@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key: v3-node-modules-{{ checksum "package-lock.json" }}
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
           command: npm install
