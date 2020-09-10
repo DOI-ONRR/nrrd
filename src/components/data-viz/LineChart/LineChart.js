@@ -37,28 +37,15 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100%',
   },
-  // line: {
-  //   fill: 'none',
-  //   stroke: '#ffab00',
-  //   'stroke-width': 3
-  // },
-
   overlay: {
     fill: 'none',
     'pointer-events': 'all',
   },
-
   /* Style the dots by assigning a fill and stroke */
   dot: {
     fill: '#ffab00',
     stroke: '#fff',
   },
-  /*
-  .focus circle {
-  fill: none;
-  stroke: steelblue;
- */
-
 }
 
 ))
@@ -66,13 +53,14 @@ const useStyles = makeStyles(theme => ({
 const LineChart = props => {
   const classes = useStyles()
   const { data, ...options } = props
-   // console.debug('LINE CHART', data)
+  // console.debug('LINE CHART', data)
   const elemRef = useRef(null)
   const title = options.title || ''
 
   useEffect(() => {
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
+    // eslint-disable-next-line no-unused-vars
     const chart = new D3LineChart(elemRef.current, data, options)
   })
 

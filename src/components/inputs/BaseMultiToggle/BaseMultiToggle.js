@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import {
   FormControl,
   FormLabel,
-  FormGroup,
   FormHelperText
 } from '@material-ui/core'
 

@@ -6,7 +6,6 @@
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.44",
     "@apollo/react-hooks": "^3.1.5",
-    "@babel/polyfill": "^7.10.1",
     "@devexpress/dx-react-core": "^2.6.2",
     "@devexpress/dx-react-grid": "^2.6.2",
     "@devexpress/dx-react-grid-material-ui": "^2.6.2",
@@ -46,6 +45,7 @@
     "gatsby-plugin-meta-redirect": "^1.1.1",
     "gatsby-plugin-offline": "^3.2.1",
     "gatsby-plugin-react-helmet": "^3.3.1",
+    "gatsby-plugin-remove-console": "0.0.2",
     "gatsby-plugin-sharp": "^2.6.2",
     "gatsby-plugin-use-query-params": "^1.0.1",
     "gatsby-remark-autolink-headers": "^2.3.1",
@@ -86,6 +86,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "app-root-dir": "^1.0.2",
     "babel-jest": "^24.9.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-preset-gatsby": "^0.4.9",
     "chrome-launcher": "^0.13.2",
     "eslint": "^6.8.0",

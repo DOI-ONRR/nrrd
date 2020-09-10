@@ -19,7 +19,6 @@ import {
 } from '@material-ui/core'
 
 import { client } from './src/apollo/client'
-import { StoreProvider } from './src/store'
 import {
   AppStatusProvider,
   DownloadProvider
@@ -54,15 +53,13 @@ export const wrapRootElement = ({ element }) => (
   <ErrorBoundary>
     <ThemeProvider theme={theme}>
       <ApolloProvider client={client}>
-        <StoreProvider>
-          <AppStatusProvider>
-            <DownloadProvider>
-              <MDXProvider components={ mdxComponents }>
-                {element}
-              </MDXProvider>
-            </DownloadProvider>
-          </AppStatusProvider>
-        </StoreProvider>
+        <AppStatusProvider>
+          <DownloadProvider>
+            <MDXProvider components={ mdxComponents }>
+              {element}
+            </MDXProvider>
+          </DownloadProvider>
+        </AppStatusProvider>
       </ApolloProvider>
     </ThemeProvider>
   </ErrorBoundary>

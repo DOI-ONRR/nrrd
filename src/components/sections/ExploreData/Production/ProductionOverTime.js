@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
+import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import * as d3 from 'd3'
@@ -89,17 +89,17 @@ const ProductionOverTime = props => {
   const theme = useTheme()
   const title = props.title || ''
   const { state: filterState } = useContext(DataFilterContext)
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-    
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { product: product, period: period }
   })
 
   const handleDelete = props.handleDelete || ((e, val) => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== val) })
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== val) })
   })
 
   if (loading) {
@@ -130,6 +130,7 @@ const ProductionOverTime = props => {
         .map(d => ({ year: parseInt(d.key), value: d.value }))
     )])
 
+    // eslint-disable-next-line no-unused-vars
     for (const [i, arr] of sums.entries()) {
       sums[i] = years.map(year => {
         const sum = sums[i].find(x => x.year === year)

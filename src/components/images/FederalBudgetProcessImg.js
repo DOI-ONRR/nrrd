@@ -22,5 +22,6 @@ export default ({ alt, ...rest }) => {
       }
     }
   `)
+  // eslint-disable-next-line max-len
   return <Img fixed={data.imageSharp.fixed} alt={alt || 'Federal budget process. First, statute (federal statutes determine the maximum amount of funds that can be appropriated). Second, appropriation (Congress determines the amount that a given entity or agency will receive). Third, grant (recipient entities determine how much the funding will be allocated for use in their budgets). Finally, disbursement (recipient entities disburse funds over the course of the fiscal year for budgeted purposes).'} {...rest} />
 }

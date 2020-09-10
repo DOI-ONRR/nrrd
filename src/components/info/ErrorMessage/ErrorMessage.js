@@ -34,7 +34,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ErrorMessage = () => {
-
   const theme = useTheme()
   const classes = useStyles(theme)
   const { state, deleteErrorMessage } = useContext(AppStatusContext)

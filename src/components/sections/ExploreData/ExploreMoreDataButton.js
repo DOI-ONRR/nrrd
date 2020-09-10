@@ -16,7 +16,6 @@ import {
 } from 'react-scroll'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   root: {
