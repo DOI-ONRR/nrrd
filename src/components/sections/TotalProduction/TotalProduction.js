@@ -157,7 +157,6 @@ const TotalProduction = props => {
 
       xAxis = 'month_long'
       xLabels = (x, i) => {
-        // console.debug(x)
         return x.map(v => v.substr(0, 3))
       }
 
