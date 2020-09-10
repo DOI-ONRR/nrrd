@@ -3,7 +3,7 @@ import React from 'react'
 import Link from './Link'
 import renderer from 'react-test-renderer'
 
-describe('Link component:', () => {
+describe('Link components:', () => {
   it('External', () => {
     const tree = renderer
       .create(<Link href="https://revenuedata.doi.gov/">NRRD</Link>)
