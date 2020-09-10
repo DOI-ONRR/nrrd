@@ -85,7 +85,7 @@ const TotalProduction = props => {
   const [selected, setSelected] = useState(undefined)
 
   const toggleChange = value => {
-    // console.debug('ON TOGGLE CHANGE: ', value)
+
     setSelected(undefined)
     setToggle(value)
 
@@ -97,13 +97,11 @@ const TotalProduction = props => {
     }
   }
   const menuChange = value => {
-    // console.debug('ON Menu CHANGE: ', value)
     setSelected(undefined)
     setPeriod(value)
   }
 
   const handleSelect = value => {
-    // console.debug('handle select CHANGE: ', value)
     setSelected(value.selectedIndex)
   }
 
