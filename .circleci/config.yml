@@ -232,8 +232,7 @@ workflows:
       - stage:
           filters:
             branches:
-              ignore:
-                only: staging
+              only: staging
                 
   
   deploy:
