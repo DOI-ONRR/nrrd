@@ -217,24 +217,23 @@ workflows:
                 - master
                 - dev
                        
-  #preview:
-  #  jobs:
-  #    - preview:
-  #        filters:
-  #          branches:
-  #            ignore:
-  #              - master
-  #              - dev
-  #
+  preview:
+    jobs:
+      - preview:
+          filters:
+            branches:
+              ignore:
+                - master
+                - dev
+  
   
   stage:
     jobs:
       - stage:
           filters:
             branches:
-              ignore:
-                - master
-                - dev
+              only: staging
+                
   
   deploy:
     jobs:
