@@ -42,5 +42,23 @@ const fs = require('fs');
 	await page.screenshot({path: 'month_revenue.png'});
     }
     await page.screenshot({path: 'month_revenue.png'});
+
+    await page.click('#full-width-tabpanel-0 > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8 > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4 > div:nth-child(1) > div > button:nth-child(2)')
+    //   await page.waitForNavigation()
+    const result3 = await tester(page, 'month_revenue2.png', {
+      fullPage: true,
+    })
+    
+    if ( result3 ) {
+	console.log("fiscal revenue screenshot is the same!")
+	await page.screenshot({path: 'month_revenue2.png'});
+    } else {
+	console.log("fiscal revenue screenshot is NOT the same!")
+	await page.screenshot({path: 'month_revenue2.png'});
+    }
+    await page.screenshot({path: 'month_revenue2.png'});
+
+
+    
   await browser.close();
 })();
