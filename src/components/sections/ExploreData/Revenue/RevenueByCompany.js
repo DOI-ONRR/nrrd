@@ -5,13 +5,9 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-<<<<<<< HEAD
 import Link from '../../../Link'
 import QueryLink from '../../../../components/QueryLink'
-import { StoreContext } from '../../../../store'
 
-=======
->>>>>>> dev
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
