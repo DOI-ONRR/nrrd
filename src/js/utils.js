@@ -1,6 +1,7 @@
 import * as d3 from 'd3'
 import slugify from 'slugify'
 import currencyFormatter from 'currency-formatter'
+
 import ExcelJs from 'exceljs'
 import { saveAs } from 'file-saver'
 
