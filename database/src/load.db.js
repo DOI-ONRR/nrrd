@@ -73,7 +73,7 @@ const db = new Pool({
   port: DB_PORT,
 })
 
-const { DATA_FILTER_CONSTANTS: DFC } = require('../../src/constants')
+const  DFC = require('./constants')
 
 const etl = require('etl')
 const BATCH = 1
