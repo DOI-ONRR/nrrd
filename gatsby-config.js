@@ -176,8 +176,4 @@ const config = {
   ]
 }
 
-// if (BASEURL) {
-//   config.pathPrefix = `${ BASEURL }`
-// }
-
 module.exports = config
