@@ -4,18 +4,11 @@ import currencyFormatter from 'currency-formatter'
 import ExcelJs from 'exceljs'
 import { saveAs } from 'file-saver'
 
-// @TODO Clean up file and remove utils object and export individual methods
-
-// Import Display Name Yaml Files
-import commodityNames from '../data/commodity_names.yml'
-
 export const destructuringSwap = (list, iA, iB) => {
   [list[iA], list[iB]] = [list[iB], list[iA]]
   return list
 }
 
-// const extentPercent = 0.05
-// const extentMarginOfError = 0.1
 export const formatToDollarFloat = (value, precision) => {
   return currencyFormatter.format(value, {
     symbol: '$',
@@ -23,6 +16,7 @@ export const formatToDollarFloat = (value, precision) => {
     format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
   })
 }
+
 export const getMetricLongUnit = str => {
   const suffix = { k: 'k', M: ' million', G: ' billion' }
 
@@ -46,6 +40,7 @@ export const formatToCommaInt = value => {
     format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
   })
 }
+
 export const downloadWorkbook = (type, fileName, sheetName, cols, rows) => {
   const workbook = new ExcelJs.Workbook()
   const worksheet = workbook.addWorksheet(sheetName)
@@ -183,9 +178,6 @@ const utils = {
       },
       false
     )
-  },
-  getDisplayName_CommodityName: key => {
-    return commodityNames[key] || key
   },
 
   formatToSlug: name => {
