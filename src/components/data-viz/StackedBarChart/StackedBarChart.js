@@ -37,8 +37,15 @@ const useStyles = makeStyles(theme => ({
     },
   },
   horizontal: {
-    extend: 'chart',
+    position: 'relative',
     height: 25,
+    '& .horizontal-stacked-bar-chart': {
+      position: 'absolute',
+      top: 0,
+      left: 5,
+      transform: 'rotate(90deg)',
+      transformOrigin: 'bottom left',
+    }
   },
   legend: {
     display: 'block',

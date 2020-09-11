@@ -21,6 +21,12 @@ const useStyles = makeStyles(theme => ({
     '@media (max-width: 426px)': {
       textAlign: 'left',
     },
+  },
+  periodToggleButton: {
+    '&:hover': {
+      backgroundColor: `${ theme.palette.links.default } !important`,
+      color: theme.palette.common.white,
+    },
   }
 }))
 
@@ -34,11 +40,15 @@ const SectionControls = props => {
   const YEARLY_DROPDOWN_VALUES = props.yearlyDropdownValues
 
   const [labelWidth, setLabelWidth] = useState(0)
+  const [period, setPeriod] = useState(TOGGLE_VALUES.Year)
 
   const disabled = props.disabledInput
 
   const handleToggle = (event, newVal) => {
-    props.onToggleChange(newVal)
+    if (newVal !== null) {
+      props.onToggleChange(newVal)
+      setPeriod(newVal)
+    }
   }
 
   useEffect(() => {
@@ -53,7 +63,7 @@ const SectionControls = props => {
     <>
       <Grid item xs={12} sm={6}>
         <ToggleButtonGroup
-          value={props.toggle}
+          value={period}
           exclusive
           onChange={handleToggle}
           size="large"
@@ -64,7 +74,8 @@ const SectionControls = props => {
                 key={i}
                 value={item}
                 aria-label={item}
-                disableRipple>
+                disableRipple
+                className={classes.periodToggleButton}>
                 { item === TOGGLE_VALUES.Year ? DFC.YEARLY : DFC.MONTHLY_CAPITALIZED }
               </ToggleButton>
             ))

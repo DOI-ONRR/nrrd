@@ -62,7 +62,7 @@ jobs:
       - checkout
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
+      - run: 
           name: Install node dependencies
           command: npm install
       - save_cache:
@@ -80,6 +80,44 @@ jobs:
             cp Staticfile ./public
             bash .circleci/preview.sh
 
+      # Upload test results
+      
+      - store_test_results:
+          path: /tmp/test-reports
+
+  stage:
+    docker:
+      - image: circleci/node:12.13.0
+    resource_class: xlarge
+    environment:
+      TEST_REPORTS: /tmp/test-reports   
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Merge to staging
+          command: bash .circleci/stage.sh
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: deploy preview to cloud.gov
+          command: |
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            cp Staticfile ./public
+            cf api https://api.fr.cloud.gov
+            cf auth "$STAGING_CF_USERNAME" "$STAGING_CF_PASSWORD"
+            cf target -o "$STAGING_CF_ORG" -s "$STAGING_CF_SPACE"
+            cf push preview-nrrd -f ./manifest.yml
       # Upload test results
       
       - store_test_results:
@@ -187,6 +225,15 @@ workflows:
               ignore:
                 - master
                 - dev
+  
+  
+  stage:
+    jobs:
+      - stage:
+          filters:
+            branches:
+              only: staging
+                
   
   deploy:
     jobs:

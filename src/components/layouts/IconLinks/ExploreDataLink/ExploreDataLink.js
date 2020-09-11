@@ -19,9 +19,10 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.links.default,
   },
   exploreDataLink: {
-    textDecoration: 'none',
+    // textDecoration: 'none',
     marginBottom: '1rem',
     display: 'flex',
+    color: theme.palette.links.default,
     '& svg': {
       fill: theme.palette.links.default,
       verticalAlign: 'middle',
@@ -31,7 +32,6 @@ const useStyles = makeStyles(theme => ({
     verticalAlign: 'middle',
     marginRight: '8px',
     '& span': {
-      fontSize: theme.typography.body1.fontSize,
       marginRight: '1rem',
       verticalAlign: 'baseline',
       position: 'relative',
@@ -42,11 +42,11 @@ const useStyles = makeStyles(theme => ({
       textTransform: 'capitalize',
     },
     '&:hover': {
-      textDecoration: 'underline',
+      textDecoration: 'none',
       color: theme.palette.text.secondary,
     },
     '&:active': {
-      textDecoration: 'underline',
+      textDecoration: 'none',
       color: theme.palette.text.secondary,
     }
   }

@@ -232,10 +232,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
       { downloadToolbarOpen &&
       <BaseToolbar isSecondary={true}>
         <Box mr={2}>
-          <Link href={'#'} onClick={handleDownloadExcel} linkType='DownloadXls'>Download filterd data (Excel)</Link>
+          <Link href={'#'} onClick={handleDownloadExcel} linkType='DownloadXls'>Download filtered data (Excel)</Link>
         </Box>
         <Box mr={2}>
-          <Link href={'#'} onClick={handleDownloadCsv} linkType='DownloadCsv'>Download filterd data (csv)</Link>
+          <Link href={'#'} onClick={handleDownloadCsv} linkType='DownloadCsv'>Download filtered data (csv)</Link>
         </Box>
         <Box mr={2}>
           {state[DATA_TYPE] === REVENUE &&

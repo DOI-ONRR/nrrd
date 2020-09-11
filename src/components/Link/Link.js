@@ -27,7 +27,12 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block',
     '&:hover': {
       textDecoration: 'underline',
-    }
+    },
+    '@media (max-width: 768px)': {
+      '& svg': {
+        maxHeight: '70px !important',
+      },
+    },
   },
   headerLinkBold: {
     fontWeight: theme.typography.fontWeightBold
