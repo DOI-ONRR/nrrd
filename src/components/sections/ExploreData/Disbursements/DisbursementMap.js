@@ -33,7 +33,11 @@ export default props => {
   } = filterState
 
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
-    variables: { year: year, period: period, location: mapLevel }
+    variables: {
+      year: year,
+      period: period || filterState.explore_data_filter_default.period,
+      location: mapLevel || filterState.explore_data_filter_default.mapLevel
+    }
   })
   const dataSet = 'FY ' + year
   let mapData = [[]]
