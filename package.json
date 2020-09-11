@@ -119,7 +119,11 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "jest",
-    "lint": "eslint src"
+    "test-update-snapshot": "jest --updateSnapshot",
+    "test-unit-tests": "jest --testPathPattern=src",
+    "test-lighthouse": "jest --testPathPattern=lighthouse",
+    "test-watch": "jest --watchAll",
+    "lint": "eslint ./src/ --format junit --output-file ./test-results/eslint.xml"
   },
   "repository": {
     "type": "git",

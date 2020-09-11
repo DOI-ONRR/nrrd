@@ -1,6 +1,30 @@
 version: 2.1
 jobs:
-  lighthouse_audit:
+  lint:
+    docker:
+      - image: circleci/node:12.4
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          command: |
+            mkdir -p ./test-results
+            npm run lint
+          when: always
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./test-results 
+  unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
     steps:
@@ -15,23 +39,33 @@ jobs:
           paths:
             - node_modules
       - run:
-          name: Build gatsby
-          command: npm run build
-      # - run: 
-      #     name: Javascript Linter
-      #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
-      - run:
-          name: Run test reports with JUnit
-          command: |
-            mkdir -p test-results/junit
-            echo 'test-results/junit directory succesfully created...'
-            npm run test --ci --runInBand --reporters=default --reporters=jest-junit
-          environment:
-            JEST_JUNIT_OUPUT_DIR: "./test-results/junit"
+          name: Run unit tests
+          command: npm run test-unit-tests
       - store_test_results:
-          path: ./test-results/junit
+          path: ./test-results
       - store_artifacts:
-          path: ./test-results/junit
+          path: ./test-results
+  lighthouse:
+    docker:
+      - image: circleci/node:12.13.0-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run lighthouse audit
+          command: npm run test-lighthouse
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./test-results
   
   quick:
     docker:
@@ -62,7 +96,7 @@ jobs:
       - checkout
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
+      - run: 
           name: Install node dependencies
           command: npm install
       - save_cache:
@@ -80,6 +114,44 @@ jobs:
             cp Staticfile ./public
             bash .circleci/preview.sh
 
+      # Upload test results
+      
+      - store_test_results:
+          path: /tmp/test-reports
+
+  stage:
+    docker:
+      - image: circleci/node:12.13.0
+    resource_class: xlarge
+    environment:
+      TEST_REPORTS: /tmp/test-reports   
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Merge to staging
+          command: bash .circleci/stage.sh
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: deploy preview to cloud.gov
+          command: |
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            cp Staticfile ./public
+            cf api https://api.fr.cloud.gov
+            cf auth "$STAGING_CF_USERNAME" "$STAGING_CF_PASSWORD"
+            cf target -o "$STAGING_CF_ORG" -s "$STAGING_CF_SPACE"
+            cf push preview-nrrd -f ./manifest.yml
       # Upload test results
       
       - store_test_results:
@@ -166,18 +238,24 @@ jobs:
 workflows:
   audits:
     jobs:
-      - lighthouse_audit:
+      - unit_tests:
           filters:
             branches:
               ignore:
                 - preview
                 - master
-      - quick:
+      - lighthouse:
           filters:
             branches:
               ignore:
+                - preview
                 - master
-                - dev
+      - lint:
+          filters:
+            branches:
+              ignore:
+                - preview
+                - master
                        
   preview:
     jobs:
@@ -187,6 +265,15 @@ workflows:
               ignore:
                 - master
                 - dev
+  
+  
+  stage:
+    jobs:
+      - stage:
+          filters:
+            branches:
+              only: staging
+                
   
   deploy:
     jobs:

@@ -12,17 +12,13 @@ const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: theme.spacing(1),
     justifyContent: 'flex-end',
-    '@media (max-width: 426px)': {
+    '@media (max-width: 959px)': {
       justifyContent: 'flex-start',
       paddingTop: theme.spacing(0),
     },
   },
   menuLink: {
     color: theme.palette.links.default,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline'
-    }
   },
   iconMap: {
     fill: theme.palette.links.default,
