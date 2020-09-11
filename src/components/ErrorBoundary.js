@@ -18,9 +18,14 @@ class ErrorBoundary extends React.Component {
   render () {
     if (this.state.hasError) {
       return (
-        <Container maxWidth="lg">
-          <h1>An error has occurred.</h1>
-          <a href='/'><p>Please click here to return to the home page.</p></a>
+        <Container maxWidth={false}>
+          <Container maxWidth="lg">
+            <div>
+              <h1>An error has occurred</h1>
+              <a href='/'><p>Please click here to return to the home page.</p></a>
+              <p>If you need additional help, please let us know at <a href="mailto:nrrd@onrr.gov">nrrd@onrr.gov</a>.</p>
+            </div>
+          </Container>
         </Container>
       )
     }
