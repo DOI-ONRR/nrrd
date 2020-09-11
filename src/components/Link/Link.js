@@ -8,7 +8,8 @@ import {
   IconDownloadDataImg,
   IconDownloadBaseImg,
   HowWorksLinkIconImg,
-  FilterTableIconImg
+  FilterTableIconImg,
+  IconExploreDataImg
 } from '../images'
 
 const useStyles = makeStyles(theme => ({
@@ -40,8 +41,8 @@ const useStyles = makeStyles(theme => ({
 })
 )
 
-const IconLink = ({ icon, children, pl = 4, style, ...rest }) => (
-  <Box pl={0} mt={2} mb={2} style={style}>
+const IconLink = ({ icon, children, pl = 0, mt = 2, style, ...rest }) => (
+  <Box pl={pl} mt={mt} mb={2} style={style}>
     <BaseLink {...rest} disableRouting>
       <Box mr={1} display='inline-block'>{icon}</Box>
       <span>{children}</span>
@@ -86,7 +87,8 @@ const LinkTypeComponents = {
   DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />,
   DownloadBase: props => <IconLink icon={<IconDownloadBaseImg />} pl={0} {...props} />,
   HowWorks: props => <IconLink icon={<HowWorksLinkIconImg />} pl={0} {...props} />,
-  FilterTable: props => <IconLink icon={<FilterTableIconImg style={{ position: 'relative', top: 5 }} />} pl={0} {...props} />
+  FilterTable: props => <IconLink icon={<FilterTableIconImg style={{ position: 'relative', top: 5 }} />} pl={0} {...props} />,
+  ExploreData: props => <IconLink icon={<IconExploreDataImg />} mt={0} {...props} />
 }
 
 const regexXlsx = RegExp('.xlsx$')
@@ -131,7 +133,7 @@ Link.propTypes = {
    *
    * By default we determine the appropriate link type but you can specify a type if you want to override it.
    */
-  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'FilterTable', 'Header', 'HowWorks', 'default']),
+  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'FilterTable', 'ExploreData', 'Header', 'HowWorks', 'default']),
   /**
    * Used to flag a relative link that we may not want to use Gatsby Routing for. An example is download files.
    *
