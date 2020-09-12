@@ -1,6 +1,6 @@
 import {
   PERIOD,
-  QUERY_KEY_DATA_TABLE,
+  QK_QUERY_TOOL,
   FISCAL_YEAR,
   PERIOD_FISCAL_YEAR,
   CALENDAR_YEAR,
@@ -20,13 +20,14 @@ import {
   RECIPIENT,
   SOURCE,
   LOCAL_RECIPIENT,
-  COMMODITY_ORDER
+  COMMODITY_ORDER,
+  COMPANY_NAME
 } from '../../constants'
 
 import {
-  getQuery as getQueryQueryToolDataTable,
-  getVariables as getVariablesQueryToolDataTable
-} from './query-tool-data-table-queries'
+  getQuery as getQueryQueryTool,
+  getVariables as getVariablesQueryTool
+} from './query-tool-queries'
 
 /**
  * The query manager provides a standard approach for accessing a query and its variables. This allows us to use this
@@ -72,21 +73,22 @@ export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
   [PRODUCT]: 'product',
   [RECIPIENT]: 'recipient',
   [SOURCE]: 'source',
-  [LOCAL_RECIPIENT]: 'local_recipient'
+  [LOCAL_RECIPIENT]: 'local_recipient',
+  [COMPANY_NAME]: 'corporate_name'
 }
 
 /**
  * All the queries that can be accessed via query key
  */
 const QUERIES = {
-  [QUERY_KEY_DATA_TABLE]: (state, options) => getQueryQueryToolDataTable(state, options)
+  [QK_QUERY_TOOL]: (state, options) => getQueryQueryTool(state, options)
 }
 
 /**
  * All the variables that can be accessed via query key
  */
 const VARIABLES = {
-  [QUERY_KEY_DATA_TABLE]: (state, options) => getVariablesQueryToolDataTable(state, options)
+  [QK_QUERY_TOOL]: (state, options) => getVariablesQueryTool(state, options)
 }
 
 /**
