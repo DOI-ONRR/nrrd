@@ -1411,7 +1411,6 @@ export default class D3StackedBarChart {
       .attr('width', this._width)
       .attr('x', 0)
   }
-
 }
 
 /**

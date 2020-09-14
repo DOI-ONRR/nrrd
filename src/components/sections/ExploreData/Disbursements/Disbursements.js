@@ -18,7 +18,7 @@ export default ({ children }) => {
 
   return (
     <>
-      { type === DFC.DISBURSEMENTS && children }
+      { type === DFC.DISBURSEMENT && children }
     </>
   )
 }
