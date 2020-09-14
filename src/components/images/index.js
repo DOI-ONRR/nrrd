@@ -111,7 +111,7 @@ export const IconDownloadCsvImg = props => <IconDownloadCsvSvg style={{ vertical
 export const IconDownloadDataImg = props => <IconDownloadDataSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
 export const IconQuestionCircleImg = props => <IconQuestionCircleSvg style={{ width: '16px', height: '16px', marginLeft: '1.6px', fill: 'currentColor' }} {...props}/>
 export const IconUsMapImg = props => <IconUsMapSvg {...props} style={{ position: 'relative', top: 10, fill: 'currentColor' }} />
-export const IconExploreDataImg = props => <IconExploreDataSvg style={{ fill: 'currentColor' }} {...props} />
+export const IconExploreDataImg = props => <IconExploreDataSvg style={{ fill: '#1478a6' }} {...props} />
 
 export const MapStateallImg = props => <MapStateallSvg {...props} />
 export const MapStateAKImg = props => <MapStateAKSvg {...props} />
