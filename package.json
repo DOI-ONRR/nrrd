@@ -32,7 +32,7 @@
     "elasticlunr": "^0.9.5",
     "eslint-plugin-flowtype": "^2.0",
     "etl": "^0.6.12",
-    "exceljs": "^3.8.2",
+    "exceljs": "^3.8.0",
     "file-saver": "^2.0.2",
     "gatsby": "^2.24.49",
     "gatsby-cli": "^2.12.16",
@@ -70,6 +70,7 @@
     "react-stickynode": "^2.1.1",
     "react-swipeable-views": "^0.13.9",
     "react-window": "^1.8.5",
+    "regexpu-core": "^4.7.0",
     "rehype-react": "^4.0.1",
     "resize-observer-polyfill": "^1.5.1",
     "slugify": "^1.4.0",
@@ -83,11 +84,12 @@
     "use-query-params": "^1.1.4"
   },
   "devDependencies": {
+    "@babel/helper-create-regexp-features-plugin": "^7.10.4",
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "app-root-dir": "^1.0.2",
     "babel-jest": "^24.9.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "babel-preset-gatsby": "^0.4.9",
+    "babel-preset-gatsby": "^0.5.9",
     "chrome-launcher": "^0.13.2",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
@@ -129,10 +131,5 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
-  "browserslist": [
-    "last 2 version",
-    "> 1%",
-    "IE 11"
-  ]
+  }
 }

@@ -19,7 +19,6 @@ import {
   useTheme
 } from '@material-ui/core'
 
-import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart.js'
 import LineChart from '../../../data-viz/LineChart/LineChart'
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
