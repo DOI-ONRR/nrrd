@@ -5,15 +5,14 @@ import QueryManager from '../js/query-manager'
 import { DataFilterContext } from '../stores/data-filter-store'
 import { AppStatusContext } from '../stores/app-status-store'
 
-const withQueryManager = (BaseComponent, queryKey) => ({ ...props }) => {
+const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) => {
   const { state, updateQueryDataFilterCounts } = useContext(DataFilterContext)
-  const { loading, error, data } = useQuery(QueryManager.getQuery(queryKey, state), QueryManager.getVariables(queryKey, state))
+  const { loading, error, data } = useQuery(QueryManager.getQuery(queryKey, state, options), QueryManager.getVariables(queryKey, state, options))
   const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
 
   useEffect(() => {
     if (data && data.counts && !loading) {
       updateQueryDataFilterCounts({
-        queryKey: queryKey,
         counts: data.counts.aggregate
       })
     }
@@ -36,7 +35,7 @@ const withQueryManager = (BaseComponent, queryKey) => ({ ...props }) => {
 
   return (
     <>
-      <BaseComponent data={data} {...props} />
+      <BaseComponent data={(data && data.options) ? data.options : data} {...props} />
     </>
   )
 }

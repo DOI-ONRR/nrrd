@@ -85,6 +85,7 @@ export default class D3StackedBarChart {
       this.chart = d3.select(this.node.children[0]).append('svg')
         .attr('height', this._height)
         .attr('width', this._width)
+        .attr('class', 'stacked-bar-chart')
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -143,7 +144,7 @@ export default class D3StackedBarChart {
       }
       self.chart.append('g')
         .attr('class', 'x-axis')
-        .attr('transform', 'translate(0,' + (self._height - self.marginBottom) + ')')
+        .attr('transform', 'translate(2,' + (self._height - self.marginBottom) + ')')
         .call(createXAxis())
         .selectAll('text')
         .attr('transform', 'rotate(' + rotate + ')')
@@ -1410,6 +1411,7 @@ export default class D3StackedBarChart {
       .attr('width', this._width)
       .attr('x', 0)
   }
+
 }
 
 /**
