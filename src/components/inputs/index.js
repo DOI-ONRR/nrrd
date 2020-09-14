@@ -26,8 +26,7 @@ import {
   FISCAL_YEAR,
   CALENDAR_YEAR,
   US_STATE_NAME,
-  PERIOD_TYPES,
-  QK_QUERY_TOOL
+  PERIOD_TYPES
 } from '../../constants'
 
 import BaseToggle from './BaseToggle'
