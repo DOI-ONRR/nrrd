@@ -9,7 +9,8 @@ import {
   IconDownloadBaseImg,
   HowWorksLinkIconImg,
   FilterTableIconImg,
-  IconExploreDataImg
+  IconExploreDataImg,
+  IconUsMapImg
 } from '../images'
 
 const useStyles = makeStyles(theme => ({
@@ -88,7 +89,8 @@ const LinkTypeComponents = {
   DownloadBase: props => <IconLink icon={<IconDownloadBaseImg />} pl={0} {...props} />,
   HowWorks: props => <IconLink icon={<HowWorksLinkIconImg />} pl={0} {...props} />,
   FilterTable: props => <IconLink icon={<FilterTableIconImg style={{ position: 'relative', top: 5 }} />} pl={0} {...props} />,
-  ExploreData: props => <IconLink icon={<IconExploreDataImg />} mt={0} {...props} />
+  ExploreData: props => <IconLink icon={<IconExploreDataImg />} mt={0} {...props} />,
+  Location: props => <IconLink icon={<IconUsMapImg />} {...props} />
 }
 
 const regexXlsx = RegExp('.xlsx$')
