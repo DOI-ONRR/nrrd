@@ -119,19 +119,26 @@ jobs:
       - store_test_results:
           path: /tmp/test-reports
 
+  merge_to_stage:
+    docker:
+      - image: circleci/node:12.13.0
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "23:d9:f2:c8:a7:b8:a8:a0:5c:a5:20:15:cc:08:f3:c7"
+      - run:
+          name: Merge to staging
+          command: bash .circleci/stage.sh
+
   stage:
     docker:
       - image: circleci/node:12.13.0
     resource_class: xlarge
-    environment:
-      TEST_REPORTS: /tmp/test-reports   
     steps:
       - checkout
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
-          name: Merge to staging
-          command: bash .circleci/stage.sh
       - run:
           name: Install node dependencies
           command: npm install
@@ -152,10 +159,6 @@ jobs:
             cf auth "$STAGING_CF_USERNAME" "$STAGING_CF_PASSWORD"
             cf target -o "$STAGING_CF_ORG" -s "$STAGING_CF_SPACE"
             cf push preview-nrrd -f ./manifest.yml
-      # Upload test results
-      
-      - store_test_results:
-          path: /tmp/test-reports
    
   dev:
     docker:
@@ -242,39 +245,45 @@ workflows:
           filters:
             branches:
               ignore:
-                - preview
+                - dev
                 - master
-      - lighthouse:
-          filters:
-            branches:
-              ignore:
-                - preview
-                - master
+                - staging
       - lint:
           filters:
             branches:
               ignore:
-                - preview
+                - dev
                 - master
+                - staging
                        
-  preview:
+  # preview:
+  #   jobs:
+  #     - preview:
+  #         filters:
+  #           branches:
+  #             ignore:
+  #               - master
+  #               - dev
+  merge_to_stage:
     jobs:
-      - preview:
+      - merge_to_stage:
           filters:
             branches:
               ignore:
-                - master
                 - dev
-  
-  
-  stage:
+                - master
+                - staging
+
+  deploy_to_stage:
     jobs:
       - stage:
           filters:
             branches:
               only: staging
+      - lighthouse:
+          requires:
+            - stage
                 
-  
   deploy:
     jobs:
       - deploy:
