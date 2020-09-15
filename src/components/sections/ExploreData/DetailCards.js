@@ -394,12 +394,7 @@ const DetailCards = props => {
       cards.filter(item => item.fipsCode === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        if (stateObj.state && stateObj.state.match(/Nationwide Federal/)) {
-          cards.unshift(stateObj)
-        }
-        else {
-          cards.push(stateObj)
-        }
+        cards.push(stateObj)
       }
       else {
         // TODO: snackbar not triggering atm
