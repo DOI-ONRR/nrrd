@@ -120,6 +120,8 @@ jobs:
           path: /tmp/test-reports
 
   merge_to_stage:
+    docker:
+      - image: circleci/node:12.13.0
     steps:
       - checkout
       - run:
