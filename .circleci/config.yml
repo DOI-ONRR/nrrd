@@ -273,13 +273,6 @@ workflows:
                 - dev
                 - master
                 - staging
-      - lighthouse:
-          requires:
-            - merge_to_stage
-          filters:
-            branches:
-              only:
-                - staging
 
   deploy_to_stage:
     jobs:
@@ -287,8 +280,10 @@ workflows:
           filters:
             branches:
               only: staging
+      - lighthouse:
+          requires:
+            - stage
                 
-  
   deploy:
     jobs:
       - deploy:
