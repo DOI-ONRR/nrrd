@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link component: DownloadXls 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-5"
+>
+  <a
+    className="makeStyles-link-1 "
+    href="./excelfile.xlsx"
+  >
+    <div
+      className="MuiBox-root MuiBox-root-6"
+    >
+      <test-file-stub
+        style={
+          Object {
+            "fill": "currentColor",
+            "verticalAlign": "middle",
+          }
+        }
+      />
+    </div>
+    <span>
+      NRRD
+    </span>
+  </a>
+</div>
+`;
+
+exports[`Link component: External 1`] = `
+<a
+  className="makeStyles-link-1 "
+  href="https://revenuedata.doi.gov/"
+>
+  NRRD
+</a>
+`;
+
+exports[`Link component: HowWorks 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-7"
+>
+  <a
+    className="makeStyles-link-1 "
+    href="./how-revenue-works/native-american-production/"
+  >
+    <div
+      className="MuiBox-root MuiBox-root-8"
+    >
+      <test-file-stub
+        style={
+          Object {
+            "fill": "currentColor",
+            "verticalAlign": "middle",
+          }
+        }
+      />
+    </div>
+    <span>
+      NRRD
+    </span>
+  </a>
+</div>
+`;

@@ -22,7 +22,7 @@ import {
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
-import utils from '../../../../js/utils.js'
+import utils from '../../../../js/utils'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONWIDE_DISBURSEMENT_SUMMARY_QUERY = gql`
@@ -61,7 +61,6 @@ const NationwideDisbursementSummary = props => {
     variables: { year }
   })
 
-  const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData

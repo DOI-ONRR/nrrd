@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   periodFormControlContainer: {
     textAlign: 'right',
-    '@media (max-width: 426px)': {
+    '@media (max-width: 600px)': {
       textAlign: 'left',
     },
   },

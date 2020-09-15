@@ -68,7 +68,6 @@ const RevenueNationalSummary = props => {
     variables: { year: year, period: period, commodities: commodities }
   })
 
-  const chartTitle = props.chartTitle || `${ DFC.REVENUE } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData

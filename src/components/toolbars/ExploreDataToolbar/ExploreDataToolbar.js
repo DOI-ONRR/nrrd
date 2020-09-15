@@ -38,7 +38,6 @@ import {
   DATA_FILTER_CONSTANTS as DFC,
   DATA_TYPE,
   DISBURSEMENT,
-  DISBURSEMENTS,
   PERIOD,
   PRODUCTION,
   REVENUE,
@@ -49,7 +48,7 @@ import {
 const EXPLORE_DATA_TOOLBAR_OPTIONS = {
   [DATA_TYPE]: [
     { value: REVENUE, option: 'Revenue' },
-    { value: DISBURSEMENTS, option: 'Disbursements' },
+    { value: DISBURSEMENT, option: 'Disbursements' },
     { value: PRODUCTION, option: 'Production' },
   ],
   [PERIOD]: [

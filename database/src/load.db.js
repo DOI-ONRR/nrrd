@@ -73,7 +73,7 @@ const db = new Pool({
   port: DB_PORT,
 })
 
-const { DATA_FILTER_CONSTANTS: DFC } = require('../../src/constants')
+const  DFC = require('./constants')
 
 const etl = require('etl')
 const BATCH = 1
@@ -419,7 +419,7 @@ const deduplicate = (commodity_id, location_id, period_id, row) => {
     duplicate_no = duplicate_lookup[dup_key]
     DUPLICATES++
     console.debug('Total duplicates: ' + DUPLICATES + ' duplicate on line: ' + row.__line + ' of file ' + CSV)
-    console.table(row)
+      console.table(row)
     duplicate_lookup[dup_key]++
   }
   else {
@@ -504,7 +504,7 @@ const insertProduction = async (commodity_id, location_id, period_id, duplicate_
     if (err.stack.match('duplicate')) {
       DUPLICATES++
       console.warn(DUPLICATES + ' total duplicates. duplicate key error on line: ' + row.__line)
-      // console.table([location_id, period_id, commodity_id, disbursement , raw_disbursement])
+      console.table([location_id, period_id, commodity_id, volume , raw_volume])
       // process.exit();
     }
     else {
