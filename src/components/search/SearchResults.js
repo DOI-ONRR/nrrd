@@ -1,5 +1,6 @@
-import React, { useState, Fragment } from 'react'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import React, { useState } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import Link from '../Link'
 import { Index } from 'elasticlunr'
 import 'url-search-params-polyfill' // Temporary polyfill for EdgeHTML 14-16
 
@@ -47,7 +48,7 @@ export const SearchResults = () => {
   )
 
   return (
-    <Fragment>
+    <>
       <Container maxWidth="lg">
         <section className={classes.mainContent}>
           <Typography variant="h1" id="introduction" className={classes.title}>Search Results</Typography>
@@ -56,7 +57,7 @@ export const SearchResults = () => {
               <ul>
                 {results.length > 0
                   ? results.map((item, index) => {
-                    return <li key={ index }><Link to={ item.path }>{ item.title }</Link></li>
+                    return <li key={ index }><Link href={ item.path } linkType="default">{ item.title }</Link></li>
                   }
                   ) : <p><strong>We didn't find any search results for " {queryString} ".</strong></p>
                 }
@@ -65,7 +66,7 @@ export const SearchResults = () => {
           </div>
         </section>
       </Container>
-    </Fragment>
+    </>
   )
 }
 
