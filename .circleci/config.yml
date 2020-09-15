@@ -124,6 +124,9 @@ jobs:
       - image: circleci/node:12.13.0
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "23:d9:f2:c8:a7:b8:a8:a0:5c:a5:20:15:cc:08:f3:c7"
       - run:
           name: Merge to staging
           command: bash .circleci/stage.sh
