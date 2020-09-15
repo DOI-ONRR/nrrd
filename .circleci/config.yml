@@ -140,9 +140,6 @@ jobs:
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
-          name: Merge to staging
-          command: bash .circleci/stage.sh
-      - run:
           name: Install node dependencies
           command: npm install
       - save_cache:
@@ -162,10 +159,6 @@ jobs:
             cf auth "$STAGING_CF_USERNAME" "$STAGING_CF_PASSWORD"
             cf target -o "$STAGING_CF_ORG" -s "$STAGING_CF_SPACE"
             cf push preview-nrrd -f ./manifest.yml
-      # Upload test results
-      
-      - store_test_results:
-          path: /tmp/test-reports
    
   dev:
     docker:
@@ -279,7 +272,7 @@ workflows:
   #               - master
   #               - dev
   
-  merge_to_stage:
+  deploy_to_stage:
     jobs:
       - merge_to_stage:
           filters:
@@ -288,9 +281,6 @@ workflows:
                 - dev
                 - master
                 - staging
-  
-  preview_to_stage:
-    jobs:
       - stage:
           filters:
             branches:
