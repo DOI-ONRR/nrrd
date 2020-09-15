@@ -251,6 +251,8 @@ workflows:
       - lighthouse:
           filters:
             branches:
+              requires:
+                - merge_to_stage
               only:
                 - staging
       - lint:
