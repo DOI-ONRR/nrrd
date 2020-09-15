@@ -1,6 +1,6 @@
 import React from 'react'
 import Explore from './Explore'
-import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
+import Link from '../../../components/Link'
 
 const ExploreDisbursements = props => {
   return (
@@ -8,33 +8,36 @@ const ExploreDisbursements = props => {
       title="disbursements"
 	    contentLeft={
         <>
-          <ExploreDataLink
-            to="/explore/?dataType=Disbursements"
-            icon="data"
-          >
-			      Explore disbursements data
-		      </ExploreDataLink>
-          <ExploreDataLink
-				  to="/query-data/?dataType=Disbursements"
-				  icon="filter">
+          <Link
+            href="/explore/?dataType=Disbursements"
+            linkType="ExploreData"
+            mt={0}>
+            Explore disbursements data
+          </Link>
+          <Link
+				  href="/query-data/?dataType=Disbursements"
+            linkType="FilterTable"
+            mt={0}>
             Query disbursements data
-			    </ExploreDataLink>
+			    </Link>
 		    </>
 		  }
 		  contentCenter={
-			  <ExploreDataLink
-          to="/how-revenue-works#understanding-federal-disbursements"
-          icon="works">
+			  <Link
+          href="/how-revenue-works#understanding-federal-disbursements"
+          linkType="HowWorks"
+          mt={0}>
           How disbursements work
-			  </ExploreDataLink>
+			  </Link>
       }
 
       contentRight={
-        <ExploreDataLink
-          to="/downloads/#Disbursements"
-          icon="download">
+        <Link
+          href="/downloads/#Disbursements"
+          linkType="DownloadData"
+          mt={0}>
           Downloads and documentation
-        </ExploreDataLink>
+        </Link>
       }
     />
   )

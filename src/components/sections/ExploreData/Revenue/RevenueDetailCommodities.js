@@ -21,7 +21,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     '& .chart-container': {
-      // display: 'grid',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'top',
@@ -55,12 +54,9 @@ const RevenueDetailCommodities = props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
 
   const dataSet = (period === DFC.FISCAL_YEAR_LABEL) ? `FY ${ year }` : `CY ${ year }`
-  const dataKey = dataSet + '-' + state + (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'ALL'
+  const dataKey = `${ dataSet }-${ state }`
 
   const isCounty = state && state.length === 5
-  // const isNativeAmerican = state && state === DFC.NATIVE_AMERICAN_FIPS
-  // const isNationwideFederal = state && state === DFC.NATIONWIDE_FEDERAL_FIPS
-  // const isState = state && state.length === 2 && !isNativeAmerican && !isNationwideFederal
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { year: year, state: state, period: period, commodities }

@@ -85,7 +85,6 @@ const TotalProduction = props => {
   const [selected, setSelected] = useState(undefined)
 
   const toggleChange = value => {
-
     setSelected(undefined)
     setToggle(value)
 

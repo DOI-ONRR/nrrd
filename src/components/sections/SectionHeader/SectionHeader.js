@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 
-import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
+import Link from '../../../components/Link'
 
 const useStyles = makeStyles(theme => ({
   titleBar: {
@@ -39,9 +39,12 @@ const SectionHeader = props => {
         <Box component="h3" m={0} color="primary.dark">{props.title}</Box>
         {props.showExploreLink &&
           <Box component="span" className={classes.titleLink}>
-            <ExploreDataLink
-              to={`/query-data?dataType=${ niceLabel }`}
-              icon="filter">Query {props.linkLabel || props.title} data</ExploreDataLink>
+            <Link
+              href={`/query-data?dataType=${ niceLabel }`}
+              linkType="FilterTable"
+              mt={0}>
+              Query {props.linkLabel || props.title} data
+            </Link>
           </Box>
         }
       </Box>
