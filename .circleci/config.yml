@@ -248,13 +248,6 @@ workflows:
                 - dev
                 - master
                 - staging
-      - lighthouse:
-          requires:
-            - merge_to_stage
-          filters:
-            branches:
-              only:
-                - staging
       - lint:
           filters:
             branches:
@@ -279,6 +272,13 @@ workflows:
               ignore:
                 - dev
                 - master
+                - staging
+      - lighthouse:
+          requires:
+            - merge_to_stage
+          filters:
+            branches:
+              only:
                 - staging
 
   deploy_to_stage:
