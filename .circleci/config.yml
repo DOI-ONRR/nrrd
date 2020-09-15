@@ -249,10 +249,10 @@ workflows:
                 - master
                 - staging
       - lighthouse:
+          requires:
+            - merge_to_stage
           filters:
             branches:
-              requires:
-                - merge_to_stage
               only:
                 - staging
       - lint:
