@@ -254,18 +254,21 @@ workflows:
               ignore:
                 - preview
                 - master
+                - staging
       - lighthouse:
           filters:
             branches:
               ignore:
                 - preview
                 - master
+                - staging
       - lint:
           filters:
             branches:
               ignore:
                 - preview
                 - master
+                - staging
                        
   # preview:
   #   jobs:
@@ -276,8 +279,7 @@ workflows:
   #               - master
   #               - dev
   
-  
-  stage:
+  merge_to_stage:
     jobs:
       - merge_to_stage:
           filters:
@@ -285,9 +287,11 @@ workflows:
               ignore:
                 - dev
                 - master
+                - staging
+  
+  preview_to_stage:
+    jobs:
       - stage:
-          requires:
-            - merge_to_stage
           filters:
             branches:
               only: staging
