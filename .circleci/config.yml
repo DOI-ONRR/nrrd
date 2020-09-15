@@ -245,20 +245,20 @@ workflows:
           filters:
             branches:
               ignore:
-                - preview
+                - dev
                 - master
                 - staging
       - lighthouse:
           filters:
             branches:
-              ignore:
-                - preview
-                - master
+              only:
                 - staging
       - lint:
           filters:
             branches:
-              only:
+              ignore:
+                - dev
+                - master
                 - staging
                        
   # preview:
