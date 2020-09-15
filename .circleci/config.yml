@@ -255,15 +255,7 @@ workflows:
                 - dev
                 - master
                 - staging
-                       
-  # preview:
-  #   jobs:
-  #     - preview:
-  #         filters:
-  #           branches:
-  #             ignore:
-  #               - master
-  #               - dev
+
   merge_to_stage:
     jobs:
       - merge_to_stage:
