@@ -286,6 +286,8 @@ workflows:
                 - dev
                 - master
       - stage:
+          requires:
+            - merge_to_stage
           filters:
             branches:
               only: staging
