@@ -123,7 +123,6 @@ jobs:
     docker:
       - image: circleci/node:12.13.0
     steps:
-      - checkout
       - run:
           name: Merge to staging
           command: bash .circleci/stage.sh
