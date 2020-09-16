@@ -5,7 +5,7 @@ import {
   PERIOD,
   CALENDAR_YEAR,
   COMPANY_NAME,
-  REVENUE_TYPE
+  REVENUE_TYPE, FISCAL_YEAR
 } from '../../constants'
 
 import {
@@ -42,6 +42,16 @@ const DATA_FILTER_QUERIES = {
       order_by: {${ DB_COLS[CALENDAR_YEAR] }: asc}
       ) {
         option: ${ DB_COLS[CALENDAR_YEAR] }
+      }`),
+  [FISCAL_YEAR]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[FISCAL_YEAR] },
+      order_by: {${ DB_COLS[FISCAL_YEAR] }: asc}
+      ) {
+        option: ${ DB_COLS[FISCAL_YEAR] }
       }`),
   [COMPANY_NAME]: (view, whereClause) => (
     `options:${ view }(

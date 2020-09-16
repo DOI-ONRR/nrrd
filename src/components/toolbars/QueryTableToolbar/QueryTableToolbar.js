@@ -6,6 +6,7 @@ import { DataFilterContext, DownloadContext } from '../../../stores'
 import { downloadWorkbook } from '../../../js/utils'
 
 import PeriodFilter from '../../inputs/Filters/PeriodFilter'
+import FiscalYearFilter from '../../inputs/Filters/FiscalYearFilter'
 import CalendarYearFilter from '../../inputs/Filters/CalendarYearFilter'
 import CommodityFilter from '../../inputs/Filters/CommodityFilter'
 import CompanyNameFilter from '../../inputs/Filters/CompanyNameFilter'
@@ -205,7 +206,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
               : <PeriodFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
             {state.period === PERIOD_FISCAL_YEAR &&
-              <div />
+              <FiscalYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
             {state.period === PERIOD_CALENDAR_YEAR &&
               <CalendarYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
