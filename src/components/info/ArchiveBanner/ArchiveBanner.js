@@ -32,13 +32,13 @@ const useStyles = makeStyles(theme => ({
 
 const ArchiveBanner = () => {
   const theme = useTheme()
-  const classes = useStyles(theme)
+  const classes = useStyles()
 
   return (
     <div className={classes.root}>
       <p className={classes.content}>
         <IconArchiveImg /> This content was created as part of <GlossaryTerm>USEITI</GlossaryTerm> and is no longer being updated
-        . <Link href="/archive">Learn more about USEITI.</Link>
+        . 
       </p>
     </div>
   )

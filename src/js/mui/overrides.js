@@ -1,8 +1,8 @@
 // https://material-ui.com/customization/globals/
-const palette = require('./palette')
-const typography = require('./typography')
+import { text, secondary, primary, links } from './palette'
+import typography from './typography'
 
-module.exports = Object.freeze({
+export default Object.freeze({
   MuiButton: {
     root: {
       textTransform: 'inherit',
@@ -10,7 +10,7 @@ module.exports = Object.freeze({
   },
   MuiLink: {
     underlineHover: {
-      color: palette.text.secondary,
+      color: text.secondary,
     },
   },
   Table: {
@@ -33,7 +33,7 @@ module.exports = Object.freeze({
   },
   MuiTableCell: {
     head: {
-      borderBottomColor: palette.secondary.main,
+      borderBottomColor: secondary.main,
       borderBottomWidth: '3px',
     },
     footer: {
@@ -44,7 +44,7 @@ module.exports = Object.freeze({
   },
   MuiListItemIcon: {
     root: {
-      color: palette.primary.dark,
+      color: primary.dark,
       minWidth: 30,
     }
   },
@@ -53,7 +53,7 @@ module.exports = Object.freeze({
       color: typography.body2.color,
       fontSize: typography.body2.fontSize,
       '&.Mui-focused': {
-        color: palette.text.secondary,
+        color: text.secondary,
       },
     }
   },
@@ -70,9 +70,9 @@ module.exports = Object.freeze({
   },
   MuiCheckbox: {
     colorSecondary: {
-      color: palette.links.default,
+      color: links.default,
       '&$checked': {
-        color: palette.links.default,
+        color: links.default,
       },
     },
   },
@@ -82,7 +82,7 @@ module.exports = Object.freeze({
       color: 'black',
       '&$selected': {
         color: 'white',
-        backgroundColor: `${ palette.links.default }`,
+        backgroundColor: `${ links.default }`,
       },
     },
     label: {

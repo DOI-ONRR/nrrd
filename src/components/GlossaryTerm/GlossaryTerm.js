@@ -65,7 +65,7 @@ const GlossaryTerm = ({ children, ...rest }) => {
       {`${ children } `}<IconQuestionCircleImg />
     </span>
   ))
-
+console.log(terms)
   return (
     <Tooltip
       title={termResults[0].definition}
