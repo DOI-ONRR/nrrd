@@ -6,7 +6,6 @@ import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -22,8 +21,6 @@ import {
   Typography
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-
-import CONSTANTS from '../../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -102,7 +99,7 @@ const DisbursementRecipientSummary = props => {
   }
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
   })
 
   if (loading) {
@@ -112,10 +109,10 @@ const DisbursementRecipientSummary = props => {
 
   let periodData
 
-  let distinctRecipients = 0
+  // let distinctRecipients = 0
   let topRecipients = []
-  let row
-  let total = 0
+  // let row
+  // let total = 0
   // console.log('DisbursementRecipientSummary data: ', data)
   if (
     data &&
@@ -125,9 +122,9 @@ const DisbursementRecipientSummary = props => {
   ) {
     periodData = data.period
 
-    row = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === parseInt(year))]
-    total = row ? row.sum : 0
-    distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === parseInt(year))].distinct_commodities
+    // row = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === parseInt(year))]
+    // total = row ? row.sum : 0
+    // distinctRecipients = data.cardFiscalDisbursementSummary[data.cardFiscalDisbursementSummary.findIndex(x => x.fiscal_year === parseInt(year))].distinct_commodities
 
     topRecipients = data.cardDisbursementRecipientSummary
       .map((item, i) => item.recipient)

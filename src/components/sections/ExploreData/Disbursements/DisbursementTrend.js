@@ -5,7 +5,6 @@ import gql from 'graphql-tag'
 import Sparkline from '../../../data-viz/Sparkline'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -14,33 +13,8 @@ import * as d3 from 'd3'
 import {
   Box,
   Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
   Typography
 } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-
-import CONSTANTS from '../../../../js/constants'
-
-const useStyles = makeStyles(theme => ({
-  table: {
-    width: '100%',
-    marginBottom: 0,
-    '& th': {
-      padding: 5,
-      lineHeight: 1
-    },
-    '& td': {
-      padding: 0,
-    },
-  },
-  paper: {
-    width: '100%'
-  },
-}))
 
 const APOLLO_QUERY = gql`
   # summary card queries
@@ -64,11 +38,10 @@ const APOLLO_QUERY = gql`
 
 const DisbursementTrend = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const classes = useStyles()
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.fipsCode, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: props.fipsCode, year: year, period: DFC.FISCAL_YEAR_LABEL }
   })
 
   if (loading) {

@@ -4,13 +4,13 @@ import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 import * as d3 from 'd3'
 
+import QueryLink from '../../../../components/QueryLink'
+
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import CONSTANTS from '../../../../js/constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -19,8 +19,6 @@ import {
   useTheme
 } from '@material-ui/core'
 
-// import CloseIcon from '@material-ui/icons/Close'
-// import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
 import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
@@ -129,17 +127,17 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const state = props.fipsCode || ''
 
   switch (props.regionType) {
-  case CONSTANTS.STATE:
-    locationType = CONSTANTS.COUNTY
+  case DFC.STATE:
+    locationType = DFC.COUNTY_CAPITALIZED
     break
-  case CONSTANTS.COUNTY:
+  case DFC.COUNTY_CAPITALIZED:
     locationType = ''
     break
-  case CONSTANTS.OFFSHORE:
+  case DFC.OFFSHORE_CAPITALIZED:
     locationType = ''
     break
   default:
-    locationType = props.fipsCode === 'NF' ? CONSTANTS.STATE : ''
+    locationType = props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS ? DFC.STATE : ''
     break
   }
 
@@ -149,7 +147,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location: locationType, commodity, state, period },
-      skip: props.fipsCode === DFC.NATIVE_AMERICAN_FIPS || props.regionType === CONSTANTS.COUNTY || props.regionType === CONSTANTS.OFFSHORE
+      skip: props.fipsCode === DFC.NATIVE_AMERICAN_FIPS || props.regionType === DFC.COUNTY_CAPITALIZED || props.regionType === DFC.OFFSHORE_CAPITALIZED
     })
 
   if (loading) {
@@ -166,7 +164,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   let unitAbbr = ''
 
   if (data && (data.state_production_summary.length || data.production_summary.length)) {
-    if (data.state_production_summary.length > 0 && locationType === CONSTANTS.COUNTY) {
+    if (data.state_production_summary.length > 0 && locationType === DFC.COUNTY_CAPITALIZED) {
       unitAbbr = data.state_production_summary[0].unit_abbr
       chartData = d3.nest()
         .key(k => k.location_name)
@@ -178,7 +176,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
     }
     else { // Don't show top locations for any card except state and nationwide federal
       // quick and dirty - most definately probably a better way to handle this
-      if (locationType !== CONSTANTS.COUNTY) {
+      if (locationType !== DFC.COUNTY_CAPITALIZED) {
         unitAbbr = data.production_summary[0].unit_abbr
         let tmp = data.production_summary
         if (props.fipsCode) {
@@ -243,6 +241,17 @@ const ProductionTopLocations = ({ title, ...props }) => {
               minColor={theme.palette.green[100]}
               maxColor={theme.palette.green[600]} />
           </Box>
+          {props.vertical &&
+            <Box>
+              <QueryLink
+                groupBy={(state === DFC.NATIONWIDE_FEDERAL_FIPS) ? DFC.LAND_TYPE : DFC.COUNTY}
+                linkType="FilterTable"
+                landType={(state === DFC.NATIVE_AMERICAN_FIPS) ? DFC.NATIVE_AMERICAN : 'Federal Offshore,Federal Onshore,Mixed Exploratory'}
+                {...props}>
+                Query production by location
+              </QueryLink>
+            </Box>
+          }
         </Box>
       )
     }

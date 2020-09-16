@@ -1,6 +1,8 @@
+export const DATA_FILTER_KEY = 'dataFilterKey'
 export const QUERY_TABLE_FILTER_DEFAULT = 'query_table_filter_default'
 export const EXPLORE_DATA_FILTER_DEFAULT = 'explore_data_filter_default'
 export const QUERY_COUNTS = 'queryCounts'
+export const EXCLUDE_PROPS = 'excludeProps'
 
 export const DATA_TYPE = 'dataType'
 export const LOCATION_NAME = 'locationName'
@@ -36,6 +38,7 @@ export const SOURCE = 'source'
 export const STATE_OFFSHORE_NAME = 'stateOffshoreName'
 export const MAP_LEVEL = 'mapLevel'
 export const LOCAL_RECIPIENT = 'localRecipient'
+export const COMPANY_NAME = 'companyName'
 
 export const PERIOD_FISCAL_YEAR = 'Fiscal Year'
 export const PERIOD_CALENDAR_YEAR = 'Calendar Year'
@@ -93,7 +96,7 @@ export const FISCAL_YEAR_LABEL = 'Fiscal Year'
 export const MONTHLY_CAPITALIZED = 'Monthly'
 export const YEARLY = 'Yearly'
 export const REVENUE = 'Revenue'
-export const DISBURSEMENT = 'Disbursement'
+export const DISBURSEMENT = 'Disbursements'
 export const PRODUCTION = 'Production'
 export const OIL = 'Oil'
 export const GAS = 'Gas'
@@ -101,11 +104,18 @@ export const COAL = 'Coal'
 export const STATE = 'State'
 export const COUNTY_CAPITALIZED = 'County'
 export const USA = 'USA'
+export const DATA_TYPES = [REVENUE, PRODUCTION, DISBURSEMENT]
+export const REVENUE_BY_COMPANY = 'Revenue by company'
+export const DATA_TYPES_PLUS = [REVENUE, REVENUE_BY_COMPANY, PRODUCTION, DISBURSEMENT]
 
 export const TREND_LIMIT = 10
 export const MAX_CARDS = 3
 
 export const DISPLAY_NAMES = {
+  [COMPANY_NAME]: {
+    default: 'Company',
+    plural: 'Companies',
+  },
   [LOCATION_NAME]: {
     default: 'Location',
     plural: 'Location',

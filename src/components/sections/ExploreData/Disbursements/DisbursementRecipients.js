@@ -3,27 +3,17 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
-import { ExploreDataLink } from '../../../layouts/IconLinks/ExploreDataLink'
+import QueryLink from '../../../../components/QueryLink'
 
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
-import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm.js'
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
-  Box,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography
+  Box
 } from '@material-ui/core'
-
-import CONSTANTS from '../../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,8 +30,7 @@ const useStyles = makeStyles(theme => ({
       },
       '& .legend': {
         marginTop: theme.spacing(2),
-          height: 'auto',
-	  fontSize: 'small'
+        height: 'auto',
       },
     },
   }
@@ -51,8 +40,12 @@ const APOLLO_QUERY = gql`
   # summary card queries
   query DisbursementRecipientSummary($year: Int!, $period: String!, $state: [String!]) {
 
-DisbursementRecipientSummary: disbursement_recipient_summary(
-      where: { fiscal_year: { _eq: $year }, state_or_area: { _in: $state } }
+    DisbursementRecipientSummary: disbursement_recipient_summary(
+      where: { 
+        fiscal_year: { _eq: $year }, 
+        state_or_area: { _in: $state },
+        recipient: {_neq: "Native American tribes and individuals"}
+      }
       order_by: { fiscal_year: asc, total: desc }
     ) {
       fiscal_year
@@ -73,7 +66,7 @@ const DisbursementRecipients = props => {
   const state = props.fipsCode
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: CONSTANTS.FISCAL_YEAR }
+    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
   })
 
   if (loading) {
@@ -83,7 +76,6 @@ const DisbursementRecipients = props => {
 
   let chartData = []
 
-  const total = 0
   if (
     data &&
     data.DisbursementRecipientSummary.length > 0) {
@@ -103,46 +95,46 @@ const DisbursementRecipients = props => {
             format={ d => {
               return utils.formatToDollarInt(d)
             }}
-	     legendLabel={
-                    d => {
-			if (d.match('Native')) {
-                            d = 'Native American'
-			}
-			else if (d.match('governments') ) {
-			    d = 'State and local'
-			}
-			else if (d.match('Land') ) {
-			    d = 'LWCF*'
-			}
-			else if (d.match('Historic') ) {
-			    d = 'HPF**'
-			}
-			
-                      return d
-                    }
-                  } 
+	          legendLabel={
+              d => {
+                if (d.match('Native')) {
+                  d = 'Native American'
+                }
+                else if (d.match('governments')) {
+			            d = 'State and local'
+                }
+                else if (d.match('Land')) {
+			            d = 'LWCF*'
+                }
+                else if (d.match('Historic')) {
+			            d = 'HPF**'
+                }
+
+                return d
+              }
+            }
             circleTooltip={
               d => {
-                // console.log('d: ', d)
                 const r = []
                 r[0] = d.recipient
                 r[1] = utils.formatToDollarInt(d.total)
                 return r
               }
             } />
-	      <>{ state === 'NF' &&
-		  <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
-	      <>{ state === 'NF' &&
-		<Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
-              }
-	      </>
 
-          <Box mt={3}>
-            {/*            <ExploreDataLink to="/query-data/?dataType=Disbursements" icon="filter">
-              Query Disbursements by Recipients
-            </ExploreDataLink>
-               */}
-          </Box>
+          <>{ state === DFC.NATIONWIDE_FEDERAL_FIPS &&
+            <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
+          <>{ state === DFC.NATIONWIDE_FEDERAL_FIPS &&
+            <Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
+          }
+          </>
+
+          <QueryLink
+            groupBy={DFC.RECIPIENT}
+            linkType="FilterTable" {...props}
+            recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury">
+            Query disbursements by recipient
+          </QueryLink>
         </Box>
       </Box>
       )

@@ -4,13 +4,13 @@ import React, { useEffect, useRef } from 'react'
 // import utils from '../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
-import clsx from 'clsx'
+// import clsx from 'clsx'
 
-import ChartTitle from '../ChartTitle'
+// import ChartTitle from '../ChartTitle'
 
 // import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
 import D3CircleChart from './D3CircleChart.js'
-import { interpolateRgbBasis } from 'd3'
+// import { interpolateRgbBasis } from 'd3'
 
 const useStyles = makeStyles((theme, props) => ({
   container: {
@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme, props) => ({
       borderSpacing: 0,
       borderCollapse: 0,
       boxShadow: 'none',
+      fontSize: '1rem',
     },
     '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
       textAlign: 'right',
@@ -71,6 +72,9 @@ const useStyles = makeStyles((theme, props) => ({
       fontWeight: 'bold',
       textAlign: 'left',
       borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+    },
+    '& .legend-table > thead th:first-letter': {
+      textTransform: 'capitalize',
     },
     '& .legend-table > tbody tr td': {
       borderBottom: `1px solid ${ theme.palette.grey[300] }`,
@@ -98,16 +102,10 @@ const CircleChart = props => {
   const elemRef = useRef(null)
   // console.debug("CLASSES : x", classes)
   useEffect(() => {
-    // stackedBarChar(elemRef.current,{}, datas);
-    // console.debug("EEEEEEEEEEEEEEEEEEEE", elemRef)
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
-    //  const chart2 = new BarChart2(elemRef.current, data2, options)
-    //    chart2.draw(data2)
-    //  console.debug(elemRef.current)
+    // eslint-disable-next-line no-unused-vars
     const chart = new D3CircleChart(elemRef.current, data, options)
-    // chart.selected(selected);
-    // chart.draw(data)
   }, [elemRef])
 
   return (

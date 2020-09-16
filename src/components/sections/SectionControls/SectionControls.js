@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
 import { makeStyles } from '@material-ui/core/styles'
 
 import { Grid, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core'
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
-
-import CONSTANTS from '../../../js/constants'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -18,8 +18,14 @@ const useStyles = makeStyles(theme => ({
   },
   periodFormControlContainer: {
     textAlign: 'right',
-    '@media (max-width: 426px)': {
+    '@media (max-width: 600px)': {
       textAlign: 'left',
+    },
+  },
+  periodToggleButton: {
+    '&:hover': {
+      backgroundColor: `${ theme.palette.links.default } !important`,
+      color: theme.palette.common.white,
     },
   }
 }))
@@ -34,11 +40,15 @@ const SectionControls = props => {
   const YEARLY_DROPDOWN_VALUES = props.yearlyDropdownValues
 
   const [labelWidth, setLabelWidth] = useState(0)
+  const [period, setPeriod] = useState(TOGGLE_VALUES.Year)
 
   const disabled = props.disabledInput
 
   const handleToggle = (event, newVal) => {
-    props.onToggleChange(newVal)
+    if (newVal !== null) {
+      props.onToggleChange(newVal)
+      setPeriod(newVal)
+    }
   }
 
   useEffect(() => {
@@ -53,7 +63,7 @@ const SectionControls = props => {
     <>
       <Grid item xs={12} sm={6}>
         <ToggleButtonGroup
-          value={props.toggle}
+          value={period}
           exclusive
           onChange={handleToggle}
           size="large"
@@ -64,8 +74,9 @@ const SectionControls = props => {
                 key={i}
                 value={item}
                 aria-label={item}
-                disableRipple>
-                { item === TOGGLE_VALUES.Year ? CONSTANTS.YEARLY : CONSTANTS.MONTHLY }
+                disableRipple
+                className={classes.periodToggleButton}>
+                { item === TOGGLE_VALUES.Year ? DFC.YEARLY : DFC.MONTHLY_CAPITALIZED }
               </ToggleButton>
             ))
           }
@@ -86,7 +97,7 @@ const SectionControls = props => {
             {
               (props.toggle === TOGGLE_VALUES.Year)
                 ? Object.values(YEARLY_DROPDOWN_VALUES).map((item, i) => (
-                  <MenuItem key={i} value={item}>{ item === YEARLY_DROPDOWN_VALUES.Calendar ? CONSTANTS.CALENDAR_YEAR : CONSTANTS.FISCAL_YEAR }</MenuItem>
+                  <MenuItem key={i} value={item}>{ item === YEARLY_DROPDOWN_VALUES.Calendar ? DFC.PERIOD_CALENDAR_YEAR : DFC.PERIOD_FISCAL_YEAR }</MenuItem>
                 ))
                 : Object.values(MONTHLY_DROPDOWN_VALUES).map((item, i) => (
                   <MenuItem value={item} key={i}>

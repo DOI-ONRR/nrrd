@@ -12,10 +12,11 @@ const config = {
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
     description:
+      // eslint-disable-next-line max-len
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
     googleTagManagerId: GTM_ID,
-    version: 'v6.1.1',
+    version: 'v6.2.0',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -122,8 +123,8 @@ const config = {
           return createHttpLink({
             // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             // uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
-            uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
-            // uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
+            // uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
+            uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
             resolvers: {}
@@ -164,13 +165,15 @@ const config = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-remove-console',
+      options: {
+        exclude: ['error', 'warn'], // <- will remove all console calls except these
+      }
+    },
     'gatsby-plugin-use-query-params',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
-
-// if (BASEURL) {
-//   config.pathPrefix = `${ BASEURL }`
-// }
 
 module.exports = config

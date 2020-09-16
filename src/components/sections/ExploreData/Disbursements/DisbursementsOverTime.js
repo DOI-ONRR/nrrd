@@ -6,9 +6,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
-import { StoreContext } from '../../../../store'
-import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import * as d3 from 'd3'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -91,12 +89,12 @@ const DisbursementsOverTime = props => {
   const theme = useTheme()
   const title = props.title || ''
 
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
 
   const { loading, error, data } = useQuery(APOLLO_QUERY)
   const handleDelete = props.handleDelete || ((e, val) => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fips !== val) })
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fips !== val) })
   })
 
   if (loading) {
@@ -109,7 +107,6 @@ const DisbursementsOverTime = props => {
   if (error) return `Error! ${ error.message }`
   let chartData = [[]]
   if (data && cards && cards.length > 0) {
-
     const years = [...new Set(data.disbursement_summary.map(item => item.fiscal_year))]
     const sums = cards.map(yData => [...new Set(
       d3.nest()
@@ -119,6 +116,7 @@ const DisbursementsOverTime = props => {
         .map(d => ({ year: parseInt(d.key), value: d.value }))
     )])
 
+    // eslint-disable-next-line no-unused-vars
     for (const [i, arr] of sums.entries()) {
       sums[i] = years.map(year => {
         const sum = sums[i].find(x => x.year === year)

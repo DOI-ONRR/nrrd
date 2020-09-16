@@ -3,14 +3,16 @@ import utils from '../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
 
-import TriangleUpIcon from '-!svg-react-loader!../../../img/svg/arrow-up.svg'
-import TriangleDownIcon from '-!svg-react-loader!../../../img/svg/arrow-down.svg'
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 
 const useStyles = makeStyles(theme => ({
   trendIcon: {
     position: 'relative',
     marginRight: 5,
-    top: 5,
+    top: 3,
+    fontSize: 'large',
+    color: theme.palette.orange[200],
   },
 }))
 
@@ -26,8 +28,8 @@ const PercentDifference = ({ currentAmount, previousAmount }) => {
   return (
     <span>
       {percentIncrease > 0
-        ? <TriangleUpIcon className={classes.trendIcon} viewBox="-20 -15 50 40"/>
-        : <TriangleDownIcon className={classes.trendIcon} viewBox="-20 -10 50 40"/>
+        ? <ArrowUpwardIcon className={classes.trendIcon} />
+        : <ArrowDownwardIcon className={classes.trendIcon} />
       }
       <span>
         {utils.round(percentIncrease, 0) + '%'}

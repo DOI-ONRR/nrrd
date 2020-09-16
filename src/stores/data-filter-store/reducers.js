@@ -7,13 +7,13 @@ import {
   REVENUE,
   REVENUE_TYPE,
   PRODUCTION,
-  COUNTIES,
+  // COUNTIES,
   DISBURSEMENT,
   RECIPIENT,
   GROUP_BY,
   GROUP_BY_STICKY,
-  BREAKOUT_BY,
-  ADDITIONAL_COLUMNS,
+  // BREAKOUT_BY,
+  // ADDITIONAL_COLUMNS,
   PERIOD,
   FISCAL_YEAR,
   CALENDAR_YEAR,
@@ -25,7 +25,9 @@ import {
   PRODUCT,
   QUERY_COUNTS,
   MAP_LEVEL,
-  STATE
+  STATE,
+  REVENUE_BY_COMPANY,
+  COMPANY_NAME
 } from '../../constants'
 
 const types = Object.freeze({
@@ -75,8 +77,8 @@ const initialState = {
     [DATA_TYPE]: REVENUE,
     [GROUP_BY]: REVENUE_TYPE,
     [PERIOD]: 'Fiscal Year',
-    [FISCAL_YEAR]: '2017,2018,2019',
-    [CALENDAR_YEAR]: '2017,2018,2019',
+    [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+    [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
     dataTypesCache: {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
@@ -97,6 +99,12 @@ const initialState = {
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+      },
+      [REVENUE_BY_COMPANY]: {
+        [DATA_TYPE]: REVENUE_BY_COMPANY,
+        [GROUP_BY]: COMPANY_NAME,
+        [PERIOD]: 'Calendar Year',
+        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
       }
     }
   },

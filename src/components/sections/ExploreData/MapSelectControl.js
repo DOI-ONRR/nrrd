@@ -14,8 +14,6 @@ import {
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
-
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
 const useStyles = makeStyles(theme => ({

@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Link } from 'gatsby'
+import Link from '../../Link'
 
 import AppBar from '@material-ui/core/AppBar'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
 import Hidden from '@material-ui/core/Hidden'
@@ -95,7 +94,7 @@ function ResponsiveDrawer (props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <Link to='/patterns/component-reference' style={{ textDecoration: 'none', color: 'black' }}>
+        <Link href='/patterns/component-reference' linkType="default" style={{ textDecoration: 'none', color: 'black' }}>
           <ListItem button key={'Component Reference'}>
             <ListItemIcon><DescriptionIcon /></ListItemIcon>
             <ListItemText primary={'Component Reference'} />
