@@ -117,7 +117,7 @@ const useStyles = makeStyles(theme => ({
       overflowX: 'auto',
       height: 'auto',
       position: 'relative',
-      minHeight: 'inherit',
+      minHeight: 340,
     },
     '& > div': {
       cursor: 'pointer',
@@ -128,7 +128,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         boxSizing: 'border-box',
         minWidth: 285,
-        minHeight: 330,
+        minHeight: 340,
         marginBottom: theme.spacing(1),
         bottom: 0,
       },

@@ -13,11 +13,7 @@ import {
   Box,
   Container,
   Grid,
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableCell
+  Hidden
 } from '@material-ui/core'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
@@ -86,46 +82,17 @@ const NationwideDisbursementSummary = props => {
   if (data) {
     groupData = utils.groupBy(data.fiscal_disbursement_recipient_source_summary, 'recipient')
 
-    /* groupTotal = Object.keys(groupData).map(k =>
-      groupData[k].reduce((sum, i) => {
-        sum += i.total
-      }, 0)).reduce((total, s) => {
-      total += s
-      }, 0)
-    */
     // eslint-disable-next-line no-return-assign
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((sum, i) => sum += i.total, 0)).reduce((total, s) => total += s, 0)
-    /*
-    // Have to keep long form with return (calc) for some reason.
-    groupTotal = Object.keys(groupData).map(k => {
-      //console.debug("K: ", k, "groupData[k]", groupData[k] )
-      let st= groupData[k].reduce((sum, i) => {
-        //console.debug("sum", sum, "i", i)
-        return (sum += i.total)
-      }, 0)
-      //console.debug("ST, ", st)
-      return st
-    }
-    ).reduce((total, s) => {
-      //  console.debug("total, ", total, s)
-      return ( total += s)
-      }, 0)
-    */
+
     nationwideSummaryData = Object.entries(groupData)
-    //  console.debug("groupTotal: ", groupTotal)
-    /* debug    nationwideSummaryData.map((item, i) => {
-      let barScale=item[1].reduce((sum, i) => { return (sum += i.total) }, 0) / groupTotal
-      console.debug("barScale: ", barScale)
-      console.debug("item: ", item)
-    })
-*/
 
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
           <Grid item sm={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
-              <Box component="h3" color="secondary.dark" display="inline">{title}</Box>
+              <Box component="h3" color="secondary.dark" display="inline" align="left">{title}</Box>
               <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
                 <QueryLink
                   groupBy={DFC.RECIPIENT}
@@ -144,65 +111,72 @@ const NationwideDisbursementSummary = props => {
               </QueryLink>
             </Box>
           </Grid>
-          <Grid item sm={12}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell style={{ fontWeight: 'bold' }}>Recipient</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
-                    <span style={{ fontWeight: 'bold', float: 'right' }}>FY {year}</span></TableCell>
-
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                { nationwideSummaryData &&
+          <Grid container item xs={5} style={{ borderBottom: '2px solid #cde3c3' }}>
+            <Box fontWeight="bold">Recipient</Box>
+          </Grid>
+          <Grid container item xs={7} style={{ borderBottom: '2px solid #cde3c3' }}>
+            <Hidden xsDown>
+              <Grid item sm={6}>
+                <Box fontWeight="bold" display="flex" justifyContent="flex-start" >Source</Box>
+              </Grid>
+            </Hidden>
+            <Grid item xs={12} sm={6}>
+              <Box fontWeight="bold" display="flex" justifyContent="flex-end">FY {year}</Box>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid container spacing={2}>
+          { nationwideSummaryData &&
               nationwideSummaryData.map((item, i) => {
                 return (
-                  <TableRow key={i}>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box component="h4" mt={0}>{item[0]}</Box>
-                      <Box component="p">
-                        <span dangerouslySetInnerHTML={createMarkup(disbursementTypeDescriptions[i])} />
-                      </Box>
-                    </TableCell>
-                    <TableCell style={{ width: '65%' }}>
-                      <StackedBarChart
-                        key={'NDS' + dataSet }
-                        data={item[1]}
-                        legendFormat={v => {
-                          if (v === 0) {
-                            return '-'
-                          }
-                          else {
-                            return utils.formatToDollarInt(v)
-                          }
-                        }}
-                        legendHeaders={ headers => {
-                          // console.debug('headers..................', headers)
-                          headers[0] = ''
-                          headers[2] = ''
-                          return headers
-                        }
-                        }
-                        // eslint-disable-next-line no-return-assign
-                        barScale={item[1].reduce((sum, i) => sum += i.total, 0) / groupTotal }
-                        units={units}
-                        xAxis={xAxis}
-                        xLabels={xLabels}
-                        yAxis={yAxis}
-                        yGroupBy={yGroupBy}
-                        yOrderBy={yOrderBy}
-                        horizontal
-                        legendReverse={true}
-                      />
-                    </TableCell>
-                  </TableRow>
+                  <Box p={2} width="100%" borderBottom="1px solid rgba(224, 224, 224, 1)">
+                    <Grid container>
+                      <Grid container item xs={12} sm={5}>
+                        <Box key={i}>
+                          <Box component="h4">{item[0]}</Box>
+                          <Box component="p" pb={2} pr={{ xs: 0, md: 3 }}>
+                            <span dangerouslySetInnerHTML={createMarkup(disbursementTypeDescriptions[i])} />
+                          </Box>
+                        </Box>
+                      </Grid>
+                      <Grid container item xs={12} sm={7}>
+                        <Box mt={{ xs: 0, sm: 4 }} width="100%">
+                          <StackedBarChart
+                            key={`NDS${ dataSet }`}
+                            data={item[1]}
+                            legendFormat={v => {
+                              if (v === 0) {
+                                return '-'
+                              }
+                              else {
+                                return utils.formatToDollarInt(v)
+                              }
+                            }}
+                            legendHeaders={ headers => {
+                            // console.debug('headers..................', headers)
+                              headers[0] = ''
+                              headers[2] = ''
+                              return headers
+                            }
+                            }
+                            // eslint-disable-next-line no-return-assign
+                            barScale={item[1].reduce((sum, i) => sum += i.total, 0) / groupTotal }
+                            units={units}
+                            xAxis={xAxis}
+                            xLabels={xLabels}
+                            yAxis={yAxis}
+                            yGroupBy={yGroupBy}
+                            yOrderBy={yOrderBy}
+                            horizontal
+                            legendReverse={true}
+                          />
+                        </Box>
+                      </Grid>
+                    </Grid>
+                  </Box>
                 )
               })
-                }
-              </TableBody>
-            </Table>
-          </Grid>
+          }
         </Grid>
       </Container>
     )
