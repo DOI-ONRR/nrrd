@@ -1,6 +1,7 @@
 
 import {
   DATA_FILTER_KEY,
+  EXCLUDE_PROPS,
   REVENUE,
   PRODUCTION,
   DISBURSEMENT,
@@ -222,8 +223,14 @@ const QUERIES = {
     gql`query GetDataTableRevenueByCompany
           (${ getDataFilterVariableList(state, variableConfig) })
           {${ REVENUE_BY_COMPANY_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
-  DATA_FILTERS: (state, variableConfig, options) =>
-    gql`query GetQueryToolFilter_${ options[DATA_FILTER_KEY] }
-        (${ getDataFilterVariableList(state, variableConfig) })
-        {${ getDataFilterQuery(VIEWS[state[DATA_TYPE]], options[DATA_FILTER_KEY], getDataFilterWhereClauses(variableConfig, [options[DATA_FILTER_KEY]])) }}`,
+  DATA_FILTERS: (state, variableConfig, options) => {
+    const excludeProps = options[EXCLUDE_PROPS] ? options[EXCLUDE_PROPS] : []
+    return (
+      gql`query GetQueryToolFilter_${ options[DATA_FILTER_KEY] }
+          (${ getDataFilterVariableList(state, variableConfig) })
+          {${ getDataFilterQuery(
+        VIEWS[state[DATA_TYPE]],
+        options[DATA_FILTER_KEY],
+        getDataFilterWhereClauses(variableConfig, [options[DATA_FILTER_KEY], ...excludeProps])) }}`)
+  },
 }
