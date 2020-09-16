@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-import slugify from 'slugify'
 const React = require('react')
 const gatsby = jest.requireActual('gatsby')
 
@@ -14,8 +13,7 @@ module.exports = {
   ),
   StaticQuery: jest.fn(),
   useStaticQuery: function (queryName) {
-    console.log(queryName)
-    const filePath = './queries/reer.json'
+    const filePath = `./__mock_queries__/${ queryName }_results.json`
 
     try {
       return require(filePath)
@@ -32,10 +30,3 @@ function getQueryName (queryString) {
     return captureGroup[1]
   }
 }
-/*
-${ slugify(queryName, {
-      lower: true,
-      // eslint-disable-next-line no-useless-escape
-      remove: /[$*_+~.()'"!\:@,?]/g
-    }).replace('-and-', '-') }
-    */

@@ -15,7 +15,7 @@ describe('Archive Banner component:', () => {
     )
   }
 
-  it('Render successfully', () => {
+  it('Render success', () => {
     const tree = renderer
       .create(<MockedTheme><ArchiveBanner /></MockedTheme>)
       .toJSON()

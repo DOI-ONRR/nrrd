@@ -1,0 +1,505 @@
+{
+  "allMdx": {
+    "nodes": [
+      {
+        "frontmatter": {
+          "terms": [
+            {
+              "definition": "The 8(g) zone is the offshore region within three miles of a state shoreline. A portion (27%) of revenue from production in the 8(g) zone is distributed to the respective states that border the zone. The 8(g) zone is named for the section within the Outer Continental Shelf Lands Act that designates it.",
+              "name": "8(g)",
+              "tags": null
+            },
+            {
+              "definition": "A fee for current day coal production that funds reclamation of mines abandoned before 1977.",
+              "name": "Abandoned mine land fee",
+              "tags": [
+                "Abandoned Mine Land Fees"
+              ]
+            },
+            {
+              "definition": "This data is based on transactions that were reported to and accepted into ONRR’s financial system in a given a year. Since companies are allowed to adjust and correct data up to seven years after a transaction takes place, accounting year data can include corrections for sales that took place in previous years. This data is most useful when analyzing dollars ONRR collected and disbursed in a given year.",
+              "name": "Accounting year",
+              "tags": null
+            },
+            {
+              "definition": "Acquired lands are public lands that were obtained by the federal government through purchase, condemnation, gift, or exchange.",
+              "name": "Acquired lands",
+              "tags": null
+            },
+            {
+              "definition": "A fee for securing an uncompetitive lease in place of a bonus.",
+              "name": "Acquisition fee",
+              "tags": null
+            },
+            {
+              "definition": "A yearly maintenance fee for maintaining a claim.",
+              "name": "Annual fee",
+              "tags": null
+            },
+            {
+              "definition": "Application for permit to drill",
+              "name": "APD",
+              "tags": null
+            },
+            {
+              "definition": "There are two main congressional actions that result in federal spending: authorization and appropriation. A fund or recipient may be authorized to receive money during the federal budget process, but Congress must still designate a specific amount to be distributed to the fund or recipient. This process is called “appropriation”.",
+              "name": "Appropriation",
+              "tags": [
+                "appropriate"
+              ]
+            },
+            {
+              "definition": "An act of Congress to obligate funding for a program or agency. An authorization may be effective for one year, a fixed number of years, or an indefinite period. An authorization may be for a definite amount of money or for 'such sums as may be necessary.' The formal federal spending process consists of two sequential steps: authorization and then appropriation.",
+              "name": "Authorization",
+              "tags": [
+                "authorized",
+                "authorizes"
+              ]
+            },
+            {
+              "definition": "In the U.S., an oil barrel is defined as 42 US gallons, and abbreviated as bbl.",
+              "name": "Barrel",
+              "tags": null
+            },
+            {
+              "definition": "Abbreviation for a unit of measurement of oil. One bbl, or oil barrel, is defined as 42 US gallons.",
+              "name": "bbl",
+              "tags": null
+            },
+            {
+              "definition": "Organic nonfossil matter used as fuel. Sources of biomass include wood, wood waste products, biofuel, and many plant-based materials.",
+              "name": "Biomass",
+              "tags": null
+            },
+            {
+              "definition": "The Bureau of Land Management (BLM) is part of the U.S. Department of the Interior, and manages exploration, development, and production of natural resources on federal lands.",
+              "name": "BLM",
+              "tags": null
+            },
+            {
+              "definition": "The Bureau of Ocean Energy Management (BOEM) is part of the U.S. Department of the Interior, and is responsible for managing the development of energy and mineral resources on the U.S. Outer Continental Shelf.",
+              "name": "BOEM",
+              "tags": null
+            },
+            {
+              "definition": "The amount the highest bidder paid for a natural resource lease.",
+              "name": "Bonus",
+              "tags": [
+                "bonuses"
+              ]
+            },
+            {
+              "definition": "The Bureau of Safety and Environmental Enforcement (BSEE) is part of the U.S. Department of the Interior, and is charged with promoting safety, protecting the environment, and conserving resources offshore through regulatory oversight and enforcement.",
+              "name": "BSEE",
+              "tags": null
+            },
+            {
+              "definition": "The calendar year runs from January 1 through December 31. The two annual time periods for reporting data are calendar year and fiscal year.",
+              "name": "Calendar year (CY)",
+              "tags": null
+            },
+            {
+              "definition": "A fee that covers the government’s administrative costs in the claim-staking process for mining on federal lands.",
+              "name": "Claim-staking fee",
+              "tags": [
+                "claim-staking"
+              ]
+            },
+            {
+              "definition": "A state's political subdivision, such as a county, parish, borough, or city. The political subdivision must be within the coastal zone as defined in the Coastal Zone Management Act of 1972.",
+              "name": "Coastal political subdivision",
+              "tags": [
+                "coastal political subdivisions"
+              ]
+            },
+            {
+              "definition": "People and organizations not associated with industry or government, such as trade unions, issue-based coalitions, faith-based organizations, indigenous-peoples movements, the media, think tanks, and foundations.",
+              "name": "Civil society",
+              "tags": null
+            },
+            {
+              "definition": "Oil is that is not treated or refined.",
+              "name": "Crude oil",
+              "tags": null
+            },
+            {
+              "definition": "Geothermal energy (hot water near the surface of the earth) can be used directly for heating buildings, drying crops, heating water, and other industrial processes.",
+              "name": "Direct use",
+              "tags": null
+            },
+            {
+              "definition": "After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called “disbursement.”",
+              "name": "Disbursement",
+              "tags": [
+                "disburses"
+              ]
+            },
+            {
+              "definition": "Natural gas that remains after removing the liquefiable shydrocarbon portion from the gas stream (i.e., gas after lease, field, or plant separation) and after removing any quantities of nonhydrocarbon gases that render the gas unmarketable.",
+              "name": "Dry natural gas",
+              "tags": null
+            },
+            {
+              "definition": "The U.S. Department of the Interior (DOI) is a Cabinet-level agency responsible for managing America’s natural and cultural resources.",
+              "name": "DOI",
+              "tags": null
+            },
+            {
+              "definition": "A document intended to provide decision makers and the public with information about the potential impacts of major federal actions and alternatives to them. Federal agencies prepare an EIS if a proposed federal action is determined to significantly affect the quality of the human environment, as required by the National Environmental Policy Act (NEPA).",
+              "name": "Environmental Impact Statement (EIS)",
+              "tags": [
+                "Environmental Impact Statement"
+              ]
+            },
+            {
+              "definition": "The Extractive Industries Transparency Initiative Standard is an international standard for openness around the management of revenue from natural resources. Governments disclose how much they receive from extractive companies operating in their country and these companies disclose how much they pay. Governments sign up to implement the EITI Standard and must meet seven requirements. In 2017, the U.S. withdrew from EITI as an Implementing Country, but remains committed to institutionalizing the EITI principles of transparency and accountability.",
+              "name": "EITI Standard",
+              "tags": [
+                "USEITI"
+              ]
+            },
+            {
+              "definition": "Oil, gas, and mining industries that extract natural resources.",
+              "name": "Extractive industry",
+              "tags": null
+            },
+            {
+              "definition": "The estimated price for a natural resource lease, based on the government’s analysis and the geological resources on the lands or waters.",
+              "name": "Fair market value",
+              "tags": null
+            },
+            {
+              "definition": "Lands and waters owned by the federal government, including public domain lands, acquired lands, and the Outer Continental Shelf.",
+              "name": "Federal land",
+              "tags": [
+                "federal lands and waters"
+              ]
+            },
+            {
+              "definition": "The federal government’s fiscal year runs from October 1 through September 30. The two annual time periods for reporting data are calendar year and fiscal year.",
+              "name": "Fiscal year (FY)",
+              "tags": null
+            },
+            {
+              "definition": "An energy source formed in the Earth’s crust from decayed organic material. Common fossil fuels include oil, gas, and coal.",
+              "name": "Fossil fuel",
+              "tags": null
+            },
+            {
+              "definition": "The division of ownership among multiple individuals.",
+              "name": "Fractionation",
+              "tags": null
+            },
+            {
+              "definition": "The Gulf of Mexico Energy Security Act (GOMESA) of 2006 directs a portion of revenue from gulf oil and gas royalties to the states of Alabama, Louisiana, Mississippi, and Texas. The act also directs a portion of gulf revenue be disbursed to the Land and Water Conservation Fund.",
+              "name": "GOMESA",
+              "tags": null
+            },
+            {
+              "definition": "A measure of the total value of goods and services produced in a specific area. The Bureau of Economic Analysis measures GDP by adding up the “real value added” for each industry that contributes to the U.S. economy.",
+              "name": "Gross domestic product (GDP)",
+              "tags": null
+            },
+            {
+              "definition": "Helps preserve U.S. historical and archaeological sites and cultural heritage through grants to state and tribal historic preservation offices.",
+              "name": "HPF",
+              "tags": null
+            },
+            {
+              "definition": "Helps preserve U.S. historical and archaeological sites and cultural heritage through grants to state and tribal historic preservation offices.",
+              "name": "Historic Perservation Fund",
+              "tags": null
+            },
+            {
+              "definition": "A well development process that involves injecting water under high pressure into a bedrock formation through the well, to increase the size and extent of existing bedrock fractures.",
+              "name": "Hydraulic fracturing",
+              "tags": null
+            },
+            {
+              "definition": "The Indian Mineral Development Act of 1982, which increased Indian self-governance concerning extraction.",
+              "name": "IMDA",
+              "tags": null
+            },
+            {
+              "definition": "The EITI International Board requires participating countries to appoint an Independent Administrator to help apply the international standards. The USEITI Independent Administrator is Deloitte & Touche LLP.",
+              "name": "Independent Administrator (IA)",
+              "tags": null
+            },
+            {
+              "definition": "Lands owned by Native Americans, including tribal lands held in trust by the federal government for a tribe’s use, Indian allotments held in trust by the federal government for individual use, and lands held by Alaska Native corporations.",
+              "name": "Indian lands",
+              "tags": null
+            },
+            {
+              "definition": "A measure of electrical energy equivalent to a power consumption of 1,000 watts for 1 hour; abbreviated as kWh.",
+              "name": "Kilowatt hour (kWh)",
+              "tags": null
+            },
+            {
+              "definition": "Abbreviation for “kilowatt hour,” a measure of electrical energy equivalent to a power consumption of 1,000 watts for 1 hour.",
+              "name": "kWh",
+              "tags": null
+            },
+            {
+              "definition": "Provides matching grants to states and local governments to buy and develop public outdoor recreation areas across the 50 states.",
+              "name": "Land and Water Conservation Fund",
+              "tags": null
+            },
+            {
+              "definition": "Land and Water Conservation Fund - Provides matching grants to states and local governments to buy and develop public outdoor recreation areas across the 50 states.",
+              "name": "LWCF",
+              "tags": null
+            },
+            {
+              "definition": "A contract that allows a company to be the exclusive entity that can apply to explore for and extract natural resources within a specific tract of federal lands or waters.",
+              "name": "Lease",
+              "tags": null
+            },
+            {
+              "definition": "Light liquid hydrocarbons recovered from oil and natural gas wells during production.",
+              "name": "Lease condensate",
+              "tags": null
+            },
+            {
+              "definition": "Locatable minerals are minerals that may be “located” and obtained by filing a mining claim. Locatable minerals include gold, silver, copper, lead, and many other metallic and nonmetallic minerals.",
+              "name": "Locatable minerals",
+              "tags": null
+            },
+            {
+              "definition": "A long ton (also known as “imperial ton” or “displacement ton”) is 2,240 pounds, compared to a conventional ton (or “short ton”), which is 2,000 pounds.",
+              "name": "long ton",
+              "tags": null
+            },
+            {
+              "definition": "The percentage difference that the USEITI Multi-Stakeholder Group defined as significant for each revenue type as part of the reconciliation process.",
+              "name": "Margin of variance",
+              "tags": null
+            },
+            {
+              "definition": "A discrepancy between government-reported and company-reported revenue payments that is considered significant by the Independent Administrator. Margins of variance vary by revenue type, and were approved by the Multi-Stakeholder Group as part of the USEITI process.",
+              "name": "Material variance",
+              "tags": null
+            },
+            {
+              "definition": "1000 cubic feet, a unit of measure for natural gas.",
+              "name": "Mcf",
+              "tags": null
+            },
+            {
+              "definition": "A revenue payment for the calculated value of electricity generated on federal lands.",
+              "name": "Megawatt Capacity (MC) fee",
+              "tags": null
+            },
+            {
+              "definition": "One megawatt is equivalent to one million watts. One megawatt hour (abbreviated as Mwh) is equivalent to 1,000 Kilowatt hours.",
+              "name": "Megawatt hours",
+              "tags": null
+            },
+            {
+              "definition": "One metric ton is equal to 2240 pounds. To convert metric tons to tons, multiply by 1.1023. To convert tons to metric tons, multiply by 0.9072.",
+              "name": "Metric ton",
+              "tags": null
+            },
+            {
+              "definition": "A millage tax is a property tax based on the assessed value of a property. Millage tax rates are quantified in terms of mills: One mill is worth 1/1000 of a dollar, or $0.001.",
+              "name": "Millage tax",
+              "tags": null
+            },
+            {
+              "definition": "A mill levy is calculated by determining how much revenue each taxing jurisdiction will need for the upcoming year, then dividing that projection by the total value of the property within the area.",
+              "name": "Mill levy",
+              "tags": null
+            },
+            {
+              "definition": "A mill rate is the amount of tax payable per dollar on the assessed value of a property. Each mill is worth one-tenth of a cent, or $0.001.",
+              "name": "Mill rate",
+              "tags": null
+            },
+            {
+              "definition": "Sometimes the land’s surface owner is different from the owner of the minerals in the ground below. For instance, a state might retain mineral rights when it sells or swaps land.",
+              "name": "Mineral acres",
+              "tags": null
+            },
+            {
+              "definition": "According to the U.S. Geological Survey, mineral resource potential is the likelihood for the occurrence of undiscovered mineral resources in a defined area.",
+              "name": "Mineral resource potential",
+              "tags": null
+            },
+            {
+              "definition": "A cross-sector body comprised of members and alternates from government, industry, and civil society organizations commissioned by the Secretary of the Interior to guide and monitor EITI implementation.",
+              "name": "Multi-Stakeholder Group (MSG)",
+              "tags": null
+            },
+            {
+              "definition": "Natural gas liquids, such as ethane, propane, and butane, are byproducts of wet natural gas. These liquid hydrocarbons are separated from the gas stream close to the well or at a processing plant.",
+              "name": "Natural gas liquids (NGL)",
+              "tags": null
+            },
+            {
+              "definition": "The standard used by federal agencies in classifying business establishments for the purpose of collecting, analyzing, and publishing statistical data related to the U.S. economy.",
+              "name": "North American Industry Classification System (NAICS)",
+              "tags": null
+            },
+            {
+              "definition": "The Office of Natural Resources Revenue (ONRR) is part of the U.S. Department of the Interior, and is responsible for collecting, disbursing, and verifying federal and Indian energy and other natural resource revenue.",
+              "name": "ONRR",
+              "tags": null
+            },
+            {
+              "definition": "A fee for a percentage of the anticipated value of wind energy produced on federal waters.",
+              "name": "Operating fee",
+              "tags": null
+            },
+            {
+              "definition": "The part of the continental shelf under federal jurisdiction, seaward of the line that marks state ownership, often three miles off a state’s coastline.",
+              "name": "Outer Continental Shelf",
+              "tags": null
+            },
+            {
+              "definition": "The Office of Surface Mining Reclamation and Enforcement (OSMRE) is part of the U.S. Department of the Interior, and is responsible for regulating surface coal mining in the United States, as well as funding the restoration of abandoned coal mines.",
+              "name": "OSMRE",
+              "tags": null
+            },
+            {
+              "definition": "The Office of the Special Trustee for American Indians (OST) is part of the Department of the Interior and is responsible for stewardship of assets held in trust on behalf of American Indians.",
+              "name": "OST",
+              "tags": null
+            },
+            {
+              "definition": "Quantities of oil or gas that are sufficient to yield a profit to the lease holder over operating expenses, even though the drilling costs or equipping costs are never recovered, and even if the undertaking as a whole may result in a loss to the lease holder.",
+              "name": "Paying quantities",
+              "tags": null
+            },
+            {
+              "definition": "Products come from processing crude oil (including lease condensate), natural gas, and other hydrocarbon compounds. These include unfinished oils, liquefied petroleum gases, pentanes plus, aviation gasoline, motor gasoline, naphtha-type jet fuel, kerosene-type jet fuel, kerosene, distillate fuel oil, residual fuel oil, petrochemical feedstocks, special naphthas, lubricants, waxes, petroleum coke, asphalt, road oil, still gas, and miscellaneous products.",
+              "name": "Petroleum products",
+              "tags": null
+            },
+            {
+              "definition": "A group of oil and gas fields in the same region formed by the same geological processes.",
+              "name": "Play",
+              "tags": null
+            },
+            {
+              "definition": "Lands owned by citizens or corporations.",
+              "name": "Private lands",
+              "tags": null
+            },
+            {
+              "definition": "We use the term “production” as a catch-all term for mining, drilling, energy generation, and other forms of natural resource extraction. There is no distinction between “extraction” and “production” in ONRR or EIA datasets.",
+              "name": "Production",
+              "tags": null
+            },
+            {
+              "definition": "Quantities of natural resources that, by analysis of geological and engineering data, can be estimated with reasonable certainty to be commercially recoverable from known reservoirs and under current economic conditions, operating methods, and government regulations.",
+              "name": "Proved reserves",
+              "tags": null
+            },
+            {
+              "definition": "Public domain lands are lands that have belonged to the federal government since they were obtained from the 13 original colonies, from Native American tribes, or through purchases from other countries, and have not been dedicated to a specific use.",
+              "name": "Public domain lands",
+              "tags": null
+            },
+            {
+              "definition": "The process of restoring the surface environment to acceptable pre-existing conditions, including surface contouring, equipment removal, well plugging, and revegetation.",
+              "name": "Reclamation",
+              "tags": [
+                "reclaim",
+                "reclaiming"
+              ]
+            },
+            {
+              "definition": "An annual payment for leasing lands or waters before production starts.",
+              "name": "Rent",
+              "tags": [
+                "rents"
+              ]
+            },
+            {
+              "definition": "Energy resources that are virtually inexhaustible in duration but limited in the amount of energy that is available per unit of time. These include biomass, hydropower, geothermal, solar, wind, ocean thermal, wave action, and tidal action energy.",
+              "name": "Renewable energy",
+              "tags": null
+            },
+            {
+              "definition": "A group of 12 to 15 members with diverse interests in local communities, such as ranchers, environmental groups, tribes, state and local government officials, academics, and other public land users.",
+              "name": "Resource advisory council (RAC)",
+              "tags": null
+            },
+            {
+              "definition": "A payment for extracted natural resources, determined by a percentage of the resources’ production value.",
+              "name": "Royalty",
+              "tags": [
+                "royalties"
+              ]
+            },
+            {
+              "definition": "A system used by federal statistical agencies to classify workers into occupational categories for the purpose of collecting, calculating, or disseminating data.",
+              "name": "Standard Occupation Classification",
+              "tags": null
+            },
+            {
+              "definition": "Lands owned by state or local governments.",
+              "name": "State or local lands",
+              "tags": null
+            },
+            {
+              "definition": "A land parcel that has surface rights and subsurface rights (such as the rights to develop minerals) owned by different parties.",
+              "name": "Split estate",
+              "tags": null
+            },
+            {
+              "definition": "A lease holder’s right to use as much of the land beneath the surface as necessary to operate under the lease.",
+              "name": "Subsurface rights",
+              "tags": null
+            },
+            {
+              "definition": "Underground mining, which has different and more labor intensive techniques than surface mining.",
+              "name": "Subsurface mining",
+              "tags": null
+            },
+            {
+              "definition": "A leaseholder’s right to use as much of the surface of the land as necessary to operate under the lease.",
+              "name": "Surface rights",
+              "tags": null
+            },
+            {
+              "definition": "Revenue lossess attributed to provisions of federal tax laws that allow a special exclusion, exemption, or deduction from gross income, or which provide a special credit, a preferential rate of tax, or a deferral of tax liability.",
+              "name": "Tax expenditures",
+              "tags": null
+            },
+            {
+              "definition": "In the U.S., one ton is 2,000 pounds. In some countries this is referred to as a short ton.",
+              "name": "Ton",
+              "tags": null
+            },
+            {
+              "definition": "Land for which the federal government holds title to the land but the beneficial interest remains with a Native American individual or tribe.",
+              "name": "Trust land",
+              "tags": null
+            },
+            {
+              "definition": "In Alaska, over half of land is not contained in any of its 19 organized boroughs. This land (collectively called the Unorganized Borough) is divided into 10 census areas for statistical purposes.",
+              "name": "Unorganized land",
+              "tags": null
+            },
+            {
+              "definition": "During the reconciliation process, only variances between reported numbers that exceed a minimum dollar amount are investigated by the Independent Administrator.",
+              "name": "Variance floor",
+              "tags": null
+            },
+            {
+              "definition": "Natural gas that hasn’t been treated to remove liquid hydrocarbons or other nonhydrocarbons that make the gas unmarketable.",
+              "name": "Wet gas",
+              "tags": null
+            },
+            {
+              "definition": "We refer to data as “withheld” when publishing that data could violate federal laws and regulations. Most commonly, we withhold data if it can be used to personally identify individuals, or if the data is protected by the Trade Secrets Act. In the latter case, data is often withheld when there is only one company producing a specific commodity within a specific region. We withhold all location data for Native American production, revenue, and disbursements.",
+              "name": "Withheld",
+              "tags": null
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
