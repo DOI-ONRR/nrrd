@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Link component: DownloadXls 1`] = `
+exports[`Link component: DownloadXls Link Match snapshot 1`] = `
 <div
   className="MuiBox-root MuiBox-root-5"
 >
@@ -27,7 +27,7 @@ exports[`Link component: DownloadXls 1`] = `
 </div>
 `;
 
-exports[`Link component: External 1`] = `
+exports[`Link component: External Link Match snapshot 1`] = `
 <a
   className="makeStyles-link-1 "
   href="https://revenuedata.doi.gov/"
@@ -36,13 +36,13 @@ exports[`Link component: External 1`] = `
 </a>
 `;
 
-exports[`Link component: HowWorks 1`] = `
+exports[`Link component: HowWorks Link Match snapshot 1`] = `
 <div
   className="MuiBox-root MuiBox-root-7"
 >
   <a
     className="makeStyles-link-1 "
-    href="./how-revenue-works/native-american-production/"
+    href="./how-works/native/"
   >
     <div
       className="MuiBox-root MuiBox-root-8"

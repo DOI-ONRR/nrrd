@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 const ArchiveBanner = () => {
   const theme = useTheme()
-  const classes = useStyles()
+  const classes = useStyles(theme)
 
   return (
     <div className={classes.root}>
