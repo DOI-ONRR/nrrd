@@ -48,6 +48,7 @@ const ErrorMessage = () => {
     setOpen(state.isError || false)
   }, [state])
 
+  console.log(state)
   return (
     <Modal open={open} onClose={handleClose} aria-labelledby="Error Message" aria-describedby="simple-modal-description">
       <div className={classes.errorModal}>
