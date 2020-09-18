@@ -1,6 +1,5 @@
 // https://material-ui.com/system/typography/#typography
 
-
 export default Object.freeze({
   fontSize: 18,
   fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
