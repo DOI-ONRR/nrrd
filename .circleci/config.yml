@@ -40,7 +40,7 @@ jobs:
             - node_modules
       - run:
           name: Run unit tests
-          command: npm run test-unit-tests -- --ci --runInBand
+          command: npm run test-unit-tests
       - store_test_results:
           path: ./test-results
       - store_artifacts:
