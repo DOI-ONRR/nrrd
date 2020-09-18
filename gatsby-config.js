@@ -171,10 +171,17 @@ const config = {
         // should be an object or a function that is executed in the browser
         //
         // Defaults to null
+<<<<<<< HEAD
         defaultDataLayer: { platform: 'nrrd_data_layer' },
         // Specify optional GTM environment details.
         // gtmAuth: 'YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING',
         gtmPreview: 'CLOUD_GOV_GTM_TESTING_BRANCH',
+=======
+        defaultDataLayer: { platform: 'gatsby_nrrd_cloud_gov' },
+        // Specify optional GTM environment details.
+        // gtmAuth: 'YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING',
+        gtmPreview: 'NRRD_CLOUD_GOV_PREVIEW_BRANCH',
+>>>>>>> staging
         // dataLayerName: 'YOUR_DATA_LAYER_NAME',
 
         // Name of the event that is triggered
