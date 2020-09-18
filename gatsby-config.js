@@ -163,7 +163,7 @@ const config = {
     {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        id: 'GTM-NCRF98R',
+        id: GTM_ID,
         // Include GTM in development.
         // Defaults to false meaning GTM will only be loaded in production.
         includeInDevelopment: false,
@@ -171,7 +171,7 @@ const config = {
         // should be an object or a function that is executed in the browser
         //
         // Defaults to null
-        defaultDataLayer: { platform: 'gatsby_nrrd_cloud_gov' },
+        defaultDataLayer: { platform: 'nrrd_data_layer' },
         // Specify optional GTM environment details.
         // gtmAuth: 'YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING',
         gtmPreview: 'NRRD_CLOUD_GOV_PREVIEW_BRANCH',
