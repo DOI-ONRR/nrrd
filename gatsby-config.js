@@ -174,7 +174,7 @@ const config = {
         defaultDataLayer: { platform: 'nrrd_data_layer' },
         // Specify optional GTM environment details.
         // gtmAuth: 'YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING',
-        gtmPreview: 'CLOUD_GOV_GTM_TESTING_BRANCH',
+        gtmPreview: 'NRRD_CLOUD_GOV_PREVIEW_BRANCH',
         // dataLayerName: 'YOUR_DATA_LAYER_NAME',
 
         // Name of the event that is triggered

@@ -87,6 +87,8 @@
   "devDependencies": {
     "@babel/helper-create-regexp-features-plugin": "^7.10.4",
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
     "app-root-dir": "^1.0.2",
     "babel-jest": "^24.9.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -105,7 +107,6 @@
     "jest-junit": "^10.0.0",
     "lighthouse": "^5.6.0",
     "react-hot-loader": "^4.12.21",
-    "react-test-renderer": "^16.13.1",
     "svg-react-loader": "^0.4.6"
   },
   "keywords": [
@@ -120,10 +121,10 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "jest",
-    "test-update-snapshot": "jest --updateSnapshot",
+    "test-update-snapshot": "jest --updateSnapshot --testPathPattern=src",
     "test-unit-tests": "jest --testPathPattern=src",
     "test-lighthouse": "jest --testPathPattern=lighthouse",
-    "test-watch": "jest --watchAll",
+    "test-watch": "jest --watchAll --testPathPattern=src",
     "lint": "eslint ./src/ --format junit --output-file ./test-results/eslint.xml"
   },
   "repository": {
