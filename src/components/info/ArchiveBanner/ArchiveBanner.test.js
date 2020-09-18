@@ -1,9 +1,13 @@
 /* eslint-disable no-undef */
 import React from 'react'
-import ArchiveBanner from './ArchiveBanner'
-import { create } from 'react-test-renderer'
+
+import '@testing-library/jest-dom/extend-expect'
+import { render, screen } from '@testing-library/react'
+
 import theme from '../../../js/mui/theme'
 import { ThemeProvider } from '@material-ui/core/styles'
+
+import ArchiveBanner from './ArchiveBanner'
 
 describe('Archive Banner:', () => {
   function MockedTheme ({ children }) {
@@ -14,5 +18,14 @@ describe('Archive Banner:', () => {
     )
   }
 
-  test('Match snapshot', () => expect(create(<MockedTheme><ArchiveBanner /></MockedTheme>).toJSON()).toMatchSnapshot())
+  test('Found the text content', async () => {
+    render(<MockedTheme><ArchiveBanner /></MockedTheme>)
+    expect(screen.getByText('This content was created', { exact: false })).toBeInTheDocument()
+  })
+
+  test('Found the USEITI glossary term', async () => {
+    render(<MockedTheme><ArchiveBanner /></MockedTheme>)
+    expect(screen.getByTitle('Extractive Industries', { exact: false })).toBeInTheDocument()
+  })
+
 })

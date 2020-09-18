@@ -9,6 +9,7 @@ module.exports = {
     React.createElement('a', {
       ...rest,
       href: to,
+      'data-testId': 'bag'
     })
   ),
   StaticQuery: jest.fn(),

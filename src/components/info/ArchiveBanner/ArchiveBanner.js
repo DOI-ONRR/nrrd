@@ -37,8 +37,7 @@ const ArchiveBanner = () => {
   return (
     <div className={classes.root}>
       <p className={classes.content}>
-        <IconArchiveImg /> This content was created as part of <GlossaryTerm>USEITI</GlossaryTerm> and is no longer being updated
-        . 
+        <IconArchiveImg /> This content was created as part of <GlossaryTerm>USEITI</GlossaryTerm> and is no longer being updated.
       </p>
     </div>
   )
