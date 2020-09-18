@@ -28,5 +28,4 @@ describe('Glossary Term:', () => {
     fireEvent.mouseOver(screen.getByTitle('The Gulf of Mexico Energy Security Act (GOMESA)', { exact: false }))
     expect(screen.queryByTitle('The Gulf of Mexico Energy Security Act (GOMESA)', { exact: false })).not.toBeInTheDocument()
   })
-
 })

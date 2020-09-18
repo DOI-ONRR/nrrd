@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Link from '../../Link'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import useTheme from '@material-ui/styles/useTheme'
 

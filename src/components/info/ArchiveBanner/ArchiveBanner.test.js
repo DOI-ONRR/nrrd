@@ -27,5 +27,4 @@ describe('Archive Banner:', () => {
     render(<MockedTheme><ArchiveBanner /></MockedTheme>)
     expect(screen.getByTitle('Extractive Industries', { exact: false })).toBeInTheDocument()
   })
-
 })

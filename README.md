@@ -6,7 +6,7 @@ This is the repository for active development work on [revenuedata.doi.gov](http
 
 ## What
 
-The U.S. earns revenue on natural resources (such as oil, gas, coal and geothermals) extracted from federal lands and waters. This is a major source of revenue for both the federal government, state governments, and local municipalities.
+The U.S. earns revenue on natural resources (such as oil, gas, coal and geothermal(s) extracted from federal lands and waters. This is a major source of revenue for both the federal government, state governments, and local municipalities.
 
 This repository contains the code for revenuedata.doi.gov, which is a website that includes both curated content and raw data to better inform the national and international conversation around extractive industries revenue. It will provide data visualizations and information that’s  understandable to members of the public and can be re-used through other media and applications.
 
