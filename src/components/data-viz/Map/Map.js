@@ -5,6 +5,7 @@ import * as d3 from 'd3'
 import * as topojson from 'topojson-client'
 import utils from '../../../js/utils'
 import D3Map from './D3Map.js'
+import useWindowSize from '../../../js/hooks/useWindowSize'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -56,9 +57,11 @@ const useStyles = makeStyles(theme => ({
 
 const Map = props => {
   // console.log('Map props: ', props)
+
+  const size = useWindowSize()
+
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
-
   const mapJson = props.mapJson || '/maps/land/us-topology.json'
   const mapOffshoreJson =
         props.mapOffshoreJson || '/maps/offshore/offshore.json'
@@ -111,7 +114,7 @@ const Map = props => {
     }
   }
 
-  useEffect(() => {
+  const createMap = () => {
     const us = mapJsonObject
     //    const offshore = mapJsonObject.offshore
     // console.debug("OPTIONS: ", options)
@@ -145,7 +148,14 @@ const Map = props => {
     if (props.zoomIn) {
 	  map.zoomIn(props.zoomIn)
     }
-  }, [mapData, mapJsonObject])
+
+    map.width = size.width
+  }
+
+  useEffect(() => {
+    createMap()
+  }, [mapData, mapJsonObject, size.width])
+
   return (
     <Box className={classes.root}>
       <div className='mapContainer' ref={elemRef}>

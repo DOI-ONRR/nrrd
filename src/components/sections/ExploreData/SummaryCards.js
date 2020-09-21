@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     width: 285,
-    margin: '10px',
+    // margin: '10px',
     position: 'absolute',
     right: 0,
     transform: 'translate3d(0, 0px, 0px)',
