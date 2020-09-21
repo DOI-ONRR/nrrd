@@ -102,6 +102,9 @@ const useStyles = makeStyles(theme => ({
     height: 'auto',
     minHeight: 335,
     zIndex: 99,
+    '@media (max-width: 1440px)': {
+      bottom: -15,
+    },
     '@media (max-width: 960px)': {
       bottom: 40,
     },
