@@ -4,6 +4,10 @@ node_modules
 yarn-error.log
 yarn.lock
 
+# tests
+/test-results
+/coverage
+
 # Build directory
 /public
 .DS_Store
