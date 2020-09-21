@@ -13,11 +13,7 @@ import {
   Box,
   Container,
   Grid,
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableCell
+  Hidden
 } from '@material-ui/core'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
@@ -68,7 +64,6 @@ const RevenueNationalSummary = props => {
     variables: { year: year, period: period, commodities: commodities }
   })
 
-  const chartTitle = props.chartTitle || `${ DFC.REVENUE } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
@@ -115,30 +110,38 @@ const RevenueNationalSummary = props => {
             </QueryLink>
           </Box>
         </Grid>
-        <Grid item xs={12} style={{ overflowX: 'auto' }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
-                <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
-                  <span style={{ fontWeight: 'bold', float: 'right' }}>{period + ' ' + year}</span></TableCell>
-
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              { nationalRevenueData &&
-              nationalRevenueData.map((item, i) => {
-                return (
-                  <TableRow key={i}>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box component="h4" mt={0}>{item[0]}</Box>
-                      <Box component="p">
+        <Grid container item xs={5} style={{ borderBottom: '2px solid #cde3c3' }}>
+          <Box fontWeight="bold">Revenue type</Box>
+        </Grid>
+        <Grid container item xs={7} style={{ borderBottom: '2px solid #cde3c3' }}>
+          <Hidden xsDown>
+            <Grid item sm={6}>
+              <Box fontWeight="bold" display="flex" justifyContent="flex-start" >Source</Box>
+            </Grid>
+          </Hidden>
+          <Grid item xs={12} sm={6}>
+            <Box fontWeight="bold" display="flex" justifyContent="flex-end">{`${ period } ${ year }`}</Box>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid container spacing={2}>
+        { nationalRevenueData &&
+          nationalRevenueData.map((item, i) => {
+            return (
+              <Box p={2} width="100%" borderBottom="1px solid rgba(224, 224, 224, 1)">
+                <Grid container>
+                  <Grid container item xs={12} sm={5}>
+                    <Box key={i}>
+                      <Box component="h4">{item[0]}</Box>
+                      <Box component="p" pb={2} pr={{ xs: 0, md: 3 }}>
                         {revenueTypeDescriptions[i]}
                       </Box>
-                    </TableCell>
-                    <TableCell style={{ width: '65%' }}>
+                    </Box>
+                  </Grid>
+                  <Grid container item xs={12} sm={7}>
+                    <Box mt={{ xs: 0, sm: 4 }} width="100%">
                       <StackedBarChart
-                        key={'NRS' + year + '_' + i + commodityKey}
+                        key={`NRS${ year }_${ i }${ commodityKey }`}
                         data={item[1]}
                         legendFormat={v => {
                           if (v === 0) {
@@ -165,14 +168,13 @@ const RevenueNationalSummary = props => {
                         horizontal
                         legendReverse={true}
                       />
-                    </TableCell>
-                  </TableRow>
-                )
-              })
-              }
-            </TableBody>
-          </Table>
-        </Grid>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Box>
+            )
+          })
+        }
       </Grid>
     </Container>
   )

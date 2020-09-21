@@ -12,7 +12,7 @@ then
     git merge --abort
     exit $CONFLICT
 else
-    git commit -a "Merging $BRANCH to staging"
+    git commit -m "Merging $BRANCH to staging"
     git push origin staging
 
 fi

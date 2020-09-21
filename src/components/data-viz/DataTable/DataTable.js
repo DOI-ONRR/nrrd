@@ -4,6 +4,7 @@ import {
   REVENUE,
   PRODUCTION,
   DISBURSEMENT,
+  REVENUE_BY_COMPANY,
   DATA_TYPE,
   GROUP_BY,
   BREAKOUT_BY,
@@ -14,13 +15,14 @@ import {
   DISPLAY_NAMES,
   PERIOD,
   PERIOD_FISCAL_YEAR,
-  QUERY_KEY_DATA_TABLE,
+  QK_QUERY_TOOL,
   DOWNLOAD_DATA_TABLE,
   PRODUCT,
   GROUP_BY_STICKY,
   QUERY_COUNTS,
   COMMODITY_ORDER,
-  RECIPIENT
+  RECIPIENT,
+  COMPANY_NAME
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'
@@ -107,6 +109,11 @@ const DataTable = ({ dataType, height = '200px' }) => {
                 <EnhancedDataTable showSummaryRow={true}/>
               </Grid>
             }
+            {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
+              <Grid item xs={12}>
+                <EnhancedDataTable showSummaryRow={true}/>
+              </Grid>
+            }
           </React.Fragment>
         }
       </Grid>
@@ -128,7 +135,7 @@ const EnhancedDataTable = withQueryManager(({ data, showSummaryRow, showOnlySubt
       }
     </React.Fragment>
   )
-}, QUERY_KEY_DATA_TABLE)
+}, QK_QUERY_TOOL)
 
 const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow }) => {
   const { state, updateDataFilter } = useContext(DataFilterContext)
@@ -146,24 +153,27 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
   const [aggregatedSums, setAggregatedSums] = useState()
   const getDefaultColumnWidths = () => {
     return (
-      columnNames.map((column, index) =>
-        (column.name.startsWith('y'))
-          ? ({ columnName: column.name, width: 200 })
-          : (column.name === RECIPIENT) ? ({ columnName: column.name, width: 350 }) : ({ columnName: column.name, width: 250 }))
+      columnNames.map((column, index) => {
+        let width = (column.name.startsWith('y')) ? 200 : 250
+        if (column.name === RECIPIENT) {
+          width = 350
+        }
+        if (column.name === COMPANY_NAME) {
+          width = 525
+        }
+        return ({ columnName: column.name, width: width })
+      })
     )
   }
   const [defaultColumnWidths] = useState(columnNames ? getDefaultColumnWidths() : [])
   const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
 
   const getSortingColumns = hiddenCols => {
-    if (state[DATA_TYPE] === REVENUE || state[DATA_TYPE] === DISBURSEMENT) {
-      const yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !hiddenCols.includes(item.name))).map(item => item.name)
-      return [{ columnName: yearColumns.slice(-1)[0], direction: 'desc' }]
-    }
-    else if (state[DATA_TYPE] === PRODUCTION) {
+    if (state[DATA_TYPE] === PRODUCTION) {
       return [{ columnName: COMMODITY_ORDER, direction: 'asc' }]
     }
-    return []
+    const yearColumns = columnNames.filter(item => (item.name.startsWith('y') && !hiddenCols.includes(item.name))).map(item => item.name)
+    return [{ columnName: yearColumns.slice(-1)[0], direction: 'desc' }]
   }
 
   // Return true if we don't have a count for the column

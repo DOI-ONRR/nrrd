@@ -1,6 +1,6 @@
 import React from 'react'
 import Explore from './Explore'
-import { ExploreDataLink } from '../../layouts/IconLinks/ExploreDataLink'
+import Link from '../../../components/Link'
 
 const ExploreProduction = props => {
   return (
@@ -8,29 +8,35 @@ const ExploreProduction = props => {
       title="production"
       contentLeft={
         <>
-          <ExploreDataLink to="/explore/?dataType=Production" icon="data">
+          <Link
+            href="/explore/?dataType=Production"
+            linkType="ExploreData"
+            mt={0}>
             Explore production data
-          </ExploreDataLink>
-          <ExploreDataLink to="/query-data/?dataType=Production" icon="filter">
+          </Link>
+          <Link
+            href="/query-data/?dataType=Production"
+            linkType="FilterTable"
+            mt={0}>
             Query production data
-          </ExploreDataLink>
-          {/* <ExploreDataLink
-            to="/how-revenue-works/native-american-production/#production-on-native-american-land"
-            icon="data"
-          >
-            Production trends on Native American lands
-          </ExploreDataLink> */}
+          </Link>
         </>
       }
       contentCenter={
-        <ExploreDataLink to="/how-revenue-works#the-production-process" icon="works">
+        <Link
+          href="/how-revenue-works#the-production-process"
+          linkType="HowWorks"
+          mt={0}>
           How production works
-        </ExploreDataLink>
+        </Link>
       }
       contentRight={
-        <ExploreDataLink to="/downloads/#Production" icon="download">
+        <Link
+          href="/downloads/#Production"
+          linkType="DownloadData"
+          mt={0}>
           Downloads and documentation
-        </ExploreDataLink>
+        </Link>
       }
     />
   )

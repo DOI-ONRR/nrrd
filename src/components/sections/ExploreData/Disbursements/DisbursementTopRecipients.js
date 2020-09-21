@@ -69,6 +69,7 @@ const useStyles = makeStyles(theme => ({
         width: '70%',
         '@media (max-width: 426px)': {
           marginRight: 0,
+          width: '100%',
         },
       },
     }

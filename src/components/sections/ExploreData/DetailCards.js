@@ -323,8 +323,6 @@ const DetailCards = props => {
           location
           total_acres
         }
-      }
-      onrr {
         locations: location(where: {region_type: {_in: ["State", "Offshore", "County"]}, fips_code: {_neq: ""}}, distinct_on: fips_code) {
           fips_code
           location_name
@@ -396,12 +394,7 @@ const DetailCards = props => {
       cards.filter(item => item.fipsCode === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        if (stateObj.state && stateObj.state.match(/Nationwide Federal/)) {
-          cards.unshift(stateObj)
-        }
-        else {
-          cards.push(stateObj)
-        }
+        cards.push(stateObj)
       }
       else {
         // TODO: snackbar not triggering atm
