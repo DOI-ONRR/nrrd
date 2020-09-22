@@ -572,7 +572,7 @@ const MapContext = props => {
       commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
       year: filterState.year
-    }, 'pushIn')
+    }, 'replaceIn')
   }, [filterState, pageState])
 
   // console.log('mapJsonObject: ', mapJsonObject)
