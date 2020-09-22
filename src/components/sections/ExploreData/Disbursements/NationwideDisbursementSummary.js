@@ -7,7 +7,7 @@ import gql from 'graphql-tag'
 
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { 
+import {
   DATA_FILTER_CONSTANTS as DFC,
   DISPLAY_NAMES
 } from '../../../../constants'
