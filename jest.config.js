@@ -11,7 +11,7 @@ module.exports = {
   globals: {
     __PATH_PREFIX__: '',
   },
-  collectCoverage: false,
+  collectCoverage: true,
   testURL: 'http://localhost',
   setupFiles: ['<rootDir>/loadershim.js'],
   reporters: ['default',

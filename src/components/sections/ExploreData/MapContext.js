@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 270px)',
+    height: 'calc(100vh - 280px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
@@ -97,14 +97,11 @@ const useStyles = makeStyles(theme => ({
   cardContainer: {
     width: 310,
     position: 'absolute',
-    right: 0,
-    bottom: 64,
+    right: 15,
+    top: 10,
     height: 'auto',
     minHeight: 335,
     zIndex: 99,
-    '@media (max-width: 960px)': {
-      bottom: 40,
-    },
     '@media (max-width: 768px)': {
       width: '100%',
       display: 'flex',
@@ -121,7 +118,6 @@ const useStyles = makeStyles(theme => ({
     },
     '& > div': {
       cursor: 'pointer',
-      bottom: 25,
       '@media (max-width: 768px)': {
         position: 'relative',
         width: '100%',
@@ -130,7 +126,6 @@ const useStyles = makeStyles(theme => ({
         minWidth: 285,
         minHeight: 340,
         marginBottom: theme.spacing(1),
-        bottom: 0,
       },
     },
     '& > div:nth-child(2)': {
