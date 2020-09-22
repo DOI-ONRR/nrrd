@@ -1,8 +1,6 @@
 // https://material-ui.com/system/typography/#typography
 
-require('typeface-lato')
-
-module.exports = Object.freeze({
+export default Object.freeze({
   fontSize: 18,
   fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
   fontWeightBold: '600',
