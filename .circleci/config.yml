@@ -44,7 +44,7 @@ jobs:
       - store_test_results:
           path: ./test-results
       - store_artifacts:
-          path: ./test-results
+          path: ./coverage
   lighthouse:
     docker:
       - image: circleci/node:12.13.0-browsers

@@ -1,25 +1,25 @@
 /* eslint-disable no-undef */
 import React from 'react'
+
+import '@testing-library/jest-dom/extend-expect'
+import { render, screen } from '@testing-library/react'
+
 import Link from './Link'
-import renderer from 'react-test-renderer'
 
 describe('Link component:', () => {
-  it('External', () => {
-    const tree = renderer
-      .create(<Link href="https://revenuedata.doi.gov/">NRRD</Link>)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+  test('External link rendered succesfully', async () => {
+    render(<Link href="https://revenuedata.doi.gov/">NRRD</Link>)
+    expect(screen.getByText('NRRD')).toBeInTheDocument()
+    expect(screen.getByText('NRRD').getAttribute('href')).toBe('https://revenuedata.doi.gov/')
   })
-  it('DownloadXls', () => {
-    const tree = renderer
-      .create(<Link href="./excelfile.xlsx">NRRD</Link>)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+  test('DownloadXls link rendered succesfully', async () => {
+    render(<Link href="./excelfile.xlsx">Excel</Link>)
+    expect(screen.getByText('Excel')).toBeInTheDocument()
+    expect(screen.getByTestId('BaseLink').getAttribute('href')).toBe('./excelfile.xlsx')
   })
-  it('HowWorks', () => {
-    const tree = renderer
-      .create(<Link linkType='HowWorks' href="./how-revenue-works/native-american-production/">NRRD</Link>)
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+  test('Link type rendered succesfully', async () => {
+    render(<Link linkType='HowWorks' href="./how-works/native">How it works</Link>)
+    expect(screen.getByText('How it works')).toBeInTheDocument()
+    expect(screen.getByTestId('BaseLink').getAttribute('href')).toBe('./how-works/native')
   })
 })
