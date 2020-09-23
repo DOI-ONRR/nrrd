@@ -2,11 +2,10 @@
 import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen } from '@testing-library/react'
+import { render, screen } from 'test-utils'
 
 import Link from './Link'
 
-// Gatsby adds a test id to its anchor component
 const testIdForGatsbyLink = 'GatsbyLink'
 const testIdForNormalLink = 'AnchorLink'
 describe('Link component:', () => {

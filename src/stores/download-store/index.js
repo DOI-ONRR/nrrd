@@ -9,7 +9,7 @@ function DownloadProvider ({ children, defaults }) {
   const actions = useActions(state, dispatch)
 
   // Log new state
-  useEffect(() => console.log('DownloadProvider', state), [state])
+  // useEffect(() => console.log('DownloadProvider', state), [state])
 
   return (
     <DownloadContext.Provider value={{ state, ...actions }}>

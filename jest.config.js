@@ -13,6 +13,10 @@ module.exports = {
   globals: {
     __PATH_PREFIX__: '',
   },
+  moduleDirectories: [
+    'node_modules',
+    '<rootDir>/__test_utils__',
+  ],
   collectCoverage: true,
   testURL: 'http://localhost',
   setupFiles: ['<rootDir>/loadershim.js'],
