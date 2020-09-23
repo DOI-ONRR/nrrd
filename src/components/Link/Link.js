@@ -111,10 +111,7 @@ const getLinkComponent = ({ linkType, ...props }) => {
     return LinkTypeComponents.DownloadCsv(props)
   }
 
-  if (props.linkType === 'DownloadBase') {
-    return LinkTypeComponents.DownloadBase(props)
-  }
-  else if (regexDownloadData.test(props.href)) {
+  if (regexDownloadData.test(props.href)) {
     return LinkTypeComponents.DownloadData(props)
   }
 
