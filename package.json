@@ -123,7 +123,7 @@
     "serve": "gatsby serve",
     "test": "jest",
     "test-update-snapshot": "jest --updateSnapshot --testPathPattern=src",
-    "test-unit-tests": "jest --testPathPattern=src",
+    "test-unit-tests": "jest --testPathPattern=src --runInBand --silent",
     "test-lighthouse": "jest --testPathPattern=lighthouse",
     "test-watch": "jest --watchAll --testPathPattern=src",
     "lint": "eslint ./src/ --format junit --output-file ./test-results/eslint.xml"
