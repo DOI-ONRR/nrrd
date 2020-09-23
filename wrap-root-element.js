@@ -1,5 +1,7 @@
 import React from 'react'
 import { ApolloProvider } from '@apollo/react-hooks'
+// Import font
+import 'typeface-lato'
 
 import { MDXProvider } from '@mdx-js/react'
 import * as CustomComponents from './.cache/components'

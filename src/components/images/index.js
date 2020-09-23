@@ -105,7 +105,7 @@ export const IconHardrockImg = props => <IconHardrockSvg {...props} />
 export const IconGeothermalImg = props => <IconGeothermalSvg {...props} />
 export const IconRenewablesImg = props => <IconRenewablesSvg {...props} />
 export const IconArchiveImg = props => <IconArchiveSvg style={{ verticalAlign: 'middle' }} {...props}/>
-export const IconDownloadBaseImg = props => <IconDownloadBaseSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
+export const IconDownloadBaseImg = props => <IconDownloadBaseSvg alt={'download'} style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
 export const IconDownloadXlsImg = props => <IconDownloadXlsSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
 export const IconDownloadCsvImg = props => <IconDownloadCsvSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
 export const IconDownloadDataImg = props => <IconDownloadDataSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
