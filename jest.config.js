@@ -8,6 +8,8 @@ module.exports = {
   },
   modulePathIgnorePatterns: ['node_modules', '.cache'],
   transformIgnorePatterns: ['node_modules/(?!(gatsby)/)'],
+  preset: "jest-puppeteer",
+  verbose: true,
   globals: {
     __PATH_PREFIX__: '',
   },
@@ -19,5 +21,8 @@ module.exports = {
       suiteName: 'jest tests',
       outputDirectory: './test-results'
     }]
-  ]
+  ],
+  globalSetup: './puppeteer-setup.js',
+  globalTeardown: './puppeteer-teardown.js',
+  testEnvironment: './puppeteer-environment.js',
 }
