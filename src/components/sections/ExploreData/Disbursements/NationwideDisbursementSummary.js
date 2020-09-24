@@ -7,7 +7,10 @@ import gql from 'graphql-tag'
 
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import {
+  DATA_FILTER_CONSTANTS as DFC,
+  DISPLAY_NAMES
+} from '../../../../constants'
 
 import {
   Box,
@@ -121,7 +124,7 @@ const NationwideDisbursementSummary = props => {
               </Grid>
             </Hidden>
             <Grid item xs={12} sm={6}>
-              <Box fontWeight="bold" display="flex" justifyContent="flex-end">FY {year}</Box>
+              <Box fontWeight="bold" display="flex" justifyContent="flex-end">{DISPLAY_NAMES[DFC.FISCAL_YEAR].default} {year}</Box>
             </Grid>
           </Grid>
         </Grid>

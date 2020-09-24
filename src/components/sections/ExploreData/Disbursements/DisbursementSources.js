@@ -116,7 +116,7 @@ const DisbursementSources = props => {
         <Box className={classes.boxSection}>
           <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box fontSize="subtitle2.fontSize">
-          All of  disbursements were from {source.toLowerCase()} production</Box>
+          All of  disbursements were from {source.toLowerCase()} production.</Box>
         </Box>
       )
     }
