@@ -306,9 +306,9 @@ export default class D3CircleChart {
 
     const yDomain = this.yDomain()
     const root = this._root
+
     // eslint-disable-next-line no-unused-vars
     let focus = root
-    // let view
 
     const svg = d3.select(chartNode).append('svg')
       .attr('viewBox', `-${ width * 0.5 } -${ height * 0.5 } ${ width } ${ height }`)
@@ -323,23 +323,22 @@ export default class D3CircleChart {
     const tooltip = d3.select('body').append('div')
       .attr('class', 'tooltip')
       .style('position', 'absolute')
-      // .style('left', '100px')
       .style('background', 'rgba(0, 0, 0, 0.85)')
       .style('border-radius', '4px')
       .style('z-index', '999')
       .style('text-align', 'center')
       .style('color', 'white')
-      .style('padding', '4px')
       .style('pointer-events', 'none')
       .style('opacity', 0)
       .style('display', 'none')
 
     const mouseover = function (d) {
       self._onMouseover(this, d)
-      if (circleTooltip(d.data)[0] !== undefined) {
+      if (circleTooltip(d.data)[0] !== undefined && circleTooltip(d.data)[0] !== '') {
         tooltip
           .style('opacity', 1)
           .style('display', 'block')
+          .style('padding', '4px')
       }
     }
 
@@ -384,7 +383,7 @@ export default class D3CircleChart {
       .selectAll('text')
       .data(root.descendants())
       .join('text')
-      .style('font-size', d => d.r / 6)
+      .style('font-size', d => `${ Math.round(d.r / 6) }px`)
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
       // .text(d => circleLabel(d.data, xAxis, yAxis)[0] !== undefined ? circleLabel(d.data, xAxis, yAxis)[0].substring(0, d.r / 4) : '')
@@ -407,7 +406,7 @@ export default class D3CircleChart {
       .selectAll('text')
       .data(root.descendants())
       .join('text')
-      .style('font-size', d => d.r / 6)
+      .style('font-size', d => `${ Math.round(d.r / 6) }px`)
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
       .text(d => circleLabel(d.data, xAxis, yAxis)[1])
@@ -473,7 +472,7 @@ export default class D3CircleChart {
       .style('border', 'solid')
       .style('border-width', '2px')
       .style('border-radius', '5px')
-      .style('padding', '5px')
+      .style('padding', 5)
 
     // Three function that change the tooltip when user hover / move / leave a cell
     const mouseover = function (d) {
