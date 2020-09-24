@@ -27,7 +27,7 @@ const TOC_DISPLAY_AS_ATTRB = 'data-toc-display-as'
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    maxWidth: 360,
+    // maxWidth: 360,
     paddingRight: theme.spacing(2),
     paddingTop: theme.spacing(2),
     fontSize: '1.1rem',
@@ -43,12 +43,18 @@ const useStyles = makeStyles(theme => ({
     },
     '& a': {
       color: theme.palette.common.black
+    },
+    '@media (max-width: 599px)': {
+      paddingRight: 0,
     }
   },
   tocContainer: {
     padding: theme.spacing(2),
     marginRight: theme.spacing(2),
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    '@media (max-width: 599px)': {
+      marginRight: 0,
+    }
   },
   tocItem: {
     '& a': {
@@ -106,10 +112,10 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '100%',
       padding: theme.spacing(0)
     },
-    tocContainer: {
-      marginRight: theme.spacing(0),
-      maxWidth: '100%'
-    }
+    // tocContainer: {
+    //   marginRight: theme.spacing(0),
+    //   maxWidth: '100%'
+    // }
   }
 }))
 
@@ -237,7 +243,7 @@ const PageToc = props => {
 
     setToc({
       ...toc,
-      mobileActive: document.documentElement.clientWidth <= 767
+      mobileActive: document.documentElement.clientWidth <= 600
     })
   }
 
@@ -245,7 +251,7 @@ const PageToc = props => {
     <div className={classes.root}>
       <StickyWrapper bottomBoundary={props.bottomBoundary} innerZ="1000">
         <Paper className={classes.tocContainer}>
-          <Hidden mdDown>
+          <Hidden smDown>
             {toc.displayTitle ? (
               <h3 className={classes.displayTitle + ' state-page-nav-title'}>
                 {toc.displayTitle}

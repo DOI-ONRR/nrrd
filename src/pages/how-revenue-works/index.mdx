@@ -15,7 +15,7 @@ tags:
 <Box bgcolor='primary.main'>
 <Container maxWidth="lg">
 <Grid container spacing={2} alignItems='center'>
-<Grid item xs={12} md={8}>
+<Grid item xs={12} sm={8}>
 <Box p={3} pl={0}>
 
 # How Revenue Works
@@ -26,16 +26,16 @@ Learn what [governs natural resource extraction](#what-laws-regulations-govern-n
 
 </Box>
 </Grid>
-<Grid container xs={12} md={4} >
+<Grid item xs={12} sm={4} >
 <Box p={3} border={4} borderTop={0} borderBottom={0} borderColor='white'>
-<Grid item xs={12}>
+{/* <Grid item xs={12}> */}
 
 **Natural resource extraction in the U.S. is governed by laws and regulations tied primarily to land ownership and the commodities being extracted.**
 
 <Box align='center'>
-  <HowItWorksRibbonGraphicImg style={{height:'100px'}} alignSelf='center'></HowItWorksRibbonGraphicImg>
+  <HowItWorksRibbonGraphicImg style={{height:'100px', maxWidth: '100%'}} alignSelf='center'></HowItWorksRibbonGraphicImg>
 </Box>
-</Grid>
+{/* </Grid> */}
 </Box>
 </Grid>
 </Grid>
@@ -46,10 +46,10 @@ Learn what [governs natural resource extraction](#what-laws-regulations-govern-n
 <!-- Begin content -->
 <Container maxWidth="lg" component="section">
 <Grid container>
-<Grid item xs={12} md={3}>
+<Grid item xs={12} sm={3}>
 <PageToc scrollOffset={190}></PageToc>
 </Grid>
-<Grid item xs={12} md={9}>
+<Grid item xs={12} sm={9}>
 
 <h2 alt='Land ownership'>Who owns natural resources in the U.S.?</h2>
 
