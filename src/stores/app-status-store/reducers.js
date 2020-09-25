@@ -34,7 +34,9 @@ const reducer = (state, action) => {
 }
 
 const initialState = {
-  loadingMessages: []
+  loadingMessages: [],
+  isError: false,
+  message: undefined
 }
 
 export { initialState, types, reducer }
