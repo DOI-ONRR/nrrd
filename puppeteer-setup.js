@@ -9,7 +9,7 @@ const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup')
 
 module.exports = async function() {
   console.log(chalk.green('Setup Puppeteer'))
-  const browser = await puppeteer.launch({ headless: false,
+    const browser = await puppeteer.launch({ headless: process.env.HEADLESS === 'false' ? false : true,
         devtools: false,
 	defaultViewport: {width:1440, height:2400}})
   // This global is not available inside tests but only in global teardown

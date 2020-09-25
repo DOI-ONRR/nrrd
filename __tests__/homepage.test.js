@@ -2,8 +2,10 @@ const TIMEOUT = process.env.TIMEOUT ? process.env.TIMEOUT : 30000
 const URL = process.env.URL ? process.env.URL : 'https://dev-nrrd.app.cloud.gov'
 const STEP = process.env.STEP ? process.env.STEP : 0
 const { toMatchImageSnapshot } = require('jest-image-snapshot')
+const FAILURE_THRESHOLD = process.env.FAILURE_THRESHOLD ? process.env.FAILURE_THRSHOLD : 2
+const FAILURE_THRESHOLD_TYPE = process.env.FAILURE_THRESHOLD_TYPE ? process.env.FAILURE_THRESHOLD_TYPE : 'percent'
+const matchOptions={failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig: {threshold: 0.1}}
 
-const matchOptions={failureThreshold: 1, failureThresholdType: 'percent'} //customDiffConfig: {threshold: 0.1}}
 
 expect.extend({ toMatchImageSnapshot })
 
@@ -25,6 +27,20 @@ describe(
 	it('Title should be: Home | Natural Resources Revenue Data ', async () => {
 	    const title = await page.title();
             expect(title).toBe('Home | Natural Resources Revenue Data');
+	})
+	it('Home Page ', async () => {
+	    const title = await page.title();
+	    await page.waitForXPath('/html/body/div/div[1]/main/div[2]/div/div/div/div[2]/div[1]/div/div/div[4]/div[2]')
+	    const image = await page.screenshot()
+	    try  {
+		expect(image).toMatchImageSnapshot(matchOptions)
+		if(STEP > 0) {  await page.evaluate(() => alert("Page has not changed")) }
+	    } catch(err) {
+		console.debug(err)
+		await page.evaluate(() => alert("Note: yearly fiscal revenue chart has changed"))
+		
+		
+	    }
 	})
     })
 /*

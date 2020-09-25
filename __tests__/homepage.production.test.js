@@ -1,27 +1,29 @@
 const TIMEOUT = process.env.TIMEOUT ? process.env.TIMEOUT : 30000
 const URL = process.env.URL ? process.env.URL : 'https://dev-nrrd.app.cloud.gov'
 const STEP = process.env.STEP ? process.env.STEP : 0
+
 const FAILURE_THRESHOLD = process.env.FAILURE_THRESHOLD ? process.env.FAILURE_THRESHOLD : 2
 const FAILURE_THRESHOLD_TYPE = process.env.FAILURE_THRESHOLD_TYPE ? process.env.FAILURE_THRESHOLD_TYPE : 'percent'
-const matchOptions={failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig
+const matchOptions={failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig: {threshold: 0.1}}
 
 const { toMatchImageSnapshot } = require('jest-image-snapshot')
 expect.extend({ toMatchImageSnapshot })
-const  tests  = require('./homepage.revenue.json')
 
-describe( 'Home Page Revenue: ', () => {
+const  tests  = require('./homepage.production.json')
+
+describe( 'Home Page Disbursements: ', () => {   
     let page
     beforeAll(async () => {
 	jest.setTimeout(TIMEOUT)
-
+	
 	page = await global.__BROWSER__.newPage()
 	await page.goto(URL)
     }, TIMEOUT)
-
+    
     afterAll(async () => {
 	await page.close()
     })
-const ScreenshotTest = ( title, commands, target) => {
+    const ScreenshotTest = ( title, commands, target) => {
 	it(title, async () => {
 	    await page.setViewport({
 		width: 1440,
@@ -45,6 +47,6 @@ const ScreenshotTest = ( title, commands, target) => {
     }
 
     tests.map( (test) => ScreenshotTest(test.title, test.commands, test.target));
-    
+
 }, TIMEOUT)
 
