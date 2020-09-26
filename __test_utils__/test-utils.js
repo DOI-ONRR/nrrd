@@ -2,26 +2,30 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../src/js/mui/theme'
-import { ApolloProvider } from '@apollo/react-hooks'
 
-import { client } from '../src/apollo/client'
+import { MockedProvider } from '@apollo/react-testing'
+
+import mocks from '../__mock_queries__/apollo-query-mocks'
 import {
   AppStatusProvider,
   DownloadProvider
 } from '../src/stores'
 
 import ErrorBoundary from '../src/components/ErrorBoundary'
+import { DataFilterProvider } from '../src/stores/data-filter-store'
 
 const AllTheProviders = ({ children }) => (
   <ErrorBoundary>
     <ThemeProvider theme={theme}>
-      <ApolloProvider client={client}>
+      <MockedProvider mocks={mocks} addTypename={false}>
         <AppStatusProvider>
           <DownloadProvider>
-            {children}
+            <DataFilterProvider defaults='dataFilterDefaultsMock'>
+              {children}
+            </DataFilterProvider>
           </DownloadProvider>
         </AppStatusProvider>
-      </ApolloProvider>
+      </MockedProvider>
     </ThemeProvider>
   </ErrorBoundary>
 )

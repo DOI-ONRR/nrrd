@@ -29,7 +29,7 @@ function DataFilterProvider ({ children, defaults, urlParams }) {
   useEffect(() => {
     console.log('DataFilterProvider newState: ', state)
   }, [state])
-
+  console.log('DataFilterProvider', state, actions)
   return (
     <DataFilterContext.Provider value={{ state, ...actions }}>
       {children}
