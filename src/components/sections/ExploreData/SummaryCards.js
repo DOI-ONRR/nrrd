@@ -169,6 +169,7 @@ const SummaryCards = props => {
             }
             classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
             disableTypography
+            className="summary-card-header"
           >
             <Typography variant="h4" color="inherit">
               {props.name}

@@ -177,6 +177,18 @@ const useStyles = makeStyles(theme => ({
     },
     '& .card-content-container > div:nth-child(3) .chart-container .legend': {
       minHeight: 245
+    },
+    '& > div:first-child $cardHeader': {
+      backgroundColor: theme.palette.blue[300],
+    },
+    '& > div:nth-child(2) $cardHeader': {
+      backgroundColor: theme.palette.orange[300],
+    },
+    '& > div:nth-child(3) $cardHeader': {
+      backgroundColor: theme.palette.green[300],
+    },
+    '& > div:last-child $cardHeader': {
+      backgroundColor: theme.palette.purple[300],
     }
   },
   closeIcon: {
@@ -193,6 +205,7 @@ const useStyles = makeStyles(theme => ({
     padding: 10,
     height: 75,
     fontSize: '1.2rem',
+    fontWeight: 'bold',
     alignItems: 'center',
     '& .MuiCardHeader-action': {
       marginTop: 0,
