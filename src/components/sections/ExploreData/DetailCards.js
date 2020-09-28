@@ -153,25 +153,17 @@ const useStyles = makeStyles(theme => ({
   },
   compareCards: {
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'stretch',
     marginTop: theme.spacing(5),
+    padding: 5,
     overflow: 'auto',
     '& media (max-width: 768px)': {
       display: 'relative',
     },
     '& > div': {
-      marginRight: theme.spacing(1),
-      minWidth: 275,
-    },
-    '& > div:last-child': {
-      margin: theme.spacing(1),
-      maxWidth: '25%',
-      width: '100%',
-      minWidth: 275,
-      '@media (max-width: 768px)': {
-        maxWidth: '100%',
-      }
+      margin: 0,
+      maxWidth: 300,
     },
     '& .card-content-container': {
       display: 'flex',
