@@ -19,7 +19,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'top',
     '& .mapContainer': {
       height: 100,
       width: '100%',

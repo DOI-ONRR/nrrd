@@ -100,7 +100,7 @@ const CircleChart = props => {
 
   const { data, ...options } = props
   const elemRef = useRef(null)
-  // console.debug("CLASSES : x", classes)
+
   useEffect(() => {
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
