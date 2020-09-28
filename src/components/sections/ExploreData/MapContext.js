@@ -129,7 +129,7 @@ const useStyles = makeStyles(theme => ({
       }
     },
     '& > div:first-child > .summary-card-header': {
-      backgroundColor: theme.palette.blue[300],
+      borderBottom: `7px solid ${ theme.palette.blue[300] }`,
     },
     '& > div:nth-child(2)': {
       transform: 'translate3d(-10%, 0px, 0px) !important',
@@ -137,7 +137,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        backgroundColor: theme.palette.orange[300],
+        borderBottom: `7px solid ${ theme.palette.orange[300] }`,
       },
     },
     '& > div:nth-child(3)': {
@@ -146,7 +146,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        backgroundColor: theme.palette.green[300],
+        borderBottom: `7px solid ${ theme.palette.green[300] }`,
       },
     },
     '& > div:last-child': {
@@ -155,7 +155,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        backgroundColor: theme.palette.purple[300],
+        borderBottom: `7px solid ${ theme.palette.purple[300] }`,
       },
     },
     '& .minimized ~ div:nth-of-type(2)': {
