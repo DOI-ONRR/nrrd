@@ -126,12 +126,18 @@ const useStyles = makeStyles(theme => ({
         minWidth: 285,
         minHeight: 340,
         marginBottom: theme.spacing(1),
-      },
+      }
+    },
+    '& > div:first-child > .summary-card-header': {
+      borderBottom: `7px solid ${ theme.palette.blue[300] }`,
     },
     '& > div:nth-child(2)': {
       transform: 'translate3d(-10%, 0px, 0px) !important',
       '@media (max-width: 768px)': {
         transform: 'none !important',
+      },
+      '& > .summary-card-header': {
+        borderBottom: `7px solid ${ theme.palette.orange[300] }`,
       },
     },
     '& > div:nth-child(3)': {
@@ -139,17 +145,17 @@ const useStyles = makeStyles(theme => ({
       '@media (max-width: 768px)': {
         transform: 'none !important',
       },
+      '& > .summary-card-header': {
+        borderBottom: `7px solid ${ theme.palette.green[300] }`,
+      },
     },
-    '& > div:nth-child(4)': {
+    '& > div:last-child': {
       transform: 'translate3d(-30%, 0px, 0px) !important',
       '@media (max-width: 768px)': {
         transform: 'none !important',
       },
-    },
-    '& > div:nth-child(5)': {
-      transform: 'translate3d(-40%, 0px, 0px) !important',
-      '@media (max-width: 768px)': {
-        transform: 'none !important',
+      '& > .summary-card-header': {
+        borderBottom: `7px solid ${ theme.palette.purple[300] }`,
       },
     },
     '& .minimized ~ div:nth-of-type(2)': {
@@ -160,9 +166,6 @@ const useStyles = makeStyles(theme => ({
     },
     '& .minimized ~ div:nth-of-type(4)': {
       transform: 'translate3d(-20%, 0px, 0px) !important',
-    },
-    '& .minimized ~ div:nth-of-type(5)': {
-      transform: 'translate3d(-30%, 0px, 0px) !important',
     },
     '@media (min-width: 769px)': {
       '&:hover': {
@@ -176,9 +179,6 @@ const useStyles = makeStyles(theme => ({
         '& > div:nth-child(4)': {
           transform: 'translate3d(-300%, 0px, 0px) !important',
         },
-        '& > div:nth-child(5)': {
-          transform: 'translate3d(-400%, 0px, 0px) !important',
-        },
         '& .minimized ~ div:nth-of-type(2)': {
           transform: 'translate3d(0px, 0px, 0px) !important',
         },
@@ -187,9 +187,6 @@ const useStyles = makeStyles(theme => ({
         },
         '& .minimized ~ div:nth-of-type(4)': {
           transform: 'translate3d(-200%, 0px, 0px) !important',
-        },
-        '& .minimized ~ div:nth-of-type(5)': {
-          transform: 'translate3d(-300%, 0px, 0px) !important',
         },
       }
     }
