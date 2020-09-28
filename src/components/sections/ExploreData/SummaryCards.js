@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
     padding: 10,
-    height: 45,
+    height: 55,
     fontSize: '1.2rem',
     '& .MuiCardHeader-action': {
       marginTop: 0,

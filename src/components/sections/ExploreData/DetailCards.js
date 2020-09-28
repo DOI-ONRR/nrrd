@@ -179,16 +179,16 @@ const useStyles = makeStyles(theme => ({
       minHeight: 245
     },
     '& > div:first-child $cardHeader': {
-      backgroundColor: theme.palette.blue[300],
+      borderBottom: `7px solid ${ theme.palette.blue[300] }`,
     },
     '& > div:nth-child(2) $cardHeader': {
-      backgroundColor: theme.palette.orange[300],
+      borderBottom: `7px solid ${ theme.palette.orange[300] }`,
     },
     '& > div:nth-child(3) $cardHeader': {
-      backgroundColor: theme.palette.green[300],
+      borderBottom: `7px solid ${ theme.palette.green[300] }`,
     },
     '& > div:last-child $cardHeader': {
-      backgroundColor: theme.palette.purple[300],
+      borderBottom: `7px solid ${ theme.palette.purple[300] }`,
     }
   },
   closeIcon: {
