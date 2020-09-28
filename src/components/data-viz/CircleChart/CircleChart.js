@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme, props) => ({
     '& .tooltip': {
       pointerEvents: 'none',
     },
+    '& > svg': {
+      maxWidth: '100%',
+    }
   },
   legend: {
     display: 'block',
