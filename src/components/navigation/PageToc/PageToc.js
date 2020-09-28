@@ -46,7 +46,10 @@ const useStyles = makeStyles(theme => ({
     },
     '@media (max-width: 599px)': {
       paddingRight: 0,
-    }
+    },
+    '@media (max-width: 700px) and (min-width: 600px)': {
+      fontSize: '.85rem',
+    },
   },
   tocContainer: {
     padding: theme.spacing(2),
@@ -67,12 +70,15 @@ const useStyles = makeStyles(theme => ({
     '& a': {
       color: '#323c42',
       fontSize: '1rem',
-      lineHeight: '1.2'
+      lineHeight: '1.2',
+      '@media (max-width: 700px) and (min-width: 600px)': {
+        fontSize: '.85rem',
+      },
     },
     '& li': {
       paddingTop: theme.spacing(0.5),
       paddingBottom: theme.spacing(0.5)
-    }
+    },
   },
   tocItemActive: {
     fontWeight: 'bold',
