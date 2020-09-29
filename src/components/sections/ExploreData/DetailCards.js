@@ -137,17 +137,19 @@ const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: '25%',
     width: '100%',
-    display: '-ms-grid',
     '@media (max-width: 768px)': {
       maxWidth: '100%',
     },
     '& .cardContent__Revenue': {
+      display: isIE ? '-ms-grid' : 'grid',
       gridTemplateRows: '185px 660px auto',
     },
     '& .cardContent__Disbursement': {
+      display: isIE ? '-ms-grid' : 'grid',
       gridTemplateRows: '185px 768px 560px',
     },
     '& .cardContent__Production': {
+      display: isIE ? '-ms-grid' : 'grid',
       gridTemplateRows: '185px 325px 835px',
     },
   },
