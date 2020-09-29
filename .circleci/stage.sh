@@ -1,6 +1,6 @@
 #!/bin/bash
 BRANCH=`git rev-parse --abbrev-ref HEAD`
-
+git config --global user.name "You're friendly circleci bot"
 git checkout staging
 git fetch
 git pull origin staging
