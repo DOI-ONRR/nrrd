@@ -8,7 +8,11 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import CardTitle from './CardTitle'
 
-import { isIE } from 'react-device-detect'
+import {
+  isIE,
+  isEdge,
+  isChromium
+} from 'react-device-detect'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -141,15 +145,12 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '100%',
     },
     '& .cardContent__Revenue': {
-      display: isIE ? '-ms-grid' : 'grid',
       gridTemplateRows: '185px 660px auto',
     },
     '& .cardContent__Disbursement': {
-      display: isIE ? '-ms-grid' : 'grid',
       gridTemplateRows: '185px 768px 560px',
     },
     '& .cardContent__Production': {
-      display: isIE ? '-ms-grid' : 'grid',
       gridTemplateRows: '185px 325px 835px',
     },
   },
@@ -253,7 +254,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: 15,
   },
   cardContentContainer: {
-    display: isIE ? 'block' : 'grid',
+    display: (isIE || (isEdge && !isChromium)) ? 'block' : 'grid',
     minHeight: 1500,
     '& > div': {
       margin: 0,
