@@ -129,7 +129,7 @@ const useStyles = makeStyles(theme => ({
       }
     },
     '& > div:first-child > .summary-card-header': {
-      borderBottom: `7px solid ${ theme.palette.blue[300] }`,
+      borderBottom: `8px solid ${ theme.palette.circleChart[400] }`,
     },
     '& > div:nth-child(2)': {
       transform: 'translate3d(-10%, 0px, 0px) !important',
@@ -137,7 +137,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        borderBottom: `7px solid ${ theme.palette.orange[300] }`,
+        borderBottom: `8px solid ${ theme.palette.circleChart[300] }`,
       },
     },
     '& > div:nth-child(3)': {
@@ -146,16 +146,16 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        borderBottom: `7px solid ${ theme.palette.green[300] }`,
+        borderBottom: `8px solid ${ theme.palette.circleChart[200] }`,
       },
     },
-    '& > div:last-child': {
+    '& > div:nth-child(4)': {
       transform: 'translate3d(-30%, 0px, 0px) !important',
       '@media (max-width: 768px)': {
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        borderBottom: `7px solid ${ theme.palette.purple[300] }`,
+        borderBottom: `8px solid ${ theme.palette.circleChart[100] }`,
       },
     },
     '& .minimized ~ div:nth-of-type(2)': {

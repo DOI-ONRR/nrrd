@@ -70,16 +70,16 @@ const useStyles = makeStyles(theme => ({
   },
   chipContainer: {
     '& .MuiChip-root:nth-child(1) .line': {
-      stroke: theme.palette.blue[300],
+      stroke: theme.palette.circleChart[400],
     },
     '& .MuiChip-root:nth-child(2) .line': {
-      stroke: theme.palette.orange[300],
+      stroke: theme.palette.circleChart[300],
     },
     '& .MuiChip-root:nth-child(3) .line': {
-      stroke: theme.palette.green[300],
+      stroke: theme.palette.circleChart[200],
     },
     '& .MuiChip-root:nth-child(4) .line': {
-      stroke: theme.palette.purple[300],
+      stroke: theme.palette.circleChart[100],
     }
   }
 }))
@@ -93,8 +93,8 @@ const DisbursementsOverTime = props => {
   const cards = pageState.cards
 
   const { loading, error, data } = useQuery(APOLLO_QUERY)
-  const handleDelete = props.handleDelete || ((e, val) => {
-    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fips !== val) })
+  const handleDelete = props.handleDelete || ((e, fips) => {
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
   if (loading) {
@@ -137,7 +137,7 @@ const DisbursementsOverTime = props => {
           <LineChart
             key={'DOT' }
             data={chartData}
-            chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
+            chartColors={[theme.palette.circleChart[400], theme.palette.circleChart[300], theme.palette.circleChart[200], theme.palette.circleChart[100]]}
             lineDashes={LINE_DASHES}
             lineTooltip={
               (d, i) => {
