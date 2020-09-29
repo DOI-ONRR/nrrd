@@ -29,7 +29,12 @@ const useStyles = makeStyles(theme => ({
     },
     '& .mapContainer svg': {
       pointerEvents: 'none',
-    }
+    },
+    '@supports (-ms-ime-align:auto)': {
+      '.mapContainer svg path': {
+        strokeWidth: '0.15px'
+      }
+    },
   }
 }))
 
