@@ -5,6 +5,11 @@ import gql from 'graphql-tag'
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
 
+import {
+  isEdge,
+  isChromium
+} from 'react-device-detect'
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -30,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     '& .mapContainer svg': {
       pointerEvents: 'none',
       '& path': {
-        strokeWidth: '1px',
+        strokeWidth: (isEdge && !isChromium) ? '0.15px' : '1px',
       },
     },
   }
