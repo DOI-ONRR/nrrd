@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     '& .chart-container': {
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'top',
       '& .chart': {
         width: '100%',
         height: 250
@@ -89,8 +88,8 @@ const DisbursementSources = props => {
                 return utils.formatToDollarInt(d)
               }
               }
-              minColor={theme.palette.blue[100]}
-              maxColor={theme.palette.blue[600]}
+              minColor={theme.palette.circleChart[100]}
+              maxColor={theme.palette.circleChart[600]}
               circleTooltip={
                 d => {
                   const r = []

@@ -264,8 +264,8 @@ export default class d3Map {
         else {
           return '#CACBCC'
         }
-      }
-      )
+      })
+      .attr('stroke-width', 1)
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
         if (AKR.has(d.id)) {

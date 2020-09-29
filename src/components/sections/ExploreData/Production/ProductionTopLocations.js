@@ -89,7 +89,6 @@ const useStyles = makeStyles(theme => ({
   chartHorizontal: {
     '& .chart-container': {
       display: 'flex',
-      // alignItems: 'top',
       '@media (max-width: 426px)': {
         display: 'block',
         margin: 0,

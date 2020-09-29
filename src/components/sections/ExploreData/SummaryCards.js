@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     right: 0,
     transform: 'translate3d(0, 0px, 0px)',
-    minHeight: 340,
+    minHeight: 350,
     '@media (max-width: 768px)': {
       width: '100%',
       height: 'auto',
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
     padding: 10,
-    height: 45,
+    height: 55,
     fontSize: '1.2rem',
     '& .MuiCardHeader-action': {
       marginTop: 0,
@@ -169,6 +169,7 @@ const SummaryCards = props => {
             }
             classes={{ root: classes.cardHeader, content: classes.cardHeaderContent }}
             disableTypography
+            className="summary-card-header"
           >
             <Typography variant="h4" color="inherit">
               {props.name}
