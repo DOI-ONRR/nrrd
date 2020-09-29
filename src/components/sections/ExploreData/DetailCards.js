@@ -137,7 +137,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: '25%',
     width: '100%',
-    margin: theme.spacing(1),
+    // margin: theme.spacing(1),
     '@media (max-width: 768px)': {
       maxWidth: '100%',
     },
@@ -153,7 +153,7 @@ const useStyles = makeStyles(theme => ({
   },
   compareCards: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'stretch',
     marginTop: theme.spacing(5),
     padding: 5,
@@ -162,8 +162,11 @@ const useStyles = makeStyles(theme => ({
       display: 'relative',
     },
     '& > div': {
-      margin: 0,
+      marginRight: 10,
       maxWidth: 300,
+    },
+    '& > div:last-child': {
+      margin: 0,
     },
     '& .card-content-container': {
       display: 'flex',

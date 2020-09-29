@@ -93,8 +93,8 @@ const DisbursementsOverTime = props => {
   const cards = pageState.cards
 
   const { loading, error, data } = useQuery(APOLLO_QUERY)
-  const handleDelete = props.handleDelete || ((e, val) => {
-    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fips !== val) })
+  const handleDelete = props.handleDelete || ((e, fips) => {
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
   if (loading) {

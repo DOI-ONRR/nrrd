@@ -98,8 +98,8 @@ const ProductionOverTime = props => {
     variables: { product: product, period: period }
   })
 
-  const handleDelete = props.handleDelete || ((e, val) => {
-    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== val) })
+  const handleDelete = props.handleDelete || ((e, fips) => {
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
   if (loading) {

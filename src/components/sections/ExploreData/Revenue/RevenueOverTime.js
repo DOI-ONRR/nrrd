@@ -82,6 +82,7 @@ const useStyles = makeStyles(theme => ({
 const RevenueOverTime = props => {
   const classes = useStyles()
   const theme = useTheme()
+  console.log('RevenueOverTime theme: ', theme)
   const title = props.title || ''
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
@@ -94,8 +95,8 @@ const RevenueOverTime = props => {
     variables: { period: period, commodities: commodities }
   })
 
-  const handleDelete = props.handleDelete || ((e, val) => {
-    updateExploreDataCards({ ...pageState, cards: cards })
+  const handleDelete = props.handleDelete || ((e, fips) => {
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
   if (loading) {

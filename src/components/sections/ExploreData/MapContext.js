@@ -149,7 +149,7 @@ const useStyles = makeStyles(theme => ({
         borderBottom: `8px solid ${ theme.palette.circleChart[200] }`,
       },
     },
-    '& > div:last-child': {
+    '& > div:nth-child(4)': {
       transform: 'translate3d(-30%, 0px, 0px) !important',
       '@media (max-width: 768px)': {
         transform: 'none !important',
