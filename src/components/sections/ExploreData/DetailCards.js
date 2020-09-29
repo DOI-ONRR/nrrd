@@ -250,7 +250,7 @@ const useStyles = makeStyles(theme => ({
     maxHeight: 50,
     maxWidth: 50,
     marginRight: theme.spacing(1.5),
-    filter: 'invert(1)',
+    // filter: 'invert(1)',
     marginTop: 15,
   },
   cardContentContainer: {
