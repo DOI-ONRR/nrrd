@@ -137,7 +137,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: '25%',
     width: '100%',
-    // margin: theme.spacing(1),
+    display: '-ms-grid',
     '@media (max-width: 768px)': {
       maxWidth: '100%',
     },
