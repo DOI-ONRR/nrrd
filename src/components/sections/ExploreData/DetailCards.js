@@ -179,16 +179,16 @@ const useStyles = makeStyles(theme => ({
       minHeight: 245
     },
     '& > div:first-child $cardHeader': {
-      borderBottom: `7px solid ${ theme.palette.blue[300] }`,
+      borderBottom: `8px solid ${ theme.palette.circleChart[400] }`,
     },
     '& > div:nth-child(2) $cardHeader': {
-      borderBottom: `7px solid ${ theme.palette.orange[300] }`,
+      borderBottom: `8px solid ${ theme.palette.circleChart[300] }`,
     },
     '& > div:nth-child(3) $cardHeader': {
-      borderBottom: `7px solid ${ theme.palette.green[300] }`,
+      borderBottom: `8px solid ${ theme.palette.circleChart[200] }`,
     },
     '& > div:last-child $cardHeader': {
-      borderBottom: `7px solid ${ theme.palette.purple[300] }`,
+      borderBottom: `8px solid ${ theme.palette.circleChart[100] }`,
     }
   },
   closeIcon: {
@@ -203,7 +203,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
     padding: 10,
-    height: 85,
+    height: 80,
     fontSize: '1.2rem',
     fontWeight: 'bold',
     alignItems: 'center',
