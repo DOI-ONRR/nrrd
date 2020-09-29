@@ -16,10 +16,12 @@ import useTheme from '@material-ui/core/styles/useTheme'
 import InfoBanner from '../../content-partials/InfoBanner'
 import BrowserBanner from '../BrowserBanner'
 import Footer from '../../content-partials/Footer'
-import Header from '../../content-partials/Header'
+// import Header from '../../content-partials/Header'
 import ErrorMessage from '../../info/ErrorMessage'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
+
+import AppToolbar from '../../toolbars/AppToolbar'
 
 import SEO from '../../seo'
 
@@ -124,7 +126,8 @@ const DefaultLayout = ({ includeToc, title, children }) => {
       <LoadingStatusBackdrop />
       <InfoBanner />
       <BrowserBanner />
-      <Header />
+      <AppToolbar />
+      {/* <Header /> */}
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>
         <ErrorMessage />

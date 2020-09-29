@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: '100%',
     '& .mapContainer': {
-      height: 'calc(100vh + 65px)',
+      height: 'calc(100vh + 95px)',
       width: '100%',
     },
     '& .map': {

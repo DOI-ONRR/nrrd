@@ -11,6 +11,15 @@ tag:
 ---
 
 <DataFilterProviderWrapper defaults='explore_data_filter_default'>
+  <Box 
+    style={{ 
+      width: "100%",
+      background: "rgb(6,33,53)",
+      background: "linear-gradient(315deg, rgba(6,33,53,1) 0%, rgba(10,49,77,1) 10%, rgba(240,246,250,1) 60%)",
+      padding: "25px 0 50px",
+      marginBottom: 50,
+      clipPath: "polygon(0 0, 100% 0, 100% 90%, 0 100%)",
+    }}>
   <Container maxWidth="lg">
     <Grid container spacing={0}>
       <Grid item xs={12} md={7}>
@@ -45,6 +54,7 @@ tag:
       </Grid>
     </Grid>
   </Container>
+  </Box>
   <Container maxWidth="lg">
     <Box mb={2}>
       <Grid container spacing={0}>

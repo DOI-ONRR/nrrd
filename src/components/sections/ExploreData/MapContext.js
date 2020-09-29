@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 270px)',
+    height: 'calc(100vh - 265px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& .mapContainer': {
       position: 'fixed',
-      top: 65,
+      top: 95,
     },
     '& .legend-wrap': {
       bottom: 142,
