@@ -268,6 +268,7 @@ const useStyles = makeStyles(theme => ({
       width: 50,
       height: 50,
       margin: 'auto 8px auto 0',
+      fill: theme.palette.common.white,
     },
     '& span > div': {
       fontSize: theme.typography.caption.fontSize,
