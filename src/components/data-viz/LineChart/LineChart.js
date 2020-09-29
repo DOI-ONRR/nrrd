@@ -19,16 +19,16 @@ const useStyles = makeStyles(theme => ({
     height: '200px',
     fill: theme.palette.chart.primary,
     '& g path.line:nth-of-type(1)': {
-      stroke: theme.palette.blue[300],
+      stroke: theme.palette.circleChart[400],
     },
     '& g path.line:nth-of-type(2)': {
-      stroke: theme.palette.orange[300],
+      stroke: theme.palette.circleChart[300],
     },
     '& g path.line:nth-of-type(3)': {
-      stroke: theme.palette.green[300],
+      stroke: theme.palette.circleChart[200],
     },
     '& g path.line:nth-of-type(4)': {
-      stroke: theme.palette.purple[300],
+      stroke: theme.palette.circleChart[100],
     }
   },
   legend: {
