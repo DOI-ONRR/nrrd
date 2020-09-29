@@ -5,7 +5,7 @@ git config --global user.name "You're friendly circleci bot"
 git checkout staging
 git fetch
 git pull origin staging
-git merge $BRANCH 
+git merge --no-edit $BRANCH 
 CONFLICT=$?
 if [ $CONFLICT -gt 0 ]
 then 
