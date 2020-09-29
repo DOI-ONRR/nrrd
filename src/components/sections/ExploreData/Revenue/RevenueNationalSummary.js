@@ -4,36 +4,35 @@ import PropTypes from 'prop-types'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-import * as d3 from 'd3'
 
 import QueryLink from '../../../../components/QueryLink'
-
-import { StoreContext } from '../../../../store'
-
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   Container,
   Grid,
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableCell
+  Hidden
 } from '@material-ui/core'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils'
-import CONSTANTS from '../../../../js/constants'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   query RevenueNational($year: Int!, $period: String!, $commodities: [String!]) {
-   revenue_type_class_summary(order_by: {revenue_type_order: asc, land_type_order: asc}, where: {year: {_eq: $year}, period: { _eq: $period}, commodity: {_in: $commodities}  }) {
+   revenue_type_class_summary(
+     order_by: {
+       revenue_type_order: asc,
+       land_type_order: asc},
+        where: {
+          year: {_eq: $year},
+          period: { _eq: $period},
+          commodity: {_in: $commodities}  
+        }
+  ) {
     revenue_type
     year
     land_type
@@ -53,24 +52,18 @@ const revenueTypeDescriptions = [
   'This includes other fees leaseholders pay such as permit fees and AML fees.'
 ]
 
-const useStyles = makeStyles(theme => ({
-  root: {},
-}))
-
 const RevenueNationalSummary = props => {
-  const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  const commodity_key = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'All'
+  const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'All'
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
     variables: { year: year, period: period, commodities: commodities }
   })
 
-  const chartTitle = props.chartTitle || `${ CONSTANTS.REVENUE } (dollars)`
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
@@ -81,7 +74,6 @@ const RevenueNationalSummary = props => {
   const yGroupBy = 'land_type'
 
   const units = 'dollars'
-  const xGroups = {}
 
   if (loading) {
     return 'Loading...'
@@ -91,6 +83,7 @@ const RevenueNationalSummary = props => {
 
   if (data) {
     groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
+    // eslint-disable-next-line no-return-assign
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
   }
@@ -117,30 +110,38 @@ const RevenueNationalSummary = props => {
             </QueryLink>
           </Box>
         </Grid>
-        <Grid item xs={12} style={{ overflowX: 'auto' }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
-                <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
-                  <span style={{ fontWeight: 'bold', float: 'right' }}>{period + ' ' + year}</span></TableCell>
-
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              { nationalRevenueData &&
-              nationalRevenueData.map((item, i) => {
-                return (
-                  <TableRow key={i}>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box component="h4" mt={0}>{item[0]}</Box>
-                      <Box component="p">
+        <Grid container item xs={5} style={{ borderBottom: '2px solid #cde3c3' }}>
+          <Box fontWeight="bold">Revenue type</Box>
+        </Grid>
+        <Grid container item xs={7} style={{ borderBottom: '2px solid #cde3c3' }}>
+          <Hidden xsDown>
+            <Grid item sm={6}>
+              <Box fontWeight="bold" display="flex" justifyContent="flex-start" >Source</Box>
+            </Grid>
+          </Hidden>
+          <Grid item xs={12} sm={6}>
+            <Box fontWeight="bold" display="flex" justifyContent="flex-end">{`${ period } ${ year }`}</Box>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid container spacing={2}>
+        { nationalRevenueData &&
+          nationalRevenueData.map((item, i) => {
+            return (
+              <Box p={2} width="100%" borderBottom="1px solid rgba(224, 224, 224, 1)">
+                <Grid container>
+                  <Grid container item xs={12} sm={5}>
+                    <Box key={i}>
+                      <Box component="h4">{item[0]}</Box>
+                      <Box component="p" pb={2} pr={{ xs: 0, md: 3 }}>
                         {revenueTypeDescriptions[i]}
                       </Box>
-                    </TableCell>
-                    <TableCell style={{ width: '65%' }}>
+                    </Box>
+                  </Grid>
+                  <Grid container item xs={12} sm={7}>
+                    <Box mt={{ xs: 0, sm: 4 }} width="100%">
                       <StackedBarChart
-                        key={'NRS' + year + '_' + i + commodity_key}
+                        key={`NRS${ year }_${ i }${ commodityKey }`}
                         data={item[1]}
                         legendFormat={v => {
                           if (v === 0) {
@@ -157,6 +158,7 @@ const RevenueNationalSummary = props => {
                           return headers
                         }
                         }
+                        // eslint-disable-next-line no-return-assign
                         barScale={item[1].reduce((total, i) => total += i.total, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}
@@ -166,14 +168,13 @@ const RevenueNationalSummary = props => {
                         horizontal
                         legendReverse={true}
                       />
-                    </TableCell>
-                  </TableRow>
-                )
-              })
-              }
-            </TableBody>
-          </Table>
-        </Grid>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Box>
+            )
+          })
+        }
       </Grid>
     </Container>
   )

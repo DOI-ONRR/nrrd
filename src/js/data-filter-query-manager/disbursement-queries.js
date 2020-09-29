@@ -7,7 +7,6 @@ import {
   PERIOD,
   FISCAL_YEAR,
   CALENDAR_YEAR,
-  COUNTY,
   STATE_OFFSHORE_NAME
 } from '../../constants'
 

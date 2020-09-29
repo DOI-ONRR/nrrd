@@ -11,16 +11,21 @@ cf set-space-role mojo.nichols@onrr.gov doi-onrr dev SpaceDeveloper
 cf create-service aws-rds medium-psql onrr-psql
 cf services
 
+
+# sandbox or dev or prod-a or prod-b 
+export DB_ENV=sandbox && export DB_PORT=7222|| export DB_ENV=onrr && export DB_PORT=7223 || export DB_ENV=nrrd-a && export DB_PORT=7724 || export DB_ENV=nrrd-b && export DB_PORT=7725
+
 # README doesn't show how to get DATABASE URL or PORT - This is because we put these in config of hasura and then on the next step (bind-service they get crated.
 
-cf push hasura-onrr -c 'graphql-engine --database-url $DATABASE_URL serve --server-port $PORT' --docker-image hasura/graphql-engine --health-check-type none --no-start
-cf bind-service hasura-onrr  onrr-psql
-cf set-env hasura-onrr HASURA_GRAPHQL_ADMIN_SECRET' 'SUPER SECRET PASSWORD THAT IS NOT THIS'
-cf start hasura-onrr
-cf set-env hasura-onrr HASURA_GRAPHQL_ENABLE_CONSOLE true
-cf set-env hasura-onrr HASURA_GRAPHQL_UNAUTHORIZED_ROLE public 
-cf restage hasura-onrr
+cf push hasura-$DB_ENV -c 'graphql-engine --database-url $DATABASE_URL serve --server-port $PORT' --docker-image hasura/graphql-engine --health-check-type none --no-start
+cf bind-service hasura-$DB_ENV  $DB_ENV-psql
+cf set-env hasura-$DB_ENV HASURA_GRAPHQL_ADMIN_SECRET' 'SUPER SECRET PASSWORD THAT IS NOT THIS'
+cf start hasura-$DB_ENV
+cf set-env hasura-$DB_ENV HASURA_GRAPHQL_ENABLE_CONSOLE true
+cf set-env hasura-$DB_ENV HASURA_GRAPHQL_UNAUTHORIZED_ROLE public 
+cf restage hasura-$DB_ENV
 
+cf env hasura-$DB_ENV # to see the password for our Hasura instance!
 
 #DB maintaince.
 # Choose DB environment:
@@ -28,8 +33,6 @@ cf restage hasura-onrr
 # 2) sandbox
 # 3) prod
 
-# sandbox or dev
-export DB_ENV=sandbox && export DB_PORT=7222|| export DB_ENV=onrr && export DB_PORT=7223 || export DB_ENV=nrrd-a && export DB_PORT=7724 || export DB_ENV=nrrd-b && export DB_PORT=7725
 
 
 #create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.  
@@ -85,7 +88,7 @@ cf env $DB_ENV
 
 export DATE=`date +'%F_%T'`
 
-pg_dump postgres://$creds@localhost:$DB_PORT/$dbname -F t -f psql-sandbox.$DATE.pg
+pg_dump postgres://$creds@localhost:$DB_PORT/$dbname -F t -f psql-backup.$DATE.pg
 
 #drop existing db I'm not sure this is required in all cases
 psql postgres://$creds@localhost:7223/$dbname
@@ -93,7 +96,7 @@ cgawsbr...od8py3w7sukk91mnq=> drop owned by current_user cascade;
 cgawsbr...od8py3w7sukk91mnq=> create schema public;
 cgawsbr...od8py3w7sukk91mnq=> quit
 
-$time pg_restore --user=$DB_USER --port=$DB_PORT --host=$DB_HOST  --clean --no-owner --no-acl --dbname=$DB_DATABASE psql-sandbox.$DATE.pg
+$time pg_restore --user=$DB_USER --port=$DB_PORT --host=$DB_HOST  --clean --no-owner --no-acl --dbname=$DB_DATABASE psql-backup.$DATE.pg
 Password: <ENTER PASSWORD>
 .....
 
@@ -104,4 +107,4 @@ Password: <ENTER PASSWORD>
 cf restage hasura-$DB_ENV (where we are in the shell  configure for hasura-onrr
 
 update location set fips_code=concat('0',fips_code) where length(fips_code)=4 
- 
+

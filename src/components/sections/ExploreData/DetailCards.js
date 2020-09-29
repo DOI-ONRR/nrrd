@@ -1,16 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 // utility functions
 import utils from '../../../js/utils'
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import CardTitle from './CardTitle'
 
 import { isIE } from 'react-device-detect'
-
-// import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -18,18 +16,122 @@ import {
   Card,
   CardActions,
   CardHeader,
-  CardContent,
-  CircularProgress,
-  Grid
+  CardContent
 } from '@material-ui/core'
 
 import CloseIcon from '@material-ui/icons/Close'
-import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
+import {
+  IconUsMapImg,
+  MapStateAKImg,
+  MapStateALImg,
+  MapStateARImg,
+  MapStateAZImg,
+  MapStateCAImg,
+  MapStateCOImg,
+  MapStateCTImg,
+  MapStateDCImg,
+  MapStateDEImg,
+  MapStateFLImg,
+  MapStateGAImg,
+  MapStateHIImg,
+  MapStateIAImg,
+  MapStateIDImg,
+  MapStateILImg,
+  MapStateINImg,
+  MapStateKSImg,
+  MapStateKYImg,
+  MapStateLAImg,
+  MapStateMAImg,
+  MapStateMDImg,
+  MapStateMEImg,
+  MapStateMIImg,
+  MapStateMNImg,
+  MapStateMOImg,
+  MapStateMSImg,
+  MapStateMTImg,
+  MapStateNCImg,
+  MapStateNDImg,
+  MapStateNEImg,
+  MapStateNHImg,
+  MapStateNJImg,
+  MapStateNMImg,
+  MapStateNVImg,
+  MapStateNYImg,
+  MapStateOHImg,
+  MapStateOKImg,
+  MapStateORImg,
+  MapStatePAImg,
+  MapStateRIImg,
+  MapStateSCImg,
+  MapStateSDImg,
+  MapStateTNImg,
+  MapStateTXImg,
+  MapStateUTImg,
+  MapStateVAImg,
+  MapStateVTImg,
+  MapStateWAImg,
+  MapStateWIImg,
+  MapStateWVImg,
+  MapStateWYImg
+} from '../../images'
 
 import AddLocationCard from './AddLocationCard'
 
-import CONSTANTS from '../../../js/constants'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
+const imgComponents = {
+  AK: MapStateAKImg,
+  AL: MapStateALImg,
+  AR: MapStateARImg,
+  AZ: MapStateAZImg,
+  CA: MapStateCAImg,
+  CO: MapStateCOImg,
+  CT: MapStateCTImg,
+  DC: MapStateDCImg,
+  DE: MapStateDEImg,
+  FL: MapStateFLImg,
+  GA: MapStateGAImg,
+  HI: MapStateHIImg,
+  IA: MapStateIAImg,
+  ID: MapStateIDImg,
+  IL: MapStateILImg,
+  IN: MapStateINImg,
+  KS: MapStateKSImg,
+  KY: MapStateKYImg,
+  LA: MapStateLAImg,
+  MA: MapStateMAImg,
+  MD: MapStateMDImg,
+  ME: MapStateMEImg,
+  MI: MapStateMIImg,
+  MN: MapStateMNImg,
+  MO: MapStateMOImg,
+  MS: MapStateMSImg,
+  MT: MapStateMTImg,
+  NC: MapStateNCImg,
+  ND: MapStateNDImg,
+  NE: MapStateNEImg,
+  NH: MapStateNHImg,
+  NJ: MapStateNJImg,
+  NM: MapStateNMImg,
+  NV: MapStateNVImg,
+  NY: MapStateNYImg,
+  OH: MapStateOHImg,
+  OK: MapStateOKImg,
+  OR: MapStateORImg,
+  PA: MapStatePAImg,
+  RI: MapStateRIImg,
+  SC: MapStateSCImg,
+  SD: MapStateSDImg,
+  TN: MapStateTNImg,
+  TX: MapStateTXImg,
+  UT: MapStateUTImg,
+  VA: MapStateVAImg,
+  VT: MapStateVTImg,
+  WA: MapStateWAImg,
+  WI: MapStateWIImg,
+  WV: MapStateWVImg,
+  WY: MapStateWYImg
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,8 +144,8 @@ const useStyles = makeStyles(theme => ({
     '& .cardContent__Revenue': {
       gridTemplateRows: '185px 660px auto',
     },
-    '& .cardContent__Disbursements': {
-      gridTemplateRows: '185px 855px 650px',
+    '& .cardContent__Disbursement': {
+      gridTemplateRows: '185px 768px 560px',
     },
     '& .cardContent__Production': {
       gridTemplateRows: '185px 325px 835px',
@@ -152,7 +254,9 @@ const useStyles = makeStyles(theme => ({
     '& svg': {
       maxWidth: 50,
       maxHeight: 50,
-      fill: theme.palette.common.white,
+      width: 50,
+      height: 50,
+      margin: 'auto 8px auto 0',
     },
     '& span > div': {
       fontSize: theme.typography.caption.fontSize,
@@ -167,13 +271,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const nonStateOrCountyCards = [
-  DFC.NATIONWIDE_FEDERAL_FIPS,
-  DFC.NATIVE_AMERICAN_FIPS
+  DFC.NATIONWIDE_FEDERAL,
+  DFC.NATIVE_AMERICAN
 ]
 
 // Detail Card title
 const DetailCardTitle = props => {
-  // console.log('DetailCardTitle props: ', props)
   const classes = useStyles()
 
   const landStatsData = props.data
@@ -187,11 +290,16 @@ const DetailCardTitle = props => {
 
   let svgImg
 
+  const getImageComponent = fips => {
+    const StateImgComponent = imgComponents[fips]
+    return <StateImgComponent alt={`${ fips } State Icon`} className={classes.cardLocationIcon} />
+  }
+
   if (nonStateOrCountyCards.includes(props.card.state)) {
-    svgImg = <IconMap className={classes.usLocationIcon} alt="US Icon" />
+    svgImg = <IconUsMapImg className={classes.usLocationIcon} alt="US Icon" />
   }
   else {
-    svgImg = (props.card.regionType === 'State') ? <img src={`/maps/states/${ props.card.fipsCode }.svg`} alt={`${ props.card.fipsCode } State Icon`} className={classes.cardLocationIcon} /> : ''
+    svgImg = (props.card.regionType === 'State') ? getImageComponent(props.card.fipsCode) : ''
   }
 
   return (
@@ -215,8 +323,6 @@ const DetailCards = props => {
           location
           total_acres
         }
-      }
-      onrr {
         locations: location(where: {region_type: {_in: ["State", "Offshore", "County"]}, fips_code: {_neq: ""}}, distinct_on: fips_code) {
           fips_code
           location_name
@@ -231,23 +337,36 @@ const DetailCards = props => {
   `)
   const classes = useStyles()
 
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const { state: filterState } = useContext(DataFilterContext)
   const cards = pageState.cards
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
-  // const { loading, error, data } = useQuery(APOLLO_QUERY)
-
   const closeCard = fips => {
-    // console.log('fips: ', fips)
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== fips) })
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   }
 
   // card Menu Item for adding/removing Nationwide Federal or Native American cards
   const cardMenuItems = [
-    { fips_code: 'NF', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
-    { fips_code: 'NA', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
+    {
+      fips_code: 'NF',
+      state: 'Nationwide Federal',
+      state_name: 'Nationwide Federal',
+      location_name: 'Nationwide Federal',
+      region_type: '',
+      county: '',
+      label: 'Add Nationwide Federal card'
+    },
+    {
+      fips_code: 'NA',
+      state: 'Native American',
+      state_name: 'Native American',
+      location_name: 'Native American',
+      region_type: '',
+      county: '',
+      label: 'Add Native American card'
+    }
   ]
 
   // onLink
@@ -275,20 +394,15 @@ const DetailCards = props => {
       cards.filter(item => item.fipsCode === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        if (stateObj.state && stateObj.state.match(/Nationwide Federal/)) {
-          cards.unshift(stateObj)
-        }
-        else {
-          cards.push(stateObj)
-        }
+        cards.push(stateObj)
       }
       else {
         // TODO: snackbar not triggering atm
-        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        // handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
       }
     }
 
-    dispatch({ type: 'CARDS', payload: cards })
+    updateExploreDataCards({ ...pageState, cards: cards })
   }
 
   const landStatsData = data.onrr.land_stats

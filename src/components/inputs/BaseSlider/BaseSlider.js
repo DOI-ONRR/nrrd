@@ -147,7 +147,7 @@ const useStyles = makeStyles(theme => ({
 const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restProps }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
-  let selectedArrayNums, defaultArrayNums;
+  let selectedArrayNums, defaultArrayNums
 
   const convertStringToArrayNums = values => {
     values = values.split(',').map(num => +num)
@@ -207,7 +207,7 @@ const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restP
       {value}
     </div>
   )
-    
+
   return (
     <Box id="year-slider" className={classes.sliderBox}>
       <Grid container spacing={2}>

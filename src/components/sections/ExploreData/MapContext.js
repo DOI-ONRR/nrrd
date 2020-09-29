@@ -5,8 +5,7 @@ import {
   useQueryParams,
   StringParam,
   encodeDelimitedArray,
-  decodeDelimitedArray,
-  NumberParam
+  decodeDelimitedArray
 } from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -23,13 +22,12 @@ import { animateScroll as scroll } from 'react-scroll'
 import MapControls from './MapControls'
 import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import ExploreMoreDataButton from './ExploreMoreDataButton'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
-import useEventListener from '../../../js/use-event-listener'
 import useWindowSize from '../../../js/hooks/useWindowSize'
 
 import mapCounties from './counties.json'
@@ -48,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 270px)',
+    height: 'calc(100vh - 280px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
@@ -99,14 +97,11 @@ const useStyles = makeStyles(theme => ({
   cardContainer: {
     width: 310,
     position: 'absolute',
-    right: 0,
-    bottom: 64,
+    right: 15,
+    top: 10,
     height: 'auto',
     minHeight: 335,
     zIndex: 99,
-    '@media (max-width: 960px)': {
-      bottom: 40,
-    },
     '@media (max-width: 768px)': {
       width: '100%',
       display: 'flex',
@@ -119,20 +114,18 @@ const useStyles = makeStyles(theme => ({
       overflowX: 'auto',
       height: 'auto',
       position: 'relative',
-      minHeight: 'inherit',
+      minHeight: 340,
     },
     '& > div': {
       cursor: 'pointer',
-      bottom: 25,
       '@media (max-width: 768px)': {
         position: 'relative',
         width: '100%',
         margin: 0,
         boxSizing: 'border-box',
         minWidth: 285,
-        minHeight: 330,
+        minHeight: 340,
         marginBottom: theme.spacing(1),
-        bottom: 0,
       },
     },
     '& > div:nth-child(2)': {
@@ -303,8 +296,8 @@ const MapContext = props => {
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
-  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: filterState } = useContext(DataFilterContext)
+  const { state: pageState, updateExploreDataCards, updateExploreDataMapZoom } = useContext(ExploreDataContext)
 
   const cards = pageState.cards
 
@@ -320,6 +313,7 @@ const MapContext = props => {
   })
 
   const [mapOverlay, setMapOverlay] = useState(false)
+  // eslint-disable-next-line no-unused-vars
   const [mapActive, setMapActive] = useState(true)
 
   const [mapX, setMapX] = useState(pageState.mapX || 0)
@@ -366,8 +360,24 @@ const MapContext = props => {
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
   const cardMenuItems = [
-    { fips_code: 'NF', state: 'Nationwide Federal', state_name: 'Nationwide Federal', location_name: 'Nationwide Federal', region_type: '', county: '', label: 'Add Nationwide Federal card' },
-    { fips_code: 'NA', state: 'Native American', state_name: 'Native American', location_name: 'Native American', region_type: '', county: '', label: 'Add Native American card' }
+    {
+      fips_code: 'NF',
+      state: 'Nationwide Federal',
+      state_name: 'Nationwide Federal',
+      location_name: 'Nationwide Federal',
+      region_type: '',
+      county: '',
+      label: 'Add Nationwide Federal card'
+    },
+    {
+      fips_code: 'NA',
+      state: 'Native American',
+      state_name: 'Native American',
+      location_name: 'Native American',
+      region_type: '',
+      county: '',
+      label: 'Add Native American card'
+    }
   ]
 
   const { vertical, horizontal, open } = mapSnackbarState
@@ -384,22 +394,13 @@ const MapContext = props => {
   let y = mapY
   let k = mapK
 
-  // onYear
-  const onYear = (selected, x, y, k) => {
-    setMapK(k)
-    setMapY(y)
-    setMapX(x)
-    // console.debug('YEAR ', selected)
-    updateDataFilter({ ...filterState, [DFC.YEAR]: selected })
-  }
-
   // setZoom
   const setZoom = (x, y, k) => {
     setMapY(y)
     setMapX(x)
     setMapK(k)
 
-    dispatch({ type: 'MAP_ZOOM', payload: { mapX: x, mapY: y, mapZoom: k } })
+    updateExploreDataMapZoom({ ...pageState, mapZoom: { mapX: x, mapY: y, mapZoom: k } })
   }
 
   // check width, set zoom
@@ -438,17 +439,12 @@ const MapContext = props => {
       districtType: (location[0]) ? location[0].district_type : '',
       county: (location[0]) ? location[0].county : ''
     }
-    console.debug('stateObject: ', stateObj)
+    // console.debug('stateObject: ', stateObj)
     if (
       cards.filter(item => item.fipsCode === fips).length === 0
     ) {
       if (cards.length <= MAX_CARDS) {
-        if (stateObj.state && stateObj.state.match(/Nationwide Federal/)) {
-          cards.unshift(stateObj)
-        }
-        else {
-          cards.push(stateObj)
-        }
+        cards.push(stateObj)
       }
       else {
         // TODO: snackbar not triggering atm
@@ -456,16 +452,11 @@ const MapContext = props => {
       }
     }
 
-    dispatch({ type: 'CARDS', payload: cards })
+    updateExploreDataCards({ ...pageState, cards: cards })
   }
 
   const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
   const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
-  const handleChange = (type, name) => event => {
-    // setZoom(x, y, k)
-    // console.debug('TYPE: ', type, 'Name ', name, 'Event')
-    updateDataFilter({ ...filterState, [type]: event.target.checked })
-  }
 
   const handleClick = val => {
     if (val === 'add' && k >= 0.25) {
@@ -576,7 +567,7 @@ const MapContext = props => {
       commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
       year: filterState.year
-    }, 'pushIn')
+    }, 'replaceIn')
   }, [filterState, pageState])
 
   // console.log('mapJsonObject: ', mapJsonObject)

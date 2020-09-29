@@ -8,7 +8,6 @@ import * as d3 from 'd3'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import CONSTANTS from '../../../../js/constants'
 
 const LOCATION_TOTAL_QUERY = gql`
   query NationwideFederal($location: [String!], $year: Int!, $period: String!) {
@@ -65,7 +64,10 @@ const DisbursementLocationTotal = props => {
 
     return (
       <>
-        After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies, funds, and local governments for public use. This process is called "disbursement." <strong>In {period.toLowerCase()} {year}, ONRR disbursed {utils.formatToDollarInt(nationwideSummary[0].total)} from federal sources and {utils.formatToDollarInt(nativeSummary[0].total)} from Native American sources for a total of {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
+        After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies,
+        funds, and local governments for public use. This process is called "disbursement." <strong>In {period.toLowerCase()} {year},
+        ONRR disbursed {utils.formatToDollarInt(nationwideSummary[0].total)} from federal sources and {utils.formatToDollarInt(nativeSummary[0].total)}
+        from Native American sources for a total of {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
       </>
     )
   }

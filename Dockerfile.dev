@@ -1,0 +1,9 @@
+FROM node:12.13.0
+EXPOSE 8000
+RUN npm install --quiet -g gatsby-cli
+WORKDIR /app
+COPY ./package.json .
+RUN npm install
+COPY . .
+RUN gatsby clean
+CMD ["gatsby", "develop", "-H", "0.0.0.0" ]

@@ -5,13 +5,10 @@ import PropTypes from 'prop-types'
 
 // utility functions
 import utils from '../../../../js/utils'
-
+import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import QueryLink from '../../../../components/QueryLink'
-
-import { StoreContext } from '../../../../store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC, NATIVE_AMERICAN_FIPS } from '../../../../constants'
-import CONSTANTS from '../../../../js/constants'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import * as d3 from 'd3'
 
@@ -19,14 +16,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
   CircularProgress,
-  Container,
-  Grid,
   useTheme
 } from '@material-ui/core'
 
-// import CloseIcon from '@material-ui/icons/Close'
-// import IconMap from '-!svg-react-loader!../../../img/svg/icon-us-map.svg'
-import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart.js'
 import LineChart from '../../../data-viz/LineChart/LineChart'
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
@@ -87,7 +79,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-  const { state: pageState } = useContext(StoreContext)
+  const { state: pageState } = useContext(ExploreDataContext)
   const cards = pageState.cards
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
@@ -100,14 +92,14 @@ const ProductionLandCategory = ({ title, ...props }) => {
   const isState = state && state.length === 2 && !isNativeAmerican && !isNationwideFederal
 
   switch (props.regionType) {
-  case CONSTANTS.STATE:
-    locationType = CONSTANTS.STATE
+  case DFC.STATE:
+    locationType = DFC.STATE
     break
-  case CONSTANTS.COUNTY:
-    locationType = CONSTANTS.COUNTY
+  case DFC.COUNTY_CAPITALIZED:
+    locationType = DFC.COUNTY_CAPITALIZED
     break
-  case CONSTANTS.OFFSHORE:
-    locationType = CONSTANTS.OFFSHORE
+  case DFC.OFFSHORE_CAPITALIZED:
+    locationType = DFC.OFFSHORE_CAPITALIZED
     break
   default:
     locationType = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS || props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) && props.state

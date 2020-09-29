@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 
 import PropTypes from 'prop-types'
 
@@ -12,9 +12,8 @@ import {
   MenuItem
 } from '@material-ui/core'
 
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import SearchLocationsInput from '../../inputs/SearchLocationsInput'
-import AddCardButton from './AddCardButton'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -79,8 +78,7 @@ const useStyles = makeStyles(theme => ({
 
 const AddLocationCard = props => {
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState(null)
-  const { state: pageState } = useContext(StoreContext)
+  const { state: pageState } = useContext(ExploreDataContext)
 
   const { cards } = pageState
 
@@ -90,7 +88,6 @@ const AddLocationCard = props => {
   } = props
 
   const handleClose = (index, item) => event => {
-    setAnchorEl(null)
     if (typeof item !== 'undefined') {
       onLink(item)
     }

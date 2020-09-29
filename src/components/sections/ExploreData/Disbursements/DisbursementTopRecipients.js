@@ -21,7 +21,6 @@ import {
   Box,
   Container,
   Grid,
-  Chip,
   useTheme
 } from '@material-ui/core'
 
@@ -70,6 +69,7 @@ const useStyles = makeStyles(theme => ({
         width: '70%',
         '@media (max-width: 426px)': {
           marginRight: 0,
+          width: '100%',
         },
       },
     }
@@ -85,9 +85,6 @@ const DisbursementTopRecipients = props => {
   const year = filterState[DFC.YEAR]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
-  const handleDelete = props.handleDelete || ((e, val) => {
-    console.debug('handle delete')
-  })
 
   if (loading) {
     return (

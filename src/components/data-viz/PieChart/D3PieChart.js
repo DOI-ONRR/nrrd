@@ -146,11 +146,11 @@ export default class D3PieChart {
         const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
 
         groupLines.append('line')
-	  .attr('x1', xPos + padding)
-	  .attr('x2', groupLineWidth)
-	  .attr('stroke', '#a7bcc7')
-	  .attr('stroke-width', 1)
-	 		      .attr('transform', 'translate(' + [0, self.height - 4 - self.marginBottom / 2] + ')')
+          .attr('x1', xPos + padding)
+          .attr('x2', groupLineWidth)
+          .attr('stroke', '#a7bcc7')
+          .attr('stroke-width', 1)
+          .attr('transform', 'translate(' + [0, self.height - 4 - self.marginBottom / 2] + ')')
 
         groupLines.append('text')
           .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))
@@ -368,15 +368,10 @@ export default class D3PieChart {
       const self = this
       d3.selectAll('.legend-table tbody tr').remove()
       d3.selectAll('.legend-rect').remove()
-      //      this.getSelected()
 
       const data = newData || this.selectedData()
-
-      // console.debug('SELECTED DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA:', data)
       const headers = this._legendHeaders(xValue)
       const labels = this.yGroupings()
-      const formatLegend = this.formatLegend()
-      // const table = d3.selectAll('.legend-table')
       const tbody = d3.selectAll('.legend-table tbody')
 
       // turn object into array to play nice with d3
@@ -504,24 +499,14 @@ export default class D3PieChart {
 
   _onHover = (element, data, hover) => {
     try {
-      const activeElement = element.parentNode.parentNode
-      const index = this.selectedIndex
-      // console.debug(data)
-      // console.debug(element)
-
       if (hover === true) {
-        // activeElement.setAttribute('class', 'bar active')
         const years = this.xDomain()
-
         const tabIndex = element.parentNode.parentNode.tabIndex
-        // // console.debug(years,  years[tabIndex] , tabIndex)
         this.createLegend(data[0].data, years[tabIndex])
         this.updateLegend(data[0].data, years[tabIndex])
       }
       else {
         this.getSelected()
-        //  activeElement.setAttribute('class', 'bar')
-
         this.select(this.index)
         this.createLegend()
         this.updateLegend()

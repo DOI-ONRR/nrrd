@@ -4,18 +4,14 @@ const { createHttpLink } = require('apollo-link-http')
 const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
 const GTM_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'GTM-NCRF98R' : ''
 
-// use this for testing
-// const GOOGLE_ANALYTICS_ID = 'UA-33523145-1'
-// const GTM_ID = 'GTM-NCRF98R'
-
 const config = {
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
     description:
+      // eslint-disable-next-line max-len
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
-    googleTagManagerId: GTM_ID,
-    version: 'v6.1.1',
+    version: 'v6.2.0',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -120,10 +116,10 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
+            // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             // uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
             // uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
-            // uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
+            uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
             resolvers: {}
@@ -164,13 +160,39 @@ const config = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: GTM_ID,
+        // Include GTM in development.
+        // Defaults to false meaning GTM will only be loaded in production.
+        includeInDevelopment: false,
+        // datalayer to be set before GTM is loaded
+        // should be an object or a function that is executed in the browser
+        //
+        // Defaults to null
+        defaultDataLayer: { platform: 'nrrd_data_layer' },
+        // Specify optional GTM environment details.
+        // gtmAuth: 'YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING',
+        gtmPreview: 'NRRD_CLOUD_GOV_PREVIEW_BRANCH',
+        // dataLayerName: 'YOUR_DATA_LAYER_NAME',
+
+        // Name of the event that is triggered
+        // on every Gatsby route change.
+        //
+        // Defaults to gatsby-route-change
+        // routeChangeEventName: 'YOUR_ROUTE_CHANGE_EVENT_NAME',
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-remove-console',
+      options: {
+        exclude: ['error', 'warn'], // <- will remove all console calls except these
+      }
+    },
     'gatsby-plugin-use-query-params',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
-
-// if (BASEURL) {
-//   config.pathPrefix = `${ BASEURL }`
-// }
 
 module.exports = config

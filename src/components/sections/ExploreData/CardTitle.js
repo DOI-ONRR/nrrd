@@ -5,7 +5,7 @@ import {
   Grid
 } from '@material-ui/core'
 
-import CONSTANTS from '../../../js/constants'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 import mapStates from './states.json'
 
 const useStyles = makeStyles(theme => ({
@@ -34,7 +34,7 @@ const CardTitle = props => {
       { (fips && fips.length === 2) &&
         <Grid container>
           <Grid item xs={12} className={classes.cardTitle}>{card.name}</Grid>
-          <Grid item xs={12} className={classes.cardSubtitle}>{CONSTANTS.USA}</Grid>
+          <Grid item xs={12} className={classes.cardSubtitle}>{DFC.USA}</Grid>
         </Grid>
       }
       {/* Counties */}

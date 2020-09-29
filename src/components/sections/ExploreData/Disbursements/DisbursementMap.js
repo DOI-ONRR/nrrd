@@ -1,24 +1,12 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import * as d3 from 'd3'
 import utils from '../../../../js/utils'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import {
-  Container,
-  Grid,
-  Box,
-  useMediaQuery
-} from '@material-ui/core'
 
 import Map from '../../../data-viz/Map'
 
-// import { StoreContext } from '../../../../store'
-
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-
-import CONSTANTS from '../../../../js/constants'
 
 const DISBURSEMENT_QUERY = gql`
   query FiscalDisbursement($year: Int!, $period: String!, $location: String!) {
@@ -45,7 +33,11 @@ export default props => {
   } = filterState
 
   const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
-    variables: { year: year, period: period, location: mapLevel }
+    variables: {
+      year: year,
+      period: period || filterState.explore_data_filter_default.period,
+      location: mapLevel || filterState.explore_data_filter_default.mapLevel
+    }
   })
   const dataSet = 'FY ' + year
   let mapData = [[]]
@@ -53,12 +45,6 @@ export default props => {
   if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
-    // console.log('DisbursementMap data: ', data)
-    /* mapData = data.fiscal_disbursement_summary.map((item, i) => [
-      item.state_or_area,
-      item.sum
-      ]) */
-    // console.log(data)
     mapData = d3.nest()
       .key(k => k.state_or_area)
       .rollup(v => d3.sum(v, i => i.sum))
@@ -66,24 +52,24 @@ export default props => {
       .map(d => [d.key, d.value])
   }
 
-  // console.debug("Map props", props)
   return (
     <>
       {mapData &&
-       <> <Map
-         key={'DM' + dataSet }
-         mapFeatures={props.mapFeatures}
-         mapJsonObject={props.mapJsonObject}
-         mapData={mapData}
-         minColor={props.minColor}
-         maxColor={props.maxColor}
-         mapZoom={props.mapZoom}
-         mapX={props.mapX}
-         mapY={props.mapY}
-       onZoomEnd={props.onZoomEnd}
-        legendFormat={utils.formatToSigFig_Dollar}
-         onClick={props.onClick}
-       />
+       <>
+         <Map
+           key={'DM' + dataSet }
+           mapFeatures={props.mapFeatures}
+           mapJsonObject={props.mapJsonObject}
+           mapData={mapData}
+           minColor={props.minColor}
+           maxColor={props.maxColor}
+           mapZoom={props.mapZoom}
+           mapX={props.mapX}
+           mapY={props.mapY}
+           onZoomEnd={props.onZoomEnd}
+           legendFormat={utils.formatToSigFig_Dollar}
+           onClick={props.onClick}
+         />
        </>
       }
     </>

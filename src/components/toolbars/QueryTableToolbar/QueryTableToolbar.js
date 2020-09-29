@@ -5,7 +5,15 @@ import { DataFilterContext, DownloadContext } from '../../../stores'
 
 import { downloadWorkbook } from '../../../js/utils'
 
+import PeriodFilter from '../../inputs/Filters/PeriodFilter'
+import FiscalYearFilter from '../../inputs/Filters/FiscalYearFilter'
+import CalendarYearFilter from '../../inputs/Filters/CalendarYearFilter'
+import CommodityFilter from '../../inputs/Filters/CommodityFilter'
+import CompanyNameFilter from '../../inputs/Filters/CompanyNameFilter'
+import RevenueTypeFilter from '../../inputs/Filters/RevenueTypeFilter'
+
 import {
+  QK_QUERY_TOOL,
   DATA_TYPE,
   REVENUE,
   PRODUCTION,
@@ -15,16 +23,14 @@ import {
   EXCEL,
   CSV,
   DOWNLOAD_DATA_TABLE,
-  STATE_OFFSHORE_NAME,
   PERIOD_TYPES,
-  LAND_TYPE
+  REVENUE_BY_COMPANY
 } from '../../../constants'
 
 import {
-  DataTypeSelectInput,
+  DataTypePlusSelectInput,
   LandTypeSelectInput,
   RevenueTypeSelectInput,
-  CountySelectInput,
   CommoditySelectInput,
   ProductSelectInput,
   RecipientSelectInput,
@@ -32,8 +38,6 @@ import {
   FilterToggleInput,
   StateOffshoreSelectInput,
   PeriodSelectInput,
-  FiscalYearSlider,
-  CalendarYearSlider,
   StateNameSelectInput
 } from '../../inputs'
 
@@ -108,7 +112,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const QueryTableToolbar = ({ label, ...props }) => {
-  const { state, updateDataFilter } = useContext(DataFilterContext)
+  const { state } = useContext(DataFilterContext)
   const downloadDataContext = useContext(DownloadContext)
   if (!state) {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
@@ -194,18 +198,18 @@ const QueryTableToolbar = ({ label, ...props }) => {
       { queryDataToolbarOpen &&
         <BaseToolbar isSecondary={true}>
           <Box>
-            <DataTypeSelectInput />
+            <DataTypePlusSelectInput />
           </Box>
           <Box className={classes.toolsWrapper}>
             {state[DATA_TYPE] === DISBURSEMENT
               ? <PeriodSelectInput data={PERIOD_TYPES.filter(type => type !== PERIOD_CALENDAR_YEAR)}/>
-              : <PeriodSelectInput />
+              : <PeriodFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
             {state.period === PERIOD_FISCAL_YEAR &&
-              <FiscalYearSlider />
+              <FiscalYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
             {state.period === PERIOD_CALENDAR_YEAR &&
-              <CalendarYearSlider />
+              <CalendarYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
           </Box>
         </BaseToolbar>
@@ -221,15 +225,18 @@ const QueryTableToolbar = ({ label, ...props }) => {
           {state[DATA_TYPE] === DISBURSEMENT &&
             <DisbursementFilterToolbar />
           }
+          {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
+            <RevenueByCompanyFilterToolbar />
+          }
         </>
       }
       { downloadToolbarOpen &&
       <BaseToolbar isSecondary={true}>
         <Box mr={2}>
-          <Link href={'#'} onClick={handleDownloadExcel} linkType='DownloadXls'>Download filterd data (Excel)</Link>
+          <Link href={'#'} onClick={handleDownloadExcel} linkType='DownloadXls'>Download filtered data (Excel)</Link>
         </Box>
         <Box mr={2}>
-          <Link href={'#'} onClick={handleDownloadCsv} linkType='DownloadCsv'>Download filterd data (csv)</Link>
+          <Link href={'#'} onClick={handleDownloadCsv} linkType='DownloadCsv'>Download filtered data (csv)</Link>
         </Box>
         <Box mr={2}>
           {state[DATA_TYPE] === REVENUE &&
@@ -241,6 +248,9 @@ const QueryTableToolbar = ({ label, ...props }) => {
           {state[DATA_TYPE] === DISBURSEMENT &&
             <Link href={'./downloads/#Disbursements'} linkType='DownloadData'>Source file and documentation</Link>
           }
+          {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
+            <Link href={'./downloads/federal-revenue-by-company/'} linkType='DownloadData'>Source file and documentation</Link>
+          }
         </Box>
       </BaseToolbar>
       }
@@ -250,10 +260,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
 
 export default QueryTableToolbar
 
-const isCountyEnabled = ({ state }) => (state[STATE_OFFSHORE_NAME] &&
-  (state[STATE_OFFSHORE_NAME].split(',').length === 1) &&
-  (!state[STATE_OFFSHORE_NAME].includes('Offshore')) &&
-  (!state[STATE_OFFSHORE_NAME].includes('Not')))
+// const isCountyEnabled = ({ state }) => (state[STATE_OFFSHORE_NAME] &&
+//   (state[STATE_OFFSHORE_NAME].split(',').length === 1) &&
+//   (!state[STATE_OFFSHORE_NAME].includes('Offshore')) &&
+//   (!state[STATE_OFFSHORE_NAME].includes('Not')))
 
 const RevenueFilterToolbar = () => {
   return (
@@ -285,6 +295,16 @@ const DisbursementFilterToolbar = () => {
       <SourceSelectInput />
       <StateNameSelectInput defaultSelectAll={false} />
       <ClearAllFiltersBtn />
+    </BaseToolbar>
+  )
+}
+
+const RevenueByCompanyFilterToolbar = () => {
+  return (
+    <BaseToolbar isSecondary={true} >
+      <CompanyNameFilter queryKey={QK_QUERY_TOOL} style={{ width: '300px' }} />
+      <CommodityFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
+      <RevenueTypeFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
     </BaseToolbar>
   )
 }

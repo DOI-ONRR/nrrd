@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import ChartTitle from '../ChartTitle'
 import D3LineChart from './D3LineChart.js'
+import useWindowSize from '../../../js/hooks/useWindowSize'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -37,44 +38,41 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100%',
   },
-  // line: {
-  //   fill: 'none',
-  //   stroke: '#ffab00',
-  //   'stroke-width': 3
-  // },
-
   overlay: {
     fill: 'none',
     'pointer-events': 'all',
   },
-
   /* Style the dots by assigning a fill and stroke */
   dot: {
     fill: '#ffab00',
     stroke: '#fff',
   },
-  /*
-  .focus circle {
-  fill: none;
-  stroke: steelblue;
- */
-
 }
 
 ))
 
 const LineChart = props => {
   const classes = useStyles()
+  const size = useWindowSize()
   const { data, ...options } = props
-   // console.debug('LINE CHART', data)
+  // console.debug('LINE CHART', data)
   const elemRef = useRef(null)
   const title = options.title || ''
 
-  useEffect(() => {
+  const drawLineChart = () => {
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
+    // eslint-disable-next-line no-unused-vars
     const chart = new D3LineChart(elemRef.current, data, options)
-  })
+  }
+
+  useEffect(() => {
+    drawLineChart()
+  }, [])
+
+  useEffect(() => {
+    drawLineChart()
+  }, [size.width])
 
   return (
     <>

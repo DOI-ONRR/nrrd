@@ -15,15 +15,11 @@ import MinimizeIcon from '@material-ui/icons/Minimize'
 import CloseIcon from '@material-ui/icons/Close'
 
 import {
-  animateScroll as scroll,
   scroller
 } from 'react-scroll'
 
-import { StoreContext } from '../../../store'
+import { ExploreDataContext } from '../../../stores/explore-data-store'
 import CardTitle from './CardTitle'
-
-import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     width: 285,
-    margin: '10px',
+    // margin: '10px',
     position: 'absolute',
     right: 0,
     transform: 'translate3d(0, 0px, 0px)',
@@ -93,7 +89,7 @@ const SummaryCards = props => {
   // console.log('SummaryCards props: ', props)
 
   const classes = useStyles()
-  const { state: pageState, dispatch } = useContext(StoreContext)
+  const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
 
   const card = {
@@ -105,11 +101,11 @@ const SummaryCards = props => {
     districtType: props.districtType,
     state: props.state
   }
- 
+
   const [minimized, setMinimized] = useState(true)
 
   const closeCard = item => {
-    dispatch({ type: 'CARDS', payload: cards.filter(item => item.fipsCode !== props.fipsCode) })
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== props.fipsCode) })
   }
 
   const minimizeCard = item => {

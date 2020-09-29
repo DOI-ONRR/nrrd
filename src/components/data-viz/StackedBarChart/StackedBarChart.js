@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import ChartTitle from '../ChartTitle'
 import BarChart from './D3StackedBarChart.js'
 import { Collapse, Button } from '@material-ui/core';
+import useWindowSize from '../../../js/hooks/useWindowSize'
+
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'block',
@@ -29,16 +31,28 @@ const useStyles = makeStyles(theme => ({
       fontSize: theme.typography.h5.fontSize,
     },
     '& .x-axis > .tick': {
-      fontSize: '1rem',
+      fontSize: '.85rem',
       fontWeight: 'normal',
+    },
+    '& .x-axis > .tick:nth-child(odd)': {
+      '@media (max-width: 375px)': {
+        display: 'none',
+      },
     },
     '& .y-axis > .tick': {
       fontSize: theme.typography.body2.fontSize,
     },
   },
   horizontal: {
-    extend: 'chart',
+    position: 'relative',
     height: 25,
+    '& .horizontal-stacked-bar-chart': {
+      position: 'absolute',
+      top: 0,
+      left: 5,
+      transform: 'rotate(90deg)',
+      transformOrigin: 'bottom left',
+    }
   },
   legend: {
     display: 'block',
@@ -93,17 +107,30 @@ const StackedBarChart = props => {
   const [collapsed, setCollapsed] = useState(props.collapsedLegend || false)
   const classes = useStyles()
     console.debug("SBC collapsed", collapsed, ' <> ', props)
+  const size = useWindowSize()
+
   const { data, ...options } = props
   const elemRef = useRef(null)
   const title = options.title || ''
-  useEffect(() => {
+
+  const drawChart = () => {
     elemRef.current.children[0].innerHTML = ''
     elemRef.current.children[1].innerHTML = ''
     const chart = new BarChart(elemRef.current, data, options)
     chart.draw(data)
-    //  }, [elemRef]) What does this do? Other then cause it to not update
+  }
+
+  // init drawing of chart
+  useEffect(() => {
+    drawChart()
   })
     console.debug("SBC collapsed", collapsed, ' <> ', props)
+
+  // redraw chart on resize event
+  useEffect(() => {
+    drawChart()
+  }, [size.width])
+
   return (
     <>
 	{title && <ChartTitle>{title}</ChartTitle>}
