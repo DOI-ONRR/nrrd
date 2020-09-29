@@ -114,8 +114,8 @@ const StackedBarChart = props => {
   const title = options.title || ''
 
   const drawChart = () => {
-    elemRef.current.children[0].innerHTML = ''
-    elemRef.current.children[1].innerHTML = ''
+      elemRef.current.getElementsByClassName('chart_div')[0].innerHTML = ''
+      elemRef.current.getElementsByClassName('legend_div')[0].innerHTML = ''
     const chart = new BarChart(elemRef.current, data, options)
     chart.draw(data)
   }
@@ -136,13 +136,10 @@ const StackedBarChart = props => {
 	{title && <ChartTitle>{title}</ChartTitle>}
 	<Button>Default</Button>
       <div className={classes.container} ref={elemRef}>
-          <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }`}></div>
-	  
-	<Button>Default2</Button>
-
-	  <Button variant='text'>show</Button> 
+          <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }` + ' chart_div'}></div>
+	  {  props.collapsibleLegend &&  <Button variant='text' onClick={ () => setCollapsed(!collapsed) }><a href>+/-</a></Button> }
 	  <Collapse in={! collapsed} >
-	      <div className={classes.legend}></div>
+	  <div className={classes.legend + ' legend_div'}  ></div>
 	  </Collapse>	  
       </div>
     </>
