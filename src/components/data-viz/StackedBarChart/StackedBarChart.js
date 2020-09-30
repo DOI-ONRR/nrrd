@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import ChartTitle from '../ChartTitle'
 import BarChart from './D3StackedBarChart.js'
+import { Collapse, Button } from '@material-ui/core';
 import useWindowSize from '../../../js/hooks/useWindowSize'
 
 const useStyles = makeStyles(theme => ({
@@ -103,8 +104,9 @@ const useStyles = makeStyles(theme => ({
 const StackedBarChart = props => {
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
-
+  const [collapsed, setCollapsed] = useState(props.collapsedLegend || false)
   const classes = useStyles()
+    console.debug("SBC collapsed", collapsed, ' <> ', props)
   const size = useWindowSize()
 
   const { data, ...options } = props
@@ -112,8 +114,8 @@ const StackedBarChart = props => {
   const title = options.title || ''
 
   const drawChart = () => {
-    elemRef.current.children[0].innerHTML = ''
-    elemRef.current.children[1].innerHTML = ''
+      elemRef.current.getElementsByClassName('chart_div')[0].innerHTML = ''
+      elemRef.current.getElementsByClassName('legend_div')[0].innerHTML = ''
     const chart = new BarChart(elemRef.current, data, options)
     chart.draw(data)
   }
@@ -122,6 +124,7 @@ const StackedBarChart = props => {
   useEffect(() => {
     drawChart()
   })
+    console.debug("SBC collapsed", collapsed, ' <> ', props)
 
   // redraw chart on resize event
   useEffect(() => {
@@ -130,10 +133,14 @@ const StackedBarChart = props => {
 
   return (
     <>
-      {title && <ChartTitle>{title}</ChartTitle>}
+	{title && <ChartTitle>{title}</ChartTitle>}
+	<Button>Default</Button>
       <div className={classes.container} ref={elemRef}>
-        <div className={`${ classes.chart } ${ options.horizontal ? classes.horizontal : '' }`}></div>
-        <div className={classes.legend}></div>
+          <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }` + ' chart_div'}></div>
+	  {  props.collapsibleLegend &&  <Button variant='text' onClick={ () => setCollapsed(!collapsed) }><a href>+/-</a></Button> }
+	  <Collapse in={! collapsed} >
+	  <div className={classes.legend + ' legend_div'}  ></div>
+	  </Collapse>	  
       </div>
     </>
   )

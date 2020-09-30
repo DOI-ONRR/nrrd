@@ -5,6 +5,10 @@ import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
+import Link from '../../../Link'
+import QueryLink from '../../../../components/QueryLink'
+
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -25,23 +29,18 @@ import utils from '../../../../js/utils'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
-  query RevenueNational($year: Int!, $period: String!) {
-   federal_revenue_by_company_summary(order_by: {revenue: desc}, where: {year: {_eq: $year}}) {
-    year
+  query RevenueNational($year: Int!) {
+   federal_revenue_by_company_type_summary(order_by: {company_rank: asc, type_order: desc }, where: {calendar_year: {_eq: $year}}) {
+    corporate_name
+    calendar_year
+    revenue_type
+    total
+    percent_of_revenue
     revenue
    }
   }
 `
 
-const revenueTypeDescriptions = [
-  'Once the land or water produces enough resources to pay royalties, the leaseholder pays royalties to the federal government.',
-  'Companies bid on and lease lands and waters from the federal government.  They pay a bonus when they win a lease.',
-  'Leaseholders pay rent until the land or water starts producing resources.',
-  // eslint-disable-next-line max-len
-  'The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.',
-  'ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws.',
-  'This includes other fees leaseholders pay such as permit fees and AML fees.'
-]
 
 const RevenueByCompany = props => {
   const { state: filterState } = useContext(DataFilterContext)
@@ -50,17 +49,21 @@ const RevenueByCompany = props => {
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year, period: period }
+    variables: { year: year }
   })
 
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
-  let groupTotal
+    let groupTotal
+    let remainingTotal
+    let totalTotal
+    let remainingPercent
+    
   let nationalRevenueData
   const xAxis = 'year'
-  const yAxis = 'total'
-  const yGroupBy = 'land_type'
+  const yAxis = 'revenue'
+  const yGroupBy = 'revenue_type'
 
   const units = 'dollars'
 
@@ -70,12 +73,18 @@ const RevenueByCompany = props => {
 
   if (error) return `Error! ${ error.message }`
 
-  if (data) {
-    groupData = utils.groupBy(data.revenue_type_class_summary, 'revenue_type')
-    // eslint-disable-next-line no-return-assign
-    groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
-
-    nationalRevenueData = Object.entries(groupData)
+    if (data) {
+	console.debug("WTH  ", data)
+	groupData = utils.groupBy(data.federal_revenue_by_company_type_summary, 'corporate_name')
+	groupTotal = Object.keys(groupData).filter( (d,i) => i < 1).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0)
+	console.debug("Group Data:", groupData)
+	console.debug("groupTotal: ", groupTotal)
+	nationalRevenueData = Object.entries(groupData)
+	console.debug("company data", nationalRevenueData)
+	remainingTotal = Object.keys(groupData).filter( (d,i) => i > 9).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0)
+	totalTotal=Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0) 
+	console.debug("total:", totalTotal ,"remaining total", remainingTotal)  
+	remainingPercent = remainingTotal / totalTotal * 100
   }
 
   return (
@@ -90,7 +99,9 @@ const RevenueByCompany = props => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell style={{ fontWeight: 'bold' }}>Revenue type</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }}>Company</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }}>Total</TableCell>
+                <TableCell style={{ fontWeight: 'bold' }}>Percent</TableCell>
                 <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
                   <span style={{ fontWeight: 'bold', float: 'right' }}>{period + ' ' + year}</span></TableCell>
 
@@ -98,19 +109,27 @@ const RevenueByCompany = props => {
             </TableHead>
             <TableBody>
               { nationalRevenueData &&
-              nationalRevenueData.map((item, i) => {
+              nationalRevenueData.filter( (d,i) => i < 10).map((item, i) => {
                 return (
                   <TableRow key={i}>
                     <TableCell style={{ verticalAlign: 'top' }}>
                       <Box component="h4" mt={0}>{item[0]}</Box>
                       <Box component="p">
-                        {revenueTypeDescriptions[i]}
+
                       </Box>
                     </TableCell>
-                    <TableCell style={{ width: '65%' }}>
+          	      <TableCell style={{ verticalAlign: 'top' }}>
+			  <Box  mt={0}>{utils.formatToDollarInt(item[1][0].total)}</Box>
+		    </TableCell>
+		      <TableCell style={{ verticalAlign: 'top' }}>
+			  <Box  mt={0}>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
+		    </TableCell>
+                      <TableCell style={{ width: '45%' }}>
                       <StackedBarChart
                         key={'NRS' + year + '_' + i}
-                        data={item[1]}
+                          data={item[1]}
+			  collapsibleLegend={true}
+			  collapsedLegend={true}
                         legendFormat={v => {
                           if (v === 0) {
                             return '-'
@@ -127,7 +146,7 @@ const RevenueByCompany = props => {
                         }
                         }
                         // eslint-disable-next-line no-return-assign
-                        barScale={item[1].reduce((total, i) => total += i.total, 0) / groupTotal }
+                        barScale={item[1].reduce((total, i) => total += i.revenue, 0) / groupTotal }
                         units={units}
                         xAxis={xAxis}
                         yAxis={yAxis}
@@ -139,8 +158,53 @@ const RevenueByCompany = props => {
                     </TableCell>
                   </TableRow>
                 )
-              })
+              }) 
               }
+		  { nationalRevenueData &&  <>
+		<TableRow>
+		     <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box component="h4" mt={0}>Other companies</Box>
+                      <Box component="p">
+
+                      </Box>
+                    </TableCell>
+          	      <TableCell style={{ verticalAlign: 'top' }}>
+			  <Box  mt={0}>{utils.formatToDollarInt(remainingTotal)}</Box>
+		    </TableCell>
+		      <TableCell style={{ verticalAlign: 'top' }}>
+			  <Box  mt={0}>{remainingPercent.toFixed(2)}%</Box>
+    		    </TableCell>
+                    <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
+			 <QueryLink
+                  groupBy={DFC.REVENUE_TYPE}
+                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                  linkType="FilterTable"
+                  {...props}>
+			     Query revenue data for by all { nationalRevenueData.length } companies.
+                </QueryLink>
+
+		    </TableCell>
+
+		    </TableRow>    
+		<TableRow>
+		     <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box component="h4" mt={0}>Total</Box>
+                      <Box component="p">
+
+                      </Box>
+                    </TableCell>
+          	      <TableCell style={{ verticalAlign: 'top' }}>
+			  <Box  mt={0}>{utils.formatToDollarInt(totalTotal)}</Box>
+		    </TableCell>
+		      <TableCell style={{ verticalAlign: 'top' }}>
+			  <Box  mt={0}>100%</Box>
+		    </TableCell>
+
+		    <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
+			  </TableCell>
+		    </TableRow>    
+	     	</>
+		  }
             </TableBody>
           </Table>
         </Grid>
