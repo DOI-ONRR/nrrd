@@ -3,6 +3,7 @@ const { createHttpLink } = require('apollo-link-http')
 
 const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
 const GTM_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'GTM-NCRF98R' : ''
+const HASURA_URI = (process.env.HASURA_URI) ? process.env.HASURA_URI : 'https://hasura-onrr.app.cloud.gov/v1/graphql'
 
 const config = {
   siteMetadata: {
@@ -119,7 +120,8 @@ const config = {
             // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             // uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
             // uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
-            uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
+	    // uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
+            uri: HASURA_URI,
             headers: {},
             fetch,
             resolvers: {}

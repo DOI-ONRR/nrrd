@@ -7,7 +7,7 @@ args
   .option('--password <password>', 'DB PASSWORD')
   .option('--port <port>', 'DB PORT')
   .option('--user <port>', 'DB USER')
-  .option('--skip <ROWNUMB>', 'SKIP_TO')
+  .option('--skip <ROWNUMB>', 'SKIP')
   .option('--duplicates', 'Enable/disable duplicates', true)
   .option('--no-duplicates', 'Enable/disable duplicates')
   .option('--progress', 'Enable/disable progress', true)
@@ -35,9 +35,10 @@ else if (process.env.DB_PORT) {
   DB_PORT = process.env.DB_PORT
 }
 
-let SKIP_TO = 0
+let SKIP = 0
 if (args.skip) {
-  SKIP_TO = args.skip
+    SKIP = parseInt(args.skip)
+    
 }
 
 let DB_USER = 'postgres'
@@ -119,8 +120,8 @@ const main = async () => {
       for (let dd = 0; dd < data.length; dd++) {
         rows = data[dd]
         for (let rr = 0; rr < rows.length; rr++) {
-          if (ROW_COUNT < SKIP_TO) {
-            ROW_COUNT++
+          if (ROW_COUNT < SKIP -1) {
+              ROW_COUNT++
             continue
           }
           ROW_COUNT++
