@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: 5,
     top: 3,
     fontSize: 'large',
-    color: theme.palette.orange[200],
+    color: theme.palette.orange[300],
   },
 }))
 

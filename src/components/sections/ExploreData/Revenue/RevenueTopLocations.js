@@ -61,7 +61,6 @@ const useStyles = makeStyles(theme => ({
   topLocationsChart: {
     '& .chart-container': {
       display: 'flex',
-      // alignItems: 'top',
       '@media (max-width: 426px)': {
         display: 'block',
         margin: 0,

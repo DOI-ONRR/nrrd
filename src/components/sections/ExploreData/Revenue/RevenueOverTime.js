@@ -65,16 +65,16 @@ const useStyles = makeStyles(theme => ({
   },
   chipContainer: {
     '& .MuiChip-root:nth-child(1) .line': {
-      stroke: theme.palette.blue[300],
+      stroke: theme.palette.circleChart[400],
     },
     '& .MuiChip-root:nth-child(2) .line': {
-      stroke: theme.palette.orange[300],
+      stroke: theme.palette.circleChart[300],
     },
     '& .MuiChip-root:nth-child(3) .line': {
-      stroke: theme.palette.green[300],
+      stroke: theme.palette.circleChart[200],
     },
     '& .MuiChip-root:nth-child(4) .line': {
-      stroke: theme.palette.purple[300],
+      stroke: theme.palette.circleChart[100],
     }
   }
 }))
@@ -82,6 +82,7 @@ const useStyles = makeStyles(theme => ({
 const RevenueOverTime = props => {
   const classes = useStyles()
   const theme = useTheme()
+  console.log('RevenueOverTime theme: ', theme)
   const title = props.title || ''
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
@@ -94,8 +95,8 @@ const RevenueOverTime = props => {
     variables: { period: period, commodities: commodities }
   })
 
-  const handleDelete = props.handleDelete || ((e, val) => {
-    updateExploreDataCards({ ...pageState, cards: cards })
+  const handleDelete = props.handleDelete || ((e, fips) => {
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
   if (loading) {
@@ -145,7 +146,7 @@ const RevenueOverTime = props => {
           <LineChart
             key={'ROT' + commodityKey + period}
             data={chartData}
-            chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
+            chartColors={[theme.palette.circleChart[400], theme.palette.circleChart[300], theme.palette.circleChart[200], theme.palette.circleChart[100]]}
             lineDashes={LINE_DASHES}
             lineTooltip={
               (d, i) => {
