@@ -9,7 +9,7 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import * as d3 from 'd3'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import LineChart from '../../../data-viz/LineChart/LineChart.js'
@@ -19,8 +19,7 @@ import {
   Box,
   Container,
   Grid,
-  Chip,
-  useTheme
+  Chip
 } from '@material-ui/core'
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
