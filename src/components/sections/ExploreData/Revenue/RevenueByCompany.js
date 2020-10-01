@@ -181,7 +181,7 @@ const RevenueByCompany = props => {
                   landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
                   linkType="FilterTable"
                   {...props}>
-			     Query revenue data for by all { nationalRevenueData.length } companies.
+			     Query revenue data for all { nationalRevenueData.length } companies.
                 </QueryLink>
 
 		    </TableCell>
