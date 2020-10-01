@@ -114,7 +114,7 @@ const RevenueByCompany = props => {
                 return (
                   <TableRow key={i}>
                     <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box component="h4" mt={0}>{item[0]}</Box>
+                      <Box component="p" mt={0}>{item[0]}</Box>
                       <Box component="p">
 
                       </Box>
@@ -178,7 +178,7 @@ const RevenueByCompany = props => {
                     <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
 			 <QueryLink
                   groupBy={DFC.REVENUE_TYPE}
-                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                  dataType="Revenue by company"
                   linkType="FilterTable"
                   {...props}>
 			     Query revenue data for all { nationalRevenueData.length } companies.
