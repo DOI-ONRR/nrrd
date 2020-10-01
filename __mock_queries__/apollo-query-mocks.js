@@ -25,7 +25,7 @@ const QUERY_TOOL_REVENUE_TYPE = {
     ...QueryManager.getVariables(QK_QUERY_TOOL, { [DATA_TYPE]: REVENUE }, { [DATA_FILTER_KEY]: REVENUE_TYPE })
   },
   result: {
-    data: {options: [{ option: 'Revenue' }]}
+    data: { options: [{ option: REVENUE }, { option: PRODUCTION }, { option: DISBURSEMENT }] }
   }
 }
 

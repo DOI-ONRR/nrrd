@@ -2,27 +2,31 @@
 import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen, act } from 'test-utils'
+import { render, screen, act, REVENUE_ONLY } from 'test-utils'
 
 import RevenueTypeFilter from './RevenueTypeFilter'
 import {
   QK_QUERY_TOOL
 } from '../../../constants'
 
-import { REVENUE_ONLY } from '../../../../__mock_queries__/data-filter-states'
+// import { REVENUE_ONLY } from '../../../../__test_utils__/data-filter-states'
 
 // Mocks the initial state of the AppStatusContext
-jest.mock('../../../stores/data-filter-store/reducers', () => ({
-  get initialState () {
-    return REVENUE_ONLY
-  },
-  get types () {
-    return {}
-  },
-  reducer () {
-    return {}
-  }
-}))
+jest.mock('../../../stores/data-filter-store/reducers', () => {
+  const dataFilterState = require('../../../../__mock_queries__/data-filter-states')
+  console.log(dataFilterState)
+  return ({
+    get initialState () {
+      return dataFilterState.REVENUE_ONLY
+    },
+    get types () {
+      return {}
+    },
+    reducer () {
+      return {}
+    }
+  })
+})
 
 describe('Revenue Type Filter:', () => {
   test('Revenue Type rendered successfully', async () => {
