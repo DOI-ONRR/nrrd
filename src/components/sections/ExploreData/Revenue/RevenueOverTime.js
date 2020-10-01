@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
 const RevenueOverTime = props => {
   const classes = useStyles()
   const theme = useTheme()
-  console.log('RevenueOverTime theme: ', theme)
+
   const title = props.title || ''
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
@@ -133,7 +133,7 @@ const RevenueOverTime = props => {
 
     //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]
-    // console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
+    console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
