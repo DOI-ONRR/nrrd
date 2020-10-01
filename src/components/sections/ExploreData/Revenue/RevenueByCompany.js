@@ -49,7 +49,8 @@ const RevenueByCompany = props => {
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year }
+      variables: { year: year },
+      skip: period !== 'Calendar Year'
   })
 
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
@@ -85,7 +86,7 @@ const RevenueByCompany = props => {
 	totalTotal=Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0) 
 	console.debug("total:", totalTotal ,"remaining total", remainingTotal)  
 	remainingPercent = remainingTotal / totalTotal * 100
-  }
+
 
   return (
     <Container id={utils.formatToSlug(title)}>
@@ -211,6 +212,7 @@ const RevenueByCompany = props => {
       </Grid>
     </Container>
   )
+    } else { return(null) }
 }
 
 export default RevenueByCompany
