@@ -9,7 +9,7 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import mapCounties from '../counties.json'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -49,6 +49,7 @@ const REVENUE_QUERY = gql`
 const RevenueCountyMap = props => {
   // console.log('RevenueCountyMap props: ', props)
   const classes = useStyles()
+  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -94,6 +95,14 @@ const RevenueCountyMap = props => {
              mapData={mapData}
              minColor={props.minColor}
              maxColor={props.maxColor}
+             colorRange={[
+               theme.palette.chart[600],
+               theme.palette.chart[500],
+               theme.palette.chart[400],
+               theme.palette.chart[300],
+               theme.palette.chart[200],
+               theme.palette.chart[100]
+             ]}
              zoomTo={props.fipsCode}
            />
          </>

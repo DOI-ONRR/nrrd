@@ -25,6 +25,10 @@ export default class D3CircleChart {
     this.minColor = options.minColor || 'lightblue'
     this.maxColor = options.maxColor || 'darkblue'
 
+    if (options.colorRange) {
+      this.colorRange = options.colorRange
+    }
+
     this.maxCircles = options.maxCircles - 1
     const yAxis = options.yAxis
     const xAxis = options.xAxis
@@ -250,11 +254,11 @@ export default class D3CircleChart {
   }
 
   color () {
-    // console.debug("yDomain()", this.yDomain())
     const domain = d3.min([this.yDomain().length, this.maxCircles])
-    return d3.scaleLinear()
-      .domain([-1, domain])
-      .range([this.minColor, this.maxColor])
+    const colorScale = this.colorRange
+      ? d3.scaleOrdinal().domain(this.yDomain().length + 1).range(this.colorRange)
+      : d3.scaleLinear().domain([-1, domain]).range([this.minColor, this.maxColor])
+    return colorScale
   }
 
   circleLabel (data, xAxis, yAxis) {
@@ -303,6 +307,8 @@ export default class D3CircleChart {
     const width = this._width
     const height = this._height
     const color = this.color()
+    // const color = d3.scaleOrdinal().domain(this.data.length - 1)
+    //   .range(this.colorRange)
 
     const yDomain = this.yDomain()
     const root = this._root
@@ -365,9 +371,9 @@ export default class D3CircleChart {
       //   if (i === 0) return '#000'
       // })
       .attr('fill', (d, i) => {
-        // console.debug("fill attr", d,i)
+        console.log('fill attr', d, i)
         if (i === 0) return '#f5f5f5'
-	  // color(yDomain.length - i + 1) add one more because first circle is root node
+        // color(yDomain.length - i + 1) add one more because first circle is root node
         return d.children ? color(d.depth) : color(yDomain.length - i + 1)
       })
       // .attr('pointer-events', d => !d.children ? 'none' : null)

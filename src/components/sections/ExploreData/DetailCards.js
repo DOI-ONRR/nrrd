@@ -185,16 +185,16 @@ const useStyles = makeStyles(theme => ({
       minHeight: 245
     },
     '& > div:first-child $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[400] }`,
+      borderBottom: `8px solid ${ theme.palette.chart[400] }`,
     },
     '& > div:nth-child(2) $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[300] }`,
+      borderBottom: `8px solid ${ theme.palette.chart[300] }`,
     },
     '& > div:nth-child(3) $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[200] }`,
+      borderBottom: `8px solid ${ theme.palette.chart[200] }`,
     },
     '& > div:last-child $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[100] }`,
+      borderBottom: `8px solid ${ theme.palette.chart[100] }`,
     }
   },
   closeIcon: {

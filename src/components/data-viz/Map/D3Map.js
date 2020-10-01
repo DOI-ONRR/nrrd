@@ -33,11 +33,15 @@ export default class d3Map {
     }
 
     if (options.onZoomEnd) {
-	  this.onZoomEnd = options.onZoomEnd
+	    this.onZoomEnd = options.onZoomEnd
     }
     if (options.legendFormat) {
-	  this.legendFormat = options.legendFormat
+	    this.legendFormat = options.legendFormat
     }
+    if (options.colorRange) {
+      this.colorRange = options.colorRange
+    }
+
     this.zoomStarted = false
     this.node = node
     this.us = us
@@ -152,6 +156,7 @@ export default class d3Map {
     const onClick = this.onClick
     const minColor = this.minColor
     const maxColor = this.maxColor
+    const colorRange = this.colorRange
     const width = this.node.children[1].scrollWidth
     const height = this.node.children[1].scrollHeight
     this.width = width
@@ -230,6 +235,13 @@ export default class d3Map {
         .scaleSequentialQuantile()
         .interpolator(d3.interpolateRgb(minColor, maxColor))
         .domain(data.values.sort())
+    }
+
+    if (colorRange) {
+      color = d3
+        .scaleOrdinal()
+        .domain(data.values.sort())
+        .range(this.colorRange)
     }
 
     this.color = color

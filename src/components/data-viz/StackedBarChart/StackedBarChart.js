@@ -19,13 +19,12 @@ const useStyles = makeStyles(theme => ({
     height: '200px',
     fill: theme.palette.chart.primary,
     '& .bars > .bar:hover': {
-      fill: theme.palette.chart.secondary,
+    // fill: theme.palette.chart.secondary,
       cursor: 'pointer',
     },
-    '& .bars > .active': {
-      fill: theme.palette.chart.secondary,
-    },
-
+    // '& .bars > .active': {
+    //   fill: theme.palette.chart.secondary,
+    // },
     '& .maxExtent': {
       fontSize: theme.typography.h5.fontSize,
     },
@@ -64,8 +63,8 @@ const useStyles = makeStyles(theme => ({
       width: 10,
     },
     '& td .legend-rect': {
-      fill: theme.palette.chart.secondary,
-      backgroundColor: theme.palette.chart.secondary,
+      // fill: theme.palette.chart.secondary,
+      // backgroundColor: theme.palette.chart.secondary,
       display: 'block',
       height: 20,
       width: 20,
