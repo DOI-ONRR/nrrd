@@ -103,7 +103,7 @@ const RevenueByCompany = props => {
                   <TableCell style={{ fontWeight: 'bold' }}>Company</TableCell>
                   <TableCell style={{ fontWeight: 'bold' }}>Total</TableCell>
                   <TableCell style={{ fontWeight: 'bold' }}>Percent</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}><span>Source</span>
+                  <TableCell style={{ fontWeight: 'bold' }}><span>Revenue type</span>
                     <span style={{ fontWeight: 'bold', float: 'right' }}>{period + ' ' + year}</span></TableCell>
 
                 </TableRow>
