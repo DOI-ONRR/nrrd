@@ -308,8 +308,6 @@ export default class D3CircleChart {
     const root = this._root
 
     // eslint-disable-next-line no-unused-vars
-    let focus = root
-
     const svg = d3.select(chartNode).append('svg')
       .attr('viewBox', `-${ width * 0.5 } -${ height * 0.5 } ${ width } ${ height }`)
       .style('display', 'block')
@@ -426,7 +424,7 @@ export default class D3CircleChart {
     }
 
     function zoom (d) {
-      focus = d
+      // focus = d
     }
 
     return svg.node()
