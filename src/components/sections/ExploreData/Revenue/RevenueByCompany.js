@@ -119,18 +119,18 @@ const RevenueByCompany = props => {
 
                       </Box>
                     </TableCell>
-          	      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box mt={0}>{utils.formatToDollarInt(item[1][0].total)}</Box>
-		    </TableCell>
-		      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box mt={0}>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
-		    </TableCell>
+                    <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box mt={0}>{utils.formatToDollarInt(item[1][0].total)}</Box>
+                    </TableCell>
+                    <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box mt={0}>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
+                    </TableCell>
                     <TableCell style={{ width: '45%' }}>
                       <StackedBarChart
                         key={'NRS' + year + '_' + i}
                         data={item[1]}
-			  collapsibleLegend={true}
-			  collapsedLegend={true}
+                        collapsibleLegend={true}
+                        collapsedLegend={true}
                         legendFormat={v => {
                           if (v === 0) {
                             return '-'
@@ -205,7 +205,7 @@ const RevenueByCompany = props => {
                     </TableCell>
                   </TableRow>
                 </>
-	  }
+                }
               </TableBody>
             </Table>
           </Grid>
