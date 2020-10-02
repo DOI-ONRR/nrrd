@@ -135,7 +135,15 @@ const DisbursementTopRecipients = props => {
                 }
                 yLabel={dataSet}
                 minColor={theme.palette.green[100]}
-                maxColor={theme.palette.green[600]} />
+                maxColor={theme.palette.green[600]}
+                colorRange={[
+                  theme.palette.chart[600],
+                  theme.palette.chart[500],
+                  theme.palette.chart[400],
+                  theme.palette.chart[300],
+                  theme.palette.chart[200],
+                  theme.palette.chart[100]
+                ]} />
             </Box>
           </Box>
         </Grid>
