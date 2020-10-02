@@ -76,7 +76,7 @@ const RevenueByCompany = props => {
 
   if (error) return `Error! ${ error.message }`
 
-    if (data) {
+    if (data && data.federal_revenue_by_company_type_summary.length > 0) {
 	console.debug("WTH  ", data)
 /*	  chartData = d3.nest()
 	  .key(k => k.revenue_type)
