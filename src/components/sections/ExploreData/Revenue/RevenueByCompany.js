@@ -161,51 +161,51 @@ const RevenueByCompany = props => {
                 )
               })
                 }
-		  { nationalRevenueData && <>
+                { nationalRevenueData && <>
                   <TableRow>
-		     <TableCell style={{ verticalAlign: 'top' }}>
+                    <TableCell style={{ verticalAlign: 'top' }}>
                       <Box component="h4" mt={0}>Other companies</Box>
                       <Box component="p">
 
                       </Box>
                     </TableCell>
-          	      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box mt={0}>{utils.formatToDollarInt(remainingTotal)}</Box>
-		    </TableCell>
-		      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box mt={0}>{remainingPercent.toFixed(2)}%</Box>
-    		    </TableCell>
+                    <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box mt={0}>{utils.formatToDollarInt(remainingTotal)}</Box>
+                    </TableCell>
+                    <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box mt={0}>{remainingPercent.toFixed(2)}%</Box>
+                    </TableCell>
                     <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
-			 <QueryLink
+                      <QueryLink
                         groupBy={DFC.REVENUE_TYPE}
                         dataType="Revenue by company"
                         linkType="FilterTable"
                         {...props}>
-			     Query revenue data for all { nationalRevenueData.length } companies.
+     Query revenue data for all { nationalRevenueData.length } companies.
                       </QueryLink>
 
-		    </TableCell>
+                    </TableCell>
 
-		    </TableRow>
+                  </TableRow>
                   <TableRow>
-		     <TableCell style={{ verticalAlign: 'top' }}>
+                    <TableCell style={{ verticalAlign: 'top' }}>
                       <Box component="h4" mt={0}>Total</Box>
                       <Box component="p">
 
                       </Box>
                     </TableCell>
-          	      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box mt={0}>{utils.formatToDollarInt(totalTotal)}</Box>
-		    </TableCell>
-		      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box mt={0}>100%</Box>
-		    </TableCell>
+                    <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box mt={0}>{utils.formatToDollarInt(totalTotal)}</Box>
+                    </TableCell>
+                    <TableCell style={{ verticalAlign: 'top' }}>
+                      <Box mt={0}>100%</Box>
+                    </TableCell>
 
-		    <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
-			  </TableCell>
-		    </TableRow>
-	     	</>
-		  }
+                    <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
+                    </TableCell>
+                  </TableRow>
+                </>
+	  }
               </TableBody>
             </Table>
           </Grid>
