@@ -112,7 +112,7 @@ const StackedBarChart = props => {
   const { data, ...options } = props
   const elemRef = useRef(null)
     const title = options.title || ''
-    let buttonValue=collapsed ? 'Show' : 'Hide';
+    let buttonValue=collapsed ? 'Show details' : 'Hide details';
     const handleShowHide = () => {
 	setCollapsed(!collapsed)
     }
