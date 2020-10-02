@@ -30,10 +30,11 @@ import utils from '../../../../js/utils'
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   query RevenueNational($year: Int!) {
-   federal_revenue_by_company_type_summary(order_by: {company_rank: asc, type_order: desc }, where: {calendar_year: {_eq: $year}}) {
+   federal_revenue_by_company_type_summary(order_by: {company_rank: asc, type_order: desc }, where: {calendar_year: {_eq: $year}, commodity: {_in: $commodities} }}) {
     corporate_name
     calendar_year
     revenue_type
+    commodity
     total
     percent_of_revenue
     revenue
@@ -45,11 +46,12 @@ const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
 const RevenueByCompany = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+    const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+     const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const { title } = props
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-      variables: { year: year },
+      variables: { year: year, commodities: commodities },
       skip: period !== 'Calendar Year'
   })
 
@@ -76,7 +78,14 @@ const RevenueByCompany = props => {
 
     if (data) {
 	console.debug("WTH  ", data)
+/*	  chartData = d3.nest()
+	  .key(k => k.revenue_type)
+	  .rollup(v => d3.sum(v, i => i.total))
+	  .entries(data.revenue_type_summary)
+	  .map(d => ({ revenue_type: d.key, total: d.value }))
+  }*/
 	groupData = utils.groupBy(data.federal_revenue_by_company_type_summary, 'corporate_name')
+	console.debug("WTF: ", groupData)
 	groupTotal = Object.keys(groupData).filter( (d,i) => i < 1).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0)
 	console.debug("Group Data:", groupData)
 	console.debug("groupTotal: ", groupTotal)
