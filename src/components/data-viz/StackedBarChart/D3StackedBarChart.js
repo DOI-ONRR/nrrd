@@ -5,9 +5,9 @@ import * as d3 from 'd3'
 export default class D3StackedBarChart {
   constructor (node, data, options, formatLegendFunc) {
     try {
-	this.node = node
-	this.chartDiv=node.getElementsByClassName('chart_div')[0]
-	this.legendDiv=node.getElementsByClassName('legend_div')[0]
+      this.node = node
+      this.chartDiv = node.getElementsByClassName('chart_div')[0]
+      this.legendDiv = node.getElementsByClassName('legend_div')[0]
       if (data && data.length > 0) {
         // console.debug('data:', data)
         this.data = data
@@ -18,8 +18,6 @@ export default class D3StackedBarChart {
       }
 
       this.options = options
-	// console.debug('D3StackedBarChart options: ', options)
-	console.debug(node);
       this._height = (this.chartDiv.clientHeight > 0) ? this.chartDiv.clientHeight : 400
       this._width = (this.chartDiv.clientWidth <= 0) ? 300 : this.chartDiv.clientWidth
       this.xAxis = options.xAxis || console.error('Error - no xAxis property set')

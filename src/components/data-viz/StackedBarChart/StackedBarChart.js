@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import ChartTitle from '../ChartTitle'
 import BarChart from './D3StackedBarChart.js'
-import { Collapse, Button } from '@material-ui/core';
+import { Collapse, Button } from '@material-ui/core'
 import useWindowSize from '../../../js/hooks/useWindowSize'
 
 const useStyles = makeStyles(theme => ({
@@ -106,20 +106,16 @@ const StackedBarChart = props => {
   // use ONRR topojson file for land
   const [collapsed, setCollapsed] = useState(props.collapsedLegend || false)
   const classes = useStyles()
-    console.debug("SBC collapsed", collapsed, ' <> ', props)
+  // console.debug("SBC collapsed", collapsed, ' <> ', props)
   const size = useWindowSize()
 
   const { data, ...options } = props
   const elemRef = useRef(null)
-    const title = options.title || ''
-    let buttonValue=collapsed ? 'Show details' : 'Hide details';
-    const handleShowHide = () => {
-	setCollapsed(!collapsed)
-    }
-    
+  const title = options.title || ''
+  const buttonValue = collapsed ? 'Show details' : 'Hide details'
   const drawChart = () => {
-      elemRef.current.getElementsByClassName('chart_div')[0].innerHTML = ''
-      elemRef.current.getElementsByClassName('legend_div')[0].innerHTML = ''
+    elemRef.current.getElementsByClassName('chart_div')[0].innerHTML = ''
+    elemRef.current.getElementsByClassName('legend_div')[0].innerHTML = ''
     const chart = new BarChart(elemRef.current, data, options)
     chart.draw(data)
   }
@@ -128,8 +124,6 @@ const StackedBarChart = props => {
   useEffect(() => {
     drawChart()
   })
-    console.debug("SBC collapsed", collapsed, ' <> ', props)
-
   // redraw chart on resize event
   useEffect(() => {
     drawChart()
@@ -137,13 +131,13 @@ const StackedBarChart = props => {
 
   return (
     <>
-	{title && <ChartTitle>{title}</ChartTitle>}
+      {title && <ChartTitle>{title}</ChartTitle>}
       <div className={classes.container} ref={elemRef}>
-          <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }` + ' chart_div'}></div>
-	  {  props.collapsibleLegend &&  <Button variant='text' onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</Button> }
-	  <Collapse in={! collapsed} >
-	  <div className={classes.legend + ' legend_div'}  ></div>
-	  </Collapse>	  
+        <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }` + ' chart_div'}></div>
+        { props.collapsibleLegend && <Button variant='text' onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</Button> }
+        <Collapse in={!collapsed} >
+          <div className={classes.legend + ' legend_div'} ></div>
+        </Collapse>
       </div>
     </>
   )
