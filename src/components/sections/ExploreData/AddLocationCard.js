@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   },
   cardHeader: {
     padding: 10,
-    height: 75,
+    height: 80,
     fontSize: '1.2rem',
     '& .MuiCardHeader-action': {
       marginTop: 0,

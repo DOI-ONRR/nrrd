@@ -8,7 +8,11 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import CardTitle from './CardTitle'
 
-import { isIE } from 'react-device-detect'
+import {
+  isIE,
+  isEdge,
+  isChromium
+} from 'react-device-detect'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -137,7 +141,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: '25%',
     width: '100%',
-    margin: theme.spacing(1),
     '@media (max-width: 768px)': {
       maxWidth: '100%',
     },
@@ -156,22 +159,17 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     marginTop: theme.spacing(5),
+    padding: 5,
     overflow: 'auto',
     '& media (max-width: 768px)': {
       display: 'relative',
     },
     '& > div': {
-      marginRight: theme.spacing(1),
-      minWidth: 275,
+      marginRight: 10,
+      maxWidth: 300,
     },
     '& > div:last-child': {
-      margin: theme.spacing(1),
-      maxWidth: '25%',
-      width: '100%',
-      minWidth: 275,
-      '@media (max-width: 768px)': {
-        maxWidth: '100%',
-      }
+      margin: 0,
     },
     '& .card-content-container': {
       display: 'flex',
@@ -185,6 +183,18 @@ const useStyles = makeStyles(theme => ({
     },
     '& .card-content-container > div:nth-child(3) .chart-container .legend': {
       minHeight: 245
+    },
+    '& > div:first-child $cardHeader': {
+      borderBottom: `8px solid ${ theme.palette.circleChart[400] }`,
+    },
+    '& > div:nth-child(2) $cardHeader': {
+      borderBottom: `8px solid ${ theme.palette.circleChart[300] }`,
+    },
+    '& > div:nth-child(3) $cardHeader': {
+      borderBottom: `8px solid ${ theme.palette.circleChart[200] }`,
+    },
+    '& > div:last-child $cardHeader': {
+      borderBottom: `8px solid ${ theme.palette.circleChart[100] }`,
     }
   },
   closeIcon: {
@@ -199,8 +209,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
     padding: 10,
-    height: 75,
+    height: 80,
     fontSize: '1.2rem',
+    fontWeight: 'bold',
     alignItems: 'center',
     '& .MuiCardHeader-action': {
       marginTop: 0,
@@ -239,11 +250,11 @@ const useStyles = makeStyles(theme => ({
     maxHeight: 50,
     maxWidth: 50,
     marginRight: theme.spacing(1.5),
-    filter: 'invert(1)',
+    // filter: 'invert(1)',
     marginTop: 15,
   },
   cardContentContainer: {
-    display: isIE ? 'block' : 'grid',
+    display: (isIE || (isEdge && !isChromium)) ? 'block' : 'grid',
     minHeight: 1500,
     '& > div': {
       margin: 0,
@@ -257,6 +268,7 @@ const useStyles = makeStyles(theme => ({
       width: 50,
       height: 50,
       margin: 'auto 8px auto 0',
+      fill: theme.palette.common.white,
     },
     '& span > div': {
       fontSize: theme.typography.caption.fontSize,
