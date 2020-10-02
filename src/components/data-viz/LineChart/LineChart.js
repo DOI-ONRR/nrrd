@@ -68,7 +68,7 @@ const LineChart = props => {
 
   useEffect(() => {
     drawLineChart()
-  }, [])
+  })
 
   useEffect(() => {
     drawLineChart()
