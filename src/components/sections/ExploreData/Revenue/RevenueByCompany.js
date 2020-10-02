@@ -40,7 +40,6 @@ const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   }
 `
 
-
 const RevenueByCompany = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -54,11 +53,11 @@ const RevenueByCompany = props => {
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
-    let groupTotal
-    let remainingTotal
-    let totalTotal
-    let remainingPercent
-    
+  let groupTotal
+  let remainingTotal
+  let totalTotal
+  let remainingPercent
+
   let nationalRevenueData
   const xAxis = 'year'
   const yAxis = 'revenue'
@@ -72,18 +71,18 @@ const RevenueByCompany = props => {
 
   if (error) return `Error! ${ error.message }`
 
-    if (data) {
-	console.debug("WTH  ", data)
-	groupData = utils.groupBy(data.federal_revenue_by_company_type_summary, 'corporate_name')
-	groupTotal = Object.keys(groupData).filter( (d,i) => i < 1).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0)
-	console.debug("Group Data:", groupData)
-	console.debug("groupTotal: ", groupTotal)
-	nationalRevenueData = Object.entries(groupData)
-	console.debug("company data", nationalRevenueData)
-	remainingTotal = Object.keys(groupData).filter( (d,i) => i > 9).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0)
-	totalTotal=Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0) 
-	console.debug("total:", totalTotal ,"remaining total", remainingTotal)  
-	remainingPercent = remainingTotal / totalTotal * 100
+  if (data) {
+    console.debug('WTH  ', data)
+    groupData = utils.groupBy(data.federal_revenue_by_company_type_summary, 'corporate_name')
+    groupTotal = Object.keys(groupData).filter((d, i) => i < 1).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0)
+    console.debug('Group Data:', groupData)
+    console.debug('groupTotal: ', groupTotal)
+    nationalRevenueData = Object.entries(groupData)
+    console.debug('company data', nationalRevenueData)
+    remainingTotal = Object.keys(groupData).filter((d, i) => i > 9).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0)
+    totalTotal = Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => revenue += i.revenue, 0)).reduce((revenue, s) => revenue += s, 0)
+    console.debug('total:', totalTotal, 'remaining total', remainingTotal)
+    remainingPercent = remainingTotal / totalTotal * 100
   }
 
   return (
@@ -108,7 +107,7 @@ const RevenueByCompany = props => {
             </TableHead>
             <TableBody>
               { nationalRevenueData &&
-              nationalRevenueData.filter( (d,i) => i < 10).map((item, i) => {
+              nationalRevenueData.filter((d, i) => i < 10).map((item, i) => {
                 return (
                   <TableRow key={i}>
                     <TableCell style={{ verticalAlign: 'top' }}>
@@ -118,12 +117,12 @@ const RevenueByCompany = props => {
                       </Box>
                     </TableCell>
           	      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box  mt={0}>{utils.formatToDollarInt(item[1][0].total)}</Box>
+			  <Box mt={0}>{utils.formatToDollarInt(item[1][0].total)}</Box>
 		    </TableCell>
 		      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box  mt={0}>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
+			  <Box mt={0}>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
 		    </TableCell>
-                      <TableCell style={{ width: '45%' }}>
+                    <TableCell style={{ width: '45%' }}>
                       <StackedBarChart
                         key={'NRS' + year + '_' + i}
                         data={item[1]}
@@ -154,51 +153,51 @@ const RevenueByCompany = props => {
                     </TableCell>
                   </TableRow>
                 )
-              }) 
+              })
               }
-		  { nationalRevenueData &&  <>
-		<TableRow>
+		  { nationalRevenueData && <>
+                <TableRow>
 		     <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box component="h4" mt={0}>Other companies</Box>
-                      <Box component="p">
+                    <Box component="h4" mt={0}>Other companies</Box>
+                    <Box component="p">
 
-                      </Box>
-                    </TableCell>
+                    </Box>
+                  </TableCell>
           	      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box  mt={0}>{utils.formatToDollarInt(remainingTotal)}</Box>
+			  <Box mt={0}>{utils.formatToDollarInt(remainingTotal)}</Box>
 		    </TableCell>
 		      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box  mt={0}>{remainingPercent.toFixed(2)}%</Box>
+			  <Box mt={0}>{remainingPercent.toFixed(2)}%</Box>
     		    </TableCell>
-                    <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
+                  <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
 			 <QueryLink
-                  groupBy={DFC.REVENUE_TYPE}
-                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-                  linkType="FilterTable"
-                  {...props}>
+                      groupBy={DFC.REVENUE_TYPE}
+                      landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                      linkType="FilterTable"
+                      {...props}>
 			     Query revenue data for by all { nationalRevenueData.length } companies.
-                </QueryLink>
+                    </QueryLink>
 
 		    </TableCell>
 
-		    </TableRow>    
-		<TableRow>
+		    </TableRow>
+                <TableRow>
 		     <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box component="h4" mt={0}>Total</Box>
-                      <Box component="p">
+                    <Box component="h4" mt={0}>Total</Box>
+                    <Box component="p">
 
-                      </Box>
-                    </TableCell>
+                    </Box>
+                  </TableCell>
           	      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box  mt={0}>{utils.formatToDollarInt(totalTotal)}</Box>
+			  <Box mt={0}>{utils.formatToDollarInt(totalTotal)}</Box>
 		    </TableCell>
 		      <TableCell style={{ verticalAlign: 'top' }}>
-			  <Box  mt={0}>100%</Box>
+			  <Box mt={0}>100%</Box>
 		    </TableCell>
 
 		    <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
 			  </TableCell>
-		    </TableRow>    
+		    </TableRow>
 	     	</>
 		  }
             </TableBody>
