@@ -203,14 +203,10 @@ const TotalRevenue = props => {
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
             legendHeaders={legendHeaders}
-            primaryColor={theme.palette.chart.primary}
-            secondaryColor={theme.palette.chart.secondary}
-            // colorRange={[
-            //   theme.palette.chart[600],
-            //   theme.palette.chart[500],
-            //   theme.palette.chart[400],
-            //   theme.palette.chart[300],
-            // ]}
+            // primaryColor={theme.palette.chart.primary}
+            // secondaryColor={theme.palette.chart.secondary}
+            primaryColor="#ACACAC"
+            secondaryColor={theme.palette.orange[400]}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
             <Link href='/downloads/revenue-by-month/'>Source file</Link>

@@ -177,7 +177,8 @@ const NationwideDisbursementSummary = props => {
                             yOrderBy={yOrderBy}
                             horizontal
                             legendReverse={true}
-                            secondaryColor="deeppink"
+                            primaryColor="#ACACAC"
+                            secondaryColor={theme.palette.orange[400]}
                             // colorRange={[
                             //   theme.palette.chart[600],
                             //   theme.palette.chart[500],
