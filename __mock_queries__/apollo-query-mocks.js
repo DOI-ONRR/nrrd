@@ -1,4 +1,5 @@
 import QueryManager from '../src/js/query-manager'
+import * as DFS from './data-filter-states'
 import {
   QK_QUERY_TOOL,
   DATA_FILTER_KEY,
@@ -21,8 +22,8 @@ import {
 
 const QUERY_TOOL_REVENUE_TYPE = {
   request: {
-    query: QueryManager.getQuery(QK_QUERY_TOOL, { [DATA_TYPE]: REVENUE }, { [DATA_FILTER_KEY]: REVENUE_TYPE }),
-    ...QueryManager.getVariables(QK_QUERY_TOOL, { [DATA_TYPE]: REVENUE }, { [DATA_FILTER_KEY]: REVENUE_TYPE })
+    query: QueryManager.getQuery(QK_QUERY_TOOL, DFS.REVENUE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: REVENUE_TYPE }),
+    ...QueryManager.getVariables(QK_QUERY_TOOL, DFS.REVENUE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: REVENUE_TYPE })
   },
   result: {
     data: { options: [{ option: REVENUE }, { option: PRODUCTION }, { option: DISBURSEMENT }] }
