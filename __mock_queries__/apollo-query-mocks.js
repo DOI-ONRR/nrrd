@@ -17,6 +17,8 @@ import {
   REVENUE_BY_COMPANY
 } from '../src/constants'
 
+import QUERY_TOOL_REVENUE_TYPE_RESULTS from './__apollo_mock_results__/RevenueTypes_results'
+
 // QueryManager.getQuery(queryKey, state, options)
 // QueryManager.getVariables(queryKey, state, options)
 
@@ -26,7 +28,7 @@ const QUERY_TOOL_REVENUE_TYPE = {
     ...QueryManager.getVariables(QK_QUERY_TOOL, DFS.REVENUE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: REVENUE_TYPE })
   },
   result: {
-    data: { options: [{ option: REVENUE }, { option: PRODUCTION }, { option: DISBURSEMENT }] }
+    data: QUERY_TOOL_REVENUE_TYPE_RESULTS
   }
 }
 

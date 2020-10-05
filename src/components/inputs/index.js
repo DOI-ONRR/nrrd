@@ -47,7 +47,6 @@ import withQueryManager from '../withQueryManager'
  * @param {String} dataFilterKey
  */
 export const createEnhancedInput = (baseInput, queryKey, dataFilterKey, options) => {
-  console.log('createEnhancedInput')
   return compose(
     BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
     BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),

@@ -14,7 +14,6 @@ import {
 // Mocks the initial state of the AppStatusContext
 jest.mock('../../../stores/data-filter-store/reducers', () => {
   const dataFilterState = require('../../../../__mock_queries__/data-filter-states')
-  console.log(dataFilterState)
   return ({
     get initialState () {
       return dataFilterState.REVENUE_ONLY
@@ -34,6 +33,6 @@ describe('Revenue Type Filter:', () => {
     await act(async () => {
       await new Promise(resolve => setTimeout(resolve, 100))
     })
-    expect(screen.getByTitle('The 8(g) zone', { exact: false })).toBeInTheDocument()
+    expect(screen.getByDisplayValue('Revenue,Production,Disbursements')).toBeInTheDocument()
   })
 })

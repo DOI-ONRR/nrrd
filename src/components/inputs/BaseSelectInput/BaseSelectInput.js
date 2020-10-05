@@ -92,7 +92,6 @@ const BaseInput = withStyles(theme =>
 const BaseSelectInput = ({
   data, onChange, selectType, defaultSelected, selected, defaultSelectAll, helperText, label, variant, showClearSelected, theme, disabled, ...props
 }) => {
-  console.log('BaseSelectInput', data)
   if (data && data.length > 0 && !data[0].option) {
     data = data.map(item => ({ option: item }))
   }

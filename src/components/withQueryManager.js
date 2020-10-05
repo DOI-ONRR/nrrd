@@ -35,7 +35,6 @@ const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) =>
     }
   }, [loading])
 
-  console.log('withQueryManager', data)
   return (
     <>
       {!loading &&

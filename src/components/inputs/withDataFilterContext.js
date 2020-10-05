@@ -9,7 +9,7 @@ import { DataFilterContext } from '../../stores/data-filter-store'
  * @param {*} dataFilterKey
  */
 const withDataFilterContext = (BaseComponent, dataFilterKey) => ({ ...props }) => {
-  console.log('withDataFilterContext')
+
   const { state, updateDataFilter } = useContext(DataFilterContext)
 
   const handleChange = newValue => {
