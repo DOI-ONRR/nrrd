@@ -2,8 +2,14 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
+import {
+  isEdge,
+  isChromium
+} from 'react-device-detect'
+
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -18,7 +24,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'top',
     '& .mapContainer': {
       height: 100,
       width: 245,
@@ -28,7 +33,10 @@ const useStyles = makeStyles(theme => ({
     },
     '& .mapContainer svg': {
       pointerEvents: 'none',
-    }
+      '& path': {
+        strokeWidth: (isEdge && !isChromium) ? '0.15px' : '1px',
+      },
+    },
   }
 }))
 

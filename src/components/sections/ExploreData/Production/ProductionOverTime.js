@@ -9,7 +9,7 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import * as d3 from 'd3'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import LineChart from '../../../data-viz/LineChart/LineChart.js'
@@ -19,8 +19,7 @@ import {
   Box,
   Container,
   Grid,
-  Chip,
-  useTheme
+  Chip
 } from '@material-ui/core'
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
@@ -70,16 +69,16 @@ const useStyles = makeStyles(theme => ({
   },
   chipContainer: {
     '& .MuiChip-root:nth-child(1) .line': {
-      stroke: theme.palette.blue[300],
+      stroke: theme.palette.circleChart[400],
     },
     '& .MuiChip-root:nth-child(2) .line': {
-      stroke: theme.palette.orange[300],
+      stroke: theme.palette.circleChart[300],
     },
     '& .MuiChip-root:nth-child(3) .line': {
-      stroke: theme.palette.green[300],
+      stroke: theme.palette.circleChart[200],
     },
     '& .MuiChip-root:nth-child(4) .line': {
-      stroke: theme.palette.purple[300],
+      stroke: theme.palette.circleChart[100],
     }
   }
 }))
@@ -98,8 +97,8 @@ const ProductionOverTime = props => {
     variables: { product: product, period: period }
   })
 
-  const handleDelete = props.handleDelete || ((e, val) => {
-    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== val) })
+  const handleDelete = props.handleDelete || ((e, fips) => {
+    updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
   if (loading) {
@@ -155,7 +154,7 @@ const ProductionOverTime = props => {
           <LineChart
             key={'POT' + period + cards.length + product }
             data={chartData}
-            chartColors={[theme.palette.blue[300], theme.palette.orange[300], theme.palette.green[300], theme.palette.purple[300]]}
+            chartColors={[theme.palette.circleChart[400], theme.palette.circleChart[300], theme.palette.circleChart[200], theme.palette.circleChart[100]]}
             lineDashes={LINE_DASHES}
             lineTooltip={
               (d, i) => {

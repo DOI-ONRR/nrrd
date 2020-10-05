@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
     '& .chart-container': {
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'top',
       '& .chart': {
         width: '100%',
         height: 250

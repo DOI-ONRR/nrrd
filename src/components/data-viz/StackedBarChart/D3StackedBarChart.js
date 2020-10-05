@@ -6,7 +6,8 @@ export default class D3StackedBarChart {
   constructor (node, data, options, formatLegendFunc) {
     try {
       this.node = node
-
+      this.chartDiv = node.getElementsByClassName('chart_div')[0]
+      this.legendDiv = node.getElementsByClassName('legend_div')[0]
       if (data && data.length > 0) {
         // console.debug('data:', data)
         this.data = data
@@ -17,9 +18,8 @@ export default class D3StackedBarChart {
       }
 
       this.options = options
-      // console.debug('D3StackedBarChart options: ', options)
-      this._height = (node.children[0].clientHeight > 0) ? node.children[0].clientHeight : 400
-      this._width = (node.children[0].clientWidth <= 0) ? 300 : node.children[0].clientWidth
+      this._height = (this.chartDiv.clientHeight > 0) ? this.chartDiv.clientHeight : 400
+      this._width = (this.chartDiv.clientWidth <= 0) ? 300 : this.chartDiv.clientWidth
       this.xAxis = options.xAxis || console.error('Error - no xAxis property set')
       this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
       this.marginBottom = options.marginBottom || 40
@@ -82,7 +82,7 @@ export default class D3StackedBarChart {
       this._height = d3.max([this._height * this.barScale, 1])
       this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
       this.yScale.domain([this.yMax(), 0])
-      this.chart = d3.select(this.node.children[0]).append('svg')
+      this.chart = d3.select(this.chartDiv).append('svg')
         .attr('height', this._height)
         .attr('width', this._width)
         .attr('class', 'stacked-bar-chart')
@@ -388,7 +388,7 @@ export default class D3StackedBarChart {
 
       // columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
       const headers = this._legendHeaders(xValue)
-      const table = d3.select(this.node.children[1]).append('table')
+      const table = d3.select(this.legendDiv).append('table')
         .attr('class', 'legend-table')
       const thead = table.append('thead')
 
@@ -878,7 +878,7 @@ export default class D3StackedBarChart {
   //   else {
   //     this.maxBarSize = this.xScale.bandwidth()
   //   }
-  //   this.chart = d3.select(this.node.children[0]).append('svg')
+  //   this.chart = d3.select(this.chartDiv).append('svg')
   //     .attr('height', this._height)
   //     .attr('width', this._width)
   // }
@@ -1258,7 +1258,7 @@ export default class D3StackedBarChart {
 
     const columns = this.options.columnNames
     columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
-    const table = d3.select(this.node.children[1]).append('table')
+    const table = d3.select(this.legendDiv).append('table')
       .attr('class', 'legend-table')
     const thead = table.append('thead')
 
