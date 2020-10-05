@@ -369,7 +369,6 @@ export default class D3CircleChart {
       //   if (i === 0) return '#000'
       // })
       .attr('fill', (d, i) => {
-        console.log('fill attr', d, i)
         if (i === 0) return '#f5f5f5'
         // color(yDomain.length - i + 1) add one more because first circle is root node
         return d.children ? color(d.depth) : color(yDomain.length - i + 1)
