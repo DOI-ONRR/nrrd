@@ -19,7 +19,8 @@ export default class d3Map {
     mapZ,
     mapX,
     mapY,
-    options
+    options,
+    width
   ) {
     if (options.mapFormat) {
       this.format = options.mapFormat
@@ -50,6 +51,7 @@ export default class d3Map {
     this.mapX = mapX
     this.mapY = mapY
     this.labels = true
+    this.width = width
     this.chart()
     this.legend()
   }
@@ -262,8 +264,7 @@ export default class d3Map {
         else {
           return '#CACBCC'
         }
-      }
-      )
+      })
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
         if (AKR.has(d.id)) {

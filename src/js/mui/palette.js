@@ -18,6 +18,14 @@ module.exports = Object.freeze({
     primary: '#062135',
     secondary: '#0A314D'
   },
+  circleChart: {
+    100: '#c4d99b',
+    200: '#c1ab76',
+    300: '#af7f63',
+    400: '#8f5a59',
+    500: '#653d4e',
+    600: '#37253c'
+  },
   links: {
     default: '#1478a6',
     hover: '#126991',

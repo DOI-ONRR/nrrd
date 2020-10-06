@@ -70,10 +70,10 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
   return (
     <React.Fragment>
       {(!disableRouting && isRelative)
-        ? <GatsbyLink to={url} className={classes} {...rest} >
+        ? <GatsbyLink to={url} className={classes} {...rest} data-testid={'BaseLink'}>
           {children}
         </GatsbyLink>
-        : <a href={url} className={classes} {...rest}>
+        : <a href={url} className={classes} {...rest} data-testid={'BaseLink'}>
           {children}
         </a>
       }

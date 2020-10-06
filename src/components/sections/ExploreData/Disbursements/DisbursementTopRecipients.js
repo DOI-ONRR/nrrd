@@ -59,7 +59,6 @@ const useStyles = makeStyles(theme => ({
   topRecipientChart: {
     '& .chart-container': {
       display: 'flex',
-      // alignItems: 'top',
       '@media (max-width: 426px)': {
         display: 'block',
         margin: 0,

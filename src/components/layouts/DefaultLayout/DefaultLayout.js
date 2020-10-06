@@ -32,8 +32,7 @@ const useStyles = makeStyles(theme => (
         margin: '0.5rem 0rem'
       },
       hr: {
-        borderWidth: '0px 0px 10px 0px',
-        borderColor: theme.palette.secondary.main,
+        border: `5px solid ${ theme.palette.secondary.main }`,
         marginBottom: '1rem',
       },
       ul: {
