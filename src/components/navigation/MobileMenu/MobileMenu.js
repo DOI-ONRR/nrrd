@@ -1,15 +1,13 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
-import clsx from 'clsx'
+
 import {
   Drawer,
   List,
-  ListItem,
-  ListItemIcon
+  ListItem
 } from '@material-ui/core'
 
 import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 
 import { makeStyles } from '@material-ui/core/styles'

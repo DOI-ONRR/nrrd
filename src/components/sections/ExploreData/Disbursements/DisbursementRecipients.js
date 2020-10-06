@@ -10,7 +10,7 @@ import utils from '../../../../js/utils'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -58,6 +58,7 @@ const APOLLO_QUERY = gql`
 const DisbursementRecipients = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
+  const theme = useTheme()
 
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
@@ -91,6 +92,14 @@ const DisbursementRecipients = props => {
             yAxis='total'
             minColor='#FCBA8B'
             maxColor='#B64D00'
+            colorRange={[
+              theme.palette.chart[600],
+              theme.palette.chart[500],
+              theme.palette.chart[400],
+              theme.palette.chart[300],
+              theme.palette.chart[200],
+              theme.palette.chart[100]
+            ]}
             format={ d => {
               return utils.formatToDollarInt(d)
             }}

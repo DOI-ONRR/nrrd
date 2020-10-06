@@ -88,8 +88,16 @@ const DisbursementSources = props => {
                 return utils.formatToDollarInt(d)
               }
               }
-              minColor={theme.palette.circleChart[100]}
-              maxColor={theme.palette.circleChart[600]}
+              minColor={theme.palette.chart[100]}
+              maxColor={theme.palette.chart[600]}
+              colorRange={[
+                theme.palette.chart[600],
+                theme.palette.chart[500],
+                theme.palette.chart[400],
+                theme.palette.chart[300],
+                theme.palette.chart[200],
+                theme.palette.chart[100]
+              ]}
               circleTooltip={
                 d => {
                   const r = []

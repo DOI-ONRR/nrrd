@@ -19,6 +19,10 @@ import {
   Hidden
 } from '@material-ui/core'
 
+import {
+  useTheme
+} from '@material-ui/core/styles'
+
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils'
@@ -50,6 +54,7 @@ const disbursementTypeDescriptions = [
 ]
 
 const NationwideDisbursementSummary = props => {
+  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
@@ -172,6 +177,14 @@ const NationwideDisbursementSummary = props => {
                             yOrderBy={yOrderBy}
                             horizontal
                             legendReverse={true}
+                            // primaryColor={theme.palette.chart[100]}
+                            // secondaryColor={theme.palette.chart[600]}
+                            colorRange={[
+                              theme.palette.chart[600],
+                              theme.palette.chart[500],
+                              theme.palette.chart[200],
+                              theme.palette.chart[100]
+                            ]}
                           />
                         </Box>
                       </Grid>

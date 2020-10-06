@@ -16,6 +16,8 @@ import {
   Hidden
 } from '@material-ui/core'
 
+import { useTheme } from '@material-ui/core/styles'
+
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils'
@@ -53,6 +55,7 @@ const revenueTypeDescriptions = [
 ]
 
 const RevenueNationalSummary = props => {
+  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
@@ -167,6 +170,16 @@ const RevenueNationalSummary = props => {
                         yOrderBy={yOrderBy}
                         horizontal
                         legendReverse={true}
+                        primaryColor={theme.palette.chart.primary}
+                        secondaryColor="#37253c"
+                        colorRange={[
+                          theme.palette.chart[600],
+                          theme.palette.chart[500],
+                          // theme.palette.chart[400],
+                          // theme.palette.chart[300],
+                          theme.palette.chart[200],
+                          theme.palette.chart[100]
+                        ]}
                       />
                     </Box>
                   </Grid>

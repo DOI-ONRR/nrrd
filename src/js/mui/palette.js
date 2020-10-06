@@ -10,15 +10,13 @@ module.exports = Object.freeze({
     primary: '#000000',
     secondary: '#1478a6'
   },
-  chart: {
-    primary: '#222222',
-    secondary: '#43646F'
-  },
   header: {
     primary: '#062135',
     secondary: '#0A314D'
   },
-  circleChart: {
+  chart: {
+    primary: '#222222',
+    secondary: '#43646F',
     100: '#c4d99b',
     200: '#c1ab76',
     300: '#af7f63',
