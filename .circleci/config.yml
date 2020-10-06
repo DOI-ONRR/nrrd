@@ -256,25 +256,34 @@ workflows:
                 - master
                 - staging
 
-  merge_to_stage:
-    jobs:
-      - merge_to_stage:
-          filters:
-            branches:
-              ignore:
-                - dev
-                - master
-                - staging
+  # merge_to_stage:
+  #   jobs:
+  #     - merge_to_stage:
+  #         filters:
+  #           branches:
+  #             ignore:
+  #               - dev
+  #               - master
+  #               - staging
 
-  deploy_to_stage:
+  # deploy_to_stage:
+  #   jobs:
+  #     - stage:
+  #         filters:
+  #           branches:
+  #             only: staging
+  #     - lighthouse:
+  #         requires:
+  #           - stage
+
+  preview:
     jobs:
-      - stage:
+      - preview:
           filters:
-            branches:
-              only: staging
-      - lighthouse:
-          requires:
-            - stage
+	    branches:
+	      ignore:
+	        - dev
+		- master
                 
   deploy:
     jobs:
