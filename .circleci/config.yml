@@ -283,7 +283,7 @@ workflows:
             branches:
               ignore:
                 - dev
-	        - master
+                - master
                 
   deploy:
     jobs:
