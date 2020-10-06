@@ -280,10 +280,10 @@ workflows:
     jobs:
       - preview:
           filters:
-	    branches:
-	      ignore:
-	        - dev
-		- master
+            branches:
+              ignore:
+                - dev
+	        - master
                 
   deploy:
     jobs:
