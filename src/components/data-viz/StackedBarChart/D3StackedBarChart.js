@@ -28,7 +28,7 @@ export default class D3StackedBarChart {
       this.units = (options.units) ? options.units : ''
       this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
-      this.primaryColor = options.primaryColor || '#e1e1e1'
+      this.primaryColor = options.primaryColor || '#222'
       this.secondaryColor = options.secondaryColor || '#43646F'
 
       if (this.horizontal) {
