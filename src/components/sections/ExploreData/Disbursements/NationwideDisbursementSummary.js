@@ -177,16 +177,14 @@ const NationwideDisbursementSummary = props => {
                             yOrderBy={yOrderBy}
                             horizontal
                             legendReverse={true}
-                            primaryColor="#ACACAC"
-                            secondaryColor={theme.palette.orange[400]}
-                            // colorRange={[
-                            //   theme.palette.chart[600],
-                            //   theme.palette.chart[500],
-                            //   // theme.palette.chart[400],
-                            //   // theme.palette.chart[300],
-                            //   theme.palette.chart[200],
-                            //   theme.palette.chart[100]
-                            // ]}
+                            // primaryColor={theme.palette.chart[100]}
+                            // secondaryColor={theme.palette.chart[600]}
+                            colorRange={[
+                              theme.palette.chart[600],
+                              theme.palette.chart[500],
+                              theme.palette.chart[200],
+                              theme.palette.chart[100]
+                            ]}
                           />
                         </Box>
                       </Grid>
