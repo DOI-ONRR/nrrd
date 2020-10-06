@@ -44,8 +44,8 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
     return (
       <DefaultLayout
         includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
+        <SEO title={title} keywords={keywords} />
         <DataFilterProviderWrapper>
-          <SEO title={title} keywords={keywords} />
           {children}
         </DataFilterProviderWrapper>
       </DefaultLayout>
