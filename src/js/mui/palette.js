@@ -14,6 +14,10 @@ module.exports = Object.freeze({
     primary: '#222222',
     secondary: '#43646F'
   },
+  header: {
+    primary: '#062135',
+    secondary: '#0A314D'
+  },
   links: {
     default: '#1478a6',
     hover: '#126991',

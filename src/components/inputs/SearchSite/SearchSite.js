@@ -26,9 +26,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   searchBoxMobile: {
-    backgroundColor: 'white',
-    marginRight: '30px',
-    marginLeft: '16px'
+    backgroundColor: 'rgba(41, 75, 99, .5)',
+    margin: theme.spacing(2), 
   },
   textField: {
     marginLeft: theme.spacing(1),

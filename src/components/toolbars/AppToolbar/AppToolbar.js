@@ -2,22 +2,17 @@ import React from 'react'
 
 import {
   AppBar,
-  InputBase,
-  IconButton,
-  useScrollTrigger,
-  Slide
+  Hidden
 } from '@material-ui/core'
 
 import {
   makeStyles,
-  fade
+  fade,
+  useTheme
 } from '@material-ui/core/styles'
 
-import MenuIcon from '@material-ui/icons/Menu'
-import SearchIcon from '@material-ui/icons/Search'
-
 import BaseToolbar from '../BaseToolbar'
-import Header from '../../content-partials/Header'
+import MobileMenu from '../../navigation/MobileMenu'
 import Link from '../../Link'
 import { SearchSite } from '../../inputs/SearchSite'
 
@@ -86,30 +81,39 @@ const useStyles = makeStyles(theme => ({
 
 const AppToolbar = props => {
   const classes = useStyles()
+  const theme = useTheme()
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{ position: 'relative' }}>
-        <BaseToolbar style={{ alignItems: 'center', backgroundColor: '#0a314d', justifyContent: 'space-between', minHeight: 95 }}>
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon style={{ color: 'white' }} />
-          </IconButton> */}
-          <div style={{ width: 250 }}>
-            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoPlaceholderImg style={{ maxHeight: 50 }} /></Link>
-          </div>
-          <div className={classes.mainMenuWrap}>
-            <Link href='/explore' linkType='Header' style={{ color: 'white' }}>Explore data</Link>
-            <Link href='/query-data' linkType='Header' style={{ color: 'white' }}>Query data</Link>
-            <Link href='/downloads' linkType='Header' style={{ color: 'white' }}>Download data</Link>
-            <Link href='/how-revenue-works' linkType='Header' style={{ color: 'white' }}>How revenue works</Link>
-          </div>
+        <BaseToolbar style={{ alignItems: 'center', backgroundColor: theme.palette.header.secondary, justifyContent: 'space-between', minHeight: 75 }}>
           <div>
-            <SearchSite />
+            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoPlaceholderImg style={{ maxHeight: 55 }} /></Link>
           </div>
+          <Hidden mdDown>
+            <div className={classes.mainMenuWrap}>
+              <Link href='/explore' linkType='Header' style={{ color: 'white' }}>Explore data</Link>
+              <Link href='/query-data' linkType='Header' style={{ color: 'white' }}>Query data</Link>
+              <Link href='/downloads' linkType='Header' style={{ color: 'white' }}>Download data</Link>
+              <Link href='/how-revenue-works' linkType='Header' style={{ color: 'white' }}>How revenue works</Link>
+            </div>
+          </Hidden>
+          <Hidden mdDown>
+            <div>
+              <SearchSite />
+            </div>
+          </Hidden>
+          <Hidden lgUp>
+            <MobileMenu>
+              <Link href='/explore' linkType='Header'>Explore data</Link>
+              <Link href='/query-data' linkType='Header'>Query data</Link>
+              <Link href='/downloads' linkType='Header'>Download data</Link>
+              <hr style={{ borderColor: 'rgba(255, 255, 255, .25)', borderWidth: 0.5, maxWidth: '90%' }} />
+              <Link href='/how-revenue-works' linkType='Header'>How revenue works</Link>
+              <Link href='/about' linkType='Header'>About</Link>
+              <Link href='/' linkType='Header'>Home</Link>
+              <SearchSite isMobile={true} />
+            </MobileMenu>
+          </Hidden>
         </BaseToolbar>
       </AppBar>
     </div>
