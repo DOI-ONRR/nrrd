@@ -21,8 +21,6 @@ import ErrorMessage from '../../info/ErrorMessage'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
-import SEO from '../../seo'
-
 const useStyles = makeStyles(theme => (
   {
     '@global': {
@@ -94,7 +92,7 @@ const useStyles = makeStyles(theme => (
   })
 )
 
-const DefaultLayout = ({ includeToc, title, children }) => {
+const DefaultLayout = ({ includeToc, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
@@ -102,7 +100,6 @@ const DefaultLayout = ({ includeToc, title, children }) => {
     query DefaultLayoutQuery {
       site {
         siteMetadata {
-          title
           version
           officeName
           informationDataManagement {
@@ -119,7 +116,6 @@ const DefaultLayout = ({ includeToc, title, children }) => {
 
   return (
     <>
-      <SEO title={title} />
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
       <InfoBanner />
