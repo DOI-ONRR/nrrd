@@ -12,7 +12,6 @@ import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
 function SEO ({ description, lang, meta, title, keywords }) {
-  console.log('SEO keywords: ', keywords)
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -34,7 +33,7 @@ function SEO ({ description, lang, meta, title, keywords }) {
   const metaDescription = description || defaults.description
   const metaTitle = title || defaults.title
   const keywordsStr = keywords && keywords.length > 0 ? keywords.join(', ') : ''
-  const metaKeywords = defaults.keywords.concat(keywordsStr)
+  const metaKeywords = defaults.keywords.concat(`, ${ keywordsStr }`)
 
   return (
     <Fragment>
