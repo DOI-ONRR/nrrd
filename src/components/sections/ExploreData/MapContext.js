@@ -46,23 +46,20 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 280px)',
+    height: 'calc(100vh - 230px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
     zIndex: 1,
-    '@media (max-width: 768px)': {
-      height: 'calc(100vh - 300px)',
-    },
     '& .mapContainer': {
       position: 'fixed',
-      top: 95,
+      top: 105,
     },
     '& .legend-wrap': {
-      bottom: 142,
+      bottom: 15,
       '@media (max-width: 768px)': {
-        bottom: 210,
+        // bottom: 210,
         transform: 'scale(0.9)',
         left: -5,
       },

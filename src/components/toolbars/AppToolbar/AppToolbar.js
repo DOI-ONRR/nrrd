@@ -87,7 +87,7 @@ const AppToolbar = props => {
       <AppBar position="static" style={{ position: 'relative' }}>
         <BaseToolbar style={{ alignItems: 'center', backgroundColor: theme.palette.header.secondary, justifyContent: 'space-between', minHeight: 75 }}>
           <div>
-            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoPlaceholderImg style={{ maxHeight: 55 }} /></Link>
+            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoPlaceholderImg style={{ maxHeight: 50 }} /></Link>
           </div>
           <Hidden mdDown>
             <div className={classes.mainMenuWrap}>
