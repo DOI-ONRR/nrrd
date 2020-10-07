@@ -77,7 +77,7 @@ const LineChart = props => {
   return (
     <>
       {title && <ChartTitle>{title}</ChartTitle>}
-      <div className={classes.container} ref={elemRef}>
+      <div className={`${ classes.container } line-chart` } ref={elemRef}>
         <div className={classes.chart}></div>
         <div className={classes.legend}></div>
       </div>
