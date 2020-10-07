@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 230px)',
+    height: 'calc(100vh - 290px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
@@ -57,9 +57,8 @@ const useStyles = makeStyles(theme => ({
       top: 105,
     },
     '& .legend-wrap': {
-      bottom: 15,
+      bottom: 85,
       '@media (max-width: 768px)': {
-        top: 'calc(100vh - 200px)',
         transform: 'scale(0.9)',
         left: -5,
       },
@@ -97,7 +96,7 @@ const useStyles = makeStyles(theme => ({
     right: 15,
     top: 10,
     height: 'auto',
-    minHeight: 335,
+    // minHeight: 335,
     zIndex: 99,
     '@media (max-width: 768px)': {
       width: '100%',
@@ -111,7 +110,7 @@ const useStyles = makeStyles(theme => ({
       overflowX: 'auto',
       height: 'auto',
       position: 'relative',
-      minHeight: 340,
+      // minHeight: 340,
     },
     '& > div': {
       cursor: 'pointer',
