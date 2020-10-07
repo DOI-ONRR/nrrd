@@ -3,6 +3,8 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
+// Import font
+import 'typeface-lato'
 
 import DefaultLayout from '../DefaultLayout'
 import DataFilterProviderWrapper from '../../DataFilterProviderWrapper'

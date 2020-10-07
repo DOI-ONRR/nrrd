@@ -44,7 +44,7 @@ jobs:
       - store_test_results:
           path: ./test-results
       - store_artifacts:
-          path: ./test-results
+          path: ./coverage
   lighthouse:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -256,25 +256,34 @@ workflows:
                 - master
                 - staging
 
-  merge_to_stage:
+  # merge_to_stage:
+  #   jobs:
+  #     - merge_to_stage:
+  #         filters:
+  #           branches:
+  #             ignore:
+  #               - dev
+  #               - master
+  #               - staging
+
+  # deploy_to_stage:
+  #   jobs:
+  #     - stage:
+  #         filters:
+  #           branches:
+  #             only: staging
+  #     - lighthouse:
+  #         requires:
+  #           - stage
+
+  preview:
     jobs:
-      - merge_to_stage:
+      - preview:
           filters:
             branches:
               ignore:
                 - dev
                 - master
-                - staging
-
-  deploy_to_stage:
-    jobs:
-      - stage:
-          filters:
-            branches:
-              only: staging
-      - lighthouse:
-          requires:
-            - stage
                 
   deploy:
     jobs:

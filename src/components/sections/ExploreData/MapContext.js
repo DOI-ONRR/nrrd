@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 270px)',
+    height: 'calc(100vh - 280px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
@@ -97,14 +97,11 @@ const useStyles = makeStyles(theme => ({
   cardContainer: {
     width: 310,
     position: 'absolute',
-    right: 0,
-    bottom: 64,
+    right: 15,
+    top: 10,
     height: 'auto',
     minHeight: 335,
     zIndex: 99,
-    '@media (max-width: 960px)': {
-      bottom: 40,
-    },
     '@media (max-width: 768px)': {
       width: '100%',
       display: 'flex',
@@ -121,7 +118,6 @@ const useStyles = makeStyles(theme => ({
     },
     '& > div': {
       cursor: 'pointer',
-      bottom: 25,
       '@media (max-width: 768px)': {
         position: 'relative',
         width: '100%',
@@ -130,13 +126,18 @@ const useStyles = makeStyles(theme => ({
         minWidth: 285,
         minHeight: 340,
         marginBottom: theme.spacing(1),
-        bottom: 0,
-      },
+      }
+    },
+    '& > div:first-child > .summary-card-header': {
+      borderBottom: `8px solid ${ theme.palette.circleChart[400] }`,
     },
     '& > div:nth-child(2)': {
       transform: 'translate3d(-10%, 0px, 0px) !important',
       '@media (max-width: 768px)': {
         transform: 'none !important',
+      },
+      '& > .summary-card-header': {
+        borderBottom: `8px solid ${ theme.palette.circleChart[300] }`,
       },
     },
     '& > div:nth-child(3)': {
@@ -144,17 +145,17 @@ const useStyles = makeStyles(theme => ({
       '@media (max-width: 768px)': {
         transform: 'none !important',
       },
+      '& > .summary-card-header': {
+        borderBottom: `8px solid ${ theme.palette.circleChart[200] }`,
+      },
     },
     '& > div:nth-child(4)': {
       transform: 'translate3d(-30%, 0px, 0px) !important',
       '@media (max-width: 768px)': {
         transform: 'none !important',
       },
-    },
-    '& > div:nth-child(5)': {
-      transform: 'translate3d(-40%, 0px, 0px) !important',
-      '@media (max-width: 768px)': {
-        transform: 'none !important',
+      '& > .summary-card-header': {
+        borderBottom: `8px solid ${ theme.palette.circleChart[100] }`,
       },
     },
     '& .minimized ~ div:nth-of-type(2)': {
@@ -165,9 +166,6 @@ const useStyles = makeStyles(theme => ({
     },
     '& .minimized ~ div:nth-of-type(4)': {
       transform: 'translate3d(-20%, 0px, 0px) !important',
-    },
-    '& .minimized ~ div:nth-of-type(5)': {
-      transform: 'translate3d(-30%, 0px, 0px) !important',
     },
     '@media (min-width: 769px)': {
       '&:hover': {
@@ -181,9 +179,6 @@ const useStyles = makeStyles(theme => ({
         '& > div:nth-child(4)': {
           transform: 'translate3d(-300%, 0px, 0px) !important',
         },
-        '& > div:nth-child(5)': {
-          transform: 'translate3d(-400%, 0px, 0px) !important',
-        },
         '& .minimized ~ div:nth-of-type(2)': {
           transform: 'translate3d(0px, 0px, 0px) !important',
         },
@@ -192,9 +187,6 @@ const useStyles = makeStyles(theme => ({
         },
         '& .minimized ~ div:nth-of-type(4)': {
           transform: 'translate3d(-200%, 0px, 0px) !important',
-        },
-        '& .minimized ~ div:nth-of-type(5)': {
-          transform: 'translate3d(-300%, 0px, 0px) !important',
         },
       }
     }
@@ -572,7 +564,7 @@ const MapContext = props => {
       commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
       year: filterState.year
-    }, 'pushIn')
+    }, 'replaceIn')
   }, [filterState, pageState])
 
   // console.log('mapJsonObject: ', mapJsonObject)
