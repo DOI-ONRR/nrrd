@@ -254,7 +254,14 @@ export default class D3StackedBarChart {
         .enter().append('g')
         .attr('height', (self._height - self.marginTop))
         .attr('width', self.xScale.bandwidth())
-        .style('fill', (d, i) => primaryColor)
+        .style('fill', (d, i) => {
+          if (this.horizontal) {
+            return colorRange[i]
+          }
+          else {
+            return primaryColor
+          }
+        })
         .attr('transform', d => 'translate(' + (self.xScale(d) + ',0)'))
         .attr('class', (d, i) => {
           return i === self.selectedIndex ? 'bar active' : 'bar'
@@ -323,12 +330,11 @@ export default class D3StackedBarChart {
           .attr('width', 25)
           .style('top', `${ -this._height }px`)
 
-        const color = this.color
         const selectedElement = d3.selectAll('.active').selectAll('g')
         selectedElement
           .style('fill', (d, i) => {
             if (colorRange) {
-              return color(d.key)
+              return colorRange[i]
             }
             else {
               return secondaryColor
@@ -483,7 +489,7 @@ export default class D3StackedBarChart {
       const labels = this.yGroupings()
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
       const colorRange = this.colorRange
-      const color = this.color
+      const secondaryColor = this.secondaryColor
 
       // turn object into array to play nice with d3
       let dataArr = Object.keys(data).map((key, i) => {
@@ -509,10 +515,10 @@ export default class D3StackedBarChart {
         .attr('height', 15)
         .style('background-color', (d, i) => {
           if (colorRange) {
-            return color(d[0])
+            return colorRange[i]
           }
           else {
-            return this.secondaryColor
+            return secondaryColor
           }
         })
         .style('opacity', (d, i) => {
