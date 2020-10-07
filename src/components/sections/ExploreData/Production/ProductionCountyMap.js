@@ -122,14 +122,6 @@ const ProductionCountyMap = props => {
              mapData={mapData}
              minColor={minColor}
              maxColor={maxColor}
-             colorRange={[
-               theme.palette.chart[600],
-               theme.palette.chart[500],
-               theme.palette.chart[400],
-               theme.palette.chart[300],
-               theme.palette.chart[200],
-               theme.palette.chart[100]
-             ]}
              zoomTo={fipsCode}
            />
          </>
