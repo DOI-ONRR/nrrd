@@ -1,42 +1,16 @@
 [
     {
-	"title" : "Yearly Fiscal Revenue",
-	"commands" : [],
-	"target" : "#full-width-tabpanel-0 > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8 > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
-    },
-    {
-	"title" : "Yearly Calendar Revenue",
+	"title" : "Explore Data Revenue Map",
 	"commands" : [
-		      { "command": "click" , "selector" : "#period-label-select-outlined"},
-		      { "command": "click" , "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(2)"}
-		     ],
-	"target" : "#full-width-tabpanel-0 > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8 > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+	    { "command" : "click", "selector" : "#gatsby-focus-wrapper > div.MuiBox-root.jss127 > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-sm-8 > div:nth-child(2) > a:nth-child(1)" }
+	],
+	"target" : "#main-content > div > div > div:nth-child(1) > div.MuiContainer-root > div > div:nth-child(1) > div.MuiBox-root > div.MuiBox-root > div"
     },
-    {
-	"title" : "Monthly Most Recent Revenue",
+        {
+	"title" : "Explore Data Revenue Nationwide Summary",
 	"commands" : [
-		      { "command": "click" , "selector" : "#full-width-tabpanel-0 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4 > div:nth-child(1) > div > button:nth-child(2)"}
-		     ],
-	"target" : "#full-width-tabpanel-0 > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8 > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
-    },
-    {
-	"title" : "Monthly Fiscal Revenue",
-	"commands" : [
-		      { "command": "click" , "selector" : "#full-width-tabpanel-0 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4 > div:nth-child(1) > div > button:nth-child(2)"},
-		      { "command": "click" , "selector" : "#period-label-select-outlined"},
-		      { "command": "click" , "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(2)"}
-		     ],
-	"target" : "#full-width-tabpanel-0 > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8 > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
-    },
-    {
-	"title" : "Monthly Calendar Revenue",
-	"commands" : [
-		      { "command": "click" , "selector" : "#full-width-tabpanel-0 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4 > div:nth-child(1) > div > button:nth-child(2)"},
-		      { "command": "click" , "selector" : "#period-label-select-outlined"},
-		      { "command": "click" , "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(3)"}
-		     ],
-	"target" : "#full-width-tabpanel-0 > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-8 > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+	],
+	"target" : "#nationwide-revenue-summary"
     }
-
 ]
 		 
