@@ -277,7 +277,14 @@ export default class D3StackedBarChart {
         })
         .enter().append('g')
         .attr('class', (d, i) => 'stacked-bar-chart-' + i)
-        .style('fill-opacity', (d, i) => (1 - (i / keys.length)))
+        .style('fill-opacity', (d, i) => {
+          if (this.horizontal) {
+            return null
+          }
+          else {
+            return (1 - (i / keys.length))
+          }
+        })
         .append('rect')
         .attr('y', d => {
           const y = self.yScale(d[0][1]) || 0
@@ -509,11 +516,16 @@ export default class D3StackedBarChart {
           }
         })
         .style('opacity', (d, i) => {
-          if (legendReverse) {
-            return (i < labels.length ? (1 - ((i) / labels.length)) : 0)
+          if (this.horizontal) {
+            return null
           }
           else {
-            return (i < labels.length ? ((i + 1) / labels.length) : 0)
+            if (legendReverse) {
+              return (i < labels.length ? (1 - ((i) / labels.length)) : 0)
+            }
+            else {
+              return (i < labels.length ? ((i + 1) / labels.length) : 0)
+            }
           }
         })
 
