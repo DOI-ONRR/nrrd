@@ -1,6 +1,6 @@
 'use strict'
 import * as d3 from 'd3'
-import { active } from 'd3'
+// import { active } from 'd3'
 // import { isEnumMember } from 'typescript'
 
 export default class D3StackedBarChart {

@@ -14,7 +14,7 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import mapCounties from '../counties.json'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -61,7 +61,6 @@ const PRODUCTION_QUERY = gql`
 
 const ProductionCountyMap = props => {
   const classes = useStyles()
-  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
