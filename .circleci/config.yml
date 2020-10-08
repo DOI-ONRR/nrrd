@@ -278,7 +278,6 @@ workflows:
                 - dev
                 - master
                 - staging
-                - 1012-preview-routes
       - lint:
           filters:
             branches:
@@ -286,7 +285,6 @@ workflows:
                 - dev
                 - master
                 - staging
-                - 1012-preview-routes
 
   # merge_to_stage:
   #   jobs:
@@ -310,17 +308,11 @@ workflows:
 
   preview:
     jobs:
-      - preview:
-          filters:
-            branches:
-              ignore:
-                - dev
-                - master
-                - 1012-preview-routes
       - nrrd-preview:
           filters:
             branches:
-              only: 1012-preview-routes
+              ignore:
+                - master
                 
   deploy:
     jobs:
