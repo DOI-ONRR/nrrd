@@ -1,4 +1,7 @@
 version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@2.0.0
+
 jobs:
   lint:
     docker:
@@ -66,7 +69,34 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./test-results
-  
+
+  nrrd-preview:
+    docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.13.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - aws-s3/sync:
+          arguments: |
+            --delete
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: public
+          to: 's3://my-s3-bucket-name/sites/$CIRCLE_BRANCH'
+
   quick:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -248,6 +278,7 @@ workflows:
                 - dev
                 - master
                 - staging
+                - 1012-preview-routes
       - lint:
           filters:
             branches:
@@ -255,6 +286,7 @@ workflows:
                 - dev
                 - master
                 - staging
+                - 1012-preview-routes
 
   # merge_to_stage:
   #   jobs:
@@ -284,6 +316,11 @@ workflows:
               ignore:
                 - dev
                 - master
+                - 1012-preview-routes
+      - nrrd-preview:
+          filters:
+            branches:
+              only: 1012-preview-routes
                 
   deploy:
     jobs:

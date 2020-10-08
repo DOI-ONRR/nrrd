@@ -1,4 +1,3 @@
-root: (process.env.CIRCLE_BRANCH === 'master') ? undefined : process.env.CIRCLE_BRANCH
 status_codes:
   404: /404.html
   500: /500.html
