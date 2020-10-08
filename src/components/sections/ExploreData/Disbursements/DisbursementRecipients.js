@@ -93,12 +93,12 @@ const DisbursementRecipients = props => {
             minColor='#FCBA8B'
             maxColor='#B64D00'
             colorRange={[
-              theme.palette.chart[600],
-              theme.palette.chart[500],
-              theme.palette.chart[400],
-              theme.palette.chart[300],
-              theme.palette.chart[200],
-              theme.palette.chart[100]
+              theme.palette.explore[600],
+              theme.palette.explore[500],
+              theme.palette.explore[400],
+              theme.palette.explore[300],
+              theme.palette.explore[200],
+              theme.palette.explore[100]
             ]}
             format={ d => {
               return utils.formatToDollarInt(d)

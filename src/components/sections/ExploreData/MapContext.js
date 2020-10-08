@@ -125,7 +125,7 @@ const useStyles = makeStyles(theme => ({
       }
     },
     '& > div:first-child > .summary-card-header': {
-      borderBottom: `8px solid ${ theme.palette.chart[400] }`,
+      borderBottom: `8px solid ${ theme.palette.explore[400] }`,
     },
     '& > div:nth-child(2)': {
       transform: 'translate3d(-10%, 0px, 0px) !important',
@@ -133,7 +133,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        borderBottom: `8px solid ${ theme.palette.chart[300] }`,
+        borderBottom: `8px solid ${ theme.palette.explore[300] }`,
       },
     },
     '& > div:nth-child(3)': {
@@ -142,7 +142,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        borderBottom: `8px solid ${ theme.palette.chart[200] }`,
+        borderBottom: `8px solid ${ theme.palette.explore[200] }`,
       },
     },
     '& > div:nth-child(4)': {
@@ -151,7 +151,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        borderBottom: `8px solid ${ theme.palette.chart[100] }`,
+        borderBottom: `8px solid ${ theme.palette.explore[100] }`,
       },
     },
     '& .minimized ~ div:nth-of-type(2)': {
@@ -571,8 +571,8 @@ const MapContext = props => {
       mapJsonObject: mapJsonObject, // use context instead
       minColor: '#CDE3C3',
       maxColor: '#2F4D26',
-      // minColor: theme.palette.chart[100],
-      // maxColor: theme.palette.chart[600],
+      // minColor: theme.palette.explore[100],
+      // maxColor: theme.palette.explore[600],
       mapZoom: mapK,
       mapX: mapX,
       mapY: mapY,

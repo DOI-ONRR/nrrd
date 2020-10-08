@@ -170,15 +170,14 @@ const RevenueNationalSummary = props => {
                         yOrderBy={yOrderBy}
                         horizontal
                         legendReverse={true}
-                        primaryColor={theme.palette.chart.primary}
-                        secondaryColor="#37253c"
                         colorRange={[
-                          theme.palette.chart[600],
-                          theme.palette.chart[500],
-                          // theme.palette.chart[400],
-                          // theme.palette.chart[300],
-                          theme.palette.chart[200],
-                          theme.palette.chart[100]
+                          theme.palette.explore[700],
+                          theme.palette.explore[600],
+                          theme.palette.explore[500],
+                          theme.palette.explore[400],
+                          theme.palette.explore[300],
+                          theme.palette.explore[200],
+                          theme.palette.explore[100]
                         ]}
                       />
                     </Box>

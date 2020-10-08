@@ -154,7 +154,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
             <LineChart
               key={'PLC' + dataSet + period + commodity}
               data={chartData}
-              chartColors={[theme.palette.chart[400], theme.palette.chart[300], theme.palette.chart[200], theme.palette.chart[100]]}
+              chartColors={[theme.palette.explore[400], theme.palette.explore[300], theme.palette.explore[200], theme.palette.explore[100]]}
               lineDashes={LINE_DASHES}
               lineTooltip={
                 (d, i) => {

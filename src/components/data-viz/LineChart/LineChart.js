@@ -19,16 +19,16 @@ const useStyles = makeStyles(theme => ({
     height: '200px',
     fill: theme.palette.chart.primary,
     '& g path.line:nth-of-type(1)': {
-      stroke: theme.palette.chart[400],
+      stroke: theme.palette.explore[400],
     },
     '& g path.line:nth-of-type(2)': {
-      stroke: theme.palette.chart[300],
+      stroke: theme.palette.explore[300],
     },
     '& g path.line:nth-of-type(3)': {
-      stroke: theme.palette.chart[200],
+      stroke: theme.palette.explore[200],
     },
     '& g path.line:nth-of-type(4)': {
-      stroke: theme.palette.chart[100],
+      stroke: theme.palette.explore[100],
     }
   },
   legend: {
@@ -77,7 +77,7 @@ const LineChart = props => {
   return (
     <>
       {title && <ChartTitle>{title}</ChartTitle>}
-      <div className={classes.container} ref={elemRef}>
+      <div className={`${ classes.container } line-chart` } ref={elemRef}>
         <div className={classes.chart}></div>
         <div className={classes.legend}></div>
       </div>
