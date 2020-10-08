@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 
 const IconLink = ({ icon, children, pl = 0, mt = 2, style, ...rest }) => (
   <Box pl={pl} mt={mt} mb={2} style={style}>
-    <BaseLink {...rest} disableRouting>
+    <BaseLink {...rest}>
       <Box mr={1} display='inline-block'>{icon}</Box>
       <span>{children}</span>
     </BaseLink>
@@ -60,9 +60,12 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
 
   let url = href
 
+  const pathPrefix = withPrefix('/').slice(0, -1)
+
   const isRelative = (url.charAt(0) !== '#' && !url.includes('http') && !url.includes('mailto'))
-  console.log(url, withPrefix(url))
-  // url = isRelative ? withPrefix(url) : url
+  if (url.includes(pathPrefix)) {
+    url = url.replace(pathPrefix, '')
+  }
 
   const classes = (linkType === LinkTypeComponents.Header)
     ? `${ styles.headerLink } ${ className } ${ (currentPathname === href) && styles.headerLinkBold }`
