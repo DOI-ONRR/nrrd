@@ -16,7 +16,7 @@ import MobileMenu from '../../navigation/MobileMenu'
 import Link from '../../Link'
 import { SearchSite } from '../../inputs/SearchSite'
 
-import NrrdLogoPlaceholderImg from '../../images/NrrdLogoPlaceholderImg'
+import { NrrdLogoImg } from '../../images'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -85,9 +85,9 @@ const AppToolbar = props => {
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{ position: 'relative' }}>
-        <BaseToolbar style={{ alignItems: 'center', backgroundColor: theme.palette.header.secondary, justifyContent: 'space-between', minHeight: 75 }}>
+        <BaseToolbar style={{ alignItems: 'center', backgroundColor: theme.palette.header.secondary, justifyContent: 'space-between', minHeight: 80 }}>
           <div>
-            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoPlaceholderImg style={{ maxHeight: 50 }} /></Link>
+            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoImg style={{ maxHeight: 60, height: 60, position: 'relative', top: 1 }} /></Link>
           </div>
           <Hidden mdDown>
             <div className={classes.mainMenuWrap}>

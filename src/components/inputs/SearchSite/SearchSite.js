@@ -25,7 +25,8 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: 'rgba(133, 152, 166, .75)',
     },
     '& input::placeholder': {
-      opacity: 1,
+      opacity: 0.75,
+      fontSize: '1.125rem'
     }
   },
   searchBoxMobile: {
@@ -37,7 +38,8 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: 'rgba(133, 152, 166, .75)',
     },
     '& input::placeholder': {
-      opacity: 1,
+      opacity: 0.75,
+      fontSize: '1.125rem'
     }
   },
   textField: {
