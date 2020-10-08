@@ -16,17 +16,20 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
   },
   searchBox: {
-    backgroundColor: 'rgba(41, 75, 99, .5)',
+    backgroundColor: 'rgba(133, 152, 166, .5)',
     marginLeft: '16px',
     color: 'white',
     width: '14ch',
     transition: theme.transitions.create('width'),
     '&:hover': {
-      backgroundColor: 'rgba(41, 75, 99, 1)',
+      backgroundColor: 'rgba(133, 152, 166, .75)',
+    },
+    '& input::placeholder': {
+      opacity: 1,
     }
   },
   searchBoxMobile: {
-    backgroundColor: 'rgba(41, 75, 99, .5)',
+    backgroundColor: 'rgba(133, 152, 166, .5)',
     margin: theme.spacing(2),
   },
   textField: {

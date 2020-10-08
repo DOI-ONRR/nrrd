@@ -19,7 +19,10 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'underline',
     '&:hover': {
       textDecoration: 'none',
-    }
+    },
+    '& + .footerLink': {
+      color: 'deeppink',
+    },
   },
   headerLink: {
     color: theme.typography.body2.color,
@@ -45,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 
 const IconLink = ({ icon, children, pl = 0, mt = 2, style, ...rest }) => (
   <Box pl={pl} mt={mt} mb={2} style={style}>
-    <BaseLink {...rest} disableRouting>
+    <BaseLink {...rest} style={style} disableRouting>
       <Box mr={1} display='inline-block'>{icon}</Box>
       <span>{children}</span>
     </BaseLink>
@@ -53,6 +56,7 @@ const IconLink = ({ icon, children, pl = 0, mt = 2, style, ...rest }) => (
 )
 
 const BaseLink = ({ href, disableRouting, className = '', children, linkType, ...rest }) => {
+  console.log('BaseLink rest: ', className, rest)
   const theme = useTheme()
   const styles = useStyles(theme)
 
@@ -87,7 +91,7 @@ const LinkTypeComponents = {
   DownloadXls: props => <IconLink icon={<IconDownloadXlsImg />} {...props} />,
   DownloadCsv: props => <IconLink icon={<IconDownloadCsvImg />} {...props} />,
   DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />,
-  DownloadBase: props => <IconLink icon={<IconDownloadBaseImg />} pl={0} {...props} />,
+  DownloadBase: ({ style, ...props }) => <IconLink icon={<IconDownloadBaseImg />} pl={0} {...props} style={style} />,
   HowWorks: props => <IconLink icon={<HowWorksLinkIconImg />} pl={0} {...props} />,
   FilterTable: props => <IconLink icon={<FilterTableIconImg style={{ position: 'relative', top: 5 }} />} pl={0} {...props} />,
   ExploreData: props => <IconLink icon={<IconExploreDataImg />} mt={0} {...props} />,
