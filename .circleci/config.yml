@@ -95,7 +95,7 @@ jobs:
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: public
-          to: 's3://cg-e3cdbb3a-86e7-468d-9fc9-177177e50bc9/sites/1012-preview-routes'
+          to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH'
 
   quick:
     docker:
