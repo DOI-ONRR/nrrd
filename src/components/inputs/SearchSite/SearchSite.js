@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   searchBox: {
     backgroundColor: 'rgba(133, 152, 166, .5)',
     marginLeft: '16px',
-    color: 'white',
+    color: theme.palette.common.white,
     width: '14ch',
     transition: theme.transitions.create('width'),
     '&:hover': {
@@ -29,8 +29,16 @@ const useStyles = makeStyles(theme => ({
     }
   },
   searchBoxMobile: {
-    backgroundColor: 'rgba(133, 152, 166, .5)',
     margin: theme.spacing(2),
+    color: theme.palette.common.white,
+    width: 'auto',
+    backgroundColor: 'rgba(133, 152, 166, .5)',
+    '&:hover': {
+      backgroundColor: 'rgba(133, 152, 166, .75)',
+    },
+    '& input::placeholder': {
+      opacity: 1,
+    }
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -80,7 +88,7 @@ const SearchSite = props => {
             root: (props.isMobile) ? classes.searchBoxMobile : classes.searchBox,
             focused: classes.inputFocused
           }}
-          placeholder={props.isMobile ? '' : 'Search...'}
+          placeholder="Search..."
           name="q"
           role="search"
           endAdornment={
