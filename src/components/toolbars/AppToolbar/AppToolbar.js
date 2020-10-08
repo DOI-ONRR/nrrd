@@ -29,6 +29,17 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     backgroundColor: '#0a314d',
   },
+  nrrdLogo: {
+    maxHeight: 60,
+    height: 60,
+    position: 'relative',
+    top: 1,
+    transition: 'height 2s',
+    '@media (max-width: 600px)': {
+      maxHeight: 50,
+      height: 50,
+    }
+  },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -87,7 +98,7 @@ const AppToolbar = props => {
       <AppBar position="static" style={{ position: 'relative' }}>
         <BaseToolbar style={{ alignItems: 'center', backgroundColor: theme.palette.header.secondary, justifyContent: 'space-between', minHeight: 80 }}>
           <div>
-            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoImg style={{ maxHeight: 60, height: 60, position: 'relative', top: 1 }} /></Link>
+            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoImg className={classes.nrrdLogo} /></Link>
           </div>
           <Hidden mdDown>
             <div className={classes.mainMenuWrap}>
