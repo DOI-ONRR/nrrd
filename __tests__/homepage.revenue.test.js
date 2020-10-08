@@ -4,7 +4,7 @@ const STEP = process.env.STEP ? process.env.STEP : 0
 const FAILURE_THRESHOLD = process.env.FAILURE_THRESHOLD ? process.env.FAILURE_THRESHOLD : 2
 const FAILURE_THRESHOLD_TYPE = process.env.FAILURE_THRESHOLD_TYPE ? process.env.FAILURE_THRESHOLD_TYPE : 'percent'
 const matchOptions={failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig
-
+const HEADLESS =  process.env.HEADLESS === 'false' ? false : true
 const { toMatchImageSnapshot } = require('jest-image-snapshot')
 expect.extend({ toMatchImageSnapshot })
 const  tests  = require('./homepage.revenue.json')
@@ -38,7 +38,9 @@ const ScreenshotTest = ( title, commands, target) => {
 		if(STEP > 0) {  await page.evaluate( (t) => alert(t+ ' detected no changed.'), title) }
 	    } catch (err) {
 		console.debug(err)
-		await page.evaluate((t) => alert('Note: ' + t + ' has detected a change, please review.'), title)
+		if( HEADLESS === 'false') {
+		    await page.evaluate((t) => alert('Note: ' + t + ' has detected a change, please review.'), title)
+		}
 	    }
 	    
 	})

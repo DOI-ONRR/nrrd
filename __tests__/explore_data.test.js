@@ -2,12 +2,14 @@ const TIMEOUT = process.env.TIMEOUT ? process.env.TIMEOUT : 30000
 const URL = process.env.URL ? process.env.URL : 'https://dev-nrrd.app.cloud.gov'
 const STEP = process.env.STEP ? process.env.STEP : 0
 const FAILURE_THRESHOLD = process.env.FAILURE_THRESHOLD ? process.env.FAILURE_THRESHOLD : 2
+const HEADLESS =  process.env.HEADLESS === 'false' ? false : true
+
 const FAILURE_THRESHOLD_TYPE = process.env.FAILURE_THRESHOLD_TYPE ? process.env.FAILURE_THRESHOLD_TYPE : 'percent'
 const matchOptions={failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig
 
 const { toMatchImageSnapshot } = require('jest-image-snapshot')
 expect.extend({ toMatchImageSnapshot })
-const  tests  = require('./explore_data.revenue.json')
+const  tests  = require('./explore_data.json')
 
 describe( 'Home Page Revenue: ', () => {
     let page
@@ -38,7 +40,9 @@ const ScreenshotTest = ( title, commands, target) => {
 		if(STEP > 0) {  await page.evaluate( (t) => alert(t+ ' detected no changed.'), title) }
 	    } catch (err) {
 		console.debug(err)
-		await page.evaluate((t) => alert('Note: ' + t + ' has detected a change, please review.'), title)
+		if( HEADLESS === 'false') {
+		    await page.evaluate((t) => alert('Note: ' + t + ' has detected a change, please review.'), title)
+		}
 	    }
 	    
 	})
