@@ -130,6 +130,7 @@
     "test-unit-tests": "jest --testPathPattern=src",
     "test-lighthouse": "jest --testPathPattern=lighthouse",
     "test-watch": "jest --watchAll --testPathPattern=src",
+    "test-end-to-end": "jest --testPathPattern=e2e",
     "test-interactive": "node test-intereractive.js",
     "lint": "eslint ./src/ --format junit --output-file ./test-results/eslint.xml"
   },
