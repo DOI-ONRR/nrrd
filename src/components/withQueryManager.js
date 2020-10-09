@@ -5,7 +5,6 @@ import QueryManager from '../js/query-manager'
 import { DataFilterContext } from '../stores/data-filter-store'
 import { AppStatusContext } from '../stores/app-status-store'
 
-
 const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) => {
   const { state, updateQueryDataFilterCounts } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(QueryManager.getQuery(queryKey, state, options), QueryManager.getVariables(queryKey, state, options))
