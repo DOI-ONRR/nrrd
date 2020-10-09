@@ -60,8 +60,12 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
 
   let url = href
 
+  const pathPrefix = withPrefix('/').slice(0, -1)
+
   const isRelative = (url.charAt(0) !== '#' && !url.includes('http') && !url.includes('mailto'))
-  url = isRelative ? withPrefix(url) : url
+  if (url.includes(pathPrefix)) {
+    url = url.replace(pathPrefix, '')
+  }
 
   const classes = (linkType === LinkTypeComponents.Header)
     ? `${ styles.headerLink } ${ className } ${ (currentPathname === href) && styles.headerLinkBold }`

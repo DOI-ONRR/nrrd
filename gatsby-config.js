@@ -3,8 +3,10 @@ const { createHttpLink } = require('apollo-link-http')
 
 const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
 const GTM_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'GTM-NCRF98R' : ''
+const PATH_PREFIX = (process.env.CIRCLE_BRANCH === 'master') ? undefined : `/sites/${ process.env.CIRCLE_BRANCH }`
 
 const config = {
+  pathPrefix: PATH_PREFIX,
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
     description:

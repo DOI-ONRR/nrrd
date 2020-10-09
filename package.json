@@ -119,11 +119,11 @@
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean",
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "format": "eslint --fix 'src/**'",
     "start": "npm run develop",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve --prefix-paths",
     "test": "jest",
     "test-update-snapshot": "jest --updateSnapshot --testPathPattern=src",
     "test-unit-tests": "jest --testPathPattern=src --runInBand",
