@@ -3,20 +3,18 @@ const { createHttpLink } = require('apollo-link-http')
 
 const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
 const GTM_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'GTM-NCRF98R' : ''
-
-// use this for testing
-// const GOOGLE_ANALYTICS_ID = 'UA-33523145-1'
-// const GTM_ID = 'GTM-NCRF98R'
+const PATH_PREFIX = (process.env.CIRCLE_BRANCH === 'master') ? undefined : `/sites/${ process.env.CIRCLE_BRANCH }`
 
 const config = {
+  pathPrefix: PATH_PREFIX,
   siteMetadata: {
     title: 'Natural Resources Revenue Data',
     description:
       // eslint-disable-next-line max-len
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
+    keywords: 'Oil and gas, Coal, Renewable energy, Nonenergy minerals, Natural resource policy, Natural resource data, Extractives industries, Federal revenues, Production, 8(g) offshore revenue, offshore production, abanonded mine lands fund, mining reclamation tax, onrr state disbursement data, Native American land ownership, coal extraction, Department of the Interior, DOI, BLM coal leases, gomesa, gomesa funding, Land and Water Conservation Fund, energy resource revenue, ONRR, state royalty, us eiti, solar industry, geothermal',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
-    googleTagManagerId: GTM_ID,
-    version: 'v6.2.0',
+    version: 'v6.2.1',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -121,10 +119,10 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            // uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
+            uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
             // uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
             // uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
-            uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
+            // uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
             headers: {},
             fetch,
             resolvers: {}
@@ -164,6 +162,30 @@ const config = {
           maximumFileSizeToCacheInBytes: 20000000
         },
       },
+    },
+    {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: GTM_ID,
+        // Include GTM in development.
+        // Defaults to false meaning GTM will only be loaded in production.
+        includeInDevelopment: false,
+        // datalayer to be set before GTM is loaded
+        // should be an object or a function that is executed in the browser
+        //
+        // Defaults to null
+        defaultDataLayer: { platform: 'nrrd_data_layer' },
+        // Specify optional GTM environment details.
+        // gtmAuth: 'YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING',
+        gtmPreview: 'NRRD_CLOUD_GOV_PREVIEW_BRANCH',
+        // dataLayerName: 'YOUR_DATA_LAYER_NAME',
+
+        // Name of the event that is triggered
+        // on every Gatsby route change.
+        //
+        // Defaults to gatsby-route-change
+        // routeChangeEventName: 'YOUR_ROUTE_CHANGE_EVENT_NAME',
+      }
     },
     {
       resolve: 'gatsby-plugin-remove-console',

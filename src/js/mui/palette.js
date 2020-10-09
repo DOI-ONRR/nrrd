@@ -12,7 +12,16 @@ module.exports = Object.freeze({
   },
   chart: {
     primary: '#222222',
-    secondary: '#43646F'
+    secondary: '#43646F',
+  },
+  explore: {
+    100: '#c4d99b',
+    200: '#c2b27b',
+    300: '#b78d68',
+    400: '#a16c5e',
+    500: '#825056',
+    600: '#5e384b',
+    700: '#37253c'
   },
   links: {
     default: '#1478a6',

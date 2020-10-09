@@ -7,7 +7,10 @@ import gql from 'graphql-tag'
 
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import {
+  DATA_FILTER_CONSTANTS as DFC,
+  DISPLAY_NAMES
+} from '../../../../constants'
 
 import {
   Box,
@@ -15,6 +18,10 @@ import {
   Grid,
   Hidden
 } from '@material-ui/core'
+
+import {
+  useTheme
+} from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
@@ -47,6 +54,7 @@ const disbursementTypeDescriptions = [
 ]
 
 const NationwideDisbursementSummary = props => {
+  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
@@ -121,7 +129,7 @@ const NationwideDisbursementSummary = props => {
               </Grid>
             </Hidden>
             <Grid item xs={12} sm={6}>
-              <Box fontWeight="bold" display="flex" justifyContent="flex-end">FY {year}</Box>
+              <Box fontWeight="bold" display="flex" justifyContent="flex-end">{DISPLAY_NAMES[DFC.FISCAL_YEAR].default} {year}</Box>
             </Grid>
           </Grid>
         </Grid>
@@ -169,6 +177,17 @@ const NationwideDisbursementSummary = props => {
                             yOrderBy={yOrderBy}
                             horizontal
                             legendReverse={true}
+                            // primaryColor={theme.palette.explore[100]}
+                            // secondaryColor={theme.palette.explore[600]}
+                            colorRange={[
+                              theme.palette.explore[700],
+                              theme.palette.explore[600],
+                              theme.palette.explore[500],
+                              theme.palette.explore[400],
+                              theme.palette.explore[300],
+                              theme.palette.explore[200],
+                              theme.palette.explore[100]
+                            ]}
                           />
                         </Box>
                       </Grid>

@@ -11,7 +11,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -22,10 +22,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     '& .chart-container': {
-      // display: 'grid',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'top',
     }
   }
 }))
@@ -46,7 +44,7 @@ const APOLLO_QUERY = gql`
 
 const RevenueDetailTypes = props => {
   const classes = useStyles()
-
+  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
@@ -91,8 +89,14 @@ const RevenueDetailTypes = props => {
                 format={ d => utils.formatToDollarInt(d) }
                 yLabel={dataSet}
                 maxCircles={6}
-                minColor='#FCBA8B'
-                maxColor='#B64D00'
+                colorRange={[
+                  theme.palette.explore[600],
+                  theme.palette.explore[500],
+                  theme.palette.explore[400],
+                  theme.palette.explore[300],
+                  theme.palette.explore[200],
+                  theme.palette.explore[100]
+                ]}
                 circleTooltip={
                   d => {
                     // console.debug('circleLABLE yo: ', d)

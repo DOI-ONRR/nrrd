@@ -25,6 +25,10 @@ export default class D3CircleChart {
     this.minColor = options.minColor || 'lightblue'
     this.maxColor = options.maxColor || 'darkblue'
 
+    if (options.colorRange) {
+      this.colorRange = options.colorRange
+    }
+
     this.maxCircles = options.maxCircles - 1
     const yAxis = options.yAxis
     const xAxis = options.xAxis
@@ -250,11 +254,11 @@ export default class D3CircleChart {
   }
 
   color () {
-    // console.debug("yDomain()", this.yDomain())
     const domain = d3.min([this.yDomain().length, this.maxCircles])
-    return d3.scaleLinear()
-      .domain([-1, domain])
-      .range([this.minColor, this.maxColor])
+    const colorScale = this.colorRange
+      ? d3.scaleOrdinal().domain(this.yDomain().length + 1).range(this.colorRange)
+      : d3.scaleLinear().domain([-1, domain]).range([this.minColor, this.maxColor])
+    return colorScale
   }
 
   circleLabel (data, xAxis, yAxis) {
@@ -303,13 +307,13 @@ export default class D3CircleChart {
     const width = this._width
     const height = this._height
     const color = this.color()
+    // const color = d3.scaleOrdinal().domain(this.data.length - 1)
+    //   .range(this.colorRange)
 
     const yDomain = this.yDomain()
     const root = this._root
-    // eslint-disable-next-line no-unused-vars
-    let focus = root
-    // let view
 
+    // eslint-disable-next-line no-unused-vars
     const svg = d3.select(chartNode).append('svg')
       .attr('viewBox', `-${ width * 0.5 } -${ height * 0.5 } ${ width } ${ height }`)
       .style('display', 'block')
@@ -323,23 +327,22 @@ export default class D3CircleChart {
     const tooltip = d3.select('body').append('div')
       .attr('class', 'tooltip')
       .style('position', 'absolute')
-      // .style('left', '100px')
       .style('background', 'rgba(0, 0, 0, 0.85)')
       .style('border-radius', '4px')
       .style('z-index', '999')
       .style('text-align', 'center')
       .style('color', 'white')
-      .style('padding', '4px')
       .style('pointer-events', 'none')
       .style('opacity', 0)
       .style('display', 'none')
 
     const mouseover = function (d) {
       self._onMouseover(this, d)
-      if (circleTooltip(d.data)[0] !== undefined) {
+      if (circleTooltip(d.data)[0] !== undefined && circleTooltip(d.data)[0] !== '') {
         tooltip
           .style('opacity', 1)
           .style('display', 'block')
+          .style('padding', '4px')
       }
     }
 
@@ -366,9 +369,8 @@ export default class D3CircleChart {
       //   if (i === 0) return '#000'
       // })
       .attr('fill', (d, i) => {
-        // console.debug("fill attr", d,i)
         if (i === 0) return '#f5f5f5'
-	  // color(yDomain.length - i + 1) add one more because first circle is root node
+        // color(yDomain.length - i + 1) add one more because first circle is root node
         return d.children ? color(d.depth) : color(yDomain.length - i + 1)
       })
       // .attr('pointer-events', d => !d.children ? 'none' : null)
@@ -384,7 +386,7 @@ export default class D3CircleChart {
       .selectAll('text')
       .data(root.descendants())
       .join('text')
-      .style('font-size', d => d.r / 6)
+      .style('font-size', d => `${ Math.round(d.r / 6) }px`)
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
       // .text(d => circleLabel(d.data, xAxis, yAxis)[0] !== undefined ? circleLabel(d.data, xAxis, yAxis)[0].substring(0, d.r / 4) : '')
@@ -407,7 +409,7 @@ export default class D3CircleChart {
       .selectAll('text')
       .data(root.descendants())
       .join('text')
-      .style('font-size', d => d.r / 6)
+      .style('font-size', d => `${ Math.round(d.r / 6) }px`)
       .style('fill-opacity', d => d.parent === root ? 1 : 0)
       .style('display', d => d.parent === root ? 'inline' : 'none')
       .text(d => circleLabel(d.data, xAxis, yAxis)[1])
@@ -427,7 +429,7 @@ export default class D3CircleChart {
     }
 
     function zoom (d) {
-      focus = d
+      // focus = d
     }
 
     return svg.node()
@@ -473,7 +475,7 @@ export default class D3CircleChart {
       .style('border', 'solid')
       .style('border-width', '2px')
       .style('border-radius', '5px')
-      .style('padding', '5px')
+      .style('padding', 5)
 
     // Three function that change the tooltip when user hover / move / leave a cell
     const mouseover = function (d) {

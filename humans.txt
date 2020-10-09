@@ -101,5 +101,5 @@
 
 # TECHNOLOGY COLOPHON
 
-    Software: GatsbyJS, Material UI, D3, React, CSS modules
+    Software: GatsbyJS, Material UI, D3JS, React, CSS modules
     Typography: Lato

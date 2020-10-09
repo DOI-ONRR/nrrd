@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     '& .chart-container': {
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'top',
       '& .chart': {
         width: '100%',
         height: 250
@@ -89,8 +88,16 @@ const DisbursementSources = props => {
                 return utils.formatToDollarInt(d)
               }
               }
-              minColor={theme.palette.blue[100]}
-              maxColor={theme.palette.blue[600]}
+              minColor={theme.palette.explore[100]}
+              maxColor={theme.palette.explore[600]}
+              colorRange={[
+                theme.palette.explore[600],
+                theme.palette.explore[500],
+                theme.palette.explore[400],
+                theme.palette.explore[300],
+                theme.palette.explore[200],
+                theme.palette.explore[100]
+              ]}
               circleTooltip={
                 d => {
                   const r = []
@@ -116,7 +123,7 @@ const DisbursementSources = props => {
         <Box className={classes.boxSection}>
           <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box fontSize="subtitle2.fontSize">
-          All of  disbursements were from {source.toLowerCase()} production</Box>
+          All of  disbursements were from {source.toLowerCase()} production.</Box>
         </Box>
       )
     }
