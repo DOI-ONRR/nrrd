@@ -56,7 +56,6 @@ const IconLink = ({ icon, children, pl = 0, mt = 2, style, ...rest }) => (
 )
 
 const BaseLink = ({ href, disableRouting, className = '', children, linkType, ...rest }) => {
-  console.log('BaseLink rest: ', className, rest)
   const theme = useTheme()
   const styles = useStyles(theme)
 
