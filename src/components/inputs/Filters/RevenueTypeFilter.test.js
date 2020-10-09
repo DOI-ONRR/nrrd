@@ -2,7 +2,7 @@
 import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen, act, REVENUE_ONLY } from 'test-utils'
+import { render, screen, act } from 'test-utils'
 
 import RevenueTypeFilter from './RevenueTypeFilter'
 import {
