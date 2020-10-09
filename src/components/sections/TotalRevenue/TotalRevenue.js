@@ -7,6 +7,8 @@ import {
   Grid
 } from '@material-ui/core'
 
+import { useTheme } from '@material-ui/core/styles'
+
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import SectionHeader from '../../sections/SectionHeader'
 import SectionControls from '../../sections/SectionControls'
@@ -74,6 +76,7 @@ const YEARLY_DROPDOWN_VALUES = {
 
 // TotalRevenue component
 const TotalRevenue = props => {
+  const theme = useTheme()
   const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
   const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
 
@@ -200,6 +203,8 @@ const TotalRevenue = props => {
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
             legendHeaders={legendHeaders}
+            primaryColor={theme.palette.chart.primary}
+            secondaryColor={theme.palette.chart.secondary}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
             <Link href='/downloads/revenue-by-month/'>Source file</Link>
