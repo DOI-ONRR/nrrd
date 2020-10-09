@@ -170,7 +170,8 @@ export default class D3LineChart {
           .selectAll()
           .data(yDatasets).enter()
           .append('div')
-          .style('color', (d, i) => colors[i])
+          // .style('color', (d, i) => colors[i])
+          .style('color', 'white')
           .html((d, i) => {
             // console.log('.html d: ', i, d)
             return lineTooltip(d[yearIndex], i)[0]

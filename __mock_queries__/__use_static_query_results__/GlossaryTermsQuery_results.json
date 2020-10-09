@@ -25,6 +25,16 @@
               "definition": "We refer to data as “withheld” when publishing that data could violate federal laws and regulations. Most commonly, we withhold data if it can be used to personally identify individuals, or if the data is protected by the Trade Secrets Act. In the latter case, data is often withheld when there is only one company producing a specific commodity within a specific region. We withhold all location data for Native American production, revenue, and disbursements.",
               "name": "Withheld",
               "tags": null
+            },
+            {
+              "definition": "Duplicate test 1",
+              "name": "Duplicate 1",
+              "tags": ["Duplicate"]
+            },
+            {
+              "definition": "Duplicate test 2",
+              "name": "Duplicate 2",
+              "tags": ["Duplicate"]
             }
           ]
         }

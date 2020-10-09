@@ -147,7 +147,7 @@ const useStyles = makeStyles(theme => ({
     '& .cardContent__Revenue': {
       gridTemplateRows: '185px 660px auto',
     },
-    '& .cardContent__Disbursement': {
+    '& .cardContent__Disbursements': {
       gridTemplateRows: '185px 768px 560px',
     },
     '& .cardContent__Production': {
@@ -185,16 +185,31 @@ const useStyles = makeStyles(theme => ({
       minHeight: 245
     },
     '& > div:first-child $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[400] }`,
+      borderBottom: `8px solid ${ theme.palette.explore[400] }`,
     },
     '& > div:nth-child(2) $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[300] }`,
+      borderBottom: `8px solid ${ theme.palette.explore[300] }`,
     },
     '& > div:nth-child(3) $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[200] }`,
+      borderBottom: `8px solid ${ theme.palette.explore[200] }`,
     },
-    '& > div:last-child $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[100] }`,
+    '& > div:nth-child(4) $cardHeader': {
+      borderBottom: `8px solid ${ theme.palette.explore[100] }`,
+    },
+    '& > div:first-child .line-chart path.line': {
+      stroke: theme.palette.explore[400],
+    },
+    '& > div:nth-child(2) .line-chart path.line': {
+      stroke: theme.palette.explore[300],
+    },
+    '& > div:nth-child(3) .line-chart path.line': {
+      stroke: theme.palette.explore[200],
+    },
+    '& > div:nth-child(4) .line-chart path.line': {
+      stroke: theme.palette.explore[100],
+    },
+    '& > div:first-child .tooltip > div': {
+      color: 'deeppink',
     }
   },
   closeIcon: {

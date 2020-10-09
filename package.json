@@ -4,8 +4,9 @@
   "version": "0.1.0",
   "author": "Mojo Nichols <mojo.nichols>",
   "dependencies": {
-    "@apollo/client": "^3.0.0-beta.44",
-    "@apollo/react-hooks": "^3.1.5",
+    "@apollo/client": "^3.2.2",
+    "@apollo/react-hooks": "^3.1.1",
+    "@apollo/react-testing": "^3.1.1",
     "@devexpress/dx-react-core": "^2.6.2",
     "@devexpress/dx-react-grid": "^2.6.2",
     "@devexpress/dx-react-grid-material-ui": "^2.6.2",
@@ -94,6 +95,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
+    "@testing-library/react-hooks": "^3.4.1",
     "app-root-dir": "^1.0.2",
     "babel-jest": "^24.9.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -112,7 +114,9 @@
     "jest-junit": "^10.0.0",
     "lighthouse": "^5.6.0",
     "react-hot-loader": "^4.12.21",
-    "svg-react-loader": "^0.4.6"
+    "react-test-renderer": "^16.13.1",
+    "svg-react-loader": "^0.4.6",
+    "ts-dedent": "^1.1.1"
   },
   "keywords": [
     "gatsby"
@@ -120,14 +124,14 @@
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean",
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "format": "eslint --fix 'src/**'",
     "start": "npm run develop",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve --prefix-paths",
     "test": "jest",
     "test-update-snapshot": "jest --updateSnapshot --testPathPattern=src",
-    "test-unit-tests": "jest --testPathPattern=src",
+    "test-unit-tests": "jest --testPathPattern=src --runInBand",
     "test-lighthouse": "jest --testPathPattern=lighthouse",
     "test-watch": "jest --watchAll --testPathPattern=src",
     "test-end-to-end": "jest --testPathPattern=e2e",
