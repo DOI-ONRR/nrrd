@@ -96,6 +96,10 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: public
           to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH'
+      - run:
+          name: clean up
+          command: |
+            bash ./.circleci/cleanup-previews.sh
 
   quick:
     docker:
