@@ -9,12 +9,12 @@ module.exports = {
     React.createElement('a', {
       ...rest,
       href: to,
-      'data-testId': 'BaseLink'
+      'data-testid': 'GatsbyLink'
     })
   ),
   StaticQuery: jest.fn(),
   useStaticQuery: function (queryName) {
-    const filePath = `./__mock_queries__/${ queryName }_results.json`
+    const filePath = `../__mock_queries__/__use_static_query_results__/${ queryName }_results.json`
 
     try {
       return require(filePath)

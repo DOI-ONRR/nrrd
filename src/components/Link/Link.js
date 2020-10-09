@@ -74,10 +74,10 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
   return (
     <React.Fragment>
       {(!disableRouting && isRelative)
-        ? <GatsbyLink to={url} className={classes} {...rest} data-testid={'BaseLink'}>
+        ? <GatsbyLink to={url} className={classes} {...rest}>
           {children}
         </GatsbyLink>
-        : <a href={url} className={classes} {...rest} data-testid={'BaseLink'}>
+        : <a href={url} className={classes} {...rest} data-testid={'AnchorLink'}>
           {children}
         </a>
       }
@@ -88,35 +88,34 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
 const LinkTypeComponents = {
   default: ({ style, ...props }) => <BaseLink {...props} style={style}/>,
   Header: ({ style, ...props }) => <BaseLink {...props} linkType={LinkTypeComponents.Header} style={style} />,
-  DownloadXls: props => <IconLink icon={<IconDownloadXlsImg />} {...props} />,
-  DownloadCsv: props => <IconLink icon={<IconDownloadCsvImg />} {...props} />,
-  DownloadData: props => <IconLink icon={<IconDownloadDataImg />} {...props} />,
-  DownloadBase: props => <IconLink icon={<IconDownloadBaseImg />} pl={0} {...props} />,
-  HowWorks: props => <IconLink icon={<HowWorksLinkIconImg />} pl={0} {...props} />,
-  FilterTable: props => <IconLink icon={<FilterTableIconImg style={{ position: 'relative', top: 5 }} />} pl={0} {...props} />,
-  ExploreData: props => <IconLink icon={<IconExploreDataImg />} mt={0} {...props} />,
-  Location: props => <IconLink icon={<IconUsMapImg />} {...props} />
+  DownloadXls: props => <IconLink icon={<IconDownloadXlsImg data-testid='download excel icon' />} {...props} disableRouting={true} />,
+  DownloadCsv: props => <IconLink icon={<IconDownloadCsvImg data-testid='download csv icon' />} {...props} disableRouting={true} />,
+  DownloadData: props => <IconLink icon={<IconDownloadDataImg data-testid='download data icon' />} {...props} />,
+  DownloadBase: props => <IconLink icon={<IconDownloadBaseImg data-testid='download base icon' />} pl={0} {...props} />,
+  HowWorks: props => <IconLink icon={<HowWorksLinkIconImg data-testid='how works icon' />} pl={0} {...props} />,
+  FilterTable: props => <IconLink icon={<FilterTableIconImg data-testid='filter table icon' style={{ position: 'relative', top: 5 }} />} pl={0} {...props} />,
+  ExploreData: props => <IconLink icon={<IconExploreDataImg data-testid='explore data icon' />} mt={0} {...props} />,
+  Location: props => <IconLink icon={<IconUsMapImg data-testid='us map icon' />} {...props} />
 }
 
 const regexXlsx = RegExp('.xlsx$')
 const regexCsv = RegExp('.csv$')
-const regexDownloadData = RegExp('^/downloads/[a-zA-Z0-9#]+')
+const regexDownloadData = RegExp('^(.*)/downloads/[a-zA-Z0-9#]+')
 
 const getLinkComponent = ({ linkType, ...props }) => {
   if (linkType) {
     return LinkTypeComponents[linkType](props)
   }
+
   if (regexXlsx.test(props.href)) {
     return LinkTypeComponents.DownloadXls(props)
   }
+
   if (regexCsv.test(props.href)) {
     return LinkTypeComponents.DownloadCsv(props)
   }
 
-  if (props.linkType === 'DownloadBase') {
-    return LinkTypeComponents.DownloadBase(props)
-  }
-  else if (regexDownloadData.test(props.href)) {
+  if (regexDownloadData.test(props.href)) {
     return LinkTypeComponents.DownloadData(props)
   }
 
@@ -140,7 +139,7 @@ Link.propTypes = {
    *
    * By default we determine the appropriate link type but you can specify a type if you want to override it.
    */
-  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'FilterTable', 'ExploreData', 'Header', 'HowWorks', 'default']),
+  linkType: PropTypes.oneOf(['DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'FilterTable', 'ExploreData', 'Header', 'HowWorks', 'default', 'Location']),
   /**
    * Used to flag a relative link that we may not want to use Gatsby Routing for. An example is download files.
    *

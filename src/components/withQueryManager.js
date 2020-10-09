@@ -20,6 +20,7 @@ const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) =>
 
   useEffect(() => {
     if (error) {
+      console.log(error)
       showErrorMessage('We encountered a connection error retrieving the data. Check your internet connection and refresh your browser to try again.')
     }
   }, [error])
@@ -35,7 +36,9 @@ const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) =>
 
   return (
     <>
-      <BaseComponent data={(data && data.options) ? data.options : data} {...props} />
+      {!loading &&
+        <BaseComponent data={(data && data.options) ? data.options : data} {...props} />
+      }
     </>
   )
 }

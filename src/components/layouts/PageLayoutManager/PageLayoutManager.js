@@ -3,31 +3,37 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-// Import font
-import 'typeface-lato'
 
 import DefaultLayout from '../DefaultLayout'
 import DataFilterProviderWrapper from '../../DataFilterProviderWrapper'
 import PatternLibraryLayout from '../PatternLibraryLayout'
 
 import ContactUs from '../../content-partials/ContactUs'
+import SEO from '../../seo'
 
 const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
-  // console.log('PageLayoutManager pageContext: ', pageContext)
+  console.log('PageLayoutManager pageContext: ', pageContext)
   if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
 
   const layout = pageContext.frontmatter && pageContext.frontmatter.layout
   const includeDataProvider = pageContext.frontmatter && pageContext.frontmatter.includeDataProvider
+  const title = pageContext.frontmatter && pageContext.frontmatter.title
+  const keywords = pageContext.frontmatter && pageContext.frontmatter.tag
 
   if (layout === 'pattern-library') {
-    return <PatternLibraryLayout>{children}</PatternLibraryLayout>
+    return (
+      <PatternLibraryLayout>
+        <SEO title={title} keywords={keywords} />
+        {children}
+      </PatternLibraryLayout>
+    )
   }
 
   if (location.pathname.includes('/downloads')) {
     return (
       <DefaultLayout
-        includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}
-        title={pageContext.frontmatter && pageContext.frontmatter.title}>
+        includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
+        <SEO title={title} keywords={keywords} />
         {children}
         <ContactUs />
       </DefaultLayout>
@@ -37,8 +43,8 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   if (includeDataProvider) {
     return (
       <DefaultLayout
-        includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}
-        title={pageContext.frontmatter && pageContext.frontmatter.title}>
+        includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
+        <SEO title={title} keywords={keywords} />
         <DataFilterProviderWrapper>
           {children}
         </DataFilterProviderWrapper>
@@ -48,8 +54,8 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
 
   return (
     <DefaultLayout
-      includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}
-      title={pageContext.frontmatter && pageContext.frontmatter.title}>
+      includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
+      <SEO title={title} keywords={keywords} />
       {children}
     </DefaultLayout>
   )
