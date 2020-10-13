@@ -1,9 +1,15 @@
 const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
+const activeEnv = (process.env.CIRCLE_BRANCH === 'master') ? 'production' : 'development'
+require('dotenv').config({
+  path: `.env.${ activeEnv }`
+})
+
 const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
 const GTM_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'GTM-NCRF98R' : ''
 const PATH_PREFIX = (process.env.CIRCLE_BRANCH === 'master') ? undefined : `/sites/${ process.env.CIRCLE_BRANCH }`
+const HASURA_URI = process.env.HASURA_URI
 
 const config = {
   pathPrefix: PATH_PREFIX,
@@ -119,10 +125,7 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
-            // uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
-            // uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
-            // uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
+            uri: HASURA_URI,
             headers: {},
             fetch,
             resolvers: {}
