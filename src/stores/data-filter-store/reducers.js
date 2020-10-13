@@ -110,7 +110,7 @@ const initialState = {
   },
   [EXPLORE_DATA_FILTER_DEFAULT]: {
     [DATA_TYPE]: REVENUE,
-    [PERIOD]: 'Fiscal Year',
+    [PERIOD]: 'Calendar Year',
     [FISCAL_YEAR]: '2019',
     [CALENDAR_YEAR]: '2019',
     [OFFSHORE_REGIONS]: false,
@@ -119,7 +119,7 @@ const initialState = {
     dataTypesCache: {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
-        [PERIOD]: 'Fiscal Year',
+        [PERIOD]: 'Calendar Year',
         [FISCAL_YEAR]: '2019',
         [CALENDAR_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
@@ -128,7 +128,7 @@ const initialState = {
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
-        [PERIOD]: 'Fiscal Year',
+        [PERIOD]: 'Calendar Year',
         [FISCAL_YEAR]: '2019',
         [CALENDAR_YEAR]: '2018',
         [OFFSHORE_REGIONS]: false,
