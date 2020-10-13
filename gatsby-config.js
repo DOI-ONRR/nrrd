@@ -18,7 +18,7 @@ const config = {
     description:
       // eslint-disable-next-line max-len
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
-    keywords: 'Oil and gas, Coal, Renewable energy, Nonenergy minerals, Natural resource policy, Natural resource data, Extractives industries, Federal revenues, Production, 8(g) offshore revenue, offshore production, abanonded mine lands fund, mining reclamation tax, onrr state disbursement data, Native American land ownership, coal extraction, Department of the Interior, DOI, BLM coal leases, gomesa, gomesa funding, Land and Water Conservation Fund, energy resource revenue, ONRR, state royalty, us eiti, solar industry, geothermal',
+    keywords: 'Oil and gas, Coal, Renewable energy, Nonenergy minerals, Natural resource policy, Natural resource data, Extractives industries, Federal revenues, Production, 8(g) offshore revenue, offshore production, abanonded mine lands fund, mining reclamation tax, onrr state disbursement data, Native American land ownership, coal extraction, Department of the Interior, DOI, BLM coal leases, gomesa, gomesa funding, energy resource revenue, ONRR, state royalty, us eiti, solar industry, geothermal',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
     version: 'v6.2.1',
     author: '',
@@ -91,15 +91,15 @@ const config = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${ __dirname }/src/pages`,
-        name: 'pages'
+        name: 'images',
+        path: `${ __dirname }/src/images`
       }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'images',
-        path: `${ __dirname }/src/images`
+        path: `${ __dirname }/src/pages`,
+        name: 'pages'
       }
     },
     {
