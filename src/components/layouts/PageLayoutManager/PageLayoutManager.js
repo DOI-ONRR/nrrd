@@ -6,13 +6,12 @@ import PropTypes from 'prop-types'
 
 import DefaultLayout from '../DefaultLayout'
 import DataFilterProviderWrapper from '../../DataFilterProviderWrapper'
-import PatternLibraryLayout from '../PatternLibraryLayout'
+import PatternLibraryLayout from '../../pattern-library/PatternLibraryLayout'
 
 import ContactUs from '../../content-partials/ContactUs'
 import SEO from '../../seo'
 
 const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
-  console.log('PageLayoutManager pageContext: ', pageContext)
   if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
 
   const layout = pageContext.frontmatter && pageContext.frontmatter.layout
@@ -21,8 +20,9 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   const keywords = pageContext.frontmatter && pageContext.frontmatter.tag
 
   if (layout === 'pattern-library') {
+    console.log(title)
     return (
-      <PatternLibraryLayout>
+      <PatternLibraryLayout path={location.pathname}>
         <SEO title={title} keywords={keywords} />
         {children}
       </PatternLibraryLayout>
