@@ -7,8 +7,8 @@ require('dotenv').config({
 })
 
 const GOOGLE_ANALYTICS_ID = (activeEnv === 'production') ? process.env.GOOGLE_ANALYTICS_ID : ''
-const GTM_ID = (activeEnv === 'production') ? process.env.GTM_ID : ''
-const PATH_PREFIX = (activeEnv === 'production') ? undefined : `/sites/${ process.env.CIRCLE_BRANCH }`
+const GTM_ID = (activeEnv === 'production' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : ''
+const PATH_PREFIX = (activeEnv === 'production' || process.env.CIRCLE_BRANCH === 'dev') ? undefined : `/sites/${ process.env.CIRCLE_BRANCH }`
 const HASURA_URI = process.env.HASURA_URI
 
 const config = {
