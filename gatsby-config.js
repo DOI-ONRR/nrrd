@@ -9,7 +9,7 @@ require('dotenv').config({
 const GOOGLE_ANALYTICS_ID = (activeEnv === 'production') ? process.env.GOOGLE_ANALYTICS_ID : ''
 const GTM_ID = (activeEnv === 'production' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : ''
 // eslint-disable-next-line max-len
-const PATH_PREFIX = (activeEnv === 'production' || activeEnv === 'development' || process.env.CIRCLE_BRANCH === 'dev') ? undefined : `https://nrrd-preview.app.cloud.gov/sites/${ process.env.CIRCLE_BRANCH }`
+const PATH_PREFIX = (activeEnv === 'production' || activeEnv === 'development' || process.env.CIRCLE_BRANCH === 'dev') ? undefined : `/sites/${ process.env.CIRCLE_BRANCH }`
 const HASURA_URI = process.env.HASURA_URI
 
 const config = {
