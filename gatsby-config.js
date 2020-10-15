@@ -6,6 +6,8 @@ require('dotenv').config({
   path: `.env.${ activeEnv }`
 })
 
+console.log('gatsby-config: ', process.env)
+
 const GOOGLE_ANALYTICS_ID = (activeEnv === 'production') ? process.env.GOOGLE_ANALYTICS_ID : ''
 const GTM_ID = (activeEnv === 'production' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : ''
 // eslint-disable-next-line max-len
