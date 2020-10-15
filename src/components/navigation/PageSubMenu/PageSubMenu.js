@@ -137,7 +137,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
           setSubMenu({ ...subMenu, activeItems: activeItems })
         }
       })
-    }, 5000)
+    }, 1500)
   }, [filterState])
 
   return (
