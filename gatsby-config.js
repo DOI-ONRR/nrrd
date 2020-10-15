@@ -6,12 +6,10 @@ require('dotenv').config({
   path: `.env.${ activeEnv }`
 })
 
-console.log('gatsby-config: ', process.env)
-
 const GOOGLE_ANALYTICS_ID = (activeEnv === 'production') ? process.env.GOOGLE_ANALYTICS_ID : ''
 const GTM_ID = (activeEnv === 'production' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : ''
 // eslint-disable-next-line max-len
-const PATH_PREFIX = (activeEnv === 'production' || activeEnv === 'development' || process.env.CIRCLE_BRANCH === 'dev') ? undefined : `/sites/${ process.env.CIRCLE_BRANCH }`
+const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
 
 const config = {
   pathPrefix: PATH_PREFIX,
