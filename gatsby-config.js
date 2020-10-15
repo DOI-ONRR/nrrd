@@ -10,6 +10,7 @@ const GOOGLE_ANALYTICS_ID = (activeEnv === 'production') ? process.env.GOOGLE_AN
 const GTM_ID = (activeEnv === 'production' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : ''
 // eslint-disable-next-line max-len
 const PATH_PREFIX = (activeEnv === 'production' || activeEnv === 'development' || process.env.CIRCLE_BRANCH === 'dev') ? undefined : `/sites/${ process.env.CIRCLE_BRANCH }`
+const HASURA_URI = process.env.HASURA_URI
 
 const config = {
   pathPrefix: PATH_PREFIX,
@@ -125,7 +126,7 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            uri: process.env.HASURA_URI,
+            uri: HASURA_URI,
             headers: {},
             fetch,
             resolvers: {}
