@@ -106,7 +106,6 @@ export default class D3LineChart {
       const lineDashes = this.lineDashes
       const lineStrokes = this.lineStrokes
       const lineTooltip = this.lineTooltip
-      const colors = this.chartColors
 
       const x = d3.scaleLinear().domain([2003, 2019]).range([0, width])
       // const y = d3.scaleLinear().domain([0, 40000000]).range([height, 0])
