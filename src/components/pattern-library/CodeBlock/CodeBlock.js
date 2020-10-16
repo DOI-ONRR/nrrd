@@ -10,7 +10,7 @@ const CodeBlock = ({ children, className, live, render }) => {
 
   console.log(live, language)
 
-  if (language === 'live') {
+  if (live) {
     return (
       <div style={{ marginTop: '10px' }}>
         <LiveProvider
