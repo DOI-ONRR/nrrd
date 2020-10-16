@@ -127,8 +127,11 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 4,
       textAlign: 'center',
       color: `${ theme.palette.common.white } !important`,
-      backgroundColor: theme.palette.links.default,
+      backgroundColor: theme.palette.links.default
     },
+    '& > span:first-child': {
+      border: `1px solid ${ theme.palette.links.default }`
+    }
   },
   sliderYearDisplay: {
     color: theme.palette.grey[900],
