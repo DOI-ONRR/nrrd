@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef, useContext } from 'react'
+import React, { useCallback, useState, useLayoutEffect, useRef, useContext } from 'react'
 
 import {
   animateScroll as scroll,
@@ -67,7 +67,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
   const classes = useStyles()
 
   const { state: filterState } = useContext(DataFilterContext)
-  const subMenuRef = useRef(null)
+  const subMenuRef = useRef([])
 
   // eslint-disable-next-line no-unused-vars
   const [subMenu, setSubMenu] = useState({
@@ -128,7 +128,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
     })
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const activeItems = []
     setTimeout(() => {
       subMenu.anchorItems.forEach((item, index) => {
@@ -137,8 +137,8 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
           setSubMenu({ ...subMenu, activeItems: activeItems })
         }
       })
-    }, 2000)
-  }, [filterState])
+    }, 1000)
+  }, [children, filterState])
 
   return (
     <>
