@@ -10,7 +10,7 @@ module.exports = {
   },
   modulePathIgnorePatterns: ['node_modules', '.cache'],
   transformIgnorePatterns: ['node_modules/(?!(gatsby)/)'],
-  preset: "jest-puppeteer",
+  preset: process.env.PUPPETTEER === 'true' ? "jest-puppeteer" : '' ,
   verbose: true,
   globals: {
     __PATH_PREFIX__: '',
@@ -28,7 +28,7 @@ module.exports = {
       outputDirectory: './test-results'
     }]
   ],
-  globalSetup: './puppeteer-setup.js',
-  globalTeardown: './puppeteer-teardown.js',
-  testEnvironment: './puppeteer-environment.js',
+ globalSetup:  process.env.PUPPETEER === 'true' ? './puppeteer-setup.js' : '',
+ globalTeardown:  process.env.PUPPETEER === 'true' ? './puppeteer-teardown.js' : '',
+ testEnvironment:  process.env.PUPPETEER === 'true' ? './puppeteer-environment.js' : '',
 }

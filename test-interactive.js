@@ -4,7 +4,8 @@ const config = {
     headless: 'false',
     step: 0,
     failure_threshold: 2,
-    failure_threshold_type: 'percent'
+    failure_threshold_type: 'percent',
+    puppeteer: 'true'
 };
 const argv = process.argv.slice(0, 2);
 
