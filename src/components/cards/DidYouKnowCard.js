@@ -1,46 +1,28 @@
 import React from 'react'
 import {
   Card,
-  CardActions,
   Box,
   Typography,
   useTheme,
   makeStyles,
-  IconButton,
-  Collapse
 } from '@material-ui/core'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import clsx from 'clsx'
 
 const useStyles = makeStyles(theme => ({
   title: {
     color: 'white',
     marginTop: '0px',
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
 }))
 
-export default ({ children, title = 'Did you know?' }) => {
+/**
+ * The DidYouKnowCard is used in the about section of the website. It is a simple card that can display
+ * content. Other components can be added in the content such as a collapsible component that can add more content.
+ *
+ */
+const DidYouKnowCard = ({ children, title = 'Did you know?' }) => {
+  console.log(children)
   const theme = useTheme()
   const classes = useStyles(theme)
-
-  const [expanded, setExpanded] = React.useState(false)
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
-  }
-
-  const mainContent = children.filter(child => child.props.mdxType !== 'CollapsibleContent')
-  const moreContent = children.filter(child => child.props.mdxType === 'CollapsibleContent')
 
   return (
     <Box>
@@ -49,26 +31,18 @@ export default ({ children, title = 'Did you know?' }) => {
             <Box p={2} bgcolor={'info.dark'}><Typography variant='h4' className={classes.title}>{title}</Typography></Box>
         }
         <Box p={2}>
-          { mainContent }
+          { children }
         </Box>
-        <CardActions disableSpacing>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Box p={2} pt={0} borderTop={1} borderColor={'info.main'}>
-            {moreContent}
-          </Box>
-        </Collapse>
       </Card>
     </Box>
   )
 }
+
+export default DidYouKnowCard
+
+export const DidYouKnowCardDemos = [
+  {
+    title: 'Content only',
+    code: '<DidYouKnowCard>Content for did you knowe</DidYouKnowCard>'
+  }
+]

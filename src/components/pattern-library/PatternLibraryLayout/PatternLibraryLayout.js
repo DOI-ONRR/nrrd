@@ -16,7 +16,7 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import SearchIcon from '@material-ui/icons/Search'
 import InputBase from '@material-ui/core/InputBase'
-import { Box } from '@material-ui/core'
+import Container from '@material-ui/core/Container'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -177,17 +177,9 @@ const PatternLibraryLayout = ({ path, children }) => {
   const classes = useStyles(theme)
   const data = useStaticQuery(graphql`
     query PatternLibraryQuery {
-      site {
-        siteMetadata {
-          version
-          officeName
-          informationDataManagement {
-            name
-            city
-            zip
-            street
-            email
-          }
+      allComponentMetadata(sort: {fields: displayName, order: ASC}) {
+        nodes {
+          displayName
         }
       }
     }
@@ -205,6 +197,7 @@ const PatternLibraryLayout = ({ path, children }) => {
   const [currentPath] = React.useState(getCurrentPath())
 
   const pageTitle = 'NRRD Pattern Library'
+  console.log(data.allComponentMetadata)
 
   return (
     <>
@@ -246,9 +239,9 @@ const PatternLibraryLayout = ({ path, children }) => {
             </div>
           </Toolbar>
         </AppBar>
-        <Box>
+        <Container maxWidth="lg" component="section">
           {children}
-        </Box>
+        </Container>
       </ThemeProvider>
     </>
   )

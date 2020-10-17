@@ -7,9 +7,7 @@ import * as MaterialUI from '@material-ui/core'
 
 const CodeBlock = ({ children, className, live, render }) => {
   const language = className && className.replace(/language-/, '')
-
-  console.log(live, language)
-
+  console.log('Here')
   if (live) {
     return (
       <div style={{ marginTop: '10px' }}>

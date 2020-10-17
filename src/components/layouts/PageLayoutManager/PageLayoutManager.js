@@ -19,11 +19,11 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   const title = pageContext.frontmatter && pageContext.frontmatter.title
   const keywords = pageContext.frontmatter && pageContext.frontmatter.tag
 
-  if (layout === 'pattern-library') {
-    console.log(title)
+  if (layout === 'pattern-library' || location.pathname.includes('/patterns')) {
+    const pageTitle = title || (pageContext.componentMetadata && `Pattern Library - ${ pageContext.componentMetadata.displayName }`)
     return (
       <PatternLibraryLayout path={location.pathname}>
-        <SEO title={title} keywords={keywords} />
+        <SEO title={pageTitle} keywords={keywords} />
         {children}
       </PatternLibraryLayout>
     )

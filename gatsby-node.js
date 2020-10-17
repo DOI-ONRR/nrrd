@@ -17,24 +17,89 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
-exports.onCreatePage = ({ page, actions }) => {
-  const { createPage, deletePage } = actions
-  deletePage(page)
-  // You can access the variable "house" in your page queries now
-  createPage({
-    ...page,
-    context: {
-      ...page.context,
-      house: `Gryffindor`,
-    },
+exports.createPages = ({ graphql, reporter, actions }) => {
+  const { createRedirect, createPage } = actions
+
+  return Promise.all([
+    createRedirects({ graphql, reporter, createRedirect }),
+    createComponentsCache({ graphql, reporter }),
+    createPatternLibraryPages({ graphql, createPage, reporter })
+  ])
+}
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: 'empty'
+    }
   })
 }
 
-exports.createPages = ({ graphql, reporter, actions }) => {
-  const { createRedirect } = actions
+// Create redirects from Redirect.mdx frontmatter
+const createPatternLibraryPages = ({ graphql, createPage, reporter }) => {
+  console.info('creating pattern library pages')
 
-  // Create redirects from Redirect.mdx frontmatter
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
+    resolve(
+      graphql(`
+        query {
+          allComponentMetadata(sort: {fields: displayName, order: ASC}) {
+            nodes {
+              displayName
+              description {
+                childMdx {
+                  body
+                }
+              }
+              childrenComponentProp {
+                name
+                docblock
+                required
+                parentType {
+                  name
+                }
+                type {
+                  value
+                }
+                defaultValue {
+                  value
+                  computed
+                }
+              }
+              parent {
+                ... on File {
+                  relativePath
+                  absolutePath
+                }
+              }
+            }
+          }
+        }
+      `)
+    )
+  }).then(result => {
+    if (result.errors) {
+      reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
+    }
+    else {
+      result.data.allComponentMetadata.nodes.filter(node => !node.displayName.includes('Demos')).forEach((node, i) => {
+        createPage({
+          path: `/patterns/components/${ node.displayName }`,
+          component: path.resolve('./src/templates/pattern-library-component.js'),
+          context: {
+            componentMetadata: node
+          },
+        })
+      })
+    }
+  })
+}
+
+// Create redirects from Redirect.mdx frontmatter
+const createRedirects = ({ graphql, reporter, createRedirect }) => {
+  console.info('creating redirects')
+
+  return new Promise((resolve, reject) => {
     resolve(
       graphql(`
         query redirects {
@@ -65,18 +130,6 @@ exports.createPages = ({ graphql, reporter, actions }) => {
           isPermanent: true
         })
       })
-    }
-  })
-
-  return Promise.all([
-    createComponentsCache({ graphql, reporter }),
-  ])
-}
-
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    node: {
-      fs: 'empty'
     }
   })
 }
@@ -138,7 +191,7 @@ const createComponentsCache = ({ graphql, reporter }) => {
           reporter.panicOnBuild('🚨  ERROR: Loading "Create Components Cache" query', result.errors)
 	        }
 	        else {
-          const allComponents = result.data.allComponentMetadata.nodes.map(
+          const allComponents = result.data.allComponentMetadata.nodes.filter(node => (!node.displayName.includes('Demos'))).map(
             (node, i) =>
               Object.assign({}, node, {
                 filePath: node.parent.absolutePath,
@@ -150,6 +203,17 @@ const createComponentsCache = ({ graphql, reporter }) => {
               filePath: node.node.parent.absolutePath,
             })
           )
+          const exportAllFileContents =
+              allComponents
+                .reduce((accumulator, { displayName, filePath }) => {
+                  if (filePath.search('components/images/index.js') < 0) {
+                    accumulator.push(
+                      `export * from "${ filePath }"`
+                    )
+                  }
+                  return accumulator
+                }, [])
+                .join('\n') + '\n'
 
           let exportFileContents =
               allComponents
@@ -183,7 +247,10 @@ const createComponentsCache = ({ graphql, reporter }) => {
             path.join(appRootDir, '.cache/components.js'),
             exportFileContents
           )
-          resolve()
+          fs.writeFileSync(
+            path.join(appRootDir, '.cache/components-all.js'),
+            exportAllFileContents
+          )
 	        }
 	      })
 	    )
