@@ -39,10 +39,9 @@ const DesignSection = ({ item }) => {
     <>
       <Typography variant="h2">Usage</Typography>
       <MDXRenderer>{item.description.childMdx.body}</MDXRenderer>
-      {demos ?
-        demos.map((demo, i) => <CodeBlock key={`code-block-${ i }`} live={true}>{demo.code}</CodeBlock>)
-        :
-        <div>No demos created for this component.</div>
+      {demos
+        ? demos.map((demo, i) => <CodeBlock key={`code-block-${ i }`} live={true}>{demo.code}</CodeBlock>)
+        : <div>No demos created for this component.</div>
       }
     </>
   )
