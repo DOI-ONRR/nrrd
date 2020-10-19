@@ -28,6 +28,7 @@ module.exports = {
       outputDirectory: './test-results'
     }]
   ],
+
  globalSetup:  process.env.PUPPETEER === 'true' ? './puppeteer-setup.js' : '',
  globalTeardown:  process.env.PUPPETEER === 'true' ? './puppeteer-teardown.js' : '',
  testEnvironment:  process.env.PUPPETEER === 'true' ? './puppeteer-environment.js' : '',
