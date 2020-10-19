@@ -1,13 +1,13 @@
 const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
-const activeEnv = (process.env.CIRCLE_BRANCH === 'master') ? 'production' : 'development'
+const activeEnv = (process.env.CIRCLE_BRANCH === 'master') ? 'prd' : 'dev'
 require('dotenv').config({
   path: `.env.${ activeEnv }`
 })
 
-const GOOGLE_ANALYTICS_ID = (activeEnv === 'production') ? process.env.GOOGLE_ANALYTICS_ID : ''
-const GTM_ID = (activeEnv === 'production' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : ''
+const GOOGLE_ANALYTICS_ID = (activeEnv === 'prd') ? process.env.GOOGLE_ANALYTICS_ID : ''
+const GTM_ID = (activeEnv === 'prd' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : ''
 // eslint-disable-next-line max-len
 const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
 
@@ -125,7 +125,7 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            uri: process.env.HASURA_URI,
+            uri: process.env.GATSBY_HASURA_URI,
             headers: {},
             fetch,
             resolvers: {}
