@@ -383,7 +383,7 @@ const DetailCards = props => {
       location_name: 'Nationwide Federal',
       region_type: '',
       county: '',
-      label: 'Add Nationwide Federal card'
+      label: 'Add Nationwide Federal'
     },
     {
       fips_code: 'NA',
@@ -392,7 +392,7 @@ const DetailCards = props => {
       location_name: 'Native American',
       region_type: '',
       county: '',
-      label: 'Add Native American card'
+      label: 'Add Native American'
     }
   ]
 
@@ -471,7 +471,7 @@ const DetailCards = props => {
         })
         }
 
-        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
+        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title={cards.length === 0 ? 'Add a location' : 'Add another location'} onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
       </Box>
     </>
   )
