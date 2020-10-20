@@ -58,7 +58,14 @@ export const DidYouKnowCardDemos = [
   },
   {
     title: 'Content sized to width of parent',
-    code: '<Box width="200px"><DidYouKnowCard>Content for did you know<CollapsibleContent>Colapsible content area</CollapsibleContent></DidYouKnowCard></Box>',
+    code: `<Box width="200px">
+  <DidYouKnowCard>
+    Content for did you know
+    <CollapsibleContent>
+      Collapsible content area
+    </CollapsibleContent>
+  </DidYouKnowCard>
+</Box>`,
     notes: 'By using the Box component you can apply styling such as width.'
   }
 ]
