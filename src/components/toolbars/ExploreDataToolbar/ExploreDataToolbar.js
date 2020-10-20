@@ -202,7 +202,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
             selected={locationTabOpen}
             onChange={toggleLocationToolbar}>
             <LocationOnIcon className={classes.toolbarIcon} />
-            <span>Add state or county</span>
+            <span>Add a location</span>
           </FilterToggleInput>
           <FilterToggleInput
             value="open"

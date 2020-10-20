@@ -471,7 +471,7 @@ const DetailCards = props => {
         })
         }
 
-        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title={cards.length === 0 ? 'Add a location' : 'Add another location'} onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
+        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title={'Add a location'} onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
       </Box>
     </>
   )
