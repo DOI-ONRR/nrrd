@@ -240,16 +240,16 @@ const QueryTableToolbar = ({ label, ...props }) => {
         </Box>
         <Box mr={2}>
           {state[DATA_TYPE] === REVENUE &&
-            <Link href={'./downloads/#Revenue'} linkType='DownloadData'>Source file and documentation</Link>
+            <Link href={'/downloads/#Revenue'} linkType='DownloadData'>Source file and documentation</Link>
           }
           {state[DATA_TYPE] === PRODUCTION &&
-            <Link href={'./downloads/#Production'} linkType='DownloadData'>Source file and documentation</Link>
+            <Link href={'/downloads/#Production'} linkType='DownloadData'>Source file and documentation</Link>
           }
           {state[DATA_TYPE] === DISBURSEMENT &&
-            <Link href={'./downloads/#Disbursements'} linkType='DownloadData'>Source file and documentation</Link>
+            <Link href={'/downloads/#Disbursements'} linkType='DownloadData'>Source file and documentation</Link>
           }
           {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
-            <Link href={'./downloads/federal-revenue-by-company/'} linkType='DownloadData'>Source file and documentation</Link>
+            <Link href={'/downloads/federal-revenue-by-company/'} linkType='DownloadData'>Source file and documentation</Link>
           }
         </Box>
       </BaseToolbar>

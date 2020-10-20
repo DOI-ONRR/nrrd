@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect, useRef, useContext } from 'react'
 
 import {
   animateScroll as scroll,
@@ -18,6 +18,8 @@ import {
   Paper
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+
+import { DataFilterContext } from '../../../stores/data-filter-store'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -61,13 +63,18 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // Page ScrollTo
-const PageSubMenu = ({ menuItems, ...props }) => {
+const PageSubMenu = ({ children, menuItems, ...props }) => {
   const classes = useStyles()
+
+  const { state: filterState } = useContext(DataFilterContext)
+  const subMenuRef = useRef(null)
 
   // eslint-disable-next-line no-unused-vars
   const [subMenu, setSubMenu] = useState({
     scrollOffset: parseInt(props.scrollOffset) || -150,
     items: menuItems || [],
+    activeItems: [],
+    anchorItems: menuItems.map(item => utils.formatToSlug(item)),
     mobileActive: false
   })
 
@@ -121,35 +128,52 @@ const PageSubMenu = ({ menuItems, ...props }) => {
     })
   }
 
+  useEffect(() => {
+    const activeItems = []
+    setTimeout(() => {
+      subMenu.anchorItems.forEach((item, index) => {
+        if (subMenuRef.current.children && subMenuRef.current.children[item]) {
+          activeItems.push(item)
+          setSubMenu({ ...subMenu, activeItems: activeItems })
+        }
+      })
+    }, 5000)
+  }, [filterState])
+
   return (
-    <Box className={classes.root}>
-      <StickyWrapper enabled={true} top={120} bottomBoundary={0} innerZ="1000" activeClass="sticky">
-        <Paper elevation={1} square>
-          <Container maxWidth="lg">
-            <MenuList id="page-scrollto-subnav">
-              <MenuItem key={0}>
-                <a className={classes.subMenuLink} title="Top" onClick={scrollToTop}>
+    <>
+      <Box className={classes.root}>
+        <StickyWrapper enabled={true} top={120} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+          <Paper elevation={1} square>
+            <Container maxWidth="lg">
+              <MenuList id="page-scrollto-subnav">
+                <MenuItem key={0}>
+                  <a className={classes.subMenuLink} title="Top" onClick={scrollToTop}>
                   Top
-                </a>
-              </MenuItem>
-              { subMenu.items &&
-                subMenu.items.map((item, i) =>
+                  </a>
+                </MenuItem>
+                { subMenu.activeItems &&
+                subMenu.activeItems.map((item, i) =>
                   <MenuItem key={i + 1}>
                     <a
                       href={`#${ utils.formatToSlug(item) }`}
                       onClick={() => scrollTo(utils.formatToSlug(item))}
                       className={classes.subMenuLink}
                       title={item}>
-                      {item}
+                      {menuItems[i]}
                     </a>
                   </MenuItem>
                 )
-              }
-            </MenuList>
-          </Container>
-        </Paper>
-      </StickyWrapper>
-    </Box>
+                }
+              </MenuList>
+            </Container>
+          </Paper>
+        </StickyWrapper>
+      </Box>
+      <Box ref={subMenuRef}>
+        {children}
+      </Box>
+    </>
   )
 }
 
