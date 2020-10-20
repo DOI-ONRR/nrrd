@@ -30,6 +30,7 @@
     "currency-formatter": "^1.5.5",
     "d3": "^5.16.0",
     "d3-interpolate": "^1.4.0",
+    "dotenv": "^8.2.0",
     "elasticlunr": "^0.9.5",
     "eslint-plugin-flowtype": "^2.0",
     "etl": "^0.6.12",
