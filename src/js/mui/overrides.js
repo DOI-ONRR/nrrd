@@ -83,9 +83,7 @@ export default Object.freeze({
       '&$selected': {
         color: 'white',
         backgroundColor: `${ links.default }`,
-        '@media screen and (-ms-high-contrast: active)': {
-          outline: '2px solid transparent'
-        }
+        outline: '2px solid transparent',
       },
     },
     label: {
