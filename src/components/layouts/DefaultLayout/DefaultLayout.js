@@ -23,8 +23,6 @@ import PageToc from '../../navigation/PageToc'
 
 import AppToolbar from '../../toolbars/AppToolbar'
 
-import SEO from '../../seo'
-
 const useStyles = makeStyles(theme => (
   {
     '@global': {
@@ -124,7 +122,6 @@ const DefaultLayout = ({ includeToc, children }) => {
       <InfoBanner />
       <BrowserBanner />
       <AppToolbar />
-      {/* <Header /> */}
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>
         <ErrorMessage />

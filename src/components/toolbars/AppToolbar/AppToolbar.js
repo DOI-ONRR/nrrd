@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
   AppBar,
-  Hidden
+  Button,
+  Hidden,
+  Menu,
+  MenuItem
 } from '@material-ui/core'
 
 import {
@@ -80,12 +83,24 @@ const useStyles = makeStyles(theme => ({
     },
   },
   mainMenuWrap: {
+    display: 'inherit',
     '& a:nth-child(3)': {
       paddingRight: theme.spacing(1.5),
     },
     '& a:last-child': {
       borderLeft: '1px solid white',
       paddingLeft: theme.spacing(4),
+    }
+  },
+  mobileMainMenu: {
+    '& button': {
+      color: theme.palette.common.white,
+      padding: 0,
+      minWidth: 'inherit',
+      top: -2.5,
+    },
+    '& ul li a': {
+      color: theme.palette.links.default
     }
   }
 }))
@@ -108,12 +123,22 @@ const AppToolbar = props => {
               <Link href='/how-revenue-works' linkType='Header' style={{ color: 'white' }}>How revenue works</Link>
             </div>
           </Hidden>
-          <Hidden mdDown>
+          <Hidden lgUp smDown>
+            <div className={classes.mainMenuWrap}>
+              <DataMenu label="Data">
+                <Link href='/explore' linkType='Header' style={{ marginLeft: 0 }}>Explore data</Link>
+                <Link href='/query-data' linkType='Header' style={{ marginLeft: 0 }}>Query data</Link>
+                <Link href='/downloads' linkType='Header' style={{ marginLeft: 0 }}>Download data</Link>
+              </DataMenu>
+              <Link href='/how-revenue-works' linkType='Header' style={{ color: 'white' }}>How revenue works</Link>
+            </div>
+          </Hidden>
+          <Hidden smDown>
             <div>
               <SearchSite />
             </div>
           </Hidden>
-          <Hidden lgUp>
+          <Hidden mdUp>
             <MobileMenu>
               <Link href='/explore' linkType='Header'>Explore data</Link>
               <Link href='/query-data' linkType='Header'>Query data</Link>
@@ -132,3 +157,39 @@ const AppToolbar = props => {
 }
 
 export default AppToolbar
+
+const DataMenu = ({ children, label, ...props }) => {
+  const classes = useStyles()
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  return (
+    <div className={classes.mobileMainMenu}>
+      <Button aria-controls="mobile-main-menu" aria-haspopup="true" onClick={handleClick}>
+        {label}
+      </Button>
+      <Menu
+        id="mobile-main-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        {...props}
+      >
+        {
+          children.map(child =>
+            <MenuItem onClick={handleClose}>{child}</MenuItem>
+          )
+        }
+      </Menu>
+    </div>
+  )
+}
+
