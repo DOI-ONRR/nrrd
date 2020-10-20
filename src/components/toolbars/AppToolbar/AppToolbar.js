@@ -192,4 +192,3 @@ const DataMenu = ({ children, label, ...props }) => {
     </div>
   )
 }
-
