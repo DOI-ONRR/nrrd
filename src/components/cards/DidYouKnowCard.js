@@ -20,9 +20,10 @@ const useStyles = makeStyles(theme => ({
  *
  */
 const DidYouKnowCard = ({ children, title = 'Did you know?' }) => {
-  console.log(children)
   const theme = useTheme()
   const classes = useStyles(theme)
+
+  console.log(theme.palette.info.dark)
 
   return (
     <Box>
@@ -43,6 +44,21 @@ export default DidYouKnowCard
 export const DidYouKnowCardDemos = [
   {
     title: 'Content only',
-    code: '<DidYouKnowCard>Content for did you knowe</DidYouKnowCard>'
+    code: '<DidYouKnowCard>Content for did you know</DidYouKnowCard>'
+  },
+  {
+    title: 'Change title',
+    code: '<DidYouKnowCard title={"New Title Used"}>Content for did you know</DidYouKnowCard>',
+    notes: 'You can specify a property called title to change the title'
+  },
+  {
+    title: 'Collapsible Content',
+    code: '<DidYouKnowCard>Content for did you know<CollapsibleContent>Colapsible content area</CollapsibleContent></DidYouKnowCard>',
+    notes: 'You can use any content including other components'
+  },
+  {
+    title: 'Content sized to width of parent',
+    code: '<Box width="200px"><DidYouKnowCard>Content for did you know<CollapsibleContent>Colapsible content area</CollapsibleContent></DidYouKnowCard></Box>',
+    notes: 'By using the Box component you can apply styling such as width.'
   }
 ]

@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, Link } from 'gatsby'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { fade, makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import ToggleButton from '@material-ui/lab/ToggleButton'
@@ -25,7 +24,13 @@ const useStyles = makeStyles(theme => ({
   title: {
     color: 'white',
     margin: 0,
-    marginRight: theme.spacing(10)
+    marginRight: theme.spacing(10),
+  },
+  links: {
+    '&  a': {
+      color: 'inherit',
+      textDecoration: 'none'
+    }
   },
   search: {
     position: 'relative',
@@ -155,13 +160,14 @@ const overrides = {
   },
   MuiToggleButton: {
     root: {
-      color: 'black',
+      color: 'rgba(0, 0, 0,  0.75)',
       border: 'none',
       borderRadius: '0px',
       height: '48px',
       textTransform: 'none',
       '&$selected': {
-        backgroundColor: 'rgba(255, 255, 255, 0.50)'
+        color: 'black',
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
       }
     },
   }
@@ -171,8 +177,22 @@ const theme = createMuiTheme({ palette, typography, overrides })
 
 const PatternLibraryLayout = ({ path, children }) => {
   const [componentsAnchorEl, setComponentsAnchorEl] = React.useState(null)
-  const handleComponentsClick = event => setComponentsAnchorEl(event.currentTarget)
-  const handleComponentsClose = () => setComponentsAnchorEl(null)
+  const handleComponentsClick = event => {
+    setComponentsAnchorEl(event.currentTarget)
+    setCurrentPath(event.currentTarget.value)
+  }
+  const handleVisualStylesClick = event => {
+    setComponentsAnchorEl(null)
+    setCurrentPath(event.currentTarget.value)
+  }
+  const handleComponentItemClick = () => {
+    setComponentsAnchorEl(null)
+    setCurrentPath('components')
+  }
+  const handleComponentsClose = () => {
+    setComponentsAnchorEl(null)
+    setCurrentPath(getCurrentPath())
+  }
 
   const classes = useStyles(theme)
   const data = useStaticQuery(graphql`
@@ -194,10 +214,10 @@ const PatternLibraryLayout = ({ path, children }) => {
     }
     return undefined
   }
-  const [currentPath] = React.useState(getCurrentPath())
+  const [currentPath, setCurrentPath] = React.useState(getCurrentPath())
 
   const pageTitle = 'NRRD Pattern Library'
-  console.log(data.allComponentMetadata)
+  console.log(currentPath)
 
   return (
     <>
@@ -205,11 +225,11 @@ const PatternLibraryLayout = ({ path, children }) => {
         <CssBaseline />
         <AppBar position="static" color='default'>
           <Toolbar variant="dense">
-            <Typography variant="h1" className={classes.title}>
-              <Link href='/patterns' color="inherit" underline='none'>{pageTitle}</Link>
+            <Typography variant="h1" className={`${ classes.title } ${ classes.links }`}>
+              <Link to='/patterns'>{pageTitle}</Link>
             </Typography>
             <ToggleButtonGroup value={currentPath} aria-label="button group for visual and component pages">
-              <ToggleButton value='visual'><Link href='/patterns/visual-styles' color="inherit" underline='none'>Visual Styles</Link></ToggleButton>
+              <ToggleButton value='visual' className={classes.links} onClick={handleVisualStylesClick}><Link to='/patterns/visual-styles'>Visual Styles</Link></ToggleButton>
               <ToggleButton value='components' onClick={handleComponentsClick}>Components</ToggleButton>
               <Menu
                 id="simple-menu"
@@ -218,9 +238,14 @@ const PatternLibraryLayout = ({ path, children }) => {
                 open={Boolean(componentsAnchorEl)}
                 onClose={handleComponentsClose}
               >
-                <MenuItem onClick={handleComponentsClose}>Profile</MenuItem>
-                <MenuItem onClick={handleComponentsClose}>My account</MenuItem>
-                <MenuItem onClick={handleComponentsClose}>Logout</MenuItem>
+                {data &&
+                  data.allComponentMetadata.nodes.map(item =>
+                    <MenuItem onClick={handleComponentItemClick} className={classes.links}>
+                      <Link to={`/patterns/components/${ item.displayName }`}>
+                        {item.displayName}
+                      </Link>
+                    </MenuItem>)
+                }
               </Menu>
             </ToggleButtonGroup>
             <div className={classes.grow} />
