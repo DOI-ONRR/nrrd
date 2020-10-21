@@ -63,11 +63,11 @@ exports.createPages = ({ graphql, reporter, actions }) => {
       stateRedirects.forEach(state => {
         console.log({
           fromPath: PATH_PREFIX ? `${ PATH_PREFIX }/explore/${ state }/` : `/explore/${ state }/`,
-          toPath: PATH_PREFIX ? `${ PATH_PREFIX }/explore?location=${ state.toUpperCase() }` : `/explore?location=${ state.toUpperCase() }`,
+          toPath: PATH_PREFIX ? `${ PATH_PREFIX }/explore/?location=${ state.toUpperCase() }` : `/explore?location=${ state.toUpperCase() }`,
         })
         createRedirect({
           fromPath: PATH_PREFIX ? `${ PATH_PREFIX }/explore/${ state }/` : `/explore/${ state }/`,
-          toPath: PATH_PREFIX ? `${ PATH_PREFIX }/explore?location=${ state.toUpperCase() }` : `/explore?location=${ state.toUpperCase() }`,
+          toPath: PATH_PREFIX ? `${ PATH_PREFIX }/explore/?location=${ state.toUpperCase() }` : `/explore/?location=${ state.toUpperCase() }`,
           redirectInBrowser: true,
           isPermanent: true
         })
