@@ -26,14 +26,17 @@ const GUTTER_SIZE = 15
 const useStyles = makeStyles(theme => ({
   root: {
     '& label': {
-      width: '15ch',
+      width: 'auto',
       textOverflow: 'ellipsis',
       overflow: 'hidden',
       whiteSpace: 'nowrap',
+      fontSize: '15px',
+      marginTop: 4,
     },
     '& label.Mui-focused': {
       width: 'auto',
-    }
+      marginTop: 0,
+    },
   },
   autoCompleteRoot: {
     color: theme.palette.primary.dark,
