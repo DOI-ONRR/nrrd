@@ -2,8 +2,8 @@ const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
 const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
-const GTM_ID = (process.env.CIRCLE_BRANCH === 'master' || process.env.CIRCLE_BRANCH === 'dev' ) ? 'GTM-NCRF98R' : ''
-const PATH_PREFIX = (process.env.CIRCLE_BRANCH === 'master' || process.env.CIRCLE_BRANCH === 'dev' ) ? undefined : `/sites/${ process.env.CIRCLE_BRANCH }`
+const GTM_ID = (process.env.CIRCLE_BRANCH === 'master' || process.env.CIRCLE_BRANCH === 'dev') ? 'GTM-NCRF98R' : ''
+const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
 
 const config = {
   pathPrefix: PATH_PREFIX,
