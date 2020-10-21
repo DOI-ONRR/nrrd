@@ -19,6 +19,9 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'underline',
     '&:hover': {
       textDecoration: 'none',
+    },
+    '& svg': {
+      fill: theme.palette.text.secondary,
     }
   },
   headerLink: {
