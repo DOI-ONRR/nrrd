@@ -1,8 +1,14 @@
 const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
-const GOOGLE_ANALYTICS_ID = (process.env.CIRCLE_BRANCH === 'master') ? 'UA-33523145-1' : ''
-const GTM_ID = (process.env.CIRCLE_BRANCH === 'master' || process.env.CIRCLE_BRANCH === 'dev') ? 'GTM-NCRF98R' : ''
+const activeEnv = (process.env.CIRCLE_BRANCH === 'master') ? 'prd' : 'dev'
+require('dotenv').config({
+  path: `.env.${ activeEnv }`
+})
+
+const GOOGLE_ANALYTICS_ID = (activeEnv === 'prd') ? process.env.GOOGLE_ANALYTICS_ID : ''
+const GTM_ID = (activeEnv === 'prd' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : ''
+// eslint-disable-next-line max-len
 const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
 
 const config = {
@@ -119,10 +125,7 @@ const config = {
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
-            uri: 'https://hasura-onrr.app.cloud.gov/v1/graphql',
-            // uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
-            // uri: 'https://hasura-nrrd-a.app.cloud.gov/v1/graphql',
-            // uri: 'https://hasura-nrrd-b.app.cloud.gov/v1/graphql',
+            uri: process.env.GATSBY_HASURA_URI,
             headers: {},
             fetch,
             resolvers: {}

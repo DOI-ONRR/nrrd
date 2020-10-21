@@ -20,6 +20,8 @@ import {
   TableCell
 } from '@material-ui/core'
 
+import { useTheme } from '@material-ui/core/styles'
+
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils'
@@ -40,6 +42,7 @@ const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
 `
 
 const RevenueByCompany = props => {
+  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
@@ -155,6 +158,15 @@ const RevenueByCompany = props => {
                         yOrderBy={yOrderBy}
                         horizontal
                         legendReverse={true}
+                        colorRange={[
+                          theme.palette.explore[700],
+                          theme.palette.explore[600],
+                          theme.palette.explore[500],
+                          theme.palette.explore[400],
+                          theme.palette.explore[300],
+                          theme.palette.explore[200],
+                          theme.palette.explore[100]
+                        ]}
                       />
                     </TableCell>
                   </TableRow>

@@ -12,7 +12,6 @@ import ContactUs from '../../content-partials/ContactUs'
 import SEO from '../../seo'
 
 const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
-  console.log('PageLayoutManager pageContext: ', pageContext)
   if (location.pathname === '/offline-plugin-app-shell-fallback/') return null
 
   const layout = pageContext.frontmatter && pageContext.frontmatter.layout
