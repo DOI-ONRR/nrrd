@@ -4,8 +4,6 @@ const appRootDir = require('app-root-dir').get()
 const to = require('to-case')
 
 const { createFilePath } = require('gatsby-source-filesystem')
-const config = require('./gatsby-config')
-const pathPrefix = config.pathPrefix || ''
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -62,8 +60,8 @@ exports.createPages = ({ graphql, reporter, actions }) => {
       // explore state redirects
       stateRedirects.forEach(state => {
         createRedirect({
-          fromPath: `${ pathPrefix }/explore/${ state }/`,
-          toPath: `${ pathPrefix }/explore?location=${ state.toUpperCase() }`,
+          fromPath: `/explore/${ state }/`,
+          toPath: `/explore?location=${ state.toUpperCase() }`,
           redirectInBrowser: true,
           isPermanent: true
         })

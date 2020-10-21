@@ -22,5 +22,11 @@ export default ({ alt, ...rest }) => {
       }
     }
   `)
-  return <Img fluid={data.imageSharp.fluid} alt={alt || 'Department of the Interior'} {...rest} />
+  return (
+    <>
+      {data.imageSharp.fluid &&
+        <Img fluid={data.imageSharp.fluid} alt={alt || 'Department of the Interior'} {...rest} />
+      }
+    </>
+  )
 }
