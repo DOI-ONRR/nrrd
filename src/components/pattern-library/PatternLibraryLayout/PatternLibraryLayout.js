@@ -240,7 +240,7 @@ const PatternLibraryLayout = ({ path, children }) => {
               >
                 {data &&
                   data.allComponentMetadata.nodes.map(item =>
-                    <MenuItem onClick={handleComponentItemClick} className={classes.links}>
+                    <MenuItem key={item.displayName} onClick={handleComponentItemClick} className={classes.links}>
                       <Link to={`/patterns/components/${ item.displayName }`}>
                         {item.displayName}
                       </Link>

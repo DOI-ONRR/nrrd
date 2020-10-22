@@ -4,12 +4,11 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import { mdx } from '@mdx-js/react'
 import * as CustomComponents from '../../../../.cache/components'
 import * as MaterialUI from '@material-ui/core'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles, useTheme, ThemeProvider } from '@material-ui/core/styles'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 
 // Using the theme from the main app for the Live Preview
-import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../../../js/mui/theme'
 
 const useStyles = makeStyles(theme => ({
