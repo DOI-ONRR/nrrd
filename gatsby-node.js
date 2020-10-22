@@ -5,8 +5,6 @@ const to = require('to-case')
 
 const { createFilePath } = require('gatsby-source-filesystem')
 
-const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
-
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === 'Mdx' && node.frontmatter.title) {
@@ -61,13 +59,9 @@ exports.createPages = ({ graphql, reporter, actions }) => {
 
       // explore state redirects
       stateRedirects.forEach(state => {
-        console.log({
-          fromPath: PATH_PREFIX ? `${ PATH_PREFIX }/explore/${ state }/` : `/explore/${ state }/`,
-          toPath: PATH_PREFIX ? `${ PATH_PREFIX }/explore/?location=${ state.toUpperCase() }` : `/explore?location=${ state.toUpperCase() }`,
-        })
         createRedirect({
-          fromPath: PATH_PREFIX ? `${ PATH_PREFIX }/explore/${ state }/` : `/explore/${ state }/`,
-          toPath: PATH_PREFIX ? `${ PATH_PREFIX }/explore/?location=${ state.toUpperCase() }` : `/explore/?location=${ state.toUpperCase() }`,
+          fromPath: `/explore/${ state }/`,
+          toPath: `/explore/?location=${ state.toUpperCase() }`,
           redirectInBrowser: true,
           isPermanent: true
         })
