@@ -10,6 +10,10 @@ module.exports = Object.freeze({
     primary: '#000000',
     secondary: '#1478a6'
   },
+  header: {
+    primary: '#062135',
+    secondary: '#0A314D'
+  },
   chart: {
     primary: '#222222',
     secondary: '#43646F',
