@@ -89,7 +89,7 @@ const useStyles = makeStyles(theme => (
     mainColumn: {
       paddingTop: theme.spacing(3),
       paddingBottom: theme.spacing(3),
-    }
+    },
   })
 )
 

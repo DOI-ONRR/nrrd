@@ -20,9 +20,9 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       textDecoration: 'none',
     },
-    '& + .footerLink': {
-      color: 'deeppink',
-    },
+    '& svg': {
+      fill: theme.palette.text.secondary,
+    }
   },
   headerLink: {
     color: theme.typography.body2.color,
@@ -66,7 +66,7 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
   const pathPrefix = withPrefix('/').slice(0, -1)
 
   const isRelative = (url.charAt(0) !== '#' && !url.includes('http') && !url.includes('mailto'))
-  if (url.includes(pathPrefix)) {
+  if (url.includes(pathPrefix) && !disableRouting) {
     url = url.replace(pathPrefix, '')
   }
 
