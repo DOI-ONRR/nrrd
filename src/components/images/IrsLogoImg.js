@@ -22,9 +22,12 @@ export default ({ alt, ...rest }) => {
       }
     }
   `)
+  if (data.imageSharp === null) {
+    console.warn('data: ', data)
+  }
   return (
     <>
-      {data.imageSharp.fluid &&
+      {data.imageSharp &&
         <Img fluid={data.imageSharp.fluid} alt={alt || 'Internal Revenue Service'} {...rest} />
       }
     </>

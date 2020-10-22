@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { useQuery } from '@apollo/react-hooks'
