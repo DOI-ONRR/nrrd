@@ -85,6 +85,9 @@ const useStyles = makeStyles(theme => ({
   sliderRail: {
     height: 4,
     backgroundColor: theme.palette.grey['500'],
+    '@media screen and (-ms-high-contrast: active)': {
+      border: '1px solid currentColor'
+    }
   },
   sliderMark: {
     height: 4,
@@ -127,8 +130,11 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 4,
       textAlign: 'center',
       color: `${ theme.palette.common.white } !important`,
-      backgroundColor: theme.palette.links.default,
+      backgroundColor: theme.palette.links.default
     },
+    '& > span:first-child': {
+      border: `1px solid ${ theme.palette.links.default }`,
+    }
   },
   sliderYearDisplay: {
     color: theme.palette.grey[900],
