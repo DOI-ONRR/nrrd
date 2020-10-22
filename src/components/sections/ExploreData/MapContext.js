@@ -106,7 +106,7 @@ const useStyles = makeStyles(theme => ({
       alignItems: 'flex-end',
       background: 'transparent',
       left: 0,
-      top: 0,
+      top: -25,
       overflowX: 'auto',
       height: 'auto',
       position: 'relative',
