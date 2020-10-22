@@ -511,6 +511,17 @@ export default class D3StackedBarChart {
 
       // append color blocks into tr first cell
       tr.append('td')
+        .append('svg')
+        .attr('width', 20)
+        .attr('height', 20)
+        .style('fill', (d, i) => {
+          if (colorRange) {
+            return colorRange[i]
+          }
+          else {
+            return secondaryColor
+          }
+        })
         .append('rect')
         .attr('class', 'legend-rect')
         .attr('width', 15)
@@ -521,6 +532,14 @@ export default class D3StackedBarChart {
           }
           else {
             return secondaryColor
+          }
+        })
+        .style('border', (d, i) => {
+          if (colorRange) {
+            return `1px solid ${ colorRange[i] }`
+          }
+          else {
+            return `1px solid ${ secondaryColor }`
           }
         })
         .style('opacity', (d, i) => {
