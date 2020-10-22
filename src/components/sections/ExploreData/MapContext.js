@@ -13,6 +13,7 @@ import {
   Container,
   Grid,
   Box,
+  Slide,
   Snackbar,
   useMediaQuery
 } from '@material-ui/core'
@@ -96,7 +97,6 @@ const useStyles = makeStyles(theme => ({
     right: 15,
     top: 10,
     height: 'auto',
-    // minHeight: 335,
     zIndex: 99,
     '@media (max-width: 768px)': {
       width: '100%',
@@ -110,7 +110,6 @@ const useStyles = makeStyles(theme => ({
       overflowX: 'auto',
       height: 'auto',
       position: 'relative',
-      // minHeight: 340,
     },
     '& > div': {
       cursor: 'pointer',
@@ -120,7 +119,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         boxSizing: 'border-box',
         minWidth: 285,
-        minHeight: 340,
+        minHeight: 380,
         marginBottom: theme.spacing(1),
       }
     },
@@ -623,7 +622,7 @@ const MapContext = props => {
       </Container>
       <Container maxWidth={false} style={{ padding: 0, position: 'relative', background: 'white', zIndex: 250 }}>
         { matchesSmDown &&
-          <>
+          <Slide direction="up" in={cards.length > 0} mountOnEnter unmountOnExit>
             <Grid item xs={12}>
               <Box className={classes.cardContainer}>
                 {cards.map((state, i) => {
@@ -643,7 +642,7 @@ const MapContext = props => {
                 })}
               </Box>
             </Grid>
-          </>
+          </Slide>
         }
       </Container>
       <Container>
