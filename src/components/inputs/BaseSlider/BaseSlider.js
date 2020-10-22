@@ -72,6 +72,9 @@ const useStyles = makeStyles(theme => ({
   sliderRail: {
     height: 4,
     backgroundColor: theme.palette.grey['500'],
+    '@media screen and (-ms-high-contrast: active)': {
+      border: `1px solid ${ theme.palette.grey['500'] }`
+    }
   },
   sliderMark: {
     height: 4,
@@ -197,13 +200,13 @@ const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restP
   const maxValue = (data && data.length > 0) ? data.slice(-1)[0].option : undefined
 
   const RangeValueIndexEven = ({ value }) => (
-    <div style={{ position: 'relative', top: '-10px', paddingTop: '2px', paddingBottom: '5px' }}>
+    <div style={{ position: 'relative', top: '-10px', paddingTop: '2px', paddingBottom: '5px', border: '1px solid currentColor' }}>
       {value}
     </div>
   )
 
   const RangeValueIndexOdd = ({ value }) => (
-    <div style={{ position: 'relative', top: '12px', paddingTop: '3px', paddingBottom: '4px' }}>
+    <div style={{ position: 'relative', top: '12px', paddingTop: '3px', paddingBottom: '4px', border: '1px solid currentColor' }}>
       {value}
     </div>
   )
