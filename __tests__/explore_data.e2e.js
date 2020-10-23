@@ -5,7 +5,7 @@ const FAILURE_THRESHOLD = process.env.FAILURE_THRESHOLD ? process.env.FAILURE_TH
 const HEADLESS =  process.env.HEADLESS === 'false' ? false : true
 
 const FAILURE_THRESHOLD_TYPE = process.env.FAILURE_THRESHOLD_TYPE ? process.env.FAILURE_THRESHOLD_TYPE : 'percent'
-const matchOptions={failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig
+const matchOptions={comparisonMethod: 'ssim', failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig
 
 const { toMatchImageSnapshot } = require('jest-image-snapshot')
 expect.extend({ toMatchImageSnapshot })
@@ -23,6 +23,7 @@ describe( 'Home Page Revenue: ', () => {
     afterAll(async () => {
 	await page.close()
     })
+    
 const ScreenshotTest = ( title, commands, target) => {
 	it(title, async () => {
 	    await page.setViewport({
