@@ -83,6 +83,7 @@ export default Object.freeze({
       '&$selected': {
         color: 'white',
         backgroundColor: `${ links.default }`,
+        outline: '2px solid transparent',
       },
     },
     label: {

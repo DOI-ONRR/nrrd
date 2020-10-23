@@ -83,7 +83,7 @@ import MapStateWISvg from '-!svg-react-loader!../../images/maps/states/WI.svg'
 import MapStateWVSvg from '-!svg-react-loader!../../images/maps/states/WV.svg'
 import MapStateWYSvg from '-!svg-react-loader!../../images/maps/states/WY.svg'
 
-export const FilterTableIconImg = props => <FilterTableIconSvg {...props} />
+export const FilterTableIconImg = props => <FilterTableIconSvg {...props} style={{ fill: 'currentColor' }} />
 
 export const HowWorksLinkIconImg = props => <HowWorksLinkIconSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} />
 export const HowMainIconOilImg = props => <HowMainIconOilSvg {...props} />
@@ -111,7 +111,7 @@ export const IconDownloadCsvImg = props => <IconDownloadCsvSvg style={{ vertical
 export const IconDownloadDataImg = props => <IconDownloadDataSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
 export const IconQuestionCircleImg = props => <IconQuestionCircleSvg style={{ width: '16px', height: '16px', marginLeft: '1.6px', fill: 'currentColor' }} {...props}/>
 export const IconUsMapImg = props => <IconUsMapSvg {...props} style={{ position: 'relative', top: 10, fill: 'currentColor' }} />
-export const IconExploreDataImg = props => <IconExploreDataSvg style={{ fill: '#1478a6' }} {...props} />
+export const IconExploreDataImg = props => <IconExploreDataSvg style={{ fill: 'currentColor' }} {...props} />
 
 export const MapStateallImg = props => <MapStateallSvg {...props} />
 export const MapStateAKImg = props => <MapStateAKSvg {...props} />
