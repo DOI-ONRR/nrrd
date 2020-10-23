@@ -127,7 +127,7 @@
     "format": "eslint --fix 'src/**'",
     "start": "npm run develop",
     "serve": "gatsby serve --prefix-paths",
-    "test": "jest",
+    "test": "jest --testPathIgnorePatterns=e2e",
     "test-update-snapshot": "jest --updateSnapshot --testPathPattern=src",
     "test-end-to-end": "PUPPETEER='true' jest --testPathPattern=e2e",
     "test-unit-tests": "jest --testPathPattern=src --runInBand",
