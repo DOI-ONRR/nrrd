@@ -4,7 +4,7 @@ const STEP = process.env.STEP ? process.env.STEP : 0
 const { toMatchImageSnapshot } = require('jest-image-snapshot')
 const FAILURE_THRESHOLD = process.env.FAILURE_THRESHOLD ? process.env.FAILURE_THRESHOLD : 2
 const FAILURE_THRESHOLD_TYPE = process.env.FAILURE_THRESHOLD_TYPE ? process.env.FAILURE_THRESHOLD_TYPE : 'percent'
-const matchOptions={failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig: {threshold: 0.1}}
+const matchOptions={comparisonMethod: 'ssim', allowSizeMismatch: true, failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig: {threshold: 0.1}}
 
 expect.extend({ toMatchImageSnapshot })
 const  tests  = require('./homepage.disbursements.json')

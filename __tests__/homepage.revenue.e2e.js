@@ -3,7 +3,7 @@ const URL = process.env.URL ? process.env.URL : 'https://dev-nrrd.app.cloud.gov'
 const STEP = process.env.STEP ? process.env.STEP : 0
 const FAILURE_THRESHOLD = process.env.FAILURE_THRESHOLD ? process.env.FAILURE_THRESHOLD : 2
 const FAILURE_THRESHOLD_TYPE = process.env.FAILURE_THRESHOLD_TYPE ? process.env.FAILURE_THRESHOLD_TYPE : 'percent'
-const matchOptions={failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig
+const matchOptions={comparisonMethod: 'ssim', allowSizeMismatch: true, failureThreshold: FAILURE_THRESHOLD, failureThresholdType: FAILURE_THRESHOLD_TYPE} //customDiffConfig
 const HEADLESS =  process.env.HEADLESS === 'false' ? false : true
 const { toMatchImageSnapshot } = require('jest-image-snapshot')
 expect.extend({ toMatchImageSnapshot })
