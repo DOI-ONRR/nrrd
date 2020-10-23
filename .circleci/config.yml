@@ -254,8 +254,11 @@ jobs:
             cf push dev-nrrd -f ./manifest.yml
       - run:
           name: Run end to end testing
-          command: npm test-end-to-end	    
-
+          command: npm run test-end-to-end	    
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./__tests__/__image_snapshots__/
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
