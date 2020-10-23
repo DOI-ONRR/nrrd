@@ -47,23 +47,13 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 290px)',
+    height: 'calc(100vh - 235px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
     zIndex: 1,
-    '& .mapContainer': {
-      position: 'fixed',
-      top: 105,
-    },
-    '& .legend-wrap': {
-      bottom: 132,
-      '@media (max-width: 768px)': {
-        transform: 'scale(0.9)',
-        left: -5,
-      },
-    },
+    border: '2px solid deeppink',
     '& .map-overlay': {
       left: '0',
       right: '0',
@@ -616,7 +606,6 @@ const MapContext = props => {
               </Box>
             </Grid>
           }
-
           <ExploreMoreDataButton />
         </Grid>
       </Container>

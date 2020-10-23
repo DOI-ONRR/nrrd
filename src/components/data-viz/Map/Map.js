@@ -18,22 +18,30 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: '100%',
     '& .mapContainer': {
-      height: 'calc(100vh - 105px)',
+      height: '100%',
       width: '100%',
     },
     '& .map': {
       height: '100%',
       width: '100%',
+      // position: 'fixed',
+      border: '2px solid purple',
     },
-    '& .legend-wrap': {
+    '& .legendWrap': {
       display: 'block',
       left: 5,
       width: 300,
       height: 50,
       zIndex: 10,
-      margin: '5px',
+      margin: 5,
       position: 'absolute',
       padding: theme.spacing(1),
+      background: theme.palette.common.white,
+      borderRadius: 4,
+      bottom: 10,
+      '@media and (max-width: 600px)': {
+        width: '100%',
+      },
       '& svg': {
         top: 0,
       },
@@ -50,12 +58,12 @@ const useStyles = makeStyles(theme => ({
  * @param {string} [mapJson="https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json"]  mapJson - url to get the topojson used in map.
  * @param {string} [mapFeatures=counties] mapFeatures - A switch to view county data or state data
  * @param {string[][]} mapData - a two dimenstional arrray of fips and data, maybe county or state fips
- * @param {string} [colorScheme=green] colorScheme current lets you modify color from red to blue green or gray ;
+ * @param {string} [colorScheme=green] colorScheme current lets you modify color from red to blue green or gray
  * @param {*} onClick function that determines what to do if area is clicked
  */
 
 const Map = props => {
-  // console.log('Map props: ', props)
+  console.log('Map props: ', props)
 
   const size = useWindowSize()
 
@@ -83,17 +91,18 @@ const Map = props => {
   const minColor = props.minColor
   const maxColor = props.maxColor
   const onZoom = props.onZoom || function () {
-    console.debug('Map   onZoom default')
+    console.debug('Map onZoom default')
   }
   const onZoomEnd = props.onZoomEnd || function () {
-    console.debug('Map   onZoomEnd default')
+    console.debug('Map onZoomEnd default')
   }
   const zoomIn = props.zoomIn || function () {
-    console.debug('Map   zoomIn default')
+    console.debug('Map zoomIn default')
   }
   const mapZoom = props.mapZoom
   const mapX = props.mapX
   const mapY = props.mapY
+
   const { mapData, ...options } = props
   let map
 
@@ -158,7 +167,7 @@ const Map = props => {
   return (
     <Box className={classes.root}>
       <div className='mapContainer' ref={elemRef}>
-        <div className='MuiPaper-root MuiPaper-rounded MuiPaper-elevation1 legend-wrap'></div>
+        <div className='legendWrap'></div>
         <div className='map'></div>
       </div>
     </Box>
