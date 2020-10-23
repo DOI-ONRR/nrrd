@@ -1,0 +1,109 @@
+[
+    {
+	"title": "Explore Data Fiscal Revenue Map",
+	"commands": [
+	    { "command" :  "click", "selector" : "#gatsby-focus-wrapper > div.MuiBox-root.jss127 > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-sm-8 > div:nth-child(2) > a:nth-child(1)" }
+    ],
+    "target" : "#main-content > div > div > div:nth-child(1) > div.MuiContainer-root > div > div:nth-child(1) > div.MuiBox-root > div.MuiBox-root > div"
+  },
+  {
+    "title" : "Explore Data Fiscal Revenue Nationwide Summary",
+    "commands" : [
+    ],
+    "target" : "#nationwide-revenue-summary"
+  },
+  {
+    "title" : "Explore Data Fiscal Revenue Top Locations",
+    "commands" : [
+    ],
+    "target" : "#top-nationwide-locations"
+  },
+  {
+    "title" : "Explore Data Fiscal Revenue Federal Card",
+    "commands" : [{ "command" :  "click", "selector" : "#compare-revenue > div:nth-child(2) > div > div > div > div.MuiCardActions-root.MuiCardActions-spacing > div > li:nth-child(1)" },
+		       { "command" :  "click", "selector" : "#compare-revenue > div:nth-child(2) > div > div > div > div.MuiCardActions-root.MuiCardActions-spacing > div > li:nth-child(2)" }
+		     ],
+    "target" : "#compare-revenue > div:nth-child(2) > div"
+  },
+  {
+    "title" : "Explore Data Fiscal Revenue Over Time",
+    "commands" : [],
+    "target" : "#revenue-over-time"
+  },
+
+  {
+    "title" : "Explore Data Calendar Revenue Over Time",
+    "commands" : [{ "command" :  "click", "selector" : "#period-select" },
+		      { "command" :  "click", "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(2)" }
+		     ],
+    "target" : "#revenue-over-time"
+  },
+  {
+
+    "title" : "Explore Data Calendar Revenue Federal Card",
+    "commands" : [],
+    "target" : "#compare-revenue > div:nth-child(2) > div"
+  },
+  {
+    "title" : "Explore Data Calendar Revenue Map",
+    "commands" : [],
+    "target" : "#main-content > div > div > div:nth-child(1) > div.MuiContainer-root > div > div:nth-child(1) > div.MuiBox-root > div.MuiBox-root > div"
+  },
+  {
+    "title" : "Explore Data Calendar Revenue Nationwide Summary",
+    "commands" : [
+    ],
+    "target" : "#nationwide-revenue-summary"
+  },
+  {
+    "title" : "Explore Data Calendar Revenue Top Locations",
+    "commands" : [
+    ],
+    "target" : "#top-nationwide-locations"
+  },
+  {
+    "title" : "Explore Data Calendar Revenue By company",
+    "commands" : [
+    ],
+    "target" : "#revenue-by-company"
+  },
+  {
+    "title" : "Explore Data Fiscal Disbursement Nationwide Summary",
+    "commands" : [{ "command" :  "click", "selector" : "#data-type-select" },
+		      { "command" :  "click", "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(2)" }
+    ],
+    "target" : "#nationwide-disbursements-summary"
+  },
+  {
+    "title" : "Explore Data Fiscal Disbursement Top Nationwide recipients",
+      "commands" : [   ],
+    "target" : "#top-nationwide-recipients"
+  },
+  {
+    "title" : "Explore Data Fiscal Disbursement Federal Cards",
+      "commands" : [   ],
+    "target" : "#compare-disbursements"
+ },
+ {
+    "title" : "Explore Data Fiscal Disbursement Over Time",
+      "commands" : [   ],
+    "target" : "#disbursements-over-time"
+ },
+{
+    "title" : "Explore Data Fiscal Production Top Nationwide Locations",
+    "commands" : [{ "command" :  "click", "selector" : "#data-type-select" },
+		  { "command" :  "click", "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(3)" }],
+    "target" : "#top-nationwide-locations"
+  },
+  {
+    "title" : "Explore Data Fiscal Production Federal Cards",
+      "commands" : [   ],
+    "target" : "#compare-production"
+ },
+ {
+    "title" : "Explore Data Fiscal Production Over Time",
+      "commands" : [   ],
+    "target" : "#production-over-time"
+  }
+    
+]
