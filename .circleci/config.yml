@@ -252,6 +252,9 @@ jobs:
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
             cf push dev-nrrd -f ./manifest.yml
+      - run:
+          name: Run end to end testing
+          command: npm test-end-to-end	    
 
   deploy:
     docker:
@@ -298,12 +301,6 @@ workflows:
             branches:
               ignore:
                 - dev
-                - master
-                - staging
-      - end_to_end_tests:
-          filters:
-            branches:
-              ignore:
                 - master
                 - staging
       - lint:
