@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
       top: 105,
     },
     '& .legend-wrap': {
-      bottom: 100,
+      bottom: 132,
       '@media (max-width: 768px)': {
         transform: 'scale(0.9)',
         left: -5,
