@@ -24,8 +24,6 @@ const useStyles = makeStyles(theme => ({
     '& .map': {
       height: '100%',
       width: '100%',
-      // position: 'fixed',
-      border: '2px solid purple',
     },
     '& .legendWrap': {
       display: 'block',

@@ -13,6 +13,7 @@ import {
   Container,
   Grid,
   Box,
+  Hidden,
   Slide,
   Snackbar,
   useMediaQuery
@@ -47,13 +48,12 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 235px)',
+    height: 'calc(100vh - 300px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
     zIndex: 1,
-    border: '2px solid deeppink',
     '& .map-overlay': {
       left: '0',
       right: '0',
@@ -606,7 +606,9 @@ const MapContext = props => {
               </Box>
             </Grid>
           }
-          <ExploreMoreDataButton />
+          <Hidden mdDown>
+            <ExploreMoreDataButton />
+          </Hidden>
         </Grid>
       </Container>
       <Container maxWidth={false} style={{ padding: 0, position: 'relative', background: 'white', zIndex: 250 }}>
