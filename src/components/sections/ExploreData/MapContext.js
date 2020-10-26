@@ -360,7 +360,7 @@ const MapContext = props => {
       location_name: 'Nationwide Federal',
       region_type: '',
       county: '',
-      label: 'Add Nationwide Federal card'
+      label: 'Add Nationwide Federal'
     },
     {
       fips_code: 'NA',
@@ -369,7 +369,7 @@ const MapContext = props => {
       location_name: 'Native American',
       region_type: '',
       county: '',
-      label: 'Add Native American card'
+      label: 'Add Native American'
     }
   ]
 

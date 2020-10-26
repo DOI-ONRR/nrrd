@@ -1,108 +1,110 @@
 ---
-redirects:
-# Explore data - state redirects
-- oldUrl: "/explore/AL/" 
-  newUrl: "/explore?location=AL"
-- oldUrl: "/explore/AK/" 
-  newUrl: "/explore?location=AK"
-- oldUrl: "/explore/AZ/" 
-  newUrl: "/explore?location=AZ"
-- oldUrl: "/explore/AR/" 
-  newUrl: "/explore?location=AR"
-- oldUrl: "/explore/CA/" 
-  newUrl: "/explore?location=CA"
-- oldUrl: "/explore/CO/" 
-  newUrl: "/explore?location=CO"
-- oldUrl: "/explore/CT/" 
-  newUrl: "/explore?location=CT"
-- oldUrl: "/explore/DE/" 
-  newUrl: "/explore?location=DE"
-- oldUrl: "/explore/FL/" 
-  newUrl: "/explore?location=FL"
-- oldUrl: "/explore/GA/" 
-  newUrl: "/explore?location=GA"
-- oldUrl: "/explore/HI/" 
-  newUrl: "/explore?location=HI"
-- oldUrl: "/explore/ID/" 
-  newUrl: "/explore?location=ID"
-- oldUrl: "/explore/IL/" 
-  newUrl: "/explore?location=IL"
-- oldUrl: "/explore/IN/" 
-  newUrl: "/explore?location=IN"
-- oldUrl: "/explore/IA/" 
-  newUrl: "/explore?location=IA"
-- oldUrl: "/explore/KS/" 
-  newUrl: "/explore?location=KS"
-- oldUrl: "/explore/KY/" 
-  newUrl: "/explore?location=KY"
-- oldUrl: "/explore/LA/" 
-  newUrl: "/explore?location=LA"
-- oldUrl: "/explore/MD/" 
-  newUrl: "/explore?location=MD"
-- oldUrl: "/explore/MA/" 
-  newUrl: "/explore?location=MA"
-- oldUrl: "/explore/MI/" 
-  newUrl: "/explore?location=MI"
-- oldUrl: "/explore/ME/" 
-  newUrl: "/explore?location=ME"
-- oldUrl: "/explore/MN/" 
-  newUrl: "/explore?location=MN"
-- oldUrl: "/explore/MS/" 
-  newUrl: "/explore?location=MS"
-- oldUrl: "/explore/MO/" 
-  newUrl: "/explore?location=MO"
-- oldUrl: "/explore/MT/" 
-  newUrl: "/explore?location=MT"
-- oldUrl: "/explore/NE/" 
-  newUrl: "/explore?location=NE"
-- oldUrl: "/explore/NV/" 
-  newUrl: "/explore?location=NV"
-- oldUrl: "/explore/NH/" 
-  newUrl: "/explore?location=NH"
-- oldUrl: "/explore/NJ/" 
-  newUrl: "/explore?location=NJ"
-- oldUrl: "/explore/NM/" 
-  newUrl: "/explore?location=NM"
-- oldUrl: "/explore/NY/" 
-  newUrl: "/explore?location=NY"
-- oldUrl: "/explore/NC/" 
-  newUrl: "/explore?location=NC"
-- oldUrl: "/explore/ND/" 
-  newUrl: "/explore?location=ND"
-- oldUrl: "/explore/OH/" 
-  newUrl: "/explore?location=OH"
-- oldUrl: "/explore/OK/" 
-  newUrl: "/explore?location=OK"
-- oldUrl: "/explore/OR/" 
-  newUrl: "/explore?location=OR"
-- oldUrl: "/explore/PA/" 
-  newUrl: "/explore?location=PA"
-- oldUrl: "/explore/RI/" 
-  newUrl: "/explore?location=RI"
-- oldUrl: "/explore/SC/" 
-  newUrl: "/explore?location=SC"
-- oldUrl: "/explore/SD/" 
-  newUrl: "/explore?location=SD"
-- oldUrl: "/explore/TN/" 
-  newUrl: "/explore?location=TN"
-- oldUrl: "/explore/TX/" 
-  newUrl: "/explore?location=TX"
-- oldUrl: "/explore/UT/" 
-  newUrl: "/explore?location=UT"
-- oldUrl: "/explore/VT/" 
-  newUrl: "/explore?location=VT"
-- oldUrl: "/explore/VA/" 
-  newUrl: "/explore?location=VA"
-- oldUrl: "/explore/WA/" 
-  newUrl: "/explore?location=WA"
-- oldUrl: "/explore/WV/" 
-  newUrl: "/explore?location=WV"
-- oldUrl: "/explore/WI/" 
-  newUrl: "/explore?location=WI"
-- oldUrl: "/explore/WY/" 
-  newUrl: "/explore?location=WY"
-# How it works redirects
+# oldUrl ex: "/explore/STATE_ABBR" -> newUrl: "/explore?location=STATE_ABBR"
+stateRedirects: [
+  "AL",
+  "AK",
+  "AZ",
+  "AR",
+  "CA",
+  "CO",
+  "CT",
+  "DE",
+  "FL",
+  "GA",
+  "HI",
+  "ID",
+  "IL",
+  "IN",
+  "IA",
+  "KS",
+  "KY",
+  "LA",
+  "MD",
+  "MA",
+  "MI",
+  "ME",
+  "MN",
+  "MS",
+  "MO",
+  "MT",
+  "NE",
+  "NV",
+  "NH",
+  "NJ",
+  "NM",
+  "NY",
+  "NC",
+  "ND",
+  "OH",
+  "OK",
+  "OR",
+  "PA",
+  "RI",
+  "SC",
+  "SD",
+  "TN",
+  "TX",
+  "UT",
+  "VT",
+  "VA",
+  "WA",
+  "WV",
+  "WI",
+  "WY",
+  "al",
+  "ak",
+  "az",
+  "ar",
+  "ca",
+  "co",
+  "ct",
+  "de",
+  "fl",
+  "ga",
+  "hi",
+  "id",
+  "il",
+  "in",
+  "ia",
+  "ks",
+  "ky",
+  "la",
+  "md",
+  "ma",
+  "mi",
+  "me",
+  "mn",
+  "ms",
+  "mo",
+  "mt",
+  "ne",
+  "nv",
+  "nh",
+  "nj",
+  "nm",
+  "ny",
+  "nc",
+  "nd",
+  "oh",
+  "ok",
+  "or",
+  "pa",
+  "ri",
+  "sc",
+  "sd",
+  "tn",
+  "tx",
+  "ut",
+  "vt",
+  "va",
+  "wa",
+  "wv",
+  "wi",
+  "wy"
+]
 
+redirects:
+# How it works redirects
 - oldUrl: "/how-it-works/revenues/" 
   newUrl: "/how-revenue-works/revenues"
 - oldUrl: "/how-it-works/ownership/" 
@@ -221,6 +223,4 @@ redirects:
   newUrl: "https://blog-nrrd.doi.gov/homepage-revamp-part-two/"
 - oldUrl: "/blog/homepage-revamp/"
   newUrl: "https://blog-nrrd.doi.gov/homepage-revamp/"
-
-
 ---
