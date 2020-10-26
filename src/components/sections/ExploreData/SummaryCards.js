@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     right: 0,
     transform: 'translate3d(0, 0px, 0px)',
-    minHeight: 350,
+    minHeight: 378,
     '@media (max-width: 768px)': {
       width: '100%',
       height: 'auto',
