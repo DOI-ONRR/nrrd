@@ -275,6 +275,8 @@ const MapContext = props => {
   const theme = useTheme()
   const size = useWindowSize()
 
+  console.log('MapContext size: ', size)
+
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
@@ -378,6 +380,7 @@ const MapContext = props => {
 
   // setZoom
   const setZoom = (x, y, k) => {
+    console.log('setZoom x,y,k: ', x, y, k)
     setMapY(y)
     setMapX(x)
     setMapK(k)
@@ -389,11 +392,15 @@ const MapContext = props => {
   useEffect(() => {
     // mobile zoom
     if (size.width <= 425) {
-      setZoom(105, 150, 0.45)
+      setZoom(50, -40, 0.85)
     }
     // tablet zoom
     if (size.width <= 768 && size.width > 425) {
-      setZoom(125, 75, 0.75)
+      setZoom(0, -40, 1.0)
+    }
+
+    if (size.width <= 1024 && size.width > 768) {
+      setZoom(-100, -40, 1.25)
     }
   }, [size.width])
 
@@ -566,7 +573,8 @@ const MapContext = props => {
       mapX: mapX,
       mapY: mapY,
       onZoomEnd: onZoomEnd,
-      onClick: onClick
+      onClick: onClick,
+      width: size.width
     })
 
   return (

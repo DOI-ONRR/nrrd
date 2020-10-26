@@ -27,9 +27,9 @@ const reducer = (state, action) => {
 // Explore data initialState
 const initialState = {
   cards: [],
-  mapX: 150,
-  mapY: 50,
-  mapZoom: 0.75,
+  mapX: -180,
+  mapY: -80,
+  mapZoom: 1.25,
 }
 
 export { initialState, types, reducer }
