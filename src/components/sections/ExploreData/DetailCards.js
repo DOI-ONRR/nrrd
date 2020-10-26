@@ -239,6 +239,9 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(1),
       fontSize: '1.25rem',
     },
+    '& svg': {
+      fill: theme.palette.common.white,
+    }
   },
   cardHeaderContent: {
     fontSize: theme.typography.h3.fontSize,

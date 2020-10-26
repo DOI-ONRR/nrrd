@@ -205,6 +205,8 @@ const TotalRevenue = props => {
             legendHeaders={legendHeaders}
             primaryColor={theme.palette.chart.primary}
             secondaryColor={theme.palette.chart.secondary}
+            // primaryColor="e1e1e1"
+            // secondaryColor={theme.palette.orange[300]}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
             <Link href='/downloads/revenue-by-month/'>Source file</Link>
