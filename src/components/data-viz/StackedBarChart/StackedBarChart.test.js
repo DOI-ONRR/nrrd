@@ -93,6 +93,48 @@ describe('Stacked Bar Chart component:', () => {
 	expect(screen.getAllByText('foo')).toHaveLength(2)
     })
 
+
+        test('Collapsible Legend collapsed = true Bar Chart  rendered succesfully', () => {
+	
+	const legendHeaders = (headers, row) => {
+            const headerArr = ['foo','','foo']
+            return headerArr
+	}
+	    
+	    render(  <StackedBarChart
+			 data={chartData}
+			 title={chartTitle}
+			 xAxis={xAxis}
+			 yAxis={yAxis}
+			 yGroupBy={yGroupBy}
+			 yOrderBy={yOrderBy}
+			 collapsibleLegend={true}
+                         collapsedLegend={true}
+	    />)
+	    // 
+	    expect(screen.getByText('Show details')).toBeInTheDocument()
+	})
+
+            test('Collapsible Legend collapsed = false Bar Chart  rendered succesfully', () => {
+	
+	const legendHeaders = (headers, row) => {
+            const headerArr = ['foo','','foo']
+            return headerArr
+	}
+		
+		render(  <StackedBarChart
+			     data={chartData}
+			     title={chartTitle}
+			     xAxis={xAxis}
+			     yAxis={yAxis}
+			     yGroupBy={yGroupBy}
+			     yOrderBy={yOrderBy}
+			     collapsibleLegend={true}
+                             collapsedLegend={false}
+		/>)
+		// 
+		expect(screen.getByText('Hide details')).toBeInTheDocument()
+	    })
     
     
 })
