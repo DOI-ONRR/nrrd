@@ -61,7 +61,6 @@ const useStyles = makeStyles(theme => ({
  */
 
 const Map = props => {
-
   const size = useWindowSize()
 
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
