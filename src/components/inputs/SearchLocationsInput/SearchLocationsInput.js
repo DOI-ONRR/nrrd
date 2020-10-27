@@ -24,19 +24,33 @@ import mapStatesOffshore from '../../sections/ExploreData/states-offshore.json'
 const GUTTER_SIZE = 15
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    '& label': {
+      width: 'auto',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      fontSize: '15px',
+      marginTop: 4,
+    },
+    '& label.Mui-focused': {
+      width: 'auto',
+      marginTop: 0,
+    },
+  },
   autoCompleteRoot: {
     color: theme.palette.primary.dark,
     minWidth: 250,
-    maxWidth: 250,
+    maxWidth: '100%',
     marginRight: theme.spacing(1),
     borderRadius: 4,
-    transition: theme.transitions.create(['border-color', 'box-shadow'])
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
   },
   autoCompleteFocused: {
     borderRadius: 4,
     borderColor: '#80bdff',
     boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-  },
+  }
 }))
 
 // get region details from map object
@@ -265,7 +279,7 @@ const SearchLocationsInput = props => {
       renderInput={params => (
         <TextField
           {...params}
-          label="Add state or county"
+          label="Add state, county, or offshore"
           variant="outlined"
           fullWidth
           onChange={handleSearch}
@@ -288,6 +302,7 @@ const SearchLocationsInput = props => {
       onChange={(e, v) => handleChange(v)}
       popupIcon={<KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
       classes={{
+        root: classes.root,
         inputRoot: classes.autoCompleteRoot,
         focused: classes.autoCompleteFocused,
       }}

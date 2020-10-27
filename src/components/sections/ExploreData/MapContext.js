@@ -46,23 +46,19 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 280px)',
+    height: 'calc(100vh - 290px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
     zIndex: 1,
-    '@media (max-width: 768px)': {
-      height: 'calc(100vh - 300px)',
-    },
     '& .mapContainer': {
       position: 'fixed',
-      top: 65,
+      top: 105,
     },
     '& .legend-wrap': {
-      bottom: 142,
+      bottom: 85,
       '@media (max-width: 768px)': {
-        bottom: 210,
         transform: 'scale(0.9)',
         left: -5,
       },
@@ -100,7 +96,7 @@ const useStyles = makeStyles(theme => ({
     right: 15,
     top: 10,
     height: 'auto',
-    minHeight: 335,
+    // minHeight: 335,
     zIndex: 99,
     '@media (max-width: 768px)': {
       width: '100%',
@@ -114,7 +110,7 @@ const useStyles = makeStyles(theme => ({
       overflowX: 'auto',
       height: 'auto',
       position: 'relative',
-      minHeight: 340,
+      // minHeight: 340,
     },
     '& > div': {
       cursor: 'pointer',
@@ -129,7 +125,7 @@ const useStyles = makeStyles(theme => ({
       }
     },
     '& > div:first-child > .summary-card-header': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[400] }`,
+      borderBottom: `8px solid ${ theme.palette.explore[400] }`,
     },
     '& > div:nth-child(2)': {
       transform: 'translate3d(-10%, 0px, 0px) !important',
@@ -137,7 +133,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        borderBottom: `8px solid ${ theme.palette.circleChart[300] }`,
+        borderBottom: `8px solid ${ theme.palette.explore[300] }`,
       },
     },
     '& > div:nth-child(3)': {
@@ -146,7 +142,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        borderBottom: `8px solid ${ theme.palette.circleChart[200] }`,
+        borderBottom: `8px solid ${ theme.palette.explore[200] }`,
       },
     },
     '& > div:nth-child(4)': {
@@ -155,7 +151,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'none !important',
       },
       '& > .summary-card-header': {
-        borderBottom: `8px solid ${ theme.palette.circleChart[100] }`,
+        borderBottom: `8px solid ${ theme.palette.explore[100] }`,
       },
     },
     '& .minimized ~ div:nth-of-type(2)': {
@@ -364,7 +360,7 @@ const MapContext = props => {
       location_name: 'Nationwide Federal',
       region_type: '',
       county: '',
-      label: 'Add Nationwide Federal card'
+      label: 'Add Nationwide Federal'
     },
     {
       fips_code: 'NA',
@@ -373,7 +369,7 @@ const MapContext = props => {
       location_name: 'Native American',
       region_type: '',
       county: '',
-      label: 'Add Native American card'
+      label: 'Add Native American'
     }
   ]
 
@@ -575,6 +571,8 @@ const MapContext = props => {
       mapJsonObject: mapJsonObject, // use context instead
       minColor: '#CDE3C3',
       maxColor: '#2F4D26',
+      // minColor: theme.palette.explore[100],
+      // maxColor: theme.palette.explore[600],
       mapZoom: mapK,
       mapX: mapX,
       mapY: mapY,

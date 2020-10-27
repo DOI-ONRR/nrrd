@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-function SEO ({ description, lang, meta, title }) {
+function SEO ({ description, lang, meta, title, keywords }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -19,6 +19,7 @@ function SEO ({ description, lang, meta, title }) {
           siteMetadata {
             title
             description
+            keywords
             author
             googleAnalyticsId
           }
@@ -27,7 +28,11 @@ function SEO ({ description, lang, meta, title }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const defaults = site.siteMetadata
+  const metaDescription = description || defaults.description
+  const metaTitle = title || defaults.title
+  const keywordsStr = keywords && keywords.length > 0 ? keywords.join(', ') : ''
+  const metaKeywords = defaults.keywords.concat(`, ${ keywordsStr }`)
 
   return (
     <Fragment>
@@ -35,16 +40,20 @@ function SEO ({ description, lang, meta, title }) {
         htmlAttributes={{
           lang,
         }}
-        title={title}
-        titleTemplate={`%s | ${ site.siteMetadata.title }`}
+        title={metaTitle}
+        titleTemplate={`%s | ${ defaults.title }`}
         meta={[
           {
             name: 'description',
             content: metaDescription,
           },
           {
+            name: 'keywords',
+            content: metaKeywords
+          },
+          {
             property: 'og:title',
-            content: title,
+            content: metaTitle,
           },
           {
             property: 'og:description',
@@ -60,11 +69,11 @@ function SEO ({ description, lang, meta, title }) {
           },
           {
             name: 'twitter:creator',
-            content: site.siteMetadata.author,
+            content: defaults.author,
           },
           {
             name: 'twitter:title',
-            content: title,
+            content: metaTitle,
           },
           {
             name: 'twitter:description',
@@ -76,9 +85,9 @@ function SEO ({ description, lang, meta, title }) {
         {/* Digital Analytics Program roll-up, see the data at https://analytics.usa.gov */}
         <script src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js" id="_fed_an_ua_tag"></script>
 
-        {site.siteMetadata.googleAnalyticsId &&
+        {defaults.googleAnalyticsId &&
           <script>
-            {`(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '${ site.siteMetadata.googleAnalyticsId }', 'auto');ga('set', 'anonymizeIp', true);ga('set', 'forceSSL', true);ga('send', 'pageview');`}
+            {`(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '${ defaults.googleAnalyticsId }', 'auto');ga('set', 'anonymizeIp', true);ga('set', 'forceSSL', true);ga('send', 'pageview');`}
           </script>
         }
       </Helmet>

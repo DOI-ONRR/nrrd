@@ -69,16 +69,16 @@ const useStyles = makeStyles(theme => ({
   },
   chipContainer: {
     '& .MuiChip-root:nth-child(1) .line': {
-      stroke: theme.palette.circleChart[400],
+      stroke: theme.palette.explore[400],
     },
     '& .MuiChip-root:nth-child(2) .line': {
-      stroke: theme.palette.circleChart[300],
+      stroke: theme.palette.explore[300],
     },
     '& .MuiChip-root:nth-child(3) .line': {
-      stroke: theme.palette.circleChart[200],
+      stroke: theme.palette.explore[200],
     },
     '& .MuiChip-root:nth-child(4) .line': {
-      stroke: theme.palette.circleChart[100],
+      stroke: theme.palette.explore[100],
     }
   }
 }))
@@ -136,7 +136,7 @@ const DisbursementsOverTime = props => {
           <LineChart
             key={'DOT' }
             data={chartData}
-            chartColors={[theme.palette.circleChart[400], theme.palette.circleChart[300], theme.palette.circleChart[200], theme.palette.circleChart[100]]}
+            chartColors={[theme.palette.explore[400], theme.palette.explore[300], theme.palette.explore[200], theme.palette.explore[100]]}
             lineDashes={LINE_DASHES}
             lineTooltip={
               (d, i) => {

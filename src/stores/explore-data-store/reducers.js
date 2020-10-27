@@ -28,7 +28,7 @@ const reducer = (state, action) => {
 const initialState = {
   cards: [],
   mapX: 150,
-  mapY: 100,
+  mapY: 50,
   mapZoom: 0.75,
 }
 

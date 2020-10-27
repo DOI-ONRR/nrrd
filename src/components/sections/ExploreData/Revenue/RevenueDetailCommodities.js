@@ -93,8 +93,14 @@ const RevenueDetailCommodities = props => {
                 }
                 yLabel={dataSet}
                 maxCircles={6}
-                minColor={theme.palette.purple[100]}
-                maxColor={theme.palette.purple[600]} />
+                colorRange={[
+                  theme.palette.explore[600],
+                  theme.palette.explore[500],
+                  theme.palette.explore[400],
+                  theme.palette.explore[300],
+                  theme.palette.explore[200],
+                  theme.palette.explore[100]
+                ]} />
               <QueryLink
                 groupBy={isCounty ? DFC.COUNTY : DFC.COMMODITY}
                 landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"

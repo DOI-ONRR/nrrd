@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: '100%',
     '& .mapContainer': {
-      height: 'calc(100vh + 65px)',
+      height: 'calc(100vh - 105px)',
       width: '100%',
     },
     '& .map': {
@@ -27,7 +27,6 @@ const useStyles = makeStyles(theme => ({
     },
     '& .legend-wrap': {
       display: 'block',
-      // bottom: 50,
       left: 5,
       width: 300,
       height: 50,

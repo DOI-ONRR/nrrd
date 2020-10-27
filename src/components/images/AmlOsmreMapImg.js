@@ -22,5 +22,15 @@ export default ({ alt, ...rest }) => {
       }
     }
   `)
-  return <Img fixed={data.imageSharp.fixed} alt={alt || 'Office of Surface Mining Reclamation and Enforcement\'s data site.'} {...rest} />
+  if (data.imageSharp === null) {
+    console.warn('data: ', data)
+  }
+
+  return (
+    <>
+      {data.imageSharp &&
+      <Img fixed={data.imageSharp.fixed} alt={alt || 'Office of Surface Mining Reclamation and Enforcement\'s data site.'} {...rest} />
+      }
+    </>
+  )
 }
