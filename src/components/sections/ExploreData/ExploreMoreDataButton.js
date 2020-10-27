@@ -3,8 +3,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
-  Button,
-  useMediaQuery
+  Button
 } from '@material-ui/core'
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
@@ -22,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     position: 'absolute',
-    bottom: 25,
+    bottom: 15,
     width: '100%',
     zIndex: 500,
   },
@@ -62,8 +61,6 @@ const ExploreMoreDataButton = props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const dataType = filterState.dataType.toLowerCase()
-
-  const matchesMdUp = useMediaQuery('(min-width: 768px)')
 
   const [buttonState, setButtonState] = useState({
     label: `Explore more ${ dataType }`,
@@ -105,32 +102,29 @@ const ExploreMoreDataButton = props => {
   }
 
   return (
-    <>
-      {matchesMdUp &&
-      <Box className={classes.root}>
-        <Button
-          variant="contained"
-          color="secondary"
-          size="large"
-          disableRipple
-          className={classes.exploreMoreButton}
-          classes={{
-            root: classes.exploreButtonRoot,
-            label: classes.exploreButtonLabel
-          }}
-          onClick={buttonState.icon === 'down' ? scrollTo : scrollToTop}
-        >
-          {buttonState.label}
-          <span className={classes.buttonScrollLabel}>
-            { buttonState.icon === 'down' ? 'Scroll down' : 'Scroll up' }
-          </span>
-          <span className={classes.buttonScrollIcon}>
-            {buttonState.icon === 'down' ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
-          </span>
-        </Button>
-      </Box>
-      }
-    </>
+    <Box className={classes.root}>
+      <Button
+        variant="contained"
+        color="secondary"
+        size="large"
+        disableRipple
+        className={classes.exploreMoreButton}
+        classes={{
+          root: classes.exploreButtonRoot,
+          label: classes.exploreButtonLabel
+        }}
+        onClick={buttonState.icon === 'down' ? scrollTo : scrollToTop}
+      >
+        {buttonState.label}
+        <span className={classes.buttonScrollLabel}>
+          { buttonState.icon === 'down' ? 'Scroll down' : 'Scroll up' }
+        </span>
+        <span className={classes.buttonScrollIcon}>
+          {buttonState.icon === 'down' ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+        </span>
+      </Button>
+    </Box>
+
   )
 }
 
