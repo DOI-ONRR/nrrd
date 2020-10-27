@@ -239,6 +239,9 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(1),
       fontSize: '1.25rem',
     },
+    '& svg': {
+      fill: theme.palette.common.white,
+    }
   },
   cardHeaderContent: {
     fontSize: theme.typography.h3.fontSize,
@@ -383,7 +386,7 @@ const DetailCards = props => {
       location_name: 'Nationwide Federal',
       region_type: '',
       county: '',
-      label: 'Add Nationwide Federal card'
+      label: 'Add Nationwide Federal'
     },
     {
       fips_code: 'NA',
@@ -392,7 +395,7 @@ const DetailCards = props => {
       location_name: 'Native American',
       region_type: '',
       county: '',
-      label: 'Add Native American card'
+      label: 'Add Native American'
     }
   ]
 
@@ -471,7 +474,7 @@ const DetailCards = props => {
         })
         }
 
-        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
+        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title={'Add a location'} onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
       </Box>
     </>
   )
