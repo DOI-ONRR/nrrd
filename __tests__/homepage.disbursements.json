@@ -1,0 +1,39 @@
+[
+    {
+	"title" : "Yearly Fiscal Disbursements",
+	"commands" : [{ "command": "click" , "selector" : "#full-width-tab-1"}],
+	"target" : "#full-width-tabpanel-1 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+    },
+    {
+	"title" : "Monthly Most Recent Disbursements",
+	"commands" : [{ "command": "click" , "selector" : "#full-width-tab-1"},
+		      { "command": "click" , "selector" : "#full-width-tabpanel-1 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4 > div:nth-child(1) > div > button:nth-child(2)"}
+		     ],
+	"target" : "#full-width-tabpanel-1 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+    },
+    {
+	"title" : "Monthly Fiscal Disbursements",
+	"commands" : [{ "command": "click" , "selector" : "#full-width-tab-1"},
+		      { "command": "click" , "selector" : "#full-width-tabpanel-1 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4 > div:nth-child(1) > div > button:nth-child(2)"},
+		      { "command": "click" , "selector" : "#period-label-select-outlined"},
+		      { "command": "click" , "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(2)"}
+		     ],
+	"target" : "#full-width-tabpanel-1 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+    },
+    {
+	"title" : "Monthly Calendar Disbursements",
+	"commands" : [{ "command": "click" , "selector" : "#full-width-tab-1"},
+		      { "command": "click" , "selector" : "#full-width-tabpanel-1 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4 > div:nth-child(1) > div > button:nth-child(2)"},
+		      { "command": "click" , "selector" : "#period-label-select-outlined"},
+		      { "command": "click" , "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(3)"}
+		     ],
+	"target" : "#full-width-tabpanel-1 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+    },
+    {
+	"title" : "Disbursement Trends",
+	"commands" : [{ "command": "click" , "selector" : "#full-width-tab-1"}
+		     ],
+	"target" : "#full-width-tabpanel-1 > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-md-4"
+	}
+]
+		 

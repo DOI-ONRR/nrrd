@@ -48,6 +48,29 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./coverage
+
+  end_to_end_tests:
+    docker:
+      - image: circleci/node:12.13.0-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run end to end  tests
+          command: npm run test-end-to-end
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./__tests__/__image_snapshots__/
+
   lighthouse:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -229,7 +252,13 @@ jobs:
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
             cf push dev-nrrd -f ./manifest.yml
-
+      - run:
+          name: Run end to end testing
+          command: npm run test-end-to-end	    
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./__tests__/__image_snapshots__/
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.

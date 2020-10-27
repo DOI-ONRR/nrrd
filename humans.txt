@@ -6,7 +6,7 @@
 ## TEAM MEMBERS
 
     Nathan Brannberg -- Product Owner -- Department of the Interior, Office of Natural Resources Revenue
-    Maroya Faied -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
+    Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Lindsay Goldstein -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Jeff Keene -- Developer -- Department of the Interior, Office of Natural Resources Revenue
     Jennifer Malcolm -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
@@ -18,9 +18,7 @@
     Jerome Louis -- Contract Developer
     Brandi Nichols -- UX Intern -- Virtual Student Federal Service
     Mojo Nichols -- Contract Developer
-    Devyn Powell -- Data Intern -- Virtual Student Federal Service
     Matthew Sao -- Data Intern -- Virtual Student Federal Service
-    Timothy Tomas -- UX Intern -- Virtual Student Federal Service
     Jamie Wang -- UX Intern -- Virtual Student Federal Service
 
 # PAST TEAM

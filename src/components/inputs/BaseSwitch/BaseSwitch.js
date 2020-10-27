@@ -68,7 +68,16 @@ const DefaultSwitch = withStyles(theme =>
       },
     },
     checked: {},
-    track: {}
+    track: {
+      '@media screen and (-ms-high-contrast: active)': {
+        border: '1px solid currentColor'
+      }
+    },
+    thumb: {
+      '@media screen and (-ms-high-contrast: active)': {
+        border: '1px solid currentColor'
+      }
+    }
   })
 )(({ classes, ...props }) => {
   return (

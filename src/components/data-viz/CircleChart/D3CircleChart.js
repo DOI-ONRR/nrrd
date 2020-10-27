@@ -212,18 +212,23 @@ export default class D3CircleChart {
       .enter()
       .append('tr')
 
-    tr.append('td')
+    tr.append('td').append('svg')
+      .attr('width', 20)
+      .attr('height', 20)
+      .style('fill', function (d, i) {
+        return color(yDomain.length - i)
+      })
       .append('rect')
       .attr('class', 'legend-rect')
-      .attr('width', 15)
-      .attr('height', 15)
+      .attr('width', 20)
+      .attr('height', 20)
       .style('fill', function (d, i) {
         return color(yDomain.length - i)
       })
       .style('background-color', function (d, i) {
         return color(yDomain.length - i)
       })
-      .style('fill-opacity', 0.8)
+      // .style('fill-opacity', 0.8)
     tr.append('td')
       .html((row, i) => {
         const r = legendLabel(row[xAxis])
@@ -319,7 +324,7 @@ export default class D3CircleChart {
       .style('display', 'block')
       .style('margin', '0')
       .style('padding', '0')
-      .style('background', 'white')
+      // .style('background', 'white')
       .style('cursor', 'pointer')
       .on('click', () => zoom(root))
 

@@ -96,6 +96,7 @@ export default class D3StackedBarChart {
         this.color = d3.scaleOrdinal().domain(this.xDomain).range(this.colorRange)
       }
       else {
+        this.colorRange = false
         this.color = d3.scaleLinear().domain(this.yOrderBy.slice(1)).range([this.primaryColor, this.secondaryColor])
       }
     }
@@ -255,8 +256,8 @@ export default class D3StackedBarChart {
         .attr('height', (self._height - self.marginTop))
         .attr('width', self.xScale.bandwidth())
         .style('fill', (d, i) => {
-          if (this.horizontal) {
-            return colorRange[i]
+          if (this.horizontal && colorRange) {
+            return null
           }
           else {
             return primaryColor
@@ -284,8 +285,16 @@ export default class D3StackedBarChart {
         })
         .enter().append('g')
         .attr('class', (d, i) => 'stacked-bar-chart-' + i)
+        .style('fill', (d, i) => {
+          if (this.horizontal && colorRange) {
+            return colorRange[i]
+          }
+          else {
+            return null
+          }
+        })
         .style('fill-opacity', (d, i) => {
-          if (this.horizontal) {
+          if (this.horizontal && colorRange) {
             return null
           }
           else {
@@ -330,16 +339,9 @@ export default class D3StackedBarChart {
           .attr('width', 25)
           .style('top', `${ -this._height }px`)
 
-        const selectedElement = d3.selectAll('.active').selectAll('g')
+        const selectedElement = d3.selectAll('.active')
         selectedElement
-          .style('fill', (d, i) => {
-            if (colorRange) {
-              return colorRange[i]
-            }
-            else {
-              return secondaryColor
-            }
-          })
+          .style('fill', secondaryColor)
       }
     }
     catch (err) {
@@ -509,6 +511,17 @@ export default class D3StackedBarChart {
 
       // append color blocks into tr first cell
       tr.append('td')
+        .append('svg')
+        .attr('width', 20)
+        .attr('height', 20)
+        .style('fill', (d, i) => {
+          if (colorRange) {
+            return colorRange[i]
+          }
+          else {
+            return secondaryColor
+          }
+        })
         .append('rect')
         .attr('class', 'legend-rect')
         .attr('width', 15)
@@ -521,8 +534,16 @@ export default class D3StackedBarChart {
             return secondaryColor
           }
         })
+        .style('border', (d, i) => {
+          if (colorRange) {
+            return `1px solid ${ colorRange[i] }`
+          }
+          else {
+            return `1px solid ${ secondaryColor }`
+          }
+        })
         .style('opacity', (d, i) => {
-          if (this.horizontal) {
+          if (this.horizontal && colorRange) {
             return null
           }
           else {

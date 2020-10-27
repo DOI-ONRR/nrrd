@@ -1,32 +1,36 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
-import clsx from 'clsx'
+
 import {
   Drawer,
   List,
-  ListItem,
-  ListItemIcon
+  ListItem
 } from '@material-ui/core'
 
 import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
+  mobileMenu: {
+    backgroundColor: theme.palette.header.secondary,
+    height: '100%',
+    '@media (maxWidth: 600px)': {
+      maxWidth: '90%',
+    }
+  },
   listItemLink: {
-    textAlign: 'center',
+    textAlign: 'left',
     display: 'block',
     fontSize: theme.typography.h3.fontSize,
     '&:hover': {
-      color: theme.palette.links.default,
-      background: theme.palette.grey[900],
-      textAlign: 'center',
+      color: theme.palette.common.white,
+      background: 'rgba(41, 75, 99, .5)',
+      textAlign: 'left',
     },
   },
   listRoot: {
-    background: theme.palette.common.black,
     color: theme.palette.common.white,
     '& div:last-child': {
       display: 'flex',
@@ -34,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   menuButton: {
-    color: theme.palette.common.black,
+    color: theme.palette.common.white,
     padding: theme.spacing(2)
   },
 }))
@@ -68,9 +72,7 @@ const MobileMenu = ({ children, ...rest }) => {
   // Menu list
   const list = anchor => (
     <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-      })}
+      className={classes.mobileMenu}
       role="presentation"
     >
       <List classes={{ root: classes.listRoot }}>
@@ -90,11 +92,11 @@ const MobileMenu = ({ children, ...rest }) => {
             )
           })
         }
-        <ListItem button key={children.length + 1} disableGutters>
+        {/* <ListItem button key={children.length + 1} disableGutters>
           <ListItemIcon onClick={toggleDrawer(anchor, false)}>
             <CloseIcon />
           </ListItemIcon>
-        </ListItem>
+        </ListItem> */}
       </List>
     </div>
   )
@@ -104,15 +106,15 @@ const MobileMenu = ({ children, ...rest }) => {
       <IconButton
         className={classes.menuButton}
         aria-label="mobile-menu"
-        onClick={toggleDrawer('top', true)}>
+        onClick={toggleDrawer('right', true)}>
         <MenuIcon />
       </IconButton>
       <Drawer
-        anchor={'top'}
-        open={menuState.top}
-        onClose={toggleDrawer('top', false)}
+        anchor={'right'}
+        open={menuState.right}
+        onClose={toggleDrawer('right', false)}
         classes={{ root: classes.drawerRoot }}>
-        {list('top')}
+        {list('right')}
       </Drawer>
     </Fragment>
   )
