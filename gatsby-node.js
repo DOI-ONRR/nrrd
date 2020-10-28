@@ -110,6 +110,7 @@ const createRedirects = ({ graphql, reporter, createRedirect }) => {
                   newUrl
                   oldUrl
                 }
+                stateRedirects
               }
             }
           }
@@ -122,10 +123,23 @@ const createRedirects = ({ graphql, reporter, createRedirect }) => {
     }
     else {
       const redirects = result.data.allMdx.nodes[0].frontmatter.redirects
+      const stateRedirects = result.data.allMdx.nodes[0].frontmatter.stateRedirects
+
+      // standard redirects fromPath -> toPath
       redirects.forEach(element => {
         createRedirect({
           fromPath: element.oldUrl,
           toPath: element.newUrl,
+          redirectInBrowser: true,
+          isPermanent: true
+        })
+      })
+
+      // explore state redirects
+      stateRedirects.forEach(state => {
+        createRedirect({
+          fromPath: `/explore/${ state }/`,
+          toPath: `/explore/?location=${ state.toUpperCase() }`,
           redirectInBrowser: true,
           isPermanent: true
         })

@@ -24,12 +24,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    '& .mapContainer': {
-      height: 100,
-      width: '100%',
-      overflow: 'hidden',
-    },
-    '& .mapContainer > .legend-wrap': {
+    '& .mapContainer > .legendWrap': {
       display: 'none', // quick fix for now, will want to disable most map features for smaller maps
     },
     '& .mapContainer svg': {

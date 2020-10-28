@@ -36,6 +36,27 @@ y2018
 y2019`
 
 // @TODO find a better way to list all years
+export const ALL_DISBURSEMENT_YEARS = `
+y2003
+y2004
+y2005
+y2006
+y2007
+y2008
+y2009
+y2010
+y2011
+y2012
+y2013
+y2014
+y2015
+y2016
+y2017
+y2018
+y2019
+y2020`
+
+// @TODO find a better way to list all years
 export const ALL_REVENUE_BY_COMPANY_YEARS = `
 y2013
 y2014

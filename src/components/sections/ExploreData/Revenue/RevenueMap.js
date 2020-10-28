@@ -51,7 +51,7 @@ export default props => {
     <>
       {mapData &&
         <>
-          <Map key={`RMAP${ year }`}
+          <Map key={`RMAP${ year }${ props.width }`}
             mapFeatures={props.mapFeatures}
             mapJsonObject={props.mapJsonObject}
             mapData={mapData}
@@ -64,7 +64,9 @@ export default props => {
             onClick={props.onClick}
             legendFormat={utils.formatToSigFig_Dollar}
             handleMapSnackbar={props.handleMapSnackbar}
-            handleMapSnackbarClose={props.handleMapSnackbarClose} />
+            handleMapSnackbarClose={props.handleMapSnackbarClose}
+            width={props.width}
+          />
         </>
       }
     </>
