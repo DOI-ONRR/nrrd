@@ -1,2 +1,1 @@
-export { default as Tabtastic } from './Tabtastic'
-export { TabtasticTab } from './Tabtastic'
+export { default as Tabtastic, TabtasticTab } from './Tabtastic'
