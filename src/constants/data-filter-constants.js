@@ -105,7 +105,7 @@ export const STATE = 'State'
 export const COUNTY_CAPITALIZED = 'County'
 export const USA = 'USA'
 export const DATA_TYPES = [REVENUE, PRODUCTION, DISBURSEMENT]
-export const REVENUE_BY_COMPANY = 'Revenue by company'
+export const REVENUE_BY_COMPANY = 'Federal revenue by company'
 export const DATA_TYPES_PLUS = [REVENUE, REVENUE_BY_COMPANY, PRODUCTION, DISBURSEMENT]
 
 export const TREND_LIMIT = 10
