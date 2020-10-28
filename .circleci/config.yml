@@ -290,12 +290,6 @@ jobs:
 workflows:
   audits:
     jobs:
-      - end_to_end_tests:
-          requires:
-            - dev
-          filters:
-            branches:
-              only: dev
       - unit_tests:
           filters:
             branches:
@@ -351,5 +345,8 @@ workflows:
           filters:
             branches:
               only: dev
+      - end_to_end_tests:
+          requires:
+            - dev
 
               
