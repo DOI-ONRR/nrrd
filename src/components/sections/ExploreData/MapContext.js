@@ -275,8 +275,6 @@ const MapContext = props => {
   const theme = useTheme()
   const size = useWindowSize()
 
-  console.log('MapContext size: ', size)
-
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
