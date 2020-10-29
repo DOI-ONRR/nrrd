@@ -11,8 +11,12 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import {
   Box,
+  Card,
+  CardActions,
+  CardContent,
   Container,
   Grid,
+  Hidden,
   Table,
   TableBody,
   TableHead,
@@ -20,11 +24,15 @@ import {
   TableCell
 } from '@material-ui/core'
 
-import { useTheme } from '@material-ui/core/styles'
+import { useTheme, makeStyles } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils'
+
+const useStyles = makeStyles(theme => ({
+  root: {}
+}))
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
@@ -43,6 +51,7 @@ const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
 
 const RevenueByCompany = props => {
   const theme = useTheme()
+  const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
@@ -100,126 +109,186 @@ const RevenueByCompany = props => {
             </Box>
           </Grid>
           <Grid item xs={12} style={{ overflowX: 'auto' }}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell style={{ fontWeight: 'bold' }}>Company</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}>Total</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}>Percent</TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}><span>Revenue type</span>
-                    <span style={{ fontWeight: 'bold', float: 'right' }}>{period + ' ' + year}</span></TableCell>
+            <Hidden xsDown>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell style={{ fontWeight: 'bold' }}>Company</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }}>Total</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }}>Percent</TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }}><span>Revenue type</span>
+                      <span style={{ fontWeight: 'bold', float: 'right' }}>{period + ' ' + year}</span>
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  { nationalRevenueData &&
+                nationalRevenueData.filter((d, i) => i < 10).map((item, i) => {
+                  return (
+                    <TableRow key={i}>
+                      <TableCell style={{ verticalAlign: 'top' }}>
+                        <Box component="p" mt={0}>{item[0]}</Box>
+                        <Box component="p"></Box>
+                      </TableCell>
+                      <TableCell style={{ verticalAlign: 'top' }}>
+                        <Box mt={0}>{utils.formatToDollarInt(item[1][0].total)}</Box>
+                      </TableCell>
+                      <TableCell style={{ verticalAlign: 'top' }}>
+                        <Box mt={0}>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
+                      </TableCell>
+                      <TableCell style={{ width: '45%' }}>
+                        <StackedBarChart
+                          key={'NRS' + year + '_' + i}
+                          data={item[1]}
+                          collapsibleLegend={true}
+                          collapsedLegend={true}
+                          legendFormat={v => {
+                            if (v === 0) {
+                              return '-'
+                            }
+                            else {
+                              return utils.formatToDollarInt(v)
+                            }
+                          }}
+                          legendHeaders={ headers => {
+                            // console.debug('headers..................', headers)
+                            headers[0] = ''
+                            headers[2] = ''
+                            return headers
+                          }
+                          }
+                          // eslint-disable-next-line no-return-assign
+                          barScale={item[1].reduce((total, i) => total += i.revenue, 0) / groupTotal }
+                          units={units}
+                          xAxis={xAxis}
+                          yAxis={yAxis}
+                          yGroupBy={yGroupBy}
+                          yOrderBy={yOrderBy}
+                          horizontal
+                          legendReverse={true}
+                          colorRange={[
+                            theme.palette.explore[700],
+                            theme.palette.explore[600],
+                            theme.palette.explore[500],
+                            theme.palette.explore[400],
+                            theme.palette.explore[300],
+                            theme.palette.explore[200],
+                            theme.palette.explore[100]
+                          ]}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  )
+                })
+                  }
+                  { nationalRevenueData && <>
+                    <TableRow>
+                      <TableCell style={{ verticalAlign: 'top' }}>
+                        <Box component="h4" mt={0}>Other companies</Box>
+                        <Box component="p">
 
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                { nationalRevenueData &&
+                        </Box>
+                      </TableCell>
+                      <TableCell style={{ verticalAlign: 'top' }}>
+                        <Box mt={0}>{utils.formatToDollarInt(remainingTotal)}</Box>
+                      </TableCell>
+                      <TableCell style={{ verticalAlign: 'top' }}>
+                        <Box mt={0}>{remainingPercent.toFixed(2)}%</Box>
+                      </TableCell>
+                      <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
+                        <QueryLink
+                          groupBy={DFC.REVENUE_TYPE}
+                          dataType="Federal revenue by company"
+                          linkType="FilterTable"
+                          {...props}>
+      Query revenue data for all { nationalRevenueData.length } companies.
+                        </QueryLink>
+
+                      </TableCell>
+
+                    </TableRow>
+                    <TableRow>
+                      <TableCell style={{ verticalAlign: 'top' }}>
+                        <Box component="h4" mt={0}>Total</Box>
+                        <Box component="p">
+
+                        </Box>
+                      </TableCell>
+                      <TableCell style={{ verticalAlign: 'top' }}>
+                        <Box mt={0}>{utils.formatToDollarInt(totalTotal)}</Box>
+                      </TableCell>
+                      <TableCell style={{ verticalAlign: 'top' }}>
+                        <Box mt={0}>100%</Box>
+                      </TableCell>
+
+                      <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
+                      </TableCell>
+                    </TableRow>
+                  </>
+                  }
+                </TableBody>
+              </Table>
+            </Hidden>
+            <Hidden smUp>
+              {nationalRevenueData &&
               nationalRevenueData.filter((d, i) => i < 10).map((item, i) => {
                 return (
-                  <TableRow key={i}>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box component="p" mt={0}>{item[0]}</Box>
-                      <Box component="p">
-
+                  <Card>
+                    <CardContent>
+                      <Box>Company: {item[0]}</Box>
+                      <Box>Total: {utils.formatToDollarInt(item[1][0].total)}</Box>
+                      <Box>Percentage: {item[1][0].percent_of_revenue.toFixed(2)}%</Box>
+                      <Box>
+                        <Box component="span">Revenue type</Box>
+                        <Box component="span">{`${ period } ${ year }`}</Box>
                       </Box>
-                    </TableCell>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box mt={0}>{utils.formatToDollarInt(item[1][0].total)}</Box>
-                    </TableCell>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box mt={0}>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
-                    </TableCell>
-                    <TableCell style={{ width: '45%' }}>
-                      <StackedBarChart
-                        key={'NRS' + year + '_' + i}
-                        data={item[1]}
-                        collapsibleLegend={true}
-                        collapsedLegend={true}
-                        legendFormat={v => {
-                          if (v === 0) {
-                            return '-'
+                      <Box>
+                        <StackedBarChart
+                          key={'NRS' + year + '_' + i}
+                          data={item[1]}
+                          collapsibleLegend={true}
+                          collapsedLegend={true}
+                          legendFormat={v => {
+                            if (v === 0) {
+                              return '-'
+                            }
+                            else {
+                              return utils.formatToDollarInt(v)
+                            }
+                          }}
+                          legendHeaders={ headers => {
+                            // console.debug('headers..................', headers)
+                            headers[0] = ''
+                            headers[2] = ''
+                            return headers
                           }
-                          else {
-                            return utils.formatToDollarInt(v)
                           }
-                        }}
-                        legendHeaders={ headers => {
-                          // console.debug('headers..................', headers)
-                          headers[0] = ''
-                          headers[2] = ''
-                          return headers
-                        }
-                        }
-                        // eslint-disable-next-line no-return-assign
-                        barScale={item[1].reduce((total, i) => total += i.revenue, 0) / groupTotal }
-                        units={units}
-                        xAxis={xAxis}
-                        yAxis={yAxis}
-                        yGroupBy={yGroupBy}
-                        yOrderBy={yOrderBy}
-                        horizontal
-                        legendReverse={true}
-                        colorRange={[
-                          theme.palette.explore[700],
-                          theme.palette.explore[600],
-                          theme.palette.explore[500],
-                          theme.palette.explore[400],
-                          theme.palette.explore[300],
-                          theme.palette.explore[200],
-                          theme.palette.explore[100]
-                        ]}
-                      />
-                    </TableCell>
-                  </TableRow>
+                          // eslint-disable-next-line no-return-assign
+                          barScale={item[1].reduce((total, i) => total += i.revenue, 0) / groupTotal }
+                          units={units}
+                          xAxis={xAxis}
+                          yAxis={yAxis}
+                          yGroupBy={yGroupBy}
+                          yOrderBy={yOrderBy}
+                          horizontal
+                          legendReverse={true}
+                          colorRange={[
+                            theme.palette.explore[700],
+                            theme.palette.explore[600],
+                            theme.palette.explore[500],
+                            theme.palette.explore[400],
+                            theme.palette.explore[300],
+                            theme.palette.explore[200],
+                            theme.palette.explore[100]
+                          ]}
+                        />
+                      </Box>
+                    </CardContent>
+                  </Card>
                 )
               })
-                }
-                { nationalRevenueData && <>
-                  <TableRow>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box component="h4" mt={0}>Other companies</Box>
-                      <Box component="p">
-
-                      </Box>
-                    </TableCell>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box mt={0}>{utils.formatToDollarInt(remainingTotal)}</Box>
-                    </TableCell>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box mt={0}>{remainingPercent.toFixed(2)}%</Box>
-                    </TableCell>
-                    <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
-                      <QueryLink
-                        groupBy={DFC.REVENUE_TYPE}
-                        dataType="Federal revenue by company"
-                        linkType="FilterTable"
-                        {...props}>
-     Query revenue data for all { nationalRevenueData.length } companies.
-                      </QueryLink>
-
-                    </TableCell>
-
-                  </TableRow>
-                  <TableRow>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box component="h4" mt={0}>Total</Box>
-                      <Box component="p">
-
-                      </Box>
-                    </TableCell>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box mt={0}>{utils.formatToDollarInt(totalTotal)}</Box>
-                    </TableCell>
-                    <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box mt={0}>100%</Box>
-                    </TableCell>
-
-                    <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
-                    </TableCell>
-                  </TableRow>
-                </>
-                }
-              </TableBody>
-            </Table>
+              }
+            </Hidden>
           </Grid>
         </Grid>
       </Container>
