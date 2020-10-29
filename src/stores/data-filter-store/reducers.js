@@ -139,10 +139,10 @@ const initialState = {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2019',
+        [FISCAL_YEAR]: '2020',
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
-        [YEAR]: 2019,
+        [YEAR]: 2020,
       }
     }
   }
