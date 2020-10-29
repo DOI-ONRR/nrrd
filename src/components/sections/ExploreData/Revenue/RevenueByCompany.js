@@ -190,7 +190,7 @@ const RevenueByCompany = props => {
                     <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
                       <QueryLink
                         groupBy={DFC.REVENUE_TYPE}
-                        dataType="Revenue by company"
+                        dataType="Federal revenue by company"
                         linkType="FilterTable"
                         {...props}>
      Query revenue data for all { nationalRevenueData.length } companies.
