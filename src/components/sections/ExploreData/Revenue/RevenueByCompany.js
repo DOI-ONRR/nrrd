@@ -233,58 +233,56 @@ const RevenueByCompany = props => {
               {nationalRevenueData &&
               nationalRevenueData.filter((d, i) => i < 10).map((item, i) => {
                 return (
-                  <Card>
-                    <CardContent>
-                      <Box>Company: {item[0]}</Box>
-                      <Box>Total: {utils.formatToDollarInt(item[1][0].total)}</Box>
-                      <Box>Percentage: {item[1][0].percent_of_revenue.toFixed(2)}%</Box>
-                      <Box>
-                        <Box component="span">Revenue type</Box>
-                        <Box component="span">{`${ period } ${ year }`}</Box>
-                      </Box>
-                      <Box>
-                        <StackedBarChart
-                          key={'NRS' + year + '_' + i}
-                          data={item[1]}
-                          collapsibleLegend={true}
-                          collapsedLegend={true}
-                          legendFormat={v => {
-                            if (v === 0) {
-                              return '-'
-                            }
-                            else {
-                              return utils.formatToDollarInt(v)
-                            }
-                          }}
-                          legendHeaders={ headers => {
-                            // console.debug('headers..................', headers)
-                            headers[0] = ''
-                            headers[2] = ''
-                            return headers
+                  <Box pb={2} mb={2} border={1} borderTop={0} borderLeft={0} borderRight={0} borderColor={theme.palette.grey[400]}>
+                    <Box fontWeight="bold">{item[0]}</Box>
+                    <Box>{utils.formatToDollarInt(item[1][0].total)}</Box>
+                    <Box>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
+                    <Box display="flex" justifyContent="space-between" fontWeight="bold" mt={2}>
+                      <Box component="span">Revenue type</Box>
+                      <Box component="span">{`${ period } ${ year }`}</Box>
+                    </Box>
+                    <Box>
+                      <StackedBarChart
+                        key={'NRS' + year + '_' + i}
+                        data={item[1]}
+                        collapsibleLegend={true}
+                        collapsedLegend={true}
+                        legendFormat={v => {
+                          if (v === 0) {
+                            return '-'
                           }
+                          else {
+                            return utils.formatToDollarInt(v)
                           }
-                          // eslint-disable-next-line no-return-assign
-                          barScale={item[1].reduce((total, i) => total += i.revenue, 0) / groupTotal }
-                          units={units}
-                          xAxis={xAxis}
-                          yAxis={yAxis}
-                          yGroupBy={yGroupBy}
-                          yOrderBy={yOrderBy}
-                          horizontal
-                          legendReverse={true}
-                          colorRange={[
-                            theme.palette.explore[700],
-                            theme.palette.explore[600],
-                            theme.palette.explore[500],
-                            theme.palette.explore[400],
-                            theme.palette.explore[300],
-                            theme.palette.explore[200],
-                            theme.palette.explore[100]
-                          ]}
-                        />
-                      </Box>
-                    </CardContent>
-                  </Card>
+                        }}
+                        legendHeaders={ headers => {
+                          // console.debug('headers..................', headers)
+                          headers[0] = ''
+                          headers[2] = ''
+                          return headers
+                        }
+                        }
+                        // eslint-disable-next-line no-return-assign
+                        barScale={item[1].reduce((total, i) => total += i.revenue, 0) / groupTotal }
+                        units={units}
+                        xAxis={xAxis}
+                        yAxis={yAxis}
+                        yGroupBy={yGroupBy}
+                        yOrderBy={yOrderBy}
+                        horizontal
+                        legendReverse={true}
+                        colorRange={[
+                          theme.palette.explore[700],
+                          theme.palette.explore[600],
+                          theme.palette.explore[500],
+                          theme.palette.explore[400],
+                          theme.palette.explore[300],
+                          theme.palette.explore[200],
+                          theme.palette.explore[100]
+                        ]}
+                      />
+                    </Box>
+                  </Box>
                 )
               })
               }
