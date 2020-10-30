@@ -13,6 +13,8 @@ import CloseIcon from '@material-ui/icons/Close'
 
 import { makeStyles } from '@material-ui/core/styles'
 
+import Link from '../../Link'
+
 const useStyles = makeStyles(theme => ({
   mobileMenu: {
     backgroundColor: theme.palette.header.secondary,
@@ -88,7 +90,9 @@ const MobileMenu = ({ children, ...rest }) => {
             if (child.props.href) {
               return (
                 <ListItem button key={index} disableGutters>
-                  <ListItemLink href={child.props.href} className={classes.listItemLink}>{child.props.children}</ListItemLink>
+                  <ListItemLink href={child.props.href} className={classes.listItemLink}>
+                    <Link href={child.props.href} linkType="Header" style={{ marginLeft: 0, color: 'white' }}>{child.props.children}</Link>
+                  </ListItemLink>
                 </ListItem>
               )
             }
