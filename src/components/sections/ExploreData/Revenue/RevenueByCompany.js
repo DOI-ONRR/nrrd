@@ -108,7 +108,7 @@ const RevenueByCompany = props => {
               <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
           </Grid>
-          <Grid item xs={12} style={{ overflowX: 'auto' }}>
+          <Grid item xs={12}>
             <Hidden xsDown>
               <Table>
                 <TableHead>
@@ -116,8 +116,13 @@ const RevenueByCompany = props => {
                     <TableCell style={{ fontWeight: 'bold' }}>Company</TableCell>
                     <TableCell style={{ fontWeight: 'bold' }}>Total</TableCell>
                     <TableCell style={{ fontWeight: 'bold' }}>Percent</TableCell>
-                    <TableCell style={{ fontWeight: 'bold' }}><span>Revenue type</span>
-                      <span style={{ fontWeight: 'bold', float: 'right' }}>{period + ' ' + year}</span>
+                    <TableCell style={{ fontWeight: 'bold' }}>
+                      <Box display="flex" justifyContent="space-between">
+                        <Box component="span">Revenue type</Box>
+                        <Box component="span">
+                          {`${ period } ${ year }`}
+                        </Box>
+                      </Box>
                     </TableCell>
                   </TableRow>
                 </TableHead>
@@ -185,9 +190,6 @@ const RevenueByCompany = props => {
                     <TableRow>
                       <TableCell style={{ verticalAlign: 'top' }}>
                         <Box component="h4" mt={0}>Other companies</Box>
-                        <Box component="p">
-
-                        </Box>
                       </TableCell>
                       <TableCell style={{ verticalAlign: 'top' }}>
                         <Box mt={0}>{utils.formatToDollarInt(remainingTotal)}</Box>
@@ -198,21 +200,17 @@ const RevenueByCompany = props => {
                       <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
                         <QueryLink
                           groupBy={DFC.REVENUE_TYPE}
-                          dataType="Federal revenue by company"
+                          dataType={DFC.REVENUE_BY_COMPANY}
                           linkType="FilterTable"
-                          {...props}>
-      Query revenue data for all { nationalRevenueData.length } companies.
+                          {...props}
+                          mt={0}>
+                          Query revenue data for all { nationalRevenueData.length } companies.
                         </QueryLink>
-
                       </TableCell>
-
                     </TableRow>
                     <TableRow>
                       <TableCell style={{ verticalAlign: 'top' }}>
                         <Box component="h4" mt={0}>Total</Box>
-                        <Box component="p">
-
-                        </Box>
                       </TableCell>
                       <TableCell style={{ verticalAlign: 'top' }}>
                         <Box mt={0}>{utils.formatToDollarInt(totalTotal)}</Box>
@@ -220,7 +218,6 @@ const RevenueByCompany = props => {
                       <TableCell style={{ verticalAlign: 'top' }}>
                         <Box mt={0}>100%</Box>
                       </TableCell>
-
                       <TableCell style={{ verticalAlign: 'top', width: '45%' }}>
                       </TableCell>
                     </TableRow>
@@ -285,6 +282,20 @@ const RevenueByCompany = props => {
                   </Box>
                 )
               })
+              }
+              { nationalRevenueData &&
+                <>
+                  <Box pb={2} mb={2} border={1} borderTop={0} borderLeft={0} borderRight={0} borderColor={theme.palette.grey[400]}>
+                    <Box fontWeight="bold">Other companies</Box>
+                    <Box>{utils.formatToDollarInt(remainingTotal)}</Box>
+                    <Box>{remainingPercent.toFixed(2)}%</Box>
+                  </Box>
+                  <Box pb={2} mb={2} border={1} borderTop={0} borderLeft={0} borderRight={0} borderColor={theme.palette.grey[400]}>
+                    <Box fontWeight="bold">Total</Box>
+                    <Box>{utils.formatToDollarInt(totalTotal)}</Box>
+                    <Box>100%</Box>
+                  </Box>
+                </>
               }
             </Hidden>
           </Grid>
