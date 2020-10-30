@@ -96,6 +96,9 @@ const useStyles = makeStyles(theme => ({
   },
   legendButton: {
     color: theme.palette.links.default,
+    '& > span': {
+      textDecoration: 'underline',
+    }
   }
 }))
 
@@ -133,7 +136,7 @@ const StackedBarChart = props => {
       <div className={classes.container} ref={elemRef}>
         <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }` + ' chart_div'}></div>
         { props.collapsibleLegend && <Button variant='text' className={classes.legendButton} onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</Button> }
-        <Collapse in={!collapsed} >
+        <Collapse in={!collapsed}>
           <div className={classes.legend + ' legend_div'} ></div>
         </Collapse>
       </div>

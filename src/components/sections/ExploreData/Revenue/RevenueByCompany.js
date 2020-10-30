@@ -109,7 +109,7 @@ const RevenueByCompany = props => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Hidden xsDown>
+            <Hidden smDown>
               <Table>
                 <TableHead>
                   <TableRow>
@@ -226,14 +226,14 @@ const RevenueByCompany = props => {
                 </TableBody>
               </Table>
             </Hidden>
-            <Hidden smUp>
+            <Hidden mdUp>
               {nationalRevenueData &&
               nationalRevenueData.filter((d, i) => i < 10).map((item, i) => {
                 return (
                   <Box pb={2} mb={2} border={1} borderTop={0} borderLeft={0} borderRight={0} borderColor={theme.palette.grey[400]}>
                     <Box fontWeight="bold">{item[0]}</Box>
-                    <Box>{utils.formatToDollarInt(item[1][0].total)}</Box>
-                    <Box>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
+                    <Box display="flex" justifyContent="flex-end">{utils.formatToDollarInt(item[1][0].total)}</Box>
+                    <Box display="flex" justifyContent="flex-end">{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
                     <Box display="flex" justifyContent="space-between" fontWeight="bold" mt={2}>
                       <Box component="span">Revenue type</Box>
                       <Box component="span">{`${ period } ${ year }`}</Box>
@@ -287,13 +287,23 @@ const RevenueByCompany = props => {
                 <>
                   <Box pb={2} mb={2} border={1} borderTop={0} borderLeft={0} borderRight={0} borderColor={theme.palette.grey[400]}>
                     <Box fontWeight="bold">Other companies</Box>
-                    <Box>{utils.formatToDollarInt(remainingTotal)}</Box>
-                    <Box>{remainingPercent.toFixed(2)}%</Box>
+                    <Box display="flex" justifyContent="flex-end">{utils.formatToDollarInt(remainingTotal)}</Box>
+                    <Box display="flex" justifyContent="flex-end">{remainingPercent.toFixed(2)}%</Box>
+                    <Box>
+                      <QueryLink
+                        groupBy={DFC.REVENUE_TYPE}
+                        dataType={DFC.REVENUE_BY_COMPANY}
+                        linkType="FilterTable"
+                        {...props}
+                        mt={3}>
+                          Query revenue data for all { nationalRevenueData.length } companies.
+                      </QueryLink>
+                    </Box>
                   </Box>
                   <Box pb={2} mb={2} border={1} borderTop={0} borderLeft={0} borderRight={0} borderColor={theme.palette.grey[400]}>
                     <Box fontWeight="bold">Total</Box>
-                    <Box>{utils.formatToDollarInt(totalTotal)}</Box>
-                    <Box>100%</Box>
+                    <Box display="flex" justifyContent="flex-end">{utils.formatToDollarInt(totalTotal)}</Box>
+                    <Box display="flex" justifyContent="flex-end">100%</Box>
                   </Box>
                 </>
               }
