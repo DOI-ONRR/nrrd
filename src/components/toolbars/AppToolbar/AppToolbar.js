@@ -102,7 +102,7 @@ const useStyles = makeStyles(theme => ({
     '& ul li a': {
       color: theme.palette.links.default
     }
-  }
+  },
 }))
 
 const AppToolbar = props => {
