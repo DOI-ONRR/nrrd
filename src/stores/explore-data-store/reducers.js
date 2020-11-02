@@ -26,7 +26,17 @@ const reducer = (state, action) => {
 
 // Explore data initialState
 const initialState = {
-  cards: [],
+  cards: [
+    {
+      fipsCode: 'NF',
+      name: 'Nationwide Federal',
+      locationName: 'Nationwide Federal',
+      state: 'Nationwide Federal',
+      regionType: '',
+      districtType: undefined,
+      county: ''
+    }
+  ],
   mapX: -180,
   mapY: -80,
   mapZoom: 1.25,
