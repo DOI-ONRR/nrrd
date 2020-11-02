@@ -70,8 +70,9 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
     url = url.replace(pathPrefix, '')
   }
 
+  console.warn('currentPathname, href:: ', currentPathname, href)
   const classes = (linkType === LinkTypeComponents.Header)
-    ? `${ styles.headerLink } ${ className } ${ (withPrefix(currentPathname) === href) && styles.headerLinkBold }`
+    ? `${ styles.headerLink } ${ className } ${ (currentPathname === href) && styles.headerLinkBold }`
     : `${ styles.link } ${ className }`
 
   return (
