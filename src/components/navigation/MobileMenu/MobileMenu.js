@@ -90,9 +90,9 @@ const MobileMenu = ({ children, ...rest }) => {
             if (child.props.href) {
               return (
                 <ListItem button key={index} disableGutters>
-                  <ListItemLink href={child.props.href} className={classes.listItemLink}>
-                    <Link href={child.props.href} linkType="Header" style={{ marginLeft: 0, color: 'white' }}>{child.props.children}</Link>
-                  </ListItemLink>
+                  <Link href={child.props.href} className={classes.listItemLink} linkType="Header" style={{ marginLeft: 15, color: 'white' }}>
+                    {child.props.children}
+                  </Link>
                 </ListItem>
               )
             }

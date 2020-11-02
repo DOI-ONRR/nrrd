@@ -35,13 +35,13 @@ const useStyles = makeStyles(theme => ({
     },
     '@media (max-width: 768px)': {
       '& svg': {
-        // maxHeight: '70px !important',
         maxWidth: 200,
       },
     },
   },
   headerLinkBold: {
-    fontWeight: theme.typography.fontWeightBold
+    fontWeight: theme.typography.fontWeightBold,
+    textDecoration: 'underline',
   },
 })
 )
@@ -60,8 +60,6 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
   const styles = useStyles(theme)
 
   const currentPathname = typeof window !== 'undefined' ? window.location.pathname : ''
-
-  console.log('Baselink currentPathname, href: ', `${ currentPathname } :: ${ href }`)
 
   let url = href
 
