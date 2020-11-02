@@ -7,18 +7,16 @@ import { ThemeProvider } from '@material-ui/core/styles'
 
 import theme from '../../../js/mui/theme'
 
-const TypographyDisplay = () => {
-  console.log(theme)
+const TypographyKeyDisplay = ({ keys = [], children }) => {
   return (
-    <>
-      <Typography variant={'h1'}>Typography</Typography>
-      {
-        Object.keys(theme.typography).map(key => {
-          if (theme.typography[key] && typeof theme.typography[key] === 'object') {
-            return (
-              <Box key={key} m={2} p={1} border={1} borderColor='#e0e0e0'>
+    <Box m={2} p={1} border={1} borderColor='#e0e0e0'>
+      <Grid container>
+        <Grid item xs={12}>
+          {keys.map(key => {
+            if (theme.typography[key] && typeof theme.typography[key] === 'object') {
+              return (
                 <Grid key={key} container direction="row" justify="flex-start" alignItems="stretch">
-                  <Grid item key={key} xs={12}>
+                  <Grid item xs={12}>
                     <Box pl={2}>
                       <Grid item xs={3}>
                         <ThemeProvider theme={theme}>
@@ -42,13 +40,18 @@ const TypographyDisplay = () => {
                     </Box>
                   </Grid>
                 </Grid>
-              </Box>
-            )
-          }
-        })
-      }
-    </>
+              )
+            }
+          })}
+        </Grid>
+        <Grid item xs={12}>
+          <Box m={2} p={1} border={1} borderColor='#e0e0e0' bgcolor='#e0e0e0'>
+            {children}
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   )
 }
 
-export default TypographyDisplay
+export default TypographyKeyDisplay
