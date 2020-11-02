@@ -61,6 +61,8 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
 
   const currentPathname = typeof window !== 'undefined' ? window.location.pathname : ''
 
+  console.log('Baselink currentPathname, href: ', `${ currentPathname } :: ${ href }`)
+
   let url = href
 
   const pathPrefix = withPrefix('/').slice(0, -1)
