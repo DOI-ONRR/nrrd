@@ -792,15 +792,19 @@ const addFund = async (row, lookup) => {
         recipient = 'Native American tribes and individuals'
         fund_class = 'Native American tribes and individuals'
       }
-      else if (row[field] === 'Land & Water Conservation Fund') {
+      else if (row[field].match(/Land & Water Conservation Fund/)) {
           recipient = 'Land and Water Conservation Fund'
           fund_class = 'Land and Water Conservation Fund'
       }
-      else if (row[field] === 'Reclamation') {
-          recipient = 'Reclamation'
-          fund_class = 'Reclamation Fund'
-      }	
-      else if (row[field] === 'Other') {
+      else if (row[field].match(/Land and Water Conservation Fund/)) {
+          recipient = 'Land and Water Conservation Fund'
+          fund_class = 'Land and Water Conservation Fund'
+      }
+	    else if (row[field] === 'Reclamation') {
+		recipient = 'Reclamation'
+		fund_class = 'Reclamation Fund'
+	    }	
+	    else if (row[field] === 'Other') {
           recipient = 'Other'
           fund_class = 'Other funds'
       }	
