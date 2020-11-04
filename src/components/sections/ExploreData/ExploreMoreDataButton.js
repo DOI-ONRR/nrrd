@@ -42,10 +42,6 @@ const useStyles = makeStyles(theme => ({
     lineHeight: 1.25,
     padding: '5px 16px',
   },
-  buttonScrollLabel: {
-    fontSize: 14,
-    position: 'relative',
-  },
   buttonScrollIcon: {
     height: 20,
     '& svg': {
@@ -116,9 +112,6 @@ const ExploreMoreDataButton = props => {
         onClick={buttonState.icon === 'down' ? scrollTo : scrollToTop}
       >
         {buttonState.label}
-        <span className={classes.buttonScrollLabel}>
-          { buttonState.icon === 'down' ? 'Scroll down' : 'Scroll up' }
-        </span>
         <span className={classes.buttonScrollIcon}>
           {buttonState.icon === 'down' ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
         </span>
