@@ -9,8 +9,11 @@ import {
 
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import CloseIcon from '@material-ui/icons/Close'
 
 import { makeStyles } from '@material-ui/core/styles'
+
+import Link from '../../Link'
 
 const useStyles = makeStyles(theme => ({
   mobileMenu: {
@@ -41,6 +44,9 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.common.white,
     padding: theme.spacing(2)
   },
+  closeIcon: {
+    color: theme.palette.common.white,
+  }
 }))
 
 // List item link
@@ -76,12 +82,17 @@ const MobileMenu = ({ children, ...rest }) => {
       role="presentation"
     >
       <List classes={{ root: classes.listRoot }}>
+        <IconButton aria-label="Close menu" onClick={toggleDrawer('right', false)}>
+          <CloseIcon classes={{ root: classes.closeIcon }} />
+        </IconButton>
         {
           React.Children.map(children, (child, index) => {
             if (child.props.href) {
               return (
                 <ListItem button key={index} disableGutters>
-                  <ListItemLink href={child.props.href} className={classes.listItemLink}>{child.props.children}</ListItemLink>
+                  <Link href={child.props.href} className={classes.listItemLink} linkType="Header" style={{ marginLeft: 15, color: 'white' }}>
+                    {child.props.children}
+                  </Link>
                 </ListItem>
               )
             }

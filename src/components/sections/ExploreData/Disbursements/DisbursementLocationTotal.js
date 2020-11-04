@@ -63,20 +63,14 @@ const DisbursementLocationTotal = props => {
       nativeSummary.total = [{ location: DFC.NATIVE_AMERICAN_FIPS, total: 0 }]
     }
 
-    if (nationwideSummary.length > 0 && nativeSummary.length > 0) {
-	  return (
-
-	      <>
-		After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies,
-		funds, and local governments for public use. This process is called "disbursement." <strong>In {period.toLowerCase()} {year},
-		ONRR disbursed {utils.formatToDollarInt(nationwideSummary[0].total)} from federal sources and {utils.formatToDollarInt(nativeSummary[0].total)}
-		from Native American sources for a total of {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
-	      </>
-	  )
-    }
-    else {
-	  return (null)
-    }
+    return (
+      <>
+        After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies,
+        funds, and local governments for public use. This process is called "disbursement." <strong>In {period.toLowerCase()} {year},
+        ONRR disbursed {utils.formatToDollarInt(nationwideSummary[0].total)} from federal sources and {utils.formatToDollarInt(nativeSummary[0].total)}
+	      {' '}from Native American sources for a total of {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
+      </>
+    )
   }
 }
 

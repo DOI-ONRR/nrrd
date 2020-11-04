@@ -316,7 +316,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
                       'Query revenue data',
                       'Downloads & Documentation',
                       'How revenue works',
-                      // 'Revenue by company'
+                      // 'Federal revenue by company'
                     ]}
                     linkUrls={[
                       '/query-data/?dataType=Revenue',
