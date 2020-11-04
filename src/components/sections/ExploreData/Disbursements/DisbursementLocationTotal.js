@@ -63,9 +63,7 @@ const DisbursementLocationTotal = props => {
       nativeSummary.total = [{ location: DFC.NATIVE_AMERICAN_FIPS, total: 0 }]
     }
 
-      if(nationwideSummary.length > 0 && nativeSummary.length > 0) {
-
-
+    if (nationwideSummary.length > 0 && nativeSummary.length > 0) {
 	  return (
 
 	      <>
@@ -75,10 +73,10 @@ const DisbursementLocationTotal = props => {
 		from Native American sources for a total of {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
 	      </>
 	  )
-      }
-      else {
+    }
+    else {
 	  return (null)
-      }
+    }
   }
 }
 
