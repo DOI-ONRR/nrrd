@@ -14,7 +14,6 @@ describe('Process Card:', () => {
     expect(screen.getByText('Process Card content')).toBeInTheDocument()
   })
   test('Process Card Mobile and clicking the icon shows content', async () => {
-
     window.matchMedia = createMatchMedia(theme.breakpoints.values.sm - 1)
 
     render(<ProcessCard step={1} name='Step 1'>Process Card content</ProcessCard>)

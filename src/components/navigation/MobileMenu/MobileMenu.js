@@ -49,11 +49,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// List item link
-const ListItemLink = props => {
-  return <ListItem button component="a" {...props} />
-}
-
 const MobileMenu = ({ children, ...rest }) => {
   const classes = useStyles()
   const [menuState, setMenuState] = useState({
@@ -103,11 +98,6 @@ const MobileMenu = ({ children, ...rest }) => {
             )
           })
         }
-        {/* <ListItem button key={children.length + 1} disableGutters>
-          <ListItemIcon onClick={toggleDrawer(anchor, false)}>
-            <CloseIcon />
-          </ListItemIcon>
-        </ListItem> */}
       </List>
     </div>
   )
