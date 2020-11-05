@@ -26,9 +26,7 @@ import {
   CommoditySelectInput,
   DataTypeSelectInput,
   FilterToggleInput,
-  MapLevelToggleInput,
-  PeriodSelectInput,
-  OffshoreRegionsSwitchInput
+  PeriodSelectInput
 } from '../../inputs'
 
 import YearSlider from '../../sections/ExploreData/YearSlider'
@@ -40,9 +38,7 @@ import {
   DISBURSEMENT,
   PERIOD,
   PRODUCTION,
-  REVENUE,
-  OFFSHORE_REGIONS,
-  MAP_LEVEL
+  REVENUE
 } from '../../../constants'
 
 const EXPLORE_DATA_TOOLBAR_OPTIONS = {
@@ -55,14 +51,6 @@ const EXPLORE_DATA_TOOLBAR_OPTIONS = {
     { value: DFC.FISCAL_YEAR_LABEL, option: DFC.PERIOD_FISCAL_YEAR },
     { value: DFC.PERIOD_CALENDAR_YEAR, option: DFC.PERIOD_CALENDAR_YEAR },
     // { value: DFC.PERIOD_MONTHLY_YEAR, option: DFC.PERIOD_MONTHLY_YEAR }
-  ],
-  [MAP_LEVEL]: [
-    { value: DFC.STATE, option: DFC.STATE },
-    { value: DFC.COUNTY_CAPITALIZED, option: DFC.COUNTY_CAPITALIZED }
-  ],
-  [OFFSHORE_REGIONS]: [
-    { value: false, option: '' },
-    { value: true, option: '' }
   ]
 }
 
@@ -130,8 +118,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
 
   const {
     onLink,
-    cardMenuItems,
-    mapOverlay
+    cardMenuItems
   } = props
 
   const productionCommodityOptions = data.onrr.ProductionCommodityOptions.map(item => item.product)
@@ -267,27 +254,6 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
             }
             <YearSlider />
           </Box>
-          {!mapOverlay &&
-          <Box className={classes.toolsWrapper}>
-            <MapLevelToggleInput
-              dataFilterKey={MAP_LEVEL}
-              defaultSelected={mapLevel || DFC.STATE}
-              data={EXPLORE_DATA_TOOLBAR_OPTIONS[MAP_LEVEL]}
-              label="Map level toggle"
-              legend="Map level"
-              size="small"
-              disabled={mapOverlay} />
-
-            <OffshoreRegionsSwitchInput
-              dataFilterKey={OFFSHORE_REGIONS}
-              data={EXPLORE_DATA_TOOLBAR_OPTIONS[OFFSHORE_REGIONS]}
-              defaultSelected={offshoreRegions === true}
-              label='Show offshore'
-              helperText='Disbursements from offshore production go to the states and counties that surround the offshore area.'
-              disabled={dataType === 'Disbursements' || mapOverlay}
-              selectType='Single' />
-          </Box>
-          }
         </BaseToolbar>
         }
         {locationTabOpen &&

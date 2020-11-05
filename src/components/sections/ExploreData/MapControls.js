@@ -37,6 +37,10 @@ const useStyles = makeStyles(theme => ({
 const MapControls = props => {
   const classes = useStyles()
 
+  const {
+    handleClick,
+  } = props
+
   return (
     <Box className={classes.zoomButtonGroupContainer}>
       <ButtonGroup
@@ -44,13 +48,13 @@ const MapControls = props => {
         variant="contained"
         aria-label="Explore data map zoom controls"
         classes={{ grouped: classes.buttonGroupGrouped }}>
-        <Button onClick={() => props.handleClick('add')} role="button" aria-label="Map zoom in">
+        <Button onClick={() => handleClick('add')} role="button" aria-label="Map zoom in">
           <AddIcon />
         </Button>
-        <Button onClick={() => props.handleClick('remove')} role="button" aria-label="Map zoom out">
+        <Button onClick={() => handleClick('remove')} role="button" aria-label="Map zoom out">
           <RemoveIcon />
         </Button>
-        <Button onClick={() => props.handleClick('refresh')} role="button" aria-label="Map reset">
+        <Button onClick={() => handleClick('refresh')} role="button" aria-label="Map reset">
           <RefreshIcon />
         </Button>
       </ButtonGroup>
