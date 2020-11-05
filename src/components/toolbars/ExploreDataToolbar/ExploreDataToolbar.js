@@ -135,9 +135,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
 
   const {
     dataType,
-    commodity,
-    mapLevel,
-    offshoreRegions
+    commodity
   } = filterState
 
   const {

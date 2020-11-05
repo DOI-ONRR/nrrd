@@ -11,9 +11,6 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import {
   Box,
-  Card,
-  CardActions,
-  CardContent,
   Container,
   Grid,
   Hidden,
@@ -24,15 +21,11 @@ import {
   TableCell
 } from '@material-ui/core'
 
-import { useTheme, makeStyles } from '@material-ui/core/styles'
+import { useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
 import utils from '../../../../js/utils'
-
-const useStyles = makeStyles(theme => ({
-  root: {}
-}))
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
@@ -51,7 +44,6 @@ const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
 
 const RevenueByCompany = props => {
   const theme = useTheme()
-  const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
@@ -99,10 +91,10 @@ const RevenueByCompany = props => {
       .filter((d, i) => i > 9).map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
     totalTotal = Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
     remainingPercent = remainingTotal / totalTotal * 100
-      console.debug("NRD", nationalRevenueData)
-      console.debug("GD", groupData)
-      console.debug("GT", groupTotal)
-      
+    console.debug('NRD', nationalRevenueData)
+    console.debug('GD', groupData)
+    console.debug('GT', groupTotal)
+
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>

@@ -101,35 +101,35 @@ const DisbursementTrends = props => {
     const maxYear = trends[0].histData[trends[0].histData.length - 1][0].substring(2)
 
     // Text output
-      
+
     let currentFiscalYearText = `FY${ currentYear.toString().substring(2) }`
-    if(currentMonth !== '09' ) {
+    if (currentMonth !== '09') {
       currentFiscalYearText = currentFiscalYearText + ' so far'
     }
     const longCurrentYearText = `${ maxMonth } ${ currentYear }`
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
 
-	  year = trends[0].histData[trends[0].histData.length - 1][0] || filterState[DFC.YEAR] 
+	  year = trends[0].histData[trends[0].histData.length - 1][0] || filterState[DFC.YEAR]
 
 	  return (
 	      <Box component="section" className={classes.root}>
-              <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
-              <Box component="h3" m={0} color="primary.dark">{props.title}</Box>
-              </Box>
-              <Box component="p" color="text.primary">
+        <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
+          <Box component="h3" m={0} color="primary.dark">{props.title}</Box>
+        </Box>
+        <Box component="p" color="text.primary">
               Includes disbursements through {longCurrentYearText}
-              </Box>
+        </Box>
 
-              <TableContainer component={Paper} className={classes.tableContainer}>
-              <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
-              <TableHead>
+        <TableContainer component={Paper} className={classes.tableContainer}>
+          <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
+            <TableHead>
               <TableRow>
-              <TableCell><Box fontWeight="bold">{currentTrendText}</Box></TableCell>
-              <TableCell align="right"><Box fontWeight="bold">{currentFiscalYearText}</Box></TableCell>
+                <TableCell><Box fontWeight="bold">{currentTrendText}</Box></TableCell>
+                <TableCell align="right"><Box fontWeight="bold">{currentFiscalYearText}</Box></TableCell>
               </TableRow>
-              </TableHead>
-              <TableBody>
+            </TableHead>
+            <TableBody>
               {
                 trends.map((trend, index) => (
                   <TableRow key={`tableRow${ index }`}>
@@ -210,10 +210,10 @@ const aggregateData = data => {
   ]
   const currentYear = data[0].fiscalYear
   const currentMonth = data[0].month
-    console.debug("DWGH",currentMonth)
-    for (let ii = 0; ii < data.length; ii++) {
-      const item = data[ii]
-      console.debug(item)
+  console.debug('DWGH', currentMonth)
+  for (let ii = 0; ii < data.length; ii++) {
+    const item = data[ii]
+    console.debug(item)
     if (item.disbursementType.match(/U.S. Treasury/)) {
 	    sumData(item, r, 0, currentYear) // sum into us treasury
     }

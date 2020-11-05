@@ -93,8 +93,8 @@ const RevenueTrends = props => {
     const maxYear = trends[0].histData[trends[0].histData.length - 1][0].substring(2)
 
     // Text output
-    let  currentFiscalYearText = `FY${ currentYear.toString().substring(2) }`
-    if(currentMonth !== '09' ) {
+    let currentFiscalYearText = `FY${ currentYear.toString().substring(2) }`
+    if (currentMonth !== '09') {
       currentFiscalYearText = currentFiscalYearText + ' so far'
     }
     const longCurrentYearText = `${ maxMonth } ${ currentYear }`
@@ -102,7 +102,7 @@ const RevenueTrends = props => {
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
     // console.debug("Fitler State", filterState, "DFC.year", DFC.YEAR, " OR ", trends[0], "WTH ", DFC)
 
-    year =  trends[0].histData[trends[0].histData.length - 1][0] || filterState[DFC.YEAR]
+    year = trends[0].histData[trends[0].histData.length - 1][0] || filterState[DFC.YEAR]
     return (
 		  <Box component="section">
 		    <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
@@ -114,19 +114,19 @@ const RevenueTrends = props => {
 
 		    <TableContainer component={Paper} className={classes.tableContainer}>
 		      <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
-			<TableHead>
+            <TableHead>
 			  <TableRow>
 			    <TableCell><Box fontWeight="bold">{currentTrendText}</Box></TableCell>
 			    <TableCell align="right"><Box fontWeight="bold">{currentFiscalYearText}</Box></TableCell>
 			  </TableRow>
-			</TableHead>
-			<TableBody>
+            </TableHead>
+            <TableBody>
 			  {
 			      trends.map((trend, index) => (
 				  <TableRow key={`tableRow${ index }`}>
 				    <TableCell component="th" scope="row">
 				      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
-					{trend.fund}
+                        {trend.fund}
 				      </Box>
 				      <Sparkline
 					  key={`sparkline${ index }`}
@@ -137,19 +137,19 @@ const RevenueTrends = props => {
 				    </TableCell>
 				    <TableCell align="right">
 				      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
-					{utils.formatToSigFig_Dollar(trend.current, 3)}
+                        {utils.formatToSigFig_Dollar(trend.current, 3)}
 				      </Box>
 				      <Box>
-					<PercentDifference
+                        <PercentDifference
 					    currentAmount={trend.current}
 					    previousAmount={trend.previous}
-					/>{` ${ previousFiscalYearText }`}
+                        />{` ${ previousFiscalYearText }`}
 				      </Box>
 				    </TableCell>
 				  </TableRow>
 			      ))
 			  }
-			</TableBody>
+            </TableBody>
 		      </Table>
 		    </TableContainer>
 
