@@ -2,7 +2,8 @@
 import React from 'react'
 
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen, fireEvent } from 'test-utils'
+import { render, screen } from 'test-utils'
+import userEvent from '@testing-library/user-event'
 
 import GlossaryTerm from './GlossaryTerm'
 
@@ -27,7 +28,7 @@ describe('Glossary Term:', () => {
   test('Hovering on glossary term removes title attribute to display the tooltip', async () => {
     render(<GlossaryTerm>GOMESA</GlossaryTerm>)
     expect(screen.getByTitle('The Gulf of Mexico Energy Security Act (GOMESA)', { exact: false })).toBeInTheDocument()
-    fireEvent.mouseOver(screen.getByTitle('The Gulf of Mexico Energy Security Act (GOMESA)', { exact: false }))
+    userEvent.hover(screen.getByTitle('The Gulf of Mexico Energy Security Act (GOMESA)', { exact: false }))
     expect(screen.queryByTitle('The Gulf of Mexico Energy Security Act (GOMESA)', { exact: false })).not.toBeInTheDocument()
   })
 })
