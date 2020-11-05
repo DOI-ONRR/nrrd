@@ -395,18 +395,21 @@ const NativeAmerican = async row => {
   /// / console.debug('NATIVE AMERICAN', row)
   if (row['Fund Type']) {
     switch (row['Fund Type']) {
-    case 'U.S. TreasuryAI':
-      row['Land Class'] = 'Native American'
-      break
-    case 'Native American Tribes & Allottees':
-      row['Land Class'] = 'Native American'
-      break
-    case 'American Indian Tribes':
-      row['Land Class'] = 'Native American'
-      break
-    default:
-      row['Land Class'] = 'Federal'
-      break
+	case 'U.S. TreasuryAI':
+	    row['Land Class'] = 'Native American'
+	    break
+	case 'Native American Tribes & Allottees':
+	    row['Land Class'] = 'Native American'
+	    break
+	case 'Native American Tribes and Allottees':
+	    row['Land Class'] = 'Native American'
+	    break
+	case 'American Indian Tribes':
+	    row['Land Class'] = 'Native American'
+	    break
+	default:
+	    row['Land Class'] = 'Federal'
+	    break
     }
   }
   //    console.debug('NATIVE AMERICAN AFTER', row)
@@ -779,27 +782,43 @@ const addFund = async (row, lookup) => {
 
       if (row.State && row.State.length > 0 && row.State && row.State.length > 0) {
         recipient = 'County'
-        fund_class = 'County'
+        fund_class = 'State and local governments'
       }
       else if (row.State && row.State.length > 0 && row.State && row.State.length === 0) {
         recipient = 'State'
-        fund_class = 'State'
+        fund_class = 'State and local governments'
       }
       else if (row[field].match(/Tribe/i) || row[field].match(/TreasuryAI/i)) {
         recipient = 'Native American tribes and individuals'
         fund_class = 'Native American tribes and individuals'
       }
-      else if (row[field] === 'Land & Water Conservation Fund') {
-        recipient = 'Land and Water Conservation Fund'
-        fund_class = 'Specific Fund'
+      else if (row[field].match(/Land & Water Conservation Fund/)) {
+          recipient = 'Land and Water Conservation Fund'
+          fund_class = 'Land and Water Conservation Fund'
       }
-      else {
-        recipient = row[field]
-        fund_class = 'Specific Fund'
+      else if (row[field].match(/Land and Water Conservation Fund/)) {
+          recipient = 'Land and Water Conservation Fund'
+          fund_class = 'Land and Water Conservation Fund'
       }
+	    else if (row[field] === 'Reclamation') {
+		recipient = 'Reclamation'
+		fund_class = 'Reclamation Fund'
+	    }	
+	    else if (row[field] === 'Other') {
+          recipient = 'Other'
+          fund_class = 'Other funds'
+      }	
+      else if (row[field] === 'U.S. Treasury' || row[field] === 'U.S. Treasury - GoMESA') {
+          recipient = row[field]
+          fund_class = 'U.S. Treasury'
+      }	
+	    else {
+		recipient = row[field]
+		fund_class = row[field]
+	    }
 
-      fund_type = row[field]
-      break
+	    fund_type = row[field]
+	    break
     }
   }
   // console.debug('source: ',source)
