@@ -99,7 +99,10 @@ const RevenueByCompany = props => {
       .filter((d, i) => i > 9).map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
     totalTotal = Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
     remainingPercent = remainingTotal / totalTotal * 100
-
+      console.debug("NRD", nationalRevenueData)
+      console.debug("GD", groupData)
+      console.debug("GT", groupTotal)
+      
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>

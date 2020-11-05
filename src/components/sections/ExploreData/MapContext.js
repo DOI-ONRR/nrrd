@@ -21,6 +21,7 @@ import {
 
 import { animateScroll as scroll } from 'react-scroll'
 
+import MapLevel from './MapLevel'
 import MapControls from './MapControls'
 import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
@@ -579,16 +580,14 @@ const MapContext = props => {
     <>
       <ExploreDataToolbar
         onLink={onLink}
-        cardMenuItems={cardMenuItems}
-        mapOverlay={mapOverlay} />
+        cardMenuItems={cardMenuItems} />
       <Container className={classes.mapContextWrapper} maxWidth={false}>
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
+              <MapLevel mapOverlay={mapOverlay} />
               {mapChild}
-              <MapControls
-                handleClick={handleClick}
-              />
+              <MapControls handleClick={handleClick} />
             </Box>
             <Box className={`map-overlay ${ mapOverlay ? 'active' : '' }`}></Box>
           </Grid>

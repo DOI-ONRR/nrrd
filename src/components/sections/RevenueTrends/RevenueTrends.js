@@ -93,70 +93,72 @@ const RevenueTrends = props => {
     const maxYear = trends[0].histData[trends[0].histData.length - 1][0].substring(2)
 
     // Text output
-    const currentFiscalYearText = `FY${ currentYear.toString().substring(2) } so far`
+    let  currentFiscalYearText = `FY${ currentYear.toString().substring(2) }`
+    if(currentMonth !== '09' ) {
+      currentFiscalYearText = currentFiscalYearText + ' so far'
+    }
     const longCurrentYearText = `${ maxMonth } ${ currentYear }`
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
     // console.debug("Fitler State", filterState, "DFC.year", DFC.YEAR, " OR ", trends[0], "WTH ", DFC)
 
-    year = filterState[DFC.YEAR] || trends[0].histData[trends[0].histData.length - 1][0]
-
+    year =  trends[0].histData[trends[0].histData.length - 1][0] || filterState[DFC.YEAR]
     return (
-      <Box component="section">
-        <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
-          <Box component="h3" m={0} color="primary.dark">{props.title}</Box>
-        </Box>
-        <Box component="p" color="text.primary">
-          Includes federal and Native American revenue through {longCurrentYearText}
-        </Box>
+		  <Box component="section">
+		    <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
+		      <Box component="h3" m={0} color="primary.dark">{props.title}</Box>
+		    </Box>
+		    <Box component="p" color="text.primary">
+		      Includes federal and Native American revenue through {longCurrentYearText}
+		    </Box>
 
-        <TableContainer component={Paper} className={classes.tableContainer}>
-          <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
-            <TableHead>
-              <TableRow>
-                <TableCell><Box fontWeight="bold">{currentTrendText}</Box></TableCell>
-                <TableCell align="right"><Box fontWeight="bold">{currentFiscalYearText}</Box></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {
-                trends.map((trend, index) => (
-                  <TableRow key={`tableRow${ index }`}>
-                    <TableCell component="th" scope="row">
-                      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
-                        {trend.fund}
-                      </Box>
-                      <Sparkline
-                        key={`sparkline${ index }`}
-                        data={trend.histData}
-                        highlightIndex={trend.histData.findIndex(
-                          x => parseInt(x[0]) === parseInt(year)
-                        )} />
-                    </TableCell>
-                    <TableCell align="right">
-                      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
-                        {utils.formatToSigFig_Dollar(trend.current, 3)}
-                      </Box>
-                      <Box>
-                        <PercentDifference
-                          currentAmount={trend.current}
-                          previousAmount={trend.previous}
-                        />{` ${ previousFiscalYearText }`}
-                      </Box>
-                    </TableCell>
-                  </TableRow>
-                ))
-              }
-            </TableBody>
-          </Table>
-        </TableContainer>
+		    <TableContainer component={Paper} className={classes.tableContainer}>
+		      <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
+			<TableHead>
+			  <TableRow>
+			    <TableCell><Box fontWeight="bold">{currentTrendText}</Box></TableCell>
+			    <TableCell align="right"><Box fontWeight="bold">{currentFiscalYearText}</Box></TableCell>
+			  </TableRow>
+			</TableHead>
+			<TableBody>
+			  {
+			      trends.map((trend, index) => (
+				  <TableRow key={`tableRow${ index }`}>
+				    <TableCell component="th" scope="row">
+				      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
+					{trend.fund}
+				      </Box>
+				      <Sparkline
+					  key={`sparkline${ index }`}
+					  data={trend.histData}
+					  highlightIndex={trend.histData.findIndex(
+					      x => parseInt(x[0]) === parseInt(year)
+					  )} />
+				    </TableCell>
+				    <TableCell align="right">
+				      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
+					{utils.formatToSigFig_Dollar(trend.current, 3)}
+				      </Box>
+				      <Box>
+					<PercentDifference
+					    currentAmount={trend.current}
+					    previousAmount={trend.previous}
+					/>{` ${ previousFiscalYearText }`}
+				      </Box>
+				    </TableCell>
+				  </TableRow>
+			      ))
+			  }
+			</TableBody>
+		      </Table>
+		    </TableContainer>
 
-        <Box fontStyle="italic" fontSize="h6.fontSize" className={classes.inlineSourceLinks}>
-          <Link href='/downloads/revenue-by-month/'>Source file</Link>
-          <Link href='/downloads/revenue-by-month/'>Source file</Link>
-        </Box>
-      </Box>
-    )
+		    <Box fontStyle="italic" fontSize="h6.fontSize" className={classes.inlineSourceLinks}>
+		      <Link href='/downloads/revenue-by-month/'>Source file</Link>
+		      <Link href='/downloads/revenue-by-month/'>Source file</Link>
+		    </Box>
+		  </Box>
+	      )
   }
   else {
     return (
@@ -221,7 +223,7 @@ const aggregateData = data => {
     const years = Object.keys(row.histSum).sort()
     a = years.map((year, i) => ([year, row.histSum[year]]))
     // console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
-    if (currentMonth === 'December') {
+    if (currentMonth === 'September') {
       r[i].histData = a.slice(-10)
       return a.slice(-10)
     }
