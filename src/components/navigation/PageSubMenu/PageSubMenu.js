@@ -130,6 +130,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
 
   useLayoutEffect(() => {
     const activeItems = []
+
     setTimeout(() => {
       subMenu.anchorItems.forEach((item, index) => {
         if (subMenuRef.current.children && subMenuRef.current.children[item]) {
@@ -137,7 +138,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
           setSubMenu({ ...subMenu, activeItems: activeItems })
         }
       })
-    }, 2000)
+    }, 4000)
   }, [children, filterState])
 
   return (
