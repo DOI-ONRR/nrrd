@@ -158,6 +158,14 @@ const RevenueByCompany = props => {
                             return headers
                           }
                           }
+                          chartTooltip={
+                            d => {
+                              const r = []
+                              r[0] = d.key
+                              r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                              return r
+                            }
+                          }
                           // eslint-disable-next-line no-return-assign
                           barScale={item[1].reduce((total, i) => total += i.revenue, 0) / groupTotal }
                           units={units}
