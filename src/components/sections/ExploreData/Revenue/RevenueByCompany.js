@@ -90,10 +90,10 @@ const RevenueByCompany = props => {
       .filter((d, i) => i > 9).map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
     totalTotal = Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
     remainingPercent = remainingTotal / totalTotal * 100
-      console.debug("NRD", nationalRevenueData)
-      console.debug("GD", groupData)
-      console.debug("GT", groupTotal)
-      
+    console.debug('NRD', nationalRevenueData)
+    console.debug('GD', groupData)
+    console.debug('GT', groupTotal)
+
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
@@ -126,10 +126,10 @@ const RevenueByCompany = props => {
                       </Box>
                     </TableCell>
                     <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box mt={0}>{utils.formatToDollarInt(item[1].reduce( (total, i) => total += i.revenue, 0))}</Box>
+                      <Box mt={0}>{utils.formatToDollarInt(item[1].reduce((total, i) => total += i.revenue, 0))}</Box>
                     </TableCell>
                     <TableCell style={{ verticalAlign: 'top' }}>
-                      <Box mt={0}>{( item[1].reduce((total, i) => total += i.revenue, 0) / totalTotal *100 ).toFixed(2)}%</Box>
+                      <Box mt={0}>{(item[1].reduce((total, i) => total += i.revenue, 0) / totalTotal * 100).toFixed(2)}%</Box>
                     </TableCell>
                     <TableCell style={{ width: '45%' }}>
                       <StackedBarChart
@@ -151,6 +151,14 @@ const RevenueByCompany = props => {
                           headers[2] = ''
                           return headers
                         }
+                        }
+                        chartTooltip={
+                          d => {
+                            const r = []
+                            r[0] = d.key
+                            r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                            return r
+                          }
                         }
                         // eslint-disable-next-line no-return-assign
                         barScale={item[1].reduce((total, i) => total += i.revenue, 0) / groupTotal }

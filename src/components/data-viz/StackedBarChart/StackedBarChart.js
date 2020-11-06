@@ -134,8 +134,8 @@ const StackedBarChart = props => {
       <div className={classes.container} ref={elemRef}>
         <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }` + ' chart_div'}></div>
         { props.collapsibleLegend && <Button variant='text' onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</Button> }
-        <Collapse in={!collapsed} >
-          <div className={classes.legend + ' legend_div'} ></div>
+        <Collapse in={!collapsed}>
+          <div className={classes.legend + ' legend_div'}></div>
         </Collapse>
       </div>
     </>
