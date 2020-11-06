@@ -20,12 +20,8 @@ const useStyles = makeStyles(theme => ({
     height: '200px',
     fill: theme.palette.chart.primary,
     '& .bars > .bar:hover': {
-    // fill: theme.palette.chart.secondary,
       cursor: 'pointer',
     },
-    // '& .bars > .active': {
-    //   fill: theme.palette.chart.secondary,
-    // },
     '& .maxExtent': {
       fontSize: theme.typography.h5.fontSize,
     },
@@ -97,6 +93,12 @@ const useStyles = makeStyles(theme => ({
     '& .legend-rect': {
       marginTop: theme.spacing(0.5),
     },
+  },
+  legendButton: {
+    color: theme.palette.links.default,
+    '& > span': {
+      textDecoration: 'underline',
+    }
   }
 }))
 

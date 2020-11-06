@@ -98,11 +98,6 @@ const MobileMenu = ({ children, ...rest }) => {
             )
           })
         }
-        {/* <ListItem button key={children.length + 1} disableGutters>
-          <ListItemIcon onClick={toggleDrawer(anchor, false)}>
-            <CloseIcon />
-          </ListItemIcon>
-        </ListItem> */}
       </List>
     </div>
   )
