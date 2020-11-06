@@ -49,11 +49,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// List item link
-const ListItemLink = props => {
-  return <ListItem button component="a" {...props} />
-}
-
 const MobileMenu = ({ children, ...rest }) => {
   const classes = useStyles()
   const [menuState, setMenuState] = useState({

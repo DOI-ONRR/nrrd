@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
