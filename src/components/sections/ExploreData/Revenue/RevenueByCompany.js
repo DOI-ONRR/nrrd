@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
@@ -157,6 +158,14 @@ const RevenueByCompany = props => {
                             return headers
                           }
                           }
+                          chartTooltip={
+                            d => {
+                              const r = []
+                              r[0] = d.key
+                              r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                              return r
+                            }
+                          }
                           // eslint-disable-next-line no-return-assign
                           barScale={item[1].reduce((total, i) => total += i.revenue, 0) / groupTotal }
                           units={units}
@@ -253,6 +262,14 @@ const RevenueByCompany = props => {
                           headers[2] = ''
                           return headers
                         }
+                        }
+                        chartTooltip={
+                          d => {
+                            const r = []
+                            r[0] = d.key
+                            r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                            return r
+                          }
                         }
                         // eslint-disable-next-line no-return-assign
                         barScale={item[1].reduce((total, i) => total += i.revenue, 0) / groupTotal }
