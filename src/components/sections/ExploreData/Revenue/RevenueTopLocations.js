@@ -117,7 +117,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       }).sort((a, b) => (a.total < b.total) ? 1 : -1)
-
+    console.debug('------------------------------------------------->', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
