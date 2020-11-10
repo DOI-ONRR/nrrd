@@ -43,8 +43,13 @@ import CustomGroupCellContent from './Custom/CustomGroupCellContent'
 import {
   makeStyles,
   Box,
-  Grid
+  Button,
+  Grid,
+  IconButton
 } from '@material-ui/core'
+
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 
 import {
   GroupingState,
@@ -487,7 +492,8 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
                     onAddColumn={!_breakoutBy && addBreakoutByColumnHandler}
                     onRemoveColumn={_breakoutBy && removeBreakoutByColumnHandler}
                     {...props} />}
-                showSortingControls/>
+                showSortingControls
+                sortLabelComponent={SortLabel}/>
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
               />
@@ -539,3 +545,20 @@ const getColumnNames = (row, state) => {
 const summaryCalculator = (type, rows, getValue) => {
   return IntegratedSummary.defaultCalculator('sum', rows, getValue)
 }
+
+const SortingUpIcon = ({ direction }) => {
+  return <ArrowDropUpIcon style={{ fontSize: '30px', color: (direction === 'asc') ? '#1478a6' : '#e0e0e0', position: 'relative', top: 15, left: 5 }} />
+}
+
+const SortingDownIcon = ({ direction }) => {
+  return <ArrowDropDownIcon style={{ fontSize: '30px', color: (direction === 'desc') ? '#1478a6' : '#e0e0e0', position: 'relative', top: -15, left: 5 }} />
+}
+
+const SortLabel = ({ onSort, children, direction }) => (
+  <Box onClick={onSort} display="flex" flexDirection="column" style={{ cursor: 'pointer' }}>
+    <SortingUpIcon direction={direction} />
+    {children}
+    <SortingDownIcon direction={direction} />
+  </Box>
+
+)
