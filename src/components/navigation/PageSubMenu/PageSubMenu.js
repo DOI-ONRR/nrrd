@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useLayoutEffect, useRef, useContext } from 'react'
+import React, { useCallback, useState, useEffect, useRef, useContext } from 'react'
 
 import {
   animateScroll as scroll,
@@ -20,6 +20,8 @@ import {
 import { makeStyles } from '@material-ui/styles'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { filter } from 'lodash'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -128,18 +130,14 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
     })
   }
 
-  useLayoutEffect(() => {
-    const activeItems = []
-
-    setTimeout(() => {
-      subMenu.anchorItems.forEach((item, index) => {
-        if (subMenuRef.current.children && subMenuRef.current.children[item]) {
-          activeItems.push(item)
-          setSubMenu({ ...subMenu, activeItems: activeItems })
-        }
-      })
-    }, 4000)
-  }, [children, filterState])
+  useEffect(() => {
+    if (filterState.period === DFC.PERIOD_FISCAL_YEAR) {
+      setSubMenu({ ...subMenu, anchorItems: subMenu.anchorItems.filter(item => item !== 'federal-revenue-by-company') })
+    }
+    else {
+      setSubMenu({ ...subMenu, anchorItems: menuItems.map(item => utils.formatToSlug(item)) })
+    }
+  }, [subMenu.menuItems, filterState])
 
   return (
     <>
@@ -153,12 +151,12 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
                   Top
                   </a>
                 </MenuItem>
-                { subMenu.activeItems &&
-                subMenu.activeItems.map((item, i) =>
+                { subMenu.anchorItems &&
+                subMenu.anchorItems.map((item, i) =>
                   <MenuItem key={i + 1}>
                     <a
-                      href={`#${ utils.formatToSlug(item) }`}
-                      onClick={() => scrollTo(utils.formatToSlug(item))}
+                      href={`#${ item }`}
+                      onClick={() => scrollTo(item)}
                       className={classes.subMenuLink}
                       title={item}>
                       {menuItems[i]}
@@ -171,7 +169,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
           </Paper>
         </StickyWrapper>
       </Box>
-      <Box ref={subMenuRef}>
+      <Box>
         {children}
       </Box>
     </>

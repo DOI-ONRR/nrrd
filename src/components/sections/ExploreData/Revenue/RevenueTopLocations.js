@@ -77,9 +77,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const RevenueTopLocations = ({ title, ...props }) => {
+const RevenueTopLocations = props => {
   const classes = useStyles()
   const theme = useTheme()
+  const { title } = props
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const location = (filterState[DFC.MAP_LEVEL]) ? filterState[DFC.MAP_LEVEL] : 'State'
