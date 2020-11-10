@@ -167,6 +167,14 @@ const NationwideDisbursementSummary = props => {
                               return headers
                             }
                             }
+                            chartTooltip={
+                              d => {
+                                const r = []
+                                r[0] = d.key
+                                r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                                return r
+                              }
+                            }
                             // eslint-disable-next-line no-return-assign
                             barScale={item[1].reduce((sum, i) => sum += i.total, 0) / groupTotal }
                             units={units}
@@ -177,15 +185,10 @@ const NationwideDisbursementSummary = props => {
                             yOrderBy={yOrderBy}
                             horizontal
                             legendReverse={true}
-                            // primaryColor={theme.palette.explore[100]}
-                            // secondaryColor={theme.palette.explore[600]}
                             colorRange={[
                               theme.palette.explore[700],
-                              theme.palette.explore[600],
                               theme.palette.explore[500],
-                              theme.palette.explore[400],
                               theme.palette.explore[300],
-                              theme.palette.explore[200],
                               theme.palette.explore[100]
                             ]}
                           />

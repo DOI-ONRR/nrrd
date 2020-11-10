@@ -35,13 +35,13 @@ const useStyles = makeStyles(theme => ({
     },
     '@media (max-width: 768px)': {
       '& svg': {
-        // maxHeight: '70px !important',
         maxWidth: 200,
       },
     },
   },
   headerLinkBold: {
-    fontWeight: theme.typography.fontWeightBold
+    fontWeight: theme.typography.fontWeightBold,
+    textDecoration: 'underline',
   },
 })
 )
@@ -71,7 +71,7 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
   }
 
   const classes = (linkType === LinkTypeComponents.Header)
-    ? `${ styles.headerLink } ${ className } ${ (currentPathname === href) && styles.headerLinkBold }`
+    ? `${ styles.headerLink } ${ className } ${ (currentPathname === withPrefix(href)) && styles.headerLinkBold }`
     : `${ styles.link } ${ className }`
 
   return (

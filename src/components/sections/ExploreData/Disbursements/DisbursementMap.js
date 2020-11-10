@@ -57,7 +57,7 @@ export default props => {
       {mapData &&
        <>
          <Map
-           key={'DM' + dataSet }
+           key={`DM${ dataSet }${ props.width }`}
            mapFeatures={props.mapFeatures}
            mapJsonObject={props.mapJsonObject}
            mapData={mapData}
@@ -69,6 +69,7 @@ export default props => {
            onZoomEnd={props.onZoomEnd}
            legendFormat={utils.formatToSigFig_Dollar}
            onClick={props.onClick}
+           width={props.width}
          />
        </>
       }

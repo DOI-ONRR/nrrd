@@ -13,12 +13,15 @@ import {
   Container,
   Grid,
   Box,
+  Hidden,
+  Slide,
   Snackbar,
   useMediaQuery
 } from '@material-ui/core'
 
 import { animateScroll as scroll } from 'react-scroll'
 
+import MapLevel from './MapLevel'
 import MapControls from './MapControls'
 import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
@@ -46,23 +49,12 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 290px)',
+    height: 'calc(100vh - 300px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
     zIndex: 1,
-    '& .mapContainer': {
-      position: 'fixed',
-      top: 105,
-    },
-    '& .legend-wrap': {
-      bottom: 85,
-      '@media (max-width: 768px)': {
-        transform: 'scale(0.9)',
-        left: -5,
-      },
-    },
     '& .map-overlay': {
       left: '0',
       right: '0',
@@ -96,7 +88,6 @@ const useStyles = makeStyles(theme => ({
     right: 15,
     top: 10,
     height: 'auto',
-    // minHeight: 335,
     zIndex: 99,
     '@media (max-width: 768px)': {
       width: '100%',
@@ -106,11 +97,10 @@ const useStyles = makeStyles(theme => ({
       alignItems: 'flex-end',
       background: 'transparent',
       left: 0,
-      top: 0,
+      top: -75,
       overflowX: 'auto',
       height: 'auto',
       position: 'relative',
-      // minHeight: 340,
     },
     '& > div': {
       cursor: 'pointer',
@@ -120,7 +110,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
         boxSizing: 'border-box',
         minWidth: 285,
-        minHeight: 340,
+        minHeight: 380,
         marginBottom: theme.spacing(1),
       }
     },
@@ -389,6 +379,7 @@ const MapContext = props => {
 
   // setZoom
   const setZoom = (x, y, k) => {
+    console.log('setZoom x,y,k: ', x, y, k)
     setMapY(y)
     setMapX(x)
     setMapK(k)
@@ -400,11 +391,15 @@ const MapContext = props => {
   useEffect(() => {
     // mobile zoom
     if (size.width <= 425) {
-      setZoom(105, 150, 0.45)
+      setZoom(50, -40, 0.85)
     }
     // tablet zoom
     if (size.width <= 768 && size.width > 425) {
-      setZoom(125, 75, 0.75)
+      setZoom(0, -40, 1.0)
+    }
+
+    if (size.width <= 1024 && size.width > 768) {
+      setZoom(-100, -40, 1.25)
     }
   }, [size.width])
 
@@ -577,23 +572,22 @@ const MapContext = props => {
       mapX: mapX,
       mapY: mapY,
       onZoomEnd: onZoomEnd,
-      onClick: onClick
+      onClick: onClick,
+      width: size.width
     })
 
   return (
     <>
       <ExploreDataToolbar
         onLink={onLink}
-        cardMenuItems={cardMenuItems}
-        mapOverlay={mapOverlay} />
+        cardMenuItems={cardMenuItems} />
       <Container className={classes.mapContextWrapper} maxWidth={false}>
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
+              <MapLevel mapOverlay={mapOverlay} />
               {mapChild}
-              <MapControls
-                handleClick={handleClick}
-              />
+              <MapControls handleClick={handleClick} />
             </Box>
             <Box className={`map-overlay ${ mapOverlay ? 'active' : '' }`}></Box>
           </Grid>
@@ -617,13 +611,14 @@ const MapContext = props => {
               </Box>
             </Grid>
           }
-
-          <ExploreMoreDataButton />
+          <Hidden mdDown>
+            <ExploreMoreDataButton />
+          </Hidden>
         </Grid>
       </Container>
       <Container maxWidth={false} style={{ padding: 0, position: 'relative', background: 'white', zIndex: 250 }}>
         { matchesSmDown &&
-          <>
+          <Slide direction="up" in={cards.length > 0} mountOnEnter unmountOnExit>
             <Grid item xs={12}>
               <Box className={classes.cardContainer}>
                 {cards.map((state, i) => {
@@ -643,7 +638,7 @@ const MapContext = props => {
                 })}
               </Box>
             </Grid>
-          </>
+          </Slide>
         }
       </Container>
       <Container>

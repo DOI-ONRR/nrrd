@@ -815,9 +815,6 @@ export default class D3CircleChart {
       d3.selectAll('.legend-table').remove()
       d3.selectAll('.legend-rect').remove()
 
-      // const columns = this.yGroupings()
-
-      // columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
       const headers = this._legendHeaders(xValue)
       const table = d3.select(this.node.children[1]).append('table')
         .attr('class', 'legend-table')
