@@ -34,43 +34,41 @@ tags:
                         'Top nationwide locations',
                         'Federal revenue by company'
 		                  ]}>
-                    <CompareContext>
-                      <Container>
-                        <Grid container>
-                          <Grid item md={12}>
-                            <Box mb={1} color="secondary.main" borderBottom={5}>
-                              <Box component="h2" color="secondary.dark">Revenue</Box>
-                            </Box>
-                            <Typography variant="body1">
-                              <RevenueLocationTotal />
-                            </Typography>
-                          </Grid>
+                    <Container>
+                      <Grid container>
+                        <Grid item md={12}>
+                          <Box mb={1} color="secondary.main" borderBottom={5}>
+                            <Box component="h2" color="secondary.dark">Revenue</Box>
+                          </Box>
+                          <Typography variant="body1">
+                            <RevenueLocationTotal />
+                          </Typography>
                         </Grid>
-                      </Container>
-                      <Container id="compare-revenue">
-                        <Grid container>
-                          <Grid item md={12}>
-                            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                              <Box component="h3" color="secondary.dark">Compare revenue</Box>
-                            </Box>
-                            <Box fontSize="body1.fontSize">
-                              Add more than one location to compare.  Select states, counties, and offshore regions.
-                            </Box>
-                          </Grid>
+                      </Grid>
+                    </Container>
+                    <Container id="compare-revenue">
+                      <Grid container>
+                        <Grid item md={12}>
+                          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+                            <Box component="h3" color="secondary.dark">Compare revenue</Box>
+                          </Box>
+                          <Box fontSize="body1.fontSize">
+                            Add more than one location to compare.  Select states, counties, and offshore regions.
+                          </Box>
                         </Grid>
-                        <Grid container style={{ overflowX: 'auto' }}>
-                          <Grid item md={12}>
-                            <DetailCards>
-                              <RevenueDetailTrends />
-                              <RevenueDetailCommodities />
-                              <RevenueDetailTypes />
-                              <RevenueCountyMap />
-                            </DetailCards>
-                          </Grid>
+                      </Grid>
+                      <Grid container style={{ overflowX: 'auto' }}>
+                        <Grid item md={12}>
+                          <DetailCards>
+                            <RevenueDetailTrends />
+                            <RevenueDetailCommodities />
+                            <RevenueDetailTypes />
+                            <RevenueCountyMap />
+                          </DetailCards>
                         </Grid>
-                      </Container>
-                      <RevenueOverTime title="Revenue over time" />         
-                    </CompareContext>
+                      </Grid>
+                    </Container>
+                    <RevenueOverTime title="Revenue over time" />        
                     <RevenueNationalSummary title="Nationwide revenue summary" />
                     <RevenueTopLocations title="Top nationwide locations" />
                     <RevenueByCompany title="Federal revenue by company" />
