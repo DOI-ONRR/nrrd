@@ -148,7 +148,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
               <MenuList id="page-scrollto-subnav">
                 <MenuItem key={0}>
                   <a className={classes.subMenuLink} title="Top" onClick={scrollToTop}>
-                  Top
+                  Map
                   </a>
                 </MenuItem>
                 { subMenu.anchorItems &&
