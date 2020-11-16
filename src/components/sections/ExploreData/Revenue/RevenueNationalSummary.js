@@ -13,12 +13,14 @@ import {
   Box,
   Container,
   Grid,
-  Hidden
+  Hidden,
+  Typography
 } from '@material-ui/core'
 
 import { useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
+import RevenueLocationTotal from './RevenueLocationTotal'
 
 import utils from '../../../../js/utils'
 
@@ -94,9 +96,19 @@ const RevenueNationalSummary = props => {
   return (
     <Container id={utils.formatToSlug(title)}>
       <Grid container>
+        <Grid item md={12}>
+          <Box mt={10} mb={1} color="secondary.main" borderBottom={5}>
+            <Box component="h2" color="secondary.dark">Nationwide revenue summary</Box>
+          </Box>
+          <Typography variant="body1">
+            <RevenueLocationTotal />
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container>
         <Grid item xs={12}>
-          <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
-            <Box component="h3" color="secondary.dark" display="inline" align="left">{title}</Box>
+          <Box color="secondary.main" mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+            <Box component="h3" color="secondary.dark" display="inline" align="left">Nationwide revenue by revenue type and source</Box>
             <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
               <QueryLink
                 groupBy={DFC.REVENUE_TYPE}
@@ -159,7 +171,14 @@ const RevenueNationalSummary = props => {
                           headers[0] = ''
                           headers[2] = ''
                           return headers
-                        }
+                        }}
+                        chartTooltip={
+                          d => {
+                            const r = []
+                            r[0] = d.key
+                            r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                            return r
+                          }
                         }
                         // eslint-disable-next-line no-return-assign
                         barScale={item[1].reduce((total, i) => total += i.total, 0) / groupTotal }
@@ -172,11 +191,8 @@ const RevenueNationalSummary = props => {
                         legendReverse={true}
                         colorRange={[
                           theme.palette.explore[700],
-                          theme.palette.explore[600],
                           theme.palette.explore[500],
-                          theme.palette.explore[400],
                           theme.palette.explore[300],
-                          theme.palette.explore[200],
                           theme.palette.explore[100]
                         ]}
                       />

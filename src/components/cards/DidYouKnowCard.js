@@ -4,7 +4,7 @@ import {
   Box,
   Typography,
   useTheme,
-  makeStyles,
+  makeStyles
 } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({

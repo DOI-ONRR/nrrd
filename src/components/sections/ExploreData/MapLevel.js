@@ -21,7 +21,6 @@ import {
 } from '../../../constants'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
-import { interpolateRgbBasis } from 'd3-interpolate'
 
 const MAP_LEVEL_OPTIONS = {
   [MAP_LEVEL]: [
