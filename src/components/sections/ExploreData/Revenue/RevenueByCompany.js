@@ -31,7 +31,7 @@ import utils from '../../../../js/utils'
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   query RevenueNational($year: Int!, $commodities: [String!]) {
-   federal_revenue_by_company_type_summary(order_by: {company_rank: asc, type_order: desc }, where: {calendar_year: {_eq: $year}, commodity: {_in: $commodities} }) {
+   federal_revenue_by_company_type_summary(order_by: {company_rank: asc, revenue: desc,  type_order: desc }, where: {calendar_year: {_eq: $year}, commodity: {_in: $commodities} }) {
     corporate_name
     calendar_year
     revenue_type
@@ -71,7 +71,26 @@ const RevenueByCompany = props => {
   const yOrderBy = 'revenue'
 
   const units = 'dollars'
-
+  const colorRange = [
+    theme.palette.explore[700],
+    theme.palette.explore[600],
+    theme.palette.explore[500],
+    theme.palette.explore[400],
+    theme.palette.explore[300],
+    theme.palette.explore[200],
+    theme.palette.explore[100]
+  ]
+  /*
+    const colorRange = [
+        theme.palette.explore[100],
+        theme.palette.explore[200],
+        theme.palette.explore[300],
+        theme.palette.explore[400],
+        theme.palette.explore[500],
+        theme.palette.explore[600],
+        theme.palette.explore[700]
+    ]
+    */
   if (loading) {
     return 'Loading...'
   }
@@ -143,7 +162,7 @@ const RevenueByCompany = props => {
                         <Box mt={0}>{utils.formatToDollarInt(item[1].reduce((a, b) => +a + +b.revenue, 0))}</Box>
                       </TableCell>
                       <TableCell style={{ verticalAlign: 'top' }}>
-                        <Box mt={0}>{ (item[1].reduce((a, b) => +a + +b.revenue, 0) / totalTotal * 100).toFixed(2)   }%</Box>
+                        <Box mt={0}>{ (item[1].reduce((a, b) => +a + +b.revenue, 0) / totalTotal * 100).toFixed(2) }%</Box>
                       </TableCell>
                       <TableCell style={{ width: '45%' }}>
                         <StackedBarChart
@@ -183,15 +202,7 @@ const RevenueByCompany = props => {
                           yOrderBy={yOrderBy}
                           horizontal
                           legendReverse={true}
-                          colorRange={[
-                            theme.palette.explore[700],
-                            theme.palette.explore[600],
-                            theme.palette.explore[500],
-                            theme.palette.explore[400],
-                            theme.palette.explore[300],
-                            theme.palette.explore[200],
-                            theme.palette.explore[100]
-                          ]}
+                          colorRange={colorRange}
                         />
                       </TableCell>
                     </TableRow>
