@@ -4,23 +4,20 @@ import {
   QK_QUERY_TOOL,
   DATA_FILTER_KEY,
   REVENUE_TYPE,
-  DATA_TYPE,
-  REVENUE,
-  PRODUCTION,
-  DISBURSEMENT,
-  PERIOD_FISCAL_YEAR,
-  PERIOD_CALENDAR_YEAR,
-  EXCEL,
-  CSV,
-  DOWNLOAD_DATA_TABLE,
-  PERIOD_TYPES,
-  REVENUE_BY_COMPANY
+  PERIOD,
+  COMMODITY,
+  EXCLUDE_PROPS,
+  CALENDAR_YEAR,
+  FISCAL_YEAR,
+  COMPANY_NAME
 } from '../src/constants'
 
 import QUERY_TOOL_REVENUE_TYPE_RESULTS from './__apollo_mock_results__/RevenueTypes_results'
-
-// QueryManager.getQuery(queryKey, state, options)
-// QueryManager.getVariables(queryKey, state, options)
+import QUERY_TOOL_PERIOD_RESULTS from './__apollo_mock_results__/Period_results'
+import QUERY_TOOL_COMMODITY_RESULTS from './__apollo_mock_results__/Commodity_results'
+import QUERY_TOOL_CALENDAR_YEAR_RESULTS from './__apollo_mock_results__/CalendarYear_results'
+import QUERY_TOOL_FISCAL_YEAR_RESULTS from './__apollo_mock_results__/FiscalYear_results'
+import QUERY_TOOL_COMPANY_NAME_RESULTS from './__apollo_mock_results__/CompanyName_results'
 
 const QUERY_TOOL_REVENUE_TYPE = {
   request: {
@@ -32,8 +29,64 @@ const QUERY_TOOL_REVENUE_TYPE = {
   }
 }
 
+const QUERY_TOOL_PERIOD = {
+  request: {
+    query: QueryManager.getQuery(QK_QUERY_TOOL, DFS.REVENUE_DATA_TYPE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: PERIOD }),
+    ...QueryManager.getVariables(QK_QUERY_TOOL, DFS.REVENUE_DATA_TYPE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK],
+      { [DATA_FILTER_KEY]: PERIOD, [EXCLUDE_PROPS]: [PERIOD, CALENDAR_YEAR, FISCAL_YEAR] })
+  },
+  result: {
+    data: QUERY_TOOL_PERIOD_RESULTS
+  }
+}
+
+const QUERY_TOOL_COMMODITY = {
+  request: {
+    query: QueryManager.getQuery(QK_QUERY_TOOL, DFS.REVENUE_DATA_TYPE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: COMMODITY }),
+    ...QueryManager.getVariables(QK_QUERY_TOOL, DFS.REVENUE_DATA_TYPE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: COMMODITY })
+  },
+  result: {
+    data: QUERY_TOOL_COMMODITY_RESULTS
+  }
+}
+
+const QUERY_TOOL_CALENDAR_YEAR = {
+  request: {
+    query: QueryManager.getQuery(QK_QUERY_TOOL, DFS.REVENUE_DATA_TYPE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: CALENDAR_YEAR }),
+    ...QueryManager.getVariables(QK_QUERY_TOOL, DFS.REVENUE_DATA_TYPE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: CALENDAR_YEAR })
+  },
+  result: {
+    data: QUERY_TOOL_CALENDAR_YEAR_RESULTS
+  }
+}
+
+const QUERY_TOOL_FISCAL_YEAR = {
+  request: {
+    query: QueryManager.getQuery(QK_QUERY_TOOL, DFS.REVENUE_DATA_TYPE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: FISCAL_YEAR }),
+    ...QueryManager.getVariables(QK_QUERY_TOOL, DFS.REVENUE_DATA_TYPE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: FISCAL_YEAR })
+  },
+  result: {
+    data: QUERY_TOOL_FISCAL_YEAR_RESULTS
+  }
+}
+
+const QUERY_TOOL_COMPANY_NAME = {
+  request: {
+    query: QueryManager.getQuery(QK_QUERY_TOOL, DFS.REVENUE_BY_COMPANY_DATA_TYPE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: COMPANY_NAME }),
+    ...QueryManager.getVariables(QK_QUERY_TOOL, DFS.REVENUE_BY_COMPANY_DATA_TYPE_ONLY[DFS.DATA_FILTER_DEFAULTS_MOCK], { [DATA_FILTER_KEY]: COMPANY_NAME })
+  },
+  result: {
+    data: QUERY_TOOL_COMPANY_NAME_RESULTS
+  }
+}
+
 const mocks = [
-  QUERY_TOOL_REVENUE_TYPE
+  QUERY_TOOL_REVENUE_TYPE,
+  QUERY_TOOL_PERIOD,
+  QUERY_TOOL_COMMODITY,
+  QUERY_TOOL_CALENDAR_YEAR,
+  QUERY_TOOL_FISCAL_YEAR,
+  QUERY_TOOL_COMPANY_NAME
 ]
 
 export default mocks
