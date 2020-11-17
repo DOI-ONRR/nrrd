@@ -9,7 +9,7 @@ tags:
 - Query revenue data
 - Downloads & Documentation
 - How revenue works
-- Revenue by company
+- Federal revenue by company
 ---
 <DataFilterProviderWrapper defaults='explore_data_filter_default'>
   <ExploreDataProviderWrapper>
@@ -27,33 +27,21 @@ tags:
               </MapContext>
               <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
                 <Box name="exploreDataContent" className="explore-data-content">
-                  <CompareContext>
-                    <PageSubMenu
+                  <PageSubMenu
                       menuItems={[
                         'Compare revenue',
                         'Nationwide revenue summary',
-                        'Top nationwide locations'
-		      ]} />
-                    <Container>
-                      <Grid container>
-                        <Grid item md={12}>
-                          <Box mb={1} color="secondary.main" borderBottom={5}>
-                            <Box component="h2" color="secondary.dark">Revenue</Box>
-                          </Box>
-                          <Typography variant="body1">
-                            <RevenueLocationTotal />
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    </Container>
+                        'Top nationwide locations',
+                        'Federal revenue by company'
+		                  ]}>
                     <Container id="compare-revenue">
                       <Grid container>
                         <Grid item md={12}>
-                          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                            <Box component="h3" color="secondary.dark">Compare revenue</Box>
+                          <Box color="secondary.main" mt={5} mb={2} borderBottom={5}>
+                            <Box component="h2" color="secondary.dark">Compare revenue</Box>
                           </Box>
                           <Box fontSize="body1.fontSize">
-                            Add more than one card to compare.  Select states, counties, and offshore regions.
+                            Add more than one location to compare.  Select states, counties, and offshore regions.
                           </Box>
                         </Grid>
                       </Grid>
@@ -68,11 +56,11 @@ tags:
                         </Grid>
                       </Grid>
                     </Container>
-                    <RevenueOverTime title="Revenue over time" />         
-                  </CompareContext>
-                  <RevenueNationalSummary title="Nationwide revenue summary" />
-                  <RevenueTopLocations title="Top nationwide locations" />
-                  <RevenueByCompany title="Revenue by company" />
+                    <RevenueOverTime title="Revenue over time" />        
+                    <RevenueNationalSummary title="Nationwide revenue summary" />
+                    <RevenueTopLocations title="Top nationwide locations" />
+                    <RevenueByCompany title="Federal revenue by company" />
+                  </PageSubMenu>
                 </Box>
               </Box>
             </Revenue>
@@ -88,51 +76,39 @@ tags:
               </MapContext>
               <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
                 <Box name="exploreDataContent" className="explore-data-content">
-                  <CompareContext>
-                    <PageSubMenu
+                  <PageSubMenu
                       menuItems={[
                         'Compare disbursements',
                         'Nationwide disbursements summary',
                         'Top nationwide recipients'
-                      ]}
-                    />
-                    <Container>
-                      <Grid container>
-                        <Grid item md={12}>
-                          <Box mb={1} color="secondary.main" borderBottom={5}>
-                            <Box component="h2" color="secondary.dark">Disbursements</Box>
-                          </Box>
-                          <Typography variant="body1">
-                            <DisbursementLocationTotal />
-                          </Typography>
+                      ]}>
+                    <CompareContext>
+                      <Container id="compare-disbursements">
+                        <Grid container>
+                          <Grid item md={12}>
+                            <Box color="secondary.main" mb={1} borderBottom={5}>
+                              <Box component="h2" color="secondary.dark">Compare disbursements</Box>
+                            </Box>
+                            <Box fontSize="body1.fontSize">
+                              Add more than one location to compare.  Select states, counties, and offshore regions.
+                            </Box>
+                          </Grid>
                         </Grid>
-                      </Grid>
-                    </Container>
-                    <Container id="compare-disbursements">
-                      <Grid container>
-                        <Grid item md={12}>
-                          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                            <Box component="h3" color="secondary.dark">Compare disbursements</Box>
-                          </Box>
-                          <Box fontSize="body1.fontSize">
-                            Add more than one card to compare.  Select states, counties, and offshore regions.
-                          </Box>
+                        <Grid container>
+                          <Grid item md={12}>
+                            <DetailCards>
+                              <DisbursementDetailTrends />
+                              <DisbursementRecipients />
+                              <DisbursementSources />  
+                            </DetailCards>
+                          </Grid>
                         </Grid>
-                      </Grid>
-                      <Grid container>
-                        <Grid item md={12}>
-                          <DetailCards>
-                            <DisbursementDetailTrends />
-                            <DisbursementRecipients />
-                            <DisbursementSources />  
-                          </DetailCards>
-                        </Grid>
-                      </Grid>
-                    </Container>
-                    <DisbursementsOverTime title="Disbursements over time"  />   
-                  </CompareContext>         
-                  <NationwideDisbursementSummary title="Nationwide disbursements summary" />
-                  <DisbursementTopRecipients title="Top nationwide recipients" />
+                      </Container>
+                      <DisbursementsOverTime title="Disbursements over time" />   
+                    </CompareContext>         
+                    <NationwideDisbursementSummary title="Nationwide disbursements summary" />
+                    <DisbursementTopRecipients title="Top nationwide recipients" />
+                  </PageSubMenu>
                 </Box>
               </Box>
             </Disbursements>
@@ -147,77 +123,78 @@ tags:
               </MapContext>
               <Box style={{ position: 'relative', background: 'white', zIndex: 250, paddingBottom: 50 }}>
                 <Box name="exploreDataContent" className="explore-data-content">
-                  <CompareContext>
-                    <PageSubMenu
+                  <PageSubMenu
                       menuItems={[
                         'Compare production',
+                        'Nationwide production summary',
                         'Top nationwide locations'
-                      ]}
-                    />
-                    <Container>
+                      ]}>
+                    <CompareContext>
+                      <Container id="compare-production">
+                        <Grid container>
+                          <Grid item md={12}>
+                            <Box color="secondary.main" mb={2} borderBottom={5}>
+                              <Box component="h2" color="secondary.dark">Compare production</Box>
+                            </Box>
+                            <Box fontSize="body1.fontSize">
+                              Add more than one location to compare.  Select states, counties, and offshore regions.
+                            </Box>
+                          </Grid>
+                        </Grid>
+                        <Grid container>
+                          <Grid item md={12}>
+                            <DetailCards>     
+                              <ProductionDetailTrends />
+                              <ProductionLandCategory title="Production over time"  />        
+                              <ProductionTopLocations title="Top locations" vertical maxLegendWidth='800px' />   
+                              <ProductionCountyMap />
+                            </DetailCards>
+                          </Grid>
+                        </Grid>
+                      </Container>       
+                      <ProductionOverTime title="Production over time" />
+                    </CompareContext>
+                    <Container id="nationwide-production-summary">
+                        <Grid container>
+                          <Grid item md={12}>
+                            <Box mt={10} mb={1} color="secondary.main" borderBottom={5}>
+                              <Box component="h2" color="secondary.dark">Nationwide production summary</Box>
+                            </Box>
+                            <Typography variant="body1">
+                              <ProductionLocationTotal />
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Container>
+                    <Container id="top-nationwide-locations">
                       <Grid container>
                         <Grid item md={12}>
-                          <Box mb={1} color="secondary.main" borderBottom={5}>
-                            <Box component="h2" color="secondary.dark">Production</Box>
+                          <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+                            <Box component="h3" color="secondary.dark" display="inline">Top natiowide locations</Box>
+                            <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+                              <QueryLink
+                                groupBy="stateOffshoreName"
+                                linkType="FilterTable"
+                                landType="Federal Offshore,Federal Onshore,Mixed Exploratory"
+                                {...props}>
+                                Query production by location
+                              </QueryLink>
+                            </Box>
                           </Box>
-                          <Typography variant="body1">
-                            <ProductionLocationTotal />
-                          </Typography>
+                          <Box display={{ xs: 'block', sm: 'none' }} align="left">
+                            <QueryLink
+                                groupBy="stateOffshoreName"
+                                linkType="FilterTable"
+                                landType="Federal Offshore,Federal Onshore,Mixed Exploratory"
+                                {...props}>
+                              Query production by location
+                            </QueryLink>
+                          </Box>           
+                          <ProductionTopLocations horizontal />
                         </Grid>
                       </Grid>
                     </Container>
-                    <Container id="compare-production">
-                      <Grid container>
-                        <Grid item md={12}>
-                          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-                            <Box component="h3" color="secondary.dark">Compare production</Box>
-                          </Box>
-                          <Box fontSize="body1.fontSize">
-                            Add more than one card to compare.  Select states, counties, and offshore regions.
-                          </Box>
-                        </Grid>
-                      </Grid>
-                      <Grid container>
-                        <Grid item md={12}>
-                          <DetailCards>     
-                            <ProductionDetailTrends />
-                            <ProductionLandCategory title="Production over time"  />        
-                            <ProductionTopLocations title="Top locations" vertical maxLegendWidth='800px' />   
-                            <ProductionCountyMap />
-                          </DetailCards>
-                        </Grid>
-                      </Grid>
-                    </Container>       
-                    <ProductionOverTime title="Production over time" />
-                  </CompareContext>
-                  <Container id="top-nationwide-locations">
-                    <Grid container>
-                      <Grid item md={12}>
-                        <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
-                          <Box component="h3" color="secondary.dark" display="inline">Top natiowide locations</Box>
-                          <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
-                            <QueryLink
-                              groupBy="stateOffshoreName"
-                              linkType="FilterTable"
-                              landType="Federal Offshore,Federal Onshore,Mixed Exploratory"
-                              {...props}>
-                              Query production by location
-                            </QueryLink>
-                          </Box>
-                        </Box>
-                        <Box display={{ xs: 'block', sm: 'none' }} align="left">
-                          <QueryLink
-                              groupBy="stateOffshoreName"
-                              linkType="FilterTable"
-                              landType="Federal Offshore,Federal Onshore,Mixed Exploratory"
-                              {...props}>
-                            Query production by location
-                          </QueryLink>
-                        </Box>           
-                        <ProductionTopLocations horizontal />
-                      </Grid>
-                    </Grid>
-                  </Container>
+                  </PageSubMenu>
                 </Box>
               </Box>
             </Production>

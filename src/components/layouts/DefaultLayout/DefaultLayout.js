@@ -16,12 +16,12 @@ import useTheme from '@material-ui/core/styles/useTheme'
 import InfoBanner from '../../content-partials/InfoBanner'
 import BrowserBanner from '../BrowserBanner'
 import Footer from '../../content-partials/Footer'
-import Header from '../../content-partials/Header'
+// import Header from '../../content-partials/Header'
 import ErrorMessage from '../../info/ErrorMessage'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
-import SEO from '../../seo'
+import AppToolbar from '../../toolbars/AppToolbar'
 
 const useStyles = makeStyles(theme => (
   {
@@ -89,11 +89,11 @@ const useStyles = makeStyles(theme => (
     mainColumn: {
       paddingTop: theme.spacing(3),
       paddingBottom: theme.spacing(3),
-    }
+    },
   })
 )
 
-const DefaultLayout = ({ includeToc, title, children }) => {
+const DefaultLayout = ({ includeToc, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
@@ -101,7 +101,6 @@ const DefaultLayout = ({ includeToc, title, children }) => {
     query DefaultLayoutQuery {
       site {
         siteMetadata {
-          title
           version
           officeName
           informationDataManagement {
@@ -118,12 +117,11 @@ const DefaultLayout = ({ includeToc, title, children }) => {
 
   return (
     <>
-      <SEO title={title} />
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
       <InfoBanner />
       <BrowserBanner />
-      <Header />
+      <AppToolbar />
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>
         <ErrorMessage />

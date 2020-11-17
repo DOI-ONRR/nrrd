@@ -1,0 +1,42 @@
+[
+    {
+	"title" : "Yearly Fiscal Production",
+	"commands" : [{ "command": "click" , "selector" : "#full-width-tab-2"}],
+	"target" : "#full-width-tabpanel-2 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+    },
+    {
+	"title" : "Yearly Calendar Production",
+	"commands" : [{ "command": "click" , "selector" : "#full-width-tab-2"},
+		      { "command": "click" , "selector" : "#period-label-select-outlined"},
+		      { "command": "click" , "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(2)"}
+		     ],
+	"target" : "#full-width-tabpanel-2 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+    },
+    {
+	"title" : "Monthly Most Recent Production",
+	"commands" : [{ "command": "click" , "selector" : "#full-width-tab-2"},
+		      { "command": "click" , "selector" : "#full-width-tabpanel-2 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4 > div:nth-child(1) > div > button:nth-child(2)"}
+		     ],
+	"target" : "#full-width-tabpanel-2 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+    },
+    {
+	"title" : "Monthly Fiscal Production",
+	"commands" : [{ "command": "click" , "selector" : "#full-width-tab-2"},
+		      { "command": "click" , "selector" : "#full-width-tabpanel-2 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4 > div:nth-child(1) > div > button:nth-child(2)"},
+		      { "command": "click" , "selector" : "#period-label-select-outlined"},
+		      { "command": "click" , "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(2)"}
+		     ],
+	"target" : "#full-width-tabpanel-2 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+    },
+    {
+	"title" : "Monthly Calendar Production",
+	"commands" : [{ "command": "click" , "selector" : "#full-width-tab-2"},
+		      { "command": "click" , "selector" : "#full-width-tabpanel-2 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4 > div:nth-child(1) > div > button:nth-child(2)"},
+		      { "command": "click" , "selector" : "#period-label-select-outlined"},
+		      { "command": "click" , "selector" : "#menu- > div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded > ul > li:nth-child(3)"}
+		     ],
+	"target" : "#full-width-tabpanel-2 > div > div > div:nth-child(4) > div.MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4"
+    }
+
+]
+		 

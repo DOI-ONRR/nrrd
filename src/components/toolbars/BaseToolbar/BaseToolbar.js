@@ -22,14 +22,17 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const BaseToolbar = ({ isSecondary, children }) => {
+const BaseToolbar = ({ isSecondary, children, style, ...restProps }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
   return (
-    <Toolbar classes={{
-      root: (isSecondary) ? classes.rootSecondary : classes.root,
-    }}>
+    <Toolbar
+      classes={{
+        root: (isSecondary) ? classes.rootSecondary : classes.root,
+      }}
+      style={style}
+      {...restProps}>
       {children}
     </Toolbar>
   )

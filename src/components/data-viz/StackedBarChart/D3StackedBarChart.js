@@ -1,5 +1,6 @@
 'use strict'
 import * as d3 from 'd3'
+// import { active } from 'd3'
 // import { isEnumMember } from 'typescript'
 
 export default class D3StackedBarChart {
@@ -27,6 +28,13 @@ export default class D3StackedBarChart {
       this.units = (options.units) ? options.units : ''
       this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
+      this.primaryColor = options.primaryColor || '#222'
+      this.secondaryColor = options.secondaryColor || '#43646F'
+
+      if (options.chartTooltip) {
+        this.chartTooltip = options.chartTooltip
+      }
+
       if (this.horizontal) {
         const h = this._height
         const w = this._width
@@ -86,6 +94,15 @@ export default class D3StackedBarChart {
         .attr('height', this._height)
         .attr('width', this._width)
         .attr('class', 'stacked-bar-chart')
+
+      if (options.colorRange) {
+        this.colorRange = options.colorRange
+        this.color = d3.scaleOrdinal().domain(this.xDomain).range(this.colorRange)
+      }
+      else {
+        this.colorRange = false
+        this.color = d3.scaleLinear().domain(this.yOrderBy.slice(1)).range([this.primaryColor, this.secondaryColor])
+      }
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -228,12 +245,27 @@ export default class D3StackedBarChart {
       const self = this
       const stack = d3.stack()
 	    .keys(this.yGroupings())
-	    .offset(d3.stackOffsetNone)
+        .offset(d3.stackOffsetNone)
 
-      // console.debug(xwidth);
       const keys = this.yGroupings()
+      const primaryColor = this.primaryColor
+      const secondaryColor = this.secondaryColor
+      const colorRange = this.colorRange
+      const chartTooltip = this.chartTooltip
 
-      //  console.debug("Group Data:", data)
+      // Define the div for the tooltip
+      const tooltip = d3.select('body').append('div')
+        .attr('class', 'tooltip')
+        .style('position', 'absolute')
+        .style('background', 'rgba(0, 0, 0, 0.85)')
+        .style('border-radius', '4px')
+        .style('z-index', '999')
+        .style('text-align', 'center')
+        .style('color', 'white')
+        .style('pointer-events', 'none')
+        .style('opacity', 0)
+        .style('display', 'none')
+
       this.chart.append('g')
         .attr('class', 'bars')
         .selectAll('g')
@@ -241,10 +273,16 @@ export default class D3StackedBarChart {
         .enter().append('g')
         .attr('height', (self._height - self.marginTop))
         .attr('width', self.xScale.bandwidth())
+        .style('fill', (d, i) => {
+          if (this.horizontal && colorRange) {
+            return null
+          }
+          else {
+            return primaryColor
+          }
+        })
         .attr('transform', d => 'translate(' + (self.xScale(d) + ',0)'))
         .attr('class', (d, i) => {
-          // console.debug("D: ", d, "I: ",i)
-          // console.debug("SI: ", self.selectedIndex)
           return i === self.selectedIndex ? 'bar active' : 'bar'
         })
         .on('mouseenter', (d, i) => {
@@ -265,7 +303,22 @@ export default class D3StackedBarChart {
         })
         .enter().append('g')
         .attr('class', (d, i) => 'stacked-bar-chart-' + i)
-        .attr('fill-opacity', (d, i) => (1 - (i / keys.length)))
+        .style('fill', (d, i) => {
+          if (this.horizontal && colorRange) {
+            return colorRange[i]
+          }
+          else {
+            return null
+          }
+        })
+        .style('fill-opacity', (d, i) => {
+          if (this.horizontal && colorRange) {
+            return null
+          }
+          else {
+            return (1 - (i / keys.length))
+          }
+        })
         .append('rect')
         .attr('y', d => {
           const y = self.yScale(d[0][1]) || 0
@@ -283,13 +336,40 @@ export default class D3StackedBarChart {
           self._onClick(this, d)
         })
         .on('mouseover', function (d, i) {
+          if (chartTooltip(d)[0] !== undefined && chartTooltip(d)[0] !== '') {
+            self._onMouseover(this, d)
+            tooltip
+              .style('opacity', 1)
+              .style('display', 'block')
+              .style('padding', '4px')
+          }
         })
-        .on('mouseenter', (d, i) => {
+        .on('mouseenter', function (d, i) {
           self._onHover(this, d, true)
         })
         .on('mouseleave', function (d) {
           self._onHover(this, d, false)
         })
+        .on('mousemove', function (d) {
+          if (chartTooltip(d)[0] !== undefined) {
+            tooltip
+              .html(`${ chartTooltip(d)[0] }<br>${ chartTooltip(d)[1] }`)
+              .style('left', (d3.event.pageX + 10) + 'px')
+              .style('top', (d3.event.pageY + 10) + 'px')
+          }
+        })
+        .on('mouseout', function (d) {
+          if (chartTooltip(d)[0] !== undefined) {
+            self._onMouseout(this, d)
+          }
+          tooltip.style('opacity', 0)
+        })
+
+      if (self.selectedIndex) {
+        const selectedElement = d3.selectAll('.active')
+        selectedElement
+          .style('fill', secondaryColor)
+      }
 
       // horizontal chart
       if (this.horizontal) {
@@ -297,6 +377,10 @@ export default class D3StackedBarChart {
           .attr('class', 'horizontal-stacked-bar-chart')
           .attr('width', 25)
           .style('top', `${ -this._height }px`)
+
+        const selectedElement = d3.selectAll('.active')
+        selectedElement
+          .style('fill', secondaryColor)
       }
     }
     catch (err) {
@@ -384,9 +468,6 @@ export default class D3StackedBarChart {
       d3.select(this.node).selectAll('.legend-table').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
 
-      // const columns = this.yGroupings()
-
-      // columns.splice(this.options.columnNames.length - 1, 1, this.selectedFiscalYear)
       const headers = this._legendHeaders(xValue)
       const table = d3.select(this.legendDiv).append('table')
         .attr('class', 'legend-table')
@@ -438,6 +519,7 @@ export default class D3StackedBarChart {
   updateLegend (newData, xValue) {
     try {
       const self = this
+
       d3.select(this.node).selectAll('.legend-table tbody tr').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
 
@@ -445,8 +527,10 @@ export default class D3StackedBarChart {
       const data = newData || this.selectedData()
       const labels = this.yGroupings()
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
+      const colorRange = this.colorRange
+      const secondaryColor = this.secondaryColor
 
-      // turn object into array to play nice with d3
+      // turn object into array
       let dataArr = Object.keys(data).map((key, i) => {
         return [labels[i], undefined, data[labels[i]]]
       }).reverse()
@@ -454,7 +538,6 @@ export default class D3StackedBarChart {
       if (this.legendReverse) {
         dataArr = dataArr.reverse()
       }
-      // dataArr.push(['Total', undefined, Object.keys(data).reduce((sum, key) => sum + data[key], 0)])
 
       // create a row for each object in the data
       const tr = tbody.selectAll('tr')
@@ -464,19 +547,50 @@ export default class D3StackedBarChart {
 
       // append color blocks into tr first cell
       tr.append('td')
+        .append('svg')
+        .attr('width', 20)
+        .attr('height', 20)
+        .style('fill', (d, i) => {
+          if (colorRange) {
+            return colorRange[i]
+          }
+          else {
+            return secondaryColor
+          }
+        })
         .append('rect')
         .attr('class', 'legend-rect')
         .attr('width', 15)
         .attr('height', 15)
-        .style('opacity', (d, i) => {
-          if (legendReverse) {
-            return (i < labels.length ? (1 - ((i) / labels.length)) : 0)
+        .style('background-color', (d, i) => {
+          if (colorRange) {
+            return colorRange[i]
           }
           else {
-            return (i < labels.length ? ((i + 1) / labels.length) : 0)
+            return secondaryColor
           }
-        }
-        )
+        })
+        .style('border', (d, i) => {
+          if (colorRange) {
+            return `1px solid ${ colorRange[i] }`
+          }
+          else {
+            return `1px solid ${ secondaryColor }`
+          }
+        })
+        .style('opacity', (d, i) => {
+          if (this.horizontal && colorRange) {
+            return null
+          }
+          else {
+            if (legendReverse) {
+              return (i < labels.length ? (1 - ((i) / labels.length)) : 0)
+            }
+            else {
+              return (i < labels.length ? ((i + 1) / labels.length) : 0)
+            }
+          }
+        })
 
       // create a cell in each row for each column
 
@@ -549,14 +663,19 @@ export default class D3StackedBarChart {
   _onSelect = (element, data) => {
     try {
       const selectedElement = d3.select(this.node).selectAll('.active') // element.parentNode.querySelector('[selected=true]')
+      const primaryColor = this.primaryColor
+      const secondaryColor = this.secondaryColor
       // console.debug(data)
       if (selectedElement) {
         selectedElement.attr('selected', false)
         selectedElement.attr('class', 'bar')
+        selectedElement.attr('style', `fill: ${ primaryColor }`)
       }
+
       const activeElement = element.parentNode.parentNode
       activeElement.setAttribute('class', 'bar active')
       activeElement.setAttribute('selected', true)
+      activeElement.setAttribute('style', `fill: ${ secondaryColor }`)
       activeElement.setAttribute('tabindex', 0)
       this.selectedData(data[0].data)
       this._legend()
@@ -574,18 +693,29 @@ export default class D3StackedBarChart {
 
   _onMouseover = (element, data) => {
     try {
-      const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
-      // console.debug('_onMouseover data: ', data)
+      const selectedElement = d3.selectAll('.active')
+
+      const tbody = d3.select(this.legendDiv).selectAll('tbody')
+      const legendRows = tbody.selectAll('tr')
+      const selectedRowIndex = data && data.index
+      const selectedLegendRow = legendRows._groups[0][selectedRowIndex]
+
+      if (selectedRowIndex !== null && selectedElement) {
+        d3.select(selectedLegendRow)
+          .transition()
+          .duration(200)
+          .style('background', '#e0e0e0')
+          .style('font-weight', 'bold')
+      }
+
       if (selectedElement) {
         selectedElement.attr('selected', false)
         selectedElement.attr('class', 'bar')
       }
       const activeElement = element.parentNode.parentNode
-      // activeElement.setAttribute('class', 'bar active')
-      // activeElement.setAttribute('selected', true)
       activeElement.setAttribute('tabindex', 0)
       this.selectedData(data[0].data)
-      this._legend()
+      // this._legend()
       this.onMouseover(this)
     }
     catch (err) {
@@ -594,26 +724,55 @@ export default class D3StackedBarChart {
   }
 
   onMouseover (d) {
-    console.debug('onSelect: ', d)
     return d
+  }
+
+  _onMouseout (element, data) {
+    try {
+      const tbody = d3.select(this.legendDiv).selectAll('tbody')
+      const legendRows = tbody.selectAll('tr')
+      const selectedRowIndex = data && data.index
+      const selectedLegendRow = legendRows._groups[0][selectedRowIndex]
+
+      if (selectedRowIndex !== null) {
+        d3.select(selectedLegendRow)
+          .transition()
+          .duration(200)
+          .style('background', 'none')
+          .style('font-weight', 'normal')
+      }
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
   }
 
   _onHover = (element, data, hover) => {
     try {
-      // const activeElement = element.parentNode.parentNode
       const tabIndex = this.currentIndex
+      const activeElement = element.parentNode.parentNode
+      const activeHoverElement = d3.select(activeElement).classed('active')
+      const primaryColor = this.primaryColor
+      const secondaryColor = this.secondaryColor
+      const horizontal = this.horizontal
+
       if (hover === true) {
         const years = this.xDomain()
 
-        // const tabIndex = element.parentNode.parentNode.tabIndex
-        // const tabIndex = 0
-        // console.debug(years,  years[tabIndex] , tabIndex)
-        this.createLegend(data[0].data, years[tabIndex])
-        this.updateLegend(data[0].data, years[tabIndex])
+        if (!horizontal) {
+          this.createLegend(data[0].data, years[tabIndex])
+          this.updateLegend(data[0].data, years[tabIndex])
+        }
+
+        activeElement.setAttribute('style', `fill: ${ secondaryColor }`)
       }
       else {
+        if (!activeHoverElement) {
+          activeElement.setAttribute('style', `fill: ${ primaryColor }`)
+        }
         this.getSelected()
         this.select(this.index)
+
         this.createLegend()
         this.updateLegend()
       }
@@ -818,86 +977,9 @@ export default class D3StackedBarChart {
     }
   }
 
-  // oldConstructor () {
-  //   this.formatLegendFunc = formatLegendFunc
-  //   this.onClick = options.onClick
-
-  //   this.formatLegend(this.formatLegendFunc)
-
-  //   if (options && options.columns) {
-  //     this._columns = options.columns
-  //   }
-  //   else {
-  //     this._columns = Object.keys(data[0]).filter((r, i) => r !== '__typename').sort()
-  //   }
-
-  //   if (options && options.xLabels) {
-  //     this.xLabels(options.xLabels)
-  //   }
-  //   else {
-  //     this.xLabels(this.xdomain())
-  //   }
-
-  //   if (options && options.yLabels) {
-  //     this.yLabels(options.yLabels)
-  //   }
-  //   else {
-  //     this.yLabels(this.yaxis())
-  //   }
-
-  //   if (options && options.selectedIndex) {
-  //     this.selectedIndex = options.selectedIndex
-  //   }
-  //   else {
-  //     this.selectedIndex = this.data.length - 1
-  //   }
-
-  //   this.selectedData(this.ydomain(data[data.length - 1]))
-  //   this.marginBottom = 40
-  //   this.marginTop = 25
-  //   this.maxValue = this.max(data)
-  //   this.minValue = this.min(data)
-  //   this.extentPercent = 0.05
-  //   this.extentMarginOfError = 0.10
-  //   this.maxExtentLineY = 20
-  //   this._colors = ['#b33040', '#d25c4d', '#f2b447', '#d9d574']
-  //   this.xScale = d3.scaleBand()
-  //     .domain(this.xdomain())
-  //     .range([0, this._width])
-  //     .paddingInner(0.3)
-  //     .paddingOuter(0.1)
-
-  //   this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
-  //   this.yScale.domain([this.maxValue, 0])
-
-  //   this.maxBarSize = undefined
-  //   if (this.maxBarSize) {
-  //     this.barOffsetX = (this.xScale.bandwidth() > this.maxBarSize) ? (this.xScale.bandwidth() - this.maxBarSize) / 2 : 0
-  //     this.maxBarSize = d3.min([this.xScale.bandwidth(), this.maxBarSize])
-  //   }
-  //   else {
-  //     this.maxBarSize = this.xScale.bandwidth()
-  //   }
-  //   this.chart = d3.select(this.chartDiv).append('svg')
-  //     .attr('height', this._height)
-  //     .attr('width', this._width)
-  // }
-
   xaxis () {
     return this._columns[0]
   }
-
-  // xLabels (labels) {
-  //   try {
-  //     if (labels) {
-  //       this._xLabels = labels
-  //     }
-  //     return this._xLabels
-  //   }
-  //   catch (err) {
-  //     console.warn('error in xLabels:', err)
-  //   }
-  // }
 
   xdomain () {
     try {
@@ -1007,39 +1089,6 @@ export default class D3StackedBarChart {
       console.warn('error in formatOptions:', err)
     }
   }
-  /*
-    calcMaxValue (data) {
-    return d3.max(data, d => {
-    let sum = 0
-    Object.entries(d).forEach(
-    ([key, values]) => {
-    Object.entries(values[0]).forEach(
-    ([key, value]) => {
-    sum += value
-    }
-    )
-    }
-    )
-    return (sum)
-    })
-    }
-
-    calcMinValue (data) {
-    return d3.min(data, d => {
-    let data = 0
-    Object.entries(d).forEach(
-    ([key, values]) => {
-    Object.entries(values[0]).forEach(
-    ([key, value]) => {
-    data += value
-    }
-    )
-    }
-    )
-    return (data)
-    })
-    }
-  */
 
   getOrderedKeys (data) {
     return Object.keys((data[0][Object.keys(data[0])[0]])[0])
@@ -1410,6 +1459,22 @@ export default class D3StackedBarChart {
       .attr('height', this._height)
       .attr('width', this._width)
       .attr('x', 0)
+  }
+
+  // Circle tooltips
+  chartTooltip (data, xAxis, yAxis) {
+    const r = ['', '']
+    return r
+  }
+
+  _chartTooltip (data) {
+    try {
+      const r = this.chartTooltip(data)
+      return r
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
   }
 }
 

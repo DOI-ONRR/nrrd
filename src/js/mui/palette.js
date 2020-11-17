@@ -10,17 +10,22 @@ module.exports = Object.freeze({
     primary: '#000000',
     secondary: '#1478a6'
   },
+  header: {
+    primary: '#062135',
+    secondary: '#0A314D'
+  },
   chart: {
     primary: '#222222',
-    secondary: '#43646F'
+    secondary: '#43646F',
   },
-  circleChart: {
+  explore: {
     100: '#c4d99b',
-    200: '#c1ab76',
-    300: '#af7f63',
-    400: '#8f5a59',
-    500: '#653d4e',
-    600: '#37253c'
+    200: '#c2b27b',
+    300: '#b78d68',
+    400: '#a16c5e',
+    500: '#825056',
+    600: '#5e384b',
+    700: '#37253c'
   },
   links: {
     default: '#1478a6',

@@ -1,32 +1,39 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
-import clsx from 'clsx'
+
 import {
   Drawer,
   List,
-  ListItem,
-  ListItemIcon
+  ListItem
 } from '@material-ui/core'
 
 import IconButton from '@material-ui/core/IconButton'
-import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
+import CloseIcon from '@material-ui/icons/Close'
 
 import { makeStyles } from '@material-ui/core/styles'
 
+import Link from '../../Link'
+
 const useStyles = makeStyles(theme => ({
+  mobileMenu: {
+    backgroundColor: theme.palette.header.secondary,
+    height: '100%',
+    '@media (maxWidth: 600px)': {
+      maxWidth: '90%',
+    }
+  },
   listItemLink: {
-    textAlign: 'center',
+    textAlign: 'left',
     display: 'block',
     fontSize: theme.typography.h3.fontSize,
     '&:hover': {
-      color: theme.palette.links.default,
-      background: theme.palette.grey[900],
-      textAlign: 'center',
+      color: theme.palette.common.white,
+      background: 'rgba(41, 75, 99, .5)',
+      textAlign: 'left',
     },
   },
   listRoot: {
-    background: theme.palette.common.black,
     color: theme.palette.common.white,
     '& div:last-child': {
       display: 'flex',
@@ -34,15 +41,13 @@ const useStyles = makeStyles(theme => ({
     },
   },
   menuButton: {
-    color: theme.palette.common.black,
+    color: theme.palette.common.white,
     padding: theme.spacing(2)
   },
+  closeIcon: {
+    color: theme.palette.common.white,
+  }
 }))
-
-// List item link
-const ListItemLink = props => {
-  return <ListItem button component="a" {...props} />
-}
 
 const MobileMenu = ({ children, ...rest }) => {
   const classes = useStyles()
@@ -68,18 +73,21 @@ const MobileMenu = ({ children, ...rest }) => {
   // Menu list
   const list = anchor => (
     <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-      })}
+      className={classes.mobileMenu}
       role="presentation"
     >
       <List classes={{ root: classes.listRoot }}>
+        <IconButton aria-label="Close menu" onClick={toggleDrawer('right', false)}>
+          <CloseIcon classes={{ root: classes.closeIcon }} />
+        </IconButton>
         {
           React.Children.map(children, (child, index) => {
             if (child.props.href) {
               return (
                 <ListItem button key={index} disableGutters>
-                  <ListItemLink href={child.props.href} className={classes.listItemLink}>{child.props.children}</ListItemLink>
+                  <Link href={child.props.href} className={classes.listItemLink} linkType="Header" style={{ marginLeft: 15, color: 'white' }}>
+                    {child.props.children}
+                  </Link>
                 </ListItem>
               )
             }
@@ -90,11 +98,6 @@ const MobileMenu = ({ children, ...rest }) => {
             )
           })
         }
-        <ListItem button key={children.length + 1} disableGutters>
-          <ListItemIcon onClick={toggleDrawer(anchor, false)}>
-            <CloseIcon />
-          </ListItemIcon>
-        </ListItem>
       </List>
     </div>
   )
@@ -104,15 +107,15 @@ const MobileMenu = ({ children, ...rest }) => {
       <IconButton
         className={classes.menuButton}
         aria-label="mobile-menu"
-        onClick={toggleDrawer('top', true)}>
+        onClick={toggleDrawer('right', true)}>
         <MenuIcon />
       </IconButton>
       <Drawer
-        anchor={'top'}
-        open={menuState.top}
-        onClose={toggleDrawer('top', false)}
+        anchor={'right'}
+        open={menuState.right}
+        onClose={toggleDrawer('right', false)}
         classes={{ root: classes.drawerRoot }}>
-        {list('top')}
+        {list('right')}
       </Drawer>
     </Fragment>
   )

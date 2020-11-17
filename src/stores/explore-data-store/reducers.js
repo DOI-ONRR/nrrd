@@ -26,10 +26,20 @@ const reducer = (state, action) => {
 
 // Explore data initialState
 const initialState = {
-  cards: [],
-  mapX: 150,
-  mapY: 100,
-  mapZoom: 0.75,
+  cards: [
+    {
+      fipsCode: 'NF',
+      name: 'Nationwide Federal',
+      locationName: 'Nationwide Federal',
+      state: 'Nationwide Federal',
+      regionType: '',
+      districtType: undefined,
+      county: ''
+    }
+  ],
+  mapX: -180,
+  mapY: -80,
+  mapZoom: 1.25,
 }
 
 export { initialState, types, reducer }

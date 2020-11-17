@@ -22,5 +22,14 @@ export default ({ alt, ...rest }) => {
       }
     }
   `)
-  return <Img fluid={data.imageSharp.fluid} alt={alt || 'Department of the Interior'} {...rest} />
+  if (data.imageSharp === null) {
+    console.warn('data: ', data)
+  }
+  return (
+    <>
+      {data.imageSharp &&
+        <Img fluid={data.imageSharp.fluid} alt={alt || 'Department of the Interior'} {...rest} />
+      }
+    </>
+  )
 }

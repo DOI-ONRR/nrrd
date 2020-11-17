@@ -1,4 +1,7 @@
 version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@2.0.0
+
 jobs:
   lint:
     docker:
@@ -45,6 +48,29 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./coverage
+
+  end_to_end_tests:
+    docker:
+      - image: circleci/node:12.13.0-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run end to end  tests
+          command: npm run test-end-to-end
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./__tests__/__image_snapshots__/
+
   lighthouse:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -66,7 +92,38 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./test-results
-  
+
+  nrrd-preview:
+    docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.13.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - aws-s3/sync:
+          arguments: |
+            --delete
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: public
+          to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH'
+      - run:
+          name: clean up
+          command: |
+            bash ./.circleci/cleanup-previews.sh
+
   quick:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -180,9 +237,6 @@ jobs:
           name: Build gatsby
           command: npm run build
       - run:
-          name: Run tests
-          command: npm test
-      - run:
           name: deploy to cloud.gov
           command: |
             pwd && ls -l
@@ -195,11 +249,6 @@ jobs:
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
             cf push dev-nrrd -f ./manifest.yml
-      - run:
-          name: clean up
-          command: |
-            which cf
-            bash ./.circleci/cleanup.sh
 
   deploy:
     docker:
@@ -245,36 +294,43 @@ workflows:
           filters:
             branches:
               ignore:
-                - dev
                 - master
                 - staging
       - lint:
           filters:
             branches:
               ignore:
-                - dev
                 - master
                 - staging
 
-  merge_to_stage:
+  # merge_to_stage:
+  #   jobs:
+  #     - merge_to_stage:
+  #         filters:
+  #           branches:
+  #             ignore:
+  #               - dev
+  #               - master
+  #               - staging
+
+  # deploy_to_stage:
+  #   jobs:
+  #     - stage:
+  #         filters:
+  #           branches:
+  #             only: staging
+  #     - lighthouse:
+  #         requires:
+  #           - stage
+
+  preview:
     jobs:
-      - merge_to_stage:
+      - nrrd-preview:
           filters:
             branches:
               ignore:
-                - dev
                 - master
-                - staging
-
-  deploy_to_stage:
-    jobs:
-      - stage:
-          filters:
-            branches:
-              only: staging
-      - lighthouse:
-          requires:
-            - stage
+                - dev
                 
   deploy:
     jobs:
@@ -289,5 +345,8 @@ workflows:
           filters:
             branches:
               only: dev
+      # - end_to_end_tests:
+      #     requires:
+      #       - dev
 
               

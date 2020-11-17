@@ -18,6 +18,7 @@ const APOLLO_QUERY = gql`
     # period query
     period(where: {period: {_ilike: $period }}) {
       fiscal_year
+      calendar_year
     }
   }
 `
@@ -85,6 +86,9 @@ const useStyles = makeStyles(theme => ({
   sliderRail: {
     height: 4,
     backgroundColor: theme.palette.grey['500'],
+    '@media screen and (-ms-high-contrast: active)': {
+      border: '1px solid currentColor'
+    }
   },
   sliderMark: {
     height: 4,
@@ -127,8 +131,11 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 4,
       textAlign: 'center',
       color: `${ theme.palette.common.white } !important`,
-      backgroundColor: theme.palette.links.default,
+      backgroundColor: theme.palette.links.default
     },
+    '& > span:first-child': {
+      border: `1px solid ${ theme.palette.links.default }`,
+    }
   },
   sliderYearDisplay: {
     color: theme.palette.grey[900],
@@ -164,7 +171,7 @@ const YearSlider = props => {
   const customMarks = []
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { period: DFC.FISCAL_YEAR_LABEL }
+    variables: { period: (filterState[DFC.DATA_TYPE] === DFC.DISBURSEMENT) ? DFC.FISCAL_YEAR_LABEL : DFC.PERIOD_CALENDAR_YEAR }
   })
 
   if (loading) {}
@@ -174,8 +181,13 @@ const YearSlider = props => {
     periodData = data.period
 
     // set min and max trend years
-    minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-    maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+    minYear = (filterState[DFC.DATA_TYPE] === DFC.DISBURSEMENT)
+      ? periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
+      : periodData.reduce((min, p) => p.calendar_year < min ? p.calendar_year : min, periodData[0].calendar_year)
+    maxYear = (filterState[DFC.DATA_TYPE] === DFC.DISBURSEMENT)
+      ? periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+      : periodData.reduce((max, p) => p.calendar_year > max ? p.calendar_year : max, periodData[periodData.length - 1].calendar_year)
+
     if (!year) {
       year = maxYear
       handleOnchange(maxYear)

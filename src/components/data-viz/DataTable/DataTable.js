@@ -37,6 +37,7 @@ import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRo
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
 import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
+import CustomTableHeaderSortLabel from './Custom/CustomTableHeaderSortLabel'
 import TotalProvider from './Custom/TotalProvider'
 import CustomGroupCellContent from './Custom/CustomGroupCellContent'
 
@@ -66,7 +67,13 @@ import {
   TableColumnReordering
 } from '@devexpress/dx-react-grid-material-ui'
 
-const allYears = ['2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003']
+// @TODO FDix the years issue for the wuery tool, this sux
+const allYears = dataType => {
+  if (dataType === DISBURSEMENT) {
+    return ['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003']
+  }
+  return ['2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003']
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -166,7 +173,7 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
     )
   }
   const [defaultColumnWidths] = useState(columnNames ? getDefaultColumnWidths() : [])
-  const [tableColumnExtensions] = useState(allYears.map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
+  const [tableColumnExtensions] = useState(allYears(state.dataType).map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
 
   const getSortingColumns = hiddenCols => {
     if (state[DATA_TYPE] === PRODUCTION) {
@@ -481,7 +488,8 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
                     onAddColumn={!_breakoutBy && addBreakoutByColumnHandler}
                     onRemoveColumn={_breakoutBy && removeBreakoutByColumnHandler}
                     {...props} />}
-                showSortingControls/>
+                showSortingControls
+                sortLabelComponent={CustomTableHeaderSortLabel}/>
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
               />

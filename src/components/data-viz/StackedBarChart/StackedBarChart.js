@@ -20,13 +20,8 @@ const useStyles = makeStyles(theme => ({
     height: '200px',
     fill: theme.palette.chart.primary,
     '& .bars > .bar:hover': {
-      fill: theme.palette.chart.secondary,
       cursor: 'pointer',
     },
-    '& .bars > .active': {
-      fill: theme.palette.chart.secondary,
-    },
-
     '& .maxExtent': {
       fontSize: theme.typography.h5.fontSize,
     },
@@ -65,8 +60,8 @@ const useStyles = makeStyles(theme => ({
       width: 10,
     },
     '& td .legend-rect': {
-      fill: theme.palette.chart.secondary,
-      backgroundColor: theme.palette.chart.secondary,
+      // fill: theme.palette.chart.secondary,
+      // backgroundColor: theme.palette.chart.secondary,
       display: 'block',
       height: 20,
       width: 20,
@@ -98,6 +93,12 @@ const useStyles = makeStyles(theme => ({
     '& .legend-rect': {
       marginTop: theme.spacing(0.5),
     },
+  },
+  legendButton: {
+    color: theme.palette.links.default,
+    '& > span': {
+      textDecoration: 'underline',
+    }
   }
 }))
 
@@ -134,9 +135,9 @@ const StackedBarChart = props => {
       {title && <ChartTitle>{title}</ChartTitle>}
       <div className={classes.container} ref={elemRef}>
         <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }` + ' chart_div'}></div>
-        { props.collapsibleLegend && <Button variant='text' onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</Button> }
-        <Collapse in={!collapsed} >
-          <div className={classes.legend + ' legend_div'} ></div>
+        { props.collapsibleLegend && <Button variant='text' className={classes.legendButton} onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</Button> }
+        <Collapse in={!collapsed}>
+          <div className={classes.legend + ' legend_div'}></div>
         </Collapse>
       </div>
     </>

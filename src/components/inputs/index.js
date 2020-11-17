@@ -46,10 +46,12 @@ import withQueryManager from '../withQueryManager'
  * @param {String} queryKey
  * @param {String} dataFilterKey
  */
-export const createEnhancedInput = (baseInput, queryKey, dataFilterKey, options) => compose(
-  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
-  BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
-  BaseComponent => withQueryManager(BaseComponent, queryKey, { [DATA_FILTER_KEY]: dataFilterKey, ...options }))(baseInput)
+export const createEnhancedInput = (baseInput, queryKey, dataFilterKey, options) => {
+  return compose(
+    BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
+    BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
+    BaseComponent => withQueryManager(BaseComponent, queryKey, { [DATA_FILTER_KEY]: dataFilterKey, ...options }))(baseInput)
+}
 
 /**
  * A factory method for building slider components with a DataFilterContext and a DataFilterQuery.

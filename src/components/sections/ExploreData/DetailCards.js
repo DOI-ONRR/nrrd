@@ -147,7 +147,7 @@ const useStyles = makeStyles(theme => ({
     '& .cardContent__Revenue': {
       gridTemplateRows: '185px 660px auto',
     },
-    '& .cardContent__Disbursement': {
+    '& .cardContent__Disbursements': {
       gridTemplateRows: '185px 768px 560px',
     },
     '& .cardContent__Production': {
@@ -185,16 +185,31 @@ const useStyles = makeStyles(theme => ({
       minHeight: 245
     },
     '& > div:first-child $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[400] }`,
+      borderBottom: `8px solid ${ theme.palette.explore[400] }`,
     },
     '& > div:nth-child(2) $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[300] }`,
+      borderBottom: `8px solid ${ theme.palette.explore[300] }`,
     },
     '& > div:nth-child(3) $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[200] }`,
+      borderBottom: `8px solid ${ theme.palette.explore[200] }`,
     },
-    '& > div:last-child $cardHeader': {
-      borderBottom: `8px solid ${ theme.palette.circleChart[100] }`,
+    '& > div:nth-child(4) $cardHeader': {
+      borderBottom: `8px solid ${ theme.palette.explore[100] }`,
+    },
+    '& > div:first-child .line-chart path.line': {
+      stroke: theme.palette.explore[400],
+    },
+    '& > div:nth-child(2) .line-chart path.line': {
+      stroke: theme.palette.explore[300],
+    },
+    '& > div:nth-child(3) .line-chart path.line': {
+      stroke: theme.palette.explore[200],
+    },
+    '& > div:nth-child(4) .line-chart path.line': {
+      stroke: theme.palette.explore[100],
+    },
+    '& > div:first-child .tooltip > div': {
+      color: 'deeppink',
     }
   },
   closeIcon: {
@@ -224,6 +239,9 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(1),
       fontSize: '1.25rem',
     },
+    '& svg': {
+      fill: theme.palette.common.white,
+    }
   },
   cardHeaderContent: {
     fontSize: theme.typography.h3.fontSize,
@@ -368,7 +386,7 @@ const DetailCards = props => {
       location_name: 'Nationwide Federal',
       region_type: '',
       county: '',
-      label: 'Add Nationwide Federal card'
+      label: 'Add Nationwide Federal'
     },
     {
       fips_code: 'NA',
@@ -377,7 +395,7 @@ const DetailCards = props => {
       location_name: 'Native American',
       region_type: '',
       county: '',
-      label: 'Add Native American card'
+      label: 'Add Native American'
     }
   ]
 
@@ -456,7 +474,7 @@ const DetailCards = props => {
         })
         }
 
-        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title='Add another card' onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
+        { (cards.length >= 0 && cards.length <= MAX_CARDS) ? <AddLocationCard title={'Add a location'} onLink={onLink} cardMenuItems={cardMenuItems} /> : '' }
       </Box>
     </>
   )

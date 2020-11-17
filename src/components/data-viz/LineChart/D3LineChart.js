@@ -106,9 +106,9 @@ export default class D3LineChart {
       const lineDashes = this.lineDashes
       const lineStrokes = this.lineStrokes
       const lineTooltip = this.lineTooltip
-      const colors = this.chartColors
+      const years = this.data[0]
 
-      const x = d3.scaleLinear().domain([2003, 2019]).range([0, width])
+      const x = d3.scaleLinear().domain([years[0], years[years.length - 1]]).range([0, width])
       // const y = d3.scaleLinear().domain([0, 40000000]).range([height, 0])
 
       const svg = d3.select(this.chartNode).append('svg')
@@ -170,7 +170,8 @@ export default class D3LineChart {
           .selectAll()
           .data(yDatasets).enter()
           .append('div')
-          .style('color', (d, i) => colors[i])
+          // .style('color', (d, i) => colors[i])
+          .style('color', 'white')
           .html((d, i) => {
             // console.log('.html d: ', i, d)
             return lineTooltip(d[yearIndex], i)[0]
