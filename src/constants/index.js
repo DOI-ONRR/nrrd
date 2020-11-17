@@ -55,7 +55,6 @@ y2017
 y2018
 y2019`
 
-
 // @TODO find a better way to list all years
 export const ALL_REVENUE_BY_COMPANY_YEARS = `
 y2013

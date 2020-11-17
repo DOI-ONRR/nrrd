@@ -31,7 +31,7 @@ import utils from '../../../../js/utils'
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   query RevenueNational($year: Int!, $commodities: [String!]) {
-   federal_revenue_by_company_type_summary(order_by: {company_rank: asc, type_order: desc }, where: {calendar_year: {_eq: $year}, commodity: {_in: $commodities} }) {
+   federal_revenue_by_company_type_summary(order_by: {company_rank: asc, revenue: desc,  type_order: desc }, where: {calendar_year: {_eq: $year}, commodity: {_in: $commodities} }) {
     corporate_name
     calendar_year
     revenue_type
@@ -56,7 +56,7 @@ const RevenueByCompany = props => {
     skip: period !== 'Calendar Year'
   })
 
-  const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
+  // const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
   let groupTotal
@@ -68,9 +68,29 @@ const RevenueByCompany = props => {
   const xAxis = 'year'
   const yAxis = 'revenue'
   const yGroupBy = 'revenue_type'
+  const yOrderBy = 'revenue'
 
   const units = 'dollars'
-
+  const colorRange = [
+    theme.palette.explore[700],
+    theme.palette.explore[600],
+    theme.palette.explore[500],
+    theme.palette.explore[400],
+    theme.palette.explore[300],
+    theme.palette.explore[200],
+    theme.palette.explore[100]
+  ]
+  /*
+    const colorRange = [
+        theme.palette.explore[100],
+        theme.palette.explore[200],
+        theme.palette.explore[300],
+        theme.palette.explore[400],
+        theme.palette.explore[500],
+        theme.palette.explore[600],
+        theme.palette.explore[700]
+    ]
+    */
   if (loading) {
     return 'Loading...'
   }
@@ -79,29 +99,36 @@ const RevenueByCompany = props => {
 
   if (data && data.federal_revenue_by_company_type_summary.length > 0) {
     /*  chartData = d3.nest()
-          .key(k => k.revenue_type)
-          .rollup(v => d3.sum(v, i => i.total))
-          .entries(data.revenue_type_summary)
-          .map(d => ({ revenue_type: d.key, total: d.value }))
-  } */
+         .key(k => k.revenue_type)
+         .rollup(v => d3.sum(v, i => i.total))
+         .entries(data.revenue_type_summary)
+         .map(d => ({ revenue_type: d.key, total: d.value }))
+	 } */
     groupData = utils.groupBy(data.federal_revenue_by_company_type_summary, 'corporate_name')
     groupTotal = Object.keys(groupData).filter((d, i) => i < 1)
-      .map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
+			 .map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
     nationalRevenueData = Object.entries(groupData)
-    remainingTotal = Object.keys(groupData)
-      .filter((d, i) => i > 9).map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
-    totalTotal = Object.keys(groupData).map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
+    nationalRevenueData = nationalRevenueData.sort((sortA, sortB) =>
+	  (sortA[1].reduce((a, b) => +a + +b.revenue, 0) < sortB[1].reduce((a, b) => +a + +b.revenue, 0)) ? 1 : -1)
+
+    totalTotal = nationalRevenueData.reduce((total, item) =>
+	  (total += item[1].reduce((subtotal, subitem) => (subtotal += subitem.revenue), 0)), 0)
+
+    remainingTotal = nationalRevenueData.filter((d, i) => i > 9)
+					  .reduce((total, item) =>
+					      (total += item[1].reduce((subtotal, subitem) => (subtotal += subitem.revenue), 0)), 0)
+
     remainingPercent = remainingTotal / totalTotal * 100
     console.debug('NRD', nationalRevenueData)
     console.debug('GD', groupData)
     console.debug('GT', groupTotal)
 
     return (
-      <Container id={utils.formatToSlug(title)}>
+	  <Container id={utils.formatToSlug(title)}>
         <Grid container>
           <Grid item xs={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-              <Box component="h3" color="secondary.dark">{title}</Box>
+		  <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
           </Grid>
           <Grid item xs={12}>
@@ -132,10 +159,10 @@ const RevenueByCompany = props => {
                         <Box component="p"></Box>
                       </TableCell>
                       <TableCell style={{ verticalAlign: 'top' }}>
-                        <Box mt={0}>{utils.formatToDollarInt(item[1][0].total)}</Box>
+                        <Box mt={0}>{utils.formatToDollarInt(item[1].reduce((a, b) => +a + +b.revenue, 0))}</Box>
                       </TableCell>
                       <TableCell style={{ verticalAlign: 'top' }}>
-                        <Box mt={0}>{item[1][0].percent_of_revenue.toFixed(2)}%</Box>
+                        <Box mt={0}>{ (item[1].reduce((a, b) => +a + +b.revenue, 0) / totalTotal * 100).toFixed(2) }%</Box>
                       </TableCell>
                       <TableCell style={{ width: '45%' }}>
                         <StackedBarChart
@@ -175,15 +202,7 @@ const RevenueByCompany = props => {
                           yOrderBy={yOrderBy}
                           horizontal
                           legendReverse={true}
-                          colorRange={[
-                            theme.palette.explore[700],
-                            theme.palette.explore[600],
-                            theme.palette.explore[500],
-                            theme.palette.explore[400],
-                            theme.palette.explore[300],
-                            theme.palette.explore[200],
-                            theme.palette.explore[100]
-                          ]}
+                          colorRange={colorRange}
                         />
                       </TableCell>
                     </TableRow>
@@ -322,7 +341,7 @@ const RevenueByCompany = props => {
             </Hidden>
           </Grid>
         </Grid>
-      </Container>
+	  </Container>
     )
   }
   else {
