@@ -15,6 +15,7 @@ import {
 } from 'react-scroll'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
+import { toTitleCase } from '../../../js/utils'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.links.default,
     color: theme.palette.common.white,
     minWidth: 250,
+    maxWidth: 305,
     padding: 4,
     fontSize: theme.typography.h3.fontSize,
     '&:hover': {
@@ -41,6 +43,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     lineHeight: 1.25,
     padding: '5px 16px',
+    '&:first-letter': {
+      textTransform: 'uppercase',
+    }
   },
   buttonScrollIcon: {
     height: 20,
@@ -56,10 +61,10 @@ const ExploreMoreDataButton = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
 
-  const dataType = filterState.dataType.toLowerCase()
+  const dataType = filterState.dataType
 
   const [buttonState, setButtonState] = useState({
-    label: `Explore more ${ dataType }`,
+    label: `${ toTitleCase(dataType) } comparison and nationwide summaries`,
     icon: 'down'
   })
 
@@ -68,7 +73,7 @@ const ExploreMoreDataButton = props => {
       setButtonState({ ...buttonState, label: 'Back to map', icon: 'up' })
     }
     else {
-      setButtonState({ ...buttonState, label: `Explore more ${ dataType }`, icon: 'down' })
+      setButtonState({ ...buttonState, label: `${ toTitleCase(dataType) } comparison and nationwide summaries`, icon: 'down' })
     }
   }
 

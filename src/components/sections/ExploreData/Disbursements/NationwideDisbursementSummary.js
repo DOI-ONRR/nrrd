@@ -16,7 +16,8 @@ import {
   Box,
   Container,
   Grid,
-  Hidden
+  Hidden,
+  Typography
 } from '@material-ui/core'
 
 import {
@@ -24,6 +25,7 @@ import {
 } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
+import DisbursementLocationTotal from './DisbursementLocationTotal'
 
 import utils from '../../../../js/utils'
 
@@ -98,15 +100,25 @@ const NationwideDisbursementSummary = props => {
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
+          <Grid item md={12}>
+            <Box mt={10} mb={1} color="secondary.main" borderBottom={5}>
+              <Box component="h2" color="secondary.dark">{title}</Box>
+            </Box>
+            <Typography variant="body1">
+              <DisbursementLocationTotal />
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid container>
           <Grid item sm={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
-              <Box component="h3" color="secondary.dark" display="inline" align="left">{title}</Box>
+              <Box component="h3" color="secondary.dark" display="inline" align="left">Nationwide disbursements by recipient and source</Box>
               <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
                 <QueryLink
                   groupBy={DFC.RECIPIENT}
                   recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury"
                   linkType="FilterTable" {...props}>
-                Query nationwide disbursements
+                  Query nationwide disbursements
                 </QueryLink>
               </Box>
             </Box>
