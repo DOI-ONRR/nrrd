@@ -4,6 +4,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../src/js/mui/theme'
 
 import { MockedProvider } from '@apollo/react-testing'
+import mediaQuery from 'css-mediaquery'
 
 import mocks from '../__mock_queries__/apollo-query-mocks'
 import {
@@ -37,3 +38,13 @@ export * from '@testing-library/react'
 
 // override render method
 export { customRender as render }
+
+export { theme }
+
+export const createMatchMedia = width => {
+  return query => ({
+    matches: mediaQuery.match(query, { width }),
+    addListener: () => {},
+    removeListener: () => {},
+  })
+}

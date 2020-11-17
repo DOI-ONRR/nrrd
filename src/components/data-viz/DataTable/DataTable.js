@@ -37,6 +37,7 @@ import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRo
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
 import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
+import CustomTableHeaderSortLabel from './Custom/CustomTableHeaderSortLabel'
 import TotalProvider from './Custom/TotalProvider'
 import CustomGroupCellContent from './Custom/CustomGroupCellContent'
 
@@ -487,7 +488,8 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
                     onAddColumn={!_breakoutBy && addBreakoutByColumnHandler}
                     onRemoveColumn={_breakoutBy && removeBreakoutByColumnHandler}
                     {...props} />}
-                showSortingControls/>
+                showSortingControls
+                sortLabelComponent={CustomTableHeaderSortLabel}/>
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
               />

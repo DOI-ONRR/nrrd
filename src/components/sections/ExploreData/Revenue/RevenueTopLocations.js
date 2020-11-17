@@ -77,9 +77,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const RevenueTopLocations = ({ title, ...props }) => {
+const RevenueTopLocations = props => {
   const classes = useStyles()
   const theme = useTheme()
+  const { title } = props
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const location = (filterState[DFC.MAP_LEVEL]) ? filterState[DFC.MAP_LEVEL] : 'State'
@@ -117,7 +118,7 @@ const RevenueTopLocations = ({ title, ...props }) => {
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       }).sort((a, b) => (a.total < b.total) ? 1 : -1)
-
+    console.debug('------------------------------------------------->', chartData)
     return (
       <Container id={utils.formatToSlug(title)}>
         <Grid container>
