@@ -48,7 +48,7 @@ export default props => {
     <>
       {mapData &&
         <> <Map
-          key={'PM' + dataSet }
+          key={`PM${ dataSet }${ props.width }`}
           mapFeatures={props.mapFeatures}
           mapJsonObject={props.mapJsonObject}
           mapData={mapData}
@@ -63,6 +63,7 @@ export default props => {
           handleMapSnackbar={props.handleMapSnackbar}
           handleMapSnackbarClose={props.handleMapSnackbarClose}
           legendFormat={utils.formatToCommaInt}
+          width={props.width}
           mapFormat={ d => {
             if (isNaN(d)) {
               return ''

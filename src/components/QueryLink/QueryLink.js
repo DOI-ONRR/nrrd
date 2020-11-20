@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const QueryLink = props => {
+const QueryLink = ({ mt = 3, ...props }) => {
   // console.log('QueryLink props: ', props)
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
@@ -86,8 +86,8 @@ const QueryLink = props => {
 
   return (
     <>
-      <Box mt={3} className={classes.root}>
-        <Link href={getQueryUrl('query-data', state)} linkType={props.linkType}>
+      <Box mt={mt} className={classes.root}>
+        <Link href={getQueryUrl('query-data', state)} linkType={props.linkType} mt={mt}>
           { props.children }
         </Link>
       </Box>
