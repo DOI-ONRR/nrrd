@@ -17,10 +17,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     height: '100%',
     width: '100%',
-    '& .mapContainer': {
-      height: '100%',
-      width: '100%',
-    },
+      '& .mapContainer': {
+	height: '100%',
+	width: '100%',
+      },
     '& .map': {
       height: '100%',
       width: '100%',
@@ -48,6 +48,7 @@ const useStyles = makeStyles(theme => ({
       }
     }
   }
+    
 }))
 
 /**
@@ -86,13 +87,13 @@ const Map = props => {
   const classes = useStyles()
   const minColor = props.minColor
   const maxColor = props.maxColor
-  const onZoom = props.onZoom || function () {
+  const onZoom = props.onZoom_d || function () {
     console.debug('Map onZoom default')
   }
-  const onZoomEnd = props.onZoomEnd || function () {
+  const onZoomEnd = props.onZoomEnd_d || function () {
     console.debug('Map onZoomEnd default')
   }
-  const zoomIn = props.zoomIn || function () {
+  const zoomIn = props.zoomIn_d || function () {
     console.debug('Map zoomIn default')
   }
   const mapZoom = props.mapZoom
@@ -139,20 +140,21 @@ const Map = props => {
       options
     )
 
-    map.onZoom = onZoom
-    map.onZoomEnd = onZoomEnd
+      /* 
+       * map.onZoom = onZoom
+       * map.onZoomEnd = onZoomEnd
+       * 
+       * if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
+	 map.zoom({ x: mapX, y: mapY, k: mapZoom })
+       * }
 
-    if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
-      map.zoom({ x: mapX, y: mapY, k: mapZoom })
-    }
-
-    if (props.zoomTo) {
-      map.zoomTo(props.zoomTo)
-    }
-    if (props.zoomIn) {
-	  map.zoomIn(props.zoomIn)
-    }
-
+	 if (props.zoomTo) {
+       * map.zoomTo(props.zoomTo)
+	 }
+	 if (props.zoomIn) {
+	 map.zoomIn(props.zoomIn)
+	 } 
+       */
     map.width = size.width
   }
 
