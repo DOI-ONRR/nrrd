@@ -17,10 +17,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     height: '100%',
     width: '100%',
-      '& .mapContainer': {
-	height: '100%',
-	width: '100%',
-      },
+    '& .mapContainer': {
+      height: '100%',
+      width: '100%',
+    },
     '& .map': {
       height: '100%',
       width: '100%',
@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
       }
     }
   }
-    
+
 }))
 
 /**
@@ -140,10 +140,10 @@ const Map = props => {
       options
     )
 
-      /* 
+    /*
        * map.onZoom = onZoom
        * map.onZoomEnd = onZoomEnd
-       * 
+       *
        * if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
 	 map.zoom({ x: mapX, y: mapY, k: mapZoom })
        * }
@@ -153,7 +153,7 @@ const Map = props => {
 	 }
 	 if (props.zoomIn) {
 	 map.zoomIn(props.zoomIn)
-	 } 
+	 }
        */
     map.width = size.width
   }

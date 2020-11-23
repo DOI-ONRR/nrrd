@@ -54,8 +54,8 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
-      zIndex: 1,
-      '& .map-overlay': {
+    zIndex: 1,
+    '& .map-overlay': {
 	  left: '0',
 	  right: '0',
 	  width: '100%',
@@ -64,34 +64,34 @@ const useStyles = makeStyles(theme => ({
 	  top: '0',
 	  transition: '.3s ease',
 	  opacity: 0,
-      },
-      '& .map-overlay.scrollable': {
+    },
+    '& .map-overlay.scrollable': {
 	  position: 'absolute',
 	  backgroundColor: 'rgba(0, 0, 0, .3)',
 	  zIndex: '300',
 	  pointerEvents: 'all',
 	  opacity: 0,
-      },
+    },
 
-      '& .map-overlay.active': {
+    '& .map-overlay.active': {
 	  position: 'absolute',
 	  backgroundColor: 'rgba(0, 0, 0, .3)',
 	  zIndex: '300',
 	  pointerEvents: 'all',
 	  opacity: 1,
-      }
+    }
 
   },
-    mapWrapper: {
-	width: '100%',
-	height: '100%',
-	position: 'absolute',
-	padding: 0,
-	overflow: 'hidden',
-	background: theme.palette.grey[200],
-	display: 'block',
-    },
-    cardContainer: {
+  mapWrapper: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    padding: 0,
+    overflow: 'hidden',
+    background: theme.palette.grey[200],
+    display: 'block',
+  },
+  cardContainer: {
     width: 310,
     position: 'absolute',
     right: 15,
@@ -304,7 +304,7 @@ const MapContext = props => {
     year: StringParam,
   })
 
-    const [mapOverlay, setMapOverlay] = useState('scrollable')
+  const [mapOverlay, setMapOverlay] = useState('scrollable')
   // eslint-disable-next-line no-unused-vars
   const [mapActive, setMapActive] = useState(true)
 
@@ -389,7 +389,7 @@ const MapContext = props => {
   // setZoom
   const setZoom = (x, y, k) => {
     // console.log('Dont set zoom setZoom x,y,k: ', x, y, k)
-      /* setMapY(y)
+    /* setMapY(y)
        * setMapX(x)
        * setMapK(k)
 
