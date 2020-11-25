@@ -24,7 +24,8 @@ import {
   CSV,
   DOWNLOAD_DATA_TABLE,
   PERIOD_TYPES,
-  REVENUE_BY_COMPANY
+  REVENUE_BY_COMPANY,
+  PERIOD_MONTHLY
 } from '../../../constants'
 
 import {
@@ -205,7 +206,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
               ? <PeriodSelectInput data={PERIOD_TYPES.filter(type => type !== PERIOD_CALENDAR_YEAR)}/>
               : <PeriodFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
-            {state.period === PERIOD_FISCAL_YEAR &&
+            {(state.period === PERIOD_FISCAL_YEAR || state.period === PERIOD_MONTHLY) &&
               <FiscalYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
             {state.period === PERIOD_CALENDAR_YEAR &&

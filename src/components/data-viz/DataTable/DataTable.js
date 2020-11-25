@@ -22,7 +22,8 @@ import {
   QUERY_COUNTS,
   COMMODITY_ORDER,
   RECIPIENT,
-  COMPANY_NAME
+  COMPANY_NAME,
+  PERIOD_MONTHLY
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'
@@ -311,7 +312,7 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
 
   const getHiddenColumns = () => {
     let yearColumns = []
-    const periodYear = (state[PERIOD] === PERIOD_FISCAL_YEAR) ? FISCAL_YEAR : CALENDAR_YEAR
+    const periodYear = (state[PERIOD] === PERIOD_FISCAL_YEAR || state[PERIOD] === PERIOD_MONTHLY) ? FISCAL_YEAR : CALENDAR_YEAR
     if (state[periodYear]) {
       let years = state[periodYear].split(',')
       years = years.map(item => `y${ item }`)

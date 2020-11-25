@@ -27,7 +27,8 @@ import {
   MAP_LEVEL,
   STATE,
   REVENUE_BY_COMPANY,
-  COMPANY_NAME
+  COMPANY_NAME,
+  MONTH_LONG
 } from '../../constants'
 
 const types = Object.freeze({
