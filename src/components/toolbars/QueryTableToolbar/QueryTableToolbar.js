@@ -146,14 +146,17 @@ const QueryTableToolbar = ({ label, ...props }) => {
   }
 
   const handleDownloadExcel = event => {
-    if (downloadDataContext.state[DOWNLOAD_DATA_TABLE] && state[DATA_TYPE]) {
-      downloadWorkbook(
-        EXCEL,
-        state[DATA_TYPE],
-        state[DATA_TYPE],
-        downloadDataContext.state[DOWNLOAD_DATA_TABLE].cols,
-        downloadDataContext.state[DOWNLOAD_DATA_TABLE].rows)
-    }
+      if (downloadDataContext.state[DOWNLOAD_DATA_TABLE] && state[DATA_TYPE]) {
+	  console.debug("cols: ", downloadDataContext.state[DOWNLOAD_DATA_TABLE].cols)
+	  console.debug("rows: ", downloadDataContext.state[DOWNLOAD_DATA_TABLE].rows)
+	  
+	  downloadWorkbook(
+              EXCEL,
+              state[DATA_TYPE],
+              state[DATA_TYPE],
+              downloadDataContext.state[DOWNLOAD_DATA_TABLE].cols,
+              downloadDataContext.state[DOWNLOAD_DATA_TABLE].rows)
+      }
   }
 
   const handleDownloadCsv = event => {
