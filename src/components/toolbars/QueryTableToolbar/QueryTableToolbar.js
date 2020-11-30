@@ -92,7 +92,6 @@ const useStyles = makeStyles(theme => ({
     borderLeft: `1px solid ${ theme.palette.grey[400] }`,
     paddingLeft: theme.spacing(2),
     marginLeft: theme.spacing(2),
-    width: '-webkit-fill-available'
   },
   hide: {
     display: 'none',
@@ -189,40 +188,33 @@ const QueryTableToolbar = ({ label, ...props }) => {
       </BaseToolbar>
       { queryDataToolbarOpen &&
         <BaseToolbar isSecondary={true}>
-          <Box>
-            <DataTypePlusSelectInput />
-          </Box>
+          <DataTypePlusSelectInput />
           <Box className={classes.toolsWrapper}>
             {state[DATA_TYPE] === DISBURSEMENT
               ? <PeriodSelectInput data={PERIOD_TYPES.filter(type => type !== PERIOD_CALENDAR_YEAR)}/>
               : <PeriodFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
             {state.period === PERIOD_FISCAL_YEAR &&
-              <FiscalYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
+                <FiscalYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
             {state.period === PERIOD_CALENDAR_YEAR &&
-              <CalendarYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
+                <CalendarYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
+          </Box>
+          <Box className={classes.toolsWrapper}>
             {state[DATA_TYPE] === REVENUE &&
-              <Box className={classes.toolsWrapper}>
-                <RevenueFilterToolbar />
-              </Box>
+              <RevenueFilterToolbar />
             }
             {state[DATA_TYPE] === PRODUCTION &&
-              <Box className={classes.toolsWrapper}>
-                <ProductionFilterToolbar />
-              </Box>
+              <ProductionFilterToolbar />
             }
             {state[DATA_TYPE] === DISBURSEMENT &&
-              <Box className={classes.toolsWrapper}>
-                <DisbursementFilterToolbar />
-              </Box>
+              <DisbursementFilterToolbar />
             }
             {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
-              <Box className={classes.toolsWrapper}>
-                <RevenueByCompanyFilterToolbar />
-              </Box>
+              <RevenueByCompanyFilterToolbar />
             }
+            <ClearAllFiltersBtn style={{ margin: '8px' }}/>
           </Box>
         </BaseToolbar>
       }
@@ -256,11 +248,6 @@ const QueryTableToolbar = ({ label, ...props }) => {
 
 export default QueryTableToolbar
 
-// const isCountyEnabled = ({ state }) => (state[STATE_OFFSHORE_NAME] &&
-//   (state[STATE_OFFSHORE_NAME].split(',').length === 1) &&
-//   (!state[STATE_OFFSHORE_NAME].includes('Offshore')) &&
-//   (!state[STATE_OFFSHORE_NAME].includes('Not')))
-
 const RevenueFilterToolbar = () => {
   return (
     <>
@@ -268,7 +255,6 @@ const RevenueFilterToolbar = () => {
       <RevenueTypeSelectInput />
       <StateOffshoreSelectInput />
       <CommoditySelectInput />
-      <ClearAllFiltersBtn />
     </>
   )
 }
@@ -279,7 +265,6 @@ const ProductionFilterToolbar = () => {
       <LandTypeSelectInput />
       <StateOffshoreSelectInput />
       <ProductSelectInput />
-      <ClearAllFiltersBtn />
     </>
   )
 }
@@ -290,7 +275,6 @@ const DisbursementFilterToolbar = () => {
       <RecipientSelectInput />
       <SourceSelectInput />
       <StateNameSelectInput defaultSelectAll={false} />
-      <ClearAllFiltersBtn />
     </>
   )
 }
@@ -298,10 +282,9 @@ const DisbursementFilterToolbar = () => {
 const RevenueByCompanyFilterToolbar = () => {
   return (
     <>
-      <CompanyNameFilter queryKey={QK_QUERY_TOOL} style={{ width: '300px' }} />
+      <CompanyNameFilter queryKey={QK_QUERY_TOOL} style={{ width: '300px' }} label={'Search companies'}/>
       <CommodityFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
       <RevenueTypeFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
-      <ClearAllFiltersBtn />
     </>
   )
 }
