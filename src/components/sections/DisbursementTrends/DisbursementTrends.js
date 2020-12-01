@@ -149,12 +149,12 @@ const DisbursementTrends = props => {
                       <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
                         {utils.formatToSigFig_Dollar(trend.current, 3)}
                       </Box>
-                      <Box>
+                      {/* <Box>
                         <PercentDifference
                           currentAmount={trend.current}
                           previousAmount={trend.previous}
                         />{` ${ previousFiscalYearText }`}
-                      </Box>
+                      </Box> */}
                     </TableCell>
                   </TableRow>
                 ))
