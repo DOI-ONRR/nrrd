@@ -23,7 +23,8 @@ import {
   COMMODITY_ORDER,
   RECIPIENT,
   COMPANY_NAME,
-  PERIOD_MONTHLY
+  PERIOD_MONTHLY,
+  MONTH_LONG
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'
@@ -195,7 +196,7 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
 
   const _groupBySticky = state[GROUP_BY_STICKY]
   const _breakoutBy = state[BREAKOUT_BY]
-  const _additionalColumns = state[ADDITIONAL_COLUMNS]
+  const _additionalColumns = (state[PERIOD] === PERIOD_MONTHLY) ? [MONTH_LONG] : state[ADDITIONAL_COLUMNS]
   const getGroupBy = () => {
     const getNewGroupByColumn = () => {
       const groupByColumnName = columnNames.find(item =>
