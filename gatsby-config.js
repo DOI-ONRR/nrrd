@@ -7,7 +7,7 @@ require('dotenv').config({
 })
 
 const GOOGLE_ANALYTICS_ID = (activeEnv === 'prd') ? process.env.GOOGLE_ANALYTICS_ID : ''
-const GTM_ID = (activeEnv === 'prd' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : ''
+const GTM_ID = (activeEnv === 'prd' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : 'fake_id'
 // eslint-disable-next-line max-len
 const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
 
