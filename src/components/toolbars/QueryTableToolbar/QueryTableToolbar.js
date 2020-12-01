@@ -84,6 +84,12 @@ const useStyles = makeStyles(theme => ({
     borderBottom: '5px solid rgba(188, 113, 0)',
     opacity: '0.5',
   },
+  toolsWrapperFirst: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   toolsWrapper: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -188,7 +194,9 @@ const QueryTableToolbar = ({ label, ...props }) => {
       </BaseToolbar>
       { queryDataToolbarOpen &&
         <BaseToolbar isSecondary={true}>
-          <DataTypePlusSelectInput />
+          <Box className={classes.toolsWrapperFirst}>
+            <DataTypePlusSelectInput />
+          </Box>
           <Box className={classes.toolsWrapper}>
             {state[DATA_TYPE] === DISBURSEMENT
               ? <PeriodSelectInput data={PERIOD_TYPES.filter(type => type !== PERIOD_CALENDAR_YEAR)}/>
