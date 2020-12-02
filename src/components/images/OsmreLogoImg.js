@@ -22,7 +22,7 @@ export default ({ alt, ...rest }) => {
       }
     }
   `)
-  if (data.imageSharp === null) {
+  if (!data.imageSharp) {
     console.warn('data: ', data)
   }
   return (
