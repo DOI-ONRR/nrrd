@@ -7,7 +7,6 @@ require('dotenv').config({
 })
 
 const GOOGLE_ANALYTICS_ID = (activeEnv === 'prd') ? process.env.GOOGLE_ANALYTICS_ID : ''
-const GTM_ID = (activeEnv === 'prd' || process.env.CIRCLE_BRANCH === 'dev') ? process.env.GTM_ID : 'fake_id'
 // eslint-disable-next-line max-len
 const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
 
@@ -169,7 +168,7 @@ const config = {
     {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        id: GTM_ID,
+        id: process.env.GTM_ID,
         // Include GTM in development.
         // Defaults to false meaning GTM will only be loaded in production.
         includeInDevelopment: false,
