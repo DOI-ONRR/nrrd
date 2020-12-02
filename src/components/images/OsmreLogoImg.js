@@ -23,7 +23,8 @@ export default ({ alt, ...rest }) => {
     }
   `)
   if (!data.imageSharp) {
-    console.warn('data: ', data)
+    console.warn('OSMRE-mark.png did not load from graphql')
+    return <></>
   }
   return (
     <>

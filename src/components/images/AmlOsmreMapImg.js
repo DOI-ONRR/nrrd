@@ -22,8 +22,9 @@ export default ({ alt, ...rest }) => {
       }
     }
   `)
-  if (data.imageSharp === null) {
-    console.warn('data: ', data)
+  if (!data.imageSharp) {
+    console.warn('AML_OSMREmap.png did not load from graphql')
+    return <></>
   }
 
   return (
