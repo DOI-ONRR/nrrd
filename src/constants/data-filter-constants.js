@@ -125,8 +125,8 @@ export const DISPLAY_NAMES = {
     plural: 'Column 1',
   },
   [GROUP_BY_STICKY]: {
-    default: 'Group by',
-    plural: 'Group by',
+    default: 'Column 1',
+    plural: 'Column 1',
   },
   [BREAKOUT_BY]: {
     default: 'Column 2',
