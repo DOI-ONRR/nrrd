@@ -258,9 +258,17 @@ export default class d3Map {
 
     const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
 
-    const g = _chart.append('g')
-    _chart.call(zoom)
-    // console.debug('US data: ', data)
+      const g = _chart.append('g')
+      _chart.on('mousedown', (d, i) => {
+	  console.debug("on mouse down", d, i)
+	  _chart.call(zoom)
+      })
+      _chart.on('mouseout', (d, i) => {
+	  console.debug("on mouse out", d, i)
+	  _chart.on('.zoom', null)
+      })
+      //_chart.call(zoom)
+      // console.debug('US data: ', data)
     // console.debug('objects:', us.objects[mapFeatures], mapFeatures)
     g.selectAll('path')
       .data(topojson.feature(us, us.objects[mapFeatures]).features)

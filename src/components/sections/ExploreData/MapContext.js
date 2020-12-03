@@ -321,10 +321,10 @@ const MapContext = props => {
 
   useEffect(() => {
     scrollToTop()
-    window.addEventListener('scroll', handler)
+      //  window.addEventListener('scroll', handler)
 
     return () => {
-      window.removeEventListener('scroll', handler)
+     // window.removeEventListener('scroll', handler)
     }
   }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
 
@@ -594,13 +594,10 @@ const MapContext = props => {
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
-              <MapLevel mapOverlay={mapOverlay} />
+              <MapLevel/>
               {mapChild}
               <MapControls handleClick={handleClick} />
             </Box>
-            <Box className={`map-overlay ${ mapOverlay }`}
-		 onClick={ () => setMapOverlay('') }
-	    ></Box>
           </Grid>
           { matchesMdUp &&
             <Grid item xs={12}>
