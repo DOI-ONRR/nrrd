@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { VariableSizeList } from 'react-window'
 
@@ -16,6 +16,7 @@ import match from 'autosuggest-highlight/match'
 import { Autocomplete } from '@material-ui/lab'
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import mapJson from '../../sections/ExploreData/us-topology.json'
@@ -218,6 +219,8 @@ const SearchLocationsInput = props => {
     }
 `)
 
+  const { state: filterState } = useContext(DataFilterContext)
+  const { dataType } = filterState
   const classes = useStyles()
   const [input, setInput] = useState('')
   const [keyCount, setKeyCount] = useState(0)
@@ -262,7 +265,9 @@ const SearchLocationsInput = props => {
 
   const stateLocations = data.onrr.state_locations.map(location => ({ ...location, locationLabel: renderOptionLabel(location) }))
   const countyLocations = data.onrr.county_locations.map(location => ({ ...location, locationLabel: renderOptionLabel(location) }))
-  const offshoreLocations = data.onrr.offshore_locations.map(location => ({ ...location, locationLabel: renderOptionLabel(location) }))
+  const offshoreLocations = (dataType !== DFC.DISBURSEMENT)
+    ? data.onrr.offshore_locations.map(location => ({ ...location, locationLabel: renderOptionLabel(location) }))
+    : []
 
   const OPTIONS = [...stateLocations, ...countyLocations, ...offshoreLocations]
 
@@ -279,7 +284,7 @@ const SearchLocationsInput = props => {
       renderInput={params => (
         <TextField
           {...params}
-          label="Add state, county, or offshore"
+          label={(dataType === DFC.DISBURSEMENT) ? 'Add state or county' : 'Add state, county, or offshore'}
           variant="outlined"
           fullWidth
           onChange={handleSearch}
