@@ -10,7 +10,7 @@ tag:
 - Production
 ---
 
-<DataFilterProviderWrapper defaults='explore_data_filter_default'>
+<DataFilterProviderWrapper defaults='home_data_filter_default'>
   <Box 
     style={{ 
       width: "100%",
@@ -80,7 +80,7 @@ tag:
                   <TotalRevenue />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                  <RevenueTrends title="Revenue trends" />
+                  <RevenueTrends />
                 </Grid>
                 <Grid item xs={12}>
                   <ExploreRevenue />
@@ -110,7 +110,7 @@ tag:
                   <TotalDisbursements />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                  <DisbursementTrends title="Disbursement trends" />
+                  <DisbursementTrends />
                 </Grid>
                 <Grid item xs={12}>
                   <ExploreDisbursements />
@@ -136,8 +136,11 @@ tag:
                     The volume of major commodities extracted on federal lands and waters and Native American lands.
                   </Box>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} md={8}>
                   <TotalProduction />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <ProductionTrends />
                 </Grid>
                 <Grid item xs={12}>
                   <ExploreProduction />

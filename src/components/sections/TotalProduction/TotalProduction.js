@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import {
   Box,
@@ -13,22 +16,6 @@ import SectionControls from '../../sections/SectionControls'
 import Link from '../../../components/Link'
 
 import utils from '../../../js/utils'
-
-const TOGGLE_VALUES = {
-  Year: 'year',
-  Month: 'month'
-}
-
-const MONTHLY_DROPDOWN_VALUES = {
-  Recent: 'recent',
-  Fiscal: 'fiscal',
-  Calendar: 'calendar'
-}
-
-const YEARLY_DROPDOWN_VALUES = {
-  Fiscal: 'fiscal_year',
-  Calendar: 'calendar_year'
-}
 
 const TOTAL_PRODUCTION_QUERY = gql`
   query TotalYearlyProduction {
@@ -80,25 +67,10 @@ const TOTAL_PRODUCTION_QUERY = gql`
 
 // TotalProduction
 const TotalProduction = props => {
-  const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
-  const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
+
+  const { state: filterState } = useContext(DataFilterContext)
+  const { monthly, period, commodity } = filterState
   const [selected, setSelected] = useState(undefined)
-
-  const toggleChange = value => {
-    setSelected(undefined)
-    setToggle(value)
-
-    if (value && value.toLowerCase() === TOGGLE_VALUES.Month.toLowerCase()) {
-      setPeriod(MONTHLY_DROPDOWN_VALUES.Recent)
-    }
-    else {
-      setPeriod(YEARLY_DROPDOWN_VALUES.Fiscal)
-    }
-  }
-  const menuChange = value => {
-    setSelected(undefined)
-    setPeriod(value)
-  }
 
   const handleSelect = value => {
     setSelected(value.selectedIndex)
@@ -130,11 +102,11 @@ const TotalProduction = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
-    if (toggle === TOGGLE_VALUES.Month) {
-      if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
+    if (monthly === DFC.MONTHLY_CAPITALIZED) {
+      if (period === DFC.PERIOD_FISCAL_YEAR) {
         chartData = data.total_monthly_fiscal_production
       }
-      else if (period === MONTHLY_DROPDOWN_VALUES.Calendar) {
+      else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         chartData = data.total_monthly_calendar_production
       }
       else {
@@ -163,7 +135,7 @@ const TotalProduction = props => {
       }
     }
     else {
-      if (period === YEARLY_DROPDOWN_VALUES.Fiscal) {
+      if (period === DFC.PERIOD_FISCAL_YEAR) {
         chartData = data.total_yearly_fiscal_production
         xGroups['Fiscal Year'] = chartData.filter(row => row.product === 'Oil (bbl)').map((row, i) => row.year)
       }
@@ -186,86 +158,84 @@ const TotalProduction = props => {
           showExploreLink
         />
         <Grid container spacing={4}>
-          <SectionControls
-            onToggleChange={toggleChange}
-            onMenuChange={menuChange}
-            maxFiscalYear={maxFiscalYear}
-            maxCalendarYear={maxCalendarYear}
-            monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
-            toggleValues={TOGGLE_VALUES}
-            yearlyDropdownValues={YEARLY_DROPDOWN_VALUES}
-            toggle={toggle}
-            period={period} />
-          <Grid item xs={12} md={4}>
-            <StackedBarChart
-              title={'Oil (bbl)'}
-              data={chartData.filter(row => row.product === 'Oil (bbl)')}
-              xAxis={xAxis}
-              yAxis={yAxis}
-              xGroups={xGroups}
-              yGroupBy={yGroupBy}
-              xLabels={xLabels}
-              legendFormat={v => utils.formatToCommaInt(v)}
-              onSelect={ d => handleSelect(d) }
-              selectedIndex={selected}
-              units='bbl'
-              showLegendUnits
-              legendHeaders={legendHeaders}
+          <Grid item xs={12}>
+            <SectionControls
+              maxFiscalYear={maxFiscalYear}
+              maxCalendarYear={maxCalendarYear}
+              dataType={DFC.PRODUCTION}
             />
           </Grid>
-          <Grid item xs={12} md={4}>
-            <StackedBarChart
-              title={'Gas (mcf)'}
-              data={chartData.filter(row => row.product === 'Gas (mcf)')}
-              xAxis={xAxis}
-              yAxis={yAxis}
-              xGroups={xGroups}
+          <Grid item xs={12}>
+            {commodity === 'Oil (bbl)' &&
+              <StackedBarChart
+                title={'Oil (bbl)'}
+                data={chartData.filter(row => row.product === 'Oil (bbl)')}
+                xAxis={xAxis}
+                yAxis={yAxis}
+                xGroups={xGroups}
+                yGroupBy={yGroupBy}
+                xLabels={xLabels}
+                legendFormat={v => utils.formatToCommaInt(v)}
+                onSelect={ d => handleSelect(d) }
+                selectedIndex={selected}
+                units='bbl'
+                showLegendUnits
+                legendHeaders={legendHeaders}
+              />
+            }
+            {commodity === 'Gas (mcf)' &&
+              <StackedBarChart
+                title={'Gas (mcf)'}
+                data={chartData.filter(row => row.product === 'Gas (mcf)')}
+                xAxis={xAxis}
+                yAxis={yAxis}
+                xGroups={xGroups}
 
-              yGroupBy={yGroupBy}
-              xLabels={xLabels}
-              legendFormat={v => {
-                return utils.formatToCommaInt(v)
-              }}
-              onSelect={ d => {
-                // console.log('handle select', d)
-                return handleSelect(d)
-              }
-              }
-              selectedIndex={selected}
-              units='mcf'
-              showLegendUnits
-              legendHeaders={legendHeaders}
-            />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <StackedBarChart
-              title={'Coal (tons)'}
-              data={chartData.filter(row => row.product === 'Coal (tons)')}
-              xAxis={xAxis}
-              yAxis={yAxis}
-              xGroups={xGroups}
-
-              yGroupBy={yGroupBy}
-              xLabels={xLabels}
-              legendFormat={v => {
-                if (v) {
+                yGroupBy={yGroupBy}
+                xLabels={xLabels}
+                legendFormat={v => {
                   return utils.formatToCommaInt(v)
+                }}
+                onSelect={ d => {
+                  // console.log('handle select', d)
+                  return handleSelect(d)
                 }
-                else {
-                  return '-'
                 }
-              }}
-              onSelect={ d => {
-                // console.log('handle select', d)
-                return handleSelect(d)
-              }
-              }
-              selectedIndex={selected}
-              units='tons'
-              showLegendUnits
-              legendHeaders={legendHeaders}
-            />
+                selectedIndex={selected}
+                units='mcf'
+                showLegendUnits
+                legendHeaders={legendHeaders}
+              />
+            }
+            {commodity === 'Coal (tons)' &&
+              <StackedBarChart
+                title={'Coal (tons)'}
+                data={chartData.filter(row => row.product === 'Coal (tons)')}
+                xAxis={xAxis}
+                yAxis={yAxis}
+                xGroups={xGroups}
 
+                yGroupBy={yGroupBy}
+                xLabels={xLabels}
+                legendFormat={v => {
+                  if (v) {
+                    return utils.formatToCommaInt(v)
+                  }
+                  else {
+                    return '-'
+                  }
+                }}
+                onSelect={ d => {
+                  // console.log('handle select', d)
+                  return handleSelect(d)
+                }
+                }
+                selectedIndex={selected}
+                units='tons'
+                showLegendUnits
+                legendHeaders={legendHeaders}
+              />
+            }
           </Grid>
         </Grid>
         <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">

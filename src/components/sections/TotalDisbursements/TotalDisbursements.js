@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import {
   Box,
@@ -17,20 +18,6 @@ import Link from '../../../components/Link'
 
 import utils from '../../../js/utils'
 
-const TOGGLE_VALUES = {
-  Year: 'year',
-  Month: 'month'
-}
-
-const MONTHLY_DROPDOWN_VALUES = {
-  Recent: 'recent',
-  Fiscal: 'fiscal',
-  Calendar: 'calendar'
-}
-
-const YEARLY_DROPDOWN_VALUES = {
-  Fiscal: 'fiscal_year'
-}
 
 const TOTAL_DISBURSEMENTS_QUERY = gql`
   query TotalYearlyDisbursements {
@@ -71,25 +58,8 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
 
 // TotalDisbursements
 const TotalDisbursements = props => {
-  // const classes = useStyles()
-  const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
-  const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
-
-  const toggleChange = value => {
-    // console.debug('ON TOGGLE CHANGE: ', value)
-    setToggle(value)
-
-    if (value && value.toLowerCase() === TOGGLE_VALUES.Month.toLowerCase()) {
-      setPeriod(MONTHLY_DROPDOWN_VALUES.Recent)
-    }
-    else {
-      setPeriod(YEARLY_DROPDOWN_VALUES.Fiscal)
-    }
-  }
-  const menuChange = value => {
-    // console.debug('ON Menu CHANGE: ', value)
-    setPeriod(value)
-  }
+  const { state: filterState } = useContext(DataFilterContext)
+  const { monthly, period, breakoutBy } = filterState
 
   const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } (dollars)`
 
@@ -100,7 +70,7 @@ const TotalDisbursements = props => {
   let chartData
   let xAxis = 'year'
   const yAxis = 'sum'
-  const yGroupBy = 'source'
+  const yGroupBy = breakoutBy || 'source'
   const units = 'dollars'
   let xLabels
   let maxFiscalYear
@@ -119,11 +89,11 @@ const TotalDisbursements = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
-    if (toggle === TOGGLE_VALUES.Month) {
-      if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
+    if (monthly === DFC.MONTHLY_CAPITALIZED) {
+      if (period === DFC.PERIOD_FISCAL_YEAR) {
         chartData = data.total_monthly_fiscal_disbursement
       }
-      else if (period === MONTHLY_DROPDOWN_VALUES.Calendar) {
+      else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         chartData = data.total_monthly_calendar_disbursement
       }
       else {
@@ -168,17 +138,13 @@ const TotalDisbursements = props => {
         showExploreLink
       />
       <Grid container spacing={4}>
-        <SectionControls
-          onToggleChange={toggleChange}
-          onMenuChange={menuChange}
-          maxFiscalYear={maxFiscalYear}
-          maxCalendarYear={maxCalendarYear}
-          monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
-          toggleValues={TOGGLE_VALUES}
-          yearlyDropdownValues={YEARLY_DROPDOWN_VALUES}
-          toggle={toggle}
-          period={period}
-          disabledInput={disabledInput} />
+        <Grid item xs={12}>
+          <SectionControls
+            maxFiscalYear={maxFiscalYear}
+            maxCalendarYear={maxCalendarYear}
+            dataType={DFC.DISBURSEMENT}
+          />
+        </Grid>
         <Grid item xs>
           <StackedBarChart
             title={chartTitle}
@@ -193,7 +159,7 @@ const TotalDisbursements = props => {
             legendHeaders={legendHeaders}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
-            { (toggle === TOGGLE_VALUES.Month)
+            { (monthly === DFC.MONTHLY_CAPITALIZED)
               ? <Link href='/downloads/disbursements-by-month/'>Source file</Link>
               : <Link href='/downloads/disbursements/'>Source file</Link>
             }

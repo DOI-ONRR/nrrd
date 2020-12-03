@@ -1,11 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useContext } from 'react'
 
+import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 
-import { Grid, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core'
-import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
+import {
+  BreakoutBySelectInput,
+  CommoditySelectInput,
+  PeriodSelectInput,
+  YearlyMonthlyToggleInput
+} from '../../inputs'
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -16,108 +21,117 @@ const useStyles = makeStyles(theme => ({
   selectEmpty: {
     marginTop: theme.spacing(2)
   },
-  periodFormControlContainer: {
-    textAlign: 'right',
-    '@media (max-width: 600px)': {
-      textAlign: 'left',
-    },
-  },
   periodToggleButton: {
     '&:hover': {
       backgroundColor: `${ theme.palette.links.default } !important`,
       color: theme.palette.common.white,
     },
+  },
+  sectionControlContainer: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+  },
+  sectionControlsContainer: {
+    '& > div:first-child': {
+      marginTop: 4,
+    },
+    '& > div:nth-child(2)': {
+      marginTop: -6,
+    },
+    '& > div:nth-child(3)': {
+      marginTop: -6,
+    }
   }
 }))
 
 const SectionControls = props => {
   const classes = useStyles()
 
-  const inputLabel = useRef(null)
+  const { state: filterState } = useContext(DataFilterContext)
+  const { monthly } = filterState
+  const {
+    maxFiscalYear,
+    maxCalendarYear,
+    dataType
+  } = props
 
-  const TOGGLE_VALUES = props.toggleValues
-  const MONTHLY_DROPDOWN_VALUES = props.monthlyDropdownValues
-  const YEARLY_DROPDOWN_VALUES = props.yearlyDropdownValues
-
-  const [labelWidth, setLabelWidth] = useState(0)
-  const [period, setPeriod] = useState(TOGGLE_VALUES.Year)
+  const MENU_OPTIONS = {
+    [DFC.MONTHLY]: [
+      { value: DFC.YEARLY, option: DFC.YEARLY },
+      { value: DFC.PERIOD_MONTHLY_YEAR, option: DFC.PERIOD_MONTHLY_YEAR }
+    ],
+    [DFC.PERIOD]: [
+      { value: DFC.PERIOD_FISCAL_YEAR, option: DFC.PERIOD_FISCAL_YEAR },
+      { value: DFC.PERIOD_CALENDAR_YEAR, option: DFC.PERIOD_CALENDAR_YEAR }
+    ],
+    monthlyPeriod: [
+      { value: 'Most recent 12 months', option: 'Most recent 12 months' },
+      { value: DFC.PERIOD_FISCAL_YEAR, option: `Fiscal year ${ maxFiscalYear }` },
+      { value: DFC.PERIOD_CALENDAR_YEAR, option: `Calendar year ${ maxCalendarYear }` }
+    ],
+    [DFC.BREAKOUT_BY]: [
+      { value: 'source', option: 'Source' },
+      { value: 'revenue', option: 'Revenue Type' },
+      { value: 'commodity', option: 'Commodity' }
+    ],
+    [DFC.COMMODITY]: [
+      { value: 'Oil (bbl)', option: 'Oil (bbl)' },
+      { value: 'Gas (mcf)', option: 'Gas (mcf)' },
+      { value: 'Coal (tons)', option: 'Coal (tons)' }
+    ]
+  }
 
   const disabled = props.disabledInput
 
-  const handleToggle = (event, newVal) => {
-    if (newVal !== null) {
-      props.onToggleChange(newVal)
-      setPeriod(newVal)
-    }
-  }
-
-  useEffect(() => {
-    setLabelWidth(inputLabel.current.offsetWidth)
-  }, [])
-
-  const handleChange = event => {
-    props.onMenuChange(event.target.value)
-  }
-
   return (
-    <>
-      <Grid item xs={12} sm={6}>
-        <ToggleButtonGroup
-          value={period}
-          exclusive
-          onChange={handleToggle}
-          size="large"
-          aria-label="Toggle between Yearly and Monthly data">
-          {
-            Object.values(TOGGLE_VALUES).map((item, i) => (
-              <ToggleButton
-                key={i}
-                value={item}
-                aria-label={item}
-                disableRipple
-                className={classes.periodToggleButton}>
-                { item === TOGGLE_VALUES.Year ? DFC.YEARLY : DFC.MONTHLY_CAPITALIZED }
-              </ToggleButton>
-            ))
-          }
-        </ToggleButtonGroup>
-      </Grid>
-      <Grid item xs={12} sm={6} className={classes.periodFormControlContainer}>
-        <FormControl variant="outlined" className={classes.formControl} disabled={disabled}>
-          <InputLabel ref={inputLabel} id="select-period-outlined-label">
-            Period
-          </InputLabel>
-          <Select
-            labelId="Period select"
-            id="period-label-select-outlined"
-            value={props.period}
-            onChange={handleChange}
-            labelWidth={labelWidth}
-          >
-            {
-              (props.toggle === TOGGLE_VALUES.Year)
-                ? Object.values(YEARLY_DROPDOWN_VALUES).map((item, i) => (
-                  <MenuItem key={i} value={item}>{ item === YEARLY_DROPDOWN_VALUES.Calendar ? DFC.PERIOD_CALENDAR_YEAR : DFC.PERIOD_FISCAL_YEAR }</MenuItem>
-                ))
-                : Object.values(MONTHLY_DROPDOWN_VALUES).map((item, i) => (
-                  <MenuItem value={item} key={i}>
-                    {(() => {
-                      switch (item) {
-                      case MONTHLY_DROPDOWN_VALUES.Fiscal:
-                        return `Fiscal year ${ props.maxFiscalYear }`
-                      case MONTHLY_DROPDOWN_VALUES.Calendar:
-                        return `Calendar year ${ props.maxCalendarYear }`
-                      default:
-                        return 'Most recent 12 months'
-                      }
-                    })()}
-                  </MenuItem>
-                ))
-            }
-          </Select>
-        </FormControl>
-      </Grid>
-    </>
+    <div className={classes.sectionControlsContainer}>
+      <YearlyMonthlyToggleInput
+        dataFilterKey={DFC.MONTHLY}
+        defaultSelected={DFC.YEARLY}
+        data={MENU_OPTIONS[DFC.MONTHLY]}
+        label=""
+        legend=""
+        size="medium" />
+      {(dataType === DFC.DISBURSEMENT && monthly === DFC.YEARLY) &&
+          <PeriodSelectInput
+            dataFilterKey={DFC.PERIOD}
+            data={[DFC.PERIOD_FISCAL_YEAR]}
+            selected={[DFC.PERIOD_FISCAL_YEAR]}
+            label="Period"
+            selectType="Single"
+            showClearSelected={false}
+            disabled={true}
+          />
+      }
+      {(dataType !== DFC.DISBURSEMENT || (dataType === DFC.DISBURSEMENT && monthly === DFC.MONTHLY_CAPITALIZED)) &&
+        <PeriodSelectInput
+          dataFilterKey={DFC.PERIOD}
+          data={monthly === DFC.YEARLY ? MENU_OPTIONS[DFC.PERIOD] : MENU_OPTIONS.monthlyPeriod}
+          selected={monthly === DFC.YEARLY ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
+          label="Period"
+          selectType="Single"
+          showClearSelected={false}
+          disabled={disabled}
+        />
+      }
+      {dataType !== DFC.PRODUCTION &&
+        <BreakoutBySelectInput
+          dataFilterKey={DFC.BREAKOUT_BY}
+          data={MENU_OPTIONS[DFC.BREAKOUT_BY]}
+          label="Breakout"
+          selectType="Single" />
+      }
+      {dataType === DFC.PRODUCTION &&
+        <CommoditySelectInput
+          dataFilterKey={DFC.COMMODITY}
+          data={MENU_OPTIONS[DFC.COMMODITY]}
+          selected={MENU_OPTIONS[DFC.COMMODITY][0].option}
+          label="Commodity"
+          selectType="Single"
+          showClearSelected={false} />
+      }
+    </div>
+
   )
 }
 

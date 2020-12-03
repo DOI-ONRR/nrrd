@@ -1,6 +1,7 @@
 export const DATA_FILTER_KEY = 'dataFilterKey'
 export const QUERY_TABLE_FILTER_DEFAULT = 'query_table_filter_default'
 export const EXPLORE_DATA_FILTER_DEFAULT = 'explore_data_filter_default'
+export const HOME_DATA_FILTER_DEFAULT = 'home_data_filter_default'
 export const QUERY_COUNTS = 'queryCounts'
 export const EXCLUDE_PROPS = 'excludeProps'
 

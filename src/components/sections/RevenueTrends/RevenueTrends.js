@@ -54,9 +54,12 @@ const RevenueTrends = props => {
   const classes = useStyles()
 
   const { state: filterState } = useContext(DataFilterContext)
+  const { monthly, period } = filterState
   let year
 
   const { loading, error, data } = useQuery(APOLLO_QUERY)
+  const revenueTrendsTitle = monthly === 'Monthly' ? 'Month over month comparison' : 'Year over year comparison'
+  const periodAbbr = period === DFC.PERIOD_CALENDAR_YEAR ? 'CY' : 'FY'
 
   if (loading) return null
   if (error) return `Error! ${ error }`
@@ -67,22 +70,29 @@ const RevenueTrends = props => {
   ) {
     // Group data by year
     const groupedData = utils.groupBy(data.revenue_trends, 'fiscalYear')
+    const currentCalendarYear = new Date().getFullYear()
 
     const fiscalYearData = Object.entries(groupedData).map((item, index) => {
       const newObj = {}
+
       newObj.fiscalYear = item[0]
       newObj.data = item[1]
-
       return newObj
     })
 
+    const yearlyData = (period === DFC.PERIOD_CALENDAR_YEAR)
+      ? fiscalYearData.filter(item => parseInt(item.fiscalYear) <= currentCalendarYear)
+      : fiscalYearData
+
+    console.log('filteredYearlyData: ', yearlyData)
+
     // Get the latest date then subtract 1 year to filter previous year data to compare current year data
-    const currentMonth = monthLookup(fiscalYearData[0].data[0].month)
-    const currentYear = fiscalYearData[fiscalYearData.length - 1].fiscalYear
+    const currentMonth = monthLookup(yearlyData[0].data[0].month)
+    const currentYear = yearlyData[yearlyData.length - 1].fiscalYear
     const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
 
     // Get previous year
-    const previousYear = currentYear - 1
+    const previousYear = currentYear - 2
 
     // Trends
     const trends = aggregateData(data.revenue_trends)
@@ -93,58 +103,59 @@ const RevenueTrends = props => {
     const maxYear = trends[0].histData[trends[0].histData.length - 1][0].substring(2)
 
     // Text output
-    let currentFiscalYearText = `FY${ currentYear.toString().substring(2) }`
+    const previousYearText = `${ periodAbbr }${ previousYear.toString().substring(2) }`
+
+    let currentYearText = `${ periodAbbr }${ currentYear.toString().substring(2) }`
     if (currentMonth !== '09') {
-      currentFiscalYearText = currentFiscalYearText + ' so far'
+      currentYearText = `${ currentYearText } ${ (period === DFC.PERIOD_FISCAL_YEAR) ? ' so far' : '' }`
     }
     const longCurrentYearText = `${ maxMonth } ${ currentYear }`
-    const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
-    const currentTrendText = `FY${ minYear } - FY${ maxYear }`
+    const currentTrendText = `${ periodAbbr } ${ minYear } - ${ periodAbbr } ${ maxYear }`
+    const changeText = `Change ${ periodAbbr }${ previousYear } ${ periodAbbr }${ maxYear }`
     // console.debug("Fitler State", filterState, "DFC.year", DFC.YEAR, " OR ", trends[0], "WTH ", DFC)
 
     year = trends[0].histData[trends[0].histData.length - 1][0] || filterState[DFC.YEAR]
     return (
 		  <Box component="section">
 		    <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
-		      <Box component="h3" m={0} color="primary.dark">{props.title}</Box>
+		      <Box component="h3" m={0} color="primary.dark">
+            {revenueTrendsTitle}
+          </Box>
 		    </Box>
-		    <Box component="p" color="text.primary">
-		      Includes federal and Native American revenue through {longCurrentYearText}
-		    </Box>
-
 		    <TableContainer component={Paper} className={classes.tableContainer}>
 		      <Table className={classes.table} size="small" aria-label="Revenue Trends Table">
             <TableHead>
-			  <TableRow>
-			    <TableCell><Box fontWeight="bold">{currentTrendText}</Box></TableCell>
-			    <TableCell align="right"><Box fontWeight="bold">{currentFiscalYearText}</Box></TableCell>
-			  </TableRow>
+              <TableRow>
+                <TableCell><Box fontWeight="bold">{previousYearText}</Box></TableCell>
+                <TableCell align="right"><Box fontWeight="bold">{currentYearText}</Box></TableCell>
+              </TableRow>
             </TableHead>
             <TableBody>
 			  {
 			      trends.map((trend, index) => (
 				  <TableRow key={`tableRow${ index }`}>
 				    <TableCell component="th" scope="row">
-				      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
-                        {trend.fund}
+                      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
+                        {utils.formatToSigFig_Dollar(trend.current, 3)}
 				      </Box>
-				      <Sparkline
+				      {/* <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
+                        {trend.fund}
+				      </Box> */}
+				      {/* <Sparkline
 					  key={`sparkline${ index }`}
 					  data={trend.histData}
 					  highlightIndex={trend.histData.findIndex(
 					      x => parseInt(x[0]) === parseInt(year)
-					  )} />
+					  )} /> */}
 				    </TableCell>
 				    <TableCell align="right">
-				      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
-                        {utils.formatToSigFig_Dollar(trend.current, 3)}
-				      </Box>
-				      {/* <Box>
+
+				      <Box>
                         <PercentDifference
 					    currentAmount={trend.current}
 					    previousAmount={trend.previous}
-                        />{` ${ previousFiscalYearText }`}
-              </Box> */}
+                        />
+                      </Box>
 				    </TableCell>
 				  </TableRow>
 			      ))

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -15,6 +15,8 @@ import SectionControls from '../../sections/SectionControls'
 import Link from '../../../components/Link/'
 
 import utils from '../../../js/utils'
+
+import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const TOTAL_REVENUE_QUERY = gql`
@@ -35,7 +37,7 @@ const TOTAL_REVENUE_QUERY = gql`
       month_long
       period_date
       month
-     year
+      year
     }
     total_monthly_calendar_revenue {
       source
@@ -43,46 +45,26 @@ const TOTAL_REVENUE_QUERY = gql`
       month_long
       period_date
       month
-     year
-
-  } 
- total_monthly_last_twelve_revenue {
+      year
+    } 
+    total_monthly_last_twelve_revenue {
       source
       sum
       month_long
       period_date
       month
-     year
-
-  } 
-}
-
+      year
+    } 
+  }
 `
-const TOGGLE_VALUES = {
-  Year: 'year',
-  Month: 'month'
-}
-
-const MONTHLY_DROPDOWN_VALUES = {
-  Recent: 'recent',
-  Fiscal: 'fiscal',
-  Calendar: 'calendar'
-}
-
-const YEARLY_DROPDOWN_VALUES = {
-  Fiscal: 'fiscal_year',
-  Calendar: 'calendar_year'
-}
 
 // TotalRevenue component
 const TotalRevenue = props => {
   const theme = useTheme()
-  const [period, setPeriod] = useState(YEARLY_DROPDOWN_VALUES.Fiscal)
-  const [toggle, setToggle] = useState(TOGGLE_VALUES.Year)
+  const { state: filterState } = useContext(DataFilterContext)
+  const { monthly, period, breakoutBy } = filterState
 
-  // const period = state.period
-
-  const chartTitle = props.chartTitle || `${ DFC.REVENUE } (dollars)`
+  const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
   const yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
   const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY)
 
@@ -90,27 +72,11 @@ const TotalRevenue = props => {
     return 'Loading...'
   }
 
-  const toggleChange = value => {
-    // console.debug('ON TOGGLE CHANGE: ', value)
-    setToggle(value)
-    if (value && value.toLowerCase() === TOGGLE_VALUES.Month.toLowerCase()) {
-      setPeriod(MONTHLY_DROPDOWN_VALUES.Recent)
-    }
-    else {
-      setPeriod(YEARLY_DROPDOWN_VALUES.Fiscal)
-    }
-  }
-
-  const menuChange = value => {
-    // console.debug('ON Menu CHANGE: ', value)
-    setPeriod(value)
-  }
-
   if (error) return `Error! ${ error.message }`
   let chartData
   let xAxis
   const yAxis = 'sum'
-  const yGroupBy = 'source'
+  const yGroupBy = breakoutBy || 'source'
   let xLabels = 'month'
   const units = 'dollars'
   let maxFiscalYear
@@ -125,16 +91,16 @@ const TotalRevenue = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
-    if (toggle === TOGGLE_VALUES.Month) {
-      if (period === MONTHLY_DROPDOWN_VALUES.Fiscal) {
+    if (monthly === DFC.MONTHLY_CAPITALIZED) {
+      if (period === DFC.PERIOD_FISCAL_YEAR) {
         chartData = data.total_monthly_fiscal_revenue
       }
-      else if (period === MONTHLY_DROPDOWN_VALUES.Calendar) {
+      else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         chartData = data.total_monthly_calendar_revenue
       }
       else {
         chartData = data.total_monthly_last_twelve_revenue
-	  console.debug('monthly last chart Data: ', data.total_monthly_last_twelve_revenue)
+	      console.debug('monthly last chart Data: ', data.total_monthly_last_twelve_revenue)
       }
 
       xGroups = chartData.reduce((g, row, i) => {
@@ -158,13 +124,14 @@ const TotalRevenue = props => {
       }
     }
     else {
-      if (period === YEARLY_DROPDOWN_VALUES.Fiscal) {
+      if (period === DFC.PERIOD_FISCAL_YEAR) {
         chartData = data.total_yearly_fiscal_revenue
-        xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)
+        xGroups[DFC.PERIOD_FISCAL_YEAR] = chartData.map((row, i) => row.year)
+        console.log('chartData: ', chartData)
       }
       else {
         chartData = data.total_yearly_calendar_revenue
-        xGroups['Calendar Year'] = chartData.map((row, i) => row.year)
+        xGroups[DFC.PERIOD_CALENDAR_YEAR] = chartData.map((row, i) => row.year)
       }
       xAxis = 'year'
       xLabels = (x, i) => {
@@ -180,16 +147,12 @@ const TotalRevenue = props => {
         showExploreLink
       />
       <Grid container spacing={4}>
-        <SectionControls
-          onToggleChange={toggleChange}
-          onMenuChange={menuChange}
-          maxFiscalYear={maxFiscalYear}
-          maxCalendarYear={maxCalendarYear}
-          monthlyDropdownValues={MONTHLY_DROPDOWN_VALUES}
-          toggleValues={TOGGLE_VALUES}
-          yearlyDropdownValues={YEARLY_DROPDOWN_VALUES}
-          period={period}
-          toggle={toggle} />
+        <Grid item xs={12}>
+          <SectionControls
+            maxFiscalYear={maxFiscalYear}
+            maxCalendarYear={maxCalendarYear}
+          />
+        </Grid>
         <Grid item xs={12}>
           <StackedBarChart
             data={chartData}
@@ -205,8 +168,6 @@ const TotalRevenue = props => {
             legendHeaders={legendHeaders}
             primaryColor={theme.palette.chart.primary}
             secondaryColor={theme.palette.chart.secondary}
-            // primaryColor="e1e1e1"
-            // secondaryColor={theme.palette.orange[300]}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
             <Link href='/downloads/revenue-by-month/'>Source file</Link>
