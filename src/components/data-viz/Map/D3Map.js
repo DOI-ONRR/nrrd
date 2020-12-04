@@ -258,7 +258,6 @@ export default class d3Map {
 
     const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
 
-      const g = _chart.append('g')
       _chart.on('mousedown', (d, i) => {
 	  console.debug("on mouse down", d, i)
 	  _chart.call(zoom)
@@ -267,6 +266,8 @@ export default class d3Map {
 	  console.debug("on mouse out", d, i)
 	  _chart.on('.zoom', null)
       })
+      const g = _chart.append('g')
+
       //_chart.call(zoom)
       // console.debug('US data: ', data)
     // console.debug('objects:', us.objects[mapFeatures], mapFeatures)
@@ -305,6 +306,10 @@ export default class d3Map {
       .on('mouseout', (d, i) => {
         _chart.selectAll('path')
           .style('fill-opacity', 0.9)
+      })
+      .on('mousein', (d, i) => {
+	  console.debug("on mouse in", d, i)
+	  _chart.call(zoom)
       })
       .append('title')
       .text(d => {
@@ -402,6 +407,7 @@ export default class d3Map {
         _chart.selectAll('path')
           .style('fill-opacity', 0.9)
       })
+      
       .append('title')
       .text(d => `Gulf of Mexico Offshore Region  ${ format(data.get('GMR')) }`).transition().duration(3000)
 
