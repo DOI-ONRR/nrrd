@@ -34,6 +34,7 @@ const APOLLO_QUERY = gql`
     query RevenueTrendsQuery {
       revenue_trends(order_by: {fiscal_year: desc, current_month: desc}) {
         fiscalYear:fiscal_year
+        calendarYear:calendar_year
         revenue:total
         revenue_ytd:total_ytd
         revenueType:trend_type
@@ -71,6 +72,7 @@ const RevenueTrends = props => {
     const fiscalYearData = Object.entries(groupedData).map((item, index) => {
       const newObj = {}
       newObj.fiscalYear = item[0]
+      newObj.calendarYear = item[1][item.length - 1].calendarYear
       newObj.data = item[1]
 
       return newObj
@@ -97,7 +99,7 @@ const RevenueTrends = props => {
     if (currentMonth !== '09') {
       currentFiscalYearText = currentFiscalYearText + ' so far'
     }
-    const longCurrentYearText = `${ maxMonth } ${ currentYear }`
+    const longCurrentYearText = `${ maxMonth } ${ fiscalYearData[fiscalYearData.length - 1].calendarYear }`
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
     // console.debug("Fitler State", filterState, "DFC.year", DFC.YEAR, " OR ", trends[0], "WTH ", DFC)
@@ -139,12 +141,12 @@ const RevenueTrends = props => {
 				      <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
                         {utils.formatToSigFig_Dollar(trend.current, 3)}
 				      </Box>
-				      <Box>
+				      {/* <Box>
                         <PercentDifference
 					    currentAmount={trend.current}
 					    previousAmount={trend.previous}
                         />{` ${ previousFiscalYearText }`}
-				      </Box>
+              </Box> */}
 				    </TableCell>
 				  </TableRow>
 			      ))

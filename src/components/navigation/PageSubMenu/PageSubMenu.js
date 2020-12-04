@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef, useContext } from 'react'
+import React, { useCallback, useState, useEffect, useContext } from 'react'
 
 import {
   animateScroll as scroll,
@@ -21,7 +21,6 @@ import { makeStyles } from '@material-ui/styles'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
-import { filter } from 'lodash'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -69,7 +68,6 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
   const classes = useStyles()
 
   const { state: filterState } = useContext(DataFilterContext)
-  const subMenuRef = useRef([])
 
   // eslint-disable-next-line no-unused-vars
   const [subMenu, setSubMenu] = useState({
