@@ -250,20 +250,21 @@ export default class d3Map {
       format(d)
     }
 
-    const zoom = d3
-      .zoom()
-      .scaleExtent([-32, 32])
-      .on('zoom', zoomed)
-      .on('end', ended)
+      const zoom = d3
+	  .zoom()
+	  .scaleExtent([-32, 32])
+	  .on('zoom', zoomed)
+	  .on('end', ended)
 
-    const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
-
+      const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
+      
+      
       _chart.on('mousedown', (d, i) => {
 	  console.debug("on mouse down", d, i)
 	  _chart.call(zoom)
       })
-      _chart.on('mouseout', (d, i) => {
-	  console.debug("on mouse out", d, i)
+      _chart.on('mouseleave', (d, i) => {
+	  console.debug("on mouse leave", d, i)
 	  _chart.on('.zoom', null)
       })
       const g = _chart.append('g')
@@ -306,10 +307,6 @@ export default class d3Map {
       .on('mouseout', (d, i) => {
         _chart.selectAll('path')
           .style('fill-opacity', 0.9)
-      })
-      .on('mousein', (d, i) => {
-	  console.debug("on mouse in", d, i)
-	  _chart.call(zoom)
       })
       .append('title')
       .text(d => {
