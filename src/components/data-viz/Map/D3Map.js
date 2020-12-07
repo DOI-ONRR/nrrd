@@ -258,15 +258,64 @@ export default class d3Map {
 
       const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
       
-      
+      let zoomEnabled=false
       _chart.on('mousedown', (d, i) => {
 	  console.debug("on mouse down", d, i)
-	  _chart.call(zoom)
+	  if(zoomEnabled === false) {
+	      zoomEnabled=true
+	      _chart.call(zoom)
+	  }
       })
       _chart.on('mouseleave', (d, i) => {
 	  console.debug("on mouse leave", d, i)
+	  zoomEnabled=false
 	  _chart.on('.zoom', null)
       })
+
+
+      
+     const  zoomin = _chart.append("g")
+    .attr("class", "zoomin");
+
+zoomin.append("rect")
+    .attr("x", "10%")
+    .attr("y", "90%")
+    .attr("width", 30)
+    .attr("height", 30)
+    .attr("rx", 4)
+    .attr("ry", 4)
+    .attr("fill", "#dadae6");
+
+      zoomin.append('text')
+	    .attr("font-size", "2em")
+            .attr("color", "black")
+      	    .text( d => '+')
+      
+
+      const zoomfactor = 1;
+      
+//      const zoomlistener = zoom()
+      //	  .on("zoom", redraw);
+      
+      d3.select(".zoomin").on("click", function (){
+	  //	  zoomfactor = zoomfactor + 0.2;
+	  console.debug("zoom in")
+	  //zoomlistener.scale(zoomfactor).event(d3.select(".graph"));
+      });
+      
+      d3.select(".zoomout").on("click", function (){
+	  console.debug("zoom out")
+//	  zoomfactor = zoomfactor - 0.2;
+//	  zoomlistener.scale(zoomfactor).event(d3.select(".graph"));
+      });
+      
+      function redraw() {
+	  console.log("here", d3.event.translate, d3.event.scale);
+	  g.attr("transform","translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")"); 
+      }
+
+      
+      
       const g = _chart.append('g')
 
       //_chart.call(zoom)

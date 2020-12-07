@@ -100,7 +100,8 @@ const Map = props => {
   const mapX = props.mapX
   const mapY = props.mapY
 
-  const { mapData, ...options } = props
+    const { mapData, ...options } = props
+    console.debug("Map Data: ", mapData)
   let map
 
   // Ugly hack to get around not being able to merge AKR Alaska Offshore Region
@@ -139,8 +140,10 @@ const Map = props => {
       mapY,
       options
     )
-
-    /*
+      if (props.zoomTo) {
+	  map.zoomTo(props.zoomTo)
+      }
+      /*
        * map.onZoom = onZoom
        * map.onZoomEnd = onZoomEnd
        *
