@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   CardActions,
   Box,
@@ -28,11 +29,11 @@ const useStyles = makeStyles(theme => ({
  *
  */
 
-const CollapsibleContent = ({ children }) => {
+const CollapsibleContent = ({ show, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
-  const [expanded, setExpanded] = React.useState(false)
+  const [expanded, setExpanded] = React.useState(show)
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
@@ -59,6 +60,15 @@ const CollapsibleContent = ({ children }) => {
       </Collapse>
     </>
   )
+}
+
+CollapsibleContent.propTypes = {
+  /** Set the collapsible content to show by default */
+  show: PropTypes.bool,
+}
+
+CollapsibleContent.defaultProps = {
+  show: false,
 }
 
 export default CollapsibleContent

@@ -4,7 +4,7 @@ import {
   Box,
   Typography,
   useTheme,
-  makeStyles,
+  makeStyles
 } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
@@ -22,8 +22,6 @@ const useStyles = makeStyles(theme => ({
 const DidYouKnowCard = ({ children, title = 'Did you know?' }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
-
-  console.log(theme.palette.info.dark)
 
   return (
     <Box>

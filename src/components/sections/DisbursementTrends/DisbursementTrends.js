@@ -34,6 +34,7 @@ const APOLLO_QUERY = gql`
   query DisbursementTrendsQuery {
       disbursement_trends(order_by: {fiscal_year: desc, current_month: desc}) {
         fiscalYear:fiscal_year
+        calendarYear:calendar_year
         disbursement:total
         disbursement_ytd:total_ytd
         disbursementType:trend_type
@@ -77,6 +78,7 @@ const DisbursementTrends = props => {
     const fiscalYearData = Object.entries(groupedData).map(item => {
       const newObj = {}
       newObj.fiscalYear = item[0]
+      newObj.calendarYear = item[1][item.length - 1].calendarYear
       newObj.data = item[1]
 
       return newObj
@@ -101,20 +103,24 @@ const DisbursementTrends = props => {
     const maxYear = trends[0].histData[trends[0].histData.length - 1][0].substring(2)
 
     // Text output
-    const currentFiscalYearText = `FY${ currentYear.toString().substring(2) } so far`
-    const longCurrentYearText = `${ maxMonth } ${ currentYear }`
+
+    let currentFiscalYearText = `FY${ currentYear.toString().substring(2) }`
+    if (currentMonth !== '09') {
+      currentFiscalYearText = currentFiscalYearText + ' so far'
+    }
+    const longCurrentYearText = `${ maxMonth } ${ fiscalYearData[fiscalYearData.length - 1].calendarYear }`
     const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
 
-    year = filterState[DFC.YEAR] || trends[0].histData[trends[0].histData.length - 1][0]
+	  year = trends[0].histData[trends[0].histData.length - 1][0] || filterState[DFC.YEAR]
 
-    return (
-      <Box component="section" className={classes.root}>
+	  return (
+	      <Box component="section" className={classes.root}>
         <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
           <Box component="h3" m={0} color="primary.dark">{props.title}</Box>
         </Box>
         <Box component="p" color="text.primary">
-         Includes disbursements through {longCurrentYearText}
+              Includes disbursements through {longCurrentYearText}
         </Box>
 
         <TableContainer component={Paper} className={classes.tableContainer}>
@@ -145,12 +151,12 @@ const DisbursementTrends = props => {
                       <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
                         {utils.formatToSigFig_Dollar(trend.current, 3)}
                       </Box>
-                      <Box>
+                      {/* <Box>
                         <PercentDifference
                           currentAmount={trend.current}
                           previousAmount={trend.previous}
                         />{` ${ previousFiscalYearText }`}
-                      </Box>
+                      </Box> */}
                     </TableCell>
                   </TableRow>
                 ))
@@ -206,8 +212,10 @@ const aggregateData = data => {
   ]
   const currentYear = data[0].fiscalYear
   const currentMonth = data[0].month
+  console.debug('DWGH', currentMonth)
   for (let ii = 0; ii < data.length; ii++) {
     const item = data[ii]
+    console.debug(item)
     if (item.disbursementType.match(/U.S. Treasury/)) {
 	    sumData(item, r, 0, currentYear) // sum into us treasury
     }
@@ -234,7 +242,7 @@ const aggregateData = data => {
     // console.debug('-----', row)
     a = years.map((year, i) => ([year, row.histSum[year]]))
     // console.debug(currentMonth, 'YEARS ------->', years, 'AAAAAAAAAAAAAAAAAAAAAAAAA a', a)
-    if (currentMonth === 'December') {
+    if (currentMonth === 'September') {
       r[i].histData = a.slice(-10)
       return a.slice(-10)
     }

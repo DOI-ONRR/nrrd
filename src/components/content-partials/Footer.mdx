@@ -1,4 +1,4 @@
-<Box component='footer' display="flex" alignItems="center" bgcolor="info.dark" pt={4} pb={4} style={{ position: 'relative', zIndex: 275 }}>
+<Box component='footer' display="flex" alignItems="center" bgcolor="info.dark" pt={4} pb={4} style={{ position: 'relative', zIndex: 275, top: 6 }}>
   <Container maxWidth="lg">
     <Grid container>
       <Grid item xs={12} sm={2}>
@@ -25,9 +25,6 @@ site on <Link href='https://blog-nrrd.doi.gov' style={{ color: 'white' }}>our te
         </Box>
       </Grid>
       <Grid item xs={12} sm={4}>
-        <Box color='white' borderBottom={1} pb={2}>
-          <Link href='/downloads/' linkType='DownloadBase' style={{ color: 'white' }}>Download data</Link>
-        </Box>
         <Box pt={4} color='white' fontSize={'caption.fontSize'}>
           {`${ props.data.site.siteMetadata.officeName },`}<br />
           {`${ props.data.site.siteMetadata.informationDataManagement.name }`}<br />

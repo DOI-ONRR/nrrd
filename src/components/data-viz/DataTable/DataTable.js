@@ -37,6 +37,7 @@ import CustomTableSummaryRowTotalRow from './Custom/CustomTableSummaryRowTotalRo
 import CustomTableSummaryRowItem from './Custom/CustomTableSummaryRowItem'
 import CustomTableSummaryRowGroupRow from './Custom/CustomTableSummaryRowGroupRow'
 import CustomTableHeaderCell from './Custom/CustomTableHeaderCell'
+import CustomTableHeaderSortLabel from './Custom/CustomTableHeaderSortLabel'
 import TotalProvider from './Custom/TotalProvider'
 import CustomGroupCellContent from './Custom/CustomGroupCellContent'
 
@@ -144,6 +145,7 @@ const EnhancedDataTable = withQueryManager(({ data, showSummaryRow, showOnlySubt
 }, QK_QUERY_TOOL)
 
 const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow }) => {
+  console.log(data)
   const { state, updateDataFilter } = useContext(DataFilterContext)
   const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
@@ -487,7 +489,8 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
                     onAddColumn={!_breakoutBy && addBreakoutByColumnHandler}
                     onRemoveColumn={_breakoutBy && removeBreakoutByColumnHandler}
                     {...props} />}
-                showSortingControls/>
+                showSortingControls
+                sortLabelComponent={CustomTableHeaderSortLabel}/>
               <TableColumnVisibility
                 hiddenColumnNames={hiddenColumnNames}
               />
