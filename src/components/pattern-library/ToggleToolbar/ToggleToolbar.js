@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 const ToggleToolbar = ({ buttons, ...rest }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
-  const [section] = React.useState(slugify(window?.location.pathname))
+  const [section] = React.useState(slugify(window ? window.location.pathname : ''))
 
   return (
     <Grid container direction="row" justify="center" >
