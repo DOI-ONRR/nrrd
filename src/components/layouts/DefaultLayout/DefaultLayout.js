@@ -116,13 +116,13 @@ const DefaultLayout = ({ includeToc, children }) => {
       }
     }
   `)
-
+  console.log(data)
   return (
     <>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
       <InfoBanner />
-      {data.site.siteMetadata.isShutdown &&
+      {data.site.siteMetadata.isShutdown === 'true' &&
         <ShutdownBanner />
       }
       <BrowserBanner />
