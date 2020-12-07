@@ -116,7 +116,7 @@ const DefaultLayout = ({ includeToc, children }) => {
       }
     }
   `)
-  console.log(data)
+
   return (
     <>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
