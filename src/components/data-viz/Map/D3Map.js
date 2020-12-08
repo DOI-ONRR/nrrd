@@ -252,7 +252,7 @@ export default class d3Map {
 
       const zoom = d3
 	  .zoom()
-	  .scaleExtent([-32, 32])
+	  .scaleExtent([.25, 9])
 	  .on('zoom', zoomed)
 	  .on('end', ended)
 
@@ -274,46 +274,24 @@ export default class d3Map {
 
 
       
-     const  zoomin = _chart.append("g")
-    .attr("class", "zoomin");
-
-zoomin.append("rect")
-    .attr("x", "10%")
-    .attr("y", "90%")
-    .attr("width", 30)
-    .attr("height", 30)
-    .attr("rx", 4)
-    .attr("ry", 4)
-    .attr("fill", "#dadae6");
-
-      zoomin.append('text')
-	    .attr("font-size", "2em")
-            .attr("color", "black")
-      	    .text( d => '+')
-      
-
-      const zoomfactor = 1;
-      
-//      const zoomlistener = zoom()
-      //	  .on("zoom", redraw);
-      
-      d3.select(".zoomin").on("click", function (){
-	  //	  zoomfactor = zoomfactor + 0.2;
-	  console.debug("zoom in")
-	  //zoomlistener.scale(zoomfactor).event(d3.select(".graph"));
+      d3.select('#zoom-in').on('click', function () {
+	  _chart.transition().call(zoom.scaleBy, 2)
       });
-      
-      d3.select(".zoomout").on("click", function (){
-	  console.debug("zoom out")
-//	  zoomfactor = zoomfactor - 0.2;
-//	  zoomlistener.scale(zoomfactor).event(d3.select(".graph"));
-      });
-      
-      function redraw() {
-	  console.log("here", d3.event.translate, d3.event.scale);
-	  g.attr("transform","translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")"); 
-      }
 
+      d3.select('#zoom-out').on('click', function () {
+	  _chart.transition().call(zoom.scaleBy, .5)
+      });
+
+      d3.select('#zoom-reset').on('click', function () {
+	  _chart.transition().duration(750).call(
+	      zoom.transform,
+	      d3.zoomIdentity,
+	      d3.zoomTransform(_chart.node()).invert([width / 2, height / 2])
+	  );
+      })
+      
+
+      
       
       
       const g = _chart.append('g')
@@ -477,18 +455,20 @@ zoomin.append("rect")
 	  .style('cursor', 'pointer')
       })
       .on('mouseout', (d, i) => {
-        _chart.selectAll('path')
-          .style('fill-opacity', 0.9)
+          _chart.selectAll('path')
+		.style('fill-opacity', 0.9)
       })
-      .append('title')
-      .text(d => `Atlantic Offshore Region  ${ format(data.get('AOR')) }`).transition().duration(3000)
+		  .append('title')
+		  .text(d => `Atlantic Offshore Region  ${ format(data.get('AOR')) }`).transition().duration(3000)
 
-    _chart.transition().duration(3000)
-
+      _chart.transition().duration(3000)
+      
     function zoomed () {
-      const sourceEvent = d3.event.sourceEvent
-
-	    if (sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 || sourceEvent.type === 'touchmove') {
+	const sourceEvent = d3.event.sourceEvent
+	
+	// console.debug(" source event", sourceEvent,'transsfoirnm', transform)
+	//if (sourceEvent && (sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 || sourceEvent.type === 'touchmove')) {
+	if(d3.event && d3.event.transform) {
         g.selectAll('path')
           .attr('transform', d3.event.transform)
 	      onZoom(d3.event)
@@ -496,9 +476,10 @@ zoomin.append("rect")
 	      self.zoomStarted = true
       }
       else {
-	    // console.log('zoomed(): else ', d3.event, self.zoomStarted)
+	  console.log('zoomed(): else ', d3.event, self.zoomStarted)
       }
-    }
+ }
+ 
     function ended () {
       //	  console.log('ended(): outside ', d3.event, self.zoomStarted)
 	  if (self.zoomStarted) {

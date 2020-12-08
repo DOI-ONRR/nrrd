@@ -6,12 +6,18 @@ import * as topojson from 'topojson-client'
 import utils from '../../../js/utils'
 import D3Map from './D3Map.js'
 import useWindowSize from '../../../js/hooks/useWindowSize'
-
+import MapControls   from '../../sections/ExploreData/MapControls'
 import { makeStyles } from '@material-ui/core/styles'
 
 import {
-  Box
+  Box,
+  Button,
+  ButtonGroup
 } from '@material-ui/core'
+
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
+import RefreshIcon from '@material-ui/icons/Refresh'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,8 +52,56 @@ const useStyles = makeStyles(theme => ({
       '& .tick': {
         fontSize: theme.typography.body2,
       }
-    }
+    },
+      '& #float-button-group': {
+	  display: 'block',
+	  left: 10,
+	  width: 50,
+	  height: 150,
+	  zIndex: 10,
+
+	  position: 'absolute',
+	  padding: theme.spacing(1),
+	  borderRadius: 4,
+	  bottom: 150,
+	  '@media and (max-width: 600px)': {
+	      transform: 'scale(0.75)',
+	      left: 0,
+              width: '100%',
+	  },
+      },
+      
+      '& #float-button-group:hover': {
+          opacity:1
+      },
+      '& .button': {
+	  background: theme.palette.background.default,
+
+          width: 50 ,
+	  height: 50,
+	  margin: 5
+      },
+  },
+    buttonGroupGrouped: {
+	padding: theme.spacing(0.5),
+	background: theme.palette.background.default,
+	margin: 0,
+    },
+    zoomButtonGroupContainer: {
+	left: 10,
+	bottom: 70,
+	height: 100,
+	position: 'absolute',
+	'@media (max-width: 768px)': {
+	    transform: 'scale(0.75)',
+	    left: 0,
+    },
+    '& svg': {
+	height: '.75em',
+	width: '.75em',
+    },
   }
+    
 
 }))
 
@@ -166,12 +220,14 @@ const Map = props => {
   }, [mapData, mapJsonObject, size.width])
 
   return (
-    <Box className={classes.root}>
-      <div className='mapContainer' ref={elemRef}>
-        <div className='legendWrap'></div>
-        <div className='map'></div>
-      </div>
-    </Box>
+      <Box className={classes.root}>
+	<div className='mapContainer' ref={elemRef}>
+          <div className='legendWrap'></div>
+          <div className='map'></div>
+	<MapControls handleClick={()=>{console.debug(" foo")}}/>
+	  
+	</div>
+      </Box>
   )
 }
 

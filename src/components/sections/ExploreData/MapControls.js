@@ -48,13 +48,13 @@ const MapControls = props => {
         variant="contained"
         aria-label="Explore data map zoom controls"
         classes={{ grouped: classes.buttonGroupGrouped }}>
-        <Button onClick={() => handleClick('add')} role="button" aria-label="Map zoom in">
+        <Button onClick={() => handleClick('add')} role="button" id="zoom-in" aria-label="Map zoom in">
           <AddIcon />
         </Button>
-        <Button onClick={() => handleClick('remove')} role="button" aria-label="Map zoom out">
+        <Button onClick={() => handleClick('remove')} role="button" id="zoom-out" aria-label="Map zoom out">
           <RemoveIcon />
         </Button>
-        <Button onClick={() => handleClick('refresh')} role="button" aria-label="Map reset">
+        <Button onClick={() => handleClick('refresh')} role="button"  id="zoom-reset" aria-label="Map reset">
           <RefreshIcon />
         </Button>
       </ButtonGroup>
