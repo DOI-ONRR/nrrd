@@ -252,7 +252,7 @@ export default class d3Map {
 
       const zoom = d3
 	  .zoom()
-	  .scaleExtent([.25, 9])
+	  .scaleExtent([1, 9])
 	  .on('zoom', zoomed)
 	  .on('end', ended)
 
