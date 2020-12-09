@@ -257,22 +257,23 @@ export default class d3Map {
 	  .on('end', ended)
 
       const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
-      
-      let zoomEnabled=false
-      _chart.on('mousedown', (d, i) => {
-	  console.debug("on mouse down", d, i)
-	  if(zoomEnabled === false) {
-	      zoomEnabled=true
-	      _chart.call(zoom)
-	  }
-      })
-      _chart.on('mouseleave', (d, i) => {
-	  console.debug("on mouse leave", d, i)
-	  zoomEnabled=false
-	  _chart.on('.zoom', null)
-      })
+      _chart.call(zoom)
+      /*  this turns on and off zoom 
+       * let zoomEnabled=false
+       * _chart.on('mousedown', (d, i) => {
+	 console.debug("on mouse down", d, i)
+	 if(zoomEnabled === false) {
+	 zoomEnabled=true
+	 _chart.call(zoom)
+	 }
+       * })
+       * _chart.on('mouseleave', (d, i) => {
+	 console.debug("on mouse leave", d, i)
+	 zoomEnabled=false
+	 _chart.on('.zoom', null)
+       * })
 
-
+       */
       
       d3.select('#zoom-in').on('click', function () {
 	  _chart.transition().call(zoom.scaleBy, 2)
