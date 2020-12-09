@@ -98,7 +98,7 @@ const initialState = {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
       },
       [REVENUE_BY_COMPANY]: {
         [DATA_TYPE]: REVENUE_BY_COMPANY,
@@ -139,10 +139,10 @@ const initialState = {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2019',
+        [FISCAL_YEAR]: '2020',
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
-        [YEAR]: 2019,
+        [YEAR]: 2020,
       }
     }
   }

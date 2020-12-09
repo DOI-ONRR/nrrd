@@ -22,8 +22,9 @@ export default ({ alt, ...rest }) => {
       }
     }
   `)
-  if (data.imageSharp === null) {
-    console.warn('data: ', data)
+  if (!data.imageSharp) {
+    console.warn('federal-budget-process.png did not load from graphql')
+    return <></>
   }
   // eslint-disable-next-line max-len
   return (

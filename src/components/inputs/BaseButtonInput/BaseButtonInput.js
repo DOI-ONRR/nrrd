@@ -13,7 +13,8 @@ import { formatToSlug } from '../../../js/utils'
 const useDefaultStyles = makeStyles(theme => ({
   root: {
     color: 'white',
-    backgroundColor: theme.palette.links.default
+    backgroundColor: theme.palette.links.default,
+    whiteSpace: 'nowrap'
   },
 }))
 
