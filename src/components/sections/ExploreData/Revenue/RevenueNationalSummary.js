@@ -8,16 +8,20 @@ import gql from 'graphql-tag'
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { useInView } from 'react-intersection-observer';
+import CircularProgress from '@material-ui/core/CircularProgress'
+
+
 
 import {
-  Box,
-  Container,
-  Grid,
-  Hidden,
-  Typography
+    Box,
+    Container,
+    Grid,
+    Hidden,
+    Typography
 } from '@material-ui/core'
 
-import { useTheme } from '@material-ui/core/styles'
+import {  makeStyles, useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 import RevenueLocationTotal from './RevenueLocationTotal'
@@ -26,37 +30,60 @@ import utils from '../../../../js/utils'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
-  query RevenueNational($year: Int!, $period: String!, $commodities: [String!]) {
-   revenue_type_class_summary(
-     order_by: {
-       revenue_type_order: asc,
-       land_type_order: asc},
-        where: {
-          year: {_eq: $year},
-          period: { _eq: $period},
-          commodity: {_in: $commodities}  
-        }
-  ) {
-    revenue_type
-    year
-    land_type
-    land_type_order
-    total
-   }
-  }
+    query RevenueNational($year: Int!, $period: String!, $commodities: [String!]) {
+	revenue_type_class_summary(
+	    order_by: {
+		revenue_type_order: asc,
+		land_type_order: asc},
+            where: {
+		year: {_eq: $year},
+		period: { _eq: $period},
+		commodity: {_in: $commodities}  
+            }
+	) {
+	    revenue_type
+	    year
+	    land_type
+	    land_type_order
+	    total
+	}
+    }
 `
-
+const useStyles = makeStyles(theme => ({
+  root: {
+    maxWidth: '100%',
+    width: '100%',
+    margin: theme.spacing(1),
+    '@media (max-width: 768px)': {
+      maxWidth: '100%',
+    },
+  },
+  progressContainer: {
+    maxWidth: '25%',
+    display: 'flex',
+    '& > *': {
+      marginTop: theme.spacing(3),
+      marginRight: 'auto',
+      marginLeft: 'auto',
+    }
+  },
+  circularProgressRoot: {
+    color: theme.palette.primary.dark,
+  }
+}))
+    
 const revenueTypeDescriptions = [
-  'Once the land or water produces enough resources to pay royalties, the leaseholder pays royalties to the federal government.',
-  'Companies bid on and lease lands and waters from the federal government.  They pay a bonus when they win a lease.',
-  'Leaseholders pay rent until the land or water starts producing resources.',
-  // eslint-disable-next-line max-len
-  'The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.',
-  'ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws.',
-  'This includes other fees leaseholders pay such as permit fees and AML fees.'
+    'Once the land or water produces enough resources to pay royalties, the leaseholder pays royalties to the federal government.',
+    'Companies bid on and lease lands and waters from the federal government.  They pay a bonus when they win a lease.',
+    'Leaseholders pay rent until the land or water starts producing resources.',
+    // eslint-disable-next-line max-len
+    'The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.',
+    'ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws.',
+    'This includes other fees leaseholders pay such as permit fees and AML fees.'
 ]
 
 const RevenueNationalSummary = props => {
+    const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -64,26 +91,35 @@ const RevenueNationalSummary = props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'All'
   const { title } = props
+    const { ref, inView, entry } = useInView({
+	/* Optional options */
+	threshold: 0,
+    });
 
-  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year, period: period, commodities: commodities }
-  })
+    const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+	variables: { year: year, period: period, commodities: commodities },
+	skip: inView === false
+    })
 
-  const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
+    const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
-  let groupData
-  let groupTotal
-  let nationalRevenueData
-  const xAxis = 'year'
-  const yAxis = 'total'
-  const yGroupBy = 'land_type'
+    let groupData
+    let groupTotal
+    let nationalRevenueData
+    const xAxis = 'year'
+    const yAxis = 'total'
+    const yGroupBy = 'land_type'
 
-  const units = 'dollars'
+    const units = 'dollars'
 
-  if (loading) {
-    return 'Loading...'
+    if (loading) {
+	return (
+	    <div className={classes.progressContainer}>
+              <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+	    </div>
+	)
   }
-
+    
   if (error) return `Error! ${ error.message }`
 
   if (data) {
@@ -91,10 +127,10 @@ const RevenueNationalSummary = props => {
     // eslint-disable-next-line no-return-assign
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
-  }
+  
 
   return (
-    <Container id={utils.formatToSlug(title)}>
+    <Container id={utils.formatToSlug(title)} ref={ref}>
       <Grid container>
         <Grid item md={12}>
           <Box mt={10} mb={1} color="secondary.main" borderBottom={5}>
@@ -206,6 +242,12 @@ const RevenueNationalSummary = props => {
       </Grid>
     </Container>
   )
+  }
+    else {
+      return (<div className={classes.progressContainer} ref={ref}>
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </div>)
+    }
 }
 
 export default RevenueNationalSummary

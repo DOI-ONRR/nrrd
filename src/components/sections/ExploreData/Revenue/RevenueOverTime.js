@@ -9,30 +9,31 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import * as d3 from 'd3'
 import { useInView } from 'react-intersection-observer';
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import CircularProgress from '@material-ui/core/CircularProgress'
+
 
 import LineChart from '../../../data-viz/LineChart/LineChart.js'
 import ChipLabel from '../../ExploreData/ChipLabel'
 
 import {
-  Box,
-  Container,
-  Grid,
-  Chip
+    Box,
+    Container,
+    Grid,
+    Chip
 } from '@material-ui/core'
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
-  query RevenueOverTime($period: String!, $commodities: [String!]) {
-    revenue_summary(where: {period: {_eq: $period}, commodity: {_in: $commodities}, location: {_neq: ""}}, order_by: {year: asc}) {
-      year
-      location
-      total
+    query RevenueOverTime($period: String!, $commodities: [String!]) {
+	revenue_summary(where: {period: {_eq: $period}, commodity: {_in: $commodities}, location: {_neq: ""}}, order_by: {year: asc}) {
+	    year
+	    location
+	    total
+	}
     }
-  }
 `
 const useStyles = makeStyles(theme => ({
   root: {
@@ -95,11 +96,12 @@ const RevenueOverTime = props => {
     threshold: 0,
   });
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-      variables: { period: period, commodities: commodities },
-  })
+    const { loading, error, data } = useQuery(APOLLO_QUERY, {
+	variables: { period: period, commodities: commodities },
+	skip: inView === false
+    })
 
-  const handleDelete = props.handleDelete || ((e, fips) => {
+    const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
@@ -140,14 +142,14 @@ const RevenueOverTime = props => {
     chartData = [years, ...sums]
     console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
-	<Container id={utils.formatToSlug(title)}>
+	<Container id={utils.formatToSlug(title)}  ref={ref} >
           <Grid item md={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
               <Box component="h4" color="secondary.dark">{title}</Box>
             </Box>
           </Grid>
           <Grid item md={12}>
-            <LineChart ref={ref}
+            <LineChart 
 		       key={'ROT' + commodityKey + period}
 		       data={chartData}
 		       chartColors={[theme.palette.explore[400], theme.palette.explore[300], theme.palette.explore[200], theme.palette.explore[100]]}
@@ -178,7 +180,9 @@ const RevenueOverTime = props => {
     )
   }
   else {
-    return (<div ref={ref}><h2> view is in {inView}</h2></div>)
+      return (<div className={classes.progressContainer} ref={ref}>
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </div>)
   }
 }
 

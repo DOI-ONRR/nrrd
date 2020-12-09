@@ -7,9 +7,11 @@ import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { useInView } from 'react-intersection-observer';
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
@@ -56,14 +58,21 @@ const RevenueDetailTypes = props => {
   // const isNativeAmerican = props.fipsCode && props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
   // const isNationwideFederal = props.fipsCode && props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS
   // const isState = props.fipsCode && props.fipsCode.length === 2 && !isNativeAmerican && !isNationwideFederal
+   const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: period, commodities: commodities }
+      variables: { state: state, year: year, period: period, commodities: commodities },
+      skip: inView === false
   })
   const dataKey = dataSet + '-' + props.name
   let chartData
 
-  if (loading) return ''
+  if (loading) return (<div className={classes.progressContainer} ref={ref}>
+          <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+	</div>)
 
   if (error) return `Error! ${ error.message }`
 
@@ -74,67 +83,73 @@ const RevenueDetailTypes = props => {
 	  .rollup(v => d3.sum(v, i => i.total))
 	  .entries(data.revenue_type_summary)
 	  .map(d => ({ revenue_type: d.key, total: d.value }))
-  }
 
-  return (
-    <>
-      { chartData && chartData.length > 0
-        ? (
-          <Box className={classes.root}>
-            <Box component="h4" fontWeight="bold">Revenue types</Box>
-            <Box>
-              <CircleChart
-                key={'RDTY' + dataKey }
-                data={chartData} xAxis='revenue_type' yAxis='total'
-                format={ d => utils.formatToDollarInt(d) }
-                yLabel={dataSet}
-                maxCircles={6}
-                colorRange={[
-                  theme.palette.explore[600],
-                  theme.palette.explore[500],
-                  theme.palette.explore[400],
-                  theme.palette.explore[300],
-                  theme.palette.explore[200],
-                  theme.palette.explore[100]
-                ]}
-                circleTooltip={
-                  d => {
-                    // console.debug('circleLABLE yo: ', d)
-                    const r = []
-                    r[0] = d.revenue_type
-                    r[1] = utils.formatToDollarInt(d.total)
-                    return r
-                  }
-                } />
-              {!isCounty &&
-                <QueryLink
-                  groupBy={DFC.REVENUE_TYPE}
-                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-                  linkType="FilterTable"
-                  {...props}>
-                  Query revenue by type
-                </QueryLink>
-              }
-              {isCounty &&
-                <QueryLink
-                  groupBy={DFC.COUNTY}
-                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-                  linkType="FilterTable"
-                  breakoutBy={DFC.REVENUE_TYPE}
-                  {...props}>
-                  Query revenue by type
-                </QueryLink>
-              }
-            </Box>
-          </Box>
-        )
-        : (
-          <Box className={classes.boxSection}>
-          </Box>
-        )
-      }
-    </>
-  )
+
+      return (
+	  <div ref={ref}>
+	    { chartData && chartData.length > 0
+	    ? (
+	    <Box  className={classes.root}>
+	      <Box component="h4" fontWeight="bold">Revenue types</Box>
+	      <Box>
+		<CircleChart
+		    key={'RDTY' + dataKey }
+		    data={chartData} xAxis='revenue_type' yAxis='total'
+		    format={ d => utils.formatToDollarInt(d) }
+		    yLabel={dataSet}
+		    maxCircles={6}
+		    colorRange={[
+		theme.palette.explore[600],
+		theme.palette.explore[500],
+		theme.palette.explore[400],
+		theme.palette.explore[300],
+		theme.palette.explore[200],
+		theme.palette.explore[100]
+		]}
+		    circleTooltip={
+		d => {
+		// console.debug('circleLABLE yo: ', d)
+		const r = []
+		r[0] = d.revenue_type
+		r[1] = utils.formatToDollarInt(d.total)
+		return r
+		}
+		} />
+		{!isCounty &&
+		<QueryLink
+		    groupBy={DFC.REVENUE_TYPE}
+		    landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+		    linkType="FilterTable"
+		  {...props}>
+		  Query revenue by type
+		</QueryLink>
+		}
+		{isCounty &&
+		<QueryLink
+		    groupBy={DFC.COUNTY}
+		    landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+		    linkType="FilterTable"
+		    breakoutBy={DFC.REVENUE_TYPE}
+		  {...props}>
+		  Query revenue by type
+		</QueryLink>
+		}
+	      </Box>
+	    </Box>
+	    )
+	  : (
+	      <Box className={classes.boxSection}>
+	      </Box>
+	  )
+	    }
+	  </div>
+      )
+  }
+    else {
+	return (<div className={classes.progressContainer} ref={ref}>
+          <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+	</div>)
+    }
 }
 
 export default RevenueDetailTypes
