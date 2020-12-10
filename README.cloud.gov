@@ -12,7 +12,7 @@ cf services
 
 
 # sandbox or dev or prod-a or prod-b 
-export DB_ENV=sandbox && export DB_PORT=7222|| export DB_ENV=onrr && export DB_PORT=7223 || export DB_ENV=nrrd-a && export DB_PORT=7724 || export DB_ENV=nrrd-b && export DB_PORT=7725
+export DB_ENV=sandbox && export DB_PORT=7222 || export DB_ENV=dev && export DB_PORT=7223 || export DB_ENV=nrrd-a && export DB_PORT=7724 || export DB_ENV=nrrd-b && export DB_PORT=7725
 
 # README doesn't show how to get DATABASE URL or PORT - This is because we put these in config of hasura and then on the next step (bind-service they get crated.
 
