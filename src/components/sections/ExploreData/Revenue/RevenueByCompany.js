@@ -76,11 +76,12 @@ const RevenueByCompany = props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const { title } = props
 const { ref, inView, entry } = useInView({
-	/* Optional options */
-	threshold: 0,
-    });
-
-  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+    /* Optional options */
+    threshold: 0,
+    triggerOnce:true
+});
+    
+    const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
     variables: { year: year, commodities: commodities },
     skip: period !== 'Calendar Year' || inView === false
   })

@@ -74,7 +74,9 @@ const RevenueDetailTrends = props => {
     
     const { loading, error, data } = useQuery(APOLLO_QUERY, {
 	variables: { state: state, period: period, year: year, commodities: commodities },
-	skip: inView === false
+	skip: inView === false,
+	triggerOnce: true
+
     })
 
     if (loading) return ''

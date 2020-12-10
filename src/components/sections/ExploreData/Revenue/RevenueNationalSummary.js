@@ -94,11 +94,13 @@ const RevenueNationalSummary = props => {
     const { ref, inView, entry } = useInView({
 	/* Optional options */
 	threshold: 0,
+	triggerOnce: true
     });
 
     const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
 	variables: { year: year, period: period, commodities: commodities },
-	skip: inView === false
+	skip: inView === false,
+   	triggerOnce: true
     })
 
     const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']

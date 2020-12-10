@@ -59,11 +59,12 @@ const RevenueDetailTypes = props => {
   // const isNationwideFederal = props.fipsCode && props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS
   // const isState = props.fipsCode && props.fipsCode.length === 2 && !isNativeAmerican && !isNationwideFederal
    const { ref, inView, entry } = useInView({
-    /* Optional options */
-    threshold: 0,
-  });
+       /* Optional options */
+       threshold: 0,
+       triggerOnce: true
+   });
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    const { loading, error, data } = useQuery(APOLLO_QUERY, {
       variables: { state: state, year: year, period: period, commodities: commodities },
       skip: inView === false
   })

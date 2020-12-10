@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
+import { useInView } from 'react-intersection-observer';
 
 import {
   isEdge,
@@ -56,9 +57,16 @@ const RevenueCountyMap = props => {
 
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+    const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
+ const { ref, inView, entry } = useInView({
+	/* Optional options */
+	threshold: 0,
+	triggerOnce:true
+    });
+    
   const { loading, error, data } = useQuery(REVENUE_QUERY, {
-    variables: { year: year, commodities: commodities, period: period }
+      variables: { year: year, commodities: commodities, period: period },
+      skip: inView === false
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
@@ -81,10 +89,10 @@ const RevenueCountyMap = props => {
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_summary)
       .map(d => [d.key, d.value])
-  }
+
 
   return (
-    <>
+    <div style={{minHeight: "250px"}} ref={ref}>
       {mapData &&
        <Box className={classes.root}>
          {!showCountyContent &&
@@ -103,8 +111,9 @@ const RevenueCountyMap = props => {
          }
        </Box>
       }
-    </>
+    </div>
   )
+  } else { return (<div ref={ref} style={{minHeight: "250px"}}>Loading county map...</div>) }
 }
 
 export default RevenueCountyMap

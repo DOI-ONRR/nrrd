@@ -61,6 +61,7 @@ const RevenueDetailCommodities = props => {
     const { ref, inView, entry } = useInView({
 	/* Optional options */
 	threshold: 0,
+	triggerOnce: true
     });
 
 

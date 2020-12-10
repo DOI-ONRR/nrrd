@@ -92,9 +92,10 @@ const RevenueOverTime = props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
     const { ref, inView, entry } = useInView({
-    /* Optional options */
-    threshold: 0,
-  });
+	/* Optional options */
+	threshold: 0,
+	triggerOnce:true
+    });
 
     const { loading, error, data } = useQuery(APOLLO_QUERY, {
 	variables: { period: period, commodities: commodities },

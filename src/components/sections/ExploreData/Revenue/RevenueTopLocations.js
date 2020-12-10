@@ -98,9 +98,10 @@ const RevenueTopLocations = props => {
     locations.push('Native American')
   }
         const { ref, inView, entry } = useInView({
-	/* Optional options */
-	threshold: 0,
-    });
+	    /* Optional options */
+	    threshold: 0,
+	    triggerOnce:true
+	});
 
 
     const { loading, error, data } = useQuery(APOLLO_QUERY, {
