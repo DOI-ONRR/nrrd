@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -62,11 +62,17 @@ const TOTAL_REVENUE_QUERY = gql`
 const TotalRevenue = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy } = filterState
+  const { monthly, period, breakoutBy, year } = filterState
+  const [chartYear, setChartYear] = useState(year)
 
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
   const yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
   const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY)
+
+  const onHover = d => {
+    console.log('TotalRevenue onHover: ', d)
+    if (d.year) setChartYear(d.year)
+  }
 
   if (loading) {
     return 'Loading...'
@@ -168,6 +174,7 @@ const TotalRevenue = props => {
             legendHeaders={legendHeaders}
             primaryColor={theme.palette.chart.primary}
             secondaryColor={theme.palette.chart.secondary}
+            onHover={onHover}
           />
           <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
             <Link href='/downloads/revenue-by-month/'>Source file</Link>

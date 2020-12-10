@@ -78,6 +78,7 @@ export default class D3StackedBarChart {
       // overload methods to make chart awesome
       if (options.onSelect) this.onSelect = options.onSelect
       if (options.onClick) this.onClick = options.onClick
+      if (options.onHover) this.onHover = options.onHover
 
       this.yOrder()
       this.xScale = d3.scaleBand()
@@ -336,6 +337,8 @@ export default class D3StackedBarChart {
           self._onClick(this, d)
         })
         .on('mouseover', function (d, i) {
+          console.log('current hover yo: ', self.currentIndex)
+          self.onHover({ ...d, year: self._xDomain[self.currentIndex] || self.xSelectedValue })
           if (chartTooltip(d)[0] !== undefined && chartTooltip(d)[0] !== '') {
             self._onMouseover(this, d)
             tooltip
@@ -359,6 +362,7 @@ export default class D3StackedBarChart {
           }
         })
         .on('mouseout', function (d) {
+          self.onHover({ ...d, year: self.xSelectedValue })
           if (chartTooltip(d)[0] !== undefined) {
             self._onMouseout(this, d)
           }
@@ -649,7 +653,6 @@ export default class D3StackedBarChart {
   _onClick (e, d) {
     try {
       // console.debug('_onClick: ', e,d)
-      this.onClick(d)
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -658,6 +661,7 @@ export default class D3StackedBarChart {
 
   onClick (d) {
     // console.debug('_onClick: ', d)
+    return d
   }
 
   _onSelect = (element, data) => {
@@ -784,7 +788,8 @@ export default class D3StackedBarChart {
   }
 
   onHover (d) {
-    // console.debug('onSelect: ', d)
+    console.debug('D3StackedBarChart onHover: ', d)
+    return d
   }
 
   barOffsetX () {
