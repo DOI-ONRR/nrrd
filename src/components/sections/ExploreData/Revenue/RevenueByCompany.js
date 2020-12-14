@@ -9,7 +9,7 @@ import QueryLink from '../../../../components/QueryLink'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import { useInView } from 'react-intersection-observer';
+import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import {
@@ -24,7 +24,7 @@ import {
   TableCell
 } from '@material-ui/core'
 
-import {  makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
@@ -68,20 +68,20 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const RevenueByCompany = props => {
-     const classes = useStyles()
+  const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const { title } = props
-const { ref, inView, entry } = useInView({
+  const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
-    triggerOnce:true
-});
-    
-    const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+    triggerOnce: true
+  })
+
+  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
     variables: { year: year, commodities: commodities },
     skip: period !== 'Calendar Year' || inView === false
   })
@@ -149,12 +149,9 @@ const { ref, inView, entry } = useInView({
 					      (total += item[1].reduce((subtotal, subitem) => (subtotal += subitem.revenue), 0)), 0)
 
     remainingPercent = remainingTotal / totalTotal * 100
-    console.debug('NRD', nationalRevenueData)
-    console.debug('GD', groupData)
-    console.debug('GT', groupTotal)
 
     return (
-	  <Container id={utils.formatToSlug(title)}  ref={ref}>
+	  <Container id={utils.formatToSlug(title)} ref={ref}>
         <Grid container>
           <Grid item xs={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
@@ -375,9 +372,9 @@ const { ref, inView, entry } = useInView({
     )
   }
   else {
-     return (<div className={classes.progressContainer} ref={ref}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-      </div>) 
+    return (<div className={classes.progressContainer} ref={ref}>
+      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
   }
 }
 

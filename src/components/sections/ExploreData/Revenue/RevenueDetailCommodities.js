@@ -9,24 +9,24 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
-import { useInView } from 'react-intersection-observer';
+import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import {
-    Box
+  Box
 } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
-    root: {
-	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'flex-start',
-	'& .chart-container': {
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    '& .chart-container': {
 	    display: 'flex',
 	    flexDirection: 'column',
-	},
-    }
+    },
+  }
 }))
 
 const APOLLO_QUERY = gql`
@@ -45,52 +45,52 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueDetailCommodities = props => {
-    // console.log('RevenueDetailCommodities props: ', props)
-    const classes = useStyles()
-    const theme = useTheme()
-    const { state: filterState } = useContext(DataFilterContext)
-    const year = filterState[DFC.YEAR]
-    const state = props.fipsCode
-    const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.FISCAL_YEAR_LABEL
-    const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
+  // console.log('RevenueDetailCommodities props: ', props)
+  const classes = useStyles()
+  const theme = useTheme()
+  const { state: filterState } = useContext(DataFilterContext)
+  const year = filterState[DFC.YEAR]
+  const state = props.fipsCode
+  const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.FISCAL_YEAR_LABEL
+  const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
 
-    const dataSet = (period === DFC.FISCAL_YEAR_LABEL) ? `FY ${ year }` : `CY ${ year }`
-    const dataKey = `${ dataSet }-${ state }`
+  const dataSet = (period === DFC.FISCAL_YEAR_LABEL) ? `FY ${ year }` : `CY ${ year }`
+  const dataKey = `${ dataSet }-${ state }`
 
-    const isCounty = state && state.length === 5
-    const { ref, inView, entry } = useInView({
-	/* Optional options */
-	threshold: 0,
-	triggerOnce: true
-    });
+  const isCounty = state && state.length === 5
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { year: year, state: state, period: period, commodities },
+    skip: inView === false
+  })
 
-    const { loading, error, data } = useQuery(APOLLO_QUERY, {
-	variables: { year: year, state: state, period: period, commodities },
-	skip: inView === false
-    })
+  let chartData
 
-    let chartData
-
-    if (loading) return (
-	<div className={classes.progressContainer}>
-          <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-	</div>
+  if (loading) {
+    return (
+      <div className={classes.progressContainer}>
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </div>
     )
-    if (error) return `Error! ${ error.message }`
+  }
+  if (error) return `Error! ${ error.message }`
 
-    if (data) {
-	chartData = data
+  if (data) {
+    chartData = data
 
-
-	return (
+    return (
 	    <div ref={ref} >
 	      { (chartData.revenue_summary.length > 0)
-		? (
+          ? (
 		    <Box className={classes.root}>
 		      <Box component="h4" fontWeight="bold">Commodities</Box>
 		      <Box>
-			<CircleChart key={'RDC' + dataKey} data={chartData.revenue_summary}
+                <CircleChart key={'RDC' + dataKey} data={chartData.revenue_summary}
 				     xAxis='commodity' yAxis='total'
 				     format={ d => {
 					 return utils.formatToDollarInt(d)
@@ -114,30 +114,30 @@ const RevenueDetailCommodities = props => {
 					 theme.palette.explore[200],
 					 theme.palette.explore[100]
 				     ]} />
-			<QueryLink
+                <QueryLink
 			    groupBy={isCounty ? DFC.COUNTY : DFC.COMMODITY}
 			    landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
 			    linkType="FilterTable"
 			    breakoutBy={DFC.COMMODITY}
 			    {...props}>
 			  Query revenue by commodity
-			</QueryLink>
+                </QueryLink>
 		      </Box>
 		    </Box>
-		)
-		: (
+          )
+          : (
 		    <Box className={classes.boxSection}>
 		    </Box>
-		)
+          )
 	      }
 	    </div>
-	)
-    }
-    else {
-	return (<div className={classes.progressContainer} ref={ref}>
+    )
+  }
+  else {
+    return (<div className={classes.progressContainer} ref={ref}>
 	  <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-	</div>)
-    }
+    </div>)
+  }
 }
 
 export default RevenueDetailCommodities

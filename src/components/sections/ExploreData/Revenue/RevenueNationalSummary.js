@@ -8,20 +8,18 @@ import gql from 'graphql-tag'
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import { useInView } from 'react-intersection-observer';
+import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-
-
 import {
-    Box,
-    Container,
-    Grid,
-    Hidden,
-    Typography
+  Box,
+  Container,
+  Grid,
+  Hidden,
+  Typography
 } from '@material-ui/core'
 
-import {  makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 import RevenueLocationTotal from './RevenueLocationTotal'
@@ -71,19 +69,19 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.primary.dark,
   }
 }))
-    
+
 const revenueTypeDescriptions = [
-    'Once the land or water produces enough resources to pay royalties, the leaseholder pays royalties to the federal government.',
-    'Companies bid on and lease lands and waters from the federal government.  They pay a bonus when they win a lease.',
-    'Leaseholders pay rent until the land or water starts producing resources.',
-    // eslint-disable-next-line max-len
-    'The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.',
-    'ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws.',
-    'This includes other fees leaseholders pay such as permit fees and AML fees.'
+  'Once the land or water produces enough resources to pay royalties, the leaseholder pays royalties to the federal government.',
+  'Companies bid on and lease lands and waters from the federal government.  They pay a bonus when they win a lease.',
+  'Leaseholders pay rent until the land or water starts producing resources.',
+  // eslint-disable-next-line max-len
+  'The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.',
+  'ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws.',
+  'This includes other fees leaseholders pay such as permit fees and AML fees.'
 ]
 
 const RevenueNationalSummary = props => {
-    const classes = useStyles()
+  const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -91,37 +89,36 @@ const RevenueNationalSummary = props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'All'
   const { title } = props
-    const { ref, inView, entry } = useInView({
-	/* Optional options */
-	threshold: 0,
-	triggerOnce: true
-    });
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
-    const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-	variables: { year: year, period: period, commodities: commodities },
-	skip: inView === false,
-   	triggerOnce: true
-    })
+  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+    variables: { year: year, period: period, commodities: commodities },
+    skip: inView === false,
+    triggerOnce: true
+  })
+  const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
-    const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
+  let groupData
+  let groupTotal
+  let nationalRevenueData
+  const xAxis = 'year'
+  const yAxis = 'total'
+  const yGroupBy = 'land_type'
 
-    let groupData
-    let groupTotal
-    let nationalRevenueData
-    const xAxis = 'year'
-    const yAxis = 'total'
-    const yGroupBy = 'land_type'
+  const units = 'dollars'
 
-    const units = 'dollars'
-
-    if (loading) {
-	return (
+  if (loading) {
+    return (
 	    <div className={classes.progressContainer}>
-              <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
 	    </div>
-	)
+    )
   }
-    
+
   if (error) return `Error! ${ error.message }`
 
   if (data) {
@@ -129,56 +126,55 @@ const RevenueNationalSummary = props => {
     // eslint-disable-next-line no-return-assign
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
-  
 
-  return (
-    <Container id={utils.formatToSlug(title)} ref={ref}>
-      <Grid container>
-        <Grid item md={12}>
-          <Box mt={10} mb={1} color="secondary.main" borderBottom={5}>
-            <Box component="h2" color="secondary.dark">Nationwide revenue summary</Box>
-          </Box>
-          <Typography variant="body1">
-            <RevenueLocationTotal />
-          </Typography>
+    return (
+      <Container id={utils.formatToSlug(title)} ref={ref}>
+        <Grid container>
+          <Grid item md={12}>
+            <Box mt={10} mb={1} color="secondary.main" borderBottom={5}>
+              <Box component="h2" color="secondary.dark">Nationwide revenue summary</Box>
+            </Box>
+            <Typography variant="body1">
+              <RevenueLocationTotal />
+            </Typography>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12}>
-          <Box color="secondary.main" mb={2} borderBottom={2} display="flex" justifyContent="space-between">
-            <Box component="h3" color="secondary.dark" display="inline" align="left">Nationwide revenue by revenue type and source</Box>
-            <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Box color="secondary.main" mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+              <Box component="h3" color="secondary.dark" display="inline" align="left">Nationwide revenue by revenue type and source</Box>
+              <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+                <QueryLink
+                  groupBy={DFC.REVENUE_TYPE}
+                  linkType="FilterTable" {...props}>
+                  Query nationwide revenue
+                </QueryLink>
+              </Box>
+            </Box>
+            <Box display={{ xs: 'block', sm: 'none' }} align="left">
               <QueryLink
                 groupBy={DFC.REVENUE_TYPE}
                 linkType="FilterTable" {...props}>
                   Query nationwide revenue
               </QueryLink>
             </Box>
-          </Box>
-          <Box display={{ xs: 'block', sm: 'none' }} align="left">
-            <QueryLink
-              groupBy={DFC.REVENUE_TYPE}
-              linkType="FilterTable" {...props}>
-                  Query nationwide revenue
-            </QueryLink>
-          </Box>
-        </Grid>
-        <Grid container item xs={5} style={{ borderBottom: '2px solid #cde3c3' }}>
-          <Box fontWeight="bold">Revenue type</Box>
-        </Grid>
-        <Grid container item xs={7} style={{ borderBottom: '2px solid #cde3c3' }}>
-          <Hidden xsDown>
-            <Grid item sm={6}>
-              <Box fontWeight="bold" display="flex" justifyContent="flex-start" >Source</Box>
+          </Grid>
+          <Grid container item xs={5} style={{ borderBottom: '2px solid #cde3c3' }}>
+            <Box fontWeight="bold">Revenue type</Box>
+          </Grid>
+          <Grid container item xs={7} style={{ borderBottom: '2px solid #cde3c3' }}>
+            <Hidden xsDown>
+              <Grid item sm={6}>
+                <Box fontWeight="bold" display="flex" justifyContent="flex-start" >Source</Box>
+              </Grid>
+            </Hidden>
+            <Grid item xs={12} sm={6}>
+              <Box fontWeight="bold" display="flex" justifyContent="flex-end">{`${ period } ${ year }`}</Box>
             </Grid>
-          </Hidden>
-          <Grid item xs={12} sm={6}>
-            <Box fontWeight="bold" display="flex" justifyContent="flex-end">{`${ period } ${ year }`}</Box>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid container spacing={2}>
-        { nationalRevenueData &&
+        <Grid container spacing={2}>
+          { nationalRevenueData &&
           nationalRevenueData.map((item, i) => {
             return (
               <Box p={2} width="100%" borderBottom="1px solid rgba(224, 224, 224, 1)">
@@ -240,16 +236,16 @@ const RevenueNationalSummary = props => {
               </Box>
             )
           })
-        }
-      </Grid>
-    </Container>
-  )
+          }
+        </Grid>
+      </Container>
+    )
   }
-    else {
-      return (<div className={classes.progressContainer} ref={ref}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-      </div>)
-    }
+  else {
+    return (<div className={classes.progressContainer} ref={ref}>
+      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
+  }
 }
 
 export default RevenueNationalSummary

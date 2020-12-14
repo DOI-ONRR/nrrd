@@ -54,7 +54,7 @@ const MapControls = props => {
         <Button onClick={() => handleClick('remove')} role="button" id="zoom-out" aria-label="Map zoom out">
           <RemoveIcon />
         </Button>
-        <Button onClick={() => handleClick('refresh')} role="button"  id="zoom-reset" aria-label="Map reset">
+        <Button onClick={() => handleClick('refresh')} role="button" id="zoom-reset" aria-label="Map reset">
           <RefreshIcon />
         </Button>
       </ButtonGroup>

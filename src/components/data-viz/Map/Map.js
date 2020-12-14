@@ -6,7 +6,7 @@ import * as topojson from 'topojson-client'
 import utils from '../../../js/utils'
 import D3Map from './D3Map.js'
 import useWindowSize from '../../../js/hooks/useWindowSize'
-import MapControls   from '../../sections/ExploreData/MapControls'
+import MapControls from '../../sections/ExploreData/MapControls'
 import { makeStyles } from '@material-ui/core/styles'
 
 import {
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: theme.typography.body2,
       }
     },
-      '& #float-button-group': {
+    '& #float-button-group': {
 	  display: 'block',
 	  left: 10,
 	  width: 50,
@@ -67,41 +67,40 @@ const useStyles = makeStyles(theme => ({
 	  '@media and (max-width: 600px)': {
 	      transform: 'scale(0.75)',
 	      left: 0,
-              width: '100%',
+        width: '100%',
 	  },
-      },
-      
-      '& #float-button-group:hover': {
-          opacity:1
-      },
-      '& .button': {
+    },
+
+    '& #float-button-group:hover': {
+      opacity: 1
+    },
+    '& .button': {
 	  background: theme.palette.background.default,
 
-          width: 50 ,
+      width: 50,
 	  height: 50,
 	  margin: 5
-      },
-  },
-    buttonGroupGrouped: {
-	padding: theme.spacing(0.5),
-	background: theme.palette.background.default,
-	margin: 0,
     },
-    zoomButtonGroupContainer: {
-	left: 10,
-	bottom: 70,
-	height: 100,
-	position: 'absolute',
-	'@media (max-width: 768px)': {
+  },
+  buttonGroupGrouped: {
+    padding: theme.spacing(0.5),
+    background: theme.palette.background.default,
+    margin: 0,
+  },
+  zoomButtonGroupContainer: {
+    left: 10,
+    bottom: 70,
+    height: 100,
+    position: 'absolute',
+    '@media (max-width: 768px)': {
 	    transform: 'scale(0.75)',
 	    left: 0,
     },
     '& svg': {
-	height: '.75em',
-	width: '.75em',
+      height: '.75em',
+      width: '.75em',
     },
   }
-    
 
 }))
 
@@ -154,8 +153,8 @@ const Map = props => {
   const mapX = props.mapX
   const mapY = props.mapY
 
-    const { mapData, ...options } = props
-    console.debug("Map Data: ", mapData)
+  const { mapData, ...options } = props
+  // console.debug("Map Data: ", mapData)
   let map
 
   // Ugly hack to get around not being able to merge AKR Alaska Offshore Region
@@ -194,10 +193,10 @@ const Map = props => {
       mapY,
       options
     )
-      if (props.zoomTo) {
+    if (props.zoomTo) {
 	  map.zoomTo(props.zoomTo)
-      }
-      /*
+    }
+    /*
        * map.onZoom = onZoom
        * map.onZoomEnd = onZoomEnd
        *
@@ -220,14 +219,16 @@ const Map = props => {
   }, [mapData, mapJsonObject, size.width])
 
   return (
-      <Box className={classes.root}>
-	<div className='mapContainer' ref={elemRef}>
-          <div className='legendWrap'></div>
-          <div className='map'></div>
-	<MapControls handleClick={()=>{console.debug(" foo")}}/>
-	  
-	</div>
-      </Box>
+    <Box className={classes.root}>
+      <div className='mapContainer' ref={elemRef}>
+        <div className='legendWrap'></div>
+        <div className='map'></div>
+        <MapControls handleClick={() => {
+          console.debug(' foo')
+        }}/>
+
+      </div>
+    </Box>
   )
 }
 

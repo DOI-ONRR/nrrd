@@ -82,11 +82,10 @@ export default class d3Map {
       const svg = this._chart
       const zoom = this.zoom
       const path = this.path
-      // console.debug('Zoom to :', state)
       svg.selectAll('path')
-        .attr('fill-opacity', 0)
+			 .attr('fill-opacity', 0)
       svg.selectAll(`.${ state }`)
-        .attr('fill-opacity', 9)
+			 .attr('fill-opacity', 9)
       const paths = svg.selectAll('.' + state)
       const bboxes = paths.nodes().map(d => d.getBBox())
       const x0 = d3.min(bboxes.map(d => d.x))
@@ -95,13 +94,15 @@ export default class d3Map {
       const y1 = d3.max(bboxes.map(d => d.y + d.height))
       const width = this.width
       const height = this.height
+
       // const width = x1 - x0
-      // const height = y1 - y0
+      // const height = y1 -
       // console.debug('x0: ', x0, 'y0: ', y0, 'x1: ', x1, 'y1: ', y1, 'width: ', width, 'height: ', height)
       const transform = d3.zoomIdentity
-        .translate(width / 2, height / 2)
-        .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
-        .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
+			    .translate(width / 2, height / 2)
+			  .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
+			    .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
+
       this.zoom(transform)
     }
     catch (err) {
@@ -114,12 +115,11 @@ export default class d3Map {
   }
 
   onZoomEnd (event) {
-    console.debug('transform onZoomEnd', event.transform)
+    // console.debug('transform onZoomEnd', event.transform)
   }
 
   zoom (transform) {
     try {
-	       // console.log('zoom(transform): ', transform)
       if (transform) {
         const _zoom = transform
         this._chart
@@ -250,55 +250,47 @@ export default class d3Map {
       format(d)
     }
 
-      const zoom = d3
+    const zoom = d3
 	  .zoom()
 	  .scaleExtent([1, 9])
 	  .on('zoom', zoomed)
 	  .on('end', ended)
 
-      const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
-      _chart.call(zoom)
-      /*  this turns on and off zoom 
-       * let zoomEnabled=false
-       * _chart.on('mousedown', (d, i) => {
-	 console.debug("on mouse down", d, i)
-	 if(zoomEnabled === false) {
-	 zoomEnabled=true
-	 _chart.call(zoom)
-	 }
-       * })
-       * _chart.on('mouseleave', (d, i) => {
-	 console.debug("on mouse leave", d, i)
-	 zoomEnabled=false
-	 _chart.on('.zoom', null)
-       * })
+    const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
+    _chart.call(zoom)
+    // this turns on and off zoom
+    let zoomEnabled = false
+    _chart.on('mousedown', (d, i) => {
+	  if (zoomEnabled === false) {
+	      zoomEnabled = true
+	      _chart.call(zoom)
+	  }
+    })
+    _chart.on('mouseleave', (d, i) => {
+	  zoomEnabled = false
+	  _chart.on('.zoom', null)
+    })
 
-       */
-      
-      d3.select('#zoom-in').on('click', function () {
+    d3.select('#zoom-in').on('click', function () {
 	  _chart.transition().call(zoom.scaleBy, 2)
-      });
+    })
 
-      d3.select('#zoom-out').on('click', function () {
-	  _chart.transition().call(zoom.scaleBy, .5)
-      });
+    d3.select('#zoom-out').on('click', function () {
+	  _chart.transition().call(zoom.scaleBy, 0.5)
+    })
 
-      d3.select('#zoom-reset').on('click', function () {
+    d3.select('#zoom-reset').on('click', function () {
 	  _chart.transition().duration(750).call(
 	      zoom.transform,
 	      d3.zoomIdentity,
 	      d3.zoomTransform(_chart.node()).invert([width / 2, height / 2])
-	  );
-      })
-      
+	  )
+    })
 
-      
-      
-      
-      const g = _chart.append('g')
+    const g = _chart.append('g')
 
-      //_chart.call(zoom)
-      // console.debug('US data: ', data)
+    // _chart.call(zoom)
+    // console.debug('US data: ', data)
     // console.debug('objects:', us.objects[mapFeatures], mapFeatures)
     g.selectAll('path')
       .data(topojson.feature(us, us.objects[mapFeatures]).features)
@@ -432,7 +424,7 @@ export default class d3Map {
         _chart.selectAll('path')
           .style('fill-opacity', 0.9)
       })
-      
+
       .append('title')
       .text(d => `Gulf of Mexico Offshore Region  ${ format(data.get('GMR')) }`).transition().duration(3000)
 
@@ -456,20 +448,20 @@ export default class d3Map {
 	  .style('cursor', 'pointer')
       })
       .on('mouseout', (d, i) => {
-          _chart.selectAll('path')
-		.style('fill-opacity', 0.9)
+        _chart.selectAll('path')
+          .style('fill-opacity', 0.9)
       })
 		  .append('title')
 		  .text(d => `Atlantic Offshore Region  ${ format(data.get('AOR')) }`).transition().duration(3000)
 
-      _chart.transition().duration(3000)
-      
+    _chart.transition().duration(3000)
+
     function zoomed () {
-	const sourceEvent = d3.event.sourceEvent
-	
-	// console.debug(" source event", sourceEvent,'transsfoirnm', transform)
-	//if (sourceEvent && (sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 || sourceEvent.type === 'touchmove')) {
-	if(d3.event && d3.event.transform) {
+      const sourceEvent = d3.event.sourceEvent
+
+      // console.debug(" source event", sourceEvent,'transsfoirnm', d3.event.transform)
+      // if (sourceEvent && (sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 || sourceEvent.type === 'touchmove')) {
+      if (d3.event && d3.event.transform) {
         g.selectAll('path')
           .attr('transform', d3.event.transform)
 	      onZoom(d3.event)
@@ -479,8 +471,8 @@ export default class d3Map {
       else {
 	  console.log('zoomed(): else ', d3.event, self.zoomStarted)
       }
- }
- 
+    }
+
     function ended () {
       //	  console.log('ended(): outside ', d3.event, self.zoomStarted)
 	  if (self.zoomStarted) {

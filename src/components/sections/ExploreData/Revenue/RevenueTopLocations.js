@@ -6,8 +6,7 @@ import PropTypes from 'prop-types'
 // utility functions
 import utils from '../../../../js/utils'
 import * as d3 from 'd3'
-import { useInView } from 'react-intersection-observer';
-
+import { useInView } from 'react-intersection-observer'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -16,11 +15,11 @@ import QueryLink from '../../../../components/QueryLink'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
-    Box,
-    CircularProgress,
-    Container,
-    Grid,
-    useTheme
+  Box,
+  CircularProgress,
+  Container,
+  Grid,
+  useTheme
 } from '@material-ui/core'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
@@ -97,19 +96,18 @@ const RevenueTopLocations = props => {
   if (location === 'State') {
     locations.push('Native American')
   }
-        const { ref, inView, entry } = useInView({
+  const { ref, inView, entry } = useInView({
 	    /* Optional options */
 	    threshold: 0,
-	    triggerOnce:true
-	});
+	    triggerOnce: true
+  })
 
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { year, locations, period, commodities },
+    skip: inView === false
+  })
 
-    const { loading, error, data } = useQuery(APOLLO_QUERY, {
-	variables: { year, locations, period, commodities },
-	skip: inView === false
-    })
-
-    if (loading) {
+  if (loading) {
     return (
       <div className={classes.progressContainer}>
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />
@@ -130,7 +128,7 @@ const RevenueTopLocations = props => {
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       }).sort((a, b) => (a.total < b.total) ? 1 : -1)
-      return (
+    return (
       <Container id={utils.formatToSlug(title)} ref={ref} >
         <Grid container>
           <Grid item xs={12}>
@@ -207,9 +205,9 @@ const RevenueTopLocations = props => {
     )
   }
   else {
-      return (<div className={classes.progressContainer} ref={ref}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-      </div>)
+    return (<div className={classes.progressContainer} ref={ref}>
+      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
   }
 }
 

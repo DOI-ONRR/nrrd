@@ -278,16 +278,12 @@ const MapContext = props => {
     year: StringParam,
   })
 
-
   // Map snackbar
   const [mapSnackbarState, setMapSnackbarState] = useState({
-      open: false,
-      vertical: 'bottom',
-      horizontal: 'center'
+    open: false,
+    vertical: 'bottom',
+    horizontal: 'center'
   })
-
-
-
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
@@ -323,7 +319,7 @@ const MapContext = props => {
   }
 
   // check width, set zoom
-    /* 
+  /*
      *    useEffect(() => {
      *    // mobile zoom
      *    if (size.width <= 425) {
@@ -338,7 +334,7 @@ const MapContext = props => {
      *      setZoom(-100, -40, 1.25)
      *    }
      * }, [size.width])
-     *  */  
+     *  */
 
   // onLink
   const onLink = (state, x, y, k) => {
@@ -380,9 +376,13 @@ const MapContext = props => {
     updateExploreDataCards({ ...pageState, cards: cards })
   }
 
+  const onClick = (d, fips) => {
+    console.debug('on click', d, 'fips', fips)
+    onLink(d)
+  }
+
   const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
   const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
-
 
   let mapJsonObject = mapStates
   let mapFeatures = 'states-geo'
@@ -407,7 +407,6 @@ const MapContext = props => {
       mapFeatures = 'states-geo'
     }
   }
-
 
   useEffect(() => {
     // get decoded location param
@@ -475,6 +474,7 @@ const MapContext = props => {
       mapJsonObject: mapJsonObject, // use context instead
       minColor: '#CDE3C3',
       maxColor: '#2F4D26',
+      onClick: onClick,
       // minColor: theme.palette.explore[100],
       // maxColor: theme.palette.explore[600],
       width: size.width

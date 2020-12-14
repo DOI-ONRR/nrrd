@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import * as d3 from 'd3'
-import { useInView } from 'react-intersection-observer';
+import { useInView } from 'react-intersection-observer'
 import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -67,33 +67,33 @@ const RevenueDetailTrends = props => {
   else if (commodities && commodities.length > 1) {
     commodityText = 'revenue from the selected commodities'
   }
-    const { ref, inView, entry } = useInView({
-	/* Optional options */
-	threshold: 0,
-    });
-    
-    const { loading, error, data } = useQuery(APOLLO_QUERY, {
-	variables: { state: state, period: period, year: year, commodities: commodities },
-	skip: inView === false,
-	triggerOnce: true
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  })
 
-    })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { state: state, period: period, year: year, commodities: commodities },
+    skip: inView === false,
+    triggerOnce: true
 
-    if (loading) return ''
+  })
 
-    if (error) return `Error! ${ error.message }`
+  if (loading) return ''
 
-    const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
-    const dataKey = dataSet + '-' + state
-    let sparkData = []
-    let sparkMin
-    let sparkMax
-    let highlightIndex = 0
-    let periodData
-    let fiscalData
-    let locData
+  if (error) return `Error! ${ error.message }`
 
-    if (data &&
+  const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+  const dataKey = dataSet + '-' + state
+  let sparkData = []
+  let sparkMin
+  let sparkMax
+  let highlightIndex = 0
+  let periodData
+  let fiscalData
+  let locData
+
+  if (data &&
 	data.revenue_summary.length > 0) {
     periodData = data.period
 
