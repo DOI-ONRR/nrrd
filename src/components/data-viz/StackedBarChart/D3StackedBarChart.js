@@ -4,7 +4,7 @@ import * as d3 from 'd3'
 // import { isEnumMember } from 'typescript'
 
 export default class D3StackedBarChart {
-  constructor (node, data, options, formatLegendFunc) {
+  constructor (node, data, options, onHover, formatLegendFunc) {
     try {
       this.node = node
       this.chartDiv = node.getElementsByClassName('chart_div')[0]
@@ -30,6 +30,7 @@ export default class D3StackedBarChart {
       this.showLegendUnits = options.showLegendUnits
       this.primaryColor = options.primaryColor || '#222'
       this.secondaryColor = options.secondaryColor || '#43646F'
+      this.handleBarHover = options.handleBarHover
 
       if (options.chartTooltip) {
         this.chartTooltip = options.chartTooltip
@@ -243,6 +244,7 @@ export default class D3StackedBarChart {
 
   _chart () {
     try {
+      console.log('_chart yo: ')
       const self = this
       const stack = d3.stack()
 	    .keys(this.yGroupings())
@@ -286,16 +288,19 @@ export default class D3StackedBarChart {
         .attr('class', (d, i) => {
           return i === self.selectedIndex ? 'bar active' : 'bar'
         })
-        .on('mouseenter', (d, i) => {
-          self.currentIndex = i
-        })
-        .on('mouseleave', d => {
-          self.currentIndex = self.selectedIndex
-          self._legendHeaders()
-        })
-
         // .attr('tabindex', (d, i) => i)
         .attr('tabindex', 0)
+        .on('mouseenter', (d, i) => {
+          self.currentIndex = i
+          // if (self.xAxis === 'year') self.handleBarHover({ year: self._xDomain[i] || self.xSelectedValue })
+          // if (self.xAxis === 'month_long') self.handleBarHover({ month_long: self._xDomain[i] || self._xDomain[self.xSelectedValue], xGroups: self.xGroups })
+        })
+        .on('mouseleave', (d, i) => {
+          self.currentIndex = self.selectedIndex
+          self._legendHeaders()
+          // if (self.xAxis === 'year') self.handleBarHover({ year: self.xSelectedValue })
+          // if (self.xAxis === 'month_long') self.handleBarHover({ month_long: self.xSelectedValue, xGroups: self.xGroups })
+        })
         .selectAll('g')
         .data(d => {
           const yd = self.yGroupData(d)
@@ -331,14 +336,12 @@ export default class D3StackedBarChart {
         })
         .attr('width', self.maxBarSize())
         .attr('x', self.barOffsetX())
-        .on('click', function (d) {
+        .on('click', function (d, i) {
           // console.debug(' onclick:', d)
           self._onSelect(this, d)
           self._onClick(this, d)
         })
         .on('mouseover', function (d, i) {
-          console.log('current hover yo: ', self.currentIndex)
-          self.onHover({ ...d, year: self._xDomain[self.currentIndex] || self.xSelectedValue })
           if (chartTooltip(d)[0] !== undefined && chartTooltip(d)[0] !== '') {
             self._onMouseover(this, d)
             tooltip
@@ -362,7 +365,6 @@ export default class D3StackedBarChart {
           }
         })
         .on('mouseout', function (d) {
-          self.onHover({ ...d, year: self.xSelectedValue })
           if (chartTooltip(d)[0] !== undefined) {
             self._onMouseout(this, d)
           }
@@ -681,10 +683,14 @@ export default class D3StackedBarChart {
       activeElement.setAttribute('selected', true)
       activeElement.setAttribute('style', `fill: ${ secondaryColor }`)
       activeElement.setAttribute('tabindex', 0)
+
       this.selectedData(data[0].data)
       this._legend()
       this.getSelected()
       this.onSelect(this)
+
+      if (this.xAxis === 'year') this.handleBarHover({ year: this._xDomain[this.currentIndex] || this.xSelectedValue })
+      if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.currentIndex] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups })
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -769,6 +775,9 @@ export default class D3StackedBarChart {
         }
 
         activeElement.setAttribute('style', `fill: ${ secondaryColor }`)
+
+        if (this.xAxis === 'year') this.handleBarHover({ year: this._xDomain[this.currentIndex] || this.xSelectedValue })
+        if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.currentIndex] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups })
       }
       else {
         if (!activeHoverElement) {
@@ -779,8 +788,11 @@ export default class D3StackedBarChart {
 
         this.createLegend()
         this.updateLegend()
+
+        if (this.xAxis === 'year') this.handleBarHover({ year: this.xSelectedValue })
+        if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this.xSelectedValue, xGroups: this.xGroups })
       }
-      this.onHover(this)
+      // this.onHover(this)
     }
     catch (err) {
       console.warn('Error: ', err)
