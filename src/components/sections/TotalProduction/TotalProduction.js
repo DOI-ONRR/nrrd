@@ -67,7 +67,6 @@ const TOTAL_PRODUCTION_QUERY = gql`
 
 // TotalProduction
 const TotalProduction = props => {
-
   const { state: filterState } = useContext(DataFilterContext)
   const { monthly, period, commodity } = filterState
   const [selected, setSelected] = useState(undefined)

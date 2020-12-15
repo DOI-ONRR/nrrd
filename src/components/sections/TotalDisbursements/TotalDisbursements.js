@@ -18,7 +18,6 @@ import Link from '../../../components/Link'
 
 import utils from '../../../js/utils'
 
-
 const TOTAL_DISBURSEMENTS_QUERY = gql`
   query TotalYearlyDisbursements {
     total_yearly_fiscal_disbursement {

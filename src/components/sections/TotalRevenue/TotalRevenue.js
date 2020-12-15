@@ -137,7 +137,7 @@ const RevenueComparison = forwardRef((props, ref) => {
   const d = new Date()
   const currentMonth = monthLookup(d.getMonth())
   const currentYear = parseInt(selectedItem.year)
-  const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
+  // const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
 
   // Get previous year
   const previousYear = currentYear - 1
@@ -152,12 +152,10 @@ const RevenueComparison = forwardRef((props, ref) => {
     ? `${ month } ${ previousYear } - ${ month } ${ currentYear }`
     : `${ previousYearText } - ${ periodAbbr }${ currentYear.toString().substring(2) }`
 
-  let currentYearText = `${ periodAbbr }${ currentYear.toString().substring(2) }`
-  if (currentMonth !== '09') {
-    currentYearText = `${ currentYearText } ${ (period === DFC.PERIOD_FISCAL_YEAR) ? ' so far' : '' }`
-  }
-
-
+  // let currentYearText = `${ periodAbbr }${ currentYear.toString().substring(2) }`
+  // if (currentMonth !== '09') {
+  //   currentYearText = `${ currentYearText } ${ (period === DFC.PERIOD_FISCAL_YEAR) ? ' so far' : '' }`
+  // }
 
   // Comparison data
   const groupedData = utils.groupBy(data, yGroupBy)
