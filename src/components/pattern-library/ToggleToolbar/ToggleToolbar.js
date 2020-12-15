@@ -39,28 +39,30 @@ const ToggleToolbar = ({ buttons, ...rest }) => {
   const [section] = React.useState(slugify((typeof window !== 'undefined') ? window.location.pathname : ''))
 
   return (
-    <Grid container direction="row" justify="center" >
-      <ToggleButtonGroup
-        classes={ { root: classes.rootToggleButtonGroup, grouped: classes.groupedToggleButtonGroup } }
-        value={section}
-        aria-label="button group for switching between sections">
-        {
-          buttons.map(button => {
-            const label = Object.keys(button)[0]
-            const relativeUrl = button[label]
-            return (
-              <ToggleButton
-                key={label}
-                value={slugify(relativeUrl)}
-                onClick={() => navigate(relativeUrl)}
-                classes={ { root: classes.rootToggleButton, selected: classes.selectedToggleButton }}>
-                {label}
-              </ToggleButton>
-            )
-          })
-        }
-      </ToggleButtonGroup>
-    </Grid>
+    <Box mt={2}>
+      <Grid container direction="row" justify="center">
+        <ToggleButtonGroup
+          classes={ { root: classes.rootToggleButtonGroup, grouped: classes.groupedToggleButtonGroup } }
+          value={section}
+          aria-label="button group for switching between sections">
+          {
+            buttons.map(button => {
+              const label = Object.keys(button)[0]
+              const relativeUrl = button[label]
+              return (
+                <ToggleButton
+                  key={label}
+                  value={slugify(relativeUrl)}
+                  onClick={() => navigate(relativeUrl)}
+                  classes={ { root: classes.rootToggleButton, selected: classes.selectedToggleButton }}>
+                  {label}
+                </ToggleButton>
+              )
+            })
+          }
+        </ToggleButtonGroup>
+      </Grid>
+    </Box>
   )
 }
 

@@ -1,9 +1,8 @@
 ---
-title: Visual Styles - Color
+title: Visual Style - Color
 layout: 'pattern-library'
 ---
-
-# Visual Styles - Color
+# Visual Style
 
 <ToggleToolbar buttons={[
     {'Guidelines': '/patterns/visual-styles/'},
@@ -12,15 +11,11 @@ layout: 'pattern-library'
     {'Iconography': '/patterns/visual-styles/iconography'}
   ]} />
 
-<ColorKeyDisplay keys={['background']}>
-  Background colors documentation
-</ColorKeyDisplay>
-
-
-<ColorKeyDisplay keys={['orange', 'purple']}>
-  Orange and Purple documentation
-</ColorKeyDisplay>
-
----
-
-<PaletteDisplay />
+<PaletteDisplay>
+  <div noteKeys={['common']}>
+    common colors documentation
+  </div>
+  <div noteKeys={['common.black']}>
+    common black colors documentation
+  </div>
+</PaletteDisplay>
