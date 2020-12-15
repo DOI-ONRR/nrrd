@@ -11,13 +11,22 @@ import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
 const useStyles = makeStyles(theme => ({
   autoCompleteRoot: {
     color: theme.palette.primary.dark,
-    marginRight: theme.spacing(1),
-    minWidth: 150,
-    borderRadius: 4,
     transition: theme.transitions.create(['border-color', 'box-shadow']),
-    '& .MuiInputLabel-outlined': {
-      transform: 'translate(14px, -6px) scale(0.75)'
+    '& .MuiFormControl-root': {
+      margin: theme.spacing(1),
+      top: '5px',
+      minWidth: 150,
+      maxWidth: 275,
+      '& .MuiInputLabel-outlined': {
+        transform: 'translate(14px, -18px) scale(0.75)'
+      },
     },
+    '& .MuiAutocomplete-InputRoot': {
+      padding: '1px'
+    }
+  },
+  autoCompleteInputRoot: {
+    padding: '1px',
   },
   autoCompleteFocused: {
     borderRadius: 4,
@@ -88,8 +97,9 @@ const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, di
         <TextField {...params} label={label} variant="outlined" fullWidth />
       )}
       classes={{
-        inputRoot: classes.autoCompleteRoot,
         focused: classes.autoCompleteFocused,
+        root: classes.autoCompleteRoot,
+        inputRoot: classes.autoCompleteInputRoot
       }}
       onChange={(e, v) => handleChange(v)}
       size="small"

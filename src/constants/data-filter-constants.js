@@ -127,16 +127,16 @@ export const DISPLAY_NAMES = {
     plural: 'Location',
   },
   [GROUP_BY]: {
-    default: 'Group by',
-    plural: 'Group by',
+    default: 'Column 1',
+    plural: 'Column 1',
   },
   [GROUP_BY_STICKY]: {
-    default: 'Group by',
-    plural: 'Group by',
+    default: 'Column 1',
+    plural: 'Column 1',
   },
   [BREAKOUT_BY]: {
-    default: 'Then group by',
-    plural: 'Then group by',
+    default: 'Column 2',
+    plural: 'Column 2',
   },
   [DATA_TYPE]: {
     default: 'Data type',
