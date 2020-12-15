@@ -79,6 +79,6 @@ export default (view, dataFilterKey, whereClause) => {
   if (!DATA_FILTER_QUERIES[dataFilterKey]) {
     throw Error(`A data filter query does not exist for ${ dataFilterKey }. Please add query for this key.`)
   }
-  console.log(view)
+  console.log(view, dataFilterKey, whereClause)
   return DATA_FILTER_QUERIES[dataFilterKey](view, whereClause)
 }

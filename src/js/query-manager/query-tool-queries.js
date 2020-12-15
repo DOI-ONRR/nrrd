@@ -27,6 +27,8 @@ import {
   ALL_DISBURSEMENT_YEARS,
   ALL_REVENUE_YEARS,
   ALL_REVENUE_BY_COMPANY_YEARS,
+  ALL_PRODUCTION_YEARS,
+  ALL_PRODUCTION_MONTHLY_YEARS,
   DATA_TYPE,
   STATE_OFFSHORE_NAME,
   FISCAL_YEAR,
@@ -89,7 +91,7 @@ const VARIABLE_CONFIGS = {
     { [US_STATE_NAME]: MULTI_STR },
     { [LOCAL_RECIPIENT]: MULTI_STR },
     { [PERIOD]: SINGLE_STR },
-    { [FISCAL_YEAR]: MULTI_INT },
+    { [CALENDAR_YEAR]: MULTI_INT },
     { [MONTH_LONG]: MULTI_STR }
   ],
   [REVENUE_BY_COMPANY]: [
@@ -161,7 +163,7 @@ const PRODUCTION_QUERY = whereClause => (
     ${ STATE_OFFSHORE_NAME }: ${ DB_COLS[STATE_OFFSHORE_NAME] }
     ${ COUNTY }: ${ DB_COLS[COUNTY_NAME] }
     ${ MONTH_LONG }: ${ DB_COLS[MONTH_LONG] }
-    ${ ALL_REVENUE_YEARS }
+    ${ ALL_PRODUCTION_YEARS }
   }
   counts:${ VIEWS[PRODUCTION] }_aggregate (
     where: {
@@ -176,6 +178,33 @@ const PRODUCTION_QUERY = whereClause => (
       ${ MONTH_LONG }:count(columns: ${ DB_COLS[MONTH_LONG] }, distinct: true)
     }
   }`)
+
+const PRODUCTION_MONTHLY_QUERY = whereClause => (
+  `results:${ VIEWS[PRODUCTION] }(
+      where: {
+        ${ whereClause }
+      }) {
+      ${ PRODUCT }: ${ DB_COLS[PRODUCT] }
+      ${ COMMODITY_ORDER }: ${ DB_COLS[COMMODITY_ORDER] }
+      ${ LAND_TYPE }: ${ DB_COLS[LAND_TYPE] }
+      ${ STATE_OFFSHORE_NAME }: ${ DB_COLS[STATE_OFFSHORE_NAME] }
+      ${ COUNTY }: ${ DB_COLS[COUNTY_NAME] }
+      ${ MONTH_LONG }: ${ DB_COLS[MONTH_LONG] }
+      ${ ALL_PRODUCTION_MONTHLY_YEARS }
+    }
+    counts:${ VIEWS[PRODUCTION] }_aggregate (
+      where: {
+        ${ whereClause }
+      }
+      ) {
+      aggregate {
+        ${ PRODUCT }:count(columns: ${ DB_COLS[PRODUCT] }, distinct: true)
+        ${ COUNTY }:count(columns: ${ DB_COLS[COUNTY_NAME] }, distinct: true)
+        ${ LAND_TYPE }:count(columns: ${ DB_COLS[LAND_TYPE] }, distinct: true)
+        ${ STATE_OFFSHORE_NAME }:count(columns: ${ DB_COLS[STATE_OFFSHORE_NAME] }, distinct: true)
+        ${ MONTH_LONG }:count(columns: ${ DB_COLS[MONTH_LONG] }, distinct: true)
+      }
+    }`)
 
 const DISBURSEMENT_QUERY = whereClause => (
   `results:${ VIEWS[DISBURSEMENT] }(
@@ -265,10 +294,21 @@ const QUERIES = {
     gql`query GetDataTableRevenue
       (${ getDataFilterVariableList(state, variableConfig) })
       {${ REVENUE_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
-  [PRODUCTION]: (state, variableConfig) =>
-    gql`query GetDataTableProduction
+  [PRODUCTION]: (state, variableConfig) => {
+    if (state[PERIOD] === PERIOD_MONTHLY) {
+      return (
+        gql`query GetDataTableProductionMonthly
+        (${ getDataFilterVariableList(state, variableConfig) })
+        {${ PRODUCTION_MONTHLY_QUERY(getDataFilterWhereClauses(variableConfig)) }}`
+      )
+    }
+    return (
+      gql`query GetDataTableProduction
       (${ getDataFilterVariableList(state, variableConfig) })
-      {${ PRODUCTION_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
+      {${ PRODUCTION_QUERY(getDataFilterWhereClauses(variableConfig)) }}`
+    )
+  }
+,
   [DISBURSEMENT]: (state, variableConfig) => {
     if (state[PERIOD] === PERIOD_MONTHLY) {
       return (

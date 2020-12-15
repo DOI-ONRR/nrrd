@@ -24,7 +24,8 @@ import {
   RECIPIENT,
   COMPANY_NAME,
   PERIOD_MONTHLY,
-  MONTH_LONG
+  MONTH_LONG,
+  MONTHLY
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'
@@ -70,8 +71,11 @@ import {
 } from '@devexpress/dx-react-grid-material-ui'
 
 // @TODO FDix the years issue for the wuery tool, this sux
-const allYears = dataType => {
+const allYears = (dataType, period) => {
   if (dataType === DISBURSEMENT) {
+    return ['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003']
+  }
+  if (dataType === PRODUCTION) {
     return ['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003']
   }
   return ['2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003']
@@ -176,7 +180,7 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
     )
   }
   const [defaultColumnWidths] = useState(columnNames ? getDefaultColumnWidths() : [])
-  const [tableColumnExtensions] = useState(allYears(state.dataType).map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
+  const [tableColumnExtensions] = useState(allYears(state[DATA_TYPE], state[PERIOD]).map(year => ({ columnName: `y${ year }`, align: 'right', wordWrapEnabled: true })))
 
   const getSortingColumns = hiddenCols => {
     if (state[DATA_TYPE] === PRODUCTION) {
@@ -314,7 +318,7 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
 
   const getHiddenColumns = () => {
     let yearColumns = []
-    const periodYear = (state[PERIOD] === PERIOD_FISCAL_YEAR || state[PERIOD] === PERIOD_MONTHLY) ? FISCAL_YEAR : CALENDAR_YEAR
+    const periodYear = (state[PERIOD] === PERIOD_FISCAL_YEAR) ? FISCAL_YEAR : CALENDAR_YEAR
     if (state[periodYear]) {
       let years = state[periodYear].split(',')
       years = years.map(item => `y${ item }`)

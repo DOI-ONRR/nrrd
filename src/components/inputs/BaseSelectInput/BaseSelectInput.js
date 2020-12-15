@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   },
   formHelperTextRoot: {
     fontSize: '.75rem',
-    '& $disabled': {
+    '& disabled': {
       fontSize: '.75rem',
     },
   },

@@ -93,13 +93,14 @@ const initialState = {
         [GROUP_BY_STICKY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
-        [CALENDAR_YEAR]: '2014,2015,2016,2017,2018'
+        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019'
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
+        [CALENDAR_YEAR]: '2018,2019,2020'
       },
       [REVENUE_BY_COMPANY]: {
         [DATA_TYPE]: REVENUE_BY_COMPANY,
