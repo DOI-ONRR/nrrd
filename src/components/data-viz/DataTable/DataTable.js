@@ -151,7 +151,6 @@ const EnhancedDataTable = withQueryManager(({ data, showSummaryRow, showOnlySubt
 }, QK_QUERY_TOOL)
 
 const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow }) => {
-  console.log(data)
   const { state, updateDataFilter } = useContext(DataFilterContext)
   const { addDownloadData } = useContext(DownloadContext)
   let columnNames = getColumnNames(data.results[0], state)
