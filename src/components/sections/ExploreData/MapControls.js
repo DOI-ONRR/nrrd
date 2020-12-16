@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   zoomButtonGroupContainer: {
     left: 10,
-    bottom: 70,
+    bottom: 170,
     height: 100,
     position: 'absolute',
     '@media (max-width: 768px)': {
@@ -54,7 +54,7 @@ const MapControls = props => {
         <Button onClick={() => handleClick('remove')} role="button" id="zoom-out" aria-label="Map zoom out">
           <RemoveIcon />
         </Button>
-        <Button onClick={() => handleClick('refresh')} role="button" id="zoom-reset" aria-label="Map reset">
+        <Button onClick={() => handleClick('refresh')} role="button" id="zoomXYZreset" aria-label="Map reset">
           <RefreshIcon />
         </Button>
       </ButtonGroup>

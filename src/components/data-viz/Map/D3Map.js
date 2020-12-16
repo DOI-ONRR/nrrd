@@ -317,12 +317,14 @@ export default class d3Map {
 	  _chart.transition().call(zoom.scaleBy, 0.5)
     })
 
-    d3.select('#zoom-reset').on('click', function () {
+      d3.select('#zoomXYZreset').on('click', function () {
+	  console.debug("--------------------------------------reset-----", zoom.transform)
 	  _chart.transition().duration(750).call(
 	      zoom.transform,
 	      d3.zoomIdentity,
 	      d3.zoomTransform(_chart.node()).invert([width / 2, height / 2])
-	  )
+	 )
+	 
     })
 
     const g = _chart.append('g')
