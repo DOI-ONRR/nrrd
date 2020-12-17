@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import * as d3 from 'd3'
-
+import { useInView } from 'react-intersection-observer'
 import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -67,9 +67,16 @@ const RevenueDetailTrends = props => {
   else if (commodities && commodities.length > 1) {
     commodityText = 'revenue from the selected commodities'
   }
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  })
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: period, year: year, commodities: commodities }
+    variables: { state: state, period: period, year: year, commodities: commodities },
+    skip: inView === false,
+    triggerOnce: true
+
   })
 
   if (loading) return ''
@@ -87,7 +94,7 @@ const RevenueDetailTrends = props => {
   let locData
 
   if (data &&
-      data.revenue_summary.length > 0) {
+	data.revenue_summary.length > 0) {
     periodData = data.period
 
     // set min and max trend years
@@ -121,7 +128,7 @@ const RevenueDetailTrends = props => {
 
     return (
       <>
-        <Box textAlign="center" className={classes.root} key={props.key}>
+        <Box textAlign="center" ref={ref} className={classes.root} key={props.key}>
           <Box component="h2" mt={0} mb={0}>{utils.formatToDollarInt(locData)}</Box>
           <Box component="span" mb={4}>{year && <span>{dataSet} revenue</span>}</Box>
           {sparkData.length > 1 && (
@@ -139,7 +146,7 @@ const RevenueDetailTrends = props => {
     )
   }
   else {
-    return (<span><LocationName location={location} /> has had no federal {commodityText} since 2003.</span>)
+    return (<span ref={ref} ><LocationName location={location} /> has had no federal {commodityText} since 2003.</span>)
   }
 }
 
