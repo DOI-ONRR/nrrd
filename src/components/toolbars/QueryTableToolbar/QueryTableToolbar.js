@@ -24,7 +24,9 @@ import {
   CSV,
   DOWNLOAD_DATA_TABLE,
   PERIOD_TYPES,
-  REVENUE_BY_COMPANY
+  REVENUE_BY_COMPANY,
+  PERIOD_MONTHLY,
+  PERIOD
 } from '../../../constants'
 
 import {
@@ -203,10 +205,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
               : <PeriodFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
             {state.period === PERIOD_FISCAL_YEAR &&
-                <FiscalYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
+              <FiscalYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
-            {state.period === PERIOD_CALENDAR_YEAR &&
-                <CalendarYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
+            {(state.period === PERIOD_CALENDAR_YEAR || state.period === PERIOD_MONTHLY) &&
+              <CalendarYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
           </Box>
           <Box className={classes.toolsWrapper}>
@@ -214,7 +216,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
               <RevenueFilterToolbar />
             }
             {state[DATA_TYPE] === PRODUCTION &&
-              <ProductionFilterToolbar />
+              <ProductionFilterToolbar period={state[PERIOD]} />
             }
             {state[DATA_TYPE] === DISBURSEMENT &&
               <DisbursementFilterToolbar />
@@ -267,11 +269,13 @@ const RevenueFilterToolbar = () => {
   )
 }
 
-const ProductionFilterToolbar = () => {
+const ProductionFilterToolbar = ({ period }) => {
   return (
     <>
       <LandTypeSelectInput />
-      <StateOffshoreSelectInput />
+      {period !== PERIOD_MONTHLY &&
+        <StateOffshoreSelectInput />
+      }
       <ProductSelectInput />
     </>
   )

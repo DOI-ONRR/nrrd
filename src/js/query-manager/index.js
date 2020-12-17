@@ -21,7 +21,8 @@ import {
   SOURCE,
   LOCAL_RECIPIENT,
   COMMODITY_ORDER,
-  COMPANY_NAME
+  COMPANY_NAME,
+  MONTH_LONG
 } from '../../constants'
 
 import {
@@ -74,7 +75,8 @@ export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
   [RECIPIENT]: 'recipient',
   [SOURCE]: 'source',
   [LOCAL_RECIPIENT]: 'local_recipient',
-  [COMPANY_NAME]: 'corporate_name'
+  [COMPANY_NAME]: 'corporate_name',
+  [MONTH_LONG]: 'month_long'
 }
 
 /**
