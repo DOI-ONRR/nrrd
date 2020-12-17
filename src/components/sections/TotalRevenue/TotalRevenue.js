@@ -123,7 +123,18 @@ const TotalRevenue = props => {
   const revenueComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
-  const yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
+  let yOrderBy
+  switch (breakoutBy) {
+  case 'revenue_type':
+    yOrderBy = ['Royalties', 'Bonus', 'Rents', 'Other Revenues', 'Inspection Fees', 'Civil Penalties']
+    break
+  case 'commodity':
+    yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
+    break
+  default:
+    yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
+    break
+  }
 
   const { loading, error, data } = useQuery(TOTAL_REVENUE_QUERY)
 
@@ -140,7 +151,7 @@ const TotalRevenue = props => {
   let comparisonData
   let xAxis
   const yAxis = 'sum'
-  const yGroupBy = breakoutBy || 'source'
+  const yGroupBy = breakoutBy || DFC.SOURCE
   let xLabels = 'month'
   const units = 'dollars'
   let maxFiscalYear
@@ -159,8 +170,6 @@ const TotalRevenue = props => {
     maxPeriodDate = data.total_monthly_last_twelve_revenue.reduce((prev, current) => {
       return (prev.period_date > current.period_date) ? prev.period_date : current.period_date
     })
-
-    console.log('maxPeriodDate: ', (maxPeriodDate > '2018-12-01'))
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -199,15 +208,40 @@ const TotalRevenue = props => {
     }
     else {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
-        comparisonData = data.total_yearly_fiscal_revenue
-        chartData = data.total_yearly_fiscal_revenue.filter(item => item.year >= maxFiscalYear - 9)
+        switch (yGroupBy) {
+        case 'revenue_type':
+          comparisonData = data.total_yearly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
+          chartData = data.total_yearly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.revenue_type)))
+          break
+        case 'commodity':
+          comparisonData = data.total_yearly_fiscal_revenue.filter(item => yOrderBy.includes(item.commodity))
+          chartData = data.total_yearly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.commodity)))
+          break
+        default:
+          comparisonData = data.total_yearly_fiscal_revenue
+          chartData = data.total_yearly_fiscal_revenue.filter(item => item.year >= maxFiscalYear - 9)
+          break
+        }
         xGroups[DFC.PERIOD_FISCAL_YEAR] = chartData.map((row, i) => row.year)
       }
       else {
-        comparisonData = data.total_yearly_calendar_revenue
-        chartData = data.total_yearly_calendar_revenue.filter(item => item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9)
-        xGroups[DFC.PERIOD_CALENDAR_YEAR] = chartData.map((row, i) => row.year)
+        switch (yGroupBy) {
+        case 'revenue_type':
+          comparisonData = data.total_yearly_calendar_revenue.filter(item => yOrderBy.includes(item.revenue_type))
+          chartData = data.total_yearly_calendar_revenue.filter(item => item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.revenue_type))
+          break
+        case 'commodity':
+          comparisonData = data.total_yearly_calendar_revenue.filter(item => yOrderBy.includes(item.commodity))
+          chartData = data.total_yearly_calendar_revenue.filter(item => item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.commodity))
+          break
+        default:
+          comparisonData = data.total_yearly_calendar_revenue
+          chartData = data.total_yearly_calendar_revenue.filter(item => item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9)
+          break
+        }
       }
+      xGroups[DFC.PERIOD_CALENDAR_YEAR] = chartData.map((row, i) => row.year)
+
       xAxis = 'year'
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
@@ -230,6 +264,7 @@ const TotalRevenue = props => {
         </Grid>
         <Grid item xs={12} md={7}>
           <StackedBarChart
+            key={`sbc__${ monthly }${ period }${ breakoutBy }`}
             data={chartData}
             legendFormat={v => utils.formatToDollarInt(v)}
             title={chartTitle}
@@ -245,12 +280,13 @@ const TotalRevenue = props => {
             secondaryColor={theme.palette.chart.secondary}
             handleBarHover={handleBarHover}
           />
-          <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
+          <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
             <Link href='/downloads/revenue-by-month/'>Source file</Link>
           </Box>
         </Grid>
         <Grid item xs={12} md={5}>
           <ComparisonTable
+            key={`ct__${ monthly }${ period }${ breakoutBy }`}
             ref={revenueComparison}
             data={comparisonData}
             yGroupBy={yGroupBy}

@@ -100,6 +100,8 @@ const TotalProduction = props => {
   let xGroups = {}
   let legendHeaders
 
+  console.log('TotalProduction init commodity: ', commodity)
+
   if (loading) {
     return 'Loading...'
   }
@@ -256,7 +258,7 @@ const TotalProduction = props => {
                 handleBarHover={handleBarHover}
               />
             }
-            <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
+            <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
               <Link href='/downloads/production-by-month/'>Source file</Link>
             </Box>
           </Grid>

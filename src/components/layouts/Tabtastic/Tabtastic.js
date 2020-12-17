@@ -1,9 +1,12 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useContext, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Box, Tabs, Tab } from '@material-ui/core'
+
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   tabsRoot: {},
@@ -90,6 +93,7 @@ const Tabtastic = props => {
   const selectedParams = urlParams.get('tab')
 
   const { children } = props
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const [selected, setSelected] = useState(selectedParams || '')
   const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -111,6 +115,8 @@ const Tabtastic = props => {
     const formattedLabel = formatTabLabel(selectedChild.props.label)
 
     setSelected(formattedLabel)
+
+    updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedChild.props.label })
 
     navigate(`?tab=${ formattedLabel }`)
   }

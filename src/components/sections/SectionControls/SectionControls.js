@@ -71,7 +71,7 @@ const SectionControls = props => {
     ],
     [DFC.BREAKOUT_BY]: [
       { value: 'source', option: 'Source' },
-      { value: 'revenue', option: 'Revenue Type' },
+      { value: 'revenue_type', option: 'Revenue Type' },
       { value: 'commodity', option: 'Commodity' }
     ],
     [DFC.COMMODITY]: [

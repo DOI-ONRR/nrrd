@@ -176,7 +176,7 @@ const TotalDisbursements = props => {
             legendHeaders={legendHeaders}
             handleBarHover={handleBarHover}
           />
-          <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
+          <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
             { (monthly === DFC.MONTHLY_CAPITALIZED)
               ? <Link href='/downloads/disbursements-by-month/'>Source file</Link>
               : <Link href='/downloads/disbursements/'>Source file</Link>

@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useState, useImperativeHandle } from 'react'
+import React, { forwardRef, useContext, useState, useImperativeHandle, useEffect } from 'react'
 
 import {
   Box,
@@ -24,7 +24,7 @@ const ComparisonTable = forwardRef((props, ref) => {
     yGroupBy
   } = props
 
-  console.log('RevenueComparison data: ', data)
+  console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year } = filterState
@@ -32,6 +32,10 @@ const ComparisonTable = forwardRef((props, ref) => {
     month: data[data.length - 1].month_long || '',
     year: data[data.length - 1].year || year
   })
+
+  useEffect(() => {
+    console.log('ComparisonTable selectedItem: ', selectedItem)
+  }, [])
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
@@ -64,8 +68,6 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   // Get previous year
   const previousYear = currentYear - 1
-
-  console.log('previous year yo: ', previousYear)
 
   // Text output
   const month = (monthly === DFC.MONTHLY_CAPITALIZED && selectedItem.month) && selectedItem.month.substring(0, 3)
@@ -160,10 +162,10 @@ const ComparisonTable = forwardRef((props, ref) => {
           </TableBody>
 		      </Table>
 		    </TableContainer>
-      <Box fontStyle="italic" fontSize="h6.fontSize" display="flex" justifyContent="space-between" mt={1}>
+      {/* <Box fontStyle="italic" fontSize="h6.fontSize" display="flex" justifyContent="space-between" mt={1}>
         <Link href='/downloads/revenue-by-month/'>Source file</Link>
         <Link href='/downloads/revenue-by-month/'>Source file</Link>
-      </Box>
+      </Box> */}
     </Box>
 
   )
