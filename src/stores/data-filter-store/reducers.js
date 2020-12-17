@@ -78,14 +78,14 @@ const initialState = {
     [DATA_TYPE]: REVENUE,
     [GROUP_BY]: REVENUE_TYPE,
     [PERIOD]: 'Fiscal Year',
-    [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+    [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
     [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
     dataTypesCache: {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
         [GROUP_BY]: REVENUE_TYPE,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
         [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
       },
       [PRODUCTION]: {
