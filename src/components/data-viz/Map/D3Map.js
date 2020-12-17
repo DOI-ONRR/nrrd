@@ -58,19 +58,24 @@ export default class d3Map {
     this.width = width
     this.chart()
     this.legend()
+    const xyz = window.localStorage.getItem('mapZoom') || ''
+    if (xyz.length > 0) {
+	  const [x, y, z] = xyz.split(/,/)
+	  this.zoom({ x: x, y: y, k: z })
+    }
   }
 
   /**
-   *  The function that does the building of the svg with d3
-   *
-   *  @param {*}  node - the node we are going to build the svg in
-   *  @param {*} us - the topojson json object to be used
-   *  @param {string} [mapFeatures=counties] mapFeatures - A switch to view county data or state data
-   *  @param {string[][]} data - a two dimenstional arrray of fips and data, maybe county or state fips
-   *  @param {string} [colorScheme=green] colorScheme current lets you modify color from red to blue green or gray ;
-   *  @param {*} onClick function that determines what to do if area is clicked
-   *
- */
+     *  The function that does the building of the svg with d3
+     *
+     *  @param {*}  node - the node we are going to build the svg in
+     *  @param {*} us - the topojson json object to be used
+     *  @param {string} [mapFeatures=counties] mapFeatures - A switch to view county data or state data
+     *  @param {string[][]} data - a two dimenstional arrray of fips and data, maybe county or state fips
+     *  @param {string} [colorScheme=green] colorScheme current lets you modify color from red to blue green or gray ;
+     *  @param {*} onClick function that determines what to do if area is clicked
+     *
+     */
 
   legendFormat (value) {
     return (value)
@@ -82,11 +87,10 @@ export default class d3Map {
       const svg = this._chart
       const zoom = this.zoom
       const path = this.path
-      // console.debug('Zoom to :', state)
       svg.selectAll('path')
-        .attr('fill-opacity', 0)
+			 .attr('fill-opacity', 0)
       svg.selectAll(`.${ state }`)
-        .attr('fill-opacity', 9)
+			 .attr('fill-opacity', 9)
       const paths = svg.selectAll('.' + state)
       const bboxes = paths.nodes().map(d => d.getBBox())
       const x0 = d3.min(bboxes.map(d => d.x))
@@ -95,13 +99,15 @@ export default class d3Map {
       const y1 = d3.max(bboxes.map(d => d.y + d.height))
       const width = this.width
       const height = this.height
+
       // const width = x1 - x0
-      // const height = y1 - y0
+      // const height = y1 -
       // console.debug('x0: ', x0, 'y0: ', y0, 'x1: ', x1, 'y1: ', y1, 'width: ', width, 'height: ', height)
       const transform = d3.zoomIdentity
-        .translate(width / 2, height / 2)
-        .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
-        .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
+			    .translate(width / 2, height / 2)
+			  .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
+			    .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
+
       this.zoom(transform)
     }
     catch (err) {
@@ -114,12 +120,11 @@ export default class d3Map {
   }
 
   onZoomEnd (event) {
-    console.debug('transform onZoomEnd', event.transform)
+    // console.debug('transform onZoomEnd', event.transform)
   }
 
   zoom (transform) {
     try {
-	       // console.log('zoom(transform): ', transform)
       if (transform) {
         const _zoom = transform
         this._chart
@@ -251,15 +256,46 @@ export default class d3Map {
     }
 
     const zoom = d3
-      .zoom()
-      .scaleExtent([-32, 32])
-      .on('zoom', zoomed)
-      .on('end', ended)
+	  .zoom()
+	  .scaleExtent([1, 9])
+	  .on('zoom', zoomed)
+	  .on('end', ended)
 
     const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
+    _chart.call(zoom)
+    // this turns on and off zoom
+    let zoomEnabled = false
+    _chart.on('mousedown', (d, i) => {
+	  if (zoomEnabled === false) {
+	      zoomEnabled = true
+	      _chart.call(zoom)
+	  }
+    })
+    _chart.on('mouseleave', (d, i) => {
+	  zoomEnabled = false
+	  _chart.on('.zoom', null)
+    })
+
+    d3.select('#zoom-in').on('click', function () {
+	  _chart.transition().call(zoom.scaleBy, 2)
+    })
+
+    d3.select('#zoom-out').on('click', function () {
+	  _chart.transition().call(zoom.scaleBy, 0.5)
+    })
+
+    d3.select('#zoomXYZreset').on('click', function () {
+	  console.debug('--------------------------------------reset-----', zoom.transform)
+	  _chart.transition().duration(750).call(
+	      zoom.transform,
+	      d3.zoomIdentity,
+	      d3.zoomTransform(_chart.node()).invert([width / 2, height / 2])
+	 )
+    })
 
     const g = _chart.append('g')
-    _chart.call(zoom)
+
+    // _chart.call(zoom)
     // console.debug('US data: ', data)
     // console.debug('objects:', us.objects[mapFeatures], mapFeatures)
     g.selectAll('path')
@@ -394,6 +430,7 @@ export default class d3Map {
         _chart.selectAll('path')
           .style('fill-opacity', 0.9)
       })
+
       .append('title')
       .text(d => `Gulf of Mexico Offshore Region  ${ format(data.get('GMR')) }`).transition().duration(3000)
 
@@ -420,15 +457,17 @@ export default class d3Map {
         _chart.selectAll('path')
           .style('fill-opacity', 0.9)
       })
-      .append('title')
-      .text(d => `Atlantic Offshore Region  ${ format(data.get('AOR')) }`).transition().duration(3000)
+		  .append('title')
+		  .text(d => `Atlantic Offshore Region  ${ format(data.get('AOR')) }`).transition().duration(3000)
 
     _chart.transition().duration(3000)
 
     function zoomed () {
       const sourceEvent = d3.event.sourceEvent
 
-	    if (sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 || sourceEvent.type === 'touchmove') {
+      // console.debug(" source event", sourceEvent,'transsfoirnm', d3.event.transform)
+      // if (sourceEvent && (sourceEvent.type === 'wheel' || sourceEvent.movementX > 0 || sourceEvent.movementY > 0 || sourceEvent.type === 'touchmove')) {
+      if (d3.event && d3.event.transform) {
         g.selectAll('path')
           .attr('transform', d3.event.transform)
 	      onZoom(d3.event)
@@ -436,15 +475,18 @@ export default class d3Map {
 	      self.zoomStarted = true
       }
       else {
-	    // console.log('zoomed(): else ', d3.event, self.zoomStarted)
+	  console.log('zoomed(): else ', d3.event, self.zoomStarted)
       }
     }
+
     function ended () {
       //	  console.log('ended(): outside ', d3.event, self.zoomStarted)
-	  if (self.zoomStarted) {
-	      onZoomEnd(d3.event)
-	      self.zoomStarted = false
-	      // console.log('ended(): ', d3.event)
+      if (self.zoomStarted) {
+	    const transform = d3.event.transform
+	  window.localStorage.setItem('mapZoom', transform.x + ',' + transform.y + ',' + transform.k)
+	    onZoomEnd(d3.event)
+	    self.zoomStarted = false
+	    // console.log('ended(): ', d3.event)
 	  }
     }
 
