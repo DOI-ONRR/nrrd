@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
@@ -14,17 +14,24 @@ import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import SectionHeader from '../../sections/SectionHeader'
 import SectionControls from '../../sections/SectionControls'
 import Link from '../../../components/Link'
+import ComparisonTable from '../ComparisonTable'
 
 import utils from '../../../js/utils'
 
 const TOTAL_PRODUCTION_QUERY = gql`
   query TotalYearlyProduction {
-    total_yearly_fiscal_production {
+    # total_yearly_fiscal_production {
+    #   product,
+    #   year,
+    #   source,
+    #   sum
+    # }
+    total_yearly_fiscal_production: total_yearly_fiscal_production_2 {
       product,
       year,
       source,
       sum
-    }   
+    }  
 
     total_yearly_calendar_production {
       product,
@@ -70,14 +77,20 @@ const TotalProduction = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const { monthly, period, commodity } = filterState
   const [selected, setSelected] = useState(undefined)
+  const productionComparison = useRef(null)
 
   const handleSelect = value => {
     setSelected(value.selectedIndex)
   }
 
+  const handleBarHover = d => {
+    productionComparison.current.setSelectedItem(d)
+  }
+
   const { loading, error, data } = useQuery(TOTAL_PRODUCTION_QUERY)
 
   let chartData
+  let comparisonData
   let xAxis = 'year'
   const yAxis = 'sum'
   const yGroupBy = 'source'
@@ -135,7 +148,8 @@ const TotalProduction = props => {
     }
     else {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
-        chartData = data.total_yearly_fiscal_production
+        comparisonData = data.total_yearly_fiscal_production
+        chartData = data.total_yearly_fiscal_production.filter(item => item.year >= maxFiscalYear - 9)
         xGroups['Fiscal Year'] = chartData.filter(row => row.product === 'Oil (bbl)').map((row, i) => row.year)
       }
       else {
@@ -164,7 +178,7 @@ const TotalProduction = props => {
               dataType={DFC.PRODUCTION}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={7}>
             {commodity === 'Oil (bbl)' &&
               <StackedBarChart
                 title={'Oil (bbl)'}
@@ -180,6 +194,7 @@ const TotalProduction = props => {
                 units='bbl'
                 showLegendUnits
                 legendHeaders={legendHeaders}
+                handleBarHover={handleBarHover}
               />
             }
             {commodity === 'Gas (mcf)' &&
@@ -204,6 +219,7 @@ const TotalProduction = props => {
                 units='mcf'
                 showLegendUnits
                 legendHeaders={legendHeaders}
+                handleBarHover={handleBarHover}
               />
             }
             {commodity === 'Coal (tons)' &&
@@ -233,8 +249,16 @@ const TotalProduction = props => {
                 units='tons'
                 showLegendUnits
                 legendHeaders={legendHeaders}
+                handleBarHover={handleBarHover}
               />
             }
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <ComparisonTable
+              ref={productionComparison}
+              data={comparisonData}
+              yGroupBy={yGroupBy}
+            />
           </Grid>
         </Grid>
         <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
