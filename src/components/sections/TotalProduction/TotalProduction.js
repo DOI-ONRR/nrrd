@@ -256,6 +256,9 @@ const TotalProduction = props => {
                 handleBarHover={handleBarHover}
               />
             }
+            <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
+              <Link href='/downloads/production-by-month/'>Source file</Link>
+            </Box>
           </Grid>
           <Grid item xs={12} md={5}>
             <ComparisonTable
@@ -265,9 +268,6 @@ const TotalProduction = props => {
             />
           </Grid>
         </Grid>
-        <Box fontStyle="italic" textAlign="right" fontSize="h6.fontSize">
-          <Link href='/downloads/production-by-month/'>Source file</Link>
-        </Box>
       </>
     )
   }
