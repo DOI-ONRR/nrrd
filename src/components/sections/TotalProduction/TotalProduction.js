@@ -116,12 +116,15 @@ const TotalProduction = props => {
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
+        comparisonData = data.total_monthly_fiscal_production
         chartData = data.total_monthly_fiscal_production
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
+        comparisonData = data.total_monthly_calendar_production
         chartData = data.total_monthly_calendar_production
       }
       else {
+        comparisonData = data.total_monthly_last_twelve_production
         chartData = data.total_monthly_last_twelve_production
       }
 
@@ -153,6 +156,7 @@ const TotalProduction = props => {
         xGroups['Fiscal Year'] = chartData.filter(row => row.product === 'Oil (bbl)').map((row, i) => row.year)
       }
       else {
+        comparisonData = data.total_yearly_calendar_production
         chartData = data.total_yearly_calendar_production
         xGroups['Calendar Year'] = chartData.filter(row => row.product === 'Oil (bbl)').map((row, i) => row.year)
       }
