@@ -107,10 +107,10 @@ const TOTAL_REVENUE_QUERY = gql`
       period_date
       month
       year
-      # revenue_type
-      # sort_order
-      # commodity_order
-      # commodity
+      revenue_type
+      sort_order
+      commodity_order
+      commodity
     }
   }
 `
@@ -173,17 +173,53 @@ const TotalRevenue = props => {
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
-        comparisonData = data.total_monthly_fiscal_revenue
-        chartData = data.total_monthly_fiscal_revenue.filter(item => item.year >= maxFiscalYear)
+        switch (yGroupBy) {
+        case 'revenue_type':
+          comparisonData = data.total_monthly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
+          chartData = data.total_monthly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear && yOrderBy.includes(item.revenue_type)))
+          break
+        case 'commodity':
+          comparisonData = data.total_monthly_fiscal_revenue.filter(item => yOrderBy.includes(item.commodity))
+          chartData = data.total_monthly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear && yOrderBy.includes(item.commodity)))
+          break
+        default:
+          comparisonData = data.total_monthly_fiscal_revenue
+          chartData = data.total_monthly_fiscal_revenue.filter(item => item.year >= maxFiscalYear)
+          break
+        }
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
-        comparisonData = data.total_monthly_calendar_revenue
-        chartData = data.total_monthly_calendar_revenue.filter(item => item.year >= maxCalendarYear)
+        switch (yGroupBy) {
+        case 'revenue_type':
+          comparisonData = data.total_monthly_calendar_revenue.filter(item => yOrderBy.includes(item.revenue_type))
+          chartData = data.total_monthly_calendar_revenue.filter(item => (item.year >= maxCalendarYear && yOrderBy.includes(item.revenue_type)))
+          break
+        case 'commodity':
+          comparisonData = data.total_monthly_calendar_revenue.filter(item => yOrderBy.includes(item.commodity))
+          chartData = data.total_monthly_calendar_revenue.filter(item => (item.year >= maxCalendarYear && yOrderBy.includes(item.commodity)))
+          break
+        default:
+          comparisonData = data.total_monthly_calendar_revenue
+          chartData = data.total_monthly_calendar_revenue.filter(item => item.year >= maxCalendarYear)
+          break
+        }
       }
       else {
-        comparisonData = data.total_monthly_last_twenty_four_revenue
-        chartData = data.total_monthly_last_twelve_revenue
-	      console.debug('monthly last chart Data: ', data.total_monthly_last_twelve_revenue)
+        switch (yGroupBy) {
+        case 'revenue_type':
+          comparisonData = data.total_monthly_last_twenty_four_revenue.filter(item => yOrderBy.includes(item.revenue_type))
+          chartData = data.total_monthly_last_twenty_four_revenue.filter(item => (item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.revenue_type)))
+          break
+        case 'commodity':
+          comparisonData = data.total_monthly_last_twenty_four_revenue.filter(item => yOrderBy.includes(item.commodity))
+          chartData = data.total_monthly_last_twenty_four_revenue.filter(item => (item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.commodity)))
+          break
+        default:
+          comparisonData = data.total_monthly_last_twenty_four_revenue
+          chartData = data.total_monthly_last_twenty_four_revenue.filter(item => item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9)
+	        console.debug('monthly last chart Data: ', data.total_monthly_last_twelve_revenue)
+          break
+        }
       }
 
       xGroups = chartData.reduce((g, row, i) => {
