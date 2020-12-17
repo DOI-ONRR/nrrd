@@ -1,61 +1,44 @@
 import React from 'react'
 
-import { makeStyles, ThemeProvider, useTheme } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import GridList from '@material-ui/core/GridList'
-import GridListTile from '@material-ui/core/GridListTile'
-import GridListTileBar from '@material-ui/core/GridListTileBar'
-import ListSubheader from '@material-ui/core/ListSubheader'
-import IconButton from '@material-ui/core/IconButton'
-import InfoIcon from '@material-ui/icons/Info'
 
-import theme from '../../../js/mui/theme'
-
+import PatternLibraryCard from '../PatternLibraryCard'
+import CodeBlock from '../CodeBlock'
 import * as Images from '../../images'
 
-const useStyles = makeStyles(theme => ({
-  gridList: {
-    width: '100%',
-    height: 450,
-    border: '1px solid #e0e0e0',
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
-  titleBar: {
-    height: '50px',
-    backgroundColor: 'rgba(96, 136, 168, 0.7)',
-  },
-}))
+const IconographyDisplay = ({ children }) => {
+  const content = (Array.isArray(children)) ? children : [children]
 
-const IconographyDisplay = () => {
-  const patternLibraryTheme = useTheme()
-  const classes = useStyles(patternLibraryTheme)
+  const getNotes = key => content.filter(child => child?.props.noteKeys?.includes(key))
+
+  const IconographyContextDisplay = ({ imageKey }) => {
+    return (
+      <CodeBlock key={`code-block-${ imageKey }`} live={true}>
+        {`<${ imageKey } />`}
+      </CodeBlock>
+    )
+  }
 
   return (
-    <Box m={2} p={1}>
-      <Grid container>
-        <Grid item xs={12}>
-          <GridList cellHeight={180} className={classes.gridList} cols={5}>
-            {Object.keys(Images).map(key => {
-              const ImageComponent = Images[key]
-              return (
-                <GridListTile key={key}>
-                  <ThemeProvider theme={theme}>
-                    <ImageComponent />
-                  </ThemeProvider>
-                  <GridListTileBar
-                    subtitle={key}
-                    className={classes.titleBar}
-                  />
-                </GridListTile>
-              )
-            })}
-          </GridList>
-        </Grid>
-      </Grid>
-    </Box>
+    <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
+      {
+        Object.keys(Images).map(key => {
+          const ImageComponent = Images[key]
+          const notes = getNotes(key)
+
+          return (
+            <Grid item key={key} xs={12} sm={4} md={3}>
+              <PatternLibraryCard
+                title={`${ key }`}
+                notes={(notes.length > 0) ? notes : undefined}
+                contexts={<IconographyContextDisplay imageKey={key} />}>
+                <ImageComponent />
+              </PatternLibraryCard>
+            </Grid>
+          )
+        })
+      }
+    </Grid>
   )
 }
 

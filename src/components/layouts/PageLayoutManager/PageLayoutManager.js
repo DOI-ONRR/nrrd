@@ -21,7 +21,7 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
 
   if (layout === 'pattern-library' || location.pathname.includes('/patterns')) {
     const pageTitle = title || (pageContext.componentMetadata && `Pattern Library - ${ pageContext.componentMetadata.displayName }`)
-    console.log(pageTitle, title)
+
     return (
       <PatternLibraryLayout path={location.pathname}>
         <SEO title={pageTitle} keywords={keywords} />

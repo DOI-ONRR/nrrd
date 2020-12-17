@@ -10,9 +10,12 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 import Collapse from '@material-ui/core/Collapse'
+import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles(theme => ({
   cardHeaderRoot: {
+    color: '#fff',
+    backgroundColor: '#455a6b',
     '& span': {
       margin: 0,
       textAlign: 'center'
@@ -30,20 +33,21 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const PatternLibraryCardNotes = () => {
-  return (
-    <div>PatternLibraryCardNotes</div>
-  )
-}
-
-const PatternLibraryCard = ({ title, notes, context, children }) => {
+const PatternLibraryCard = ({ title, notes, contexts, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
   const [expandedNotes, setExpandedNotes] = React.useState(false)
-  const handleExpandNotesClick = () => setExpandedNotes(!expandedNotes)
+  const handleExpandNotesClick = () => {
+    setExpandedNotes(!expandedNotes)
+    setExpandedContext(false)
+  }
+  const [expandedContexts, setExpandedContext] = React.useState(false)
+  const handleExpandContextClick = () => {
+    setExpandedContext(!expandedContexts)
+    setExpandedNotes(false)
+  }
 
-  console.log(notes)
   return (
     <Card>
       <CardHeader
@@ -68,7 +72,7 @@ const PatternLibraryCard = ({ title, notes, context, children }) => {
           classes={{
             root: classes.cardButtonRoot
           }}
-          onClick={handleExpandNotesClick} hj
+          onClick={handleExpandNotesClick}
           disabled={!notes}
           aria-expanded={expandedNotes}
           aria-label="show notes"
@@ -80,14 +84,28 @@ const PatternLibraryCard = ({ title, notes, context, children }) => {
           classes={{
             root: classes.cardButtonRoot
           }}
-          disabled={!context}
+          onClick={handleExpandContextClick}
+          disabled={!contexts}
+          aria-expanded={expandedContexts}
+          aria-label="show context"
         >
           Context
         </Button>
-        {notes &&
-          <Collapse in={expandedNotes} timeout="auto" unmountOnExit></Collapse>
-        }
       </CardActions>
+      {notes &&
+        <Collapse in={expandedNotes} timeout="auto" unmountOnExit>
+          <Box p={2}>
+            {notes}
+          </Box>
+        </Collapse>
+      }
+      {contexts &&
+        <Collapse in={expandedContexts} timeout="auto" unmountOnExit>
+          <Box p={2}>
+            {contexts}
+          </Box>
+        </Collapse>
+      }
     </Card>
   )
 }

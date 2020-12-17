@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+/**
+ * This is to display and format a title for a chart
+ */
 const ChartTitle = props => {
   const classes = useStyles()
 
@@ -24,3 +27,10 @@ const ChartTitle = props => {
 }
 
 export default ChartTitle
+
+export const ChartTitleDemos = [
+  {
+    title: 'Example',
+    code: '<ChartTitle>This is the chart title</ChartTitle>',
+  }
+]

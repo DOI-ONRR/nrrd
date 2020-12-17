@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+
 import { isEqual, isEqualWith } from 'lodash'
 
 import { formatToSlug } from '../../../js/utils'
@@ -38,6 +40,14 @@ const useStyles = makeStyles(theme => ({
 const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, disabled, ...props }) => {
   const noop = () => {}
   const classes = useStyles()
+
+  if (data && data.length > 0 && !data[0].option) {
+    data = data.map(item => ({ option: item }))
+  }
+  else if (!data) {
+    data = []
+  }
+
   /**
    * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
    * If not it will check to see if an option has been set as default = true
@@ -84,7 +94,6 @@ const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, di
     return (<></>)
   }
 
-  console.log(props)
   return (
     <Autocomplete
       disableListWrap
@@ -133,3 +142,15 @@ const areEqual = (prevProps, nextProps) => {
 }
 
 export default React.memo(BaseSearchSelect, areEqual)
+
+BaseSearchSelect.propTypes = {
+  /** Text that displays on the component */
+  data: PropTypes.array,
+}
+
+export const BaseSearchSelectDemos = [
+  {
+    title: 'Simple',
+    code: '<BaseSearchSelect label="Simple Items" data={["item 1", "something else", "more stuff"]} />',
+  }
+]

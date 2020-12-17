@@ -28,8 +28,11 @@ const useLinkStyles = makeStyles(theme => ({
     whiteSpace: 'nowrap'
   },
 }))
-
-const BaseButtonInput = ({ onClick, label, variant, styleType, classes, disabled, ...props }) => {
+/**
+ * This is the base of all button inputs on the site
+ *
+ */
+const BaseButtonInput = ({ onClick, children, variant, styleType, classes, disabled, ...props }) => {
   const theme = useTheme()
   const defaultStyles = useDefaultStyles(theme)
   const linkStyles = useLinkStyles(theme)
@@ -46,45 +49,54 @@ const BaseButtonInput = ({ onClick, label, variant, styleType, classes, disabled
 
   const noop = () => {}
 
+  const SingleButton = ({ onClick, classes, disabled, children, ...props }) => {
+    const labelSlug = children ? formatToSlug(children) : undefined
+
+    const handleOnClick = event => {
+      onClick(event)
+    }
+
+    return (
+      <Button
+        id={labelSlug}
+        classes={{
+          root: classes.root
+        }}
+        onClick={handleOnClick}
+        {...props} >
+        {children}
+      </Button>
+    )
+  }
+
   return (
     <>
       <SingleButton
-        label={label}
         variant={variant}
         onClick={onClick || noop}
         classes={getClasses()}
         disabled={disabled}
-        {...props}/>
+        {...props}>
+        {children}
+      </SingleButton>
     </>
   )
 }
 
 BaseButtonInput.propTypes = {
-  /**
-   * Text that displays on the component
-   */
-  label: PropTypes.string,
+  /** Text that displays on the button */
+  styleType: PropTypes.oneOf(['link']),
 }
 
 export default BaseButtonInput
 
-const SingleButton = ({ label, onClick, classes, disabled, children, ...props }) => {
-  const labelSlug = label ? formatToSlug(label) : undefined
-
-  const handleOnClick = event => {
-    onClick(event)
+export const BaseButtonInputDemos = [
+  {
+    title: 'Simple Button',
+    code: '<BaseButtonInput>Click me</BaseButtonInput>',
+  },
+  {
+    title: 'Link Style Button',
+    code: '<BaseButtonInput styleType="link">Click me</BaseButtonInput>',
   }
-
-  return (
-    <Button
-      id={labelSlug}
-      classes={{
-        root: classes.root
-      }}
-      onClick={handleOnClick}
-      {...props} >
-      {label}
-      {children}
-    </Button>
-  )
-}
+]

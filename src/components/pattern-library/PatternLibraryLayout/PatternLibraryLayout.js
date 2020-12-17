@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const palette = {
-  background: { default: '#ffffff' },
+  background: { default: '#82a5c2' },
   text: {
     primary: '#000000',
     secondary: '#1478a6'
@@ -178,7 +178,7 @@ const theme = createMuiTheme({ palette, typography, overrides })
 const PatternLibraryLayout = ({ path, children }) => {
   const [componentsAnchorEl, setComponentsAnchorEl] = React.useState(null)
   const handleComponentsClick = event => {
-    setComponentsAnchorEl(event.currentTarget)
+    setComponentsAnchorEl(null)
     setCurrentPath(event.currentTarget.value)
   }
   const handleVisualStylesClick = event => {
@@ -217,7 +217,6 @@ const PatternLibraryLayout = ({ path, children }) => {
   const [currentPath, setCurrentPath] = React.useState(getCurrentPath())
 
   const pageTitle = 'NRRD Pattern Library'
-  console.log(currentPath)
 
   return (
     <>
@@ -230,8 +229,8 @@ const PatternLibraryLayout = ({ path, children }) => {
             </Typography>
             <ToggleButtonGroup value={currentPath} aria-label="button group for visual and component pages">
               <ToggleButton value='visual' className={classes.links} onClick={handleVisualStylesClick}><Link to='/patterns/visual-styles'>Visual Styles</Link></ToggleButton>
-              <ToggleButton value='components' onClick={handleComponentsClick}>Components</ToggleButton>
-              <Menu
+              <ToggleButton value='components' className={classes.links} onClick={handleComponentsClick}><Link to='/patterns/components/?type=cards'>Components</Link></ToggleButton>
+              {/* <Menu
                 id="simple-menu"
                 anchorEl={componentsAnchorEl}
                 keepMounted
@@ -246,7 +245,7 @@ const PatternLibraryLayout = ({ path, children }) => {
                       </Link>
                     </MenuItem>)
                 }
-              </Menu>
+              </Menu> */}
             </ToggleButtonGroup>
             <div className={classes.grow} />
             <div className={classes.search}>

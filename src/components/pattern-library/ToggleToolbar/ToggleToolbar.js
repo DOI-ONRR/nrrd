@@ -36,7 +36,11 @@ const useStyles = makeStyles(theme => ({
 const ToggleToolbar = ({ buttons, ...rest }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
-  const [section] = React.useState(slugify((typeof window !== 'undefined') ? window.location.pathname : ''))
+  let [section] = React.useState(slugify((typeof window !== 'undefined') ? window.location.pathname : ''))
+  const url = (typeof window !== 'undefined') && new URL(window.location.href)
+  if (url && url.searchParams.get('type')) {
+    section += 'type' + url.searchParams.get('type')
+  }
 
   return (
     <Box mt={2}>
@@ -49,6 +53,7 @@ const ToggleToolbar = ({ buttons, ...rest }) => {
             buttons.map(button => {
               const label = Object.keys(button)[0]
               const relativeUrl = button[label]
+
               return (
                 <ToggleButton
                   key={label}
