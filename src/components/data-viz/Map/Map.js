@@ -143,17 +143,17 @@ const Map = props => {
   const onZoom = props.onZoom_d || function () {
     console.debug('Map onZoom default')
   }
-    const disableMapControls = props.disableMapControls || false
-    const onZoomEnd = props.onZoomEnd_d || function () {
-	console.debug('Map onZoomEnd default')
+  const disableMapControls = props.disableMapControls || false
+  const onZoomEnd = props.onZoomEnd_d || function () {
+    console.debug('Map onZoomEnd default')
   }
-    const zoomIn = props.zoomIn_d || function () {
+  const zoomIn = props.zoomIn_d || function () {
     console.debug('Map zoomIn default')
   }
   const mapZoom = props.mapZoom
   const mapX = props.mapX
   const mapY = props.mapY
-    
+
   const { mapData, ...options } = props
   // console.debug("Map Data: ", mapData)
   let map
@@ -224,11 +224,11 @@ const Map = props => {
       <div className='mapContainer' ref={elemRef}>
         <div className='legendWrap'></div>
         <div className='map'></div>
-	{ ! disableMapControls &&
-          <MapControls handleClick={(d) => {
-	      console.log("handling click: ", d)
+        { !disableMapControls &&
+          <MapControls handleClick={d => {
+	      console.log('handling click: ', d)
 	  }}/>
-	}
+        }
       </div>
     </Box>
   )

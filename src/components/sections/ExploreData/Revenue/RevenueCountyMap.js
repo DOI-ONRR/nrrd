@@ -164,7 +164,7 @@ const RevenueCountyMap = props => {
           mapData={mapData}
           minColor={props.minColor}
           maxColor={props.maxColor}
-            zoomTo={props.fipsCode}
+          zoomTo={props.fipsCode}
 	  disableMapControls={true}
         />
 	   </Box>

@@ -41,33 +41,31 @@ export default class d3Map {
     if (options.colorRange) {
       this.colorRange = options.colorRange
     }
-      
 
-
-      this.zoomStarted = false
-      this.node = node
-      this.us = us
-      this.mapFeatures = mapFeatures
-      this.data = data
-      this.colorScheme = colorScheme
-      this.onClick = onClick
-      this.minColor = minColor
-      this.maxColor = maxColor
-      this.mapZ = mapZ
-      this.mapX = mapX
-      this.mapY = mapY
-      this.labels = true
-      this.width = width
-      this.chart()
-      this.legend()
-      let xyz=this.getCookie('mapZoom')
-      if(xyz.length > 0 ) {
+    this.zoomStarted = false
+    this.node = node
+    this.us = us
+    this.mapFeatures = mapFeatures
+    this.data = data
+    this.colorScheme = colorScheme
+    this.onClick = onClick
+    this.minColor = minColor
+    this.maxColor = maxColor
+    this.mapZ = mapZ
+    this.mapX = mapX
+    this.mapY = mapY
+    this.labels = true
+    this.width = width
+    this.chart()
+    this.legend()
+    const xyz = window.localStorage.getItem('mapZoom') || ''
+    if (xyz.length > 0) {
 	  const [x, y, z] = xyz.split(/,/)
-	  this.zoom({x: x, y: y, k: z})
-      }
+	  this.zoom({ x: x, y: y, k: z })
+    }
   }
 
-    /**
+  /**
      *  The function that does the building of the svg with d3
      *
      *  @param {*}  node - the node we are going to build the svg in
@@ -79,39 +77,10 @@ export default class d3Map {
      *
      */
 
-    legendFormat (value) {
+  legendFormat (value) {
     return (value)
-    }
-    
-    getCookie(cname) {
-	var name = cname + "=";
-	var decodedCookie = decodeURIComponent(document.cookie);
-	var ca = decodedCookie.split(';');
-	for(var i = 0; i <ca.length; i++) {
-	    var c = ca[i];
-	    while (c.charAt(0) == ' ') {
-		c = c.substring(1);
-	    }
-	    if (c.indexOf(name) == 0) {
-		return c.substring(name.length, c.length);
-	    }
-	}
-	return "";
-    }
+  }
 
-    setCookie(cname, cvalue, exdays) {
-	var cookie=''
-	cookie = cname + "=" + cvalue
-	if(exdays > 0 ) {
-	    var d = new Date();
-	    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-	    var expires = "expires="+ d.toUTCString();
-	    cookie+= expires
-	}
-	
-	document.cookie = cookie
-    }
-    
   zoomTo (state) {
     try {
       const us = this.us
@@ -204,9 +173,7 @@ export default class d3Map {
     const vheight = height //* 1.5
     const _zoom = this._zoom
     const onZoom = this.onZoom
-      const onZoomEnd = this.onZoomEnd
-      const setCookie = this.setCookie
-      
+    const onZoomEnd = this.onZoomEnd
 
     if (node.children[1].children[0]) {
       this._chart = d3.select(node.children[1].children[0])
@@ -317,21 +284,20 @@ export default class d3Map {
 	  _chart.transition().call(zoom.scaleBy, 0.5)
     })
 
-      d3.select('#zoomXYZreset').on('click', function () {
-	  console.debug("--------------------------------------reset-----", zoom.transform)
+    d3.select('#zoomXYZreset').on('click', function () {
+	  console.debug('--------------------------------------reset-----', zoom.transform)
 	  _chart.transition().duration(750).call(
 	      zoom.transform,
 	      d3.zoomIdentity,
 	      d3.zoomTransform(_chart.node()).invert([width / 2, height / 2])
 	 )
-	 
     })
 
     const g = _chart.append('g')
 
-     //_chart.call(zoom)
+    // _chart.call(zoom)
     // console.debug('US data: ', data)
-    //console.debug('objects:', us.objects[mapFeatures], mapFeatures)
+    // console.debug('objects:', us.objects[mapFeatures], mapFeatures)
     g.selectAll('path')
       .data(topojson.feature(us, us.objects[mapFeatures]).features)
       .join('path')
@@ -515,9 +481,9 @@ export default class d3Map {
 
     function ended () {
       //	  console.log('ended(): outside ', d3.event, self.zoomStarted)
-	if (self.zoomStarted) {
-	    let transform=d3.event.transform
-	    setCookie('mapZoom', transform.x+','+transform.y+','+transform.k)
+      if (self.zoomStarted) {
+	    const transform = d3.event.transform
+	  window.localStorage.setItem('mapZoom', transform.x + ',' + transform.y + ',' + transform.k)
 	    onZoomEnd(d3.event)
 	    self.zoomStarted = false
 	    // console.log('ended(): ', d3.event)
