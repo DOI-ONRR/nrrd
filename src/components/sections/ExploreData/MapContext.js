@@ -55,23 +55,6 @@ const useStyles = makeStyles(theme => ({
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
     zIndex: 1,
-    '& .map-overlay': {
-      left: '0',
-      right: '0',
-      width: '100%',
-      height: '100%',
-      bottom: '0',
-      top: '0',
-      transition: '.3s ease',
-      opacity: 0,
-    },
-    '& .map-overlay.active': {
-      position: 'absolute',
-      backgroundColor: 'rgba(0, 0, 0, .3)',
-      zIndex: '300',
-      pointerEvents: 'all',
-      opacity: 1,
-    }
   },
   mapWrapper: {
     width: '100%',
@@ -280,7 +263,7 @@ const MapContext = props => {
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   const { state: filterState } = useContext(DataFilterContext)
-  const { state: pageState, updateExploreDataCards, updateExploreDataMapZoom } = useContext(ExploreDataContext)
+  const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
 
   const cards = pageState.cards
 
@@ -295,50 +278,12 @@ const MapContext = props => {
     year: StringParam,
   })
 
-  const [mapOverlay, setMapOverlay] = useState(false)
-  // eslint-disable-next-line no-unused-vars
-  const [mapActive, setMapActive] = useState(true)
-
-  const [mapX, setMapX] = useState(pageState.mapX || 0)
-  const [mapY, setMapY] = useState(pageState.mapY || 0)
-  const [mapK, setMapK] = useState(pageState.mapZoom)
-
   // Map snackbar
   const [mapSnackbarState, setMapSnackbarState] = useState({
     open: false,
     vertical: 'bottom',
     horizontal: 'center'
   })
-
-  useEffect(() => {
-    scrollToTop()
-    window.addEventListener('scroll', handler)
-
-    return () => {
-      window.removeEventListener('scroll', handler)
-    }
-  }, [(typeof window !== 'undefined') ? window.location.pathname : ''])
-
-  // handler
-  const handler = () => {
-    if (window.pageYOffset > 0) {
-      setMapOverlay(true)
-      setMapActive(false)
-    }
-    else {
-      setMapOverlay(false)
-      setMapActive(true)
-    }
-  }
-
-  // useEventListener('scroll', handler)
-
-  const scrollToTop = () => {
-    scroll.scrollToTop({
-      duration: 0,
-      delay: 0,
-    })
-  }
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
 
@@ -373,35 +318,23 @@ const MapContext = props => {
     // setMapSnackbarState({ ...mapSnackbarState, open: false })
   }
 
-  let x = mapX
-  let y = mapY
-  let k = mapK
-
-  // setZoom
-  const setZoom = (x, y, k) => {
-    console.log('setZoom x,y,k: ', x, y, k)
-    setMapY(y)
-    setMapX(x)
-    setMapK(k)
-
-    updateExploreDataMapZoom({ ...pageState, mapZoom: { mapX: x, mapY: y, mapZoom: k } })
-  }
-
   // check width, set zoom
-  useEffect(() => {
-    // mobile zoom
-    if (size.width <= 425) {
-      setZoom(50, -40, 0.85)
-    }
-    // tablet zoom
-    if (size.width <= 768 && size.width > 425) {
-      setZoom(0, -40, 1.0)
-    }
+  /*
+     *    useEffect(() => {
+     *    // mobile zoom
+     *    if (size.width <= 425) {
+     *      setZoom(50, -40, 0.85)
+     *    }
+     *    // tablet zoom
+     *    if (size.width <= 768 && size.width > 425) {
+     *      setZoom(0, -40, 1.0)
+     *    }
 
-    if (size.width <= 1024 && size.width > 768) {
-      setZoom(-100, -40, 1.25)
-    }
-  }, [size.width])
+     *    if (size.width <= 1024 && size.width > 768) {
+     *      setZoom(-100, -40, 1.25)
+     *    }
+     * }, [size.width])
+     *  */
 
   // onLink
   const onLink = (state, x, y, k) => {
@@ -443,25 +376,13 @@ const MapContext = props => {
     updateExploreDataCards({ ...pageState, cards: cards })
   }
 
+  const onClick = (d, fips) => {
+    console.debug('on click', d, 'fips', fips)
+    onLink(d)
+  }
+
   const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
   const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
-
-  const handleClick = val => {
-    if (val === 'add' && k >= 0.25) {
-      k = k + 0.25
-      x = x - 150
-    }
-    if (val === 'remove' && k >= 0.25) {
-      k = k - 0.25
-      x = x + 100
-    }
-    if (val === 'refresh') {
-      k = 0.75
-      x = 150
-      y = 100
-    }
-    setZoom(x, y, k)
-  }
 
   let mapJsonObject = mapStates
   let mapFeatures = 'states-geo'
@@ -485,19 +406,6 @@ const MapContext = props => {
       mapJsonObject = mapStates
       mapFeatures = 'states-geo'
     }
-  }
-
-  const onZoomEnd = event => {
-    x = event.transform.x
-    y = event.transform.y
-    k = event.transform.k
-    setZoom(x, y, k)
-
-    // console.debug("OnZoomEnd", event)
-  }
-
-  const onClick = (d, fips, foo, bar) => {
-    onLink(d, x, y, k)
   }
 
   useEffect(() => {
@@ -566,13 +474,9 @@ const MapContext = props => {
       mapJsonObject: mapJsonObject, // use context instead
       minColor: '#CDE3C3',
       maxColor: '#2F4D26',
+      onClick: onClick,
       // minColor: theme.palette.explore[100],
       // maxColor: theme.palette.explore[600],
-      mapZoom: mapK,
-      mapX: mapX,
-      mapY: mapY,
-      onZoomEnd: onZoomEnd,
-      onClick: onClick,
       width: size.width
     })
 
@@ -585,11 +489,9 @@ const MapContext = props => {
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
-              <MapLevel mapOverlay={mapOverlay} />
+              <MapLevel/>
               {mapChild}
-              <MapControls handleClick={handleClick} />
             </Box>
-            <Box className={`map-overlay ${ mapOverlay ? 'active' : '' }`}></Box>
           </Grid>
           { matchesMdUp &&
             <Grid item xs={12}>
