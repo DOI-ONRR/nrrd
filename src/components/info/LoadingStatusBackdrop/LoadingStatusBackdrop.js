@@ -13,7 +13,9 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
   },
 }))
-
+/**
+ * Handles when a component sends a loading status to the application status provider
+ */
 const LoadingStatusBackdrop = () => {
   const theme = useTheme()
   const classes = useStyles(theme)

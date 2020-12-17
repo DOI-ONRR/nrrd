@@ -12,6 +12,7 @@ import PatternLibraryCard from '../PatternLibraryCard'
 import CodeBlock from '../CodeBlock'
 import PropsTable from '../PropsTable'
 import theme from '../../../js/mui/theme'
+import * as ALL_COMPONENTS from '../../../../.cache/components'
 import * as ALL_DEMOS from '../../../../.cache/components-all'
 
 const ComponentDisplay = ({ children }) => {
@@ -51,13 +52,11 @@ const ComponentDisplay = ({ children }) => {
     }
   `)
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
-  const type = url.searchParams.get('type')
+  const type = url.searchParams && url.searchParams.get('type')
 
   const components = results.allComponentMetadata.nodes.filter(item =>
     item.parent.relativePath.includes(`${ type }`) &&
     !item.parent.relativePath.includes('DataTable/Custom'))
-
-  console.log(components)
 
   const content = (Array.isArray(children)) ? children : [children]
 
@@ -76,7 +75,12 @@ const ComponentDisplay = ({ children }) => {
       {
         components.map((item, i) => {
           const demos = ALL_DEMOS[`${ item.displayName }Demos`]
+          console.log(ALL_COMPONENTS)
+          if (!demos) {
+            return <></>
+          }
           const preview = demos && demos[0]
+
           // const notes = getNotes(key)
           return (
             <Grid item key={i} xs={12} sm={6}>

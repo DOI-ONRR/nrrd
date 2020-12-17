@@ -97,6 +97,107 @@ const DefaultSwitch = withStyles(theme =>
 })
 
 const BaseSwitch = ({ onChange, dataFilterKey, data, defaultSelected, checked, selectType, label, legend, helperText, disabled }) => {
+  // Group switch
+  const GroupBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, data, selectType, label, legend, helperText }) => {
+    const [state, setState] = useState({
+      checked: defaultSelected
+    })
+
+    const handleChange = event => {
+      setState({ ...state, [event.target.name]: event.target.checked })
+      onChange(event.target.checked)
+    }
+
+    return (
+      <FormControl>
+        {legend &&
+          <FormLabel component="legend">{legend}</FormLabel>
+        }
+        <FormGroup>
+          {data &&
+          data.map((item, i) =>
+            <DefaultFormControlLabel
+              control={
+                <DefaultSwitch
+                  checked={item.checked}
+                  onChange={handleChange}
+                  name={item} />
+              }
+              label={item.label}
+            />
+          )
+          }
+        </FormGroup>
+        {helperText &&
+        <FormHelperText>{helperText}</FormHelperText>
+        }
+      </FormControl>
+    )
+  }
+
+  // Single switch
+  const SingleBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, label, legend, helperText, disabled }) => {
+    const classes = useStyles()
+    const [switchState, setSwitchState] = useState({
+      checked: defaultSelected
+    })
+
+    const noop = () => {}
+    onChange = onChange || noop
+
+    const handleChange = event => {
+      setSwitchState({ ...switchState, [event.target.name]: event.target.checked })
+      onChange(event.target.checked)
+    }
+
+    const helperContent = () => {
+      return (
+        <>
+          <Box component="span" className={classes.formHelperTextRoot}>
+            {helperText}
+          </Box>
+        </>
+      )
+    }
+
+    return (
+      <FormControl className={classes.formControl}>
+        {legend &&
+          <FormLabel component="legend">{legend}</FormLabel>
+        }
+        <FormGroup>
+          <DefaultFormControlLabel
+            control={
+              <DefaultSwitch
+                checked={switchState.checked}
+                onChange={handleChange}
+                name="checked"
+                disabled={disabled}
+              />
+            }
+            label={label}
+          />
+        </FormGroup>
+
+        {(helperText && disabled) &&
+        <Tooltip
+          title={helperContent()}
+          classes={{
+            tooltip: classes.tooltipRoot,
+            arrow: classes.tooltipArrow,
+          }}>
+          <HelpOutlineIcon
+            fontSize="small"
+            classes={{
+              root: classes.iconRoot,
+              fontSizeSmall: classes.iconFontSizeSmall
+            }} />
+        </Tooltip>
+        }
+      </FormControl>
+    )
+  }
+
   return (
     <>
       {selectType === 'Single' &&
@@ -136,104 +237,9 @@ BaseSwitch.propTypes = {
   helperText: PropTypes.string,
   checked: PropTypes.bool
 }
-
-// Group switch
-const GroupBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, data, selectType, label, legend, helperText }) => {
-  const [state, setState] = useState({
-    checked: defaultSelected
-  })
-
-  const handleChange = event => {
-    setState({ ...state, [event.target.name]: event.target.checked })
-    onChange(event.target.checked)
+export const BaseSwitchDemos = [
+  {
+    title: 'Single',
+    code: '<BaseSwitch label={"Enable access"} selectType={"Single"} />',
   }
-
-  return (
-    <FormControl>
-      {legend &&
-          <FormLabel component="legend">{legend}</FormLabel>
-      }
-      <FormGroup>
-        {data &&
-          data.map((item, i) =>
-            <DefaultFormControlLabel
-              control={
-                <DefaultSwitch
-                  checked={item.checked}
-                  onChange={handleChange}
-                  name={item} />
-              }
-              label={item.label}
-            />
-          )
-        }
-      </FormGroup>
-      {helperText &&
-        <FormHelperText>{helperText}</FormHelperText>
-      }
-    </FormControl>
-  )
-}
-
-// Single switch
-const SingleBaseSwitch = ({ onChange, dataFilterKey, defaultSelected, label, legend, helperText, disabled }) => {
-  const classes = useStyles()
-  const [switchState, setSwitchState] = useState({
-    checked: defaultSelected
-  })
-
-  const noop = () => {}
-  onChange = onChange || noop
-
-  const handleChange = event => {
-    setSwitchState({ ...switchState, [event.target.name]: event.target.checked })
-    onChange(event.target.checked)
-  }
-
-  const helperContent = () => {
-    return (
-      <>
-        <Box component="span" className={classes.formHelperTextRoot}>
-          {helperText}
-        </Box>
-      </>
-    )
-  }
-
-  return (
-    <FormControl className={classes.formControl}>
-      {legend &&
-          <FormLabel component="legend">{legend}</FormLabel>
-      }
-      <FormGroup>
-        <DefaultFormControlLabel
-          control={
-            <DefaultSwitch
-              checked={switchState.checked}
-              onChange={handleChange}
-              name="checked"
-              disabled={disabled}
-            />
-          }
-          label={label}
-        />
-      </FormGroup>
-
-      {(helperText && disabled) &&
-        <Tooltip
-          title={helperContent()}
-          classes={{
-            tooltip: classes.tooltipRoot,
-            arrow: classes.tooltipArrow,
-          }}>
-          <HelpOutlineIcon
-            fontSize="small"
-            classes={{
-              root: classes.iconRoot,
-              fontSizeSmall: classes.iconFontSizeSmall
-            }} />
-        </Tooltip>
-      }
-    </FormControl>
-  )
-}
+]

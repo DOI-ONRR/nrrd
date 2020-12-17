@@ -105,3 +105,10 @@ const PieChart = props => {
 }
 
 export default PieChart
+
+export const PieChartDemos = [
+  {
+    title: 'Example',
+    code: '<div>Under Construction</div>',
+  }
+]
