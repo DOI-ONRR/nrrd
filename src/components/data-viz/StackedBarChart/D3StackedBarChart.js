@@ -244,7 +244,7 @@ export default class D3StackedBarChart {
 
   _chart () {
     try {
-      console.log('_chart yo: ')
+      console.log('_chart loaded yo: ')
       const self = this
       const stack = d3.stack()
 	    .keys(this.yGroupings())

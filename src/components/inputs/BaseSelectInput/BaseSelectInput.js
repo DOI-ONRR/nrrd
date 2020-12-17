@@ -212,8 +212,6 @@ const BaseSingleSelectInput = ({ data, defaultSelected, selected, label, helperT
     return (defaultItem && !disabled) ? (defaultItem.value || defaultItem.option) : ''
   }
 
-  console.log('BaseSelectInput getDefaultSelected: ', getDefaultSelected())
-
   const [selectedOption, setSelectedOption] = useState(getDefaultSelected())
 
   const handleChange = value => {

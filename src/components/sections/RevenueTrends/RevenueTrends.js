@@ -21,7 +21,7 @@ import {
   Paper
 } from '@material-ui/core'
 
-import Sparkline from '../../data-viz/Sparkline'
+// import Sparkline from '../../data-viz/Sparkline'
 
 /**
 * RevenueTrends - react functional component that generates revenue trends graph
