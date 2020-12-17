@@ -14,6 +14,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import useTheme from '@material-ui/core/styles/useTheme'
 
 import InfoBanner from '../../content-partials/InfoBanner'
+import ShutdownBanner from '../../content-partials/ShutdownBanner'
 import BrowserBanner from '../BrowserBanner'
 import Footer from '../../content-partials/Footer'
 // import Header from '../../content-partials/Header'
@@ -101,6 +102,7 @@ const DefaultLayout = ({ includeToc, children }) => {
     query DefaultLayoutQuery {
       site {
         siteMetadata {
+          isShutdown
           version
           officeName
           informationDataManagement {
@@ -114,12 +116,15 @@ const DefaultLayout = ({ includeToc, children }) => {
       }
     }
   `)
-
+  console.log(data)
   return (
     <>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
       <InfoBanner />
+      {data.site.siteMetadata.isShutdown === 'true' &&
+        <ShutdownBanner />
+      }
       <BrowserBanner />
       <AppToolbar />
       <CssBaseline />

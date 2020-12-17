@@ -14,6 +14,7 @@ const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ p
 const config = {
   pathPrefix: PATH_PREFIX,
   siteMetadata: {
+    isShutdown: process.env.isShutdown,
     title: 'Natural Resources Revenue Data',
     description:
       // eslint-disable-next-line max-len
