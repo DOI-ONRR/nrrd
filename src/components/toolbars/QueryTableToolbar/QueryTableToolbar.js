@@ -25,7 +25,8 @@ import {
   DOWNLOAD_DATA_TABLE,
   PERIOD_TYPES,
   REVENUE_BY_COMPANY,
-  PERIOD_MONTHLY
+  PERIOD_MONTHLY,
+  PERIOD
 } from '../../../constants'
 
 import {
@@ -215,7 +216,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
               <RevenueFilterToolbar />
             }
             {state[DATA_TYPE] === PRODUCTION &&
-              <ProductionFilterToolbar />
+              <ProductionFilterToolbar period={state[PERIOD]} />
             }
             {state[DATA_TYPE] === DISBURSEMENT &&
               <DisbursementFilterToolbar />
@@ -268,11 +269,13 @@ const RevenueFilterToolbar = () => {
   )
 }
 
-const ProductionFilterToolbar = () => {
+const ProductionFilterToolbar = ({ period }) => {
   return (
     <>
       <LandTypeSelectInput />
-      <StateOffshoreSelectInput />
+      {period !== PERIOD_MONTHLY &&
+        <StateOffshoreSelectInput />
+      }
       <ProductSelectInput />
     </>
   )
