@@ -100,7 +100,19 @@ const TOTAL_REVENUE_QUERY = gql`
       month
       year
     } 
-    total_monthly_last_twenty_four_revenue: total_monthly_last_twelve_revenue_2 {
+    total_monthly_last_twelve_revenue_2 {
+      source: land_type
+      sum
+      month_long
+      period_date
+      month
+      year
+      revenue_type
+      sort_order
+      commodity_order
+      commodity
+    }
+    total_monthly_last_three_years_revenue {
       source: land_type
       sum
       month_long
@@ -167,9 +179,13 @@ const TotalRevenue = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
-    maxPeriodDate = data.total_monthly_last_twelve_revenue.reduce((prev, current) => {
+    maxPeriodDate = data.total_monthly_last_twelve_revenue_2.reduce((prev, current) => {
       return (prev.period_date > current.period_date) ? prev.period_date : current.period_date
     })
+
+    const d = new Date(maxPeriodDate)
+    const maxPeriodYear = d.getFullYear()
+    console.log('maxPeriodYear, minPeriodYear: ', d.getFullYear(), d.getFullYear() - 1)
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -207,16 +223,16 @@ const TotalRevenue = props => {
       else {
         switch (yGroupBy) {
         case 'revenue_type':
-          comparisonData = data.total_monthly_last_twenty_four_revenue.filter(item => yOrderBy.includes(item.revenue_type))
-          chartData = data.total_monthly_last_twenty_four_revenue.filter(item => (item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.revenue_type)))
+          comparisonData = data.total_monthly_last_three_years_revenue.filter(item => yOrderBy.includes(item.revenue_type))
+          chartData = data.total_monthly_last_twelve_revenue_2.filter(item => yOrderBy.includes(item.revenue_type))
           break
         case 'commodity':
-          comparisonData = data.total_monthly_last_twenty_four_revenue.filter(item => yOrderBy.includes(item.commodity))
-          chartData = data.total_monthly_last_twenty_four_revenue.filter(item => (item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.commodity)))
+          comparisonData = data.total_monthly_last_three_years_revenue.filter(item => yOrderBy.includes(item.commodity))
+          chartData = data.total_monthly_last_twelve_revenue_2.filter(item => yOrderBy.includes(item.commodity))
           break
         default:
-          comparisonData = data.total_monthly_last_twenty_four_revenue
-          chartData = data.total_monthly_last_twenty_four_revenue.filter(item => item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9)
+          comparisonData = data.total_monthly_last_three_years_revenue
+          chartData = data.total_monthly_last_twelve_revenue_2
 	        console.debug('monthly last chart Data: ', data.total_monthly_last_twelve_revenue)
           break
         }
