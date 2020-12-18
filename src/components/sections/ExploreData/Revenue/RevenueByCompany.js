@@ -9,6 +9,8 @@ import QueryLink from '../../../../components/QueryLink'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { useInView } from 'react-intersection-observer'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import {
   Box,
@@ -22,7 +24,7 @@ import {
   TableCell
 } from '@material-ui/core'
 
-import { useTheme } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 
@@ -42,18 +44,46 @@ const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
    }
   }
 `
+const useStyles = makeStyles(theme => ({
+  root: {
+    maxWidth: '100%',
+    width: '100%',
+    margin: theme.spacing(1),
+    '@media (max-width: 768px)': {
+      maxWidth: '100%',
+    },
+  },
+  progressContainer: {
+    maxWidth: '25%',
+    display: 'flex',
+    '& > *': {
+      marginTop: theme.spacing(3),
+      marginRight: 'auto',
+      marginLeft: 'auto',
+    }
+  },
+  circularProgressRoot: {
+    color: theme.palette.primary.dark,
+  }
+}))
 
 const RevenueByCompany = props => {
+  const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const { title } = props
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
   const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
     variables: { year: year, commodities: commodities },
-    skip: period !== 'Calendar Year'
+    skip: period !== 'Calendar Year' || inView === false
   })
 
   // const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
@@ -119,12 +149,9 @@ const RevenueByCompany = props => {
 					      (total += item[1].reduce((subtotal, subitem) => (subtotal += subitem.revenue), 0)), 0)
 
     remainingPercent = remainingTotal / totalTotal * 100
-    console.debug('NRD', nationalRevenueData)
-    console.debug('GD', groupData)
-    console.debug('GT', groupTotal)
 
     return (
-	  <Container id={utils.formatToSlug(title)}>
+	  <Container id={utils.formatToSlug(title)} ref={ref}>
         <Grid container>
           <Grid item xs={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
@@ -345,7 +372,9 @@ const RevenueByCompany = props => {
     )
   }
   else {
-    return (null)
+    return (<div className={classes.progressContainer} ref={ref}>
+      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
   }
 }
 

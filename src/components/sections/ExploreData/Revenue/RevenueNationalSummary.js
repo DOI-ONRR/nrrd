@@ -8,6 +8,8 @@ import gql from 'graphql-tag'
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { useInView } from 'react-intersection-observer'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import {
   Box,
@@ -17,7 +19,7 @@ import {
   Typography
 } from '@material-ui/core'
 
-import { useTheme } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 import RevenueLocationTotal from './RevenueLocationTotal'
@@ -26,25 +28,47 @@ import utils from '../../../../js/utils'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
-  query RevenueNational($year: Int!, $period: String!, $commodities: [String!]) {
-   revenue_type_class_summary(
-     order_by: {
-       revenue_type_order: asc,
-       land_type_order: asc},
-        where: {
-          year: {_eq: $year},
-          period: { _eq: $period},
-          commodity: {_in: $commodities}  
-        }
-  ) {
-    revenue_type
-    year
-    land_type
-    land_type_order
-    total
-   }
-  }
+    query RevenueNational($year: Int!, $period: String!, $commodities: [String!]) {
+	revenue_type_class_summary(
+	    order_by: {
+		revenue_type_order: asc,
+		land_type_order: asc},
+            where: {
+		year: {_eq: $year},
+		period: { _eq: $period},
+		commodity: {_in: $commodities}  
+            }
+	) {
+	    revenue_type
+	    year
+	    land_type
+	    land_type_order
+	    total
+	}
+    }
 `
+const useStyles = makeStyles(theme => ({
+  root: {
+    maxWidth: '100%',
+    width: '100%',
+    margin: theme.spacing(1),
+    '@media (max-width: 768px)': {
+      maxWidth: '100%',
+    },
+  },
+  progressContainer: {
+    maxWidth: '25%',
+    display: 'flex',
+    '& > *': {
+      marginTop: theme.spacing(3),
+      marginRight: 'auto',
+      marginLeft: 'auto',
+    }
+  },
+  circularProgressRoot: {
+    color: theme.palette.primary.dark,
+  }
+}))
 
 const revenueTypeDescriptions = [
   'Once the land or water produces enough resources to pay royalties, the leaseholder pays royalties to the federal government.',
@@ -57,6 +81,7 @@ const revenueTypeDescriptions = [
 ]
 
 const RevenueNationalSummary = props => {
+  const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -64,11 +89,17 @@ const RevenueNationalSummary = props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'All'
   const { title } = props
-
-  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year, period: period, commodities: commodities }
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
   })
 
+  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+    variables: { year: year, period: period, commodities: commodities },
+    skip: inView === false,
+    triggerOnce: true
+  })
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
@@ -81,7 +112,11 @@ const RevenueNationalSummary = props => {
   const units = 'dollars'
 
   if (loading) {
-    return 'Loading...'
+    return (
+	    <div className={classes.progressContainer}>
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+	    </div>
+    )
   }
 
   if (error) return `Error! ${ error.message }`
@@ -91,56 +126,55 @@ const RevenueNationalSummary = props => {
     // eslint-disable-next-line no-return-assign
     groupTotal = Object.keys(groupData).map(k => groupData[k].reduce((total, i) => total += i.total, 0)).reduce((total, s) => total += s, 0)
     nationalRevenueData = Object.entries(groupData)
-  }
 
-  return (
-    <Container id={utils.formatToSlug(title)}>
-      <Grid container>
-        <Grid item md={12}>
-          <Box mt={10} mb={1} color="secondary.main" borderBottom={5}>
-            <Box component="h2" color="secondary.dark">Nationwide revenue summary</Box>
-          </Box>
-          <Typography variant="body1">
-            <RevenueLocationTotal />
-          </Typography>
+    return (
+      <Container id={utils.formatToSlug(title)} ref={ref}>
+        <Grid container>
+          <Grid item md={12}>
+            <Box mt={10} mb={1} color="secondary.main" borderBottom={5}>
+              <Box component="h2" color="secondary.dark">Nationwide revenue summary</Box>
+            </Box>
+            <Typography variant="body1">
+              <RevenueLocationTotal />
+            </Typography>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={12}>
-          <Box color="secondary.main" mb={2} borderBottom={2} display="flex" justifyContent="space-between">
-            <Box component="h3" color="secondary.dark" display="inline" align="left">Nationwide revenue by revenue type and source</Box>
-            <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Box color="secondary.main" mb={2} borderBottom={2} display="flex" justifyContent="space-between">
+              <Box component="h3" color="secondary.dark" display="inline" align="left">Nationwide revenue by revenue type and source</Box>
+              <Box display={{ xs: 'none', sm: 'inline' }} align="right" position="relative" top={5}>
+                <QueryLink
+                  groupBy={DFC.REVENUE_TYPE}
+                  linkType="FilterTable" {...props}>
+                  Query nationwide revenue
+                </QueryLink>
+              </Box>
+            </Box>
+            <Box display={{ xs: 'block', sm: 'none' }} align="left">
               <QueryLink
                 groupBy={DFC.REVENUE_TYPE}
                 linkType="FilterTable" {...props}>
                   Query nationwide revenue
               </QueryLink>
             </Box>
-          </Box>
-          <Box display={{ xs: 'block', sm: 'none' }} align="left">
-            <QueryLink
-              groupBy={DFC.REVENUE_TYPE}
-              linkType="FilterTable" {...props}>
-                  Query nationwide revenue
-            </QueryLink>
-          </Box>
-        </Grid>
-        <Grid container item xs={5} style={{ borderBottom: '2px solid #cde3c3' }}>
-          <Box fontWeight="bold">Revenue type</Box>
-        </Grid>
-        <Grid container item xs={7} style={{ borderBottom: '2px solid #cde3c3' }}>
-          <Hidden xsDown>
-            <Grid item sm={6}>
-              <Box fontWeight="bold" display="flex" justifyContent="flex-start" >Source</Box>
+          </Grid>
+          <Grid container item xs={5} style={{ borderBottom: '2px solid #cde3c3' }}>
+            <Box fontWeight="bold">Revenue type</Box>
+          </Grid>
+          <Grid container item xs={7} style={{ borderBottom: '2px solid #cde3c3' }}>
+            <Hidden xsDown>
+              <Grid item sm={6}>
+                <Box fontWeight="bold" display="flex" justifyContent="flex-start" >Source</Box>
+              </Grid>
+            </Hidden>
+            <Grid item xs={12} sm={6}>
+              <Box fontWeight="bold" display="flex" justifyContent="flex-end">{`${ period } ${ year }`}</Box>
             </Grid>
-          </Hidden>
-          <Grid item xs={12} sm={6}>
-            <Box fontWeight="bold" display="flex" justifyContent="flex-end">{`${ period } ${ year }`}</Box>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid container spacing={2}>
-        { nationalRevenueData &&
+        <Grid container spacing={2}>
+          { nationalRevenueData &&
           nationalRevenueData.map((item, i) => {
             return (
               <Box p={2} width="100%" borderBottom="1px solid rgba(224, 224, 224, 1)">
@@ -202,10 +236,16 @@ const RevenueNationalSummary = props => {
               </Box>
             )
           })
-        }
-      </Grid>
-    </Container>
-  )
+          }
+        </Grid>
+      </Container>
+    )
+  }
+  else {
+    return (<div className={classes.progressContainer} ref={ref}>
+      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
+  }
 }
 
 export default RevenueNationalSummary
