@@ -307,8 +307,7 @@ const QUERIES = {
       (${ getDataFilterVariableList(state, variableConfig) })
       {${ PRODUCTION_QUERY(getDataFilterWhereClauses(variableConfig)) }}`
     )
-  }
-,
+  },
   [DISBURSEMENT]: (state, variableConfig) => {
     if (state[PERIOD] === PERIOD_MONTHLY) {
       return (

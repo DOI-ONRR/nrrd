@@ -113,7 +113,7 @@ const initialState = {
   [EXPLORE_DATA_FILTER_DEFAULT]: {
     [DATA_TYPE]: REVENUE,
     [PERIOD]: 'Calendar Year',
-    [FISCAL_YEAR]: '2019',
+    [FISCAL_YEAR]: '2020',
     [CALENDAR_YEAR]: '2019',
     [OFFSHORE_REGIONS]: false,
     [MAP_LEVEL]: STATE,
@@ -122,7 +122,7 @@ const initialState = {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
         [PERIOD]: 'Calendar Year',
-        [FISCAL_YEAR]: '2019',
+        [FISCAL_YEAR]: '2020',
         [CALENDAR_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
