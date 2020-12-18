@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "8000:8000"
+      - "45665:45665"
     volumes:
       - /app/node_modules
       - .:/app
@@ -13,3 +14,4 @@ services:
       - NODE_ENV=development
       - GATSBY_WEBPACK_PUBLICPATH=/
       - GATSBY_TELEMETRY_DISABLED=1
+      - INTERNAL_STATUS_PORT=45665

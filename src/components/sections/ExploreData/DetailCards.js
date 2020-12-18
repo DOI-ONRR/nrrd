@@ -436,7 +436,6 @@ const DetailCards = props => {
   }
 
   const landStatsData = data.onrr.land_stats
-
   return (
     <>
       <Box className={classes.compareCards}>
