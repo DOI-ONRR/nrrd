@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
+import 'babel-polyfill'
+
 import { setConfig } from 'react-hot-loader'
 
 export const onServiceWorkerUpdateReady = () => {

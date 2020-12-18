@@ -26,6 +26,7 @@
     "app-root-dir": "^1.0.2",
     "autosuggest-highlight": "^3.1.1",
     "babel-plugin-styled-components": "^1.10.7",
+    "babel-polyfill": "^6.26.0",
     "browserslist": "^4.13.0",
     "currency-formatter": "^1.5.5",
     "d3": "^5.16.0",
