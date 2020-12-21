@@ -106,9 +106,11 @@ const Tabtastic = props => {
 
   // set dataType if there is url param
   useEffect(() => {
-    const name = selectedParams.toString().replace('tab-', '')
-    const selectedParamName = name.charAt(0).toUpperCase() + name.slice(1)
-    if (selectedParams) updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedParamName })
+    if (selectedParams) {
+      const name = selectedParams.toString().replace('tab-', '')
+      const selectedParamName = name.charAt(0).toUpperCase() + name.slice(1)
+      updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedParamName })
+    }
   }, [selectedParams])
 
   // format tab label and prepend string, format to replace any blank spaces with dash, then to lower case

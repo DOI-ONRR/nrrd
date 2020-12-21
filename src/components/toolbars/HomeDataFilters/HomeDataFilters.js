@@ -57,7 +57,7 @@ const HomeDataFilters = props => {
   const MENU_OPTIONS = {
     [DFC.MONTHLY]: [
       { value: DFC.YEARLY, option: DFC.YEARLY },
-      { value: DFC.PERIOD_MONTHLY_YEAR, option: DFC.PERIOD_MONTHLY_YEAR }
+      { value: DFC.PERIOD_MONTHLY, option: DFC.PERIOD_MONTHLY }
     ],
     [DFC.PERIOD]: [
       { value: DFC.PERIOD_FISCAL_YEAR, option: DFC.PERIOD_FISCAL_YEAR },

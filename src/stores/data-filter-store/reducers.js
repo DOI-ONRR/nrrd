@@ -31,7 +31,6 @@ import {
   STATE,
   REVENUE_BY_COMPANY,
   COMPANY_NAME,
-  MONTH_LONG
   COMMODITY
 } from '../../constants'
 
