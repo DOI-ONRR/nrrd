@@ -43,10 +43,12 @@ const ComparisonTable = forwardRef((props, ref) => {
       if (d.year) setSelectedItem({ ...selectedItem, year: d.year })
 
       if (d.month_long) {
+        const monthNum = parseInt(monthLookup(d.month_long), 10)
+        const indexToFind = (period === 'Most recent 12 months') ? monthNum : d.currentIndex + 1
         // get year key from xGroups
         if (d.xGroups) {
           Object.entries(d.xGroups).map((item, index) => {
-            if (item[1].includes(d.currentIndex)) {
+            if (item[1].includes(indexToFind)) {
               // console.log('current selected year and month: ', d.month_long, item[0])
               setSelectedItem({ ...selectedItem, year: item[0], month: d.month_long })
             }
