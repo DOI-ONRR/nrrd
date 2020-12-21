@@ -34,6 +34,7 @@ const APOLLO_QUERY = gql`
     query RevenueTrendsQuery {
       revenue_trends(order_by: {fiscal_year: desc, current_month: desc}) {
         fiscalYear:fiscal_year
+        calendarYear:calendar_year
         revenue:total
         revenue_ytd:total_ytd
         revenueType:trend_type
@@ -76,6 +77,7 @@ const RevenueTrends = props => {
       const newObj = {}
 
       newObj.fiscalYear = item[0]
+      newObj.calendarYear = item[1][item.length - 1].calendarYear
       newObj.data = item[1]
       return newObj
     })

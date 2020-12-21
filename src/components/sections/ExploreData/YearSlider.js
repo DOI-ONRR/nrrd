@@ -160,7 +160,7 @@ const YearSlider = props => {
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   let year = filterState[DFC.YEAR]
-
+  console.debug('===========================================', filterState)
   const handleOnchange = year => {
     updateDataFilter({ ...filterState, [DFC.YEAR]: year })
   }
@@ -171,7 +171,7 @@ const YearSlider = props => {
   const customMarks = []
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { period: (filterState[DFC.DATA_TYPE] === DFC.DISBURSEMENT) ? DFC.FISCAL_YEAR_LABEL : DFC.PERIOD_CALENDAR_YEAR }
+    variables: { period: (filterState[DFC.DATA_TYPE] === DFC.DISBURSEMENT) ? DFC.FISCAL_YEAR_LABEL : filterState.period }
   })
 
   if (loading) {}
@@ -188,9 +188,19 @@ const YearSlider = props => {
       ? periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
       : periodData.reduce((max, p) => p.calendar_year > max ? p.calendar_year : max, periodData[periodData.length - 1].calendar_year)
 
+    if (filterState[DFC.DATA_TYPE] !== DFC.DISBURSEMENT) {
+	  if (filterState.period === 'Fiscal Year') {
+	      minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
+	      maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+	  }
+      else {
+	      minYear = periodData.reduce((min, p) => p.calendar_year < min ? p.calendar_year : min, periodData[0].calendar_year)
+	      maxYear = periodData.reduce((max, p) => p.calendar_year > max ? p.calendar_year : max, periodData[periodData.length - 1].calendar_year)
+	  }
+    }
     if (!year) {
-      year = maxYear
-      handleOnchange(maxYear)
+	  year = maxYear
+	  handleOnchange(maxYear)
     }
     customMarks.push(
       {

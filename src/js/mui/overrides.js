@@ -77,7 +77,6 @@ export default Object.freeze({
     },
   },
   MuiToggleButton: {
-    textTransform: 'capitalize',
     root: {
       color: 'black',
       '&$selected': {

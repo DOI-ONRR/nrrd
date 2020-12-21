@@ -32,6 +32,7 @@ export const FISCAL_YEAR = 'fiscalYear'
 export const FISCAL_YEARS = 'fiscalYears'
 export const CALENDAR_YEAR = 'calendarYear'
 export const MONTHLY = 'monthly'
+export const MONTH_LONG = 'monthLong'
 export const PERIOD = 'period'
 export const YEAR = 'year'
 export const RECIPIENT = 'recipient'
@@ -43,8 +44,8 @@ export const COMPANY_NAME = 'companyName'
 
 export const PERIOD_FISCAL_YEAR = 'Fiscal Year'
 export const PERIOD_CALENDAR_YEAR = 'Calendar Year'
-export const PERIOD_MONTHLY_YEAR = 'Monthly'
-export const PERIOD_TYPES = [PERIOD_FISCAL_YEAR, PERIOD_CALENDAR_YEAR]
+export const PERIOD_MONTHLY = 'Monthly'
+export const PERIOD_TYPES = [PERIOD_FISCAL_YEAR, PERIOD_CALENDAR_YEAR, PERIOD_MONTHLY]
 export const GROUP_BY = 'groupBy'
 export const GROUP_BY_STICKY = 'groupBySticky'
 export const BREAKOUT_BY = 'breakoutBy'
@@ -98,6 +99,7 @@ export const MONTHLY_CAPITALIZED = 'Monthly'
 export const YEARLY = 'Yearly'
 export const REVENUE = 'Revenue'
 export const DISBURSEMENT = 'Disbursements'
+export const DISBURSEMENT_MONTHLY = 'Disbursements Monthly'
 export const PRODUCTION = 'Production'
 export const OIL = 'Oil'
 export const GAS = 'Gas'
@@ -113,6 +115,10 @@ export const TREND_LIMIT = 10
 export const MAX_CARDS = 3
 
 export const DISPLAY_NAMES = {
+  [MONTH_LONG]: {
+    default: 'Month',
+    plural: 'Months',
+  },
   [COMPANY_NAME]: {
     default: 'Company',
     plural: 'Companies',
@@ -122,16 +128,16 @@ export const DISPLAY_NAMES = {
     plural: 'Location',
   },
   [GROUP_BY]: {
-    default: 'Group by',
-    plural: 'Group by',
+    default: 'Column 1',
+    plural: 'Column 1',
   },
   [GROUP_BY_STICKY]: {
-    default: 'Group by',
-    plural: 'Group by',
+    default: 'Column 1',
+    plural: 'Column 1',
   },
   [BREAKOUT_BY]: {
-    default: 'Then group by',
-    plural: 'Then group by',
+    default: 'Column 2',
+    plural: 'Column 2',
   },
   [DATA_TYPE]: {
     default: 'Data type',

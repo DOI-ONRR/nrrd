@@ -36,10 +36,11 @@ const useStyles = makeStyles(theme => ({
     '& .MuiInputLabel-outlined': {
       transform: 'translate(14px, -6px) scale(0.75)'
     },
+    whiteSpace: 'nowrap'
   },
   formHelperTextRoot: {
     fontSize: '.75rem',
-    '& $disabled': {
+    '& disabled': {
       fontSize: '.75rem',
     },
   },
