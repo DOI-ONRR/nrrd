@@ -168,7 +168,6 @@ const TotalRevenue = props => {
   const units = 'dollars'
   let maxFiscalYear
   let maxCalendarYear
-  let maxPeriodDate
   let xGroups = {}
   let legendHeaders
   if (data) {
@@ -178,14 +177,6 @@ const TotalRevenue = props => {
     maxCalendarYear = data.total_monthly_calendar_revenue.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
-
-    maxPeriodDate = data.total_monthly_last_twelve_revenue_2.reduce((prev, current) => {
-      return (prev.period_date > current.period_date) ? prev.period_date : current.period_date
-    })
-
-    const d = new Date(maxPeriodDate)
-    const maxPeriodYear = d.getFullYear()
-    console.log('maxPeriodYear, minPeriodYear: ', d.getFullYear(), d.getFullYear() - 1)
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {

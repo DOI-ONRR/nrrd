@@ -178,7 +178,6 @@ export default class D3StackedBarChart {
   // addGroupLines () {
   xAxisGroup () {
     try {
-      console.log('xAxisGroup this: ', this)
       if (this.xGroups) {
         const self = this
 
