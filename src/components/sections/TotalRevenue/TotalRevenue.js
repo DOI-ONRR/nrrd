@@ -92,14 +92,14 @@ const TOTAL_REVENUE_QUERY = gql`
       commodity_order
       commodity
     } 
-    total_monthly_last_twelve_revenue {
-      source
-      sum
-      month_long
-      period_date
-      month
-      year
-    } 
+    # total_monthly_last_twelve_revenue {
+    #   source
+    #   sum
+    #   month_long
+    #   period_date
+    #   month
+    #   year
+    # } 
     total_monthly_last_twelve_revenue_2 {
       source: land_type
       sum

@@ -668,6 +668,7 @@ export default class D3StackedBarChart {
 
   _onSelect = (element, data) => {
     try {
+      console.log('_onSelect this: ', this)
       const selectedElement = d3.select(this.node).selectAll('.active') // element.parentNode.querySelector('[selected=true]')
       const primaryColor = this.primaryColor
       const secondaryColor = this.secondaryColor
@@ -690,7 +691,7 @@ export default class D3StackedBarChart {
       this.onSelect(this)
 
       if (this.xAxis === 'year') this.handleBarHover({ year: this._xDomain[this.currentIndex] || this.xSelectedValue })
-      if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.currentIndex] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups })
+      if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.currentIndex] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups, currentIndex: this.currentIndex })
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -777,7 +778,7 @@ export default class D3StackedBarChart {
         activeElement.setAttribute('style', `fill: ${ secondaryColor }`)
 
         if (this.xAxis === 'year') this.handleBarHover({ year: this._xDomain[this.currentIndex] || this.xSelectedValue })
-        if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.currentIndex] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups })
+        if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.currentIndex] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups, currentIndex: this.currentIndex })
       }
       else {
         if (!activeHoverElement) {
@@ -790,7 +791,7 @@ export default class D3StackedBarChart {
         this.updateLegend()
 
         if (this.xAxis === 'year') this.handleBarHover({ year: this.xSelectedValue })
-        if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this.xSelectedValue, xGroups: this.xGroups })
+        if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this.xSelectedValue, xGroups: this.xGroups, currentIndex: this.currentIndex })
       }
       // this.onHover(this)
     }
