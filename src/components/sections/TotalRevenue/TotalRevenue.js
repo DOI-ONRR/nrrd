@@ -291,8 +291,9 @@ const TotalRevenue = props => {
           chartData = data.total_yearly_calendar_revenue.filter(item => item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9)
           break
         }
+
+        xGroups[DFC.PERIOD_CALENDAR_YEAR] = chartData.map((row, i) => row.year)
       }
-      xGroups[DFC.PERIOD_CALENDAR_YEAR] = chartData.map((row, i) => row.year)
 
       xAxis = 'year'
       xLabels = (x, i) => {
