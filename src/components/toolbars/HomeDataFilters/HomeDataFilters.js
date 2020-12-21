@@ -44,15 +44,14 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const SectionControls = props => {
+const HomeDataFilters = props => {
   const classes = useStyles()
 
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly } = filterState
+  const { monthly, dataType } = filterState
   const {
     maxFiscalYear,
-    maxCalendarYear,
-    dataType
+    maxCalendarYear
   } = props
 
   const MENU_OPTIONS = {
@@ -87,7 +86,7 @@ const SectionControls = props => {
     <div className={classes.sectionControlsContainer}>
       <YearlyMonthlyToggleInput
         dataFilterKey={DFC.MONTHLY}
-        defaultSelected={DFC.YEARLY}
+        defaultSelected={monthly || DFC.YEARLY}
         data={MENU_OPTIONS[DFC.MONTHLY]}
         label=""
         legend=""
@@ -135,4 +134,4 @@ const SectionControls = props => {
   )
 }
 
-export default SectionControls
+export default HomeDataFilters

@@ -11,7 +11,7 @@ import { useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import SectionHeader from '../../sections/SectionHeader'
-import SectionControls from '../../sections/SectionControls'
+import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link/'
 import ComparisonTable from '../ComparisonTable'
 
@@ -131,7 +131,7 @@ const TOTAL_REVENUE_QUERY = gql`
 const TotalRevenue = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy, year } = filterState
+  const { monthly, period, breakoutBy, dataType } = filterState
   const revenueComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
@@ -301,10 +301,9 @@ const TotalRevenue = props => {
       />
       <Grid container spacing={4}>
         <Grid item xs={12}>
-          <SectionControls
+          <HomeDataFilters
             maxFiscalYear={maxFiscalYear}
-            maxCalendarYear={maxCalendarYear}
-          />
+            maxCalendarYear={maxCalendarYear} />
         </Grid>
         <Grid item xs={12} md={7}>
           <StackedBarChart

@@ -13,7 +13,7 @@ import {
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import SectionHeader from '../../sections/SectionHeader'
-import SectionControls from '../../sections/SectionControls'
+import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link'
 import ComparisonTable from '../ComparisonTable'
 
@@ -65,7 +65,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
 // TotalDisbursements
 const TotalDisbursements = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy } = filterState
+  const { monthly, period, breakoutBy, dataType } = filterState
   const disbursementsComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } (dollars)`
@@ -156,11 +156,9 @@ const TotalDisbursements = props => {
       />
       <Grid container spacing={4}>
         <Grid item xs={12}>
-          <SectionControls
+          <HomeDataFilters
             maxFiscalYear={maxFiscalYear}
-            maxCalendarYear={maxCalendarYear}
-            dataType={DFC.DISBURSEMENT}
-          />
+            maxCalendarYear={maxCalendarYear} />
         </Grid>
         <Grid item xs={12} md={7}>
           <StackedBarChart

@@ -12,7 +12,7 @@ import {
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import SectionHeader from '../../sections/SectionHeader'
-import SectionControls from '../../sections/SectionControls'
+import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link'
 import ComparisonTable from '../ComparisonTable'
 
@@ -178,11 +178,9 @@ const TotalProduction = props => {
         />
         <Grid container spacing={4}>
           <Grid item xs={12}>
-            <SectionControls
+            <HomeDataFilters
               maxFiscalYear={maxFiscalYear}
-              maxCalendarYear={maxCalendarYear}
-              dataType={DFC.PRODUCTION}
-            />
+              maxCalendarYear={maxCalendarYear} />
           </Grid>
           <Grid item xs={12} md={7}>
             {commodity === 'Oil (bbl)' &&
