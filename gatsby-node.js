@@ -18,12 +18,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 }
 
 exports.createPages = ({ graphql, reporter, actions }) => {
-  const { createRedirect, createPage } = actions
+  const { createRedirect } = actions
 
   return Promise.all([
     createRedirects({ graphql, reporter, createRedirect }),
-    createComponentsCache({ graphql, reporter }),
-    createPatternLibraryPages({ graphql, createPage, reporter })
+    createComponentsCache({ graphql, reporter })
   ])
 }
 
