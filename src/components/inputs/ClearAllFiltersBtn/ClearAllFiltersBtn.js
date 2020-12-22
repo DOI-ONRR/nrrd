@@ -25,9 +25,3 @@ const ClearAllFiltersBtn = ({ ...props }) => {
 
 export default ClearAllFiltersBtn
 
-export const ClearAllFiltersBtnDemos = [
-  {
-    title: 'Clear All Button',
-    code: '<ClearAllFiltersBtn />',
-  }
-]

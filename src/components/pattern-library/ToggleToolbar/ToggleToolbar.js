@@ -42,6 +42,13 @@ const ToggleToolbar = ({ buttons, ...rest }) => {
     section += 'type' + url.searchParams.get('type')
   }
 
+  const handleNavigate = url => {
+    navigate(url, { replace: true })
+    /* if (typeof window !== 'undefined') {
+      window.location.href = window.location.origin + url
+    } */
+  }
+
   return (
     <Box mt={2}>
       <Grid container direction="row" justify="center">
@@ -58,7 +65,7 @@ const ToggleToolbar = ({ buttons, ...rest }) => {
                 <ToggleButton
                   key={label}
                   value={slugify(relativeUrl)}
-                  onClick={() => navigate(relativeUrl)}
+                  onClick={() => handleNavigate(relativeUrl)}
                   classes={ { root: classes.rootToggleButton, selected: classes.selectedToggleButton }}>
                   {label}
                 </ToggleButton>

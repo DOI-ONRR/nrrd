@@ -10,14 +10,14 @@ import { IconArchiveImg } from '../../images'
 // TODO: update styles, should be able to utilize main theme
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '--grayPale',
-    borderLeft: '10px solid gray',
+    backgroundColor: theme.palette.grey['100'],
+    borderLeft: `10px solid ${ theme.palette.info.dark }`,
     padding: '1.125em .5em .5em .5em',
     marginBottom: '2rem',
   },
   content: {
     margin: '0 0 1rem 0',
-    color: '--blackLight',
+    color: theme.palette.grey['900'],
     fontSize: '0.8125rem',
     fontWeight: '300',
     lineHeight: '1.1875rem',

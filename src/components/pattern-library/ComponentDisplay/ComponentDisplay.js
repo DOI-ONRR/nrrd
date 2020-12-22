@@ -51,6 +51,7 @@ const ComponentDisplay = ({ children }) => {
       }
     }
   `)
+
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
   const type = url.searchParams && url.searchParams.get('type')
 
@@ -75,15 +76,14 @@ const ComponentDisplay = ({ children }) => {
       {
         components.map((item, i) => {
           const demos = ALL_DEMOS[`${ item.displayName }Demos`]
-          console.log(ALL_COMPONENTS)
           if (!demos) {
-            return <></>
+            return undefined
           }
           const preview = demos && demos[0]
 
           // const notes = getNotes(key)
           return (
-            <Grid item key={i} xs={12} sm={6}>
+            <Grid item key={i} xs={12}>
               <PatternLibraryCard
                 title={`${ item.displayName }`}
                 notes={(item.childrenComponentProp.length > 0) && <PropsTable componentProps={item.childrenComponentProp} />}
@@ -95,7 +95,6 @@ const ComponentDisplay = ({ children }) => {
                   }
                   <Box m={2}><Divider /></Box>
                   <MDXRenderer>{item.description.childMdx.body}</MDXRenderer>
-
                 </Box>
               </PatternLibraryCard>
             </Grid>

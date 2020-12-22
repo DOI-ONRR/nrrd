@@ -34,7 +34,7 @@ const CodeBlock = ({ children, className, live, render, title, notes }) => {
       <>
         <MaterialUI.Typography variant="h6">{title}</MaterialUI.Typography>
         <MaterialUI.Grid container direction="row" justify="center" alignItems="stretch" className={classes.container}>
-          <MaterialUI.Grid xs={12}>
+          <MaterialUI.Grid item xs={12}>
             <LiveProvider
               code={children}
               transformCode={code => '/** @jsx mdx */' + code}
