@@ -36,8 +36,8 @@ const ArchiveBanner = () => {
   const classes = useStyles(theme)
 
   return (
-    <div className={classes.root}>
-      <p className={classes.content}>
+    <div>
+      <p>
         <IconArchiveImg /> This content was created as part of <GlossaryTerm>USEITI</GlossaryTerm> and is no longer being updated.
       </p>
     </div>
