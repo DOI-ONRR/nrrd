@@ -32,8 +32,8 @@ const useStyles = makeStyles(theme => ({
  * This banner is used to mark content on our site as archived as part of USEITI
  */
 const ArchiveBanner = () => {
-  const theme = useTheme()
-  const classes = useStyles(theme)
+  //const theme = useTheme()
+  //const classes = useStyles(theme)
 
   return (
     <div>
