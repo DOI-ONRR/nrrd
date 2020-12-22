@@ -1,4 +1,5 @@
 import React from 'react'
+import { }
 
 import {
   Container,
@@ -7,7 +8,7 @@ import {
 
 const bgImage = {
   backgroundImage:
-    'url("/images/how-it-works/offshore-oil-top.png"), url("/images/how-it-works/offshore-oil-bottom.png"), url("/images/how-it-works/offshore-oil-middle.png")',
+    `url(${withPrefix('/images/how-it-works/offshore-oil-top.png')}),url(${withPrefix('/images/how-it-works/offshore-oil-bottom.png')}),${withPrefix('url("/images/how-it-works/offshore-oil-middle.png')})`,
   backgroundRepeat: 'no-repeat, no-repeat, repeat-y',
   backgroundSize: '100%',
   backgroundPosition: '0 0, 0 100%, 0 0',
