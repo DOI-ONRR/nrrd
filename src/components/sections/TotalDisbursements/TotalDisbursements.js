@@ -28,9 +28,14 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
     # }
 
     total_yearly_fiscal_disbursement: total_yearly_fiscal_disbursement_2 {
-      year,
-      source,
+      period
       sum
+      source: land_type
+      year
+      revenue_type
+      sort_order
+      commodity_order
+      commodity
     }  
 
     total_monthly_fiscal_disbursement {
@@ -39,26 +44,26 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       month_long
       period_date
       month
-     year
+      year
     }
+
     total_monthly_calendar_disbursement {
       source
       sum
       month_long
       period_date
       month
-     year
+      year
+    }
 
-  } 
-     total_monthly_last_twelve_disbursement {
+    total_monthly_last_twelve_disbursement {
       source
       sum
       month_long
       period_date
       month
-     year
-
-  } 
+      year
+    } 
   }
 `
 
@@ -89,7 +94,6 @@ const TotalDisbursements = props => {
   let maxFiscalYear
   let maxCalendarYear
   let xGroups = {}
-  let disabledInput = false
   let legendHeaders
 
   if (error) return `Error! ${ error.message }`
@@ -101,6 +105,8 @@ const TotalDisbursements = props => {
     maxCalendarYear = data.total_monthly_calendar_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
+
+    console.log('TotalDisbursements maxFiscalYear: ', maxFiscalYear)
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -137,7 +143,6 @@ const TotalDisbursements = props => {
       }
     }
     else {
-      disabledInput = true
       comparisonData = data.total_yearly_fiscal_disbursement
       chartData = data.total_yearly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 9)
       xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)

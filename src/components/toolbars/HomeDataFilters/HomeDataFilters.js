@@ -68,11 +68,17 @@ const HomeDataFilters = props => {
       { value: DFC.PERIOD_FISCAL_YEAR, option: `Fiscal year ${ maxFiscalYear }` },
       { value: DFC.PERIOD_CALENDAR_YEAR, option: `Calendar year ${ maxCalendarYear }` }
     ],
-    [DFC.BREAKOUT_BY]: [
-      { value: 'source', option: 'Source' },
-      { value: 'revenue_type', option: 'Revenue Type' },
-      { value: 'commodity', option: 'Commodity' }
-    ],
+    [DFC.BREAKOUT_BY]: {
+      [DFC.REVENUE]: [
+        { value: 'source', option: 'Source' },
+        { value: 'revenue_type', option: 'Revenue Type' },
+        { value: 'commodity', option: 'Commodity' }
+      ],
+      [DFC.DISBURSEMENT]: [
+        { value: 'source', option: 'Source' },
+        { value: 'recipient', option: 'Recipient' },
+      ]
+    },
     [DFC.COMMODITY]: [
       { value: 'Oil (bbl)', option: 'Oil (bbl)' },
       { value: 'Gas (mcf)', option: 'Gas (mcf)' },
@@ -116,7 +122,7 @@ const HomeDataFilters = props => {
       {dataType !== DFC.PRODUCTION &&
         <BreakoutBySelectInput
           dataFilterKey={DFC.BREAKOUT_BY}
-          data={MENU_OPTIONS[DFC.BREAKOUT_BY]}
+          data={(dataType === DFC.REVENUE) ? MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE] : MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT]}
           label="Breakout"
           selectType="Single" />
       }
