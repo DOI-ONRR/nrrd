@@ -64,6 +64,15 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       month
       year
     } 
+
+    total_monthly_last_three_years_disbursement {
+      source
+      sum
+      month_long
+      period_date
+      month
+      year
+    }
   }
 `
 
@@ -118,7 +127,7 @@ const TotalDisbursements = props => {
         chartData = data.total_monthly_calendar_disbursement
       }
       else {
-        comparisonData = data.total_monthly_last_twelve_disbursement
+        comparisonData = data.total_monthly_last_three_years_disbursement
         chartData = data.total_monthly_last_twelve_disbursement
       }
 
@@ -167,6 +176,7 @@ const TotalDisbursements = props => {
         </Grid>
         <Grid item xs={12} md={7}>
           <StackedBarChart
+            key={`sbc__${ monthly }${ period }${ breakoutBy }`}
             title={chartTitle}
             units={units}
             data={chartData}
@@ -188,6 +198,7 @@ const TotalDisbursements = props => {
         </Grid>
         <Grid item xs={12} md={5}>
           <ComparisonTable
+            key={`ct__${ monthly }${ period }${ breakoutBy }`}
             ref={disbursementsComparison}
             data={comparisonData}
             yGroupBy={yGroupBy}

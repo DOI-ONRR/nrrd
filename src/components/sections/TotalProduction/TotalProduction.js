@@ -31,9 +31,16 @@ const TOTAL_PRODUCTION_QUERY = gql`
       year,
       source,
       sum
-    }  
+    }
 
-    total_yearly_calendar_production {
+    # total_yearly_calendar_production {
+    #   product,
+    #   year,
+    #   source,
+    #   sum
+    # } 
+
+    total_yearly_calendar_production: total_yearly_calendar_production_2 {
       product,
       year,
       source,
@@ -42,33 +49,43 @@ const TOTAL_PRODUCTION_QUERY = gql`
 
     total_monthly_fiscal_production {
       source
-     product
-      sum
-      month_long
-      period_date
-      month
-     year
-    }
-    total_monthly_calendar_production {
-      source
-     product
-      sum
-      month_long
-      period_date
-      month
-     year
-
-  } 
-     total_monthly_last_twelve_production {
-      source
       product
       sum
       month_long
       period_date
       month
      year
+    }
 
-  } 
+    total_monthly_calendar_production {
+      source
+      product
+      sum
+      month_long
+      period_date
+      month
+      year
+    } 
+
+    total_monthly_last_twelve_production {
+      source
+      product
+      sum
+      month_long
+      period_date
+      month
+      year
+    }
+
+    total_monthly_last_two_years_production {
+      source
+      product
+      sum
+      month_long
+      period_date
+      month
+      year
+    } 
   }
 `
 
@@ -126,11 +143,11 @@ const TotalProduction = props => {
         chartData = data.total_monthly_calendar_production
       }
       else {
-        comparisonData = data.total_monthly_last_twelve_production
-        chartData = data.total_monthly_last_twelve_production
+        comparisonData = data.total_monthly_last_two_years_production.filter(row => row.product === commodity)
+        chartData = data.total_monthly_last_twelve_production.filter(row => row.product === commodity)
       }
 
-      xGroups = chartData.filter(row => row.product === 'Oil (bbl)').reduce((g, row, i) => {
+      xGroups = chartData.filter(row => row.product === commodity).reduce((g, row, i) => {
         const r = g
         const year = row.period_date.substring(0, 4)
         const months = g[year] || []
@@ -153,14 +170,14 @@ const TotalProduction = props => {
     }
     else {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
-        comparisonData = data.total_yearly_fiscal_production
+        comparisonData = data.total_yearly_fiscal_production.filter(row => row.product === commodity)
         chartData = data.total_yearly_fiscal_production.filter(item => item.year >= maxFiscalYear - 9)
-        xGroups['Fiscal Year'] = chartData.filter(row => row.product === 'Oil (bbl)').map((row, i) => row.year)
+        xGroups['Fiscal Year'] = chartData.filter(row => row.product === commodity).map((row, i) => row.year)
       }
       else {
-        comparisonData = data.total_yearly_calendar_production
-        chartData = data.total_yearly_calendar_production
-        xGroups['Calendar Year'] = chartData.filter(row => row.product === 'Oil (bbl)').map((row, i) => row.year)
+        comparisonData = data.total_yearly_calendar_production.filter(row => row.product === commodity)
+        chartData = data.total_yearly_calendar_production.filter(item => item.year >= maxCalendarYear - 9)
+        xGroups['Calendar Year'] = chartData.filter(row => row.product === commodity).map((row, i) => row.year)
       }
       console.debug(chartData)
       xLabels = (x, i) => {
@@ -185,6 +202,7 @@ const TotalProduction = props => {
           <Grid item xs={12} md={7}>
             {commodity === 'Oil (bbl)' &&
               <StackedBarChart
+                key={`sbc__${ monthly }${ period }${ commodity }`}
                 title={'Oil (bbl)'}
                 data={chartData.filter(row => row.product === 'Oil (bbl)')}
                 xAxis={xAxis}
@@ -203,12 +221,12 @@ const TotalProduction = props => {
             }
             {commodity === 'Gas (mcf)' &&
               <StackedBarChart
+                key={`sbc__${ monthly }${ period }${ commodity }`}
                 title={'Gas (mcf)'}
                 data={chartData.filter(row => row.product === 'Gas (mcf)')}
                 xAxis={xAxis}
                 yAxis={yAxis}
                 xGroups={xGroups}
-
                 yGroupBy={yGroupBy}
                 xLabels={xLabels}
                 legendFormat={v => {
@@ -228,12 +246,12 @@ const TotalProduction = props => {
             }
             {commodity === 'Coal (tons)' &&
               <StackedBarChart
+                key={`sbc__${ monthly }${ period }${ commodity }`}
                 title={'Coal (tons)'}
                 data={chartData.filter(row => row.product === 'Coal (tons)')}
                 xAxis={xAxis}
                 yAxis={yAxis}
                 xGroups={xGroups}
-
                 yGroupBy={yGroupBy}
                 xLabels={xLabels}
                 legendFormat={v => {
@@ -262,6 +280,7 @@ const TotalProduction = props => {
           </Grid>
           <Grid item xs={12} md={5}>
             <ComparisonTable
+              key={`ct__${ monthly }${ period }${ commodity }`}
               ref={productionComparison}
               data={comparisonData}
               yGroupBy={yGroupBy}

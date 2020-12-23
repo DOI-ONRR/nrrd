@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -47,8 +47,8 @@ const useStyles = makeStyles(theme => ({
 const HomeDataFilters = props => {
   const classes = useStyles()
 
-  const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, dataType } = filterState
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  const { monthly, dataType, period, breakoutBy } = filterState
   const {
     maxFiscalYear,
     maxCalendarYear
@@ -88,6 +88,20 @@ const HomeDataFilters = props => {
 
   const disabled = props.disabledInput
 
+  useEffect(() => {
+    switch (dataType) {
+    case DFC.REVENUE:
+      break
+    case DFC.DISBURSEMENT:
+      updateDataFilter({ ...filterState, [DFC.PERIOD]: (monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option })
+      break
+    case DFC.PRODUCTION:
+      break
+    default:
+      break
+    }
+  }, [monthly])
+
   return (
     <div className={classes.sectionControlsContainer}>
       <YearlyMonthlyToggleInput
@@ -112,6 +126,7 @@ const HomeDataFilters = props => {
         <PeriodSelectInput
           dataFilterKey={DFC.PERIOD}
           data={monthly === DFC.YEARLY ? MENU_OPTIONS[DFC.PERIOD] : MENU_OPTIONS.monthlyPeriod}
+          defaultSelected={MENU_OPTIONS.monthlyPeriod[0].option}
           selected={monthly === DFC.YEARLY ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
           label="Period"
           selectType="Single"

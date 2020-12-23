@@ -243,7 +243,6 @@ export default class D3StackedBarChart {
 
   _chart () {
     try {
-      console.log('_chart loaded yo: ')
       const self = this
       const stack = d3.stack()
 	    .keys(this.yGroupings())
@@ -806,7 +805,7 @@ export default class D3StackedBarChart {
   }
 
   onHover (d) {
-    console.debug('D3StackedBarChart onHover: ', d)
+    // console.debug('D3StackedBarChart onHover: ', d)
     return d
   }
 
