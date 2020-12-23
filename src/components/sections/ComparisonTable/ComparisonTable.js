@@ -143,7 +143,7 @@ const ComparisonTable = forwardRef((props, ref) => {
                 </TableCell>
                 <TableCell component="th" scope="row" align="right" style={{ verticalAlign: 'bottom' }}>
                   <Box>
-                    {item.previous ? utils.formatToDollarInt(item.previous.sum) : '--'}
+                    {(item.previous && item.previous.sum !== 0) ? utils.formatToDollarInt(item.previous.sum) : '--'}
                   </Box>
                 </TableCell>
                 <TableCell align="right" style={{ verticalAlign: 'bottom' }}>
