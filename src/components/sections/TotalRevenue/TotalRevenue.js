@@ -36,6 +36,9 @@ const TOTAL_REVENUE_QUERY = gql`
       sort_order
       commodity_order
       commodity
+      fiscalMonth: fiscal_month
+      currentMonth: month
+      monthLong: month_long
     }
     # total_yearly_calendar_revenue { 
     #   year,
@@ -131,7 +134,7 @@ const TOTAL_REVENUE_QUERY = gql`
 const TotalRevenue = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy, dataType } = filterState
+  const { monthly, period, breakoutBy } = filterState
   const revenueComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
@@ -170,6 +173,10 @@ const TotalRevenue = props => {
   let maxCalendarYear
   let xGroups = {}
   let legendHeaders
+  let currentMonthNum
+  let currentMonthAbbr
+  let currentYearSoFarText
+
   if (data) {
     maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
@@ -177,6 +184,10 @@ const TotalRevenue = props => {
     maxCalendarYear = data.total_monthly_calendar_revenue.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
+
+    currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
+    currentMonthAbbr = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].monthLong.substring(0, 3)
+    currentYearSoFarText = `so far (Oct - ${ currentMonthAbbr })`
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -290,6 +301,11 @@ const TotalRevenue = props => {
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
       }
+
+      legendHeaders = (headers, row) => {
+        const headerArr = [headers[0], '', `${ headers[2] } ${ (currentMonthNum !== parseInt('09') && headers[2] > maxFiscalYear) ? currentYearSoFarText : '' }`]
+        return headerArr
+      }
     }
   }
   return (
@@ -307,7 +323,7 @@ const TotalRevenue = props => {
         </Grid>
         <Grid item xs={12} md={7}>
           <StackedBarChart
-            key={`sbc__${ monthly }${ period }${ breakoutBy }`}
+            key={`trsbc__${ monthly }${ period }${ breakoutBy }`}
             data={chartData}
             legendFormat={v => utils.formatToDollarInt(v)}
             title={chartTitle}
@@ -329,7 +345,7 @@ const TotalRevenue = props => {
         </Grid>
         <Grid item xs={12} md={5}>
           <ComparisonTable
-            key={`ct__${ monthly }${ period }${ breakoutBy }`}
+            key={`trct__${ monthly }${ period }${ breakoutBy }`}
             ref={revenueComparison}
             data={comparisonData}
             yGroupBy={yGroupBy}

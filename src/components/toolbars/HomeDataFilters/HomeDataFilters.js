@@ -102,7 +102,7 @@ const HomeDataFilters = props => {
     default:
       break
     }
-  }, [monthly, dataType])
+  }, [monthly, dataType, period])
 
   return (
     <div className={classes.sectionControlsContainer}>
@@ -128,7 +128,7 @@ const HomeDataFilters = props => {
         <PeriodSelectInput
           dataFilterKey={DFC.PERIOD}
           data={monthly === DFC.YEARLY ? MENU_OPTIONS[DFC.PERIOD] : MENU_OPTIONS.monthlyPeriod}
-          defaultSelected={MENU_OPTIONS.monthlyPeriod[0].option}
+          defaultSelected={monthly === DFC.YEARLY ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
           selected={monthly === DFC.YEARLY ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
           label="Period"
           selectType="Single"

@@ -91,7 +91,7 @@ const TotalDisbursements = props => {
   const { monthly, period, breakoutBy, dataType } = filterState
   const disbursementsComparison = useRef(null)
 
-  const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } (dollars)`
+  const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } by ${ period.toLowerCase() } (dollars)`
 
   const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY)
 
@@ -178,12 +178,13 @@ const TotalDisbursements = props => {
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <HomeDataFilters
+            key={`hdf__${ monthly }${ period }`}
             maxFiscalYear={maxFiscalYear}
             maxCalendarYear={maxCalendarYear} />
         </Grid>
         <Grid item xs={12} md={7}>
           <StackedBarChart
-            key={`sbc__${ monthly }${ period }${ breakoutBy }`}
+            key={`tdsbc__${ monthly }${ period }${ breakoutBy }`}
             title={chartTitle}
             units={units}
             data={chartData}
@@ -205,7 +206,7 @@ const TotalDisbursements = props => {
         </Grid>
         <Grid item xs={12} md={5}>
           <ComparisonTable
-            key={`ct__${ monthly }${ period }${ breakoutBy }`}
+            key={`tdct__${ monthly }${ period }${ breakoutBy }`}
             ref={disbursementsComparison}
             data={comparisonData}
             yGroupBy={yGroupBy}

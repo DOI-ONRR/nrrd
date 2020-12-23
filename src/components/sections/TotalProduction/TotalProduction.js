@@ -202,7 +202,7 @@ const TotalProduction = props => {
           <Grid item xs={12} md={7}>
             {commodity === 'Oil (bbl)' &&
               <StackedBarChart
-                key={`sbc__${ monthly }${ period }${ commodity }`}
+                key={`tpsbc__${ monthly }${ period }${ commodity }`}
                 title={'Oil (bbl)'}
                 data={chartData.filter(row => row.product === 'Oil (bbl)')}
                 xAxis={xAxis}
@@ -221,7 +221,7 @@ const TotalProduction = props => {
             }
             {commodity === 'Gas (mcf)' &&
               <StackedBarChart
-                key={`sbc__${ monthly }${ period }${ commodity }`}
+                key={`tpsbc__${ monthly }${ period }${ commodity }`}
                 title={'Gas (mcf)'}
                 data={chartData.filter(row => row.product === 'Gas (mcf)')}
                 xAxis={xAxis}
