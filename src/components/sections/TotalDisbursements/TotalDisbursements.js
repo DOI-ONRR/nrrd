@@ -38,7 +38,16 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       commodity
     }  
 
-    total_monthly_fiscal_disbursement {
+    # total_monthly_fiscal_disbursement {
+    #   source
+    #   sum
+    #   month_long
+    #   period_date
+    #   month
+    #   year
+    # }
+
+    total_monthly_fiscal_disbursement: total_monthly_fiscal_disbursement_2 {
       source
       sum
       month_long
@@ -47,7 +56,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       year
     }
 
-    total_monthly_calendar_disbursement {
+    total_monthly_calendar_disbursement: total_monthly_calendar_disbursement_2 {
       source
       sum
       month_long
@@ -115,16 +124,14 @@ const TotalDisbursements = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
-    console.log('TotalDisbursements maxFiscalYear: ', maxFiscalYear)
-
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
         comparisonData = data.total_monthly_fiscal_disbursement
-        chartData = data.total_monthly_fiscal_disbursement
+        chartData = data.total_monthly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear)
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         comparisonData = data.total_monthly_calendar_disbursement
-        chartData = data.total_monthly_calendar_disbursement
+        chartData = data.total_monthly_calendar_disbursement.filter(item => item.year >= maxCalendarYear)
       }
       else {
         comparisonData = data.total_monthly_last_three_years_disbursement

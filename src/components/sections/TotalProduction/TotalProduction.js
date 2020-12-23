@@ -47,17 +47,17 @@ const TOTAL_PRODUCTION_QUERY = gql`
       sum
     }   
 
-    total_monthly_fiscal_production {
+    total_monthly_fiscal_production: total_monthly_fiscal_production_2 {
       source
       product
       sum
       month_long
       period_date
       month
-     year
+      year
     }
 
-    total_monthly_calendar_production {
+    total_monthly_calendar_production: total_monthly_calendar_production_2 {
       source
       product
       sum
@@ -135,12 +135,12 @@ const TotalProduction = props => {
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
-        comparisonData = data.total_monthly_fiscal_production
-        chartData = data.total_monthly_fiscal_production
+        comparisonData = data.total_monthly_fiscal_production.filter(row => row.product === commodity)
+        chartData = data.total_monthly_fiscal_production.filter(row => row.product === commodity && row.year >= maxFiscalYear)
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
-        comparisonData = data.total_monthly_calendar_production
-        chartData = data.total_monthly_calendar_production
+        comparisonData = data.total_monthly_calendar_production.filter(row => row.product === commodity)
+        chartData = data.total_monthly_calendar_production.filter(row => row.product === commodity && row.year >= maxCalendarYear)
       }
       else {
         comparisonData = data.total_monthly_last_two_years_production.filter(row => row.product === commodity)
@@ -246,7 +246,7 @@ const TotalProduction = props => {
             }
             {commodity === 'Coal (tons)' &&
               <StackedBarChart
-                key={`sbc__${ monthly }${ period }${ commodity }`}
+                key={`sbc__${ monthly }${ period }Coal (tons)`}
                 title={'Coal (tons)'}
                 data={chartData.filter(row => row.product === 'Coal (tons)')}
                 xAxis={xAxis}

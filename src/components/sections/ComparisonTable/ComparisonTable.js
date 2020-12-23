@@ -13,7 +13,7 @@ import {
 
 import utils, { monthLookup } from '../../../js/utils'
 import PercentDifference from '../../utils/PercentDifference'
-import Link from '../../../components/Link/'
+// import Link from '../../../components/Link/'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -86,7 +86,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   // Comparison data
   const groupedData = utils.groupBy(data, yGroupBy)
 
-  console.log('groupedData: ', groupedData)
+  // console.log('groupedData: ', groupedData)
 
   const comparisonData = Object.entries(groupedData).map((item, index) => {
     const newObj = {}
@@ -148,7 +148,7 @@ const ComparisonTable = forwardRef((props, ref) => {
                 </TableCell>
                 <TableCell align="right" style={{ verticalAlign: 'bottom' }}>
                   <Box>
-                    {item.previous && item.current
+                    {((item.previous && item.current) && (item.previous.sum !== 0 && item.current.sum !== 0))
                       ? <PercentDifference
                         currentAmount={item.current.sum}
                         previousAmount={item.previous.sum}
