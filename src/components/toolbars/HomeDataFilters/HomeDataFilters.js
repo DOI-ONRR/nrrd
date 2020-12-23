@@ -91,16 +91,18 @@ const HomeDataFilters = props => {
   useEffect(() => {
     switch (dataType) {
     case DFC.REVENUE:
+      updateDataFilter({ ...filterState, [DFC.BREAKOUT_BY]: MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE][0].value })
       break
     case DFC.DISBURSEMENT:
       updateDataFilter({ ...filterState, [DFC.PERIOD]: (monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option })
+      updateDataFilter({ ...filterState, [DFC.BREAKOUT_BY]: MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT][0].value })
       break
     case DFC.PRODUCTION:
       break
     default:
       break
     }
-  }, [monthly])
+  }, [monthly, dataType])
 
   return (
     <div className={classes.sectionControlsContainer}>
@@ -138,6 +140,7 @@ const HomeDataFilters = props => {
         <BreakoutBySelectInput
           dataFilterKey={DFC.BREAKOUT_BY}
           data={(dataType === DFC.REVENUE) ? MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE] : MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT]}
+          defaultSelected={(dataType === DFC.REVENUE) ? MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE][0].option : MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT][0].option}
           label="Breakout"
           selectType="Single" />
       }
