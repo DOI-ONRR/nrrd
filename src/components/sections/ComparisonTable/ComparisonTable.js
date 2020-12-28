@@ -107,8 +107,6 @@ const ComparisonTable = forwardRef((props, ref) => {
     return newObj
   })
 
-  console.log('RevenueComparison data: ', comparisonData)
-
   return (
     <Box ref={ref} style={{ position: 'relative', top: -16 }}>
       <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>

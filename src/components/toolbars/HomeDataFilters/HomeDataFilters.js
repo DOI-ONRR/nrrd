@@ -49,6 +49,8 @@ const HomeDataFilters = props => {
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { monthly, dataType, period, breakoutBy } = filterState
+
+  console.log('HomeDataFilters monthly, dataType, period: ', monthly, dataType, period)
   const {
     maxFiscalYear,
     maxCalendarYear
@@ -86,23 +88,9 @@ const HomeDataFilters = props => {
     ]
   }
 
-  const disabled = props.disabledInput
-
   useEffect(() => {
-    switch (dataType) {
-    case DFC.REVENUE:
-      updateDataFilter({ ...filterState, [DFC.BREAKOUT_BY]: MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE][0].value })
-      break
-    case DFC.DISBURSEMENT:
-      updateDataFilter({ ...filterState, [DFC.PERIOD]: (monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option })
-      updateDataFilter({ ...filterState, [DFC.BREAKOUT_BY]: MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT][0].value })
-      break
-    case DFC.PRODUCTION:
-      break
-    default:
-      break
-    }
-  }, [monthly, dataType, period])
+  // renders component when dataType data filter changes
+  }, [dataType])
 
   return (
     <div className={classes.sectionControlsContainer}>
@@ -113,29 +101,18 @@ const HomeDataFilters = props => {
         label=""
         legend=""
         size="medium" />
-      {(dataType === DFC.DISBURSEMENT && monthly === DFC.YEARLY) &&
-          <PeriodSelectInput
-            dataFilterKey={DFC.PERIOD}
-            data={[DFC.PERIOD_FISCAL_YEAR]}
-            selected={[DFC.PERIOD_FISCAL_YEAR]}
-            label="Period"
-            selectType="Single"
-            showClearSelected={false}
-            disabled={true}
-          />
-      }
-      {(dataType !== DFC.DISBURSEMENT || (dataType === DFC.DISBURSEMENT && monthly === DFC.MONTHLY_CAPITALIZED)) &&
-        <PeriodSelectInput
-          dataFilterKey={DFC.PERIOD}
-          data={monthly === DFC.YEARLY ? MENU_OPTIONS[DFC.PERIOD] : MENU_OPTIONS.monthlyPeriod}
-          defaultSelected={monthly === DFC.YEARLY ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
-          selected={monthly === DFC.YEARLY ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
-          label="Period"
-          selectType="Single"
-          showClearSelected={false}
-          disabled={disabled}
-        />
-      }
+
+      <PeriodSelectInput
+        dataFilterKey={DFC.PERIOD}
+        data={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD] : MENU_OPTIONS.monthlyPeriod}
+        defaultSelected={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
+        selected={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
+        label="Period"
+        selectType="Single"
+        showClearSelected={false}
+        disabled={dataType === DFC.DISBURSEMENT && monthly === DFC.YEARLY}
+      />
+
       {dataType !== DFC.PRODUCTION &&
         <BreakoutBySelectInput
           dataFilterKey={DFC.BREAKOUT_BY}

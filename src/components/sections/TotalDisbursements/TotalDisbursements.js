@@ -178,7 +178,6 @@ const TotalDisbursements = props => {
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <HomeDataFilters
-            key={`hdf__${ monthly }${ period }`}
             maxFiscalYear={maxFiscalYear}
             maxCalendarYear={maxCalendarYear} />
         </Grid>
