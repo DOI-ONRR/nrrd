@@ -29,13 +29,13 @@ const ComparisonTable = forwardRef((props, ref) => {
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year } = filterState
   const [selectedItem, setSelectedItem] = useState({
-    month: data[data.length - 1].monthLong,
+    month: data[data.length - 1].month_long,
     year: data[data.length - 1].year || year
   })
 
-  useEffect(() => {
-    console.log('ComparisonTable selectedItem: ', selectedItem)
-  }, [selectedItem])
+  // useEffect(() => {
+  //   console.log('ComparisonTable selectedItem: ', selectedItem)
+  // }, [selectedItem])
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
@@ -141,7 +141,7 @@ const ComparisonTable = forwardRef((props, ref) => {
                 <Box fontWeight="bold">
                   {month ? `${ month } ${ previousYear }` : previousYearText }
                 </Box>
-                {(!month) && <Box fontSize="14px">{`(Oct - ${ selectedItem.month.substring(0, 3) })` }</Box>}
+                {(!month) && <Box fontSize="14px">{`(Oct - ${ selectedItem.month ? selectedItem.month.substring(0, 3) : 'Sep' })` }</Box>}
               </TableCell>
               <TableCell align="right" style={{ verticalAlign: 'bottom', width: '40%' }}>
                 <Box fontWeight="bold">{changeText}</Box>

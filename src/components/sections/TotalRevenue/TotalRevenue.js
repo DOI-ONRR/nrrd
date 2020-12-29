@@ -204,8 +204,6 @@ const TotalRevenue = props => {
     monthRangeText = `${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) }`
     currentYearSoFarText = `so far (${ monthRangeText })`
 
-    console.log('currentMonth: ', currentMonthNum)
-
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
         switch (yGroupBy) {
@@ -366,7 +364,6 @@ const TotalRevenue = props => {
             ref={revenueComparison}
             data={comparisonData}
             yGroupBy={yGroupBy}
-            monthRange={{ start: startMonth, end: endMonth }}
           />
         </Grid>
       </Grid>
