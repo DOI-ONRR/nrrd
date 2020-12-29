@@ -29,18 +29,23 @@ const ComparisonTable = forwardRef((props, ref) => {
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year } = filterState
   const [selectedItem, setSelectedItem] = useState({
-    month: data[data.length - 1].month_long || '',
+    month: data[data.length - 1].monthLong,
     year: data[data.length - 1].year || year
   })
 
   useEffect(() => {
     console.log('ComparisonTable selectedItem: ', selectedItem)
-  }, [])
+  }, [selectedItem])
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
       console.log('getSelected from Child', d)
-      if (d.year) setSelectedItem({ ...selectedItem, year: d.year })
+      if (d.year) {
+        const currentSelectedYearData = data.filter(item => item.year === d.year)
+        // console.log('currentSelectedYearData: ', currentSelectedYearData)
+        const currentSelectedYearDataMaxMonth = currentSelectedYearData[currentSelectedYearData.length - 1].monthLong
+        setSelectedItem({ ...selectedItem, year: d.year, month: currentSelectedYearDataMaxMonth })
+      }
 
       if (d.month_long) {
         const monthNum = parseInt(monthLookup(d.month_long), 10)
@@ -98,7 +103,18 @@ const ComparisonTable = forwardRef((props, ref) => {
       newObj.current = { ...item[1].filter(item => item.year === currentYear && item.month_long === selectedItem.month)[0], sum: currentSum }
     }
     else {
-      const previousSum = item[1].filter(item => item.year === previousYear).reduce((prev, curr) => prev + curr.sum, 0)
+      console.log('previous sum (if fiscal year not complete): ',
+        item[1].filter(item => item.year === previousYear && (item.monthLong === 'October' || item.monthLong === selectedItem.month)).reduce((prev, curr) => prev + curr.sum, 0)
+      )
+      let previousSum = {}
+      // check for comparison with current fiscal month range
+      if (selectedItem.month !== 'September') {
+        previousSum = item[1].filter(item => item.year === previousYear && (item.monthLong === 'October' || item.monthLong === selectedItem.month)).reduce((prev, curr) => prev + curr.sum, 0)
+      }
+      else {
+        previousSum = item[1].filter(item => item.year === previousYear).reduce((prev, curr) => prev + curr.sum, 0)
+      }
+      // const previousSum = item[1].filter(item => item.year === previousYear).reduce((prev, curr) => prev + curr.sum, 0)
       const currentSum = item[1].filter(item => item.year === currentYear).reduce((prev, curr) => prev + curr.sum, 0)
       newObj.previous = { ...item[1].filter(item => item.year === previousYear)[0], sum: previousSum }
       newObj.current = { ...item[1].filter(item => item.year === currentYear)[0], sum: currentSum }
@@ -125,7 +141,7 @@ const ComparisonTable = forwardRef((props, ref) => {
                 <Box fontWeight="bold">
                   {month ? `${ month } ${ previousYear }` : previousYearText }
                 </Box>
-                {(!month) && <Box fontSize="14px">{'(Oct - Sep)' }</Box>}
+                {(!month) && <Box fontSize="14px">{`(Oct - ${ selectedItem.month.substring(0, 3) })` }</Box>}
               </TableCell>
               <TableCell align="right" style={{ verticalAlign: 'bottom', width: '40%' }}>
                 <Box fontWeight="bold">{changeText}</Box>

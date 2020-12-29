@@ -15,7 +15,7 @@ import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link/'
 import ComparisonTable from '../ComparisonTable'
 
-import utils from '../../../js/utils'
+import utils, { getMonthRange } from '../../../js/utils'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -174,10 +174,17 @@ const TotalRevenue = props => {
   let xGroups = {}
   let legendHeaders
   let currentMonthNum
-  let currentMonthAbbr
   let currentYearSoFarText
+  let monthRange
+  let monthRangeText
+  let monthStartDate
+  let monthEndDate
+  let startMonth
+  let endMonth
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
   if (data) {
+    console.log('TotalRevenue data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
@@ -186,8 +193,18 @@ const TotalRevenue = props => {
     })
 
     currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
-    currentMonthAbbr = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].monthLong.substring(0, 3)
-    currentYearSoFarText = `so far (Oct - ${ currentMonthAbbr })`
+
+    monthStartDate = `10-01-${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].year }`
+    monthEndDate = `${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth }-01-${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].year }`
+
+    // month range
+    monthRange = getMonthRange(monthStartDate, monthEndDate)
+    startMonth = months[9]
+    endMonth = months[monthRange[monthRange.length - 1].split('-')[0] - 1]
+    monthRangeText = `${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) }`
+    currentYearSoFarText = `so far (${ monthRangeText })`
+
+    console.log('currentMonth: ', currentMonthNum)
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -349,6 +366,7 @@ const TotalRevenue = props => {
             ref={revenueComparison}
             data={comparisonData}
             yGroupBy={yGroupBy}
+            monthRange={{ start: startMonth, end: endMonth }}
           />
         </Grid>
       </Grid>

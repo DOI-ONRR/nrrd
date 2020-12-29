@@ -47,10 +47,9 @@ const useStyles = makeStyles(theme => ({
 const HomeDataFilters = props => {
   const classes = useStyles()
 
-  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { monthly, dataType, period, breakoutBy } = filterState
+  const { state: filterState } = useContext(DataFilterContext)
+  const { monthly, dataType } = filterState
 
-  console.log('HomeDataFilters monthly, dataType, period: ', monthly, dataType, period)
   const {
     maxFiscalYear,
     maxCalendarYear
@@ -89,7 +88,7 @@ const HomeDataFilters = props => {
   }
 
   useEffect(() => {
-  // renders component when dataType data filter changes
+  // re-renders component when dataType data filter changes
   }, [dataType])
 
   return (
