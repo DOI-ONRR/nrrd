@@ -192,12 +192,11 @@ const TotalRevenue = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
+    // Month range and month range text
     currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
-
     monthStartDate = `10-01-${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].year }`
     monthEndDate = `${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth }-01-${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].year }`
 
-    // month range
     monthRange = getMonthRange(monthStartDate, monthEndDate)
     startMonth = months[9]
     endMonth = months[monthRange[monthRange.length - 1].split('-')[0] - 1]

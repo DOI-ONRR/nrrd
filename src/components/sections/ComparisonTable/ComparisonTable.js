@@ -17,6 +17,7 @@ import PercentDifference from '../../utils/PercentDifference'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { LensTwoTone } from '@material-ui/icons'
 
 const ComparisonTable = forwardRef((props, ref) => {
   const {
@@ -111,7 +112,6 @@ const ComparisonTable = forwardRef((props, ref) => {
       else {
         previousSum = item[1].filter(item => item.year === previousYear).reduce((prev, curr) => prev + curr.sum, 0)
       }
-      // const previousSum = item[1].filter(item => item.year === previousYear).reduce((prev, curr) => prev + curr.sum, 0)
       const currentSum = item[1].filter(item => item.year === currentYear).reduce((prev, curr) => prev + curr.sum, 0)
       newObj.previous = { ...item[1].filter(item => item.year === previousYear)[0], sum: previousSum }
       newObj.current = { ...item[1].filter(item => item.year === currentYear)[0], sum: currentSum }
@@ -119,6 +119,21 @@ const ComparisonTable = forwardRef((props, ref) => {
 
     return newObj
   })
+
+  console.log('comparison data: ', data)
+
+  // Comparison Text
+  let comparisonText
+
+  if (selectedItem.month && selectedItem.month === 'October') {
+    comparisonText = '(Oct)'
+  }
+  else if (selectedItem.month && selectedItem.month !== 'October') {
+    comparisonText = `(Oct - ${ selectedItem.month.substring(0, 3) })`
+  }
+  else {
+    comparisonText = '(Oct - Sep)'
+  }
 
   return (
     <Box ref={ref} style={{ position: 'relative', top: -16 }}>
@@ -138,7 +153,7 @@ const ComparisonTable = forwardRef((props, ref) => {
                 <Box fontWeight="bold">
                   {month ? `${ month } ${ previousYear }` : previousYearText }
                 </Box>
-                {(!month) && <Box fontSize="14px">{`(Oct - ${ selectedItem.month ? selectedItem.month.substring(0, 3) : 'Sep' })` }</Box>}
+                {(!month) && <Box fontSize="14px">{comparisonText}</Box>}
               </TableCell>
               <TableCell align="right" style={{ verticalAlign: 'bottom', width: '40%' }}>
                 <Box fontWeight="bold">{changeText}</Box>

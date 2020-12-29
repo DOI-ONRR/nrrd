@@ -17,7 +17,7 @@ import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link'
 import ComparisonTable from '../ComparisonTable'
 
-import utils from '../../../js/utils'
+import utils, { getMonthRange } from '../../../js/utils'
 
 const TOTAL_DISBURSEMENTS_QUERY = gql`
   query TotalYearlyDisbursements {
@@ -27,16 +27,17 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
     #   sum
     # }
 
-    total_yearly_fiscal_disbursement: total_yearly_fiscal_disbursement_2 {
+    total_yearly_fiscal_disbursement: total_yearly_fiscal_disbursement_2(order_by: {year: asc}) {
       period
       sum
       source: land_type
       year
-      revenue_type
       sort_order
-      commodity_order
-      commodity
-    }  
+      fiscalMonth: fiscal_month
+      currentMonth: month
+      monthLong: month_long
+      recipient: fund_type
+    }
 
     # total_monthly_fiscal_disbursement {
     #   source
@@ -88,7 +89,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
 // TotalDisbursements
 const TotalDisbursements = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy, dataType } = filterState
+  const { monthly, period, breakoutBy } = filterState
   const disbursementsComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } by ${ period.toLowerCase() } (dollars)`
@@ -113,16 +114,47 @@ const TotalDisbursements = props => {
   let maxCalendarYear
   let xGroups = {}
   let legendHeaders
+  let currentMonthNum
+  let currentYearSoFarText
+  let monthRange
+  let monthRangeText
+  let monthStartDate
+  let monthEndDate
+  let startMonth
+  let endMonth
+  let yOrderBy
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    // console.log('TotalDisbursements data: ', data)
+    console.log('TotalDisbursements data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
     maxCalendarYear = data.total_monthly_calendar_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
+
+    // Recipients/Source
+    switch (breakoutBy) {
+    case 'recipient':
+      yOrderBy = ['U.S. Treasury', 'State and local governments', 'Reclamation', 'Native American tribes and individuals', 'Land and Water Conservation Fund', 'Other', 'Historic Preservation Fund']
+      break
+    default:
+      yOrderBy = ['Native American', 'Federal Offshore', 'Federal Onshore']
+      break
+    }
+
+    // Month range and month range text
+    currentMonthNum = data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth
+    monthStartDate = `10-01-${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].year }`
+    monthEndDate = `${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth }-01-${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].year }`
+
+    monthRange = getMonthRange(monthStartDate, monthEndDate)
+    startMonth = months[9]
+    endMonth = months[monthRange[monthRange.length - 1].split('-')[0] - 1]
+    monthRangeText = (endMonth === 'October') ? startMonth.substring(0, 3) : `${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) }`
+    currentYearSoFarText = `so far (${ monthRangeText })`
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -159,11 +191,26 @@ const TotalDisbursements = props => {
       }
     }
     else {
-      comparisonData = data.total_yearly_fiscal_disbursement
-      chartData = data.total_yearly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 9)
+      switch (yGroupBy) {
+      case 'recipient':
+        comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
+        chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
+        break
+      default:
+        comparisonData = data.total_yearly_fiscal_disbursement
+        chartData = data.total_yearly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 9)
+        break
+      }
+
       xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
+      }
+
+      legendHeaders = (headers, row) => {
+        const yearLabel = `${ headers[2] } ${ (currentMonthNum !== parseInt('09') && headers[2] > maxFiscalYear) ? currentYearSoFarText : '' }`
+        const headerArr = [headers[0], '', yearLabel]
+        return headerArr
       }
     }
   }
@@ -191,6 +238,7 @@ const TotalDisbursements = props => {
             yAxis={yAxis}
             xGroups={xGroups}
             yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
             xLabels={xLabels}
             legendFormat={v => utils.formatToDollarInt(v)}
             legendHeaders={legendHeaders}
