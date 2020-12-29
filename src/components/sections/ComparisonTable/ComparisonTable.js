@@ -29,13 +29,13 @@ const ComparisonTable = forwardRef((props, ref) => {
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year } = filterState
   const [selectedItem, setSelectedItem] = useState({
-    month: data[data.length - 1].month_long,
+    month: data[data.length - 1].month_long ? data[data.length - 1].month_long : data[data.length - 1].monthLong,
     year: data[data.length - 1].year || year
   })
 
-  // useEffect(() => {
-  //   console.log('ComparisonTable selectedItem: ', selectedItem)
-  // }, [selectedItem])
+  useEffect(() => {
+    console.log('ComparisonTable selectedItem: ', selectedItem)
+  }, [selectedItem])
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
@@ -103,9 +103,6 @@ const ComparisonTable = forwardRef((props, ref) => {
       newObj.current = { ...item[1].filter(item => item.year === currentYear && item.month_long === selectedItem.month)[0], sum: currentSum }
     }
     else {
-      console.log('previous sum (if fiscal year not complete): ',
-        item[1].filter(item => item.year === previousYear && (item.monthLong === 'October' || item.monthLong === selectedItem.month)).reduce((prev, curr) => prev + curr.sum, 0)
-      )
       let previousSum = {}
       // check for comparison with current fiscal month range
       if (selectedItem.month !== 'September') {
