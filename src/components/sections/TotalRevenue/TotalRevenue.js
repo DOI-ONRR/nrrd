@@ -134,7 +134,7 @@ const TOTAL_REVENUE_QUERY = gql`
 const TotalRevenue = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy } = filterState
+  const { monthly, period, breakoutBy, dataType } = filterState
   const revenueComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
@@ -332,6 +332,7 @@ const TotalRevenue = props => {
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <HomeDataFilters
+            key={`hdc__${ dataType }`}
             maxFiscalYear={maxFiscalYear}
             maxCalendarYear={maxCalendarYear} />
         </Grid>
