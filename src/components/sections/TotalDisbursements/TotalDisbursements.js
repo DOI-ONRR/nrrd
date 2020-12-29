@@ -55,6 +55,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       period_date
       month
       year
+      recipient
     }
 
     total_monthly_calendar_disbursement: total_monthly_calendar_disbursement_2 {
@@ -64,24 +65,27 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       period_date
       month
       year
+      recipient
     }
 
-    total_monthly_last_twelve_disbursement {
+    total_monthly_last_twelve_disbursement: total_monthly_last_twelve_disbursement_2 {
       source
       sum
       month_long
       period_date
       month
       year
+      recipient
     } 
 
     total_monthly_last_three_years_disbursement {
-      source
+      source: land_type,
       sum
       month_long
       period_date
       month
       year
+      recipient
     }
   }
 `
@@ -138,7 +142,7 @@ const TotalDisbursements = props => {
     // Recipients/Source
     switch (breakoutBy) {
     case 'recipient':
-      yOrderBy = ['U.S. Treasury', 'State and local governments', 'Reclamation', 'Native American tribes and individuals', 'Land and Water Conservation Fund', 'Other', 'Historic Preservation Fund']
+      yOrderBy = ['U.S. Treasury', 'State and local governments', 'Reclamation', 'Native American Tribes & Allottees', 'Land and Water Conservation Fund', 'Other', 'Historic Preservation Fund']
       break
     default:
       yOrderBy = ['Native American', 'Federal Offshore', 'Federal Onshore']
@@ -158,16 +162,40 @@ const TotalDisbursements = props => {
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
-        comparisonData = data.total_monthly_fiscal_disbursement
-        chartData = data.total_monthly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear)
+        switch (yGroupBy) {
+        case 'recipient':
+          comparisonData = data.total_monthly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
+          chartData = data.total_monthly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear && yOrderBy.includes(item.recipient)))
+          break
+        default:
+          comparisonData = data.total_monthly_fiscal_disbursement
+          chartData = data.total_monthly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear)
+          break
+        }
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
-        comparisonData = data.total_monthly_calendar_disbursement
-        chartData = data.total_monthly_calendar_disbursement.filter(item => item.year >= maxCalendarYear)
+        switch (yGroupBy) {
+        case 'recipient':
+          comparisonData = data.total_monthly_calendar_disbursement.filter(item => yOrderBy.includes(item.recipient))
+          chartData = data.total_monthly_calendar_disbursement.filter(item => item.year >= maxCalendarYear && yOrderBy.includes(item.recipient))
+          break
+        default:
+          comparisonData = data.total_monthly_calendar_disbursement
+          chartData = data.total_monthly_calendar_disbursement.filter(item => item.year >= maxCalendarYear)
+          break
+        }
       }
       else {
-        comparisonData = data.total_monthly_last_three_years_disbursement
-        chartData = data.total_monthly_last_twelve_disbursement
+        switch (yGroupBy) {
+        case 'recipient':
+          comparisonData = data.total_monthly_last_three_years_disbursement.filter(item => yOrderBy.includes(item.recipient))
+          chartData = data.total_monthly_last_twelve_disbursement.filter(item => yOrderBy.includes(item.recipient))
+          break
+        default:
+          comparisonData = data.total_monthly_last_three_years_disbursement
+          chartData = data.total_monthly_last_twelve_disbursement
+          break
+        }
       }
 
       xGroups = chartData.reduce((g, row, i) => {
