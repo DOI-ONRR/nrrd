@@ -27,7 +27,8 @@ import {
   MAP_LEVEL,
   STATE,
   REVENUE_BY_COMPANY,
-  COMPANY_NAME
+  COMPANY_NAME,
+  MONTH_LONG
 } from '../../constants'
 
 const types = Object.freeze({
@@ -77,14 +78,14 @@ const initialState = {
     [DATA_TYPE]: REVENUE,
     [GROUP_BY]: REVENUE_TYPE,
     [PERIOD]: 'Fiscal Year',
-    [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+    [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
     [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
     dataTypesCache: {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
         [GROUP_BY]: REVENUE_TYPE,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
         [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
       },
       [PRODUCTION]: {
@@ -92,13 +93,14 @@ const initialState = {
         [GROUP_BY_STICKY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
         [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
-        [CALENDAR_YEAR]: '2014,2015,2016,2017,2018'
+        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019'
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
+        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
+        [CALENDAR_YEAR]: '2018,2019,2020'
       },
       [REVENUE_BY_COMPANY]: {
         [DATA_TYPE]: REVENUE_BY_COMPANY,
@@ -111,7 +113,7 @@ const initialState = {
   [EXPLORE_DATA_FILTER_DEFAULT]: {
     [DATA_TYPE]: REVENUE,
     [PERIOD]: 'Calendar Year',
-    [FISCAL_YEAR]: '2019',
+    [FISCAL_YEAR]: '2020',
     [CALENDAR_YEAR]: '2019',
     [OFFSHORE_REGIONS]: false,
     [MAP_LEVEL]: STATE,
@@ -120,7 +122,7 @@ const initialState = {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
         [PERIOD]: 'Calendar Year',
-        [FISCAL_YEAR]: '2019',
+        [FISCAL_YEAR]: '2020',
         [CALENDAR_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
@@ -139,10 +141,10 @@ const initialState = {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2019',
+        [FISCAL_YEAR]: '2020',
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
-        [YEAR]: 2019,
+        [YEAR]: 2020,
       }
     }
   }

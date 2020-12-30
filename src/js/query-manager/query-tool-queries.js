@@ -5,6 +5,7 @@ import {
   REVENUE,
   PRODUCTION,
   DISBURSEMENT,
+  DISBURSEMENT_MONTHLY,
   REVENUE_BY_COMPANY,
   COMPANY_NAME,
   LAND_TYPE,
@@ -26,11 +27,15 @@ import {
   ALL_DISBURSEMENT_YEARS,
   ALL_REVENUE_YEARS,
   ALL_REVENUE_BY_COMPANY_YEARS,
+  ALL_PRODUCTION_YEARS,
+  ALL_PRODUCTION_MONTHLY_YEARS,
   DATA_TYPE,
   STATE_OFFSHORE_NAME,
   FISCAL_YEAR,
   CALENDAR_YEAR,
-  LOCAL_RECIPIENT
+  LOCAL_RECIPIENT,
+  PERIOD_MONTHLY,
+  MONTH_LONG
 } from '../../constants'
 import gql from 'graphql-tag'
 
@@ -68,7 +73,8 @@ const VARIABLE_CONFIGS = {
     { [STATE_OFFSHORE_NAME]: MULTI_STR },
     { [PERIOD]: SINGLE_STR },
     { [FISCAL_YEAR]: MULTI_INT },
-    { [CALENDAR_YEAR]: MULTI_INT }
+    { [CALENDAR_YEAR]: MULTI_INT },
+    { [MONTH_LONG]: MULTI_STR }
   ],
   [DISBURSEMENT]: [
     { [RECIPIENT]: MULTI_STR },
@@ -79,6 +85,15 @@ const VARIABLE_CONFIGS = {
     { [FISCAL_YEAR]: MULTI_INT },
     { [CALENDAR_YEAR]: MULTI_INT }
   ],
+  [DISBURSEMENT_MONTHLY]: [
+    { [RECIPIENT]: MULTI_STR },
+    { [SOURCE]: MULTI_STR },
+    { [US_STATE_NAME]: MULTI_STR },
+    { [LOCAL_RECIPIENT]: MULTI_STR },
+    { [PERIOD]: SINGLE_STR },
+    { [CALENDAR_YEAR]: MULTI_INT },
+    { [MONTH_LONG]: MULTI_STR }
+  ],
   [REVENUE_BY_COMPANY]: [
     { [PERIOD]: SINGLE_STR },
     { [COMMODITY]: MULTI_STR },
@@ -87,9 +102,19 @@ const VARIABLE_CONFIGS = {
     { [CALENDAR_YEAR]: MULTI_INT }
   ]
 }
-
-export const getVariables = (state, options) =>
-  getDataFilterVariableValues(state, VARIABLE_CONFIGS[state[DATA_TYPE]])
+const getVariableValues = state => {
+  if (state[PERIOD] === PERIOD_MONTHLY && state[DATA_TYPE] === DISBURSEMENT) {
+    return getDataFilterVariableValues(state, VARIABLE_CONFIGS[DISBURSEMENT_MONTHLY])
+  }
+  return getDataFilterVariableValues(state, VARIABLE_CONFIGS[state[DATA_TYPE]])
+}
+const getVariableConfig = state => {
+  if (state[PERIOD] === PERIOD_MONTHLY && state[DATA_TYPE] === DISBURSEMENT) {
+    return VARIABLE_CONFIGS[DISBURSEMENT_MONTHLY]
+  }
+  return VARIABLE_CONFIGS[state[DATA_TYPE]]
+}
+export const getVariables = (state, options) => getVariableValues(state)
 
 // STEP 2: Define all the queries needed
 
@@ -97,6 +122,7 @@ const VIEWS = {
   [REVENUE]: 'query_tool_revenue_data',
   [PRODUCTION]: 'query_tool_production_data',
   [DISBURSEMENT]: 'query_tool_disbursement_data',
+  [DISBURSEMENT_MONTHLY]: 'query_tool_disbursement_monthly_data',
   [REVENUE_BY_COMPANY]: 'query_tool_revenue_by_company'
 }
 const REVENUE_QUERY = whereClause => (
@@ -136,7 +162,8 @@ const PRODUCTION_QUERY = whereClause => (
     ${ LAND_TYPE }: ${ DB_COLS[LAND_TYPE] }
     ${ STATE_OFFSHORE_NAME }: ${ DB_COLS[STATE_OFFSHORE_NAME] }
     ${ COUNTY }: ${ DB_COLS[COUNTY_NAME] }
-    ${ ALL_REVENUE_YEARS }
+    ${ MONTH_LONG }: ${ DB_COLS[MONTH_LONG] }
+    ${ ALL_PRODUCTION_YEARS }
   }
   counts:${ VIEWS[PRODUCTION] }_aggregate (
     where: {
@@ -148,8 +175,36 @@ const PRODUCTION_QUERY = whereClause => (
       ${ COUNTY }:count(columns: ${ DB_COLS[COUNTY_NAME] }, distinct: true)
       ${ LAND_TYPE }:count(columns: ${ DB_COLS[LAND_TYPE] }, distinct: true)
       ${ STATE_OFFSHORE_NAME }:count(columns: ${ DB_COLS[STATE_OFFSHORE_NAME] }, distinct: true)
+      ${ MONTH_LONG }:count(columns: ${ DB_COLS[MONTH_LONG] }, distinct: true)
     }
   }`)
+
+const PRODUCTION_MONTHLY_QUERY = whereClause => (
+  `results:${ VIEWS[PRODUCTION] }(
+      where: {
+        ${ whereClause }
+      }) {
+      ${ PRODUCT }: ${ DB_COLS[PRODUCT] }
+      ${ COMMODITY_ORDER }: ${ DB_COLS[COMMODITY_ORDER] }
+      ${ LAND_TYPE }: ${ DB_COLS[LAND_TYPE] }
+      ${ STATE_OFFSHORE_NAME }: ${ DB_COLS[STATE_OFFSHORE_NAME] }
+      ${ COUNTY }: ${ DB_COLS[COUNTY_NAME] }
+      ${ MONTH_LONG }: ${ DB_COLS[MONTH_LONG] }
+      ${ ALL_PRODUCTION_MONTHLY_YEARS }
+    }
+    counts:${ VIEWS[PRODUCTION] }_aggregate (
+      where: {
+        ${ whereClause }
+      }
+      ) {
+      aggregate {
+        ${ PRODUCT }:count(columns: ${ DB_COLS[PRODUCT] }, distinct: true)
+        ${ COUNTY }:count(columns: ${ DB_COLS[COUNTY_NAME] }, distinct: true)
+        ${ LAND_TYPE }:count(columns: ${ DB_COLS[LAND_TYPE] }, distinct: true)
+        ${ STATE_OFFSHORE_NAME }:count(columns: ${ DB_COLS[STATE_OFFSHORE_NAME] }, distinct: true)
+        ${ MONTH_LONG }:count(columns: ${ DB_COLS[MONTH_LONG] }, distinct: true)
+      }
+    }`)
 
 const DISBURSEMENT_QUERY = whereClause => (
   `results:${ VIEWS[DISBURSEMENT] }(
@@ -174,6 +229,32 @@ const DISBURSEMENT_QUERY = whereClause => (
       ${ LOCAL_RECIPIENT }:count(columns: ${ DB_COLS[LOCAL_RECIPIENT] }, distinct: true)
     }
   }`)
+
+const DISBURSEMENT_MONTHLY_QUERY = whereClause => (
+  `results:${ VIEWS[DISBURSEMENT_MONTHLY] }(
+      where: {
+        ${ whereClause }
+      }) {
+      ${ RECIPIENT }: ${ DB_COLS[RECIPIENT] }
+      ${ SOURCE }: ${ DB_COLS[SOURCE] }
+      ${ US_STATE }: ${ DB_COLS[US_STATE_NAME] }
+      ${ LOCAL_RECIPIENT }: ${ DB_COLS[LOCAL_RECIPIENT] }
+      ${ MONTH_LONG }: ${ DB_COLS[MONTH_LONG] }
+      ${ ALL_DISBURSEMENT_YEARS }
+    }
+    counts:${ VIEWS[DISBURSEMENT_MONTHLY] }_aggregate (
+      where: {
+        ${ whereClause }
+      }
+      ) {
+      aggregate {
+        ${ RECIPIENT }:count(columns: ${ DB_COLS[RECIPIENT] }, distinct: true)
+        ${ SOURCE }:count(columns: ${ DB_COLS[SOURCE] }, distinct: true)
+        ${ US_STATE }:count(columns: ${ DB_COLS[US_STATE_NAME] }, distinct: true)
+        ${ LOCAL_RECIPIENT }:count(columns: ${ DB_COLS[LOCAL_RECIPIENT] }, distinct: true)
+        ${ MONTH_LONG }:count(columns: ${ DB_COLS[MONTH_LONG] }, distinct: true)
+      }
+    }`)
 
 const REVENUE_BY_COMPANY_QUERY = whereClause => (
   `results:${ VIEWS[REVENUE_BY_COMPANY] }(
@@ -202,9 +283,10 @@ const REVENUE_BY_COMPANY_QUERY = whereClause => (
  */
 export const getQuery = (state, options) => {
   if (options[DATA_FILTER_KEY]) {
-    return QUERIES.DATA_FILTERS(state, VARIABLE_CONFIGS[state[DATA_TYPE]], options)
+    return QUERIES.DATA_FILTERS(state, getVariableConfig(state), options)
   }
-  return QUERIES[state[DATA_TYPE]](state, VARIABLE_CONFIGS[state[DATA_TYPE]])
+
+  return QUERIES[state[DATA_TYPE]](state, getVariableConfig(state))
 }
 
 const QUERIES = {
@@ -212,25 +294,48 @@ const QUERIES = {
     gql`query GetDataTableRevenue
       (${ getDataFilterVariableList(state, variableConfig) })
       {${ REVENUE_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
-  [PRODUCTION]: (state, variableConfig) =>
-    gql`query GetDataTableProduction
+  [PRODUCTION]: (state, variableConfig) => {
+    if (state[PERIOD] === PERIOD_MONTHLY) {
+      return (
+        gql`query GetDataTableProductionMonthly
+        (${ getDataFilterVariableList(state, variableConfig) })
+        {${ PRODUCTION_MONTHLY_QUERY(getDataFilterWhereClauses(variableConfig)) }}`
+      )
+    }
+    return (
+      gql`query GetDataTableProduction
       (${ getDataFilterVariableList(state, variableConfig) })
-      {${ PRODUCTION_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
-  [DISBURSEMENT]: (state, variableConfig) =>
-    gql`query GetDataTableDisbursement
+      {${ PRODUCTION_QUERY(getDataFilterWhereClauses(variableConfig)) }}`
+    )
+  },
+  [DISBURSEMENT]: (state, variableConfig) => {
+    if (state[PERIOD] === PERIOD_MONTHLY) {
+      return (
+        gql`query GetDataTableDisbursementMonthly
+        (${ getDataFilterVariableList(state, variableConfig) })
+        {${ DISBURSEMENT_MONTHLY_QUERY(getDataFilterWhereClauses(variableConfig)) }}`
+      )
+    }
+    return (
+      gql`query GetDataTableDisbursement
       (${ getDataFilterVariableList(state, variableConfig) })
-      {${ DISBURSEMENT_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
+      {${ DISBURSEMENT_QUERY(getDataFilterWhereClauses(variableConfig)) }}`
+    )
+  },
   [REVENUE_BY_COMPANY]: (state, variableConfig) =>
     gql`query GetDataTableRevenueByCompany
           (${ getDataFilterVariableList(state, variableConfig) })
           {${ REVENUE_BY_COMPANY_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
   DATA_FILTERS: (state, variableConfig, options) => {
     const excludeProps = options[EXCLUDE_PROPS] ? options[EXCLUDE_PROPS] : []
+    const view = (state[PERIOD] === PERIOD_MONTHLY && state[DATA_TYPE] === DISBURSEMENT)
+      ? VIEWS[DISBURSEMENT_MONTHLY]
+      : VIEWS[state[DATA_TYPE]]
     return (
       gql`query GetQueryToolFilter_${ options[DATA_FILTER_KEY] }
           (${ getDataFilterVariableList(state, variableConfig) })
           {${ getDataFilterQuery(
-        VIEWS[state[DATA_TYPE]],
+        view,
         options[DATA_FILTER_KEY],
         getDataFilterWhereClauses(variableConfig, [options[DATA_FILTER_KEY], ...excludeProps])) }}`)
   },

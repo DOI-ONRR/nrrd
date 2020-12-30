@@ -8,9 +8,10 @@ import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import * as d3 from 'd3'
+import { useInView } from 'react-intersection-observer'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import CircularProgress from '@material-ui/core/CircularProgress'
 
 import LineChart from '../../../data-viz/LineChart/LineChart.js'
 import ChipLabel from '../../ExploreData/ChipLabel'
@@ -25,13 +26,13 @@ import {
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
 const APOLLO_QUERY = gql`
-  query RevenueOverTime($period: String!, $commodities: [String!]) {
-    revenue_summary(where: {period: {_eq: $period}, commodity: {_in: $commodities}, location: {_neq: ""}}, order_by: {year: asc}) {
-      year
-      location
-      total
+    query RevenueOverTime($period: String!, $commodities: [String!]) {
+	revenue_summary(where: {period: {_eq: $period}, commodity: {_in: $commodities}, location: {_neq: ""}}, order_by: {year: asc}) {
+	    year
+	    location
+	    total
+	}
     }
-  }
 `
 const useStyles = makeStyles(theme => ({
   root: {
@@ -89,9 +90,15 @@ const RevenueOverTime = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'all'
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { period: period, commodities: commodities }
+    variables: { period: period, commodities: commodities },
+    skip: inView === false
   })
 
   const handleDelete = props.handleDelete || ((e, fips) => {
@@ -133,9 +140,9 @@ const RevenueOverTime = props => {
 
     //  data.fiscal_revenue_summary.filter(row => row.state_or_area === yData.abbr).map(item => item.sum)
     chartData = [years, ...sums]
-    console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
+    // console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
-      <Container id={utils.formatToSlug(title)}>
+      <Container id={utils.formatToSlug(title)} ref={ref} >
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h4" color="secondary.dark">{title}</Box>
@@ -143,29 +150,29 @@ const RevenueOverTime = props => {
         </Grid>
         <Grid item md={12}>
           <LineChart
-            key={'ROT' + commodityKey + period}
-            data={chartData}
-            chartColors={[theme.palette.explore[400], theme.palette.explore[300], theme.palette.explore[200], theme.palette.explore[100]]}
-            lineDashes={LINE_DASHES}
-            lineTooltip={
-              (d, i) => {
-                const r = []
-                r[0] = `${ cards[i].locationName }: ${ utils.formatToDollarInt(d) }`
-                return r
-              }
-            } />
+		       key={'ROT' + commodityKey + period}
+		       data={chartData}
+		       chartColors={[theme.palette.explore[400], theme.palette.explore[300], theme.palette.explore[200], theme.palette.explore[100]]}
+		       lineDashes={LINE_DASHES}
+		       lineTooltip={
+		       (d, i) => {
+			   const r = []
+			   r[0] = `${ cards[i].locationName }: ${ utils.formatToDollarInt(d) }`
+			   return r
+		       }
+		       } />
           <Box mt={1} className={classes.chipContainer}>
             {
-              cards.map((card, i) => {
+		  cards.map((card, i) => {
                 return (
-                  <Chip
-                    key={`RevenueOverTimeChip_${ card.fipsCode }`}
-                    variant='outlined'
-                    onDelete={ e => handleDelete(e, card.fipsCode)}
-                    label={<ChipLabel labelIndex={i} label={card.locationName} />}
-                    classes={{ root: classes.chipRoot }} />
+			  <Chip
+			      key={`RevenueOverTimeChip_${ card.fipsCode }`}
+			      variant='outlined'
+			      onDelete={ e => handleDelete(e, card.fipsCode)}
+			      label={<ChipLabel labelIndex={i} label={card.locationName} />}
+			      classes={{ root: classes.chipRoot }} />
                 )
-              })
+		  })
             }
           </Box>
         </Grid>
@@ -173,7 +180,9 @@ const RevenueOverTime = props => {
     )
   }
   else {
-    return (null)
+    return (<div className={classes.progressContainer} ref={ref}>
+      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
   }
 }
 

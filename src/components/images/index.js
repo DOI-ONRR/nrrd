@@ -83,6 +83,10 @@ import MapStateWISvg from '-!svg-react-loader!../../images/maps/states/WI.svg'
 import MapStateWVSvg from '-!svg-react-loader!../../images/maps/states/WV.svg'
 import MapStateWYSvg from '-!svg-react-loader!../../images/maps/states/WY.svg'
 
+import WarningIcon from '@material-ui/icons/Warning'
+
+export const WarningIconImg = props => <WarningIcon {...props} />
+
 export const FilterTableIconImg = props => <FilterTableIconSvg {...props} style={{ fill: 'currentColor' }} />
 
 export const HowWorksLinkIconImg = props => <HowWorksLinkIconSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} />

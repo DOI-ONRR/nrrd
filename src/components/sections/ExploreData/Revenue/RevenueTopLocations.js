@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 // utility functions
 import utils from '../../../../js/utils'
 import * as d3 from 'd3'
+import { useInView } from 'react-intersection-observer'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -24,17 +25,17 @@ import {
 import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
 
 const APOLLO_QUERY = gql`
-  query RevenueTopLocations($year: Int!, $locations: [String!], $period: String!,  $commodities: [String!]) {
-    revenue_summary(
-      where: {location_type: {_in: $locations}, year: { _eq: $year }, location_name: {_neq: ""}, period: {_eq: $period}, commodity: {_in: $commodities}  },
-      order_by: {  total: desc }
-    ) {
-      location_name
-      year
-      location
-      total
+    query RevenueTopLocations($year: Int!, $locations: [String!], $period: String!,  $commodities: [String!]) {
+	revenue_summary(
+	    where: {location_type: {_in: $locations}, year: { _eq: $year }, location_name: {_neq: ""}, period: {_eq: $period}, commodity: {_in: $commodities}  },
+	    order_by: {  total: desc }
+	) {
+	    location_name
+	    year
+	    location
+	    total
+	}
     }
-  }
 `
 const useStyles = makeStyles(theme => ({
   root: {
@@ -95,7 +96,16 @@ const RevenueTopLocations = props => {
   if (location === 'State') {
     locations.push('Native American')
   }
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year, locations, period, commodities } })
+  const { ref, inView, entry } = useInView({
+	    /* Optional options */
+	    threshold: 0,
+	    triggerOnce: true
+  })
+
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { year, locations, period, commodities },
+    skip: inView === false
+  })
 
   if (loading) {
     return (
@@ -118,9 +128,8 @@ const RevenueTopLocations = props => {
       .map(d => {
         return ({ location_name: d.key, total: d.value })
       }).sort((a, b) => (a.total < b.total) ? 1 : -1)
-    console.debug('------------------------------------------------->', chartData)
     return (
-      <Container id={utils.formatToSlug(title)}>
+      <Container id={utils.formatToSlug(title)} ref={ref} >
         <Grid container>
           <Grid item xs={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
@@ -196,7 +205,9 @@ const RevenueTopLocations = props => {
     )
   }
   else {
-    return null
+    return (<div className={classes.progressContainer} ref={ref}>
+      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
   }
 }
 

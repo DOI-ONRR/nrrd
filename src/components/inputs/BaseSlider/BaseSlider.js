@@ -99,7 +99,7 @@ const useStyles = makeStyles(theme => ({
       boxShadow: 'none',
       transition: 'none',
     },
-    '&:focus,&:hover,&$active': {
+    '&:focus,&:hover,&:active': {
       boxShadow: 'inherit',
     },
   },
