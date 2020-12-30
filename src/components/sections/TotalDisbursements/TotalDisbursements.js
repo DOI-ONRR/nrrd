@@ -36,7 +36,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       fiscalMonth: fiscal_month
       currentMonth: month
       monthLong: month_long
-      recipient: fund_type
+      recipient
     }
 
     # total_monthly_fiscal_disbursement {
@@ -142,7 +142,7 @@ const TotalDisbursements = props => {
     // Recipients/Source
     switch (breakoutBy) {
     case 'recipient':
-      yOrderBy = ['U.S. Treasury', 'State and local governments', 'Reclamation', 'Native American Tribes & Allottees', 'Land and Water Conservation Fund', 'Other', 'Historic Preservation Fund']
+      yOrderBy = ['U.S. Treasury', 'State and local governments', 'Reclamation', 'Native American tribes and individuals', 'Land and Water Conservation Fund', 'Other', 'Historic Preservation Fund']
       break
     default:
       yOrderBy = ['Native American', 'Federal Offshore', 'Federal Onshore']
@@ -169,7 +169,7 @@ const TotalDisbursements = props => {
           break
         default:
           comparisonData = data.total_monthly_fiscal_disbursement
-          chartData = data.total_monthly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear)
+          chartData = data.total_monthly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 1)
           break
         }
       }
