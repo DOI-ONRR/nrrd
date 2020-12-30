@@ -173,9 +173,9 @@ const Tabtastic = props => {
 
 export const TabtasticTab = ({ label, children }) => {
   return (
-    <Box label={label} data-testid="tabtastic-tab-container">
+    <div label={label} data-testid="tabtastic-tab-container">
       {children}
-    </Box>
+    </div>
   )
 }
 
