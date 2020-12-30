@@ -48,7 +48,7 @@ const HomeDataFilters = props => {
   const classes = useStyles()
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { monthly, dataType, breakoutBy } = filterState
+  const { monthly, dataType } = filterState
 
   const {
     maxFiscalYear,
@@ -105,7 +105,7 @@ const HomeDataFilters = props => {
         key={`psi__${ dataType }`}
         dataFilterKey={DFC.PERIOD}
         data={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD] : MENU_OPTIONS.monthlyPeriod}
-        defaultSelected={(monthly === DFC.YEARLY || breakoutBy !== DFC.SOURCE) ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
+        defaultSelected={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
         label="Period"
         selectType="Single"
         showClearSelected={false}
