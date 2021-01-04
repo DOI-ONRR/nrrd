@@ -48,7 +48,7 @@ const HomeDataFilters = props => {
   const classes = useStyles()
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { monthly, dataType } = filterState
+  const { monthly, dataType, year } = filterState
 
   const {
     maxFiscalYear,
@@ -66,7 +66,7 @@ const HomeDataFilters = props => {
     ],
     monthlyPeriod: [
       { value: 'Most recent 12 months', option: 'Most recent 12 months' },
-      { value: DFC.PERIOD_FISCAL_YEAR, option: `Fiscal year ${ maxFiscalYear }` },
+      { value: DFC.PERIOD_FISCAL_YEAR, option: `Fiscal year ${ monthly === DFC.MONTHLY ? maxFiscalYear : year }` },
       { value: DFC.PERIOD_CALENDAR_YEAR, option: `Calendar year ${ maxCalendarYear }` }
     ],
     [DFC.BREAKOUT_BY]: {
