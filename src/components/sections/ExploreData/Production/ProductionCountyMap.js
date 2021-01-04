@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-       height: '250px',
+    height: '250px',
     '& .mapContainer > .legendWrap': {
       display: 'none', // quick fix for now, will want to disable most map features for smaller maps
     },
@@ -155,12 +155,12 @@ const ProductionCountyMap = props => {
 
   if (loading) {}
   if (error) return `Error! ${ error.message }`
-    if (data && data.production_summary.length > 0) {
-	const clone = JSON.parse(JSON.stringify(mapCounties))
-	const myReg = new RegExp('^' + STATE_FIPS_MAP[fipsCode] + '[0-9]{3}$')
-	const tmp = clone.objects['counties-geo'].geometries.filter(obj => obj.id.match(myReg))
-	clone.objects['counties-geo'].geometries = tmp	
-	mapData = d3.nest()
+  if (data && data.production_summary.length > 0) {
+    const clone = JSON.parse(JSON.stringify(mapCounties))
+    const myReg = new RegExp('^' + STATE_FIPS_MAP[fipsCode] + '[0-9]{3}$')
+    const tmp = clone.objects['counties-geo'].geometries.filter(obj => obj.id.match(myReg))
+    clone.objects['counties-geo'].geometries = tmp
+    mapData = d3.nest()
       .key(k => k.location.padStart(5, 0))
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.production_summary)
