@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 // import styles from './Sparkline.module.scss'
@@ -97,3 +98,24 @@ const Sparkline = React.memo(props => {
 })
 
 export default Sparkline
+
+const chartData = [
+  ['2010', 4515762982.65],
+  ['2011', 6049822215.65],
+  ['2012', 6194230491.15],
+  ['2013', 8250817981.41],
+  ['2014', 80817981.41],
+  ['2015', 82817981.41],
+  ['2015', 4393132423.47],
+  ['2016', 2201599585.83],
+  ['2017', 2244876355.56],
+  ['2018', 3201250255.47],
+  ['2019', 4904041158.92]
+]
+
+export const SparklineDemos = [
+  {
+    title: 'Preview',
+    code: "<Sparkline data={" + JSON.stringify(chartData) + "} />",
+  }
+]

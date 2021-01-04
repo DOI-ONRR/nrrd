@@ -90,6 +90,10 @@ const BaseInput = withStyles(theme =>
   })
 )(InputBase)
 
+/**
+ * This is used to create a single or multi select drop down
+ *
+ */
 const BaseSelectInput = ({
   data, onChange, selectType, defaultSelected, selected, defaultSelectAll, helperText, label, variant, showClearSelected, theme, disabled, ...props
 }) => {
@@ -101,6 +105,269 @@ const BaseSelectInput = ({
   }
 
   const noop = () => {}
+
+  // Single Select Input
+  const BaseSingleSelectInput = ({ data, defaultSelected, selected, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
+    const classes = useStyles()
+    const labelSlug = formatToSlug(label)
+
+    /**
+   * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
+   * If not it will check to see if an option has been set as default = true
+   */
+    const getDefaultSelected = () => {
+      let defaultItem
+      if (data) {
+        if (selected) {
+          defaultItem = { option: selected }
+        }
+        else if (defaultSelected) {
+          defaultItem = data.find(item => (item.option === defaultSelected || item.value === defaultSelected))
+        }
+        else {
+          defaultItem = data.find(item => item.default)
+        }
+      }
+      return (defaultItem && !disabled) ? (defaultItem.value || defaultItem.option) : ''
+    }
+    const [selectedOption, setSelectedOption] = useState(getDefaultSelected())
+
+    const handleChange = value => {
+      if (value.includes('Clear')) {
+        setSelectedOption()
+        onChange()
+      }
+      else {
+        setSelectedOption(value.toString())
+        onChange(value.toString())
+      }
+    }
+
+    useEffect(() => {
+      if (selected && !isEqual(selected, selectedOption)) {
+        handleChange(selected)
+      }
+    }, [selected])
+
+    return (
+      <FormControl variant={variant} className={classes.formControl} disabled={((disabled) || (data && data.length === 0))}>
+        <InputLabel htmlFor={`${ labelSlug }-select-label`}>{label}</InputLabel>
+        <Select
+          labelId={`${ labelSlug }-select-label`}
+          id={`${ labelSlug }-select`}
+          IconComponent={() => <KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
+          value={(selectedOption === ZERO_OPTIONS || !selectedOption) ? '' : selectedOption}
+          onChange={e => handleChange(e.target.value)}
+          displayEmpty
+          label={label}
+          input={theme}
+          classes={{ root: classes.selectInput }}
+        >
+          {showClearSelected &&
+          <MenuItem value={'Clear'}>
+            <em>Clear selected</em>
+          </MenuItem>
+          }
+          {data &&
+           data.map((item, i) =>
+             <MenuItem
+               key={`${ item.option }_${ i }`}
+               value={item.value || item.option}>
+               {item.option}
+             </MenuItem>)
+          }
+        </Select>
+        {helperText &&
+        <FormHelperText>{helperText}</FormHelperText>
+        }
+        {(data && data.length === 0) &&
+        <FormHelperText>No '{label}' match the current filter options.</FormHelperText>
+        }
+      </FormControl>
+    )
+  }
+
+  // Multi select input
+  const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAll, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
+    const classes = useStyles()
+    const labelSlug = formatToSlug(label)
+    const defaultSelectedOptions = defaultSelected && defaultSelected.split(',')
+
+    /**
+   * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
+   * If not it will check to see if an option has been set as default = true
+   */
+    const getDefaultSelected = () => {
+      let defaultItems
+      if (data) {
+        if (selected) {
+          if (typeof selected === 'string') {
+            defaultItems = selected.split(',')
+          }
+          else {
+            defaultItems = selected
+          }
+        }
+        else if (defaultSelectedOptions) {
+          defaultItems = defaultSelectedOptions
+        }
+        else {
+          defaultItems = []
+        }
+      }
+
+      return (defaultItems && !disabled) ? defaultItems : []
+    }
+    const [selectedOptions, setSelectedOptions] = useState(getDefaultSelected())
+    const [selectAllOptions, setSelectAllOptions] = useState((selected) ? false : defaultSelectAll)
+    const [selectedOptionsChanged, setSelectedOptionsChanged] = useState(false)
+
+    const handleChange = value => {
+      if (value.includes('selectAll')) {
+        setSelectedOptions(data.map(item => item.option))
+        setSelectAllOptions(true)
+      }
+      else if (value.includes('selectNone')) {
+        setSelectedOptions([])
+        setSelectAllOptions(false)
+      }
+      else {
+        setSelectedOptions(value)
+        setSelectAllOptions(false)
+      }
+      setSelectedOptionsChanged(true)
+    }
+
+    const handleClose = event => {
+      if (selectedOptionsChanged) {
+        onChange(selectedOptions.toString())
+      }
+
+      if (selectAllOptions) {
+        onChange(undefined)
+      }
+    }
+
+    const handleRenderValue = renderValues => {
+      let selectedVal
+
+      if (renderValues && renderValues.length !== data.length) {
+        selectedVal = renderValues.join(', ')
+      }
+
+      if (renderValues && renderValues.length === data.length) {
+        selectedVal = 'All'
+      }
+
+      if (renderValues && renderValues.length === 0) {
+        selectedVal = 'None selected'
+      }
+
+      return selectedVal
+    }
+
+    const helperContent = () => {
+      return (
+        <>
+          {helperText &&
+          <Box component="span" className={classes.formHelperTextRoot}>
+            {helperText}
+          </Box>
+          }
+          {(data && data.length === 0) &&
+          <Box component="span" className={classes.formHelperTextRoot}>
+            No {label} match the current filter options.
+          </Box>
+          }
+        </>
+      )
+    }
+
+    useEffect(() => {
+      if (!disabled) {
+        if (selectAllOptions) {
+          setSelectedOptions(data.map(item => item.option))
+        }
+        else {
+          setSelectedOptions(data.filter(item => (selectedOptions.includes(item.option))).map(item => item.option))
+        }
+      }
+    }, [data])
+
+    useEffect(() => {
+      if (selected) {
+        if (typeof selected === 'string') {
+          if (!isEqual(selected.split(','), selectedOptions)) {
+            handleChange(selected.split(','))
+          }
+        }
+        else if (!isEqual(selected, selectedOptions)) {
+          handleChange(selected)
+        }
+      }
+      else if (!selected && selectedOptions && selectedOptions.length > 0) {
+        handleChange((defaultSelectAll ? ['selectAll'] : []))
+      }
+    }, [selected])
+
+    return (
+      <FormControl
+        className={classes.formControl}
+        variant={variant}
+        disabled={((disabled) || (data && data.length === 0))}>
+        <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
+        <Select
+          labelId={`${ labelSlug }-select-label`}
+          id={`${ labelSlug }-select`}
+          IconComponent={() => <KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
+          multiple
+          value={selectedOptions}
+          renderValue={renderValues => handleRenderValue(renderValues)}
+          input={theme}
+          onChange={e => handleChange(e.target.value)}
+          onClose={handleClose}
+          classes={{
+            root: classes.selectInput,
+            disabled: classes.selectDisabled
+          }}
+          displayEmpty
+          MenuProps={{
+            disableAutoFocusItem: true
+          }}
+        >
+          <MenuItem key={0} role="select-menu" value={selectAllOptions ? 'selectNone' : 'selectAll'}>
+            <Checkbox checked={selectAllOptions} />
+            <ListItemText primary='All' />
+          </MenuItem>
+
+          {data &&
+          data.map(
+            (item, i) => <MenuItem key={`${ item.option }_${ i }`} value={item.value || item.option}>
+              <Checkbox
+                checked={selectedOptions.includes(item.option)} />
+              <ListItemText primary={item.option} />
+            </MenuItem>)
+          }
+        </Select>
+
+        {(helperText || (data && data.length === 0)) &&
+        <Tooltip
+          title={helperContent()}
+          classes={{
+            tooltip: classes.tooltipRoot,
+            arrow: classes.tooltipArrow,
+          }}>
+          <HelpOutlineIcon
+            fontSize="small"
+            classes={{
+              root: classes.iconRoot,
+              fontSizeSmall: classes.iconFontSizeSmall
+            }} />
+        </Tooltip>
+        }
+      </FormControl>
+    )
+  }
 
   return (
     <>
@@ -188,266 +455,9 @@ const areEqual = (prevProps, nextProps) => {
 
 export default React.memo(BaseSelectInput, areEqual)
 
-// Single Select Input
-const BaseSingleSelectInput = ({ data, defaultSelected, selected, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
-  const classes = useStyles()
-  const labelSlug = formatToSlug(label)
-
-  /**
-   * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
-   * If not it will check to see if an option has been set as default = true
-   */
-  const getDefaultSelected = () => {
-    let defaultItem
-    if (data) {
-      if (selected) {
-        defaultItem = { option: selected }
-      }
-      else if (defaultSelected) {
-        defaultItem = data.find(item => (item.option === defaultSelected || item.value === defaultSelected))
-      }
-      else {
-        defaultItem = data.find(item => item.default)
-      }
-    }
-    return (defaultItem && !disabled) ? (defaultItem.value || defaultItem.option) : ''
+export const BaseSelectInputDemos = [
+  {
+    title: 'Simple',
+    code: '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />',
   }
-
-  const [selectedOption, setSelectedOption] = useState(getDefaultSelected())
-
-  const handleChange = value => {
-    if (value.includes('Clear')) {
-      setSelectedOption()
-      onChange()
-    }
-    else {
-      setSelectedOption(value.toString())
-      onChange(value.toString())
-    }
-  }
-
-  useEffect(() => {
-    if (selected && !isEqual(selected, selectedOption)) {
-      handleChange(selected)
-    }
-  }, [selected])
-
-  return (
-    <FormControl variant={variant} className={classes.formControl} disabled={((disabled) || (data && data.length === 0))}>
-      <InputLabel htmlFor={`${ labelSlug }-select-label`}>{label}</InputLabel>
-      <Select
-        labelId={`${ labelSlug }-select-label`}
-        id={`${ labelSlug }-select`}
-        IconComponent={() => <KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
-        value={(selectedOption === ZERO_OPTIONS || !selectedOption) ? '' : selectedOption}
-        onChange={e => handleChange(e.target.value)}
-        displayEmpty
-        label={label}
-        input={theme}
-        classes={{ root: classes.selectInput }}
-      >
-        {showClearSelected &&
-          <MenuItem value={'Clear'}>
-            <em>Clear selected</em>
-          </MenuItem>
-        }
-        {data &&
-           data.map((item, i) =>
-             <MenuItem
-               key={`${ item.option }_${ i }`}
-               value={item.value || item.option}>
-               {item.option}
-             </MenuItem>)
-        }
-      </Select>
-      {helperText &&
-        <FormHelperText>{helperText}</FormHelperText>
-      }
-      {(data && data.length === 0) &&
-        <FormHelperText>No '{label}' match the current filter options.</FormHelperText>
-      }
-    </FormControl>
-  )
-}
-
-// Multi select input
-const BaseMultiSelectInput = ({ data, defaultSelected, selected, defaultSelectAll, label, helperText, variant, showClearSelected, theme, onChange, disabled }) => {
-  const classes = useStyles()
-  const labelSlug = formatToSlug(label)
-  const defaultSelectedOptions = defaultSelected && defaultSelected.split(',')
-
-  /**
-   * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
-   * If not it will check to see if an option has been set as default = true
-   */
-  const getDefaultSelected = () => {
-    let defaultItems
-    if (data) {
-      if (selected) {
-        if (typeof selected === 'string') {
-          defaultItems = selected.split(',')
-        }
-        else {
-          defaultItems = selected
-        }
-      }
-      else if (defaultSelectedOptions) {
-        defaultItems = defaultSelectedOptions
-      }
-      else {
-        defaultItems = []
-      }
-    }
-
-    return (defaultItems && !disabled) ? defaultItems : []
-  }
-  const [selectedOptions, setSelectedOptions] = useState(getDefaultSelected())
-  const [selectAllOptions, setSelectAllOptions] = useState((selected) ? false : defaultSelectAll)
-  const [selectedOptionsChanged, setSelectedOptionsChanged] = useState(false)
-
-  const handleChange = value => {
-    if (value.includes('selectAll')) {
-      setSelectedOptions(data.map(item => item.option))
-      setSelectAllOptions(true)
-    }
-    else if (value.includes('selectNone')) {
-      setSelectedOptions([])
-      setSelectAllOptions(false)
-    }
-    else {
-      setSelectedOptions(value)
-      setSelectAllOptions(false)
-    }
-    setSelectedOptionsChanged(true)
-  }
-
-  const handleClose = event => {
-    if (selectedOptionsChanged) {
-      onChange(selectedOptions.toString())
-    }
-
-    if (selectAllOptions) {
-      onChange(undefined)
-    }
-  }
-
-  const handleRenderValue = renderValues => {
-    let selectedVal
-
-    if (renderValues && renderValues.length !== data.length) {
-      selectedVal = renderValues.join(', ')
-    }
-
-    if (renderValues && renderValues.length === data.length) {
-      selectedVal = 'All'
-    }
-
-    if (renderValues && renderValues.length === 0) {
-      selectedVal = 'None selected'
-    }
-
-    return selectedVal
-  }
-
-  const helperContent = () => {
-    return (
-      <>
-        {helperText &&
-          <Box component="span" className={classes.formHelperTextRoot}>
-            {helperText}
-          </Box>
-        }
-        {(data && data.length === 0) &&
-          <Box component="span" className={classes.formHelperTextRoot}>
-            No {label} match the current filter options.
-          </Box>
-        }
-      </>
-    )
-  }
-
-  useEffect(() => {
-    if (!disabled) {
-      if (selectAllOptions) {
-        setSelectedOptions(data.map(item => item.option))
-      }
-      else {
-        setSelectedOptions(data.filter(item => (selectedOptions.includes(item.option))).map(item => item.option))
-      }
-    }
-  }, [data])
-
-  useEffect(() => {
-    if (selected) {
-      if (typeof selected === 'string') {
-        if (!isEqual(selected.split(','), selectedOptions)) {
-          handleChange(selected.split(','))
-        }
-      }
-      else if (!isEqual(selected, selectedOptions)) {
-        handleChange(selected)
-      }
-    }
-    else if (!selected && selectedOptions && selectedOptions.length > 0) {
-      handleChange((defaultSelectAll ? ['selectAll'] : []))
-    }
-  }, [selected])
-
-  return (
-    <FormControl
-      className={classes.formControl}
-      variant={variant}
-      disabled={((disabled) || (data && data.length === 0))}>
-      <InputLabel id={`${ labelSlug }-select-label`}>{label}</InputLabel>
-      <Select
-        labelId={`${ labelSlug }-select-label`}
-        id={`${ labelSlug }-select`}
-        IconComponent={() => <KeyboardArrowDown className="MuiSvgIcon-root MuiSelect-icon" />}
-        multiple
-        value={selectedOptions}
-        renderValue={renderValues => handleRenderValue(renderValues)}
-        input={theme}
-        onChange={e => handleChange(e.target.value)}
-        onClose={handleClose}
-        classes={{
-          root: classes.selectInput,
-          disabled: classes.selectDisabled
-        }}
-        displayEmpty
-        MenuProps={{
-          disableAutoFocusItem: true
-        }}
-      >
-        <MenuItem key={0} role="select-menu" value={selectAllOptions ? 'selectNone' : 'selectAll'}>
-          <Checkbox checked={selectAllOptions} />
-          <ListItemText primary='All' />
-        </MenuItem>
-
-        {data &&
-          data.map(
-            (item, i) => <MenuItem key={`${ item.option }_${ i }`} value={item.value || item.option}>
-              <Checkbox
-                checked={selectedOptions.includes(item.option)} />
-              <ListItemText primary={item.option} />
-            </MenuItem>)
-        }
-      </Select>
-
-      {(helperText || (data && data.length === 0)) &&
-        <Tooltip
-          title={helperContent()}
-          classes={{
-            tooltip: classes.tooltipRoot,
-            arrow: classes.tooltipArrow,
-          }}>
-          <HelpOutlineIcon
-            fontSize="small"
-            classes={{
-              root: classes.iconRoot,
-              fontSizeSmall: classes.iconFontSizeSmall
-            }} />
-        </Tooltip>
-      }
-    </FormControl>
-  )
-}
+]

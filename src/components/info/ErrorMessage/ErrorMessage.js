@@ -32,7 +32,9 @@ const useStyles = makeStyles(theme => ({
     bottom: 10
   }
 }))
-
+/**
+ * Handles when an error occurs and is sent to the application status provider
+ */
 const ErrorMessage = () => {
   const theme = useTheme()
   const classes = useStyles(theme)
@@ -49,7 +51,7 @@ const ErrorMessage = () => {
   }, [state])
 
   return (
-    <Modal open={open} onClose={handleClose} aria-labelledby="Error Message" aria-describedby="simple-modal-description">
+    <Modal open={open} onClose={handleClose} aria-label="Error Message">
       <div className={classes.errorModal}>
         <h2>Error</h2>
         <div style={{ overflow: 'auto' }}>{state.message}</div>

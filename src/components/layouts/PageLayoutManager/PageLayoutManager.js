@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 import DefaultLayout from '../DefaultLayout'
 import DataFilterProviderWrapper from '../../DataFilterProviderWrapper'
-import PatternLibraryLayout from '../PatternLibraryLayout'
+import PatternLibraryLayout from '../../pattern-library/PatternLibraryLayout'
 
 import ContactUs from '../../content-partials/ContactUs'
 import SEO from '../../seo'
@@ -19,10 +19,12 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   const title = pageContext.frontmatter && pageContext.frontmatter.title
   const keywords = pageContext.frontmatter && pageContext.frontmatter.tag
 
-  if (layout === 'pattern-library') {
+  if (layout === 'pattern-library' || location.pathname.includes('/patterns')) {
+    const pageTitle = title || (pageContext.componentMetadata && `Pattern Library - ${ pageContext.componentMetadata.displayName }`)
+
     return (
-      <PatternLibraryLayout>
-        <SEO title={title} keywords={keywords} />
+      <PatternLibraryLayout path={location.pathname}>
+        <SEO title={pageTitle} keywords={keywords} />
         {children}
       </PatternLibraryLayout>
     )

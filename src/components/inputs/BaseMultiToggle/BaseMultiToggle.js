@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import {
   FormControl,
@@ -62,7 +63,10 @@ const DefaultToggleButtonGroup = withStyles(theme =>
     />
   )
 })
-
+/**
+ * This is the base component to create a multi toggle group
+ *
+ */
 const BaseMultiToggle = ({ onChange, data, defaultSelected, label, legend, helperText, size, disabled, ...props }) => {
   if (data && data.length > 0 && !data[0].option) {
     data = data.map(item => ({ option: item }))
@@ -112,3 +116,15 @@ const BaseMultiToggle = ({ onChange, data, defaultSelected, label, legend, helpe
 }
 
 export default BaseMultiToggle
+
+BaseMultiToggle.propTypes = {
+  /** Set the collapsible content to show by default */
+  data: PropTypes.array,
+}
+
+export const BaseMultiToggleDemos = [
+  {
+    title: 'Simple',
+    code: '<BaseMultiToggle label="Simple Items" data={["item1", "item2", "item3"]} />',
+  }
+]

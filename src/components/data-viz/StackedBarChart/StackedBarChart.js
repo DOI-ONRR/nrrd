@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import React, { useEffect, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import ChartTitle from '../ChartTitle'
@@ -145,3 +146,26 @@ const StackedBarChart = props => {
 }
 
 export default StackedBarChart
+
+const chartData = [
+  { year: 2018, source: 'Federal - not tied to a location', sum: 2831594.55 },
+  { year: 2018, source: 'Native American', sum: 1051269700.27 },
+  { year: 2018, source: 'Federal Offshore', sum: 4759082154.46 },
+  { year: 2018, source: 'Federal Onshore', sum: 3351352696.01 },
+  { year: 2019, source: 'Federal - not tied to a location', sum: 2778901.56 },
+  { year: 2019, source: 'Native American', sum: 1136494885.1 },
+  { year: 2019, source: 'Federal Offshore', sum: 6018042860.89 },
+  { year: 2019, source: 'Federal Onshore', sum: 4849592145.97 },
+  { year: 2020, source: 'Federal - not tied to a location', sum: 3384563.06 },
+  { year: 2020, source: 'Native American', sum: 978974617.08 },
+  { year: 2020, source: 'Federal Offshore', sum: 3746924076.62 },
+  { year: 2020, source: 'Federal Onshore', sum: 2866225227.9 }]
+
+export const StackedBarChartDemos = [
+  {
+    title: 'Example',
+    code: "<StackedBarChart data={" +
+    JSON.stringify(chartData) + "} title={'Example'} xAxis={'year'} yAxis={'sum'} yGroupBy={'source'} yOrderBy={" +
+    JSON.stringify(['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']) + "}/>",
+  }
+]
