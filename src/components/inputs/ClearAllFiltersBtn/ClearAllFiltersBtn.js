@@ -24,4 +24,3 @@ const ClearAllFiltersBtn = ({ ...props }) => {
 }
 
 export default ClearAllFiltersBtn
-
