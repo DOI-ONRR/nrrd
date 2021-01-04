@@ -27,7 +27,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
     #   sum
     # }
 
-    total_yearly_fiscal_disbursement: total_yearly_fiscal_disbursement_2(order_by: {year: asc}) {
+    total_yearly_fiscal_disbursement: total_yearly_fiscal_disbursement_2(order_by: {year: asc, sum: desc}) {
       period
       sum
       source: land_type
