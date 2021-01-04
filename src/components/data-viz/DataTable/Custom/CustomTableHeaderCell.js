@@ -27,7 +27,7 @@ const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, groupB
         </Grid>
         {onAddColumn &&
           <Grid item xs={5}>
-            <BaseButtonInput onClick={onAddColumn} label={'+ Add column'} styleType={'link'} style={{ top: '-8px' }}/>
+            <BaseButtonInput onClick={onAddColumn} styleType={'link'} style={{ top: '-8px' }}>+ Add column</BaseButtonInput>
           </Grid>
         }
       </Grid>

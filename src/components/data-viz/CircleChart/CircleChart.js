@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import React, { useEffect, useRef } from 'react'
 // import ReactDOM from 'react-dom'
 
@@ -122,3 +123,17 @@ const CircleChart = props => {
 }
 
 export default CircleChart
+
+const chartData = [
+  { location_name: "Gulf of Mexico", total: 5163524881.620001 },
+  { location_name: "New Mexico", total: 2447493889.24 },
+  { location_name: "Wyoming", total: 1246326179.16 },
+  { location_name: "Native American", total: 1155674819.2200003 },
+  { location_name: "North Dakota", total: 289595600.7900001 }
+]
+export const CircleChartDemos = [
+  {
+    title: 'Example',
+    code: '<CircleChart data={' + JSON.stringify(chartData) + '} xAxis={"location_name"} yAxis={"total"} />',
+  }
+]

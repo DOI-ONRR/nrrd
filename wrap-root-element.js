@@ -5,7 +5,7 @@ import 'typeface-lato'
 
 import { MDXProvider } from '@mdx-js/react'
 import * as CustomComponents from './.cache/components'
-import CodeBlock from './src/components/layouts/CodeBlock/CodeBlock.js'
+import CodeBlock from './src/components/pattern-library/CodeBlock/CodeBlock.js'
 
 import {
   Box,

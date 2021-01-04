@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Card,
   CardActions,
@@ -40,8 +41,11 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
 }))
-
-export default ({ children, step, name, defaultExpanded = false }) => {
+/**
+ * This component is allows you to specify a step in a process
+ *
+ */
+const ProcessCard = ({ children, step, name, defaultExpanded }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
@@ -93,3 +97,32 @@ export default ({ children, step, name, defaultExpanded = false }) => {
     </Box>
   )
 }
+
+export default ProcessCard
+
+ProcessCard.propTypes = {
+  /** This text displayed as the title or name */
+  name: PropTypes.string,
+  /** This text is displayed next to the name */
+  step: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  /** In mobile the card collapses and this allows it to be expanded on initial render */
+  defaultExpanded: PropTypes.bool,
+}
+
+ProcessCard.defaultProps = {
+  defaultExpanded: false,
+}
+
+export const ProcessCardDemos = [
+  {
+    title: 'Process step example',
+    code: '<ProcessCard step={1} name={"Plan"}>Text for the process step</ProcessCard>',
+  },
+  {
+    title: 'Default expanded mobile version',
+    code: '<ProcessCard defaultExpanded={true} step={4} name={"Mobile Plan"}>Text for the mobile process example</ProcessCard>',
+  }
+]
