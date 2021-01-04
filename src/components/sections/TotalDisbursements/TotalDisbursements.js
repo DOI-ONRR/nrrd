@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
@@ -36,7 +36,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       fiscalMonth: fiscal_month
       currentMonth: month
       monthLong: month_long
-      recipient
+      recipient: fund_class
     }
 
     # total_monthly_fiscal_disbursement {
@@ -104,6 +104,9 @@ const TotalDisbursements = props => {
     disbursementsComparison.current.setSelectedItem(d)
   }
 
+  useEffect(() => {
+  }, [breakoutBy])
+
   if (loading) {
     return 'Loading...'
   }
@@ -126,7 +129,9 @@ const TotalDisbursements = props => {
   let monthEndDate
   let startMonth
   let endMonth
-  let yOrderBy
+  const yOrderBy = (breakoutBy === DFC.RECIPIENT)
+    ? ['U.S. Treasury', 'State and local governments', 'Reclamation', 'Native American tribes and individuals', 'Land and Water Conservation Fund', 'Other', 'Historic Preservation Fund']
+    : ['Native American', 'Federal Offshore', 'Federal Onshore']
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
   if (error) return `Error! ${ error.message }`
@@ -138,16 +143,6 @@ const TotalDisbursements = props => {
     maxCalendarYear = data.total_monthly_calendar_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
-
-    // Recipients/Source
-    switch (breakoutBy) {
-    case 'recipient':
-      yOrderBy = ['U.S. Treasury', 'State and local governments', 'Reclamation', 'Native American tribes and individuals', 'Land and Water Conservation Fund', 'Other', 'Historic Preservation Fund']
-      break
-    default:
-      yOrderBy = ['Native American', 'Federal Offshore', 'Federal Onshore']
-      break
-    }
 
     // Month range and month range text
     currentMonthNum = data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth
@@ -219,7 +214,7 @@ const TotalDisbursements = props => {
       }
     }
     else {
-      switch (yGroupBy) {
+      switch (breakoutBy) {
       case 'recipient':
         comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
         chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
