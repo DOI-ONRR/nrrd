@@ -95,7 +95,7 @@ jobs:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0
-    resource_class: xlarge
+    resource_class: medium+
     steps:
       - checkout
       - restore_cache:
