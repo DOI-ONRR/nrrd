@@ -19,7 +19,11 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
-  comparisonTable: {},
+  comparisonTable: {
+    '& tr:last-child > td': {
+      border: 'none'
+    }
+  },
   tableCellRoot: {
     fontSize: '1.1rem',
     align: 'right',
@@ -137,7 +141,11 @@ const ComparisonTable = forwardRef((props, ref) => {
     return newObj
   })
 
-  console.log('comparison data: ', data)
+  // get previous/current year totals
+  const previousYearTotals = comparisonData.map(item => item.previous.sum)
+  const previousYearTotal = previousYearTotals.reduce((acc, item) => acc + item)
+  const currentYearTotals = comparisonData.map(item => item.current.sum)
+  const currentYearTotal = currentYearTotals.reduce((acc, item) => acc + item)
 
   // Comparison Text
   let comparisonText
@@ -175,7 +183,7 @@ const ComparisonTable = forwardRef((props, ref) => {
                 </Box>
                 {(!month) && <Box fontSize="14px">{comparisonText}</Box>}
               </TableCell>
-              <TableCell component="th" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
+              <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">{changeText}</Box>
                 <Box fontSize="14px">{changeAdditionalText}</Box>
               </TableCell>
@@ -192,27 +200,38 @@ const ComparisonTable = forwardRef((props, ref) => {
                     {(item.previous && item.previous.sum !== 0) ? utils.formatToDollarInt(item.previous.sum) : '-'}
                   </Box>
                 </TableCell>
-                <TableCell classes={{ root: classes.tableCellRoot }}>
+                <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
                   <Box>
                     {((item.previous && item.current) && (item.previous.sum !== 0 && item.current.sum !== 0))
                       ? <PercentDifference
                         currentAmount={item.current.sum}
                         previousAmount={item.previous.sum}
                       />
-                      : '--'
+                      : '-'
                     }
                   </Box>
                 </TableCell>
               </TableRow>
             ))
             }
+            <TableRow>
+              <TableCell>
+                <Box fontWeight="bold">
+                  {utils.formatToDollarInt(previousYearTotal)}
+                </Box>
+              </TableCell>
+              <TableCell align="right">
+                <Box fontWeight="bold">
+                  <PercentDifference
+                    currentAmount={currentYearTotal}
+                    previousAmount={previousYearTotal}
+                  />
+                </Box>
+              </TableCell>
+            </TableRow>
           </TableBody>
 		      </Table>
 		    </TableContainer>
-      {/* <Box fontStyle="italic" fontSize="h6.fontSize" display="flex" justifyContent="space-between" mt={1}>
-        <Link href='/downloads/revenue-by-month/'>Source file</Link>
-        <Link href='/downloads/revenue-by-month/'>Source file</Link>
-      </Box> */}
     </Box>
 
   )
