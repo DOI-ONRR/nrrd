@@ -231,8 +231,7 @@ const TotalDisbursements = props => {
       }
 
       legendHeaders = (headers, row) => {
-        const yearLabel = `${ headers[2] } ${ (currentMonthNum !== parseInt('09') && headers[2] > maxFiscalYear) ? currentYearSoFarText : '' }`
-        const headerArr = [headers[0], '', yearLabel]
+        const headerArr = [headers[0], '', `${ headers[2] } ${ ((currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[2] > maxFiscalYear - 1) ? currentYearSoFarText : '' }`]
         return headerArr
       }
     }
