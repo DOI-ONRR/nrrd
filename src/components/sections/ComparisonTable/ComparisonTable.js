@@ -102,8 +102,8 @@ const ComparisonTable = forwardRef((props, ref) => {
   const previousYearText = `${ periodAbbr }${ previousYear.toString().substring(2) }`
   const changeText = 'Change'
   const changeAdditionalText = month
-    ? `${ month } ${ previousYear } - ${ month } ${ currentYear }`
-    : `${ previousYearText } - ${ periodAbbr }${ currentYear.toString().substring(2) }`
+    ? `${ month } ${ previousYear } to ${ month } ${ currentYear }`
+    : `${ previousYearText } to ${ periodAbbr }${ currentYear.toString().substring(2) }`
 
   // let currentYearText = `${ periodAbbr }${ currentYear.toString().substring(2) }`
   // if (currentMonth !== '09') {
@@ -153,11 +153,11 @@ const ComparisonTable = forwardRef((props, ref) => {
   if (selectedItem.month && selectedItem.month === 'October') {
     comparisonText = '(Oct)'
   }
-  else if (selectedItem.month && selectedItem.month !== 'October') {
+  else if (selectedItem.month && selectedItem.month !== 'October' && selectedItem.month !== 'September') {
     comparisonText = `(Oct - ${ selectedItem.month.substring(0, 3) })`
   }
   else {
-    comparisonText = '(Oct - Sep)'
+    comparisonText = ''
   }
 
   return (
