@@ -29,16 +29,16 @@ const CustomTableHeaderSortLabel = ({ onSort, children, align, direction }) => {
   const classes = useStyles(theme)
 
   return (
-    <Grid container direction={(align === 'right') ? 'row-reverse' : 'row'} spacing={0} style={{ height: '75px' }}>
+    <Grid container direction={(align === 'right') ? 'row-reverse' : 'row'} spacing={0} style={{ cursor: 'pointer' }}>
       <Grid item>
         <Grid container direction="column" alignItems="center" spacing={0}>
-          <Grid item>
+          <Grid item onClick={onSort}>
             <SortingUpIcon direction={direction} />
           </Grid>
           <Grid item>
             { children }
           </Grid>
-          <Grid item>
+          <Grid item onClick={onSort}>
             <SortingDownIcon direction={direction} />
           </Grid>
         </Grid>
@@ -46,28 +46,14 @@ const CustomTableHeaderSortLabel = ({ onSort, children, align, direction }) => {
     </Grid>
   )
 }
-/*
-    <span style={{ display: 'row-reverse' }}>
-      <Grid container direction="column" alignItems="center">
-        <Grid item>
-          <SortingUpIcon direction={direction} />
-        </Grid>
-        <Grid item>
-          { children }
-        </Grid>
-        <Grid item>
-          <SortingDownIcon direction={direction} />
-        </Grid>
-      </Grid>
-    </span>
-*/
+
 export default CustomTableHeaderSortLabel
 
 const SortingUpIcon = ({ direction }) => {
   const theme = useTheme()
   return (
-    <div style={{ textAlign: 'center', width: 'fit-content' }}>
-      <ArrowDropUpIcon style={{ position: 'relative', top: '24px', color: (direction === 'asc') ? theme.palette.links.default : theme.palette.grey[300] }} />
+    <div style={{ textAlign: 'center', width: 'fit-content', height: '15px' }}>
+      <ArrowDropUpIcon style={{ position: 'relative', color: (direction === 'asc') ? theme.palette.links.default : theme.palette.grey[300] }} />
     </div>
   )
 }
@@ -75,7 +61,7 @@ const SortingUpIcon = ({ direction }) => {
 const SortingDownIcon = ({ direction }) => {
   const theme = useTheme()
   return (
-    <div style={{ textAlign: 'center', width: 'fit-content' }}>
+    <div style={{ textAlign: 'center', width: 'fit-content', height: '10px' }}>
       <ArrowDropDownIcon style={{ position: 'relative', top: '-15px', color: (direction === 'desc') ? theme.palette.links.default : theme.palette.grey[300] }} />
     </div>
   )
