@@ -2,7 +2,7 @@ import React, { forwardRef, useContext, useState, useImperativeHandle, useEffect
 
 import {
   Box,
-  Paper,
+  makeStyles,
   Table,
   TableBody,
   TableCell,
@@ -17,7 +17,19 @@ import PercentDifference from '../../utils/PercentDifference'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
-import { LensTwoTone } from '@material-ui/icons'
+
+const useStyles = makeStyles(theme => ({
+  comparisonTable: {},
+  tableCellRoot: {
+    fontSize: '1.1rem',
+    align: 'right',
+    verticalAlign: 'bottom'
+  },
+  tableCellHead: {
+    borderBottomColor: theme.palette.grey[300],
+    borderBottomWidth: 1,
+  }
+}))
 
 const ComparisonTable = forwardRef((props, ref) => {
   const {
@@ -25,14 +37,19 @@ const ComparisonTable = forwardRef((props, ref) => {
     yGroupBy
   } = props
 
+  const classes = useStyles()
+
   console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
-  const { period, monthly, year } = filterState
+  const { period, monthly, year, dataType } = filterState
   const [selectedItem, setSelectedItem] = useState({
     month: data[data.length - 1].month_long ? data[data.length - 1].month_long : data[data.length - 1].monthLong,
     year: data[data.length - 1].year || year
   })
+
+  const yearlyComparisonText = `Compares data for the selected ${ period.toLowerCase() } to the previous ${ period.toLowerCase() }.`
+  const monthlyComparisonText = 'Compares data for the selected month to the same month in the previous year.'
 
   useEffect(() => {
     console.log('ComparisonTable selectedItem: ', selectedItem)
@@ -136,26 +153,29 @@ const ComparisonTable = forwardRef((props, ref) => {
   }
 
   return (
-    <Box ref={ref} style={{ position: 'relative', top: -16 }}>
-      <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>
+    <Box ref={ref}>
+      <Box mb={2} borderBottom={1}>
         <Box component="h3" m={0} color="primary.dark">
           {comparisonTitle}
         </Box>
       </Box>
-      <TableContainer component={Paper}>
-        <Table size="small" aria-label="Revenue Trends Table">
+      <Box height="166px">
+        {monthly === DFC.MONTHLY_CAPITALIZED ? monthlyComparisonText : yearlyComparisonText }
+      </Box>
+      <TableContainer className={classes.comparisonTable}>
+        <Table size="small" aria-label={`${ dataType } comparison tabel`}>
           <TableHead>
             <TableRow>
-              <TableCell style={{ verticalAlign: 'bottom', width: '30%' }}>
+              {/* <TableCell classes={{ root: classes.tableCellRoot }}>
                 <Box fontWeight="bold" style={{ textTransform: 'capitalize' }}>{yGroupBy}</Box>
-              </TableCell>
-              <TableCell align="right" style={{ verticalAlign: 'bottom', width: '30%' }}>
+              </TableCell> */}
+              <TableCell component="th" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">
                   {month ? `${ month } ${ previousYear }` : previousYearText }
                 </Box>
                 {(!month) && <Box fontSize="14px">{comparisonText}</Box>}
               </TableCell>
-              <TableCell align="right" style={{ verticalAlign: 'bottom', width: '40%' }}>
+              <TableCell component="th" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">{changeText}</Box>
                 <Box fontSize="14px">{changeAdditionalText}</Box>
               </TableCell>
@@ -164,15 +184,15 @@ const ComparisonTable = forwardRef((props, ref) => {
           <TableBody>
             { comparisonData.map((item, index) => (
               <TableRow>
-                <TableCell style={{ verticalAlign: 'bottom' }}>
+                {/* <TableCell classes={{ root: classes.tableCellRoot }}>
                   <Box fontSize="16px">{item.current ? item.current[yGroupBy] : ''}</Box>
-                </TableCell>
-                <TableCell component="th" scope="row" align="right" style={{ verticalAlign: 'bottom' }}>
+                </TableCell> */}
+                <TableCell classes={{ root: classes.tableCellRoot }}>
                   <Box>
-                    {(item.previous && item.previous.sum !== 0) ? utils.formatToDollarInt(item.previous.sum) : '--'}
+                    {(item.previous && item.previous.sum !== 0) ? utils.formatToDollarInt(item.previous.sum) : '-'}
                   </Box>
                 </TableCell>
-                <TableCell align="right" style={{ verticalAlign: 'bottom' }}>
+                <TableCell classes={{ root: classes.tableCellRoot }}>
                   <Box>
                     {((item.previous && item.current) && (item.previous.sum !== 0 && item.current.sum !== 0))
                       ? <PercentDifference

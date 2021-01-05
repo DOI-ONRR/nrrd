@@ -88,8 +88,11 @@ const useStyles = makeStyles(theme => ({
       border: 'none',
     },
     '& .legend-table th, & .legend-table td': {
-      padding: theme.spacing(0.5),
+      padding: '6px 24px 6px 16px',
       verticalAlign: 'top',
+    },
+    '& .legend-table td:first-child': {
+      padding: '6px 6px 6px 16px',
     },
     '& .legend-rect': {
       marginTop: theme.spacing(0.5),

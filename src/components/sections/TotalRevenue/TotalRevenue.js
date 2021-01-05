@@ -138,6 +138,7 @@ const TotalRevenue = props => {
   const revenueComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
+
   let yOrderBy
   switch (breakoutBy) {
   case 'revenue_type':
