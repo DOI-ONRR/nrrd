@@ -222,10 +222,13 @@ const ComparisonTable = forwardRef((props, ref) => {
               </TableCell>
               <TableCell align="right">
                 <Box fontWeight="bold">
-                  <PercentDifference
-                    currentAmount={currentYearTotal}
-                    previousAmount={previousYearTotal}
-                  />
+                  {((currentYearTotal && previousYearTotal) && (currentYearTotal !== 0 && previousYearTotal !== 0))
+                    ? <PercentDifference
+                      currentAmount={currentYearTotal}
+                      previousAmount={previousYearTotal}
+                    />
+                    : '-'
+                  }
                 </Box>
               </TableCell>
             </TableRow>
