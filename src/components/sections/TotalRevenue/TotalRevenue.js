@@ -328,7 +328,7 @@ const TotalRevenue = props => {
       <SectionHeader
         title="Total revenue"
         linkLabel="revenue"
-        showExploreLink
+        showLinks
       />
       <Grid container spacing={4}>
         <Grid item xs={12}>

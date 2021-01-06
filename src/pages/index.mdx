@@ -58,23 +58,13 @@ tag:
           <Tabtastic selected={props.location.search}>
             <TabtasticTab label="Revenue">
               <Grid container m={0} spacing={4}>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                   <Typography variant="h2">
                     Revenue
                   </Typography>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Box mt={2} display="flex" justifyContent="flex-end">
-                    <LocationLink
-                      linkTitle="Revenue by location"
-                      linkUrl="/explore?dataType=Revenue"
-                        />
-                  </Box>
-                </Grid>
-                <Grid item sm={12}>
-                  <Box component="p" pr={{ md: '35%' }}>
+                  <Typography variant="body">
                     The amount of money collected by the federal government from energy and mineral extraction on federal lands and waters and Native American lands.
-                  </Box>
+                  </Typography>
                 </Grid>
                 <Grid item xs={12} md={12}>
                   <TotalRevenue />
@@ -86,22 +76,13 @@ tag:
             </TabtasticTab>
             <TabtasticTab label="Disbursements">
               <Grid container spacing={4}>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                   <Typography variant="h2">
                     Disbursements
                   </Typography>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Box mt={2} display="flex" justifyContent="flex-end">
-                    <LocationLink
-                      linkTitle="Disbursements by location"
-                      linkUrl="/explore?dataType=Disbursements" />
-                  </Box>
-                </Grid>
-                <Grid item sm={12}>
-                  <Box component="p" pr={{ md: '35%' }}>
+                  <Typography variant="body">
                     The amount of money the federal government distributed to various funds, agencies, local governments, and Native Americans.
-                  </Box>
+                  </Typography>
                 </Grid>
                 <Grid item xs={12} md={12}>
                   <TotalDisbursements />
@@ -113,22 +94,13 @@ tag:
             </TabtasticTab>
             <TabtasticTab label="Production">
               <Grid container spacing={4}>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12}>
                   <Typography variant="h2">
                     Production
                   </Typography>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Box mt={2} display="flex" justifyContent="flex-end">
-                    <LocationLink
-                      linkTitle="Production by location"
-                      linkUrl="/explore?dataType=Production" />
-                  </Box>
-                </Grid>
-                <Grid item sm={12}>
-                  <Box component="p" pr={{ md: '35%' }}>
+                  <Typography variant="p">
                     The volume of major commodities extracted on federal lands and waters and Native American lands.
-                  </Box>
+                  </Typography>
                 </Grid>
                 <Grid item xs={12} md={12}>
                   <TotalProduction />

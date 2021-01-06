@@ -242,7 +242,7 @@ const TotalDisbursements = props => {
       <SectionHeader
         title="Total disbursements"
         linkLabel="disbursements"
-        showExploreLink
+        showLinks
       />
       <Grid container spacing={4}>
         <Grid item xs={12}>

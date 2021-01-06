@@ -13,7 +13,6 @@ import {
 
 import utils, { monthLookup } from '../../../js/utils'
 import PercentDifference from '../../utils/PercentDifference'
-// import Link from '../../../components/Link/'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -46,7 +45,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
-  const { period, monthly, year, dataType } = filterState
+  const { period, monthly, year, dataType, breakoutBy } = filterState
   const [selectedItem, setSelectedItem] = useState({
     month: data[data.length - 1].month_long ? data[data.length - 1].month_long : data[data.length - 1].monthLong,
     year: data[data.length - 1].year || year
@@ -140,6 +139,8 @@ const ComparisonTable = forwardRef((props, ref) => {
 
     return newObj
   })
+
+  console.log('comparisonData: ', comparisonData)
 
   // get previous/current year totals
   const previousYearTotals = comparisonData.map(item => item.previous.sum)
