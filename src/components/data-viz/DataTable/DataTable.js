@@ -150,6 +150,12 @@ const EnhancedDataTable = withQueryManager(({ data, showSummaryRow, showOnlySubt
   )
 }, QK_QUERY_TOOL)
 
+const monthlySort = (a, b) => {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+  return months.indexOf(a) - months.indexOf(b)
+}
+
 const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow }) => {
   const { state, updateDataFilter } = useContext(DataFilterContext)
   const { addDownloadData } = useContext(DownloadContext)
@@ -157,6 +163,9 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
   const [grouping, setGrouping] = useState([])
   const [expandedGroups, setExpandedGroups] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
+  const [integratedSortingColumnExtensions] = useState([
+    { columnName: 'monthLong', compare: monthlySort },
+  ])
   const [hiddenColumnNames, setHiddenColumnNames] = useState([])
   // eslint-disable-next-line no-unused-vars
   const [fixedColumns, setFixedColumns] = useState([])
@@ -472,7 +481,7 @@ const DataTableBase = React.memo(({ data, showSummaryRow, showOnlySubtotalRow })
                 totalItems={totalSummaryItems}
                 groupItems={groupSummaryItems}
               />
-              <IntegratedSorting />
+              <IntegratedSorting columnExtensions={integratedSortingColumnExtensions} />
               <IntegratedGrouping />
               <IntegratedSummary calculator={summaryCalculator} />
               <Table
@@ -535,6 +544,7 @@ const getColumnNames = (row, state) => {
       return { name: column, title: column.substring(1), year: parseInt(column.substring(1)) }
     }
     const titleName = toTitleCase(column).replace('_', ' ')
+
     return {
       name: column,
       title: (DISPLAY_NAMES[column]) ? DISPLAY_NAMES[column].default : titleName,

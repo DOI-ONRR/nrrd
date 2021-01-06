@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.primary.dark,
     textTransform: 'capitalize',
     minHeight: 60,
-    fonnnntSize: theme.typography.h4.fontSize,
+    fontSize: theme.typography.h4.fontSize,
     '& span:hover': {
       textDecoration: 'underline',
     },
@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function TabPanel (props) {
+const TabPanel = props => {
   const { children, value, index, ...other } = props
   const classes = useStyles()
 
@@ -79,7 +79,7 @@ function TabPanel (props) {
   )
 }
 
-function a11yProps (index) {
+const a11yProps = index => {
   return {
     id: `full-width-tab-${ index }`,
     'aria-controls': `full-width-tabpanel-${ index }`,
@@ -88,8 +88,12 @@ function a11yProps (index) {
 
 const Tabtastic = props => {
   const classes = useStyles()
+  const {
+    selectedTab,
+    children
+  } = props
 
-  const urlParams = new URLSearchParams(props.selected)
+  const urlParams = new URLSearchParams(selectedTab)
   const selectedParams = urlParams.get('tab')
 
   const { children } = props
@@ -130,21 +134,30 @@ const Tabtastic = props => {
     navigate(`?tab=${ formattedLabel }`)
   }
 
+  // get labels and create string array for aria labels
+  const ariaLabels = children && React.Children.map(children, (item, index) => item.props.label).join(', ')
+
+  const tabs = children && React.Children.map(children, (item, index) => {
+    if (item.props.mdxType === 'TabtasticTab') {
+      return item
+    }
+  })
+
   return (
-    <Fragment>
+    <Box data-testid="tabtastic-tabs-container">
       <Tabs
         value={selectedIndex}
         onChange={handleChange}
         indicatorColor="primary"
         variant="fullWidth"
-        aria-label="Revenue, Disbursements, and Production Tabs"
+        aria-label={`${ ariaLabels } Tabs`}
         classes={{
           root: classes.tabsRoot,
           flexContainer: classes.tabsFlexContainer
         }}
       >
-        { children &&
-          React.Children.map(children, (item, index) => (
+        { tabs &&
+          tabs.map((item, index) => (
             <Tab
               disableRipple
               key={index}
@@ -154,35 +167,44 @@ const Tabtastic = props => {
               classes={{
                 root: classes.tabRoot,
                 selected: classes.tabSelected
-              }} />
+              }}
+            />
           ))
         }
       </Tabs>
-      <Box className={classes.tabPanelContainer}>
-        { children &&
-          React.Children.map(children, (child, index) => (
-            <TabPanel key={index} value={selectedIndex} index={index}>
-              {child.props.children}
-            </TabPanel>
+      <Box className={classes.tabPanelContainer} data-testid="tabtastic-tabpanel-container">
+        { tabs &&
+          tabs.map((item, index) => (
+            <TabtasticTab label={item.props.label}>
+              <TabPanel key={index} value={selectedIndex} index={index}>
+                {item.props.children}
+              </TabPanel>
+            </TabtasticTab>
           ))
         }
       </Box>
-    </Fragment>
+    </Box>
   )
 }
 
-export const TabtasticTab = props => {
+export const TabtasticTab = ({ label, children }) => {
   return (
-    <Box {...props} />
+    <div label={label} data-testid="tabtastic-tab-container">
+      {children}
+    </div>
   )
 }
 
 TabtasticTab.propTypes = {
+  // tab label
   label: PropTypes.string.isRequired
 }
 
 Tabtastic.propTypes = {
-  children: PropTypes.node
+  // tab children content
+  children: PropTypes.node,
+  // if url contains ?tab parameter, this will be the selected tab otherwise the first tab will be selected
+  selectedTab: PropTypes.string
 }
 
 export default Tabtastic
