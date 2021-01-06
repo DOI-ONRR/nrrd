@@ -81,6 +81,9 @@ const useStyles = makeStyles(theme => ({
       textAlign: 'left',
       borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     },
+    '& .legend-table > thead th:first-child::first-letter': {
+      textTransform: 'uppercase',
+    },
     '& .legend-table > tbody tr td': {
       borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     },

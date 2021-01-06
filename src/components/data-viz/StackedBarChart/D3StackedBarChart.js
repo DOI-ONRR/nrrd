@@ -505,7 +505,7 @@ export default class D3StackedBarChart {
             }
           }
           else {
-            return 'capitalize'
+            return 'inherit'
           }
         })
         .attr('colspan', (d, i) => {

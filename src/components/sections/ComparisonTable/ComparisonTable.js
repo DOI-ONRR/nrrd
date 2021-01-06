@@ -8,7 +8,9 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow,
+  useMediaQuery,
+  useTheme
 } from '@material-ui/core'
 
 import utils, { monthLookup } from '../../../js/utils'
@@ -41,11 +43,13 @@ const ComparisonTable = forwardRef((props, ref) => {
   } = props
 
   const classes = useStyles()
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
 
   console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
-  const { period, monthly, year, dataType, breakoutBy } = filterState
+  const { period, monthly, year, dataType } = filterState
   const [selectedItem, setSelectedItem] = useState({
     month: data[data.length - 1].month_long ? data[data.length - 1].month_long : data[data.length - 1].monthLong,
     year: data[data.length - 1].year || year
@@ -175,9 +179,11 @@ const ComparisonTable = forwardRef((props, ref) => {
         <Table size="small" aria-label={`${ dataType } comparison tabel`}>
           <TableHead>
             <TableRow>
-              {/* <TableCell classes={{ root: classes.tableCellRoot }}>
-                <Box fontWeight="bold" style={{ textTransform: 'capitalize' }}>{yGroupBy}</Box>
-              </TableCell> */}
+              {matchesSmDown &&
+                <TableCell classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
+                  <Box fontWeight="bold" style={{ textTransform: 'capitalize' }}>{yGroupBy}</Box>
+                </TableCell>
+              }
               <TableCell component="th" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">
                   {month ? `${ month } ${ previousYear }` : previousYearText }
@@ -193,9 +199,11 @@ const ComparisonTable = forwardRef((props, ref) => {
           <TableBody>
             { comparisonData.map((item, index) => (
               <TableRow>
-                {/* <TableCell classes={{ root: classes.tableCellRoot }}>
-                  <Box fontSize="16px">{item.current ? item.current[yGroupBy] : ''}</Box>
-                </TableCell> */}
+                {matchesSmDown &&
+                  <TableCell classes={{ root: classes.tableCellRoot }}>
+                    <Box fontSize="16px">{item.current ? item.current[yGroupBy] : ''}</Box>
+                  </TableCell>
+                }
                 <TableCell classes={{ root: classes.tableCellRoot }}>
                   <Box>
                     {(item.previous && item.previous.sum !== 0) ? utils.formatToDollarInt(item.previous.sum) : '-'}
@@ -216,6 +224,9 @@ const ComparisonTable = forwardRef((props, ref) => {
             ))
             }
             <TableRow>
+              {matchesSmDown &&
+                  <TableCell classes={{ root: classes.tableCellRoot }}></TableCell>
+              }
               <TableCell>
                 <Box fontWeight="bold">
                   {utils.formatToDollarInt(previousYearTotal)}

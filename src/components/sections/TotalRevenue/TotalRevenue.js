@@ -201,8 +201,8 @@ const TotalRevenue = props => {
     monthRange = getMonthRange(monthStartDate, monthEndDate)
     startMonth = months[9]
     endMonth = months[monthRange[monthRange.length - 1].split('-')[0] - 1]
-    monthRangeText = `${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) }`
-    currentYearSoFarText = `so far (${ monthRangeText })`
+    monthRangeText = `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
+    currentYearSoFarText = `so far ${ monthRangeText }`
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -318,7 +318,8 @@ const TotalRevenue = props => {
       }
 
       legendHeaders = (headers, row) => {
-        const headerArr = [headers[0], '', `${ headers[2] } ${ (currentMonthNum !== parseInt('09') && headers[2] > maxFiscalYear) ? currentYearSoFarText : '' }`]
+        const headerLabel = `${ headers[2] } ${ (currentMonthNum !== parseInt('09') && headers[2] > maxFiscalYear) ? currentYearSoFarText : '' }`
+        const headerArr = [headers[0], '', headerLabel]
         return headerArr
       }
     }
