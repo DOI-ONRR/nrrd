@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
   sectionControlsContainer: {
     '& > div:first-child': {
       marginTop: 4,
+      marginBottom: 20,
     },
     '& > div:nth-child(2)': {
       marginTop: -6,

@@ -25,6 +25,12 @@ const useStyles = makeStyles(theme => ({
       border: 'none'
     }
   },
+  comparisonTableContent: {
+    height: '166px',
+    [theme.breakpoints.down('sm')]: {
+      height: 'auto'
+    }
+  },
   tableCellRoot: {
     fontSize: '1.1rem',
     align: 'right',
@@ -172,7 +178,7 @@ const ComparisonTable = forwardRef((props, ref) => {
           {comparisonTitle}
         </Box>
       </Box>
-      <Box height="166px">
+      <Box className={classes.comparisonTableContent}>
         {monthly === DFC.MONTHLY_CAPITALIZED ? monthlyComparisonText : yearlyComparisonText }
       </Box>
       <TableContainer className={classes.comparisonTable}>

@@ -2,7 +2,11 @@ import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
+import {
+  Box,
+  useMediaQuery,
+  useTheme
+} from '@material-ui/core'
 
 import Link from '../../../components/Link'
 import { LocationLink } from '../../../components/layouts/LocationLink'
@@ -24,6 +28,9 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(2.5),
     fontWeight: 'normal',
     height: 24,
+    [theme.breakpoints.down('sm')]: {
+      margin: 0,
+    },
     '@media (max-width: 426px)': {
       display: 'block',
       width: '100%',
@@ -35,6 +42,22 @@ const useStyles = makeStyles(theme => ({
   linkWrap: {
     display: 'flex',
     justifyContent: 'flex-end',
+    [theme.breakpoints.down('xs')]: {
+      display: 'block',
+      marginBottom: 20,
+    },
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'space-between',
+      minHeight: 60,
+    },
+    '& span:first-child a svg': {
+      position: 'relative',
+      top: '6px',
+    },
+    '& span:nth-child(2) a svg': {
+      position: 'relative',
+      top: '-2px',
+    }
   }
 }))
 
@@ -47,6 +70,8 @@ const SectionHeader = props => {
   } = props
   const { dataType } = filterState
   const classes = useStyles()
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
   // capitalize first letter for query link param
   const niceLabel = linkLabel.charAt(0).toUpperCase() + linkLabel.slice(1) || title.charAt(0).toUpperCase() + title.slice(1)
   let dataTypeLabel
@@ -67,7 +92,7 @@ const SectionHeader = props => {
     <>
       <Box color="secondary.main" mb={2} borderBottom={2} pb={1} className={classes.titleBar}>
         <Box component="h3" m={0} color="primary.dark">{title}</Box>
-        {showLinks &&
+        {(showLinks && !matchesSmDown) &&
           <Box className={classes.linkWrap}>
             <Box component="span" className={classes.titleLink}>
               <Link
@@ -86,6 +111,24 @@ const SectionHeader = props => {
           </Box>
         }
       </Box>
+      {(showLinks && matchesSmDown) &&
+          <Box className={classes.linkWrap}>
+            <Box component="span" className={classes.titleLink}>
+              <Link
+                href={`/query-data?dataType=${ niceLabel }`}
+                linkType="FilterTable"
+                mt={0}>
+                Query {props.linkLabel || props.title} data
+              </Link>
+            </Box>
+            <Box component="span" className={classes.titleLink}>
+              <LocationLink
+                linkTitle={`${ dataTypeLabel } by location`}
+                linkUrl={`/explore?dataType=${ dataTypeLabel }`}
+              />
+            </Box>
+          </Box>
+      }
     </>
   )
 }
