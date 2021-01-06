@@ -14,6 +14,8 @@ import {
   DISPLAY_NAMES
 } from '../../../../constants'
 
+import CustomTableHeaderSortLabel from './CustomTableHeaderSortLabel'
+
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 
 const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, groupByOptions, breakoutByOptions, ...restProps }) => {
@@ -27,7 +29,9 @@ const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, groupB
         </Grid>
         {onAddColumn &&
           <Grid item xs={5}>
-            <BaseButtonInput onClick={onAddColumn} styleType={'link'} style={{ top: '-8px' }}>+ Add column</BaseButtonInput>
+            <BaseButtonInput onClick={onAddColumn} styleType={'link'} style={{ top: '-8px' }}>
+              + Add column
+            </BaseButtonInput>
           </Grid>
         }
       </Grid>
@@ -42,7 +46,9 @@ const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, groupB
         </Grid>
         {onAddColumn &&
           <Grid item xs={5}>
-            <BaseButtonInput onClick={onAddColumn} label={'+ Add column'} styleType={'link'} style={{ top: '-8px' }}/>
+            <BaseButtonInput onClick={onAddColumn} styleType={'link'} style={{ top: '-8px' }}>
+              + Add column
+            </BaseButtonInput>
           </Grid>
         }
       </Grid>
@@ -57,7 +63,9 @@ const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, groupB
         </Grid>
         {onRemoveColumn &&
           <Grid item xs={5}>
-            <BaseButtonInput onClick={onRemoveColumn} label={'x Remove'} styleType={'link'} style={{ top: '-8px' }}/>
+            <BaseButtonInput onClick={onRemoveColumn} styleType={'link'} style={{ top: '-8px' }}>
+              x Remove
+            </BaseButtonInput>
           </Grid>
         }
       </Grid>
@@ -67,13 +75,13 @@ const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, groupB
   return (
     <>
       {state[GROUP_BY_STICKY] === restProps.column.name &&
-        <GroupByStickyColumnHeader />
+        <CustomTableHeaderSortLabel {...restProps.children.props}><GroupByStickyColumnHeader /></CustomTableHeaderSortLabel>
       }
       {state[GROUP_BY] === restProps.column.name &&
-        <GroupByColumnHeader />
+        <CustomTableHeaderSortLabel {...restProps.children.props}><GroupByColumnHeader /></CustomTableHeaderSortLabel>
       }
       {state[BREAKOUT_BY] === restProps.column.name &&
-        <BreakoutByColumnHeader />
+        <CustomTableHeaderSortLabel {...restProps.children.props}><BreakoutByColumnHeader /></CustomTableHeaderSortLabel>
       }
       {(state[GROUP_BY] !== restProps.column.name && state[BREAKOUT_BY] !== restProps.column.name && state[GROUP_BY_STICKY] !== restProps.column.name) &&
         <>{restProps.children}</>
