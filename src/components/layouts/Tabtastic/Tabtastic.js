@@ -96,7 +96,6 @@ const Tabtastic = props => {
   const urlParams = new URLSearchParams(selectedTab)
   const selectedParams = urlParams.get('tab')
 
-  const { children } = props
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const [selected, setSelected] = useState(selectedParams || '')
   const [selectedIndex, setSelectedIndex] = useState(0)
