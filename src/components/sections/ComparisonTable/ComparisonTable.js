@@ -171,6 +171,14 @@ const ComparisonTable = forwardRef((props, ref) => {
     comparisonText = ''
   }
 
+  const formatSum = sum => {
+    if (dataType === DFC.PRODUCTION) {
+      return utils.formatToCommaInt(sum)
+    } else {
+      return utils.formatToDollarInt(sum)
+    }
+  }
+
   return (
     <Box ref={ref}>
       <Box mb={2} borderBottom={1}>
@@ -212,7 +220,7 @@ const ComparisonTable = forwardRef((props, ref) => {
                 }
                 <TableCell classes={{ root: classes.tableCellRoot }}>
                   <Box>
-                    {(item.previous && item.previous.sum !== 0) ? utils.formatToDollarInt(item.previous.sum) : '-'}
+                    {(item.previous && item.previous.sum !== 0) ? formatSum(item.previous.sum) : '-'}
                   </Box>
                 </TableCell>
                 <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
@@ -235,7 +243,7 @@ const ComparisonTable = forwardRef((props, ref) => {
               }
               <TableCell>
                 <Box fontWeight="bold">
-                  {utils.formatToDollarInt(previousYearTotal)}
+                  {formatSum(previousYearTotal)}
                 </Box>
               </TableCell>
               <TableCell align="right">
