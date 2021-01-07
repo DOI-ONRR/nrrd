@@ -128,7 +128,7 @@ const Tabtastic = props => {
 
     setSelected(formattedLabel)
 
-    updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedChild.props.label })
+    updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedChild.props.label, [DFC.BREAKOUT_BY]: DFC.SOURCE })
 
     navigate(`?tab=${ formattedLabel }`)
   }

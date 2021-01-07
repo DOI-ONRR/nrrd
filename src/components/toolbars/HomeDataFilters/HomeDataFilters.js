@@ -49,7 +49,7 @@ const HomeDataFilters = props => {
   const classes = useStyles()
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { monthly, dataType, year } = filterState
+  const { monthly, dataType, year, breakoutBy } = filterState
 
   const {
     maxFiscalYear,
@@ -72,13 +72,13 @@ const HomeDataFilters = props => {
     ],
     [DFC.BREAKOUT_BY]: {
       [DFC.REVENUE]: [
-        { value: 'source', option: 'Source' },
+        { value: DFC.SOURCE, option: 'Source' },
         { value: 'revenue_type', option: 'Revenue Type' },
         { value: 'commodity', option: 'Commodity' }
       ],
       [DFC.DISBURSEMENT]: [
-        { value: 'source', option: 'Source' },
-        { value: 'recipient', option: 'Recipient' },
+        { value: DFC.SOURCE, option: 'Source' },
+        { value: DFC.RECIPIENT, option: 'Recipient' },
       ]
     },
     [DFC.COMMODITY]: [
@@ -89,8 +89,13 @@ const HomeDataFilters = props => {
   }
 
   useEffect(() => {
-    updateDataFilter({ ...filterState, [DFC.BREAKOUT_BY]: DFC.SOURCE })
-  }, [dataType])
+    if (monthly === DFC.MONTHLY_CAPITALIZED) {
+      updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
+    }
+    else {
+      updateDataFilter({ ...filterState, [DFC.PERIOD]: DFC.PERIOD_FISCAL_YEAR })
+    }
+  }, [monthly])
 
   return (
     <div className={classes.sectionControlsContainer}>
@@ -105,8 +110,8 @@ const HomeDataFilters = props => {
       <PeriodSelectInput
         dataFilterKey={DFC.PERIOD}
         data={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD] : MENU_OPTIONS.monthlyPeriod}
-        defaultSelected={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
-        selected={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].option : MENU_OPTIONS.monthlyPeriod[0].option}
+        defaultSelected={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].value : MENU_OPTIONS.monthlyPeriod[0].value}
+        selected={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].value : MENU_OPTIONS.monthlyPeriod[0].value}
         label="Period"
         selectType="Single"
         showClearSelected={false}
@@ -117,7 +122,8 @@ const HomeDataFilters = props => {
         <BreakoutBySelectInput
           dataFilterKey={DFC.BREAKOUT_BY}
           data={(dataType === DFC.REVENUE) ? MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE] : MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT]}
-          defaultSelected={(dataType === DFC.REVENUE) ? MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE][0].option : MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT][0].option}
+          defaultSelected={(dataType === DFC.REVENUE) ? MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE][0].value : MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT][0].value}
+          selected={(dataType === DFC.REVENUE) ? MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE][0].value : MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT][0].value}
           label="Breakout"
           selectType="Single"
           showClearSelected={false} />

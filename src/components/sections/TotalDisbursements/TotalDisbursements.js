@@ -93,7 +93,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
 // TotalDisbursements
 const TotalDisbursements = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy } = filterState
+  const { monthly, period, breakoutBy, dataType } = filterState
   const disbursementsComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } by ${ period.toLowerCase() } (dollars)`
@@ -252,7 +252,7 @@ const TotalDisbursements = props => {
         </Grid>
         <Grid item xs={12} md={7}>
           <StackedBarChart
-            key={`tdsbc__${ monthly }${ period }${ breakoutBy }`}
+            key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
             title={chartTitle}
             units={units}
             data={chartData}
