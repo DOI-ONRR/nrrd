@@ -138,6 +138,7 @@ const TotalRevenue = props => {
   const revenueComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
+  const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
 
   let yOrderBy
   switch (breakoutBy) {
@@ -318,7 +319,7 @@ const TotalRevenue = props => {
       }
 
       legendHeaders = (headers, row) => {
-        const headerLabel = `${ headers[2] } ${ (currentMonthNum !== parseInt('09') && headers[2] > maxFiscalYear) ? currentYearSoFarText : '' }`
+        const headerLabel = `${ periodAbbr } ${ headers[2] } ${ (currentMonthNum !== parseInt('09') && headers[2] > maxFiscalYear) ? currentYearSoFarText : '' }`
         const headerArr = [headers[0], '', headerLabel]
         return headerArr
       }

@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   comparisonTableContent: {
-    height: '166px',
+    height: '196px',
     [theme.breakpoints.down('sm')]: {
       height: 'auto'
     }
@@ -55,7 +55,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
-  const { period, monthly, year, dataType } = filterState
+  const { period, monthly, year, dataType, commodity } = filterState
   const [selectedItem, setSelectedItem] = useState({
     month: data[data.length - 1].month_long ? data[data.length - 1].month_long : data[data.length - 1].monthLong,
     year: data[data.length - 1].year || year
@@ -108,7 +108,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   // Text output
   const month = (monthly === DFC.MONTHLY_CAPITALIZED && selectedItem.month) && selectedItem.month.substring(0, 3)
-  const previousYearText = `${ periodAbbr }${ previousYear.toString().substring(2) }`
+  const previousYearText = `${ periodAbbr } ${ previousYear }`
   const changeText = 'Change'
   const changeAdditionalText = month
     ? `${ month } ${ previousYear } to ${ month } ${ currentYear }`
@@ -158,14 +158,20 @@ const ComparisonTable = forwardRef((props, ref) => {
   const currentYearTotals = comparisonData.map(item => item.current.sum)
   const currentYearTotal = currentYearTotals.reduce((acc, item) => acc + item)
 
+  // unit text, grab unit from string looking for parens
+  const regExp = /\(([^)]+)\)/
+  const unitText = commodity.match(regExp)[0]
+
+  console.log('unit text: ', unitText)
+
   // Comparison Text
   let comparisonText
 
   if (selectedItem.month && selectedItem.month === 'October') {
-    comparisonText = '(Oct)'
+    comparisonText = 'so far (Oct)'
   }
   else if (selectedItem.month && selectedItem.month !== 'October' && selectedItem.month !== 'September') {
-    comparisonText = `(Oct - ${ selectedItem.month.substring(0, 3) })`
+    comparisonText = `so far (Oct - ${ selectedItem.month.substring(0, 3) })`
   }
   else {
     comparisonText = ''
@@ -174,15 +180,16 @@ const ComparisonTable = forwardRef((props, ref) => {
   const formatSum = sum => {
     if (dataType === DFC.PRODUCTION) {
       return utils.formatToCommaInt(sum)
-    } else {
+    }
+    else {
       return utils.formatToDollarInt(sum)
     }
   }
 
   return (
     <Box ref={ref}>
-      <Box mb={2} borderBottom={1}>
-        <Box component="h3" m={0} color="primary.dark">
+      <Box mb={2} borderBottom={2}>
+        <Box component="h3" m={0} color="primary.dark" fontSize="1.2rem">
           {comparisonTitle}
         </Box>
       </Box>
@@ -200,13 +207,12 @@ const ComparisonTable = forwardRef((props, ref) => {
               }
               <TableCell component="th" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">
-                  {month ? `${ month } ${ previousYear }` : previousYearText }
+                  {month ? `${ month } ${ previousYear } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }` : `${ previousYearText } ${ (dataType === DFC.PRODUCTION) ? unitText : '' } ${ comparisonText }`}
                 </Box>
-                {(!month) && <Box fontSize="14px">{comparisonText}</Box>}
               </TableCell>
               <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">{changeText}</Box>
-                <Box fontSize="14px">{changeAdditionalText}</Box>
+                {/* <Box fontSize="14px">{changeAdditionalText}</Box> */}
               </TableCell>
             </TableRow>
           </TableHead>

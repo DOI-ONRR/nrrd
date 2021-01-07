@@ -95,6 +95,7 @@ const TotalProduction = props => {
   const { monthly, period, commodity } = filterState
   const [selected, setSelected] = useState(undefined)
   const productionComparison = useRef(null)
+  const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
 
   const handleSelect = value => {
     setSelected(value.selectedIndex)
@@ -182,6 +183,11 @@ const TotalProduction = props => {
       console.debug(chartData)
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
+      }
+
+      legendHeaders = (headers, row) => {
+        const headerArr = [headers[0], '', `${ periodAbbr } ${ headers[2] }`]
+        return headerArr
       }
     }
   }
