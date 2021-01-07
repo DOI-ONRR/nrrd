@@ -196,6 +196,13 @@ export const getMonthRange = (startDate, endDate) => {
   return dates
 }
 
+export const roundFormatParens = (number, precision) => {
+  precision = precision || 0
+  let num = parseFloat(number).toFixed(precision)
+  const formattedNum = num < 0 ? `(${ num *= -1 })` : num
+  return formattedNum
+}
+
 const utils = {
   scrollStop: callback => {
     // Make sure a valid callback was provided

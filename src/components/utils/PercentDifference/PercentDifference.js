@@ -1,5 +1,5 @@
 import React from 'react'
-import utils from '../../../js/utils'
+import { roundFormatParens } from '../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -39,7 +39,7 @@ const PercentDifference = ({ currentAmount, previousAmount }) => {
         : <ArrowDownwardIcon className={classes.trendIconDown} />
       }
       <span>
-        {utils.round(percentIncrease, 0) + '%'}
+        {`${ roundFormatParens(percentIncrease, 0) }%`}
       </span>
     </span>
   )
