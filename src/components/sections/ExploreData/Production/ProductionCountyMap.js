@@ -9,6 +9,7 @@ import {
 
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
+import QueryLink from '../../../../components/QueryLink'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -123,6 +124,14 @@ const ProductionCountyMap = props => {
          }
        </Box>
         }
+        <QueryLink
+          groupBy={DFC.COUNTY}
+          landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+          linkType="FilterTable"
+          breakoutBy={DFC.PRODUCTION}
+          {...props}>
+          Query revenue by county
+        </QueryLink>
       </>
     )
   }

@@ -13,6 +13,7 @@ import {
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import QueryLink from '../../../../components/QueryLink'
 
 import mapCounties from '../counties.json'
 import { makeStyles } from '@material-ui/core/styles'
@@ -154,21 +155,29 @@ const RevenueCountyMap = props => {
 		    .map(d => [d.key, d.value])
 
     return (
-
-      <Box className={classes.root} ref={ref} >
-        <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
-        <Map
-          key={`county_map_${ props.name }_${ year }`}
-          mapFeatures={mapFeatures}
-          mapJsonObject={clone}
-          mapData={mapData}
-          minColor={props.minColor}
-          maxColor={props.maxColor}
-          zoomTo={props.fipsCode}
-	  disableMapControls={true}
-        />
-	   </Box>
-
+      <>
+        <Box className={classes.root} ref={ref} >
+          <Box component="h4" fontWeight="bold" mb={2}>Revenue by county</Box>
+          <Map
+            key={`county_map_${ props.name }_${ year }`}
+            mapFeatures={mapFeatures}
+            mapJsonObject={clone}
+            mapData={mapData}
+            minColor={props.minColor}
+            maxColor={props.maxColor}
+            zoomTo={props.fipsCode}
+	        disableMapControls={true}
+          />
+	      </Box>
+        <QueryLink
+          groupBy={DFC.COUNTY}
+          landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+          linkType="FilterTable"
+          breakoutBy={DFC.REVENUE_TYPE}
+          {...props}>
+          Query revenue by county
+        </QueryLink>
+      </>
     )
   }
   else {
