@@ -182,6 +182,7 @@ const ProductionCountyMap = props => {
              minColor={minColor}
              maxColor={maxColor}
              zoomTo={fipsCode}
+             disableMapControls={true}
            />
          </>
          }
