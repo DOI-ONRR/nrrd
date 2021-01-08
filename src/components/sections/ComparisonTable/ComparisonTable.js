@@ -205,7 +205,7 @@ const ComparisonTable = forwardRef((props, ref) => {
                   <Box fontWeight="bold" style={{ textTransform: 'capitalize' }}>{yGroupBy}</Box>
                 </TableCell>
               }
-              <TableCell component="th" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
+              <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">
                   {month ? `${ month } ${ previousYear } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }` : `${ previousYearText } ${ (dataType === DFC.PRODUCTION) ? unitText : '' } ${ comparisonText }`}
                 </Box>
@@ -224,7 +224,7 @@ const ComparisonTable = forwardRef((props, ref) => {
                     <Box fontSize="16px">{item.current ? item.current[yGroupBy] : ''}</Box>
                   </TableCell>
                 }
-                <TableCell classes={{ root: classes.tableCellRoot }}>
+                <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
                   <Box>
                     {(item.previous && item.previous.sum !== 0) ? formatSum(item.previous.sum) : '-'}
                   </Box>
@@ -247,7 +247,7 @@ const ComparisonTable = forwardRef((props, ref) => {
               {matchesSmDown &&
                   <TableCell classes={{ root: classes.tableCellRoot }}></TableCell>
               }
-              <TableCell>
+              <TableCell align="right">
                 <Box fontWeight="bold">
                   {formatSum(previousYearTotal)}
                 </Box>
