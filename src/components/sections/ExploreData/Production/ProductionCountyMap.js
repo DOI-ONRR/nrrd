@@ -194,7 +194,7 @@ const ProductionCountyMap = props => {
           linkType="FilterTable"
           breakoutBy={DFC.PRODUCTION}
           {...props}>
-          Query revenue by county
+          Query production by county
         </QueryLink>
       </>
     )
