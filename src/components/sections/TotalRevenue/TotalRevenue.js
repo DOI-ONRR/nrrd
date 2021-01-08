@@ -223,7 +223,8 @@ const TotalRevenue = props => {
       })
       commodityChartData = [...topCommoditiesData, ...otherCommoditiesData]
       console.log('commodityChartData: ', commodityChartData)
-      return commodityChartData.sort((a, b) => (a.year > b.year) ? 1 : (a.year === b.year) ? ((a.commodity_order > b.commodity_order) ? 1 : -1) : -1)
+      // return commodityChartData.sort((a, b) => (a.year > b.year) ? 1 : (a.year === b.year) ? ((a.commodity_order > b.commodity_order) ? 1 : -1) : -1)
+      return commodityChartData
     }
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
@@ -310,6 +311,7 @@ const TotalRevenue = props => {
         case 'commodity':
           commodityChartData = rollUpCommodityData(data.total_yearly_fiscal_revenue)
           comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
+          console.log('comparisonData: ', comparisonData)
           chartData = commodityChartData.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.commodity)))
           break
         default:
