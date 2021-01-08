@@ -151,7 +151,7 @@ const useStyles = makeStyles(theme => ({
       gridTemplateRows: '185px 768px 560px',
     },
     '& .cardContent__Production': {
-      gridTemplateRows: '185px 325px 835px',
+      gridTemplateRows: '185px 325px 740px',
     },
   },
   compareCards: {
