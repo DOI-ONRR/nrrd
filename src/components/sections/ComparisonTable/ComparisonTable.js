@@ -70,7 +70,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
-      console.log('getSelected from Child', d)
+      // console.log('getSelected from Child', d)
       if (d.year) {
         const currentSelectedYearData = data.filter(item => item.year === d.year)
         // console.log('currentSelectedYearData: ', currentSelectedYearData)
@@ -150,7 +150,7 @@ const ComparisonTable = forwardRef((props, ref) => {
     return newObj
   })
 
-  console.log('comparisonData: ', comparisonData)
+  // console.log('comparisonData: ', comparisonData)
 
   // get previous/current year totals
   const previousYearTotals = comparisonData.map(item => item.previous.sum)
@@ -161,8 +161,6 @@ const ComparisonTable = forwardRef((props, ref) => {
   // unit text, grab unit from string looking for parens
   const regExp = /\(([^)]+)\)/
   const unitText = commodity.match(regExp)[0]
-
-  console.log('unit text: ', unitText)
 
   // Comparison Text
   let comparisonText

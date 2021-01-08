@@ -173,8 +173,7 @@ const TotalRevenue = props => {
   let endMonth
   let yOrderBy
   let commodityChartData
-  const topCommoditiesData = []
-  const otherCommoditiesData = []
+  let commodityChartComparisonData
 
   switch (breakoutBy) {
   case 'revenue_type':
@@ -189,6 +188,23 @@ const TotalRevenue = props => {
   }
 
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+  // commodity chart data, roll up of Other commodities
+  const rollUpCommodityData = cData => {
+    const topCommoditiesData = []
+    const otherCommoditiesData = []
+    cData.map(item => {
+      if (yOrderBy.includes(item.commodity)) {
+        topCommoditiesData.push(item)
+      }
+      else {
+        const newObj = { ...item, commodity: 'Other commodities', commodityName: item.commodity, commodity_order: 1 }
+        otherCommoditiesData.push(newObj)
+      }
+    })
+    commodityChartData = [...topCommoditiesData, ...otherCommoditiesData]
+    return commodityChartData
+  }
 
   if (data) {
     console.log('TotalRevenue data: ', data)
@@ -209,23 +225,6 @@ const TotalRevenue = props => {
     endMonth = months[monthRange[monthRange.length - 1].split('-')[0] - 1]
     monthRangeText = `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
     currentYearSoFarText = `so far ${ monthRangeText }`
-
-    // commodity chart data, roll up of Other commodities
-    const rollUpCommodityData = cData => {
-      cData.map(item => {
-        if (yOrderBy.includes(item.commodity)) {
-          topCommoditiesData.push(item)
-        }
-        else {
-          const newObj = { ...item, commodity: 'Other commodities', commodityName: item.commodity, commodity_order: 1 }
-          otherCommoditiesData.push(newObj)
-        }
-      })
-      commodityChartData = [...topCommoditiesData, ...otherCommoditiesData]
-      console.log('commodityChartData: ', commodityChartData)
-      // return commodityChartData.sort((a, b) => (a.year > b.year) ? 1 : (a.year === b.year) ? ((a.commodity_order > b.commodity_order) ? 1 : -1) : -1)
-      return commodityChartData
-    }
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -269,14 +268,15 @@ const TotalRevenue = props => {
           chartData = data.total_monthly_last_twelve_revenue_2.filter(item => yOrderBy.includes(item.revenue_type))
           break
         case 'commodity':
-          commodityChartData = rollUpCommodityData(data.total_monthly_last_three_years_revenue)
-          comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
+          commodityChartComparisonData = rollUpCommodityData(data.total_monthly_last_three_years_revenue)
+          commodityChartData = rollUpCommodityData(data.total_monthly_last_twelve_revenue_2)
+          comparisonData = commodityChartComparisonData.filter(item => yOrderBy.includes(item.commodity))
+          // comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
           chartData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
           break
         default:
           comparisonData = data.total_monthly_last_three_years_revenue
           chartData = data.total_monthly_last_twelve_revenue_2
-	        console.debug('monthly last chart Data: ', data.total_monthly_last_twelve_revenue)
           break
         }
       }
@@ -311,7 +311,6 @@ const TotalRevenue = props => {
         case 'commodity':
           commodityChartData = rollUpCommodityData(data.total_yearly_fiscal_revenue)
           comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
-          console.log('comparisonData: ', comparisonData)
           chartData = commodityChartData.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.commodity)))
           break
         default:
