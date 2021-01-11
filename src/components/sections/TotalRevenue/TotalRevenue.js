@@ -271,7 +271,6 @@ const TotalRevenue = props => {
           commodityChartComparisonData = rollUpCommodityData(data.total_monthly_last_three_years_revenue)
           commodityChartData = rollUpCommodityData(data.total_monthly_last_twelve_revenue_2)
           comparisonData = commodityChartComparisonData.filter(item => yOrderBy.includes(item.commodity))
-          // comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
           chartData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
           break
         default:
@@ -297,7 +296,7 @@ const TotalRevenue = props => {
       }
 
       legendHeaders = (headers, row) => {
-        const headerArr = [headers[0], '', `${ row.xLabel } ${ row.year }`]
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], '', `${ row.xLabel } ${ row.year }`]
         return headerArr
       }
     }
