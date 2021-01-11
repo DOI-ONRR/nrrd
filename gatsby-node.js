@@ -216,17 +216,6 @@ const createComponentsCache = ({ graphql, reporter }) => {
               filePath: node.node.parent.absolutePath,
             })
           )
-          const exportAllFileContents =
-              allComponents
-                .reduce((accumulator, { displayName, filePath }) => {
-                  if (filePath.search('components/images/index.js') < 0) {
-                    accumulator.push(
-                      `export * from "${ filePath }"`
-                    )
-                  }
-                  return accumulator
-                }, [])
-                .join('\n') + '\n'
 
           let exportFileContents =
               allComponents
@@ -259,10 +248,6 @@ const createComponentsCache = ({ graphql, reporter }) => {
           fs.writeFileSync(
             path.join(appRootDir, '.cache/components.js'),
             exportFileContents
-          )
-          fs.writeFileSync(
-            path.join(appRootDir, '.cache/components-all.js'),
-            exportAllFileContents
           )
 	        }
 	      })

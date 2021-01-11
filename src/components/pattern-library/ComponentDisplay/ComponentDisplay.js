@@ -13,7 +13,6 @@ import CodeBlock from '../CodeBlock'
 import PropsTable from '../PropsTable'
 import theme from '../../../js/mui/theme'
 import * as ALL_COMPONENTS from '../../../../.cache/components'
-import * as ALL_DEMOS from '../../../../.cache/components-all'
 
 const ComponentDisplay = ({ children }) => {
   const results = useStaticQuery(graphql`
@@ -51,6 +50,7 @@ const ComponentDisplay = ({ children }) => {
       }
     }
   `)
+  
 
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
   const type = url.searchParams && url.searchParams.get('type')
@@ -73,9 +73,12 @@ const ComponentDisplay = ({ children }) => {
 
   return (
     <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
+      <Grid item xs={12}>
+        Menu
+      </Grid>
       {
         components.map((item, i) => {
-          const demos = ALL_DEMOS[`${ item.displayName }Demos`]
+          const demos = ALL_COMPONENTS[`${ item.displayName }`].Preview?.demos
           if (!demos) {
             return undefined
           }

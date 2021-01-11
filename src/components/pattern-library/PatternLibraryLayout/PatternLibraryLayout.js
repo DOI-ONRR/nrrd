@@ -7,15 +7,13 @@ import { fade, makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/co
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
 import SearchIcon from '@material-ui/icons/Search'
 import InputBase from '@material-ui/core/InputBase'
 import Container from '@material-ui/core/Container'
+import TextField from '@material-ui/core/TextField'
+import Autocomplete from '@material-ui/lab/Autocomplete'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -218,6 +216,34 @@ const PatternLibraryLayout = ({ path, children }) => {
 
   const pageTitle = 'NRRD Pattern Library'
 
+  const SearchBox = () => {
+    const [value, setValue] = React.useState(null)
+    return (
+      <Autocomplete
+        id="search-box"
+        value={value}
+        onChange={(event, newValue) => {
+          if (typeof newValue === 'string') {
+            setValue(newValue)
+          }
+          else if (newValue && newValue.inputValue) {
+            // Create a new value from the user input
+            setValue(newValue.inputValue)
+          }
+          else {
+            setValue(newValue)
+          }
+        }}
+        options={['test', 'test2']}
+        style={{ width: 300 }}
+        freeSolo
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        renderInput={params => <TextField {...params} label="Search" variant="outlined" />}
+      />
+    )
+  }
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -249,17 +275,7 @@ const PatternLibraryLayout = ({ path, children }) => {
             </ToggleButtonGroup>
             <div className={classes.grow} />
             <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-              />
+              <SearchBox />
             </div>
           </Toolbar>
         </AppBar>
