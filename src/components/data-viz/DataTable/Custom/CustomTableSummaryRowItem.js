@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { formatToDollarInt, formatToCommaInt } from '../../../../js/utils'
+import { formatToDollarFloat, formatToCommaInt } from '../../../../js/utils'
 import {
   PRODUCTION,
   DATA_TYPE
@@ -16,7 +16,7 @@ const CustomTableSummaryRowItem = ({ getMessage, ...restProps }) => {
     cellValue = restProps.children.type(restProps)
   }
   else {
-    cellValue = (state[DATA_TYPE] !== PRODUCTION) ? formatToDollarInt(cellValue) : formatToCommaInt(cellValue)
+    cellValue = (state[DATA_TYPE] !== PRODUCTION) ? formatToDollarFloat(cellValue) : formatToCommaInt(cellValue)
   }
 
   return (
