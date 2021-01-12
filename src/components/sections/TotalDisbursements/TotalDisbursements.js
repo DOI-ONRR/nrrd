@@ -8,7 +8,8 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import {
   Box,
-  Grid
+  Grid,
+  useTheme
 } from '@material-ui/core'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
@@ -27,7 +28,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
     #   sum
     # }
 
-    total_yearly_fiscal_disbursement: total_yearly_fiscal_disbursement_2(order_by: {year: asc, sum: desc}) {
+    total_yearly_fiscal_disbursement: total_yearly_fiscal_disbursement_2(order_by: {year: asc}) {
       period
       sum
       source: land_type
@@ -75,7 +76,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       period_date
       month
       year
-      recipient
+      recipient: fund_class
     } 
 
     total_monthly_last_three_years_disbursement {
@@ -85,13 +86,14 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       period_date
       month
       year
-      recipient
+      recipient: fund_class
     }
   }
 `
 
 // TotalDisbursements
 const TotalDisbursements = props => {
+  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const { monthly, period, breakoutBy, dataType } = filterState
   const disbursementsComparison = useRef(null)
@@ -105,8 +107,8 @@ const TotalDisbursements = props => {
     disbursementsComparison.current.setSelectedItem(d)
   }
 
-  useEffect(() => {
-  }, [breakoutBy])
+  // useEffect(() => {
+  // }, [breakoutBy])
 
   if (loading) {
     return 'Loading...'
@@ -130,10 +132,37 @@ const TotalDisbursements = props => {
   let monthEndDate
   let startMonth
   let endMonth
+  let disbursementRecipientChartData
+  let disbursementRecipientComparisonData
   const yOrderBy = (breakoutBy === DFC.RECIPIENT)
-    ? ['U.S. Treasury', 'State and local governments', 'Reclamation', 'Native American tribes and individuals', 'Land and Water Conservation Fund', 'Other', 'Historic Preservation Fund']
+    ? [
+      'Other funds',
+      // 'Historic Preservation Fund',
+      'Land and Water Conservation Fund',
+      'Native American tribes and individuals',
+      'Reclamation Fund',
+      'State and local governments',
+      'U.S. Treasury'
+    ]
     : ['Native American', 'Federal Offshore', 'Federal Onshore']
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+  // disbursements, roll up Other Funds data
+  const rollUpOtherFundsData = cData => {
+    const topRecipientFundsData = []
+    const otherRecipientFundsData = []
+    cData.map(item => {
+      if (yOrderBy.includes(item.recipient)) {
+        topRecipientFundsData.push(item)
+      }
+      else {
+        const newObj = { ...item, recipient: 'Other funds', recipientName: item.recipient }
+        otherRecipientFundsData.push(newObj)
+      }
+    })
+    const rolledUpData = [...topRecipientFundsData, ...otherRecipientFundsData]
+    return rolledUpData
+  }
 
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -184,8 +213,11 @@ const TotalDisbursements = props => {
       else {
         switch (yGroupBy) {
         case 'recipient':
-          comparisonData = data.total_monthly_last_three_years_disbursement.filter(item => yOrderBy.includes(item.recipient))
-          chartData = data.total_monthly_last_twelve_disbursement.filter(item => yOrderBy.includes(item.recipient))
+          disbursementRecipientComparisonData = rollUpOtherFundsData(data.total_monthly_last_three_years_disbursement)
+          disbursementRecipientChartData = rollUpOtherFundsData(data.total_monthly_last_twelve_disbursement)
+          comparisonData = disbursementRecipientComparisonData.filter(item => yOrderBy.includes(item.recipient))
+          chartData = disbursementRecipientChartData.filter(item => yOrderBy.includes(item.recipient))
+          console.log('recipient chartData: ', chartData)
           break
         default:
           comparisonData = data.total_monthly_last_three_years_disbursement
@@ -203,6 +235,8 @@ const TotalDisbursements = props => {
         return r
       }, {})
 
+      console.log('chartData: ', chartData)
+
       xAxis = 'month_long'
       xLabels = (x, i) => {
         // console.debug(x)
@@ -217,8 +251,9 @@ const TotalDisbursements = props => {
     else {
       switch (breakoutBy) {
       case 'recipient':
-        comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
-        chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
+        disbursementRecipientChartData = rollUpOtherFundsData(data.total_yearly_fiscal_disbursement)
+        comparisonData = disbursementRecipientChartData.filter(item => yOrderBy.includes(item.recipient))
+        chartData = disbursementRecipientChartData.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
         break
       default:
         comparisonData = data.total_yearly_fiscal_disbursement
@@ -261,11 +296,20 @@ const TotalDisbursements = props => {
             yAxis={yAxis}
             xGroups={xGroups}
             yGroupBy={yGroupBy}
-            yOrderBy={yOrderBy}
+            // yOrderBy={yOrderBy}
             xLabels={xLabels}
             legendFormat={v => utils.formatToDollarInt(v)}
             legendHeaders={legendHeaders}
+            legendReverse={true}
             handleBarHover={handleBarHover}
+            // colorRange={[
+            //   theme.palette.explore[600],
+            //   theme.palette.explore[500],
+            //   theme.palette.explore[400],
+            //   theme.palette.explore[300],
+            //   theme.palette.explore[200],
+            //   theme.palette.explore[100]
+            // ]}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
             { (monthly === DFC.MONTHLY_CAPITALIZED)
