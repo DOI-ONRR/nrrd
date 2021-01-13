@@ -47,7 +47,7 @@ export default BaseToolbar
 export const BaseToolbarDemos = [
   {
     title: 'Preview',
-    code: '<BaseToolbar>'+
+    code: '<BaseToolbar>' +
       '<BaseButtonInput>Click me</BaseButtonInput>' +
       '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />' +
       '<BaseSwitch label={"Enable access"} selectType={"Single"} />' +

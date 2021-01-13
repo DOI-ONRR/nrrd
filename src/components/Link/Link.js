@@ -43,6 +43,12 @@ const useStyles = makeStyles(theme => ({
     fontWeight: theme.typography.fontWeightBold,
     textDecoration: 'underline',
   },
+  filterTableIcon: {
+    '& svg': {
+      position: 'relative',
+      top: 7,
+    }
+  },
 })
 )
 
@@ -70,9 +76,19 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
     url = url.replace(pathPrefix, '')
   }
 
-  const classes = (linkType === LinkTypeComponents.Header)
-    ? `${ styles.headerLink } ${ className } ${ (currentPathname === withPrefix(href)) && styles.headerLinkBold }`
-    : `${ styles.link } ${ className }`
+  let classes
+
+  switch (linkType) {
+  case LinkTypeComponents.Header:
+    classes = `${ styles.headerLink } ${ className } ${ (currentPathname === withPrefix(href)) && styles.headerLinkBold }`
+    break
+  case LinkTypeComponents.FilterTable:
+    classes = `${ styles.link } ${ styles.filterTableIcon } ${ className }`
+    break
+  default:
+    classes = `${ styles.link } ${ className }`
+    break
+  }
 
   return (
     <React.Fragment>
@@ -96,7 +112,7 @@ const LinkTypeComponents = {
   DownloadData: props => <IconLink icon={<IconDownloadDataImg data-testid='download data icon' />} {...props} />,
   DownloadBase: props => <IconLink icon={<IconDownloadBaseImg data-testid='download base icon' />} pl={0} {...props} />,
   HowWorks: props => <IconLink icon={<HowWorksLinkIconImg data-testid='how works icon' />} pl={0} {...props} />,
-  FilterTable: props => <IconLink icon={<FilterTableIconImg data-testid='filter table icon' style={{ position: 'relative', top: 5 }} />} pl={0} {...props} />,
+  FilterTable: props => <IconLink icon={<FilterTableIconImg data-testid='filter table icon' />} linkType={LinkTypeComponents.FilterTable} pl={0} {...props} />,
   ExploreData: props => <IconLink icon={<IconExploreDataImg data-testid='explore data icon' />} mt={0} {...props} />,
   Location: props => <IconLink icon={<IconUsMapImg data-testid='us map icon' />} {...props} />
 }
