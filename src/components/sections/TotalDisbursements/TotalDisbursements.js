@@ -28,7 +28,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
     #   sum
     # }
 
-    total_yearly_fiscal_disbursement: total_yearly_fiscal_disbursement_2(order_by: {year: asc}) {
+    total_yearly_fiscal_disbursement: total_yearly_fiscal_disbursement_2(order_by: [{year: asc}, {sort_order: desc}]) {
       period
       sum
       source: land_type
@@ -136,8 +136,8 @@ const TotalDisbursements = props => {
   let disbursementRecipientComparisonData
   const yOrderBy = (breakoutBy === DFC.RECIPIENT)
     ? [
-      'Other funds',
-      // 'Historic Preservation Fund',
+      'Other Funds',
+      'Historic Preservation Fund',
       'Land and Water Conservation Fund',
       'Native American tribes and individuals',
       'Reclamation Fund',
@@ -161,6 +161,7 @@ const TotalDisbursements = props => {
       }
     })
     const rolledUpData = [...topRecipientFundsData, ...otherRecipientFundsData]
+
     return rolledUpData
   }
 
@@ -217,7 +218,6 @@ const TotalDisbursements = props => {
           disbursementRecipientChartData = rollUpOtherFundsData(data.total_monthly_last_twelve_disbursement)
           comparisonData = disbursementRecipientComparisonData.filter(item => yOrderBy.includes(item.recipient))
           chartData = disbursementRecipientChartData.filter(item => yOrderBy.includes(item.recipient))
-          console.log('recipient chartData: ', chartData)
           break
         default:
           comparisonData = data.total_monthly_last_three_years_disbursement
@@ -251,9 +251,8 @@ const TotalDisbursements = props => {
     else {
       switch (breakoutBy) {
       case 'recipient':
-        disbursementRecipientChartData = rollUpOtherFundsData(data.total_yearly_fiscal_disbursement)
-        comparisonData = disbursementRecipientChartData.filter(item => yOrderBy.includes(item.recipient))
-        chartData = disbursementRecipientChartData.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
+        comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
+        chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
         break
       default:
         comparisonData = data.total_yearly_fiscal_disbursement
@@ -300,16 +299,8 @@ const TotalDisbursements = props => {
             xLabels={xLabels}
             legendFormat={v => utils.formatToDollarInt(v)}
             legendHeaders={legendHeaders}
-            legendReverse={true}
+            // legendReverse={true}
             handleBarHover={handleBarHover}
-            // colorRange={[
-            //   theme.palette.explore[600],
-            //   theme.palette.explore[500],
-            //   theme.palette.explore[400],
-            //   theme.palette.explore[300],
-            //   theme.palette.explore[200],
-            //   theme.palette.explore[100]
-            // ]}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
             { (monthly === DFC.MONTHLY_CAPITALIZED)

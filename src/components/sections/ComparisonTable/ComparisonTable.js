@@ -122,8 +122,6 @@ const ComparisonTable = forwardRef((props, ref) => {
   // Comparison data
   const groupedData = utils.groupBy(data, yGroupBy)
 
-  // console.log('groupedData: ', groupedData)
-
   const comparisonData = Object.entries(groupedData).map((item, index) => {
     const newObj = {}
 
@@ -150,7 +148,7 @@ const ComparisonTable = forwardRef((props, ref) => {
     return newObj
   })
 
-  // console.log('comparisonData: ', comparisonData)
+  console.log('comparisonData: ', comparisonData)
 
   // get previous/current year totals
   const previousYearTotals = comparisonData.map(item => item.previous.sum)

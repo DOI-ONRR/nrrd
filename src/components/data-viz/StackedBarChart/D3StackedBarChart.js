@@ -30,6 +30,24 @@ export default class D3StackedBarChart {
       this.showLegendUnits = options.showLegendUnits
       this.primaryColor = options.primaryColor || '#222'
       this.secondaryColor = options.secondaryColor || '#43646F'
+      this.primaryColorRange = options.primaryColorRange || [
+        '#494949',
+        '#757575',
+        '#9e9e9e',
+        '#bdbdbd',
+        '#e0e0e0',
+        '#eeeeee',
+        '#f5f5f5',
+      ]
+      this.secondaryColorRange = options.secondaryColorRange || [
+        '#37253c',
+        '#5e384b',
+        '#825056',
+        '#a16c5e',
+        '#b78d68',
+        '#c2b27b',
+        '#c4d99b',
+      ]
       this.handleBarHover = options.handleBarHover
 
       if (options.chartTooltip) {
@@ -245,14 +263,16 @@ export default class D3StackedBarChart {
     try {
       const self = this
       const stack = d3.stack()
-	    .keys(this.yGroupings())
+	      .keys(this.yGroupings())
         .offset(d3.stackOffsetNone)
 
       const keys = this.yGroupings()
-      const primaryColor = this.primaryColor
+      // const primaryColor = this.primaryColor
       const secondaryColor = this.secondaryColor
       const colorRange = this.colorRange
       const chartTooltip = this.chartTooltip
+      const primaryColorRange = this.primaryColorRange
+      const secondaryColorRange = this.secondaryColorRange
 
       // Define the div for the tooltip
       const tooltip = d3.select('body').append('div')
@@ -275,12 +295,7 @@ export default class D3StackedBarChart {
         .attr('height', (self._height - self.marginTop))
         .attr('width', self.xScale.bandwidth())
         .style('fill', (d, i) => {
-          if (this.horizontal && colorRange) {
-            return null
-          }
-          else {
-            return primaryColor
-          }
+          return (this.horizontal && colorRange) ? null : primaryColorRange[i]
         })
         .attr('transform', d => 'translate(' + (self.xScale(d) + ',0)'))
         .attr('class', (d, i) => {
@@ -290,8 +305,6 @@ export default class D3StackedBarChart {
         .attr('tabindex', 0)
         .on('mouseenter', (d, i) => {
           self.currentIndex = i
-          // if (self.xAxis === 'year') self.handleBarHover({ year: self._xDomain[i] || self.xSelectedValue })
-          // if (self.xAxis === 'month_long') self.handleBarHover({ month_long: self._xDomain[i] || self._xDomain[self.xSelectedValue], xGroups: self.xGroups })
         })
         .on('mouseleave', (d, i) => {
           self.currentIndex = self.selectedIndex
@@ -303,23 +316,13 @@ export default class D3StackedBarChart {
           return r
         })
         .enter().append('g')
-        .attr('class', (d, i) => 'stacked-bar-chart-' + i)
+        .attr('class', (d, i) => `stacked-bar-chart-${ i } ${ (!this.horizontal && !colorRange) ? 'stacked-bar-chart-item' : '' }`)
         .style('fill', (d, i) => {
-          if (this.horizontal && colorRange) {
-            return colorRange[i]
-          }
-          else {
-            return null
-          }
+          return (this.horizontal && colorRange) ? colorRange[i] : primaryColorRange[i]
         })
-        .style('fill-opacity', (d, i) => {
-          if (this.horizontal && colorRange) {
-            return null
-          }
-          else {
-            return (1 - (i / keys.length))
-          }
-        })
+        // .style('fill-opacity', (d, i) => {
+        //   return (this.horizontal && colorRange) ? null : (1 - (i / keys.length))
+        // })
         .append('rect')
         .attr('y', d => {
           const y = self.yScale(d[0][1]) || 0
@@ -369,7 +372,7 @@ export default class D3StackedBarChart {
       if (self.selectedIndex) {
         const selectedElement = d3.selectAll('.active')
         selectedElement
-          .style('fill', secondaryColor)
+          .style('fill', secondaryColorRange[0])
       }
 
       // horizontal chart
@@ -542,7 +545,7 @@ export default class D3StackedBarChart {
       const labels = this.yGroupings()
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
       const colorRange = this.colorRange
-      const secondaryColor = this.secondaryColor
+      const secondaryColorRange = this.secondaryColorRange
 
       // turn object into array
       let dataArr = Object.keys(data).map((key, i) => {
@@ -565,46 +568,31 @@ export default class D3StackedBarChart {
         .attr('width', 20)
         .attr('height', 20)
         .style('fill', (d, i) => {
-          if (colorRange) {
-            return colorRange[i]
-          }
-          else {
-            return secondaryColor
-          }
+          return (colorRange) ? colorRange[i] : secondaryColorRange[d.length - i]
         })
         .append('rect')
         .attr('class', 'legend-rect')
         .attr('width', 15)
         .attr('height', 15)
         .style('background-color', (d, i) => {
-          if (colorRange) {
-            return colorRange[i]
-          }
-          else {
-            return secondaryColor
-          }
+          return (colorRange) ? colorRange[i] : secondaryColorRange[d.length - i]
         })
         .style('border', (d, i) => {
-          if (colorRange) {
-            return `1px solid ${ colorRange[i] }`
-          }
-          else {
-            return `1px solid ${ secondaryColor }`
-          }
+          return (colorRange) ? `1px solid ${ colorRange[i] }` : `1px solid ${ secondaryColorRange[d.length - i] }`
         })
-        .style('opacity', (d, i) => {
-          if (this.horizontal && colorRange) {
-            return null
-          }
-          else {
-            if (legendReverse) {
-              return (i < labels.length ? (1 - ((i) / labels.length)) : 0)
-            }
-            else {
-              return (i < labels.length ? ((i + 1) / labels.length) : 0)
-            }
-          }
-        })
+        // .style('opacity', (d, i) => {
+        //   if (this.horizontal && colorRange) {
+        //     return null
+        //   }
+        //   else {
+        //     if (legendReverse) {
+        //       return (i < labels.length ? (1 - ((i) / labels.length)) : 0)
+        //     }
+        //     else {
+        //       return (i < labels.length ? ((i + 1) / labels.length) : 0)
+        //     }
+        //   }
+        // })
 
       // create a cell in each row for each column
 
@@ -676,22 +664,26 @@ export default class D3StackedBarChart {
 
   _onSelect = (element, data) => {
     try {
-      console.log('_onSelect this: ', this)
+      // console.log('_onSelect this: ', this)
       const selectedElement = d3.select(this.node).selectAll('.active') // element.parentNode.querySelector('[selected=true]')
-      const primaryColor = this.primaryColor
-      const secondaryColor = this.secondaryColor
+      // const primaryColor = this.primaryColor
+      // const secondaryColor = this.secondaryColor
+      const primaryColorRange = this.primaryColorRange
+      const secondaryColorRange = this.secondaryColorRange
       // console.debug(data)
       if (selectedElement) {
-        selectedElement.attr('selected', false)
-        selectedElement.attr('class', 'bar')
-        selectedElement.attr('style', `fill: ${ primaryColor }`)
+        selectedElement
+          .attr('selected', false)
+          .attr('class', 'bar')
       }
 
       const activeElement = element.parentNode.parentNode
-      activeElement.setAttribute('class', 'bar active')
-      activeElement.setAttribute('selected', true)
-      activeElement.setAttribute('style', `fill: ${ secondaryColor }`)
-      activeElement.setAttribute('tabindex', 0)
+
+      activeElement
+        .setAttribute('class', 'bar active')
+        .setAttribute('selected', true)
+        .setAttribute('tabindex', 0)
+
 
       this.selectedData(data[0].data)
       this._legend()
@@ -771,7 +763,8 @@ export default class D3StackedBarChart {
       const activeElement = element.parentNode.parentNode
       const activeHoverElement = d3.select(activeElement).classed('active')
       const primaryColor = this.primaryColor
-      const secondaryColor = this.secondaryColor
+      const primaryColorRange = this.primaryColorRange
+      const secondaryColorRange = this.secondaryColorRange
       const horizontal = this.horizontal
       const years = this.xDomain()
 
@@ -781,14 +774,11 @@ export default class D3StackedBarChart {
           this.updateLegend(data[0].data)
         }
 
-        activeElement.setAttribute('style', `fill: ${ secondaryColor }`)
-
         if (this.xAxis === 'year') this.handleBarHover({ year: this._xDomain[this.currentIndex] || this.xSelectedValue })
         if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.currentIndex] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups, currentIndex: this.currentIndex })
       }
       else {
         if (!activeHoverElement) {
-          activeElement.setAttribute('style', `fill: ${ primaryColor }`)
         }
 
         this.createLegend(years[this.selectedIndex])
