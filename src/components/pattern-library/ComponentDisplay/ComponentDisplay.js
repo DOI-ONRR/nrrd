@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider'
 import PatternLibraryCard from '../PatternLibraryCard'
 import CodeBlock from '../CodeBlock'
 import PropsTable from '../PropsTable'
+import ToggleToolbar from '../ToggleToolbar'
 import theme from '../../../js/mui/theme'
 import * as ALL_COMPONENTS from '../../../../.cache/components'
 
@@ -50,13 +51,16 @@ const ComponentDisplay = ({ children }) => {
       }
     }
   `)
-  
 
+  const groups = [...(new Set(Object.keys(ALL_COMPONENTS).map(c => ALL_COMPONENTS[c]?.Preview?.group).filter(g => g !== undefined)))]
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
   const type = url.searchParams && url.searchParams.get('type')
+  const componentsInGroup = Object.keys(ALL_COMPONENTS).filter(c =>
+    (ALL_COMPONENTS[c]?.Preview?.group === type && ALL_COMPONENTS[c].name === c) ||
+    (ALL_COMPONENTS[c]?.type?.Preview?.group === type && ALL_COMPONENTS[c]?.type?.name === c))
 
   const components = results.allComponentMetadata.nodes.filter(item =>
-    item.parent.relativePath.includes(`${ type }`) &&
+    componentsInGroup.includes(item.displayName) &&
     !item.parent.relativePath.includes('DataTable/Custom'))
 
   const content = (Array.isArray(children)) ? children : [children]
@@ -74,11 +78,11 @@ const ComponentDisplay = ({ children }) => {
   return (
     <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
       <Grid item xs={12}>
-        Menu
+        <ToggleToolbar buttons={groups.map(g => ({ [g]: `/patterns/components/?type=${ g }` })) } />
       </Grid>
       {
         components.map((item, i) => {
-          const demos = ALL_COMPONENTS[`${ item.displayName }`].Preview?.demos
+          const demos = ALL_COMPONENTS[`${ item.displayName }`]?.Preview?.demos || ALL_COMPONENTS[`${ item.displayName }`]?.type?.Preview?.demos
           if (!demos) {
             return undefined
           }
@@ -86,7 +90,7 @@ const ComponentDisplay = ({ children }) => {
 
           // const notes = getNotes(key)
           return (
-            <Grid item key={i} xs={12}>
+            <Grid id={item.displayName} item key={i} xs={12}>
               <PatternLibraryCard
                 title={`${ item.displayName }`}
                 notes={(item.childrenComponentProp.length > 0) && <PropsTable componentProps={item.childrenComponentProp} />}

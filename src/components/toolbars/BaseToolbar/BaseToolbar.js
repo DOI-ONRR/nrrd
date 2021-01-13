@@ -44,13 +44,16 @@ const BaseToolbar = ({ isSecondary, children, style, ...restProps }) => {
 
 export default BaseToolbar
 
-export const BaseToolbarDemos = [
-  {
-    title: 'Preview',
-    code: '<BaseToolbar>'+
-      '<BaseButtonInput>Click me</BaseButtonInput>' +
-      '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />' +
-      '<BaseSwitch label={"Enable access"} selectType={"Single"} />' +
-      '</BaseToolbar>',
-  }
-]
+BaseToolbar.Preview = {
+  group: 'Toolbars',
+  demos: [
+    {
+      title: 'Example',
+      code: '<BaseToolbar>' +
+        '<BaseButtonInput>Click me</BaseButtonInput>' +
+        '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />' +
+        '<BaseSwitch label={"Enable access"} selectType={"Single"} />' +
+        '</BaseToolbar>',
+    }
+  ]
+}

@@ -36,17 +36,28 @@ const useStyles = makeStyles(theme => ({
 const ToggleToolbar = ({ buttons, ...rest }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
-  let [section] = React.useState(slugify((typeof window !== 'undefined') ? window.location.pathname : ''))
+  let [section] = React.useState()
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
   if (url && url.searchParams.get('type')) {
-    section += 'type' + url.searchParams.get('type')
+    section = url.searchParams.get('type')
+  }
+  else if (url) {
+    if (url.pathname.includes('color')) {
+      section = 'Color'
+    }
+    else if (url.pathname.includes('typography')) {
+      section = 'Typography'
+    }
+    else if (url.pathname.includes('iconography')) {
+      section = 'Iconography'
+    }
+    else {
+      section = 'Guidelines'
+    }
   }
 
   const handleNavigate = url => {
     navigate(url, { replace: true })
-    /* if (typeof window !== 'undefined') {
-      window.location.href = window.location.origin + url
-    } */
   }
 
   return (
@@ -60,11 +71,11 @@ const ToggleToolbar = ({ buttons, ...rest }) => {
             buttons.map(button => {
               const label = Object.keys(button)[0]
               const relativeUrl = button[label]
-
+              console.log(section, label)
               return (
                 <ToggleButton
                   key={label}
-                  value={slugify(relativeUrl)}
+                  value={label}
                   onClick={() => handleNavigate(relativeUrl)}
                   classes={ { root: classes.rootToggleButton, selected: classes.selectedToggleButton }}>
                   {label}

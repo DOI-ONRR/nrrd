@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { useStaticQuery, graphql, Link, navigate } from 'gatsby'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { fade, makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
@@ -14,8 +14,126 @@ import InputBase from '@material-ui/core/InputBase'
 import Container from '@material-ui/core/Container'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
+import * as ALL_COMPONENTS from '../../../../.cache/components'
 
-const useStyles = makeStyles(theme => ({
+const palette = {
+  background: { default: '#82a5c2' },
+  text: {
+    primary: '#000000',
+    secondary: '#1478a6'
+  },
+}
+const typography = Object.freeze({
+  fontSize: 18,
+  fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
+  fontWeightBold: '600',
+  // This overrides CSSBaseline for the body tag
+  body2: {
+    color: '#000',
+    fontSize: '1.125rem',
+    lineHeight: '1.6875rem',
+  },
+  h1: {
+    margin: '0 0 1rem 0',
+    fontSize: '2.125rem',
+    lineHeight: '2.875rem',
+    fontWeight: '600',
+    color: 'white'
+  },
+  h2: {
+    margin: '2rem 0 1rem 0',
+    fontSize: '1.625rem',
+    lineHeight: '2.25rem',
+    fontWeight: '600',
+    color: 'white'
+  },
+  h3: {
+    margin: '2rem 0 .5rem 0',
+    fontSize: '1.375rem',
+    lineHeight: '2rem',
+    fontWeight: '600',
+    color: 'white'
+  },
+  h4: {
+    margin: '2rem 0 0.25rem 0',
+    fontSize: '1.21rem',
+    lineHeight: '1.235',
+    fontWeight: '600',
+    color: 'white'
+  },
+  h5: {
+    margin: '2rem 0 0.25rem 0',
+    fontSize: '1.1rem',
+    fontWeight: '500',
+  },
+  h6: {
+    margin: '2rem 0 0.25rem 0',
+    fontSize: '.875rem',
+    fontWeight: '600',
+  },
+})
+
+const overrides = {
+  MuiAppBar: {
+    colorDefault: {
+      backgroundColor: '#90caf9'
+    }
+  },
+  MuiAutocomplete: {
+    inputRoot: {
+      height: '45px'
+    }
+  },
+  MuiToolbar: {
+    root: {
+      height: '48px'
+    }
+  },
+  MuiButtonGroup: {
+    groupedTextHorizontal: {
+      borderRight: '1px solid rgba(0, 0, 0, 0.23)',
+      '&:not(:last-child)': {
+        borderLeft: '1px solid rgba(0, 0, 0,  0.23)',
+      }
+    }
+  },
+  MuiToggleButtonGroup: {
+    root: {
+      backgroundColor: '#90caf9',
+      borderRadius: '0px'
+    },
+    grouped: {
+      borderRight: '1px solid rgba(0, 0, 0, 0.23)',
+      '&:not(:last-child)': {
+        borderLeft: '1px solid rgba(0, 0, 0,  0.23)',
+      }
+    }
+  },
+  MuiToggleButton: {
+    root: {
+      color: 'rgba(0, 0, 0,  0.75)',
+      border: 'none',
+      borderRadius: '0px',
+      height: '48px',
+      textTransform: 'none',
+      '&$selected': {
+        color: 'black',
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
+      }
+    },
+  }
+}
+
+const theme = createMuiTheme({ palette, typography, overrides })
+const useStyles = makeStyles(() => ({
+  '@global': {
+    h1: { ...theme.typography.h1 },
+    h2: { ...theme.typography.h2 },
+    h3: { ...theme.typography.h3 },
+    h4: { ...theme.typography.h4 },
+    h5: { ...theme.typography.h5 },
+    h6: { ...theme.typography.h6 },
+  },
   grow: {
     flexGrow: 1,
   },
@@ -72,107 +190,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const palette = {
-  background: { default: '#82a5c2' },
-  text: {
-    primary: '#000000',
-    secondary: '#1478a6'
-  },
-}
-const typography = Object.freeze({
-  fontSize: 18,
-  fontFamily: 'Lato, "Helvetica Neue", Helvetica, arial, sans-serif',
-  fontWeightBold: '600',
-  // This overrides CSSBaseline for the body tag
-  body2: {
-    color: '#000',
-    fontSize: '1.125rem',
-    lineHeight: '1.6875rem',
-  },
-  h1: {
-    margin: '0 0 1rem 0',
-    fontSize: '2.125rem',
-    lineHeight: '2.875rem',
-    fontWeight: '600',
-  },
-  h2: {
-    margin: '2rem 0 1rem 0',
-    fontSize: '1.625rem',
-    lineHeight: '2.25rem',
-    fontWeight: '600',
-  },
-  h3: {
-    margin: '2rem 0 .5rem 0',
-    fontSize: '1.375rem',
-    lineHeight: '2rem',
-    fontWeight: '600',
-  },
-  h4: {
-    margin: '2rem 0 0.25rem 0',
-    fontSize: '1.21rem',
-    lineHeight: '1.235',
-    fontWeight: '600',
-  },
-  h5: {
-    margin: '2rem 0 0.25rem 0',
-    fontSize: '1.1rem',
-    fontWeight: '500',
-  },
-  h6: {
-    margin: '2rem 0 0.25rem 0',
-    fontSize: '.875rem',
-    fontWeight: '600',
-  },
-})
-
-const overrides = {
-  MuiAppBar: {
-    colorDefault: {
-      backgroundColor: '#90caf9'
-    }
-  },
-  MuiToolbar: {
-    root: {
-      height: '48px'
-    }
-  },
-  MuiButtonGroup: {
-    groupedTextHorizontal: {
-      borderRight: '1px solid rgba(0, 0, 0, 0.23)',
-      '&:not(:last-child)': {
-        borderLeft: '1px solid rgba(0, 0, 0,  0.23)',
-      }
-    }
-  },
-  MuiToggleButtonGroup: {
-    root: {
-      backgroundColor: '#90caf9',
-      borderRadius: '0px'
-    },
-    grouped: {
-      borderRight: '1px solid rgba(0, 0, 0, 0.23)',
-      '&:not(:last-child)': {
-        borderLeft: '1px solid rgba(0, 0, 0,  0.23)',
-      }
-    }
-  },
-  MuiToggleButton: {
-    root: {
-      color: 'rgba(0, 0, 0,  0.75)',
-      border: 'none',
-      borderRadius: '0px',
-      height: '48px',
-      textTransform: 'none',
-      '&$selected': {
-        color: 'black',
-        backgroundColor: 'rgba(255, 255, 255, 0.75)',
-      }
-    },
-  }
-}
-
-const theme = createMuiTheme({ palette, typography, overrides })
-
 const PatternLibraryLayout = ({ path, children }) => {
   const [componentsAnchorEl, setComponentsAnchorEl] = React.useState(null)
   const handleComponentsClick = event => {
@@ -192,49 +209,58 @@ const PatternLibraryLayout = ({ path, children }) => {
     setCurrentPath(getCurrentPath())
   }
 
-  const classes = useStyles(theme)
-  const data = useStaticQuery(graphql`
-    query PatternLibraryQuery {
-      allComponentMetadata(sort: {fields: displayName, order: ASC}) {
-        nodes {
-          displayName
-        }
-      }
-    }
-  `)
+  const classes = useStyles()
 
   const getCurrentPath = () => {
-    if (path.includes('visual')) {
-      return 'visual'
-    }
     if (path.includes('components')) {
       return 'components'
     }
-    return undefined
+    return 'visual'
   }
   const [currentPath, setCurrentPath] = React.useState(getCurrentPath())
 
   const pageTitle = 'NRRD Pattern Library'
+  const groups = [...(new Set(Object.keys(ALL_COMPONENTS)
+    .map(c => ALL_COMPONENTS[c]?.Preview?.group)
+    .filter(g => g !== undefined)))]
+  const componentNames = Object.keys(ALL_COMPONENTS)
+    .filter(c => (ALL_COMPONENTS[c]?.name === c || ALL_COMPONENTS[c]?.type?.name === c) && ALL_COMPONENTS[c]?.Preview !== undefined)
+
+  const handleNavigate = value => {
+    switch (value) {
+    case 'Guidelines':
+      navigate('/patterns', { replace: true })
+      break
+    case 'Color':
+      navigate('/patterns/visual-styles/color', { replace: true })
+      break
+    case 'Typography':
+      navigate('/patterns/visual-styles/typography', { replace: true })
+      break
+    case 'Iconography':
+      navigate('/patterns/visual-styles/iconography', { replace: true })
+      break
+    default:
+      if (groups.includes(value)) {
+        navigate(`/patterns/components/?type=${ value }`, { replace: true })
+      }
+      else if (componentNames.includes(value) && ALL_COMPONENTS[value]?.Preview?.group) {
+        navigate(`/patterns/components/?type=${ ALL_COMPONENTS[value].Preview.group }#${ value }`, { replace: true })
+      }
+    }
+  }
 
   const SearchBox = () => {
     const [value, setValue] = React.useState(null)
+
     return (
       <Autocomplete
         id="search-box"
         value={value}
         onChange={(event, newValue) => {
-          if (typeof newValue === 'string') {
-            setValue(newValue)
-          }
-          else if (newValue && newValue.inputValue) {
-            // Create a new value from the user input
-            setValue(newValue.inputValue)
-          }
-          else {
-            setValue(newValue)
-          }
+          handleNavigate(newValue)
         }}
-        options={['test', 'test2']}
+        options={['Guidelines', 'Color', 'Typography', 'Iconography'].concat(groups, componentNames)}
         style={{ width: 300 }}
         freeSolo
         selectOnFocus
@@ -244,6 +270,7 @@ const PatternLibraryLayout = ({ path, children }) => {
       />
     )
   }
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -254,24 +281,8 @@ const PatternLibraryLayout = ({ path, children }) => {
               <Link to='/patterns'>{pageTitle}</Link>
             </Typography>
             <ToggleButtonGroup value={currentPath} aria-label="button group for visual and component pages">
-              <ToggleButton value='visual' className={classes.links} onClick={handleVisualStylesClick}><Link to='/patterns/visual-styles'>Visual Styles</Link></ToggleButton>
-              <ToggleButton value='components' className={classes.links} onClick={handleComponentsClick}><Link to='/patterns/components/?type=cards'>Components</Link></ToggleButton>
-              {/* <Menu
-                id="simple-menu"
-                anchorEl={componentsAnchorEl}
-                keepMounted
-                open={Boolean(componentsAnchorEl)}
-                onClose={handleComponentsClose}
-              >
-                {data &&
-                  data.allComponentMetadata.nodes.map(item =>
-                    <MenuItem key={item.displayName} onClick={handleComponentItemClick} className={classes.links}>
-                      <Link to={`/patterns/components/${ item.displayName }`}>
-                        {item.displayName}
-                      </Link>
-                    </MenuItem>)
-                }
-              </Menu> */}
+              <ToggleButton value='visual' className={classes.links} onClick={handleVisualStylesClick}><Link to='/patterns'>Visual Styles</Link></ToggleButton>
+              <ToggleButton value='components' className={classes.links} onClick={handleComponentsClick}><Link to='/patterns/components/?type=Cards'>Components</Link></ToggleButton>
             </ToggleButtonGroup>
             <div className={classes.grow} />
             <div className={classes.search}>

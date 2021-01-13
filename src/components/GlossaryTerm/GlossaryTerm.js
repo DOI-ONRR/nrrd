@@ -87,3 +87,13 @@ GlossaryTerm.propTypes = {
 }
 
 export default GlossaryTerm
+
+GlossaryTerm.Preview = {
+  group: 'Informational',
+  demos: [
+    {
+      title: 'Example',
+      code: '<GlossaryTerm>8(g)</GlossaryTerm>',
+    }
+  ]
+}

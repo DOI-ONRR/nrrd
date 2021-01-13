@@ -96,9 +96,13 @@ const chartData = [[2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 
 		    1074590499.4, 1304111700.72, 859715451.4499998, 655424151.1800001,
 		    1008127152.68, 2447493889.2400002, 1545837438.5800002]
 ]
-export const LineChartDemos = [
-  {
-    title: 'Example',
-    code: `<LineChart data={${ JSON.stringify(chartData) }}/>`,
-  }
-]
+
+LineChart.Preview = {
+  group: 'Data Visualizations',
+  demos: [
+    {
+      title: 'Example',
+      code: `<LineChart data={${ JSON.stringify(chartData) }}/>`,
+    }
+  ]
+}
