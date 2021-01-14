@@ -38,3 +38,31 @@ For testing our website we use the following libraries and frameworks:
 The goal is to have 100% test coverage to support our Test Driven Development (TDD), continuous integration and ensure quality code delivery and user experience.
 
 We use CircleCI to run our tests when a change is committed to our code base. Of course all tests can be run from the development environment. 
+
+## Pattern Library
+### Edit Content for notes on colors:
+The key is the text you see on the card. You can add one or multiple keys. Use the following code.
+```
+<PaletteDisplay>
+  <div noteKeys={['common']}>
+    common colors documentation
+  </div>
+  <div noteKeys={['common.black']}>
+    common black colors documentation
+  </div>
+</PaletteDisplay>
+```
+### Edit Content for notes on iconogrpahy:
+The key is the text you see on the card. You can add one or multiple keys. Use the following code.
+```
+<IconographyDisplay>
+  <div noteKeys={['FilterTableIconImg']}>Icon is used on home page</div>
+</IconographyDisplay>
+```
+### Edit Content for notes on typography:
+The key is the text you see on the card. You can add one or multiple keys. Use the following code.
+```
+<TypographyDisplay>
+  <div noteKeys={['h1']}>Icon is used on home page</div>
+</TypographyDisplay>
+```

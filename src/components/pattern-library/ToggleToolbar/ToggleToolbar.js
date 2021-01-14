@@ -71,7 +71,7 @@ const ToggleToolbar = ({ buttons, ...rest }) => {
             buttons.map(button => {
               const label = Object.keys(button)[0]
               const relativeUrl = button[label]
-              console.log(section, label)
+
               return (
                 <ToggleButton
                   key={label}

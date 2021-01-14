@@ -9,21 +9,23 @@ import PatternLibraryCard from '../PatternLibraryCard'
 import CodeBlock from '../CodeBlock'
 import theme from '../../../js/mui/theme'
 
-const TypographyDisplay = () => {
-  console.log(theme)
+const TypographyDisplay = ({ children }) => {
+  const content = (Array.isArray(children)) ? children : [children]
+  const getNotes = key => content.filter(child => child?.props?.noteKeys?.includes(key))
 
   const TypographyNotesDisplay = ({ themeKey }) => {
     return (
       <Box>
+        <Box borderColor={'#ccc'} borderBottom={1} marginBottom={2}>
+          {getNotes(themeKey)}
+        </Box>
         {
-          Object.keys(theme.typography[themeKey]).map(subKey => {
-            return (
-              <Box>
-                <Typography color={'primary'} component={'span'}>{`${ subKey }: `}</Typography>
-                <Typography component={'span'}>{`${ theme.typography[themeKey][subKey] }`}</Typography>
-              </Box>
-            )
-          })
+          Object.keys(theme.typography[themeKey]).map(subKey => (
+            <Box>
+              <Typography color={'primary'} component={'span'}>{`${ subKey }: `}</Typography>
+              <Typography component={'span'}>{`${ theme.typography[themeKey][subKey] }`}</Typography>
+            </Box>
+          ))
         }
       </Box>
     )
