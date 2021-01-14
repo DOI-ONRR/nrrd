@@ -552,7 +552,7 @@ export default class D3StackedBarChart {
         return [labels[i], undefined, data[labels[i]]]
       }).reverse()
 
-      if (this.legendReverse) {
+      if (legendReverse) {
         dataArr = dataArr.reverse()
       }
 

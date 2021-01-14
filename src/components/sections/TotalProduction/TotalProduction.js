@@ -252,7 +252,7 @@ const TotalProduction = props => {
             }
             {commodity === 'Coal (tons)' &&
               <StackedBarChart
-                key={`sbc__${ monthly }${ period }Coal (tons)`}
+                key={`tpsbc__${ monthly }${ period }${ commodity }`}
                 title={'Coal (tons)'}
                 data={chartData.filter(row => row.product === 'Coal (tons)')}
                 xAxis={xAxis}

@@ -49,7 +49,7 @@ const HomeDataFilters = props => {
   const classes = useStyles()
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { monthly, dataType, year, breakoutBy } = filterState
+  const { monthly, dataType, year, commodity } = filterState
 
   const {
     maxFiscalYear,
@@ -132,7 +132,7 @@ const HomeDataFilters = props => {
         <CommoditySelectInput
           dataFilterKey={DFC.COMMODITY}
           data={MENU_OPTIONS[DFC.COMMODITY]}
-          selected={MENU_OPTIONS[DFC.COMMODITY][0].option}
+          selected={commodity || MENU_OPTIONS[DFC.COMMODITY][0].option}
           label="Commodity"
           selectType="Single"
           showClearSelected={false} />
