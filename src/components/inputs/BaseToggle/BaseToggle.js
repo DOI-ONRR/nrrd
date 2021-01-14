@@ -136,4 +136,3 @@ BaseToggle.propTypes = {
     PropTypes.array
   ])
 }
-
