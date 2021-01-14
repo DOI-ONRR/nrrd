@@ -132,8 +132,6 @@ const TotalDisbursements = props => {
   let monthEndDate
   let startMonth
   let endMonth
-  let disbursementRecipientChartData
-  let disbursementRecipientComparisonData
   const yOrderBy = (breakoutBy === DFC.RECIPIENT)
     ? [
       'Other funds',
@@ -147,27 +145,9 @@ const TotalDisbursements = props => {
     : ['Native American', 'Federal Offshore', 'Federal Onshore']
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-  // disbursements, roll up Other Funds data
-  const rollUpOtherFundsData = cData => {
-    const topRecipientFundsData = []
-    const otherRecipientFundsData = []
-    cData.map(item => {
-      if (yOrderBy.includes(item.recipient)) {
-        topRecipientFundsData.push(item)
-      }
-      else {
-        const newObj = { ...item, recipient: 'Other funds', recipientName: item.recipient }
-        otherRecipientFundsData.push(newObj)
-      }
-    })
-    const rolledUpData = [...topRecipientFundsData, ...otherRecipientFundsData]
-
-    return rolledUpData
-  }
-
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.log('TotalDisbursements data: ', data)
+    // console.log('TotalDisbursements data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
@@ -214,10 +194,8 @@ const TotalDisbursements = props => {
       else {
         switch (yGroupBy) {
         case 'recipient':
-          disbursementRecipientComparisonData = rollUpOtherFundsData(data.total_monthly_last_three_years_disbursement)
-          disbursementRecipientChartData = rollUpOtherFundsData(data.total_monthly_last_twelve_disbursement)
-          comparisonData = disbursementRecipientComparisonData.filter(item => yOrderBy.includes(item.recipient))
-          chartData = disbursementRecipientChartData.filter(item => yOrderBy.includes(item.recipient))
+          comparisonData = data.total_monthly_last_three_years_disbursement.filter(item => yOrderBy.includes(item.recipient))
+          chartData = data.total_monthly_last_twelve_disbursement.filter(item => yOrderBy.includes(item.recipient))
           break
         default:
           comparisonData = data.total_monthly_last_three_years_disbursement
@@ -295,7 +273,7 @@ const TotalDisbursements = props => {
             yAxis={yAxis}
             xGroups={xGroups}
             yGroupBy={yGroupBy}
-            // yOrderBy={yOrderBy}
+            yOrderBy={yOrderBy}
             xLabels={xLabels}
             legendFormat={v => utils.formatToDollarInt(v)}
             legendHeaders={legendHeaders}
