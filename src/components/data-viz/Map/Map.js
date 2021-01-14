@@ -70,16 +70,14 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
 	  },
     },
-
     '& #float-button-group:hover': {
       opacity: 1
     },
     '& .button': {
-	  background: theme.palette.background.default,
-
+	    background: theme.palette.background.default,
       width: 50,
-	  height: 50,
-	  margin: 5
+	    height: 50,
+	    margin: 5
     },
   },
   buttonGroupGrouped: {
@@ -226,8 +224,8 @@ const Map = props => {
         <div className='map'></div>
         { !disableMapControls &&
           <MapControls handleClick={d => {
-	      console.log('handling click: ', d)
-	  }}/>
+	          console.log('handling click: ', d)
+	        }}/>
         }
       </div>
     </Box>

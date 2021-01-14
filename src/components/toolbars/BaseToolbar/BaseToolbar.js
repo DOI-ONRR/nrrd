@@ -22,6 +22,10 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+/**
+ * The toolbar is used to contain various inputs for the user to access.
+ *
+ */
 const BaseToolbar = ({ isSecondary, children, style, ...restProps }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
@@ -39,3 +43,14 @@ const BaseToolbar = ({ isSecondary, children, style, ...restProps }) => {
 }
 
 export default BaseToolbar
+
+export const BaseToolbarDemos = [
+  {
+    title: 'Preview',
+    code: '<BaseToolbar>' +
+      '<BaseButtonInput>Click me</BaseButtonInput>' +
+      '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />' +
+      '<BaseSwitch label={"Enable access"} selectType={"Single"} />' +
+      '</BaseToolbar>',
+  }
+]

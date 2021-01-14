@@ -1,34 +1,26 @@
 import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import BaseButtonInput from '../BaseButtonInput'
 
-const ClearAllFiltersBtn = ({ label, dataFilterKey, ...props }) => {
+/**
+ * This can be used to clear all data filters from the data filter provider and
+ * reset them to the defaults.
+ */
+const ClearAllFiltersBtn = ({ ...props }) => {
   const { clearAllFilters } = useContext(DataFilterContext)
 
   const onClickHandler = () => {
-    clearAllFilters()
+    if (clearAllFilters) {
+      clearAllFilters()
+    }
   }
 
   return (
     <>
-      <BaseButtonInput
-        label={label}
-        onClick={onClickHandler}
-        {...props}/>
+      <BaseButtonInput onClick={onClickHandler} {...props}>Clear all</BaseButtonInput>
     </>
   )
-}
-
-ClearAllFiltersBtn.propTypes = {
-  /**
-   * Text that displays on the component
-   */
-  label: PropTypes.string,
-}
-ClearAllFiltersBtn.defaultProps = {
-  label: 'Clear All',
 }
 
 export default ClearAllFiltersBtn

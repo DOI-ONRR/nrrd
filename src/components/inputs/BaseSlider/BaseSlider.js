@@ -282,3 +282,10 @@ const areEqual = (prevProps, nextProps) => {
 }
 
 export default React.memo(BaseSlider, areEqual)
+
+export const BaseSliderDemos = [
+  {
+    title: 'Simple',
+    code: '<BaseSlider label="Simple Items" data={[10, 20, 30, 40, 50, 60]} defaultSelected="20,50"/>',
+  }
+]

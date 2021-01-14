@@ -19,9 +19,7 @@ jobs:
           paths:
             - node_modules
       - run:
-          command: |
-            mkdir -p ./test-results
-            npm run lint
+          command: npm run lint
           when: always
       - store_test_results:
           path: ./test-results

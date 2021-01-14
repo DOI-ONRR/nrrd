@@ -166,7 +166,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
               }
             />
           </Box>
-          {(isNativeAmerican || isNationwideFederal) &&
+          {(isNativeAmerican || isNationwideFederal || locationType === DFC.OFFSHORE_CAPITALIZED) &&
             <QueryLink
               groupBy={(props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? DFC.DATA_TYPE : DFC.STATE_OFFSHORE_NAME}
               linkType="FilterTable" {...props}

@@ -39,6 +39,11 @@ const DidYouKnowCard = ({ children, title = 'Did you know?' }) => {
 
 export default DidYouKnowCard
 
+DidYouKnowCard.Preview = {
+  group: 'card',
+  stuff: ['item1']
+}
+
 export const DidYouKnowCardDemos = [
   {
     title: 'Content only',

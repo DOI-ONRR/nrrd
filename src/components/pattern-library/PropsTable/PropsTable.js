@@ -15,6 +15,12 @@ const useStyles = makeStyles({
   table: {
     minWidth: 500,
   },
+  tableHead: {
+    backgroundColor: '#345673',
+    '& th': {
+      color: 'white',
+    }
+  }
 })
 
 const PropsTable = ({ componentProps }) => {
@@ -23,7 +29,9 @@ const PropsTable = ({ componentProps }) => {
   return (
     <Paper className={classes.root}>
       <Table className={classes.table} size='small' aria-label='props table for the component'>
-        <TableHead>
+        <TableHead classes={{
+          root: classes.tableHead
+        }}>
           <TableRow>
             <TableCell>Prop Name</TableCell>
             <TableCell>Type</TableCell>

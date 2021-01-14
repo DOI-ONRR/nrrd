@@ -25,10 +25,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 /**
- * CollapsibleContent
+ * This component allows to show and hide content.
  *
  */
-
 const CollapsibleContent = ({ show, children }) => {
   const theme = useTheme()
   const classes = useStyles(theme)

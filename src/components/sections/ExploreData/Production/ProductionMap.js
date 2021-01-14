@@ -47,33 +47,34 @@ export default props => {
   return (
     <>
       {mapData &&
-        <> <Map
-          key={`PM${ dataSet }${ props.width }`}
-          mapFeatures={props.mapFeatures}
-          mapJsonObject={props.mapJsonObject}
-          mapData={mapData}
-          minColor={props.minColor}
-          maxColor={props.maxColor}
-          mapZoom={props.mapZoom}
-          mapX={props.mapX}
-          mapY={props.mapY}
-          mapUnits={unit}
-          onZoomEnd={props.onZoomEnd}
-          onClick={props.onClick}
-          handleMapSnackbar={props.handleMapSnackbar}
-          handleMapSnackbarClose={props.handleMapSnackbarClose}
-          legendFormat={utils.formatToCommaInt}
-          width={props.width}
-          mapFormat={ d => {
-            if (isNaN(d)) {
-              return ''
+        <>
+          <Map
+            key={`PM${ dataSet }${ props.width }`}
+            mapFeatures={props.mapFeatures}
+            mapJsonObject={props.mapJsonObject}
+            mapData={mapData}
+            minColor={props.minColor}
+            maxColor={props.maxColor}
+            mapZoom={props.mapZoom}
+            mapX={props.mapX}
+            mapY={props.mapY}
+            mapUnits={unit}
+            onZoomEnd={props.onZoomEnd}
+            onClick={props.onClick}
+            handleMapSnackbar={props.handleMapSnackbar}
+            handleMapSnackbarClose={props.handleMapSnackbarClose}
+            legendFormat={utils.formatToCommaInt}
+            width={props.width}
+            mapFormat={ d => {
+              if (isNaN(d)) {
+                return ''
+              }
+              else {
+                return d3.format(',.0f')(d) + ' ' + unit
+              }
             }
-            else {
-              return d3.format(',.0f')(d) + ' ' + unit
             }
-          }
-          }
-        />
+          />
         </>
       }
     </>
