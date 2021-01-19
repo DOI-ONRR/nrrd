@@ -59,11 +59,9 @@ const ComponentDisplay = ({ children }) => {
     console.log(ALL_COMPONENTS[c]?.name)
     return (
       (ALL_COMPONENTS[c]?.Preview?.group === type && ALL_COMPONENTS[c]?.name === c) ||
-      (ALL_COMPONENTS[c]?.type?.Preview?.group === type && ALL_COMPONENTS[c]?.type?.name === c))
+      (ALL_COMPONENTS[c]?.type?.Preview?.group === type && ALL_COMPONENTS[c]?.type?.name === c)
     )
-  }
-
-  console.log()
+  })
 
   const components = results.allComponentMetadata.nodes.filter(item =>
     componentsInGroup.includes(item.displayName) &&
