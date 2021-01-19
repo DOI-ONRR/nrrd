@@ -55,6 +55,7 @@ const ComponentDisplay = ({ children }) => {
   const groups = [...(new Set(Object.keys(ALL_COMPONENTS).map(c => ALL_COMPONENTS[c]?.Preview?.group).filter(g => g !== undefined)))]
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
   const type = url.searchParams && url.searchParams.get('type')
+  console.log(ALL_COMPONENTS)
   const componentsInGroup = Object.keys(ALL_COMPONENTS).filter(c => {
     console.log(ALL_COMPONENTS[c]?.name)
     return (
