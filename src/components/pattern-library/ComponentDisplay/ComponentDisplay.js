@@ -52,17 +52,17 @@ const ComponentDisplay = ({ children }) => {
     }
   `)
 
-  const groups = [] // [...(new Set(Object.keys(ALL_COMPONENTS).map(c => ALL_COMPONENTS[c]?.Preview?.group).filter(g => g !== undefined)))]
+  const groups = [...(new Set(Object.keys(ALL_COMPONENTS).map(c => ALL_COMPONENTS[c]?.Preview?.group).filter(g => g !== undefined)))]
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
-  const type = url.searchParams && url.searchParams.get('type')
+  const type = url?.searchParams?.get('type')
   console.log(ALL_COMPONENTS)
-  const componentsInGroup = [] /* Object.keys(ALL_COMPONENTS).filter(c => {
+  const componentsInGroup = Object.keys(ALL_COMPONENTS).filter(c => {
     console.log(ALL_COMPONENTS[c])
     return (
       (ALL_COMPONENTS[c]?.Preview?.group === type && ALL_COMPONENTS[c]?.name === c) ||
       (ALL_COMPONENTS[c]?.type?.Preview?.group === type && ALL_COMPONENTS[c]?.type?.name === c)
     )
-  })*/
+  })
 
   const components = results.allComponentMetadata.nodes.filter(item =>
     componentsInGroup.includes(item.displayName) &&
