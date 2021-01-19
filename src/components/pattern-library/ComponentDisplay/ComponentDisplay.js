@@ -55,12 +55,11 @@ const ComponentDisplay = ({ children }) => {
   const groups = [...(new Set(Object.keys(ALL_COMPONENTS).map(c => ALL_COMPONENTS[c]?.Preview?.group).filter(g => g !== undefined)))]
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
   const type = url?.searchParams?.get('type')
-  console.log(ALL_COMPONENTS)
+
   const componentsInGroup = Object.keys(ALL_COMPONENTS).filter(i => {
-    console.log(ALL_COMPONENTS[i])
+    console.log(i)
     return (
-      (ALL_COMPONENTS[i]?.Preview?.group === type && ALL_COMPONENTS[i]?.name === i) ||
-      (ALL_COMPONENTS[i]?.type?.Preview?.group === type && ALL_COMPONENTS[i]?.type?.name === i)
+      (ALL_COMPONENTS[i] !== undefined)
     )
   })
 
