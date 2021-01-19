@@ -66,3 +66,15 @@ The key is the text you see on the card. You can add one or multiple keys. Use t
   <div noteKeys={['h1']}>Icon is used on home page</div>
 </TypographyDisplay>
 ```
+### Edit Content for Components:
+For components all documentation maintained in the code for the component. To add comments for the component description, you can add/edit the comment at the top of the declaration for the component in the code file. The name of the file and the name of the component will match.
+```
+/**
+ * The DidYouKnowCard is used in the about section of the website. It is a simple card that can display
+ * content. Other components can be added in the content such as a collapsible component that can add more content.
+ *
+ */
+const DidYouKnowCard = ({ children, title = 'Did you know?' }) => {
+  ...Bunch of code
+}
+```
