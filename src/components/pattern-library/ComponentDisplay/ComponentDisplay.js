@@ -56,11 +56,11 @@ const ComponentDisplay = ({ children }) => {
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
   const type = url?.searchParams?.get('type')
   console.log(ALL_COMPONENTS)
-  const componentsInGroup = Object.keys(ALL_COMPONENTS).filter(c => {
-    console.log(ALL_COMPONENTS[c])
+  const componentsInGroup = Object.keys(ALL_COMPONENTS).filter(i => {
+    console.log(ALL_COMPONENTS[i])
     return (
-      (ALL_COMPONENTS[c]?.Preview?.group === type && ALL_COMPONENTS[c]?.name === c) ||
-      (ALL_COMPONENTS[c]?.type?.Preview?.group === type && ALL_COMPONENTS[c]?.type?.name === c)
+      (ALL_COMPONENTS[i]?.Preview?.group === type && ALL_COMPONENTS[i]?.name === i) ||
+      (ALL_COMPONENTS[i]?.type?.Preview?.group === type && ALL_COMPONENTS[i]?.type?.name === i)
     )
   })
 
