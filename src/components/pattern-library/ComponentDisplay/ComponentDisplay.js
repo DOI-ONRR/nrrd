@@ -57,7 +57,7 @@ const ComponentDisplay = ({ children }) => {
   const type = url.searchParams && url.searchParams.get('type')
   console.log(ALL_COMPONENTS)
   const componentsInGroup = Object.keys(ALL_COMPONENTS).filter(c => {
-    console.log(ALL_COMPONENTS[c]?.name)
+    console.log(ALL_COMPONENTS[c])
     return (
       (ALL_COMPONENTS[c]?.Preview?.group === type && ALL_COMPONENTS[c]?.name === c) ||
       (ALL_COMPONENTS[c]?.type?.Preview?.group === type && ALL_COMPONENTS[c]?.type?.name === c)
