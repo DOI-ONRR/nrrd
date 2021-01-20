@@ -58,9 +58,7 @@ const ComponentDisplay = ({ children }) => {
 
   const componentsInGroup = Object.keys(ALL_COMPONENTS).filter(i => {
     console.log(i)
-    return (
-      (ALL_COMPONENTS[i] !== undefined)
-    )
+    return true
   })
 
   const components = results.allComponentMetadata.nodes.filter(item =>
