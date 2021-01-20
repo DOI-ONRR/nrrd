@@ -56,10 +56,7 @@ const ComponentDisplay = ({ children }) => {
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
   // const type = url?.searchParams?.get('type')
 
-  const componentsInGroup = Object.keys(ALL_COMPONENTS).filter(i => {
-    console.log(i)
-    return true
-  })
+  const componentsInGroup = Object.keys(ALL_COMPONENTS)
 
   const components = results.allComponentMetadata.nodes.filter(item =>
     componentsInGroup.includes(item.displayName) &&
