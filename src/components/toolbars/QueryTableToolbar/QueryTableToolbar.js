@@ -11,6 +11,7 @@ import CalendarYearFilter from '../../inputs/Filters/CalendarYearFilter'
 import CommodityFilter from '../../inputs/Filters/CommodityFilter'
 import CompanyNameFilter from '../../inputs/Filters/CompanyNameFilter'
 import RevenueTypeFilter from '../../inputs/Filters/RevenueTypeFilter'
+import StateOffshoreFilter from '../../inputs/Filters/StateOffshoreFilter'
 
 import {
   QK_QUERY_TOOL,
@@ -38,7 +39,6 @@ import {
   RecipientSelectInput,
   SourceSelectInput,
   FilterToggleInput,
-  StateOffshoreSelectInput,
   PeriodSelectInput,
   StateNameSelectInput
 } from '../../inputs'
@@ -263,7 +263,7 @@ const RevenueFilterToolbar = () => {
     <>
       <LandTypeSelectInput />
       <RevenueTypeSelectInput />
-      <StateOffshoreSelectInput />
+      <StateOffshoreFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
       <CommoditySelectInput />
     </>
   )
@@ -274,7 +274,7 @@ const ProductionFilterToolbar = ({ period }) => {
     <>
       <LandTypeSelectInput />
       {period !== PERIOD_MONTHLY &&
-        <StateOffshoreSelectInput />
+        <StateOffshoreFilter queryKey={QK_QUERY_TOOL}/>
       }
       <ProductSelectInput />
     </>
