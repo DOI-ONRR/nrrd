@@ -182,6 +182,7 @@ const createComponentsCache = ({ graphql, reporter }) => {
               parent {
                 ... on File {
                   absolutePath
+                  name
                 }
               }
               props {
