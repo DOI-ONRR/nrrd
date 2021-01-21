@@ -17,10 +17,10 @@ import Autocomplete from '@material-ui/lab/Autocomplete'
 import * as ALL_COMPONENTS from '../../../../.cache/components'
 
 const palette = {
-  background: { default: '#82a5c2' },
+  background: { default: '#A4CEE8' },
   text: {
-    primary: '#000000',
-    secondary: '#1478a6'
+    primary: '#004C77',
+    secondary: '#630B5D'
   },
 }
 const typography = Object.freeze({
@@ -76,7 +76,7 @@ const typography = Object.freeze({
 const overrides = {
   MuiAppBar: {
     colorDefault: {
-      backgroundColor: '#90caf9'
+      backgroundColor: '#004C77'
     }
   },
   MuiAutocomplete: {
@@ -99,7 +99,7 @@ const overrides = {
   },
   MuiToggleButtonGroup: {
     root: {
-      backgroundColor: '#90caf9',
+      backgroundColor: '#004C77',
       borderRadius: '0px'
     },
     grouped: {
@@ -111,14 +111,14 @@ const overrides = {
   },
   MuiToggleButton: {
     root: {
-      color: 'rgba(0, 0, 0,  0.75)',
+      color: 'white',
       border: 'none',
       borderRadius: '0px',
       height: '48px',
       textTransform: 'none',
       '&$selected': {
-        color: 'black',
-        backgroundColor: 'rgba(255, 255, 255, 0.75)',
+        color: 'white', 
+        backgroundColor: '#630B5D',
       }
     },
   }
