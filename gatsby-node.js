@@ -207,6 +207,7 @@ const createComponentsCache = ({ graphql, reporter }) => {
           const allComponents = result.data.allComponentMetadata.nodes.filter(node => (!node.displayName.includes('Demos'))).map(
             (node, i) =>
               Object.assign({}, node, {
+                componentName: node.parent.name,
                 filePath: node.parent.absolutePath,
               })
           )
@@ -219,13 +220,13 @@ const createComponentsCache = ({ graphql, reporter }) => {
 
           let exportFileContents =
               allComponents
-                .reduce((accumulator, { displayName, filePath }) => {
+                .reduce((accumulator, { displayName, filePath, componentName }) => {
                   if (filePath.search('components/images/index.js') >= 0) {
                     accumulator.push(
                       `export { ${ displayName } } from "${ filePath }"`
                     )
                   }
-                  else {
+                  else if (displayName === componentName) {
                     accumulator.push(
                       `export { default as ${ displayName } } from "${ filePath }"`
                     )
