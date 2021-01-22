@@ -52,7 +52,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-  console.log('ComparisonTable props: ', props)
+  // console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year, dataType, commodity } = filterState
@@ -65,7 +65,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const monthlyComparisonText = 'Compares data for the selected month to the same month in the previous year.'
 
   useEffect(() => {
-    console.log('ComparisonTable selectedItem: ', selectedItem)
+    // console.log('ComparisonTable selectedItem: ', selectedItem)
   }, [selectedItem])
 
   useImperativeHandle(ref, () => ({
@@ -148,7 +148,7 @@ const ComparisonTable = forwardRef((props, ref) => {
     return newObj
   })
 
-  console.log('comparisonData: ', comparisonData)
+  // console.log('comparisonData: ', comparisonData)
 
   // get previous/current year totals
   const previousYearTotals = comparisonData.map(item => item.previous.sum)

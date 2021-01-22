@@ -108,8 +108,10 @@ export default class D3StackedBarChart {
 
       this.barScale = (options.barScale) ? options.barScale : 1
       this._height = d3.max([this._height * this.barScale, 1])
-      this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
-      this.yScale.domain([this.yMax(), 0])
+      this.yScale = d3.scaleLinear()
+        .rangeRound([this._height - this.marginBottom, this.marginTop])
+        .domain([this.yMin(), this.yMax()])
+
       this.chart = d3.select(this.chartDiv).append('svg')
         .attr('height', this._height)
         .attr('width', this._width)
@@ -138,6 +140,7 @@ export default class D3StackedBarChart {
       }
       this._chart()
       if (!this.horizontal) {
+        this._xCenterLine()
         this._xLabels()
       }
       this._legend()
@@ -161,27 +164,46 @@ export default class D3StackedBarChart {
     }
   }
 
+  _xCenterLine () {
+    try {
+      const self = this
+      self.chart.selectAll('.x-centerline').remove()
+      const center = d3.scaleLinear()
+        .range([self._width, 0])
+      const centerLine = () => d3.axisBottom(center)
+        .tickSize(0)
+        .tickFormat('')
+      self.chart.append('g')
+        .attr('class', 'x-centerline')
+        .attr('transform', `translate(0, ${ self.yScale(0) })`)
+        .call(centerLine())
+    }
+    catch (err) {
+      console.error('Error with _xAxis: ', err)
+    }
+  }
+
   xLabels (values) {
     return values
   }
 
   _xLabels () {
     try {
-      this.chart.selectAll('.x-axis').remove()
-      const xLabels = this.xLabels(this.xDomain())
       const self = this
+      self.chart.selectAll('.x-axis').remove()
+      const xLabels = self.xLabels(self.xDomain())
       const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat((d, i) => {
         return xLabels[i]
       }))
-      const rotate = this.options.xRotate || 0
-      let x = -1
+      const rotate = self.options.xRotate || 0
+      let x = 0
       const y = 8
       if (rotate !== 0) {
         x = -11
       }
       self.chart.append('g')
         .attr('class', 'x-axis')
-        .attr('transform', 'translate(2,' + (self._height - self.marginBottom) + ')')
+        .attr('transform', `translate(0, ${ self._height - this.marginBottom })`)
         .call(createXAxis())
         .selectAll('text')
         .attr('transform', 'rotate(' + rotate + ')')
@@ -199,7 +221,7 @@ export default class D3StackedBarChart {
       if (this.xGroups) {
         const self = this
 
-        const groupLines = this.chart.append('g').attr('class', 'x-axis-groups')
+        const groupLines = self.chart.append('g').attr('class', 'x-axis-groups')
         const groupItemWidth = (self._width / self.data.length)
         const padding = (self.xScale.bandwidth() * 0.2)
         let xPos = 0
@@ -264,7 +286,7 @@ export default class D3StackedBarChart {
       const self = this
       const stack = d3.stack()
 	      .keys(this.yGroupings())
-        .offset(d3.stackOffsetNone)
+        .offset(d3.stackOffsetDiverging)
 
       const keys = this.yGroupings()
       // const primaryColor = this.primaryColor
@@ -316,20 +338,19 @@ export default class D3StackedBarChart {
           return r
         })
         .enter().append('g')
-        .attr('class', (d, i) => `stacked-bar-chart-${ i } ${ (!this.horizontal && !colorRange) ? 'stacked-bar-chart-item' : '' }`)
+        .attr('class', (d, i) => {
+          return `stacked-bar-chart-${ i } ${ (!this.horizontal && !colorRange) ? 'stacked-bar-chart-item' : '' }`
+        })
         .style('fill', (d, i) => {
           return (this.horizontal && colorRange) ? colorRange[i] : primaryColorRange[i]
         })
-        // .style('fill-opacity', (d, i) => {
-        //   return (this.horizontal && colorRange) ? null : (1 - (i / keys.length))
-        // })
         .append('rect')
         .attr('y', d => {
           const y = self.yScale(d[0][1]) || 0
           return y
         })
         .attr('height', function (d) {
-          // console.debug(d)
+          // console.debug('height: ', d)
           return (self.yScale(d[0][0]) - self.yScale(d[0][1])) || 0
         })
         .attr('width', self.maxBarSize())
@@ -848,6 +869,7 @@ export default class D3StackedBarChart {
         .rollup(v => d3.sum(v, i => i[this.yAxis]))
         .entries(this.data)
         .map(y => y.value)
+
       const domain = [...(new Set(r.sort((a, b) => a - b)))]
       this._yDomain = domain
       return domain
@@ -972,7 +994,10 @@ export default class D3StackedBarChart {
 
   yMin () {
     try {
-      return this.yDomain().shift()
+      const self = this
+      const min = d3.min(self.data, d => d.sum - 0.1)
+      const yMin = (min < 0) ? min : 0
+      return yMin
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -1111,7 +1136,6 @@ export default class D3StackedBarChart {
         this.xSelectedValue = d
         this.ySelectedGroup = this.yGroupData(d)
         this.selectedData(this.ySelectedGroup)
-        // console.debug("Selecting index: ",i)
         this.selectedIndex = i
       }
     })
