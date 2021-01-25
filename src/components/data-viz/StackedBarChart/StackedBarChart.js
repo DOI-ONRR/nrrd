@@ -19,32 +19,32 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '200px',
-    fill: theme.palette.chart.primary,
+    fill: 'inherit',
     '& .bars > .bar:hover': {
       cursor: 'pointer',
     },
     '& .bar .stacked-bar-chart-item': {
       transition: 'all .1s ease-in'
     },
-    '& .bar.active .stacked-bar-chart-item:nth-child(1), .bar:hover .stacked-bar-chart-item:nth-child(1)': {
+    '& .bar .stacked-bar-chart-item:nth-child(1), .bar:hover .stacked-bar-chart-item:nth-child(1)': {
       fill: `${ theme.palette.explore[700] } !important`
     },
-    '& .bar.active .stacked-bar-chart-item:nth-child(2), .bar:hover .stacked-bar-chart-item:nth-child(2)': {
+    '& .bar .stacked-bar-chart-item:nth-child(2), .bar:hover .stacked-bar-chart-item:nth-child(2)': {
       fill: `${ theme.palette.explore[600] } !important`
     },
-    '& .bar.active .stacked-bar-chart-item:nth-child(3), .bar:hover .stacked-bar-chart-item:nth-child(3)': {
+    '& .bar .stacked-bar-chart-item:nth-child(3), .bar:hover .stacked-bar-chart-item:nth-child(3)': {
       fill: `${ theme.palette.explore[500] } !important`
     },
-    '& .bar.active .stacked-bar-chart-item:nth-child(4), .bar:hover .stacked-bar-chart-item:nth-child(4)': {
+    '& .bar .stacked-bar-chart-item:nth-child(4), .bar:hover .stacked-bar-chart-item:nth-child(4)': {
       fill: `${ theme.palette.explore[400] } !important`
     },
-    '& .bar.active .stacked-bar-chart-item:nth-child(5), .bar:hover .stacked-bar-chart-item:nth-child(5)': {
+    '& .bar .stacked-bar-chart-item:nth-child(5), .bar:hover .stacked-bar-chart-item:nth-child(5)': {
       fill: `${ theme.palette.explore[300] } !important`
     },
-    '& .bar.active .stacked-bar-chart-item:nth-child(6), .bar:hover .stacked-bar-chart-item:nth-child(6)': {
+    '& .bar .stacked-bar-chart-item:nth-child(6), .bar:hover .stacked-bar-chart-item:nth-child(6)': {
       fill: `${ theme.palette.explore[200] } !important`
     },
-    '& .bar.active .stacked-bar-chart-item:nth-child(7), .bar:hover .stacked-bar-chart-item:nth-child(7)': {
+    '& .bar .stacked-bar-chart-item:nth-child(7), .bar:hover .stacked-bar-chart-item:nth-child(7)': {
       fill: `${ theme.palette.explore[100] } !important`
     },
     '& .maxExtent': {

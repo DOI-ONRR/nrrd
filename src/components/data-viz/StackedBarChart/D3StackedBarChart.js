@@ -125,6 +125,8 @@ export default class D3StackedBarChart {
         this.colorRange = false
         this.color = d3.scaleLinear().domain(this.yOrderBy.slice(1)).range([this.primaryColor, this.secondaryColor])
       }
+
+      console.debug('this yo:', this)
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -176,6 +178,8 @@ export default class D3StackedBarChart {
       self.chart.append('g')
         .attr('class', 'x-centerline')
         .attr('transform', `translate(0, ${ self.yScale(0) })`)
+        .attr('fill', '#bdbdbd')
+        .attr('stroke-width', 1)
         .call(centerLine())
     }
     catch (err) {
@@ -332,7 +336,7 @@ export default class D3StackedBarChart {
           self.currentIndex = self.selectedIndex
         })
         .selectAll('g')
-        .data(d => {
+        .data((d, i) => {
           const yd = self.yGroupData(d)
           const r = stack([yd])
           return r
@@ -996,6 +1000,7 @@ export default class D3StackedBarChart {
     try {
       const self = this
       const min = d3.min(self.data, d => d.sum - 0.1)
+      console.debug('yMin yo: ', min)
       const yMin = (min < 0) ? min : 0
       return yMin
     }
