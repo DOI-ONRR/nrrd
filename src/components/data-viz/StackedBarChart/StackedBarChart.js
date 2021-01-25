@@ -22,6 +22,13 @@ const useStyles = makeStyles(theme => ({
     fill: 'inherit',
     '& .bars > .bar:hover': {
       cursor: 'pointer',
+      opacity: 1,
+    },
+    '& .bar.active': {
+      opacity: 1,
+    },
+    '& .bar': {
+      opacity: 0.85,
     },
     '& .bar .stacked-bar-chart-item': {
       transition: 'all .1s ease-in'
