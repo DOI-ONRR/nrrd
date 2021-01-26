@@ -92,7 +92,7 @@ const TOTAL_PRODUCTION_QUERY = gql`
 // TotalProduction
 const TotalProduction = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, commodity } = filterState
+  const { monthly, period, commodity, dataType } = filterState
   const [selected, setSelected] = useState(undefined)
   const productionComparison = useRef(null)
   const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
@@ -208,7 +208,7 @@ const TotalProduction = props => {
           <Grid item xs={12} md={7}>
             {commodity === 'Oil (bbl)' &&
               <StackedBarChart
-                key={`tpsbc__${ monthly }${ period }${ commodity }`}
+                key={`tpsbc__${ monthly }${ period }${ commodity }${ dataType }`}
                 title={'Oil (bbl)'}
                 data={chartData.filter(row => row.product === 'Oil (bbl)')}
                 xAxis={xAxis}

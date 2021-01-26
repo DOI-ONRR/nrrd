@@ -64,7 +64,12 @@ const useStyles = makeStyles(theme => ({
       },
     },
     '& .y-axis > .tick': {
-      fontSize: theme.typography.body2.fontSize,
+      fontSize: '.85rem',
+      fontWeight: 'normal',
+    },
+    '& .y-axis .domain': {
+      stroke: 'none',
+      fill: 'none',
     },
     '& .x-axis .tick.active': {
       fontWeight: 'bold'

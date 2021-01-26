@@ -25,6 +25,8 @@ export default class D3StackedBarChart {
       this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
       this.marginBottom = options.marginBottom || 40
       this.marginTop = options.marginTop || 25
+      this.marginRight = options.marginRight || 15
+      this.marginLeft = options.marginLeft || 7
       this.units = (options.units) ? options.units : ''
       this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
@@ -102,7 +104,7 @@ export default class D3StackedBarChart {
       this.yOrder()
       this.xScale = d3.scaleBand()
         .domain(this.xDomain())
-        .range([0, this._width])
+        .range([0, this._width - this.marginRight])
         .paddingInner(0.3)
         .paddingOuter(0.1)
 
@@ -143,12 +145,11 @@ export default class D3StackedBarChart {
       this._chart()
       if (!this.horizontal) {
         this._xCenterLine()
+        this._yAxis()
         this._xLabels()
-      }
-      this._legend()
-      if (!this.horizontal) {
         this.xAxisGroup()
       }
+      this._legend()
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -171,9 +172,9 @@ export default class D3StackedBarChart {
       const self = this
       self.chart.selectAll('.x-centerline').remove()
       const center = d3.scaleLinear()
-        .range([self._width, 0])
+        .range([self._width - self.marginRight, 0])
       const centerLine = () => d3.axisBottom(center)
-        .tickSize(0)
+        .tickSize(1)
         .tickFormat('')
       self.chart.append('g')
         .attr('class', 'x-centerline')
@@ -184,6 +185,23 @@ export default class D3StackedBarChart {
     }
     catch (err) {
       console.error('Error with _xAxis: ', err)
+    }
+  }
+
+  _yAxis () {
+    try {
+      const self = this
+      self.chart.selectAll('.y-axis').remove()
+      const createYAxis = () => (d3.axisRight(self.yScale).ticks(0.5).tickSize(0))
+
+      self.chart.append('g')
+        .attr('class', 'y-axis')
+        .attr('transform', `translate(${ self._width - self.marginRight }, 0)`)
+        .call(createYAxis())
+        .selectAll('text')
+    }
+    catch (err) {
+      console.warn('Error creating _yAxis: ', err)
     }
   }
 
@@ -200,14 +218,14 @@ export default class D3StackedBarChart {
         return xLabels[i]
       }))
       const rotate = self.options.xRotate || 0
-      let x = 0
+      let x = -self.marginLeft
       const y = 8
       if (rotate !== 0) {
         x = -11
       }
       self.chart.append('g')
         .attr('class', 'x-axis')
-        .attr('transform', `translate(0, ${ self._height - this.marginBottom })`)
+        .attr('transform', `translate(${ self.marginLeft }, ${ self._height - this.marginBottom })`)
         .call(createXAxis())
         .selectAll('text')
         .attr('transform', 'rotate(' + rotate + ')')
@@ -996,10 +1014,10 @@ export default class D3StackedBarChart {
     }
   }
 
-  yMin (min) {
+  yMin () {
     try {
       this.getSelected()
-      const min = d3.min(this.data, d => d - 0.1)
+      const min = d3.min(this.data, d => d.sum - 0.1)
       const yMin = (min < 0) ? min : 0
       return yMin
     }
