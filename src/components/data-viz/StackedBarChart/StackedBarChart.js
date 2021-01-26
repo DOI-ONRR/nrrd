@@ -30,27 +30,6 @@ const useStyles = makeStyles(theme => ({
     '& .bar .stacked-bar-chart-item': {
       transition: 'all .1s ease-in'
     },
-    '& .bar .stacked-bar-chart-item:nth-child(1), .bar:hover .stacked-bar-chart-item:nth-child(1)': {
-      fill: `${ theme.palette.explore[700] } !important`
-    },
-    '& .bar .stacked-bar-chart-item:nth-child(2), .bar:hover .stacked-bar-chart-item:nth-child(2)': {
-      fill: `${ theme.palette.explore[600] } !important`
-    },
-    '& .bar .stacked-bar-chart-item:nth-child(3), .bar:hover .stacked-bar-chart-item:nth-child(3)': {
-      fill: `${ theme.palette.explore[500] } !important`
-    },
-    '& .bar .stacked-bar-chart-item:nth-child(4), .bar:hover .stacked-bar-chart-item:nth-child(4)': {
-      fill: `${ theme.palette.explore[400] } !important`
-    },
-    '& .bar .stacked-bar-chart-item:nth-child(5), .bar:hover .stacked-bar-chart-item:nth-child(5)': {
-      fill: `${ theme.palette.explore[300] } !important`
-    },
-    '& .bar .stacked-bar-chart-item:nth-child(6), .bar:hover .stacked-bar-chart-item:nth-child(6)': {
-      fill: `${ theme.palette.explore[200] } !important`
-    },
-    '& .bar .stacked-bar-chart-item:nth-child(7), .bar:hover .stacked-bar-chart-item:nth-child(7)': {
-      fill: `${ theme.palette.explore[100] } !important`
-    },
     '& .maxExtent': {
       fontSize: theme.typography.h5.fontSize,
     },
@@ -67,10 +46,6 @@ const useStyles = makeStyles(theme => ({
       fontSize: '.85rem',
       fontWeight: 'normal',
     },
-    '& .y-axis .domain': {
-      stroke: 'none',
-      fill: 'none',
-    },
     '& .x-axis .tick.active': {
       fontWeight: 'bold'
     }
@@ -84,6 +59,13 @@ const useStyles = makeStyles(theme => ({
       left: 5,
       transform: 'rotate(90deg)',
       transformOrigin: 'bottom left',
+      '& .bars > .bar:hover': {
+        cursor: 'pointer',
+        outline: 'none',
+      },
+      '& .bars > .bar.active': {
+        outline: 'none',
+      },
     }
   },
   legend: {

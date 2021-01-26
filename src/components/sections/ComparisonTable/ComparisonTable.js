@@ -94,7 +94,7 @@ const ComparisonTable = forwardRef((props, ref) => {
     }
   }))
 
-  const comparisonTitle = monthly === 'Monthly' ? 'Month over month comparison' : 'Year over year comparison'
+  const comparisonTitle = 'Comparison'
   const periodAbbr = period === DFC.PERIOD_CALENDAR_YEAR ? 'CY' : 'FY'
 
   // Get the latest date then subtract 1 year to filter previous year data to compare current year data

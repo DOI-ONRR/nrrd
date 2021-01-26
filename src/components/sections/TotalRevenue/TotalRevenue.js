@@ -350,6 +350,8 @@ const TotalRevenue = props => {
         return headerArr
       }
     }
+
+    console.log('TotalRevenue chartData: ', chartData)
   }
   return (
     <>
@@ -379,8 +381,8 @@ const TotalRevenue = props => {
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
             legendHeaders={legendHeaders}
-            primaryColor={theme.palette.chart.primary}
-            secondaryColor={theme.palette.chart.secondary}
+            primaryColor={theme.palette.explore[600]}
+            secondaryColor={theme.palette.explore[100]}
             handleBarHover={handleBarHover}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
