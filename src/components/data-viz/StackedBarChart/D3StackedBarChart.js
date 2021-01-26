@@ -594,6 +594,7 @@ export default class D3StackedBarChart {
       const labels = this.yGroupings()
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
       const color = this.color
+      const horizontal = this.horizontal
 
       // turn object into array
       let dataArr = Object.keys(data).map((key, i) => {
@@ -616,17 +617,17 @@ export default class D3StackedBarChart {
         .attr('width', 20)
         .attr('height', 20)
         .style('fill', (d, i) => {
-          return color(d.length - i)
+          return horizontal ? color(i) : color(d.length - i)
         })
         .append('rect')
         .attr('class', 'legend-rect')
         .attr('width', 15)
         .attr('height', 15)
         .style('background-color', (d, i) => {
-          return color(d.length - i)
+          return horizontal ? color(i) : color(d.length - i)
         })
         .style('border', (d, i) => {
-          return `1px solid ${ color(d.length - i) }`
+          return `1px solid ${ horizontal ? color(i) : color(d.length - i) }`
         })
 
       // create a cell in each row for each column
