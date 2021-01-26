@@ -22,13 +22,10 @@ const useStyles = makeStyles(theme => ({
     fill: 'inherit',
     '& .bars > .bar:hover': {
       cursor: 'pointer',
-      opacity: 1,
+      outline: `${ theme.palette.orange[200] } solid`
     },
-    '& .bar.active': {
-      opacity: 1,
-    },
-    '& .bar': {
-      opacity: 0.85,
+    '& .bars > .bar.active': {
+      outline: `${ theme.palette.orange[200] } solid`
     },
     '& .bar .stacked-bar-chart-item': {
       transition: 'all .1s ease-in'
@@ -69,6 +66,9 @@ const useStyles = makeStyles(theme => ({
     '& .y-axis > .tick': {
       fontSize: theme.typography.body2.fontSize,
     },
+    '& .x-axis .tick.active': {
+      fontWeight: 'bold'
+    }
   },
   horizontal: {
     position: 'relative',

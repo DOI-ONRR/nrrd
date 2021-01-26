@@ -339,6 +339,10 @@ export default class D3StackedBarChart {
         .data((d, i) => {
           const yd = self.yGroupData(d)
           const r = stack([yd])
+          // console.log('data stack r yo: ', r)
+          const negStackValues = r.filter(item => item[0].data[item.key] < 0)
+          const minValFound = d3.min(negStackValues, d => d[0].data[d.key] - 0.1)
+          if (minValFound) self.testVal = minValFound
           return r
         })
         .enter().append('g')
@@ -690,11 +694,7 @@ export default class D3StackedBarChart {
   _onSelect = (element, data) => {
     try {
       // console.log('_onSelect this: ', this)
-      const selectedElement = d3.select(this.node).selectAll('.active') // element.parentNode.querySelector('[selected=true]')
-      // const primaryColor = this.primaryColor
-      // const secondaryColor = this.secondaryColor
-      const primaryColorRange = this.primaryColorRange
-      const secondaryColorRange = this.secondaryColorRange
+      const selectedElement = d3.select(this.node).selectAll('.bars .active')
       // console.debug(data)
       if (selectedElement) {
         selectedElement
@@ -996,11 +996,10 @@ export default class D3StackedBarChart {
     }
   }
 
-  yMin () {
+  yMin (min) {
     try {
-      const self = this
-      const min = d3.min(self.data, d => d.sum - 0.1)
-      console.debug('yMin yo: ', min)
+      this.getSelected()
+      const min = d3.min(this.data, d => d - 0.1)
       const yMin = (min < 0) ? min : 0
       return yMin
     }
@@ -1136,6 +1135,7 @@ export default class D3StackedBarChart {
   }
 
   getSelected () {
+    const allGroupedData = []
     d3.select(this.node).selectAll('.bar').filter((d, i, nodes) => {
       if (nodes[i].className.baseVal.match(/active/)) {
         this.xSelectedValue = d
@@ -1143,7 +1143,10 @@ export default class D3StackedBarChart {
         this.selectedData(this.ySelectedGroup)
         this.selectedIndex = i
       }
+
+      allGroupedData.push(Object.values(this.yGroupData(d)))
     })
+    this.allGroupedData = allGroupedData
   }
 
   getCurrentIndex (value) {
