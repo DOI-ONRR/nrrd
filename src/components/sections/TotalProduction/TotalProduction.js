@@ -112,6 +112,7 @@ const TotalProduction = props => {
   let xAxis = 'year'
   const yAxis = 'sum'
   const yGroupBy = 'source'
+  const yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American']
   let xLabels
   let maxFiscalYear
   let maxCalendarYear
@@ -215,6 +216,7 @@ const TotalProduction = props => {
                 yAxis={yAxis}
                 xGroups={xGroups}
                 yGroupBy={yGroupBy}
+                yOrderBy={yOrderBy}
                 xLabels={xLabels}
                 legendFormat={v => utils.formatToCommaInt(v)}
                 onSelect={ d => handleSelect(d) }
@@ -234,6 +236,7 @@ const TotalProduction = props => {
                 yAxis={yAxis}
                 xGroups={xGroups}
                 yGroupBy={yGroupBy}
+                yOrderBy={yOrderBy}
                 xLabels={xLabels}
                 legendFormat={v => {
                   return utils.formatToCommaInt(v)
@@ -259,6 +262,7 @@ const TotalProduction = props => {
                 yAxis={yAxis}
                 xGroups={xGroups}
                 yGroupBy={yGroupBy}
+                yOrderBy={yOrderBy}
                 xLabels={xLabels}
                 legendFormat={v => {
                   if (v) {

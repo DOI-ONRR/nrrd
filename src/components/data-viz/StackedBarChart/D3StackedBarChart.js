@@ -107,7 +107,7 @@ export default class D3StackedBarChart {
       this.secondaryColor = options.secondaryColor || '#c4d99b' // theme.palette.explore[100]
       this.color = options.colorRange
         ? d3.scaleOrdinal().domain(this.xDomain).range(options.colorRange)
-        : d3.scaleLinear().domain([0, this.yOrderBy.length]).range([this.primaryColor, this.secondaryColor])
+        : d3.scaleLinear().domain([0, this.yOrderBy.length || 4]).range([this.primaryColor, this.secondaryColor])
 
       console.debug('this yo:', this)
     }
