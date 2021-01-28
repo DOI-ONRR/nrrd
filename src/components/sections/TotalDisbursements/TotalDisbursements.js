@@ -278,7 +278,6 @@ const TotalDisbursements = props => {
             xLabels={xLabels}
             legendFormat={v => utils.formatToDollarInt(v)}
             legendHeaders={legendHeaders}
-            // legendReverse={true}
             handleBarHover={handleBarHover}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">

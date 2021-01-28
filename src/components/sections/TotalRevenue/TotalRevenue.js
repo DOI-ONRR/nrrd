@@ -183,7 +183,7 @@ const TotalRevenue = props => {
     yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
     break
   default:
-    yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']
+    yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - not tied to a lease']
     break
   }
 
@@ -381,7 +381,7 @@ const TotalRevenue = props => {
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
             legendHeaders={legendHeaders}
-            primaryColor={theme.palette.explore[600]}
+            primaryColor={theme.palette.explore[700]}
             secondaryColor={theme.palette.explore[100]}
             handleBarHover={handleBarHover}
           />
