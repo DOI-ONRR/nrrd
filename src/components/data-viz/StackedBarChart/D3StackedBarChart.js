@@ -30,7 +30,7 @@ export default class D3StackedBarChart {
       this.units = (options.units) ? options.units : ''
       this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
-
+      this.breakoutBy = options.breakoutBy || 'source'
       this.handleBarHover = options.handleBarHover
 
       if (options.chartTooltip) {
@@ -93,9 +93,10 @@ export default class D3StackedBarChart {
 
       this.barScale = (options.barScale) ? options.barScale : 1
       this._height = d3.max([this._height * this.barScale, 1])
+
       this.yScale = d3.scaleLinear()
         .rangeRound([this._height - this.marginBottom, this.marginTop])
-        .domain([0, this.yMax()])
+        .domain([this.yMin(), this.yMax()])
 
       this.chart = d3.select(this.chartDiv).append('svg')
         .attr('height', this._height)
@@ -1014,33 +1015,24 @@ export default class D3StackedBarChart {
 
   yMin () {
     try {
-      const stack = d3.stack()
-	      .keys(this.yGroupings())
-        .offset(d3.stackOffsetDiverging)
-
-      const keys = this.yGroupings()
-
-      console.log('stack', stack)
-      const r = d3.nest()
+      const data = this.data
+      const groupTotals = []
+      d3.nest()
         .key(k => k[this.xAxis])
+        .key(k => k[this.options.yGroupBy])
         .rollup((d, i) => {
-        // console.log('rollup d', d)
-          const d2 = {}
-          keys.forEach((v, i) => {
-            d2[v] = d3.sum(d, d => d[this.yAxis])
-          })
-          console.log('rollup d2', d2)
-          return d2
+          return {
+            total: d3.sum(d, d => d.sum)
+          }
         })
-        .entries(this.data)
-        .map(function (d) {
-          console.log('map d', d)
-        // return d.value
+        .entries(data)
+        .map(d => {
+          // console.log('map d', d)
+          d.values.forEach(v => groupTotals.push(v.value.total))
         })
 
-      console.log('yMin r: ', r)
-      const min = d3.min(this.data, d => d.sum - 0.1)
-      const yMin = (min < 0) ? min : 0
+      const minVal = d3.min(groupTotals)
+      const yMin = (minVal < 0) ? minVal * 1.5 : 0
       return yMin
     }
     catch (err) {
