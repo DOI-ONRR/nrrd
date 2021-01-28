@@ -105,9 +105,20 @@ export default class D3StackedBarChart {
       // chart colors
       this.primaryColor = options.primaryColor || '#37253c' // theme.palette.explore[700]
       this.secondaryColor = options.secondaryColor || '#c4d99b' // theme.palette.explore[100]
-      this.color = options.colorRange
-        ? d3.scaleOrdinal().domain(this.xDomain).range(options.colorRange)
-        : d3.scaleLinear().domain([0, this.yOrderBy.length > 0 ? this.yOrderBy.length - 1 : 0 || 4]).range([this.primaryColor, this.secondaryColor])
+
+      this.color = (flipColorRange = false) => {
+        let color
+        if (options.colorRange) {
+          color = d3.scaleOrdinal().domain(this.xDomain).range(options.colorRange)
+        }
+        else {
+          color = d3.scaleLinear()
+            .domain([0, this.yOrderBy.length > 0 ? this.yOrderBy.length - 1 : 0 || 4])
+            .range(flipColorRange ? [this.secondaryColor, this.primaryColor] : [this.primaryColor, this.secondaryColor])
+        }
+
+        return color
+      }
 
       console.debug('this yo:', this)
     }
@@ -316,7 +327,7 @@ export default class D3StackedBarChart {
         .offset(d3.stackOffsetDiverging)
 
       const keys = this.yGroupings()
-      const color = this.color
+      const color = this.color()
       const secondaryColor = this.secondaryColor
       const chartTooltip = this.chartTooltip
 
@@ -594,10 +605,7 @@ export default class D3StackedBarChart {
       const labels = this.yGroupings()
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
       const horizontal = this.horizontal
-
-      const color = horizontal
-        ? this.color
-        : d3.scaleLinear().domain([0, this.yOrderBy.length > 0 ? this.yOrderBy.length - 1 : 0 || 4]).range([this.secondaryColor, this.primaryColor])
+      const color = this.color(true)
 
       // turn object into array
       let dataArr = Object.keys(data).map((key, i) => {
