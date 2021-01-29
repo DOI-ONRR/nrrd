@@ -274,7 +274,7 @@ const ProductionFilterToolbar = ({ period }) => {
     <>
       <LandTypeSelectInput />
       {period !== PERIOD_MONTHLY &&
-        <StateOffshoreFilter queryKey={QK_QUERY_TOOL}/>
+        <StateOffshoreFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
       }
       <ProductSelectInput />
     </>
