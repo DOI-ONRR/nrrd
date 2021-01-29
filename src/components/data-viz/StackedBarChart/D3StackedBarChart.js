@@ -371,10 +371,6 @@ export default class D3StackedBarChart {
         .data((d, i) => {
           const yd = self.yGroupData(d)
           const r = stack([yd])
-          // console.log('data stack r yo: ', r)
-          // const negStackValues = r.filter(item => item[0].data[item.key] < 0)
-          // const minValFound = d3.min(negStackValues, d => d[0].data[d.key] - 0.1)
-          // if (minValFound) self.testVal = minValFound
           return r
         })
         .enter().append('g')
@@ -545,7 +541,6 @@ export default class D3StackedBarChart {
 
       d3.select(this.node).selectAll('.legend-table').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
-
       const headers = this._legendHeaders(xValue)
       const table = d3.select(this.legendDiv).append('table')
         .attr('class', 'legend-table')
@@ -605,7 +600,6 @@ export default class D3StackedBarChart {
       const data = newData || this.selectedData()
       const labels = this.yGroupings()
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
-      const horizontal = this.horizontal
       const color = this.color(true)
 
       // turn object into array
@@ -629,7 +623,7 @@ export default class D3StackedBarChart {
         .attr('width', 20)
         .attr('height', 20)
         .style('fill', (d, i) => {
-          return horizontal ? color(i) : color(i)
+          return color(i)
         })
         .append('rect')
         .attr('class', 'legend-rect')
@@ -637,10 +631,10 @@ export default class D3StackedBarChart {
         .attr('height', 15)
         .style('background-color', (d, i) => {
           // console.log('color d, i:', d, i, color(d.length - i))
-          return horizontal ? color(i) : color(i)
+          return color(i)
         })
         .style('border', (d, i) => {
-          return `1px solid ${ horizontal ? color(i) : color(d.length - i) }`
+          return `1px solid ${ color(i) }`
         })
 
       // create a cell in each row for each column
@@ -804,14 +798,11 @@ export default class D3StackedBarChart {
 
   _onHover = (element, data, hover) => {
     try {
-      const activeElement = element.parentNode.parentNode
-      const activeHoverElement = d3.select(activeElement).classed('active')
       const horizontal = this.horizontal
-      const years = this.xDomain()
 
       if (hover === true) {
         if (!horizontal) {
-          this.createLegend(years[this.currentIndex])
+          this.createLegend(this._xDomain[this.currentIndex])
           this.updateLegend(data[0].data)
         }
 
@@ -819,10 +810,7 @@ export default class D3StackedBarChart {
         if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.currentIndex] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups, currentIndex: this.currentIndex })
       }
       else {
-        if (!activeHoverElement) {
-        }
-
-        this.createLegend(years[this.selectedIndex])
+        this.createLegend(this._xDomain[this.xSelectedValue])
         this.updateLegend()
 
         if (this.xAxis === 'year') this.handleBarHover({ year: this.xSelectedValue })
