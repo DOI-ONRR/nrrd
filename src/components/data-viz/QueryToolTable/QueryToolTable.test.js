@@ -4,7 +4,7 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen, act } from 'test-utils'
 
-import QueryToolTable from './DataTable'
+import QueryToolTable from './QueryToolTable'
 
 import {
   QK_QUERY_TOOL
