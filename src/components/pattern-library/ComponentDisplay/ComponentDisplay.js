@@ -54,7 +54,7 @@ const ComponentDisplay = ({ children }) => {
 
   const groups = [...(new Set(Object.keys(ALL_COMPONENTS).map(c => ALL_COMPONENTS[c]?.Preview?.group).filter(g => g !== undefined)))]
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
-  const type = url.searchParams && url.searchParams.get('type')
+  const type = url?.searchParams?.get('type') || groups[0]
   const componentsInGroup = Object.keys(ALL_COMPONENTS).filter(c =>
     (ALL_COMPONENTS[c]?.Preview?.group === type && ALL_COMPONENTS[c]?.name !== undefined) ||
     (ALL_COMPONENTS[c]?.type?.Preview?.group === type && ALL_COMPONENTS[c]?.type?.name !== undefined))
@@ -65,7 +65,7 @@ const ComponentDisplay = ({ children }) => {
 
   const content = (Array.isArray(children)) ? children : [children]
 
-  const getNotes = key => content.filter(child => child?.props.noteKeys?.includes(key))
+  // const getNotes = key => content.filter(child => child?.props.noteKeys?.includes(key))
 
   const ComponentContextDisplay = ({ demos }) => {
     return (
@@ -78,7 +78,7 @@ const ComponentDisplay = ({ children }) => {
   return (
     <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
       <Grid item xs={12}>
-        <ToggleToolbar buttons={groups.map(g => ({ [g]: `/patterns/components/?type=${ g }` })) } />
+        <ToggleToolbar buttons={groups.map(g => ({ [g]: `/patterns/components/?type=${ g }` })) } sectionSelected={type} />
       </Grid>
       {
         components.map((item, i) => {

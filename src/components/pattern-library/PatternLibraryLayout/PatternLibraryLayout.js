@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql, Link, navigate } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { fade, makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
@@ -9,8 +9,6 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
-import SearchIcon from '@material-ui/icons/Search'
-import InputBase from '@material-ui/core/InputBase'
 import Container from '@material-ui/core/Container'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
@@ -81,6 +79,7 @@ const overrides = {
   },
   MuiAutocomplete: {
     inputRoot: {
+      backgroundColor: '#e3f2fa',
       height: '45px'
     }
   },
@@ -117,7 +116,7 @@ const overrides = {
       height: '48px',
       textTransform: 'none',
       '&$selected': {
-        color: 'white', 
+        color: 'white',
         backgroundColor: '#630B5D',
       }
     },
@@ -183,6 +182,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 const PatternLibraryLayout = ({ path, children }) => {
+  // eslint-disable-next-line no-unused-vars
   const [componentsAnchorEl, setComponentsAnchorEl] = React.useState(null)
   const handleComponentsClick = event => {
     setComponentsAnchorEl(null)
@@ -191,14 +191,6 @@ const PatternLibraryLayout = ({ path, children }) => {
   const handleVisualStylesClick = event => {
     setComponentsAnchorEl(null)
     setCurrentPath(event.currentTarget.value)
-  }
-  const handleComponentItemClick = () => {
-    setComponentsAnchorEl(null)
-    setCurrentPath('components')
-  }
-  const handleComponentsClose = () => {
-    setComponentsAnchorEl(null)
-    setCurrentPath(getCurrentPath())
   }
 
   const classes = useStyles()
@@ -243,7 +235,7 @@ const PatternLibraryLayout = ({ path, children }) => {
   }
 
   const SearchBox = () => {
-    const [value, setValue] = React.useState(null)
+    const [value] = React.useState(null)
 
     return (
       <Autocomplete
@@ -274,7 +266,7 @@ const PatternLibraryLayout = ({ path, children }) => {
             </Typography>
             <ToggleButtonGroup value={currentPath} aria-label="button group for visual and component pages">
               <ToggleButton value='visual' className={classes.links} onClick={handleVisualStylesClick}><Link to='/patterns'>Visual Styles</Link></ToggleButton>
-              <ToggleButton value='components' className={classes.links} onClick={handleComponentsClick}><Link to='/patterns/components/?type=Cards'>Components</Link></ToggleButton>
+              <ToggleButton value='components' className={classes.links} onClick={handleComponentsClick}><Link to='/patterns/components/'>Components</Link></ToggleButton>
             </ToggleButtonGroup>
             <div className={classes.grow} />
             <div className={classes.search}>

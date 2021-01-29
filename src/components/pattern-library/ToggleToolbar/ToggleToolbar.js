@@ -33,15 +33,13 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const ToggleToolbar = ({ buttons, ...rest }) => {
+const ToggleToolbar = ({ buttons, sectionSelected, ...rest }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
-  let [section] = React.useState()
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
-  if (url && url.searchParams.get('type')) {
-    section = url.searchParams.get('type')
-  }
-  else if (url) {
+  let section = url?.searchParams?.get('type') || sectionSelected
+
+  if (url && !section) {
     if (url.pathname.includes('color')) {
       section = 'Color'
     }
