@@ -52,7 +52,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-  // console.log('ComparisonTable props: ', props)
+  console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year, dataType, commodity } = filterState
@@ -65,15 +65,15 @@ const ComparisonTable = forwardRef((props, ref) => {
   const monthlyComparisonText = 'Compares data for the selected month to the same month in the previous year.'
 
   useEffect(() => {
-    // console.log('ComparisonTable selectedItem: ', selectedItem)
+    console.log('ComparisonTable selectedItem: ', selectedItem)
   }, [selectedItem])
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
-      // console.log('getSelected from Child', d)
+      console.log('getSelected from Child', d)
       if (d.year) {
         const currentSelectedYearData = data.filter(item => item.year === d.year)
-        // console.log('currentSelectedYearData: ', currentSelectedYearData)
+        console.log('currentSelectedYearData: ', currentSelectedYearData)
         const currentSelectedYearDataMaxMonth = currentSelectedYearData[currentSelectedYearData.length - 1].monthLong
         setSelectedItem({ ...selectedItem, year: d.year, month: currentSelectedYearDataMaxMonth })
       }
