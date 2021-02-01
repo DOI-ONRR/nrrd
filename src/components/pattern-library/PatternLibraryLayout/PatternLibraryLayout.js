@@ -77,6 +77,12 @@ const overrides = {
       backgroundColor: '#004C77'
     }
   },
+  MuiAutocomplete: {
+    inputRoot: {
+      backgroundColor: '#e3f2fa',
+      height: '45px'
+    }
+  },
   MuiToolbar: {
     root: {
       height: '48px'
@@ -232,7 +238,11 @@ const PatternLibraryLayout = ({ path, children }) => {
     const [value] = React.useState(null)
 
     return (
-      <Autocomplete
+      <div>search</div>
+    )
+  }
+/*
+<Autocomplete
         id="search-box"
         value={value}
         onChange={(event, newValue) => {
@@ -246,9 +256,7 @@ const PatternLibraryLayout = ({ path, children }) => {
         handleHomeEndKeys
         renderInput={params => <TextField {...params} label="Search" variant="outlined" />}
       />
-    )
-  }
-
+      */
   return (
     <>
       <ThemeProvider theme={theme}>
