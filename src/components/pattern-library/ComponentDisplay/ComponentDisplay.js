@@ -76,39 +76,43 @@ const ComponentDisplay = ({ children }) => {
   }
 
   return (
-    <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
-      <Grid item xs={12}>
-        <ToggleToolbar buttons={groups.map(g => ({ [g]: `/patterns/components/?type=${ g }` })) } sectionSelected={type} />
+    <>
+      {(typeof window !== 'undefined') &&
+      <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
+        <Grid item xs={12}>
+          <ToggleToolbar buttons={groups.map(g => ({ [g]: `/patterns/components/?type=${ g }` })) } sectionSelected={type} />
+        </Grid>
+        {
+          components.map((item, i) => {
+            const demos = ALL_COMPONENTS[`${ item.displayName }`]?.Preview?.demos || ALL_COMPONENTS[`${ item.displayName }`]?.type?.Preview?.demos
+            if (!demos) {
+              return undefined
+            }
+            const preview = demos && demos[0]
+            console.log(preview)
+            // const notes = getNotes(key)
+            return (
+              <Grid id={item.displayName} item key={i} xs={12}>
+                <PatternLibraryCard
+                  title={`${ item.displayName }`}
+                  notes={(item.childrenComponentProp.length > 0) && <PropsTable componentProps={item.childrenComponentProp} />}
+                  contexts={demos && <ComponentContextDisplay demos={demos} />}>
+                  <Box p={2}>
+                    {preview
+                      ? <ThemeProvider theme={theme}><CodeBlock key={`code-block-${ i }`} render={true}>{preview.code}</CodeBlock></ThemeProvider>
+                      : <Box>No preview available</Box>
+                    }
+                    <Box m={2}><Divider /></Box>
+                    <MDXRenderer>{item.description.childMdx.body}</MDXRenderer>
+                  </Box>
+                </PatternLibraryCard>
+              </Grid>
+            )
+          })
+        }
       </Grid>
-      {
-        components.map((item, i) => {
-          const demos = ALL_COMPONENTS[`${ item.displayName }`]?.Preview?.demos || ALL_COMPONENTS[`${ item.displayName }`]?.type?.Preview?.demos
-          if (!demos) {
-            return undefined
-          }
-          const preview = demos && demos[0]
-
-          // const notes = getNotes(key)
-          return (
-            <Grid id={item.displayName} item key={i} xs={12}>
-              <PatternLibraryCard
-                title={`${ item.displayName }`}
-                notes={(item.childrenComponentProp.length > 0) && <PropsTable componentProps={item.childrenComponentProp} />}
-                contexts={demos && <ComponentContextDisplay demos={demos} />}>
-                <Box p={2}>
-                  {preview
-                    ? <ThemeProvider theme={theme}><CodeBlock key={`code-block-${ i }`} render={true}>{preview.code}</CodeBlock></ThemeProvider>
-                    : <Box>No preview available</Box>
-                  }
-                  <Box m={2}><Divider /></Box>
-                  <MDXRenderer>{item.description.childMdx.body}</MDXRenderer>
-                </Box>
-              </PatternLibraryCard>
-            </Grid>
-          )
-        })
       }
-    </Grid>
+    </>
   )
 }
 

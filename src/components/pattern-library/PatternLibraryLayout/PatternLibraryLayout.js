@@ -10,8 +10,8 @@ import Typography from '@material-ui/core/Typography'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 import Container from '@material-ui/core/Container'
-// import TextField from '@material-ui/core/TextField'
-// import Autocomplete from '@material-ui/lab/Autocomplete'
+import TextField from '@material-ui/core/TextField'
+import Autocomplete from '@material-ui/lab/Autocomplete'
 import * as ALL_COMPONENTS from '../../../../.cache/components'
 
 const palette = {
@@ -238,11 +238,7 @@ const PatternLibraryLayout = ({ path, children }) => {
     const [value] = React.useState(null)
 
     return (
-      <div>search</div>
-    )
-  }
-/*
-<Autocomplete
+      <Autocomplete
         id="search-box"
         value={value}
         onChange={(event, newValue) => {
@@ -256,7 +252,9 @@ const PatternLibraryLayout = ({ path, children }) => {
         handleHomeEndKeys
         renderInput={params => <TextField {...params} label="Search" variant="outlined" />}
       />
-      */
+    )
+  }
+
   return (
     <>
       <ThemeProvider theme={theme}>
