@@ -11,8 +11,7 @@ const CustomTableSummaryRowItem = ({ getMessage, ...restProps }) => {
   const { state } = useContext(DataFilterContext)
 
   let cellValue = restProps.value
-
-  if (typeof (restProps.children.type) === 'function') {
+  if (typeof (restProps.children.type) === 'function' && (restProps.type !== 'totalSum' && restProps.type !== 'sum')) {
     cellValue = restProps.children.type(restProps)
   }
   else {

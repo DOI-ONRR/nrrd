@@ -1,10 +1,14 @@
 import {
+  PRODUCTION,
+  REVENUE,
+  DISBURSEMENT,
   PERIOD,
   QK_QUERY_TOOL,
   FISCAL_YEAR,
   PERIOD_FISCAL_YEAR,
   CALENDAR_YEAR,
   PERIOD_CALENDAR_YEAR,
+  PERIOD_MONTHLY,
   MULTI_STR,
   MULTI_INT,
   COMMODITY,
@@ -22,7 +26,8 @@ import {
   LOCAL_RECIPIENT,
   COMMODITY_ORDER,
   COMPANY_NAME,
-  MONTH_LONG
+  MONTH_LONG,
+  MONTHLY
 } from '../../constants'
 
 import {
@@ -76,7 +81,10 @@ export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
   [SOURCE]: 'source',
   [LOCAL_RECIPIENT]: 'local_recipient',
   [COMPANY_NAME]: 'corporate_name',
-  [MONTH_LONG]: 'month_long'
+  [MONTH_LONG]: 'month_long',
+  [REVENUE]: 'revenue',
+  [PRODUCTION]: 'production',
+  [DISBURSEMENT]: 'disbursement'
 }
 
 /**
@@ -148,7 +156,9 @@ export const getDataFilterValue = (key, state) => {
   case FISCAL_YEAR:
     return (state[PERIOD] === PERIOD_FISCAL_YEAR) ? state[key].split(',') : undefined
   case CALENDAR_YEAR:
-    return (state[PERIOD] === PERIOD_CALENDAR_YEAR) ? state[key].split(',') : undefined
+    return (state[PERIOD] === PERIOD_CALENDAR_YEAR || state[PERIOD] === PERIOD_MONTHLY) ? state[key].split(',') : undefined
+  case MONTH_LONG:
+    return undefined
   }
   return (!state[key]) ? undefined : state[key].split(',')
 }
