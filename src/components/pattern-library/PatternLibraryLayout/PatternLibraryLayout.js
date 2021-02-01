@@ -77,12 +77,6 @@ const overrides = {
       backgroundColor: '#004C77'
     }
   },
-  MuiAutocomplete: {
-    inputRoot: {
-      backgroundColor: '#e3f2fa',
-      height: '45px'
-    }
-  },
   MuiToolbar: {
     root: {
       height: '48px'
