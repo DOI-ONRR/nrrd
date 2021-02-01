@@ -57,7 +57,7 @@ const ComponentDisplay = ({ children }) => {
 
   const components = results.allComponentMetadata.nodes.filter(item =>
     item.parent.relativePath.includes(`${ type }`) &&
-    !item.parent.relativePath.includes('DataTable/Custom'))
+    !item.parent.relativePath.includes('QueryToolTable/Custom'))
 
   const content = (Array.isArray(children)) ? children : [children]
 
