@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { isEqual, isEqualWith } from 'lodash'
+import { isEqual, isEqualWith, uniqBy } from 'lodash'
 
 import {
   Box,
@@ -103,6 +103,10 @@ const BaseSelectInput = ({
   else if (!data) {
     return (<></>)
   }
+
+  data = uniqBy(data, e => {
+    return (e.value || e.option)
+  })
 
   const noop = () => {}
 
