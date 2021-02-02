@@ -112,7 +112,7 @@ const TotalProduction = props => {
   let xAxis = 'year'
   const yAxis = 'sum'
   const yGroupBy = 'source'
-  const yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American']
+  const yOrderBy = ['Native American', 'Federal Offshore', 'Federal Onshore']
   let xLabels
   let maxFiscalYear
   let maxCalendarYear
@@ -294,6 +294,7 @@ const TotalProduction = props => {
               ref={productionComparison}
               data={comparisonData}
               yGroupBy={yGroupBy}
+              yOrderBy={yOrderBy}
             />
           </Grid>
         </Grid>

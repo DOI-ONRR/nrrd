@@ -598,14 +598,13 @@ export default class D3StackedBarChart {
 
       const legendReverse = this.legendReverse
       const data = newData || this.selectedData()
-      const labels = this.yGroupings()
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
       const color = this.color(true)
+      const labels = this.yGroupings()
 
-      // turn object into array
       let dataArr = Object.keys(data).map((key, i) => {
         return [labels[i], undefined, data[labels[i]]]
-      }).reverse()
+      })
 
       if (legendReverse) {
         dataArr = dataArr.reverse()
@@ -799,6 +798,7 @@ export default class D3StackedBarChart {
   _onHover = (element, data, hover) => {
     try {
       const horizontal = this.horizontal
+      const xDomainGroups = this.getGroupedData()
 
       if (hover === true) {
         if (!horizontal) {
@@ -1171,7 +1171,7 @@ export default class D3StackedBarChart {
         this.selectedIndex = i
       }
 
-      allGroupedData.push(Object.values(this.yGroupData(d)))
+      allGroupedData.push(this.yGroupData(d))
     })
     this.getGroupedData(allGroupedData)
   }

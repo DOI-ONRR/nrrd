@@ -269,7 +269,7 @@ const TotalDisbursements = props => {
             key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
             title={chartTitle}
             units={units}
-            data={chartData}
+            data={chartData.filter(item => item.sum * 10)}
             xAxis={xAxis}
             yAxis={yAxis}
             xGroups={xGroups}
@@ -293,6 +293,7 @@ const TotalDisbursements = props => {
             ref={disbursementsComparison}
             data={comparisonData}
             yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
           />
         </Grid>
       </Grid>

@@ -183,7 +183,7 @@ const TotalRevenue = props => {
     yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
     break
   default:
-    yOrderBy = ['Federal onshore', 'Federal offshore', 'Native American', 'Federal - not tied to a lease']
+    yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - not tied to a location']
     break
   }
 
@@ -395,6 +395,7 @@ const TotalRevenue = props => {
             ref={revenueComparison}
             data={comparisonData}
             yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
           />
         </Grid>
       </Grid>

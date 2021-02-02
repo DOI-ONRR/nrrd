@@ -45,7 +45,8 @@ const useStyles = makeStyles(theme => ({
 const ComparisonTable = forwardRef((props, ref) => {
   const {
     data,
-    yGroupBy
+    yGroupBy,
+    yOrderBy
   } = props
 
   const classes = useStyles()
@@ -119,9 +120,11 @@ const ComparisonTable = forwardRef((props, ref) => {
   //   currentYearText = `${ currentYearText } ${ (period === DFC.PERIOD_FISCAL_YEAR) ? ' so far' : '' }`
   // }
 
-  // Comparison data
+  // grouped data
   const groupedData = utils.groupBy(data, yGroupBy)
+  console.log('groupedData: ', groupedData)
 
+  // comparison data
   const comparisonData = Object.entries(groupedData).map((item, index) => {
     const newObj = {}
 
@@ -141,6 +144,7 @@ const ComparisonTable = forwardRef((props, ref) => {
         previousSum = item[1].filter(item => item.year === previousYear).reduce((prev, curr) => prev + curr.sum, 0)
       }
       const currentSum = item[1].filter(item => item.year === currentYear).reduce((prev, curr) => prev + curr.sum, 0)
+
       newObj.previous = { ...item[1].filter(item => item.year === previousYear)[0], sum: previousSum }
       newObj.current = { ...item[1].filter(item => item.year === currentYear)[0], sum: currentSum }
     }
@@ -148,7 +152,8 @@ const ComparisonTable = forwardRef((props, ref) => {
     return newObj
   })
 
-  // console.log('comparisonData: ', comparisonData)
+  comparisonData.sort((a, b) => yOrderBy.includes(a.previous.source) - yOrderBy.includes(b.previous.source))
+  console.log('comparisonData: ', comparisonData)
 
   // get previous/current year totals
   const previousYearTotals = comparisonData.map(item => item.previous.sum)
