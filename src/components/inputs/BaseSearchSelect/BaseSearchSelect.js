@@ -75,9 +75,12 @@ const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, di
 
   const handleChange = item => {
     if (item) {
-      console.log(item)
       setSelectedOption(item.option)
       handleOnChange(item.option)
+    }
+    else {
+      setSelectedOption()
+      handleOnChange()
     }
   }
 
