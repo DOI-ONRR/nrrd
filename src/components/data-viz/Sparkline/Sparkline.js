@@ -113,9 +113,12 @@ const chartData = [
   ['2019', 4904041158.92]
 ]
 
-export const SparklineDemos = [
-  {
-    title: 'Preview',
-    code: "<Sparkline data={" + JSON.stringify(chartData) + "} />",
-  }
-]
+Sparkline.Preview = {
+  group: 'Data Visualizations',
+  demos: [
+    {
+      title: 'Preview',
+      code: "<Sparkline data={" + JSON.stringify(chartData) + "} />",
+    }
+  ]
+}

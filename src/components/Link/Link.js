@@ -147,6 +147,8 @@ const getLinkComponent = ({ linkType, ...props }) => {
  * By default all relative urls will use Gatsby, however files that need to be downloaded or anchor links do not use Gatsby Link.
  *
  * We also determine a link type by default to assign the appropriate icon.
+ * You can also specify the property "linkType". Values currently available:
+ * 'DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'FilterTable', 'ExploreData', 'Header', 'HowWorks', 'default', 'Location'
  */
 const Link = props => getLinkComponent(props)
 
@@ -172,3 +174,27 @@ Link.defaultProps = {
 }
 
 export default Link
+
+Link.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'External Link',
+      code: '<Link href="https://revenuedata.doi.gov/">External Link</Link>',
+    },
+    {
+      title: 'Relative Link',
+      code: '<Link href="/relative">Relative link</Link>',
+    },
+    {
+      title: 'DownloadData Link',
+      code: '<Link href="./downloads/production">DownloadData</Link>',
+      notes: 'The appropriate icon is displayed based on a match of the relative url'
+    },
+    {
+      title: 'Specify link type example',
+      code: '<Link linkType="DownloadXls" href="./downloads/production">Force link type</Link>',
+      notes: 'The appropriate icon is displayed based on the link type property specified'
+    }
+  ]
+}

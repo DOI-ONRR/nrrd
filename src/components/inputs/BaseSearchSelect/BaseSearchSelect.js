@@ -148,9 +148,12 @@ BaseSearchSelect.propTypes = {
   data: PropTypes.array,
 }
 
-export const BaseSearchSelectDemos = [
-  {
-    title: 'Simple',
-    code: '<BaseSearchSelect label="Simple Items" data={["item 1", "something else", "more stuff"]} />',
-  }
-]
+BaseSearchSelect.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'Simple',
+      code: '<BaseSearchSelect label="Simple Items" data={["item 1", "something else", "more stuff"]} />',
+    }
+  ]
+}

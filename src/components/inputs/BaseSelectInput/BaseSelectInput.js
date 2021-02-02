@@ -459,9 +459,12 @@ const areEqual = (prevProps, nextProps) => {
 
 export default React.memo(BaseSelectInput, areEqual)
 
-export const BaseSelectInputDemos = [
-  {
-    title: 'Simple',
-    code: '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />',
-  }
-]
+BaseSelectInput.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'Simple',
+      code: '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />',
+    }
+  ]
+}
