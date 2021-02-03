@@ -20,12 +20,17 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '200px',
     fill: 'inherit',
+    '& .bars > .bar': {
+      opacity: 0.75,
+    },
     '& .bars > .bar:hover': {
       cursor: 'pointer',
-      outline: `${ theme.palette.orange[200] } solid`
+      // outline: `${ theme.palette.orange[200] } solid`,
+      opacity: 1,
     },
     '& .bars > .bar.active': {
-      outline: `${ theme.palette.orange[200] } solid`
+      // outline: `${ theme.palette.orange[200] } solid`,
+      opacity: 1,
     },
     '& .bar .stacked-bar-chart-item': {
       transition: 'all .1s ease-in'
@@ -59,6 +64,9 @@ const useStyles = makeStyles(theme => ({
       left: 5,
       transform: 'rotate(90deg)',
       transformOrigin: 'bottom left',
+      '& .bars > .bar': {
+        opacity: 1,
+      },
       '& .bars > .bar:hover': {
         cursor: 'pointer',
         outline: 'none',
