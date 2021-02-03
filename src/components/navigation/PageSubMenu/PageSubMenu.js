@@ -93,7 +93,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
     const fromTop = window.scrollY
 
     subMenuLinks.forEach((link, index) => {
-      const section = document.querySelector(link.hash || 'body')
+      const section = document.querySelector(link.id || 'body')
 
       if (!section) return
 
@@ -113,8 +113,8 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
 
   const scrollTo = element => {
     scroller.scrollTo(element, {
-      duration: 800,
-      delay: 500,
+      duration: 1500,
+      delay: 150,
       smooth: 'easeInOutQuart',
       offset: -150,
     })
@@ -141,11 +141,6 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
     console.log('subMenuWrapperRef: ', subMenuWrapperRef)
   }, [])
 
-  const subMenuChildren = React.Children.map(children, child =>
-    React.cloneElement(child, {
-      refs: subMenuWrapperRef
-    }))
-
   return (
     <>
       <Box className={classes.root}>
@@ -162,9 +157,9 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
                 subMenu.anchorItems.map((item, i) =>
                   <MenuItem key={i + 1}>
                     <a
-                      href={`#${ item }`}
+                      id={`#${ item }`}
                       onClick={() => scrollTo(item)}
-                      className={classes.subMenuLink}
+                      className={`${ classes.subMenuLink }`}
                       title={item}>
                       {menuItems[i]}
                     </a>
