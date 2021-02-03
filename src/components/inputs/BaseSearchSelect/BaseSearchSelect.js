@@ -75,9 +75,12 @@ const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, di
 
   const handleChange = item => {
     if (item) {
-      console.log(item)
       setSelectedOption(item.option)
       handleOnChange(item.option)
+    }
+    else {
+      setSelectedOption()
+      handleOnChange()
     }
   }
 
@@ -148,9 +151,12 @@ BaseSearchSelect.propTypes = {
   data: PropTypes.array,
 }
 
-export const BaseSearchSelectDemos = [
-  {
-    title: 'Simple',
-    code: '<BaseSearchSelect label="Simple Items" data={["item 1", "something else", "more stuff"]} />',
-  }
-]
+BaseSearchSelect.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'Simple',
+      code: '<BaseSearchSelect label="Simple Items" data={["item 1", "something else", "more stuff"]} />',
+    }
+  ]
+}

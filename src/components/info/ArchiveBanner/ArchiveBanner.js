@@ -46,9 +46,12 @@ const ArchiveBanner = () => {
 
 export default ArchiveBanner
 
-export const ArchiveBannerDemos = [
-  {
-    title: 'Preview',
-    code: '<ArchiveBanner />',
-  }
-]
+ArchiveBanner.Preview = {
+  group: 'Informational',
+  demos: [
+    {
+      title: 'Example',
+      code: '<ArchiveBanner />',
+    }
+  ]
+}

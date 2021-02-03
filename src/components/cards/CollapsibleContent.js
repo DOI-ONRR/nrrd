@@ -72,10 +72,13 @@ CollapsibleContent.defaultProps = {
 
 export default CollapsibleContent
 
-export const CollapsibleContentDemos = [
-  {
-    title: 'Content Only',
-    notes: 'These are some notes',
-    code: '<CollapsibleContent>Content area</CollapsibleContent>',
-  }
-]
+CollapsibleContent.Preview = {
+  group: 'Cards',
+  demos: [
+    {
+      title: 'Content Only',
+      notes: 'These are some notes',
+      code: '<CollapsibleContent>Content area</CollapsibleContent>',
+    }
+  ]
+}

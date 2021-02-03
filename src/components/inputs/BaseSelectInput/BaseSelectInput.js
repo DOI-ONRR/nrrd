@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { isEqual, isEqualWith } from 'lodash'
+import { isEqual, isEqualWith, uniqBy } from 'lodash'
 
 import {
   Box,
@@ -103,6 +103,10 @@ const BaseSelectInput = ({
   else if (!data) {
     return (<></>)
   }
+
+  data = uniqBy(data, e => {
+    return (e.value || e.option)
+  })
 
   const noop = () => {}
 
@@ -455,9 +459,12 @@ const areEqual = (prevProps, nextProps) => {
 
 export default React.memo(BaseSelectInput, areEqual)
 
-export const BaseSelectInputDemos = [
-  {
-    title: 'Simple',
-    code: '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />',
-  }
-]
+BaseSelectInput.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'Simple',
+      code: '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />',
+    }
+  ]
+}

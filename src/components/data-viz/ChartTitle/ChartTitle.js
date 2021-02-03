@@ -28,9 +28,12 @@ const ChartTitle = props => {
 
 export default ChartTitle
 
-export const ChartTitleDemos = [
-  {
-    title: 'Example',
-    code: '<ChartTitle>This is the chart title</ChartTitle>',
-  }
-]
+ChartTitle.Preview = {
+  group: 'Data Visualizations',
+  demos: [
+    {
+      title: 'Example',
+      code: '<ChartTitle>This is the chart title</ChartTitle>',
+    }
+  ]
+}

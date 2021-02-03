@@ -237,9 +237,13 @@ BaseSwitch.propTypes = {
   helperText: PropTypes.string,
   checked: PropTypes.bool
 }
-export const BaseSwitchDemos = [
-  {
-    title: 'Single',
-    code: '<BaseSwitch label={"Enable access"} selectType={"Single"} />',
-  }
-]
+
+BaseSwitch.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'Single',
+      code: '<BaseSwitch label={"Enable access"} selectType={"Single"} />',
+    }
+  ]
+}

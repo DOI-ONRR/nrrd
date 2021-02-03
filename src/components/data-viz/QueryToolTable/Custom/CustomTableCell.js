@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
-import { formatToDollarInt, formatToCommaInt } from '../../../../js/utils'
+import { formatToDollarFloat, formatToCommaInt } from '../../../../js/utils'
 import {
   PRODUCTION,
   DATA_TYPE
@@ -19,7 +19,10 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: '2px;'
   }
 }))
-
+/**
+ * This is used for the Query Tool Table to format values properly
+ * This does have a dependency on the DataFilterContext
+ */
 const CustomTableCell = ({ getMessage, ...restProps }) => {
   const { state } = useContext(DataFilterContext)
 
@@ -27,16 +30,18 @@ const CustomTableCell = ({ getMessage, ...restProps }) => {
   const styles = useStyles(theme)
 
   let cellValue = restProps.value
-  if (restProps.children && typeof (restProps.children.type) === 'function') {
-    cellValue = restProps.children.type(restProps)
-  }
-  else if (restProps.column.year) {
+
+  // Used to identify year columns and format the values accordingly
+  if (parseInt(restProps.column.name) > 1000) {
     if (parseInt(cellValue) === 0) {
       cellValue = '-'
     }
     else {
-      cellValue = (state[DATA_TYPE] !== PRODUCTION) ? formatToDollarInt(cellValue) : formatToCommaInt(cellValue)
+      cellValue = (state[DATA_TYPE] !== PRODUCTION) ? formatToDollarFloat(cellValue) : formatToCommaInt(cellValue)
     }
+  }
+  else if (restProps.children && typeof (restProps.children.type) === 'function') {
+    cellValue = restProps.children.type(restProps)
   }
 
   return (

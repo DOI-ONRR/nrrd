@@ -122,9 +122,12 @@ BaseMultiToggle.propTypes = {
   data: PropTypes.array,
 }
 
-export const BaseMultiToggleDemos = [
-  {
-    title: 'Simple',
-    code: '<BaseMultiToggle label="Simple Items" data={["item1", "item2", "item3"]} />',
-  }
-]
+BaseMultiToggle.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'Simple',
+      code: '<BaseMultiToggle label="Simple Items" data={["item1", "item2", "item3"]} />',
+    }
+  ]
+}

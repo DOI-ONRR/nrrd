@@ -185,11 +185,20 @@ const chartData = [
   { year: 2020, source: 'Federal Offshore', sum: 3746924076.62 },
   { year: 2020, source: 'Federal Onshore', sum: 2866225227.9 }]
 
-export const StackedBarChartDemos = [
-  {
-    title: 'Example',
-    code: "<StackedBarChart data={" +
-    JSON.stringify(chartData) + "} title={'Example'} xAxis={'year'} yAxis={'sum'} yGroupBy={'source'} yOrderBy={" +
-    JSON.stringify(['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']) + "}/>",
-  }
-]
+StackedBarChart.Preview = {
+  group: 'Data Visualizations',
+  demos: [
+    {
+      title: 'Example',
+      code: "<StackedBarChart data={" +
+      JSON.stringify(chartData) + "} title={'Example'} xAxis={'year'} yAxis={'sum'} yGroupBy={'source'} yOrderBy={" +
+      JSON.stringify(['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']) + "}/>",
+    },
+    {
+      title: 'Horizontal Example',
+      code: "<StackedBarChart horizontal={true} data={" +
+      JSON.stringify(chartData) + "} title={'Example'} xAxis={'year'} yAxis={'sum'} yGroupBy={'source'} yOrderBy={" +
+      JSON.stringify(['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']) + "}/>",
+    }
+  ]
+}

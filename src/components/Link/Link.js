@@ -43,6 +43,12 @@ const useStyles = makeStyles(theme => ({
     fontWeight: theme.typography.fontWeightBold,
     textDecoration: 'underline',
   },
+  filterTableIcon: {
+    '& svg': {
+      position: 'relative',
+      top: 7,
+    }
+  },
 })
 )
 
@@ -70,9 +76,19 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
     url = url.replace(pathPrefix, '')
   }
 
-  const classes = (linkType === LinkTypeComponents.Header)
-    ? `${ styles.headerLink } ${ className } ${ (currentPathname === withPrefix(href)) && styles.headerLinkBold }`
-    : `${ styles.link } ${ className }`
+  let classes
+
+  switch (linkType) {
+  case LinkTypeComponents.Header:
+    classes = `${ styles.headerLink } ${ className } ${ (currentPathname === withPrefix(href)) && styles.headerLinkBold }`
+    break
+  case LinkTypeComponents.FilterTable:
+    classes = `${ styles.link } ${ styles.filterTableIcon } ${ className }`
+    break
+  default:
+    classes = `${ styles.link } ${ className }`
+    break
+  }
 
   return (
     <React.Fragment>
@@ -96,7 +112,7 @@ const LinkTypeComponents = {
   DownloadData: props => <IconLink icon={<IconDownloadDataImg data-testid='download data icon' />} {...props} />,
   DownloadBase: props => <IconLink icon={<IconDownloadBaseImg data-testid='download base icon' />} pl={0} {...props} />,
   HowWorks: props => <IconLink icon={<HowWorksLinkIconImg data-testid='how works icon' />} pl={0} {...props} />,
-  FilterTable: props => <IconLink icon={<FilterTableIconImg data-testid='filter table icon' style={{ position: 'relative', top: 5 }} />} pl={0} {...props} />,
+  FilterTable: props => <IconLink icon={<FilterTableIconImg data-testid='filter table icon' />} linkType={LinkTypeComponents.FilterTable} pl={0} {...props} />,
   ExploreData: props => <IconLink icon={<IconExploreDataImg data-testid='explore data icon' />} mt={0} {...props} />,
   Location: props => <IconLink icon={<IconUsMapImg data-testid='us map icon' />} {...props} />
 }
@@ -131,6 +147,8 @@ const getLinkComponent = ({ linkType, ...props }) => {
  * By default all relative urls will use Gatsby, however files that need to be downloaded or anchor links do not use Gatsby Link.
  *
  * We also determine a link type by default to assign the appropriate icon.
+ * You can also specify the property "linkType". Values currently available:
+ * 'DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'FilterTable', 'ExploreData', 'Header', 'HowWorks', 'default', 'Location'
  */
 const Link = props => getLinkComponent(props)
 
@@ -156,3 +174,27 @@ Link.defaultProps = {
 }
 
 export default Link
+
+Link.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'External Link',
+      code: '<Link href="https://revenuedata.doi.gov/">External Link</Link>',
+    },
+    {
+      title: 'Relative Link',
+      code: '<Link href="/relative">Relative link</Link>',
+    },
+    {
+      title: 'DownloadData Link',
+      code: '<Link href="./downloads/production">DownloadData</Link>',
+      notes: 'The appropriate icon is displayed based on a match of the relative url'
+    },
+    {
+      title: 'Specify link type example',
+      code: '<Link linkType="DownloadXls" href="./downloads/production">Force link type</Link>',
+      notes: 'The appropriate icon is displayed based on the link type property specified'
+    }
+  ]
+}
