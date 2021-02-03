@@ -1,8 +1,8 @@
 
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery, useLazyQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import QueryLink from '../../../../components/QueryLink'
@@ -89,17 +89,23 @@ const RevenueNationalSummary = props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'All'
   const { title } = props
+
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year, period: period, commodities: commodities },
-    skip: inView === false,
-    triggerOnce: true
-  })
+  // const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+  //   variables: { year: year, period: period, commodities: commodities },
+  //   skip: inView === false,
+  //   triggerOnce: true
+  // })
+
+  const [loadQuery, { loading, error, data }] = useLazyQuery(
+    NATIONAL_REVENUE_SUMMARY_QUERY,
+    { variables: { year: year, period: period, commodities: commodities } }
+  )
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
@@ -111,11 +117,18 @@ const RevenueNationalSummary = props => {
 
   const units = 'dollars'
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      loadQuery()
+    }, 3000)
+    return () => clearTimeout(timer)
+  }, [])
+
   if (loading) {
     return (
-	    <div className={classes.progressContainer}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-	    </div>
+	    <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+        <CircularProgress />
+      </Box>
     )
   }
 
@@ -242,9 +255,11 @@ const RevenueNationalSummary = props => {
     )
   }
   else {
-    return (<div className={classes.progressContainer} ref={ref}>
-      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-    </div>)
+    return (
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </Box>
+    )
   }
 }
 

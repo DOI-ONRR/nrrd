@@ -66,7 +66,6 @@ const useStyles = makeStyles(theme => ({
 // Page ScrollTo
 const PageSubMenu = ({ children, menuItems, ...props }) => {
   const classes = useStyles()
-
   const { state: filterState } = useContext(DataFilterContext)
 
   // eslint-disable-next-line no-unused-vars
@@ -114,9 +113,9 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
   const scrollTo = element => {
     scroller.scrollTo(element, {
       duration: 800,
-      delay: 0,
+      delay: 500,
       smooth: 'easeInOutQuart',
-      offset: -150
+      offset: -150,
     })
   }
 

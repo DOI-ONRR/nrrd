@@ -1,8 +1,8 @@
 /* eslint-disable no-return-assign */
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery, useLazyQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import QueryLink from '../../../../components/QueryLink'
@@ -68,6 +68,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const RevenueByCompany = props => {
+  console.log('RevenueByCompany props: ', props)
   const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
@@ -75,16 +76,29 @@ const RevenueByCompany = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const { title } = props
+
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year, commodities: commodities },
-    skip: period !== 'Calendar Year' || inView === false
-  })
+  // const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+  //   variables: { year: year, commodities: commodities },
+  //   skip: period !== 'Calendar Year' || inView === false
+  // })
+
+  const [loadQuery, { loading, error, data }] = useLazyQuery(
+    NATIONAL_REVENUE_SUMMARY_QUERY,
+    { variables: { year: year, commodities: commodities } }
+  )
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      loadQuery()
+    }, 5000)
+    return () => clearTimeout(timer)
+  }, [])
 
   // const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
@@ -110,30 +124,18 @@ const RevenueByCompany = props => {
     theme.palette.explore[200],
     theme.palette.explore[100]
   ]
-  /*
-    const colorRange = [
-        theme.palette.explore[100],
-        theme.palette.explore[200],
-        theme.palette.explore[300],
-        theme.palette.explore[400],
-        theme.palette.explore[500],
-        theme.palette.explore[600],
-        theme.palette.explore[700]
-    ]
-    */
+
   if (loading) {
-    return 'Loading...'
+    return (
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+        <CircularProgress />
+      </Box>
+    )
   }
 
   if (error) return `Error! ${ error.message }`
 
   if (data && data.federal_revenue_by_company_type_summary.length > 0) {
-    /*  chartData = d3.nest()
-         .key(k => k.revenue_type)
-         .rollup(v => d3.sum(v, i => i.total))
-         .entries(data.revenue_type_summary)
-         .map(d => ({ revenue_type: d.key, total: d.value }))
-	 } */
     groupData = utils.groupBy(data.federal_revenue_by_company_type_summary, 'corporate_name')
     groupTotal = Object.keys(groupData).filter((d, i) => i < 1)
 			 .map(k => groupData[k].reduce((revenue, i) => (revenue += i.revenue), 0)).reduce((revenue, s) => (revenue += s), 0)
@@ -155,7 +157,7 @@ const RevenueByCompany = props => {
         <Grid container>
           <Grid item xs={12}>
             <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-		  <Box component="h3" color="secondary.dark">{title}</Box>
+		          <Box component="h3" color="secondary.dark">{title}</Box>
             </Box>
           </Grid>
           <Grid item xs={12}>
@@ -372,9 +374,11 @@ const RevenueByCompany = props => {
     )
   }
   else {
-    return (<div className={classes.progressContainer} ref={ref}>
-      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-    </div>)
+    return (
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+        <CircularProgress />
+      </Box>
+    )
   }
 }
 

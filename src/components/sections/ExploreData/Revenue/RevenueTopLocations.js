@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import React, { useContext, useEffect } from 'react'
+import { useQuery, useLazyQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 
@@ -96,22 +96,35 @@ const RevenueTopLocations = props => {
   if (location === 'State') {
     locations.push('Native American')
   }
+
   const { ref, inView, entry } = useInView({
 	    /* Optional options */
 	    threshold: 0,
 	    triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year, locations, period, commodities },
-    skip: inView === false
-  })
+  // const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  //   variables: { year, locations, period, commodities },
+  //   skip: inView === false
+  // })
+
+  const [loadQuery, { loading, error, data }] = useLazyQuery(
+    APOLLO_QUERY,
+    { variables: { year, locations, period, commodities } }
+  )
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      loadQuery()
+    }, 4000)
+    return () => clearTimeout(timer)
+  }, [])
 
   if (loading) {
     return (
-      <div className={classes.progressContainer}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-      </div>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+        <CircularProgress />
+      </Box>
     )
   }
   if (error) return `Error! ${ error.message }`
@@ -205,9 +218,11 @@ const RevenueTopLocations = props => {
     )
   }
   else {
-    return (<div className={classes.progressContainer} ref={ref}>
-      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-    </div>)
+    return (
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </Box>
+    )
   }
 }
 

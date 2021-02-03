@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 // import { graphql } from 'gatsby'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery, useLazyQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
@@ -83,7 +83,7 @@ const RevenueOverTime = props => {
   const classes = useStyles()
   const theme = useTheme()
 
-  const title = props.title || ''
+  const { title } = props
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
@@ -96,20 +96,32 @@ const RevenueOverTime = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { period: period, commodities: commodities },
-    skip: inView === false
-  })
+  // const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  //   variables: { period: period, commodities: commodities },
+  //   skip: inView === false
+  // })
+
+  const [loadQuery, { loading, error, data }] = useLazyQuery(
+    APOLLO_QUERY,
+    { variables: { period: period, commodities: commodities } }
+  )
 
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      loadQuery()
+    }, 2000)
+    return () => clearTimeout(timer)
+  }, [])
+
   if (loading) {
     return (
-      <div className={classes.progressContainer}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-      </div>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+        <CircularProgress />
+      </Box>
     )
   }
   if (error) return `Error! ${ error.message }`
@@ -142,7 +154,7 @@ const RevenueOverTime = props => {
     chartData = [years, ...sums]
     // console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
-      <Container id={utils.formatToSlug(title)} ref={ref} >
+      <Container id={utils.formatToSlug(title)} ref={ref}>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h4" color="secondary.dark">{title}</Box>
@@ -180,9 +192,11 @@ const RevenueOverTime = props => {
     )
   }
   else {
-    return (<div className={classes.progressContainer} ref={ref}>
-      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-    </div>)
+    return (
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+        <CircularProgress />
+      </Box>
+    )
   }
 }
 
