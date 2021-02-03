@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 // import { graphql } from 'gatsby'
-import { useQuery, useLazyQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'
@@ -43,18 +43,6 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '100%',
     },
   },
-  progressContainer: {
-    maxWidth: '25%',
-    display: 'flex',
-    '& > *': {
-      marginTop: theme.spacing(3),
-      marginRight: 'auto',
-      marginLeft: 'auto',
-    }
-  },
-  circularProgressRoot: {
-    color: theme.palette.primary.dark,
-  },
   chipRoot: {
     height: 40,
     marginTop: theme.spacing(1),
@@ -96,30 +84,18 @@ const RevenueOverTime = props => {
     triggerOnce: true
   })
 
-  // const { loading, error, data } = useQuery(APOLLO_QUERY, {
-  //   variables: { period: period, commodities: commodities },
-  //   skip: inView === false
-  // })
-
-  const [loadQuery, { loading, error, data }] = useLazyQuery(
-    APOLLO_QUERY,
-    { variables: { period: period, commodities: commodities } }
-  )
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { period: period, commodities: commodities },
+    skip: inView === false
+  })
 
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      loadQuery()
-    }, 2000)
-    return () => clearTimeout(timer)
-  }, [])
-
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={300}>
         <CircularProgress />
       </Box>
     )
@@ -193,7 +169,7 @@ const RevenueOverTime = props => {
   }
   else {
     return (
-      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={300}>
         <CircularProgress />
       </Box>
     )

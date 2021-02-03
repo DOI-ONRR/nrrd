@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react'
-import { useQuery, useLazyQuery } from '@apollo/react-hooks'
+import React, { useContext } from 'react'
+import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 
@@ -103,26 +103,14 @@ const RevenueTopLocations = props => {
 	    triggerOnce: true
   })
 
-  // const { loading, error, data } = useQuery(APOLLO_QUERY, {
-  //   variables: { year, locations, period, commodities },
-  //   skip: inView === false
-  // })
-
-  const [loadQuery, { loading, error, data }] = useLazyQuery(
-    APOLLO_QUERY,
-    { variables: { year, locations, period, commodities } }
-  )
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      loadQuery()
-    }, 4000)
-    return () => clearTimeout(timer)
-  }, [])
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { year, locations, period, commodities },
+    skip: inView === false
+  })
 
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={1010}>
         <CircularProgress />
       </Box>
     )
@@ -219,7 +207,7 @@ const RevenueTopLocations = props => {
   }
   else {
     return (
-      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={1010}>
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />
       </Box>
     )

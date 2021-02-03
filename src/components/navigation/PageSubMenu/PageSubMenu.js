@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useContext } from 'react'
+import React, { useCallback, useState, useEffect, useContext, useRef } from 'react'
 
 import {
   animateScroll as scroll,
@@ -67,6 +67,7 @@ const useStyles = makeStyles(theme => ({
 const PageSubMenu = ({ children, menuItems, ...props }) => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
+  const subMenuWrapperRef = useRef(null)
 
   // eslint-disable-next-line no-unused-vars
   const [subMenu, setSubMenu] = useState({
@@ -136,6 +137,15 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
     }
   }, [subMenu.menuItems, filterState])
 
+  useEffect(() => {
+    console.log('subMenuWrapperRef: ', subMenuWrapperRef)
+  }, [])
+
+  const subMenuChildren = React.Children.map(children, child =>
+    React.cloneElement(child, {
+      refs: subMenuWrapperRef
+    }))
+
   return (
     <>
       <Box className={classes.root}>
@@ -166,7 +176,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
           </Paper>
         </StickyWrapper>
       </Box>
-      <Box>
+      <Box ref={subMenuWrapperRef}>
         {children}
       </Box>
     </>

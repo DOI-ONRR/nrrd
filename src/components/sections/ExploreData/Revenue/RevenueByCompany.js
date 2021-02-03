@@ -1,8 +1,8 @@
 /* eslint-disable no-return-assign */
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery, useLazyQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import QueryLink from '../../../../components/QueryLink'
@@ -83,24 +83,10 @@ const RevenueByCompany = props => {
     triggerOnce: true
   })
 
-  // const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-  //   variables: { year: year, commodities: commodities },
-  //   skip: period !== 'Calendar Year' || inView === false
-  // })
-
-  const [loadQuery, { loading, error, data }] = useLazyQuery(
-    NATIONAL_REVENUE_SUMMARY_QUERY,
-    { variables: { year: year, commodities: commodities } }
-  )
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      loadQuery()
-    }, 5000)
-    return () => clearTimeout(timer)
-  }, [])
-
-  // const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
+  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+    variables: { year: year, commodities: commodities },
+    skip: period !== 'Calendar Year' || inView === false
+  })
 
   let groupData
   let groupTotal
@@ -127,7 +113,7 @@ const RevenueByCompany = props => {
 
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={1340}>
         <CircularProgress />
       </Box>
     )
@@ -375,7 +361,7 @@ const RevenueByCompany = props => {
   }
   else {
     return (
-      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref}>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={1340}>
         <CircularProgress />
       </Box>
     )
