@@ -246,7 +246,7 @@ const ComparisonTable = forwardRef((props, ref) => {
             }
             <TableRow>
               {matchesSmDown &&
-                  <TableCell classes={{ root: classes.tableCellRoot }}></TableCell>
+                <TableCell classes={{ root: classes.tableCellRoot }}></TableCell>
               }
               <TableCell align="right">
                 <Box fontWeight="bold">

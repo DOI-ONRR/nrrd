@@ -118,7 +118,7 @@ const useStyles = makeStyles(theme => ({
     },
     '& .legend-table th, & .legend-table td': {
       padding: '6px 24px 6px 16px',
-      verticalAlign: 'top',
+      verticalAlign: 'bottom',
     },
     '& .legend-table td:first-child': {
       padding: '6px 6px 6px 16px',

@@ -177,13 +177,13 @@ const TotalRevenue = props => {
 
   switch (breakoutBy) {
   case 'revenue_type':
-    yOrderBy = ['Royalties', 'Bonus', 'Rents', 'Other Revenues', 'Inspection Fees', 'Civil Penalties']
+    yOrderBy = ['Other Revenues', 'Inspection Fees', 'Civil Penalties', 'Rents', 'Bonus', 'Royalties']
     break
   case 'commodity':
     yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
     break
   default:
-    yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - not tied to a location']
+    yOrderBy = ['Federal - not tied to a location', 'Native American', 'Federal Offshore', 'Federal Onshore']
     break
   }
 
