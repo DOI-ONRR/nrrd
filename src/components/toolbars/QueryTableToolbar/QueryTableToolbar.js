@@ -5,14 +5,14 @@ import { DataFilterContext, DownloadContext } from '../../../stores'
 
 import { downloadWorkbook } from '../../../js/utils'
 
-import DataTypeFilter from '../../inputs/filters/DataTypeFilter'
-import PeriodFilter from '../../inputs/filters/PeriodFilter'
-import FiscalYearFilter from '../../inputs/filters/FiscalYearFilter'
-import CalendarYearFilter from '../../inputs/filters/CalendarYearFilter'
-import CommodityFilter from '../../inputs/filters/CommodityFilter'
-import CompanyNameFilter from '../../inputs/filters/CompanyNameFilter'
-import RevenueTypeFilter from '../../inputs/filters/RevenueTypeFilter'
-import StateOffshoreFilter from '../../inputs/filters/StateOffshoreFilter'
+import DataTypeFilter from '../../inputs/data-filters/DataTypeFilter'
+import PeriodFilter from '../../inputs/data-filters/PeriodFilter'
+import FiscalYearFilter from '../../inputs/data-filters/FiscalYearFilter'
+import CalendarYearFilter from '../../inputs/data-filters/CalendarYearFilter'
+import CommodityFilter from '../../inputs/data-filters/CommodityFilter'
+import CompanyNameFilter from '../../inputs/data-filters/CompanyNameFilter'
+import RevenueTypeFilter from '../../inputs/data-filters/RevenueTypeFilter'
+import StateOffshoreFilter from '../../inputs/data-filters/StateOffshoreFilter'
 
 import {
   QK_QUERY_TOOL,

@@ -7,7 +7,7 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 import BaseToolbar from '../BaseToolbar'
 import SearchLocationsInput from '../../inputs/SearchLocationsInput'
 import { StickyWrapper } from '../../utils/StickyWrapper'
-import DataTypeFilter from '../../inputs/filters/DataTypeFilter'
+import DataTypeFilter from '../../inputs/data-filters/DataTypeFilter'
 
 import {
   Box,
