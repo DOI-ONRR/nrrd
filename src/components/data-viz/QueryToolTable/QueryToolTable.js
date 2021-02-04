@@ -29,6 +29,7 @@ import { toTitleCase, aggregateSum, destructuringSwap } from '../../../js/utils'
 
 import withQueryManager from '../../withQueryManager'
 
+import Skeleton from '@material-ui/lab/Skeleton'
 import CustomTable from './Custom/CustomTable'
 import CustomTableHead from './Custom/CustomTableHead'
 import CustomTableCell from './Custom/CustomTableCell'
@@ -78,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const QueryToolTable = withQueryManager(({ data }) => {
+const QueryToolTable = withQueryManager(({ data, loading }) => {
   const classes = useStyles()
   const _tableHeight = 550
   const { state: dfc } = useContext(DataFilterContext)
@@ -137,6 +138,12 @@ const QueryToolTable = withQueryManager(({ data }) => {
     }
   }, [dfc, data])
 
+  useEffect(() => {
+    if (loading && data) {
+      setTableData()
+    }
+  }, [loading])
+
   if (!dfc) {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
@@ -144,11 +151,15 @@ const QueryToolTable = withQueryManager(({ data }) => {
   return (
     <Box className={classes.root}>
       <Grid container spacing={2}>
-        {(tableData && dataTableConfig)
-          ? <Grid item xs={12}>
+        {loading &&
+          <Grid item xs={12}>
+            <Skeleton variant="rect" width={'100%'} height={_tableHeight} />
+          </Grid>
+        }
+        {(tableData && dataTableConfig) &&
+          <Grid item xs={12}>
             <DataTableBase data={tableData} config={dataTableConfig} />
           </Grid>
-          : <Grid item xs={12}><div style={{ width: '100%', height: `${ _tableHeight }px` }} /></Grid>
         }
       </Grid>
     </Box>
@@ -475,8 +486,8 @@ const DataTableBase = ({ data, config }) => {
 
   return (
     <React.Fragment>
-      {(defaultColumnWidths?.length > 0 && tableData?.length > 0) &&
-        <Grid container spacing={3}>
+      {(defaultColumnWidths?.length > 0 && tableData?.length > 0)
+        ? <Grid container spacing={3}>
           <Grid item xs={12}>
             <TableGrid
               rows={tableData}
@@ -545,6 +556,7 @@ const DataTableBase = ({ data, config }) => {
             </TableGrid>
           </Grid>
         </Grid>
+        : <Skeleton variant="rect" width={'100%'} height={'100%'} />
       }
     </React.Fragment>
   )

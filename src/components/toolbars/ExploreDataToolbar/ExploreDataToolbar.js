@@ -7,6 +7,7 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 import BaseToolbar from '../BaseToolbar'
 import SearchLocationsInput from '../../inputs/SearchLocationsInput'
 import { StickyWrapper } from '../../utils/StickyWrapper'
+import DataTypeFilter from '../../inputs/filters/DataTypeFilter'
 
 import {
   Box,
@@ -24,7 +25,6 @@ import { IconExploreDataImg } from '../../images'
 
 import {
   CommoditySelectInput,
-  DataTypeSelectInput,
   FilterToggleInput,
   PeriodSelectInput
 } from '../../inputs'
@@ -201,14 +201,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
         </BaseToolbar>
         {exploreDataTabOpen &&
         <BaseToolbar isSecondary={true}>
-          <DataTypeSelectInput
-            dataFilterKey={dataType}
-            data={EXPLORE_DATA_TOOLBAR_OPTIONS[DATA_TYPE]}
-            defaultSelected={ dataType || REVENUE }
-            label='Data type'
-            selectType='Single'
-            showClearSelected={false} />
-
+          <DataTypeFilter defaultSelected={ dataType || REVENUE }/>
           {(dataType === 'Revenue') &&
             <CommoditySelectInput
               dataFilterKey={COMMODITY}

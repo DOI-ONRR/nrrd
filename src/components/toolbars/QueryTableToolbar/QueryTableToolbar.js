@@ -5,13 +5,14 @@ import { DataFilterContext, DownloadContext } from '../../../stores'
 
 import { downloadWorkbook } from '../../../js/utils'
 
-import PeriodFilter from '../../inputs/Filters/PeriodFilter'
-import FiscalYearFilter from '../../inputs/Filters/FiscalYearFilter'
-import CalendarYearFilter from '../../inputs/Filters/CalendarYearFilter'
-import CommodityFilter from '../../inputs/Filters/CommodityFilter'
-import CompanyNameFilter from '../../inputs/Filters/CompanyNameFilter'
-import RevenueTypeFilter from '../../inputs/Filters/RevenueTypeFilter'
-import StateOffshoreFilter from '../../inputs/Filters/StateOffshoreFilter'
+import DataTypeFilter from '../../inputs/filters/DataTypeFilter'
+import PeriodFilter from '../../inputs/filters/PeriodFilter'
+import FiscalYearFilter from '../../inputs/filters/FiscalYearFilter'
+import CalendarYearFilter from '../../inputs/filters/CalendarYearFilter'
+import CommodityFilter from '../../inputs/filters/CommodityFilter'
+import CompanyNameFilter from '../../inputs/filters/CompanyNameFilter'
+import RevenueTypeFilter from '../../inputs/filters/RevenueTypeFilter'
+import StateOffshoreFilter from '../../inputs/filters/StateOffshoreFilter'
 
 import {
   QK_QUERY_TOOL,
@@ -31,9 +32,7 @@ import {
 } from '../../../constants'
 
 import {
-  DataTypePlusSelectInput,
   LandTypeSelectInput,
-  RevenueTypeSelectInput,
   CommoditySelectInput,
   ProductSelectInput,
   RecipientSelectInput,
@@ -56,8 +55,6 @@ import Link from '../../Link'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import useTheme from '@material-ui/core/styles/useTheme'
 import Box from '@material-ui/core/Box'
-
-import FilterList from '@material-ui/icons/FilterList'
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -136,13 +133,8 @@ const QueryTableToolbar = ({ label, ...props }) => {
     setQueryDataToolbarOpen(!queryDataToolbarOpen)
   }
 
+  // eslint-disable-next-line no-unused-vars
   const [dataFilterToolbarOpen, setDataFilterToolbarOpen] = React.useState(false)
-
-  const toggleDataFilterToolbar = event => {
-    setDownloadToolbarOpen(false)
-    setQueryDataToolbarOpen(false)
-    setDataFilterToolbarOpen(!dataFilterToolbarOpen)
-  }
 
   const [downloadToolbarOpen, setDownloadToolbarOpen] = React.useState(false)
 
@@ -197,7 +189,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
       { queryDataToolbarOpen &&
         <BaseToolbar isSecondary={true}>
           <Box className={classes.toolsWrapperFirst}>
-            <DataTypePlusSelectInput />
+            <DataTypeFilter useDataTypesPlus={true} />
           </Box>
           <Box className={classes.toolsWrapper}>
             {state[DATA_TYPE] === DISBURSEMENT
@@ -262,7 +254,7 @@ const RevenueFilterToolbar = () => {
   return (
     <>
       <LandTypeSelectInput />
-      <RevenueTypeSelectInput />
+      <RevenueTypeFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
       <StateOffshoreFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
       <CommoditySelectInput />
     </>
