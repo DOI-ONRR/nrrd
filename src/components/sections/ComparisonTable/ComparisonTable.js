@@ -72,7 +72,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
-      console.log('getSelected from Child', d)
+      // console.log('getSelected from Child', d)
       if (d.year) {
         const currentSelectedYearData = data.filter(item => item.year === d.year)
         // console.log('currentSelectedYearData: ', currentSelectedYearData)
@@ -82,11 +82,11 @@ const ComparisonTable = forwardRef((props, ref) => {
 
       if (d.month_long) {
         const monthNum = parseInt(monthLookup(d.month_long), 10)
-        const indexToFind = (period === 'Most recent 12 months') ? monthNum : d.currentIndex + 1
+        const indexToFind = (monthly === DFC.MONTHLY_CAPITALIZED) ? monthNum : d.currentIndex + 1
         // get year key from xGroups
         if (d.xGroups) {
           Object.entries(d.xGroups).map((item, index) => {
-            console.log('d.xGroups: ', item)
+            // console.log('d.xGroups: ', item, indexToFind)
             if (item[1].includes(indexToFind)) {
               console.log('current selected year and month: ', d.month_long, item)
               setSelectedItem({ ...selectedItem, year: item[0], month: d.month_long })

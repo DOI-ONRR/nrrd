@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
@@ -50,13 +50,26 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
     # }
 
     total_monthly_fiscal_disbursement: total_monthly_fiscal_disbursement_2 {
-      source: land_type
-      sum
-      month_long
       period
+      sum
+      source: land_type
+      year
+      sort_order
+      period_date
+       month
+      month_long
+      recipient: fund_class
+    }
+
+    total_monthly_fiscal_disbursement_last_two_years {
+      period
+      sum
+      source: land_type
+      year
+      sort_order
       period_date
       month
-      year
+      month_long
       recipient: fund_class
     }
 
@@ -157,25 +170,23 @@ const TotalDisbursements = props => {
     currentMonthNum = data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth
     monthStartDate = `10-01-${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].year }`
     monthEndDate = `${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth }-01-${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].year }`
-
     monthRange = getMonthRange(monthStartDate, monthEndDate)
     startMonth = months[9]
     endMonth = months[monthRange[monthRange.length - 1].split('-')[0] - 1]
+
     monthRangeText = (endMonth === 'October') ? startMonth.substring(0, 3) : `${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) }`
     currentYearSoFarText = `so far (${ monthRangeText })`
-
-    console.log('maxFiscalYear: ', maxFiscalYear)
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
         switch (yGroupBy) {
         case 'recipient':
           comparisonData = data.total_monthly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
-          chartData = data.total_monthly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 1 && yOrderBy.includes(item.recipient)))
+          chartData = data.total_monthly_fiscal_disbursement_last_two_years.filter(item => yOrderBy.includes(item.recipient))
           break
         default:
           comparisonData = data.total_monthly_fiscal_disbursement
-          chartData = data.total_monthly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 1)
+          chartData = data.total_monthly_fiscal_disbursement_last_two_years
           break
         }
       }
@@ -245,7 +256,7 @@ const TotalDisbursements = props => {
       }
 
       legendHeaders = (headers, row) => {
-        const headerArr = [headers[0], '', `${ periodAbbr } ${ headers[2] } ${ ((currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[2] > maxFiscalYear - 1) ? currentYearSoFarText : '' }`]
+        const headerArr = [headers[0], '', `${ periodAbbr } ${ headers[2] } ${ ((currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[2] > maxFiscalYear) ? currentYearSoFarText : '' }`]
         return headerArr
       }
     }

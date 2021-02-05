@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     height: '200px',
     fill: 'inherit',
     '& .bars > .bar': {
-      opacity: 0.75,
+      opacity: 0.8,
     },
     '& .bars > .bar:hover': {
       cursor: 'pointer',
