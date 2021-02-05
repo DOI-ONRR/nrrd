@@ -453,12 +453,6 @@ export default class D3StackedBarChart {
       // console.debug("INdex: ", index, "I: ", this.selectedIndex)
       d3.selectAll('.bar').filter((d, i, nodes) => {
         if (i === index) {
-          /*          this.xSelectedValue = d
-                      this.ySelectedGroup = this.yGroupData(d)
-                      this.selectedData(this.ySelectedGroup)
-                      this.selectedIndex = index
-          */
-
           const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
           if (selectedElement) {
             selectedElement.attr('selected', false)
@@ -729,7 +723,7 @@ export default class D3StackedBarChart {
       this.onSelect(this)
 
       if (this.xAxis === 'year') this.handleBarHover({ year: this._xDomain[this.currentIndex] || this.xSelectedValue })
-      if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.currentIndex] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups, currentIndex: this.currentIndex })
+      if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.data] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups, currentIndex: this.currentIndex })
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -813,7 +807,7 @@ export default class D3StackedBarChart {
       }
       else {
         this.createLegend(this._xDomain[this.xSelectedValue])
-        this.updateLegend(this.ySelectedGroup)
+        this.updateLegend()
 
         if (this.xAxis === 'year') this.handleBarHover({ year: this.xSelectedValue })
         if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this.xSelectedValue, xGroups: this.xGroups, currentIndex: this.currentIndex })
@@ -863,7 +857,7 @@ export default class D3StackedBarChart {
       const r = this.data.map((row, i) => {
         return row[this.xAxis]
       })
-      //      const domain = [...(new Set(r.sort((a, b) => a - b)))]
+      // const domain = [...(new Set(r.sort((a, b) => a - b)))]
       const domain = [...(new Set(r))]
       this._xDomain = domain
       return domain
@@ -928,7 +922,6 @@ export default class D3StackedBarChart {
           .sortKeys((a, b) => this.options.yOrderBy.indexOf(a) - this.options.yOrderBy.indexOf(b))
           .entries(data)
           .map(y => y.key)
-
         return r.reverse()
       }
       else {

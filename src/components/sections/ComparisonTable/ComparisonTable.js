@@ -54,7 +54,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-  // console.log('ComparisonTable props: ', props)
+  console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year, dataType, commodity } = filterState
@@ -72,7 +72,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
-      // console.log('getSelected from Child', d)
+      console.log('getSelected from Child', d)
       if (d.year) {
         const currentSelectedYearData = data.filter(item => item.year === d.year)
         // console.log('currentSelectedYearData: ', currentSelectedYearData)
@@ -86,8 +86,9 @@ const ComparisonTable = forwardRef((props, ref) => {
         // get year key from xGroups
         if (d.xGroups) {
           Object.entries(d.xGroups).map((item, index) => {
+            console.log('d.xGroups: ', item)
             if (item[1].includes(indexToFind)) {
-              // console.log('current selected year and month: ', d.month_long, item[0])
+              console.log('current selected year and month: ', d.month_long, item)
               setSelectedItem({ ...selectedItem, year: item[0], month: d.month_long })
             }
           })
@@ -107,6 +108,8 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   // Get previous year
   const previousYear = currentYear - 1
+
+  console.log('previousYear: ', previousYear)
 
   // Text output
   const month = (monthly === DFC.MONTHLY_CAPITALIZED && selectedItem.month) && selectedItem.month.substring(0, 3)
@@ -154,11 +157,11 @@ const ComparisonTable = forwardRef((props, ref) => {
     return newObj
   })
 
-  comparisonData.sort((a, b) => yOrderBy.includes(a.previous.source) - yOrderBy.includes(b.previous.source))
+  comparisonData.sort((a, b) => yOrderBy.indexOf(a.previous[yGroupBy]) - yOrderBy.indexOf(b.previous[yGroupBy]))
 
   const cData = comparisonData.slice().sort((a, b) => yOrderBy.indexOf(a.key) - yOrderBy.indexOf(b.key))
 
-  // console.log('comparisonData: ', comparisonData)
+  console.log('comparisonData: ', comparisonData)
   // console.log('cData: ', cData)
 
   // get previous/current year totals
@@ -256,7 +259,7 @@ const ComparisonTable = forwardRef((props, ref) => {
               }
               <TableCell align="right">
                 <Box fontWeight="bold">
-                  {formatSum(previousYearTotal)}
+                  {previousYearTotal !== 0 ? formatSum(previousYearTotal) : '-'}
                 </Box>
               </TableCell>
               <TableCell align="right">

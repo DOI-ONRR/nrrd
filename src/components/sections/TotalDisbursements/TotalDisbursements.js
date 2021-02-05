@@ -50,23 +50,24 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
     # }
 
     total_monthly_fiscal_disbursement: total_monthly_fiscal_disbursement_2 {
-      source
+      source: land_type
       sum
       month_long
+      period
       period_date
       month
       year
-      recipient
+      recipient: fund_class
     }
 
     total_monthly_calendar_disbursement: total_monthly_calendar_disbursement_2 {
-      source
+      source: land_type
       sum
       month_long
       period_date
       month
       year
-      recipient
+      recipient: fund_class
     }
 
     total_monthly_last_twelve_disbursement: total_monthly_last_twelve_disbursement_2 {
@@ -106,28 +107,6 @@ const TotalDisbursements = props => {
   const handleBarHover = d => {
     disbursementsComparison.current.setSelectedItem(d)
   }
-
-  const getCurrentFiscalYear = () => {
-    // get current date
-    const today = new Date()
-
-    // get current month
-    const curMonth = today.getMonth()
-
-    let fiscalYear = ''
-    if (curMonth > 3) { //
-      const nextYr1 = (today.getFullYear() + 1).toString()
-      fiscalYear = today.getFullYear().toString() + '-' + nextYr1.charAt(2) + nextYr1.charAt(3)
-    }
-    else {
-      const nextYr2 = today.getFullYear().toString()
-      fiscalYear = (today.getFullYear() - 1).toString() + '-' + nextYr2.charAt(2) + nextYr2.charAt(3)
-    }
-
-    return fiscalYear
-  }
-
-  console.log('getCurrentFiscalYear: ', getCurrentFiscalYear())
 
   if (loading) {
     return 'Loading...'
@@ -185,6 +164,8 @@ const TotalDisbursements = props => {
     monthRangeText = (endMonth === 'October') ? startMonth.substring(0, 3) : `${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) }`
     currentYearSoFarText = `so far (${ monthRangeText })`
 
+    console.log('maxFiscalYear: ', maxFiscalYear)
+
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
         switch (yGroupBy) {
@@ -236,7 +217,7 @@ const TotalDisbursements = props => {
 
       xAxis = 'month_long'
       xLabels = (x, i) => {
-        // console.debug(x)
+        // console.debug('xLabels x: ', x)
         return x.map(v => v.substr(0, 3))
       }
 
@@ -288,7 +269,7 @@ const TotalDisbursements = props => {
             key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
             title={chartTitle}
             units={units}
-            data={chartData.filter(item => item.sum * 10)}
+            data={chartData}
             xAxis={xAxis}
             yAxis={yAxis}
             xGroups={xGroups}
