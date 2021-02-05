@@ -1,4 +1,5 @@
 import React, { forwardRef, useContext, useState, useImperativeHandle, useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 import {
   Box,
@@ -53,7 +54,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-  console.log('ComparisonTable props: ', props)
+  // console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year, dataType, commodity } = filterState
@@ -66,15 +67,15 @@ const ComparisonTable = forwardRef((props, ref) => {
   const monthlyComparisonText = 'Compares data for the selected month to the same month in the previous year.'
 
   useEffect(() => {
-    console.log('ComparisonTable selectedItem: ', selectedItem)
+    // console.log('ComparisonTable selectedItem: ', selectedItem)
   }, [selectedItem])
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
-      console.log('getSelected from Child', d)
+      // console.log('getSelected from Child', d)
       if (d.year) {
         const currentSelectedYearData = data.filter(item => item.year === d.year)
-        console.log('currentSelectedYearData: ', currentSelectedYearData)
+        // console.log('currentSelectedYearData: ', currentSelectedYearData)
         const currentSelectedYearDataMaxMonth = currentSelectedYearData[currentSelectedYearData.length - 1].monthLong
         setSelectedItem({ ...selectedItem, year: d.year, month: currentSelectedYearDataMaxMonth })
       }
@@ -122,11 +123,12 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   // grouped data
   const groupedData = utils.groupBy(data, yGroupBy)
-  console.log('groupedData: ', groupedData)
+  // console.log('groupedData: ', groupedData)
 
   // comparison data
   const comparisonData = Object.entries(groupedData).map((item, index) => {
     const newObj = {}
+    newObj.key = item[0]
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       const previousSum = item[1].filter(item => item.year === previousYear && item.month_long === selectedItem.month).reduce((prev, curr) => prev + curr.sum, 0)
@@ -153,7 +155,11 @@ const ComparisonTable = forwardRef((props, ref) => {
   })
 
   comparisonData.sort((a, b) => yOrderBy.includes(a.previous.source) - yOrderBy.includes(b.previous.source))
-  console.log('comparisonData: ', comparisonData)
+
+  const cData = comparisonData.slice().sort((a, b) => yOrderBy.indexOf(a.key) - yOrderBy.indexOf(b.key))
+
+  // console.log('comparisonData: ', comparisonData)
+  // console.log('cData: ', cData)
 
   // get previous/current year totals
   const previousYearTotals = comparisonData.map(item => item.previous.sum)
@@ -198,7 +204,7 @@ const ComparisonTable = forwardRef((props, ref) => {
         {monthly === DFC.MONTHLY_CAPITALIZED ? monthlyComparisonText : yearlyComparisonText }
       </Box>
       <TableContainer className={classes.comparisonTable}>
-        <Table size="small" aria-label={`${ dataType } comparison tabel`}>
+        <Table size="small" aria-label={`${ dataType } comparison table`}>
           <TableHead>
             <TableRow>
               {matchesSmDown &&
@@ -218,16 +224,16 @@ const ComparisonTable = forwardRef((props, ref) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            { comparisonData.map((item, index) => (
+            { cData && cData.map((item, index) => (
               <TableRow>
                 {matchesSmDown &&
                   <TableCell classes={{ root: classes.tableCellRoot }}>
-                    <Box fontSize="16px">{item.current ? item.current[yGroupBy] : ''}</Box>
+                    <Box fontSize="16px">{item.key || ''}</Box>
                   </TableCell>
                 }
                 <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
                   <Box>
-                    {(item.previous && item.previous.sum !== 0) ? formatSum(item.previous.sum) : '-'}
+                    {(item.previous && item.previous.sum !== 0) ? formatSum(item.previous.sum) : '-' }
                   </Box>
                 </TableCell>
                 <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
@@ -274,3 +280,9 @@ const ComparisonTable = forwardRef((props, ref) => {
 })
 
 export default ComparisonTable
+
+ComparisonTable.propTypes = {
+  data: PropTypes.array.isRequired,
+  yGroupBy: PropTypes.string,
+  yOrderBy: PropTypes.array.isRequired
+}

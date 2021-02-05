@@ -107,8 +107,27 @@ const TotalDisbursements = props => {
     disbursementsComparison.current.setSelectedItem(d)
   }
 
-  // useEffect(() => {
-  // }, [breakoutBy])
+  const getCurrentFiscalYear = () => {
+    // get current date
+    const today = new Date()
+
+    // get current month
+    const curMonth = today.getMonth()
+
+    let fiscalYear = ''
+    if (curMonth > 3) { //
+      const nextYr1 = (today.getFullYear() + 1).toString()
+      fiscalYear = today.getFullYear().toString() + '-' + nextYr1.charAt(2) + nextYr1.charAt(3)
+    }
+    else {
+      const nextYr2 = today.getFullYear().toString()
+      fiscalYear = (today.getFullYear() - 1).toString() + '-' + nextYr2.charAt(2) + nextYr2.charAt(3)
+    }
+
+    return fiscalYear
+  }
+
+  console.log('getCurrentFiscalYear: ', getCurrentFiscalYear())
 
   if (loading) {
     return 'Loading...'

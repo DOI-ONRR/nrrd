@@ -207,7 +207,7 @@ const TotalRevenue = props => {
   }
 
   if (data) {
-    console.log('TotalRevenue data: ', data)
+    // console.log('TotalRevenue data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
