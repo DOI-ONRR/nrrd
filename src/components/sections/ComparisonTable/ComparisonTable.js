@@ -54,7 +54,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-  console.log('ComparisonTable props: ', props)
+  // console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year, dataType, commodity } = filterState
@@ -109,7 +109,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   // Get previous year
   const previousYear = currentYear - 1
 
-  console.log('previousYear: ', previousYear)
+  // console.log('previousYear: ', previousYear)
 
   // Text output
   const month = (monthly === DFC.MONTHLY_CAPITALIZED && selectedItem.month) && selectedItem.month.substring(0, 3)
@@ -161,7 +161,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   const cData = comparisonData.slice().sort((a, b) => yOrderBy.indexOf(a.key) - yOrderBy.indexOf(b.key))
 
-  console.log('comparisonData: ', comparisonData)
+  // console.log('comparisonData: ', comparisonData)
   // console.log('cData: ', cData)
 
   // get previous/current year totals

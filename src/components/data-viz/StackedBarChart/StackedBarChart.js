@@ -20,18 +20,18 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '200px',
     fill: 'inherit',
-    '& .bars > .bar': {
-      opacity: 0.8,
-    },
+    // '& .bars > .bar': {
+    //   opacity: 0.8,
+    // },
     '& .bars > .bar:hover': {
       cursor: 'pointer',
       // outline: `${ theme.palette.orange[200] } solid`,
-      opacity: 1,
+      // opacity: 1,
     },
-    '& .bars > .bar.active': {
-      // outline: `${ theme.palette.orange[200] } solid`,
-      opacity: 1,
-    },
+    // '& .bars > .bar.active': {
+    //   outline: `${ theme.palette.orange[200] } solid`,
+    //   opacity: 1,
+    // },
     '& .bar .stacked-bar-chart-item': {
       transition: 'all .1s ease-in'
     },
@@ -50,9 +50,12 @@ const useStyles = makeStyles(theme => ({
     '& .y-axis > .tick': {
       fontSize: '.85rem',
       fontWeight: 'normal',
+      transition: 'all .1s ease-in',
     },
-    '& .x-axis .tick.active': {
-      fontWeight: 'bold'
+    '& .x-axis .tick.active > text': {
+      fontWeight: 'bold',
+      fontSize: '.90rem',
+      fill: theme.palette.common.black
     }
   },
   horizontal: {

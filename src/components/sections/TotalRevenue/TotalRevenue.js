@@ -22,12 +22,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const TOTAL_REVENUE_QUERY = gql`
   query TotalYearlyRevenue {
-    # total_yearly_fiscal_revenue { 
-    #   year,
-    #   source,
-    #   sum
-    # }
-    total_yearly_fiscal_revenue: total_yearly_fiscal_revenue_2 {
+    total_yearly_fiscal_revenue {
       period
       sum
       source: land_type
@@ -41,12 +36,7 @@ const TOTAL_REVENUE_QUERY = gql`
       monthLong: month_long
     }
 
-    # total_yearly_calendar_revenue { 
-    #   year,
-    #   source,
-    #   sum
-    # }
-    total_yearly_calendar_revenue: total_yearly_calendar_revenue_2 {
+    total_yearly_calendar_revenue {
       period
       sum
       source: land_type
@@ -56,15 +46,8 @@ const TOTAL_REVENUE_QUERY = gql`
       commodity_order
       commodity
     }
-    # total_monthly_fiscal_revenue {
-    #   source
-    #   sum
-    #   month_long
-    #   period_date
-    #   month
-    #   year
-    # }
-    total_monthly_fiscal_revenue: total_monthly_fiscal_revenue_2 {
+
+    total_monthly_fiscal_revenue {
       source: land_type
       sum
       month_long
@@ -76,15 +59,8 @@ const TOTAL_REVENUE_QUERY = gql`
       commodity_order
       commodity
     }
-    # total_monthly_calendar_revenue {
-    #   source
-    #   sum
-    #   month_long
-    #   period_date
-    #   month
-    #   year
-    # } 
-    total_monthly_calendar_revenue: total_monthly_calendar_revenue_2 {
+
+    total_monthly_calendar_revenue {
       source: land_type
       sum
       month_long
@@ -96,15 +72,8 @@ const TOTAL_REVENUE_QUERY = gql`
       commodity_order
       commodity
     } 
-    # total_monthly_last_twelve_revenue {
-    #   source
-    #   sum
-    #   month_long
-    #   period_date
-    #   month
-    #   year
-    # } 
-    total_monthly_last_twelve_revenue_2 {
+ 
+    total_monthly_last_twelve_revenue {
       source: land_type
       sum
       month_long
@@ -116,6 +85,7 @@ const TOTAL_REVENUE_QUERY = gql`
       commodity_order
       commodity
     }
+
     total_monthly_last_three_years_revenue {
       source: land_type
       sum
@@ -265,17 +235,17 @@ const TotalRevenue = props => {
         switch (yGroupBy) {
         case 'revenue_type':
           comparisonData = data.total_monthly_last_three_years_revenue.filter(item => yOrderBy.includes(item.revenue_type))
-          chartData = data.total_monthly_last_twelve_revenue_2.filter(item => yOrderBy.includes(item.revenue_type))
+          chartData = data.total_monthly_last_twelve_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           break
         case 'commodity':
           commodityChartComparisonData = rollUpCommodityData(data.total_monthly_last_three_years_revenue)
-          commodityChartData = rollUpCommodityData(data.total_monthly_last_twelve_revenue_2)
+          commodityChartData = rollUpCommodityData(data.total_monthly_last_twelve_revenue)
           comparisonData = commodityChartComparisonData.filter(item => yOrderBy.includes(item.commodity))
           chartData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
           break
         default:
           comparisonData = data.total_monthly_last_three_years_revenue
-          chartData = data.total_monthly_last_twelve_revenue_2
+          chartData = data.total_monthly_last_twelve_revenue
           break
         }
       }

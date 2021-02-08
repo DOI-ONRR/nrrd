@@ -20,34 +20,22 @@ import utils from '../../../js/utils'
 
 const TOTAL_PRODUCTION_QUERY = gql`
   query TotalYearlyProduction {
-    # total_yearly_fiscal_production {
-    #   product,
-    #   year,
-    #   source,
-    #   sum
-    # }
-    total_yearly_fiscal_production: total_yearly_fiscal_production_2 {
+
+    total_yearly_fiscal_production {
       product,
       year,
       source,
       sum
     }
 
-    # total_yearly_calendar_production {
-    #   product,
-    #   year,
-    #   source,
-    #   sum
-    # } 
-
-    total_yearly_calendar_production: total_yearly_calendar_production_2 {
+    total_yearly_calendar_production {
       product,
       year,
       source,
       sum
     }   
 
-    total_monthly_fiscal_production: total_monthly_fiscal_production_2 {
+    total_monthly_fiscal_production {
       source
       product
       sum
@@ -57,7 +45,7 @@ const TOTAL_PRODUCTION_QUERY = gql`
       year
     }
 
-    total_monthly_calendar_production: total_monthly_calendar_production_2 {
+    total_monthly_calendar_production {
       source
       product
       sum
@@ -135,14 +123,16 @@ const TotalProduction = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
+    console.log('maxCalendarYear: ', maxCalendarYear)
+
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
         comparisonData = data.total_monthly_fiscal_production.filter(row => row.product === commodity)
-        chartData = data.total_monthly_fiscal_production.filter(row => row.product === commodity && row.year >= maxFiscalYear - 1)
+        chartData = data.total_monthly_fiscal_production.filter(row => row.product === commodity && row.year >= maxFiscalYear)
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         comparisonData = data.total_monthly_calendar_production.filter(row => row.product === commodity)
-        chartData = data.total_monthly_calendar_production.filter(row => row.product === commodity && row.year >= maxCalendarYear - 9)
+        chartData = data.total_monthly_calendar_production.filter(row => row.product === commodity && row.year >= maxCalendarYear - 1)
       }
       else {
         comparisonData = data.total_monthly_last_two_years_production.filter(row => row.product === commodity)

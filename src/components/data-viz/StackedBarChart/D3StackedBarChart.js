@@ -106,17 +106,26 @@ export default class D3StackedBarChart {
       this.primaryColor = options.primaryColor || '#37253c' // theme.palette.explore[700]
       this.secondaryColor = options.secondaryColor || '#c4d99b' // theme.palette.explore[100]
 
-      this.color = (flipColorRange = false) => {
+      this.color = (flipColorRange = false, scaleLinear = false) => {
         let color
+
         if (options.colorRange) {
           color = d3.scaleOrdinal().domain(this.xDomain).range(options.colorRange)
         }
         else {
-          color = d3.scaleLinear()
-            .domain([0, this.options.yOrderBy.length > 0 ? this.options.yOrderBy.length - 1 : 0 || 4])
-            .range(flipColorRange ? [this.secondaryColor, this.primaryColor] : [this.primaryColor, this.secondaryColor])
+          if (scaleLinear) {
+            color = d3.scaleLinear()
+              .domain([0, this.options.yOrderBy.length > 0 ? this.options.yOrderBy.length - 1 : 0 || 4])
+              .range(flipColorRange ? [this.secondaryColor, this.primaryColor] : [this.primaryColor, this.secondaryColor])
+          }
+          else {
+            const colorDomain = flipColorRange
+              ? [this.options.yOrderBy.length > 0 ? this.options.yOrderBy.length - 1 : 0 || 4, 0]
+              : [0, this.options.yOrderBy.length > 0 ? this.options.yOrderBy.length - 1 : 0 || 4]
+            color = d3.scaleSequential(d3.interpolateViridis)
+              .domain(colorDomain)
+          }
         }
-
         return color
       }
 
@@ -243,6 +252,10 @@ export default class D3StackedBarChart {
         .attr('class', 'x-axis')
         .attr('transform', `translate(0, ${ self._height - self.marginBottom })`)
         .call(createXAxis())
+        .selectAll('g')
+        .attr('class', (d, i) => {
+          return i === self.selectedIndex ? 'tick active' : 'tick'
+        })
         .selectAll('text')
         .attr('transform', 'rotate(' + rotate + ')')
         .attr('x', x)
@@ -623,7 +636,6 @@ export default class D3StackedBarChart {
         .attr('width', 15)
         .attr('height', 15)
         .style('background-color', (d, i) => {
-          // console.log('color d, i:', d, i, color(d.length - i))
           return color(i)
         })
         .style('border', (d, i) => {
@@ -700,8 +712,9 @@ export default class D3StackedBarChart {
 
   _onSelect = (element, data) => {
     try {
-      // console.log('_onSelect this: ', this)
+      // console.log('_onSelect: ', element)
       const selectedElement = d3.select(this.node).selectAll('.bars .active')
+      const ticks = d3.select(this.node).selectAll('.x-axis .tick')
       const groupedData = this.getGroupedData()
       // console.debug(data)
       if (selectedElement) {
@@ -709,6 +722,14 @@ export default class D3StackedBarChart {
           .attr('selected', false)
           .attr('class', 'bar')
       }
+
+      ticks.filter((d, i, nodes) => {
+        console.log('ticks d, i, nodes: ', d, i, nodes)
+        nodes[this.selectedIndex]
+          .setAttribute('class', 'tick')
+        nodes[this.currentIndex]
+          .setAttribute('class', 'tick active')
+      })
 
       const activeElement = element.parentNode.parentNode
 
@@ -795,6 +816,7 @@ export default class D3StackedBarChart {
     try {
       const horizontal = this.horizontal
       const groupedData = this.getGroupedData()
+      const ticks = d3.select(this.node).selectAll('.x-axis .tick')
 
       if (hover === true) {
         if (!horizontal) {
@@ -804,6 +826,13 @@ export default class D3StackedBarChart {
 
         if (this.xAxis === 'year') this.handleBarHover({ year: this._xDomain[this.currentIndex] || this.xSelectedValue })
         if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this._xDomain[this.currentIndex] || this._xDomain[this.xSelectedValue], xGroups: this.xGroups, currentIndex: this.currentIndex })
+
+        ticks.filter((d, i, nodes) => {
+          nodes[this.selectedIndex]
+            .setAttribute('class', 'tick')
+          nodes[this.currentIndex]
+            .setAttribute('class', 'tick active')
+        })
       }
       else {
         this.createLegend(this._xDomain[this.xSelectedValue])
@@ -811,6 +840,13 @@ export default class D3StackedBarChart {
 
         if (this.xAxis === 'year') this.handleBarHover({ year: this.xSelectedValue })
         if (this.xAxis === 'month_long') this.handleBarHover({ month_long: this.xSelectedValue, xGroups: this.xGroups, currentIndex: this.currentIndex })
+
+        ticks.filter((d, i, nodes) => {
+          nodes[this.currentIndex]
+            .setAttribute('class', 'tick')
+          nodes[this.selectedIndex]
+            .setAttribute('class', 'tick active')
+        })
       }
       this.onHover(this)
     }

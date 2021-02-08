@@ -22,13 +22,8 @@ import utils, { getMonthRange } from '../../../js/utils'
 
 const TOTAL_DISBURSEMENTS_QUERY = gql`
   query TotalYearlyDisbursements {
-    # total_yearly_fiscal_disbursement {
-    #   year,
-    #   source,
-    #   sum
-    # }
 
-    total_yearly_fiscal_disbursement: total_yearly_fiscal_disbursement_2(order_by: [{year: asc}]) {
+    total_yearly_fiscal_disbursement(order_by: [{year: asc}]) {
       period
       sum
       source: land_type
@@ -40,16 +35,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       recipient: fund_class
     }
 
-    # total_monthly_fiscal_disbursement {
-    #   source
-    #   sum
-    #   month_long
-    #   period_date
-    #   month
-    #   year
-    # }
-
-    total_monthly_fiscal_disbursement: total_monthly_fiscal_disbursement_2 {
+    total_monthly_fiscal_disbursement {
       period
       sum
       source: land_type
@@ -73,7 +59,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       recipient: fund_class
     }
 
-    total_monthly_calendar_disbursement: total_monthly_calendar_disbursement_2 {
+    total_monthly_calendar_disbursement {
       source: land_type
       sum
       month_long
@@ -83,7 +69,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       recipient: fund_class
     }
 
-    total_monthly_last_twelve_disbursement: total_monthly_last_twelve_disbursement_2 {
+    total_monthly_last_twelve_disbursement {
       source
       sum
       month_long
