@@ -88,7 +88,7 @@ const ComparisonTable = forwardRef((props, ref) => {
           Object.entries(d.xGroups).map((item, index) => {
             // console.log('d.xGroups: ', item, indexToFind)
             if (item[1].includes(indexToFind)) {
-              console.log('current selected year and month: ', d.month_long, item)
+              // console.log('current selected year and month: ', d.month_long, item)
               setSelectedItem({ ...selectedItem, year: item[0], month: d.month_long })
             }
           })

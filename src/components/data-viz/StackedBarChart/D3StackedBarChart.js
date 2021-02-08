@@ -129,7 +129,7 @@ export default class D3StackedBarChart {
         return color
       }
 
-      console.debug('this yo:', this)
+      // console.debug('this yo:', this)
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -724,7 +724,6 @@ export default class D3StackedBarChart {
       }
 
       ticks.filter((d, i, nodes) => {
-        console.log('ticks d, i, nodes: ', d, i, nodes)
         nodes[this.selectedIndex]
           .setAttribute('class', 'tick')
         nodes[this.currentIndex]

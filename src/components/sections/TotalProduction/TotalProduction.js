@@ -115,15 +115,13 @@ const TotalProduction = props => {
 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.debug('Total Production:', data)
+    // console.debug('Total Production:', data)
     maxFiscalYear = data.total_yearly_fiscal_production.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
     maxCalendarYear = data.total_yearly_calendar_production.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
-
-    console.log('maxCalendarYear: ', maxCalendarYear)
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
