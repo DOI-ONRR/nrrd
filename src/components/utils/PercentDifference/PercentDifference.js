@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 
 const useStyles = makeStyles(theme => ({
   trendIconUp: {
@@ -39,12 +40,15 @@ const PercentDifference = ({ currentAmount, previousAmount }) => {
   else if (percentIncrease < 0) {
     icon = <ArrowDownwardIcon className={classes.trendIconDown} />
   }
+  else if (percentIncrease === 0) {
+    icon = <ArrowForwardIcon className={classes.trendIconDown} />
+  }
 
   return (
     <span>
       { icon || '' }
       <span>
-        {`${ roundFormatParens(percentIncrease, 0) }%`}
+        { (percentIncrease === 0) ? 'Flat' : `${ roundFormatParens(percentIncrease, 0) }%`}
       </span>
     </span>
   )
