@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   comparisonTable: {
     '& tr:last-child > td': {
       border: 'none'
-    }
+    },
   },
   comparisonTableContent: {
     height: '196px',
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   tableCellRoot: {
     fontSize: '1.1rem',
     align: 'right',
-    verticalAlign: 'bottom'
+    verticalAlign: 'bottom',
   },
   tableCellHead: {
     borderBottomColor: theme.palette.grey[300],
@@ -228,7 +228,7 @@ const ComparisonTable = forwardRef((props, ref) => {
           </TableHead>
           <TableBody>
             { cData && cData.map((item, index) => (
-              <TableRow>
+              <TableRow key={`tr__${ index }`}>
                 {matchesSmDown &&
                   <TableCell classes={{ root: classes.tableCellRoot }}>
                     <Box fontSize="16px">{item.key || ''}</Box>
@@ -257,12 +257,12 @@ const ComparisonTable = forwardRef((props, ref) => {
               {matchesSmDown &&
                 <TableCell classes={{ root: classes.tableCellRoot }}></TableCell>
               }
-              <TableCell align="right">
+              <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
                 <Box fontWeight="bold">
                   {previousYearTotal !== 0 ? formatSum(previousYearTotal) : '-'}
                 </Box>
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
                 <Box fontWeight="bold">
                   {((currentYearTotal && previousYearTotal) && (currentYearTotal !== 0 && previousYearTotal !== 0))
                     ? <PercentDifference

@@ -129,7 +129,7 @@ export default class D3StackedBarChart {
         return color
       }
 
-      // console.debug('this yo:', this)
+      console.debug('this yo:', this)
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -714,8 +714,28 @@ export default class D3StackedBarChart {
     try {
       // console.log('_onSelect: ', element)
       const selectedElement = d3.select(this.node).selectAll('.bars .active')
+      const bars = d3.select(this.node).selectAll('.bars .bar')
+      const selectedTick = d3.select(this.node).selectAll('.x-axis .tick.active')
       const ticks = d3.select(this.node).selectAll('.x-axis .tick')
       const groupedData = this.getGroupedData()
+      // const text = d3.select(this.node).selectAll('.x-axis .tick.active text')
+      // const bBox = text.node().getBBox()
+
+      // if (selectedTick) {
+      //   d3.select(this.node).selectAll('.x-axis .tick.active rect').remove()
+      // }
+
+      // selectedTick.append('rect')
+      //   .attr('x', bBox.x - 5)
+      //   .attr('y', bBox.y)
+      //   .attr('width', bBox.width + 10)
+      //   .attr('height', bBox.height)
+      //   .style('fill', 'transparent')
+      //   .style('fill-opacity', '.5')
+      //   .style('stroke', '#000')
+      //   .style('stroke-width', '1px')
+      //   .style('border-radius', '4px')
+
       // console.debug(data)
       if (selectedElement) {
         selectedElement
@@ -723,19 +743,20 @@ export default class D3StackedBarChart {
           .attr('class', 'bar')
       }
 
-      ticks.filter((d, i, nodes) => {
+      bars.filter((d, i, nodes) => {
+        nodes[this.currentIndex]
+          .setAttribute('class', 'bar active')
+          .setAttribute('selected', true)
+          .setAttribute('tabindex', 0)
+      })
+
+      ticks.forEach((d, i, nodes) => {
         nodes[this.selectedIndex]
           .setAttribute('class', 'tick')
+
         nodes[this.currentIndex]
           .setAttribute('class', 'tick active')
       })
-
-      const activeElement = element.parentNode.parentNode
-
-      activeElement
-        .setAttribute('class', 'bar active')
-        .setAttribute('selected', true)
-        .setAttribute('tabindex', 0)
 
       this.selectedData(groupedData[this.currentIndex] || data[0].data)
       this._legend()

@@ -174,7 +174,7 @@ const Tabtastic = props => {
       <Box className={classes.tabPanelContainer} data-testid="tabtastic-tabpanel-container">
         { tabs &&
           tabs.map((item, index) => (
-            <TabtasticTab label={item.props.label}>
+            <TabtasticTab label={item.props.label} key={index}>
               <TabPanel key={index} value={selectedIndex} index={index}>
                 {item.props.children}
               </TabPanel>
