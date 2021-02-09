@@ -9,6 +9,8 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown'
+import Skeleton from '@material-ui/lab/Skeleton'
+import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles(theme => ({
   autoCompleteRoot: {
@@ -43,9 +45,6 @@ const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, di
 
   if (data && data.length > 0 && !data[0].option) {
     data = data.map(item => ({ option: item }))
-  }
-  else if (!data) {
-    data = []
   }
 
   /**
@@ -90,34 +89,33 @@ const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, di
     }
   }, [selected])
 
-  if (data && data.length > 0 && !data[0].option) {
-    data = data.map(item => ({ option: item }))
-  }
-  else if (!data) {
-    return (<></>)
-  }
-
   return (
-    <Autocomplete
-      disableListWrap
-      id={labelSlug}
-      options={data}
-      getOptionLabel={item => (item.label ? item.label : (item.option) ? item.option : item)}
-      getOptionSelected={(item, value) => item.option === value}
-      popupIcon={<KeyboardArrowDown />}
-      renderInput={params => (
-        <TextField {...params} label={label} variant="outlined" fullWidth />
-      )}
-      classes={{
-        focused: classes.autoCompleteFocused,
-        root: classes.autoCompleteRoot,
-        inputRoot: classes.autoCompleteInputRoot
-      }}
-      onChange={(e, v) => handleChange(v)}
-      size="small"
-      value={selectedOption}
-      {...props}
-    />
+    <>
+      {data
+        ? <Autocomplete
+          disableListWrap
+          id={labelSlug}
+          options={data}
+          getOptionLabel={item => (item.label ? item.label : (item.option) ? item.option : item)}
+          getOptionSelected={(item, value) => item.option === value}
+          popupIcon={<KeyboardArrowDown />}
+          renderInput={params => (
+            <TextField {...params} label={label} variant="outlined" fullWidth />
+          )}
+          classes={{
+            focused: classes.autoCompleteFocused,
+            root: classes.autoCompleteRoot,
+            inputRoot: classes.autoCompleteInputRoot
+          }}
+          onChange={(e, v) => handleChange(v)}
+          size="small"
+          value={selectedOption}
+          {...props}
+        />
+        : <Box marginRight={2}>
+          <Skeleton variant="rect" width={'150px'} height={'40px'} animation={false}/>
+        </Box>}
+    </>
   )
 }
 

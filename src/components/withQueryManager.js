@@ -8,7 +8,7 @@ import { AppStatusContext } from '../stores/app-status-store'
 const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) => {
   const { state, updateQueryDataFilterCounts } = useContext(DataFilterContext)
   const { loading, error, data } = useQuery(QueryManager.getQuery(queryKey, state, options), QueryManager.getVariables(queryKey, state, options))
-  const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
+  const { showErrorMessage } = useContext(AppStatusContext)
 
   useEffect(() => {
     if (data && data.counts && !loading) {
@@ -25,20 +25,9 @@ const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) =>
     }
   }, [error])
 
-  useEffect(() => {
-    updateLoadingStatus({ status: loading, message: 'Loading...' })
-    return () => {
-      if (loading) {
-        updateLoadingStatus({ status: false, message: 'Loading...' })
-      }
-    }
-  }, [loading])
-
   return (
     <>
-      {!loading &&
-        <BaseComponent data={(data && data.options) ? data.options : data} {...props} />
-      }
+      <BaseComponent data={(data && data.options) ? data.options : data} {...props} loading={loading}/>
     </>
   )
 }
