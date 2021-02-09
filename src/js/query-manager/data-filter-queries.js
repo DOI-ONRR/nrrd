@@ -28,6 +28,7 @@ const DATA_FILTER_QUERIES = {
     `options:${ view }(
       where: {
         ${ whereClause }
+        commodity: {_is_null: false}
       },
       distinct_on: ${ DB_COLS[COMMODITY_ORDER] },
       order_by: {${ DB_COLS[COMMODITY_ORDER] }: asc}

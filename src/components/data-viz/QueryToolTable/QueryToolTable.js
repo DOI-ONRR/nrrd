@@ -128,6 +128,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
         showOnlySubtotalRow: (dfc[DATA_TYPE] === PRODUCTION && (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
         pivotColumn: getPivotColumn(),
         pivotColumnValue: getPivotColumnValue(),
+        omitGroupBreakoutByOptions: [MONTH_LONG],
         height: _tableHeight,
         sortColumn: getSortColumn(),
         ...dfc
@@ -303,8 +304,9 @@ const DataTableBase = ({ data, config }) => {
       item.name !== _groupBySticky &&
       item.name !== config.pivotColumn &&
       item.name !== config.pivotColumnValue &&
-      (!_additionalColumns || !_additionalColumns.includes(item.name)) &&
-      (!pivotColumnNames || !pivotColumnNames.includes(item.name))
+      !config?.omitGroupBreakoutByOptions?.includes(item.name) &&
+      !_additionalColumns?.includes(item.name) &&
+      !pivotColumnNames?.includes(item.name)
     ))
     return options.map(item => ({ option: item.title, value: item.name }))
   }
@@ -315,8 +317,9 @@ const DataTableBase = ({ data, config }) => {
       item.name !== _groupBy &&
       item.name !== config.pivotColumn &&
       item.name !== config.pivotColumnValue &&
-      (!_additionalColumns || !_additionalColumns.includes(item.name)) &&
-      (!pivotColumnNames || !pivotColumnNames.includes(item.name))
+      !config?.omitGroupBreakoutByOptions?.includes(item.name) &&
+      !_additionalColumns?.includes(item.name) &&
+      !pivotColumnNames?.includes(item.name)
     ))
     return options.map(item => ({ option: item.title, value: item.name }))
   }
