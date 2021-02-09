@@ -287,6 +287,7 @@ const DisbursementFilterToolbar = () => {
       <RecipientSelectInput />
       <SourceSelectInput />
       <StateNameSelectInput defaultSelectAll={false} />
+      <CommodityFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
     </>
   )
 }
