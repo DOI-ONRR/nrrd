@@ -195,7 +195,7 @@ const DataTableBase = ({ data, config }) => {
       }
     }
 
-    if (config[_groupBySticky] && config[_groupBySticky].split(',').length === 1) {
+    if (!_groupBySticky) {
       if (config[GROUP_BY]) {
         return config[GROUP_BY]
       }
@@ -203,9 +203,7 @@ const DataTableBase = ({ data, config }) => {
         return getNewGroupByColumn()
       }
     }
-    else if (!_groupBySticky && !config[GROUP_BY]) {
-      return getNewGroupByColumn()
-    }
+
     return _groupBySticky || config[GROUP_BY]
   }
   const getUniqueGroupBy = () => {
