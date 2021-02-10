@@ -606,10 +606,8 @@ export default class D3StackedBarChart {
       const data = newData || this.selectedData()
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
       const color = this.color(true)
-      const groupedData = this.getGroupedData()
+      // const groupedData = this.getGroupedData()
       const yOrderBy = this.options.yOrderBy
-
-      console.log('data: ', data)
 
       let dataArr = yOrderBy.map((key, i) => {
         return [key, undefined, data[key] || '-']
@@ -857,7 +855,6 @@ export default class D3StackedBarChart {
         })
       }
       else {
-        console.log('grouped data to go back to: ', groupedData[this.selectedIndex])
         this.createLegend(this._xDomain[this.xSelectedValue])
         this.updateLegend()
 

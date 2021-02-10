@@ -19,6 +19,7 @@ import utils, { getMonthRange } from '../../../js/utils'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { nice } from 'd3'
 
 const TOTAL_REVENUE_QUERY = gql`
   query TotalYearlyRevenue {
@@ -144,6 +145,7 @@ const TotalRevenue = props => {
   let yOrderBy
   let commodityChartData
   let commodityChartComparisonData
+  let monthLongRange
 
   switch (breakoutBy) {
   case 'revenue_type':
@@ -185,12 +187,19 @@ const TotalRevenue = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
+    console.log('maxFiscalYear: ', maxFiscalYear)
+
     // Month range and month range text
     currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
     monthStartDate = `10-01-${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].year }`
     monthEndDate = `${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth }-01-${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].year }`
 
     monthRange = getMonthRange(monthStartDate, monthEndDate)
+    monthLongRange = monthRange.map(item => {
+      const split = item.split('-')
+      return months[split[0] - 1]
+    })
+
     startMonth = months[9]
     endMonth = months[monthRange[monthRange.length - 1].split('-')[0] - 1]
     monthRangeText = `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
@@ -366,6 +375,7 @@ const TotalRevenue = props => {
             data={comparisonData}
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
+            monthRange={monthLongRange}
           />
         </Grid>
       </Grid>
