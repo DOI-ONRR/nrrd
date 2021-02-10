@@ -55,7 +55,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-  console.log('ComparisonTable props: ', props)
+  // console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year, dataType, commodity } = filterState
@@ -73,7 +73,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
-      // console.log('getSelected from Child', d)
+      console.log('getSelected from Child', d)
       if (d.year) {
         const currentSelectedYearData = data.filter(item => item.year === d.year)
         // console.log('currentSelectedYearData: ', currentSelectedYearData)
@@ -145,12 +145,10 @@ const ComparisonTable = forwardRef((props, ref) => {
       let previousSum = {}
       // check for comparison with current fiscal month range
       if (selectedItem.month !== 'September') {
-        if (monthRange) {
-          previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
-        }
-        else {
-          previousSum = item[1].filter(item => item.year === previousYear && (item.monthLong === 'October' || item.monthLong === selectedItem.month)).reduce((prev, curr) => prev + curr.sum, 0)
-        }
+        // if (monthRange) {
+        //   previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
+        // }
+        previousSum = item[1].filter(item => item.year === previousYear && (item.monthLong === 'October' || item.monthLong === selectedItem.month)).reduce((prev, curr) => prev + curr.sum, 0)
       }
       else {
         previousSum = item[1].filter(item => item.year === previousYear).reduce((prev, curr) => prev + curr.sum, 0)
@@ -168,7 +166,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   const cData = comparisonData.slice().sort((a, b) => yOrderBy.indexOf(a.key) - yOrderBy.indexOf(b.key))
 
-  console.log('comparisonData: ', comparisonData)
+  // console.log('comparisonData: ', comparisonData)
   // console.log('cData: ', cData)
 
   // get previous/current year totals

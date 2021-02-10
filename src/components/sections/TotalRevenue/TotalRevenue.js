@@ -180,7 +180,7 @@ const TotalRevenue = props => {
 
   if (data) {
     // console.log('TotalRevenue data: ', data)
-    maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
+    maxFiscalYear = data.total_yearly_fiscal_revenue.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
     maxCalendarYear = data.total_monthly_calendar_revenue.reduce((prev, current) => {
@@ -375,7 +375,6 @@ const TotalRevenue = props => {
             data={comparisonData}
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
-            monthRange={monthLongRange}
           />
         </Grid>
       </Grid>
