@@ -145,7 +145,7 @@ const TotalDisbursements = props => {
 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    // console.log('TotalDisbursements data: ', data)
+    console.log('TotalDisbursements data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
@@ -157,6 +157,7 @@ const TotalDisbursements = props => {
     currentMonthNum = data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth
     monthStartDate = `10-01-${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].year }`
     monthEndDate = `${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth }-01-${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].year }`
+
     monthRange = getMonthRange(monthStartDate, monthEndDate)
 
     monthLongRange = monthRange.map(item => {
@@ -298,6 +299,7 @@ const TotalDisbursements = props => {
             data={comparisonData}
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
+            monthRange={monthLongRange}
           />
         </Grid>
       </Grid>

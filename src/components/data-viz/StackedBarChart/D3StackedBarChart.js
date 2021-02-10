@@ -272,13 +272,13 @@ export default class D3StackedBarChart {
       if (this.xGroups) {
         const self = this
 
-        const groupLines = self.chart.append('g').attr('class', 'x-axis-groups')
+        const groupLines = this.chart.append('g').attr('class', 'x-axis-groups')
         const groupItemWidth = (self._width / self.data.length)
         const padding = (self.xScale.bandwidth() * 0.2)
-        let xPos = 0 + self.marginLeft
+        let xPos = self.marginLeft
 
         Object.keys(self.xGroups).sort().map((name, index) => {
-          const groupLineWidth = xPos + (groupItemWidth * self.xGroups[name].length) - padding
+          const groupLineWidth = xPos + (groupItemWidth * self.xGroups[name].length) - (padding + self.marginRight)
 
           groupLines.append('line')
             .attr('x1', xPos + padding)
