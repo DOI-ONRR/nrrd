@@ -126,7 +126,7 @@ const TotalProduction = props => {
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
         comparisonData = data.total_monthly_fiscal_production.filter(row => row.product === commodity)
-        chartData = data.total_monthly_fiscal_production.filter(row => row.product === commodity && row.year >= maxFiscalYear)
+        chartData = data.total_monthly_fiscal_production.filter(row => row.product === commodity && row.year >= maxFiscalYear - 1)
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         comparisonData = data.total_monthly_calendar_production.filter(row => row.product === commodity)
