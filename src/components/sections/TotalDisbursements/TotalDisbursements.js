@@ -158,11 +158,12 @@ const TotalDisbursements = props => {
     monthStartDate = `10-01-${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].year }`
     monthEndDate = `${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth }-01-${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].year }`
     monthRange = getMonthRange(monthStartDate, monthEndDate)
-    console.log('monthRange: ', monthRange)
+
     monthLongRange = monthRange.map(item => {
       const split = item.split('-')
       return months[split[0] - 1]
     })
+
     startMonth = months[9]
     endMonth = months[monthRange[monthRange.length - 1].split('-')[0] - 1]
 

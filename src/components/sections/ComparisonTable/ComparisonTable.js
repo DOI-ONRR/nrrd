@@ -127,7 +127,6 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   // grouped data
   const groupedData = utils.groupBy(data, yGroupBy)
-  // console.log('groupedData: ', groupedData)
 
   // comparison data
   const comparisonData = Object.entries(groupedData).map((item, index) => {
@@ -145,10 +144,12 @@ const ComparisonTable = forwardRef((props, ref) => {
       let previousSum = {}
       // check for comparison with current fiscal month range
       if (selectedItem.month !== 'September') {
-        // if (monthRange) {
-        //   previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
-        // }
-        previousSum = item[1].filter(item => item.year === previousYear && (item.monthLong === 'October' || item.monthLong === selectedItem.month)).reduce((prev, curr) => prev + curr.sum, 0)
+        if ((period === DFC.PERIOD_FISCAL_YEAR && dataType === DFC.REVENUE)) {
+          previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
+        }
+        else {
+          previousSum = item[1].filter(item => item.year === previousYear && (item.monthLong === 'October' || item.monthLong === selectedItem.month)).reduce((prev, curr) => prev + curr.sum, 0)
+        }
       }
       else {
         previousSum = item[1].filter(item => item.year === previousYear).reduce((prev, curr) => prev + curr.sum, 0)

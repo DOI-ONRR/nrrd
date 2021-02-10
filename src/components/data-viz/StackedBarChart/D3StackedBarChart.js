@@ -603,14 +603,15 @@ export default class D3StackedBarChart {
       d3.select(this.node).selectAll('.legend-rect').remove()
 
       const legendReverse = this.legendReverse
+      const horizontal = this.horizontal
       const data = newData || this.selectedData()
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
       const color = this.color(true)
-      // const groupedData = this.getGroupedData()
+      const groupedData = this.getGroupedData()
       const yOrderBy = this.options.yOrderBy
 
       let dataArr = yOrderBy.map((key, i) => {
-        return [key, undefined, data[key] || '-']
+        return horizontal ? [key, undefined, groupedData[this.currentIndex][key] || '-'] : [key, undefined, data[key] || '-']
       })
 
       if (legendReverse) {

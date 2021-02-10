@@ -193,6 +193,7 @@ export const getMonthRange = (startDate, endDate) => {
     }
   }
 
+  console.log('dates: ', dates)
   return dates
 }
 
