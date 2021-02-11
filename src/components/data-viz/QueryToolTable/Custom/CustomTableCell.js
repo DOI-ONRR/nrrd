@@ -11,6 +11,8 @@ import makeStyles from '@material-ui/styles/makeStyles'
 import useTheme from '@material-ui/styles/useTheme'
 import { Table } from '@devexpress/dx-react-grid-material-ui'
 
+import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm'
+
 const useStyles = makeStyles(theme => ({
   cell: {
     borderRight: `1px solid ${ theme.palette.divider }`,
@@ -41,7 +43,7 @@ const CustomTableCell = ({ getMessage, ...restProps }) => {
     }
   }
   else if (restProps.children && typeof (restProps.children.type) === 'function') {
-    cellValue = restProps.children.type(restProps)
+    cellValue = <GlossaryTerm termKey={restProps.value}>{restProps.value}</GlossaryTerm>
   }
 
   return (
