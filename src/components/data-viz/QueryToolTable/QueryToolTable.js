@@ -226,17 +226,8 @@ const DataTableBase = ({ data, config }) => {
     if (_breakoutBy && _breakoutBy !== _groupBy && _breakoutBy !== _groupBySticky) {
       return _breakoutBy
     }
-    const breakoutByColumnName = columnNames.find(item =>
-      (!item.name.startsWith('y') &&
-        item.name !== _groupBySticky &&
-        item.name !== _groupBy &&
-        (!_additionalColumns || !_additionalColumns.includes(item.name)) &&
-        (!pivotColumnNames || !pivotColumnNames.includes(item.name))
-      ))
 
-    if (breakoutByColumnName) {
-      return (breakoutByColumnName.name ? breakoutByColumnName.name : breakoutByColumnName)
-    }
+    return getBreakoutByOptions()[0]?.value
   }
 
   // These types are used in the custom code to get the proper formatting
@@ -342,8 +333,8 @@ const DataTableBase = ({ data, config }) => {
   const [tableColumnExtensions, setTableColumnExtensions] = useState()
 
   // Instance variables
-  const _groupBySticky = config[GROUP_BY_STICKY]
-  const _breakoutBy = config[BREAKOUT_BY]
+  const _groupBySticky = columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY]
+  const _breakoutBy = columnNames.find(col => col.name === config[BREAKOUT_BY]) && config[BREAKOUT_BY]
   const _additionalColumns = (config[PERIOD] === PERIOD_MONTHLY) ? [MONTH_LONG] : config[ADDITIONAL_COLUMNS]
   const _groupBy = getGroupBy()
 
