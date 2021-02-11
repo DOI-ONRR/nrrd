@@ -25,7 +25,7 @@ const TotalProvider = props => {
       <>
         {(props.type === 'totalSumLabel' || props.type === 'sumLabel')
           ? <div style={{ textAlign: 'right' }}>{getTotalLabel()}</div>
-          : <div>{props.value}</div>
+          : <div >{props.value}</div>
         }
       </>
     )

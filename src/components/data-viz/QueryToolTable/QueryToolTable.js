@@ -109,9 +109,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
       Object.keys(data?.counts?.aggregate).filter(colName => data.counts.aggregate[colName] < 1),
       ((dfc[PERIOD] === PERIOD_FISCAL_YEAR) ? CALENDAR_YEAR : FISCAL_YEAR))
 
-    const result = omit(columnsToOmit, data.results)
-
-    return result
+    return omit(columnsToOmit, data.results)
   }
 
   const getSortColumn = () => {
@@ -197,7 +195,7 @@ const DataTableBase = ({ data, config }) => {
       }
     }
 
-    if (config[_groupBySticky] && config[_groupBySticky].split(',').length === 1) {
+    if (!_groupBySticky) {
       if (config[GROUP_BY]) {
         return config[GROUP_BY]
       }
@@ -205,9 +203,7 @@ const DataTableBase = ({ data, config }) => {
         return getNewGroupByColumn()
       }
     }
-    else if (!_groupBySticky && !config[GROUP_BY]) {
-      return getNewGroupByColumn()
-    }
+
     return _groupBySticky || config[GROUP_BY]
   }
   const getUniqueGroupBy = () => {
@@ -230,17 +226,8 @@ const DataTableBase = ({ data, config }) => {
     if (_breakoutBy && _breakoutBy !== _groupBy && _breakoutBy !== _groupBySticky) {
       return _breakoutBy
     }
-    const breakoutByColumnName = columnNames.find(item =>
-      (!item.name.startsWith('y') &&
-        item.name !== _groupBySticky &&
-        item.name !== _groupBy &&
-        (!_additionalColumns || !_additionalColumns.includes(item.name)) &&
-        (!pivotColumnNames || !pivotColumnNames.includes(item.name))
-      ))
 
-    if (breakoutByColumnName) {
-      return (breakoutByColumnName.name ? breakoutByColumnName.name : breakoutByColumnName)
-    }
+    return getBreakoutByOptions()[0]?.value
   }
 
   // These types are used in the custom code to get the proper formatting
@@ -343,11 +330,11 @@ const DataTableBase = ({ data, config }) => {
   const [tableData, setTableData] = useState()
   const [defaultColumnWidths, setDefaultColumnWidths] = useState([])
   const [columnOrder, setColumnOrder] = useState()
-  const [tableColumnExtensions] = useState(pivotColumnNames?.map(year => ({ columnName: `${ year }`, align: 'right', wordWrapEnabled: true })))
+  const [tableColumnExtensions, setTableColumnExtensions] = useState()
 
   // Instance variables
-  const _groupBySticky = config[GROUP_BY_STICKY]
-  const _breakoutBy = config[BREAKOUT_BY]
+  const _groupBySticky = columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY]
+  const _breakoutBy = columnNames.find(col => col.name === config[BREAKOUT_BY]) && config[BREAKOUT_BY]
   const _additionalColumns = (config[PERIOD] === PERIOD_MONTHLY) ? [MONTH_LONG] : config[ADDITIONAL_COLUMNS]
   const _groupBy = getGroupBy()
 
@@ -397,6 +384,7 @@ const DataTableBase = ({ data, config }) => {
       }))
       setHiddenColumnNames(colNames.filter(item =>
         (item.name !== _groupBy &&
+        item.name !== _groupBySticky &&
         item.name !== _breakoutBy &&
         (!_additionalColumns || !_additionalColumns.includes(item.name)) &&
         (!pivotColumnNames || !pivotColumnNames.includes(item.name)))
@@ -435,6 +423,8 @@ const DataTableBase = ({ data, config }) => {
       setTableData(pivotData)
     }
     else if (pivotData?.length > 0 && config.pivotColumn) {
+      // Pivoted columns are assumed to be numbers so align those columns to the right
+      setTableColumnExtensions(pivotColumnNames?.map(year => ({ columnName: `${ year }`, align: 'right', wordWrapEnabled: true })))
       let groupByProps = []
       if (_groupBy) {
         groupByProps = groupByProps.concat(_groupBy)
