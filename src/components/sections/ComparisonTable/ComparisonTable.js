@@ -55,7 +55,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-  // console.log('ComparisonTable props: ', props)
+  console.log('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year, dataType, commodity } = filterState
@@ -68,7 +68,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const monthlyComparisonText = 'Compares data for the selected month to the same month in the previous year.'
 
   useEffect(() => {
-    // console.log('ComparisonTable selectedItem: ', selectedItem)
+    console.log('ComparisonTable selectedItem: ', selectedItem)
   }, [selectedItem])
 
   useImperativeHandle(ref, () => ({
@@ -102,10 +102,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const periodAbbr = period === DFC.PERIOD_CALENDAR_YEAR ? 'CY' : 'FY'
 
   // Get the latest date then subtract 1 year to filter previous year data to compare current year data
-  const d = new Date()
-  const currentMonth = monthLookup(d.getMonth())
   const currentYear = parseInt(selectedItem.year)
-  // const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
 
   // Get previous year
   const previousYear = currentYear - 1
@@ -116,14 +113,6 @@ const ComparisonTable = forwardRef((props, ref) => {
   const month = (monthly === DFC.MONTHLY_CAPITALIZED && selectedItem.month) && selectedItem.month.substring(0, 3)
   const previousYearText = `${ periodAbbr } ${ previousYear }`
   const changeText = 'Change'
-  const changeAdditionalText = month
-    ? `${ month } ${ previousYear } to ${ month } ${ currentYear }`
-    : `${ previousYearText } to ${ periodAbbr }${ currentYear.toString().substring(2) }`
-
-  // let currentYearText = `${ periodAbbr }${ currentYear.toString().substring(2) }`
-  // if (currentMonth !== '09') {
-  //   currentYearText = `${ currentYearText } ${ (period === DFC.PERIOD_FISCAL_YEAR) ? ' so far' : '' }`
-  // }
 
   // grouped data
   const groupedData = utils.groupBy(data, yGroupBy)
@@ -183,14 +172,27 @@ const ComparisonTable = forwardRef((props, ref) => {
   // Comparison Text
   let comparisonText
 
-  if (selectedItem.month && selectedItem.month === 'October') {
-    comparisonText = 'so far (Oct)'
-  }
-  else if (selectedItem.month && selectedItem.month !== 'October' && selectedItem.month !== 'September') {
-    comparisonText = `so far (Oct - ${ selectedItem.month.substring(0, 3) })`
+  if (period === DFC.PERIOD_FISCAL_YEAR) {
+    if (selectedItem.month && selectedItem.month === 'October') {
+      comparisonText = 'so far (Oct)'
+    }
+    else if (selectedItem.month && selectedItem.month !== 'October' && selectedItem.month !== 'September') {
+      comparisonText = `so far (Oct - ${ selectedItem.month.substring(0, 3) })`
+    }
+    else {
+      comparisonText = ''
+    }
   }
   else {
-    comparisonText = ''
+    if (selectedItem.month && selectedItem.month === 'January') {
+      comparisonText = 'so far (Jan)'
+    }
+    else if (selectedItem.month && selectedItem.month !== 'January' && selectedItem.month !== 'December') {
+      comparisonText = `so far (Jan - ${ selectedItem.month.substring(0, 3) })`
+    }
+    else {
+      comparisonText = ''
+    }
   }
 
   const formatSum = sum => {
@@ -223,7 +225,7 @@ const ComparisonTable = forwardRef((props, ref) => {
               }
               <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">
-                  {month ? `${ month } ${ previousYear } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }` : `${ previousYearText } ${ (dataType === DFC.PRODUCTION) ? unitText : '' } ${ comparisonText }`}
+                  {month ? `${ month } ${ previousYear } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }` : `${ previousYearText } ${ comparisonText } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`}
                 </Box>
               </TableCell>
               <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>

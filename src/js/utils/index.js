@@ -175,28 +175,6 @@ export const monthLookup = month => {
   return monthNumber[month]
 }
 
-export const getMonthRange = (startDate, endDate) => {
-  // format: mm-dd-yyyy
-  const start = startDate.split('-')
-  const end = endDate.split('-')
-  const startYear = parseInt(start[2])
-  const endYear = parseInt(end[2])
-  const dates = []
-
-  for (let i = startYear; i <= endYear; i++) {
-    const endMonth = i !== endYear ? 11 : parseInt(end[0]) - 1
-    const startMon = i === startYear ? parseInt(start[0]) - 1 : 0
-    for (let j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j + 1) {
-      const month = j + 1
-      const displayMonth = month < 10 ? '0' + month : month
-      dates.push([displayMonth, '01', i].join('-'))
-    }
-  }
-
-  console.log('dates: ', dates)
-  return dates
-}
-
 export const roundFormatParens = (number, precision) => {
   precision = precision || 0
   let num = parseFloat(number).toFixed(precision)

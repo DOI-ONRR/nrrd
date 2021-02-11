@@ -25,7 +25,9 @@ const TOTAL_PRODUCTION_QUERY = gql`
       product,
       year,
       source,
-      sum
+      sum: total,
+      month,
+      monthLong: month_long
     }
 
     total_yearly_calendar_production {
@@ -106,6 +108,12 @@ const TotalProduction = props => {
   let maxCalendarYear
   let xGroups = {}
   let legendHeaders
+  const monthRange = []
+  let startMonth
+  let endMonth
+  let monthRangeText
+  let currentYearSoFarText
+  let currentMonthNum
 
   console.log('TotalProduction init commodity: ', commodity)
 
@@ -115,13 +123,26 @@ const TotalProduction = props => {
 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.debug('Total Production:', data)
+    // console.debug('Total Production:', data)
     maxFiscalYear = data.total_yearly_fiscal_production.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
     maxCalendarYear = data.total_yearly_calendar_production.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
+
+    currentMonthNum = data.total_yearly_fiscal_production[data.total_yearly_fiscal_production.length - 1].month
+
+    data.total_yearly_fiscal_production.filter(item => {
+      if (item.year === (maxFiscalYear)) {
+        if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
+      }
+    })
+
+    startMonth = monthRange[0]
+    endMonth = monthRange[monthRange.length - 1]
+    monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
+    currentYearSoFarText = `so far ${ monthRangeText }`
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -161,7 +182,7 @@ const TotalProduction = props => {
     else {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
         comparisonData = data.total_yearly_fiscal_production.filter(row => row.product === commodity)
-        chartData = data.total_yearly_fiscal_production.filter(item => item.year >= maxFiscalYear - 9)
+        chartData = data.total_yearly_fiscal_production.filter(item => item.year >= maxFiscalYear - 10)
         xGroups['Fiscal Year'] = chartData.filter(row => row.product === commodity).map((row, i) => row.year)
       }
       else {
@@ -169,13 +190,13 @@ const TotalProduction = props => {
         chartData = data.total_yearly_calendar_production.filter(item => item.year >= maxCalendarYear - 9)
         xGroups['Calendar Year'] = chartData.filter(row => row.product === commodity).map((row, i) => row.year)
       }
-      console.debug(chartData)
+      // console.debug(chartData)
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
       }
 
       legendHeaders = (headers, row) => {
-        const headerArr = [headers[0], '', `${ periodAbbr } ${ headers[2] }`]
+        const headerArr = [headers[0], '', `${ periodAbbr } ${ headers[2] } ${ ((currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[2] > maxFiscalYear - 1) ? currentYearSoFarText : '' }`]
         return headerArr
       }
     }
@@ -283,6 +304,7 @@ const TotalProduction = props => {
               data={comparisonData}
               yGroupBy={yGroupBy}
               yOrderBy={yOrderBy}
+              monthRange={monthRange}
             />
           </Grid>
         </Grid>

@@ -42,7 +42,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       year
       sort_order
       period_date
-       month
+      month
       month_long
       recipient: fund_class
     }
@@ -123,11 +123,8 @@ const TotalDisbursements = props => {
   let legendHeaders
   let currentMonthNum
   let currentYearSoFarText
-  let monthRange
-  let monthLongRange
+  const monthRange = []
   let monthRangeText
-  let monthStartDate
-  let monthEndDate
   let startMonth
   let endMonth
   const yOrderBy = (breakoutBy === DFC.RECIPIENT)
@@ -141,11 +138,10 @@ const TotalDisbursements = props => {
       'U.S. Treasury'
     ]
     : ['Native American', 'Federal Offshore', 'Federal Onshore']
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    console.log('TotalDisbursements data: ', data)
+    // console.log('TotalDisbursements data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
@@ -155,21 +151,17 @@ const TotalDisbursements = props => {
 
     // Month range and month range text
     currentMonthNum = data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth
-    monthStartDate = `10-01-${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].year }`
-    monthEndDate = `${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth }-01-${ data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].year }`
 
-    monthRange = getMonthRange(monthStartDate, monthEndDate)
-
-    monthLongRange = monthRange.map(item => {
-      const split = item.split('-')
-      return months[split[0] - 1]
+    data.total_yearly_fiscal_disbursement.filter(item => {
+      if (item.year === (maxFiscalYear + 1)) {
+        if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
+      }
     })
 
-    startMonth = months[9]
-    endMonth = months[monthRange[monthRange.length - 1].split('-')[0] - 1]
-
-    monthRangeText = (endMonth === 'October') ? startMonth.substring(0, 3) : `${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) }`
-    currentYearSoFarText = `so far (${ monthRangeText })`
+    startMonth = monthRange[0]
+    endMonth = monthRange[monthRange.length - 1]
+    monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
+    currentYearSoFarText = `so far ${ monthRangeText }`
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -218,7 +210,7 @@ const TotalDisbursements = props => {
         return r
       }, {})
 
-      console.log('chartData: ', chartData)
+      // console.log('chartData: ', chartData)
 
       xAxis = 'month_long'
       xLabels = (x, i) => {
@@ -236,7 +228,7 @@ const TotalDisbursements = props => {
       case 'recipient':
         comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
         chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
-        console.log('chartData: ', chartData)
+        // console.log('chartData: ', chartData)
         break
       default:
         comparisonData = data.total_yearly_fiscal_disbursement
@@ -299,7 +291,7 @@ const TotalDisbursements = props => {
             data={comparisonData}
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
-            monthRange={monthLongRange}
+            monthRange={monthRange}
           />
         </Grid>
       </Grid>

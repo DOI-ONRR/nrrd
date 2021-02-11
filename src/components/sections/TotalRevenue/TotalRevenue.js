@@ -45,6 +45,7 @@ const TOTAL_REVENUE_QUERY = gql`
       sort_order
       commodity_order
       commodity
+      monthLong: month_long
     }
 
     total_monthly_fiscal_revenue {
@@ -135,11 +136,8 @@ const TotalRevenue = props => {
   let legendHeaders
   let currentMonthNum
   let currentYearSoFarText
-  let monthRange
-  let monthLongRange
+  const monthRange = []
   let monthRangeText
-  let monthStartDate
-  let monthEndDate
   let startMonth
   let endMonth
   let yOrderBy
@@ -157,8 +155,6 @@ const TotalRevenue = props => {
     yOrderBy = ['Federal - not tied to a location', 'Native American', 'Federal Offshore', 'Federal Onshore']
     break
   }
-
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
   // commodity chart data, roll up of Other commodities
   const rollUpCommodityData = cData => {
@@ -178,7 +174,7 @@ const TotalRevenue = props => {
   }
 
   if (data) {
-    console.log('TotalRevenue data: ', data)
+    // console.log('TotalRevenue data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
@@ -186,22 +182,8 @@ const TotalRevenue = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
-    // Month range and month range text
+    // Month range
     currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
-    monthStartDate = `10-01-${ maxFiscalYear } }`
-    monthEndDate = `${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth }-01-${ data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].year }`
-
-    monthRange = getMonthRange(monthStartDate, monthEndDate)
-
-    monthLongRange = monthRange.map(item => {
-      const split = item.split('-')
-      return months[split[0] - 1]
-    })
-
-    startMonth = months[9]
-    endMonth = months[monthRange[monthRange.length - 1].split('-')[0] - 1]
-    monthRangeText = `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
-    currentYearSoFarText = `so far ${ monthRangeText }`
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -295,26 +277,43 @@ const TotalRevenue = props => {
           break
         }
         xGroups[DFC.PERIOD_FISCAL_YEAR] = chartData.map((row, i) => row.year)
+
+        data.total_yearly_fiscal_revenue.filter(item => {
+          if (item.year === (maxFiscalYear + 1)) {
+            if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
+          }
+        })
       }
       else {
         switch (yGroupBy) {
         case 'revenue_type':
           comparisonData = data.total_yearly_calendar_revenue.filter(item => yOrderBy.includes(item.revenue_type))
-          chartData = data.total_yearly_calendar_revenue.filter(item => item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.revenue_type))
+          chartData = data.total_yearly_calendar_revenue.filter(item => item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.revenue_type))
           break
         case 'commodity':
           commodityChartData = rollUpCommodityData(data.total_yearly_calendar_revenue)
           comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
-          chartData = commodityChartData.filter(item => item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.commodity))
+          chartData = commodityChartData.filter(item => item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.commodity))
           break
         default:
           comparisonData = data.total_yearly_calendar_revenue
-          chartData = data.total_yearly_calendar_revenue.filter(item => item.year <= maxCalendarYear && item.year >= maxCalendarYear - 9)
+          chartData = data.total_yearly_calendar_revenue.filter(item => item.year >= maxCalendarYear - 9)
           break
         }
 
         xGroups[DFC.PERIOD_CALENDAR_YEAR] = chartData.map((row, i) => row.year)
+
+        data.total_yearly_calendar_revenue.filter(item => {
+          if (item.year === (maxCalendarYear + 1)) {
+            if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
+          }
+        })
       }
+
+      startMonth = monthRange[0]
+      endMonth = monthRange[monthRange.length - 1]
+      monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
+      currentYearSoFarText = `so far ${ monthRangeText }`
 
       xAxis = 'year'
       xLabels = (x, i) => {
@@ -373,7 +372,7 @@ const TotalRevenue = props => {
             data={comparisonData}
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
-            monthRange={monthLongRange}
+            monthRange={monthRange}
           />
         </Grid>
       </Grid>
