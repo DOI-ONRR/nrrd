@@ -56,6 +56,8 @@ const HomeDataFilters = props => {
     maxCalendarYear
   } = props
 
+  const calendarYear = (dataType === DFC.PRODUCTION) ? maxCalendarYear - 1 : maxCalendarYear
+
   const MENU_OPTIONS = {
     [DFC.MONTHLY]: [
       { value: DFC.YEARLY, option: DFC.YEARLY },
@@ -68,7 +70,7 @@ const HomeDataFilters = props => {
     monthlyPeriod: [
       { value: 'Most recent 12 months', option: 'Most recent 12 months' },
       { value: DFC.PERIOD_FISCAL_YEAR, option: `Fiscal year ${ monthly === DFC.MONTHLY ? maxFiscalYear : year }` },
-      { value: DFC.PERIOD_CALENDAR_YEAR, option: `Calendar year ${ maxCalendarYear }` }
+      { value: DFC.PERIOD_CALENDAR_YEAR, option: `Calendar year ${ calendarYear }` }
     ],
     [DFC.BREAKOUT_BY]: {
       [DFC.REVENUE]: [
