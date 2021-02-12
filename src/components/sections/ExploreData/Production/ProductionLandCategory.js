@@ -41,7 +41,7 @@ const APOLLO_QUERY = gql`
       unit_abbr
     }
 
-    period(where: {period: {_ilike: $period }}) {
+    period(where: {period: {_ilike: $period }, order_by: {fiscal_year: asc, calendar_year: asc}}) {
       fiscal_year
       calendar_year
     }
