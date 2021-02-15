@@ -131,6 +131,8 @@ const TotalProduction = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
+    console.log('maxFiscalYear, maxCalendarYear: ', maxFiscalYear, maxCalendarYear)
+
     currentMonthNum = data.total_yearly_fiscal_production[data.total_yearly_fiscal_production.length - 1].month
 
     data.total_yearly_fiscal_production.filter(item => {
@@ -169,13 +171,32 @@ const TotalProduction = props => {
       console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', xGroups)
       console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', chartData)
 
-      xAxis = 'month_long'
+      xAxis = 'period_date'
       xLabels = (x, i) => {
-        return x.map(v => v.substr(0, 3))
+        return x.map(v => {
+          const dStr = v.replace(/\b0/g, '')
+          const d = new Date(dStr)
+          const m = d.toLocaleDateString('default', { month: 'short' })
+          return m
+        })
       }
 
+      // legendHeaders = (headers, row) => {
+      //   // console.log('legendHeaders: ', headers, row)
+      //   const date = new Date(headers[2])
+      //   const month = date.toLocaleString('default', { month: 'long' }).substring(0, 3)
+      //   const year = headers[2].substring(0, 4)
+      //   const headerArr = [headers[0], '', `${ month } ${ year }`]
+      //   return headerArr
+      // }
+
       legendHeaders = (headers, row) => {
-        const headerArr = [headers[0], '', `${ row.xLabel } ${ row.year }`]
+        // console.log('legendHeaders: ', headers, row)
+        const dStr = headers[2].replace(/\b0/g, '')
+        const date = new Date(dStr)
+        const month = date.toLocaleString('default', { month: 'short' })
+        const year = headers[2].substring(0, 4)
+        const headerArr = [headers[0], '', `${ month } ${ year }`]
         return headerArr
       }
     }
@@ -187,7 +208,7 @@ const TotalProduction = props => {
       }
       else {
         comparisonData = data.total_yearly_calendar_production.filter(row => row.product === commodity)
-        chartData = data.total_yearly_calendar_production.filter(item => item.year >= maxCalendarYear - 9)
+        chartData = data.total_yearly_calendar_production.filter(item => item.year >= maxCalendarYear - 10)
         xGroups['Calendar Year'] = chartData.filter(row => row.product === commodity).map((row, i) => row.year)
       }
       // console.debug(chartData)

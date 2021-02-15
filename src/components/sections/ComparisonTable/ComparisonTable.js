@@ -74,26 +74,19 @@ const ComparisonTable = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
       console.log('getSelected from Child', d)
-      if (d.year) {
-        const currentSelectedYearData = data.filter(item => item.year === d.year)
-        // console.log('currentSelectedYearData: ', currentSelectedYearData)
-        const currentSelectedYearDataMaxMonth = currentSelectedYearData[currentSelectedYearData.length - 1].monthLong
-        setSelectedItem({ ...selectedItem, year: d.year, month: currentSelectedYearDataMaxMonth })
+      // check for period_date yyyy-mm-dd
+      if (d.length === 10) {
+        const dStr = d.replace(/\b0/g, '')
+        const date = new Date(dStr)
+        const month = date.toLocaleString('default', { month: 'long' })
+        const year = d.substring(0, 4)
+        setSelectedItem({ ...selectedItem, year: year, month: month })
       }
-
-      if (d.month_long) {
-        const monthNum = parseInt(monthLookup(d.month_long), 10)
-        const indexToFind = (monthly === DFC.MONTHLY_CAPITALIZED) ? monthNum : d.currentIndex + 1
-        // get year key from xGroups
-        if (d.xGroups) {
-          Object.entries(d.xGroups).map((item, index) => {
-            // console.log('d.xGroups: ', item, indexToFind)
-            if (item[1].includes(indexToFind)) {
-              // console.log('current selected year and month: ', d.month_long, item)
-              setSelectedItem({ ...selectedItem, year: item[0], month: d.month_long })
-            }
-          })
-        }
+      else {
+        const currentSelectedYearData = data.filter(item => item.year === d)
+        const currentSelectedYearDataMaxMonth = currentSelectedYearData[currentSelectedYearData.length - 1].monthLong
+        const year = d
+        setSelectedItem({ ...selectedItem, year: year, month: currentSelectedYearDataMaxMonth })
       }
     }
   }))
@@ -119,7 +112,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   // comparison data
   const comparisonData = Object.entries(groupedData).map((item, index) => {
-    // console.log('comparisonData item: ', item)
+    console.log('comparisonData item: ', item)
     const newObj = {}
     newObj.key = item[0]
 
@@ -156,7 +149,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   const cData = comparisonData.slice().sort((a, b) => yOrderBy.indexOf(a.key) - yOrderBy.indexOf(b.key))
 
-  // console.log('comparisonData: ', comparisonData)
+  console.log('comparisonData: ', comparisonData)
   // console.log('cData: ', cData)
 
   // get previous/current year totals

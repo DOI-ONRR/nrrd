@@ -15,7 +15,7 @@ import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link/'
 import ComparisonTable from '../ComparisonTable'
 
-import utils, { getMonthRange } from '../../../js/utils'
+import utils from '../../../js/utils'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -144,6 +144,8 @@ const TotalRevenue = props => {
   let commodityChartData
   let commodityChartComparisonData
 
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
   switch (breakoutBy) {
   case 'revenue_type':
     yOrderBy = ['Other Revenues', 'Inspection Fees', 'Civil Penalties', 'Rents', 'Bonus', 'Royalties']
@@ -240,22 +242,33 @@ const TotalRevenue = props => {
       }
 
       xGroups = chartData.reduce((g, row, i) => {
+        // console.log('xGroup g, row: ', g, row)
         const r = g
         const year = row.period_date.substring(0, 4)
         const months = g[year] || []
-        months.push(row.month)
+        months.push(months)
         r[year] = months
         return r
       }, {})
 
-      xAxis = 'month_long'
+      xAxis = 'period_date'
+
       xLabels = (x, i) => {
-        // console.debug('xLabels x: ', x)
-        return x.map(v => v.substr(0, 3))
+        return x.map(v => {
+          const dStr = v.replace(/\b0/g, '')
+          const d = new Date(dStr)
+          const m = d.toLocaleDateString('default', { month: 'short' })
+          return m
+        })
       }
 
       legendHeaders = (headers, row) => {
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], '', `${ row.xLabel } ${ row.year }`]
+        // console.log('legendHeaders: ', headers, row)
+        const dStr = headers[2].replace(/\b0/g, '')
+        const date = new Date(dStr)
+        const month = date.toLocaleString('default', { month: 'short' })
+        const year = headers[2].substring(0, 4)
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], '', `${ month } ${ year }`]
         return headerArr
       }
     }
