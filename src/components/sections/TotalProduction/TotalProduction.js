@@ -231,7 +231,6 @@ const TotalProduction = props => {
       monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
       currentYearSoFarText = `so far ${ monthRangeText }`
     }
-
   }
   if (chartData.length > 0) {
     return (
