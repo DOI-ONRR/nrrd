@@ -55,7 +55,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-  console.log('ComparisonTable props: ', props)
+  console.debug('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
   const { period, monthly, year, dataType, commodity } = filterState
@@ -68,12 +68,12 @@ const ComparisonTable = forwardRef((props, ref) => {
   const monthlyComparisonText = 'Compares data for the selected month to the same month in the previous year.'
 
   useEffect(() => {
-    console.log('ComparisonTable selectedItem: ', selectedItem)
+    console.debug('ComparisonTable selectedItem: ', selectedItem)
   }, [selectedItem])
 
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
-      console.log('getSelected from Child', d)
+      // console.log('getSelected from Child', d)
       // check for period_date yyyy-mm-dd
       if (d.length === 10) {
         const dStr = d.replace(/\b0/g, '')
@@ -112,15 +112,14 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   // comparison data
   const comparisonData = Object.entries(groupedData).map((item, index) => {
-    console.log('comparisonData item: ', item)
     const newObj = {}
     newObj.key = item[0]
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
-      const previousSum = item[1].filter(item => item.year === previousYear && item.month_long === selectedItem.month).reduce((prev, curr) => prev + curr.sum, 0)
-      const currentSum = item[1].filter(item => item.year === currentYear && item.month_long === selectedItem.month).reduce((prev, curr) => prev + curr.sum, 0)
-      newObj.previous = { ...item[1].filter(item => item.year === previousYear && item.month_long === selectedItem.month)[0], sum: previousSum }
-      newObj.current = { ...item[1].filter(item => item.year === currentYear && item.month_long === selectedItem.month)[0], sum: currentSum }
+      const previousSum = item[1].filter(item => parseInt(item.period_date.substring(0, 4)) === previousYear && item.month_long === selectedItem.month).reduce((prev, curr) => prev + curr.sum, 0)
+      const currentSum = item[1].filter(item => parseInt(item.period_date.substring(0, 4)) === currentYear && item.month_long === selectedItem.month).reduce((prev, curr) => prev + curr.sum, 0)
+      newObj.previous = { ...item[1].filter(item => parseInt(item.period_date.substring(0, 4)) === previousYear && item.month_long === selectedItem.month)[0], sum: previousSum }
+      newObj.current = { ...item[1].filter(item => parseInt(item.period_date.substring(0, 4)) === currentYear && item.month_long === selectedItem.month)[0], sum: currentSum }
     }
     else {
       let previousSum = {}
