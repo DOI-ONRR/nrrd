@@ -47,7 +47,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
       recipient: fund_class
     }
 
-    total_monthly_fiscal_disbursement_last_two_years: total_monthly_fiscal_disbursement_last_two_years_2 {
+    total_monthly_fiscal_disbursement_last_two_years {
       period
       sum
       source: land_type
