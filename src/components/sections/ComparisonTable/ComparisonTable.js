@@ -124,13 +124,16 @@ const ComparisonTable = forwardRef((props, ref) => {
     else {
       let previousSum = {}
       // check for comparison with current fiscal month range
-      if (selectedItem.month !== 'September') {
-        if ((period === DFC.PERIOD_FISCAL_YEAR && dataType === DFC.REVENUE) || (period === DFC.PERIOD_FISCAL_YEAR && dataType === DFC.DISBURSEMENT && selectedItem.year > 2020)) {
+      if (period === DFC.PERIOD_FISCAL_YEAR && selectedItem.month !== 'September') {
+        if (dataType === DFC.REVENUE || (dataType === DFC.DISBURSEMENT && selectedItem.year > 2020)) {
           previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
         }
         else {
           previousSum = item[1].filter(item => item.year === previousYear && (item.monthLong === 'October' || item.monthLong === selectedItem.month)).reduce((prev, curr) => prev + curr.sum, 0)
         }
+      }
+      else if (period === DFC.PERIOD_CALENDAR_YEAR && selectedItem.month !== 'December') {
+        previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
       }
       else {
         previousSum = item[1].filter(item => item.year === previousYear).reduce((prev, curr) => prev + curr.sum, 0)
