@@ -225,10 +225,13 @@ const TotalProduction = props => {
       }
     }
 
-    startMonth = monthRange[0]
-    endMonth = monthRange[monthRange.length - 1]
-    monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
-    currentYearSoFarText = `so far ${ monthRangeText }`
+    if (monthRange.length > 0) {
+      startMonth = monthRange[0]
+      endMonth = monthRange[monthRange.length - 1]
+      monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
+      currentYearSoFarText = `so far ${ monthRangeText }`
+    }
+
   }
   if (chartData.length > 0) {
     return (
