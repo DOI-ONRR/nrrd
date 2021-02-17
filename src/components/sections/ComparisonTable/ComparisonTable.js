@@ -78,7 +78,7 @@ const ComparisonTable = forwardRef((props, ref) => {
         const dateArr = formatDate(d)
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
         const year = dateArr[0]
-        const month = date.toLocaleDateString('default', { month: 'long' })
+        const month = date.toLocaleDateString('en-US', { month: 'long' })
 
         setSelectedItem({ ...selectedItem, year: year, month: month })
       }
