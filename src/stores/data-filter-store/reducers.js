@@ -95,8 +95,8 @@ const initialState = {
         [DATA_TYPE]: PRODUCTION,
         [GROUP_BY_STICKY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
-        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019'
+        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
+        [CALENDAR_YEAR]: '2016,2017,2018,2019,2020'
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
