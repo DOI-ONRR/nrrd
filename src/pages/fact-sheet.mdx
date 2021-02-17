@@ -1,0 +1,67 @@
+---
+title: Fact Sheet
+includeToc: false
+---
+
+<Container id="fact-sheet">
+  <Grid container>
+    <Grid item xs={12}>
+      <SnapshotBanner />
+    </Grid>
+    <Grid item xs={12}>
+      <Box color="secondary.main" borderBottom={3}>
+        <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Disbursements</Typography>
+      </Box>
+    </Grid>
+    <Grid item xs={6}>
+      <Box mb={2}>
+        <Typography>The amount of money paid to federal and local governments and Native Americans.</Typography>
+      </Box>
+      <Typography style={{fontStyle: 'italic'}}>This number is delayed from revenue because disbursements are made after the money comes in.</Typography>
+    </Grid>
+    <Grid item xs={6}>
+      Disbursements by recipient
+    </Grid>
+    <Grid item xs={12}>
+      <Box color="secondary.main" borderBottom={3}>
+        <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Revenue</Typography>
+      </Box>
+      <Box mb={2}>
+        <Typography color="textPrimary" component='span'>
+          The amount of money collected from energy and minerals on property owned by the federal government and Native Americans.
+        </Typography>
+        <Typography color="textPrimary" style={{fontStyle: 'italic'}} component='span'>
+          {' '}Negative numbers often indicate adjustments because this is accounting data, not sales data.
+        </Typography>
+      </Box>
+    </Grid>
+    <Grid item xs={6}>
+      Revenue by source 
+    </Grid>
+    <Grid item xs={6}>
+      Revenue by revenue type
+    </Grid>
+    <Grid item xs={12}>
+      <Box color="secondary.main" borderBottom={3}>
+        <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Production</Typography>
+      </Box>
+      <Box mb={2}>
+        <Typography color="textPrimary" component='span'>
+          The volume of energy produced on federal and Native American property.
+        </Typography>
+        <Typography color="textPrimary" style={{fontStyle: 'italic'}} component='span'>
+          {' '}Production numbers are behind revenue and disbursements to give time for adjustments.
+        </Typography>
+      </Box>
+    </Grid>
+    <Grid item xs={4}>
+      Oil(bbl)
+    </Grid>
+    <Grid item xs={4}>
+      Gas(mcf)
+    </Grid>
+    <Grid item xs={4}>
+      Coal(tons)
+    </Grid>
+  </Grid>
+</Container>
