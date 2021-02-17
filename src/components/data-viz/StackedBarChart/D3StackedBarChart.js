@@ -28,7 +28,7 @@ export default class D3StackedBarChart {
       this.marginRight = options.marginRight || 15
       this.marginLeft = options.marginLeft || 40
       this.units = (options.units) ? options.units : ''
-      this.horizontal = options.horizontal_
+      this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
       this.handleBarHover = options.handleBarHover
 
@@ -607,10 +607,20 @@ export default class D3StackedBarChart {
       const color = this.color(true)
       const groupedData = this.getGroupedData()
       const yOrderBy = this.options.yOrderBy
+      const labels = this.yGroupings()
 
-      let dataArr = yOrderBy.map((key, i) => {
-        return horizontal ? [key, undefined, groupedData[this.currentIndex][key] || '-'] : [key, undefined, data[key] || '-']
-      })
+      let dataArr
+
+      if (horizontal) {
+        dataArr = Object.keys(data).map((key, i) => {
+          return [labels[i], undefined, data[labels[i]]]
+        }).reverse()
+      }
+      else {
+        dataArr = yOrderBy.map((key, i) => {
+          return [key, undefined, groupedData[this.currentIndex][key] || '-']
+        })
+      }
 
       if (legendReverse) {
         dataArr = dataArr.reverse()
