@@ -182,6 +182,17 @@ export const roundFormatParens = (number, precision) => {
   return formattedNum
 }
 
+export const formatDate = dateStr => {
+  // dateStr YYYY-MM-DD
+  const dateArr = dateStr.split('-')
+  const year = dateArr[0]
+  const monthNum = dateArr[1].replace(/^0+/, '') - 1 // remove leading zero and subtract month num
+  const dayNum = dateArr[2].replace(/^0+/, '') // remove leading zero
+  const date = [year, monthNum, dayNum]
+
+  return date
+}
+
 const utils = {
   scrollStop: callback => {
     // Make sure a valid callback was provided

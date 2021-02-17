@@ -14,7 +14,7 @@ import {
   useTheme
 } from '@material-ui/core'
 
-import utils, { monthLookup } from '../../../js/utils'
+import utils, { formatDate } from '../../../js/utils'
 import PercentDifference from '../../utils/PercentDifference'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
@@ -74,12 +74,12 @@ const ComparisonTable = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     setSelectedItem (d) {
       // console.log('getSelected from Child', d)
-      // check for period_date yyyy-mm-dd
       if (d.length === 10) {
-        const dStr = d.replace(/\b0/g, '')
-        const date = new Date(dStr)
-        const month = date.toLocaleString('default', { month: 'long' })
-        const year = d.substring(0, 4)
+        const dateArr = formatDate(d)
+        const date = new Date(dateArr[0], dateArr[1], dateArr[2])
+        const year = dateArr[0]
+        const month = date.toLocaleDateString('default', { month: 'long' })
+
         setSelectedItem({ ...selectedItem, year: year, month: month })
       }
       else {
