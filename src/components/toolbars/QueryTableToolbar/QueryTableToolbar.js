@@ -13,6 +13,12 @@ import CommodityFilter from '../../inputs/data-filters/CommodityFilter'
 import CompanyNameFilter from '../../inputs/data-filters/CompanyNameFilter'
 import RevenueTypeFilter from '../../inputs/data-filters/RevenueTypeFilter'
 import StateOffshoreFilter from '../../inputs/data-filters/StateOffshoreFilter'
+import LandTypeFilter from '../../inputs/data-filters/LandTypeFilter'
+import ProductFilter from '../../inputs/data-filters/ProductFilter'
+import RecipientFilter from '../../inputs/data-filters/RecipientFilter'
+import SourceFilter from '../../inputs/data-filters/SourceFilter'
+import StateFilter from '../../inputs/data-filters/StateFilter'
+import BaseToggle from '../../inputs/BaseToggle'
 
 import {
   QK_QUERY_TOOL,
@@ -25,22 +31,10 @@ import {
   EXCEL,
   CSV,
   DOWNLOAD_DATA_TABLE,
-  PERIOD_TYPES,
   REVENUE_BY_COMPANY,
   PERIOD_MONTHLY,
   PERIOD
 } from '../../../constants'
-
-import {
-  LandTypeSelectInput,
-  CommoditySelectInput,
-  ProductSelectInput,
-  RecipientSelectInput,
-  SourceSelectInput,
-  FilterToggleInput,
-  PeriodSelectInput,
-  StateNameSelectInput
-} from '../../inputs'
 
 import ClearAllFiltersBtn from '../../inputs/ClearAllFiltersBtn'
 
@@ -169,22 +163,24 @@ const QueryTableToolbar = ({ label, ...props }) => {
   return (
     <>
       <BaseToolbar>
-        <FilterToggleInput
+        <BaseToggle
+          data={['Filter']}
           value='open'
           aria-label="open query data tools"
           defaultSelected={queryDataToolbarOpen}
           selected={queryDataToolbarOpen}
           onChange={toggleQueryDataToolbar}>
           <FilterTableIconImg className={ `${ classes.toolbarIcon }, ${ classes.exploreDataIcon }` } /><span>Query data</span>
-        </FilterToggleInput>
-        <FilterToggleInput
+        </BaseToggle>
+        <BaseToggle
+          data={['Filter']}
           value='open'
           aria-label="open download toolbar"
           selected={downloadToolbarOpen}
           defaultSelected={downloadToolbarOpen}
           onChange={toggleDownloadToolbar}>
           <IconDownloadBaseImg className={ `${ classes.toolbarIcon }, ${ classes.exploreDataIcon }` } style={ { fill: classes.toolbarIcon.fill } }/> <span>Download</span>
-        </FilterToggleInput>
+        </BaseToggle>
       </BaseToolbar>
       { queryDataToolbarOpen &&
         <BaseToolbar isSecondary={true}>
@@ -192,10 +188,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
             <DataTypeFilter useDataTypesPlus={true} />
           </Box>
           <Box className={classes.toolsWrapper}>
-            {state[DATA_TYPE] === DISBURSEMENT
-              ? <PeriodSelectInput data={PERIOD_TYPES.filter(type => type !== PERIOD_CALENDAR_YEAR)}/>
-              : <PeriodFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
-            }
+            <PeriodFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             {state.period === PERIOD_FISCAL_YEAR &&
               <FiscalYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
@@ -253,10 +246,10 @@ export default QueryTableToolbar
 const RevenueFilterToolbar = () => {
   return (
     <>
-      <LandTypeSelectInput />
+      <LandTypeFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
       <RevenueTypeFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
       <StateOffshoreFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
-      <CommoditySelectInput />
+      <CommodityFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
     </>
   )
 }
@@ -264,11 +257,11 @@ const RevenueFilterToolbar = () => {
 const ProductionFilterToolbar = ({ period }) => {
   return (
     <>
-      <LandTypeSelectInput />
+      <LandTypeFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
       {period !== PERIOD_MONTHLY &&
         <StateOffshoreFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
       }
-      <ProductSelectInput />
+      <ProductFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
     </>
   )
 }
@@ -276,9 +269,9 @@ const ProductionFilterToolbar = ({ period }) => {
 const DisbursementFilterToolbar = () => {
   return (
     <>
-      <RecipientSelectInput />
-      <SourceSelectInput />
-      <StateNameSelectInput defaultSelectAll={false} />
+      <RecipientFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
+      <SourceFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
+      <StateFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={false} />
       <CommodityFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
     </>
   )
