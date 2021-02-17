@@ -156,6 +156,32 @@ export const aggregateSum = ({ data, groupByProps, sumByProps }) => {
   return aggregated
 }
 
+export const monthLookup = month => {
+  const monthNumber = {
+    January: '01',
+    February: '02',
+    March: '03',
+    April: '04',
+    May: '05',
+    June: '06',
+    July: '07',
+    August: '08',
+    September: '09',
+    October: '10',
+    November: '11',
+    December: '12'
+  }
+
+  return monthNumber[month]
+}
+
+export const roundFormatParens = (number, precision) => {
+  precision = precision || 0
+  let num = parseFloat(number).toFixed(precision)
+  const formattedNum = num < 0 ? `(${ num *= -1 })` : num
+  return formattedNum
+}
+
 const utils = {
   scrollStop: callback => {
     // Make sure a valid callback was provided

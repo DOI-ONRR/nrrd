@@ -9,7 +9,7 @@ const LocationLink = props => {
     <Link
       href={linkUrl}
       linkType="Location"
-      mt={1}>
+      mt={0}>
       {linkTitle}
     </Link>
   )
