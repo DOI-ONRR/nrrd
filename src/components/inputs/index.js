@@ -3,20 +3,12 @@ import { flowRight as compose } from 'lodash'
 
 import {
   DATA_FILTER_KEY,
-  DATA_TYPE,
-  DATA_TYPES,
-  DATA_TYPES_PLUS,
   LAND_TYPE,
-  REVENUE_TYPE,
-  US_STATE,
-  COUNTY,
-  OFFSHORE_REGION,
   OFFSHORE_REGIONS,
   COMMODITY,
   PRODUCT,
   RECIPIENT,
   SOURCE,
-  STATE_OFFSHORE_NAME,
   DISPLAY_NAMES,
   GROUP_BY,
   GROUP_BY_STICKY,
@@ -26,7 +18,8 @@ import {
   FISCAL_YEAR,
   CALENDAR_YEAR,
   US_STATE_NAME,
-  PERIOD_TYPES
+  PERIOD_TYPES,
+  MONTHLY
 } from '../../constants'
 
 import BaseToggle from './BaseToggle'
@@ -52,7 +45,17 @@ export const createEnhancedInput = (baseInput, queryKey, dataFilterKey, options)
     BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
     BaseComponent => withQueryManager(BaseComponent, queryKey, { [DATA_FILTER_KEY]: dataFilterKey, ...options }))(baseInput)
 }
-
+/**
+ * A factory method for building input components with a DataFilterContext.
+ *
+ * @param {compnent} baseInput
+ * @param {String} dataFilterKey
+ */
+export const createDataFilterContextInput = (baseInput, dataFilterKey) => {
+  return compose(
+    BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[dataFilterKey]?.default} {...props} />),
+    BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey))(baseInput)
+}
 /**
  * A factory method for building slider components with a DataFilterContext and a DataFilterQuery.
  *
@@ -60,7 +63,7 @@ export const createEnhancedInput = (baseInput, queryKey, dataFilterKey, options)
  * @param {String} selectType
  */
 export const createEnhancedSlider = dataFilterKey => compose(
-  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
+  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[dataFilterKey]?.default} {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
   BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSlider)
 
@@ -74,7 +77,7 @@ export const CalendarYearSlider = createEnhancedSlider(CALENDAR_YEAR)
  * @param {String} selectType
  */
 const createEnhancedSelect = (dataFilterKey, selectType) => compose(
-  BaseComponent => props => (<BaseComponent selectType={selectType} label={DISPLAY_NAMES[dataFilterKey].default} {...props} />),
+  BaseComponent => props => (<BaseComponent selectType={selectType} label={DISPLAY_NAMES[dataFilterKey]?.default} {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
   BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSelectInput)
 
@@ -87,32 +90,11 @@ export const PeriodSelectInput = compose(
       {...props} />),
   BaseComponent => withDataFilterContext(BaseComponent, PERIOD))(BaseSelectInput)
 
-export const DataTypeSelectInput = compose(
-  BaseComponent => props => (
-    <BaseComponent
-      label={DISPLAY_NAMES[DATA_TYPE].default}
-      data={DATA_TYPES}
-      showClearSelected={false}
-      {...props} />),
-  BaseComponent => withDataFilterContext(BaseComponent, DATA_TYPE))(BaseSelectInput)
-export const DataTypePlusSelectInput = compose(
-  BaseComponent => props => (
-    <BaseComponent
-      label={DISPLAY_NAMES[DATA_TYPE].default}
-      data={DATA_TYPES_PLUS}
-      showClearSelected={false}
-      {...props} />),
-  BaseComponent => withDataFilterContext(BaseComponent, DATA_TYPE))(BaseSelectInput)
 export const LandTypeSelectInput = createEnhancedSelect(LAND_TYPE, 'Multi')
-export const RevenueTypeSelectInput = createEnhancedSelect(REVENUE_TYPE, 'Multi')
-export const UsStateSelectInput = createEnhancedSelect(US_STATE, 'Multi')
-export const CountySelectInput = createEnhancedSelect(COUNTY, 'Multi')
-export const OffshoreRegionSelectInput = createEnhancedSelect(OFFSHORE_REGION, 'Multi')
 export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
 export const ProductSelectInput = createEnhancedSelect(PRODUCT, 'Multi')
 export const RecipientSelectInput = createEnhancedSelect(RECIPIENT, 'Multi')
 export const SourceSelectInput = createEnhancedSelect(SOURCE, 'Multi')
-export const StateOffshoreSelectInput = createEnhancedSelect(STATE_OFFSHORE_NAME, 'Multi')
 export const StateNameSelectInput = createEnhancedSelect(US_STATE_NAME, 'Multi')
 
 export const GroupByStickySelectInput = compose(
@@ -131,3 +113,4 @@ export const FilterToggleInput = ({ children, ...props }) => <BaseToggle data={[
 
 export const MapLevelToggleInput = withDataFilterContext(BaseMultiToggle, MAP_LEVEL)
 export const OffshoreRegionsSwitchInput = withDataFilterContext(BaseSwitch, OFFSHORE_REGIONS)
+export const YearlyMonthlyToggleInput = withDataFilterContext(BaseMultiToggle, MONTHLY)

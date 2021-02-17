@@ -18,14 +18,14 @@ const TotalProvider = props => {
       ) {
         return ''
       }
-      return ((props.type === 'totalSum') ? 'Total:' : 'Subtotal:')
+      return ((props.type === 'totalSumLabel') ? 'Total:' : 'Subtotal:')
     }
 
     return (
       <>
-        {(props.type === 'totalSum' || props.type === 'sum')
+        {(props.type === 'totalSumLabel' || props.type === 'sumLabel')
           ? <div style={{ textAlign: 'right' }}>{getTotalLabel()}</div>
-          : <div>{props.value}</div>
+          : <div >{props.value}</div>
         }
       </>
     )

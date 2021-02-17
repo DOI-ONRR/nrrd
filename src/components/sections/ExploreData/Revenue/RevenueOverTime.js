@@ -43,18 +43,6 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '100%',
     },
   },
-  progressContainer: {
-    maxWidth: '25%',
-    display: 'flex',
-    '& > *': {
-      marginTop: theme.spacing(3),
-      marginRight: 'auto',
-      marginLeft: 'auto',
-    }
-  },
-  circularProgressRoot: {
-    color: theme.palette.primary.dark,
-  },
   chipRoot: {
     height: 40,
     marginTop: theme.spacing(1),
@@ -83,7 +71,7 @@ const RevenueOverTime = props => {
   const classes = useStyles()
   const theme = useTheme()
 
-  const title = props.title || ''
+  const { title } = props
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
@@ -107,9 +95,9 @@ const RevenueOverTime = props => {
 
   if (loading) {
     return (
-      <div className={classes.progressContainer}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-      </div>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={300}>
+        <CircularProgress />
+      </Box>
     )
   }
   if (error) return `Error! ${ error.message }`
@@ -142,7 +130,7 @@ const RevenueOverTime = props => {
     chartData = [years, ...sums]
     // console.debug('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCHARRRT DAAAAAAAAAAAAAAAAAAAAATA', chartData)
     return (
-      <Container id={utils.formatToSlug(title)} ref={ref} >
+      <Container id={utils.formatToSlug(title)} ref={ref}>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h4" color="secondary.dark">{title}</Box>
@@ -180,9 +168,11 @@ const RevenueOverTime = props => {
     )
   }
   else {
-    return (<div className={classes.progressContainer} ref={ref}>
-      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-    </div>)
+    return (
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={300}>
+        <CircularProgress />
+      </Box>
+    )
   }
 }
 

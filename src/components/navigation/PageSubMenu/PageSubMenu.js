@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useContext } from 'react'
+import React, { useCallback, useState, useEffect, useContext, useRef } from 'react'
 
 import {
   animateScroll as scroll,
@@ -66,8 +66,8 @@ const useStyles = makeStyles(theme => ({
 // Page ScrollTo
 const PageSubMenu = ({ children, menuItems, ...props }) => {
   const classes = useStyles()
-
   const { state: filterState } = useContext(DataFilterContext)
+  const subMenuWrapperRef = useRef(null)
 
   // eslint-disable-next-line no-unused-vars
   const [subMenu, setSubMenu] = useState({
@@ -93,7 +93,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
     const fromTop = window.scrollY
 
     subMenuLinks.forEach((link, index) => {
-      const section = document.querySelector(link.hash || 'body')
+      const section = document.querySelector(link.id || 'body')
 
       if (!section) return
 
@@ -113,10 +113,10 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
 
   const scrollTo = element => {
     scroller.scrollTo(element, {
-      duration: 800,
-      delay: 0,
+      duration: 1500,
+      delay: 150,
       smooth: 'easeInOutQuart',
-      offset: -150
+      offset: -150,
     })
   }
 
@@ -137,6 +137,10 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
     }
   }, [subMenu.menuItems, filterState])
 
+  useEffect(() => {
+    console.log('subMenuWrapperRef: ', subMenuWrapperRef)
+  }, [])
+
   return (
     <>
       <Box className={classes.root}>
@@ -153,9 +157,9 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
                 subMenu.anchorItems.map((item, i) =>
                   <MenuItem key={i + 1}>
                     <a
-                      href={`#${ item }`}
+                      id={`#${ item }`}
                       onClick={() => scrollTo(item)}
-                      className={classes.subMenuLink}
+                      className={`${ classes.subMenuLink }`}
                       title={item}>
                       {menuItems[i]}
                     </a>
@@ -167,7 +171,7 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
           </Paper>
         </StickyWrapper>
       </Box>
-      <Box>
+      <Box ref={subMenuWrapperRef}>
         {children}
       </Box>
     </>

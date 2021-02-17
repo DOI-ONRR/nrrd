@@ -90,13 +90,16 @@ BaseButtonInput.propTypes = {
 
 export default BaseButtonInput
 
-export const BaseButtonInputDemos = [
-  {
-    title: 'Simple Button',
-    code: '<BaseButtonInput>Click me</BaseButtonInput>',
-  },
-  {
-    title: 'Link Style Button',
-    code: '<BaseButtonInput styleType="link">Click me</BaseButtonInput>',
-  }
-]
+BaseButtonInput.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'Simple Button',
+      code: '<BaseButtonInput>Click me</BaseButtonInput>',
+    },
+    {
+      title: 'Link Style Button',
+      code: '<BaseButtonInput styleType="link">Click me</BaseButtonInput>',
+    }
+  ]
+}

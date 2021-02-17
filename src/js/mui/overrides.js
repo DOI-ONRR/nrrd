@@ -89,4 +89,12 @@ export default Object.freeze({
       textTransform: 'Capitalize',
     },
   },
+  MuiCircularProgress: {
+    root: {
+      color: primary.dark,
+    },
+    colorPrimary: {
+      color: primary.dark,
+    },
+  },
 })
