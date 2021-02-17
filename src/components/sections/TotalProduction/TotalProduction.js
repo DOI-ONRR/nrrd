@@ -30,7 +30,7 @@ const TOTAL_PRODUCTION_QUERY = gql`
       monthLong: month_long
     }
 
-    total_yearly_calendar_production: total_yearly_calendar_production_2 {
+    total_yearly_calendar_production {
       product,
       year,
       source,
