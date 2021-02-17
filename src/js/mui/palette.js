@@ -90,7 +90,8 @@ module.exports = Object.freeze({
     300: '#e0e0e0',
     400: '#bdbdbd',
     500: '#9e9e9e',
-    600: '#757575'
+    600: '#757575',
+    700: '#494949'
   },
   tonalOffset: 0.5,
 })

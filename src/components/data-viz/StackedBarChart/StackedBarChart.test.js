@@ -78,7 +78,7 @@ describe('Stacked Bar Chart component:', () => {
 		     legendFormat={v => ('foo') }
     />)
     // 4 plus totall
-    expect(screen.getAllByText('foo')).toHaveLength(5)
+    expect(screen.getAllByText('foo')).toHaveLength(2)
   })
   test('units Stacked Bar Chart  rendered succesfully', () => {
     const units = 'foo'

@@ -18,7 +18,8 @@ import {
   FISCAL_YEAR,
   CALENDAR_YEAR,
   US_STATE_NAME,
-  PERIOD_TYPES
+  PERIOD_TYPES,
+  MONTHLY
 } from '../../constants'
 
 import BaseToggle from './BaseToggle'
@@ -112,3 +113,4 @@ export const FilterToggleInput = ({ children, ...props }) => <BaseToggle data={[
 
 export const MapLevelToggleInput = withDataFilterContext(BaseMultiToggle, MAP_LEVEL)
 export const OffshoreRegionsSwitchInput = withDataFilterContext(BaseSwitch, OFFSHORE_REGIONS)
+export const YearlyMonthlyToggleInput = withDataFilterContext(BaseMultiToggle, MONTHLY)
