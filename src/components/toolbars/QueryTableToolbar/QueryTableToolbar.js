@@ -223,23 +223,23 @@ const QueryTableToolbar = ({ label, ...props }) => {
       { downloadToolbarOpen &&
       <BaseToolbar isSecondary={true}>
         <Box mr={2}>
-          <Link href={'#'} onClick={handleDownloadExcel} linkType='DownloadXls'>Download filtered data (Excel)</Link>
+          <Link href={'#'} onClick={handleDownloadExcel} linkType='DownloadXls' data-dataType={state[DATA_TYPE]}>Download filtered data (Excel)</Link>
         </Box>
         <Box mr={2}>
-          <Link href={'#'} onClick={handleDownloadCsv} linkType='DownloadCsv'>Download filtered data (csv)</Link>
+          <Link href={'#'} onClick={handleDownloadCsv} linkType='DownloadCsv' data-dataType={state[DATA_TYPE]}>Download filtered data (csv)</Link>
         </Box>
         <Box mr={2}>
           {state[DATA_TYPE] === REVENUE &&
-            <Link href={'/downloads/federal-revenue-by-location/'} linkType='DownloadData'>Source file and documentation</Link>
+            <Link href={'/downloads/federal-revenue-by-location/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
           }
           {state[DATA_TYPE] === PRODUCTION &&
-            <Link href={'/downloads/production/'} linkType='DownloadData'>Source file and documentation</Link>
+            <Link href={'/downloads/production/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
           }
           {state[DATA_TYPE] === DISBURSEMENT &&
-            <Link href={'/downloads/disbursements/'} linkType='DownloadData'>Source file and documentation</Link>
+            <Link href={'/downloads/disbursements/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
           }
           {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
-            <Link href={'/downloads/federal-revenue-by-company/'} linkType='DownloadData'>Source file and documentation</Link>
+            <Link href={'/downloads/federal-revenue-by-company/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
           }
         </Box>
       </BaseToolbar>
