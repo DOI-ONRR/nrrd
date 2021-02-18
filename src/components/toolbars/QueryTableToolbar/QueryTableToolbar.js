@@ -175,7 +175,8 @@ const QueryTableToolbar = ({ label, ...props }) => {
           defaultSelected={queryDataToolbarOpen}
           selected={queryDataToolbarOpen}
           onChange={toggleQueryDataToolbar}>
-          <FilterTableIconImg className={ `${ classes.toolbarIcon }, ${ classes.exploreDataIcon }` } /><span>Query data</span>
+          <FilterTableIconImg className={ `${ classes.toolbarIcon }, ${ classes.exploreDataIcon }` } />
+          <h1 style={{ fontSize: '1.125rem', margin: 0 }}><span>Query data</span></h1>
         </FilterToggleInput>
         <FilterToggleInput
           value='open'
