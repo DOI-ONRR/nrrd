@@ -110,7 +110,7 @@ update location set fips_code=concat('0',fips_code) where length(fips_code)=4
 
 #recover if hassura keeps crashing
 export DB_ENV=<db_env to recover>  && export DB_PORT=7726
-cf push hasura-recover -f manifest.stagging.yml 
+cf push hasura-recover -f manifest.staging.yml 
 cf bind-service hasura-recover  $DB_ENV-psql
 
 
