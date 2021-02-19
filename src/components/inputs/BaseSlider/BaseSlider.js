@@ -147,7 +147,16 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }))
-
+/**
+ * This enables users to select a specific year or range of years in the data.
+ * The base slider can exist when the user in Explore data and Query data.
+ *
+ * An example where only a single year can be selected exists on the map in Explore data:
+ * [https://revenuedata.doi.gov/explore].
+ *
+ * An example where a range of years can be selected exists in Query Data:
+ * [https://revenuedata.doi.gov/query-data].
+ */
 const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restProps }) => {
   const theme = useTheme()
   const classes = useStyles(theme)

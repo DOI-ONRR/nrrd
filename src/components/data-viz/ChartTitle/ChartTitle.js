@@ -12,9 +12,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: 0,
   }
 }))
-
 /**
- * This is to display and format a title for a chart
+ * This is to display and format a title for a chart.
  */
 const ChartTitle = props => {
   const classes = useStyles()

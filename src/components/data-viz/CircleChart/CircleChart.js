@@ -95,7 +95,12 @@ const useStyles = makeStyles((theme, props) => ({
     },
   }
 }))
-
+/**
+ * Circle charts provide  a way to visualize hierarchically structured data.
+ *
+ * An example exists in the “Compare revenue” section in Explore data:
+ * [https://revenuedata.doi.gov/explore?dataType=Revenue&location=NF&mapLevel=State&offshoreRegions=false&period=Calendar%20Year&year=2019#top-nationwide-locations].
+ */
 const CircleChart = props => {
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land

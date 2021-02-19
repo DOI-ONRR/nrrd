@@ -64,8 +64,7 @@ const DefaultToggleButtonGroup = withStyles(theme =>
   )
 })
 /**
- * This is the base component to create a multi toggle group
- *
+ * This is the base component to create a multi toggle group.
  */
 const BaseMultiToggle = ({ onChange, data, defaultSelected, label, legend, helperText, size, disabled, ...props }) => {
   if (data && data.length > 0 && !data[0].option) {

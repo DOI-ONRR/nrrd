@@ -142,13 +142,15 @@ const getLinkComponent = ({ linkType, ...props }) => {
 }
 
 /**
- * This Link component includes logic to determine if we need to use the Gatsby Link. By using Gatsby Link we leverage the
- * internal routing table and the ability to prefetch relative links.
- * By default all relative urls will use Gatsby, however files that need to be downloaded or anchor links do not use Gatsby Link.
+ * The Link component includes logic to determine if we need to use the Gatsby Link.
+ * By using Gatsby Link we leverage the internal routing table and the ability to prefetch
+ * relative links. By default all relative URLs will use Gatsby.  However, files that need
+ * to be downloaded or anchor links do not use Gatsby Link.
  *
- * We also determine a link type by default to assign the appropriate icon.
- * You can also specify the property "linkType". Values currently available:
- * 'DownloadXls', 'DownloadCsv', 'DownloadData', 'DownloadBase', 'FilterTable', 'ExploreData', 'Header', 'HowWorks', 'default', 'Location'
+ * We also determine a link type by default to assign the appropriate icon. You
+ * can also specify the property: "linkType". Values currently available: 'DownloadXls',
+ * 'DownloadCsv', 'DownloadData', 'DownloadBase', 'FilterTable', 'ExploreData',
+ * 'Header', 'HowWorks', 'default', or ‘Location.’
  */
 const Link = props => getLinkComponent(props)
 

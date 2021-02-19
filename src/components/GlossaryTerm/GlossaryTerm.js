@@ -27,7 +27,11 @@ const useStyles = makeStyles(theme => (
     }
   }
 ))
-
+/**
+ * A dotted underline with a trailing question mark icon indicates a term defined
+ * in the glossary.  On hover, a tooltip explains the term.  On click, a tooltip
+ * explains the term and an orange border surrounds it.
+ */
 const GlossaryTerm = ({ children, ...rest }) => {
   const theme = useTheme()
   const styles = useStyles(theme)

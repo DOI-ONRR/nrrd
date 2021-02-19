@@ -21,10 +21,9 @@ const useStyles = makeStyles(theme => ({
     minHeight: 71,
   },
 }))
-
 /**
- * The toolbar is used to contain various inputs for the user to access.
- *
+ * The toolbar is used to contain various inputs for the user to access. It is
+ * currently used on Explore Data and Query Data: [https://revenuedata.doi.gov/explore].
  */
 const BaseToolbar = ({ isSecondary, children, style, ...restProps }) => {
   const theme = useTheme()
