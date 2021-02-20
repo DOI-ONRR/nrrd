@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     width: '100%',
-    height: '200px',
     fill: 'inherit',
     // '& .bars > .bar': {
     //   opacity: 0.8,
@@ -86,15 +85,11 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100%',
     fontSize: theme.typography.h5.fontSize,
-    '& tr > td:first-child': {
-      width: 10,
-    },
     '& td .legend-rect': {
       // fill: theme.palette.chart.secondary,
       // backgroundColor: theme.palette.chart.secondary,
+      width: '20px',
       display: 'block',
-      height: 20,
-      width: 20,
     },
     '& .legend-table': {
       width: '100%',
@@ -125,10 +120,8 @@ const useStyles = makeStyles(theme => ({
     },
     '& .legend-table td:first-child': {
       padding: '6px 6px 6px 16px',
-    },
-    '& .legend-rect': {
-      marginTop: theme.spacing(0.5),
-    },
+      width: '20px'
+    }
   },
   legendButton: {
     color: theme.palette.links.default,
@@ -146,7 +139,7 @@ const StackedBarChart = props => {
   // console.debug("SBC collapsed", collapsed, ' <> ', props)
   const size = useWindowSize()
 
-  const { data, ...options } = props
+  const { data, chartHeight, ...options } = props
   const elemRef = useRef(null)
   const title = options.title || ''
   const buttonValue = collapsed ? 'Show details' : 'Hide details'
@@ -170,7 +163,7 @@ const StackedBarChart = props => {
     <>
       {title && <ChartTitle>{title}</ChartTitle>}
       <div className={classes.container} ref={elemRef}>
-        <div className={`${ classes.chart } ${ options.horizontal ? classes.horizontal : '' } chart_div`}></div>
+        <div className={`${ classes.chart } ${ options.horizontal ? classes.horizontal : '' } chart_div`} style={{ height: chartHeight }}></div>
         { props.collapsibleLegend && <Button variant='text' className={classes.legendButton} onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</Button> }
         <Collapse in={!collapsed}>
           <div className={classes.legend + ' legend_div'}></div>

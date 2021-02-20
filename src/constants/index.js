@@ -108,3 +108,5 @@ y2019`
 
 // Keys for accessing queries defined in the query manager
 export const QK_QUERY_TOOL = 'qk_query_tool'
+export const QK_DISBURSEMENTS_COMMON = 'qk_disbursements_common'
+export const QK_REVENUE_COMMON = 'qk_revenue_common'

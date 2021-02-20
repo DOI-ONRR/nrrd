@@ -19,7 +19,7 @@ export default class D3StackedBarChart {
       }
 
       this.options = options
-      this._height = (this.chartDiv.clientHeight > 0) ? this.chartDiv.clientHeight : 400
+      this._height = (this.chartDiv.clientHeight > 0) ? this.chartDiv.clientHeight : 200
       this._width = (this.chartDiv.clientWidth <= 0) ? 300 : this.chartDiv.clientWidth
       this.xAxis = options.xAxis || console.error('Error - no xAxis property set')
       this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
@@ -98,8 +98,7 @@ export default class D3StackedBarChart {
         .domain([this.yMin(), this.yMax()])
 
       this.chart = d3.select(this.chartDiv).append('svg')
-        .attr('height', this._height)
-        .attr('width', this._width)
+        .attr('viewBox', `0 0 ${ (this._width + 20) } ${ this._height }`)
         .attr('class', 'stacked-bar-chart')
 
       // chart colors
@@ -624,16 +623,16 @@ export default class D3StackedBarChart {
 
       // append color blocks into tr first cell
       tr.append('td')
+        .append('div')
+        .attr('class', 'legend-rect')
         .append('svg')
-        .attr('width', 20)
-        .attr('height', 20)
+        .attr('viewBox', '0 0 20 20')
         .style('fill', (d, i) => {
           return color(i)
         })
         .append('rect')
-        .attr('class', 'legend-rect')
-        .attr('width', 15)
-        .attr('height', 15)
+        .attr('width', 20)
+        .attr('height', 20)
         .style('background-color', (d, i) => {
           return color(i)
         })

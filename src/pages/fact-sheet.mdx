@@ -3,7 +3,9 @@ title: Fact Sheet
 includeToc: false
 ---
 
-<Container id="fact-sheet">
+import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
+
+<Container id="fact-sheet-disbursements" style={{ width: '960px'}}>
   <Grid container>
     <Grid item xs={12}>
       <SnapshotBanner />
@@ -15,31 +17,40 @@ includeToc: false
     </Grid>
     <Grid item xs={6}>
       <Box mb={2}>
-        <Typography>The amount of money paid to federal and local governments and Native Americans.</Typography>
+        <Typography style={{fontSize: '1rem', lineHeight: '1.1rem'}}>The amount of money paid to federal and local governments and Native Americans.</Typography>
       </Box>
-      <Typography style={{fontStyle: 'italic'}}>This number is delayed from revenue because disbursements are made after the money comes in.</Typography>
+      <Typography style={{fontStyle: 'italic', fontSize: '1rem', lineHeight: '1.1rem'}}>This number is delayed from revenue because disbursements are made after the money comes in.</Typography>
     </Grid>
     <Grid item xs={6}>
-      Disbursements by recipient
+      <Box pl={'20px'} pr={'20px'}>
+        <DisbursementsLastTwelveMonths title='Disbursements by recipient' chartHeight={150} skeletonHeight={367} yGroupBy={RECIPIENT}
+          style={{'& td .legend-rect': {width: '10px'}, '& table':{fontSize: '0.7rem', lineHeight: '0.7rem'}, '& td': {padding: '2px 2px 4px 2px !important' }}}/>
+      </Box>
     </Grid>
     <Grid item xs={12}>
       <Box color="secondary.main" borderBottom={3}>
         <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Revenue</Typography>
       </Box>
-      <Box mb={2}>
-        <Typography color="textPrimary" component='span'>
+      <Box mb={0}>
+        <Typography color="textPrimary" component='span' style={{fontSize: '1rem', lineHeight: '1.1rem'}}>
           The amount of money collected from energy and minerals on property owned by the federal government and Native Americans.
         </Typography>
-        <Typography color="textPrimary" style={{fontStyle: 'italic'}} component='span'>
+        <Typography color="textPrimary" style={{fontStyle: 'italic', fontSize: '1rem', lineHeight: '1.1rem'}} component='span'>
           {' '}Negative numbers often indicate adjustments because this is accounting data, not sales data.
         </Typography>
       </Box>
     </Grid>
     <Grid item xs={6}>
-      Revenue by source 
+      <Box pl={'20px'} pr={'20px'}>
+        <RevenueLastTwelveMonths title='Revenue by source' yGroupBy={SOURCE} chartHeight={130} skeletonHeight={293}
+          style={{'& td .legend-rect': {width: '10px'}, '& table':{fontSize: '0.7rem', lineHeight: '0.7rem'}, '& td': {padding: '2px 2px 4px 2px !important' }}} />
+      </Box>
     </Grid>
     <Grid item xs={6}>
-      Revenue by revenue type
+      <Box pl={'20px'} pr={'20px'}>
+        <RevenueLastTwelveMonths title='Revenue by revenue type' yGroupBy={'revenue_type'} chartHeight={130} skeletonHeight={293}
+          style={{'& td .legend-rect': {width: '10px'}, '& table':{fontSize: '0.7rem', lineHeight: '0.7rem'}, '& td': {padding: '2px 2px 4px 2px !important' }}} />
+      </Box>
     </Grid>
     <Grid item xs={12}>
       <Box color="secondary.main" borderBottom={3}>

@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid'
 import { OnrrLogoImg } from '../../images'
 import { Typography } from '@material-ui/core'
 
-// TODO: update styles, should be able to utilize main theme
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.toolbarBackground.main,
