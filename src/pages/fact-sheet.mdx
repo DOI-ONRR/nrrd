@@ -23,7 +23,7 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
     </Grid>
     <Grid item xs={6}>
       <Box pl={'20px'} pr={'20px'}>
-        <DisbursementsLastTwelveMonths title='Disbursements by recipient' chartHeight={150} skeletonHeight={367} yGroupBy={RECIPIENT}
+        <DisbursementsLastTwelveMonths title='Disbursements by recipient' chartHeight={130} skeletonHeight={347} yGroupBy={RECIPIENT}
           style={{'& td .legend-rect': {width: '10px'}, '& table':{fontSize: '0.7rem', lineHeight: '0.7rem'}, '& td': {padding: '2px 2px 4px 2px !important' }}}/>
       </Box>
     </Grid>
@@ -32,11 +32,11 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
         <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Revenue</Typography>
       </Box>
       <Box mb={0}>
-        <Typography color="textPrimary" component='span' style={{fontSize: '1rem', lineHeight: '1.1rem'}}>
+        <Typography color="textPrimary" component='span' style={{fontSize: '1rem', lineHeight: '0.9rem'}}>
           The amount of money collected from energy and minerals on property owned by the federal government and Native Americans.
-        </Typography>
-        <Typography color="textPrimary" style={{fontStyle: 'italic', fontSize: '1rem', lineHeight: '1.1rem'}} component='span'>
-          {' '}Negative numbers often indicate adjustments because this is accounting data, not sales data.
+          <Typography style={{fontStyle: 'italic', fontSize: '1rem', lineHeight: '0.9em', display: 'inline'}}>
+            {' '}Negative numbers often indicate adjustments because this is accounting data, not sales data.
+          </Typography>
         </Typography>
       </Box>
     </Grid>
@@ -56,23 +56,32 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
       <Box color="secondary.main" borderBottom={3}>
         <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Production</Typography>
       </Box>
-      <Box mb={2}>
-        <Typography color="textPrimary" component='span'>
+      <Box mb={0}>
+        <Typography color="textPrimary" component='span' style={{fontSize: '1rem', lineHeight: '0.9rem'}}>
           The volume of energy produced on federal and Native American property.
-        </Typography>
-        <Typography color="textPrimary" style={{fontStyle: 'italic'}} component='span'>
-          {' '}Production numbers are behind revenue and disbursements to give time for adjustments.
+          <Typography style={{fontStyle: 'italic', fontSize: '1rem', lineHeight: '0.9rem', display: 'inline'}}>
+            {' '}Production numbers are behind revenue and disbursements to give time for adjustments.
+          </Typography>
         </Typography>
       </Box>
     </Grid>
     <Grid item xs={4}>
-      Oil(bbl)
+      <Box pl={'10px'} pr={'10px'}>
+        <ProductionLastTwelveMonths title='Oil(bbl)' filterByProduct='Oil (bbl)' yGroupBy={SOURCE} chartHeight={110} skeletonHeight={273}
+          style={{'& td .legend-rect': {width: '10px'}, '& table':{fontSize: '0.7rem', lineHeight: '0.7rem'}, '& td': {padding: '2px 2px 4px 2px !important' }}} />
+      </Box>
     </Grid>
     <Grid item xs={4}>
-      Gas(mcf)
+      <Box pl={'10px'} pr={'10px'}>
+        <ProductionLastTwelveMonths title='Gas(mcf)' filterByProduct='Gas (mcf)' yGroupBy={SOURCE} chartHeight={110} skeletonHeight={273}
+          style={{'& td .legend-rect': {width: '10px'}, '& table':{fontSize: '0.7rem', lineHeight: '0.7rem'}, '& td': {padding: '2px 2px 4px 2px !important' }}} />
+      </Box>
     </Grid>
     <Grid item xs={4}>
-      Coal(tons)
+      <Box pl={'10px'} pr={'10px'}>
+        <ProductionLastTwelveMonths title='Coal(tons)' filterByProduct='Coal (tons)' yGroupBy={SOURCE} chartHeight={110} skeletonHeight={273}
+          style={{'& td .legend-rect': {width: '10px'}, '& table':{fontSize: '0.7rem', lineHeight: '0.7rem'}, '& td': {padding: '2px 2px 4px 2px !important' }}} />
+      </Box>
     </Grid>
   </Grid>
 </Container>

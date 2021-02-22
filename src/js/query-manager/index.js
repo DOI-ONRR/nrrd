@@ -6,6 +6,7 @@ import {
   QK_QUERY_TOOL,
   QK_DISBURSEMENTS_COMMON,
   QK_REVENUE_COMMON,
+  QK_PRODUCTION_COMMON,
   FISCAL_YEAR,
   PERIOD_FISCAL_YEAR,
   CALENDAR_YEAR,
@@ -46,6 +47,11 @@ import {
   getQuery as getQueryRevenue,
   getVariables as getVariablesRevenue
 } from './revenue-queries'
+
+import {
+  getQuery as getQueryProduction,
+  getVariables as getVariablesProduction
+} from './production-queries'
 /**
  * The query manager provides a standard approach for accessing a query and its variables. This allows us to use this
  * query manager in a HOC that can then be added to components. The query manager also provides helper methods to use for creating
@@ -99,6 +105,7 @@ const QUERIES = {
   [QK_QUERY_TOOL]: (state, options) => getQueryQueryTool(state, options),
   [QK_DISBURSEMENTS_COMMON]: (state, options) => getQueryDisbursement(state, options),
   [QK_REVENUE_COMMON]: (state, options) => getQueryRevenue(state, options),
+  [QK_PRODUCTION_COMMON]: (state, options) => getQueryProduction(state, options),
 }
 
 /**
@@ -107,7 +114,8 @@ const QUERIES = {
 const VARIABLES = {
   [QK_QUERY_TOOL]: (state, options) => getVariablesQueryTool(state, options),
   [QK_DISBURSEMENTS_COMMON]: (state, options) => getVariablesDisbursement(state, options),
-  [QK_REVENUE_COMMON]: (state, options) => getVariablesRevenue(state, options)
+  [QK_REVENUE_COMMON]: (state, options) => getVariablesRevenue(state, options),
+  [QK_PRODUCTION_COMMON]: (state, options) => getVariablesProduction(state, options),
 }
 
 /**

@@ -110,3 +110,4 @@ y2019`
 export const QK_QUERY_TOOL = 'qk_query_tool'
 export const QK_DISBURSEMENTS_COMMON = 'qk_disbursements_common'
 export const QK_REVENUE_COMMON = 'qk_revenue_common'
+export const QK_PRODUCTION_COMMON = 'qk_production_common'

@@ -10,12 +10,12 @@ import createStyles from '@material-ui/styles/createStyles'
 import withStyles from '@material-ui/styles/withStyles'
 
 import withQueryManager from '../../withQueryManager'
-import { QK_REVENUE_COMMON, SOURCE } from '../../../constants'
+import { QK_PRODUCTION_COMMON, SOURCE } from '../../../constants'
 
 /**
- * This displays data related to the Revenue for the last 12 months
+ * This displays data related to the Production for the last 12 months
  */
-const RevenueLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, skeletonHeight, ...restProps }) => {
+const ProductionLastTwelveMonths = ({ title, filterByProduct, yGroupBy, data, chartHeight, skeletonHeight, ...restProps }) => {
   const ChartContainer = withStyles(() =>
     createStyles({
       root: restProps.style,
@@ -61,7 +61,7 @@ const RevenueLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, skeletonH
         ? <StackedBarChart
           title={title}
           units={'dollars'}
-          data={data.results}
+          data={data.results.filter(row => row.product === filterByProduct)}
           xAxis={'period_date'}
           yAxis={'sum'}
           xGroups={xGroups}
@@ -78,7 +78,7 @@ const RevenueLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, skeletonH
   )
 }
 
-RevenueLastTwelveMonths.propTypes = {
+ProductionLastTwelveMonths.propTypes = {
   /** The title for the chart */
   title: PropTypes.string,
   /** Defines which property of the data will be used to group the y axis */
@@ -87,9 +87,9 @@ RevenueLastTwelveMonths.propTypes = {
   data: PropTypes.array,
 }
 
-RevenueLastTwelveMonths.defaultProps = {
+ProductionLastTwelveMonths.defaultProps = {
   yGroupBy: SOURCE,
   skeletonHeight: 400,
 }
 
-export default withQueryManager(RevenueLastTwelveMonths, QK_REVENUE_COMMON)
+export default withQueryManager(ProductionLastTwelveMonths, QK_PRODUCTION_COMMON)
