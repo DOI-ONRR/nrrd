@@ -72,8 +72,8 @@ const TOTAL_REVENUE_QUERY = gql`
       sort_order
       commodity_order
       commodity
-    } 
- 
+    }
+
     total_monthly_last_twelve_revenue {
       source: land_type
       sum
@@ -373,7 +373,7 @@ const TotalRevenue = props => {
             handleBarHover={handleBarHover}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
-            <Link href='/downloads/revenue-by-month/'>Source file</Link>
+            <Link href='/downloads/revenue/'>Source file</Link>
           </Box>
         </Grid>
         <Grid item xs={12} md={5}>
