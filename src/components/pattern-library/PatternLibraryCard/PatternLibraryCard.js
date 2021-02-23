@@ -15,7 +15,7 @@ import Box from '@material-ui/core/Box'
 const useStyles = makeStyles(theme => ({
   cardHeaderRoot: {
     color: '#fff',
-    backgroundColor: '#455a6b',
+    backgroundColor: '#004C77',
     '& span': {
       margin: 0,
       textAlign: 'center'

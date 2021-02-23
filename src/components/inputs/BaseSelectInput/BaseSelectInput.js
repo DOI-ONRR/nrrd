@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { isEqual, isEqualWith } from 'lodash'
+import { isEqual, isEqualWith, uniqBy } from 'lodash'
 
+import Skeleton from '@material-ui/lab/Skeleton'
 import {
   Box,
   InputBase,
@@ -101,8 +102,15 @@ const BaseSelectInput = ({
     data = data.map(item => ({ option: item }))
   }
   else if (!data) {
-    return (<></>)
+    return (
+      <Box marginRight={2}>
+        <Skeleton variant="rect" width={'150px'} height={'40px'} animation={false}/>
+      </Box>)
   }
+
+  data = uniqBy(data, e => {
+    return (e.value || e.option)
+  })
 
   const noop = () => {}
 
@@ -455,9 +463,12 @@ const areEqual = (prevProps, nextProps) => {
 
 export default React.memo(BaseSelectInput, areEqual)
 
-export const BaseSelectInputDemos = [
-  {
-    title: 'Simple',
-    code: '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />',
-  }
-]
+BaseSelectInput.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'Simple',
+      code: '<BaseSelectInput label="Simple Items" data={["item1", "item2", "item3"]} />',
+    }
+  ]
+}

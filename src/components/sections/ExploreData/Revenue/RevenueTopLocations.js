@@ -96,6 +96,7 @@ const RevenueTopLocations = props => {
   if (location === 'State') {
     locations.push('Native American')
   }
+
   const { ref, inView, entry } = useInView({
 	    /* Optional options */
 	    threshold: 0,
@@ -109,9 +110,9 @@ const RevenueTopLocations = props => {
 
   if (loading) {
     return (
-      <div className={classes.progressContainer}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-      </div>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={1010}>
+        <CircularProgress />
+      </Box>
     )
   }
   if (error) return `Error! ${ error.message }`
@@ -205,9 +206,11 @@ const RevenueTopLocations = props => {
     )
   }
   else {
-    return (<div className={classes.progressContainer} ref={ref}>
-      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-    </div>)
+    return (
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={1010}>
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </Box>
+    )
   }
 }
 

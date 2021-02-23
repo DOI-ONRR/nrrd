@@ -35,7 +35,7 @@ const APOLLO_QUERY = gql`
       total
       commodity
     }
-    period(where: {period: {_ilike: $period }}) {
+    period(where: {period: {_ilike: $period }},  order_by: { period_date: asc}) {
       fiscal_year
       period_date
     }

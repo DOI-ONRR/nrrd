@@ -19,9 +19,21 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: '100%',
     height: '200px',
-    fill: theme.palette.chart.primary,
+    fill: 'inherit',
+    // '& .bars > .bar': {
+    //   opacity: 0.8,
+    // },
     '& .bars > .bar:hover': {
       cursor: 'pointer',
+      // outline: `${ theme.palette.orange[200] } solid`,
+      // opacity: 1,
+    },
+    // '& .bars > .bar.active': {
+    //   outline: `${ theme.palette.orange[200] } solid`,
+    //   opacity: 1,
+    // },
+    '& .bar .stacked-bar-chart-item': {
+      transition: 'all .1s ease-in'
     },
     '& .maxExtent': {
       fontSize: theme.typography.h5.fontSize,
@@ -36,8 +48,15 @@ const useStyles = makeStyles(theme => ({
       },
     },
     '& .y-axis > .tick': {
-      fontSize: theme.typography.body2.fontSize,
+      fontSize: '.85rem',
+      fontWeight: 'normal',
+      transition: 'all .1s ease-in',
     },
+    '& .x-axis .tick.active > text': {
+      fontWeight: 'bold',
+      fontSize: '.90rem',
+      fill: theme.palette.common.black
+    }
   },
   horizontal: {
     position: 'relative',
@@ -48,6 +67,16 @@ const useStyles = makeStyles(theme => ({
       left: 5,
       transform: 'rotate(90deg)',
       transformOrigin: 'bottom left',
+      '& .bars > .bar': {
+        opacity: 1,
+      },
+      '& .bars > .bar:hover': {
+        cursor: 'pointer',
+        outline: 'none',
+      },
+      '& .bars > .bar.active': {
+        outline: 'none',
+      },
     }
   },
   legend: {
@@ -81,6 +110,9 @@ const useStyles = makeStyles(theme => ({
       textAlign: 'left',
       borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     },
+    '& .legend-table > thead th:first-child::first-letter': {
+      textTransform: 'uppercase',
+    },
     '& .legend-table > tbody tr td': {
       borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     },
@@ -88,8 +120,11 @@ const useStyles = makeStyles(theme => ({
       border: 'none',
     },
     '& .legend-table th, & .legend-table td': {
-      padding: theme.spacing(0.5),
-      verticalAlign: 'top',
+      padding: '6px 24px 6px 16px',
+      verticalAlign: 'bottom',
+    },
+    '& .legend-table td:first-child': {
+      padding: '6px 6px 6px 16px',
     },
     '& .legend-rect': {
       marginTop: theme.spacing(0.5),
@@ -135,7 +170,7 @@ const StackedBarChart = props => {
     <>
       {title && <ChartTitle>{title}</ChartTitle>}
       <div className={classes.container} ref={elemRef}>
-        <div className={`${ classes.chart } ${ options.horizontal && classes.horizontal }` + ' chart_div'}></div>
+        <div className={`${ classes.chart } ${ options.horizontal ? classes.horizontal : '' } chart_div`}></div>
         { props.collapsibleLegend && <Button variant='text' className={classes.legendButton} onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</Button> }
         <Collapse in={!collapsed}>
           <div className={classes.legend + ' legend_div'}></div>
@@ -161,11 +196,20 @@ const chartData = [
   { year: 2020, source: 'Federal Offshore', sum: 3746924076.62 },
   { year: 2020, source: 'Federal Onshore', sum: 2866225227.9 }]
 
-export const StackedBarChartDemos = [
-  {
-    title: 'Example',
-    code: "<StackedBarChart data={" +
-    JSON.stringify(chartData) + "} title={'Example'} xAxis={'year'} yAxis={'sum'} yGroupBy={'source'} yOrderBy={" +
-    JSON.stringify(['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']) + "}/>",
-  }
-]
+StackedBarChart.Preview = {
+  group: 'Data Visualizations',
+  demos: [
+    {
+      title: 'Example',
+      code: "<StackedBarChart data={" +
+      JSON.stringify(chartData) + "} title={'Example'} xAxis={'year'} yAxis={'sum'} yGroupBy={'source'} yOrderBy={" +
+      JSON.stringify(['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']) + "}/>",
+    },
+    {
+      title: 'Horizontal Example',
+      code: "<StackedBarChart horizontal={true} data={" +
+      JSON.stringify(chartData) + "} title={'Example'} xAxis={'year'} yAxis={'sum'} yGroupBy={'source'} yOrderBy={" +
+      JSON.stringify(['Federal onshore', 'Federal offshore', 'Native American', 'Federal - Not tied to a lease']) + "}/>",
+    }
+  ]
+}

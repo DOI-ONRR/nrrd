@@ -10,6 +10,7 @@ import {
   Box,
   Grid
 } from '@material-ui/core'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -174,9 +175,6 @@ const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restP
   if (data && data.length > 0 && !data[0].option) {
     data = data.map(item => ({ option: item }))
   }
-  else if (!data) {
-    data = []
-  }
 
   const handleChange = (event, newValue) => {
     setSelectedOptions(newValue)
@@ -212,48 +210,54 @@ const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restP
   )
 
   return (
-    <Box id="year-slider" className={classes.sliderBox}>
-      <Grid container spacing={2}>
-        <Grid item>
-          {minValue}
-        </Grid>
-        <Grid item xs>
-          <Box paddingRight={2} paddingLeft={2}>
-            <Slider
-              defaultValue={defaultSelected || 1}
-              value={selectedOptions || undefined}
-              getAriaLabel={() => label}
-              getAriaValueText={() => selectedOptions ? selectedOptions.toString() : ''}
-              valueLabelDisplay={(data.length > 0) ? 'on' : 'off'}
-              valueLabelFormat={(value, index) => (index % 2 === 0)
-                ? <RangeValueIndexEven value={value} />
-                : <RangeValueIndexOdd value={value} />
-              }
-              step={1}
-              onChange={handleChange}
-              onChangeCommitted={handleChangeCommit}
-              marks={true}
-              min={minValue}
-              max={maxValue}
-              classes={{
-                root: classes.sliderRoot,
-                markLabel: classes.sliderMarkLabel,
-                markLabelActive: classes.sliderMarkLabelActive,
-                track: classes.sliderTrack,
-                rail: classes.sliderRail,
-                mark: classes.sliderMark,
-                active: classes.sliderActive,
-                thumb: classes.sliderThumb,
-                valueLabel: classes.sliderValueLabel,
-              }}
-            />
-          </Box>
-        </Grid>
-        <Grid item>
-          {maxValue}
-        </Grid>
-      </Grid>
-    </Box>
+    <>
+      {data
+        ? <Box id="year-slider" className={classes.sliderBox}>
+          <Grid container spacing={2}>
+            <Grid item>
+              {minValue}
+            </Grid>
+            <Grid item xs>
+              <Box paddingRight={2} paddingLeft={2}>
+                <Slider
+                  defaultValue={defaultSelected || 1}
+                  value={selectedOptions || undefined}
+                  getAriaLabel={() => label}
+                  getAriaValueText={() => selectedOptions ? selectedOptions.toString() : ''}
+                  valueLabelDisplay={(data.length > 0) ? 'on' : 'off'}
+                  valueLabelFormat={(value, index) => (index % 2 === 0)
+                    ? <RangeValueIndexEven value={value} />
+                    : <RangeValueIndexOdd value={value} />
+                  }
+                  step={1}
+                  onChange={handleChange}
+                  onChangeCommitted={handleChangeCommit}
+                  marks={true}
+                  min={minValue}
+                  max={maxValue}
+                  classes={{
+                    root: classes.sliderRoot,
+                    markLabel: classes.sliderMarkLabel,
+                    markLabelActive: classes.sliderMarkLabelActive,
+                    track: classes.sliderTrack,
+                    rail: classes.sliderRail,
+                    mark: classes.sliderMark,
+                    active: classes.sliderActive,
+                    thumb: classes.sliderThumb,
+                    valueLabel: classes.sliderValueLabel,
+                  }}
+                />
+              </Box>
+            </Grid>
+            <Grid item>
+              {maxValue}
+            </Grid>
+          </Grid>
+        </Box>
+        : <Box marginRight={2}>
+          <Skeleton variant="rect" width={'300px'} height={'40px'} animation={false}/>
+        </Box>}
+    </>
 
   )
 }
@@ -283,9 +287,12 @@ const areEqual = (prevProps, nextProps) => {
 
 export default React.memo(BaseSlider, areEqual)
 
-export const BaseSliderDemos = [
-  {
-    title: 'Simple',
-    code: '<BaseSlider label="Simple Items" data={[10, 20, 30, 40, 50, 60]} defaultSelected="20,50"/>',
-  }
-]
+BaseSlider.Preview = {
+  group: 'Inputs',
+  demos: [
+    {
+      title: 'Simple',
+      code: '<BaseSlider label="Simple Items" data={[10, 20, 30, 40, 50, 60]} defaultSelected="20,50"/>',
+    }
+  ]
+}

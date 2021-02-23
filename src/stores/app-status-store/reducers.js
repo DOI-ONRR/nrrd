@@ -14,7 +14,7 @@ const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
-  case types.ADD_LOADING_MESSAGE:
+  /* case types.ADD_LOADING_MESSAGE:
     state.loadingMessages.push({ message: payload.message })
     return ({ ...state })
   case types.DELETE_LOADING_MESSAGE: {
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
       state.loadingMessages.splice(result, 1)
     }
     return ({ ...state })
-  }
+  } */
   case types.SHOW_ERROR_MESSAGE:
     return ({ ...state, ...payload })
   case types.DELETE_ERROR_MESSAGE:

@@ -89,6 +89,7 @@ const RevenueNationalSummary = props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'All'
   const { title } = props
+
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
@@ -100,6 +101,7 @@ const RevenueNationalSummary = props => {
     skip: inView === false,
     triggerOnce: true
   })
+
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
   let groupData
@@ -113,9 +115,9 @@ const RevenueNationalSummary = props => {
 
   if (loading) {
     return (
-	    <div className={classes.progressContainer}>
-        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-	    </div>
+	    <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={2022}>
+        <CircularProgress />
+      </Box>
     )
   }
 
@@ -242,9 +244,11 @@ const RevenueNationalSummary = props => {
     )
   }
   else {
-    return (<div className={classes.progressContainer} ref={ref}>
-      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-    </div>)
+    return (
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={2022}>
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </Box>
+    )
   }
 }
 

@@ -17,7 +17,7 @@ const DISBURSEMENT_QUERY = gql`
     }
 
     # period query
-    period(where: {period: {_ilike: $period }}) {
+    period(where: {period: {_ilike: $period }}, order_by: {fiscal_year: asc}) {
       fiscal_year
     }
   }
