@@ -178,7 +178,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
             onChange={toggleExploreDataToolbar}
           >
             <IconExploreDataImg className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} />
-            <span>Explore data</span>
+            <h1 style={{ fontSize: '1.125rem', margin: 0 }}><span>Explore data</span></h1>
           </FilterToggleInput>
           <FilterToggleInput
             value="open"
