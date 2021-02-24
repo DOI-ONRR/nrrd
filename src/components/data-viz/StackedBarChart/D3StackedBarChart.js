@@ -7,8 +7,8 @@ export default class D3StackedBarChart {
   constructor (node, data, options, onHover, formatLegendFunc) {
     try {
       this.node = node
-      this.chartDiv = node.getElementsByClassName('chart_div')[0]
-      this.legendDiv = node.getElementsByClassName('legend_div')[0]
+      this.chartDiv = node.querySelector('#chart_div')
+      this.legendDiv = node.querySelector('#legend_div')
       if (data && data.length > 0) {
         // console.debug('data:', data)
         this.data = data
@@ -28,9 +28,10 @@ export default class D3StackedBarChart {
       this.marginRight = options.marginRight || 15
       this.marginLeft = options.marginLeft || 40
       this.units = (options.units) ? options.units : ''
-      this.horizontal = options.horizontal_
+      this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
       this.handleBarHover = options.handleBarHover
+      console.log(this.horizontal)
 
       if (options.chartTooltip) {
         this.chartTooltip = options.chartTooltip

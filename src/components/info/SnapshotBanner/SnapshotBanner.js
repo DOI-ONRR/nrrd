@@ -27,7 +27,7 @@ const SnapshotBanner = () => {
   const classes = useStyles(theme)
 
   return (
-    <Box class={classes.root} displayPrint="block">
+    <Box className={classes.root} displayPrint="block">
       <Grid container>
         <Grid item xs={6}>
           <Box ml={1}>

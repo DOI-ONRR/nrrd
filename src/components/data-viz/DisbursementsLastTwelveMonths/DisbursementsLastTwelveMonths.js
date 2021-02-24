@@ -18,7 +18,9 @@ import { QK_DISBURSEMENTS_COMMON, RECIPIENT } from '../../../constants'
 const DisbursementsLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, skeletonHeight, ...restProps }) => {
   const ChartContainer = withStyles(() =>
     createStyles({
-      root: restProps.style,
+      root: {
+        ...restProps?.style,
+      }
     })
   )(Box)
 
@@ -79,6 +81,7 @@ const DisbursementsLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, ske
           legendFormat={v => formatToDollarInt(v)}
           legendHeaders={legendHeaders}
           chartHeight={chartHeight}
+          horizontal={true}
         />
         : <Skeleton variant="rect" height={skeletonHeight} animation="wave" />
       }
@@ -92,7 +95,7 @@ DisbursementsLastTwelveMonths.propTypes = {
   /** Defines which property of the data will be used to group the y axis */
   yGroupBy: PropTypes.string,
   /** The data that is returned from the graphql query */
-  data: PropTypes.array,
+  data: PropTypes.object,
 }
 
 DisbursementsLastTwelveMonths.defaultProps = {

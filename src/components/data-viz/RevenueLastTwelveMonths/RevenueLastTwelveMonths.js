@@ -84,7 +84,7 @@ RevenueLastTwelveMonths.propTypes = {
   /** Defines which property of the data will be used to group the y axis */
   yGroupBy: PropTypes.string,
   /** The data that is returned from the graphql query */
-  data: PropTypes.array,
+  data: PropTypes.object,
 }
 
 RevenueLastTwelveMonths.defaultProps = {

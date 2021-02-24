@@ -185,8 +185,8 @@ const DataMenu = ({ children, label, ...props }) => {
         {...props}
       >
         {
-          children.map(child =>
-            <MenuItem onClick={handleClose}>{child}</MenuItem>
+          children.map((child, i) =>
+            <MenuItem key={i} onClick={handleClose}>{child}</MenuItem>
           )
         }
       </Menu>
