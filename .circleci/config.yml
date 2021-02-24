@@ -125,7 +125,7 @@ jobs:
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://$NPS_BUCKET_NAME/sites/downloads/'
-          to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH/public/static/downloads'
+          to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH/downloads'
       - run:
           name: clean up
           command: |
