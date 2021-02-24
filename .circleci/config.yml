@@ -114,7 +114,7 @@ jobs:
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://$NPS_BUCKET_NAME/sites/downloads/'
-          to: static
+          to: static/downloads/
       - run:
           name: Build gatsby
           command: npm run build
