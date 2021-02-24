@@ -11,7 +11,7 @@ const DownloadDataFile = (props) => {
     console.debug("childrin", props.children )
     console.debug("UTILS: ", utils)
     console.debug("childrin", props )
-    let  href='/downloads/'+props.dataSet
+    let  href='./downloads/'+props.dataSet
     let minDate=new Date(metaData[props.dataSet].minDate)
     let maxDate=new Date(metaData[props.dataSet].maxDate)
     let csvSize=Math.round(metaData[props.dataSet].csvSize/1000000)
