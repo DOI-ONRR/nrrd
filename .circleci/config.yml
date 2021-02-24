@@ -107,6 +107,11 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
+      - run:
+          command: |
+            ls -lart
+            ls -lart static
+            ls -lart static/downloads
       - aws-s3/copy:
           arguments: |
             --recursive
@@ -126,6 +131,11 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: public
           to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH'
+      - run: 
+          command: |
+            ls -lart
+            ls -lart static
+            ls -lart static/downloads 
       - run:
           name: clean up
           command: |
