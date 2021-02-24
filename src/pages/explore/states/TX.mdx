@@ -1,0 +1,68 @@
+---
+unique_id: TX
+title: Texas
+includeToc: false
+description: Much of the data on this site is limited to natural resource extraction on federal land, which represents 1.9% of all land in Texas. Texas also borders an offshore area with significant natural resource extraction, which may contribute to the state’s economy.
+tags:
+- oil
+- wind
+- gas
+- Texas
+- GOMESA
+- Gulf of Mexico
+---
+
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
+<Container maxWidth="lg">
+  <Typography variant="h2" component="h1">
+    {props.pageContext.frontmatter.title}
+  </Typography>
+
+  <Box>
+    This page provides information about energy and minerals produced on federal land in {props.pageContext.frontmatter.title}. Federal land represents <FederalLandPercentage stateOrArea={props.pageContext.frontmatter.unique_id} /> of all land in {props.pageContext.frontmatter.title}.
+  </Box>
+
+  <Box>
+    The Office of Natural Resources Revenue (ONRR) collects rent, royalty, and bonus payments from companies that lease federal land. Some of the money collected is then disbursed to the state. States then distribute the funds as part of their budgets, but we don't have data about how the states spend the funds.
+  </Box>
+
+  <Box mt={2}>
+    <Grid container spacing={1}>
+      <Grid item xs={6}>
+        <Link
+          href={`/explore?dataType=${ DFC.REVENUE }&location=NF,${ props.pageContext.frontmatter.unique_id }/`}
+          linkType="ExploreData">
+            Explore revenue data in {props.pageContext.frontmatter.title} 
+        </Link>
+        <Link
+          href={`/explore?dataType=${ DFC.DISBURSEMENT }&location=NF,${ props.pageContext.frontmatter.unique_id }/`}
+          linkType="ExploreData">
+          Explore disbursements data in {props.pageContext.frontmatter.title}
+        </Link>
+        <Link
+          href={`/explore?dataType=${ DFC.PRODUCTION }&location=NF,${ props.pageContext.frontmatter.unique_id }/`}
+          linkType="ExploreData">
+          Explore production data in {props.pageContext.frontmatter.title}
+        </Link>
+      </Grid>
+      <Grid item xs={6}>
+        <Link
+          href={`/query-data?dataType=${ DFC.PRODUCTION }&stateOffshoreName=${ props.pageContext.frontmatter.title }`}
+          linkType="FilterTable">
+          Query production data in {props.pageContext.frontmatter.title}
+        </Link>
+        <Link
+          href={`/query-data?dataType=${ DFC.REVENUE }&stateOffshoreName=${ props.pageContext.frontmatter.title }`}
+          linkType="FilterTable">
+            Query revenue data in {props.pageContext.frontmatter.title}
+        </Link>
+        <Link
+          href={`/query-data?dataType=${ DFC.DISBURSEMENT }&stateOffshoreName=${ props.pageContext.frontmatter.title }`}
+          linkType="FilterTable">
+          Query disbursements data in {props.pageContext.frontmatter.title}
+        </Link>
+      </Grid>
+    </Grid>
+  </Box>
+</Container>
