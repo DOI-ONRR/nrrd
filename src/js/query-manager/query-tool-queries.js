@@ -113,6 +113,7 @@ const REVENUE_QUERY = whereClause => (
       ${ COUNTY }: ${ DB_COLS[COUNTY_NAME] }
       ${ CALENDAR_YEAR }: ${ DB_COLS[CALENDAR_YEAR] }
       ${ FISCAL_YEAR }: ${ DB_COLS[FISCAL_YEAR] }
+      ${ MONTH_LONG }: ${ DB_COLS[MONTH_LONG] }
       ${ REVENUE }: ${ DB_COLS[REVENUE] }
     }
     counts:${ VIEWS[REVENUE] }_aggregate (
