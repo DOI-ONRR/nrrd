@@ -15,7 +15,7 @@ import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link/'
 import ComparisonTable from '../ComparisonTable'
 
-import utils from '../../../js/utils'
+import utils, { formatDate } from '../../../js/utils'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -144,8 +144,6 @@ const TotalRevenue = props => {
   let commodityChartData
   let commodityChartComparisonData
 
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
   switch (breakoutBy) {
   case 'revenue_type':
     yOrderBy = ['Other Revenues', 'Inspection Fees', 'Civil Penalties', 'Rents', 'Bonus', 'Royalties']
@@ -255,19 +253,19 @@ const TotalRevenue = props => {
 
       xLabels = (x, i) => {
         return x.map(v => {
-          const dStr = v.replace(/\b0/g, '')
-          const d = new Date(dStr)
-          const m = d.toLocaleDateString('default', { month: 'short' })
-          return m
+          const dateArr = formatDate(v)
+          const date = new Date(dateArr[0], dateArr[1], dateArr[2])
+          const month = date.toLocaleDateString('en-US', { month: 'short' })
+          return month
         })
       }
 
       legendHeaders = (headers, row) => {
         // console.log('legendHeaders: ', headers, row)
-        const dStr = headers[2].replace(/\b0/g, '')
-        const date = new Date(dStr)
-        const month = date.toLocaleString('default', { month: 'short' })
-        const year = headers[2].substring(0, 4)
+        const dateArr = formatDate(headers[2])
+        const year = dateArr[0]
+        const date = new Date(dateArr[0], dateArr[1], dateArr[2])
+        const month = date.toLocaleString('en-US', { month: 'short' })
         const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], '', `${ month } ${ year }`]
         return headerArr
       }

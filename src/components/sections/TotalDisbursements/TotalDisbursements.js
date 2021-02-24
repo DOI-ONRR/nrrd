@@ -8,8 +8,7 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import {
   Box,
-  Grid,
-  useTheme
+  Grid
 } from '@material-ui/core'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
@@ -18,7 +17,7 @@ import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link'
 import ComparisonTable from '../ComparisonTable'
 
-import utils, { getMonthRange } from '../../../js/utils'
+import utils, { formatDate } from '../../../js/utils'
 
 const TOTAL_DISBURSEMENTS_QUERY = gql`
   query TotalYearlyDisbursements {
@@ -93,7 +92,6 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
 
 // TotalDisbursements
 const TotalDisbursements = props => {
-  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const { monthly, period, breakoutBy, dataType } = filterState
   const disbursementsComparison = useRef(null)
@@ -216,19 +214,19 @@ const TotalDisbursements = props => {
 
       xLabels = (x, i) => {
         return x.map(v => {
-          const dStr = v.replace(/\b0/g, '')
-          const d = new Date(dStr)
-          const m = d.toLocaleDateString('default', { month: 'short' })
-          return m
+          const dateArr = formatDate(v)
+          const date = new Date(dateArr[0], dateArr[1], dateArr[2])
+          const month = date.toLocaleDateString('en-US', { month: 'short' })
+          return month
         })
       }
 
       legendHeaders = (headers, row) => {
         // console.log('legendHeaders: ', headers, row)
-        const dStr = headers[2].replace(/\b0/g, '')
-        const date = new Date(dStr)
-        const month = date.toLocaleString('default', { month: 'short' })
-        const year = headers[2].substring(0, 4)
+        const dateArr = formatDate(headers[2])
+        const year = dateArr[0]
+        const date = new Date(dateArr[0], dateArr[1], dateArr[2])
+        const month = date.toLocaleString('en-US', { month: 'short' })
         const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], '', `${ month } ${ year }`]
         return headerArr
       }
