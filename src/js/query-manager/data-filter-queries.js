@@ -1,6 +1,7 @@
 // Helper functions for using a variable config to create the vairable list and values
 import {
   COMMODITY,
+  STATE_OFFSHORE_NAME,
   COMMODITY_ORDER,
   PERIOD,
   CALENDAR_YEAR,
@@ -27,6 +28,7 @@ const DATA_FILTER_QUERIES = {
     `options:${ view }(
       where: {
         ${ whereClause }
+        commodity: {_is_null: false}
       },
       distinct_on: ${ DB_COLS[COMMODITY_ORDER] },
       order_by: {${ DB_COLS[COMMODITY_ORDER] }: asc}
@@ -72,7 +74,17 @@ const DATA_FILTER_QUERIES = {
       order_by: {${ DB_COLS[REVENUE_TYPE] }: asc}
       ) {
         option: ${ DB_COLS[REVENUE_TYPE] }
-      }`)
+      }`),
+  [STATE_OFFSHORE_NAME]: (view, whereClause) => (
+    `options:${ view }(
+          where: {
+            ${ whereClause }
+          },
+          distinct_on: location_order,
+          order_by: {location_order: asc}
+          ) {
+            option: ${ DB_COLS[STATE_OFFSHORE_NAME] }
+          }`)
 }
 
 export default (view, dataFilterKey, whereClause) => {

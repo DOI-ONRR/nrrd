@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Box, Tabs, Tab } from '@material-ui/core'
+
+import { DataFilterContext } from '../../../stores/data-filter-store'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const useStyles = makeStyles(theme => ({
   tabsRoot: {},
@@ -93,6 +96,7 @@ const Tabtastic = props => {
   const urlParams = new URLSearchParams(selectedTab)
   const selectedParams = urlParams.get('tab')
 
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const [selected, setSelected] = useState(selectedParams || '')
   const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -102,6 +106,15 @@ const Tabtastic = props => {
       setSelectedIndex(childIndex)
     }
   }, [selected, selectedIndex])
+
+  // set dataType if there is url param
+  useEffect(() => {
+    if (selectedParams) {
+      const name = selectedParams.toString().replace('tab-', '')
+      const selectedParamName = name.charAt(0).toUpperCase() + name.slice(1)
+      updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedParamName })
+    }
+  }, [selectedParams])
 
   // format tab label and prepend string, format to replace any blank spaces with dash, then to lower case
   const formatTabLabel = label => {
@@ -114,6 +127,8 @@ const Tabtastic = props => {
     const formattedLabel = formatTabLabel(selectedChild.props.label)
 
     setSelected(formattedLabel)
+
+    updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedChild.props.label, [DFC.BREAKOUT_BY]: DFC.SOURCE })
 
     navigate(`?tab=${ formattedLabel }`)
   }
@@ -159,7 +174,7 @@ const Tabtastic = props => {
       <Box className={classes.tabPanelContainer} data-testid="tabtastic-tabpanel-container">
         { tabs &&
           tabs.map((item, index) => (
-            <TabtasticTab label={item.props.label}>
+            <TabtasticTab label={item.props.label} key={index}>
               <TabPanel key={index} value={selectedIndex} index={index}>
                 {item.props.children}
               </TabPanel>

@@ -38,7 +38,7 @@ const CodeBlock = ({ children, className, live, render, title, notes }) => {
             <LiveProvider
               code={children}
               transformCode={code => '/** @jsx mdx */' + code}
-              scope={{ mdx, ...CustomComponents, ...MaterialUI }}
+              scope={{ mdx, ...MaterialUI, ...CustomComponents }}
             >
               <MaterialUI.Grid container>
                 <MaterialUI.Grid xs={12} className={classes.livePreview}>

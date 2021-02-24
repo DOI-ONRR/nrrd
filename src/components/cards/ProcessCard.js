@@ -115,14 +115,16 @@ ProcessCard.propTypes = {
 ProcessCard.defaultProps = {
   defaultExpanded: false,
 }
-
-export const ProcessCardDemos = [
-  {
-    title: 'Process step example',
-    code: '<ProcessCard step={1} name={"Plan"}>Text for the process step</ProcessCard>',
-  },
-  {
-    title: 'Default expanded mobile version',
-    code: '<ProcessCard defaultExpanded={true} step={4} name={"Mobile Plan"}>Text for the mobile process example</ProcessCard>',
-  }
-]
+ProcessCard.Preview = {
+  group: 'Cards',
+  demos: [
+    {
+      title: 'Process step example',
+      code: '<ProcessCard step={1} name={"Plan"}>Text for the process step</ProcessCard>',
+    },
+    {
+      title: 'Default expanded mobile version',
+      code: '<ProcessCard defaultExpanded={true} step={4} name={"Mobile Plan"}>Text for the mobile process example</ProcessCard>',
+    }
+  ]
+}

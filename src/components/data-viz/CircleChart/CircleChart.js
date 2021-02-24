@@ -131,9 +131,13 @@ const chartData = [
   { location_name: "Native American", total: 1155674819.2200003 },
   { location_name: "North Dakota", total: 289595600.7900001 }
 ]
-export const CircleChartDemos = [
-  {
-    title: 'Example',
-    code: '<CircleChart data={' + JSON.stringify(chartData) + '} xAxis={"location_name"} yAxis={"total"} />',
-  }
-]
+
+CircleChart.Preview = {
+  group: 'Data Visualizations',
+  demos: [
+    {
+      title: 'Example',
+      code: '<CircleChart data={' + JSON.stringify(chartData) + '} xAxis={"location_name"} yAxis={"total"} />',
+    }
+  ]
+}

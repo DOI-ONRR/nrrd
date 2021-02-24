@@ -4,7 +4,7 @@ import * as d3 from 'd3'
 // import { isEnumMember } from 'typescript'
 
 export default class D3StackedBarChart {
-  constructor (node, data, options, formatLegendFunc) {
+  constructor (node, data, options, onHover, formatLegendFunc) {
     try {
       this.node = node
       this.chartDiv = node.getElementsByClassName('chart_div')[0]
@@ -25,11 +25,12 @@ export default class D3StackedBarChart {
       this.yAxis = options.yAxis || console.error('Error - no yAxis property set')
       this.marginBottom = options.marginBottom || 40
       this.marginTop = options.marginTop || 25
+      this.marginRight = options.marginRight || 15
+      this.marginLeft = options.marginLeft || 40
       this.units = (options.units) ? options.units : ''
       this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
-      this.primaryColor = options.primaryColor || '#222'
-      this.secondaryColor = options.secondaryColor || '#43646F'
+      this.handleBarHover = options.handleBarHover
 
       if (options.chartTooltip) {
         this.chartTooltip = options.chartTooltip
@@ -47,6 +48,7 @@ export default class D3StackedBarChart {
         this.marginRight = 0
         this.marginBottom = 0
       }
+
       if (options.selectedIndex === undefined) {
         this.selectedIndex = this.xDomain().length - 1
       }
@@ -78,31 +80,56 @@ export default class D3StackedBarChart {
       // overload methods to make chart awesome
       if (options.onSelect) this.onSelect = options.onSelect
       if (options.onClick) this.onClick = options.onClick
+      if (options.onHover) this.onHover = options.onHover
 
       this.yOrder()
+
       this.xScale = d3.scaleBand()
         .domain(this.xDomain())
-        .range([0, this._width])
+        .range([this.marginLeft, this._width])
         .paddingInner(0.3)
         .paddingOuter(0.1)
 
       this.barScale = (options.barScale) ? options.barScale : 1
       this._height = d3.max([this._height * this.barScale, 1])
-      this.yScale = d3.scaleLinear().rangeRound([this.marginTop, this._height - this.marginBottom])
-      this.yScale.domain([this.yMax(), 0])
+
+      this.yScale = d3.scaleLinear()
+        .rangeRound([this._height - this.marginBottom, this.marginTop])
+        .domain([this.yMin(), this.yMax()])
+
       this.chart = d3.select(this.chartDiv).append('svg')
         .attr('height', this._height)
         .attr('width', this._width)
         .attr('class', 'stacked-bar-chart')
 
-      if (options.colorRange) {
-        this.colorRange = options.colorRange
-        this.color = d3.scaleOrdinal().domain(this.xDomain).range(this.colorRange)
+      // chart colors
+      this.primaryColor = options.primaryColor || '#37253c' // theme.palette.explore[700]
+      this.secondaryColor = options.secondaryColor || '#c4d99b' // theme.palette.explore[100]
+
+      this.color = (flipColorRange = false, scaleLinear = false) => {
+        let color
+
+        if (options.colorRange) {
+          color = d3.scaleOrdinal().domain(this.xDomain).range(options.colorRange)
+        }
+        else {
+          if (scaleLinear) {
+            color = d3.scaleLinear()
+              .domain([0, this.options.yOrderBy.length > 0 ? this.options.yOrderBy.length - 1 : 0 || 4])
+              .range(flipColorRange ? [this.secondaryColor, this.primaryColor] : [this.primaryColor, this.secondaryColor])
+          }
+          else {
+            const colorDomain = flipColorRange
+              ? [this.options.yOrderBy.length > 0 ? this.options.yOrderBy.length - 1 : 0 || 4, 0]
+              : [0, this.options.yOrderBy.length > 0 ? this.options.yOrderBy.length - 1 : 0 || 4]
+            color = d3.scaleSequential(d3.interpolateViridis)
+              .domain(colorDomain)
+          }
+        }
+        return color
       }
-      else {
-        this.colorRange = false
-        this.color = d3.scaleLinear().domain(this.yOrderBy.slice(1)).range([this.primaryColor, this.secondaryColor])
-      }
+
+      // console.debug('this yo:', this)
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -118,12 +145,12 @@ export default class D3StackedBarChart {
       }
       this._chart()
       if (!this.horizontal) {
+        this._xCenterLine()
+        this._yAxis()
         this._xLabels()
-      }
-      this._legend()
-      if (!this.horizontal) {
         this.xAxisGroup()
       }
+      this._legend()
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -141,28 +168,94 @@ export default class D3StackedBarChart {
     }
   }
 
+  _xCenterLine () {
+    try {
+      const self = this
+      self.chart.selectAll('.x-centerline').remove()
+      const centerLine = () => d3.axisBottom(self.xScale)
+        .tickSize(1)
+        .tickFormat('')
+
+      self.chart.append('g')
+        .attr('class', 'x-centerline')
+        .attr('transform', `translate(0, ${ self.yScale(0) })`)
+        .attr('fill', '#bdbdbd')
+        .attr('stroke-width', 1)
+        .call(centerLine())
+    }
+    catch (err) {
+      console.error('Error with _xAxis: ', err)
+    }
+  }
+
+  _yAxis () {
+    try {
+      const self = this
+      self.chart.selectAll('.y-axis').remove()
+      const createYAxis = () => (d3.axisLeft(self.yScale).ticks(3).tickSize(0).tickFormat(d => {
+        if (d > 1000000000) {
+          return `${ d / 1000000000 }B`
+        }
+        else if (d >= 1000000 && d < 1000000000) {
+          return `${ d / 1000000 }M`
+        }
+        else if (d < 1000000 && d >= 1000) {
+          return `${ d / 1000 }K`
+        }
+        else if (d < 1000 && d >= 0) {
+          return `${ d / 100 }`
+        }
+        else if (d > -1000 && d < 0) {
+          return `${ d / 100 }`
+        }
+        else if (d <= -1000 && d > -1000000) {
+          return `${ d / 1000 }K`
+        }
+        else if (d <= -1000000 && d > -1000000000) {
+          return `${ d / 1000000 }M`
+        }
+        else if (d > parseFloat(-1000000000)) {
+          return `${ d / 1000000000 }B`
+        }
+      }))
+
+      self.chart.append('g')
+        .attr('class', 'y-axis')
+        .attr('transform', `translate(${ self.marginLeft }, 0)`)
+        .call(createYAxis())
+        .selectAll('text')
+    }
+    catch (err) {
+      console.warn('Error creating _yAxis: ', err)
+    }
+  }
+
   xLabels (values) {
     return values
   }
 
   _xLabels () {
     try {
-      this.chart.selectAll('.x-axis').remove()
-      const xLabels = this.xLabels(this.xDomain())
       const self = this
+      self.chart.selectAll('.x-axis').remove()
+      const xLabels = self.xLabels(self.xDomain())
       const createXAxis = () => (d3.axisBottom(self.xScale).tickSize(0).tickFormat((d, i) => {
         return xLabels[i]
       }))
-      const rotate = this.options.xRotate || 0
-      let x = -1
+      const rotate = self.options.xRotate || 0
+      let x = 0
       const y = 8
       if (rotate !== 0) {
         x = -11
       }
       self.chart.append('g')
         .attr('class', 'x-axis')
-        .attr('transform', 'translate(2,' + (self._height - self.marginBottom) + ')')
+        .attr('transform', `translate(0, ${ self._height - self.marginBottom })`)
         .call(createXAxis())
+        .selectAll('g')
+        .attr('class', (d, i) => {
+          return i === self.selectedIndex ? 'tick active' : 'tick'
+        })
         .selectAll('text')
         .attr('transform', 'rotate(' + rotate + ')')
         .attr('x', x)
@@ -173,7 +266,7 @@ export default class D3StackedBarChart {
     }
   }
 
-  // addGroupLines () {
+  // addGroupLines
   xAxisGroup () {
     try {
       if (this.xGroups) {
@@ -182,10 +275,10 @@ export default class D3StackedBarChart {
         const groupLines = this.chart.append('g').attr('class', 'x-axis-groups')
         const groupItemWidth = (self._width / self.data.length)
         const padding = (self.xScale.bandwidth() * 0.2)
-        let xPos = 0
+        let xPos = self.marginLeft
 
         Object.keys(self.xGroups).sort().map((name, index) => {
-          const groupLineWidth = xPos + (groupItemWidth * self.xGroups[name].length) - padding
+          const groupLineWidth = xPos + (groupItemWidth * self.xGroups[name].length) - (padding + self.marginRight)
 
           groupLines.append('line')
             .attr('x1', xPos + padding)
@@ -221,9 +314,9 @@ export default class D3StackedBarChart {
 
       maxExtentGroup.append('text')
         .attr('width', self._width)
-        .attr('x', self._width)
+        .attr('x', 5)
         .attr('y', (self.maxExtentLineY - 5))
-        .attr('text-anchor', 'end')
+        .style('text-align', 'left')
         .text((self.units === 'dollars' || self.units === '$') ? ['$', maxExtentValue].join('') : [maxExtentValue, self.units].join(' '))
 
       maxExtentGroup.append('line')
@@ -243,13 +336,12 @@ export default class D3StackedBarChart {
     try {
       const self = this
       const stack = d3.stack()
-	    .keys(this.yGroupings())
-        .offset(d3.stackOffsetNone)
+	      .keys(this.yGroupings())
+        .offset(d3.stackOffsetDiverging)
 
       const keys = this.yGroupings()
-      const primaryColor = this.primaryColor
+      const color = this.color()
       const secondaryColor = this.secondaryColor
-      const colorRange = this.colorRange
       const chartTooltip = this.chartTooltip
 
       // Define the div for the tooltip
@@ -273,49 +365,32 @@ export default class D3StackedBarChart {
         .attr('height', (self._height - self.marginTop))
         .attr('width', self.xScale.bandwidth())
         .style('fill', (d, i) => {
-          if (this.horizontal && colorRange) {
-            return null
-          }
-          else {
-            return primaryColor
-          }
+          return this.horizontal ? null : color(i)
         })
         .attr('transform', d => 'translate(' + (self.xScale(d) + ',0)'))
         .attr('class', (d, i) => {
           return i === self.selectedIndex ? 'bar active' : 'bar'
         })
+        // .attr('tabindex', (d, i) => i)
+        .attr('tabindex', 0)
         .on('mouseenter', (d, i) => {
           self.currentIndex = i
         })
-        .on('mouseleave', d => {
+        .on('mouseleave', (d, i) => {
           self.currentIndex = self.selectedIndex
         })
-
-        // .attr('tabindex', (d, i) => i)
-        .attr('tabindex', 0)
         .selectAll('g')
-        .data(d => {
+        .data((d, i) => {
           const yd = self.yGroupData(d)
           const r = stack([yd])
           return r
         })
         .enter().append('g')
-        .attr('class', (d, i) => 'stacked-bar-chart-' + i)
-        .style('fill', (d, i) => {
-          if (this.horizontal && colorRange) {
-            return colorRange[i]
-          }
-          else {
-            return null
-          }
+        .attr('class', (d, i) => {
+          return `stacked-bar-chart-${ i } ${ !this.horizontal ? 'stacked-bar-chart-item' : '' }`
         })
-        .style('fill-opacity', (d, i) => {
-          if (this.horizontal && colorRange) {
-            return null
-          }
-          else {
-            return (1 - (i / keys.length))
-          }
+        .style('fill', (d, i) => {
+          return color(i)
         })
         .append('rect')
         .attr('y', d => {
@@ -323,12 +398,12 @@ export default class D3StackedBarChart {
           return y
         })
         .attr('height', function (d) {
-          // console.debug(d)
+          // console.debug('height: ', d)
           return (self.yScale(d[0][0]) - self.yScale(d[0][1])) || 0
         })
         .attr('width', self.maxBarSize())
         .attr('x', self.barOffsetX())
-        .on('click', function (d) {
+        .on('click', function (d, i) {
           // console.debug(' onclick:', d)
           self._onSelect(this, d)
           self._onClick(this, d)
@@ -366,7 +441,7 @@ export default class D3StackedBarChart {
       if (self.selectedIndex) {
         const selectedElement = d3.selectAll('.active')
         selectedElement
-          .style('fill', secondaryColor)
+          .style('fill', (d, i) => color(i))
       }
 
       // horizontal chart
@@ -380,6 +455,25 @@ export default class D3StackedBarChart {
         selectedElement
           .style('fill', secondaryColor)
       }
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
+  }
+
+  select (index) {
+    try {
+      // console.debug("INdex: ", index, "I: ", this.selectedIndex)
+      d3.selectAll('.bar').filter((d, i, nodes) => {
+        if (i === index) {
+          const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
+          if (selectedElement) {
+            selectedElement.attr('selected', false)
+            selectedElement.attr('class', 'bar')
+          }
+          d3.select(nodes[i]).attr('class', 'bar active')
+        }
+      })
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -405,31 +499,6 @@ export default class D3StackedBarChart {
     }
   }
 
-  select (index) {
-    try {
-      // console.debug("INdex: ", index, "I: ", this.selectedIndex)
-      d3.selectAll('.bar').filter((d, i, nodes) => {
-        if (i === index) {
-          /*          this.xSelectedValue = d
-                      this.ySelectedGroup = this.yGroupData(d)
-                      this.selectedData(this.ySelectedGroup)
-                      this.selectedIndex = index
-          */
-
-          const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
-          if (selectedElement) {
-            selectedElement.attr('selected', false)
-            selectedElement.attr('class', 'bar')
-          }
-          d3.select(nodes[i]).attr('class', 'bar active')
-        }
-      })
-    }
-    catch (err) {
-      console.warn('Error: ', err)
-    }
-  }
-
   legendHeaders (h) {
     // stub for public function
     // default return headers
@@ -440,20 +509,18 @@ export default class D3StackedBarChart {
     try {
       this.getSelected()
       let r = []
-      let rData
-      let monthAbbr = ''
 
       // reduce this.data down to same length as yGroup
-      const data = this.data.filter(item => item.source === this.data[0].source)
+      const data = this.data.filter(item => item[this.options.yOrderBy] === this.data[0][this.options.yOrderBy])
 
       // check if month_long exists
-      if ('month_long' in data[0]) {
-        rData = data.filter(item => item.month_long === (xValue || this.xSelectedValue))[0]
-        monthAbbr = rData.month_long.substring(0, 3)
-      }
-      else {
-        rData = data
-      }
+      // if ('month_long' in data[0]) {
+      //   rData = data.filter(item => item.month_long === (xValue || this.xSelectedValue))[0]
+      //   monthAbbr = rData.month_long.substring(0, 3)
+      // }
+      // else {
+      //   rData = data
+      // }
 
       if (this.options.yGroupBy) {
         r = [this.options.yGroupBy, '', xValue || this.xSelectedValue]
@@ -462,7 +529,7 @@ export default class D3StackedBarChart {
         r = [this.yAxis, xValue || this.xSelectedValue]
       }
 
-      r = this.legendHeaders(r, { ...rData, xLabel: monthAbbr })
+      r = this.legendHeaders(r, { ...data })
 
       return r
     }
@@ -478,7 +545,6 @@ export default class D3StackedBarChart {
 
       d3.select(this.node).selectAll('.legend-table').remove()
       d3.select(this.node).selectAll('.legend-rect').remove()
-
       const headers = this._legendHeaders(xValue)
       const table = d3.select(this.legendDiv).append('table')
         .attr('class', 'legend-table')
@@ -502,7 +568,7 @@ export default class D3StackedBarChart {
             }
           }
           else {
-            return 'capitalize'
+            return 'inherit'
           }
         })
         .attr('colspan', (d, i) => {
@@ -535,18 +601,28 @@ export default class D3StackedBarChart {
       d3.select(this.node).selectAll('.legend-rect').remove()
 
       const legendReverse = this.legendReverse
+      const horizontal = this.horizontal
       const data = newData || this.selectedData()
-      const labels = this.yGroupings()
       const tbody = d3.select(this.node).selectAll('.legend-table tbody')
-      const colorRange = this.colorRange
-      const secondaryColor = this.secondaryColor
+      const color = this.color(true)
+      const groupedData = this.getGroupedData()
+      const yOrderBy = this.options.yOrderBy
+      const labels = this.yGroupings()
 
-      // turn object into array
-      let dataArr = Object.keys(data).map((key, i) => {
-        return [labels[i], undefined, data[labels[i]]]
-      }).reverse()
+      let dataArr
 
-      if (this.legendReverse) {
+      if (horizontal) {
+        dataArr = Object.keys(data).map((key, i) => {
+          return [labels[i], undefined, data[labels[i]]]
+        }).reverse()
+      }
+      else {
+        dataArr = yOrderBy.map((key, i) => {
+          return [key, undefined, groupedData[this.currentIndex][key] || '-']
+        })
+      }
+
+      if (legendReverse) {
         dataArr = dataArr.reverse()
       }
 
@@ -562,45 +638,17 @@ export default class D3StackedBarChart {
         .attr('width', 20)
         .attr('height', 20)
         .style('fill', (d, i) => {
-          if (colorRange) {
-            return colorRange[i]
-          }
-          else {
-            return secondaryColor
-          }
+          return color(i)
         })
         .append('rect')
         .attr('class', 'legend-rect')
         .attr('width', 15)
         .attr('height', 15)
         .style('background-color', (d, i) => {
-          if (colorRange) {
-            return colorRange[i]
-          }
-          else {
-            return secondaryColor
-          }
+          return color(i)
         })
         .style('border', (d, i) => {
-          if (colorRange) {
-            return `1px solid ${ colorRange[i] }`
-          }
-          else {
-            return `1px solid ${ secondaryColor }`
-          }
-        })
-        .style('opacity', (d, i) => {
-          if (this.horizontal && colorRange) {
-            return null
-          }
-          else {
-            if (legendReverse) {
-              return (i < labels.length ? (1 - ((i) / labels.length)) : 0)
-            }
-            else {
-              return (i < labels.length ? ((i + 1) / labels.length) : 0)
-            }
-          }
+          return `1px solid ${ color(i) }`
         })
 
       // create a cell in each row for each column
@@ -660,7 +708,6 @@ export default class D3StackedBarChart {
   _onClick (e, d) {
     try {
       // console.debug('_onClick: ', e,d)
-      this.onClick(d)
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -669,29 +716,46 @@ export default class D3StackedBarChart {
 
   onClick (d) {
     // console.debug('_onClick: ', d)
+    return d
   }
 
   _onSelect = (element, data) => {
     try {
-      const selectedElement = d3.select(this.node).selectAll('.active') // element.parentNode.querySelector('[selected=true]')
-      const primaryColor = this.primaryColor
-      const secondaryColor = this.secondaryColor
+      console.debug('_onSelect this:', this)
+      // console.log('_onSelect: ', element)
+      const selectedElement = d3.select(this.node).selectAll('.bars .active')
+      const bars = d3.select(this.node).selectAll('.bars .bar')
+      const ticks = d3.select(this.node).selectAll('.x-axis .tick')
+      const groupedData = this.getGroupedData()
+
       // console.debug(data)
       if (selectedElement) {
-        selectedElement.attr('selected', false)
-        selectedElement.attr('class', 'bar')
-        selectedElement.attr('style', `fill: ${ primaryColor }`)
+        selectedElement
+          .attr('selected', false)
+          .attr('class', 'bar')
       }
 
-      const activeElement = element.parentNode.parentNode
-      activeElement.setAttribute('class', 'bar active')
-      activeElement.setAttribute('selected', true)
-      activeElement.setAttribute('style', `fill: ${ secondaryColor }`)
-      activeElement.setAttribute('tabindex', 0)
-      this.selectedData(data[0].data)
-      this._legend()
+      bars.filter((d, i, nodes) => {
+        nodes[this.currentIndex]
+          .setAttribute('class', 'bar active')
+          .setAttribute('selected', true)
+          .setAttribute('tabindex', 0)
+      })
+
+      ticks.forEach((d, i, nodes) => {
+        nodes[this.selectedIndex]
+          .setAttribute('class', 'tick')
+
+        nodes[this.currentIndex]
+          .setAttribute('class', 'tick active')
+      })
+
+      this.selectedData(groupedData[this.currentIndex] || data[0].data)
+      // this._legend()
       this.getSelected()
       this.onSelect(this)
+
+      this.handleBarHover(this._xDomain[this.currentIndex] || this.xSelectedValue)
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -710,6 +774,7 @@ export default class D3StackedBarChart {
       const legendRows = tbody.selectAll('tr')
       const selectedRowIndex = data && data.index
       const selectedLegendRow = legendRows._groups[0][selectedRowIndex]
+      const groupedData = this.getGroupedData()
 
       if (selectedRowIndex !== null && selectedElement) {
         d3.select(selectedLegendRow)
@@ -725,7 +790,7 @@ export default class D3StackedBarChart {
       }
       const activeElement = element.parentNode.parentNode
       activeElement.setAttribute('tabindex', 0)
-      this.selectedData(data[0].data)
+      this.selectedData(groupedData[this.currentIndex] || data[0].data)
       // this._legend()
       this.onMouseover(this)
     }
@@ -760,30 +825,38 @@ export default class D3StackedBarChart {
 
   _onHover = (element, data, hover) => {
     try {
-      const activeElement = element.parentNode.parentNode
-      const activeHoverElement = d3.select(activeElement).classed('active')
-      const primaryColor = this.primaryColor
-      const secondaryColor = this.secondaryColor
       const horizontal = this.horizontal
-      const years = this.xDomain()
+      const groupedData = this.getGroupedData()
+      const ticks = d3.select(this.node).selectAll('.x-axis .tick')
 
       if (hover === true) {
         if (!horizontal) {
-          this.createLegend(years[this.currentIndex])
-          this.updateLegend(data[0].data)
+          this.createLegend(this._xDomain[this.currentIndex])
+          this.updateLegend(groupedData[this.currentIndex] || data[0].data)
         }
 
-        activeElement.setAttribute('style', `fill: ${ secondaryColor }`)
+        this.handleBarHover(this._xDomain[this.currentIndex] || this.xSelectedValue)
+
+        ticks.filter((d, i, nodes) => {
+          nodes[this.selectedIndex]
+            .setAttribute('class', 'tick')
+          nodes[this.currentIndex]
+            .setAttribute('class', 'tick active')
+        })
       }
       else {
-        if (!activeHoverElement) {
-          activeElement.setAttribute('style', `fill: ${ primaryColor }`)
-        }
-
-        this.createLegend(years[this.selectedIndex])
+        this.createLegend(this._xDomain[this.xSelectedValue])
         this.updateLegend()
-      }
 
+        this.handleBarHover(this.xSelectedValue)
+
+        ticks.filter((d, i, nodes) => {
+          nodes[this.currentIndex]
+            .setAttribute('class', 'tick')
+          nodes[this.selectedIndex]
+            .setAttribute('class', 'tick active')
+        })
+      }
       this.onHover(this)
     }
     catch (err) {
@@ -792,7 +865,8 @@ export default class D3StackedBarChart {
   }
 
   onHover (d) {
-    // console.debug('onSelect: ', d)
+    // console.debug('D3StackedBarChart onHover: ', d)
+    return d
   }
 
   barOffsetX () {
@@ -828,7 +902,7 @@ export default class D3StackedBarChart {
       const r = this.data.map((row, i) => {
         return row[this.xAxis]
       })
-      //      const domain = [...(new Set(r.sort((a, b) => a - b)))]
+      // const domain = [...(new Set(r.sort((a, b) => a - b)))]
       const domain = [...(new Set(r))]
       this._xDomain = domain
       return domain
@@ -845,6 +919,7 @@ export default class D3StackedBarChart {
         .rollup(v => d3.sum(v, i => i[this.yAxis]))
         .entries(this.data)
         .map(y => y.value)
+
       const domain = [...(new Set(r.sort((a, b) => a - b)))]
       this._yDomain = domain
       return domain
@@ -889,9 +964,9 @@ export default class D3StackedBarChart {
         const data = xValue ? this.data.filter(r => r[this.xAxis] === xValue) : this.data
         const r = d3.nest()
           .key(k => k[this.options.yGroupBy])
+          .sortKeys((a, b) => this.options.yOrderBy.indexOf(a) - this.options.yOrderBy.indexOf(b))
           .entries(data)
           .map(y => y.key)
-        // console.debug(r)
         return r.reverse()
       }
       else {
@@ -969,7 +1044,25 @@ export default class D3StackedBarChart {
 
   yMin () {
     try {
-      return this.yDomain().shift()
+      const data = this.data
+      const groupTotals = []
+      d3.nest()
+        .key(k => k[this.xAxis])
+        .key(k => k[this.options.yGroupBy])
+        .rollup((d, i) => {
+          return {
+            total: d3.sum(d, d => d.sum)
+          }
+        })
+        .entries(data)
+        .map(d => {
+          // console.log('map d', d)
+          d.values.forEach(v => groupTotals.push(v.value.total))
+        })
+
+      const minVal = d3.min(groupTotals)
+      const yMin = (minVal < 0) ? minVal * 1.5 : 0
+      return yMin
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -1049,6 +1142,13 @@ export default class D3StackedBarChart {
     return this._selectedData
   }
 
+  getGroupedData (value) {
+    if (value) {
+      this._groupedData = value
+    }
+    return this._groupedData
+  }
+
   height (value) {
     if (value) {
       this._height = value
@@ -1103,15 +1203,18 @@ export default class D3StackedBarChart {
   }
 
   getSelected () {
+    const allGroupedData = []
     d3.select(this.node).selectAll('.bar').filter((d, i, nodes) => {
       if (nodes[i].className.baseVal.match(/active/)) {
         this.xSelectedValue = d
         this.ySelectedGroup = this.yGroupData(d)
         this.selectedData(this.ySelectedGroup)
-        // console.debug("Selecting index: ",i)
         this.selectedIndex = i
       }
+
+      allGroupedData.push(this.yGroupData(d))
     })
+    this.getGroupedData(allGroupedData)
   }
 
   getCurrentIndex (value) {

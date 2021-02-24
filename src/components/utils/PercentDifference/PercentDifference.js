@@ -1,19 +1,27 @@
 import React from 'react'
-import utils from '../../../js/utils'
+import { roundFormatParens } from '../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
 
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 
 const useStyles = makeStyles(theme => ({
-  trendIcon: {
+  trendIconUp: {
+    position: 'relative',
+    marginRight: 5,
+    top: 3,
+    fontSize: 'large',
+    color: theme.palette.orange[500],
+  },
+  trendIconDown: {
     position: 'relative',
     marginRight: 5,
     top: 3,
     fontSize: 'large',
     color: theme.palette.orange[300],
-  },
+  }
 }))
 
 /**
@@ -25,14 +33,22 @@ const useStyles = makeStyles(theme => ({
 const PercentDifference = ({ currentAmount, previousAmount }) => {
   const classes = useStyles()
   const percentIncrease = ((currentAmount - previousAmount) / previousAmount) * 100
+  let icon
+  if (percentIncrease > 0) {
+    icon = <ArrowUpwardIcon className={classes.trendIconUp} />
+  }
+  else if (percentIncrease < 0) {
+    icon = <ArrowDownwardIcon className={classes.trendIconDown} />
+  }
+  else if (percentIncrease === 0) {
+    icon = <ArrowForwardIcon className={classes.trendIconDown} />
+  }
+
   return (
     <span>
-      {percentIncrease > 0
-        ? <ArrowUpwardIcon className={classes.trendIcon} />
-        : <ArrowDownwardIcon className={classes.trendIcon} />
-      }
+      { icon || '' }
       <span>
-        {utils.round(percentIncrease, 0) + '%'}
+        { (percentIncrease === 0) ? 'Flat' : `${ roundFormatParens(percentIncrease, 0) }%`}
       </span>
     </span>
   )

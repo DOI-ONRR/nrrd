@@ -17,7 +17,7 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   const layout = pageContext.frontmatter && pageContext.frontmatter.layout
   const includeDataProvider = pageContext.frontmatter && pageContext.frontmatter.includeDataProvider
   const title = pageContext.frontmatter && pageContext.frontmatter.title
-  const keywords = pageContext.frontmatter && pageContext.frontmatter.tag
+  const keywords = pageContext.frontmatter && pageContext.frontmatter.tags
 
   if (layout === 'pattern-library' || location.pathname.includes('/patterns')) {
     const pageTitle = title || (pageContext.componentMetadata && `Pattern Library - ${ pageContext.componentMetadata.displayName }`)
