@@ -54,7 +54,7 @@ const RevenueLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, skeletonH
     const headerArr = [headers[0], '', `${ month } ${ year }`]
     return headerArr
   }
-  console.log(yGroupBy)
+
   return (
     <ChartContainer>
       {data
@@ -71,6 +71,7 @@ const RevenueLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, skeletonH
           legendFormat={v => formatToDollarInt(v)}
           legendHeaders={legendHeaders}
           chartHeight={chartHeight}
+          compact={true}
         />
         : <Skeleton variant="rect" height={skeletonHeight} animation="wave" />
       }

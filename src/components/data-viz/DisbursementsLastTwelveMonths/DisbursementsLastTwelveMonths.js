@@ -81,7 +81,7 @@ const DisbursementsLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, ske
           legendFormat={v => formatToDollarInt(v)}
           legendHeaders={legendHeaders}
           chartHeight={chartHeight}
-          horizontal={true}
+          compact={true}
         />
         : <Skeleton variant="rect" height={skeletonHeight} animation="wave" />
       }

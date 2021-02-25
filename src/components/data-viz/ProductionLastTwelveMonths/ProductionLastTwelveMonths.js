@@ -28,14 +28,14 @@ const ProductionLastTwelveMonths = ({ title, filterByProduct, yGroupBy, data, ch
     ? ['Federal - not tied to a location', 'Native American', 'Federal Offshore', 'Federal Onshore']
     : ['Other Revenues', 'Inspection Fees', 'Civil Penalties', 'Rents', 'Bonus', 'Royalties']
 
-  const xGroups = data?.results.reduce((g, row, i) => {
+  const xGroups = data?.results?.filter(row => row.product === filterByProduct).reduce((g, row, i) => {
     const r = g
     const year = row.period_date.substring(0, 4)
     const months = g[year] || []
-    months.push(months)
+    months.push(row.month)
     r[year] = months
     return r
-  }, {})
+  }, [])
 
   const xLabels = (x, i) => {
     return x.map(v => {
@@ -54,7 +54,7 @@ const ProductionLastTwelveMonths = ({ title, filterByProduct, yGroupBy, data, ch
     const headerArr = [headers[0], '', `${ month } ${ year }`]
     return headerArr
   }
-  console.log(yGroupBy)
+
   return (
     <ChartContainer>
       {data
@@ -71,6 +71,7 @@ const ProductionLastTwelveMonths = ({ title, filterByProduct, yGroupBy, data, ch
           legendFormat={v => formatToDollarInt(v)}
           legendHeaders={legendHeaders}
           chartHeight={chartHeight}
+          compact={true}
         />
         : <Skeleton variant="rect" height={skeletonHeight} animation="wave" />
       }

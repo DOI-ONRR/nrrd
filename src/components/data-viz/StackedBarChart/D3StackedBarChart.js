@@ -31,7 +31,6 @@ export default class D3StackedBarChart {
       this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
       this.handleBarHover = options.handleBarHover
-      console.log(this.horizontal)
 
       if (options.chartTooltip) {
         this.chartTooltip = options.chartTooltip
@@ -99,8 +98,11 @@ export default class D3StackedBarChart {
         .domain([this.yMin(), this.yMax()])
 
       this.chart = d3.select(this.chartDiv).append('svg')
-        .attr('viewBox', `0 0 ${ (this._width + 20) } ${ this._height }`)
         .attr('class', 'stacked-bar-chart')
+
+      if (!this.horizontal) {
+        this.chart.attr('viewBox', `0 0 ${ (this._width + 20) } ${ this._height }`)
+      }
 
       // chart colors
       this.primaryColor = options.primaryColor || '#37253c' // theme.palette.explore[700]
@@ -271,7 +273,6 @@ export default class D3StackedBarChart {
     try {
       if (this.xGroups) {
         const self = this
-
         const groupLines = this.chart.append('g').attr('class', 'x-axis-groups')
         const groupItemWidth = (self._width / self.data.length)
         const padding = (self.xScale.bandwidth() * 0.2)
@@ -291,7 +292,6 @@ export default class D3StackedBarChart {
             .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))
             .attr('y', self._height)
             .attr('text-anchor', 'middle')
-            .style('font-size', '1rem')
             .text(name)
 
 	        xPos = groupLineWidth + padding
@@ -448,6 +448,7 @@ export default class D3StackedBarChart {
       if (this.horizontal) {
         this.chart
           .attr('class', 'horizontal-stacked-bar-chart')
+          .attr('height', this._height)
           .attr('width', 25)
           .style('top', `${ -this._height }px`)
 
