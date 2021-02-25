@@ -134,8 +134,8 @@ const initialState = {
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
         [PERIOD]: 'Calendar Year',
-        [FISCAL_YEAR]: '2019',
-        [CALENDAR_YEAR]: '2018',
+        [FISCAL_YEAR]: '2020',
+        [CALENDAR_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
