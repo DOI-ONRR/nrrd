@@ -151,7 +151,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   const cData = comparisonData.slice().sort((a, b) => yOrderBy.indexOf(a.key) - yOrderBy.indexOf(b.key))
 
-  console.log('comparisonData: ', comparisonData)
+  // console.log('comparisonData: ', comparisonData)
   // console.log('cData: ', cData)
 
   // get previous/current year totals
