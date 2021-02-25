@@ -39,7 +39,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../constants'
             Query revenue data in {props.pageContext.frontmatter.title}
         </Link>
         <Link
-          href={`/query-data?dataType=${ DFC.DISBURSEMENT }&stateOffshoreName=${ props.pageContext.frontmatter.title }`}
+          href={`/query-data?dataType=${ DFC.DISBURSEMENT }&stateOffshoreName=${ props.pageContext.frontmatter.title }&usStateName=${ props.pageContext.frontmatter.title }`}
           linkType="FilterTable">
           Query disbursements data in {props.pageContext.frontmatter.title}
         </Link>
