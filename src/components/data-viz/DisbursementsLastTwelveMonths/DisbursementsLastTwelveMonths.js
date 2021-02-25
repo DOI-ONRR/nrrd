@@ -15,7 +15,7 @@ import { QK_DISBURSEMENTS_COMMON, RECIPIENT } from '../../../constants'
 /**
  * This displays data related to the Disbursements by recipient for the last 12 months
  */
-const DisbursementsLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, skeletonHeight, ...restProps }) => {
+const DisbursementsLastTwelveMonths = ({ title, yGroupBy, data, disableInteraction, chartHeight, skeletonHeight, ...restProps }) => {
   const ChartContainer = withStyles(() =>
     createStyles({
       root: {
@@ -82,6 +82,7 @@ const DisbursementsLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, ske
           legendHeaders={legendHeaders}
           chartHeight={chartHeight}
           compact={true}
+          disableInteraction={disableInteraction}
         />
         : <Skeleton variant="rect" height={skeletonHeight} animation="wave" />
       }
@@ -96,11 +97,14 @@ DisbursementsLastTwelveMonths.propTypes = {
   yGroupBy: PropTypes.string,
   /** The data that is returned from the graphql query */
   data: PropTypes.object,
+  /** Flag to disable the hover,select and click events of the stacked bar chart */
+  disableInteraction: PropTypes.bool,
 }
 
 DisbursementsLastTwelveMonths.defaultProps = {
   yGroupBy: RECIPIENT,
-  skeletonHeight: 400
+  skeletonHeight: 400,
+  disableInteraction: false,
 }
 
 export default withQueryManager(DisbursementsLastTwelveMonths, QK_DISBURSEMENTS_COMMON)

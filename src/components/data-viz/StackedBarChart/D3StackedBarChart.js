@@ -30,7 +30,7 @@ export default class D3StackedBarChart {
       this.units = (options.units) ? options.units : ''
       this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
-      this.handleBarHover = options.handleBarHover
+      this.handleBarHover = options.handleBarHover || (() => {})
 
       if (options.chartTooltip) {
         this.chartTooltip = options.chartTooltip
@@ -706,6 +706,7 @@ export default class D3StackedBarChart {
   }
 
   _onClick (e, d) {
+    if (this.options.disableInteraction) return
     try {
       // console.debug('_onClick: ', e,d)
     }
@@ -720,6 +721,7 @@ export default class D3StackedBarChart {
   }
 
   _onSelect = (element, data) => {
+    if (this.options.disableInteraction) return
     try {
       console.debug('_onSelect this:', this)
       // console.log('_onSelect: ', element)
@@ -767,6 +769,7 @@ export default class D3StackedBarChart {
   }
 
   _onMouseover = (element, data) => {
+    if (this.options.disableInteraction) return
     try {
       const selectedElement = d3.selectAll('.active')
 
@@ -800,10 +803,12 @@ export default class D3StackedBarChart {
   }
 
   onMouseover (d) {
+    if (this.options.disableInteraction) return
     return d
   }
 
   _onMouseout (element, data) {
+    if (this.options.disableInteraction) return
     try {
       const tbody = d3.select(this.legendDiv).selectAll('tbody')
       const legendRows = tbody.selectAll('tr')
@@ -824,6 +829,7 @@ export default class D3StackedBarChart {
   }
 
   _onHover = (element, data, hover) => {
+    if (this.options.disableInteraction) return
     try {
       const horizontal = this.horizontal
       const groupedData = this.getGroupedData()
@@ -865,6 +871,7 @@ export default class D3StackedBarChart {
   }
 
   onHover (d) {
+    if (this.options.disableInteraction) return
     // console.debug('D3StackedBarChart onHover: ', d)
     return d
   }

@@ -66,53 +66,59 @@ const DefaultChartContainer = withStyles((theme, additionalStyles) =>
   })
 )(Box)
 
-const CompactChartContainer = withStyles((theme, additionalStyles) =>
-  createStyles({
-    root: {
-      display: 'block',
-      top: 0,
-      left: 0,
-      width: '100%',
-      fill: 'inherit',
-      '& .bars > .bar:hover': {
-        cursor: 'pointer',
-      },
-      '& .bar .stacked-bar-chart-item': {
-        transition: 'all .1s ease-in'
-      },
-      '& .maxExtent': {
-        fontSize: '.70rem',
-      },
-      '& .x-axis > .tick': {
-        fontSize: '.65rem',
-        fontWeight: 'normal',
-      },
-      '& .x-axis > .tick:nth-child(odd)': {
-        '@media (max-width: 375px)': {
-          display: 'none',
-        },
-      },
-      '& .y-axis > .tick': {
-        fontSize: '.65rem',
-        lineHeight: '.7rem',
-        fontWeight: 'normal',
-        transition: 'all .1s ease-in',
-      },
+const CompactChartContainer = ({ theme, id, disableInteraction, style, ...restProps }) => {
+  const interactionStyles = disableInteraction
+    ? { '& .bars > .bar:focus': { outline: 'none' } }
+    : {
+      '& .bars > .bar:hover': { cursor: 'pointer' },
       '& .x-axis .tick.active > text': {
         fontWeight: 'bold',
         fontSize: '.65rem',
         lineHeight: '.7rem',
         fill: theme.palette.common.black
-      },
-      '& .x-axis-groups > text': {
-        fontSize: '.70rem'
-      },
-      ...additionalStyles
-    },
-  })
-)(Box)
+      }
+    }
 
-const HorizontalChartContainer = withStyles((theme, additionalStyles) =>
+  const EnhancedComponent = withStyles(() => {
+    return createStyles({
+      root: {
+        display: 'block',
+        top: 0,
+        left: 0,
+        width: '100%',
+        fill: 'inherit',
+        ...interactionStyles,
+        '& .bar .stacked-bar-chart-item': {
+          transition: 'all .1s ease-in'
+        },
+        '& .maxExtent': {
+          fontSize: '.70rem',
+        },
+        '& .x-axis > .tick': {
+          fontSize: '.65rem',
+          fontWeight: 'normal',
+        },
+        '& .x-axis > .tick:nth-child(odd)': {
+          '@media (max-width: 375px)': {
+            display: 'none',
+          },
+        },
+        '& .y-axis > .tick': {
+          fontSize: '.65rem',
+          lineHeight: '.7rem',
+          fontWeight: 'normal',
+          transition: 'all .1s ease-in',
+        },
+        '& .x-axis-groups > text': {
+          fontSize: '.70rem'
+        },
+      },
+    })
+  })(Box)
+  return <EnhancedComponent id={id} style={style}/>
+}
+
+const HorizontalChartContainer = withStyles((theme, { additionalStyles, disableInteraction }) =>
   createStyles({
     root: {
       position: 'relative',
@@ -306,7 +312,7 @@ const StackedBarChart = props => {
   // init drawing of chart
   useEffect(() => {
     drawChart()
-  }, [])
+  })
   // redraw chart on resize event
   useEffect(() => {
     drawChart()
@@ -320,7 +326,7 @@ const StackedBarChart = props => {
           <HorizontalChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }}/>
         }
         {(!options.horizontal && options.compact)
-          ? <CompactChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }} />
+          ? <CompactChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }} disableInteraction={options.disableInteraction}/>
           : <DefaultChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }} />
         }
         { props.collapsibleLegend && <LegendButton variant='text' onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</LegendButton> }
