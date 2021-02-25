@@ -10,7 +10,7 @@ import createStyles from '@material-ui/styles/createStyles'
 import withStyles from '@material-ui/styles/withStyles'
 
 import withQueryManager from '../../withQueryManager'
-import { QK_REVENUE_COMMON, SOURCE } from '../../../constants'
+import { QK_REVENUE_COMMON, SOURCE, DISPLAY_NAMES } from '../../../constants'
 
 /**
  * This displays data related to the Revenue for the last 12 months
@@ -51,7 +51,8 @@ const RevenueLastTwelveMonths = ({ title, yGroupBy, data, chartHeight, skeletonH
     const date = new Date(dStr)
     const month = date.toLocaleString('default', { month: 'short' })
     const year = headers[2].substring(0, 4)
-    const headerArr = [headers[0], '', `${ month } ${ year }`]
+    const name = (yGroupBy === 'revenue_type') ? 'Revenue type' : DISPLAY_NAMES[headers[0]]?.default
+    const headerArr = [name, '', `${ month } ${ year }`]
     return headerArr
   }
 

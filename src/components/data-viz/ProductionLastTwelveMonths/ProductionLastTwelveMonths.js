@@ -15,7 +15,7 @@ import { QK_PRODUCTION_COMMON, SOURCE } from '../../../constants'
 /**
  * This displays data related to the Production for the last 12 months
  */
-const ProductionLastTwelveMonths = ({ title, filterByProduct, yGroupBy, data, chartHeight, skeletonHeight, ...restProps }) => {
+const ProductionLastTwelveMonths = ({ title, filterByProduct, yGroupBy, units, data, chartHeight, skeletonHeight, ...restProps }) => {
   const ChartContainer = withStyles(() =>
     createStyles({
       root: restProps.style,
@@ -60,7 +60,7 @@ const ProductionLastTwelveMonths = ({ title, filterByProduct, yGroupBy, data, ch
       {data
         ? <StackedBarChart
           title={title}
-          units={'dollars'}
+          units={units}
           data={data.results.filter(row => row.product === filterByProduct)}
           xAxis={'period_date'}
           yAxis={'sum'}

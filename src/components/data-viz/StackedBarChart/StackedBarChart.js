@@ -222,6 +222,57 @@ const DefaultLegendContainer = withStyles((theme, additionalStyles) =>
   })
 )(Box)
 
+const CompactLegendContainer = withStyles((theme, additionalStyles) =>
+  createStyles({
+    root: {
+      display: 'block',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      lineHeight: '0.7rem',
+      fontSize: '0.7rem',
+      '& td .legend-rect': {
+        // fill: theme.palette.chart.secondary,
+        // backgroundColor: theme.palette.chart.secondary,
+        width: '10px',
+        display: 'block',
+      },
+      '& .legend-table': {
+        width: '100%',
+        borderSpacing: 0,
+        borderCollapse: 0,
+        boxShadow: 'none',
+      },
+      '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
+        textAlign: 'right',
+      },
+      '& .legend-table > thead th': {
+        fontWeight: 'bold',
+        textAlign: 'left',
+        borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+      },
+      '& .legend-table > thead th:first-child::first-letter': {
+        textTransform: 'uppercase',
+      },
+      '& .legend-table > tbody tr td': {
+        borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+      },
+      '& .legend-table > tbody tr:last-child td': {
+        border: 'none',
+      },
+      '& .legend-table th, & .legend-table td': {
+        padding: '2px 2px 4px 2px',
+        verticalAlign: 'bottom',
+      },
+      '& .legend-table td:first-child': {
+        padding: '2px 2px 4px 2px',
+        width: '20px'
+      }
+    },
+  })
+)(Box)
+
 const LegendButton = withStyles((theme, additionalStyles) =>
   createStyles({
     root: {
@@ -274,7 +325,10 @@ const StackedBarChart = props => {
         }
         { props.collapsibleLegend && <LegendButton variant='text' onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</LegendButton> }
         <Collapse in={!collapsed}>
-          <DefaultLegendContainer id='legend_div' />
+          {options.compact
+            ? <CompactLegendContainer id='legend_div' />
+            : <DefaultLegendContainer id='legend_div' />
+          }
         </Collapse>
       </DefaultContainer>
     </>
