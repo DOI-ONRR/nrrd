@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { formatToDollarInt } from '../../../js/utils'
+import { formatToCommaInt } from '../../../js/utils'
 import StackedBarChart from '../StackedBarChart'
 
 import Box from '@material-ui/core/Box'
@@ -68,7 +68,7 @@ const ProductionLastTwelveMonths = ({ title, disableInteraction, filterByProduct
           yGroupBy={yGroupBy}
           yOrderBy={yOrderBy}
           xLabels={xLabels}
-          legendFormat={v => formatToDollarInt(v)}
+          legendFormat={v => formatToCommaInt(v)}
           legendHeaders={legendHeaders}
           chartHeight={chartHeight}
           compact={true}
