@@ -32,12 +32,12 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
     <Grid container spacing={1}>
       <Grid item xs={6}>
         <Link
-          href={`/explore?dataType=${ DFC.REVENUE }&location=NF,${ props.pageContext.frontmatter.unique_id }/`}
+          href={`/explore?dataType=${ DFC.REVENUE }&offshoreRegions=true&location=NF,${ props.pageContext.frontmatter.unique_id }/`}
           linkType="ExploreData">
             Explore revenue data in {props.pageContext.frontmatter.title} 
         </Link>
         <Link
-          href={`/explore?dataType=${ DFC.PRODUCTION }&location=NF,${ props.pageContext.frontmatter.unique_id }/`}
+          href={`/explore?dataType=${ DFC.PRODUCTION }&offshoreRegions=true&location=NF,${ props.pageContext.frontmatter.unique_id }/`}
           linkType="ExploreData">
           Explore production data in {props.pageContext.frontmatter.title}
         </Link>

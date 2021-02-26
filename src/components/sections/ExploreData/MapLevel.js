@@ -117,7 +117,7 @@ const MapLevel = props => {
           <OffshoreRegionsSwitchInput
             dataFilterKey={OFFSHORE_REGIONS}
             data={MAP_LEVEL_OPTIONS[OFFSHORE_REGIONS]}
-            defaultSelected={offshoreRegions === true}
+            defaultSelected={offshoreRegions}
             label='Show offshore'
             helperText='Disbursements from offshore production go to the states and counties that surround the offshore area.'
             disabled={dataType === 'Disbursements' || mapOverlay}
