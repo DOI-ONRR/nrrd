@@ -48,7 +48,7 @@ const EXPLORE_DATA_TOOLBAR_OPTIONS = {
     { value: PRODUCTION, option: 'Production' },
   ],
   [PERIOD]: [
-    { value: DFC.FISCAL_YEAR_LABEL, option: DFC.PERIOD_FISCAL_YEAR },
+    { value: DFC.PERIOD_FISCAL_YEAR, option: DFC.PERIOD_FISCAL_YEAR },
     { value: DFC.PERIOD_CALENDAR_YEAR, option: DFC.PERIOD_CALENDAR_YEAR },
     // { value: DFC.PERIOD_MONTHLY_YEAR, option: DFC.PERIOD_MONTHLY_YEAR }
   ]
@@ -178,7 +178,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
             onChange={toggleExploreDataToolbar}
           >
             <IconExploreDataImg className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} />
-            <span>Explore data</span>
+            <h1 style={{ fontSize: '1.125rem', margin: 0 }}><span>Explore data</span></h1>
           </FilterToggleInput>
           <FilterToggleInput
             value="open"
