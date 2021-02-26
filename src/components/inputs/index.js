@@ -27,6 +27,7 @@ import BaseSelectInput from './BaseSelectInput'
 
 import withDataFilterContext from './withDataFilterContext'
 import withQueryManager from '../withQueryManager'
+import withDataFilterQuery from './withDataFilterQuery'
 
 /**
  * A factory method for building input components with a DataFilterContext and a QueryManager.
@@ -41,6 +42,16 @@ export const createEnhancedInput = (baseInput, queryKey, dataFilterKey, options)
     BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
     BaseComponent => withQueryManager(BaseComponent, queryKey, { [DATA_FILTER_KEY]: dataFilterKey, ...options }))(baseInput)
 }
+/**
+ * A factory method for building select components with a DataFilterContext and a DataFilterQuery.
+ *
+ * @param {String} dataFilterKey
+ * @param {String} selectType
+ */
+const createEnhancedSelect = (dataFilterKey, selectType) => compose(
+  BaseComponent => props => (<BaseComponent selectType={selectType} label={DISPLAY_NAMES[dataFilterKey]?.default} {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey),
+  BaseComponent => withDataFilterQuery(BaseComponent, dataFilterKey))(BaseSelectInput)
 
 export const PeriodSelectInput = compose(
   BaseComponent => props => (
@@ -68,3 +79,4 @@ export const FilterToggleInput = ({ children, ...props }) => <BaseToggle data={[
 export const MapLevelToggleInput = withDataFilterContext(BaseMultiToggle, MAP_LEVEL)
 export const OffshoreRegionsSwitchInput = withDataFilterContext(BaseSwitch, OFFSHORE_REGIONS)
 export const YearlyMonthlyToggleInput = withDataFilterContext(BaseMultiToggle, MONTHLY)
+export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
