@@ -10,19 +10,18 @@ import BarChart from './D3StackedBarChart.js'
 import { Collapse, Button } from '@material-ui/core'
 import useWindowSize from '../../../js/hooks/useWindowSize'
 
-const DefaultContainer = withStyles((theme, additionalStyles) =>
+const DefaultContainer = withStyles(theme =>
   createStyles({
     root: {
       display: 'block',
       top: 0,
       left: 0,
-      width: '100%',
-      ...additionalStyles
+      width: '100%'
     },
   })
 )(Box)
 
-const DefaultChartContainer = withStyles((theme, additionalStyles) =>
+const DefaultChartContainer = withStyles(theme =>
   createStyles({
     root: {
       display: 'block',
@@ -61,7 +60,6 @@ const DefaultChartContainer = withStyles((theme, additionalStyles) =>
       '& .x-axis-groups > text': {
         fontSize: '.70rem'
       },
-      ...additionalStyles
     },
   })
 )(Box)
@@ -118,7 +116,7 @@ const CompactChartContainer = ({ theme, id, disableInteraction, style, ...restPr
   return <EnhancedComponent id={id} style={style}/>
 }
 
-const HorizontalChartContainer = withStyles((theme, { additionalStyles, disableInteraction }) =>
+const HorizontalChartContainer = withStyles(theme =>
   createStyles({
     root: {
       position: 'relative',
@@ -172,13 +170,12 @@ const HorizontalChartContainer = withStyles((theme, { additionalStyles, disableI
         fontWeight: 'bold',
         fontSize: '.90rem',
         fill: theme.palette.common.black
-      },
-      ...additionalStyles
+      }
     },
   })
 )(Box)
 
-const DefaultLegendContainer = withStyles((theme, additionalStyles) =>
+const DefaultLegendContainer = withStyles(theme =>
   createStyles({
     root: {
       display: 'block',
@@ -228,7 +225,7 @@ const DefaultLegendContainer = withStyles((theme, additionalStyles) =>
   })
 )(Box)
 
-const CompactLegendContainer = withStyles((theme, additionalStyles) =>
+const CompactLegendContainer = withStyles((theme) =>
   createStyles({
     root: {
       display: 'block',
@@ -279,7 +276,7 @@ const CompactLegendContainer = withStyles((theme, additionalStyles) =>
   })
 )(Box)
 
-const LegendButton = withStyles((theme, additionalStyles) =>
+const LegendButton = withStyles(theme =>
   createStyles({
     root: {
       color: theme.palette.links.default,
