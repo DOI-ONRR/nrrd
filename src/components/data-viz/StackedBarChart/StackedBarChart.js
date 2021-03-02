@@ -1,13 +1,16 @@
 /* eslint-disable quotes */
 import React, { useEffect, useRef, useState } from 'react'
 
-import Box from '@material-ui/core/Box'
-import createStyles from '@material-ui/styles/createStyles'
-import withStyles from '@material-ui/styles/withStyles'
-import useTheme from '@material-ui/styles/useTheme'
+import { Box, Collapse, Button } from '@material-ui/core'
+import {
+  createStyles,
+  withStyles,
+  useTheme
+} from '@material-ui/styles'
+
 import ChartTitle from '../ChartTitle'
 import BarChart from './D3StackedBarChart.js'
-import { Collapse, Button } from '@material-ui/core'
+
 import useWindowSize from '../../../js/hooks/useWindowSize'
 
 const DefaultContainer = withStyles(theme =>
@@ -122,11 +125,8 @@ const HorizontalChartContainer = withStyles(theme =>
       position: 'relative',
       height: 25,
       '& .horizontal-stacked-bar-chart': {
-        position: 'absolute',
-        top: 0,
-        left: 5,
-        transform: 'rotate(90deg)',
-        transformOrigin: 'bottom left',
+        position: 'relative',
+        width: '100%',
         '& .bars > .bar': {
           opacity: 1,
         },
@@ -225,7 +225,7 @@ const DefaultLegendContainer = withStyles(theme =>
   })
 )(Box)
 
-const CompactLegendContainer = withStyles((theme) =>
+const CompactLegendContainer = withStyles(theme =>
   createStyles({
     root: {
       display: 'block',
