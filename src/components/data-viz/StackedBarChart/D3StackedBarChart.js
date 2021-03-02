@@ -95,7 +95,6 @@ export default class D3StackedBarChart {
           .attr('class', 'horizontal-stacked-bar-chart')
       }
       else {
-        this._height = d3.max([this._height * this.barScale, 1])
         this.xScale = d3.scaleBand()
           .domain(this.xDomain())
           .range([this.marginLeft, this._width])
