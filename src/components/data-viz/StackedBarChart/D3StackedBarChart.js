@@ -68,7 +68,6 @@ export default class D3StackedBarChart {
       if (options.onSelect) this.onSelect = options.onSelect
       if (options.onClick) this.onClick = options.onClick
       if (options.onHover) this.onHover = options.onHover
-      if (options.barScale) this.barScale = (options.barScale) ? options.barScale : 1
 
       this.yOrder()
 
@@ -98,16 +97,22 @@ export default class D3StackedBarChart {
         this.ctrWidth = this._width - this.marginLeft - this.marginRight
         this.ctrHeight = this._height - this.marginTop - this.marginBottom
 
-        this.ctrWidth = d3.max([this.ctrWidth * this.barScale, 1])
+        // Bar Scale
+        if (options.barScale) {
+          this.barScale = (options.barScale) ? options.barScale : 1
+          this.ctrWidth = d3.max([this.ctrWidth * this.barScale, 1])
+        }
 
         // Scales
         this.xScale = d3.scaleLinear()
           .rangeRound([0, this.ctrWidth])
-          .domain([0, this.yDomain()])
+          .domain([this.yMin(), this.yMax()])
 
         this.yScale = d3.scaleBand()
           .rangeRound([0, this.ctrHeight])
           .domain(this.xDomain())
+          .paddingInner(0.3)
+          .paddingOuter(0.1)
 
         this.chart = d3.select(this.chartDiv).append('svg')
           .attr('class', 'horizontal-stacked-bar-chart')
@@ -446,8 +451,6 @@ export default class D3StackedBarChart {
       .style('opacity', 0)
       .style('display', 'none')
 
-    console.log('self.xDomain(): ', self.xDomain())
-
     try {
       // Draw horizontal chart
       this.chart.append('g')
@@ -487,10 +490,10 @@ export default class D3StackedBarChart {
         .append('rect')
         .attr('data-key', d => d.key)
         .attr('y', d => {
-          return self.yScale(d[0][1])
+          return self.yScale(d[0][1]) || 0
         })
         .attr('x', d => {
-          return self.xScale(d[0][0])
+          return self.xScale(d[0][0]) || 0
         })
         .attr('width', d => {
           return (self.xScale(d[0][1]) - self.xScale(d[0][0])) || 0
