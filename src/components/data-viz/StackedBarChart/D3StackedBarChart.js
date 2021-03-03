@@ -72,29 +72,8 @@ export default class D3StackedBarChart {
 
       this.yOrder()
 
-      // horizontal chart and vertical bar chart settings
-      if (this.horizontal) {
-        // reset margins
-        this.marginLeft = 0
-        this.marginTop = 0
-        this.marginRight = 0
-        this.marginBottom = 0
-
-        this._width = d3.max([this._width * this.barScale, 1])
-
-        // Scales
-        this.xScale = d3.scaleLinear()
-          .rangeRound([0, this._width])
-          .domain([0, this.yDomain()])
-
-        this.yScale = d3.scaleBand()
-          .rangeRound([0, this._height])
-          .domain(this.xDomain())
-
-        this.chart = d3.select(this.chartDiv).append('svg')
-          .attr('class', 'horizontal-stacked-bar-chart')
-      }
-      else {
+      // vertical and horizontal bar chart settings
+      if (!this.horizontal) {
         this.xScale = d3.scaleBand()
           .domain(this.xDomain())
           .range([this.marginLeft, this._width])
@@ -109,6 +88,30 @@ export default class D3StackedBarChart {
           .attr('class', 'stacked-bar-chart')
 
         this.chart.attr('viewBox', `0 0 ${ (this._width + 20) } ${ this._height }`)
+      }
+      else {
+        // reset margins
+        this.marginLeft = 5
+        this.marginTop = 5
+        this.marginRight = 5
+        this.marginBottom = 5
+        this.ctrWidth = this._width - this.marginLeft - this.marginRight
+        this.ctrHeight = this._height - this.marginTop - this.marginBottom
+
+        this.ctrWidth = d3.max([this.ctrWidth * this.barScale, 1])
+
+        // Scales
+        this.xScale = d3.scaleLinear()
+          .rangeRound([0, this.ctrWidth])
+          .domain([0, this.yDomain()])
+
+        this.yScale = d3.scaleBand()
+          .rangeRound([0, this.ctrHeight])
+          .domain(this.xDomain())
+
+        this.chart = d3.select(this.chartDiv).append('svg')
+          .attr('class', 'horizontal-stacked-bar-chart')
+          .attr('transform', `translate(${ this.marginLeft }, ${ this.marginTop })`)
       }
 
       // chart colors
@@ -446,7 +449,7 @@ export default class D3StackedBarChart {
     console.log('self.xDomain(): ', self.xDomain())
 
     try {
-      // Draw chart
+      // Draw horizontal chart
       this.chart.append('g')
         .attr('class', 'bars')
         .selectAll('g')
@@ -457,7 +460,7 @@ export default class D3StackedBarChart {
         .attr('fill', d => {
           return null
         })
-        .attr('transform', d => `translate(0, ${ self.xScale(d) })`)
+        .attr('transform', d => `translate(0, ${ self.yScale(d) })`)
         .attr('class', (d, i) => {
           return i === self.selectedIndex ? 'bar active' : 'bar'
         })

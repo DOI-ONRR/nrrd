@@ -123,7 +123,7 @@ const HorizontalChartContainer = withStyles(theme =>
   createStyles({
     root: {
       position: 'relative',
-      height: 25,
+      height: 30,
       '& .horizontal-stacked-bar-chart': {
         position: 'relative',
         width: '100%',
