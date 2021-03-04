@@ -10,6 +10,14 @@ module.exports = Object.freeze({
     primary: '#000000',
     secondary: '#1478a6'
   },
+  toolbarBackground: {
+    dark: '#062135',
+    main: '#0a314d',
+  },
+  common: {
+    black: '#000000',
+    white: '#ffffff'
+  },
   header: {
     primary: '#062135',
     secondary: '#0A314D'
