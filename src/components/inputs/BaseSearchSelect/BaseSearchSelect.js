@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 }))
 /**
  * This is a field that a user enters search terms into.  The form field should
- * have a clear label on it.  An example exists on the homepage search box: [ https://www.onrr.gov/].
+ * have a clear label on it.  An example exists on the [homepage search box](https://revenuedata.doi.gov).
  */
 const BaseSearchSelect = ({ data, label, onChange, selected, defaultSelected, disabled, ...props }) => {
   const noop = () => {}
