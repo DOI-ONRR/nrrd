@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 }))
 /**
  * The toolbar is used to contain various inputs for the user to access. It is
- * currently used on Explore Data and Query Data: [https://revenuedata.doi.gov/explore].
+ * currently used on [Explore Data](https://revenuedata.doi.gov/explore) and [Query Data](https://revenuedata.doi.gov/query-data).
  */
 const BaseToolbar = ({ isSecondary, children, style, ...restProps }) => {
   const theme = useTheme()

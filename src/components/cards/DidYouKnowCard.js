@@ -19,8 +19,8 @@ const useStyles = makeStyles(theme => ({
  * can display content. Other components can be added in the content such as a
  * collapsible component that can add more content.
  *
- * An example with collapsible content exists in the “Offshore” tab in How revenue
- * works: [https://revenuedata.doi.gov/how-revenue-works/offshore-oil-gas].
+ * An example with collapsible content exists in the “Offshore” tab in [How revenue
+ * works](https://revenuedata.doi.gov/how-revenue-works/offshore-oil-gas).
  */
 const DidYouKnowCard = ({ children, title = 'Did you know?' }) => {
   const theme = useTheme()

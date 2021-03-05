@@ -53,8 +53,7 @@ const useStyles = makeStyles(theme => ({
 /**
  * Line charts provide a way to visualize data changes over time.
  * An example exists in the “Compare Revenue” section in Explore data.  The line
- * chart is titled “Revenue over time”:
- * [https://revenuedata.doi.gov/explore?dataType=Revenue&location=NF&mapLevel=State&offshoreRegions=false&period=Calendar%20Year&year=2019#nationwide-revenue-summary].
+ * chart is titled [Revenue over time](https://revenuedata.doi.gov/explore?dataType=Revenue&location=NF&mapLevel=State&offshoreRegions=false&period=Calendar%20Year&year=2019#nationwide-revenue-summary).
  */
 const LineChart = props => {
   const classes = useStyles()

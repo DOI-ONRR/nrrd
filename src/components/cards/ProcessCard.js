@@ -43,8 +43,8 @@ const useStyles = makeStyles(theme => ({
 }))
 /**
  * This component allows you to specify a step in a process.
- * An example exists in both the “Offshore” and “Onshore” tabs in How revenue
- * works :  [https://revenuedata.doi.gov/how-revenue-works/offshore-oil-gas].
+ * An example exists in both the “Offshore” and “Onshore” tabs in [How revenue
+ * works](https://revenuedata.doi.gov/how-revenue-works/offshore-oil-gas).
  */
 const ProcessCard = ({ children, step, name, defaultExpanded }) => {
   const theme = useTheme()
