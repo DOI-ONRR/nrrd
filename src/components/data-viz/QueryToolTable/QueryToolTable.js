@@ -28,6 +28,7 @@ import { DownloadContext } from '../../../stores/download-store'
 import { toTitleCase, aggregateSum, destructuringSwap } from '../../../js/utils'
 
 import withQueryManager from '../../withQueryManager'
+import { QueryToolTableProvider, QueryToolTableContext } from '../../../stores'
 
 import Skeleton from '@material-ui/lab/Skeleton'
 import CustomTable from './Custom/CustomTable'
@@ -92,6 +93,10 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
     }
     return CALENDAR_YEAR
   }
+
+  const years = Array.from(new Set(data?.results?.map(item => item[getPivotColumn()])))
+  years.sort()
+
   const getPivotColumnValue = () => {
     if (dfc[DATA_TYPE] === REVENUE_BY_COMPANY) {
       return REVENUE
@@ -99,36 +104,45 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
     return dfc[DATA_TYPE]
   }
   // This will remove columns that have no data and the graphql __typename
-  const transformDataToTableData = () => {
+  const transformDataToTableData = (data, counts) => {
     const omit = (keys, array) =>
       array.map(obj => Object.fromEntries(
         Object.entries(obj)
           .filter(([k]) => !keys.includes(k))
       ))
     const columnsToOmit = ['__typename'].concat(
-      Object.keys(data?.counts?.aggregate).filter(colName => data.counts.aggregate[colName] < 1),
+      Object.keys(counts?.aggregate).filter(colName => counts.aggregate[colName] < 1),
       ((dfc[PERIOD] === PERIOD_FISCAL_YEAR) ? CALENDAR_YEAR : FISCAL_YEAR))
 
-    return omit(columnsToOmit, data.results)
+    return omit(columnsToOmit, data).map(obj => {
+      obj.Trend = 'test'
+      return obj
+    })
   }
 
-  const getSortColumn = () => {
-    const years = Array.from(new Set(data?.results?.map(item => item[getPivotColumn()])))
-    years.sort()
-    return [{ columnName: years[years.length - 1]?.toString(), direction: 'desc' }]
-  }
+  const getSortColumn = () => [{ columnName: years[years.length - 1]?.toString(), direction: 'desc' }]
+
+  const getHideColumns = () => years.filter(year => (dfc[PERIOD] === PERIOD_FISCAL_YEAR)
+    ? !dfc[FISCAL_YEAR].includes(year.toString())
+    : !dfc[CALENDAR_YEAR].includes(year.toString())).map(year => year.toString())
+
+  const getAdditionalColumns = () => (dfc[PERIOD] === PERIOD_MONTHLY)
+    ? [MONTH_LONG, 'Trend']
+    : ['Trend']
 
   useEffect(() => {
     if (data) {
-      setTableData(transformDataToTableData(data))
+      setTableData(transformDataToTableData(data.results, data.counts))
       setDataTableConfig({
         showSummaryRow: (dfc[DATA_TYPE] !== PRODUCTION || (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
         showOnlySubtotalRow: (dfc[DATA_TYPE] === PRODUCTION && (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
         pivotColumn: getPivotColumn(),
         pivotColumnValue: getPivotColumnValue(),
-        omitGroupBreakoutByOptions: [MONTH_LONG],
+        omitGroupBreakoutByOptions: (dfc[PERIOD] === PERIOD_MONTHLY) ? [MONTH_LONG] : [],
         height: _tableHeight,
+        hideColumns: getHideColumns(),
         sortColumn: getSortColumn(),
+        [ADDITIONAL_COLUMNS]: getAdditionalColumns(),
         ...dfc
       })
     }
@@ -157,7 +171,9 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
         }
         {(tableData && dataTableConfig) &&
           <Grid item xs={12}>
-            <DataTableBase data={tableData} config={dataTableConfig} />
+            <QueryToolTableProvider>
+              <DataTableBase data={tableData} config={dataTableConfig} />
+            </QueryToolTableProvider>
           </Grid>
         }
       </Grid>
@@ -264,6 +280,7 @@ const DataTableBase = ({ data, config }) => {
         swapIndex = columnNames.findIndex(item => (item.name === columnName))
         if (swapIndex > -1) {
           destructuringSwap(columnNames, indexOffset, swapIndex)
+          indexOffset++
         }
       })
     }
@@ -315,9 +332,6 @@ const DataTableBase = ({ data, config }) => {
   const [columnNames, setColumnNames] = useState([])
   const [pivotData, setPivotData] = useState([])
   const [pivotColumnNames, setPivotColumnNames] = useState()
-  const [grouping, setGrouping] = useState([])
-  const [expandedGroups, setExpandedGroups] = useState([])
-  const [groupingExtension, setGroupingExtension] = useState([])
   const [integratedSortingColumnExtensions] = useState([
     { columnName: 'monthLong', compare: monthlySort },
   ])
@@ -326,16 +340,21 @@ const DataTableBase = ({ data, config }) => {
   const [fixedColumns, setFixedColumns] = useState([])
   const [sorting, setSorting] = useState(config.sortColumn) // { columnName: 'city', direction: 'asc' }
   const [totalSummaryItems, setTotalSummaryItems] = useState([])
-  const [groupSummaryItems, setGroupSummaryItems] = useState([])
   const [tableData, setTableData] = useState()
   const [defaultColumnWidths, setDefaultColumnWidths] = useState([])
   const [columnOrder, setColumnOrder] = useState()
   const [tableColumnExtensions, setTableColumnExtensions] = useState()
 
+  // Grouping breakout by props
+  const [grouping, setGrouping] = useState([])
+  const [expandedGroups, setExpandedGroups] = useState([])
+  const [groupingExtension, setGroupingExtension] = useState([])
+  const [groupSummaryItems, setGroupSummaryItems] = useState([])
+  const [groupBySticky, setGroupBySticky] = useState([])
   // Instance variables
   const _groupBySticky = columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY]
   const _breakoutBy = columnNames.find(col => col.name === config[BREAKOUT_BY]) && config[BREAKOUT_BY]
-  const _additionalColumns = (config[PERIOD] === PERIOD_MONTHLY) ? [MONTH_LONG] : config[ADDITIONAL_COLUMNS]
+  const _additionalColumns = config[ADDITIONAL_COLUMNS]
   const _groupBy = getGroupBy()
 
   // STEP 1: When data is updated, pivot the data set if needed and set current table data to undefined until we finish processing the workflow
@@ -373,24 +392,43 @@ const DataTableBase = ({ data, config }) => {
 
       setColumnNames(colNames)
       setDefaultColumnWidths(colNames.map((column, index) => {
-        let width = (column.name.startsWith('y')) ? 200 : 250
+        let width = (parseInt(column.name) > 100) ? 200 : 250
         if (column.name === RECIPIENT) {
           width = 350
         }
         if (column.name === COMPANY_NAME) {
           width = 525
         }
+        if (column.name === 'Trend') {
+          width = 95
+        }
+        if (column.name === MONTH_LONG) {
+          width = 125
+        }
         return ({ columnName: column.name, width: width })
       }))
       setHiddenColumnNames(colNames.filter(item =>
-        (item.name !== _groupBy &&
-        item.name !== _groupBySticky &&
-        item.name !== _breakoutBy &&
-        (!_additionalColumns || !_additionalColumns.includes(item.name)) &&
-        (!pivotColumnNames || !pivotColumnNames.includes(item.name)))
+        (config.hideColumns?.includes(item.name) ||
+          (
+            item.name !== _groupBy &&
+            item.name !== _groupBySticky &&
+            item.name !== _breakoutBy &&
+            (!_additionalColumns || !_additionalColumns.includes(item.name)) &&
+            (!pivotColumnNames || !pivotColumnNames.includes(item.name))
+          )
+        )
       ).map(item => item.name))
     }
   }, [pivotData])
+
+  // STEP 3: Set group by sticky if there are any
+  useEffect(() => {
+    setGroupBySticky(columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
+  }, [columnNames])
+  // STEP 4: Set group by sticky if there are any
+  useEffect(() => {
+    setGroupBySticky(columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
+  }, [columnNames])
 
   // STEP 3: Logic to update table display after columns are updated
   useEffect(() => {
@@ -545,7 +583,6 @@ const DataTableBase = ({ data, config }) => {
                   itemComponent={CustomTableSummaryRowItem}
                 />
               }
-
             </TableGrid>
           </Grid>
         </Grid>

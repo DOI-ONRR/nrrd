@@ -87,7 +87,17 @@ const VARIABLE_CONFIGS = {
     { [REVENUE_TYPE]: MULTI_STR },
     { [COMPANY_NAME]: MULTI_STR },
     { [CALENDAR_YEAR]: MULTI_INT }
-  ]
+  ],
+  ALL_YEARS: {
+    [REVENUE]: [
+      { [LAND_TYPE]: MULTI_STR },
+      { [COUNTY]: MULTI_STR },
+      { [COMMODITY]: MULTI_STR },
+      { [REVENUE_TYPE]: MULTI_STR },
+      { [STATE_OFFSHORE_NAME]: MULTI_STR },
+      { [PERIOD]: SINGLE_STR },
+    ]
+  },
 }
 const getVariableValues = state => getDataFilterVariableValues(state, VARIABLE_CONFIGS[state[DATA_TYPE]])
 const getVariableConfig = state => VARIABLE_CONFIGS[state[DATA_TYPE]]
@@ -95,7 +105,7 @@ export const getVariables = (state, options) => getVariableValues(state)
 
 // STEP 2: Define all the queries needed
 
-const VIEWS = {
+const VIEWS = { 
   [REVENUE]: 'query_tool_revenue',
   [PRODUCTION]: 'query_tool_production',
   [DISBURSEMENT]: 'query_tool_disbursement',
@@ -103,31 +113,31 @@ const VIEWS = {
 }
 const REVENUE_QUERY = whereClause => (
   `results:${ VIEWS[REVENUE] }(
-      where: {
-        ${ whereClause }
-      }) {
-      ${ REVENUE_TYPE }: ${ DB_COLS[REVENUE_TYPE] }
-      ${ COMMODITY }: ${ DB_COLS[COMMODITY] }
-      ${ LAND_TYPE }: ${ DB_COLS[LAND_TYPE] }
-      ${ STATE_OFFSHORE_NAME }: ${ DB_COLS[STATE_OFFSHORE_NAME] }
-      ${ COUNTY }: ${ DB_COLS[COUNTY_NAME] }
-      ${ CALENDAR_YEAR }: ${ DB_COLS[CALENDAR_YEAR] }
-      ${ FISCAL_YEAR }: ${ DB_COLS[FISCAL_YEAR] }
-      ${ REVENUE }: ${ DB_COLS[REVENUE] }
+    where: {
+      ${ whereClause }
+    }) {
+    ${ REVENUE_TYPE }: ${ DB_COLS[REVENUE_TYPE] }
+    ${ COMMODITY }: ${ DB_COLS[COMMODITY] }
+    ${ LAND_TYPE }: ${ DB_COLS[LAND_TYPE] }
+    ${ STATE_OFFSHORE_NAME }: ${ DB_COLS[STATE_OFFSHORE_NAME] }
+    ${ COUNTY }: ${ DB_COLS[COUNTY_NAME] }
+    ${ CALENDAR_YEAR }: ${ DB_COLS[CALENDAR_YEAR] }
+    ${ FISCAL_YEAR }: ${ DB_COLS[FISCAL_YEAR] }
+    ${ REVENUE }: ${ DB_COLS[REVENUE] }
+  }
+  counts:${ VIEWS[REVENUE] }_aggregate (
+    where: {
+      ${ whereClause }
     }
-    counts:${ VIEWS[REVENUE] }_aggregate (
-      where: {
-        ${ whereClause }
-      }
-      ) {
-      aggregate {
-        ${ COMMODITY }:count(columns: ${ DB_COLS[COMMODITY] }, distinct: true)
-        ${ COUNTY }:count(columns: ${ DB_COLS[COUNTY_NAME] }, distinct: true)
-        ${ LAND_TYPE }:count(columns: ${ DB_COLS[LAND_TYPE] }, distinct: true)
-        ${ STATE_OFFSHORE_NAME }:count(columns: ${ DB_COLS[STATE_OFFSHORE_NAME] }, distinct: true)
-        ${ REVENUE_TYPE }:count(columns: ${ DB_COLS[REVENUE_TYPE] }, distinct: true)
-      }
-    }`
+    ) {
+    aggregate {
+      ${ COMMODITY }:count(columns: ${ DB_COLS[COMMODITY] }, distinct: true)
+      ${ COUNTY }:count(columns: ${ DB_COLS[COUNTY_NAME] }, distinct: true)
+      ${ LAND_TYPE }:count(columns: ${ DB_COLS[LAND_TYPE] }, distinct: true)
+      ${ STATE_OFFSHORE_NAME }:count(columns: ${ DB_COLS[STATE_OFFSHORE_NAME] }, distinct: true)
+      ${ REVENUE_TYPE }:count(columns: ${ DB_COLS[REVENUE_TYPE] }, distinct: true)
+    }
+  }`
 )
 
 const PRODUCTION_QUERY = whereClause => (
@@ -223,8 +233,8 @@ export const getQuery = (state, options) => {
 const QUERIES = {
   [REVENUE]: (state, variableConfig) =>
     gql`query GetDataTableRevenue
-      (${ getDataFilterVariableList(state, variableConfig) })
-      {${ REVENUE_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
+      (${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) })
+      {${ REVENUE_QUERY(getDataFilterWhereClauses(VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]])) }}`,
   [PRODUCTION]: (state, variableConfig) =>
     gql`query GetDataTableProduction
       (${ getDataFilterVariableList(state, variableConfig) })
