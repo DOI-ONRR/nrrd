@@ -97,8 +97,7 @@ const DefaultSwitch = withStyles(theme =>
 })
 /**
  * This is used to show offshore on the map in “Explore data”.  An example exists
- * after clicking on the the “Map level State and offshore” button in Explore data:
- * [https://revenuedata.doi.gov/explore].
+ * after clicking on the the “Map level State and offshore” button in [Explore data](https://revenuedata.doi.gov/explore).
  */
 const BaseSwitch = ({ onChange, dataFilterKey, data, defaultSelected, checked, selectType, label, legend, helperText, disabled }) => {
   // Group switch
