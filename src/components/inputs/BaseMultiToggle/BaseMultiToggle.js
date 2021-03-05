@@ -80,8 +80,10 @@ const BaseMultiToggle = ({ onChange, data, defaultSelected, label, legend, helpe
   const [toggleState, setToggleState] = useState(defaultSelected)
 
   const handleChange = (event, newVal) => {
-    setToggleState(newVal)
-    onChange(newVal)
+    if (newVal !== null) {
+      setToggleState(newVal)
+      onChange(newVal)
+    }
   }
 
   return (

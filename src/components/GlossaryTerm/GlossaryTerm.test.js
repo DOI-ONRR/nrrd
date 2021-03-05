@@ -12,9 +12,9 @@ describe('Glossary Term:', () => {
     render(<GlossaryTerm>8(g)</GlossaryTerm>)
     expect(screen.getByTitle('The 8(g) zone', { exact: false })).toBeInTheDocument()
   })
-  test('Glossary Term was not found and the error rendered', () => {
+  test('Glossary Term string was not found for comparison', () => {
     const spy = jest.spyOn(console, 'error').mockImplementation()
-    render(<GlossaryTerm>ghgh</GlossaryTerm>)
+    render(<GlossaryTerm><div>no string</div></GlossaryTerm>)
     expect(screen.getByText('error', { exact: false })).toBeInTheDocument()
     expect(console.error).toHaveBeenCalled()
     spy.mockRestore()

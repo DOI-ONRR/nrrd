@@ -83,6 +83,7 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
     classes = `${ styles.headerLink } ${ className } ${ (currentPathname === withPrefix(href)) && styles.headerLinkBold }`
     break
   case LinkTypeComponents.FilterTable:
+  case LinkTypeComponents.ExploreData:
     classes = `${ styles.link } ${ styles.filterTableIcon } ${ className }`
     break
   default:
@@ -113,7 +114,7 @@ const LinkTypeComponents = {
   DownloadBase: props => <IconLink icon={<IconDownloadBaseImg data-testid='download base icon' />} pl={0} {...props} />,
   HowWorks: props => <IconLink icon={<HowWorksLinkIconImg data-testid='how works icon' />} pl={0} {...props} />,
   FilterTable: props => <IconLink icon={<FilterTableIconImg data-testid='filter table icon' />} linkType={LinkTypeComponents.FilterTable} pl={0} {...props} />,
-  ExploreData: props => <IconLink icon={<IconExploreDataImg data-testid='explore data icon' />} mt={0} {...props} />,
+  ExploreData: props => <IconLink icon={<IconExploreDataImg data-testid='explore data icon' />} linkType={LinkTypeComponents.ExploreData} {...props} />,
   Location: props => <IconLink icon={<IconUsMapImg data-testid='us map icon' />} {...props} />
 }
 

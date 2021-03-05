@@ -12,23 +12,26 @@ import {
   RECIPIENT,
   GROUP_BY,
   GROUP_BY_STICKY,
-  // BREAKOUT_BY,
+  BREAKOUT_BY,
   // ADDITIONAL_COLUMNS,
+  MONTHLY,
   PERIOD,
   FISCAL_YEAR,
   CALENDAR_YEAR,
   DATA_TYPE,
   QUERY_TABLE_FILTER_DEFAULT,
   EXPLORE_DATA_FILTER_DEFAULT,
+  HOME_DATA_FILTER_DEFAULT,
   OFFSHORE_REGIONS,
   YEAR,
+  // YEARLY,
   PRODUCT,
   QUERY_COUNTS,
   MAP_LEVEL,
   STATE,
   REVENUE_BY_COMPANY,
   COMPANY_NAME,
-  MONTH_LONG
+  COMMODITY
 } from '../../constants'
 
 const types = Object.freeze({
@@ -92,8 +95,8 @@ const initialState = {
         [DATA_TYPE]: PRODUCTION,
         [GROUP_BY_STICKY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2015,2016,2017,2018,2019',
-        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019'
+        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
+        [CALENDAR_YEAR]: '2016,2017,2018,2019,2020'
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
@@ -131,8 +134,8 @@ const initialState = {
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
         [PERIOD]: 'Calendar Year',
-        [FISCAL_YEAR]: '2019',
-        [CALENDAR_YEAR]: '2018',
+        [FISCAL_YEAR]: '2020',
+        [CALENDAR_YEAR]: '2019',
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
         [YEAR]: 2019,
@@ -145,6 +148,51 @@ const initialState = {
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
         [YEAR]: 2020,
+      }
+    }
+  },
+  [HOME_DATA_FILTER_DEFAULT]: {
+    [DATA_TYPE]: REVENUE,
+    [PERIOD]: 'Fiscal Year',
+    [FISCAL_YEAR]: '2020',
+    [CALENDAR_YEAR]: '2020',
+    [YEAR]: 2020,
+    [MONTHLY]: 'Yearly',
+    [BREAKOUT_BY]: 'source',
+    [COMMODITY]: 'Oil (bbl)',
+    dataTypesCache: {
+      [REVENUE]: {
+        [DATA_TYPE]: REVENUE,
+        [PERIOD]: 'Fiscal Year',
+        [FISCAL_YEAR]: '2020',
+        [CALENDAR_YEAR]: '2020',
+        [OFFSHORE_REGIONS]: false,
+        [MAP_LEVEL]: STATE,
+        [YEAR]: 2020,
+        [MONTHLY]: 'Yearly',
+        [BREAKOUT_BY]: 'source',
+      },
+      [PRODUCTION]: {
+        [DATA_TYPE]: PRODUCTION,
+        [PERIOD]: 'Fiscal Year',
+        [FISCAL_YEAR]: '2020',
+        [CALENDAR_YEAR]: '2020',
+        [OFFSHORE_REGIONS]: false,
+        [MAP_LEVEL]: STATE,
+        [YEAR]: 2020,
+        [MONTHLY]: 'Yearly',
+        [COMMODITY]: 'Oil (bbl)',
+      },
+      [DISBURSEMENT]: {
+        [DATA_TYPE]: DISBURSEMENT,
+        [GROUP_BY]: RECIPIENT,
+        [PERIOD]: 'Fiscal Year',
+        [FISCAL_YEAR]: '2020',
+        [OFFSHORE_REGIONS]: false,
+        [MAP_LEVEL]: STATE,
+        [YEAR]: 2020,
+        [MONTHLY]: 'Yearly',
+        [BREAKOUT_BY]: 'source',
       }
     }
   }

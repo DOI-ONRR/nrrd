@@ -42,7 +42,7 @@ const APOLLO_QUERY = gql`
       state_or_area
       sum
     }
-    period(where: {period: {_ilike: $period }}) {
+    period(where: {period: {_ilike: $period }}, order_by: {fiscal_year: asc}) {
       fiscal_year
     }
   }
