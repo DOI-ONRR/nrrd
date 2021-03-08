@@ -225,7 +225,7 @@ const DefaultLegendContainer = withStyles(theme =>
   })
 )(Box)
 
-const CompactLegendContainer = withStyles((theme) =>
+const CompactLegendContainer = withStyles(theme =>
   createStyles({
     root: {
       display: 'block',
