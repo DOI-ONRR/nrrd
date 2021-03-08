@@ -4,6 +4,9 @@ import {
   DISBURSEMENT,
   PERIOD,
   QK_QUERY_TOOL,
+  QK_DISBURSEMENTS_COMMON,
+  QK_REVENUE_COMMON,
+  QK_PRODUCTION_COMMON,
   FISCAL_YEAR,
   PERIOD_FISCAL_YEAR,
   CALENDAR_YEAR,
@@ -35,6 +38,20 @@ import {
   getVariables as getVariablesQueryTool
 } from './query-tool-queries'
 
+import {
+  getQuery as getQueryDisbursement,
+  getVariables as getVariablesDisbursement
+} from './disbursement-queries'
+
+import {
+  getQuery as getQueryRevenue,
+  getVariables as getVariablesRevenue
+} from './revenue-queries'
+
+import {
+  getQuery as getQueryProduction,
+  getVariables as getVariablesProduction
+} from './production-queries'
 /**
  * The query manager provides a standard approach for accessing a query and its variables. This allows us to use this
  * query manager in a HOC that can then be added to components. The query manager also provides helper methods to use for creating
@@ -49,13 +66,7 @@ const QueryManager = {
     }
     return query
   },
-  getVariables: (queryKey, state, { ...options }) => {
-    const vars = VARIABLES[queryKey](state, options)
-    if (vars === undefined) {
-      throw new Error(`For query key: '${ queryKey } no variables were found.`)
-    }
-    return vars
-  }
+  getVariables: (queryKey, state, { ...options }) => VARIABLES[queryKey](state, options)
 }
 export default QueryManager
 
@@ -91,14 +102,20 @@ export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
  * All the queries that can be accessed via query key
  */
 const QUERIES = {
-  [QK_QUERY_TOOL]: (state, options) => getQueryQueryTool(state, options)
+  [QK_QUERY_TOOL]: (state, options) => getQueryQueryTool(state, options),
+  [QK_DISBURSEMENTS_COMMON]: (state, options) => getQueryDisbursement(state, options),
+  [QK_REVENUE_COMMON]: (state, options) => getQueryRevenue(state, options),
+  [QK_PRODUCTION_COMMON]: (state, options) => getQueryProduction(state, options),
 }
 
 /**
  * All the variables that can be accessed via query key
  */
 const VARIABLES = {
-  [QK_QUERY_TOOL]: (state, options) => getVariablesQueryTool(state, options)
+  [QK_QUERY_TOOL]: (state, options) => getVariablesQueryTool(state, options),
+  [QK_DISBURSEMENTS_COMMON]: (state, options) => getVariablesDisbursement(state, options),
+  [QK_REVENUE_COMMON]: (state, options) => getVariablesRevenue(state, options),
+  [QK_PRODUCTION_COMMON]: (state, options) => getVariablesProduction(state, options),
 }
 
 /**

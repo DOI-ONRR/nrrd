@@ -5,7 +5,8 @@ import {
   Button,
   Hidden,
   Menu,
-  MenuItem
+  MenuItem,
+  Box
 } from '@material-ui/core'
 
 import {
@@ -109,7 +110,7 @@ const AppToolbar = props => {
   const classes = useStyles()
   const theme = useTheme()
   return (
-    <div className={classes.root}>
+    <Box className={classes.root} displayPrint="none">
       <AppBar position="static" style={{ position: 'relative' }}>
         <BaseToolbar style={{ alignItems: 'center', backgroundColor: theme.palette.header.secondary, justifyContent: 'space-between', minHeight: 80 }}>
           <div>
@@ -152,7 +153,7 @@ const AppToolbar = props => {
           </Hidden>
         </BaseToolbar>
       </AppBar>
-    </div>
+    </Box>
   )
 }
 
@@ -184,8 +185,8 @@ const DataMenu = ({ children, label, ...props }) => {
         {...props}
       >
         {
-          children.map(child =>
-            <MenuItem onClick={handleClose}>{child}</MenuItem>
+          children.map((child, i) =>
+            <MenuItem key={i} onClick={handleClose}>{child}</MenuItem>
           )
         }
       </Menu>

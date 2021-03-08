@@ -1,0 +1,63 @@
+---
+unique_id: AOR
+title: Atlantic Offshore Region
+includeToc: false
+description: Atlantic offshore region
+tags:
+- offshore
+- Atlantic
+---
+
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+
+<Container maxWidth="lg">
+  <Typography variant="h2" component="h1">
+    {props.pageContext.frontmatter.title}
+  </Typography>
+
+  <Box component="p">
+    This page provides information about energy and minerals produced in federal waters in the {props.pageContext.frontmatter.title}.
+  </Box>
+
+  <Box component="p">
+    The federal government manages the waters and submerged lands of the <Link href="https://www.boem.gov/oil-gas-energy/leasing/outer-continental-shelf">Outer Continental Shelf</Link>. The first three nautical miles offshore (generally) are in the states' jurisdiction. This means that most <Link href="/how-revenue-works/offshore-oil-gas">offshore drilling</Link> and <Link href="/how-revenue-works/offshore-renewables/">renewable energy</Link> generation takes place in federal waters.
+  </Box>
+
+  <Box component="p">
+    The Office of Natural Resources Revenue (ONRR) collects rent, royalty, and bonus payments from companies that lease the federal waters. Revenue from offshore production is disbursed to the states and counties that surround the offshore area.
+  </Box>
+
+  <Box mt={2}>
+    <Grid container spacing={1}>
+      <Grid item xs={6}>
+        <Link
+          href={`/explore?dataType=${ DFC.REVENUE }&offshoreRegions=true&location=NF,${ props.pageContext.frontmatter.unique_id }/`}
+          linkType="ExploreData">
+            Explore revenue data in {props.pageContext.frontmatter.title} 
+        </Link>
+        <Link
+          href={`/explore?dataType=${ DFC.PRODUCTION }&offshoreRegions=true&location=NF,${ props.pageContext.frontmatter.unique_id }/`}
+          linkType="ExploreData">
+          Explore production data in {props.pageContext.frontmatter.title}
+        </Link>
+      </Grid>
+      <Grid item xs={6}>
+        <Link
+          href={`/query-data?dataType=${ DFC.REVENUE }&stateOffshoreName=${ 'Offshore Atlantic' }`}
+          linkType="FilterTable">
+          Query revenue data in {props.pageContext.frontmatter.title}
+        </Link>
+        <Link
+          href={`/query-data?dataType=${ DFC.PRODUCTION }&stateOffshoreName=${ 'Offshore Atlantic' }`}
+          linkType="FilterTable">
+          Query production data in {props.pageContext.frontmatter.title}
+        </Link>
+        <Link
+          href={`/query-data?dataType=${ DFC.DISBURSEMENT }&landType=${ 'Federal Offshore' }&source=${ 'GOMESA offshore,Offshore,State 8(g)' }&stateOffshoreName=${ props.pageContext.frontmatter.title }`}
+          linkType="FilterTable">
+          Query disbursements data from all offshore regions
+        </Link>
+      </Grid>
+    </Grid>
+  </Box>
+</Container>

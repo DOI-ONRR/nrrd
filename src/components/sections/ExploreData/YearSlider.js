@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
@@ -159,11 +159,21 @@ const YearSlider = props => {
   const classes = useStyles()
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  let year = filterState[DFC.YEAR]
+  const {
+    year,
+    fiscalYear,
+    calendarYear,
+    period
+  } = filterState
   console.debug('===========================================', filterState)
+
   const handleOnchange = year => {
     updateDataFilter({ ...filterState, [DFC.YEAR]: year })
   }
+
+  useEffect(() => {
+    updateDataFilter({ ...filterState, [DFC.YEAR]: (period === DFC.PERIOD_CALENDAR_YEAR) ? calendarYear : fiscalYear })
+  }, [period])
 
   let periodData
   let minYear
@@ -171,7 +181,7 @@ const YearSlider = props => {
   const customMarks = []
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { period: (filterState[DFC.DATA_TYPE] === DFC.DISBURSEMENT) ? DFC.FISCAL_YEAR_LABEL : filterState.period }
+    variables: { period: period }
   })
 
   if (loading) {}
@@ -181,27 +191,22 @@ const YearSlider = props => {
     periodData = data.period
 
     // set min and max trend years
-    minYear = (filterState[DFC.DATA_TYPE] === DFC.DISBURSEMENT)
-      ? periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-      : periodData.reduce((min, p) => p.calendar_year < min ? p.calendar_year : min, periodData[0].calendar_year)
-    maxYear = (filterState[DFC.DATA_TYPE] === DFC.DISBURSEMENT)
-      ? periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-      : periodData.reduce((max, p) => p.calendar_year > max ? p.calendar_year : max, periodData[periodData.length - 1].calendar_year)
+    // minYear = (dataType === DFC.DISBURSEMENT)
+    //   ? periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
+    //   : periodData.reduce((min, p) => p.calendar_year < min ? p.calendar_year : min, periodData[0].calendar_year)
+    // maxYear = (dataType === DFC.DISBURSEMENT)
+    //   ? periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+    //   : periodData.reduce((max, p) => p.calendar_year > max ? p.calendar_year : max, periodData[periodData.length - 1].calendar_year)
 
-    if (filterState[DFC.DATA_TYPE] !== DFC.DISBURSEMENT) {
-	  if (filterState.period === 'Fiscal Year') {
-	      minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-	      maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-	  }
-      else {
-	      minYear = periodData.reduce((min, p) => p.calendar_year < min ? p.calendar_year : min, periodData[0].calendar_year)
-	      maxYear = periodData.reduce((max, p) => p.calendar_year > max ? p.calendar_year : max, periodData[periodData.length - 1].calendar_year)
-	  }
+    if (period === DFC.PERIOD_FISCAL_YEAR) {
+      minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
+      maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
     }
-    if (!year) {
-	  year = maxYear
-	  handleOnchange(maxYear)
+    else {
+      minYear = periodData.reduce((min, p) => p.calendar_year < min ? p.calendar_year : min, periodData[0].calendar_year)
+      maxYear = periodData.reduce((max, p) => p.calendar_year > max ? p.calendar_year : max, periodData[periodData.length - 1].calendar_year)
     }
+
     customMarks.push(
       {
         label: minYear.toString(),
@@ -222,6 +227,7 @@ const YearSlider = props => {
           </Grid>
           <Grid item xs>
             <Slider
+              key={`slider__${ year }__${ period }`}
               defaultValue={year}
               aria-label="Year slider"
               aria-labelledby="year-slider"

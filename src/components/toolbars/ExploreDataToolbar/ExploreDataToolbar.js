@@ -135,7 +135,8 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
 
   const {
     dataType,
-    commodity
+    commodity,
+    period
   } = filterState
 
   const {
