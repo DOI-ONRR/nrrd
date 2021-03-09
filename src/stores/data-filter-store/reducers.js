@@ -4,6 +4,7 @@
  */
 
 import {
+  ALL_YEARS,
   REVENUE,
   REVENUE_TYPE,
   PRODUCTION,
@@ -17,7 +18,9 @@ import {
   MONTHLY,
   PERIOD,
   FISCAL_YEAR,
+  PERIOD_FISCAL_YEAR,
   CALENDAR_YEAR,
+  PERIOD_CALENDAR_YEAR,
   DATA_TYPE,
   QUERY_TABLE_FILTER_DEFAULT,
   EXPLORE_DATA_FILTER_DEFAULT,
@@ -76,40 +79,54 @@ const reducer = (state, action) => {
   }
 }
 
+const REVENUE_LAST_5_YEARS = {
+  [FISCAL_YEAR]: ALL_YEARS.revenue_fiscal_years.slice(ALL_YEARS.revenue_fiscal_years.length - 5).toString(),
+  [CALENDAR_YEAR]: ALL_YEARS.revenue_calendar_years.slice(ALL_YEARS.revenue_calendar_years.length - 5).toString()
+}
+const PRODUCTION_LAST_5_YEARS = {
+  [FISCAL_YEAR]: ALL_YEARS.production_fiscal_years.slice(ALL_YEARS.production_fiscal_years.length - 5).toString(),
+  [CALENDAR_YEAR]: ALL_YEARS.production_calendar_years.slice(ALL_YEARS.production_calendar_years.length - 5).toString()
+}
+const DISBURSEMENT_LAST_5_YEARS = {
+  [FISCAL_YEAR]: ALL_YEARS.disbursement_fiscal_years.slice(ALL_YEARS.disbursement_fiscal_years.length - 5).toString()
+}
+const REVENUE_BY_COMPANY_LAST_5_YEARS = {
+  [CALENDAR_YEAR]: ALL_YEARS.federal_revenue_by_company_calendar_years.slice(ALL_YEARS.federal_revenue_by_company_calendar_years.length - 5).toString()
+}
+
 const initialState = {
   [QUERY_TABLE_FILTER_DEFAULT]: {
     [DATA_TYPE]: REVENUE,
     [GROUP_BY]: REVENUE_TYPE,
     [PERIOD]: 'Fiscal Year',
-    [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
-    [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
+    [FISCAL_YEAR]: REVENUE_LAST_5_YEARS[FISCAL_YEAR],
+    [CALENDAR_YEAR]: REVENUE_LAST_5_YEARS[CALENDAR_YEAR],
     dataTypesCache: {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
         [GROUP_BY]: REVENUE_TYPE,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
-        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
+        [FISCAL_YEAR]: REVENUE_LAST_5_YEARS[FISCAL_YEAR],
+        [CALENDAR_YEAR]: REVENUE_LAST_5_YEARS[CALENDAR_YEAR],
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
         [GROUP_BY_STICKY]: PRODUCT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
-        [CALENDAR_YEAR]: '2016,2017,2018,2019,2020'
+        [FISCAL_YEAR]: PRODUCTION_LAST_5_YEARS[FISCAL_YEAR],
+        [CALENDAR_YEAR]: PRODUCTION_LAST_5_YEARS[CALENDAR_YEAR]
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
-        [CALENDAR_YEAR]: '2018,2019,2020'
+        [FISCAL_YEAR]: DISBURSEMENT_LAST_5_YEARS
       },
       [REVENUE_BY_COMPANY]: {
         [DATA_TYPE]: REVENUE_BY_COMPANY,
         [GROUP_BY]: COMPANY_NAME,
         [PERIOD]: 'Calendar Year',
-        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
+        [CALENDAR_YEAR]: REVENUE_BY_COMPANY_LAST_5_YEARS[CALENDAR_YEAR],
       }
     }
   },
