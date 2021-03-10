@@ -120,7 +120,7 @@ const initialState = {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: DISBURSEMENT_LAST_5_YEARS
+        [FISCAL_YEAR]: DISBURSEMENT_LAST_5_YEARS[FISCAL_YEAR]
       },
       [REVENUE_BY_COMPANY]: {
         [DATA_TYPE]: REVENUE_BY_COMPANY,

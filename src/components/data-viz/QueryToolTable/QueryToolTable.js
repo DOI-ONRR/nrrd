@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 
 import {
+  DISBURSEMENT,
   REVENUE,
   PRODUCTION,
   REVENUE_BY_COMPANY,
@@ -88,7 +89,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
   const [tableData, setTableData] = useState()
 
   const getPivotColumn = () => {
-    if (dfc[PERIOD] === PERIOD_FISCAL_YEAR) {
+    if (dfc[PERIOD] === PERIOD_FISCAL_YEAR || (dfc[DATA_TYPE] === DISBURSEMENT && dfc[PERIOD] === PERIOD_MONTHLY)) {
       return FISCAL_YEAR
     }
     return CALENDAR_YEAR
@@ -112,7 +113,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
       ))
     const columnsToOmit = ['__typename'].concat(
       Object.keys(counts?.aggregate).filter(colName => counts.aggregate[colName] < 1),
-      ((dfc[PERIOD] === PERIOD_FISCAL_YEAR) ? CALENDAR_YEAR : FISCAL_YEAR))
+      ((dfc[PERIOD] === PERIOD_FISCAL_YEAR || (dfc[DATA_TYPE] === DISBURSEMENT && dfc[PERIOD] === PERIOD_MONTHLY)) ? CALENDAR_YEAR : FISCAL_YEAR))
 
     return omit(columnsToOmit, data).map(obj => {
       obj.Trend = 'test'
@@ -122,9 +123,10 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
 
   const getSortColumn = () => [{ columnName: years[years.length - 1]?.toString(), direction: 'desc' }]
 
-  const getHideColumns = () => years.filter(year => (dfc[PERIOD] === PERIOD_FISCAL_YEAR)
-    ? !dfc[FISCAL_YEAR].includes(year.toString())
-    : !dfc[CALENDAR_YEAR].includes(year.toString())).map(year => year.toString())
+  const getHideColumns = () => years.filter(year =>
+    (dfc[PERIOD] === PERIOD_FISCAL_YEAR || (dfc[DATA_TYPE] === DISBURSEMENT && dfc[PERIOD] === PERIOD_MONTHLY))
+      ? !dfc[FISCAL_YEAR]?.includes(year.toString())
+      : !dfc[CALENDAR_YEAR]?.includes(year.toString())).map(year => year.toString())
 
   const getAdditionalColumns = () => (dfc[PERIOD] === PERIOD_MONTHLY)
     ? [MONTH_LONG, 'Trend']

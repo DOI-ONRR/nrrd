@@ -189,10 +189,10 @@ const QueryTableToolbar = ({ label, ...props }) => {
           </Box>
           <Box className={classes.toolsWrapper}>
             <PeriodFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
-            {state.period === PERIOD_FISCAL_YEAR &&
+            {(state.period === PERIOD_FISCAL_YEAR || (state[DATA_TYPE] === DISBURSEMENT && state[PERIOD] === PERIOD_MONTHLY)) &&
               <FiscalYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
-            {(state.period === PERIOD_CALENDAR_YEAR || state.period === PERIOD_MONTHLY) &&
+            {(state.period === PERIOD_CALENDAR_YEAR || (state[DATA_TYPE] !== DISBURSEMENT && state[PERIOD] === PERIOD_MONTHLY)) &&
               <CalendarYearFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} />
             }
           </Box>
