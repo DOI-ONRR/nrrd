@@ -2,14 +2,14 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import CircleChart from '../../../data-viz/CircleChart/CircleChart'
+// import CircleChart from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart2 } from '../../../data-viz/CircleChart/CircleChart2'
 import QueryLink from '../../../../components/QueryLink'
 
-import utils from '../../../../js/utils'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -55,7 +55,6 @@ const DisbursementSources = props => {
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
   const classes = useStyles()
-  const theme = useTheme()
 
   const state = props.fipsCode
 
@@ -79,33 +78,11 @@ const DisbursementSources = props => {
         <Box className={classes.root}>
           <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box>
-            <CircleChart
-              key={'DS' + dataSet }
+            <CircleChart2
+              key={`DS__${ dataSet }`}
               data={chartData.DisbursementSourceSummary}
               xAxis='source'
-              yAxis='total'
-              format={ d => {
-                return utils.formatToDollarInt(d)
-              }
-              }
-              minColor={theme.palette.explore[100]}
-              maxColor={theme.palette.explore[600]}
-              colorRange={[
-                theme.palette.explore[600],
-                theme.palette.explore[500],
-                theme.palette.explore[400],
-                theme.palette.explore[300],
-                theme.palette.explore[200],
-                theme.palette.explore[100]
-              ]}
-              circleTooltip={
-                d => {
-                  const r = []
-                  r[0] = d.source
-                  r[1] = utils.formatToDollarInt(d.total)
-                  return r
-                }
-              } />
+              yAxis='total' />
             <QueryLink
               groupBy={DFC.SOURCE}
               linkType="FilterTable"

@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import CircleChart from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart2 } from '../../../data-viz/CircleChart/CircleChart2'
 import QueryLink from '../../../../components/QueryLink'
 
 import utils from '../../../../js/utils'
@@ -85,58 +86,12 @@ const DisbursementRecipients = props => {
       return (<Box className={classes.root}>
         <Box component="h4" fontWeight="bold">Disbursements by recipient</Box>
         <Box>
-          <CircleChart
-            key={'DR' + dataSet }
+          <CircleChart2
+            key={`DR__${ dataSet }`}
             data={chartData.DisbursementRecipientSummary}
             xAxis='recipient'
             yAxis='total'
-            minColor='#FCBA8B'
-            maxColor='#B64D00'
-            colorRange={[
-              theme.palette.explore[600],
-              theme.palette.explore[500],
-              theme.palette.explore[400],
-              theme.palette.explore[300],
-              theme.palette.explore[200],
-              theme.palette.explore[100]
-            ]}
-            format={ d => {
-              return utils.formatToDollarInt(d)
-            }}
-	          legendLabel={
-              d => {
-                if (d.match('Native')) {
-                  d = 'Native American'
-                }
-                else if (d.match('governments')) {
-			            d = 'State and local'
-                }
-                else if (d.match('Land')) {
-			            d = 'LWCF*'
-                }
-                else if (d.match('Historic')) {
-			            d = 'HPF**'
-                }
-
-                return d
-              }
-            }
-            circleTooltip={
-              d => {
-                const r = []
-                r[0] = d.recipient
-                r[1] = utils.formatToDollarInt(d.total)
-                return r
-              }
-            } />
-
-          <>{ state === DFC.NATIONWIDE_FEDERAL_FIPS &&
-            <Box fontSize='.8rem' fontStyle='italic' mt={1} >* Land and Water Conservation Fund</Box>} </>
-          <>{ state === DFC.NATIONWIDE_FEDERAL_FIPS &&
-            <Box fontSize='.8rem' fontStyle='italic' >** Historic Perservation Fund</Box>
-          }
-          </>
-
+          />
           <QueryLink
             groupBy={DFC.RECIPIENT}
             linkType="FilterTable" {...props}
