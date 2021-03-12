@@ -45,7 +45,7 @@ const CustomTableCell = ({ getMessage, ...restProps }) => {
       cellValue = (state[DATA_TYPE] !== PRODUCTION) ? formatToDollarFloat(cellValue) : formatToCommaInt(cellValue)
     }
   }
-  else if (restProps.column.name === 'Trend') {
+  else if (restProps.column.name.includes('Trend')) {
     const sparklineData = Object.keys(restProps.row).reduce((data, key) => {
       if (parseInt(key) > 1000) {
         data.push([key, restProps.row[key]])

@@ -96,6 +96,27 @@ const VARIABLE_CONFIGS = {
       { [REVENUE_TYPE]: MULTI_STR },
       { [STATE_OFFSHORE_NAME]: MULTI_STR },
       { [PERIOD]: SINGLE_STR },
+    ],
+    [PRODUCTION]: [
+      { [LAND_TYPE]: MULTI_STR },
+      { [COUNTY]: MULTI_STR },
+      { [PRODUCT]: MULTI_STR },
+      { [STATE_OFFSHORE_NAME]: MULTI_STR },
+      { [PERIOD]: SINGLE_STR },
+      { [MONTH_LONG]: MULTI_STR }
+    ],
+    [DISBURSEMENT]: [
+      { [RECIPIENT]: MULTI_STR },
+      { [SOURCE]: MULTI_STR },
+      { [US_STATE_NAME]: MULTI_STR },
+      { [LOCAL_RECIPIENT]: MULTI_STR },
+      { [PERIOD]: SINGLE_STR },
+    ],
+    [REVENUE_BY_COMPANY]: [
+      { [PERIOD]: SINGLE_STR },
+      { [COMMODITY]: MULTI_STR },
+      { [REVENUE_TYPE]: MULTI_STR },
+      { [COMPANY_NAME]: MULTI_STR }
     ]
   },
 }
@@ -238,15 +259,15 @@ const QUERIES = {
   [PRODUCTION]: (state, variableConfig) =>
     gql`query GetDataTableProduction
       (${ getDataFilterVariableList(state, variableConfig) })
-      {${ PRODUCTION_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
+      {${ PRODUCTION_QUERY(getDataFilterWhereClauses(VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]])) }}`,
   [DISBURSEMENT]: (state, variableConfig) =>
     gql`query GetDataTableDisbursement
       (${ getDataFilterVariableList(state, variableConfig) })
-      {${ DISBURSEMENT_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
+      {${ DISBURSEMENT_QUERY(getDataFilterWhereClauses(VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]])) }}`,
   [REVENUE_BY_COMPANY]: (state, variableConfig) =>
     gql`query GetDataTableRevenueByCompany
           (${ getDataFilterVariableList(state, variableConfig) })
-          {${ REVENUE_BY_COMPANY_QUERY(getDataFilterWhereClauses(variableConfig)) }}`,
+          {${ REVENUE_BY_COMPANY_QUERY(getDataFilterWhereClauses(VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]])) }}`,
   DATA_FILTERS: (state, variableConfig, options) => {
     const excludeProps = options[EXCLUDE_PROPS] ? options[EXCLUDE_PROPS] : []
     return (

@@ -90,6 +90,12 @@ const createRedirects = ({ graphql, reporter, createRedirect }) => {
 
 const createYearsCache = ({ graphql, reporter }) => {
   console.info('creating years cache index')
+  const PERIOD_FISCAL_YEAR = 'Fiscal Year'
+  const PERIOD_CALENDAR_YEAR = 'Calendar Year'
+  const REVENUE = 'Revenue'
+  const DISBURSEMENT = 'Disbursements'
+  const PRODUCTION = 'Production'
+  const REVENUE_BY_COMPANY = 'Federal revenue by company'
   return new Promise((resolve, reject) => {
     resolve(
       graphql(`
@@ -110,6 +116,9 @@ const createYearsCache = ({ graphql, reporter }) => {
           disbursement_fiscal_years: period(distinct_on: fiscal_year, where: {disbursements: {disbursement: {_is_null: false}, period: {period: {_eq: "Fiscal Year"}}}}, order_by: {fiscal_year: asc}) {
             fiscal_year
           }
+          disbursement_calendar_years: period(distinct_on: calendar_year, where: {disbursements: {disbursement: {_is_null: false}, period: {period: {_eq: "Monthly"}}}}, order_by: {calendar_year: asc}) {
+            calendar_year
+          }
           federal_revenue_by_company_calendar_years: federal_revenue_by_company(distinct_on: calendar_year, order_by: {calendar_year: asc}) {
             calendar_year
           }
@@ -125,10 +134,28 @@ const createYearsCache = ({ graphql, reporter }) => {
           result.data.onrr.production_fiscal_years = result.data.onrr.production_fiscal_years.map(y => y[Object.keys(y)[0]])
           result.data.onrr.production_calendar_years = result.data.onrr.production_calendar_years.map(y => y[Object.keys(y)[0]])
           result.data.onrr.disbursement_fiscal_years = result.data.onrr.disbursement_fiscal_years.map(y => y[Object.keys(y)[0]])
+          result.data.onrr.disbursement_calendar_years = result.data.onrr.disbursement_calendar_years.map(y => y[Object.keys(y)[0]])
           result.data.onrr.federal_revenue_by_company_calendar_years = result.data.onrr.federal_revenue_by_company_calendar_years.map(y => y[Object.keys(y)[0]])
+          const allYears = {
+            [REVENUE]: {
+              [PERIOD_CALENDAR_YEAR]: result.data.onrr.revenue_calendar_years,
+              [PERIOD_FISCAL_YEAR]: result.data.onrr.revenue_fiscal_years
+            },
+            [PRODUCTION]: {
+              [PERIOD_CALENDAR_YEAR]: result.data.onrr.production_calendar_years,
+              [PERIOD_FISCAL_YEAR]: result.data.onrr.production_fiscal_years
+            },
+            [DISBURSEMENT]: {
+              [PERIOD_CALENDAR_YEAR]: result.data.onrr.disbursement_calendar_years,
+              [PERIOD_FISCAL_YEAR]: result.data.onrr.disbursement_fiscal_years
+            },
+            [REVENUE_BY_COMPANY]: {
+              [PERIOD_CALENDAR_YEAR]: result.data.onrr.federal_revenue_by_company_calendar_years
+            }
+          }
           fs.writeFileSync(
             path.join(appRootDir, '.cache/all-years.js'),
-            `const ALL_YEARS = ${ JSON.stringify(result.data.onrr) }\nexport default ALL_YEARS\n`
+            `const ALL_YEARS = ${ JSON.stringify(allYears) }\nexport default ALL_YEARS\n`
           )
         }
       })

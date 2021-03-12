@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 
 import {
-  DISBURSEMENT,
+  ALL_YEARS,
   REVENUE,
   PRODUCTION,
   REVENUE_BY_COMPANY,
@@ -89,7 +89,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
   const [tableData, setTableData] = useState()
 
   const getPivotColumn = () => {
-    if (dfc[PERIOD] === PERIOD_FISCAL_YEAR || (dfc[DATA_TYPE] === DISBURSEMENT && dfc[PERIOD] === PERIOD_MONTHLY)) {
+    if (dfc[PERIOD] === PERIOD_FISCAL_YEAR) {
       return FISCAL_YEAR
     }
     return CALENDAR_YEAR
@@ -113,10 +113,12 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
       ))
     const columnsToOmit = ['__typename'].concat(
       Object.keys(counts?.aggregate).filter(colName => counts.aggregate[colName] < 1),
-      ((dfc[PERIOD] === PERIOD_FISCAL_YEAR || (dfc[DATA_TYPE] === DISBURSEMENT && dfc[PERIOD] === PERIOD_MONTHLY)) ? CALENDAR_YEAR : FISCAL_YEAR))
+      ((dfc[PERIOD] === PERIOD_FISCAL_YEAR) ? CALENDAR_YEAR : FISCAL_YEAR))
 
     return omit(columnsToOmit, data).map(obj => {
-      obj.Trend = 'test'
+      if (dfc[PERIOD] !== PERIOD_MONTHLY) {
+        obj.Trend = 'placeholder'
+      }
       return obj
     })
   }
@@ -124,16 +126,17 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
   const getSortColumn = () => [{ columnName: years[years.length - 1]?.toString(), direction: 'desc' }]
 
   const getHideColumns = () => years.filter(year =>
-    (dfc[PERIOD] === PERIOD_FISCAL_YEAR || (dfc[DATA_TYPE] === DISBURSEMENT && dfc[PERIOD] === PERIOD_MONTHLY))
+    (dfc[PERIOD] === PERIOD_FISCAL_YEAR)
       ? !dfc[FISCAL_YEAR]?.includes(year.toString())
       : !dfc[CALENDAR_YEAR]?.includes(year.toString())).map(year => year.toString())
 
   const getAdditionalColumns = () => (dfc[PERIOD] === PERIOD_MONTHLY)
-    ? [MONTH_LONG, 'Trend']
+    ? [MONTH_LONG]
     : ['Trend']
 
   useEffect(() => {
     if (data) {
+      console.log(ALL_YEARS, dfc[DATA_TYPE], ALL_YEARS[dfc[DATA_TYPE]])
       setTableData(transformDataToTableData(data.results, data.counts))
       setDataTableConfig({
         showSummaryRow: (dfc[DATA_TYPE] !== PRODUCTION || (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
@@ -401,7 +404,7 @@ const DataTableBase = ({ data, config }) => {
         if (column.name === COMPANY_NAME) {
           width = 525
         }
-        if (column.name === 'Trend') {
+        if (column.name.includes('Trend')) {
           width = 95
         }
         if (column.name === MONTH_LONG) {
