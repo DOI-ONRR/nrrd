@@ -136,7 +136,6 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
 
   useEffect(() => {
     if (data) {
-      console.log(ALL_YEARS, dfc[DATA_TYPE], ALL_YEARS[dfc[DATA_TYPE]])
       setTableData(transformDataToTableData(data.results, data.counts))
       setDataTableConfig({
         showSummaryRow: (dfc[DATA_TYPE] !== PRODUCTION || (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
@@ -430,10 +429,6 @@ const DataTableBase = ({ data, config }) => {
   useEffect(() => {
     setGroupBySticky(columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
   }, [columnNames])
-  // STEP 4: Set group by sticky if there are any
-  useEffect(() => {
-    setGroupBySticky(columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
-  }, [columnNames])
 
   // STEP 3: Logic to update table display after columns are updated
   useEffect(() => {
@@ -465,7 +460,7 @@ const DataTableBase = ({ data, config }) => {
     if (pivotData?.length > 0 && !config.pivotColumn) {
       setTableData(pivotData)
     }
-    else if (pivotData?.length > 0 && config.pivotColumn) {
+    else if (pivotData?.length > 0 && config.pivotColumn && !tableData) {
       // Pivoted columns are assumed to be numbers so align those columns to the right
       setTableColumnExtensions(pivotColumnNames?.map(year => ({ columnName: `${ year }`, align: 'right', wordWrapEnabled: true })))
       let groupByProps = []

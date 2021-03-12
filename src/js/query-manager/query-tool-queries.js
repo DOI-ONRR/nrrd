@@ -126,7 +126,7 @@ export const getVariables = (state, options) => getVariableValues(state)
 
 // STEP 2: Define all the queries needed
 
-const VIEWS = { 
+const VIEWS = {
   [REVENUE]: 'query_tool_revenue',
   [PRODUCTION]: 'query_tool_production',
   [DISBURSEMENT]: 'query_tool_disbursement',
@@ -145,6 +145,7 @@ const REVENUE_QUERY = whereClause => (
     ${ CALENDAR_YEAR }: ${ DB_COLS[CALENDAR_YEAR] }
     ${ FISCAL_YEAR }: ${ DB_COLS[FISCAL_YEAR] }
     ${ REVENUE }: ${ DB_COLS[REVENUE] }
+    ${ MONTH_LONG }: ${ DB_COLS[MONTH_LONG] }
   }
   counts:${ VIEWS[REVENUE] }_aggregate (
     where: {
@@ -245,29 +246,36 @@ const REVENUE_BY_COMPANY_QUERY = whereClause => (
  */
 export const getQuery = (state, options) => {
   if (options[DATA_FILTER_KEY]) {
-    return QUERIES.DATA_FILTERS(state, getVariableConfig(state), options)
+    return QUERIES.DATA_FILTERS(state, VARIABLE_CONFIGS[state[DATA_TYPE]], options)
   }
-
-  return QUERIES[state[DATA_TYPE]](state, getVariableConfig(state))
+  return QUERIES[state[DATA_TYPE]](state, VARIABLE_CONFIGS[state[DATA_TYPE]])
 }
 
 const QUERIES = {
   [REVENUE]: (state, variableConfig) =>
     gql`query GetDataTableRevenue
-      (${ getDataFilterVariableList(state, VARIABLE_CONFIGS[state[DATA_TYPE]]) })
-      {${ REVENUE_QUERY(getDataFilterWhereClauses(VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]])) }}`,
+      (${ getDataFilterVariableList(state, variableConfig) })
+      {${ REVENUE_QUERY(getDataFilterWhereClauses(((state[PERIOD] === PERIOD_MONTHLY)
+    ? VARIABLE_CONFIGS[state[DATA_TYPE]]
+    : VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]]))) }}`,
   [PRODUCTION]: (state, variableConfig) =>
     gql`query GetDataTableProduction
       (${ getDataFilterVariableList(state, variableConfig) })
-      {${ PRODUCTION_QUERY(getDataFilterWhereClauses(VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]])) }}`,
+      {${ PRODUCTION_QUERY(getDataFilterWhereClauses(((state[PERIOD] === PERIOD_MONTHLY)
+    ? VARIABLE_CONFIGS[state[DATA_TYPE]]
+    : VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]]))) }}`,
   [DISBURSEMENT]: (state, variableConfig) =>
     gql`query GetDataTableDisbursement
       (${ getDataFilterVariableList(state, variableConfig) })
-      {${ DISBURSEMENT_QUERY(getDataFilterWhereClauses(VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]])) }}`,
+      {${ DISBURSEMENT_QUERY(getDataFilterWhereClauses(((state[PERIOD] === PERIOD_MONTHLY)
+    ? VARIABLE_CONFIGS[state[DATA_TYPE]]
+    : VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]]))) }}`,
   [REVENUE_BY_COMPANY]: (state, variableConfig) =>
     gql`query GetDataTableRevenueByCompany
           (${ getDataFilterVariableList(state, variableConfig) })
-          {${ REVENUE_BY_COMPANY_QUERY(getDataFilterWhereClauses(VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]])) }}`,
+          {${ REVENUE_BY_COMPANY_QUERY(getDataFilterWhereClauses(((state[PERIOD] === PERIOD_MONTHLY)
+    ? VARIABLE_CONFIGS[state[DATA_TYPE]]
+    : VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]]))) }}`,
   DATA_FILTERS: (state, variableConfig, options) => {
     const excludeProps = options[EXCLUDE_PROPS] ? options[EXCLUDE_PROPS] : []
     return (
