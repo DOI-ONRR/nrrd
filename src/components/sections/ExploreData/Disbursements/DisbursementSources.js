@@ -82,7 +82,10 @@ const DisbursementSources = props => {
               key={`DS__${ dataSet }`}
               data={chartData.DisbursementSourceSummary}
               xAxis='source'
-              yAxis='total' />
+              yAxis='total'
+              legendLabels={['Source', 'Total']}
+              showLabels={false}
+              showTooltips={true} />
             <QueryLink
               groupBy={DFC.SOURCE}
               linkType="FilterTable"

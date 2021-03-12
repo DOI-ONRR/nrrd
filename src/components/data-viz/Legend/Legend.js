@@ -48,11 +48,11 @@ const StyledTableRow = withStyles(theme =>
   })
 )(TableRow)
 
-const Legend = ({ data, activeNode, ...rest }) => {
+const Legend = ({ data, legendLabels, activeNode, ...rest }) => {
   console.log('Legend props: ', data, activeNode, rest)
   const theme = useTheme()
 
-  const legendLabels = d => {
+  const formatLabels = d => {
     if (d.match('Native')) {
       d = 'Native American'
     }
@@ -68,30 +68,30 @@ const Legend = ({ data, activeNode, ...rest }) => {
     return d
   }
 
-  const label = data[data.length - 1].recipient ? 'Recipient' : 'Source'
+  const label = legendLabels[0].toLowerCase()
   // TODO: make this labels or properties dynamic or more generalized
-  const activeLabel = activeNode && (activeNode.data.recipient || activeNode.data.source)
+  const activeLabel = activeNode && (activeNode.data[label])
 
   return (
     <TableContainer>
       <Table aria-label="Chart legend">
         <TableHead>
           <TableRow>
-            <StyledTableHeadCell>{label}</StyledTableHeadCell>
-            <StyledTableHeadCell align="right">Total</StyledTableHeadCell>
+            <StyledTableHeadCell>{legendLabels[0]}</StyledTableHeadCell>
+            <StyledTableHeadCell align="right">{legendLabels[1]}</StyledTableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map(row => (
             <StyledTableRow
-              key={row.recipient || row.source}
-              style={{ backgroundColor: (activeLabel === (row.recipient || row.source)) ? theme.palette.grey[200] : '' }}>
+              key={row[label]}
+              style={{ backgroundColor: (activeLabel === row[label]) ? theme.palette.grey[200] : '' }}>
               <StyledTableBodyCell>
                 <GlossaryTerm
-                  termKey={legendLabels(row.recipient || row.source)}
+                  termKey={formatLabels(row[label])}
                   isInTable={true}
                   style={{ whiteSpace: 'inherit' }}>
-                  { legendLabels(row.recipient || row.source) }
+                  { formatLabels(row[label]) }
                 </GlossaryTerm>
               </StyledTableBodyCell>
               <StyledTableBodyCell align="right">
@@ -110,4 +110,5 @@ export default Legend
 // propTypes
 Legend.propTypes = {
   data: PropTypes.array.isRequired,
+  labels: PropTypes.array.isRequired
 }

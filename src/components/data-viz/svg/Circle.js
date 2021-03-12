@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { ChartTooltip } from './ChartTooltip'
 
-export const Circle = ({ key, data, transform, r, fill, isClickable, showTooltip, onHover, ...rest }) => {
-  console.log('Circle data: ', data)
+export const Circle = ({ key, data, r, fill, isClickable, showTooltips, onHover, ...rest }) => {
+  // console.log('Circle data: ', data, rest)
   const [circleIsActive, setCircleIsActive] = useState(false)
 
   const styles = {
@@ -31,14 +31,13 @@ export const Circle = ({ key, data, transform, r, fill, isClickable, showTooltip
   return (
     <>
       {
-        showTooltip
+        showTooltips
           ? <ChartTooltip
             open={circleIsActive}
             data={data}>
             <circle
               key={`c__${ key }`}
               data={data}
-              transform={transform}
               r={r}
               fill={fill}
               style={circleIsActive ? styles.onHover : styles.default}
@@ -50,10 +49,11 @@ export const Circle = ({ key, data, transform, r, fill, isClickable, showTooltip
           : <circle
             key={`c__${ key }`}
             data={data}
-            transform={transform}
             r={r}
             fill={fill}
-            style={isClickable ? { cursor: 'pointer' } : {}}
+            style={styles.default}
+            onMouseEnter={() => onMouseEnter()}
+            onMouseLeave={() => onMouseLeave()}
           />
       }
     </>

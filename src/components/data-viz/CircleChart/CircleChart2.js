@@ -2,19 +2,20 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import * as d3 from 'd3'
+import { Grid } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
 
 import Legend from '../Legend'
 import { Circles } from '../svg/Circles'
-import { Translate } from '../svg/Translate'
+import { CircleLabels } from '../svg/CircleLabels'
 
-export const CircleChart2 = ({ data, key, ...options }) => {
-  console.log('CircleChart2: ', CircleChart2)
+export const CircleChart2 = ({ data, legendLabels, legendPosition = 'bottom', showLabels = true, showTooltips = true, ...options }) => {
+  // console.log('CircleChart2: ', options)
   const [activeNode, setActiveNode] = useState(null)
 
   // sizing
-  const width = 500
-  const height = 500
+  const width = options.width || 500
+  const height = options.height || 500
   const theme = useTheme()
 
   // color range
@@ -30,6 +31,10 @@ export const CircleChart2 = ({ data, key, ...options }) => {
   const maxCircles = options.maxCircles - 1
   const yAxis = options.yAxis
   const xAxis = options.xAxis
+
+  const format = options.format || function () {
+    console.debug('format func')
+  }
 
   // roll up other data
   const rollUpOther = data => {
@@ -86,6 +91,7 @@ export const CircleChart2 = ({ data, key, ...options }) => {
     }
   }
 
+  // dataset, root data
   const dataset = rollUpOther(data)
   const root = pack({ name: 'root', children: dataset })
 
@@ -130,22 +136,80 @@ export const CircleChart2 = ({ data, key, ...options }) => {
 
   return (
     <>
-      <svg width="100%" height="300" viewBox={`${ -width * 0.5 } ${ -height * 0.5 } ${ width } ${ height }`}>
-        <Circles
-          key={`circles__${ key }`}
-          data={xDomain}
-          root={root.descendants()}
-          width={width}
-          height={height}
-          colorScale={colorScale}
-          domains={[xDomain, yDomain]}
-          onHover={onHover}
-        />
-      </svg>
-      <Legend
-        data={data}
-        activeNode={activeNode}
-      />
+      {(legendPosition === 'right') &&
+        <Grid container spacing={3}>
+          <Grid item xs={7}>
+            <svg viewBox={`${ -width * 0.5 } ${ -height * 0.5 } ${ width } ${ height }`}>
+              <Circles
+                data={xDomain}
+                root={root.descendants()}
+                width={width}
+                height={height}
+                colorScale={colorScale}
+                domains={[xDomain, yDomain]}
+                onHover={onHover}
+                showTooltips={showTooltips}
+              />
+              {showLabels &&
+                <CircleLabels
+                  data={xDomain}
+                  root={root.descendants()}
+                  width={width}
+                  height={height}
+                  xAxis={xAxis}
+                  yAxis={yAxis}
+                  onHover={onHover}
+                  format={format}
+                />
+              }
+            </svg>
+          </Grid>
+          <Grid item xs={5}>
+            <Legend
+              data={data}
+              activeNode={activeNode}
+              legendLabels={legendLabels}
+            />
+          </Grid>
+        </Grid>
+      }
+      {(legendPosition === 'bottom') &&
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <svg viewBox={`${ -width * 0.5 } ${ -height * 0.5 } ${ 500 } ${ 500 }`}>
+              <Circles
+                data={xDomain}
+                root={root.descendants()}
+                width={width}
+                height={height}
+                colorScale={colorScale}
+                domains={[xDomain, yDomain]}
+                onHover={onHover}
+                showTooltips={showTooltips}
+              />
+              {showLabels &&
+                <CircleLabels
+                  data={xDomain}
+                  root={root.descendants()}
+                  width={width}
+                  height={height}
+                  xAxis={xAxis}
+                  yAxis={yAxis}
+                  onHover={onHover}
+                  format={format}
+                />
+              }
+            </svg>
+          </Grid>
+          <Grid item xs={12}>
+            <Legend
+              data={data}
+              activeNode={activeNode}
+              legendLabels={legendLabels}
+            />
+          </Grid>
+        </Grid>
+      }
     </>
   )
 }

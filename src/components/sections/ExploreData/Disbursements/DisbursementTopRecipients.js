@@ -16,6 +16,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
 import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
+import { CircleChart2 } from '../../../data-viz/CircleChart/CircleChart2'
 
 import {
   Box,
@@ -118,33 +119,14 @@ const DisbursementTopRecipients = props => {
         <Grid item xs={12}>
           <Box className={classes.root}>
             <Box className={classes.topRecipientChart}>
-              <CircleChart
-                key={'DTR' + dataSet }
+              <CircleChart2
+                key={`DTR__${ dataSet }`}
                 data={chartData}
-                maxLegendWidth='800px'
                 xAxis='recipient'
                 yAxis='total'
-                format={ d => utils.formatToDollarInt(d) }
-                circleLabel={ d => {
-                  // console.debug('circleLABLE: ', d)
-                  const r = []
-                  r[0] = d.recipient
-                  r[1] = utils.formatToDollarInt(d.total)
-                  return r
-                }
-                }
-                yLabel={dataSet}
-                minColor={theme.palette.green[100]}
-                maxColor={theme.palette.green[600]}
-                colorRange={[
-                  theme.palette.explore[700],
-                  theme.palette.explore[600],
-                  theme.palette.explore[500],
-                  theme.palette.explore[400],
-                  theme.palette.explore[300],
-                  theme.palette.explore[200],
-                  theme.palette.explore[100]
-                ]} />
+                legendLabels={['Recipient', dataSet]}
+                legendPosition={'right'}
+                format={d => utils.formatToDollarInt(d)} />
             </Box>
           </Box>
         </Grid>

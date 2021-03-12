@@ -19,7 +19,7 @@ const StyledTooltip = withStyles(theme =>
 )(Tooltip)
 
 export const ChartTooltip = ({ children, title, ...rest }) => {
-  console.log('ChartTooltip title: ', title)
+  // console.log('ChartTooltip rest: ', rest)
 
   const getTooltipTitle = d => {
     return (

@@ -91,6 +91,8 @@ const DisbursementRecipients = props => {
             data={chartData.DisbursementRecipientSummary}
             xAxis='recipient'
             yAxis='total'
+            legendLabels={['Recipient', 'Total']}
+            showLabels={false}
           />
           <QueryLink
             groupBy={DFC.RECIPIENT}
