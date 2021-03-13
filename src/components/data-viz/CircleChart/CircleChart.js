@@ -1,143 +1,241 @@
-/* eslint-disable quotes */
-import React, { useEffect, useRef } from 'react'
-// import ReactDOM from 'react-dom'
+import React, { useEffect, useState, useRef } from 'react'
+import PropTypes from 'prop-types'
 
-// import utils from '../../../js/utils'
+import * as d3 from 'd3'
+import { Grid } from '@material-ui/core'
+import { useTheme } from '@material-ui/core/styles'
 
-import { makeStyles } from '@material-ui/core/styles'
-// import clsx from 'clsx'
+import Legend from '../Legend'
+import { Circles } from '../svg/Circles'
+import { CircleLabels } from '../svg/CircleLabels'
 
-// import ChartTitle from '../ChartTitle'
+export const CircleChart = ({ data, legendLabels, legendPosition = 'bottom', showLabels = true, showTooltips = true, ...options }) => {
+  // console.log('CircleChart: ', options)
+  const [activeNode, setActiveNode] = useState(null)
+  const ccRef = useRef()
 
-// import stackedBarChart from '../../../js/bar-charts/stacked-bar-chart'
-import D3CircleChart from './D3CircleChart.js'
-// import { interpolateRgbBasis } from 'd3'
+  // sizing
+  const width = options.width || 500
+  const height = options.height || 500
+  const theme = useTheme()
 
-const useStyles = makeStyles((theme, props) => ({
-  container: {
-    display: 'block',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: 'auto',
-  },
-  chart: {
-    display: 'block',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    fill: theme.palette.chart.primary,
-    '& .bars > .bar:hover': {
-      fill: theme.palette.chart.secondary,
-      cursor: 'pointer',
-    },
-    '& .bars > .active': {
-      fill: theme.palette.chart.secondary,
-    },
-    '& .maxExtent': {
-      fontSize: theme.typography.h5.fontSize,
-    },
-    '& .x-axis > .tick': {
-      fontSize: theme.typography.h5.fontSize,
-    },
-    '& .tooltip': {
-      pointerEvents: 'none',
-    },
-    '& > svg': {
-      maxWidth: '100%',
-    }
-  },
-  legend: {
-    display: 'block',
-    top: 0,
-    left: 0,
-    maxWidth: '100%',
-    fontSize: theme.typography.h5.fontSize,
-    '& tr > td:first-child': {
-      width: 10,
-    },
-    '& td .legend-rect': {
-      display: 'block',
-      height: 20,
-      width: 20,
-    },
-    '& .legend-table': {
-      width: '100%',
-      borderSpacing: 0,
-      borderCollapse: 0,
-      boxShadow: 'none',
-      fontSize: '1rem',
-    },
-    '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
-      textAlign: 'right',
-    },
-    '& .legend-table > thead th': {
-      fontWeight: 'bold',
-      textAlign: 'left',
-      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
-    },
-    '& .legend-table > thead th:first-letter': {
-      textTransform: 'capitalize',
-    },
-    '& .legend-table > tbody tr td': {
-      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
-      verticalAlign: 'top',
-    },
-    '& .legend-table > tbody tr:last-child td': {
-      border: 'none',
-    },
-    '& .legend-table th, & .legend-table td': {
-      padding: theme.spacing(0.5),
-    },
-    '& .legend-rect': {
-      marginTop: theme.spacing(0.5),
-    },
+  // color range
+  const colorRange = options.colorRange || [
+    theme.palette.explore[600],
+    theme.palette.explore[500],
+    theme.palette.explore[400],
+    theme.palette.explore[300],
+    theme.palette.explore[200],
+    theme.palette.explore[100]
+  ]
+
+  const maxCircles = options.maxCircles - 1
+  const yAxis = options.yAxis
+  const xAxis = options.xAxis
+
+  const format = options.format || function () {
+    console.debug('format func')
   }
-}))
 
-const CircleChart = props => {
-  // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
-  // use ONRR topojson file for land
+  const formatLegendLabels = options.formatLegendLabels || function (d) {
+    return d
+  }
 
-  const classes = useStyles()
+  // roll up other dat
+  const rollUpOther = data => {
+    console.log('rollUpOther data: ', data)
+    try {
+      if (maxCircles + 1 < data.length) {
+        const tmp = data
+        const other = tmp.reduce((sum, row, i) => {
+          // console.debug("maxcircles: ",sum,row,i)
+          if (i + 1 >= maxCircles) {
+            return sum + row[yAxis] || 0
+          }
+        }, 0)
+        // console.debug(other)
+        const o = data[maxCircles]
+        data = data.filter((row, i) => i < maxCircles)
+        o[xAxis] = 'Other'
+        o[yAxis] = other
+        data.push(o)
+        console.debug('OTHER :', o)
+      }
 
-  const { data, ...options } = props
-  const elemRef = useRef(null)
+      return data
+    }
+    catch (err) {
+      console.warn('Errror: ', err)
+    }
+  }
 
+  // hierarchy
+  const hierarchy = data => {
+    try {
+      const r = d3.hierarchy(data)
+        .sum(d => d[yAxis])
+        .sort((a, b) => b[yAxis] - a[yAxis])
+      // console.debug(r)
+      return r
+    }
+    catch (err) {
+      console.warn('Errror: ', err)
+    }
+  }
+
+  // pack
+  const pack = data => {
+    try {
+      const r = d3.pack()
+        .size([width - 2, height - 2])
+        .padding(3)(hierarchy(data))
+      return r
+    }
+    catch (err) {
+      console.warn('Errror: ', err)
+    }
+  }
+
+  // dataset, root data
+  const [otherDataSet, setOtherDataSet] = useState([])
   useEffect(() => {
-    elemRef.current.children[0].innerHTML = ''
-    elemRef.current.children[1].innerHTML = ''
-    // eslint-disable-next-line no-unused-vars
-    const chart = new D3CircleChart(elemRef.current, data, options)
-  }, [elemRef])
+    const dataset = rollUpOther(data)
+    setOtherDataSet(dataset)
+  }, [data])
+
+  const root = pack({ name: 'root', children: otherDataSet })
+
+  // xDomain
+  const xDomain = () => {
+    try {
+      const r = data.map((row, i) => {
+        return row[xAxis]
+      })
+      const domain = [...(new Set(r.sort((a, b) => a - b)))]
+      return domain
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
+  }
+
+  // yDomain
+  const yDomain = () => {
+    try {
+      const r = d3.nest()
+        .key(k => k[xAxis])
+        .rollup(v => d3.sum(v, i => i[yAxis]))
+        .entries(data)
+        .map(y => y.value)
+      const domain = [...(new Set(r.sort((a, b) => a - b)))]
+      return domain
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
+  }
+
+  // color scale
+  const colorScale = d3.scaleOrdinal()
+    .range(colorRange)
+
+  const onHover = d => {
+    console.log('handleOnHover: ', d)
+    setActiveNode(d)
+  }
 
   return (
     <>
-      <div className={`${ classes.container } chart-container`} ref={elemRef}>
-        <div className={`${ classes.chart } chart`}></div>
-        <div className={`${ classes.legend } legend`}></div>
-      </div>
+      {(legendPosition === 'right') &&
+        <Grid container spacing={3}>
+          <Grid item xs={7}>
+            <svg viewBox={`${ -width * 0.5 } ${ -height * 0.5 } ${ width } ${ height }`} ref={ccRef}>
+              <Circles
+                data={xDomain}
+                root={root.descendants()}
+                width={width}
+                height={height}
+                colorScale={colorScale}
+                domains={[xDomain, yDomain]}
+                onHover={onHover}
+                xAxis={xAxis}
+                yAxis={yAxis}
+                showTooltips={showTooltips}
+                format={format}
+              />
+              {showLabels &&
+                <CircleLabels
+                  data={xDomain}
+                  root={root.descendants()}
+                  width={width}
+                  height={height}
+                  xAxis={xAxis}
+                  yAxis={yAxis}
+                  onHover={onHover}
+                  format={format}
+                />
+              }
+            </svg>
+          </Grid>
+          <Grid item xs={5}>
+            <Legend
+              data={xDomain}
+              root={root.descendants()}
+              activeNode={activeNode}
+              legendLabels={legendLabels}
+              format={format}
+              formatLegendLabels={formatLegendLabels}
+              xAxis={xAxis}
+              yAxis={yAxis}
+            />
+          </Grid>
+        </Grid>
+      }
+      {(legendPosition === 'bottom') &&
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <svg viewBox={`${ -width * 0.5 } ${ -height * 0.5 } ${ 500 } ${ 500 }`} ref={ccRef}>
+              <Circles
+                data={xDomain}
+                root={root.descendants()}
+                width={width}
+                height={height}
+                colorScale={colorScale}
+                domains={[xDomain, yDomain]}
+                onHover={onHover}
+                xAxis={xAxis}
+                yAxis={yAxis}
+                showTooltips={showTooltips}
+                format={format}
+              />
+              {showLabels &&
+                <CircleLabels
+                  data={xDomain}
+                  root={root.descendants()}
+                  width={width}
+                  height={height}
+                  xAxis={xAxis}
+                  yAxis={yAxis}
+                  onHover={onHover}
+                  format={format}
+                />
+              }
+            </svg>
+          </Grid>
+          <Grid item xs={12}>
+            <Legend
+              data={xDomain}
+              root={root.descendants()}
+              activeNode={activeNode}
+              legendLabels={legendLabels}
+              format={format}
+              formatLegendLabels={formatLegendLabels}
+              xAxis={xAxis}
+              yAxis={yAxis}
+            />
+          </Grid>
+        </Grid>
+      }
     </>
   )
-}
-
-export default CircleChart
-
-const chartData = [
-  { location_name: "Gulf of Mexico", total: 5163524881.620001 },
-  { location_name: "New Mexico", total: 2447493889.24 },
-  { location_name: "Wyoming", total: 1246326179.16 },
-  { location_name: "Native American", total: 1155674819.2200003 },
-  { location_name: "North Dakota", total: 289595600.7900001 }
-]
-
-CircleChart.Preview = {
-  group: 'Data Visualizations',
-  demos: [
-    {
-      title: 'Example',
-      code: '<CircleChart data={' + JSON.stringify(chartData) + '} xAxis={"location_name"} yAxis={"total"} />',
-    }
-  ]
 }

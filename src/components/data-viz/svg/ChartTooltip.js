@@ -21,18 +21,19 @@ const StyledTooltip = withStyles(theme =>
 export const ChartTooltip = ({ children, title, ...rest }) => {
   // console.log('ChartTooltip rest: ', rest)
 
-  const getTooltipTitle = d => {
+  // TODO: should get tooltip format from chart format
+  const getTooltipTitle = (d, xAxis, yAxis, format) => {
     return (
       <>
-        <Box component="span">{d.data.recipient || d.data.source}</Box>
-        <Box compnent="span">{formatToDollarInt(d.data.total)}</Box>
+        <Box component="span">{d.data[xAxis]}</Box>
+        <Box compnent="span">{format(d.data[yAxis])}</Box>
       </>
     )
   }
 
   const ChartTooltipDisplay = React.forwardRef((props, ref) => (
     <StyledTooltip
-      title={getTooltipTitle(props.data)}
+      title={getTooltipTitle(props.data, props.xAxis, props.yAxis, props.format)}
       enterDelay={100}
       leaveDelay={250}
       enterTouchDelay={100}
@@ -52,6 +53,6 @@ export const ChartTooltip = ({ children, title, ...rest }) => {
 }
 
 ChartTooltip.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   // title: PropTypes.string.isRequired
 }

@@ -2,12 +2,12 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-// import CircleChart from '../../../data-viz/CircleChart/CircleChart'
-import { CircleChart2 } from '../../../data-viz/CircleChart/CircleChart2'
+import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { formatToDollarInt } from '../../../../js/utils'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -78,14 +78,15 @@ const DisbursementSources = props => {
         <Box className={classes.root}>
           <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box>
-            <CircleChart2
+            <CircleChart
               key={`DS__${ dataSet }`}
               data={chartData.DisbursementSourceSummary}
               xAxis='source'
               yAxis='total'
               legendLabels={['Source', 'Total']}
               showLabels={false}
-              showTooltips={true} />
+              showTooltips={true}
+              format={d => formatToDollarInt(d)} />
             <QueryLink
               groupBy={DFC.SOURCE}
               linkType="FilterTable"

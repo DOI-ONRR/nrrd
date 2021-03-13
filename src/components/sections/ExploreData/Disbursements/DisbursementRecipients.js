@@ -2,11 +2,10 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import CircleChart from '../../../data-viz/CircleChart/CircleChart'
-import { CircleChart2 } from '../../../data-viz/CircleChart/CircleChart2'
+import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 
-import utils from '../../../../js/utils'
+import { formatToDollarInt } from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -86,13 +85,29 @@ const DisbursementRecipients = props => {
       return (<Box className={classes.root}>
         <Box component="h4" fontWeight="bold">Disbursements by recipient</Box>
         <Box>
-          <CircleChart2
+          <CircleChart
             key={`DR__${ dataSet }`}
             data={chartData.DisbursementRecipientSummary}
             xAxis='recipient'
             yAxis='total'
             legendLabels={['Recipient', 'Total']}
             showLabels={false}
+            format={d => formatToDollarInt(d)}
+            formatLegendLabels={d => {
+              if (d.match('Native')) {
+                d = 'Native American'
+              }
+              else if (d.match('governments')) {
+                d = 'State and local'
+              }
+              else if (d.match('Land')) {
+                d = 'LWCF'
+              }
+              else if (d.match('Historic')) {
+                d = 'HPF'
+              }
+              return d
+            }}
           />
           <QueryLink
             groupBy={DFC.RECIPIENT}

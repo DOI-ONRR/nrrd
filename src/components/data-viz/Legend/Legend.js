@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 import { withStyles, createStyles, useTheme } from '@material-ui/core/styles'
 
 import GlossaryTerm from '../../GlossaryTerm/GlossaryTerm'
-import { formatToDollarInt } from '../../../js/utils'
 
 import {
   Table,
@@ -48,33 +47,28 @@ const StyledTableRow = withStyles(theme =>
   })
 )(TableRow)
 
-const Legend = ({ data, legendLabels, activeNode, ...rest }) => {
-  console.log('Legend props: ', data, activeNode, rest)
+const Legend = ({
+  data,
+  root,
+  activeNode,
+  legendLabels,
+  format,
+  formatLegendLabels,
+  xAxis,
+  yAxis,
+  ...rest
+}) => {
+  console.log('Legend props: ', data, root)
   const theme = useTheme()
 
-  const formatLabels = d => {
-    if (d.match('Native')) {
-      d = 'Native American'
-    }
-    else if (d.match('governments')) {
-      d = 'State and local'
-    }
-    else if (d.match('Land')) {
-      d = 'LWCF'
-    }
-    else if (d.match('Historic')) {
-      d = 'HPF'
-    }
-    return d
-  }
+  const legendData = root.filter((node, i) => i > 0)
+  const activeLabel = activeNode && (activeNode.data[xAxis])
 
-  const label = legendLabels[0].toLowerCase()
-  // TODO: make this labels or properties dynamic or more generalized
-  const activeLabel = activeNode && (activeNode.data[label])
+  console.log('legendData: ', legendData)
 
   return (
     <TableContainer>
-      <Table aria-label="Chart legend">
+      <Table aria-label="Chart legend table">
         <TableHead>
           <TableRow>
             <StyledTableHeadCell>{legendLabels[0]}</StyledTableHeadCell>
@@ -82,20 +76,20 @@ const Legend = ({ data, legendLabels, activeNode, ...rest }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(row => (
+          {legendData.map(row => (
             <StyledTableRow
-              key={row[label]}
-              style={{ backgroundColor: (activeLabel === row[label]) ? theme.palette.grey[200] : '' }}>
+              key={row.data[xAxis]}
+              style={{ backgroundColor: (activeLabel === row.data[xAxis]) ? theme.palette.grey[200] : '' }}>
               <StyledTableBodyCell>
                 <GlossaryTerm
-                  termKey={formatLabels(row[label])}
+                  termKey={formatLegendLabels(row.data[xAxis])}
                   isInTable={true}
                   style={{ whiteSpace: 'inherit' }}>
-                  { formatLabels(row[label]) }
+                  { formatLegendLabels(row.data[xAxis]) }
                 </GlossaryTerm>
               </StyledTableBodyCell>
               <StyledTableBodyCell align="right">
-                {formatToDollarInt(row.total)}
+                {format(row.data[yAxis])}
               </StyledTableBodyCell>
             </StyledTableRow>
           ))}
@@ -109,6 +103,6 @@ export default Legend
 
 // propTypes
 Legend.propTypes = {
-  data: PropTypes.array.isRequired,
-  labels: PropTypes.array.isRequired
+  data: PropTypes.func.isRequired,
+  labels: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string])
 }

@@ -1,9 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { ChartTooltip } from './ChartTooltip'
 
-export const Circle = ({ key, data, r, fill, isClickable, showTooltips, onHover, ...rest }) => {
+const WithTooltip = ({ showTooltips, circleIsActive, data, xAxis, yAxis, format, children }) => (
+  showTooltips
+    ? <ChartTooltip
+      open={circleIsActive}
+      data={data}
+      xAxis={xAxis}
+      yAxis={yAxis}
+      format={format}>
+      {children}
+    </ChartTooltip>
+    : children
+)
+
+export const Circle = ({ data, r, fill, isClickable, showTooltips, onHover, xAxis, yAxis, format, ...rest }) => {
   // console.log('Circle data: ', data, rest)
   const [circleIsActive, setCircleIsActive] = useState(false)
 
@@ -11,7 +24,7 @@ export const Circle = ({ key, data, r, fill, isClickable, showTooltips, onHover,
     default: {
       cursor: 'pointer',
     },
-    onHover: {
+    active: {
       cursor: 'pointer',
       stroke: 'black',
       strokeWidth: 4
@@ -31,30 +44,23 @@ export const Circle = ({ key, data, r, fill, isClickable, showTooltips, onHover,
   return (
     <>
       {
-        showTooltips
-          ? <ChartTooltip
-            open={circleIsActive}
-            data={data}>
-            <circle
-              key={`c__${ key }`}
-              data={data}
-              r={r}
-              fill={fill}
-              style={circleIsActive ? styles.onHover : styles.default}
-              className={circleIsActive ? 'circle active' : 'circle'}
-              onMouseEnter={() => onMouseEnter()}
-              onMouseLeave={() => onMouseLeave()}
-            />
-          </ChartTooltip>
-          : <circle
-            key={`c__${ key }`}
+        <WithTooltip
+          showTooltips={showTooltips}
+          circleIsActive={circleIsActive}
+          data={data}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          format={format}>
+          <circle
             data={data}
             r={r}
             fill={fill}
-            style={styles.default}
+            style={(circleIsActive && isClickable) ? styles.active : styles.default}
+            className={circleIsActive ? 'circle active' : 'circle'}
             onMouseEnter={() => onMouseEnter()}
             onMouseLeave={() => onMouseLeave()}
           />
+        </WithTooltip>
       }
     </>
   )
@@ -62,6 +68,6 @@ export const Circle = ({ key, data, r, fill, isClickable, showTooltips, onHover,
 
 // propTypes
 Circle.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   transform: PropTypes.string
 }

@@ -37,7 +37,8 @@ export const CircleLabels = ({ data, root, width, height, xAxis, yAxis, colorSca
         fontSize={`${ Math.round(d.r / 6) }px`}
         isClickable={(i !== 0)}
         showTooltip={(i !== 0)}
-        onHover={onHover} />
+        onHover={onHover}
+        format={format} />
       }
     </Translate>
   ))
@@ -56,7 +57,8 @@ export const CircleLabels = ({ data, root, width, height, xAxis, yAxis, colorSca
         fontSize={`${ Math.round(d.r / 6) }px`}
         isClickable={(i !== 0)}
         showTooltip={(i !== 0)}
-        onHover={onHover} />
+        onHover={onHover}
+        format={format} />
       }
     </Translate>
   ))

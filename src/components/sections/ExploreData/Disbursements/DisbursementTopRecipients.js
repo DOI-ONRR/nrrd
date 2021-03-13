@@ -15,8 +15,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { makeStyles } from '@material-ui/core/styles'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
-import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
-import { CircleChart2 } from '../../../data-viz/CircleChart/CircleChart2'
+import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
 
 import {
   Box,
@@ -119,7 +118,7 @@ const DisbursementTopRecipients = props => {
         <Grid item xs={12}>
           <Box className={classes.root}>
             <Box className={classes.topRecipientChart}>
-              <CircleChart2
+              <CircleChart
                 key={`DTR__${ dataSet }`}
                 data={chartData}
                 xAxis='recipient'
