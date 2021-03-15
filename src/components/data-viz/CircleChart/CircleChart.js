@@ -187,6 +187,7 @@ export const CircleChart = ({ data, legendLabels, legendPosition = 'bottom', sho
               formatLegendLabels={formatLegendLabels}
               xAxis={xAxis}
               yAxis={yAxis}
+              colorScale={colorScale}
             />
           </Grid>
         </Grid>
@@ -232,6 +233,7 @@ export const CircleChart = ({ data, legendLabels, legendPosition = 'bottom', sho
               formatLegendLabels={formatLegendLabels}
               xAxis={xAxis}
               yAxis={yAxis}
+              colorScale={colorScale}
             />
           </Grid>
         </Grid>

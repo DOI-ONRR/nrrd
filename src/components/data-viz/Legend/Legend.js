@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { withStyles, createStyles, useTheme } from '@material-ui/core/styles'
 
 import GlossaryTerm from '../../GlossaryTerm/GlossaryTerm'
+import { Rect } from '../svg/Rect'
 
 import {
   Table,
@@ -56,6 +57,7 @@ const Legend = ({
   formatLegendLabels,
   xAxis,
   yAxis,
+  colorScale,
   ...rest
 }) => {
   console.log('Legend props: ', data, root)
@@ -71,15 +73,22 @@ const Legend = ({
       <Table aria-label="Chart legend table">
         <TableHead>
           <TableRow>
-            <StyledTableHeadCell>{legendLabels[0]}</StyledTableHeadCell>
+            <StyledTableHeadCell colspan={2}>{legendLabels[0]}</StyledTableHeadCell>
             <StyledTableHeadCell align="right">{legendLabels[1]}</StyledTableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {legendData.map(row => (
+          {legendData.map((row, i) => (
             <StyledTableRow
               key={row.data[xAxis]}
               style={{ backgroundColor: (activeLabel === row.data[xAxis]) ? theme.palette.grey[200] : '' }}>
+              <StyledTableBodyCell style={{ verticalAlign: 'top' }}>
+                <Rect
+                  width={20}
+                  height={20}
+                  styles={{ fill: colorScale(i), marginTop: 5 }}
+                />
+              </StyledTableBodyCell>
               <StyledTableBodyCell>
                 <GlossaryTerm
                   termKey={formatLegendLabels(row.data[xAxis])}
