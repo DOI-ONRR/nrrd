@@ -60,13 +60,9 @@ const Legend = ({
   colorScale,
   ...rest
 }) => {
-  console.log('Legend props: ', data, root)
+  // console.log('Legend props: ', data, root)
   const theme = useTheme()
-
-  const legendData = root.filter((node, i) => i > 0)
   const activeLabel = activeNode && (activeNode.data[xAxis])
-
-  console.log('legendData: ', legendData)
 
   return (
     <TableContainer>
@@ -78,30 +74,34 @@ const Legend = ({
           </TableRow>
         </TableHead>
         <TableBody>
-          {legendData.map((row, i) => (
-            <StyledTableRow
-              key={row.data[xAxis]}
-              style={{ backgroundColor: (activeLabel === row.data[xAxis]) ? theme.palette.grey[200] : '' }}>
-              <StyledTableBodyCell style={{ verticalAlign: 'top' }}>
-                <Rect
-                  width={20}
-                  height={20}
-                  styles={{ fill: colorScale(i), marginTop: 5 }}
-                />
-              </StyledTableBodyCell>
-              <StyledTableBodyCell>
-                <GlossaryTerm
-                  termKey={formatLegendLabels(row.data[xAxis])}
-                  isInTable={true}
-                  style={{ whiteSpace: 'inherit' }}>
-                  { formatLegendLabels(row.data[xAxis]) }
-                </GlossaryTerm>
-              </StyledTableBodyCell>
-              <StyledTableBodyCell align="right">
-                {format(row.data[yAxis])}
-              </StyledTableBodyCell>
-            </StyledTableRow>
-          ))}
+          {root.map((row, i) => {
+            if (i > 0) {
+              return (
+                <StyledTableRow
+                  key={row.data[xAxis]}
+                  style={{ backgroundColor: (activeLabel === row.data[xAxis]) ? theme.palette.grey[200] : '' }}>
+                  <StyledTableBodyCell style={{ verticalAlign: 'top' }}>
+                    <Rect
+                      width={20}
+                      height={20}
+                      styles={{ fill: colorScale(i + 1), marginTop: 5 }}
+                    />
+                  </StyledTableBodyCell>
+                  <StyledTableBodyCell>
+                    <GlossaryTerm
+                      termKey={formatLegendLabels(row.data[xAxis]) || ''}
+                      isInTable={true}
+                      style={{ whiteSpace: 'inherit' }}>
+                      { formatLegendLabels(row.data[xAxis]) || '' }
+                    </GlossaryTerm>
+                  </StyledTableBodyCell>
+                  <StyledTableBodyCell align="right">
+                    {format(row.data[yAxis])}
+                  </StyledTableBodyCell>
+                </StyledTableRow>
+              )
+            }
+          })}
         </TableBody>
       </Table>
     </TableContainer>

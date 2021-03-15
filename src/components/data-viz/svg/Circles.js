@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Circle } from './Circle'
 import { Translate } from './Translate'
 
-export const Circles = ({ data, root, width, height, colorScale, onHover, xAxis, yAxis, showTooltips, format, ...rest }) => {
+export const Circles = ({ data, root, width, height, colorScale, onHover, xAxis, yAxis, showTooltips, format, domains, ...rest }) => {
   const k = width / (root[0].r * 2)
 
   const circles = root.map((d, i) => (
@@ -17,7 +17,7 @@ export const Circles = ({ data, root, width, height, colorScale, onHover, xAxis,
         key={`circle__${ i }`}
         data={d}
         r={d.r * k}
-        fill={(i === 0) ? '#f5f5f5' : colorScale(i)}
+        fill={(i === 0) ? '#f5f5f5' : colorScale(i + 1)}
         isClickable={(i !== 0)}
         showTooltips={(i !== 0 && showTooltips)}
         onHover={onHover}
