@@ -19,6 +19,10 @@ import {
   useMediaQuery
 } from '@material-ui/core'
 
+import { animateScroll as scroll } from 'react-scroll'
+
+import MapLevel from './MapLevel'
+// import MapControls from './MapControls'
 import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
 import { ExploreDataContext } from '../../../stores/explore-data-store'
@@ -493,6 +497,7 @@ const MapContext = props => {
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
+              <MapLevel/>
               {mapChild}
             </Box>
           </Grid>
