@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
+import { makeStyles } from '@material-ui/core/styles'
 import { ChartTooltip } from './ChartTooltip'
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    cursor: 'pointer',
+    '&:hover': {
+      stroke: 'black',
+      strokeWidth: 4
+    }
+  }
+}))
 
 const WithTooltip = ({ showTooltips, circleIsActive, data, xAxis, yAxis, format, children }) => (
   showTooltips
@@ -16,29 +27,19 @@ const WithTooltip = ({ showTooltips, circleIsActive, data, xAxis, yAxis, format,
     : children
 )
 
-export const Circle = ({ data, r, fill, isClickable, showTooltips, onHover, xAxis, yAxis, format, ...rest }) => {
+export const Circle = ({ data, r, fill, isClickable, showTooltips, onHover, xAxis, yAxis, format, stroke, strokeWidth, ...rest }) => {
   // console.log('Circle data: ', data, rest)
-  const [circleIsActive, setCircleIsActive] = useState(false)
+  const [circleIsActive, setCircleIsActive] = useState(undefined)
+  const classes = useStyles()
 
-  const styles = {
-    default: {
-      cursor: 'pointer',
-    },
-    active: {
-      cursor: 'pointer',
-      stroke: 'black',
-      strokeWidth: 4
-    }
-  }
-
-  const onMouseEnter = () => {
+  const handleMouseEnter = () => {
     setCircleIsActive(true)
     onHover(data)
   }
 
-  const onMouseLeave = () => {
+  const handleMouseLeave = () => {
     setCircleIsActive(false)
-    onHover(null)
+    onHover(undefined)
   }
 
   return (
@@ -52,13 +53,12 @@ export const Circle = ({ data, r, fill, isClickable, showTooltips, onHover, xAxi
           yAxis={yAxis}
           format={format}>
           <circle
-            data={data}
+            pointerEvents="all"
             r={r}
             fill={fill}
-            style={(circleIsActive && isClickable) ? styles.active : styles.default}
-            className={circleIsActive ? 'circle active' : 'circle'}
-            onMouseEnter={() => onMouseEnter()}
-            onMouseLeave={() => onMouseLeave()}
+            className={isClickable ? classes.root : {}}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           />
         </WithTooltip>
       }
