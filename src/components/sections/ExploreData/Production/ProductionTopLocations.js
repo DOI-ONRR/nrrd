@@ -221,7 +221,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
               showLabels={!!props.horizontal}
             />
           </Box>
-          {props.vertical &&
+          {props.showQueryLink &&
             <Box>
               <QueryLink
                 groupBy={(state === DFC.NATIONWIDE_FEDERAL_FIPS) ? DFC.LAND_TYPE : DFC.COUNTY}
