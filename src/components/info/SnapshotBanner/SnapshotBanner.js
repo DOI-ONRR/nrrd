@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid'
 
 import { OnrrLogoImg } from '../../images'
 import { Typography } from '@material-ui/core'
+import Link from '../../Link'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,12 +51,12 @@ const SnapshotBanner = () => {
           <Grid container>
             <Grid item xs={12}>
               <Box m={1} mr={2} style={{ fontSize: '1.1rem', lineHeight: '1.1rem', color: 'white', textAlign: 'end' }}>
-                Monthly Snapshot: February 2021
+                Monthly Snapshot
               </Box>
             </Grid>
             <Grid item xs={12}>
               <Box style={{ fontSize: '0.9rem', lineHeight: '0.9rem', color: 'white', textAlign: 'end' }} mb={1} mr={2}>
-                View interactive charts at revenuedata.doi.gov
+                View interactive charts at <Link href={'https://revenuedata.doi.gov/'} style={{ color: 'white' }}>revenuedata.doi.gov</Link>
               </Box>
             </Grid>
           </Grid>
