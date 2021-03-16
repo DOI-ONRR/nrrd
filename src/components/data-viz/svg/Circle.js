@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { ChartTooltip } from './ChartTooltip'
+import { ChartTooltip } from '../ChartTooltip'
 
 const useStyles = makeStyles(theme => ({
   root: {

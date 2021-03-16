@@ -18,7 +18,7 @@ const StyledTooltip = withStyles(theme =>
   })
 )(Tooltip)
 
-export const ChartTooltip = ({ children, title, ...rest }) => {
+const ChartTooltip = ({ children, title, ...rest }) => {
   // console.log('ChartTooltip rest: ', rest)
 
   // TODO: should get tooltip format from chart format
@@ -51,6 +51,8 @@ export const ChartTooltip = ({ children, title, ...rest }) => {
     </>
   )
 }
+
+export default ChartTooltip
 
 ChartTooltip.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
