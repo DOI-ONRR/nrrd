@@ -5,7 +5,9 @@ import {
   useQueryParams,
   StringParam,
   encodeDelimitedArray,
-  decodeDelimitedArray
+  decodeDelimitedArray,
+  encodeBoolean,
+  decodeBoolean
 } from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -255,6 +257,11 @@ const MapContext = props => {
     decode: arrayStr => decodeDelimitedArray(arrayStr, ',')
   }
 
+  const BooleanParam = {
+    encode: bp => encodeBoolean(bp),
+    decode: bp => decodeBoolean(bp)
+  }
+
   const classes = useStyles()
   const theme = useTheme()
   const size = useWindowSize()
@@ -281,7 +288,7 @@ const MapContext = props => {
     period: StringParam,
     mapLevel: StringParam,
     location: CommaArrayParam,
-    offshoreRegions: StringParam,
+    offshoreRegions: BooleanParam,
     commodity: StringParam,
     year: StringParam,
   })
@@ -390,7 +397,7 @@ const MapContext = props => {
   }
 
   const countyLevel = mapLevel === DFC.COUNTY_CAPITALIZED
-  const offshore = (offshoreRegions === 'true' || offshoreRegions === true)
+  const offshore = (offshoreRegions === true || (offshoreRegions === 1 || offshoreRegions === '1'))
 
   let mapJsonObject = mapStates
   let mapFeatures = 'states-geo'
@@ -417,14 +424,13 @@ const MapContext = props => {
   }
 
   useEffect(() => {
-    // get decoded location param
     const locationParam = queryParams.location
     let filteredLocations
 
     // console.log('queryParams: ', queryParams)
 
     // filter out location based on location params
-    if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
+    if (typeof locationParam !== 'undefined' && locationParam > 0) {
       filteredLocations = data.onrr.locations.filter(item => {
         for (const elem of locationParam) {
           // strip elem of any trailing slash
@@ -467,7 +473,7 @@ const MapContext = props => {
       dataType: dataType,
       period: period,
       mapLevel: mapLevel,
-      offshoreRegions: offshoreRegions,
+      offshoreRegions: (offshoreRegions === true || (offshoreRegions === 1 || offshoreRegions === '1')) ? 1 : 0,
       commodity: commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
       year: year
@@ -497,7 +503,7 @@ const MapContext = props => {
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
-              <MapLevel/>
+              <MapLevel />
               {mapChild}
             </Box>
           </Grid>

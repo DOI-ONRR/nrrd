@@ -25,8 +25,8 @@ const MAP_LEVEL_OPTIONS = {
     { value: DFC.COUNTY_CAPITALIZED, option: DFC.COUNTY_CAPITALIZED }
   ],
   [OFFSHORE_REGIONS]: [
-    { value: false, option: '' },
-    { value: true, option: '' }
+    { value: false, option: false },
+    { value: true, option: true }
   ]
 }
 
@@ -53,16 +53,13 @@ const MapLevel = props => {
   const { state: filterState } = useContext(DataFilterContext)
 
   const {
-    mapOverlay
-  } = props
-
-  const {
     dataType,
     mapLevel,
     offshoreRegions
   } = filterState
 
-  const mapLevelLabel = `Map level ${ mapLevel || DFC.STATE } ${ (offshoreRegions === true) ? ' and offshore' : '' }`
+  const mapLevelLabel = `Map level ${ mapLevel || DFC.STATE } ${ offshoreRegions ? ' and offshore' : '' }`
+  const offshore = (offshoreRegions === true || (offshoreRegions === 1 || offshoreRegions === '1'))
 
   return (
     <MapLevelContainer>
@@ -73,16 +70,14 @@ const MapLevel = props => {
         label="Map level toggle"
         legend={false}
         size="small"
-        disabled={mapOverlay} />
-
+        disabled={false} />
       <OffshoreRegionsSwitchInput
-        className={'offshore-regions-switch-input'}
         dataFilterKey={OFFSHORE_REGIONS}
         data={MAP_LEVEL_OPTIONS[OFFSHORE_REGIONS]}
-        defaultSelected={offshoreRegions}
+        defaultSelected={offshore}
         label='Show offshore'
         helperText='Disbursements from offshore production go to the states and counties that surround the offshore area.'
-        disabled={dataType === 'Disbursements' || mapOverlay}
+        disabled={dataType === 'Disbursements'}
         selectType='Single' />
     </MapLevelContainer>
   )
