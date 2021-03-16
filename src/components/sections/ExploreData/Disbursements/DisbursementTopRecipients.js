@@ -83,6 +83,16 @@ const DisbursementTopRecipients = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
 
+  const colorRange = [
+    theme.palette.explore[700],
+    theme.palette.explore[600],
+    theme.palette.explore[500],
+    theme.palette.explore[400],
+    theme.palette.explore[300],
+    theme.palette.explore[200],
+    theme.palette.explore[100]
+  ]
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
 
   if (loading) {
@@ -125,7 +135,8 @@ const DisbursementTopRecipients = props => {
                 yAxis='total'
                 legendLabels={['Recipient', dataSet]}
                 legendPosition={'right'}
-                format={d => utils.formatToDollarInt(d)} />
+                format={d => utils.formatToDollarInt(d)}
+                colorRange={colorRange} />
             </Box>
           </Box>
         </Grid>
