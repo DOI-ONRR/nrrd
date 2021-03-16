@@ -146,6 +146,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
         height: _tableHeight,
         hideColumns: getHideColumns(),
         sortColumn: getSortColumn(),
+        tableHeight: _tableHeight,
         [ADDITIONAL_COLUMNS]: getAdditionalColumns(),
         ...dfc
       })
@@ -499,6 +500,7 @@ const DataTableBase = ({ data, config }) => {
 
   // Logic to update group by and breakout by columns
   useEffect(() => {
+    setTableData()
     if (config[GROUP_BY_STICKY] !== _groupBy) {
       if (_groupBy && _breakoutBy === _groupBy && config[GROUP_BY] === _groupBy) {
         updateDataFilter({ [GROUP_BY]: _groupBy, [BREAKOUT_BY]: getUniqueBreakoutBy() })
@@ -586,7 +588,11 @@ const DataTableBase = ({ data, config }) => {
             </TableGrid>
           </Grid>
         </Grid>
-        : <Skeleton variant="rect" width={'100%'} height={'100%'} />
+        : <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Skeleton variant="rect" width={'100%'} height={config.tableHeight} />
+          </Grid>
+        </Grid>
       }
     </React.Fragment>
   )
