@@ -4,11 +4,9 @@ import { Translate } from './Translate'
 import { Label } from './Label'
 
 export const CircleLabels = ({ data, root, width, height, xAxis, yAxis, colorScale, onHover, format, ...rest }) => {
-  console.log('CircleLabels format: ', format)
   const k = width / (root[0].r * 2)
 
   const getDataStr = (d, axis) => {
-    console.log('getDataStr d: ', d, axis)
     const calcStrLength = (d.r / 4)
     let dataStr
     if (axis === xAxis) {

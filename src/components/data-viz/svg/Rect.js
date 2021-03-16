@@ -9,7 +9,6 @@ export const Rect = ({
   styles
 }) => {
   return (
-    // <svg width="20" height="20" style="fill: rgb(94, 56, 75);"><rect class="legend-rect" width="20" height="20" style="fill: rgb(94, 56, 75); background-color: rgb(94, 56, 75);"></rect></svg>
     <svg width={width} height={height} style={styles}>
       <rect
         className="rect"

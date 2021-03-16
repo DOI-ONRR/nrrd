@@ -140,7 +140,7 @@ export const CircleChart = ({ data, legendLabels, legendPosition = 'bottom', sho
     .range(colorRange)
 
   const onHover = d => {
-    console.log('handleOnHover: ', d)
+    // console.log('handleOnHover: ', d)
     setActiveNode(d)
   }
 
