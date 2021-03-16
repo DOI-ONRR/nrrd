@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid'
 import { OnrrLogoImg } from '../../images'
 import { Typography } from '@material-ui/core'
 import Link from '../../Link'
+import PrintIcon from '@material-ui/icons/Print'
+import IconButton from '@material-ui/core/IconButton'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -51,6 +53,9 @@ const SnapshotBanner = () => {
           <Grid container>
             <Grid item xs={12}>
               <Box m={1} mr={2} style={{ fontSize: '1.1rem', lineHeight: '1.1rem', color: 'white', textAlign: 'end' }}>
+                <IconButton size="small" color='inherit' aria-label="print" component="span" onClick={() => window.print()} style={{ marginRight: '5px' }}>
+                  <PrintIcon />
+                </IconButton>
                 Monthly Snapshot
               </Box>
             </Grid>
