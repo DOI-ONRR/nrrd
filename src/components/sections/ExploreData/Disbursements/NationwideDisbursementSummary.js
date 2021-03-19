@@ -25,6 +25,7 @@ import {
 } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
+import { HorizontalStackedBarChart } from '../../../data-viz/StackedBarChart'
 import DisbursementLocationTotal from './DisbursementLocationTotal'
 
 import utils from '../../../../js/utils'
@@ -77,7 +78,12 @@ const NationwideDisbursementSummary = props => {
   const yGroupBy = 'source'
   const xLabels = 'month'
   const units = 'dollars'
-  // const xGroups = {}
+  const colorRange = [
+    theme.palette.explore[700],
+    theme.palette.explore[500],
+    theme.palette.explore[300],
+    theme.palette.explore[100]
+  ]
 
   const createMarkup = markup => {
     return { __html: markup }
@@ -161,7 +167,7 @@ const NationwideDisbursementSummary = props => {
                       </Grid>
                       <Grid container item xs={12} sm={7}>
                         <Box mt={{ xs: 0, sm: 4 }} width="100%">
-                          <StackedBarChart
+                          {/* <StackedBarChart
                             key={`NDS${ dataSet }`}
                             data={item[1]}
                             legendFormat={v => {
@@ -203,6 +209,40 @@ const NationwideDisbursementSummary = props => {
                               theme.palette.explore[300],
                               theme.palette.explore[100]
                             ]}
+                          /> */}
+                          <HorizontalStackedBarChart
+                            key={`NDS${ dataSet }`}
+                            data={item[1]}
+                            legendFormat={v => {
+                              if (v === 0) {
+                                return '-'
+                              }
+                              else {
+                                return utils.formatToDollarInt(v)
+                              }
+                            }}
+                            // legendHeaders two dimensional array
+                            legendHeaders={['', '']}
+                            // chartTooltip two dimensional array
+                            chartTooltip={
+                              d => {
+                                const r = []
+                                r[0] = d.key
+                                r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                                return r
+                              }
+                            }
+                            // eslint-disable-next-line no-return-assign
+                            barScale={item[1].reduce((sum, i) => sum += i.total, 0) / groupTotal }
+                            units={units}
+                            xAxis={xAxis}
+                            xLabels={xLabels}
+                            yAxis={yAxis}
+                            yGroupBy={yGroupBy}
+                            yOrderBy={yOrderBy}
+                            horizontal
+                            legendReverse={true}
+                            colorRange={colorRange}
                           />
                         </Box>
                       </Grid>
