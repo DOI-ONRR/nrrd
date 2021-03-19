@@ -21,19 +21,29 @@ const StyledTooltip = withStyles(theme =>
 const ChartTooltip = ({ children, title, ...rest }) => {
   // console.log('ChartTooltip rest: ', rest)
 
-  // TODO: should get tooltip format from chart format
-  const getTooltipTitle = (d, xAxis, yAxis, format) => {
-    return (
-      <>
-        <Box component="span">{d.data[xAxis]}</Box>
-        <Box compnent="span">{format(d.data[yAxis])}</Box>
-      </>
-    )
+  const getTooltipTitle = (d, chartTooltip) => {
+    const data = chartTooltip(d)
+
+    if (data && data.length > 0) {
+      return (
+        <>
+          <Box>{data[0]}</Box>
+          <Box>{data[1]}</Box>
+        </>
+      )
+    }
+    else {
+      return (
+        <>
+          <Box component="span">No tooltip title found</Box>
+        </>
+      )
+    }
   }
 
   const ChartTooltipDisplay = React.forwardRef((props, ref) => (
     <StyledTooltip
-      title={getTooltipTitle(props.data, props.xAxis, props.yAxis, props.format)}
+      title={getTooltipTitle(props.data, props.chartTooltip)}
       enterDelay={100}
       leaveDelay={250}
       enterTouchDelay={100}

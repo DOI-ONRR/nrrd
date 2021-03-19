@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { withStyles, createStyles, useTheme } from '@material-ui/core/styles'
 
 import GlossaryTerm from '../../GlossaryTerm/GlossaryTerm'
-import { Rect } from '../svg/Rect'
+import Rect from '../svg/Rect'
 
 import {
   Table,
@@ -50,58 +50,78 @@ const StyledTableRow = withStyles(theme =>
 
 const Legend = ({
   data,
-  root,
   activeNode,
-  legendLabels,
-  format,
-  formatLegendLabels,
+  legendHeaders = [],
+  legendFormat = d => d,
+  legendLabelFormat = d => d,
+  legendReverse = false,
+  legendTotal = false,
   xAxis,
   yAxis,
+  yOrderBy,
   colorScale,
   ...rest
 }) => {
-  // console.log('Legend props: ', data, root)
+  console.log('Legend data, activeNode: ', data, activeNode)
   const theme = useTheme()
-  const activeLabel = activeNode && (activeNode.data[xAxis])
+  const activeKey = (activeNode && activeNode.key) && activeNode.key
+  const legendData = legendReverse ? data.reverse() : data
+  let total
+
+  // legend total
+  if (legendTotal) {
+    total = legendData.reduce((acc, key) => acc + key[yAxis], 0)
+  }
 
   return (
     <TableContainer>
       <Table aria-label="Chart legend table">
+        {legendHeaders && legendHeaders.length > 0 &&
         <TableHead>
           <TableRow>
-            <StyledTableHeadCell colspan={2}>{legendLabels[0]}</StyledTableHeadCell>
-            <StyledTableHeadCell align="right">{legendLabels[1]}</StyledTableHeadCell>
+            <StyledTableHeadCell colSpan={2}>{legendHeaders[0]}</StyledTableHeadCell>
+            <StyledTableHeadCell align="right">{legendHeaders[1]}</StyledTableHeadCell>
           </TableRow>
         </TableHead>
+        }
         <TableBody>
-          {root.map((row, i) => {
-            if (i > 0) {
-              return (
-                <StyledTableRow
-                  key={row.data[xAxis]}
-                  style={{ backgroundColor: (activeLabel === row.data[xAxis]) ? theme.palette.grey[200] : '' }}>
-                  <StyledTableBodyCell style={{ verticalAlign: 'top' }}>
-                    <Rect
-                      width={20}
-                      height={20}
-                      styles={{ fill: colorScale(i + 1), marginTop: 5 }}
-                    />
-                  </StyledTableBodyCell>
-                  <StyledTableBodyCell>
-                    <GlossaryTerm
-                      termKey={formatLegendLabels(row.data[xAxis]) || ''}
-                      isInTable={true}
-                      style={{ whiteSpace: 'inherit' }}>
-                      { formatLegendLabels(row.data[xAxis]) || '' }
-                    </GlossaryTerm>
-                  </StyledTableBodyCell>
-                  <StyledTableBodyCell align="right">
-                    {format(row.data[yAxis])}
-                  </StyledTableBodyCell>
-                </StyledTableRow>
-              )
-            }
-          })}
+          {legendData.map((row, i) => {
+            return (
+              <StyledTableRow
+                key={`lstr__${ i }`}
+                style={{ backgroundColor: (activeKey === row[xAxis]) ? theme.palette.grey[200] : '' }}>
+                <StyledTableBodyCell style={{ verticalAlign: 'top', width: 25 }}>
+                  <Rect
+                    width={20}
+                    height={20}
+                    styles={{ fill: colorScale(row[xAxis]), marginTop: 5 }}
+                  />
+                </StyledTableBodyCell>
+                <StyledTableBodyCell>
+                  <GlossaryTerm
+                    termKey={legendLabelFormat(row[xAxis]) || ''}
+                    isInTable={true}
+                    style={{ whiteSpace: 'inherit' }}>
+                    { legendLabelFormat(row[xAxis]) || '' }
+                  </GlossaryTerm>
+                </StyledTableBodyCell>
+                <StyledTableBodyCell align="right">
+                  {legendFormat(row[yAxis])}
+                </StyledTableBodyCell>
+              </StyledTableRow>
+            )
+          }
+          )}
+          { legendTotal &&
+              <StyledTableRow>
+                <StyledTableBodyCell colSpan={2} style={{ fontWeight: 'bold' }}>
+                  Total
+                </StyledTableBodyCell>
+                <StyledTableBodyCell align="right" style={{ fontWeight: 'bold' }}>
+                  {legendFormat(total)}
+                </StyledTableBodyCell>
+              </StyledTableRow>
+          }
         </TableBody>
       </Table>
     </TableContainer>

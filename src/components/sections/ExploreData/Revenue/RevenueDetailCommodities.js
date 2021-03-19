@@ -7,7 +7,7 @@ import { formatToDollarInt } from '../../../../js/utils'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart } from '../../../data-viz/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -56,6 +56,8 @@ const RevenueDetailCommodities = props => {
 
   const dataSet = (period === DFC.FISCAL_YEAR_LABEL) ? `FY ${ year }` : `CY ${ year }`
   const dataKey = `${ dataSet }-${ state }`
+  const xAxis = 'commodity'
+  const yAxis = 'total'
 
   const isCounty = state && state.length === 5
   const { ref, inView, entry } = useInView({
@@ -93,13 +95,22 @@ const RevenueDetailCommodities = props => {
                 <CircleChart
                   key={`RDC__${ dataKey }`}
                   data={chartData.revenue_summary}
-                  xAxis='commodity'
-                  yAxis='total'
+                  xAxis={xAxis}
+                  yAxis={yAxis}
                   maxCircles={6}
-                  legendLabels={['Commodity', 'Total']}
+                  legendHeaders={['Commodity', 'Total']}
                   showLabels={false}
                   showTooltips={true}
-                  format={d => formatToDollarInt(d)} />
+                  chartTooltip={
+                    d => {
+                      const r = []
+                      r[0] = d.data[xAxis]
+                      r[1] = formatToDollarInt(d.data[yAxis])
+                      return r
+                    }
+                  }
+                  labelFormat={d => formatToDollarInt(d)}
+                  legendFormat={d => formatToDollarInt(d)} />
                 <QueryLink
                   groupBy={isCounty ? DFC.COUNTY : DFC.COMMODITY}
                   landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"

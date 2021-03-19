@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const Rect = ({
+const Rect = ({
   width = 'auto',
   height = 'auto',
   x = 0,
@@ -20,6 +20,8 @@ export const Rect = ({
     </svg>
   )
 }
+
+export default Rect
 
 Rect.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

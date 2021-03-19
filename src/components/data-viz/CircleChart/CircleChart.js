@@ -5,13 +5,15 @@ import * as d3 from 'd3'
 import { Grid } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
 
-import Legend from '../Legend'
-import { Circles } from '../svg/Circles'
-import { CircleLabels } from '../svg/CircleLabels'
+import { Legend } from '../Legend'
+import Circles from '../svg/Circles'
+import CircleLabel from '../svg/CircleLabel'
 
-export const CircleChart = ({ data, legendLabels, legendPosition = 'bottom', showLabels = true, showTooltips = true, ...options }) => {
+const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabels = true, showTooltips = true, ...options }) => {
   // console.log('CircleChart: ', options)
-  const [activeNode, setActiveNode] = useState(null)
+  const [activeNode, setActiveNode] = useState({
+    key: ''
+  })
   const ccRef = useRef()
 
   // sizing
@@ -29,16 +31,31 @@ export const CircleChart = ({ data, legendLabels, legendPosition = 'bottom', sho
     theme.palette.explore[100]
   ]
 
-  const maxCircles = options.maxCircles - 1
+  const minColor = options.minColor || 'lightblue'
+  const maxColor = options.maxColor || 'darkblue'
+
+  const maxCircles = options.maxCircles - 1 || 6
   const yAxis = options.yAxis
   const xAxis = options.xAxis
 
-  const format = options.format || function () {
+  const format = options.labelFormat || function () {
     console.debug('format func')
   }
 
-  const formatLegendLabels = options.formatLegendLabels || function (d) {
+  const legendFormat = options.legendFormat || function () {
+    console.debug('format func')
+  }
+
+  const legendLabel = options.legendLabel || function (d) {
     return d
+  }
+
+  const chartTooltip = options.chartTooltip || function (d) {
+    return [d.data[xAxis], d.data[yAxis]]
+  }
+
+  const circleLabel = options.circleLabel || function (d) {
+    return [d.data[xAxis], d.data[yAxis]]
   }
 
   // roll up other dat
@@ -135,13 +152,25 @@ export const CircleChart = ({ data, legendLabels, legendPosition = 'bottom', sho
     }
   }
 
+  const color = () => {
+    const domain = d3.min([yDomain().length, maxCircles])
+    const colorScale = colorRange
+      ? d3.scaleOrdinal().domain(yDomain().length + 1).range(colorRange)
+      : d3.scaleLinear().domain([-1, domain]).range([minColor, maxColor])
+    return colorScale
+  }
+
   // color scale
-  const colorScale = d3.scaleOrdinal()
-    .range(colorRange)
+  const colorScale = color()
 
   const onHover = d => {
-    // console.log('handleOnHover: ', d)
-    setActiveNode(d)
+    console.log('CC handleOnHover: ', d)
+    if (d && d.data) {
+      setActiveNode({ ...activeNode, key: d.data[xAxis] })
+    }
+    else {
+      setActiveNode({ ...activeNode, key: '' })
+    }
   }
 
   return (
@@ -151,40 +180,34 @@ export const CircleChart = ({ data, legendLabels, legendPosition = 'bottom', sho
           <Grid item xs={7}>
             <svg viewBox={`${ -width * 0.5 } ${ -height * 0.5 } ${ width } ${ height }`} ref={ccRef}>
               <Circles
-                data={xDomain}
-                root={root.descendants()}
+                data={root.descendants()}
                 width={width}
                 height={height}
                 colorScale={colorScale}
-                domains={[xDomain, yDomain]}
                 onHover={onHover}
-                xAxis={xAxis}
-                yAxis={yAxis}
                 showTooltips={showTooltips}
-                format={format}
+                chartTooltip={chartTooltip}
               />
               {showLabels &&
-                <CircleLabels
-                  data={xDomain}
-                  root={root.descendants()}
+                <CircleLabel
+                  data={root.descendants()}
                   width={width}
                   height={height}
+                  onHover={onHover}
                   xAxis={xAxis}
                   yAxis={yAxis}
-                  onHover={onHover}
-                  format={format}
+                  circleLabel={circleLabel}
                 />
               }
             </svg>
           </Grid>
           <Grid item xs={5}>
             <Legend
-              data={xDomain}
-              root={root.descendants()}
+              data={otherDataSet}
               activeNode={activeNode}
-              legendLabels={legendLabels}
-              format={format}
-              formatLegendLabels={formatLegendLabels}
+              legendHeaders={legendHeaders}
+              legendFormat={legendFormat}
+              legendLabel={legendLabel}
               xAxis={xAxis}
               yAxis={yAxis}
               colorScale={colorScale}
@@ -197,40 +220,34 @@ export const CircleChart = ({ data, legendLabels, legendPosition = 'bottom', sho
           <Grid item xs={12}>
             <svg viewBox={`${ -width * 0.5 } ${ -height * 0.5 } ${ 500 } ${ 500 }`} ref={ccRef}>
               <Circles
-                data={xDomain}
-                root={root.descendants()}
+                data={root.descendants()}
                 width={width}
                 height={height}
                 colorScale={colorScale}
-                domains={[xDomain, yDomain]}
                 onHover={onHover}
-                xAxis={xAxis}
-                yAxis={yAxis}
                 showTooltips={showTooltips}
-                format={format}
+                chartTooltip={chartTooltip}
               />
               {showLabels &&
-                <CircleLabels
-                  data={xDomain}
-                  root={root.descendants()}
+                <CircleLabel
+                  data={root.descendants()}
                   width={width}
                   height={height}
+                  onHover={onHover}
                   xAxis={xAxis}
                   yAxis={yAxis}
-                  onHover={onHover}
-                  format={format}
+                  circleLabel={circleLabel}
                 />
               }
             </svg>
           </Grid>
           <Grid item xs={12}>
             <Legend
-              data={xDomain}
-              root={root.descendants()}
+              data={otherDataSet}
               activeNode={activeNode}
-              legendLabels={legendLabels}
-              format={format}
-              formatLegendLabels={formatLegendLabels}
+              legendHeaders={legendHeaders}
+              legendFormat={legendFormat}
+              legendLabel={legendLabel}
               xAxis={xAxis}
               yAxis={yAxis}
               colorScale={colorScale}
@@ -241,3 +258,5 @@ export const CircleChart = ({ data, legendLabels, legendPosition = 'bottom', sho
     </>
   )
 }
+
+export default CircleChart

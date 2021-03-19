@@ -14,31 +14,29 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const WithTooltip = ({ showTooltips, circleIsActive, data, xAxis, yAxis, format, children }) => (
+const WithTooltip = ({ showTooltips, isActive, data, chartTooltip, children }) => (
   showTooltips
     ? <ChartTooltip
-      open={circleIsActive}
+      open={isActive}
       data={data}
-      xAxis={xAxis}
-      yAxis={yAxis}
-      format={format}>
+      chartTooltip={chartTooltip}>
       {children}
     </ChartTooltip>
     : children
 )
 
-export const Circle = ({ data, r, fill, isClickable, showTooltips, onHover, xAxis, yAxis, format, stroke, strokeWidth, ...rest }) => {
+const Circle = ({ data, r, fill, isClickable, showTooltips, onHover, chartTooltip, ...rest }) => {
   // console.log('Circle data: ', data, rest)
-  const [circleIsActive, setCircleIsActive] = useState(undefined)
+  const [isActive, setIsActive] = useState(undefined)
   const classes = useStyles()
 
   const handleMouseEnter = () => {
-    setCircleIsActive(true)
+    setIsActive(true)
     onHover(data)
   }
 
   const handleMouseLeave = () => {
-    setCircleIsActive(false)
+    setIsActive(false)
     onHover(undefined)
   }
 
@@ -47,11 +45,9 @@ export const Circle = ({ data, r, fill, isClickable, showTooltips, onHover, xAxi
       {
         <WithTooltip
           showTooltips={showTooltips}
-          circleIsActive={circleIsActive}
-          data={data}
-          xAxis={xAxis}
-          yAxis={yAxis}
-          format={format}>
+          chartTooltip={chartTooltip}
+          circleIsActive={isActive}
+          data={data}>
           <circle
             pointerEvents="all"
             r={r}
@@ -65,6 +61,8 @@ export const Circle = ({ data, r, fill, isClickable, showTooltips, onHover, xAxi
     </>
   )
 }
+
+export default Circle
 
 // propTypes
 Circle.propTypes = {

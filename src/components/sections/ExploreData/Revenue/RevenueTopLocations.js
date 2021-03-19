@@ -22,7 +22,7 @@ import {
   useTheme
 } from '@material-ui/core'
 
-import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart } from '../../../data-viz/CircleChart'
 
 const APOLLO_QUERY = gql`
     query RevenueTopLocations($year: Int!, $locations: [String!], $period: String!,  $commodities: [String!]) {
@@ -119,6 +119,8 @@ const RevenueTopLocations = props => {
 
   let chartData = []
   const dataSet = (period === 'Fiscal Year') ? `FY ${ year }` : `CY ${ year }`
+  const xAxis = 'location_name'
+  const yAxis = 'total'
 
   if (data) {
     // chartData = data.revenue_summary
@@ -201,15 +203,41 @@ const RevenueTopLocations = props => {
                 <CircleChart
                   key={`RTL${ dataSet }${ commodityKey }`}
                   data={chartData}
-                  xAxis='location_name'
-                  yAxis='total'
+                  xAxis={xAxis}
+                  yAxis={yAxis}
                   maxCircles={6}
-                  legendLabels={['Location name', 'Total']}
+                  legendHeaders={['Location name', 'Total']}
                   legendPosition='right'
                   showLabels={true}
                   showTooltips={true}
-                  format={d => formatToDollarInt(d)}
-                  formatLegendLabel={d => {
+                  chartTooltip={
+                    d => {
+                      const r = []
+                      r[0] = d.data[xAxis]
+                      if (r[0] === 'Native American') {
+                        r[0] = 'Native American lands'
+                      }
+                      else if (r[0] === 'Gulf of Mexico, Central Gulf of Mexico') {
+                        r[0] = 'Central Gulf'
+                      }
+                      else if (r[0] === 'Gulf of Mexico, Western Gulf of Mexico') {
+                        r[0] = 'Western Gulf'
+                      }
+
+                      r[1] = utils.formatToDollarInt(d.data[yAxis])
+                      return r
+                    }
+                  }
+                  circleLabel={
+                    d => {
+                      const r = []
+                      r[0] = d.data[xAxis]
+                      r[1] = formatToDollarInt(d.data[yAxis])
+                      return r
+                    }
+                  }
+                  legendFormat={d => formatToDollarInt(d)}
+                  legendLabel={d => {
                     if (d === 'Native American') {
                       d = 'Native American lands'
                     }
