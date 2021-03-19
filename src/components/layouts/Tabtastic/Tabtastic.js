@@ -8,6 +8,7 @@ import { Typography, Box, Tabs, Tab } from '@material-ui/core'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
+
 const useStyles = makeStyles(theme => ({
   tabsRoot: {},
   tabsFlexContainer: {
@@ -112,7 +113,9 @@ const Tabtastic = props => {
     if (selectedParams) {
       const name = selectedParams.toString().replace('tab-', '')
       const selectedParamName = name.charAt(0).toUpperCase() + name.slice(1)
-      updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedParamName })
+      if (updateDataFilter) {
+        updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedParamName })
+      }
     }
   }, [selectedParams])
 
@@ -128,9 +131,10 @@ const Tabtastic = props => {
 
     setSelected(formattedLabel)
 
-    updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedChild.props.label, [DFC.BREAKOUT_BY]: DFC.SOURCE })
-
-    navigate(`?tab=${ formattedLabel }`)
+    if (updateDataFilter) {
+      updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedChild.props.label, [DFC.BREAKOUT_BY]: DFC.SOURCE })
+      navigate(`?tab=${ formattedLabel }`)
+    }
   }
 
   // get labels and create string array for aria labels
@@ -203,7 +207,7 @@ Tabtastic.propTypes = {
   // tab children content
   children: PropTypes.node,
   // if url contains ?tab parameter, this will be the selected tab otherwise the first tab will be selected
-  selectedTab: PropTypes.string
+  selectedTab: PropTypes.string,
 }
 
 export default Tabtastic
