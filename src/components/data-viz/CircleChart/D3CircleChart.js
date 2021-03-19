@@ -420,6 +420,8 @@ export default class D3CircleChart {
       .text(d => circleLabel(d.data, xAxis, yAxis)[1])
       // .call(this.wrapText, 150) // wrap text in <= 150 pixels
 
+    console.log('D3CircleChart root: ', root)
+
     zoomTo([root.x, root.y, root.r * 2])
 
     function zoomTo (v) {

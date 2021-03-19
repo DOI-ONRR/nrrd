@@ -95,7 +95,7 @@ describe('Stacked Bar Chart component:', () => {
     expect(screen.getByText('15 billion foo')).toBeInTheDocument()
   })
 
-  test('x Labels Stacked Bar Chart  rendered succesfully', () => {
+  test('x Labels Stacked Bar Chart rendered succesfully', () => {
     const xLabels = (x, i) => {
       return x.map(v => ('foo'))
     }

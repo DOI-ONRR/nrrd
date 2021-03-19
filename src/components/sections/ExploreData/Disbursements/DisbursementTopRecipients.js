@@ -15,7 +15,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { makeStyles } from '@material-ui/core/styles'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
-import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
+import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
 
 import {
   Box,
@@ -83,6 +83,16 @@ const DisbursementTopRecipients = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
 
+  const colorRange = [
+    theme.palette.explore[700],
+    theme.palette.explore[600],
+    theme.palette.explore[500],
+    theme.palette.explore[400],
+    theme.palette.explore[300],
+    theme.palette.explore[200],
+    theme.palette.explore[100]
+  ]
+
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
 
   if (loading) {
@@ -119,32 +129,14 @@ const DisbursementTopRecipients = props => {
           <Box className={classes.root}>
             <Box className={classes.topRecipientChart}>
               <CircleChart
-                key={'DTR' + dataSet }
+                key={`DTR__${ dataSet }`}
                 data={chartData}
-                maxLegendWidth='800px'
                 xAxis='recipient'
                 yAxis='total'
-                format={ d => utils.formatToDollarInt(d) }
-                circleLabel={ d => {
-                  // console.debug('circleLABLE: ', d)
-                  const r = []
-                  r[0] = d.recipient
-                  r[1] = utils.formatToDollarInt(d.total)
-                  return r
-                }
-                }
-                yLabel={dataSet}
-                minColor={theme.palette.green[100]}
-                maxColor={theme.palette.green[600]}
-                colorRange={[
-                  theme.palette.explore[700],
-                  theme.palette.explore[600],
-                  theme.palette.explore[500],
-                  theme.palette.explore[400],
-                  theme.palette.explore[300],
-                  theme.palette.explore[200],
-                  theme.palette.explore[100]
-                ]} />
+                legendLabels={['Recipient', dataSet]}
+                legendPosition={'right'}
+                format={d => utils.formatToDollarInt(d)}
+                colorRange={colorRange} />
             </Box>
           </Box>
         </Grid>

@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 
 // utility functions
-import utils from '../../../../js/utils'
+import utils, { formatToDollarInt } from '../../../../js/utils'
 import * as d3 from 'd3'
 import { useInView } from 'react-intersection-observer'
 
@@ -22,7 +22,7 @@ import {
   useTheme
 } from '@material-ui/core'
 
-import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
+import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
 
 const APOLLO_QUERY = gql`
     query RevenueTopLocations($year: Int!, $locations: [String!], $period: String!,  $commodities: [String!]) {
@@ -154,7 +154,7 @@ const RevenueTopLocations = props => {
           <Grid item xs={12}>
             <Box className={classes.root}>
               <Box className={classes.topLocationsChart}>
-                <CircleChart
+                {/* <CircleChart
                   key ={`RTL${ dataSet }${ commodityKey }`}
                   data={chartData}
                   maxLegendWidth='800px'
@@ -197,7 +197,24 @@ const RevenueTopLocations = props => {
                     theme.palette.explore[300],
                     theme.palette.explore[200],
                     theme.palette.explore[100]
-                  ]} />
+                  ]} /> */}
+                <CircleChart
+                  key={`RTL${ dataSet }${ commodityKey }`}
+                  data={chartData}
+                  xAxis='location_name'
+                  yAxis='total'
+                  maxCircles={6}
+                  legendLabels={['Location name', 'Total']}
+                  legendPosition='right'
+                  showLabels={true}
+                  showTooltips={true}
+                  format={d => formatToDollarInt(d)}
+                  formatLegendLabel={d => {
+                    if (d === 'Native American') {
+                      d = 'Native American lands'
+                    }
+                    return d
+                  }} />
               </Box>
             </Box>
           </Grid>
