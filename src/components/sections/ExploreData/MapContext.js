@@ -264,14 +264,6 @@ const MapContext = props => {
 
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
-  const {
-    mapLevel,
-    offshoreRegions,
-    dataType,
-    period,
-    commodity,
-    year
-  } = filterState
 
   const cards = pageState.cards
 
@@ -389,8 +381,8 @@ const MapContext = props => {
     onLink(d)
   }
 
-  const countyLevel = mapLevel === DFC.COUNTY_CAPITALIZED
-  const offshore = (offshoreRegions === 'true' || offshoreRegions === true)
+  const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
+  const offshore = (filterState[DFC.OFFSHORE_REGIONS] === true || filterState[DFC.OFFSHORE_REGIONS] === 'true')
 
   let mapJsonObject = mapStates
   let mapFeatures = 'states-geo'
@@ -464,13 +456,13 @@ const MapContext = props => {
 
   useEffect(() => {
     setQueryParams({
-      dataType: dataType,
-      period: period,
-      mapLevel: mapLevel,
-      offshoreRegions: offshoreRegions,
-      commodity: commodity,
+      dataType: filterState.dataType,
+      period: filterState.period,
+      mapLevel: filterState.mapLevel,
+      offshoreRegions: filterState.offshoreRegions,
+      commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
-      year: year
+      year: filterState.year
     }, 'replaceIn')
   }, [filterState, pageState])
 
