@@ -79,7 +79,8 @@ const VARIABLE_CONFIGS = {
     { [LOCAL_RECIPIENT]: MULTI_STR },
     { [PERIOD]: SINGLE_STR },
     { [FISCAL_YEAR]: MULTI_INT },
-    { [CALENDAR_YEAR]: MULTI_INT }
+    { [CALENDAR_YEAR]: MULTI_INT },
+    { [COMMODITY]: MULTI_STR },
   ],
   [REVENUE_BY_COMPANY]: [
     { [PERIOD]: SINGLE_STR },
@@ -111,6 +112,7 @@ const VARIABLE_CONFIGS = {
       { [US_STATE_NAME]: MULTI_STR },
       { [LOCAL_RECIPIENT]: MULTI_STR },
       { [PERIOD]: SINGLE_STR },
+      { [COMMODITY]: MULTI_STR },
     ],
     [REVENUE_BY_COMPANY]: [
       { [PERIOD]: SINGLE_STR },

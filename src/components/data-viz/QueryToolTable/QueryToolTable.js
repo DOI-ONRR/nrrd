@@ -142,7 +142,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
         showOnlySubtotalRow: (dfc[DATA_TYPE] === PRODUCTION && (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
         pivotColumn: getPivotColumn(),
         pivotColumnValue: getPivotColumnValue(),
-        omitGroupBreakoutByOptions: (dfc[PERIOD] === PERIOD_MONTHLY) ? [MONTH_LONG] : [],
+        omitGroupBreakoutByOptions: [MONTH_LONG],
         height: _tableHeight,
         hideColumns: getHideColumns(),
         sortColumn: getSortColumn(),
