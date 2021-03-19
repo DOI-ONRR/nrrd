@@ -9,4 +9,3 @@ const LandTypeFilter = ({ queryKey, ...rest }) => {
 }
 
 export default LandTypeFilter
-
