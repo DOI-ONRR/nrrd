@@ -167,49 +167,6 @@ const NationwideDisbursementSummary = props => {
                       </Grid>
                       <Grid container item xs={12} sm={7}>
                         <Box mt={{ xs: 0, sm: 4 }} width="100%">
-                          {/* <StackedBarChart
-                            key={`NDS${ dataSet }`}
-                            data={item[1]}
-                            legendFormat={v => {
-                              if (v === 0) {
-                                return '-'
-                              }
-                              else {
-                                return utils.formatToDollarInt(v)
-                              }
-                            }}
-                            legendHeaders={ headers => {
-                            // console.debug('headers..................', headers)
-                              headers[0] = ''
-                              headers[2] = ''
-                              return headers
-                            }
-                            }
-                            chartTooltip={
-                              d => {
-                                const r = []
-                                r[0] = d.key
-                                r[1] = utils.formatToDollarInt(d[0].data[d.key])
-                                return r
-                              }
-                            }
-                            // eslint-disable-next-line no-return-assign
-                            barScale={item[1].reduce((sum, i) => sum += i.total, 0) / groupTotal }
-                            units={units}
-                            xAxis={xAxis}
-                            xLabels={xLabels}
-                            yAxis={yAxis}
-                            yGroupBy={yGroupBy}
-                            yOrderBy={yOrderBy}
-                            horizontal
-                            legendReverse={true}
-                            colorRange={[
-                              theme.palette.explore[700],
-                              theme.palette.explore[500],
-                              theme.palette.explore[300],
-                              theme.palette.explore[100]
-                            ]}
-                          /> */}
                           <HorizontalStackedBarChart
                             key={`NDS${ dataSet }`}
                             data={item[1]}

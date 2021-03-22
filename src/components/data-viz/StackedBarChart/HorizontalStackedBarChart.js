@@ -3,12 +3,24 @@ import PropTypes from 'prop-types'
 
 import * as d3 from 'd3'
 
-import { useTheme } from '@material-ui/core/styles'
+import { Button, Collapse } from '@material-ui/core'
+import { useTheme, createStyles, withStyles } from '@material-ui/core/styles'
 
 import Translate from '../svg/Translate'
 import { LeftAxis, BottomAxis } from '../svg/Axis'
 import Bars from '../svg/Bars'
 import { Legend } from '../Legend'
+
+const LegendButton = withStyles(theme =>
+  createStyles({
+    root: {
+      color: theme.palette.links.default,
+      '& > span': {
+        textDecoration: 'underline',
+      }
+    },
+  })
+)(Button)
 
 const HorizontalStackedBarChart = ({
   data,
@@ -24,6 +36,8 @@ const HorizontalStackedBarChart = ({
     yOrderBy,
     horizontal,
     showTooltips = true,
+    collapsibleLegend,
+    collapsedLegend
   } = options
 
   console.log('HorizontalStackedBarChart data: ', data)
@@ -37,8 +51,12 @@ const HorizontalStackedBarChart = ({
     key: ''
   })
 
-  const legendFormat = options.legendFormat || function () {
+  const [collapsed, setCollapsed] = useState(collapsedLegend || false)
+  const buttonValue = collapsed ? 'Show details' : 'Hide details'
+
+  const legendFormat = options.legendFormat || function (d) {
     console.debug('legend format')
+    return d
   }
 
   const chartTooltip = options.chartTooltip || function (d) {
@@ -253,18 +271,21 @@ const HorizontalStackedBarChart = ({
           />
         </Translate>
       </svg>
-      <Legend
-        data={dataset.legendData}
-        activeNode={activeNode}
-        legendHeaders={legendHeaders}
-        legendFormat={legendFormat}
-        // legendReverse={true}
-        legendTotal={true}
-        xAxis={xAxis}
-        yAxis={yAxis}
-        colorScale={colorScale}
-        yOrderBy={yOrderBy}
-      />
+      { collapsibleLegend && <LegendButton variant='text' onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</LegendButton> }
+      <Collapse in={!collapsed}>
+        <Legend
+          data={dataset.legendData}
+          activeNode={activeNode}
+          legendHeaders={legendHeaders}
+          legendFormat={legendFormat}
+          // legendReverse={true}
+          legendTotal={true}
+          xAxis={xAxis}
+          yAxis={yAxis}
+          colorScale={colorScale}
+          yOrderBy={yOrderBy}
+        />
+      </Collapse>
     </>
   )
 }

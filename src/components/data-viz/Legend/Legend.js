@@ -67,10 +67,18 @@ const Legend = ({
   const activeKey = (activeNode && activeNode.key) && activeNode.key
   const legendData = legendReverse ? data.reverse() : data
   let total
+  let legendKey
+  let rowTotal
+
+  const legendObj = legendData[legendData.length - 1]
+  if (legendObj) {
+    legendKey = Object.keys(legendObj).filter(item => item === 'total')
+    rowTotal = (yAxis !== legendKey) ? legendKey : yAxis
+  }
 
   // legend total
   if (legendTotal) {
-    total = legendData.reduce((acc, key) => acc + key[yAxis], 0)
+    total = legendData.reduce((acc, key) => acc + key[rowTotal], 0)
   }
 
   return (
@@ -106,7 +114,7 @@ const Legend = ({
                   </GlossaryTerm>
                 </StyledTableBodyCell>
                 <StyledTableBodyCell align="right">
-                  {legendFormat(row[yAxis])}
+                  {legendFormat(row[rowTotal])}
                 </StyledTableBodyCell>
               </StyledTableRow>
             )
