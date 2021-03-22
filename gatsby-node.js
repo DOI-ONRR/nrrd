@@ -22,7 +22,8 @@ exports.createPages = ({ graphql, reporter, actions }) => {
 
   return Promise.all([
     createRedirects({ graphql, reporter, createRedirect }),
-    createComponentsCache({ graphql, reporter })
+    createComponentsCache({ graphql, reporter }),
+    createYearsCache({ graphql, reporter })
   ])
 }
 
@@ -30,66 +31,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     node: {
       fs: 'empty'
-    }
-  })
-}
-
-// Create redirects from Redirect.mdx frontmatter
-const createPatternLibraryPages = ({ graphql, createPage, reporter }) => {
-  console.info('creating pattern library pages')
-
-  return new Promise((resolve, reject) => {
-    resolve(
-      graphql(`
-        query {
-          allComponentMetadata(sort: {fields: displayName, order: ASC}) {
-            nodes {
-              displayName
-              description {
-                childMdx {
-                  body
-                }
-              }
-              childrenComponentProp {
-                name
-                docblock
-                required
-                parentType {
-                  name
-                }
-                type {
-                  value
-                }
-                defaultValue {
-                  value
-                  computed
-                }
-              }
-              parent {
-                ... on File {
-                  relativePath
-                  absolutePath
-                }
-              }
-            }
-          }
-        }
-      `)
-    )
-  }).then(result => {
-    if (result.errors) {
-      reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
-    }
-    else {
-      result.data.allComponentMetadata.nodes.filter(node => !node.displayName.includes('Demos')).forEach((node, i) => {
-        createPage({
-          path: `/patterns/components/${ node.displayName }`,
-          component: path.resolve('./src/templates/pattern-library-component.js'),
-          context: {
-            componentMetadata: node
-          },
-        })
-      })
     }
   })
 }
@@ -144,6 +85,81 @@ const createRedirects = ({ graphql, reporter, createRedirect }) => {
         })
       })
     }
+  })
+}
+
+const createYearsCache = ({ graphql, reporter }) => {
+  console.info('creating years cache index')
+  const PERIOD_FISCAL_YEAR = 'Fiscal Year'
+  const PERIOD_CALENDAR_YEAR = 'Calendar Year'
+  const REVENUE = 'Revenue'
+  const DISBURSEMENT = 'Disbursements'
+  const PRODUCTION = 'Production'
+  const REVENUE_BY_COMPANY = 'Federal revenue by company'
+  return new Promise((resolve, reject) => {
+    resolve(
+      graphql(`
+      {
+        onrr {
+          revenue_fiscal_years: period(distinct_on: fiscal_year, where: {revenues: {revenue: {_is_null: false}, period: {period: {_eq: "Fiscal Year"}}}}, order_by: {fiscal_year: asc}) {
+            fiscal_year
+          }
+          revenue_calendar_years: period(distinct_on: calendar_year, where: {revenues: {revenue: {_is_null: false}, period: {period: {_eq: "Calendar Year"}}}}, order_by: {calendar_year: asc}) {
+            calendar_year
+          }
+          production_fiscal_years: period(distinct_on: fiscal_year, where: {productions: {volume: {_is_null: false}, period: {period: {_eq: "Fiscal Year"}}}}, order_by: {fiscal_year: asc}) {
+            fiscal_year
+          }
+          production_calendar_years: period(distinct_on: calendar_year, where: {productions: {volume: {_is_null: false}, period: {period: {_eq: "Calendar Year"}}}}, order_by: {calendar_year: asc}) {
+            calendar_year
+          }
+          disbursement_fiscal_years: period(distinct_on: fiscal_year, where: {disbursements: {disbursement: {_is_null: false}, period: {period: {_eq: "Fiscal Year"}}}}, order_by: {fiscal_year: asc}) {
+            fiscal_year
+          }
+          disbursement_calendar_years: period(distinct_on: calendar_year, where: {disbursements: {disbursement: {_is_null: false}, period: {period: {_eq: "Monthly"}}}}, order_by: {calendar_year: asc}) {
+            calendar_year
+          }
+          federal_revenue_by_company_calendar_years: federal_revenue_by_company(distinct_on: calendar_year, order_by: {calendar_year: asc}) {
+            calendar_year
+          }
+        }
+      }
+    `).then(result => {
+        if (result.errors) {
+          reporter.panicOnBuild('🚨  ERROR: Loading "Create Years Cache" query', result.errors)
+        }
+        else {
+          result.data.onrr.revenue_fiscal_years = result.data.onrr.revenue_fiscal_years.map(y => y[Object.keys(y)[0]])
+          result.data.onrr.revenue_calendar_years = result.data.onrr.revenue_calendar_years.map(y => y[Object.keys(y)[0]])
+          result.data.onrr.production_fiscal_years = result.data.onrr.production_fiscal_years.map(y => y[Object.keys(y)[0]])
+          result.data.onrr.production_calendar_years = result.data.onrr.production_calendar_years.map(y => y[Object.keys(y)[0]])
+          result.data.onrr.disbursement_fiscal_years = result.data.onrr.disbursement_fiscal_years.map(y => y[Object.keys(y)[0]])
+          result.data.onrr.disbursement_calendar_years = result.data.onrr.disbursement_calendar_years.map(y => y[Object.keys(y)[0]])
+          result.data.onrr.federal_revenue_by_company_calendar_years = result.data.onrr.federal_revenue_by_company_calendar_years.map(y => y[Object.keys(y)[0]])
+          const allYears = {
+            [REVENUE]: {
+              [PERIOD_CALENDAR_YEAR]: result.data.onrr.revenue_calendar_years,
+              [PERIOD_FISCAL_YEAR]: result.data.onrr.revenue_fiscal_years
+            },
+            [PRODUCTION]: {
+              [PERIOD_CALENDAR_YEAR]: result.data.onrr.production_calendar_years,
+              [PERIOD_FISCAL_YEAR]: result.data.onrr.production_fiscal_years
+            },
+            [DISBURSEMENT]: {
+              [PERIOD_CALENDAR_YEAR]: result.data.onrr.disbursement_calendar_years,
+              [PERIOD_FISCAL_YEAR]: result.data.onrr.disbursement_fiscal_years
+            },
+            [REVENUE_BY_COMPANY]: {
+              [PERIOD_CALENDAR_YEAR]: result.data.onrr.federal_revenue_by_company_calendar_years
+            }
+          }
+          fs.writeFileSync(
+            path.join(appRootDir, '.cache/all-years.js'),
+            `const ALL_YEARS = ${ JSON.stringify(allYears) }\nexport default ALL_YEARS\n`
+          )
+        }
+      })
+    )
   })
 }
 

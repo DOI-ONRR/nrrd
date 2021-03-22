@@ -13,6 +13,7 @@ const TotalProvider = props => {
     const { state } = useContext(DataFilterContext)
     const getTotalLabel = () => {
       if ((props.children.props.column.name === state[GROUP_BY] && state[BREAKOUT_BY]) ||
+      (props.children.props.column.name === 'Trend') ||
       (state[ADDITIONAL_COLUMNS] && state[ADDITIONAL_COLUMNS].includes(props.children.props.column.name)) ||
       (props.children.props.column.name === state[GROUP_BY_STICKY] && state[BREAKOUT_BY])
       ) {
