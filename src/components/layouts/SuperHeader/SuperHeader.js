@@ -21,7 +21,7 @@ const SuperHeaderContainer = withStyles(theme =>
       transition: 'height .2s ease',
       '& .notActive > div:first-child': {
         height: 0,
-        transition: 'height .2s ease',
+        transition: 'height .1s ease',
       },
       '& .notActive > div:last-child > header > div': {
         height: 60,
@@ -29,8 +29,8 @@ const SuperHeaderContainer = withStyles(theme =>
         transition: 'height .2s ease',
       },
       '& .notActive > div:last-child .header-logo': {
-        height: 35,
-        minHeight: 35,
+        height: 40,
+        minHeight: 40,
         transition: 'height .2s ease',
       }
     }
