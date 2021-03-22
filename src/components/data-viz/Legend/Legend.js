@@ -56,6 +56,7 @@ const Legend = ({
   legendLabelFormat = d => d,
   legendReverse = false,
   legendTotal = false,
+  legendType,
   xAxis,
   yAxis,
   yOrderBy,
@@ -102,7 +103,7 @@ const Legend = ({
                   <Rect
                     width={20}
                     height={20}
-                    styles={{ fill: colorScale(row[xAxis]), marginTop: 5 }}
+                    styles={{ fill: (legendType === 'circle') ? colorScale(i + 2) : colorScale(i), marginTop: 5 }}
                   />
                 </StyledTableBodyCell>
                 <StyledTableBodyCell>

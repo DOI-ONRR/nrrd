@@ -23,6 +23,7 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
 
   // color range
   const colorRange = options.colorRange || [
+    theme.palette.explore[700],
     theme.palette.explore[600],
     theme.palette.explore[500],
     theme.palette.explore[400],
@@ -208,6 +209,7 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
               legendHeaders={legendHeaders}
               legendFormat={legendFormat}
               legendLabel={legendLabel}
+              legendType={'circle'}
               xAxis={xAxis}
               yAxis={yAxis}
               colorScale={colorScale}
@@ -248,6 +250,7 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
               legendHeaders={legendHeaders}
               legendFormat={legendFormat}
               legendLabel={legendLabel}
+              legendType={'circle'}
               xAxis={xAxis}
               yAxis={yAxis}
               colorScale={colorScale}
