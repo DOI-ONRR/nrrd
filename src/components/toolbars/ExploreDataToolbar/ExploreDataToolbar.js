@@ -171,7 +171,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
 
   return (
     <Box className={classes.exploreDataToolbarWrapper}>
-      <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+      <StickyWrapper enabled={true} top={60} bottomBoundary={0} innerZ="1000" activeClass="sticky">
         <BaseToolbar>
           <FilterToggleInput
             value="open"
