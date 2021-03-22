@@ -854,7 +854,7 @@ export default class D3StackedBarChart {
   _onMouseover = (element, data) => {
     if (this.options.disableInteraction) return
     try {
-      const selectedElement = d3.selectAll('.active')
+      const selectedElement = d3.selectAll('.bars .active')
 
       const tbody = d3.select(this.legendDiv).selectAll('tbody')
       const legendRows = tbody.selectAll('tr')
