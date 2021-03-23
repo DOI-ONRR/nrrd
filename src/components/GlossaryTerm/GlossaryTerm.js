@@ -5,8 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import { IconQuestionCircleImg } from '../images'
 
-import makeStyles from '@material-ui/styles/makeStyles'
-import useTheme from '@material-ui/styles/useTheme'
+import { makeStyles, useTheme } from '@material-ui/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 
 const useStyles = makeStyles(theme => (
@@ -24,6 +23,9 @@ const useStyles = makeStyles(theme => (
       borderBottom: '1px dotted',
       cursor: 'pointer',
       whiteSpace: 'nowrap'
+    },
+    popper: {
+      zIndex: 99,
     }
   }
 ))
@@ -65,7 +67,7 @@ const GlossaryTerm = ({ children, termKey, ...rest }) => {
   const TermDisplay = React.forwardRef((props, ref) => (
     <Tooltip
       title={termResults[0].definition}
-      classes={{ tooltip: styles.tooltip }}
+      classes={{ tooltip: styles.tooltip, popper: styles.popper }}
       enterDelay={100}
       leaveDelay={250}
       enterTouchDelay={100}

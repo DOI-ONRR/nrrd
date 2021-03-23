@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Box } from '@material-ui/core'
 import { withStyles, createStyles } from '@material-ui/core/styles'
-
-import useWindowScroll from '../../../js/hooks/useWindowScroll'
 
 import InfoBanner from '../../content-partials/InfoBanner'
 import ShutdownBanner from '../../content-partials/ShutdownBanner'
@@ -20,17 +18,17 @@ const SuperHeaderContainer = withStyles(theme =>
       width: '100vw',
       zIndex: '1002',
       maxWidth: '100%',
-      transition: 'height .1s ease',
-      '& .notActive > div:first-child': {
+      transition: 'height .2s ease',
+      '& .not-active > div:first-child': {
         height: 0,
         transition: 'height .2s ease',
       },
-      '& .notActive > div:last-child > header > div': {
+      '& .not-active > div:last-child > header > div': {
         height: 60,
         minHeight: 'inherit',
         transition: 'height .2s ease',
       },
-      '& .notActive > div:last-child .header-logo': {
+      '& .not-active > div:last-child .header-logo': {
         height: 40,
         minHeight: 40,
         transition: 'height .2s ease',
@@ -40,10 +38,41 @@ const SuperHeaderContainer = withStyles(theme =>
 )(Box)
 
 const SuperHeader = ({ data, ...rest }) => {
-  const isScrollActive = useWindowScroll()
+  const [isActive, setIsActive] = useState(true)
+
+  useEffect(() => {
+    let scrollPosition = 0
+
+    const pageHeight = document.body.offsetHeight
+    const viewportHeight = window.innerHeight
+
+    function handleScroll () {
+      const newScrollPosition = window.scrollY
+
+      if (newScrollPosition === scrollPosition) {
+        return
+      }
+
+      if (newScrollPosition < 0 || newScrollPosition + viewportHeight > pageHeight) {
+        return
+      }
+
+      const shouldShow = newScrollPosition < 100
+      setIsActive(shouldShow)
+
+      scrollPosition = newScrollPosition
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <SuperHeaderContainer>
-      <div className={isScrollActive ? 'isActive' : 'notActive'}>
+      <div className={isActive ? 'is-active' : 'not-active'}>
         <InfoBanner />
         {data.site.siteMetadata.isShutdown === 'true' &&
           <ShutdownBanner />
