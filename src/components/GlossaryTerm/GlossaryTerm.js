@@ -23,9 +23,6 @@ const useStyles = makeStyles(theme => (
       borderBottom: '1px dotted',
       cursor: 'pointer',
       whiteSpace: 'nowrap'
-    },
-    popper: {
-      zIndex: 99,
     }
   }
 ))
@@ -67,7 +64,7 @@ const GlossaryTerm = ({ children, termKey, ...rest }) => {
   const TermDisplay = React.forwardRef((props, ref) => (
     <Tooltip
       title={termResults[0].definition}
-      classes={{ tooltip: styles.tooltip, popper: styles.popper }}
+      classes={{ tooltip: styles.tooltip }}
       enterDelay={100}
       leaveDelay={250}
       enterTouchDelay={100}
