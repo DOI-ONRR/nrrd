@@ -11,7 +11,9 @@ import DataTypeFilter from '../../inputs/data-filters/DataTypeFilter'
 
 import {
   Box,
-  MenuItem
+  MenuItem,
+  useMediaQuery,
+  useTheme
 } from '@material-ui/core'
 
 import {
@@ -135,6 +137,9 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
   const [exploreDataTabOpen, setExploreDataTabOpen] = useState(true)
   const [locationTabOpen, setLocationTabOpen] = useState(false)
   const [exploreMoreTabOpen, setExploreMoreTabOpen] = useState(false)
+
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('xs'))
 
   const {
     dataType,

@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     height: 60,
     position: 'relative',
     top: 1,
-    transition: 'height .2s',
+    transition: 'height .1s',
     '@media (max-width: 600px)': {
       maxHeight: 50,
       height: 50,

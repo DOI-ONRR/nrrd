@@ -19,7 +19,7 @@ import ErrorMessage from '../../info/ErrorMessage'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
-import SuperHeader from '../SuperHeader'
+import StickyHeader from '../StickyHeader'
 
 const useStyles = makeStyles(theme => (
   {
@@ -84,6 +84,9 @@ const useStyles = makeStyles(theme => (
     mainContent: {
       minHeight: 575,
       marginTop: 110,
+      // [theme.breakpoints.down('xs')]: {
+      //   marginTop: 60
+      // },
     },
     mainColumn: {
       paddingTop: theme.spacing(3),
@@ -119,7 +122,7 @@ const DefaultLayout = ({ includeToc, children }) => {
     <>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
-      <SuperHeader data={data} />
+      <StickyHeader data={data} />
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>
         <ErrorMessage />
