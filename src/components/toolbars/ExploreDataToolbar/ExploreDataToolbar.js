@@ -63,6 +63,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.common.white,
     zIndex: 1001,
     position: 'relative',
+    [theme.breakpoints.down('xs')]: {
+      position: 'fixed',
+      top: 60,
+    }
   },
   toolsWrapper: {
     display: 'flex',
@@ -176,7 +180,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
 
   return (
     <Box className={classes.exploreDataToolbarWrapper}>
-      <StickyWrapper enabled={true} top={60} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+      <StickyWrapper enabled={!matchesSmDown} top={60} bottomBoundary={0} innerZ="1000" activeClass="sticky">
         <BaseToolbar>
           <FilterToggleInput
             value="open"

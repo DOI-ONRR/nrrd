@@ -25,17 +25,17 @@ const StickyHeaderContainer = withStyles(theme =>
       zIndex: '1002',
       maxWidth: '100%',
       transition: 'height .1s ease',
-      '& .is-shrunk > div:first-child': {
+      '& .is-collapsed > div:first-child': {
         height: 0,
         transition: 'height .2s ease',
       },
-      '& .is-shrunk > div:last-child > header > div': {
+      '& .is-collapsed > div:last-child > header > div': {
         height: 60,
         minHeight: 'inherit',
         overflow: 'hidden',
         transition: 'height .1s ease',
       },
-      '& .is-shrunk > div:last-child .header-logo': {
+      '& .is-collapsed > div:last-child .header-logo': {
         height: 40,
         minHeight: 40,
         transition: 'height .1s ease',
@@ -47,38 +47,44 @@ const StickyHeaderContainer = withStyles(theme =>
 const StickyHeader = ({ data, ...rest }) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('xs'))
-  const [shrunk, setShrunk] = useState(false)
+  const [collapsed, setCollapsed] = useState(!matchesSmDown)
 
   const size = useWindowSize()
 
   useEffect(() => {
+    const matches = matchesSmDown
     const handler = () => {
-      setShrunk(isShrunk => {
+      setCollapsed(isCollapsed => {
         if (
-          !isShrunk && (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60)
+          !isCollapsed && (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60)
         ) {
           return true
         }
 
         if (
-          isShrunk &&
+          isCollapsed &&
             document.body.scrollTop < 10 &&
             document.documentElement.scrollTop < 10
         ) {
           return false
         }
 
-        return isShrunk
+        return isCollapsed
       })
     }
 
-    window.addEventListener('scroll', handler)
-    return () => window.removeEventListener('scroll', handler)
-  }, [size.width])
+    if (matches) {
+      setCollapsed(true)
+    }
+    else {
+      window.addEventListener('scroll', handler)
+      return () => window.removeEventListener('scroll', handler)
+    }
+  }, [size.width, matchesSmDown])
 
   return (
     <StickyHeaderContainer>
-      <div className={shrunk ? 'is-shrunk' : 'not-shrunk'}>
+      <div className={collapsed ? 'is-collapsed' : 'not-collapsed'}>
         <InfoBanner />
         {data.site.siteMetadata.isShutdown === 'true' &&
           <ShutdownBanner />
