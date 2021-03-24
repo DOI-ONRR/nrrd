@@ -13,16 +13,6 @@ import {
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
-const APOLLO_QUERY = gql`
-  query YearPeriod($period: String!) {
-    # period query
-    period(where: {period: {_ilike: $period }}) {
-      fiscal_year
-      calendar_year
-    }
-  }
-`
-
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'absolute',
@@ -161,11 +151,10 @@ const YearSlider = props => {
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const {
     year,
+    period,
     fiscalYear,
-    calendarYear,
-    period
+    calendarYear
   } = filterState
-  console.debug('===========================================', filterState)
 
   const handleOnchange = year => {
     updateDataFilter({ ...filterState, [DFC.YEAR]: year })
@@ -175,96 +164,63 @@ const YearSlider = props => {
     updateDataFilter({ ...filterState, [DFC.YEAR]: (period === DFC.PERIOD_CALENDAR_YEAR) ? calendarYear : fiscalYear })
   }, [period])
 
-  let periodData
-  let minYear
-  let maxYear
   const customMarks = []
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { period: period }
-  })
+  const minYear = 2003
+  const maxYear = (period === DFC.PERIOD_FISCAL_YEAR) ? parseInt(fiscalYear) : parseInt(calendarYear)
 
-  if (loading) {}
-  if (error) return `Error! ${ error.message }`
-
-  if (data) {
-    periodData = data.period
-
-    // set min and max trend years
-    // minYear = (dataType === DFC.DISBURSEMENT)
-    //   ? periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-    //   : periodData.reduce((min, p) => p.calendar_year < min ? p.calendar_year : min, periodData[0].calendar_year)
-    // maxYear = (dataType === DFC.DISBURSEMENT)
-    //   ? periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
-    //   : periodData.reduce((max, p) => p.calendar_year > max ? p.calendar_year : max, periodData[periodData.length - 1].calendar_year)
-
-    if (period === DFC.PERIOD_FISCAL_YEAR) {
-      minYear = periodData.reduce((min, p) => p.fiscal_year < min ? p.fiscal_year : min, periodData[0].fiscal_year)
-      maxYear = periodData.reduce((max, p) => p.fiscal_year > max ? p.fiscal_year : max, periodData[periodData.length - 1].fiscal_year)
+  customMarks.push(
+    {
+      label: minYear.toString(),
+      value: minYear
+    },
+    {
+      label: maxYear.toString(),
+      value: maxYear
     }
-    else {
-      minYear = periodData.reduce((min, p) => p.calendar_year < min ? p.calendar_year : min, periodData[0].calendar_year)
-      maxYear = periodData.reduce((max, p) => p.calendar_year > max ? p.calendar_year : max, periodData[periodData.length - 1].calendar_year)
-    }
+  )
 
-    customMarks.push(
-      {
-        label: minYear.toString(),
-        value: minYear
-      },
-      {
-        label: maxYear.toString(),
-        value: maxYear
-      }
-    )
-
-    return (
-
-      <Box id="year-slider" className={classes.sliderBox}>
-        <Grid container spacing={2}>
-          <Grid item>
-            {minYear}
-          </Grid>
-          <Grid item xs>
-            <Slider
-              key={`slider__${ year }__${ period }`}
-              defaultValue={year}
-              aria-label="Year slider"
-              aria-labelledby="year-slider"
-              aria-valuetext={year && year.toString()}
-              valueLabelDisplay="on"
-              valueLabelFormat={label => label}
-              step={1}
-              onChangeCommitted={(e, yr) => {
-                handleOnchange(yr)
-              }}
-              marks={true}
-              min={minYear}
-              max={maxYear}
-              classes={{
-                root: classes.sliderRoot,
-                markLabel: classes.sliderMarkLabel,
-                markLabelActive: classes.sliderMarkLabelActive,
-                track: classes.sliderTrack,
-                rail: classes.sliderRail,
-                mark: classes.sliderMark,
-                active: classes.sliderActive,
-                thumb: classes.sliderThumb,
-                valueLabel: classes.sliderValueLabel,
-              }}
-            />
-          </Grid>
-          <Grid item>
-            {maxYear}
-          </Grid>
+  return (
+    <Box id="year-slider" className={classes.sliderBox}>
+      <Grid container spacing={2}>
+        <Grid item>
+          {minYear}
         </Grid>
-      </Box>
-
-    )
-  }
-  else {
-    return (null)
-  }
+        <Grid item xs>
+          <Slider
+            key={`slider__${ year }__${ period }`}
+            defaultValue={year}
+            aria-label="Year slider"
+            aria-labelledby="year-slider"
+            aria-valuetext={year && year.toString()}
+            valueLabelDisplay="on"
+            valueLabelFormat={label => label}
+            step={1}
+            onChangeCommitted={(e, yr) => {
+              handleOnchange(yr)
+            }}
+            marks={true}
+            min={minYear}
+            max={maxYear}
+            classes={{
+              root: classes.sliderRoot,
+              markLabel: classes.sliderMarkLabel,
+              markLabelActive: classes.sliderMarkLabelActive,
+              track: classes.sliderTrack,
+              rail: classes.sliderRail,
+              mark: classes.sliderMark,
+              active: classes.sliderActive,
+              thumb: classes.sliderThumb,
+              valueLabel: classes.sliderValueLabel,
+            }}
+          />
+        </Grid>
+        <Grid item>
+          {maxYear}
+        </Grid>
+      </Grid>
+    </Box>
+  )
 }
 
 export default YearSlider

@@ -6,7 +6,13 @@ import {
   PERIOD,
   CALENDAR_YEAR,
   COMPANY_NAME,
-  REVENUE_TYPE, FISCAL_YEAR
+  REVENUE_TYPE,
+  LAND_TYPE,
+  PRODUCT,
+  RECIPIENT,
+  SOURCE,
+  FISCAL_YEAR,
+  US_STATE_NAME
 } from '../../constants'
 
 import {
@@ -77,14 +83,64 @@ const DATA_FILTER_QUERIES = {
       }`),
   [STATE_OFFSHORE_NAME]: (view, whereClause) => (
     `options:${ view }(
-          where: {
-            ${ whereClause }
-          },
-          distinct_on: location_order,
-          order_by: {location_order: asc}
-          ) {
-            option: ${ DB_COLS[STATE_OFFSHORE_NAME] }
-          }`)
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: location_order,
+      order_by: {location_order: asc}
+      ) {
+        option: ${ DB_COLS[STATE_OFFSHORE_NAME] }
+      }`),
+  [LAND_TYPE]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[LAND_TYPE] },
+      order_by: {${ DB_COLS[LAND_TYPE] }: asc}
+      ) {
+        option: ${ DB_COLS[LAND_TYPE] }
+      }`),
+  [PRODUCT]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[PRODUCT] },
+      order_by: {${ DB_COLS[PRODUCT] }: asc}
+      ) {
+        option: ${ DB_COLS[PRODUCT] }
+      }`),
+  [RECIPIENT]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[RECIPIENT] },
+      order_by: {${ DB_COLS[RECIPIENT] }: asc}
+      ) {
+        option: ${ DB_COLS[RECIPIENT] }
+      }`),
+  [SOURCE]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[SOURCE] },
+      order_by: {${ DB_COLS[SOURCE] }: asc}
+      ) {
+        option: ${ DB_COLS[SOURCE] }
+      }`),
+  [US_STATE_NAME]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[US_STATE_NAME] },
+      order_by: {${ DB_COLS[US_STATE_NAME] }: asc}
+      ) {
+        option: ${ DB_COLS[US_STATE_NAME] }
+      }`),
 }
 
 export default (view, dataFilterKey, whereClause) => {

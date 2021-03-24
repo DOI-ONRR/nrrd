@@ -3,13 +3,13 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import * as d3 from 'd3'
 
-import utils from '../../../../js/utils'
+import utils, { formatToDollarInt } from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { useInView } from 'react-intersection-observer'
 
-import CircleChart from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
@@ -95,28 +95,15 @@ const RevenueDetailTypes = props => {
 	      <Box component="h4" fontWeight="bold">Revenue types</Box>
 	      <Box>
                 <CircleChart
-		    key={'RDTY' + dataKey }
-		    data={chartData} xAxis='revenue_type' yAxis='total'
-		    format={ d => utils.formatToDollarInt(d) }
-		    yLabel={dataSet}
-		    maxCircles={6}
-		    colorRange={[
-                    theme.palette.explore[600],
-                    theme.palette.explore[500],
-                    theme.palette.explore[400],
-                    theme.palette.explore[300],
-                    theme.palette.explore[200],
-                    theme.palette.explore[100]
-                  ]}
-		    circleTooltip={
-                    d => {
-                      // console.debug('circleLABLE yo: ', d)
-                      const r = []
-                      r[0] = d.revenue_type
-                      r[1] = utils.formatToDollarInt(d.total)
-                      return r
-                    }
-                  } />
+                  key={`RDTY__${ dataKey }`}
+                  data={chartData}
+                  xAxis='revenue_type'
+                  yAxis='total'
+                  maxCircles={6}
+                  legendLabels={['Commodity', 'Total']}
+                  showLabels={false}
+                  showTooltips={true}
+                  format={d => formatToDollarInt(d)} />
                 {!isCounty &&
 		<QueryLink
 		    groupBy={DFC.REVENUE_TYPE}

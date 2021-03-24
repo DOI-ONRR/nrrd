@@ -5,9 +5,7 @@ import {
   useQueryParams,
   StringParam,
   encodeDelimitedArray,
-  decodeDelimitedArray,
-  encodeBoolean,
-  decodeBoolean
+  decodeDelimitedArray
 } from 'use-query-params'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -24,7 +22,7 @@ import {
 import { animateScroll as scroll } from 'react-scroll'
 
 import MapLevel from './MapLevel'
-// import MapControls from './MapControls'
+import MapControls from './MapControls'
 import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
 import { ExploreDataContext } from '../../../stores/explore-data-store'
@@ -257,11 +255,6 @@ const MapContext = props => {
     decode: arrayStr => decodeDelimitedArray(arrayStr, ',')
   }
 
-  const BooleanParam = {
-    encode: bp => encodeBoolean(bp),
-    decode: bp => decodeBoolean(bp)
-  }
-
   const classes = useStyles()
   const theme = useTheme()
   const size = useWindowSize()
@@ -271,14 +264,6 @@ const MapContext = props => {
 
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
-  const {
-    mapLevel,
-    offshoreRegions,
-    dataType,
-    period,
-    commodity,
-    year
-  } = filterState
 
   const cards = pageState.cards
 
@@ -288,7 +273,7 @@ const MapContext = props => {
     period: StringParam,
     mapLevel: StringParam,
     location: CommaArrayParam,
-    offshoreRegions: BooleanParam,
+    offshoreRegions: StringParam,
     commodity: StringParam,
     year: StringParam,
   })
@@ -396,8 +381,8 @@ const MapContext = props => {
     onLink(d)
   }
 
-  const countyLevel = mapLevel === DFC.COUNTY_CAPITALIZED
-  const offshore = (offshoreRegions === true || (offshoreRegions === 1 || offshoreRegions === '1'))
+  const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
+  const offshore = (filterState[DFC.OFFSHORE_REGIONS] === true || filterState[DFC.OFFSHORE_REGIONS] === 'true')
 
   let mapJsonObject = mapStates
   let mapFeatures = 'states-geo'
@@ -424,13 +409,14 @@ const MapContext = props => {
   }
 
   useEffect(() => {
+    // get decoded location param
     const locationParam = queryParams.location
     let filteredLocations
 
     // console.log('queryParams: ', queryParams)
 
     // filter out location based on location params
-    if (typeof locationParam !== 'undefined' && locationParam > 0) {
+    if (typeof locationParam !== 'undefined' && locationParam.length > 0) {
       filteredLocations = data.onrr.locations.filter(item => {
         for (const elem of locationParam) {
           // strip elem of any trailing slash
@@ -470,13 +456,13 @@ const MapContext = props => {
 
   useEffect(() => {
     setQueryParams({
-      dataType: dataType,
-      period: period,
-      mapLevel: mapLevel,
-      offshoreRegions: (offshoreRegions === true || (offshoreRegions === 1 || offshoreRegions === '1')) ? 1 : 0,
-      commodity: commodity,
+      dataType: filterState.dataType,
+      period: filterState.period,
+      mapLevel: filterState.mapLevel,
+      offshoreRegions: filterState.offshoreRegions,
+      commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
-      year: year
+      year: filterState.year
     }, 'replaceIn')
   }, [filterState, pageState])
 
@@ -503,7 +489,7 @@ const MapContext = props => {
         <Grid container>
           <Grid item xs={12}>
             <Box className={classes.mapWrapper}>
-              <MapLevel />
+              <MapLevel/>
               {mapChild}
             </Box>
           </Grid>
