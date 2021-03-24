@@ -47,7 +47,7 @@ const StickyHeaderContainer = withStyles(theme =>
 const StickyHeader = ({ data, ...rest }) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('xs'))
-  const [collapsed, setCollapsed] = useState(!matchesSmDown)
+  const [collapsed, setCollapsed] = useState(!!matchesSmDown)
 
   const size = useWindowSize()
 

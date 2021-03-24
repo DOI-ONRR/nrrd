@@ -84,9 +84,9 @@ const useStyles = makeStyles(theme => (
     mainContent: {
       minHeight: 575,
       marginTop: 110,
-      // [theme.breakpoints.down('xs')]: {
-      //   marginTop: 60
-      // },
+      [theme.breakpoints.down('xs')]: {
+        marginTop: 60
+      },
     },
     mainColumn: {
       paddingTop: theme.spacing(3),

@@ -18,6 +18,7 @@ import {
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RefreshIcon from '@material-ui/icons/Refresh'
+import { CallReceived } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,10 +27,18 @@ const useStyles = makeStyles(theme => ({
     '& .mapContainer': {
       height: '100%',
       width: '100%',
+      // [theme.breakpoints.down('xs')]: {
+      //   height: '100vh',
+      //   width: '100vw',
+      // },
     },
     '& .map': {
       height: '100%',
       width: '100%',
+      // [theme.breakpoints.down('xs')]: {
+      //   height: '100vh',
+      //   width: '100vw',
+      // },
     },
     '& .legendWrap': {
       display: 'block',
@@ -193,7 +202,7 @@ const Map = props => {
       options
     )
     if (props.zoomTo) {
-	  map.zoomTo(props.zoomTo)
+	    map.zoomTo(props.zoomTo)
     }
     /*
        * map.onZoom = onZoom
@@ -211,6 +220,8 @@ const Map = props => {
 	 }
        */
     map.width = size.width
+
+    console.log('map====> ', map)
   }
 
   useEffect(() => {

@@ -49,12 +49,12 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 300px)',
+    height: 'calc(100vh - 175px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
-    zIndex: 1,
+    zIndex: 1
   },
   mapWrapper: {
     width: '100%',
@@ -64,6 +64,9 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     background: theme.palette.grey[200],
     display: 'block',
+    [theme.breakpoints.down('xs')]: {
+      margin: '125px auto 0'
+    },
   },
   cardContainer: {
     width: 310,
@@ -84,6 +87,9 @@ const useStyles = makeStyles(theme => ({
       overflowX: 'auto',
       height: 'auto',
       position: 'relative',
+    },
+    [theme.breakpoints.down('xs')]: {
+      top: -25,
     },
     '& > div': {
       cursor: 'pointer',

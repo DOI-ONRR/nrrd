@@ -28,9 +28,7 @@ import { IconExploreDataImg } from '../../images'
 import {
   CommoditySelectInput,
   FilterToggleInput,
-  PeriodSelectInput,
-  MapLevelToggleInput,
-  OffshoreRegionsSwitchInput
+  PeriodSelectInput
 } from '../../inputs'
 
 import YearSlider from '../../sections/ExploreData/YearSlider'

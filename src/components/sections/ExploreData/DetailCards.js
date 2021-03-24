@@ -167,6 +167,7 @@ const useStyles = makeStyles(theme => ({
     '& > div': {
       marginRight: 10,
       maxWidth: 300,
+      width: 300,
     },
     '& > div:last-child': {
       margin: 0,
