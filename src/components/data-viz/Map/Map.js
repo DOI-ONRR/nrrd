@@ -11,14 +11,9 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import {
   Box,
-  Button,
-  ButtonGroup
+  useMediaQuery,
+  useTheme
 } from '@material-ui/core'
-
-import AddIcon from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
-import RefreshIcon from '@material-ui/icons/Refresh'
-import { CallReceived } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,6 +39,9 @@ const useStyles = makeStyles(theme => ({
       background: theme.palette.common.white,
       borderRadius: 4,
       bottom: 10,
+      [theme.breakpoints.down('xs')]: {
+        bottom: 30,
+      },
       '@media and (max-width: 600px)': {
         width: '100%',
       },
@@ -92,8 +90,9 @@ const useStyles = makeStyles(theme => ({
     height: 100,
     position: 'absolute',
     '@media (max-width: 768px)': {
-	    transform: 'scale(0.75)',
+	    transform: 'scale(0.65)',
 	    left: 0,
+      bottom: 80,
     },
     '& svg': {
       height: '.75em',
@@ -115,6 +114,8 @@ const useStyles = makeStyles(theme => ({
 
 const Map = props => {
   const size = useWindowSize()
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('xs'))
 
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
@@ -164,18 +165,18 @@ const Map = props => {
     if (d[0] === 'AKR') {
       return d[1]
     }
-    //    }
   })
+
   if (AKR && AKR.length > 0) {
     for (let ii = 0; ii < planningAreas.length; ii++) {
       mapData.push([planningAreas[ii], AKR[0][1]])
-      //    console.debug('AKR: ', planningAreas, ' : ', AKR[0])
+      // console.debug('AKR: ', planningAreas, ' : ', AKR[0])
     }
   }
 
   const createMap = () => {
     const us = mapJsonObject
-    //    const offshore = mapJsonObject.offshore
+    // const offshore = mapJsonObject.offshore
     // console.debug("OPTIONS: ", options)
     const data = observableData(mapData)
     data.title = mapTitle
@@ -196,22 +197,21 @@ const Map = props => {
     if (props.zoomTo) {
 	    map.zoomTo(props.zoomTo)
     }
-    /*
-       * map.onZoom = onZoom
-       * map.onZoomEnd = onZoomEnd
-       *
-       * if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
-	 map.zoom({ x: mapX, y: mapY, k: mapZoom })
-       * }
 
-	 if (props.zoomTo) {
-       * map.zoomTo(props.zoomTo)
-	 }
-	 if (props.zoomIn) {
-	 map.zoomIn(props.zoomIn)
-	 }
-       */
-    map.width = size.width
+    if (matchesSmDown) {
+      map.width = (size.width / 2)
+      map.height = (size.height / 2)
+      if (mapZoom) {
+        map.zoom(mapZoom)
+      }
+      else {
+        map.zoom({ x: 50, y: 50, k: 0.75 })
+      }
+    }
+    else {
+      map.width = size.width
+      map.height = size.height
+    }
 
     console.log('map====> ', map)
   }

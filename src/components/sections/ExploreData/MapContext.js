@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 175px)',
+    height: 'calc(100vh - 225px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
