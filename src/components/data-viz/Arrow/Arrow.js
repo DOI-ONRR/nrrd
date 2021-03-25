@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { LineWithArrowImg } from '../../images'
 import createStyles from '@material-ui/styles/createStyles'
 import withStyles from '@material-ui/styles/withStyles'
 import useTheme from '@material-ui/styles/useTheme'
@@ -40,7 +41,7 @@ const Arrow = props => {
   const theme = useTheme()
 
   return (
-    <div>Arrow</div>
+    <div><LineWithArrowImg style={{ color: 'blue' }}/></div>
   )
 }
 
