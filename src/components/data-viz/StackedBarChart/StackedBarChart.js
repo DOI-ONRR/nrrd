@@ -1,158 +1,307 @@
 /* eslint-disable quotes */
 import React, { useEffect, useRef, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+
+import { Box, Collapse, Button } from '@material-ui/core'
+import {
+  createStyles,
+  withStyles,
+  useTheme
+} from '@material-ui/styles'
+
 import ChartTitle from '../ChartTitle'
 import BarChart from './D3StackedBarChart.js'
-import { Collapse, Button } from '@material-ui/core'
+
 import useWindowSize from '../../../js/hooks/useWindowSize'
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'block',
-    top: 0,
-    left: 0,
-    width: '100%',
-  },
-  chart: {
-    display: 'block',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '200px',
-    fill: 'inherit',
-    // '& .bars > .bar': {
-    //   opacity: 0.8,
-    // },
-    '& .bars > .bar:hover': {
-      cursor: 'pointer',
-      // outline: `${ theme.palette.orange[200] } solid`,
-      // opacity: 1,
-    },
-    // '& .bars > .bar.active': {
-    //   outline: `${ theme.palette.orange[200] } solid`,
-    //   opacity: 1,
-    // },
-    '& .bar .stacked-bar-chart-item': {
-      transition: 'all .1s ease-in'
-    },
-    '& .maxExtent': {
-      fontSize: theme.typography.h5.fontSize,
-    },
-    '& .x-axis > .tick': {
-      fontSize: '.85rem',
-      fontWeight: 'normal',
-    },
-    '& .x-axis > .tick:nth-child(odd)': {
-      '@media (max-width: 375px)': {
-        display: 'none',
-      },
-    },
-    '& .y-axis > .tick': {
-      fontSize: '.85rem',
-      fontWeight: 'normal',
-      transition: 'all .1s ease-in',
-    },
-    '& .x-axis .tick.active > text': {
-      fontWeight: 'bold',
-      fontSize: '.90rem',
-      fill: theme.palette.common.black
-    }
-  },
-  horizontal: {
-    position: 'relative',
-    height: 25,
-    '& .horizontal-stacked-bar-chart': {
-      position: 'absolute',
+const DefaultContainer = withStyles(theme =>
+  createStyles({
+    root: {
+      display: 'block',
       top: 0,
-      left: 5,
-      transform: 'rotate(90deg)',
-      transformOrigin: 'bottom left',
-      '& .bars > .bar': {
-        opacity: 1,
-      },
+      left: 0,
+      width: '100%'
+    },
+  })
+)(Box)
+
+const DefaultChartContainer = withStyles(theme =>
+  createStyles({
+    root: {
+      display: 'block',
+      top: 0,
+      left: 0,
+      width: '100%',
+      fill: 'inherit',
       '& .bars > .bar:hover': {
         cursor: 'pointer',
-        outline: 'none',
       },
-      '& .bars > .bar.active': {
-        outline: 'none',
+      '& .bar .stacked-bar-chart-item': {
+        transition: 'all .1s ease-in'
       },
-    }
-  },
-  legend: {
-    display: 'block',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    fontSize: theme.typography.h5.fontSize,
-    '& tr > td:first-child': {
-      width: 10,
+      '& .maxExtent': {
+        fontSize: theme.typography.h5.fontSize,
+      },
+      '& .x-axis > .tick': {
+        fontSize: '.85rem',
+        fontWeight: 'normal',
+      },
+      '& .x-axis > .tick:nth-child(odd)': {
+        '@media (max-width: 375px)': {
+          display: 'none',
+        },
+      },
+      '& .y-axis > .tick': {
+        fontSize: '.85rem',
+        fontWeight: 'normal',
+        transition: 'all .1s ease-in',
+      },
+      '& .x-axis .tick.active > text': {
+        fontWeight: 'bold',
+        fontSize: '.90rem',
+        fill: theme.palette.common.black
+      },
+      '& .x-axis-groups > text': {
+        fontSize: '.70rem'
+      },
     },
-    '& td .legend-rect': {
-      // fill: theme.palette.chart.secondary,
-      // backgroundColor: theme.palette.chart.secondary,
+  })
+)(Box)
+
+const CompactChartContainer = ({ theme, id, disableInteraction, style, ...restProps }) => {
+  const interactionStyles = disableInteraction
+    ? { '& .bars > .bar:focus': { outline: 'none' } }
+    : {
+      '& .bars > .bar:hover': { cursor: 'pointer' },
+      '& .x-axis .tick.active > text': {
+        fontWeight: 'bold',
+        fontSize: '.65rem',
+        lineHeight: '.7rem',
+        fill: theme.palette.common.black
+      }
+    }
+
+  const EnhancedComponent = withStyles(() => {
+    return createStyles({
+      root: {
+        display: 'block',
+        top: 0,
+        left: 0,
+        width: '100%',
+        fill: 'inherit',
+        ...interactionStyles,
+        '& .bar .stacked-bar-chart-item': {
+          transition: 'all .1s ease-in'
+        },
+        '& .maxExtent': {
+          fontSize: '.70rem',
+        },
+        '& .x-axis > .tick': {
+          fontSize: '.65rem',
+          fontWeight: 'normal',
+        },
+        '& .x-axis > .tick:nth-child(odd)': {
+          '@media (max-width: 375px)': {
+            display: 'none',
+          },
+        },
+        '& .y-axis > .tick': {
+          fontSize: '.65rem',
+          lineHeight: '.7rem',
+          fontWeight: 'normal',
+          transition: 'all .1s ease-in',
+        },
+        '& .x-axis-groups > text': {
+          fontSize: '.70rem'
+        },
+      },
+    })
+  })(Box)
+  return <EnhancedComponent id={id} style={style}/>
+}
+
+const HorizontalChartContainer = withStyles(theme =>
+  createStyles({
+    root: {
+      position: 'relative',
+      height: 40,
+      '& .horizontal-stacked-bar-chart': {
+        position: 'relative',
+        width: '100%',
+        '& .bars > .bar': {
+          opacity: 1,
+        },
+        '& .bars > .bar:hover': {
+          cursor: 'pointer',
+          outline: 'none',
+        },
+        '& .bars > .bar.active': {
+          outline: 'none',
+        },
+      },
       display: 'block',
-      height: 20,
-      width: 20,
-    },
-    '& .legend-table': {
+      top: 0,
+      left: 0,
       width: '100%',
-      borderSpacing: 0,
-      borderCollapse: 0,
-      boxShadow: 'none',
+      fill: 'inherit',
+      '& .bars > .bar:hover': {
+        cursor: 'pointer',
+      },
+      '& .bar .stacked-bar-chart-item': {
+        transition: 'all .1s ease-in'
+      },
+      '& .maxExtent': {
+        fontSize: theme.typography.h5.fontSize,
+      },
+      '& .x-axis > .tick': {
+        fontSize: '.85rem',
+        fontWeight: 'normal',
+      },
+      '& .x-axis > .tick:nth-child(odd)': {
+        '@media (max-width: 375px)': {
+          display: 'none',
+        },
+      },
+      '& .y-axis > .tick': {
+        fontSize: '.85rem',
+        fontWeight: 'normal',
+        transition: 'all .1s ease-in',
+      },
+      '& .x-axis .tick.active > text': {
+        fontWeight: 'bold',
+        fontSize: '.90rem',
+        fill: theme.palette.common.black
+      }
     },
-    '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
-      textAlign: 'right',
+  })
+)(Box)
+
+const DefaultLegendContainer = withStyles(theme =>
+  createStyles({
+    root: {
+      display: 'block',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      fontSize: theme.typography.h5.fontSize,
+      '& td .legend-rect': {
+        // fill: theme.palette.chart.secondary,
+        // backgroundColor: theme.palette.chart.secondary,
+        width: '20px',
+        display: 'block',
+      },
+      '& .legend-table': {
+        width: '100%',
+        borderSpacing: 0,
+        borderCollapse: 0,
+        boxShadow: 'none',
+      },
+      '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
+        textAlign: 'right',
+      },
+      '& .legend-table > thead th': {
+        fontWeight: 'bold',
+        textAlign: 'left',
+        borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+      },
+      '& .legend-table > thead th:first-child::first-letter': {
+        textTransform: 'uppercase',
+      },
+      '& .legend-table > tbody tr td': {
+        borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+      },
+      '& .legend-table > tbody tr:last-child td': {
+        border: 'none',
+      },
+      '& .legend-table th, & .legend-table td': {
+        padding: '6px 24px 6px 16px',
+        verticalAlign: 'bottom',
+      },
+      '& .legend-table td:first-child': {
+        padding: '6px 6px 6px 16px',
+        width: '20px'
+      }
     },
-    '& .legend-table > thead th': {
-      fontWeight: 'bold',
-      textAlign: 'left',
-      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+  })
+)(Box)
+
+const CompactLegendContainer = withStyles(theme =>
+  createStyles({
+    root: {
+      display: 'block',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      lineHeight: '0.7rem',
+      fontSize: '0.7rem',
+      '& td .legend-rect': {
+        // fill: theme.palette.chart.secondary,
+        // backgroundColor: theme.palette.chart.secondary,
+        width: '10px',
+        display: 'block',
+      },
+      '& .legend-table': {
+        width: '100%',
+        borderSpacing: 0,
+        borderCollapse: 0,
+        boxShadow: 'none',
+      },
+      '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
+        textAlign: 'right',
+      },
+      '& .legend-table > thead th': {
+        fontWeight: 'bold',
+        textAlign: 'left',
+        borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+      },
+      '& .legend-table > thead th:first-child::first-letter': {
+        textTransform: 'uppercase',
+      },
+      '& .legend-table > tbody tr td': {
+        borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+      },
+      '& .legend-table > tbody tr:last-child td': {
+        border: 'none',
+      },
+      '& .legend-table th, & .legend-table td': {
+        padding: '2px 2px 4px 2px',
+        verticalAlign: 'bottom',
+      },
+      '& .legend-table td:first-child': {
+        padding: '2px 2px 4px 2px',
+        width: '20px'
+      }
     },
-    '& .legend-table > thead th:first-child::first-letter': {
-      textTransform: 'uppercase',
+  })
+)(Box)
+
+const LegendButton = withStyles(theme =>
+  createStyles({
+    root: {
+      color: theme.palette.links.default,
+      '& > span': {
+        textDecoration: 'underline',
+      }
     },
-    '& .legend-table > tbody tr td': {
-      borderBottom: `1px solid ${ theme.palette.grey[300] }`,
-    },
-    '& .legend-table > tbody tr:last-child td': {
-      border: 'none',
-    },
-    '& .legend-table th, & .legend-table td': {
-      padding: '6px 24px 6px 16px',
-      verticalAlign: 'bottom',
-    },
-    '& .legend-table td:first-child': {
-      padding: '6px 6px 6px 16px',
-    },
-    '& .legend-rect': {
-      marginTop: theme.spacing(0.5),
-    },
-  },
-  legendButton: {
-    color: theme.palette.links.default,
-    '& > span': {
-      textDecoration: 'underline',
-    }
-  }
-}))
+  })
+)(Button)
 
 const StackedBarChart = props => {
+  const theme = useTheme()
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
   const [collapsed, setCollapsed] = useState(props.collapsedLegend || false)
-  const classes = useStyles()
   // console.debug("SBC collapsed", collapsed, ' <> ', props)
   const size = useWindowSize()
 
-  const { data, ...options } = props
+  const { data, chartHeight, ...options } = props
   const elemRef = useRef(null)
   const title = options.title || ''
   const buttonValue = collapsed ? 'Show details' : 'Hide details'
   const drawChart = () => {
-    elemRef.current.getElementsByClassName('chart_div')[0].innerHTML = ''
-    elemRef.current.getElementsByClassName('legend_div')[0].innerHTML = ''
+    elemRef.current.querySelector('#chart_div').innerHTML = ''
+    elemRef.current.querySelector('#legend_div').innerHTML = ''
     const chart = new BarChart(elemRef.current, data, options)
     chart.draw(data)
   }
@@ -168,14 +317,23 @@ const StackedBarChart = props => {
 
   return (
     <>
-      {title && <ChartTitle>{title}</ChartTitle>}
-      <div className={classes.container} ref={elemRef}>
-        <div className={`${ classes.chart } ${ options.horizontal ? classes.horizontal : '' } chart_div`}></div>
-        { props.collapsibleLegend && <Button variant='text' className={classes.legendButton} onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</Button> }
+      {title && <ChartTitle compact={options.compact}>{title}</ChartTitle>}
+      <DefaultContainer ref={elemRef}>
+        {options.horizontal &&
+          <HorizontalChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }}/>
+        }
+        {(!options.horizontal && options.compact)
+          ? <CompactChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }} disableInteraction={options.disableInteraction}/>
+          : <DefaultChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }} />
+        }
+        { props.collapsibleLegend && <LegendButton variant='text' onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</LegendButton> }
         <Collapse in={!collapsed}>
-          <div className={classes.legend + ' legend_div'}></div>
+          {options.compact
+            ? <CompactLegendContainer id='legend_div' />
+            : <DefaultLegendContainer id='legend_div' />
+          }
         </Collapse>
-      </div>
+      </DefaultContainer>
     </>
   )
 }

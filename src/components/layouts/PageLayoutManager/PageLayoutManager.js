@@ -17,14 +17,15 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   const layout = pageContext.frontmatter && pageContext.frontmatter.layout
   const includeDataProvider = pageContext.frontmatter && pageContext.frontmatter.includeDataProvider
   const title = pageContext.frontmatter && pageContext.frontmatter.title
-  const keywords = pageContext.frontmatter && pageContext.frontmatter.tag
+  const description = pageContext.frontmatter && pageContext.frontmatter.description
+  const keywords = pageContext.frontmatter && pageContext.frontmatter.tags
 
   if (layout === 'pattern-library' || location.pathname.includes('/patterns')) {
     const pageTitle = title || (pageContext.componentMetadata && `Pattern Library - ${ pageContext.componentMetadata.displayName }`)
 
     return (
       <PatternLibraryLayout path={location.pathname}>
-        <SEO title={pageTitle} keywords={keywords} />
+        <SEO title={pageTitle} keywords={keywords} description={description} />
         {children}
       </PatternLibraryLayout>
     )
@@ -34,7 +35,7 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
     return (
       <DefaultLayout
         includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
-        <SEO title={title} keywords={keywords} />
+        <SEO title={title} keywords={keywords} description={description} />
         {children}
         <ContactUs />
       </DefaultLayout>
@@ -45,7 +46,7 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
     return (
       <DefaultLayout
         includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
-        <SEO title={title} keywords={keywords} />
+        <SEO title={title} keywords={keywords} description={description} />
         <DataFilterProviderWrapper>
           {children}
         </DataFilterProviderWrapper>
@@ -56,7 +57,7 @@ const PageLayoutManager = ({ children, location, pageContext, ...props }) => {
   return (
     <DefaultLayout
       includeToc={pageContext.frontmatter && pageContext.frontmatter.includeToc}>
-      <SEO title={title} keywords={keywords} />
+      <SEO title={title} keywords={keywords} description={description} />
       {children}
     </DefaultLayout>
   )

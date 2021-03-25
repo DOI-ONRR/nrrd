@@ -47,6 +47,14 @@ const DefaultToggleButton = withStyles(theme =>
       minHeight: 'inherit',
       height: 50,
       padding: '0 15px',
+      '& h1': {
+        fontWeight: 'normal',
+        fontSize: '1.125rem',
+        margin: 0,
+      },
+      '& h1:first-letter': {
+        textTransform: 'capitalize',
+      },
       '&.Mui-selected': {
         color: 'black',
         backgroundColor: theme.palette.primary.main,
@@ -55,6 +63,14 @@ const DefaultToggleButton = withStyles(theme =>
         margin: 0,
         zIndex: '1',
         fontWeight: 'bold',
+        '& h1': {
+          fontWeight: 'bold',
+          fontSize: '1.125rem',
+          margin: 0,
+        },
+        '& h1:first-letter': {
+          textTransform: 'capitalize'
+        }
       },
       '&.Mui-selected:hover': {
         color: 'black',

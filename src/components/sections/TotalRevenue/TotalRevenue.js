@@ -72,8 +72,8 @@ const TOTAL_REVENUE_QUERY = gql`
       sort_order
       commodity_order
       commodity
-    } 
- 
+    }
+
     total_monthly_last_twelve_revenue {
       source: land_type
       sum
@@ -152,7 +152,7 @@ const TotalRevenue = props => {
     yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
     break
   default:
-    yOrderBy = ['Federal - not tied to a location', 'Native American', 'Federal Offshore', 'Federal Onshore']
+    yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal Offshore', 'Federal Onshore']
     break
   }
 
@@ -373,7 +373,7 @@ const TotalRevenue = props => {
             handleBarHover={handleBarHover}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
-            <Link href='/downloads/revenue-by-month/'>Source file</Link>
+            <Link href='/downloads/revenue/'>Source file</Link>
           </Box>
         </Grid>
         <Grid item xs={12} md={5}>

@@ -2,12 +2,12 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import utils from '../../../../js/utils'
+import { formatToDollarInt } from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import CircleChart from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -84,43 +84,29 @@ const RevenueDetailCommodities = props => {
     chartData = data
 
     return (
-	    <div ref={ref} >
+	    <div ref={ref}>
 	      { (chartData.revenue_summary.length > 0)
           ? (
 		    <Box className={classes.root}>
 		      <Box component="h4" fontWeight="bold">Commodities</Box>
 		      <Box>
-                <CircleChart key={'RDC' + dataKey} data={chartData.revenue_summary}
-				     xAxis='commodity' yAxis='total'
-				     format={ d => {
-					 return utils.formatToDollarInt(d)
-				     }
-				     }
-				     circleTooltip={
-				     d => {
-					 const r = []
-					 r[0] = d.commodity
-					 r[1] = utils.formatToDollarInt(d.total)
-					 return r
-				     }
-				     }
-				     yLabel={dataSet}
-				     maxCircles={6}
-				     colorRange={[
-					 theme.palette.explore[600],
-					 theme.palette.explore[500],
-					 theme.palette.explore[400],
-					 theme.palette.explore[300],
-					 theme.palette.explore[200],
-					 theme.palette.explore[100]
-				     ]} />
+                <CircleChart
+                  key={`RDC__${ dataKey }`}
+                  data={chartData.revenue_summary}
+                  xAxis='commodity'
+                  yAxis='total'
+                  maxCircles={6}
+                  legendLabels={['Commodity', 'Total']}
+                  showLabels={false}
+                  showTooltips={true}
+                  format={d => formatToDollarInt(d)} />
                 <QueryLink
-			    groupBy={isCounty ? DFC.COUNTY : DFC.COMMODITY}
-			    landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-			    linkType="FilterTable"
-			    breakoutBy={DFC.COMMODITY}
-			    {...props}>
-			  Query revenue by commodity
+                  groupBy={isCounty ? DFC.COUNTY : DFC.COMMODITY}
+                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
+                  linkType="FilterTable"
+                  breakoutBy={DFC.COMMODITY}
+                  {...props}>
+                Query revenue by commodity
                 </QueryLink>
 		      </Box>
 		    </Box>

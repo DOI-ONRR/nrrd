@@ -1,0 +1,81 @@
+---
+title: Fact Sheet
+includeToc: false
+---
+
+import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
+
+<Container id="fact-sheet" style={{ width: '960px'}}>
+  <Grid container>
+    <Grid item xs={12}>
+      <SnapshotBanner />
+    </Grid>
+    <Grid item xs={12}>
+      <Box color="secondary.main" borderBottom={3}>
+        <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Disbursements</Typography>
+      </Box>
+    </Grid>
+    <Grid item xs={6}>
+      <Box mb={2}>
+        <Typography style={{fontSize: '1rem', lineHeight: '1.1rem'}}>The amount of money paid to federal and local governments and Native Americans.</Typography>
+      </Box>
+      <Typography style={{fontStyle: 'italic', fontSize: '1rem', lineHeight: '1.1rem'}}>This number is delayed from revenue because disbursements are made after the money comes in.</Typography>
+    </Grid>
+    <Grid item xs={6}>
+      <Box pl={'20px'} pr={'20px'}>
+        <DisbursementsLastTwelveMonths title='Disbursements by recipient' chartHeight={130} skeletonHeight={347} yGroupBy={RECIPIENT} disableInteraction={true} />
+      </Box>
+    </Grid>
+    <Grid item xs={12}>
+      <Box color="secondary.main" borderBottom={3}>
+        <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Revenue</Typography>
+      </Box>
+      <Box mb={0}>
+        <Typography color="textPrimary" component='span' style={{fontSize: '1rem', lineHeight: '0.9rem'}}>
+          The amount of money collected from energy and minerals on property owned by the federal government and Native Americans.
+          <Typography style={{fontStyle: 'italic', fontSize: '1rem', lineHeight: '0.9em', display: 'inline'}}>
+            {' '}Negative numbers often indicate adjustments because this is accounting data, not sales data.
+          </Typography>
+        </Typography>
+      </Box>
+    </Grid>
+    <Grid item xs={6}>
+      <Box pl={'20px'} pr={'20px'}>
+        <RevenueLastTwelveMonths title='Revenue by source' yGroupBy={SOURCE} chartHeight={130} skeletonHeight={293} disableInteraction={true} />
+      </Box>
+    </Grid>
+    <Grid item xs={6}>
+      <Box pl={'20px'} pr={'20px'}>
+        <RevenueLastTwelveMonths title='Revenue by revenue type' yGroupBy={'revenue_type'} chartHeight={130} skeletonHeight={293} disableInteraction={true} />
+      </Box>
+    </Grid>
+    <Grid item xs={12}>
+      <Box color="secondary.main" borderBottom={3}>
+        <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Production</Typography>
+      </Box>
+      <Box mb={0}>
+        <Typography color="textPrimary" component='span' style={{fontSize: '1rem', lineHeight: '0.9rem'}}>
+          The volume of energy produced on federal and Native American property.
+          <Typography style={{fontStyle: 'italic', fontSize: '1rem', lineHeight: '0.9rem', display: 'inline'}}>
+            {' '}Production numbers are behind revenue and disbursements to give time for adjustments.
+          </Typography>
+        </Typography>
+      </Box>
+    </Grid>
+    <Grid item xs={4}>
+      <Box pl={'10px'} pr={'10px'}>
+        <ProductionLastTwelveMonths title='Oil (bbl)' filterByProduct='Oil (bbl)' units='bbl' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={2783} disableInteraction={true} />
+      </Box>
+    </Grid>
+    <Grid item xs={4}>
+      <Box pl={'10px'} pr={'10px'}>
+        <ProductionLastTwelveMonths title='Gas (mcf)' filterByProduct='Gas (mcf)' units='mcf' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} />
+      </Box>
+    </Grid>
+    <Grid item xs={4}>
+      <Box pl={'10px'} pr={'10px'}>
+        <ProductionLastTwelveMonths title='Coal (tons)' filterByProduct='Coal (tons)' units='tons' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} />
+      </Box>
+    </Grid>
+  </Grid>
+</Container>

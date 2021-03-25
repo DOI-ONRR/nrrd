@@ -4,6 +4,7 @@
  */
 
 import {
+  ALL_YEARS,
   REVENUE,
   REVENUE_TYPE,
   PRODUCTION,
@@ -17,7 +18,9 @@ import {
   MONTHLY,
   PERIOD,
   FISCAL_YEAR,
+  PERIOD_FISCAL_YEAR,
   CALENDAR_YEAR,
+  PERIOD_CALENDAR_YEAR,
   DATA_TYPE,
   QUERY_TABLE_FILTER_DEFAULT,
   EXPLORE_DATA_FILTER_DEFAULT,
@@ -76,121 +79,127 @@ const reducer = (state, action) => {
   }
 }
 
+const getLastFiveYears = (dataType, period) => (ALL_YEARS[dataType][period].length > 5)
+  ? ALL_YEARS[dataType][period].slice(ALL_YEARS[dataType][period].length - 5).toString()
+  : ALL_YEARS[dataType][period].toString()
+
+const getLatestYear = (dataType, period) => ALL_YEARS[dataType][period].slice(ALL_YEARS[dataType][period].length - 1)[0]
+
 const initialState = {
   [QUERY_TABLE_FILTER_DEFAULT]: {
     [DATA_TYPE]: REVENUE,
     [GROUP_BY]: REVENUE_TYPE,
-    [PERIOD]: 'Fiscal Year',
-    [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
-    [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
+    [PERIOD]: PERIOD_FISCAL_YEAR,
+    [FISCAL_YEAR]: getLastFiveYears(REVENUE, PERIOD_FISCAL_YEAR),
+    [CALENDAR_YEAR]: getLastFiveYears(REVENUE, PERIOD_CALENDAR_YEAR),
     dataTypesCache: {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
         [GROUP_BY]: REVENUE_TYPE,
-        [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
-        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
+        [PERIOD]: PERIOD_FISCAL_YEAR,
+        [FISCAL_YEAR]: getLastFiveYears(REVENUE, PERIOD_FISCAL_YEAR),
+        [CALENDAR_YEAR]: getLastFiveYears(REVENUE, PERIOD_CALENDAR_YEAR),
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
         [GROUP_BY_STICKY]: PRODUCT,
-        [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
-        [CALENDAR_YEAR]: '2016,2017,2018,2019,2020'
+        [PERIOD]: PERIOD_FISCAL_YEAR,
+        [FISCAL_YEAR]: getLastFiveYears(PRODUCTION, PERIOD_FISCAL_YEAR),
+        [CALENDAR_YEAR]: getLastFiveYears(PRODUCTION, PERIOD_CALENDAR_YEAR),
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
-        [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2016,2017,2018,2019,2020',
-        [CALENDAR_YEAR]: '2018,2019,2020'
+        [PERIOD]: PERIOD_FISCAL_YEAR,
+        [FISCAL_YEAR]: getLastFiveYears(DISBURSEMENT, PERIOD_FISCAL_YEAR),
+        [CALENDAR_YEAR]: getLastFiveYears(DISBURSEMENT, PERIOD_CALENDAR_YEAR),
       },
       [REVENUE_BY_COMPANY]: {
         [DATA_TYPE]: REVENUE_BY_COMPANY,
         [GROUP_BY]: COMPANY_NAME,
         [PERIOD]: 'Calendar Year',
-        [CALENDAR_YEAR]: '2015,2016,2017,2018,2019',
+        [CALENDAR_YEAR]: getLastFiveYears(REVENUE_BY_COMPANY, PERIOD_CALENDAR_YEAR),
       }
     }
   },
   [EXPLORE_DATA_FILTER_DEFAULT]: {
     [DATA_TYPE]: REVENUE,
-    [PERIOD]: 'Calendar Year',
-    [FISCAL_YEAR]: '2020',
-    [CALENDAR_YEAR]: '2019',
+    [PERIOD]: PERIOD_CALENDAR_YEAR,
+    [FISCAL_YEAR]: getLatestYear(REVENUE, PERIOD_FISCAL_YEAR).toString(),
+    [CALENDAR_YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR).toString(),
     [OFFSHORE_REGIONS]: false,
     [MAP_LEVEL]: STATE,
-    [YEAR]: 2019,
+    [YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR),
     dataTypesCache: {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
-        [PERIOD]: 'Calendar Year',
-        [FISCAL_YEAR]: '2020',
-        [CALENDAR_YEAR]: '2019',
+        [PERIOD]: PERIOD_CALENDAR_YEAR,
+        [FISCAL_YEAR]: getLatestYear(REVENUE, PERIOD_FISCAL_YEAR).toString(),
+        [CALENDAR_YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR).toString(),
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
-        [YEAR]: 2019,
+        [YEAR]: getLatestYear(REVENUE, PERIOD_FISCAL_YEAR),
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
-        [PERIOD]: 'Calendar Year',
-        [FISCAL_YEAR]: '2019',
-        [CALENDAR_YEAR]: '2018',
+        [PERIOD]: PERIOD_CALENDAR_YEAR,
+        [FISCAL_YEAR]: getLatestYear(PRODUCTION, PERIOD_FISCAL_YEAR).toString(),
+        [CALENDAR_YEAR]: getLatestYear(PRODUCTION, PERIOD_CALENDAR_YEAR).toString(),
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
-        [YEAR]: 2019,
+        [YEAR]: getLatestYear(PRODUCTION, PERIOD_CALENDAR_YEAR),
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
-        [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2020',
+        [PERIOD]: PERIOD_FISCAL_YEAR,
+        [FISCAL_YEAR]: getLatestYear(DISBURSEMENT, PERIOD_FISCAL_YEAR).toString(),
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
-        [YEAR]: 2020,
+        [YEAR]: getLatestYear(DISBURSEMENT, PERIOD_FISCAL_YEAR),
       }
     }
   },
   [HOME_DATA_FILTER_DEFAULT]: {
     [DATA_TYPE]: REVENUE,
-    [PERIOD]: 'Fiscal Year',
-    [FISCAL_YEAR]: '2020',
-    [CALENDAR_YEAR]: '2020',
-    [YEAR]: 2020,
+    [PERIOD]: PERIOD_FISCAL_YEAR,
+    [FISCAL_YEAR]: getLatestYear(REVENUE, PERIOD_FISCAL_YEAR).toString(),
+    [CALENDAR_YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR).toString(),
+    [YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR),
     [MONTHLY]: 'Yearly',
     [BREAKOUT_BY]: 'source',
     [COMMODITY]: 'Oil (bbl)',
     dataTypesCache: {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
-        [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2020',
-        [CALENDAR_YEAR]: '2020',
+        [PERIOD]: PERIOD_FISCAL_YEAR,
+        [FISCAL_YEAR]: getLatestYear(REVENUE, PERIOD_FISCAL_YEAR).toString(),
+        [CALENDAR_YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR).toString(),
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
-        [YEAR]: 2020,
+        [YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR),
         [MONTHLY]: 'Yearly',
         [BREAKOUT_BY]: 'source',
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
-        [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2020',
-        [CALENDAR_YEAR]: '2020',
+        [PERIOD]: PERIOD_FISCAL_YEAR,
+        [FISCAL_YEAR]: getLatestYear(PRODUCTION, PERIOD_FISCAL_YEAR).toString(),
+        [CALENDAR_YEAR]: getLatestYear(PRODUCTION, PERIOD_CALENDAR_YEAR).toString(),
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
-        [YEAR]: 2020,
+        [YEAR]: getLatestYear(PRODUCTION, PERIOD_CALENDAR_YEAR),
         [MONTHLY]: 'Yearly',
         [COMMODITY]: 'Oil (bbl)',
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
-        [PERIOD]: 'Fiscal Year',
-        [FISCAL_YEAR]: '2020',
+        [PERIOD]: PERIOD_FISCAL_YEAR,
+        [FISCAL_YEAR]: getLatestYear(DISBURSEMENT, PERIOD_FISCAL_YEAR).toString(),
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
-        [YEAR]: 2020,
+        [YEAR]: getLatestYear(DISBURSEMENT, PERIOD_FISCAL_YEAR),
         [MONTHLY]: 'Yearly',
         [BREAKOUT_BY]: 'source',
       }

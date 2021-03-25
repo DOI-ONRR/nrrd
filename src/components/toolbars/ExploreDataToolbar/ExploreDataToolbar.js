@@ -26,7 +26,9 @@ import { IconExploreDataImg } from '../../images'
 import {
   CommoditySelectInput,
   FilterToggleInput,
-  PeriodSelectInput
+  PeriodSelectInput,
+  MapLevelToggleInput,
+  OffshoreRegionsSwitchInput
 } from '../../inputs'
 
 import YearSlider from '../../sections/ExploreData/YearSlider'
@@ -68,6 +70,7 @@ const useStyles = makeStyles(theme => ({
     borderLeft: `1px solid ${ theme.palette.grey[400] }`,
     paddingLeft: theme.spacing(2),
     marginLeft: theme.spacing(2),
+    height: 75,
   },
   toolbarIcon: {
     fill: theme.palette.links.default,
@@ -178,7 +181,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
             onChange={toggleExploreDataToolbar}
           >
             <IconExploreDataImg className={`${ classes.toolbarIcon } ${ classes.exploreDataIcon }`} />
-            <span>Explore data</span>
+            <h1 style={{ fontSize: '1.125rem', margin: 0 }}><span>Explore data</span></h1>
           </FilterToggleInput>
           <FilterToggleInput
             value="open"

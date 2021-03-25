@@ -382,7 +382,7 @@ const MapContext = props => {
   }
 
   const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
-  const offshore = filterState[DFC.OFFSHORE_REGIONS] === true
+  const offshore = (filterState[DFC.OFFSHORE_REGIONS] === true || filterState[DFC.OFFSHORE_REGIONS] === 'true')
 
   let mapJsonObject = mapStates
   let mapFeatures = 'states-geo'

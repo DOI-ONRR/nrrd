@@ -7,7 +7,7 @@ import * as d3 from 'd3'
 import QueryLink from '../../../../components/QueryLink'
 
 // utility functions
-import utils from '../../../../js/utils'
+import { formatToCommaInt } from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -19,7 +19,7 @@ import {
   useTheme
 } from '@material-ui/core'
 
-import CircleChart from '../../../data-viz/CircleChart/CircleChart.js'
+import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
 
 const APOLLO_QUERY = gql`
   query ProductionTopLocations($year: Int!, $location: String!, $commodity: String!, $state: String!, $period: String!) {
@@ -200,56 +200,28 @@ const ProductionTopLocations = ({ title, ...props }) => {
             <CircleChart
               key={key}
               data={chartData}
-              maxLegendWidth={props.maxLegendWidth}
               xAxis='location_name'
               yAxis='total'
-              format={ d => utils.formatToCommaInt(d) }
-              circleLabel={
-                d => {
-                  if (props.horizontal) {
-                    const r = []
-                    r[0] = d.location_name
-                    if (r[0] === 'Native American') {
-                      r[0] = 'Native American lands'
-                    }
-                    else if (r[0] === 'Gulf of Mexico, Central Gulf of Mexico') {
-                      r[0] = 'Central Gulf'
-                    }
-                    else if (r[0] === 'Gulf of Mexico, Western Gulf of Mexico') {
-                      r[0] = 'Western Gulf'
-                    }
-                    r[1] = utils.formatToCommaInt(d.total) + ' ' + d.unit_abbr
-                    return r
-                  }
-                  else {
-                    return ['', '']
-                  }
-                }
-              }
-              legendLabel={
-                d => {
-                  if (d === 'Native American') {
-                    d = 'Native American lands'
-                  }
-                  return d
-                }
-              }
-              xLabel={'Location name'}
-              yLabel={dataSet}
+              legendLabels={['Location name', dataSet]}
               maxCircles={6}
-              minColor={theme.palette.green[100]}
-              maxColor={theme.palette.green[600]}
-              colorRange={[
-                theme.palette.explore[700],
-                theme.palette.explore[600],
-                theme.palette.explore[500],
-                theme.palette.explore[400],
-                theme.palette.explore[300],
-                theme.palette.explore[200],
-                theme.palette.explore[100]
-              ]} />
+              format={d => formatToCommaInt(d)}
+              legendPosition={props.horizontal ? 'right' : 'bottom'}
+              formatLegendLabels={d => {
+                if (d === 'Native American') {
+                  d = 'Native American lands'
+                }
+                else if (d === 'Gulf of Mexico, Central Gulf of Mexico') {
+                  d = 'Central Gulf'
+                }
+                else if (d === 'Gulf of Mexico, Western Gulf of Mexico') {
+                  d = 'Western Gulf'
+                }
+                return d
+              }}
+              showLabels={!!props.horizontal}
+            />
           </Box>
-          {props.vertical &&
+          {props.showQueryLink &&
             <Box>
               <QueryLink
                 groupBy={(state === DFC.NATIONWIDE_FEDERAL_FIPS) ? DFC.LAND_TYPE : DFC.COUNTY}
