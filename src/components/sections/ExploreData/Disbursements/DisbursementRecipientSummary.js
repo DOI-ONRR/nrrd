@@ -83,7 +83,12 @@ const APOLLO_QUERY = gql`
 const DisbursementRecipientSummary = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
-  const year = filterState[DFC.YEAR]
+  const {
+    year,
+    periodAllYears
+  } = filterState
+
+  const minYear = periodAllYears[0]
   const dataSet = 'FY ' + year
 
   const state = props.fipsCode
@@ -207,7 +212,7 @@ const DisbursementRecipientSummary = props => {
         data.cardDisbursementRecipientSummary.length === 0 &&
         data.cardDisbursementSparkdata.length === 0 &&
           <Typography variant="caption">
-            <Box><LocationName location={location} />{` ${ nativeAmerican ? 'land' : '' } had no disbursements in ${ year }.`}</Box>
+            <Box><LocationName location={location} />{` ${ nativeAmerican ? 'land' : '' } did not have disbursements from ${ minYear } to ${ year }.`}</Box>
           </Typography>
         }
       </Box>

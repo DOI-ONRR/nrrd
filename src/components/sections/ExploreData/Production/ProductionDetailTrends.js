@@ -52,7 +52,8 @@ const ProductionDetailTrends = props => {
   const classes = useStyles()
   const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
   const { state: filterState } = useContext(DataFilterContext)
-  const year = filterState[DFC.YEAR]
+  const { year, periodAllYears } = filterState
+  const minYear = periodAllYears[0]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const state = props.fipsCode
@@ -148,7 +149,7 @@ const ProductionDetailTrends = props => {
     return (
       <>
         <Box textAlign="center" className={classes.root} key={props.key}>
-          <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } has not produced any ${ product } since ${ sparkMin || 2003 }.`}</Box>
+          <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } has not produced any ${ product } from ${ minYear || 2003 } to ${ year }.`}</Box>
         </Box>
       </>)
   }

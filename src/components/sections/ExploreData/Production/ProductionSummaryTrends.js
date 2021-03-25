@@ -41,13 +41,15 @@ const ProductionSummaryTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const {
     year,
-    period
+    period,
+    periodAllYears
   } = filterState
 
   const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY ' + year : 'CY ' + year
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const state = props.fipsCode
   const key = `${ dataSet }_${ product }_${ state }`
+  const minYear = periodAllYears[0]
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, product: product, period: period }
@@ -160,7 +162,7 @@ const ProductionSummaryTrends = props => {
         <Grid container>
           <Grid item xs={12}>
             <Typography variant="caption">
-              <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } has not produced any ${ product } since ${ sparkMin }.`} </Box>
+              <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } has not produced any ${ product } from ${ minYear || 2003 } to ${ year }.`} </Box>
             </Typography>
           </Grid>
         </Grid>

@@ -1,6 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import React, { useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -153,7 +151,8 @@ const YearSlider = props => {
     year,
     period,
     fiscalYear,
-    calendarYear
+    calendarYear,
+    periodAllYears
   } = filterState
 
   const handleOnchange = year => {
@@ -166,7 +165,7 @@ const YearSlider = props => {
 
   const customMarks = []
 
-  const minYear = 2003
+  const minYear = periodAllYears[0]
   const maxYear = (period === DFC.PERIOD_FISCAL_YEAR) ? parseInt(fiscalYear) : parseInt(calendarYear)
 
   customMarks.push(
