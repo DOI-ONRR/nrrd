@@ -177,7 +177,7 @@ const Map = props => {
   const createMap = () => {
     const us = mapJsonObject
     // const offshore = mapJsonObject.offshore
-    // console.debug("OPTIONS: ", options)
+    console.debug('OPTIONS: ', options)
     const data = observableData(mapData)
     data.title = mapTitle
     map = new D3Map(
@@ -205,7 +205,8 @@ const Map = props => {
         map.zoom(mapZoom)
       }
       else {
-        map.zoom({ x: 50, y: 50, k: 0.75 })
+        map.zoom({ x: 50, y: 25, k: 0.75 })
+        window.localStorage.setItem('mapZoom', '50, 50, 0.75')
       }
     }
     else {
