@@ -21,6 +21,8 @@ import PageToc from '../../navigation/PageToc'
 
 import StickyHeader from '../StickyHeader'
 
+import { isIE } from 'react-device-detect'
+
 const useStyles = makeStyles(theme => (
   {
     '@global': {
@@ -87,6 +89,8 @@ const useStyles = makeStyles(theme => (
       [theme.breakpoints.down('xs')]: {
         marginTop: 60
       },
+      top: isIE ? 140 : 0,
+      position: isIE ? 'relative' : 'inherit'
     },
     mainColumn: {
       paddingTop: theme.spacing(3),

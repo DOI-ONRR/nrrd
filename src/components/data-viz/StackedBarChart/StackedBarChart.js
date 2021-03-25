@@ -188,6 +188,7 @@ const DefaultLegendContainer = withStyles(theme =>
         // fill: theme.palette.chart.secondary,
         // backgroundColor: theme.palette.chart.secondary,
         width: '20px',
+        height: '20px',
         display: 'block',
       },
       '& .legend-table': {

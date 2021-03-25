@@ -28,9 +28,9 @@ const useStyles = makeStyles(theme => ({
       marginRight: '.25em',
     },
     '& span': {
-      textTransform: 'lowercase',
+      textTransform: 'lowercase'
     },
-    '& span:first-letter': {
+    '& span::first-letter': {
       textTransform: 'uppercase'
     }
   },
