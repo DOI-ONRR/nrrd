@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.grey[200],
     display: 'block',
     [theme.breakpoints.down('xs')]: {
-      margin: '0 autodev'
+      margin: '0 auto'
     },
   },
   cardContainer: {

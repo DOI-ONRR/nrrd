@@ -27,12 +27,12 @@ const useStyles = makeStyles(theme => ({
       maxHeight: '.75em',
       marginRight: '.25em',
     },
-    '& span': {
-      textTransform: 'lowercase'
-    },
-    '& span::first-letter': {
-      textTransform: 'uppercase'
-    }
+    // '& span': {
+    //   textTransform: 'lowercase'
+    // },
+    // '& span::first-letter': {
+    //   textTransform: 'uppercase'
+    // }
   },
 }))
 
