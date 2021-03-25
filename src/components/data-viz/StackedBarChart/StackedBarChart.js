@@ -195,6 +195,7 @@ const DefaultLegendContainer = withStyles(theme =>
         borderSpacing: 0,
         borderCollapse: 0,
         boxShadow: 'none',
+        marginTop: 1,
       },
       '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
         textAlign: 'right',

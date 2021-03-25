@@ -19,6 +19,7 @@ import PercentDifference from '../../utils/PercentDifference'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import ChartTitle from '../../data-viz/ChartTitle'
 
 const useStyles = makeStyles(theme => ({
   comparisonTable: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   comparisonTableContent: {
-    height: '196px',
+    height: '202px',
     [theme.breakpoints.down('sm')]: {
       height: 'auto'
     }
@@ -36,6 +37,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.1rem',
     align: 'right',
     verticalAlign: 'bottom',
+    lineHeight: 1.5,
   },
   tableCellHead: {
     borderBottomColor: theme.palette.grey[300],
@@ -201,11 +203,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   return (
     <Box ref={ref}>
-      <Box mb={2} borderBottom={2}>
-        <Box component="h3" m={0} color="primary.dark" fontSize="1.2rem">
-          {comparisonTitle}
-        </Box>
-      </Box>
+      {comparisonTitle && <ChartTitle compact={false}>{comparisonTitle}</ChartTitle>}
       <Box className={classes.comparisonTableContent}>
         {monthly === DFC.MONTHLY_CAPITALIZED ? monthlyComparisonText : yearlyComparisonText }
       </Box>
