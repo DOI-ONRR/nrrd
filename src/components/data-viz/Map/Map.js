@@ -27,18 +27,10 @@ const useStyles = makeStyles(theme => ({
     '& .mapContainer': {
       height: '100%',
       width: '100%',
-      // [theme.breakpoints.down('xs')]: {
-      //   height: '100vh',
-      //   width: '100vw',
-      // },
     },
     '& .map': {
       height: '100%',
       width: '100%',
-      // [theme.breakpoints.down('xs')]: {
-      //   height: '100vh',
-      //   width: '100vw',
-      // },
     },
     '& .legendWrap': {
       display: 'block',

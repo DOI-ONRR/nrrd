@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 1001,
     position: 'relative',
     [theme.breakpoints.down('xs')]: {
-      position: 'fixed',
+      position: 'sticky',
       top: 60,
     }
   },
