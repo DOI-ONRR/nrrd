@@ -9,11 +9,7 @@ import useWindowSize from '../../../js/hooks/useWindowSize'
 import MapControls from '../../sections/ExploreData/MapControls'
 import { makeStyles } from '@material-ui/core/styles'
 
-import {
-  Box,
-  useMediaQuery,
-  useTheme
-} from '@material-ui/core'
+import { Box } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -114,8 +110,6 @@ const useStyles = makeStyles(theme => ({
 
 const Map = props => {
   const size = useWindowSize()
-  const theme = useTheme()
-  const matchesSmDown = useMediaQuery(theme.breakpoints.down('xs'))
 
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";
   // use ONRR topojson file for land
@@ -198,23 +192,12 @@ const Map = props => {
 	    map.zoomTo(props.zoomTo)
     }
 
-    if (matchesSmDown) {
-      map.width = (size.width / 2)
-      map.height = (size.height / 2)
-      if (mapZoom) {
-        map.zoom(mapZoom)
-      }
-      else {
-        map.zoom({ x: 50, y: 25, k: 0.75 })
-        window.localStorage.setItem('mapZoom', '50, 50, 0.75')
-      }
-    }
-    else {
-      map.width = size.width
-      map.height = size.height
+    if (mapZoom) {
+      map.zoom(mapZoom)
     }
 
-    console.log('map====> ', map)
+    map.width = size.width
+    map.height = size.height
   }
 
   useEffect(() => {
