@@ -28,13 +28,13 @@ const useStyles = makeStyles(theme => ({
     },
   },
   comparisonTableContent: {
-    height: '203px',
+    height: '202px',
     [theme.breakpoints.down('sm')]: {
       height: 'auto'
     }
   },
   tableCellRoot: {
-    fontSize: '1.1rem',
+    fontSize: '1rem',
     align: 'right',
     verticalAlign: 'bottom',
     lineHeight: 1.5,

@@ -183,7 +183,7 @@ const DefaultLegendContainer = withStyles(theme =>
       left: 0,
       width: '100%',
       height: '100%',
-      fontSize: theme.typography.h5.fontSize,
+      fontSize: '1rem',
       '& td .legend-rect': {
         width: 20,
         height: 20,
@@ -194,7 +194,7 @@ const DefaultLegendContainer = withStyles(theme =>
         borderSpacing: 0,
         borderCollapse: 0,
         boxShadow: 'none',
-        marginTop: 2,
+        marginTop: 1,
       },
       '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
         textAlign: 'right',
