@@ -172,11 +172,11 @@ const TotalProduction = props => {
 
       legendHeaders = (headers, row) => {
         // console.log('legendHeaders: ', headers, row)
-        const dateArr = formatDate(headers[2])
+        const dateArr = formatDate(headers[1])
         const year = dateArr[0]
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
         const month = date.toLocaleString('en-US', { month: 'short' })
-        const headerArr = [headers[0], '', `${ month } ${ year }`]
+        const headerArr = [headers[0], `${ month } ${ year }`]
         return headerArr
       }
     }
@@ -209,9 +209,9 @@ const TotalProduction = props => {
       }
 
       legendHeaders = (headers, row) => {
-        const fySoFar = (period === DFC.PERIOD_FISCAL_YEAR && (currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[2] > maxFiscalYear - 1)
-        const cySoFar = (period === DFC.PERIOD_CALENDAR_YEAR && (currentMonthNum !== parseInt('12') || startMonth === endMonth) && headers[2] > maxCalendarYear - 1)
-        const headerArr = [headers[0], '', `${ periodAbbr } ${ headers[2] } ${ (fySoFar || cySoFar) ? currentYearSoFarText : '' }`]
+        const fySoFar = (period === DFC.PERIOD_FISCAL_YEAR && (currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[1] > maxFiscalYear - 1)
+        const cySoFar = (period === DFC.PERIOD_CALENDAR_YEAR && (currentMonthNum !== parseInt('12') || startMonth === endMonth) && headers[1] > maxCalendarYear - 1)
+        const headerArr = [headers[0], `${ periodAbbr } ${ headers[1] } ${ (fySoFar || cySoFar) ? currentYearSoFarText : '' }`]
         return headerArr
       }
     }
