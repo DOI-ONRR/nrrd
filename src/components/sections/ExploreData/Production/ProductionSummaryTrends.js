@@ -162,7 +162,7 @@ const ProductionSummaryTrends = props => {
         <Grid container>
           <Grid item xs={12}>
             <Typography variant="caption">
-              <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } has not produced any ${ product } from ${ minYear || 2003 } to ${ year }.`} </Box>
+              <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } did not produce any ${ product } from ${ minYear || 2003 } to ${ year }.`} </Box>
             </Typography>
           </Grid>
         </Grid>
