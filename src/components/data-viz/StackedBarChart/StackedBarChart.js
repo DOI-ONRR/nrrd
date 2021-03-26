@@ -185,9 +185,8 @@ const DefaultLegendContainer = withStyles(theme =>
       height: '100%',
       fontSize: theme.typography.h5.fontSize,
       '& td .legend-rect': {
-        // fill: theme.palette.chart.secondary,
-        // backgroundColor: theme.palette.chart.secondary,
-        width: '20px',
+        width: 20,
+        height: 20,
         display: 'block',
       },
       '& .legend-table': {
@@ -220,7 +219,8 @@ const DefaultLegendContainer = withStyles(theme =>
       },
       '& .legend-table td:first-child': {
         padding: '6px 6px 6px 16px',
-        width: '20px'
+        width: '20px',
+        verticalAlign: 'middle',
       }
     },
   })

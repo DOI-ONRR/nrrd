@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   comparisonTableContent: {
-    height: '202px',
+    height: '203px',
     [theme.breakpoints.down('sm')]: {
       height: 'auto'
     }
