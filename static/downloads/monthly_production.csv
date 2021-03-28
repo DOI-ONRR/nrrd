@@ -1,0 +1,1721 @@
+Date,Month,Year,Land Class,Land Category,Commodity,Product,Volume
+2003-01-01,January,2003,Native American,Onshore,Coal,Coal (tons),2400984
+2003-01-01,January,2003,Native American,Onshore,Oil,Oil (bbl),999840
+2003-01-01,January,2003,Native American,Onshore,Gas,Gas (mcf),33558894
+2003-01-01,January,2003,Federal,Onshore,Coal,Coal (tons),37822686
+2003-01-01,January,2003,Federal,Onshore,Gas,Gas (mcf),253570099
+2003-01-01,January,2003,Federal,Onshore,Oil,Oil (bbl),8410708
+2003-01-01,January,2003,Federal,Offshore,Oil,Oil (bbl),51902064
+2003-01-01,January,2003,Federal,Offshore,Gas,Gas (mcf),388912405
+2003-02-01,February,2003,Federal,Offshore,Gas,Gas (mcf),357135900
+2003-02-01,February,2003,Federal,Onshore,Coal,Coal (tons),33743641
+2003-02-01,February,2003,Federal,Onshore,Oil,Oil (bbl),7493581
+2003-02-01,February,2003,Native American,Onshore,Coal,Coal (tons),2329191
+2003-02-01,February,2003,Native American,Onshore,Oil,Oil (bbl),898897
+2003-02-01,February,2003,Native American,Onshore,Gas,Gas (mcf),29709696
+2003-02-01,February,2003,Federal,Onshore,Gas,Gas (mcf),233888260
+2003-02-01,February,2003,Federal,Offshore,Oil,Oil (bbl),47525866
+2003-03-01,March,2003,Native American,Onshore,Oil,Oil (bbl),963003
+2003-03-01,March,2003,Native American,Onshore,Coal,Coal (tons),2144013
+2003-03-01,March,2003,Native American,Onshore,Gas,Gas (mcf),32568168
+2003-03-01,March,2003,Federal,Offshore,Gas,Gas (mcf),403710487
+2003-03-01,March,2003,Federal,Offshore,Oil,Oil (bbl),52454393
+2003-03-01,March,2003,Federal,Onshore,Gas,Gas (mcf),256897770
+2003-03-01,March,2003,Federal,Onshore,Oil,Oil (bbl),8337346
+2003-03-01,March,2003,Federal,Onshore,Coal,Coal (tons),34916953
+2003-04-01,April,2003,Federal,Onshore,Oil,Oil (bbl),7928603
+2003-04-01,April,2003,Federal,Onshore,Coal,Coal (tons),35430343
+2003-04-01,April,2003,Native American,Onshore,Gas,Gas (mcf),30727963
+2003-04-01,April,2003,Federal,Offshore,Gas,Gas (mcf),392131061
+2003-04-01,April,2003,Federal,Offshore,Oil,Oil (bbl),49827275
+2003-04-01,April,2003,Native American,Onshore,Oil,Oil (bbl),935474
+2003-04-01,April,2003,Native American,Onshore,Coal,Coal (tons),2526695
+2003-04-01,April,2003,Federal,Onshore,Gas,Gas (mcf),242692369
+2003-05-01,May,2003,Federal,Onshore,Oil,Oil (bbl),8245098
+2003-05-01,May,2003,Federal,Onshore,Coal,Coal (tons),36677762
+2003-05-01,May,2003,Native American,Onshore,Gas,Gas (mcf),31517001
+2003-05-01,May,2003,Native American,Onshore,Oil,Oil (bbl),949557
+2003-05-01,May,2003,Native American,Onshore,Coal,Coal (tons),2860051
+2003-05-01,May,2003,Federal,Offshore,Gas,Gas (mcf),396856114
+2003-05-01,May,2003,Federal,Offshore,Oil,Oil (bbl),50379253
+2003-05-01,May,2003,Federal,Onshore,Gas,Gas (mcf),237888717
+2003-06-01,June,2003,Native American,Onshore,Oil,Oil (bbl),899813
+2003-06-01,June,2003,Federal,Onshore,Gas,Gas (mcf),236642042
+2003-06-01,June,2003,Native American,Onshore,Coal,Coal (tons),2417336
+2003-06-01,June,2003,Federal,Onshore,Oil,Oil (bbl),7935881
+2003-06-01,June,2003,Native American,Onshore,Gas,Gas (mcf),31016504
+2003-06-01,June,2003,Federal,Onshore,Coal,Coal (tons),37340028
+2003-06-01,June,2003,Federal,Offshore,Gas,Gas (mcf),374519636
+2003-06-01,June,2003,Federal,Offshore,Oil,Oil (bbl),49264615
+2003-07-01,July,2003,Federal,Onshore,Coal,Coal (tons),37367365
+2003-07-01,July,2003,Federal,Offshore,Oil,Oil (bbl),48285432
+2003-07-01,July,2003,Federal,Onshore,Gas,Gas (mcf),244493439
+2003-07-01,July,2003,Federal,Onshore,Oil,Oil (bbl),8194238
+2003-07-01,July,2003,Federal,Offshore,Gas,Gas (mcf),366434604
+2003-07-01,July,2003,Native American,Onshore,Oil,Oil (bbl),921923
+2003-07-01,July,2003,Native American,Onshore,Gas,Gas (mcf),31814176
+2003-07-01,July,2003,Native American,Onshore,Coal,Coal (tons),2532307
+2003-08-01,August,2003,Native American,Onshore,Gas,Gas (mcf),32131050
+2003-08-01,August,2003,Native American,Onshore,Coal,Coal (tons),2622021
+2003-08-01,August,2003,Native American,Onshore,Oil,Oil (bbl),902533
+2003-08-01,August,2003,Federal,Onshore,Coal,Coal (tons),38954190
+2003-08-01,August,2003,Federal,Onshore,Oil,Oil (bbl),8188606
+2003-08-01,August,2003,Federal,Onshore,Gas,Gas (mcf),247525199
+2003-08-01,August,2003,Federal,Offshore,Oil,Oil (bbl),50849036
+2003-08-01,August,2003,Federal,Offshore,Gas,Gas (mcf),379201872
+2003-09-01,September,2003,Native American,Onshore,Coal,Coal (tons),3153896
+2003-09-01,September,2003,Native American,Onshore,Oil,Oil (bbl),883161
+2003-09-01,September,2003,Native American,Onshore,Gas,Gas (mcf),31014736
+2003-09-01,September,2003,Federal,Onshore,Gas,Gas (mcf),247470015
+2003-09-01,September,2003,Federal,Onshore,Oil,Oil (bbl),7981715
+2003-09-01,September,2003,Federal,Onshore,Coal,Coal (tons),36506801
+2003-09-01,September,2003,Federal,Offshore,Oil,Oil (bbl),48435021
+2003-09-01,September,2003,Federal,Offshore,Gas,Gas (mcf),359224212
+2003-10-01,October,2003,Native American,Onshore,Oil,Oil (bbl),927732
+2003-10-01,October,2003,Federal,Onshore,Oil,Oil (bbl),8222208
+2003-10-01,October,2003,Federal,Onshore,Gas,Gas (mcf),269682230
+2003-10-01,October,2003,Native American,Onshore,Gas,Gas (mcf),32047547
+2003-10-01,October,2003,Federal,Offshore,Gas,Gas (mcf),371153619
+2003-10-01,October,2003,Federal,Onshore,Coal,Coal (tons),37838612
+2003-10-01,October,2003,Native American,Onshore,Coal,Coal (tons),2576086
+2003-10-01,October,2003,Federal,Offshore,Oil,Oil (bbl),49979034
+2003-11-01,November,2003,Native American,Onshore,Oil,Oil (bbl),889344
+2003-11-01,November,2003,Federal,Onshore,Oil,Oil (bbl),7856083
+2003-11-01,November,2003,Native American,Onshore,Gas,Gas (mcf),30634783
+2003-11-01,November,2003,Federal,Onshore,Gas,Gas (mcf),255059359
+2003-11-01,November,2003,Federal,Onshore,Coal,Coal (tons),36994823
+2003-11-01,November,2003,Federal,Offshore,Gas,Gas (mcf),349032281
+2003-11-01,November,2003,Federal,Offshore,Oil,Oil (bbl),47184399
+2003-11-01,November,2003,Native American,Onshore,Coal,Coal (tons),2417148
+2003-12-01,December,2003,Native American,Onshore,Oil,Oil (bbl),936588
+2003-12-01,December,2003,Native American,Onshore,Coal,Coal (tons),2526153
+2003-12-01,December,2003,Federal,Offshore,Oil,Oil (bbl),49253004
+2003-12-01,December,2003,Federal,Offshore,Gas,Gas (mcf),362758331
+2003-12-01,December,2003,Native American,Onshore,Gas,Gas (mcf),31241002
+2003-12-01,December,2003,Federal,Onshore,Gas,Gas (mcf),266959859
+2003-12-01,December,2003,Federal,Onshore,Oil,Oil (bbl),8118969
+2003-12-01,December,2003,Federal,Onshore,Coal,Coal (tons),38913508
+2004-01-01,January,2004,Federal,Offshore,Oil,Oil (bbl),50125549
+2004-01-01,January,2004,Native American,Onshore,Coal,Coal (tons),2790396
+2004-01-01,January,2004,Native American,Onshore,Oil,Oil (bbl),940267
+2004-01-01,January,2004,Federal,Offshore,Gas,Gas (mcf),365448070
+2004-01-01,January,2004,Native American,Onshore,Gas,Gas (mcf),30639762
+2004-01-01,January,2004,Federal,Onshore,Coal,Coal (tons),39793156
+2004-01-01,January,2004,Federal,Onshore,Oil,Oil (bbl),8050201
+2004-01-01,January,2004,Federal,Onshore,Gas,Gas (mcf),266146534
+2004-02-01,February,2004,Native American,Onshore,Oil,Oil (bbl),890849
+2004-02-01,February,2004,Federal,Offshore,Oil,Oil (bbl),47429307
+2004-02-01,February,2004,Native American,Onshore,Coal,Coal (tons),2274690
+2004-02-01,February,2004,Federal,Offshore,Gas,Gas (mcf),342796942
+2004-02-01,February,2004,Federal,Onshore,Coal,Coal (tons),34206060
+2004-02-01,February,2004,Federal,Onshore,Oil,Oil (bbl),7586095
+2004-02-01,February,2004,Federal,Onshore,Gas,Gas (mcf),245499245
+2004-02-01,February,2004,Native American,Onshore,Gas,Gas (mcf),28658179
+2004-03-01,March,2004,Native American,Onshore,Coal,Coal (tons),2926896
+2004-03-01,March,2004,Federal,Onshore,Coal,Coal (tons),38220610
+2004-03-01,March,2004,Federal,Onshore,Oil,Oil (bbl),8055411
+2004-03-01,March,2004,Federal,Onshore,Gas,Gas (mcf),264227882
+2004-03-01,March,2004,Federal,Offshore,Gas,Gas (mcf),375062970
+2004-03-01,March,2004,Federal,Offshore,Oil,Oil (bbl),50179164
+2004-03-01,March,2004,Native American,Onshore,Oil,Oil (bbl),956040
+2004-03-01,March,2004,Native American,Onshore,Gas,Gas (mcf),30530455
+2004-04-01,April,2004,Federal,Offshore,Gas,Gas (mcf),362132217
+2004-04-01,April,2004,Federal,Offshore,Oil,Oil (bbl),48108084
+2004-04-01,April,2004,Native American,Onshore,Coal,Coal (tons),2441696
+2004-04-01,April,2004,Native American,Onshore,Oil,Oil (bbl),953460
+2004-04-01,April,2004,Federal,Onshore,Gas,Gas (mcf),254508616
+2004-04-01,April,2004,Native American,Onshore,Gas,Gas (mcf),29686338
+2004-04-01,April,2004,Federal,Onshore,Coal,Coal (tons),37325558
+2004-04-01,April,2004,Federal,Onshore,Oil,Oil (bbl),7757463
+2004-05-01,May,2004,Native American,Onshore,Coal,Coal (tons),2714456
+2004-05-01,May,2004,Native American,Onshore,Gas,Gas (mcf),30267873
+2004-05-01,May,2004,Native American,Onshore,Oil,Oil (bbl),986597
+2004-05-01,May,2004,Federal,Onshore,Coal,Coal (tons),37085297
+2004-05-01,May,2004,Federal,Onshore,Oil,Oil (bbl),7955980
+2004-05-01,May,2004,Federal,Onshore,Gas,Gas (mcf),256826256
+2004-05-01,May,2004,Federal,Offshore,Oil,Oil (bbl),50195658
+2004-05-01,May,2004,Federal,Offshore,Gas,Gas (mcf),367575603
+2004-06-01,June,2004,Native American,Onshore,Oil,Oil (bbl),915013
+2004-06-01,June,2004,Native American,Onshore,Coal,Coal (tons),2814287
+2004-06-01,June,2004,Federal,Offshore,Gas,Gas (mcf),343370433
+2004-06-01,June,2004,Federal,Offshore,Oil,Oil (bbl),45749647
+2004-06-01,June,2004,Native American,Onshore,Gas,Gas (mcf),29264609
+2004-06-01,June,2004,Federal,Onshore,Gas,Gas (mcf),247873489
+2004-06-01,June,2004,Federal,Onshore,Oil,Oil (bbl),7645308
+2004-06-01,June,2004,Federal,Onshore,Coal,Coal (tons),37941288
+2004-07-01,July,2004,Native American,Onshore,Oil,Oil (bbl),953410
+2004-07-01,July,2004,Federal,Offshore,Oil,Oil (bbl),53256723
+2004-07-01,July,2004,Native American,Onshore,Gas,Gas (mcf),30139616
+2004-07-01,July,2004,Native American,Onshore,Coal,Coal (tons),2257866
+2004-07-01,July,2004,Federal,Offshore,Gas,Gas (mcf),361432226
+2004-07-01,July,2004,Federal,Onshore,Gas,Gas (mcf),262335355
+2004-07-01,July,2004,Federal,Onshore,Oil,Oil (bbl),7858435
+2004-07-01,July,2004,Federal,Onshore,Coal,Coal (tons),38767113
+2004-08-01,August,2004,Federal,Offshore,Oil,Oil (bbl),51092432
+2004-08-01,August,2004,Federal,Onshore,Gas,Gas (mcf),265941892
+2004-08-01,August,2004,Federal,Onshore,Oil,Oil (bbl),7875666
+2004-08-01,August,2004,Federal,Onshore,Coal,Coal (tons),39475725
+2004-08-01,August,2004,Native American,Onshore,Gas,Gas (mcf),30054747
+2004-08-01,August,2004,Native American,Onshore,Coal,Coal (tons),2860888
+2004-08-01,August,2004,Native American,Onshore,Oil,Oil (bbl),972219
+2004-08-01,August,2004,Federal,Offshore,Gas,Gas (mcf),354075389
+2004-09-01,September,2004,Native American,Onshore,Oil,Oil (bbl),961664
+2004-09-01,September,2004,Native American,Onshore,Coal,Coal (tons),3098376
+2004-09-01,September,2004,Native American,Onshore,Gas,Gas (mcf),29006099
+2004-09-01,September,2004,Federal,Onshore,Coal,Coal (tons),39930106
+2004-09-01,September,2004,Federal,Offshore,Oil,Oil (bbl),37946564
+2004-09-01,September,2004,Federal,Onshore,Oil,Oil (bbl),7616229
+2004-09-01,September,2004,Federal,Offshore,Gas,Gas (mcf),280775631
+2004-09-01,September,2004,Federal,Onshore,Gas,Gas (mcf),262329863
+2004-10-01,October,2004,Native American,Onshore,Coal,Coal (tons),2834810
+2004-10-01,October,2004,Federal,Onshore,Oil,Oil (bbl),7910922
+2004-10-01,October,2004,Federal,Onshore,Coal,Coal (tons),39677776
+2004-10-01,October,2004,Federal,Offshore,Gas,Gas (mcf),303926329
+2004-10-01,October,2004,Federal,Offshore,Oil,Oil (bbl),39371415
+2004-10-01,October,2004,Native American,Onshore,Oil,Oil (bbl),988503
+2004-10-01,October,2004,Native American,Onshore,Gas,Gas (mcf),30287763
+2004-10-01,October,2004,Federal,Onshore,Gas,Gas (mcf),275374870
+2004-11-01,November,2004,Native American,Onshore,Coal,Coal (tons),2481476
+2004-11-01,November,2004,Native American,Onshore,Oil,Oil (bbl),977566
+2004-11-01,November,2004,Native American,Onshore,Gas,Gas (mcf),29787370
+2004-11-01,November,2004,Federal,Offshore,Gas,Gas (mcf),313078854
+2004-11-01,November,2004,Federal,Offshore,Oil,Oil (bbl),45004237
+2004-11-01,November,2004,Federal,Onshore,Gas,Gas (mcf),269673885
+2004-11-01,November,2004,Federal,Onshore,Coal,Coal (tons),38363559
+2004-11-01,November,2004,Federal,Onshore,Oil,Oil (bbl),7765513
+2004-12-01,December,2004,Native American,Onshore,Gas,Gas (mcf),30321591
+2004-12-01,December,2004,Native American,Onshore,Coal,Coal (tons),3016398
+2004-12-01,December,2004,Native American,Onshore,Oil,Oil (bbl),1012682
+2004-12-01,December,2004,Federal,Offshore,Gas,Gas (mcf),309817091
+2004-12-01,December,2004,Federal,Offshore,Oil,Oil (bbl),48642160
+2004-12-01,December,2004,Federal,Onshore,Gas,Gas (mcf),278075932
+2004-12-01,December,2004,Federal,Onshore,Oil,Oil (bbl),7920137
+2004-12-01,December,2004,Federal,Onshore,Coal,Coal (tons),38672407
+2005-01-01,January,2005,Federal,Onshore,Oil,Oil (bbl),7835814
+2005-01-01,January,2005,Federal,Onshore,Coal,Coal (tons),37597569
+2005-01-01,January,2005,Native American,Onshore,Gas,Gas (mcf),29805926
+2005-01-01,January,2005,Federal,Offshore,Oil,Oil (bbl),48966432
+2005-01-01,January,2005,Native American,Onshore,Oil,Oil (bbl),974942
+2005-01-01,January,2005,Native American,Onshore,Coal,Coal (tons),2861003
+2005-01-01,January,2005,Federal,Onshore,Gas,Gas (mcf),278323624
+2005-01-01,January,2005,Federal,Offshore,Gas,Gas (mcf),316500854
+2005-02-01,February,2005,Federal,Onshore,Coal,Coal (tons),37757279
+2005-02-01,February,2005,Federal,Offshore,Oil,Oil (bbl),44114557
+2005-02-01,February,2005,Native American,Onshore,Oil,Oil (bbl),901934
+2005-02-01,February,2005,Native American,Onshore,Coal,Coal (tons),2737327
+2005-02-01,February,2005,Federal,Onshore,Gas,Gas (mcf),249874639
+2005-02-01,February,2005,Native American,Onshore,Gas,Gas (mcf),26765439
+2005-02-01,February,2005,Federal,Onshore,Oil,Oil (bbl),7126685
+2005-02-01,February,2005,Federal,Offshore,Gas,Gas (mcf),293032684
+2005-03-01,March,2005,Federal,Onshore,Gas,Gas (mcf),273411982
+2005-03-01,March,2005,Federal,Onshore,Oil,Oil (bbl),7843737
+2005-03-01,March,2005,Federal,Onshore,Coal,Coal (tons),41971071
+2005-03-01,March,2005,Native American,Onshore,Coal,Coal (tons),2889277
+2005-03-01,March,2005,Federal,Offshore,Gas,Gas (mcf),330982305
+2005-03-01,March,2005,Federal,Offshore,Oil,Oil (bbl),51150208
+2005-03-01,March,2005,Native American,Onshore,Gas,Gas (mcf),29856740
+2005-03-01,March,2005,Native American,Onshore,Oil,Oil (bbl),988356
+2005-04-01,April,2005,Federal,Offshore,Gas,Gas (mcf),320039593
+2005-04-01,April,2005,Federal,Onshore,Gas,Gas (mcf),263778331
+2005-04-01,April,2005,Native American,Onshore,Gas,Gas (mcf),28563032
+2005-04-01,April,2005,Native American,Onshore,Oil,Oil (bbl),936704
+2005-04-01,April,2005,Federal,Onshore,Oil,Oil (bbl),7635740
+2005-04-01,April,2005,Federal,Onshore,Coal,Coal (tons),37251010
+2005-04-01,April,2005,Native American,Onshore,Coal,Coal (tons),2837532
+2005-04-01,April,2005,Federal,Offshore,Oil,Oil (bbl),49717757
+2005-05-01,May,2005,Federal,Offshore,Oil,Oil (bbl),53029642
+2005-05-01,May,2005,Federal,Onshore,Gas,Gas (mcf),272850906
+2005-05-01,May,2005,Federal,Onshore,Oil,Oil (bbl),7921423
+2005-05-01,May,2005,Federal,Onshore,Coal,Coal (tons),33464857
+2005-05-01,May,2005,Native American,Onshore,Coal,Coal (tons),3099050
+2005-05-01,May,2005,Native American,Onshore,Oil,Oil (bbl),989178
+2005-05-01,May,2005,Native American,Onshore,Gas,Gas (mcf),29913298
+2005-05-01,May,2005,Federal,Offshore,Gas,Gas (mcf),336761093
+2005-06-01,June,2005,Native American,Onshore,Coal,Coal (tons),2863100
+2005-06-01,June,2005,Federal,Onshore,Coal,Coal (tons),36088007
+2005-06-01,June,2005,Federal,Offshore,Oil,Oil (bbl),49299410
+2005-06-01,June,2005,Federal,Offshore,Gas,Gas (mcf),316761791
+2005-06-01,June,2005,Federal,Onshore,Oil,Oil (bbl),7619014
+2005-06-01,June,2005,Native American,Onshore,Gas,Gas (mcf),29040938
+2005-06-01,June,2005,Native American,Onshore,Oil,Oil (bbl),951450
+2005-06-01,June,2005,Federal,Onshore,Gas,Gas (mcf),260974972
+2005-07-01,July,2005,Federal,Onshore,Oil,Oil (bbl),7804738
+2005-07-01,July,2005,Native American,Onshore,Coal,Coal (tons),2402519
+2005-07-01,July,2005,Federal,Onshore,Coal,Coal (tons),38308089
+2005-07-01,July,2005,Native American,Onshore,Gas,Gas (mcf),29417322
+2005-07-01,July,2005,Native American,Onshore,Oil,Oil (bbl),983795
+2005-07-01,July,2005,Federal,Offshore,Oil,Oil (bbl),47300842
+2005-07-01,July,2005,Federal,Offshore,Gas,Gas (mcf),301987683
+2005-07-01,July,2005,Federal,Onshore,Gas,Gas (mcf),270691142
+2005-08-01,August,2005,Federal,Onshore,Gas,Gas (mcf),276770421
+2005-08-01,August,2005,Federal,Onshore,Coal,Coal (tons),37041753
+2005-08-01,August,2005,Native American,Onshore,Gas,Gas (mcf),29548704
+2005-08-01,August,2005,Native American,Onshore,Oil,Oil (bbl),995612
+2005-08-01,August,2005,Native American,Onshore,Coal,Coal (tons),3052907
+2005-08-01,August,2005,Federal,Offshore,Gas,Gas (mcf),283967403
+2005-08-01,August,2005,Federal,Offshore,Oil,Oil (bbl),44524053
+2005-08-01,August,2005,Federal,Onshore,Oil,Oil (bbl),7919273
+2005-09-01,September,2005,Native American,Onshore,Coal,Coal (tons),3117008
+2005-09-01,September,2005,Native American,Onshore,Oil,Oil (bbl),952348
+2005-09-01,September,2005,Native American,Onshore,Gas,Gas (mcf),28504997
+2005-09-01,September,2005,Federal,Offshore,Gas,Gas (mcf),146226107
+2005-09-01,September,2005,Federal,Offshore,Oil,Oil (bbl),16481368
+2005-09-01,September,2005,Federal,Onshore,Gas,Gas (mcf),270989280
+2005-09-01,September,2005,Federal,Onshore,Oil,Oil (bbl),7694881
+2005-09-01,September,2005,Federal,Onshore,Coal,Coal (tons),36881647
+2005-10-01,October,2005,Federal,Offshore,Oil,Oil (bbl),23993307
+2005-10-01,October,2005,Native American,Onshore,Coal,Coal (tons),2825164
+2005-10-01,October,2005,Federal,Offshore,Gas,Gas (mcf),142680305
+2005-10-01,October,2005,Native American,Onshore,Oil,Oil (bbl),984379
+2005-10-01,October,2005,Native American,Onshore,Gas,Gas (mcf),29725929
+2005-10-01,October,2005,Federal,Onshore,Coal,Coal (tons),34115112
+2005-10-01,October,2005,Federal,Onshore,Oil,Oil (bbl),8104846
+2005-10-01,October,2005,Federal,Onshore,Gas,Gas (mcf),283991497
+2005-11-01,November,2005,Native American,Onshore,Coal,Coal (tons),2577174
+2005-11-01,November,2005,Native American,Onshore,Oil,Oil (bbl),931123
+2005-11-01,November,2005,Federal,Onshore,Coal,Coal (tons),35522134
+2005-11-01,November,2005,Federal,Onshore,Oil,Oil (bbl),7842979
+2005-11-01,November,2005,Federal,Offshore,Oil,Oil (bbl),31052033
+2005-11-01,November,2005,Federal,Offshore,Gas,Gas (mcf),203466670
+2005-11-01,November,2005,Federal,Onshore,Gas,Gas (mcf),281671598
+2005-11-01,November,2005,Native American,Onshore,Gas,Gas (mcf),28253048
+2005-12-01,December,2005,Native American,Onshore,Coal,Coal (tons),2227485
+2005-12-01,December,2005,Native American,Onshore,Oil,Oil (bbl),947212
+2005-12-01,December,2005,Native American,Onshore,Gas,Gas (mcf),28213269
+2005-12-01,December,2005,Federal,Onshore,Coal,Coal (tons),34338379
+2005-12-01,December,2005,Federal,Onshore,Oil,Oil (bbl),8035965
+2005-12-01,December,2005,Federal,Onshore,Gas,Gas (mcf),285577433
+2005-12-01,December,2005,Federal,Offshore,Gas,Gas (mcf),240539880
+2005-12-01,December,2005,Federal,Offshore,Oil,Oil (bbl),37564683
+2006-01-01,January,2006,Federal,Offshore,Oil,Oil (bbl),39349076
+2006-01-01,January,2006,Federal,Offshore,Gas,Gas (mcf),251000886
+2006-01-01,January,2006,Federal,Onshore,Gas,Gas (mcf),292241550
+2006-01-01,January,2006,Federal,Onshore,Oil,Oil (bbl),8054190
+2006-01-01,January,2006,Native American,Onshore,Gas,Gas (mcf),28086652
+2006-01-01,January,2006,Native American,Onshore,Oil,Oil (bbl),909538
+2006-01-01,January,2006,Federal,Onshore,Coal,Coal (tons),36482915
+2006-01-01,January,2006,Native American,Onshore,Coal,Coal (tons),2637932
+2006-02-01,February,2006,Native American,Onshore,Oil,Oil (bbl),808495
+2006-02-01,February,2006,Federal,Onshore,Coal,Coal (tons),32452852
+2006-02-01,February,2006,Federal,Onshore,Oil,Oil (bbl),7361064
+2006-02-01,February,2006,Federal,Onshore,Gas,Gas (mcf),263474643
+2006-02-01,February,2006,Federal,Offshore,Gas,Gas (mcf),221445869
+2006-02-01,February,2006,Federal,Offshore,Oil,Oil (bbl),34948509
+2006-02-01,February,2006,Native American,Onshore,Coal,Coal (tons),2265006
+2006-02-01,February,2006,Native American,Onshore,Gas,Gas (mcf),25757935
+2006-03-01,March,2006,Federal,Onshore,Gas,Gas (mcf),293759799
+2006-03-01,March,2006,Federal,Onshore,Oil,Oil (bbl),8236348
+2006-03-01,March,2006,Federal,Onshore,Coal,Coal (tons),35033102
+2006-03-01,March,2006,Federal,Offshore,Gas,Gas (mcf),247569174
+2006-03-01,March,2006,Federal,Offshore,Oil,Oil (bbl),39897703
+2006-03-01,March,2006,Native American,Onshore,Gas,Gas (mcf),28416166
+2006-03-01,March,2006,Native American,Onshore,Oil,Oil (bbl),926993
+2006-03-01,March,2006,Native American,Onshore,Coal,Coal (tons),2559734
+2006-04-01,April,2006,Federal,Offshore,Gas,Gas (mcf),245949531
+2006-04-01,April,2006,Federal,Offshore,Oil,Oil (bbl),39533805
+2006-04-01,April,2006,Native American,Onshore,Gas,Gas (mcf),27306020
+2006-04-01,April,2006,Native American,Onshore,Oil,Oil (bbl),921974
+2006-04-01,April,2006,Native American,Onshore,Coal,Coal (tons),2300077
+2006-04-01,April,2006,Federal,Onshore,Gas,Gas (mcf),280008406
+2006-04-01,April,2006,Federal,Onshore,Oil,Oil (bbl),7896631
+2006-04-01,April,2006,Federal,Onshore,Coal,Coal (tons),36760830
+2006-05-01,May,2006,Federal,Onshore,Oil,Oil (bbl),8154594
+2006-05-01,May,2006,Federal,Onshore,Gas,Gas (mcf),285742670
+2006-05-01,May,2006,Native American,Onshore,Oil,Oil (bbl),946679
+2006-05-01,May,2006,Native American,Onshore,Coal,Coal (tons),2448381
+2006-05-01,May,2006,Native American,Onshore,Gas,Gas (mcf),28221059
+2006-05-01,May,2006,Federal,Onshore,Coal,Coal (tons),39222190
+2006-05-01,May,2006,Federal,Offshore,Gas,Gas (mcf),263859110
+2006-05-01,May,2006,Federal,Offshore,Oil,Oil (bbl),42632100
+2006-06-01,June,2006,Native American,Onshore,Oil,Oil (bbl),911708
+2006-06-01,June,2006,Native American,Onshore,Gas,Gas (mcf),27187391
+2006-06-01,June,2006,Federal,Onshore,Gas,Gas (mcf),278446271
+2006-06-01,June,2006,Federal,Onshore,Oil,Oil (bbl),7845829
+2006-06-01,June,2006,Federal,Offshore,Oil,Oil (bbl),42325052
+2006-06-01,June,2006,Federal,Offshore,Gas,Gas (mcf),254684180
+2006-06-01,June,2006,Federal,Onshore,Coal,Coal (tons),38664425
+2006-06-01,June,2006,Native American,Onshore,Coal,Coal (tons),1765339
+2006-07-01,July,2006,Federal,Offshore,Oil,Oil (bbl),45032280
+2006-07-01,July,2006,Native American,Onshore,Coal,Coal (tons),2149924
+2006-07-01,July,2006,Federal,Onshore,Gas,Gas (mcf),289244476
+2006-07-01,July,2006,Federal,Onshore,Oil,Oil (bbl),8061009
+2006-07-01,July,2006,Federal,Onshore,Coal,Coal (tons),38606766
+2006-07-01,July,2006,Federal,Offshore,Gas,Gas (mcf),263141517
+2006-07-01,July,2006,Native American,Onshore,Gas,Gas (mcf),28036510
+2006-07-01,July,2006,Native American,Onshore,Oil,Oil (bbl),953536
+2006-08-01,August,2006,Federal,Onshore,Coal,Coal (tons),39664527
+2006-08-01,August,2006,Native American,Onshore,Gas,Gas (mcf),27988195
+2006-08-01,August,2006,Native American,Onshore,Oil,Oil (bbl),966677
+2006-08-01,August,2006,Federal,Onshore,Gas,Gas (mcf),290272020
+2006-08-01,August,2006,Federal,Offshore,Oil,Oil (bbl),45695407
+2006-08-01,August,2006,Federal,Offshore,Gas,Gas (mcf),257602688
+2006-08-01,August,2006,Native American,Onshore,Coal,Coal (tons),2390795
+2006-08-01,August,2006,Federal,Onshore,Oil,Oil (bbl),8116789
+2006-09-01,September,2006,Native American,Onshore,Coal,Coal (tons),2307367
+2006-09-01,September,2006,Federal,Onshore,Gas,Gas (mcf),279308593
+2006-09-01,September,2006,Federal,Onshore,Oil,Oil (bbl),7865511
+2006-09-01,September,2006,Federal,Onshore,Coal,Coal (tons),35609815
+2006-09-01,September,2006,Federal,Offshore,Gas,Gas (mcf),244847240
+2006-09-01,September,2006,Federal,Offshore,Oil,Oil (bbl),41877208
+2006-09-01,September,2006,Native American,Onshore,Oil,Oil (bbl),942223
+2006-09-01,September,2006,Native American,Onshore,Gas,Gas (mcf),26769255
+2006-10-01,October,2006,Federal,Offshore,Oil,Oil (bbl),43792435
+2006-10-01,October,2006,Native American,Onshore,Coal,Coal (tons),2204949
+2006-10-01,October,2006,Native American,Onshore,Oil,Oil (bbl),948250
+2006-10-01,October,2006,Native American,Onshore,Gas,Gas (mcf),27633859
+2006-10-01,October,2006,Federal,Onshore,Gas,Gas (mcf),302650457
+2006-10-01,October,2006,Federal,Onshore,Oil,Oil (bbl),8131133
+2006-10-01,October,2006,Federal,Onshore,Coal,Coal (tons),37555671
+2006-10-01,October,2006,Federal,Offshore,Gas,Gas (mcf),250483121
+2006-11-01,November,2006,Federal,Onshore,Coal,Coal (tons),36102415
+2006-11-01,November,2006,Native American,Onshore,Oil,Oil (bbl),953042
+2006-11-01,November,2006,Native American,Onshore,Gas,Gas (mcf),26784196
+2006-11-01,November,2006,Federal,Offshore,Gas,Gas (mcf),243752134
+2006-11-01,November,2006,Native American,Onshore,Coal,Coal (tons),2244728
+2006-11-01,November,2006,Federal,Onshore,Oil,Oil (bbl),8055970
+2006-11-01,November,2006,Federal,Onshore,Gas,Gas (mcf),296269577
+2006-11-01,November,2006,Federal,Offshore,Oil,Oil (bbl),42201842
+2006-12-01,December,2006,Federal,Onshore,Gas,Gas (mcf),308356066
+2006-12-01,December,2006,Federal,Offshore,Gas,Gas (mcf),248599386
+2006-12-01,December,2006,Native American,Onshore,Oil,Oil (bbl),888321
+2006-12-01,December,2006,Native American,Onshore,Gas,Gas (mcf),27108772
+2006-12-01,December,2006,Native American,Onshore,Coal,Coal (tons),2943805
+2006-12-01,December,2006,Federal,Onshore,Coal,Coal (tons),39046813
+2006-12-01,December,2006,Federal,Onshore,Oil,Oil (bbl),8273400
+2006-12-01,December,2006,Federal,Offshore,Oil,Oil (bbl),43824040
+2007-01-01,January,2007,Federal,Onshore,Gas,Gas (mcf),305332650
+2007-01-01,January,2007,Federal,Onshore,Oil,Oil (bbl),8194201
+2007-01-01,January,2007,Federal,Onshore,Coal,Coal (tons),37755352
+2007-01-01,January,2007,Native American,Onshore,Gas,Gas (mcf),26456052
+2007-01-01,January,2007,Native American,Onshore,Oil,Oil (bbl),879890
+2007-01-01,January,2007,Native American,Onshore,Coal,Coal (tons),2289888
+2007-01-01,January,2007,Federal,Offshore,Gas,Gas (mcf),242907928
+2007-01-01,January,2007,Federal,Offshore,Oil,Oil (bbl),43836645
+2007-02-01,February,2007,Federal,Onshore,Oil,Oil (bbl),7542451
+2007-02-01,February,2007,Native American,Onshore,Coal,Coal (tons),2044439
+2007-02-01,February,2007,Native American,Onshore,Oil,Oil (bbl),835822
+2007-02-01,February,2007,Native American,Onshore,Gas,Gas (mcf),24228181
+2007-02-01,February,2007,Federal,Offshore,Oil,Oil (bbl),39037676
+2007-02-01,February,2007,Federal,Offshore,Gas,Gas (mcf),220205631
+2007-02-01,February,2007,Federal,Onshore,Gas,Gas (mcf),275110089
+2007-02-01,February,2007,Federal,Onshore,Coal,Coal (tons),32513916
+2007-03-01,March,2007,Federal,Onshore,Oil,Oil (bbl),8342106
+2007-03-01,March,2007,Federal,Onshore,Gas,Gas (mcf),309048860
+2007-03-01,March,2007,Federal,Offshore,Gas,Gas (mcf),245248566
+2007-03-01,March,2007,Federal,Offshore,Oil,Oil (bbl),41883453
+2007-03-01,March,2007,Native American,Onshore,Gas,Gas (mcf),26903759
+2007-03-01,March,2007,Native American,Onshore,Coal,Coal (tons),2488982
+2007-03-01,March,2007,Native American,Onshore,Oil,Oil (bbl),959371
+2007-03-01,March,2007,Federal,Onshore,Coal,Coal (tons),34422978
+2007-04-01,April,2007,Federal,Onshore,Oil,Oil (bbl),8144717
+2007-04-01,April,2007,Federal,Offshore,Gas,Gas (mcf),239941518
+2007-04-01,April,2007,Federal,Onshore,Gas,Gas (mcf),296285520
+2007-04-01,April,2007,Federal,Offshore,Oil,Oil (bbl),42552221
+2007-04-01,April,2007,Federal,Onshore,Coal,Coal (tons),37858890
+2007-04-01,April,2007,Native American,Onshore,Gas,Gas (mcf),25929709
+2007-04-01,April,2007,Native American,Onshore,Oil,Oil (bbl),944756
+2007-04-01,April,2007,Native American,Onshore,Coal,Coal (tons),2621364
+2007-05-01,May,2007,Federal,Offshore,Gas,Gas (mcf),250599188
+2007-05-01,May,2007,Federal,Offshore,Oil,Oil (bbl),44237706
+2007-05-01,May,2007,Native American,Onshore,Gas,Gas (mcf),26882091
+2007-05-01,May,2007,Native American,Onshore,Oil,Oil (bbl),996696
+2007-05-01,May,2007,Native American,Onshore,Coal,Coal (tons),2393898
+2007-05-01,May,2007,Federal,Onshore,Gas,Gas (mcf),308134334
+2007-05-01,May,2007,Federal,Onshore,Oil,Oil (bbl),8359449
+2007-05-01,May,2007,Federal,Onshore,Coal,Coal (tons),37471518
+2007-06-01,June,2007,Federal,Onshore,Coal,Coal (tons),37208166
+2007-06-01,June,2007,Federal,Offshore,Oil,Oil (bbl),41380216
+2007-06-01,June,2007,Federal,Onshore,Gas,Gas (mcf),294671068
+2007-06-01,June,2007,Native American,Onshore,Coal,Coal (tons),2062877
+2007-06-01,June,2007,Native American,Onshore,Oil,Oil (bbl),930993
+2007-06-01,June,2007,Native American,Onshore,Gas,Gas (mcf),25918653
+2007-06-01,June,2007,Federal,Onshore,Oil,Oil (bbl),8036687
+2007-06-01,June,2007,Federal,Offshore,Gas,Gas (mcf),237900922
+2007-07-01,July,2007,Native American,Onshore,Coal,Coal (tons),2145313
+2007-07-01,July,2007,Federal,Offshore,Gas,Gas (mcf),240337182
+2007-07-01,July,2007,Federal,Offshore,Oil,Oil (bbl),41550959
+2007-07-01,July,2007,Native American,Onshore,Gas,Gas (mcf),26809333
+2007-07-01,July,2007,Native American,Onshore,Oil,Oil (bbl),942932
+2007-07-01,July,2007,Federal,Onshore,Gas,Gas (mcf),301423918
+2007-07-01,July,2007,Federal,Onshore,Oil,Oil (bbl),8262760
+2007-07-01,July,2007,Federal,Onshore,Coal,Coal (tons),38292421
+2007-08-01,August,2007,Federal,Onshore,Coal,Coal (tons),40956218
+2007-08-01,August,2007,Federal,Onshore,Gas,Gas (mcf),303605930
+2007-08-01,August,2007,Federal,Onshore,Oil,Oil (bbl),8422226
+2007-08-01,August,2007,Native American,Onshore,Gas,Gas (mcf),26661042
+2007-08-01,August,2007,Native American,Onshore,Coal,Coal (tons),2290262
+2007-08-01,August,2007,Native American,Onshore,Oil,Oil (bbl),935269
+2007-08-01,August,2007,Federal,Offshore,Oil,Oil (bbl),41332258
+2007-08-01,August,2007,Federal,Offshore,Gas,Gas (mcf),236149960
+2007-09-01,September,2007,Federal,Offshore,Oil,Oil (bbl),37663181
+2007-09-01,September,2007,Native American,Onshore,Oil,Oil (bbl),904342
+2007-09-01,September,2007,Native American,Onshore,Gas,Gas (mcf),25836957
+2007-09-01,September,2007,Federal,Offshore,Gas,Gas (mcf),228539727
+2007-09-01,September,2007,Federal,Onshore,Oil,Oil (bbl),8096628
+2007-09-01,September,2007,Federal,Onshore,Gas,Gas (mcf),293865800
+2007-09-01,September,2007,Native American,Onshore,Coal,Coal (tons),2062212
+2007-09-01,September,2007,Federal,Onshore,Coal,Coal (tons),37509704
+2007-10-01,October,2007,Federal,Onshore,Coal,Coal (tons),40518721
+2007-10-01,October,2007,Federal,Onshore,Oil,Oil (bbl),8394570
+2007-10-01,October,2007,Federal,Onshore,Gas,Gas (mcf),303889401
+2007-10-01,October,2007,Federal,Offshore,Gas,Gas (mcf),245625783
+2007-10-01,October,2007,Federal,Offshore,Oil,Oil (bbl),41548911
+2007-10-01,October,2007,Native American,Onshore,Gas,Gas (mcf),26575148
+2007-10-01,October,2007,Native American,Onshore,Oil,Oil (bbl),943164
+2007-10-01,October,2007,Native American,Onshore,Coal,Coal (tons),2308501
+2007-11-01,November,2007,Federal,Onshore,Oil,Oil (bbl),8185774
+2007-11-01,November,2007,Federal,Onshore,Gas,Gas (mcf),309655285
+2007-11-01,November,2007,Native American,Onshore,Oil,Oil (bbl),946546
+2007-11-01,November,2007,Federal,Offshore,Gas,Gas (mcf),239176780
+2007-11-01,November,2007,Federal,Offshore,Oil,Oil (bbl),37765121
+2007-11-01,November,2007,Native American,Onshore,Coal,Coal (tons),2217213
+2007-11-01,November,2007,Federal,Onshore,Coal,Coal (tons),41703492
+2007-11-01,November,2007,Native American,Onshore,Gas,Gas (mcf),26095972
+2007-12-01,December,2007,Native American,Onshore,Coal,Coal (tons),2131565
+2007-12-01,December,2007,Federal,Onshore,Gas,Gas (mcf),317051330
+2007-12-01,December,2007,Federal,Onshore,Oil,Oil (bbl),8288134
+2007-12-01,December,2007,Federal,Offshore,Gas,Gas (mcf),257942805
+2007-12-01,December,2007,Federal,Onshore,Coal,Coal (tons),38589921
+2007-12-01,December,2007,Federal,Offshore,Oil,Oil (bbl),42133768
+2007-12-01,December,2007,Native American,Onshore,Gas,Gas (mcf),25240472
+2007-12-01,December,2007,Native American,Onshore,Oil,Oil (bbl),945023
+2008-01-01,January,2008,Federal,Offshore,Oil,Oil (bbl),42599202
+2008-01-01,January,2008,Native American,Onshore,Gas,Gas (mcf),24636739
+2008-01-01,January,2008,Native American,Onshore,Oil,Oil (bbl),949541
+2008-01-01,January,2008,Native American,Onshore,Coal,Coal (tons),2219944
+2008-01-01,January,2008,Federal,Onshore,Gas,Gas (mcf),312656223
+2008-01-01,January,2008,Federal,Onshore,Oil,Oil (bbl),8219346
+2008-01-01,January,2008,Federal,Onshore,Coal,Coal (tons),39826706
+2008-01-01,January,2008,Federal,Offshore,Gas,Gas (mcf),248400297
+2008-02-01,February,2008,Federal,Offshore,Oil,Oil (bbl),40956063
+2008-02-01,February,2008,Federal,Onshore,Coal,Coal (tons),39722690
+2008-02-01,February,2008,Federal,Onshore,Oil,Oil (bbl),7770685
+2008-02-01,February,2008,Federal,Onshore,Gas,Gas (mcf),295533788
+2008-02-01,February,2008,Native American,Onshore,Coal,Coal (tons),2110049
+2008-02-01,February,2008,Federal,Offshore,Gas,Gas (mcf),235770383
+2008-02-01,February,2008,Native American,Onshore,Oil,Oil (bbl),889473
+2008-02-01,February,2008,Native American,Onshore,Gas,Gas (mcf),23269233
+2008-03-01,March,2008,Federal,Onshore,Oil,Oil (bbl),8444582
+2008-03-01,March,2008,Federal,Offshore,Gas,Gas (mcf),247177565
+2008-03-01,March,2008,Federal,Onshore,Gas,Gas (mcf),330403651
+2008-03-01,March,2008,Federal,Offshore,Oil,Oil (bbl),42822573
+2008-03-01,March,2008,Native American,Onshore,Coal,Coal (tons),2155616
+2008-03-01,March,2008,Native American,Onshore,Gas,Gas (mcf),25869494
+2008-03-01,March,2008,Native American,Onshore,Oil,Oil (bbl),978215
+2008-03-01,March,2008,Federal,Onshore,Coal,Coal (tons),40804536
+2008-04-01,April,2008,Native American,Onshore,Oil,Oil (bbl),969336
+2008-04-01,April,2008,Federal,Offshore,Oil,Oil (bbl),41467617
+2008-04-01,April,2008,Native American,Onshore,Gas,Gas (mcf),24926631
+2008-04-01,April,2008,Federal,Onshore,Gas,Gas (mcf),320369857
+2008-04-01,April,2008,Federal,Onshore,Oil,Oil (bbl),8202328
+2008-04-01,April,2008,Federal,Onshore,Coal,Coal (tons),40910901
+2008-04-01,April,2008,Federal,Offshore,Gas,Gas (mcf),216495713
+2008-04-01,April,2008,Native American,Onshore,Coal,Coal (tons),1898899
+2008-05-01,May,2008,Federal,Offshore,Gas,Gas (mcf),215807069
+2008-05-01,May,2008,Native American,Onshore,Oil,Oil (bbl),988061
+2008-05-01,May,2008,Native American,Onshore,Gas,Gas (mcf),25781675
+2008-05-01,May,2008,Native American,Onshore,Coal,Coal (tons),1985025
+2008-05-01,May,2008,Federal,Onshore,Gas,Gas (mcf),328694068
+2008-05-01,May,2008,Federal,Onshore,Oil,Oil (bbl),8414820
+2008-05-01,May,2008,Federal,Onshore,Coal,Coal (tons),39398953
+2008-05-01,May,2008,Federal,Offshore,Oil,Oil (bbl),42482211
+2008-06-01,June,2008,Federal,Onshore,Oil,Oil (bbl),8120840
+2008-06-01,June,2008,Federal,Onshore,Gas,Gas (mcf),318556933
+2008-06-01,June,2008,Native American,Onshore,Gas,Gas (mcf),24926195
+2008-06-01,June,2008,Native American,Onshore,Oil,Oil (bbl),931556
+2008-06-01,June,2008,Native American,Onshore,Coal,Coal (tons),2325913
+2008-06-01,June,2008,Federal,Offshore,Gas,Gas (mcf),227376555
+2008-06-01,June,2008,Federal,Offshore,Oil,Oil (bbl),42239694
+2008-06-01,June,2008,Federal,Onshore,Coal,Coal (tons),36648691
+2008-07-01,July,2008,Federal,Onshore,Gas,Gas (mcf),333963099
+2008-07-01,July,2008,Federal,Onshore,Oil,Oil (bbl),8373988
+2008-07-01,July,2008,Federal,Onshore,Coal,Coal (tons),39415274
+2008-07-01,July,2008,Federal,Offshore,Oil,Oil (bbl),44763309
+2008-07-01,July,2008,Federal,Offshore,Gas,Gas (mcf),238394832
+2008-07-01,July,2008,Native American,Onshore,Gas,Gas (mcf),26046380
+2008-07-01,July,2008,Native American,Onshore,Oil,Oil (bbl),981950
+2008-07-01,July,2008,Native American,Onshore,Coal,Coal (tons),2640388
+2008-08-01,August,2008,Native American,Onshore,Gas,Gas (mcf),25588124
+2008-08-01,August,2008,Federal,Offshore,Gas,Gas (mcf),219812954
+2008-08-01,August,2008,Federal,Onshore,Gas,Gas (mcf),333049276
+2008-08-01,August,2008,Federal,Onshore,Oil,Oil (bbl),8400459
+2008-08-01,August,2008,Federal,Offshore,Oil,Oil (bbl),41923938
+2008-08-01,August,2008,Native American,Onshore,Coal,Coal (tons),2439253
+2008-08-01,August,2008,Federal,Onshore,Coal,Coal (tons),42988014
+2008-08-01,August,2008,Native American,Onshore,Oil,Oil (bbl),995713
+2008-09-01,September,2008,Federal,Offshore,Gas,Gas (mcf),69647740
+2008-09-01,September,2008,Native American,Onshore,Gas,Gas (mcf),24929051
+2008-09-01,September,2008,Native American,Onshore,Oil,Oil (bbl),982638
+2008-09-01,September,2008,Native American,Onshore,Coal,Coal (tons),2387588
+2008-09-01,September,2008,Federal,Onshore,Coal,Coal (tons),40421871
+2008-09-01,September,2008,Federal,Onshore,Oil,Oil (bbl),7986190
+2008-09-01,September,2008,Federal,Onshore,Gas,Gas (mcf),307724409
+2008-09-01,September,2008,Federal,Offshore,Oil,Oil (bbl),9577187
+2008-10-01,October,2008,Federal,Onshore,Coal,Coal (tons),45051206
+2008-10-01,October,2008,Federal,Onshore,Gas,Gas (mcf),335796544
+2008-10-01,October,2008,Federal,Onshore,Oil,Oil (bbl),8633945
+2008-10-01,October,2008,Native American,Onshore,Gas,Gas (mcf),25748822
+2008-10-01,October,2008,Native American,Onshore,Oil,Oil (bbl),1040707
+2008-10-01,October,2008,Native American,Onshore,Coal,Coal (tons),2511635
+2008-10-01,October,2008,Federal,Offshore,Gas,Gas (mcf),141790530
+2008-10-01,October,2008,Federal,Offshore,Oil,Oil (bbl),27181924
+2008-11-01,November,2008,Native American,Onshore,Oil,Oil (bbl),1006753
+2008-11-01,November,2008,Native American,Onshore,Gas,Gas (mcf),24890244
+2008-11-01,November,2008,Native American,Onshore,Coal,Coal (tons),2153188
+2008-11-01,November,2008,Federal,Onshore,Gas,Gas (mcf),333841437
+2008-11-01,November,2008,Federal,Onshore,Oil,Oil (bbl),8512284
+2008-11-01,November,2008,Federal,Onshore,Coal,Coal (tons),42442150
+2008-11-01,November,2008,Federal,Offshore,Gas,Gas (mcf),165603446
+2008-11-01,November,2008,Federal,Offshore,Oil,Oil (bbl),34892543
+2008-12-01,December,2008,Native American,Onshore,Gas,Gas (mcf),24913698
+2008-12-01,December,2008,Native American,Onshore,Coal,Coal (tons),2125407
+2008-12-01,December,2008,Native American,Onshore,Oil,Oil (bbl),1008112
+2008-12-01,December,2008,Federal,Onshore,Coal,Coal (tons),39493994
+2008-12-01,December,2008,Federal,Onshore,Oil,Oil (bbl),8616384
+2008-12-01,December,2008,Federal,Onshore,Gas,Gas (mcf),339554583
+2008-12-01,December,2008,Federal,Offshore,Oil,Oil (bbl),39381348
+2008-12-01,December,2008,Federal,Offshore,Gas,Gas (mcf),182831320
+2009-01-01,January,2009,Native American,Onshore,Oil,Oil (bbl),990923
+2009-01-01,January,2009,Native American,Onshore,Coal,Coal (tons),2052390
+2009-01-01,January,2009,Federal,Offshore,Oil,Oil (bbl),41968432
+2009-01-01,January,2009,Federal,Offshore,Gas,Gas (mcf),203532279
+2009-01-01,January,2009,Federal,Onshore,Coal,Coal (tons),40936177
+2009-01-01,January,2009,Federal,Onshore,Oil,Oil (bbl),8742361
+2009-01-01,January,2009,Federal,Onshore,Gas,Gas (mcf),344856220
+2009-01-01,January,2009,Native American,Onshore,Gas,Gas (mcf),24813879
+2009-02-01,February,2009,Native American,Onshore,Gas,Gas (mcf),23261521
+2009-02-01,February,2009,Federal,Onshore,Coal,Coal (tons),38145606
+2009-02-01,February,2009,Federal,Onshore,Oil,Oil (bbl),8019714
+2009-02-01,February,2009,Federal,Onshore,Gas,Gas (mcf),317370555
+2009-02-01,February,2009,Federal,Offshore,Gas,Gas (mcf),191727944
+2009-02-01,February,2009,Federal,Offshore,Oil,Oil (bbl),39008618
+2009-02-01,February,2009,Native American,Onshore,Coal,Coal (tons),1804533
+2009-02-01,February,2009,Native American,Onshore,Oil,Oil (bbl),926999
+2009-03-01,March,2009,Native American,Onshore,Coal,Coal (tons),2147583
+2009-03-01,March,2009,Federal,Onshore,Oil,Oil (bbl),8754663
+2009-03-01,March,2009,Federal,Onshore,Coal,Coal (tons),38238167
+2009-03-01,March,2009,Native American,Onshore,Gas,Gas (mcf),25594758
+2009-03-01,March,2009,Federal,Onshore,Gas,Gas (mcf),348489574
+2009-03-01,March,2009,Federal,Offshore,Gas,Gas (mcf),213188631
+2009-03-01,March,2009,Federal,Offshore,Oil,Oil (bbl),43423086
+2009-03-01,March,2009,Native American,Onshore,Oil,Oil (bbl),998723
+2009-04-01,April,2009,Federal,Onshore,Oil,Oil (bbl),8438208
+2009-04-01,April,2009,Federal,Onshore,Coal,Coal (tons),33485662
+2009-04-01,April,2009,Federal,Offshore,Oil,Oil (bbl),46005495
+2009-04-01,April,2009,Federal,Onshore,Gas,Gas (mcf),331689259
+2009-04-01,April,2009,Native American,Onshore,Gas,Gas (mcf),24527673
+2009-04-01,April,2009,Native American,Onshore,Oil,Oil (bbl),961496
+2009-04-01,April,2009,Native American,Onshore,Coal,Coal (tons),2319185
+2009-04-01,April,2009,Federal,Offshore,Gas,Gas (mcf),207718687
+2009-05-01,May,2009,Federal,Offshore,Oil,Oil (bbl),50180149
+2009-05-01,May,2009,Native American,Onshore,Gas,Gas (mcf),25112977
+2009-05-01,May,2009,Native American,Onshore,Oil,Oil (bbl),996655
+2009-05-01,May,2009,Federal,Onshore,Gas,Gas (mcf),338830453
+2009-05-01,May,2009,Federal,Offshore,Gas,Gas (mcf),211512189
+2009-05-01,May,2009,Native American,Onshore,Coal,Coal (tons),2234668
+2009-05-01,May,2009,Federal,Onshore,Coal,Coal (tons),35278770
+2009-05-01,May,2009,Federal,Onshore,Oil,Oil (bbl),8678411
+2009-06-01,June,2009,Native American,Onshore,Gas,Gas (mcf),23403521
+2009-06-01,June,2009,Native American,Onshore,Oil,Oil (bbl),959008
+2009-06-01,June,2009,Native American,Onshore,Coal,Coal (tons),2309024
+2009-06-01,June,2009,Federal,Onshore,Oil,Oil (bbl),8386580
+2009-06-01,June,2009,Federal,Onshore,Coal,Coal (tons),32689883
+2009-06-01,June,2009,Federal,Offshore,Oil,Oil (bbl),48907994
+2009-06-01,June,2009,Federal,Offshore,Gas,Gas (mcf),217496774
+2009-06-01,June,2009,Federal,Onshore,Gas,Gas (mcf),324436142
+2009-07-01,July,2009,Federal,Offshore,Gas,Gas (mcf),230755180
+2009-07-01,July,2009,Native American,Onshore,Oil,Oil (bbl),987704
+2009-07-01,July,2009,Native American,Onshore,Gas,Gas (mcf),25111389
+2009-07-01,July,2009,Native American,Onshore,Coal,Coal (tons),2345725
+2009-07-01,July,2009,Federal,Onshore,Gas,Gas (mcf),319848840
+2009-07-01,July,2009,Federal,Onshore,Coal,Coal (tons),38422436
+2009-07-01,July,2009,Federal,Onshore,Oil,Oil (bbl),8499881
+2009-07-01,July,2009,Federal,Offshore,Oil,Oil (bbl),55925639
+2009-08-01,August,2009,Native American,Onshore,Oil,Oil (bbl),1005377
+2009-08-01,August,2009,Federal,Offshore,Gas,Gas (mcf),217092121
+2009-08-01,August,2009,Federal,Offshore,Oil,Oil (bbl),55884224
+2009-08-01,August,2009,Federal,Onshore,Gas,Gas (mcf),331222316
+2009-08-01,August,2009,Federal,Onshore,Oil,Oil (bbl),8553580
+2009-08-01,August,2009,Federal,Onshore,Coal,Coal (tons),39778093
+2009-08-01,August,2009,Native American,Onshore,Coal,Coal (tons),2209028
+2009-08-01,August,2009,Native American,Onshore,Gas,Gas (mcf),25139330
+2009-09-01,September,2009,Federal,Onshore,Oil,Oil (bbl),8357091
+2009-09-01,September,2009,Federal,Onshore,Gas,Gas (mcf),309655044
+2009-09-01,September,2009,Native American,Onshore,Gas,Gas (mcf),23769586
+2009-09-01,September,2009,Native American,Onshore,Oil,Oil (bbl),1006924
+2009-09-01,September,2009,Native American,Onshore,Coal,Coal (tons),2364021
+2009-09-01,September,2009,Federal,Offshore,Gas,Gas (mcf),206471070
+2009-09-01,September,2009,Federal,Offshore,Oil,Oil (bbl),54473596
+2009-09-01,September,2009,Federal,Onshore,Coal,Coal (tons),39392564
+2009-10-01,October,2009,Native American,Onshore,Oil,Oil (bbl),1091430
+2009-10-01,October,2009,Native American,Onshore,Coal,Coal (tons),1966556
+2009-10-01,October,2009,Federal,Onshore,Coal,Coal (tons),38081263
+2009-10-01,October,2009,Federal,Offshore,Gas,Gas (mcf),215060894
+2009-10-01,October,2009,Federal,Offshore,Oil,Oil (bbl),55599927
+2009-10-01,October,2009,Native American,Onshore,Gas,Gas (mcf),24518568
+2009-10-01,October,2009,Federal,Onshore,Gas,Gas (mcf),337869698
+2009-10-01,October,2009,Federal,Onshore,Oil,Oil (bbl),8699247
+2009-11-01,November,2009,Federal,Offshore,Gas,Gas (mcf),200143475
+2009-11-01,November,2009,Native American,Onshore,Coal,Coal (tons),1840979
+2009-11-01,November,2009,Native American,Onshore,Gas,Gas (mcf),23542856
+2009-11-01,November,2009,Native American,Onshore,Oil,Oil (bbl),1035474
+2009-11-01,November,2009,Federal,Offshore,Oil,Oil (bbl),48909581
+2009-11-01,November,2009,Federal,Onshore,Gas,Gas (mcf),333987100
+2009-11-01,November,2009,Federal,Onshore,Oil,Oil (bbl),8581985
+2009-11-01,November,2009,Federal,Onshore,Coal,Coal (tons),37614021
+2009-12-01,December,2009,Federal,Offshore,Gas,Gas (mcf),207337256
+2009-12-01,December,2009,Federal,Onshore,Oil,Oil (bbl),8648397
+2009-12-01,December,2009,Federal,Onshore,Gas,Gas (mcf),335529592
+2009-12-01,December,2009,Native American,Onshore,Coal,Coal (tons),1932698
+2009-12-01,December,2009,Native American,Onshore,Oil,Oil (bbl),1033935
+2009-12-01,December,2009,Federal,Offshore,Oil,Oil (bbl),54068445
+2009-12-01,December,2009,Federal,Onshore,Coal,Coal (tons),36374086
+2009-12-01,December,2009,Native American,Onshore,Gas,Gas (mcf),23293055
+2010-01-01,January,2010,Federal,Onshore,Oil,Oil (bbl),8663719
+2010-01-01,January,2010,Federal,Onshore,Gas,Gas (mcf),335536616
+2010-01-01,January,2010,Native American,Onshore,Gas,Gas (mcf),23519003
+2010-01-01,January,2010,Native American,Onshore,Oil,Oil (bbl),1033554
+2010-01-01,January,2010,Native American,Onshore,Coal,Coal (tons),1612890
+2010-01-01,January,2010,Federal,Offshore,Gas,Gas (mcf),210355483
+2010-01-01,January,2010,Federal,Offshore,Oil,Oil (bbl),53333353
+2010-01-01,January,2010,Federal,Onshore,Coal,Coal (tons),37385870
+2010-02-01,February,2010,Federal,Offshore,Oil,Oil (bbl),49713901
+2010-02-01,February,2010,Federal,Onshore,Gas,Gas (mcf),302940942
+2010-02-01,February,2010,Federal,Onshore,Oil,Oil (bbl),8034989
+2010-02-01,February,2010,Federal,Onshore,Coal,Coal (tons),36431297
+2010-02-01,February,2010,Native American,Onshore,Coal,Coal (tons),1892405
+2010-02-01,February,2010,Native American,Onshore,Oil,Oil (bbl),1008958
+2010-02-01,February,2010,Native American,Onshore,Gas,Gas (mcf),21544985
+2010-02-01,February,2010,Federal,Offshore,Gas,Gas (mcf),195164307
+2010-03-01,March,2010,Federal,Offshore,Oil,Oil (bbl),51699886
+2010-03-01,March,2010,Native American,Onshore,Gas,Gas (mcf),24142447
+2010-03-01,March,2010,Native American,Onshore,Oil,Oil (bbl),1215428
+2010-03-01,March,2010,Federal,Offshore,Gas,Gas (mcf),217129273
+2010-03-01,March,2010,Federal,Onshore,Coal,Coal (tons),39182648
+2010-03-01,March,2010,Federal,Onshore,Oil,Oil (bbl),9114813
+2010-03-01,March,2010,Federal,Onshore,Gas,Gas (mcf),336247030
+2010-03-01,March,2010,Native American,Onshore,Coal,Coal (tons),1743062
+2010-04-01,April,2010,Native American,Onshore,Gas,Gas (mcf),23737653
+2010-04-01,April,2010,Federal,Offshore,Oil,Oil (bbl),46376150
+2010-04-01,April,2010,Federal,Offshore,Gas,Gas (mcf),200962353
+2010-04-01,April,2010,Native American,Onshore,Oil,Oil (bbl),1220829
+2010-04-01,April,2010,Federal,Onshore,Oil,Oil (bbl),8718853
+2010-04-01,April,2010,Federal,Onshore,Gas,Gas (mcf),327632164
+2010-04-01,April,2010,Native American,Onshore,Coal,Coal (tons),1795669
+2010-04-01,April,2010,Federal,Onshore,Coal,Coal (tons),37425071
+2010-05-01,May,2010,Native American,Onshore,Oil,Oil (bbl),1268191
+2010-05-01,May,2010,Federal,Onshore,Gas,Gas (mcf),334610813
+2010-05-01,May,2010,Federal,Offshore,Gas,Gas (mcf),199927130
+2010-05-01,May,2010,Federal,Offshore,Oil,Oil (bbl),49626771
+2010-05-01,May,2010,Federal,Onshore,Oil,Oil (bbl),9176612
+2010-05-01,May,2010,Federal,Onshore,Coal,Coal (tons),37144604
+2010-05-01,May,2010,Native American,Onshore,Coal,Coal (tons),1742781
+2010-05-01,May,2010,Native American,Onshore,Gas,Gas (mcf),24980353
+2010-06-01,June,2010,Native American,Onshore,Gas,Gas (mcf),24314493
+2010-06-01,June,2010,Native American,Onshore,Oil,Oil (bbl),1326941
+2010-06-01,June,2010,Federal,Onshore,Gas,Gas (mcf),311064479
+2010-06-01,June,2010,Federal,Onshore,Oil,Oil (bbl),8797825
+2010-06-01,June,2010,Federal,Onshore,Coal,Coal (tons),36578041
+2010-06-01,June,2010,Native American,Onshore,Coal,Coal (tons),1582003
+2010-06-01,June,2010,Federal,Offshore,Oil,Oil (bbl),48242226
+2010-06-01,June,2010,Federal,Offshore,Gas,Gas (mcf),185198425
+2010-07-01,July,2010,Native American,Onshore,Gas,Gas (mcf),24872790
+2010-07-01,July,2010,Federal,Onshore,Gas,Gas (mcf),328564392
+2010-07-01,July,2010,Federal,Onshore,Oil,Oil (bbl),9194313
+2010-07-01,July,2010,Federal,Onshore,Coal,Coal (tons),38135193
+2010-07-01,July,2010,Native American,Onshore,Oil,Oil (bbl),1435086
+2010-07-01,July,2010,Native American,Onshore,Coal,Coal (tons),1609279
+2010-07-01,July,2010,Federal,Offshore,Gas,Gas (mcf),185063545
+2010-07-01,July,2010,Federal,Offshore,Oil,Oil (bbl),46378029
+2010-08-01,August,2010,Federal,Onshore,Gas,Gas (mcf),330792311
+2010-08-01,August,2010,Federal,Onshore,Oil,Oil (bbl),9202445
+2010-08-01,August,2010,Federal,Onshore,Coal,Coal (tons),41050494
+2010-08-01,August,2010,Federal,Offshore,Oil,Oil (bbl),49994159
+2010-08-01,August,2010,Federal,Offshore,Gas,Gas (mcf),194060192
+2010-08-01,August,2010,Native American,Onshore,Gas,Gas (mcf),25422895
+2010-08-01,August,2010,Native American,Onshore,Oil,Oil (bbl),1545484
+2010-08-01,August,2010,Native American,Onshore,Coal,Coal (tons),1735723
+2010-09-01,September,2010,Native American,Onshore,Gas,Gas (mcf),24880229
+2010-09-01,September,2010,Federal,Onshore,Gas,Gas (mcf),319676397
+2010-09-01,September,2010,Federal,Onshore,Oil,Oil (bbl),8919273
+2010-09-01,September,2010,Federal,Onshore,Coal,Coal (tons),40744704
+2010-09-01,September,2010,Federal,Offshore,Oil,Oil (bbl),49461957
+2010-09-01,September,2010,Federal,Offshore,Gas,Gas (mcf),183318037
+2010-09-01,September,2010,Native American,Onshore,Coal,Coal (tons),2038643
+2010-09-01,September,2010,Native American,Onshore,Oil,Oil (bbl),1550302
+2010-10-01,October,2010,Federal,Offshore,Oil,Oil (bbl),50405069
+2010-10-01,October,2010,Native American,Onshore,Coal,Coal (tons),1795394
+2010-10-01,October,2010,Federal,Onshore,Oil,Oil (bbl),9320346
+2010-10-01,October,2010,Federal,Onshore,Gas,Gas (mcf),328213901
+2010-10-01,October,2010,Native American,Onshore,Gas,Gas (mcf),26003792
+2010-10-01,October,2010,Federal,Onshore,Coal,Coal (tons),40725641
+2010-10-01,October,2010,Native American,Onshore,Oil,Oil (bbl),1641729
+2010-10-01,October,2010,Federal,Offshore,Gas,Gas (mcf),188789221
+2010-11-01,November,2010,Federal,Offshore,Oil,Oil (bbl),46255610
+2010-11-01,November,2010,Federal,Offshore,Gas,Gas (mcf),175276188
+2010-11-01,November,2010,Native American,Onshore,Coal,Coal (tons),1605752
+2010-11-01,November,2010,Native American,Onshore,Oil,Oil (bbl),1588746
+2010-11-01,November,2010,Native American,Onshore,Gas,Gas (mcf),25341966
+2010-11-01,November,2010,Federal,Onshore,Coal,Coal (tons),32529477
+2010-11-01,November,2010,Federal,Onshore,Oil,Oil (bbl),9097015
+2010-11-01,November,2010,Federal,Onshore,Gas,Gas (mcf),321858390
+2010-12-01,December,2010,Native American,Onshore,Gas,Gas (mcf),26101146
+2010-12-01,December,2010,Federal,Offshore,Gas,Gas (mcf),186272950
+2010-12-01,December,2010,Federal,Offshore,Oil,Oil (bbl),48149278
+2010-12-01,December,2010,Federal,Onshore,Coal,Coal (tons),39561231
+2010-12-01,December,2010,Federal,Onshore,Oil,Oil (bbl),9181764
+2010-12-01,December,2010,Federal,Onshore,Gas,Gas (mcf),332430925
+2010-12-01,December,2010,Native American,Onshore,Coal,Coal (tons),1832658
+2010-12-01,December,2010,Native American,Onshore,Oil,Oil (bbl),1626768
+2011-01-01,January,2011,Native American,Onshore,Oil,Oil (bbl),1636050
+2011-01-01,January,2011,Native American,Onshore,Gas,Gas (mcf),24901161
+2011-01-01,January,2011,Federal,Offshore,Gas,Gas (mcf),185166665
+2011-01-01,January,2011,Federal,Offshore,Oil,Oil (bbl),50130916
+2011-01-01,January,2011,Federal,Onshore,Coal,Coal (tons),39876734
+2011-01-01,January,2011,Native American,Onshore,Coal,Coal (tons),2253425
+2011-01-01,January,2011,Federal,Onshore,Oil,Oil (bbl),9144069
+2011-01-01,January,2011,Federal,Onshore,Gas,Gas (mcf),319209546
+2011-02-01,February,2011,Federal,Offshore,Gas,Gas (mcf),158410349
+2011-02-01,February,2011,Native American,Onshore,Coal,Coal (tons),1494323
+2011-02-01,February,2011,Native American,Onshore,Oil,Oil (bbl),1508633
+2011-02-01,February,2011,Native American,Onshore,Gas,Gas (mcf),23117941
+2011-02-01,February,2011,Federal,Onshore,Oil,Oil (bbl),8115586
+2011-02-01,February,2011,Federal,Onshore,Coal,Coal (tons),33558869
+2011-02-01,February,2011,Federal,Offshore,Oil,Oil (bbl),41096304
+2011-02-01,February,2011,Federal,Onshore,Gas,Gas (mcf),287723809
+2011-03-01,March,2011,Native American,Onshore,Coal,Coal (tons),1772654
+2011-03-01,March,2011,Native American,Onshore,Gas,Gas (mcf),26358970
+2011-03-01,March,2011,Federal,Onshore,Coal,Coal (tons),40399121
+2011-03-01,March,2011,Federal,Onshore,Oil,Oil (bbl),9490463
+2011-03-01,March,2011,Federal,Onshore,Gas,Gas (mcf),325385801
+2011-03-01,March,2011,Federal,Offshore,Gas,Gas (mcf),175490368
+2011-03-01,March,2011,Federal,Offshore,Oil,Oil (bbl),44883969
+2011-03-01,March,2011,Native American,Onshore,Oil,Oil (bbl),1743716
+2011-04-01,April,2011,Federal,Onshore,Oil,Oil (bbl),9321125
+2011-04-01,April,2011,Native American,Onshore,Gas,Gas (mcf),24718820
+2011-04-01,April,2011,Native American,Onshore,Oil,Oil (bbl),1766478
+2011-04-01,April,2011,Native American,Onshore,Coal,Coal (tons),1684420
+2011-04-01,April,2011,Federal,Offshore,Gas,Gas (mcf),167501234
+2011-04-01,April,2011,Federal,Offshore,Oil,Oil (bbl),42220361
+2011-04-01,April,2011,Federal,Onshore,Coal,Coal (tons),37740772
+2011-04-01,April,2011,Federal,Onshore,Gas,Gas (mcf),318428998
+2011-05-01,May,2011,Native American,Onshore,Coal,Coal (tons),1936675
+2011-05-01,May,2011,Native American,Onshore,Gas,Gas (mcf),25628238
+2011-05-01,May,2011,Federal,Offshore,Gas,Gas (mcf),169623700
+2011-05-01,May,2011,Native American,Onshore,Oil,Oil (bbl),1887275
+2011-05-01,May,2011,Federal,Onshore,Gas,Gas (mcf),328054988
+2011-05-01,May,2011,Federal,Onshore,Oil,Oil (bbl),9684049
+2011-05-01,May,2011,Federal,Offshore,Oil,Oil (bbl),44363216
+2011-05-01,May,2011,Federal,Onshore,Coal,Coal (tons),36119047
+2011-06-01,June,2011,Native American,Onshore,Coal,Coal (tons),1973047
+2011-06-01,June,2011,Federal,Onshore,Coal,Coal (tons),33705453
+2011-06-01,June,2011,Federal,Offshore,Oil,Oil (bbl),41591064
+2011-06-01,June,2011,Federal,Offshore,Gas,Gas (mcf),156091489
+2011-06-01,June,2011,Federal,Onshore,Gas,Gas (mcf),315282805
+2011-06-01,June,2011,Federal,Onshore,Oil,Oil (bbl),9360540
+2011-06-01,June,2011,Native American,Onshore,Gas,Gas (mcf),25338568
+2011-06-01,June,2011,Native American,Onshore,Oil,Oil (bbl),1935542
+2011-07-01,July,2011,Federal,Onshore,Gas,Gas (mcf),328450208
+2011-07-01,July,2011,Federal,Offshore,Oil,Oil (bbl),39506905
+2011-07-01,July,2011,Native American,Onshore,Gas,Gas (mcf),26287322
+2011-07-01,July,2011,Native American,Onshore,Oil,Oil (bbl),2047914
+2011-07-01,July,2011,Federal,Onshore,Coal,Coal (tons),32683729
+2011-07-01,July,2011,Native American,Onshore,Coal,Coal (tons),1889907
+2011-07-01,July,2011,Federal,Offshore,Gas,Gas (mcf),154107957
+2011-07-01,July,2011,Federal,Onshore,Oil,Oil (bbl),9760844
+2011-08-01,August,2011,Federal,Onshore,Gas,Gas (mcf),310809601
+2011-08-01,August,2011,Federal,Onshore,Coal,Coal (tons),37915804
+2011-08-01,August,2011,Federal,Offshore,Oil,Oil (bbl),41365977
+2011-08-01,August,2011,Native American,Onshore,Gas,Gas (mcf),26254896
+2011-08-01,August,2011,Native American,Onshore,Oil,Oil (bbl),2174652
+2011-08-01,August,2011,Native American,Onshore,Coal,Coal (tons),1454592
+2011-08-01,August,2011,Federal,Offshore,Gas,Gas (mcf),156609359
+2011-08-01,August,2011,Federal,Onshore,Oil,Oil (bbl),9830183
+2011-09-01,September,2011,Federal,Offshore,Gas,Gas (mcf),130107201
+2011-09-01,September,2011,Native American,Onshore,Coal,Coal (tons),1698967
+2011-09-01,September,2011,Native American,Onshore,Oil,Oil (bbl),2084000
+2011-09-01,September,2011,Native American,Onshore,Gas,Gas (mcf),25058855
+2011-09-01,September,2011,Federal,Onshore,Gas,Gas (mcf),314859962
+2011-09-01,September,2011,Federal,Onshore,Oil,Oil (bbl),9552049
+2011-09-01,September,2011,Federal,Offshore,Oil,Oil (bbl),34587957
+2011-09-01,September,2011,Federal,Onshore,Coal,Coal (tons),37324003
+2011-10-01,October,2011,Native American,Onshore,Gas,Gas (mcf),26155751
+2011-10-01,October,2011,Federal,Offshore,Oil,Oil (bbl),41942961
+2011-10-01,October,2011,Federal,Offshore,Gas,Gas (mcf),148435373
+2011-10-01,October,2011,Federal,Onshore,Gas,Gas (mcf),332936153
+2011-10-01,October,2011,Federal,Onshore,Oil,Oil (bbl),10031460
+2011-10-01,October,2011,Federal,Onshore,Coal,Coal (tons),40660412
+2011-10-01,October,2011,Native American,Onshore,Coal,Coal (tons),2034208
+2011-10-01,October,2011,Native American,Onshore,Oil,Oil (bbl),2388153
+2011-11-01,November,2011,Native American,Onshore,Coal,Coal (tons),1886110
+2011-11-01,November,2011,Federal,Onshore,Gas,Gas (mcf),323944415
+2011-11-01,November,2011,Federal,Onshore,Oil,Oil (bbl),9925684
+2011-11-01,November,2011,Federal,Onshore,Coal,Coal (tons),40681394
+2011-11-01,November,2011,Federal,Offshore,Oil,Oil (bbl),40078448
+2011-11-01,November,2011,Federal,Offshore,Gas,Gas (mcf),144154179
+2011-11-01,November,2011,Native American,Onshore,Oil,Oil (bbl),2479075
+2011-11-01,November,2011,Native American,Onshore,Gas,Gas (mcf),25581136
+2011-12-01,December,2011,Federal,Onshore,Coal,Coal (tons),41213622
+2011-12-01,December,2011,Federal,Offshore,Oil,Oil (bbl),40799822
+2011-12-01,December,2011,Federal,Offshore,Gas,Gas (mcf),149275347
+2011-12-01,December,2011,Federal,Onshore,Gas,Gas (mcf),329469477
+2011-12-01,December,2011,Native American,Onshore,Gas,Gas (mcf),26076666
+2011-12-01,December,2011,Native American,Onshore,Oil,Oil (bbl),2539403
+2011-12-01,December,2011,Federal,Onshore,Oil,Oil (bbl),10167078
+2011-12-01,December,2011,Native American,Onshore,Coal,Coal (tons),1235289
+2012-01-01,January,2012,Federal,Onshore,Gas,Gas (mcf),332749329
+2012-01-01,January,2012,Native American,Onshore,Coal,Coal (tons),1981835
+2012-01-01,January,2012,Native American,Onshore,Oil,Oil (bbl),2680804
+2012-01-01,January,2012,Federal,Onshore,Coal,Coal (tons),39621589
+2012-01-01,January,2012,Federal,Offshore,Oil,Oil (bbl),42371736
+2012-01-01,January,2012,Federal,Offshore,Gas,Gas (mcf),146861324
+2012-01-01,January,2012,Federal,Onshore,Oil,Oil (bbl),10288481
+2012-01-01,January,2012,Native American,Onshore,Gas,Gas (mcf),26586846
+2012-02-01,February,2012,Native American,Onshore,Oil,Oil (bbl),2546756
+2012-02-01,February,2012,Native American,Onshore,Coal,Coal (tons),1848570
+2012-02-01,February,2012,Federal,Onshore,Coal,Coal (tons),36249605
+2012-02-01,February,2012,Federal,Offshore,Oil,Oil (bbl),40147713
+2012-02-01,February,2012,Federal,Offshore,Gas,Gas (mcf),135190043
+2012-02-01,February,2012,Federal,Onshore,Oil,Oil (bbl),9753624
+2012-02-01,February,2012,Federal,Onshore,Gas,Gas (mcf),309191246
+2012-02-01,February,2012,Native American,Onshore,Gas,Gas (mcf),24912545
+2012-03-01,March,2012,Native American,Onshore,Gas,Gas (mcf),26484214
+2012-03-01,March,2012,Federal,Onshore,Coal,Coal (tons),32908329
+2012-03-01,March,2012,Federal,Onshore,Oil,Oil (bbl),10544737
+2012-03-01,March,2012,Federal,Offshore,Oil,Oil (bbl),43613539
+2012-03-01,March,2012,Federal,Offshore,Gas,Gas (mcf),145920326
+2012-03-01,March,2012,Federal,Onshore,Gas,Gas (mcf),328749659
+2012-03-01,March,2012,Native American,Onshore,Oil,Oil (bbl),2786637
+2012-03-01,March,2012,Native American,Onshore,Coal,Coal (tons),1930970
+2012-04-01,April,2012,Federal,Onshore,Oil,Oil (bbl),10064878
+2012-04-01,April,2012,Federal,Onshore,Coal,Coal (tons),29041032
+2012-04-01,April,2012,Federal,Offshore,Gas,Gas (mcf),137363217
+2012-04-01,April,2012,Native American,Onshore,Oil,Oil (bbl),2793755
+2012-04-01,April,2012,Native American,Onshore,Coal,Coal (tons),1386877
+2012-04-01,April,2012,Federal,Offshore,Oil,Oil (bbl),39320652
+2012-04-01,April,2012,Federal,Onshore,Gas,Gas (mcf),313897650
+2012-04-01,April,2012,Native American,Onshore,Gas,Gas (mcf),25584464
+2012-05-01,May,2012,Federal,Onshore,Oil,Oil (bbl),10447383
+2012-05-01,May,2012,Native American,Onshore,Gas,Gas (mcf),26424724
+2012-05-01,May,2012,Federal,Onshore,Gas,Gas (mcf),320239801
+2012-05-01,May,2012,Federal,Offshore,Oil,Oil (bbl),38822550
+2012-05-01,May,2012,Federal,Offshore,Gas,Gas (mcf),135941669
+2012-05-01,May,2012,Native American,Onshore,Coal,Coal (tons),1625737
+2012-05-01,May,2012,Native American,Onshore,Oil,Oil (bbl),2815948
+2012-05-01,May,2012,Federal,Onshore,Coal,Coal (tons),31329856
+2012-06-01,June,2012,Federal,Onshore,Gas,Gas (mcf),308151238
+2012-06-01,June,2012,Federal,Offshore,Oil,Oil (bbl),35147763
+2012-06-01,June,2012,Federal,Offshore,Gas,Gas (mcf),123805587
+2012-06-01,June,2012,Federal,Onshore,Coal,Coal (tons),32317862
+2012-06-01,June,2012,Native American,Onshore,Coal,Coal (tons),1568194
+2012-06-01,June,2012,Native American,Onshore,Oil,Oil (bbl),2854664
+2012-06-01,June,2012,Native American,Onshore,Gas,Gas (mcf),25315532
+2012-06-01,June,2012,Federal,Onshore,Oil,Oil (bbl),10143802
+2012-07-01,July,2012,Federal,Onshore,Gas,Gas (mcf),317550436
+2012-07-01,July,2012,Native American,Onshore,Gas,Gas (mcf),26141673
+2012-07-01,July,2012,Native American,Onshore,Oil,Oil (bbl),3072123
+2012-07-01,July,2012,Native American,Onshore,Coal,Coal (tons),1447117
+2012-07-01,July,2012,Federal,Offshore,Oil,Oil (bbl),40555621
+2012-07-01,July,2012,Federal,Offshore,Gas,Gas (mcf),133566112
+2012-07-01,July,2012,Federal,Onshore,Coal,Coal (tons),39360710
+2012-07-01,July,2012,Federal,Onshore,Oil,Oil (bbl),10692570
+2012-08-01,August,2012,Federal,Onshore,Coal,Coal (tons),40126533
+2012-08-01,August,2012,Federal,Onshore,Oil,Oil (bbl),10787637
+2012-08-01,August,2012,Federal,Onshore,Gas,Gas (mcf),311390444
+2012-08-01,August,2012,Federal,Offshore,Gas,Gas (mcf),114346842
+2012-08-01,August,2012,Native American,Onshore,Gas,Gas (mcf),26327173
+2012-08-01,August,2012,Native American,Onshore,Oil,Oil (bbl),3155304
+2012-08-01,August,2012,Native American,Onshore,Coal,Coal (tons),1468942
+2012-08-01,August,2012,Federal,Offshore,Oil,Oil (bbl),35705207
+2012-09-01,September,2012,Native American,Onshore,Oil,Oil (bbl),3269467
+2012-09-01,September,2012,Native American,Onshore,Gas,Gas (mcf),25716376
+2012-09-01,September,2012,Federal,Offshore,Gas,Gas (mcf),116053324
+2012-09-01,September,2012,Federal,Onshore,Gas,Gas (mcf),300280595
+2012-09-01,September,2012,Federal,Onshore,Oil,Oil (bbl),10601504
+2012-09-01,September,2012,Federal,Onshore,Coal,Coal (tons),37476124
+2012-09-01,September,2012,Federal,Offshore,Oil,Oil (bbl),37032672
+2012-09-01,September,2012,Native American,Onshore,Coal,Coal (tons),1427953
+2012-10-01,October,2012,Federal,Onshore,Oil,Oil (bbl),11218434
+2012-10-01,October,2012,Federal,Offshore,Oil,Oil (bbl),42876250
+2012-10-01,October,2012,Native American,Onshore,Coal,Coal (tons),1746130
+2012-10-01,October,2012,Native American,Onshore,Oil,Oil (bbl),3739479
+2012-10-01,October,2012,Federal,Offshore,Gas,Gas (mcf),132738479
+2012-10-01,October,2012,Native American,Onshore,Gas,Gas (mcf),27022934
+2012-10-01,October,2012,Federal,Onshore,Coal,Coal (tons),35275148
+2012-10-01,October,2012,Federal,Onshore,Gas,Gas (mcf),311264991
+2012-11-01,November,2012,Federal,Offshore,Gas,Gas (mcf),130674717
+2012-11-01,November,2012,Federal,Offshore,Oil,Oil (bbl),42989707
+2012-11-01,November,2012,Federal,Onshore,Coal,Coal (tons),36099698
+2012-11-01,November,2012,Federal,Onshore,Oil,Oil (bbl),10892729
+2012-11-01,November,2012,Federal,Onshore,Gas,Gas (mcf),301205991
+2012-11-01,November,2012,Native American,Onshore,Gas,Gas (mcf),25910645
+2012-11-01,November,2012,Native American,Onshore,Oil,Oil (bbl),3697349
+2012-11-01,November,2012,Native American,Onshore,Coal,Coal (tons),1340397
+2012-12-01,December,2012,Native American,Onshore,Coal,Coal (tons),1058533
+2012-12-01,December,2012,Federal,Offshore,Gas,Gas (mcf),132157661
+2012-12-01,December,2012,Federal,Offshore,Oil,Oil (bbl),44284810
+2012-12-01,December,2012,Native American,Onshore,Oil,Oil (bbl),3831381
+2012-12-01,December,2012,Federal,Onshore,Gas,Gas (mcf),304801931
+2012-12-01,December,2012,Native American,Onshore,Gas,Gas (mcf),26213277
+2012-12-01,December,2012,Federal,Onshore,Oil,Oil (bbl),11233648
+2012-12-01,December,2012,Federal,Onshore,Coal,Coal (tons),32703305
+2013-01-01,January,2013,Federal,Onshore,Oil,Oil (bbl),11020728
+2013-01-01,January,2013,Federal,Onshore,Gas,Gas (mcf),296421153
+2013-01-01,January,2013,Federal,Offshore,Oil,Oil (bbl),43030409
+2013-01-01,January,2013,Native American,Onshore,Coal,Coal (tons),1414729
+2013-01-01,January,2013,Native American,Onshore,Gas,Gas (mcf),24744840
+2013-01-01,January,2013,Federal,Offshore,Gas,Gas (mcf),128828876
+2013-01-01,January,2013,Native American,Onshore,Oil,Oil (bbl),3563031
+2013-01-01,January,2013,Federal,Onshore,Coal,Coal (tons),33492410
+2013-02-01,February,2013,Native American,Onshore,Coal,Coal (tons),1722483
+2013-02-01,February,2013,Native American,Onshore,Oil,Oil (bbl),3508457
+2013-02-01,February,2013,Native American,Onshore,Gas,Gas (mcf),23505282
+2013-02-01,February,2013,Federal,Offshore,Gas,Gas (mcf),113767780
+2013-02-01,February,2013,Federal,Offshore,Oil,Oil (bbl),38447937
+2013-02-01,February,2013,Federal,Onshore,Gas,Gas (mcf),273388322
+2013-02-01,February,2013,Federal,Onshore,Oil,Oil (bbl),10172969
+2013-02-01,February,2013,Federal,Onshore,Coal,Coal (tons),30481388
+2013-03-01,March,2013,Federal,Offshore,Oil,Oil (bbl),40558691
+2013-03-01,March,2013,Federal,Offshore,Gas,Gas (mcf),123165415
+2013-03-01,March,2013,Federal,Onshore,Gas,Gas (mcf),302812929
+2013-03-01,March,2013,Federal,Onshore,Oil,Oil (bbl),11520987
+2013-03-01,March,2013,Federal,Onshore,Coal,Coal (tons),31554258
+2013-03-01,March,2013,Native American,Onshore,Oil,Oil (bbl),4194771
+2013-03-01,March,2013,Native American,Onshore,Coal,Coal (tons),1601392
+2013-03-01,March,2013,Native American,Onshore,Gas,Gas (mcf),26521627
+2013-04-01,April,2013,Native American,Onshore,Oil,Oil (bbl),4036146
+2013-04-01,April,2013,Native American,Onshore,Coal,Coal (tons),1775937
+2013-04-01,April,2013,Federal,Onshore,Gas,Gas (mcf),294606983
+2013-04-01,April,2013,Federal,Onshore,Oil,Oil (bbl),11289668
+2013-04-01,April,2013,Federal,Onshore,Coal,Coal (tons),30641951
+2013-04-01,April,2013,Federal,Offshore,Gas,Gas (mcf),120833683
+2013-04-01,April,2013,Federal,Offshore,Oil,Oil (bbl),41774973
+2013-04-01,April,2013,Native American,Onshore,Gas,Gas (mcf),25988168
+2013-05-01,May,2013,Federal,Offshore,Gas,Gas (mcf),118972888
+2013-05-01,May,2013,Federal,Onshore,Coal,Coal (tons),32892522
+2013-05-01,May,2013,Federal,Onshore,Oil,Oil (bbl),11535024
+2013-05-01,May,2013,Federal,Onshore,Gas,Gas (mcf),297744948
+2013-05-01,May,2013,Federal,Offshore,Oil,Oil (bbl),38906640
+2013-05-01,May,2013,Native American,Onshore,Gas,Gas (mcf),26666594
+2013-05-01,May,2013,Native American,Onshore,Oil,Oil (bbl),4243352
+2013-05-01,May,2013,Native American,Onshore,Coal,Coal (tons),1231695
+2013-06-01,June,2013,Federal,Onshore,Coal,Coal (tons),32945999
+2013-06-01,June,2013,Native American,Onshore,Coal,Coal (tons),1464335
+2013-06-01,June,2013,Native American,Onshore,Oil,Oil (bbl),4177312
+2013-06-01,June,2013,Native American,Onshore,Gas,Gas (mcf),26193725
+2013-06-01,June,2013,Federal,Onshore,Oil,Oil (bbl),11277421
+2013-06-01,June,2013,Federal,Onshore,Gas,Gas (mcf),289827925
+2013-06-01,June,2013,Federal,Offshore,Oil,Oil (bbl),35322157
+2013-06-01,June,2013,Federal,Offshore,Gas,Gas (mcf),109160368
+2013-07-01,July,2013,Federal,Onshore,Coal,Coal (tons),35878382
+2013-07-01,July,2013,Federal,Onshore,Gas,Gas (mcf),298331533
+2013-07-01,July,2013,Federal,Offshore,Oil,Oil (bbl),40238092
+2013-07-01,July,2013,Federal,Offshore,Gas,Gas (mcf),114719709
+2013-07-01,July,2013,Native American,Onshore,Gas,Gas (mcf),27447346
+2013-07-01,July,2013,Native American,Onshore,Coal,Coal (tons),1548969
+2013-07-01,July,2013,Native American,Onshore,Oil,Oil (bbl),4623613
+2013-07-01,July,2013,Federal,Onshore,Oil,Oil (bbl),11787605
+2013-08-01,August,2013,Federal,Offshore,Oil,Oil (bbl),38444685
+2013-08-01,August,2013,Federal,Onshore,Gas,Gas (mcf),298475823
+2013-08-01,August,2013,Native American,Onshore,Oil,Oil (bbl),4909448
+2013-08-01,August,2013,Native American,Onshore,Coal,Coal (tons),1719610
+2013-08-01,August,2013,Federal,Onshore,Oil,Oil (bbl),11832691
+2013-08-01,August,2013,Federal,Onshore,Coal,Coal (tons),36459087
+2013-08-01,August,2013,Native American,Onshore,Gas,Gas (mcf),27245011
+2013-08-01,August,2013,Federal,Offshore,Gas,Gas (mcf),109136463
+2013-09-01,September,2013,Native American,Onshore,Oil,Oil (bbl),4739890
+2013-09-01,September,2013,Federal,Offshore,Oil,Oil (bbl),41195227
+2013-09-01,September,2013,Federal,Onshore,Coal,Coal (tons),35116078
+2013-09-01,September,2013,Federal,Onshore,Oil,Oil (bbl),11556702
+2013-09-01,September,2013,Federal,Onshore,Gas,Gas (mcf),276694478
+2013-09-01,September,2013,Federal,Offshore,Gas,Gas (mcf),113630808
+2013-09-01,September,2013,Native American,Onshore,Coal,Coal (tons),1632862
+2013-09-01,September,2013,Native American,Onshore,Gas,Gas (mcf),26365539
+2013-10-01,October,2013,Native American,Onshore,Oil,Oil (bbl),4964789
+2013-10-01,October,2013,Federal,Onshore,Oil,Oil (bbl),12021542
+2013-10-01,October,2013,Federal,Onshore,Gas,Gas (mcf),304055542
+2013-10-01,October,2013,Federal,Offshore,Oil,Oil (bbl),38063826
+2013-10-01,October,2013,Native American,Onshore,Coal,Coal (tons),1750278
+2013-10-01,October,2013,Federal,Offshore,Gas,Gas (mcf),107193889
+2013-10-01,October,2013,Native American,Onshore,Gas,Gas (mcf),27552705
+2013-10-01,October,2013,Federal,Onshore,Coal,Coal (tons),32376034
+2013-11-01,November,2013,Federal,Offshore,Oil,Oil (bbl),40705178
+2013-11-01,November,2013,Native American,Onshore,Oil,Oil (bbl),4755913
+2013-11-01,November,2013,Native American,Onshore,Gas,Gas (mcf),26389844
+2013-11-01,November,2013,Federal,Onshore,Coal,Coal (tons),33665424
+2013-11-01,November,2013,Federal,Onshore,Oil,Oil (bbl),11567455
+2013-11-01,November,2013,Federal,Onshore,Gas,Gas (mcf),293202785
+2013-11-01,November,2013,Federal,Offshore,Gas,Gas (mcf),113186953
+2013-11-01,November,2013,Native American,Onshore,Coal,Coal (tons),1970620
+2013-12-01,December,2013,Federal,Onshore,Coal,Coal (tons),32510561
+2013-12-01,December,2013,Native American,Onshore,Gas,Gas (mcf),26045570
+2013-12-01,December,2013,Native American,Onshore,Oil,Oil (bbl),4690027
+2013-12-01,December,2013,Native American,Onshore,Coal,Coal (tons),1894694
+2013-12-01,December,2013,Federal,Onshore,Oil,Oil (bbl),11848496
+2013-12-01,December,2013,Federal,Onshore,Gas,Gas (mcf),293381340
+2013-12-01,December,2013,Federal,Offshore,Oil,Oil (bbl),41536255
+2013-12-01,December,2013,Federal,Offshore,Gas,Gas (mcf),112085673
+2014-01-01,January,2014,Native American,Onshore,Oil,Oil (bbl),4684164
+2014-01-01,January,2014,Native American,Onshore,Coal,Coal (tons),1757529
+2014-01-01,January,2014,Federal,Onshore,Oil,Oil (bbl),12252670
+2014-01-01,January,2014,Federal,Onshore,Coal,Coal (tons),34790955
+2014-01-01,January,2014,Federal,Offshore,Gas,Gas (mcf),107846209
+2014-01-01,January,2014,Federal,Offshore,Oil,Oil (bbl),42113286
+2014-01-01,January,2014,Native American,Onshore,Gas,Gas (mcf),26627803
+2014-01-01,January,2014,Federal,Onshore,Gas,Gas (mcf),296090557
+2014-02-01,February,2014,Native American,Onshore,Coal,Coal (tons),1485922
+2014-02-01,February,2014,Native American,Onshore,Oil,Oil (bbl),4402892
+2014-02-01,February,2014,Native American,Onshore,Gas,Gas (mcf),24634336
+2014-02-01,February,2014,Federal,Onshore,Gas,Gas (mcf),269020314
+2014-02-01,February,2014,Federal,Onshore,Oil,Oil (bbl),11343081
+2014-02-01,February,2014,Federal,Onshore,Coal,Coal (tons),29682030
+2014-02-01,February,2014,Federal,Offshore,Gas,Gas (mcf),100353787
+2014-02-01,February,2014,Federal,Offshore,Oil,Oil (bbl),38741289
+2014-03-01,March,2014,Native American,Onshore,Gas,Gas (mcf),27402849
+2014-03-01,March,2014,Federal,Offshore,Oil,Oil (bbl),42350146
+2014-03-01,March,2014,Native American,Onshore,Oil,Oil (bbl),4866781
+2014-03-01,March,2014,Native American,Onshore,Coal,Coal (tons),1998634
+2014-03-01,March,2014,Federal,Offshore,Gas,Gas (mcf),110288974
+2014-03-01,March,2014,Federal,Onshore,Oil,Oil (bbl),12938234
+2014-03-01,March,2014,Federal,Onshore,Gas,Gas (mcf),300062245
+2014-03-01,March,2014,Federal,Onshore,Coal,Coal (tons),34623327
+2014-04-01,April,2014,Federal,Onshore,Oil,Oil (bbl),12690879
+2014-04-01,April,2014,Federal,Offshore,Gas,Gas (mcf),110515333
+2014-04-01,April,2014,Federal,Offshore,Oil,Oil (bbl),44227660
+2014-04-01,April,2014,Native American,Onshore,Coal,Coal (tons),1820690
+2014-04-01,April,2014,Native American,Onshore,Gas,Gas (mcf),27074408
+2014-04-01,April,2014,Native American,Onshore,Oil,Oil (bbl),4880891
+2014-04-01,April,2014,Federal,Onshore,Gas,Gas (mcf),288690288
+2014-04-01,April,2014,Federal,Onshore,Coal,Coal (tons),32988348
+2014-05-01,May,2014,Native American,Onshore,Coal,Coal (tons),1935957
+2014-05-01,May,2014,Native American,Onshore,Oil,Oil (bbl),5156140
+2014-05-01,May,2014,Native American,Onshore,Gas,Gas (mcf),27622266
+2014-05-01,May,2014,Federal,Onshore,Coal,Coal (tons),34429428
+2014-05-01,May,2014,Federal,Onshore,Oil,Oil (bbl),13243169
+2014-05-01,May,2014,Federal,Onshore,Gas,Gas (mcf),295189526
+2014-05-01,May,2014,Federal,Offshore,Gas,Gas (mcf),116214820
+2014-05-01,May,2014,Federal,Offshore,Oil,Oil (bbl),45565727
+2014-06-01,June,2014,Federal,Onshore,Coal,Coal (tons),33330150
+2014-06-01,June,2014,Federal,Onshore,Oil,Oil (bbl),12990282
+2014-06-01,June,2014,Federal,Onshore,Gas,Gas (mcf),286333474
+2014-06-01,June,2014,Federal,Offshore,Gas,Gas (mcf),112392505
+2014-06-01,June,2014,Federal,Offshore,Oil,Oil (bbl),44049248
+2014-06-01,June,2014,Native American,Onshore,Gas,Gas (mcf),26759918
+2014-06-01,June,2014,Native American,Onshore,Oil,Oil (bbl),5237677
+2014-06-01,June,2014,Native American,Onshore,Coal,Coal (tons),1138596
+2014-07-01,July,2014,Native American,Onshore,Oil,Oil (bbl),5257551
+2014-07-01,July,2014,Federal,Offshore,Oil,Oil (bbl),45970675
+2014-07-01,July,2014,Federal,Offshore,Gas,Gas (mcf),115128990
+2014-07-01,July,2014,Federal,Onshore,Gas,Gas (mcf),293690807
+2014-07-01,July,2014,Federal,Onshore,Oil,Oil (bbl),13719956
+2014-07-01,July,2014,Federal,Onshore,Coal,Coal (tons),35490509
+2014-07-01,July,2014,Native American,Onshore,Coal,Coal (tons),1683686
+2014-07-01,July,2014,Native American,Onshore,Gas,Gas (mcf),27685715
+2014-08-01,August,2014,Native American,Onshore,Coal,Coal (tons),1750222
+2014-08-01,August,2014,Federal,Offshore,Oil,Oil (bbl),46294944
+2014-08-01,August,2014,Federal,Offshore,Gas,Gas (mcf),116133159
+2014-08-01,August,2014,Federal,Onshore,Gas,Gas (mcf),288764312
+2014-08-01,August,2014,Federal,Onshore,Oil,Oil (bbl),13579874
+2014-08-01,August,2014,Federal,Onshore,Coal,Coal (tons),36037153
+2014-08-01,August,2014,Native American,Onshore,Gas,Gas (mcf),28360469
+2014-08-01,August,2014,Native American,Onshore,Oil,Oil (bbl),5539667
+2014-09-01,September,2014,Native American,Onshore,Gas,Gas (mcf),26981309
+2014-09-01,September,2014,Federal,Onshore,Coal,Coal (tons),32763629
+2014-09-01,September,2014,Federal,Onshore,Oil,Oil (bbl),13195932
+2014-09-01,September,2014,Federal,Onshore,Gas,Gas (mcf),284145732
+2014-09-01,September,2014,Native American,Onshore,Oil,Oil (bbl),5382068
+2014-09-01,September,2014,Federal,Offshore,Gas,Gas (mcf),111796204
+2014-09-01,September,2014,Federal,Offshore,Oil,Oil (bbl),44313716
+2014-09-01,September,2014,Native American,Onshore,Coal,Coal (tons),1690498
+2014-10-01,October,2014,Federal,Offshore,Oil,Oil (bbl),45952555
+2014-10-01,October,2014,Federal,Onshore,Coal,Coal (tons),35706815
+2014-10-01,October,2014,Federal,Onshore,Oil,Oil (bbl),14403948
+2014-10-01,October,2014,Federal,Onshore,Gas,Gas (mcf),293283474
+2014-10-01,October,2014,Native American,Onshore,Coal,Coal (tons),1618495
+2014-10-01,October,2014,Native American,Onshore,Oil,Oil (bbl),5434904
+2014-10-01,October,2014,Native American,Onshore,Gas,Gas (mcf),27178259
+2014-10-01,October,2014,Federal,Offshore,Gas,Gas (mcf),116050796
+2014-11-01,November,2014,Native American,Onshore,Gas,Gas (mcf),26297972
+2014-11-01,November,2014,Federal,Onshore,Gas,Gas (mcf),286426694
+2014-11-01,November,2014,Federal,Onshore,Oil,Oil (bbl),14011458
+2014-11-01,November,2014,Federal,Offshore,Gas,Gas (mcf),106704552
+2014-11-01,November,2014,Federal,Onshore,Coal,Coal (tons),34749343
+2014-11-01,November,2014,Federal,Offshore,Oil,Oil (bbl),43283389
+2014-11-01,November,2014,Native American,Onshore,Coal,Coal (tons),1438145
+2014-11-01,November,2014,Native American,Onshore,Oil,Oil (bbl),5315076
+2014-12-01,December,2014,Federal,Offshore,Oil,Oil (bbl),46728295
+2014-12-01,December,2014,Federal,Onshore,Oil,Oil (bbl),14968089
+2014-12-01,December,2014,Federal,Onshore,Coal,Coal (tons),34896430
+2014-12-01,December,2014,Federal,Onshore,Gas,Gas (mcf),293725130
+2014-12-01,December,2014,Federal,Offshore,Gas,Gas (mcf),113023884
+2014-12-01,December,2014,Native American,Onshore,Coal,Coal (tons),1610645
+2014-12-01,December,2014,Native American,Onshore,Oil,Oil (bbl),5374411
+2014-12-01,December,2014,Native American,Onshore,Gas,Gas (mcf),27046427
+2015-01-01,January,2015,Native American,Onshore,Coal,Coal (tons),1534367
+2015-01-01,January,2015,Native American,Onshore,Oil,Oil (bbl),5420415
+2015-01-01,January,2015,Native American,Onshore,Gas,Gas (mcf),26703398
+2015-01-01,January,2015,Federal,Onshore,Gas,Gas (mcf),289199290
+2015-01-01,January,2015,Federal,Onshore,Coal,Coal (tons),35837786
+2015-01-01,January,2015,Federal,Onshore,Oil,Oil (bbl),14926697
+2015-01-01,January,2015,Federal,Offshore,Gas,Gas (mcf),113368533
+2015-01-01,January,2015,Federal,Offshore,Oil,Oil (bbl),46704328
+2015-02-01,February,2015,Native American,Onshore,Coal,Coal (tons),1558406
+2015-02-01,February,2015,Native American,Onshore,Gas,Gas (mcf),24062490
+2015-02-01,February,2015,Federal,Onshore,Coal,Coal (tons),30718492
+2015-02-01,February,2015,Federal,Onshore,Gas,Gas (mcf),263520710
+2015-02-01,February,2015,Federal,Onshore,Oil,Oil (bbl),13885386
+2015-02-01,February,2015,Federal,Offshore,Gas,Gas (mcf),100575793
+2015-02-01,February,2015,Federal,Offshore,Oil,Oil (bbl),42328032
+2015-02-01,February,2015,Native American,Onshore,Oil,Oil (bbl),5050637
+2015-03-01,March,2015,Federal,Onshore,Coal,Coal (tons),32855558
+2015-03-01,March,2015,Federal,Offshore,Gas,Gas (mcf),101933459
+2015-03-01,March,2015,Federal,Offshore,Oil,Oil (bbl),44235889
+2015-03-01,March,2015,Native American,Onshore,Coal,Coal (tons),1441836
+2015-03-01,March,2015,Native American,Onshore,Oil,Oil (bbl),5593221
+2015-03-01,March,2015,Native American,Onshore,Gas,Gas (mcf),27018550
+2015-03-01,March,2015,Federal,Onshore,Oil,Oil (bbl),16052564
+2015-03-01,March,2015,Federal,Onshore,Gas,Gas (mcf),295312258
+2015-04-01,April,2015,Federal,Offshore,Gas,Gas (mcf),113011179
+2015-04-01,April,2015,Native American,Onshore,Gas,Gas (mcf),25733311
+2015-04-01,April,2015,Native American,Onshore,Oil,Oil (bbl),5041764
+2015-04-01,April,2015,Federal,Onshore,Oil,Oil (bbl),15655151
+2015-04-01,April,2015,Federal,Onshore,Coal,Coal (tons),28846112
+2015-04-01,April,2015,Federal,Onshore,Gas,Gas (mcf),288284703
+2015-04-01,April,2015,Native American,Onshore,Coal,Coal (tons),1541307
+2015-04-01,April,2015,Federal,Offshore,Oil,Oil (bbl),46465744
+2015-05-01,May,2015,Native American,Onshore,Coal,Coal (tons),1799151
+2015-05-01,May,2015,Native American,Onshore,Oil,Oil (bbl),5092636
+2015-05-01,May,2015,Native American,Onshore,Gas,Gas (mcf),26391822
+2015-05-01,May,2015,Federal,Offshore,Oil,Oil (bbl),45003421
+2015-05-01,May,2015,Federal,Offshore,Gas,Gas (mcf),117142653
+2015-05-01,May,2015,Federal,Onshore,Oil,Oil (bbl),15828122
+2015-05-01,May,2015,Federal,Onshore,Gas,Gas (mcf),292943360
+2015-05-01,May,2015,Federal,Onshore,Coal,Coal (tons),27400394
+2015-06-01,June,2015,Native American,Onshore,Coal,Coal (tons),1698264
+2015-06-01,June,2015,Native American,Onshore,Oil,Oil (bbl),5122244
+2015-06-01,June,2015,Federal,Offshore,Gas,Gas (mcf),109720005
+2015-06-01,June,2015,Federal,Offshore,Oil,Oil (bbl),43143702
+2015-06-01,June,2015,Native American,Onshore,Gas,Gas (mcf),25206052
+2015-06-01,June,2015,Federal,Onshore,Gas,Gas (mcf),283823664
+2015-06-01,June,2015,Federal,Onshore,Oil,Oil (bbl),15369456
+2015-06-01,June,2015,Federal,Onshore,Coal,Coal (tons),28418282
+2015-07-01,July,2015,Native American,Onshore,Coal,Coal (tons),1528851
+2015-07-01,July,2015,Native American,Onshore,Oil,Oil (bbl),5558865
+2015-07-01,July,2015,Native American,Onshore,Gas,Gas (mcf),27167219
+2015-07-01,July,2015,Federal,Onshore,Gas,Gas (mcf),290153460
+2015-07-01,July,2015,Federal,Onshore,Oil,Oil (bbl),15373693
+2015-07-01,July,2015,Federal,Onshore,Coal,Coal (tons),32434763
+2015-07-01,July,2015,Federal,Offshore,Oil,Oil (bbl),49229007
+2015-07-01,July,2015,Federal,Offshore,Gas,Gas (mcf),121188044
+2015-08-01,August,2015,Native American,Onshore,Coal,Coal (tons),1671527
+2015-08-01,August,2015,Native American,Onshore,Oil,Oil (bbl),5532299
+2015-08-01,August,2015,Federal,Offshore,Oil,Oil (bbl),51147491
+2015-08-01,August,2015,Native American,Onshore,Gas,Gas (mcf),27160159
+2015-08-01,August,2015,Federal,Onshore,Coal,Coal (tons),35097309
+2015-08-01,August,2015,Federal,Onshore,Oil,Oil (bbl),15347600
+2015-08-01,August,2015,Federal,Onshore,Gas,Gas (mcf),290310393
+2015-08-01,August,2015,Federal,Offshore,Gas,Gas (mcf),123314265
+2015-09-01,September,2015,Federal,Offshore,Oil,Oil (bbl),50452516
+2015-09-01,September,2015,Native American,Onshore,Coal,Coal (tons),1660818
+2015-09-01,September,2015,Federal,Onshore,Coal,Coal (tons),32645633
+2015-09-01,September,2015,Federal,Onshore,Oil,Oil (bbl),14695872
+2015-09-01,September,2015,Federal,Onshore,Gas,Gas (mcf),282099303
+2015-09-01,September,2015,Native American,Onshore,Gas,Gas (mcf),26170425
+2015-09-01,September,2015,Native American,Onshore,Oil,Oil (bbl),5228918
+2015-09-01,September,2015,Federal,Offshore,Gas,Gas (mcf),120441529
+2015-10-01,October,2015,Native American,Onshore,Oil,Oil (bbl),5421588
+2015-10-01,October,2015,Native American,Onshore,Coal,Coal (tons),1590550
+2015-10-01,October,2015,Federal,Offshore,Gas,Gas (mcf),115302180
+2015-10-01,October,2015,Federal,Offshore,Oil,Oil (bbl),49586305
+2015-10-01,October,2015,Federal,Onshore,Gas,Gas (mcf),290205697
+2015-10-01,October,2015,Federal,Onshore,Oil,Oil (bbl),14936571
+2015-10-01,October,2015,Federal,Onshore,Coal,Coal (tons),34933375
+2015-10-01,October,2015,Native American,Onshore,Gas,Gas (mcf),27766629
+2015-11-01,November,2015,Federal,Onshore,Oil,Oil (bbl),14640965
+2015-11-01,November,2015,Federal,Onshore,Coal,Coal (tons),31907688
+2015-11-01,November,2015,Native American,Onshore,Gas,Gas (mcf),27109490
+2015-11-01,November,2015,Native American,Onshore,Oil,Oil (bbl),5342504
+2015-11-01,November,2015,Native American,Onshore,Coal,Coal (tons),1236781
+2015-11-01,November,2015,Federal,Offshore,Gas,Gas (mcf),105588645
+2015-11-01,November,2015,Federal,Offshore,Oil,Oil (bbl),46341443
+2015-11-01,November,2015,Federal,Onshore,Gas,Gas (mcf),282252665
+2015-12-01,December,2015,Federal,Offshore,Gas,Gas (mcf),112562781
+2015-12-01,December,2015,Native American,Onshore,Oil,Oil (bbl),5357626
+2015-12-01,December,2015,Native American,Onshore,Coal,Coal (tons),1228030
+2015-12-01,December,2015,Federal,Onshore,Oil,Oil (bbl),14134542
+2015-12-01,December,2015,Federal,Onshore,Gas,Gas (mcf),283840336
+2015-12-01,December,2015,Federal,Onshore,Coal,Coal (tons),24654378
+2015-12-01,December,2015,Federal,Offshore,Oil,Oil (bbl),50386806
+2015-12-01,December,2015,Native American,Onshore,Gas,Gas (mcf),27587426
+2016-01-01,January,2016,Native American,Onshore,Oil,Oil (bbl),5238844
+2016-01-01,January,2016,Federal,Offshore,Oil,Oil (bbl),50020200
+2016-01-01,January,2016,Federal,Offshore,Gas,Gas (mcf),109568584
+2016-01-01,January,2016,Federal,Onshore,Gas,Gas (mcf),277932116
+2016-01-01,January,2016,Federal,Onshore,Oil,Oil (bbl),14155166
+2016-01-01,January,2016,Federal,Onshore,Coal,Coal (tons),22385252
+2016-01-01,January,2016,Native American,Onshore,Gas,Gas (mcf),27503367
+2016-01-01,January,2016,Native American,Onshore,Coal,Coal (tons),1216479
+2016-02-01,February,2016,Federal,Onshore,Oil,Oil (bbl),13630405
+2016-02-01,February,2016,Federal,Offshore,Oil,Oil (bbl),45505050
+2016-02-01,February,2016,Federal,Offshore,Gas,Gas (mcf),101488565
+2016-02-01,February,2016,Native American,Onshore,Coal,Coal (tons),1100191
+2016-02-01,February,2016,Native American,Onshore,Oil,Oil (bbl),4809724
+2016-02-01,February,2016,Native American,Onshore,Gas,Gas (mcf),25801600
+2016-02-01,February,2016,Federal,Onshore,Gas,Gas (mcf),261944492
+2016-02-01,February,2016,Federal,Onshore,Coal,Coal (tons),21437741
+2016-03-01,March,2016,Native American,Onshore,Oil,Oil (bbl),5355700
+2016-03-01,March,2016,Federal,Onshore,Coal,Coal (tons),20238449
+2016-03-01,March,2016,Federal,Onshore,Oil,Oil (bbl),14522261
+2016-03-01,March,2016,Federal,Onshore,Gas,Gas (mcf),283066751
+2016-03-01,March,2016,Federal,Offshore,Oil,Oil (bbl),50565023
+2016-03-01,March,2016,Federal,Offshore,Gas,Gas (mcf),111857271
+2016-03-01,March,2016,Native American,Onshore,Coal,Coal (tons),1349184
+2016-03-01,March,2016,Native American,Onshore,Gas,Gas (mcf),27745737
+2016-04-01,April,2016,Native American,Onshore,Oil,Oil (bbl),4929676
+2016-04-01,April,2016,Federal,Offshore,Oil,Oil (bbl),47768826
+2016-04-01,April,2016,Native American,Onshore,Gas,Gas (mcf),26459348
+2016-04-01,April,2016,Federal,Onshore,Coal,Coal (tons),18209082
+2016-04-01,April,2016,Federal,Onshore,Oil,Oil (bbl),13772211
+2016-04-01,April,2016,Federal,Onshore,Gas,Gas (mcf),270458795
+2016-04-01,April,2016,Native American,Onshore,Coal,Coal (tons),701080
+2016-04-01,April,2016,Federal,Offshore,Gas,Gas (mcf),102053631
+2016-05-01,May,2016,Federal,Offshore,Oil,Oil (bbl),50008166
+2016-05-01,May,2016,Native American,Onshore,Oil,Oil (bbl),4903467
+2016-05-01,May,2016,Native American,Onshore,Gas,Gas (mcf),27008124
+2016-05-01,May,2016,Federal,Offshore,Gas,Gas (mcf),111068243
+2016-05-01,May,2016,Federal,Onshore,Coal,Coal (tons),17466152
+2016-05-01,May,2016,Federal,Onshore,Oil,Oil (bbl),13858844
+2016-05-01,May,2016,Federal,Onshore,Gas,Gas (mcf),272270686
+2016-05-01,May,2016,Native American,Onshore,Coal,Coal (tons),1022304
+2016-06-01,June,2016,Federal,Onshore,Coal,Coal (tons),24182132
+2016-06-01,June,2016,Federal,Onshore,Oil,Oil (bbl),13318041
+2016-06-01,June,2016,Federal,Onshore,Gas,Gas (mcf),266722552
+2016-06-01,June,2016,Federal,Offshore,Oil,Oil (bbl),47084648
+2016-06-01,June,2016,Federal,Offshore,Gas,Gas (mcf),97958782
+2016-06-01,June,2016,Native American,Onshore,Gas,Gas (mcf),25620056
+2016-06-01,June,2016,Native American,Onshore,Oil,Oil (bbl),4692684
+2016-06-01,June,2016,Native American,Onshore,Coal,Coal (tons),956567
+2016-07-01,July,2016,Native American,Onshore,Coal,Coal (tons),976850
+2016-07-01,July,2016,Federal,Onshore,Gas,Gas (mcf),261245966
+2016-07-01,July,2016,Federal,Onshore,Coal,Coal (tons),23325633
+2016-07-01,July,2016,Federal,Offshore,Gas,Gas (mcf),103309483
+2016-07-01,July,2016,Federal,Onshore,Oil,Oil (bbl),13848977
+2016-07-01,July,2016,Federal,Offshore,Oil,Oil (bbl),49149480
+2016-07-01,July,2016,Native American,Onshore,Gas,Gas (mcf),26216657
+2016-07-01,July,2016,Native American,Onshore,Oil,Oil (bbl),4948842
+2016-08-01,August,2016,Federal,Onshore,Coal,Coal (tons),29500444
+2016-08-01,August,2016,Native American,Onshore,Gas,Gas (mcf),26726653
+2016-08-01,August,2016,Native American,Onshore,Oil,Oil (bbl),4813094
+2016-08-01,August,2016,Native American,Onshore,Coal,Coal (tons),1385942
+2016-08-01,August,2016,Federal,Offshore,Gas,Gas (mcf),106372277
+2016-08-01,August,2016,Federal,Offshore,Oil,Oil (bbl),50732184
+2016-08-01,August,2016,Federal,Onshore,Gas,Gas (mcf),264534042
+2016-08-01,August,2016,Federal,Onshore,Oil,Oil (bbl),13634345
+2016-09-01,September,2016,Federal,Onshore,Gas,Gas (mcf),268384957
+2016-09-01,September,2016,Federal,Onshore,Oil,Oil (bbl),13127752
+2016-09-01,September,2016,Federal,Offshore,Gas,Gas (mcf),98150271
+2016-09-01,September,2016,Native American,Onshore,Coal,Coal (tons),1093319
+2016-09-01,September,2016,Federal,Onshore,Coal,Coal (tons),27801819
+2016-09-01,September,2016,Native American,Onshore,Oil,Oil (bbl),4736890
+2016-09-01,September,2016,Native American,Onshore,Gas,Gas (mcf),26207436
+2016-09-01,September,2016,Federal,Offshore,Oil,Oil (bbl),45793924
+2016-10-01,October,2016,Native American,Onshore,Oil,Oil (bbl),5465702
+2016-10-01,October,2016,Native American,Onshore,Gas,Gas (mcf),27169616
+2016-10-01,October,2016,Native American,Onshore,Coal,Coal (tons),1317886
+2016-10-01,October,2016,Federal,Onshore,Coal,Coal (tons),30281973
+2016-10-01,October,2016,Federal,Onshore,Oil,Oil (bbl),14234475
+2016-10-01,October,2016,Federal,Onshore,Gas,Gas (mcf),280887225
+2016-10-01,October,2016,Federal,Offshore,Oil,Oil (bbl),50359020
+2016-10-01,October,2016,Federal,Offshore,Gas,Gas (mcf),104778293
+2016-11-01,November,2016,Federal,Offshore,Gas,Gas (mcf),102108655
+2016-11-01,November,2016,Federal,Onshore,Gas,Gas (mcf),269087036
+2016-11-01,November,2016,Federal,Onshore,Oil,Oil (bbl),13675199
+2016-11-01,November,2016,Federal,Onshore,Coal,Coal (tons),29341898
+2016-11-01,November,2016,Native American,Onshore,Coal,Coal (tons),1334842
+2016-11-01,November,2016,Native American,Onshore,Oil,Oil (bbl),5067934
+2016-11-01,November,2016,Native American,Onshore,Gas,Gas (mcf),25838802
+2016-11-01,November,2016,Federal,Offshore,Oil,Oil (bbl),51136270
+2016-12-01,December,2016,Native American,Onshore,Coal,Coal (tons),1275026
+2016-12-01,December,2016,Native American,Onshore,Gas,Gas (mcf),26232456
+2016-12-01,December,2016,Federal,Offshore,Gas,Gas (mcf),108062308
+2016-12-01,December,2016,Federal,Onshore,Gas,Gas (mcf),273151024
+2016-12-01,December,2016,Federal,Offshore,Oil,Oil (bbl),54384661
+2016-12-01,December,2016,Federal,Onshore,Oil,Oil (bbl),13751684
+2016-12-01,December,2016,Federal,Onshore,Coal,Coal (tons),27874498
+2016-12-01,December,2016,Native American,Onshore,Oil,Oil (bbl),5253737
+2017-01-01,January,2017,Federal,Onshore,Coal,Coal (tons),30451363
+2017-01-01,January,2017,Federal,Onshore,Gas,Gas (mcf),267994902
+2017-01-01,January,2017,Federal,Onshore,Oil,Oil (bbl),13820577
+2017-01-01,January,2017,Federal,Offshore,Gas,Gas (mcf),106371569
+2017-01-01,January,2017,Native American,Onshore,Gas,Gas (mcf),25666115
+2017-01-01,January,2017,Native American,Onshore,Oil,Oil (bbl),5432990
+2017-01-01,January,2017,Native American,Onshore,Coal,Coal (tons),1386837
+2017-01-01,January,2017,Federal,Offshore,Oil,Oil (bbl),54837729
+2017-02-01,February,2017,Federal,Onshore,Gas,Gas (mcf),244301666
+2017-02-01,February,2017,Native American,Onshore,Gas,Gas (mcf),23396054
+2017-02-01,February,2017,Federal,Onshore,Oil,Oil (bbl),13149795
+2017-02-01,February,2017,Federal,Offshore,Gas,Gas (mcf),93082910
+2017-02-01,February,2017,Federal,Offshore,Oil,Oil (bbl),49591639
+2017-02-01,February,2017,Federal,Onshore,Coal,Coal (tons),26764551
+2017-02-01,February,2017,Native American,Onshore,Coal,Coal (tons),1270347
+2017-02-01,February,2017,Native American,Onshore,Oil,Oil (bbl),5043426
+2017-03-01,March,2017,Federal,Offshore,Gas,Gas (mcf),106321286
+2017-03-01,March,2017,Federal,Onshore,Coal,Coal (tons),24856969
+2017-03-01,March,2017,Native American,Onshore,Coal,Coal (tons),994299
+2017-03-01,March,2017,Native American,Onshore,Oil,Oil (bbl),5692444
+2017-03-01,March,2017,Native American,Onshore,Gas,Gas (mcf),26182906
+2017-03-01,March,2017,Federal,Offshore,Oil,Oil (bbl),55601947
+2017-03-01,March,2017,Federal,Onshore,Gas,Gas (mcf),274631300
+2017-03-01,March,2017,Federal,Onshore,Oil,Oil (bbl),14988630
+2017-04-01,April,2017,Federal,Onshore,Coal,Coal (tons),23773493
+2017-04-01,April,2017,Native American,Onshore,Gas,Gas (mcf),25530681
+2017-04-01,April,2017,Federal,Offshore,Oil,Oil (bbl),50482825
+2017-04-01,April,2017,Federal,Onshore,Gas,Gas (mcf),267091903
+2017-04-01,April,2017,Federal,Onshore,Oil,Oil (bbl),14583628
+2017-04-01,April,2017,Native American,Onshore,Coal,Coal (tons),1006718
+2017-04-01,April,2017,Native American,Onshore,Oil,Oil (bbl),5571569
+2017-04-01,April,2017,Federal,Offshore,Gas,Gas (mcf),95310966
+2017-05-01,May,2017,Federal,Offshore,Oil,Oil (bbl),52785896
+2017-05-01,May,2017,Federal,Offshore,Gas,Gas (mcf),99387051
+2017-05-01,May,2017,Native American,Onshore,Coal,Coal (tons),1133016
+2017-05-01,May,2017,Federal,Onshore,Coal,Coal (tons),26338321
+2017-05-01,May,2017,Federal,Onshore,Oil,Oil (bbl),15487372
+2017-05-01,May,2017,Federal,Onshore,Gas,Gas (mcf),270251704
+2017-05-01,May,2017,Native American,Onshore,Oil,Oil (bbl),5807869
+2017-05-01,May,2017,Native American,Onshore,Gas,Gas (mcf),27216317
+2017-06-01,June,2017,Federal,Onshore,Coal,Coal (tons),26859514
+2017-06-01,June,2017,Federal,Onshore,Oil,Oil (bbl),14325139
+2017-06-01,June,2017,Federal,Onshore,Gas,Gas (mcf),263881589
+2017-06-01,June,2017,Native American,Onshore,Gas,Gas (mcf),26979995
+2017-06-01,June,2017,Native American,Onshore,Coal,Coal (tons),1211408
+2017-06-01,June,2017,Federal,Offshore,Oil,Oil (bbl),49430561
+2017-06-01,June,2017,Federal,Offshore,Gas,Gas (mcf),90631538
+2017-06-01,June,2017,Native American,Onshore,Oil,Oil (bbl),5903757
+2017-07-01,July,2017,Federal,Onshore,Oil,Oil (bbl),15127551
+2017-07-01,July,2017,Federal,Onshore,Gas,Gas (mcf),271624305
+2017-07-01,July,2017,Federal,Onshore,Coal,Coal (tons),29686410
+2017-07-01,July,2017,Federal,Offshore,Oil,Oil (bbl),55000595
+2017-07-01,July,2017,Federal,Offshore,Gas,Gas (mcf),97839271
+2017-07-01,July,2017,Native American,Onshore,Gas,Gas (mcf),28053463
+2017-07-01,July,2017,Native American,Onshore,Oil,Oil (bbl),6120003
+2017-07-01,July,2017,Native American,Onshore,Coal,Coal (tons),920473
+2017-08-01,August,2017,Federal,Offshore,Gas,Gas (mcf),92785861
+2017-08-01,August,2017,Native American,Onshore,Gas,Gas (mcf),28847920
+2017-08-01,August,2017,Native American,Onshore,Oil,Oil (bbl),6508658
+2017-08-01,August,2017,Native American,Onshore,Coal,Coal (tons),1203341
+2017-08-01,August,2017,Federal,Offshore,Oil,Oil (bbl),53807564
+2017-08-01,August,2017,Federal,Onshore,Gas,Gas (mcf),271160621
+2017-08-01,August,2017,Federal,Onshore,Oil,Oil (bbl),15687437
+2017-08-01,August,2017,Federal,Onshore,Coal,Coal (tons),30158575
+2017-09-01,September,2017,Federal,Offshore,Oil,Oil (bbl),51299085
+2017-09-01,September,2017,Federal,Onshore,Coal,Coal (tons),27217702
+2017-09-01,September,2017,Native American,Onshore,Gas,Gas (mcf),27965008
+2017-09-01,September,2017,Native American,Onshore,Oil,Oil (bbl),6280276
+2017-09-01,September,2017,Native American,Onshore,Coal,Coal (tons),958857
+2017-09-01,September,2017,Federal,Onshore,Gas,Gas (mcf),267616125
+2017-09-01,September,2017,Federal,Onshore,Oil,Oil (bbl),16086139
+2017-09-01,September,2017,Federal,Offshore,Gas,Gas (mcf),88478499
+2017-10-01,October,2017,Federal,Offshore,Gas,Gas (mcf),80366430
+2017-10-01,October,2017,Federal,Offshore,Oil,Oil (bbl),46471683
+2017-10-01,October,2017,Native American,Onshore,Gas,Gas (mcf),29455120
+2017-10-01,October,2017,Native American,Onshore,Oil,Oil (bbl),6632419
+2017-10-01,October,2017,Native American,Onshore,Coal,Coal (tons),1123323
+2017-10-01,October,2017,Federal,Onshore,Gas,Gas (mcf),277196521
+2017-10-01,October,2017,Federal,Onshore,Oil,Oil (bbl),17018280
+2017-10-01,October,2017,Federal,Onshore,Coal,Coal (tons),27484858
+2017-11-01,November,2017,Federal,Onshore,Oil,Oil (bbl),16815219
+2017-11-01,November,2017,Federal,Onshore,Gas,Gas (mcf),271388774
+2017-11-01,November,2017,Native American,Onshore,Oil,Oil (bbl),6612179
+2017-11-01,November,2017,Native American,Onshore,Coal,Coal (tons),1147396
+2017-11-01,November,2017,Federal,Offshore,Oil,Oil (bbl),51449089
+2017-11-01,November,2017,Federal,Offshore,Gas,Gas (mcf),81786392
+2017-11-01,November,2017,Federal,Onshore,Coal,Coal (tons),26341943
+2017-11-01,November,2017,Native American,Onshore,Gas,Gas (mcf),29337613
+2017-12-01,December,2017,Native American,Onshore,Gas,Gas (mcf),31189584
+2017-12-01,December,2017,Federal,Onshore,Gas,Gas (mcf),283199656
+2017-12-01,December,2017,Federal,Onshore,Oil,Oil (bbl),17950602
+2017-12-01,December,2017,Federal,Onshore,Coal,Coal (tons),26144818
+2017-12-01,December,2017,Federal,Offshore,Gas,Gas (mcf),78480058
+2017-12-01,December,2017,Federal,Offshore,Oil,Oil (bbl),49115768
+2017-12-01,December,2017,Native American,Onshore,Coal,Coal (tons),1361183
+2017-12-01,December,2017,Native American,Onshore,Oil,Oil (bbl),6813865
+2018-01-01,January,2018,Federal,Offshore,Gas,Gas (mcf),79016519
+2018-01-01,January,2018,Federal,Onshore,Oil,Oil (bbl),17544865
+2018-01-01,January,2018,Federal,Onshore,Gas,Gas (mcf),281191746
+2018-01-01,January,2018,Native American,Onshore,Gas,Gas (mcf),31542993
+2018-01-01,January,2018,Native American,Onshore,Oil,Oil (bbl),6727737
+2018-01-01,January,2018,Native American,Onshore,Coal,Coal (tons),1354891
+2018-01-01,January,2018,Federal,Onshore,Coal,Coal (tons),24632904
+2018-01-01,January,2018,Federal,Offshore,Oil,Oil (bbl),51241032
+2018-02-01,February,2018,Federal,Onshore,Coal,Coal (tons),25195995
+2018-02-01,February,2018,Federal,Onshore,Oil,Oil (bbl),16588682
+2018-02-01,February,2018,Federal,Onshore,Gas,Gas (mcf),255463793
+2018-02-01,February,2018,Federal,Offshore,Oil,Oil (bbl),48387732
+2018-02-01,February,2018,Federal,Offshore,Gas,Gas (mcf),74931897
+2018-02-01,February,2018,Native American,Onshore,Gas,Gas (mcf),28583658
+2018-02-01,February,2018,Native American,Onshore,Oil,Oil (bbl),5931495
+2018-02-01,February,2018,Native American,Onshore,Coal,Coal (tons),701497
+2018-03-01,March,2018,Federal,Offshore,Gas,Gas (mcf),84070523
+2018-03-01,March,2018,Native American,Onshore,Coal,Coal (tons),827534
+2018-03-01,March,2018,Native American,Onshore,Oil,Oil (bbl),7020057
+2018-03-01,March,2018,Native American,Onshore,Gas,Gas (mcf),33114567
+2018-03-01,March,2018,Federal,Offshore,Oil,Oil (bbl),53328598
+2018-03-01,March,2018,Federal,Onshore,Coal,Coal (tons),25653837
+2018-03-01,March,2018,Federal,Onshore,Gas,Gas (mcf),284014115
+2018-03-01,March,2018,Federal,Onshore,Oil,Oil (bbl),18722796
+2018-04-01,April,2018,Federal,Offshore,Oil,Oil (bbl),48560612
+2018-04-01,April,2018,Federal,Onshore,Coal,Coal (tons),22154981
+2018-04-01,April,2018,Federal,Onshore,Gas,Gas (mcf),274490910
+2018-04-01,April,2018,Federal,Onshore,Oil,Oil (bbl),18941394
+2018-04-01,April,2018,Native American,Onshore,Gas,Gas (mcf),32989582
+2018-04-01,April,2018,Native American,Onshore,Coal,Coal (tons),815363
+2018-04-01,April,2018,Native American,Onshore,Oil,Oil (bbl),7482695
+2018-04-01,April,2018,Federal,Offshore,Gas,Gas (mcf),76397288
+2018-05-01,May,2018,Native American,Onshore,Gas,Gas (mcf),33786622
+2018-05-01,May,2018,Federal,Onshore,Gas,Gas (mcf),280817445
+2018-05-01,May,2018,Federal,Onshore,Oil,Oil (bbl),19437578
+2018-05-01,May,2018,Federal,Onshore,Coal,Coal (tons),22509973
+2018-05-01,May,2018,Federal,Offshore,Oil,Oil (bbl),48110731
+2018-05-01,May,2018,Federal,Offshore,Gas,Gas (mcf),78906829
+2018-05-01,May,2018,Native American,Onshore,Coal,Coal (tons),1223737
+2018-05-01,May,2018,Native American,Onshore,Oil,Oil (bbl),7712481
+2018-06-01,June,2018,Federal,Onshore,Gas,Gas (mcf),268643271
+2018-06-01,June,2018,Federal,Onshore,Oil,Oil (bbl),18447788
+2018-06-01,June,2018,Federal,Offshore,Oil,Oil (bbl),50368138
+2018-06-01,June,2018,Federal,Offshore,Gas,Gas (mcf),79153499
+2018-06-01,June,2018,Native American,Onshore,Oil,Oil (bbl),7242080
+2018-06-01,June,2018,Federal,Onshore,Coal,Coal (tons),24851719
+2018-06-01,June,2018,Native American,Onshore,Coal,Coal (tons),1024930
+2018-06-01,June,2018,Native American,Onshore,Gas,Gas (mcf),32684154
+2018-07-01,July,2018,Native American,Onshore,Oil,Oil (bbl),7253129
+2018-07-01,July,2018,Federal,Onshore,Gas,Gas (mcf),281642315
+2018-07-01,July,2018,Federal,Onshore,Oil,Oil (bbl),19578433
+2018-07-01,July,2018,Federal,Onshore,Coal,Coal (tons),26629804
+2018-07-01,July,2018,Federal,Offshore,Oil,Oil (bbl),58348140
+2018-07-01,July,2018,Federal,Offshore,Gas,Gas (mcf),92152778
+2018-07-01,July,2018,Native American,Onshore,Gas,Gas (mcf),33139005
+2018-07-01,July,2018,Native American,Onshore,Coal,Coal (tons),1200779
+2018-08-01,August,2018,Native American,Onshore,Gas,Gas (mcf),33544325
+2018-08-01,August,2018,Federal,Offshore,Gas,Gas (mcf),98058558
+2018-08-01,August,2018,Federal,Offshore,Oil,Oil (bbl),61082825
+2018-08-01,August,2018,Federal,Onshore,Gas,Gas (mcf),283766115
+2018-08-01,August,2018,Federal,Onshore,Oil,Oil (bbl),20998381
+2018-08-01,August,2018,Federal,Onshore,Coal,Coal (tons),27555964
+2018-08-01,August,2018,Native American,Onshore,Coal,Coal (tons),1444528
+2018-08-01,August,2018,Native American,Onshore,Oil,Oil (bbl),7443628
+2018-09-01,September,2018,Federal,Onshore,Gas,Gas (mcf),276245699
+2018-09-01,September,2018,Federal,Onshore,Oil,Oil (bbl),21218664
+2018-09-01,September,2018,Federal,Offshore,Oil,Oil (bbl),54370471
+2018-09-01,September,2018,Federal,Onshore,Coal,Coal (tons),29721951
+2018-09-01,September,2018,Federal,Offshore,Gas,Gas (mcf),88571147
+2018-09-01,September,2018,Native American,Onshore,Coal,Coal (tons),1182334
+2018-09-01,September,2018,Native American,Onshore,Oil,Oil (bbl),7588838
+2018-09-01,September,2018,Native American,Onshore,Gas,Gas (mcf),33123477
+2018-10-01,October,2018,Federal,Offshore,Oil,Oil (bbl),54680205
+2018-10-01,October,2018,Federal,Onshore,Oil,Oil (bbl),22926098
+2018-10-01,October,2018,Federal,Onshore,Gas,Gas (mcf),289748983
+2018-10-01,October,2018,Federal,Onshore,Coal,Coal (tons),26731949
+2018-10-01,October,2018,Native American,Onshore,Gas,Gas (mcf),33906845
+2018-10-01,October,2018,Native American,Onshore,Oil,Oil (bbl),7821045
+2018-10-01,October,2018,Native American,Onshore,Coal,Coal (tons),1252350
+2018-10-01,October,2018,Federal,Offshore,Gas,Gas (mcf),86433442
+2018-11-01,November,2018,Native American,Onshore,Gas,Gas (mcf),32554907
+2018-11-01,November,2018,Federal,Onshore,Gas,Gas (mcf),278007501
+2018-11-01,November,2018,Federal,Onshore,Oil,Oil (bbl),21962511
+2018-11-01,November,2018,Federal,Onshore,Coal,Coal (tons),26932688
+2018-11-01,November,2018,Native American,Onshore,Oil,Oil (bbl),7819638
+2018-11-01,November,2018,Native American,Onshore,Coal,Coal (tons),1487964
+2018-11-01,November,2018,Federal,Offshore,Gas,Gas (mcf),90541478
+2018-11-01,November,2018,Federal,Offshore,Oil,Oil (bbl),58952329
+2018-12-01,December,2018,Federal,Onshore,Oil,Oil (bbl),23287817
+2018-12-01,December,2018,Federal,Onshore,Coal,Coal (tons),28361627
+2018-12-01,December,2018,Federal,Onshore,Gas,Gas (mcf),288924075
+2018-12-01,December,2018,Native American,Onshore,Coal,Coal (tons),1368888
+2018-12-01,December,2018,Federal,Offshore,Oil,Oil (bbl),59996420
+2018-12-01,December,2018,Federal,Offshore,Gas,Gas (mcf),92331546
+2018-12-01,December,2018,Native American,Onshore,Gas,Gas (mcf),33509703
+2018-12-01,December,2018,Native American,Onshore,Oil,Oil (bbl),7943048
+2019-01-01,January,2019,Federal,Onshore,Oil,Oil (bbl),23596610
+2019-01-01,January,2019,Federal,Offshore,Gas,Gas (mcf),94251128
+2019-01-01,January,2019,Federal,Onshore,Gas,Gas (mcf),281272240
+2019-01-01,January,2019,Native American,Onshore,Coal,Coal (tons),1150322
+2019-01-01,January,2019,Federal,Onshore,Coal,Coal (tons),28977593
+2019-01-01,January,2019,Native American,Onshore,Oil,Oil (bbl),8085404
+2019-01-01,January,2019,Native American,Onshore,Gas,Gas (mcf),32935901
+2019-01-01,January,2019,Federal,Offshore,Oil,Oil (bbl),59870458
+2019-02-01,February,2019,Native American,Onshore,Gas,Gas (mcf),29126806
+2019-02-01,February,2019,Native American,Onshore,Oil,Oil (bbl),7131685
+2019-02-01,February,2019,Native American,Onshore,Coal,Coal (tons),1113086
+2019-02-01,February,2019,Federal,Onshore,Gas,Gas (mcf),257110418
+2019-02-01,February,2019,Federal,Onshore,Oil,Oil (bbl),21852583
+2019-02-01,February,2019,Federal,Onshore,Coal,Coal (tons),22819653
+2019-02-01,February,2019,Federal,Offshore,Oil,Oil (bbl),48948677
+2019-02-01,February,2019,Federal,Offshore,Gas,Gas (mcf),80433222
+2019-03-01,March,2019,Native American,Onshore,Coal,Coal (tons),979629
+2019-03-01,March,2019,Native American,Onshore,Oil,Oil (bbl),8326663
+2019-03-01,March,2019,Federal,Offshore,Oil,Oil (bbl),60021015
+2019-03-01,March,2019,Federal,Onshore,Coal,Coal (tons),18331999
+2019-03-01,March,2019,Federal,Offshore,Gas,Gas (mcf),96100021
+2019-03-01,March,2019,Federal,Onshore,Gas,Gas (mcf),286967867
+2019-03-01,March,2019,Native American,Onshore,Gas,Gas (mcf),33538942
+2019-03-01,March,2019,Federal,Onshore,Oil,Oil (bbl),25018473
+2019-04-01,April,2019,Federal,Onshore,Gas,Gas (mcf),278975226
+2019-04-01,April,2019,Federal,Onshore,Coal,Coal (tons),25741411
+2019-04-01,April,2019,Native American,Onshore,Coal,Coal (tons),1556977
+2019-04-01,April,2019,Native American,Onshore,Oil,Oil (bbl),8171747
+2019-04-01,April,2019,Native American,Onshore,Gas,Gas (mcf),33845025
+2019-04-01,April,2019,Federal,Offshore,Oil,Oil (bbl),59304635
+2019-04-01,April,2019,Federal,Offshore,Gas,Gas (mcf),91177795
+2019-04-01,April,2019,Federal,Onshore,Oil,Oil (bbl),24100423
+2019-05-01,May,2019,Native American,Onshore,Gas,Gas (mcf),34577751
+2019-05-01,May,2019,Federal,Offshore,Gas,Gas (mcf),91699218
+2019-05-01,May,2019,Federal,Offshore,Oil,Oil (bbl),59782689
+2019-05-01,May,2019,Native American,Onshore,Coal,Coal (tons),1347300
+2019-05-01,May,2019,Federal,Onshore,Gas,Gas (mcf),289859826
+2019-05-01,May,2019,Federal,Onshore,Oil,Oil (bbl),25360006
+2019-05-01,May,2019,Federal,Onshore,Coal,Coal (tons),24071406
+2019-05-01,May,2019,Native American,Onshore,Oil,Oil (bbl),8490071
+2019-06-01,June,2019,Federal,Onshore,Gas,Gas (mcf),281173358
+2019-06-01,June,2019,Federal,Onshore,Oil,Oil (bbl),24250930
+2019-06-01,June,2019,Federal,Onshore,Coal,Coal (tons),22173626
+2019-06-01,June,2019,Native American,Onshore,Gas,Gas (mcf),34452079
+2019-06-01,June,2019,Native American,Onshore,Oil,Oil (bbl),8758675
+2019-06-01,June,2019,Native American,Onshore,Coal,Coal (tons),1002502
+2019-06-01,June,2019,Federal,Offshore,Oil,Oil (bbl),58115592
+2019-06-01,June,2019,Federal,Offshore,Gas,Gas (mcf),85328250
+2019-07-01,July,2019,Federal,Offshore,Oil,Oil (bbl),47897017
+2019-07-01,July,2019,Federal,Offshore,Gas,Gas (mcf),70681791
+2019-07-01,July,2019,Native American,Onshore,Gas,Gas (mcf),36050451
+2019-07-01,July,2019,Native American,Onshore,Oil,Oil (bbl),9335489
+2019-07-01,July,2019,Native American,Onshore,Coal,Coal (tons),906463
+2019-07-01,July,2019,Federal,Onshore,Gas,Gas (mcf),274088443
+2019-07-01,July,2019,Federal,Onshore,Oil,Oil (bbl),24368206
+2019-07-01,July,2019,Federal,Onshore,Coal,Coal (tons),24792370
+2019-08-01,August,2019,Federal,Onshore,Coal,Coal (tons),27972989
+2019-08-01,August,2019,Federal,Onshore,Oil,Oil (bbl),25369755
+2019-08-01,August,2019,Federal,Offshore,Oil,Oil (bbl),63815703
+2019-08-01,August,2019,Federal,Offshore,Gas,Gas (mcf),94371270
+2019-08-01,August,2019,Native American,Onshore,Gas,Gas (mcf),36243249
+2019-08-01,August,2019,Native American,Onshore,Oil,Oil (bbl),9334842
+2019-08-01,August,2019,Federal,Onshore,Gas,Gas (mcf),281881599
+2019-08-01,August,2019,Native American,Onshore,Coal,Coal (tons),1341162
+2019-09-01,September,2019,Federal,Onshore,Gas,Gas (mcf),282199603
+2019-09-01,September,2019,Federal,Onshore,Coal,Coal (tons),25445787
+2019-09-01,September,2019,Native American,Onshore,Gas,Gas (mcf),36013175
+2019-09-01,September,2019,Native American,Onshore,Oil,Oil (bbl),9403369
+2019-09-01,September,2019,Native American,Onshore,Coal,Coal (tons),847728
+2019-09-01,September,2019,Federal,Offshore,Oil,Oil (bbl),57909529
+2019-09-01,September,2019,Federal,Offshore,Gas,Gas (mcf),87744709
+2019-09-01,September,2019,Federal,Onshore,Oil,Oil (bbl),25670828
+2019-10-01,October,2019,Native American,Onshore,Oil,Oil (bbl),10171392
+2019-10-01,October,2019,Federal,Onshore,Oil,Oil (bbl),26485902
+2019-10-01,October,2019,Federal,Onshore,Gas,Gas (mcf),292979686
+2019-10-01,October,2019,Native American,Onshore,Gas,Gas (mcf),37772948
+2019-10-01,October,2019,Federal,Onshore,Coal,Coal (tons),25341262
+2019-10-01,October,2019,Native American,Onshore,Coal,Coal (tons),711302
+2019-10-01,October,2019,Federal,Offshore,Gas,Gas (mcf),90465526
+2019-10-01,October,2019,Federal,Offshore,Oil,Oil (bbl),59753191
+2019-11-01,November,2019,Federal,Offshore,Oil,Oil (bbl),60408085
+2019-11-01,November,2019,Native American,Onshore,Gas,Gas (mcf),36610651
+2019-11-01,November,2019,Federal,Onshore,Coal,Coal (tons),21889815
+2019-11-01,November,2019,Native American,Onshore,Oil,Oil (bbl),10055892
+2019-11-01,November,2019,Native American,Onshore,Coal,Coal (tons),552751
+2019-11-01,November,2019,Federal,Onshore,Oil,Oil (bbl),26534335
+2019-11-01,November,2019,Federal,Onshore,Gas,Gas (mcf),284063063
+2019-11-01,November,2019,Federal,Offshore,Gas,Gas (mcf),87444746
+2019-12-01,December,2019,Federal,Offshore,Oil,Oil (bbl),61828977
+2019-12-01,December,2019,Native American,Onshore,Oil,Oil (bbl),10183023
+2019-12-01,December,2019,Federal,Onshore,Gas,Gas (mcf),293397066
+2019-12-01,December,2019,Federal,Onshore,Oil,Oil (bbl),27793372
+2019-12-01,December,2019,Federal,Onshore,Coal,Coal (tons),23608717
+2019-12-01,December,2019,Native American,Onshore,Gas,Gas (mcf),36772983
+2019-12-01,December,2019,Federal,Offshore,Gas,Gas (mcf),91501576
+2019-12-01,December,2019,Native American,Onshore,Coal,Coal (tons),540830
+2020-01-01,January,2020,Federal,Offshore,Oil,Oil (bbl),62074209
+2020-01-01,January,2020,Native American,Onshore,Coal,Coal (tons),607705
+2020-01-01,January,2020,Federal,Onshore,Gas,Gas (mcf),292662185
+2020-01-01,January,2020,Federal,Onshore,Oil,Oil (bbl),27671770
+2020-01-01,January,2020,Federal,Onshore,Coal,Coal (tons),23238875
+2020-01-01,January,2020,Native American,Onshore,Gas,Gas (mcf),35181853
+2020-01-01,January,2020,Native American,Onshore,Oil,Oil (bbl),9271465
+2020-01-01,January,2020,Federal,Offshore,Gas,Gas (mcf),90320528
+2020-02-01,February,2020,Native American,Onshore,Oil,Oil (bbl),8825666
+2020-02-01,February,2020,Native American,Onshore,Coal,Coal (tons),466920
+2020-02-01,February,2020,Federal,Offshore,Gas,Gas (mcf),84850875
+2020-02-01,February,2020,Federal,Offshore,Oil,Oil (bbl),58199365
+2020-02-01,February,2020,Native American,Onshore,Gas,Gas (mcf),33405592
+2020-02-01,February,2020,Federal,Onshore,Coal,Coal (tons),19523631
+2020-02-01,February,2020,Federal,Onshore,Oil,Oil (bbl),26525344
+2020-02-01,February,2020,Federal,Onshore,Gas,Gas (mcf),271311635
+2020-03-01,March,2020,Federal,Offshore,Oil,Oil (bbl),61624576
+2020-03-01,March,2020,Native American,Onshore,Coal,Coal (tons),569826
+2020-03-01,March,2020,Native American,Onshore,Oil,Oil (bbl),9247095
+2020-03-01,March,2020,Native American,Onshore,Gas,Gas (mcf),35466057
+2020-03-01,March,2020,Federal,Onshore,Coal,Coal (tons),19661724
+2020-03-01,March,2020,Federal,Onshore,Oil,Oil (bbl),29008577
+2020-03-01,March,2020,Federal,Onshore,Gas,Gas (mcf),288343228
+2020-03-01,March,2020,Federal,Offshore,Gas,Gas (mcf),91828861
+2020-04-01,April,2020,Native American,Onshore,Gas,Gas (mcf),31961735
+2020-04-01,April,2020,Federal,Offshore,Gas,Gas (mcf),83971213
+2020-04-01,April,2020,Federal,Onshore,Coal,Coal (tons),16640682
+2020-04-01,April,2020,Federal,Onshore,Oil,Oil (bbl),24933900
+2020-04-01,April,2020,Federal,Onshore,Gas,Gas (mcf),263672964
+2020-04-01,April,2020,Federal,Offshore,Oil,Oil (bbl),57702467
+2020-04-01,April,2020,Native American,Onshore,Oil,Oil (bbl),7998564
+2020-04-01,April,2020,Native American,Onshore,Coal,Coal (tons),582654
+2020-05-01,May,2020,Federal,Onshore,Gas,Gas (mcf),255539044
+2020-05-01,May,2020,Federal,Offshore,Oil,Oil (bbl),49915195
+2020-05-01,May,2020,Native American,Onshore,Oil,Oil (bbl),5738531
+2020-05-01,May,2020,Native American,Onshore,Gas,Gas (mcf),28107219
+2020-05-01,May,2020,Native American,Onshore,Coal,Coal (tons),380998
+2020-05-01,May,2020,Federal,Onshore,Coal,Coal (tons),17586691
+2020-05-01,May,2020,Federal,Onshore,Oil,Oil (bbl),20933812
+2020-05-01,May,2020,Federal,Offshore,Gas,Gas (mcf),67967591
+2020-06-01,June,2020,Native American,Onshore,Oil,Oil (bbl),7104878
+2020-06-01,June,2020,Federal,Offshore,Oil,Oil (bbl),46726155
+2020-06-01,June,2020,Federal,Offshore,Gas,Gas (mcf),65418004
+2020-06-01,June,2020,Federal,Onshore,Coal,Coal (tons),17628063
+2020-06-01,June,2020,Federal,Onshore,Oil,Oil (bbl),21770195
+2020-06-01,June,2020,Federal,Onshore,Gas,Gas (mcf),249860145
+2020-06-01,June,2020,Native American,Onshore,Gas,Gas (mcf),29428427
+2020-06-01,June,2020,Native American,Onshore,Coal,Coal (tons),324627
+2020-07-01,July,2020,Native American,Onshore,Oil,Oil (bbl),7668245
+2020-07-01,July,2020,Native American,Onshore,Gas,Gas (mcf),30708993
+2020-07-01,July,2020,Federal,Onshore,Oil,Oil (bbl),24043744
+2020-07-01,July,2020,Federal,Offshore,Oil,Oil (bbl),51311646
+2020-07-01,July,2020,Federal,Onshore,Coal,Coal (tons),18695133
+2020-07-01,July,2020,Federal,Offshore,Gas,Gas (mcf),71782712
+2020-07-01,July,2020,Federal,Onshore,Gas,Gas (mcf),261398060
+2020-07-01,July,2020,Native American,Onshore,Coal,Coal (tons),456822
+2020-08-01,August,2020,Federal,Onshore,Oil,Oil (bbl),25114782
+2020-08-01,August,2020,Federal,Offshore,Oil,Oil (bbl),36948379
+2020-08-01,August,2020,Native American,Onshore,Gas,Gas (mcf),31639383
+2020-08-01,August,2020,Native American,Onshore,Oil,Oil (bbl),7941619
+2020-08-01,August,2020,Native American,Onshore,Coal,Coal (tons),811777
+2020-08-01,August,2020,Federal,Offshore,Gas,Gas (mcf),47561725
+2020-08-01,August,2020,Federal,Onshore,Coal,Coal (tons),21662515
+2020-08-01,August,2020,Federal,Onshore,Gas,Gas (mcf),261980098
+2020-09-01,September,2020,Federal,Offshore,Oil,Oil (bbl),46172843
+2020-09-01,September,2020,Federal,Offshore,Gas,Gas (mcf),52411592
+2020-09-01,September,2020,Federal,Onshore,Gas,Gas (mcf),249823372
+2020-09-01,September,2020,Federal,Onshore,Oil,Oil (bbl),24857157
+2020-09-01,September,2020,Federal,Onshore,Coal,Coal (tons),20929316
+2020-09-01,September,2020,Native American,Onshore,Coal,Coal (tons),486541
+2020-09-01,September,2020,Native American,Onshore,Oil,Oil (bbl),7739766
+2020-09-01,September,2020,Native American,Onshore,Gas,Gas (mcf),31067398
+2020-10-01,October,2020,Federal,Offshore,Gas,Gas (mcf),42263477
+2020-10-01,October,2020,Native American,Onshore,Gas,Gas (mcf),32140692
+2020-10-01,October,2020,Native American,Onshore,Oil,Oil (bbl),8204394
+2020-10-01,October,2020,Federal,Onshore,Gas,Gas (mcf),260983948
+2020-10-01,October,2020,Federal,Onshore,Oil,Oil (bbl),27718142
+2020-10-01,October,2020,Native American,Onshore,Coal,Coal (tons),681669
+2020-10-01,October,2020,Federal,Onshore,Coal,Coal (tons),19385283
+2020-10-01,October,2020,Federal,Offshore,Oil,Oil (bbl),33178541
+2020-11-01,November,2020,Federal,Onshore,Gas,Gas (mcf),258332697
+2020-11-01,November,2020,Native American,Onshore,Coal,Coal (tons),506081
+2020-11-01,November,2020,Native American,Onshore,Oil,Oil (bbl),8270214
+2020-11-01,November,2020,Native American,Onshore,Gas,Gas (mcf),31187284
+2020-11-01,November,2020,Federal,Onshore,Coal,Coal (tons),21151897
+2020-11-01,November,2020,Federal,Offshore,Oil,Oil (bbl),51620151
+2020-11-01,November,2020,Federal,Offshore,Gas,Gas (mcf),63943440
+2020-11-01,November,2020,Federal,Onshore,Oil,Oil (bbl),26494783
