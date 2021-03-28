@@ -1,4 +1,5 @@
 import {
+  DATA_TYPE,
   PRODUCTION,
   REVENUE,
   DISBURSEMENT,
@@ -171,9 +172,11 @@ export const getDataFilterValue = (key, state) => {
   case PERIOD:
     return (!state[key]) ? undefined : state[key]
   case FISCAL_YEAR:
-    return (state[PERIOD] === PERIOD_FISCAL_YEAR) ? state[key].split(',') : undefined
+    return (state[PERIOD] === PERIOD_FISCAL_YEAR)
+      ? state[key]?.split(',')
+      : undefined
   case CALENDAR_YEAR:
-    return (state[PERIOD] === PERIOD_CALENDAR_YEAR || state[PERIOD] === PERIOD_MONTHLY) ? state[key].split(',') : undefined
+    return (state[PERIOD] === PERIOD_CALENDAR_YEAR || state[PERIOD] === PERIOD_MONTHLY) ? state[key]?.split(',') : undefined
   case MONTH_LONG:
     return undefined
   }

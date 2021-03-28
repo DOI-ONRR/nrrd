@@ -1,49 +1,49 @@
-import React from 'react'
-
-import {
-  Box
-} from '@material-ui/core'
+import React, { useContext } from 'react'
 
 import Grid from '@material-ui/core/Grid'
-
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
-import { makeStyles, useTheme } from '@material-ui/styles'
+import { useTheme } from '@material-ui/styles'
 
-const useStyles = makeStyles(theme => ({
-  sortIcon: {
-    fontSize: '30px',
-    position: 'relative',
-    right: 5
-  },
-  sortLabelContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    cursor: 'pointer'
+import { DataFilterContext } from '../../../../stores/data-filter-store'
+import {
+  ALL_YEARS,
+  PERIOD,
+  DATA_TYPE
+} from '../../../../constants'
+
+const CustomTableHeaderSortLabel = ({ onSort, children, align, direction, ...restProps }) => {
+  const { state } = useContext(DataFilterContext)
+
+  const TrendLabel = () => {
+    return (
+      <div style={{ textAlign: 'center', lineHeight: '1.5rem' }}>
+        <div>Trend</div>
+        <div style={{ fontSize: '1rem' }}>{ALL_YEARS[state[DATA_TYPE]][state[PERIOD]]?.length} years</div>
+      </div>
+    )
   }
-}))
-
-const CustomTableHeaderSortLabel = ({ onSort, children, align, direction }) => {
-  const theme = useTheme()
-  const classes = useStyles(theme)
-
   return (
-    <Grid container direction={(align === 'right') ? 'row-reverse' : 'row'} spacing={0} style={{ cursor: 'pointer' }}>
-      <Grid item>
-        <Grid container direction="column" alignItems="center" spacing={0}>
-          <Grid item onClick={onSort}>
-            <SortingUpIcon direction={direction} />
-          </Grid>
+    <>
+      {restProps.column.name === 'Trend'
+        ? <TrendLabel />
+        : <Grid container direction={(align === 'right') ? 'row-reverse' : 'row'} spacing={0} style={{ cursor: 'pointer' }}>
           <Grid item>
-            { children }
-          </Grid>
-          <Grid item onClick={onSort}>
-            <SortingDownIcon direction={direction} />
+            <Grid container direction="column" alignItems="center" spacing={0}>
+              <Grid item onClick={onSort}>
+                <SortingUpIcon direction={direction} />
+              </Grid>
+              <Grid item>
+                { children }
+              </Grid>
+              <Grid item onClick={onSort}>
+                <SortingDownIcon direction={direction} />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Grid>
+      }
+    </>
   )
 }
 
