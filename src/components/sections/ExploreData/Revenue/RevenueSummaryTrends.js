@@ -125,6 +125,8 @@ const RevenueSummaryTrends = props => {
     row = fiscalData.length > 0 && fiscalData[fiscalData.findIndex(x => x[0] === parseInt(year))]
     total = row ? row[1] : 0
 
+    console.log('RST total: ', total)
+
     return (
       <>
         <Grid container>
@@ -149,7 +151,7 @@ const RevenueSummaryTrends = props => {
             <Typography variant="caption">
               <Box>{dataSet}</Box>
               <Box>
-                {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
+                {(total === 0) ? utils.formatToDollarInt(total) : utils.formatToSigFig_Dollar(Math.floor(total), 3)}
               </Box>
             </Typography>
           </Grid>

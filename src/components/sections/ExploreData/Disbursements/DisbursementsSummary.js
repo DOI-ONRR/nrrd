@@ -72,7 +72,7 @@ const DisbursementsSummary = props => {
           <Typography variant="caption">
             <Box>{year}</Box>
             <Box>
-              {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
+              {(total === 0) ? utils.formatToDollarInt(total) : utils.formatToSigFig_Dollar(Math.floor(total), 3)}
             </Box>
           </Typography>
         </Grid>
