@@ -25,7 +25,7 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
   // TODO get rid of hardcoded order by
   // const yOrderByTest = [...new Set(data?.results.map(item => item.recipient))]
   const yOrderBy = (yGroupBy === SOURCE)
-    ? ['Federal - not tied to a location', 'Native American', 'Federal Offshore', 'Federal Onshore']
+    ? ['Federal - not tied to a lease', 'Native American', 'Federal Offshore', 'Federal Onshore']
     : ['Other Revenues', 'Inspection Fees', 'Civil Penalties', 'Rents', 'Bonus', 'Royalties']
 
   const xGroups = data?.results.reduce((g, row, i) => {

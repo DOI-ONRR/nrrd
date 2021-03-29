@@ -9,15 +9,7 @@ import useWindowSize from '../../../js/hooks/useWindowSize'
 import MapControls from '../../sections/ExploreData/MapControls'
 import { makeStyles } from '@material-ui/core/styles'
 
-import {
-  Box,
-  Button,
-  ButtonGroup
-} from '@material-ui/core'
-
-import AddIcon from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
-import RefreshIcon from '@material-ui/icons/Refresh'
+import { Box } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,6 +35,9 @@ const useStyles = makeStyles(theme => ({
       background: theme.palette.common.white,
       borderRadius: 4,
       bottom: 10,
+      [theme.breakpoints.down('xs')]: {
+        bottom: 30,
+      },
       '@media and (max-width: 600px)': {
         width: '100%',
       },
@@ -91,8 +86,9 @@ const useStyles = makeStyles(theme => ({
     height: 100,
     position: 'absolute',
     '@media (max-width: 768px)': {
-	    transform: 'scale(0.75)',
+	    transform: 'scale(0.65)',
 	    left: 0,
+      bottom: 80,
     },
     '& svg': {
       height: '.75em',
@@ -163,19 +159,19 @@ const Map = props => {
     if (d[0] === 'AKR') {
       return d[1]
     }
-    //    }
   })
+
   if (AKR && AKR.length > 0) {
     for (let ii = 0; ii < planningAreas.length; ii++) {
       mapData.push([planningAreas[ii], AKR[0][1]])
-      //    console.debug('AKR: ', planningAreas, ' : ', AKR[0])
+      // console.debug('AKR: ', planningAreas, ' : ', AKR[0])
     }
   }
 
   const createMap = () => {
     const us = mapJsonObject
-    //    const offshore = mapJsonObject.offshore
-    // console.debug("OPTIONS: ", options)
+    // const offshore = mapJsonObject.offshore
+    console.debug('OPTIONS: ', options)
     const data = observableData(mapData)
     data.title = mapTitle
     map = new D3Map(
@@ -193,24 +189,15 @@ const Map = props => {
       options
     )
     if (props.zoomTo) {
-	  map.zoomTo(props.zoomTo)
+	    map.zoomTo(props.zoomTo)
     }
-    /*
-       * map.onZoom = onZoom
-       * map.onZoomEnd = onZoomEnd
-       *
-       * if (!isNaN(mapX) && !isNaN(mapY) && !isNaN(mapZoom)) {
-	 map.zoom({ x: mapX, y: mapY, k: mapZoom })
-       * }
 
-	 if (props.zoomTo) {
-       * map.zoomTo(props.zoomTo)
-	 }
-	 if (props.zoomIn) {
-	 map.zoomIn(props.zoomIn)
-	 }
-       */
+    if (mapZoom) {
+      map.zoom(mapZoom)
+    }
+
     map.width = size.width
+    map.height = size.height
   }
 
   useEffect(() => {

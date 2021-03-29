@@ -255,7 +255,7 @@ const PageToc = props => {
 
   return (
     <div className={classes.root}>
-      <StickyWrapper bottomBoundary={props.bottomBoundary} innerZ="1000">
+      <StickyWrapper bottomBoundary={props.bottomBoundary} top={80} innerZ="1000">
         <Paper className={classes.tocContainer}>
           <Hidden smDown>
             {toc.displayTitle ? (

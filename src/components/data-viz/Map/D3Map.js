@@ -60,8 +60,8 @@ export default class d3Map {
     this.legend()
     const xyz = window.localStorage.getItem('mapZoom') || ''
     if (xyz.length > 0) {
-	  const [x, y, z] = xyz.split(/,/)
-	  this.zoom({ x: x, y: y, k: z })
+	    const [x, y, z] = xyz.split(/,/)
+	    this.zoom({ x: x, y: y, k: z })
     }
   }
 

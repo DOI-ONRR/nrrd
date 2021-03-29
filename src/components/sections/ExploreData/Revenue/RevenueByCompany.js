@@ -364,7 +364,7 @@ const RevenueByCompany = props => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            There is no revenue by company data for { commodities }.
+            There is no revenue by company data for { commodities || year }.
           </Grid>
         </Grid>
       </Container>
