@@ -22,7 +22,7 @@ const DownloadDataFile = props => {
   const suffix = (props.linkType === 'DownloadCsv') ? 'csv' : 'xlsx'
   return (<>
 	  <Link linkType={props.linkType} href={ href + '.' + suffix } >
-	    {props.children + ', ' + range + ' (' + suffix + ', ' + size +')' }
+	    {props.children + ', ' + range + ' (' + suffix + ', ' + size + ')' }
 	  </Link>
   </>
   )

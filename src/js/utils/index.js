@@ -10,7 +10,6 @@ export const destructuringSwap = (list, iA, iB) => {
   return list
 }
 
-
 export const formatToDollarFloat = (value, precision) => {
   return currencyFormatter.format(value, {
     symbol: '$',
@@ -326,15 +325,15 @@ const utils = {
     return r
   },
 
-  bytesToSize(bytes) {
-   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-   if (bytes == 0) return '0 Byte';
-   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
-  },  
+  bytesToSize (bytes) {
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+    if (bytes === 0) return '0 Byte'
+    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)))
+    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i]
+  },
 
-    hashLinkScroll () {
-	const scrollToElement = () => {
+  hashLinkScroll () {
+    const scrollToElement = () => {
       const { hash } = window.location
       if (hash !== '') {
         // Push onto callback queue so it runs after the DOM is updated,
