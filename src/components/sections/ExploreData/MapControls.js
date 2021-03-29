@@ -24,8 +24,9 @@ const useStyles = makeStyles(theme => ({
     height: 100,
     position: 'absolute',
     '@media (max-width: 768px)': {
-      transform: 'scale(0.75)',
+      transform: 'scale(0.65)',
       left: 0,
+      bottom: 80,
     },
     '& svg': {
       height: '.75em',

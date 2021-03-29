@@ -13,16 +13,15 @@ import Grid from '@material-ui/core/Grid'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import useTheme from '@material-ui/core/styles/useTheme'
 
-import InfoBanner from '../../content-partials/InfoBanner'
-import ShutdownBanner from '../../content-partials/ShutdownBanner'
-import BrowserBanner from '../BrowserBanner'
 import Footer from '../../content-partials/Footer'
 // import Header from '../../content-partials/Header'
 import ErrorMessage from '../../info/ErrorMessage'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
-import AppToolbar from '../../toolbars/AppToolbar'
+import StickyHeader from '../StickyHeader'
+
+import { isIE } from 'react-device-detect'
 
 const useStyles = makeStyles(theme => (
   {
@@ -86,6 +85,12 @@ const useStyles = makeStyles(theme => (
     },
     mainContent: {
       minHeight: 575,
+      marginTop: 110,
+      [theme.breakpoints.down('xs')]: {
+        marginTop: 60
+      },
+      top: isIE ? 140 : 0,
+      position: isIE ? 'relative' : 'inherit'
     },
     mainColumn: {
       paddingTop: theme.spacing(3),
@@ -116,17 +121,12 @@ const DefaultLayout = ({ includeToc, children }) => {
       }
     }
   `)
-  console.log(data)
+  // console.log(data)
   return (
     <>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
       <LoadingStatusBackdrop />
-      <InfoBanner />
-      {data.site.siteMetadata.isShutdown === 'true' &&
-        <ShutdownBanner />
-      }
-      <BrowserBanner />
-      <AppToolbar />
+      <StickyHeader data={data} />
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>
         <ErrorMessage />
