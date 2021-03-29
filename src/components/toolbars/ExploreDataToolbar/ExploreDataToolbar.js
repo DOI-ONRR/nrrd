@@ -11,7 +11,9 @@ import DataTypeFilter from '../../inputs/data-filters/DataTypeFilter'
 
 import {
   Box,
-  MenuItem
+  MenuItem,
+  useMediaQuery,
+  useTheme
 } from '@material-ui/core'
 
 import {
@@ -26,9 +28,7 @@ import { IconExploreDataImg } from '../../images'
 import {
   CommoditySelectInput,
   FilterToggleInput,
-  PeriodSelectInput,
-  MapLevelToggleInput,
-  OffshoreRegionsSwitchInput
+  PeriodSelectInput
 } from '../../inputs'
 
 import YearSlider from '../../sections/ExploreData/YearSlider'
@@ -61,6 +61,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.common.white,
     zIndex: 1001,
     position: 'relative',
+    [theme.breakpoints.down('xs')]: {
+      position: 'sticky',
+      top: 60,
+    }
   },
   toolsWrapper: {
     display: 'flex',
@@ -136,6 +140,9 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
   const [locationTabOpen, setLocationTabOpen] = useState(false)
   const [exploreMoreTabOpen, setExploreMoreTabOpen] = useState(false)
 
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('xs'))
+
   const {
     dataType,
     commodity
@@ -171,7 +178,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
 
   return (
     <Box className={classes.exploreDataToolbarWrapper}>
-      <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+      <StickyWrapper enabled={!matchesSmDown} top={60} bottomBoundary={0} innerZ="1000" activeClass="sticky">
         <BaseToolbar>
           <FilterToggleInput
             value="open"

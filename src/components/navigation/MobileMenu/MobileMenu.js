@@ -42,7 +42,9 @@ const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     color: theme.palette.common.white,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    position: 'relative',
+    left: theme.spacing(2),
   },
   closeIcon: {
     color: theme.palette.common.white,

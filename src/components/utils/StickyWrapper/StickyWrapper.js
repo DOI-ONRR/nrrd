@@ -5,8 +5,6 @@ import PropTypes from 'prop-types'
 
 import Sticky from 'react-stickynode'
 
-// import styles from './StickyWrapper.module.scss'
-
 /***
  * This component wraps the react-stickynode implementation. If this library ever breaks or becomes obsolete
  * we can easily update this component with a new sticky implementation.
