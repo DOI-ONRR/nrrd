@@ -2,12 +2,101 @@ import React, { useContext, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { navigate } from '@reach/router'
 
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, withStyles, createStyles, useTheme } from '@material-ui/core/styles'
 import { Typography, Box, Tabs, Tab } from '@material-ui/core'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
+const DefaultTab = ({ theme, ...restProps }) => {
+  const EnhancedComponent = withStyles(() => {
+    return createStyles({
+      root: {
+        background: theme.palette.primary.main,
+        borderTop: `5px solid ${ theme.palette.primary.main }`,
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
+        color: theme.palette.primary.dark,
+        textTransform: 'capitalize',
+        minHeight: 60,
+        fontSize: theme.typography.h4.fontSize,
+        '& span:hover': {
+          textDecoration: 'underline',
+        },
+        '@media (max-width: 500px)': {
+          marginLeft: 0,
+          width: '100%',
+          display: 'block',
+          minWidth: '100%',
+          '-moz-box-shadow': 'inset  0 -10px 10px -15px grey',
+          '-webkit-box-shadow': 'inset  0 -10px 10px -15px grey',
+          'box-shadow': 'inset  0 -10px 10px -15px grey',
+        },
+      },
+      selected: {
+        borderTop: `5px solid ${ theme.palette.primary.dark }`,
+        borderBottom: `1px solid ${ theme.palette.background.default }`,
+        borderLeft: `1px solid ${ theme.palette.primary.dark }`,
+        borderRight: `1px solid ${ theme.palette.primary.dark }`,
+        fontWeight: 'bold',
+        color: theme.palette.primary.dark,
+        backgroundColor: theme.palette.background.default,
+        zIndex: 10,
+      },
+    })
+  })(Tab)
+
+  return <EnhancedComponent {...restProps} />
+}
+
+const ProcessCardTab = ({ theme, ...restProps }) => {
+  const EnhancedComponent = withStyles(() => {
+    return createStyles({
+      root: {
+        background: theme.palette.primary.main,
+        borderTop: `1px solid ${ theme.palette.primary.dark }`,
+        borderRight: `1px solid ${ theme.palette.primary.dark }`,
+        marginLeft: 0,
+        marginRight: 0,
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1),
+        color: theme.palette.primary.dark,
+        textTransform: 'capitalize',
+        minHeight: 60,
+        minWidth: 'fit-content',
+        fontSize: 16,
+        '& span:hover': {
+          textDecoration: 'underline',
+        },
+        '@media (max-width: 500px)': {
+          marginLeft: 0,
+          width: '100%',
+          display: 'block',
+          minWidth: '100%',
+          '-moz-box-shadow': 'inset  0 -10px 10px -15px grey',
+          '-webkit-box-shadow': 'inset  0 -10px 10px -15px grey',
+          'box-shadow': 'inset  0 -10px 10px -15px grey',
+        },
+      },
+      selected: {
+        borderTop: `5px solid ${ theme.palette.primary.dark }`,
+        borderBottom: `1px solid ${ theme.palette.background.default }`,
+        borderLeft: `1px solid ${ theme.palette.primary.dark }`,
+        borderRight: `1px solid ${ theme.palette.primary.dark }`,
+        fontWeight: 'bold',
+        color: theme.palette.primary.dark,
+        backgroundColor: theme.palette.background.default,
+        zIndex: 10,
+      },
+    })
+  })(Tab)
+
+  return <EnhancedComponent {...restProps} />
+}
 
 const useStyles = makeStyles(theme => ({
   tabsRoot: {},
@@ -88,10 +177,12 @@ const a11yProps = index => {
 }
 
 const Tabtastic = props => {
-  const classes = useStyles()
+  const theme = useTheme()
+  const classes = useStyles(theme)
   const {
     selectedTab,
-    children
+    children,
+    processCardTabStyle
   } = props
 
   const urlParams = new URLSearchParams(selectedTab)
@@ -159,18 +250,25 @@ const Tabtastic = props => {
           flexContainer: classes.tabsFlexContainer
         }}
       >
-        { tabs &&
-          tabs.map((item, index) => (
-            <Tab
+        { (tabs && processCardTabStyle)
+          ? tabs.map((item, index) => (
+            <ProcessCardTab
               disableRipple
               key={index}
               label={item.props.label}
               {...a11yProps(index)}
               index={index}
-              classes={{
-                root: classes.tabRoot,
-                selected: classes.tabSelected
-              }}
+              theme={theme}
+            />
+          ))
+          : tabs.map((item, index) => (
+            <DefaultTab
+              disableRipple
+              key={index}
+              label={item.props.label}
+              {...a11yProps(index)}
+              index={index}
+              theme={theme}
             />
           ))
         }
