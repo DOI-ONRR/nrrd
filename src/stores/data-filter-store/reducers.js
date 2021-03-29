@@ -34,7 +34,8 @@ import {
   STATE,
   REVENUE_BY_COMPANY,
   COMPANY_NAME,
-  COMMODITY
+  COMMODITY,
+  PERIOD_ALL_YEARS
 } from '../../constants'
 
 const types = Object.freeze({
@@ -84,6 +85,7 @@ const getLastFiveYears = (dataType, period) => (ALL_YEARS[dataType][period].leng
   : ALL_YEARS[dataType][period].toString()
 
 const getLatestYear = (dataType, period) => ALL_YEARS[dataType][period].slice(ALL_YEARS[dataType][period].length - 1)[0]
+const getAllYears = (dataType, period) => ALL_YEARS[dataType][period]
 
 const initialState = {
   [QUERY_TABLE_FILTER_DEFAULT]: {
@@ -130,6 +132,7 @@ const initialState = {
     [OFFSHORE_REGIONS]: false,
     [MAP_LEVEL]: STATE,
     [YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR),
+    [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_CALENDAR_YEAR),
     dataTypesCache: {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
@@ -139,6 +142,7 @@ const initialState = {
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
         [YEAR]: getLatestYear(REVENUE, PERIOD_FISCAL_YEAR),
+        [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_FISCAL_YEAR),
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
@@ -148,6 +152,7 @@ const initialState = {
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
         [YEAR]: getLatestYear(PRODUCTION, PERIOD_CALENDAR_YEAR),
+        [PERIOD_ALL_YEARS]: getAllYears(PRODUCTION, PERIOD_CALENDAR_YEAR),
       },
       [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
@@ -157,6 +162,7 @@ const initialState = {
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
         [YEAR]: getLatestYear(DISBURSEMENT, PERIOD_FISCAL_YEAR),
+        [PERIOD_ALL_YEARS]: getAllYears(DISBURSEMENT, PERIOD_FISCAL_YEAR),
       }
     }
   },

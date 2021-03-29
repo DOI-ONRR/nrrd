@@ -38,7 +38,11 @@ const APOLLO_QUERY = gql`
 const RevenueSummaryTrends = props => {
   // console.log('RevenueSummaryTrends props: ', props)
   const { state: filterState } = useContext(DataFilterContext)
-  const year = filterState[DFC.YEAR]
+  const {
+    year,
+    periodAllYears
+  } = filterState
+  const minYear = periodAllYears[0]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const state = props.fipsCode
   const dataSet = (period === 'Fiscal Year') ? 'FY ' + year : 'CY ' + year
@@ -121,6 +125,8 @@ const RevenueSummaryTrends = props => {
     row = fiscalData.length > 0 && fiscalData[fiscalData.findIndex(x => x[0] === parseInt(year))]
     total = row ? row[1] : 0
 
+    console.log('RST total: ', total)
+
     return (
       <>
         <Grid container>
@@ -145,7 +151,7 @@ const RevenueSummaryTrends = props => {
             <Typography variant="caption">
               <Box>{dataSet}</Box>
               <Box>
-                {utils.formatToSigFig_Dollar(Math.floor(total), 3)}
+                {(total === 0) ? utils.formatToDollarInt(total) : utils.formatToSigFig_Dollar(Math.floor(total), 3)}
               </Box>
             </Typography>
           </Grid>
@@ -154,7 +160,7 @@ const RevenueSummaryTrends = props => {
     )
   }
   else {
-    return (<span><LocationName location={location} /> has had no federal {commodityText} since 2003.</span>)
+    return (<span><LocationName location={location} /> did not have {commodityText} from { minYear } to { year }.</span>)
   }
 }
 
