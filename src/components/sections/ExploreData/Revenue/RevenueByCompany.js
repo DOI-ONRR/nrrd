@@ -196,7 +196,7 @@ const RevenueByCompany = props => {
                           legendHeaders={ headers => {
                             // console.debug('headers..................', headers)
                             headers[0] = ''
-                            headers[2] = ''
+                            headers[1] = ''
                             return headers
                           }
                           }
@@ -293,7 +293,7 @@ const RevenueByCompany = props => {
                         legendHeaders={ headers => {
                           // console.debug('headers..................', headers)
                           headers[0] = ''
-                          headers[2] = ''
+                          headers[1] = ''
                           return headers
                         }
                         }
@@ -369,7 +369,7 @@ const RevenueByCompany = props => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            There is no revenue by company data for { commodities }.
+            There is no revenue by company data for { commodities || year }.
           </Grid>
         </Grid>
       </Container>

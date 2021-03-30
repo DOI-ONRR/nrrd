@@ -262,11 +262,11 @@ const TotalRevenue = props => {
 
       legendHeaders = (headers, row) => {
         // console.log('legendHeaders: ', headers, row)
-        const dateArr = formatDate(headers[2])
+        const dateArr = formatDate(headers[1])
         const year = dateArr[0]
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
         const month = date.toLocaleString('en-US', { month: 'short' })
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], '', `${ month } ${ year }`]
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], `${ month } ${ year }`]
         return headerArr
       }
     }
@@ -332,8 +332,8 @@ const TotalRevenue = props => {
       }
 
       legendHeaders = (headers, row) => {
-        const headerLabel = `${ periodAbbr } ${ headers[2] } ${ (currentMonthNum !== parseInt('09') && headers[2] > maxFiscalYear) ? currentYearSoFarText : '' }`
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], '', headerLabel]
+        const headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('09') && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], headerLabel]
         return headerArr
       }
     }
