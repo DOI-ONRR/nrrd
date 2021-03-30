@@ -11,14 +11,11 @@ const DownloadDataFile = props => {
   console.debug('UTILS: ', utils)
   console.debug('childrin', props)
   const href = './../' + props.dataSet
-  const minDate = new Date(metaData[props.dataSet].minDate)
-  const maxDate = new Date(metaData[props.dataSet].maxDate)
+  const minDate = metaData[props.dataSet].minDate
+  const maxDate = metaData[props.dataSet].maxDate
   const size = utils.bytesToSize(metaData[props.dataSet].size)
-  const minMonth = minDate.getMonth() + 1
-  const minYear = minDate.getFullYear()
-  const maxMonth = maxDate.getMonth() + 1
-  const maxYear = maxDate.getFullYear()
-  const range = (props.dataSet.match('month')) ? minMonth + '/' + minYear + ' - ' + maxMonth + '/' + maxYear : minYear + ' - ' + maxYear
+
+  const range = minDate + ' - ' + maxDate
   const suffix = (props.linkType === 'DownloadCsv') ? 'csv' : 'xlsx'
   return (<>
 	  <Link linkType={props.linkType} href={ href + '.' + suffix } >
