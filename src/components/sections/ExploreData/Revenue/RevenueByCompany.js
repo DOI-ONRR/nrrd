@@ -196,7 +196,7 @@ const RevenueByCompany = props => {
                           legendHeaders={ headers => {
                             // console.debug('headers..................', headers)
                             headers[0] = ''
-                            headers[2] = ''
+                            headers[1] = ''
                             return headers
                           }
                           }
@@ -293,7 +293,7 @@ const RevenueByCompany = props => {
                         legendHeaders={ headers => {
                           // console.debug('headers..................', headers)
                           headers[0] = ''
-                          headers[2] = ''
+                          headers[1] = ''
                           return headers
                         }
                         }
@@ -357,6 +357,22 @@ const RevenueByCompany = props => {
           </Grid>
         </Grid>
 	  </Container>
+    )
+  }
+  else if (data && data.federal_revenue_by_company_type_summary.length === 0) {
+    return (
+      <Container id={utils.formatToSlug(title)} ref={ref}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+		          <Box component="h3" color="secondary.dark">{title}</Box>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            There is no revenue by company data for { commodities || year }.
+          </Grid>
+        </Grid>
+      </Container>
     )
   }
   else {

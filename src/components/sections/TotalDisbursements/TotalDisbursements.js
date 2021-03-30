@@ -223,11 +223,11 @@ const TotalDisbursements = props => {
 
       legendHeaders = (headers, row) => {
         // console.log('legendHeaders: ', headers, row)
-        const dateArr = formatDate(headers[2])
+        const dateArr = formatDate(headers[1])
         const year = dateArr[0]
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
         const month = date.toLocaleString('en-US', { month: 'short' })
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], '', `${ month } ${ year }`]
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], `${ month } ${ year }`]
         return headerArr
       }
     }
@@ -250,7 +250,7 @@ const TotalDisbursements = props => {
       }
 
       legendHeaders = (headers, row) => {
-        const headerArr = [headers[0], '', `${ periodAbbr } ${ headers[2] } ${ ((currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[2] > maxFiscalYear) ? currentYearSoFarText : '' }`]
+        const headerArr = [headers[0], `${ periodAbbr } ${ headers[1] } ${ ((currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`]
         return headerArr
       }
     }

@@ -49,12 +49,12 @@ const useStyles = makeStyles(theme => ({
   },
   mapContextWrapper: {
     position: 'relative',
-    height: 'calc(100vh - 300px)',
+    height: 'calc(100vh - 275px)',
     background: theme.palette.grey[200],
     paddingLeft: theme.spacing(0),
     paddingRight: theme.spacing(0),
     overflow: 'hidden',
-    zIndex: 1,
+    zIndex: 1
   },
   mapWrapper: {
     width: '100%',
@@ -64,6 +64,9 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     background: theme.palette.grey[200],
     display: 'block',
+    [theme.breakpoints.down('xs')]: {
+      margin: '0 auto'
+    },
   },
   cardContainer: {
     width: 310,
@@ -84,6 +87,9 @@ const useStyles = makeStyles(theme => ({
       overflowX: 'auto',
       height: 'auto',
       position: 'relative',
+    },
+    [theme.breakpoints.down('xs')]: {
+      top: -25,
     },
     '& > div': {
       cursor: 'pointer',
@@ -260,18 +266,11 @@ const MapContext = props => {
   const size = useWindowSize()
 
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const matchesXsDown = useMediaQuery(theme.breakpoints.down('xs'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
-  const {
-    mapLevel,
-    offshoreRegions,
-    dataType,
-    period,
-    commodity,
-    year
-  } = filterState
 
   const cards = pageState.cards
 
@@ -326,24 +325,6 @@ const MapContext = props => {
     // setMapSnackbarState({ ...mapSnackbarState, open: false })
   }
 
-  // check width, set zoom
-  /*
-     *    useEffect(() => {
-     *    // mobile zoom
-     *    if (size.width <= 425) {
-     *      setZoom(50, -40, 0.85)
-     *    }
-     *    // tablet zoom
-     *    if (size.width <= 768 && size.width > 425) {
-     *      setZoom(0, -40, 1.0)
-     *    }
-
-     *    if (size.width <= 1024 && size.width > 768) {
-     *      setZoom(-100, -40, 1.25)
-     *    }
-     * }, [size.width])
-     *  */
-
   // onLink
   const onLink = (state, x, y, k) => {
     // decern betweeen topo json and location data fips
@@ -389,8 +370,8 @@ const MapContext = props => {
     onLink(d)
   }
 
-  const countyLevel = mapLevel === DFC.COUNTY_CAPITALIZED
-  const offshore = (offshoreRegions === 'true' || offshoreRegions === true)
+  const countyLevel = filterState[DFC.MAP_LEVEL] === DFC.COUNTY_CAPITALIZED
+  const offshore = (filterState[DFC.OFFSHORE_REGIONS] === true || filterState[DFC.OFFSHORE_REGIONS] === 'true')
 
   let mapJsonObject = mapStates
   let mapFeatures = 'states-geo'
@@ -464,13 +445,13 @@ const MapContext = props => {
 
   useEffect(() => {
     setQueryParams({
-      dataType: dataType,
-      period: period,
-      mapLevel: mapLevel,
-      offshoreRegions: offshoreRegions,
-      commodity: commodity,
+      dataType: filterState.dataType,
+      period: filterState.period,
+      mapLevel: filterState.mapLevel,
+      offshoreRegions: filterState.offshoreRegions,
+      commodity: filterState.commodity,
       location: cards.length > 0 ? cards.map(item => item.fipsCode) : undefined,
-      year: year
+      year: filterState.year
     }, 'replaceIn')
   }, [filterState, pageState])
 
@@ -483,8 +464,7 @@ const MapContext = props => {
       minColor: '#CDE3C3',
       maxColor: '#2F4D26',
       onClick: onClick,
-      // minColor: theme.palette.explore[100],
-      // maxColor: theme.palette.explore[600],
+      mapZoom: matchesXsDown ? { x: 50, y: 25, k: 0.75 } : undefined,
       width: size.width
     })
 
@@ -543,7 +523,6 @@ const MapContext = props => {
                       districtType: state.districtType,
                       state: state.state
                     })
-
                   )
                 })}
               </Box>

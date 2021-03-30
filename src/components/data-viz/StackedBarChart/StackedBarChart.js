@@ -1,13 +1,16 @@
 /* eslint-disable quotes */
 import React, { useEffect, useRef, useState } from 'react'
 
-import Box from '@material-ui/core/Box'
-import createStyles from '@material-ui/styles/createStyles'
-import withStyles from '@material-ui/styles/withStyles'
-import useTheme from '@material-ui/styles/useTheme'
+import { Box, Collapse, Button } from '@material-ui/core'
+import {
+  createStyles,
+  withStyles,
+  useTheme
+} from '@material-ui/styles'
+
 import ChartTitle from '../ChartTitle'
 import BarChart from './D3StackedBarChart.js'
-import { Collapse, Button } from '@material-ui/core'
+
 import useWindowSize from '../../../js/hooks/useWindowSize'
 
 const DefaultContainer = withStyles(theme =>
@@ -58,7 +61,7 @@ const DefaultChartContainer = withStyles(theme =>
         fill: theme.palette.common.black
       },
       '& .x-axis-groups > text': {
-        fontSize: '.70rem'
+        fontSize: '1rem'
       },
     },
   })
@@ -120,13 +123,10 @@ const HorizontalChartContainer = withStyles(theme =>
   createStyles({
     root: {
       position: 'relative',
-      height: 25,
+      height: 40,
       '& .horizontal-stacked-bar-chart': {
-        position: 'absolute',
-        top: 0,
-        left: 5,
-        transform: 'rotate(90deg)',
-        transformOrigin: 'bottom left',
+        position: 'relative',
+        width: '100%',
         '& .bars > .bar': {
           opacity: 1,
         },
@@ -183,11 +183,10 @@ const DefaultLegendContainer = withStyles(theme =>
       left: 0,
       width: '100%',
       height: '100%',
-      fontSize: theme.typography.h5.fontSize,
+      fontSize: '1rem',
       '& td .legend-rect': {
-        // fill: theme.palette.chart.secondary,
-        // backgroundColor: theme.palette.chart.secondary,
-        width: '20px',
+        width: 20,
+        height: 20,
         display: 'block',
       },
       '& .legend-table': {
@@ -195,6 +194,7 @@ const DefaultLegendContainer = withStyles(theme =>
         borderSpacing: 0,
         borderCollapse: 0,
         boxShadow: 'none',
+        marginTop: 1,
       },
       '& .legend-table > thead th:last-child, & .legend-table > tbody td:last-child': {
         textAlign: 'right',
@@ -219,7 +219,8 @@ const DefaultLegendContainer = withStyles(theme =>
       },
       '& .legend-table td:first-child': {
         padding: '6px 6px 6px 16px',
-        width: '20px'
+        width: '20px',
+        verticalAlign: 'middle',
       }
     },
   })

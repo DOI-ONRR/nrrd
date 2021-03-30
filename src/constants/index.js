@@ -1,4 +1,8 @@
 import * as DATA_FILTER_CONSTANTS from './data-filter-constants'
+import ALL_YEARS from '../../.cache/all-years'
+
+export { ALL_YEARS }
+
 export { DATA_FILTER_CONSTANTS }
 export * from './data-filter-constants'
 

@@ -5,8 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import { IconQuestionCircleImg } from '../images'
 
-import makeStyles from '@material-ui/styles/makeStyles'
-import useTheme from '@material-ui/styles/useTheme'
+import { makeStyles, useTheme } from '@material-ui/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 
 const useStyles = makeStyles(theme => (
@@ -32,7 +31,7 @@ const useStyles = makeStyles(theme => (
  * in the glossary.  On hover, a tooltip explains the term.  On click, a tooltip
  * explains the term and an orange border surrounds it.
  */
-const GlossaryTerm = ({ children, ...rest }) => {
+const GlossaryTerm = ({ children, termKey, ...rest }) => {
   const theme = useTheme()
   const styles = useStyles(theme)
   const results = useStaticQuery(graphql`
@@ -51,10 +50,13 @@ const GlossaryTerm = ({ children, ...rest }) => {
 
   const terms = results.mdx.frontmatter.terms
 
-  if ((termKey && typeof termKey !== 'string') || (!termKey && typeof children !== 'string')) {
-    throw new Error('No string found for glossary term comparison. Either set the termKey property to a string or the children of the component must be a string')
+  let glossaryTermKey = ''
+  if (termKey) {
+    glossaryTermKey = (typeof termKey !== 'string') ? termKey.toString() : termKey
   }
-  const glossaryTermKey = termKey?.toLowerCase() || children.toLowerCase()
+  else if (children) {
+    glossaryTermKey = (typeof children !== 'string') ? children.toString() : children
+  }
 
   const termResults = terms.filter(term =>
     (glossaryTermKey.toLowerCase() === term.name.toLowerCase()) || (term.tags && term.tags.findIndex(tag => tag.toLowerCase() === glossaryTermKey.toLowerCase()) > -1))
@@ -90,8 +92,8 @@ const GlossaryTerm = ({ children, ...rest }) => {
 }
 
 GlossaryTerm.propTypes = {
-  /** The children must a be a string that can be used to lookup a glossary definition */
-  children: PropTypes.string.isRequired,
+  /** As an option you can specify a term key to display the glosssary term definition if needed */
+  termKey: PropTypes.string
 }
 
 export default GlossaryTerm

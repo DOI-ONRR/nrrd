@@ -36,19 +36,6 @@ export default class D3StackedBarChart {
         this.chartTooltip = options.chartTooltip
       }
 
-      if (this.horizontal) {
-        const h = this._height
-        const w = this._width
-        this._width = h
-        this._height = w
-
-        // reset margins
-        this.marginLeft = 0
-        this.marginTop = 0
-        this.marginRight = 0
-        this.marginBottom = 0
-      }
-
       if (options.selectedIndex === undefined) {
         this.selectedIndex = this.xDomain().length - 1
       }
@@ -84,24 +71,52 @@ export default class D3StackedBarChart {
 
       this.yOrder()
 
-      this.xScale = d3.scaleBand()
-        .domain(this.xDomain())
-        .range([this.marginLeft, this._width])
-        .paddingInner(0.3)
-        .paddingOuter(0.1)
-
-      this.barScale = (options.barScale) ? options.barScale : 1
-      this._height = d3.max([this._height * this.barScale, 1])
-
-      this.yScale = d3.scaleLinear()
-        .rangeRound([this._height - this.marginBottom, this.marginTop])
-        .domain([this.yMin(), this.yMax()])
-
-      this.chart = d3.select(this.chartDiv).append('svg')
-        .attr('class', 'stacked-bar-chart')
-
+      // vertical and horizontal bar chart settings
       if (!this.horizontal) {
+        this.xScale = d3.scaleBand()
+          .domain(this.xDomain())
+          .range([this.marginLeft, this._width])
+          .paddingInner(0.3)
+          .paddingOuter(0.1)
+
+        this.yScale = d3.scaleLinear()
+          .rangeRound([this._height - this.marginBottom, this.marginTop])
+          .domain([this.yMin(), this.yMax()])
+
+        this.chart = d3.select(this.chartDiv).append('svg')
+          .attr('class', 'stacked-bar-chart')
+
         this.chart.attr('viewBox', `0 0 ${ (this._width + 20) } ${ this._height }`)
+      }
+      else {
+        // reset margins
+        this.marginLeft = 5
+        this.marginTop = 5
+        this.marginRight = 5
+        this.marginBottom = 5
+        this.ctrWidth = this._width - this.marginLeft - this.marginRight
+        this.ctrHeight = this._height - this.marginTop - this.marginBottom
+
+        // Bar Scale
+        if (options.barScale) {
+          this.barScale = (options.barScale) ? options.barScale : 1
+          this.ctrWidth = d3.max([this.ctrWidth * this.barScale, 1])
+        }
+
+        // Scales
+        this.xScale = d3.scaleLinear()
+          .rangeRound([0, this.ctrWidth])
+          .domain([this.yMin(), this.yMax()])
+
+        this.yScale = d3.scaleBand()
+          .rangeRound([0, this.ctrHeight])
+          .domain(this.xDomain())
+          .paddingInner(0.3)
+          .paddingOuter(0.1)
+
+        this.chart = d3.select(this.chartDiv).append('svg')
+          .attr('class', 'horizontal-stacked-bar-chart')
+          .attr('transform', `translate(${ this.marginLeft }, ${ this.marginTop })`)
       }
 
       // chart colors
@@ -144,14 +159,16 @@ export default class D3StackedBarChart {
       this.addBackgroundRect()
       if (!this.horizontal) {
         this._maxExtend()
-      }
-      this._chart()
-      if (!this.horizontal) {
+        this._chart()
         this._xCenterLine()
         this._yAxis()
         this._xLabels()
         this.xAxisGroup()
       }
+      else {
+        this._horizontalChart()
+      }
+
       this._legend()
     }
     catch (err) {
@@ -339,23 +356,7 @@ export default class D3StackedBarChart {
 	      .keys(this.yGroupings())
         .offset(d3.stackOffsetDiverging)
 
-      const keys = this.yGroupings()
       const color = this.color()
-      const secondaryColor = this.secondaryColor
-      const chartTooltip = this.chartTooltip
-
-      // Define the div for the tooltip
-      const tooltip = d3.select('body').append('div')
-        .attr('class', 'tooltip')
-        .style('position', 'absolute')
-        .style('background', 'rgba(0, 0, 0, 0.85)')
-        .style('border-radius', '4px')
-        .style('z-index', '999')
-        .style('text-align', 'center')
-        .style('color', 'white')
-        .style('pointer-events', 'none')
-        .style('opacity', 0)
-        .style('display', 'none')
 
       this.chart.append('g')
         .attr('class', 'bars')
@@ -365,13 +366,12 @@ export default class D3StackedBarChart {
         .attr('height', (self._height - self.marginTop))
         .attr('width', self.xScale.bandwidth())
         .style('fill', (d, i) => {
-          return this.horizontal ? null : color(i)
+          return color(i)
         })
         .attr('transform', d => 'translate(' + (self.xScale(d) + ',0)'))
         .attr('class', (d, i) => {
           return i === self.selectedIndex ? 'bar active' : 'bar'
         })
-        // .attr('tabindex', (d, i) => i)
         .attr('tabindex', 0)
         .on('mouseenter', (d, i) => {
           self.currentIndex = i
@@ -387,7 +387,7 @@ export default class D3StackedBarChart {
         })
         .enter().append('g')
         .attr('class', (d, i) => {
-          return `stacked-bar-chart-${ i } ${ !this.horizontal ? 'stacked-bar-chart-item' : '' }`
+          return `stacked-bar-chart-${ i }`
         })
         .style('fill', (d, i) => {
           return color(i)
@@ -403,6 +403,102 @@ export default class D3StackedBarChart {
         })
         .attr('width', self.maxBarSize())
         .attr('x', self.barOffsetX())
+        .on('click', function (d, i) {
+          // console.debug(' onclick:', d)
+          self._onSelect(this, d)
+          self._onClick(this, d)
+        })
+        .on('mouseover', function (d, i) {
+          self._onMouseover(this, d)
+        })
+        .on('mouseenter', function (d, i) {
+          self._onHover(this, d, true)
+        })
+        .on('mouseleave', function (d) {
+          self._onHover(this, d, false)
+        })
+
+      if (self.selectedIndex) {
+        const selectedElement = d3.selectAll('.active')
+        selectedElement
+          .style('fill', (d, i) => color(i))
+      }
+    }
+    catch (err) {
+      console.warn('Error: ', err)
+    }
+  }
+
+  _horizontalChart () {
+    const self = this
+    const color = this.color()
+    const stack = d3.stack()
+	    .keys(self.yGroupings())
+      .offset(d3.stackOffsetDiverging)
+
+    const chartTooltip = this.chartTooltip
+
+    // Define the div for the tooltip
+    const tooltip = d3.select('body').append('div')
+      .attr('class', 'tooltip')
+      .style('position', 'absolute')
+      .style('background', 'rgba(0, 0, 0, 0.85)')
+      .style('border-radius', '4px')
+      .style('z-index', '999')
+      .style('text-align', 'center')
+      .style('color', 'white')
+      .style('pointer-events', 'none')
+      .style('opacity', 0)
+      .style('display', 'none')
+
+    try {
+      // Draw horizontal chart
+      this.chart.append('g')
+        .attr('class', 'bars')
+        .selectAll('g')
+        .data(self.xDomain())
+        .enter().append('g')
+        .attr('height', self._height)
+        .attr('width', self._width)
+        .attr('fill', d => {
+          return null
+        })
+        .attr('transform', d => `translate(0, ${ self.yScale(d) })`)
+        .attr('class', (d, i) => {
+          return i === self.selectedIndex ? 'bar active' : 'bar'
+        })
+        .attr('tabindex', 0)
+        .on('mouseenter', (d, i) => {
+          self.currentIndex = i
+        })
+        .on('mouseleave', (d, i) => {
+          self.currentIndex = self.selectedIndex
+        })
+        .selectAll('g')
+        .data(d => {
+          const yd = self.yGroupData(d)
+          const r = stack([yd])
+          return r
+        })
+        .enter().append('g')
+        .attr('class', (d, i) => {
+          return `stacked-bar-chart-${ i }`
+        })
+        .attr('fill', (d, i) => {
+          return color(i)
+        })
+        .append('rect')
+        .attr('data-key', d => d.key)
+        .attr('y', d => {
+          return self.yScale(d[0][1]) || 0
+        })
+        .attr('x', d => {
+          return self.xScale(d[0][0]) || 0
+        })
+        .attr('width', d => {
+          return (self.xScale(d[0][1]) - self.xScale(d[0][0])) || 0
+        })
+        .attr('height', self.yScale.bandwidth())
         .on('click', function (d, i) {
           // console.debug(' onclick:', d)
           self._onSelect(this, d)
@@ -442,19 +538,6 @@ export default class D3StackedBarChart {
         const selectedElement = d3.selectAll('.active')
         selectedElement
           .style('fill', (d, i) => color(i))
-      }
-
-      // horizontal chart
-      if (this.horizontal) {
-        this.chart
-          .attr('class', 'horizontal-stacked-bar-chart')
-          .attr('height', this._height)
-          .attr('width', 25)
-          .style('top', `${ -this._height }px`)
-
-        const selectedElement = d3.selectAll('.active')
-        selectedElement
-          .style('fill', secondaryColor)
       }
     }
     catch (err) {
@@ -514,17 +597,8 @@ export default class D3StackedBarChart {
       // reduce this.data down to same length as yGroup
       const data = this.data.filter(item => item[this.options.yOrderBy] === this.data[0][this.options.yOrderBy])
 
-      // check if month_long exists
-      // if ('month_long' in data[0]) {
-      //   rData = data.filter(item => item.month_long === (xValue || this.xSelectedValue))[0]
-      //   monthAbbr = rData.month_long.substring(0, 3)
-      // }
-      // else {
-      //   rData = data
-      // }
-
       if (this.options.yGroupBy) {
-        r = [this.options.yGroupBy, '', xValue || this.xSelectedValue]
+        r = [this.options.yGroupBy, xValue || this.xSelectedValue]
       }
       else {
         r = [this.yAxis, xValue || this.xSelectedValue]
@@ -618,9 +692,12 @@ export default class D3StackedBarChart {
       }
       else {
         dataArr = yOrderBy.map((key, i) => {
-          return [key, undefined, data[key] || '-']
+          // return [key, undefined, data[key] || '-']
+          return [key, data[key] || '-']
         })
       }
+
+      console.log('dataArr: ', dataArr)
 
       if (legendReverse) {
         dataArr = dataArr.reverse()
@@ -661,10 +738,10 @@ export default class D3StackedBarChart {
         .html(function (d, i) {
           return self._legendFormat(d[1])
         })
-      tr.append('td')
-        .html(function (d, i) {
-          return self._legendFormat(d[2])
-        })
+      // tr.append('td')
+      //   .html(function (d, i) {
+      //     return self._legendFormat(d[2])
+      //   })
 
       const total = Object.keys(data).reduce((sum, key) => sum + data[key], 0)
 
@@ -675,7 +752,7 @@ export default class D3StackedBarChart {
         .style('font-weight', 'bold')
         .html('Total')
 
-      tfooter.append('td')
+      // tfooter.append('td')
 
       tfooter.append('td')
         .style('font-weight', 'bold')
@@ -771,7 +848,7 @@ export default class D3StackedBarChart {
   _onMouseover = (element, data) => {
     if (this.options.disableInteraction) return
     try {
-      const selectedElement = d3.selectAll('.active')
+      const selectedElement = d3.selectAll('.bars .active')
 
       const tbody = d3.select(this.legendDiv).selectAll('tbody')
       const legendRows = tbody.selectAll('tr')

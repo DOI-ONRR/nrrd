@@ -11,7 +11,9 @@ import DataTypeFilter from '../../inputs/data-filters/DataTypeFilter'
 
 import {
   Box,
-  MenuItem
+  MenuItem,
+  useMediaQuery,
+  useTheme
 } from '@material-ui/core'
 
 import {
@@ -59,6 +61,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.common.white,
     zIndex: 1001,
     position: 'relative',
+    [theme.breakpoints.down('xs')]: {
+      position: 'sticky',
+      top: 60,
+    }
   },
   toolsWrapper: {
     display: 'flex',
@@ -68,6 +74,7 @@ const useStyles = makeStyles(theme => ({
     borderLeft: `1px solid ${ theme.palette.grey[400] }`,
     paddingLeft: theme.spacing(2),
     marginLeft: theme.spacing(2),
+    height: 75,
   },
   toolbarIcon: {
     fill: theme.palette.links.default,
@@ -133,10 +140,12 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
   const [locationTabOpen, setLocationTabOpen] = useState(false)
   const [exploreMoreTabOpen, setExploreMoreTabOpen] = useState(false)
 
+  const theme = useTheme()
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('xs'))
+
   const {
     dataType,
-    commodity,
-    period
+    commodity
   } = filterState
 
   const {
@@ -169,7 +178,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
 
   return (
     <Box className={classes.exploreDataToolbarWrapper}>
-      <StickyWrapper enabled={true} top={0} bottomBoundary={0} innerZ="1000" activeClass="sticky">
+      <StickyWrapper enabled={!matchesSmDown} top={60} bottomBoundary={0} innerZ="1000" activeClass="sticky">
         <BaseToolbar>
           <FilterToggleInput
             value="open"

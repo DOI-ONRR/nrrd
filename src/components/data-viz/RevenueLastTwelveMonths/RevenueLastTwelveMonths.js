@@ -25,7 +25,7 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
   // TODO get rid of hardcoded order by
   // const yOrderByTest = [...new Set(data?.results.map(item => item.recipient))]
   const yOrderBy = (yGroupBy === SOURCE)
-    ? ['Federal - not tied to a location', 'Native American', 'Federal Offshore', 'Federal Onshore']
+    ? ['Federal - not tied to a lease', 'Native American', 'Federal Offshore', 'Federal Onshore']
     : ['Other Revenues', 'Inspection Fees', 'Civil Penalties', 'Rents', 'Bonus', 'Royalties']
 
   const xGroups = data?.results.reduce((g, row, i) => {
@@ -47,10 +47,10 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
   }
 
   const legendHeaders = (headers, row) => {
-    const dStr = headers[2].replace(/\b0/g, '')
+    const dStr = headers[1].replace(/\b0/g, '')
     const date = new Date(dStr)
     const month = date.toLocaleString('default', { month: 'short' })
-    const year = headers[2].substring(0, 4)
+    const year = headers[1].substring(0, 4)
     const name = (yGroupBy === 'revenue_type') ? 'Revenue type' : DISPLAY_NAMES[headers[0]]?.default
     const headerArr = [name, '', `${ month } ${ year }`]
     return headerArr
