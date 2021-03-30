@@ -51,7 +51,12 @@ const APOLLO_QUERY = gql`
 const DisbursementDetailTrends = props => {
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
-  const year = filterState[DFC.YEAR]
+  const {
+    year,
+    periodAllYears
+  } = filterState
+
+  const minYear = periodAllYears[0]
 
   const state = props.fipsCode
   const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
@@ -162,7 +167,7 @@ const DisbursementDetailTrends = props => {
     return (
       <>
         <Box textAlign="center" className={classes.root} key={props.key}>
-          <Box><LocationName location={location} />{` ${ nativeAmerican ? 'land' : '' } had no disbursements in ${ year }.`}</Box>
+          <Box><LocationName location={location} />{` ${ nativeAmerican ? 'land' : '' } did not have disbursements from ${ minYear } to ${ year }.`}</Box>
         </Box>
       </>
     )

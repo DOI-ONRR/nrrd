@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     height: 60,
     position: 'relative',
     top: 1,
-    transition: 'height 2s',
+    transition: 'height .1s',
     '@media (max-width: 600px)': {
       maxHeight: 50,
       height: 50,
@@ -104,6 +104,12 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.links.default
     }
   },
+  baseToolbar: {
+    alignItems: 'center',
+    backgroundColor: theme.palette.header.secondary,
+    justifyContent: 'space-between',
+    minHeight: 80
+  }
 }))
 
 const AppToolbar = props => {
@@ -112,9 +118,9 @@ const AppToolbar = props => {
   return (
     <Box className={classes.root} displayPrint="none">
       <AppBar position="static" style={{ position: 'relative' }}>
-        <BaseToolbar style={{ alignItems: 'center', backgroundColor: theme.palette.header.secondary, justifyContent: 'space-between', minHeight: 80 }}>
+        <BaseToolbar className={classes.baseToolbar}>
           <div>
-            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoImg className={classes.nrrdLogo} /></Link>
+            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoImg className={`${ classes.nrrdLogo } header-logo`} /></Link>
           </div>
           <Hidden mdDown>
             <div className={classes.mainMenuWrap}>

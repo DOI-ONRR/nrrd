@@ -86,7 +86,12 @@ export default Object.freeze({
       },
     },
     label: {
-      textTransform: 'Capitalize',
+      '& > span': {
+        textTransform: 'lowercase',
+      },
+      '& > span::first-letter': {
+        textTransform: 'uppercase'
+      }
     },
   },
   MuiCircularProgress: {

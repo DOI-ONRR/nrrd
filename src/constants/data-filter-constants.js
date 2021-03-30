@@ -46,6 +46,7 @@ export const PERIOD_FISCAL_YEAR = 'Fiscal Year'
 export const PERIOD_CALENDAR_YEAR = 'Calendar Year'
 export const PERIOD_MONTHLY = 'Monthly'
 export const PERIOD_TYPES = [PERIOD_FISCAL_YEAR, PERIOD_CALENDAR_YEAR, PERIOD_MONTHLY]
+export const PERIOD_ALL_YEARS = 'periodAllYears'
 export const GROUP_BY = 'groupBy'
 export const GROUP_BY_STICKY = 'groupBySticky'
 export const BREAKOUT_BY = 'breakoutBy'

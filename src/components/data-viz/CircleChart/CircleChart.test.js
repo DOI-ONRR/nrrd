@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from 'test-utils'
 
 import CircleChart from './CircleChart'
-import { Circles } from '../svg/Circles'
+import Circles from '../svg/Circles'
 
 const chartData = [
   { location_name: 'Gulf of Mexico', total: 5163524881.620001 },
@@ -36,7 +36,7 @@ const chartData = [
 const chartTitle = 'Circle Chart Unit Test'
 const xAxis = 'location_name'
 const yAxis = 'total'
-const legendLabels = ['foo', 'bar']
+const legendHeaders = ['foo', 'bar']
 
 describe('Circle Chart component:', () => {
   test('Basic Stacked Bar Chart  rendered successfully', () => {
@@ -45,7 +45,7 @@ describe('Circle Chart component:', () => {
 		 title={chartTitle}
 	   xAxis={xAxis}
 	   yAxis={yAxis}
-      legendLabels={legendLabels}
+      legendHeaders={legendHeaders}
     />)
     expect(screen).toBeDefined()
     // Currently chart title is not put into div anywhere

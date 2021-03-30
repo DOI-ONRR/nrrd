@@ -5,8 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import { IconQuestionCircleImg } from '../images'
 
-import makeStyles from '@material-ui/styles/makeStyles'
-import useTheme from '@material-ui/styles/useTheme'
+import { makeStyles, useTheme } from '@material-ui/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 
 const useStyles = makeStyles(theme => (

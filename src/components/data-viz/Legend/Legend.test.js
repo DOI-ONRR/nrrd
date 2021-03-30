@@ -4,7 +4,7 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from 'test-utils'
 
-import Legend from './Legend'
+import { Legend } from './Legend'
 
 const chartData = [
   { location_name: 'Gulf of Mexico', total: 5163524881.620001 },

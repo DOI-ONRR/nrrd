@@ -9,7 +9,7 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { useInView } from 'react-intersection-observer'
 
-import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart } from '../../../data-viz/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
@@ -71,6 +71,9 @@ const RevenueDetailTypes = props => {
   const dataKey = dataSet + '-' + props.name
   let chartData
 
+  const xAxis = 'revenue_type'
+  const yAxis = 'total'
+
   if (loading) {
     return (<div className={classes.progressContainer} ref={ref}>
       <CircularProgress classes={{ root: classes.circularProgressRoot }} />
@@ -97,13 +100,22 @@ const RevenueDetailTypes = props => {
                 <CircleChart
                   key={`RDTY__${ dataKey }`}
                   data={chartData}
-                  xAxis='revenue_type'
-                  yAxis='total'
+                  xAxis={xAxis}
+                  yAxis={yAxis}
                   maxCircles={6}
-                  legendLabels={['Commodity', 'Total']}
+                  legendHeaders={['Commodity', 'Total']}
                   showLabels={false}
                   showTooltips={true}
-                  format={d => formatToDollarInt(d)} />
+                  chartTooltip={
+                    d => {
+                      const r = []
+                      r[0] = d.data[xAxis]
+                      r[1] = formatToDollarInt(d.data[yAxis])
+                      return r
+                    }
+                  }
+                  labelFormat={d => formatToDollarInt(d)}
+                  legendFormat={d => formatToDollarInt(d)} />
                 {!isCounty &&
 		<QueryLink
 		    groupBy={DFC.REVENUE_TYPE}

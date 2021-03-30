@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart } from '../../../data-viz/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -57,6 +57,8 @@ const DisbursementSources = props => {
   const classes = useStyles()
 
   const state = props.fipsCode
+  const xAxis = 'source'
+  const yAxis = 'total'
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
@@ -81,12 +83,20 @@ const DisbursementSources = props => {
             <CircleChart
               key={`DS__${ dataSet }`}
               data={chartData.DisbursementSourceSummary}
-              xAxis='source'
-              yAxis='total'
-              legendLabels={['Source', 'Total']}
+              xAxis={xAxis}
+              yAxis={yAxis}
+              legendHeaders={['Source', 'Total']}
               showLabels={false}
               showTooltips={true}
-              format={d => formatToDollarInt(d)} />
+              legendFormat={d => formatToDollarInt(d)}
+              chartTooltip={
+                d => {
+                  const r = []
+                  r[0] = d.data[xAxis]
+                  r[1] = formatToDollarInt(d.data[yAxis])
+                  return r
+                }
+              } />
             <QueryLink
               groupBy={DFC.SOURCE}
               linkType="FilterTable"
