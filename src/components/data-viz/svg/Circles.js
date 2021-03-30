@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Circle } from './Circle'
-import { Translate } from './Translate'
+import Circle from './Circle'
+import Translate from './Translate'
 
-export const Circles = ({ data, root, width, height, colorScale, onHover, xAxis, yAxis, showTooltips, format, domains, ...rest }) => {
-  const k = width / (root[0].r * 2)
+const Circles = ({ data, width, height, colorScale, onHover, showTooltips, chartTooltip, ...rest }) => {
+  const k = width / (data[0].r * 2)
 
-  const circles = root.map((d, i) => (
+  const circles = data.map((d, i) => (
     <Translate
       key={`translate__${ i }`}
-      x={(d.x - root[0].x) * k}
-      y={(d.y - root[0].y) * k}
+      x={(d.x - data[0].x) * k}
+      y={(d.y - data[0].y) * k}
     >
       <Circle
         key={`circle__${ i }`}
@@ -21,9 +21,8 @@ export const Circles = ({ data, root, width, height, colorScale, onHover, xAxis,
         isClickable={(i !== 0)}
         showTooltips={(i !== 0 && showTooltips)}
         onHover={onHover}
-        xAxis={xAxis}
-        yAxis={yAxis}
-        format={format} />
+        chartTooltip={chartTooltip}
+        { ...rest } />
     </Translate>
   ))
 
@@ -33,6 +32,8 @@ export const Circles = ({ data, root, width, height, colorScale, onHover, xAxis,
     </g>
   )
 }
+
+export default Circles
 
 // propTypes
 Circles.propTypes = {
