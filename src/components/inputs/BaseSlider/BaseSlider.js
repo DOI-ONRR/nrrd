@@ -153,8 +153,7 @@ const useStyles = makeStyles(theme => ({
  *
  * An example where only a single year can be selected exists on the map in [Explore data](https://revenuedata.doi.gov/explore).
  *
- * An example where a range of years can be selected exists in Query Data:
- * [https://revenuedata.doi.gov/query-data].
+ * An example where a range of years can be selected exists in [Query Data](https://revenuedata.doi.gov/query-data).
  */
 const BaseSlider = ({ data, onChange, defaultSelected, selected, label, ...restProps }) => {
   const theme = useTheme()
