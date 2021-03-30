@@ -597,17 +597,8 @@ export default class D3StackedBarChart {
       // reduce this.data down to same length as yGroup
       const data = this.data.filter(item => item[this.options.yOrderBy] === this.data[0][this.options.yOrderBy])
 
-      // check if month_long exists
-      // if ('month_long' in data[0]) {
-      //   rData = data.filter(item => item.month_long === (xValue || this.xSelectedValue))[0]
-      //   monthAbbr = rData.month_long.substring(0, 3)
-      // }
-      // else {
-      //   rData = data
-      // }
-
       if (this.options.yGroupBy) {
-        r = [this.options.yGroupBy, '', xValue || this.xSelectedValue]
+        r = [this.options.yGroupBy, xValue || this.xSelectedValue]
       }
       else {
         r = [this.yAxis, xValue || this.xSelectedValue]
@@ -701,9 +692,12 @@ export default class D3StackedBarChart {
       }
       else {
         dataArr = yOrderBy.map((key, i) => {
-          return [key, undefined, data[key] || '-']
+          // return [key, undefined, data[key] || '-']
+          return [key, data[key] || '-']
         })
       }
+
+      console.log('dataArr: ', dataArr)
 
       if (legendReverse) {
         dataArr = dataArr.reverse()
@@ -744,10 +738,10 @@ export default class D3StackedBarChart {
         .html(function (d, i) {
           return self._legendFormat(d[1])
         })
-      tr.append('td')
-        .html(function (d, i) {
-          return self._legendFormat(d[2])
-        })
+      // tr.append('td')
+      //   .html(function (d, i) {
+      //     return self._legendFormat(d[2])
+      //   })
 
       const total = Object.keys(data).reduce((sum, key) => sum + data[key], 0)
 
@@ -758,7 +752,7 @@ export default class D3StackedBarChart {
         .style('font-weight', 'bold')
         .html('Total')
 
-      tfooter.append('td')
+      // tfooter.append('td')
 
       tfooter.append('td')
         .style('font-weight', 'bold')

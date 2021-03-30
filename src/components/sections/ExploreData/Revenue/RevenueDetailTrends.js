@@ -46,7 +46,11 @@ const RevenueDetailTrends = props => {
   // console.log('RevenueDetailTrends props: ', props)
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
-  const year = filterState[DFC.YEAR]
+  const {
+    year,
+    periodAllYears
+  } = filterState
+  const minYear = periodAllYears[0]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const state = props.fipsCode
@@ -146,7 +150,7 @@ const RevenueDetailTrends = props => {
     )
   }
   else {
-    return (<span ref={ref} ><LocationName location={location} /> has had no federal {commodityText} since 2003.</span>)
+    return (<span ref={ref} ><LocationName location={location} /> did not have {commodityText} from { minYear } to { year }.</span>)
   }
 }
 
