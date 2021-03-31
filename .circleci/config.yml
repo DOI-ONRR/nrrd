@@ -1,11 +1,15 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
+parameters:
+  image-tag:
+    type: string
+    default: "14.16.0"
 
 jobs:
   lint:
     docker:
-      - image: circleci/node:12.4
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     working_directory: ~/repo
     steps:
       - checkout
@@ -27,7 +31,7 @@ jobs:
           path: ./test-results 
   unit_tests:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     steps:
       - checkout
       - restore_cache:
@@ -49,7 +53,7 @@ jobs:
 
   end_to_end_tests:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     steps:
       - checkout
       - restore_cache:
@@ -71,7 +75,7 @@ jobs:
 
   lighthouse:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     steps:
       - checkout
       - restore_cache:
@@ -94,7 +98,7 @@ jobs:
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     resource_class: medium+
     steps:
       - checkout
@@ -144,7 +148,7 @@ jobs:
   quick:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     steps:
       - checkout
       - restore_cache:
@@ -162,7 +166,7 @@ jobs:
               
   preview:
     docker:
-      - image: circleci/node:12.13.0
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     resource_class: medium+
     environment:
       TEST_REPORTS: /tmp/test-reports   
@@ -172,7 +176,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run: 
           name: Install node dependencies
-          command: npm install
+          command: npm ci
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -195,7 +199,7 @@ jobs:
 
   merge_to_stage:
     docker:
-      - image: circleci/node:12.13.0
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     steps:
       - checkout
       - add_ssh_keys:
@@ -207,7 +211,7 @@ jobs:
 
   stage:
     docker:
-      - image: circleci/node:12.13.0
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     resource_class: medium+
     steps:
       - checkout
@@ -237,7 +241,7 @@ jobs:
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     resource_class: medium+
     steps:
       - checkout
@@ -270,7 +274,7 @@ jobs:
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:<< pipeline.parameters.image-tag >>
     resource_class: medium+
     steps:
       - checkout
@@ -286,6 +290,10 @@ jobs:
       - run:
           name: Build gatsby
           command: npm run build
+      - run:
+          name: Run tests
+          command: npm test
+
       - run:
           name: deploy preview to cloud.gov
           command: |
