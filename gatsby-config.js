@@ -69,7 +69,6 @@ const config = {
         // }
       }
     },
-    'gatsby-theme-apollo',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-mdx',
