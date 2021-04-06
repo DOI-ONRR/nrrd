@@ -112,7 +112,6 @@ jobs:
             ls -lart static/downloads
       - aws-s3/sync:
           arguments: |
-            --dryrun
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
@@ -131,11 +130,9 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: public
           to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH'
-      # - run: 
-      #     command: |
-      #       ls -lart
-      #       ls -lart static
-      #       ls -lart static/downloads 
+      - run: 
+          command: |
+                ls -lart static/downloads 
       - run:
           name: clean up
           command: |
