@@ -21,7 +21,7 @@ tags:
 # How Revenue Works
 
 Private individuals and corporations as well as the federal, state and local government can own the land and the resources beneath it. This makes the U.S. different from nearly every other country. In many places, oil, gas, coal, and other minerals belong to the government. But, in the U.S. there is widespread private ownership of these resources.
-
+<br>
 Learn about the process of natural resource extraction in the U.S. from land ownership to disbursement of revenue and what processes ensure accuracy.
 
 </Box>
@@ -53,7 +53,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
 <h2 alt='Site data'>What data is on this site?</h2>
 
 ---
-<Grid container 
+<Grid container
   direction="row"
   justify="center"
   alignItems="stretch"
@@ -63,14 +63,17 @@ Learn about the process of natural resource extraction in the U.S. from land own
       <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
         <TabtasticTab label="Description">
           <Box fontSize={16}>
-            The data on this website is for energy and minerals on federal lands, Native American lands, and the Outer Continental Shelf. Private individuals, corporations and state and local governments can also buy and own land. Whomever owns the land also owns the oil, gas, coal, and other minerals found below the surface.
+            The data on this website is for energy and minerals on federal lands, Native American lands, and the <GlossaryTerm>Outer Continental Shelf</GlossaryTerm>. Private individuals, corporations and state and local governments can also buy and own land. Whomever owns the land also owns the oil, gas, coal, and other minerals found below the surface.
           </Box>
         </TabtasticTab>
         <TabtasticTab label="Types">
           <Box fontSize={16}>
-            Types of Land Ownership:
+            Types of land ownership:
             <ul>
-              <li>Private Lands</li>
+              <li>Private</li>
+              <li>Federal</li>
+              <li>State & local</li>
+              <li>Native American<li>
             </ul>
           </Box>
         </TabtasticTab>
@@ -85,29 +88,29 @@ Learn about the process of natural resource extraction in the U.S. from land own
       <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
         <TabtasticTab label="Description">
           <Box fontSize={16}>
-            The Bureau of Ocean Energy Management (BOEM) manages offshore leasing and the Bureau of Land Management (BLM) manages onshore leasing. BOEM and BLM awards leases through a competitive bidding process. Also, the Bureau of Indian Affairs (BIA), in consultation with BLM, manages leases on Native American lands.
+            The Bureau of Ocean Energy Management (BOEM) manages offshore leasing and the Bureau of Land Management (BLM) manages onshore leasing. BOEM and BLM award leases through a competitive bidding process. Also, the Bureau of Indian Affairs (BIA), in consultation with BLM, manages leases on Native American lands.
           </Box>
         </TabtasticTab>
         <TabtasticTab label="Types">
           <Box fontSize={16}>
-            Types of leases:
-            BOEM (Federal Offshore)
+            Types of leases:<br>
+            BOEM (federal offshore)
             <ul>
-              <li>Oil and Gas</li>
+              <li>Oil & gas</li>
               <li>Wind</li>
             </ul>
             BLM (Federal Onshore)
             <ul>
               <li>Coal</li>
-              <li>Oil and Gas</li>
-              <li>Non-energy Minerals</li>
+              <li>Oil & gas</li>
+              <li>Non-energy minerals</li>
               <li>Renewable energy</li>
             </ul>
-            BIA (Native Amewrican onshore)
+            BIA (Native American onshore)
             <ul>
               <li>Coal</li>
-              <li>Oil and Gas</li>
-              <li>Non-energy Minerals</li>
+              <li>Oil & gas</li>
+              <li>Non-energy minerals</li>
             </ul>
           </Box>
         </TabtasticTab>
@@ -118,30 +121,33 @@ Learn about the process of natural resource extraction in the U.S. from land own
     <Arrow length={80} />
   </Grid>
   <Grid item xs={12} sm={3}>
-    <ProcessCard name={'Ownership'} padding={0} contentIndent={0} centerTitle={true}>
+    <ProcessCard name={'Production'} padding={0} contentIndent={0} centerTitle={true}>
       <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
         <TabtasticTab label="Description">
           <Box fontSize={16}>
-            The data on this website is for energy and minerals on federal lands, Native American lands, and the Outer Continental Shelf. Private individuals, corporations and state and local governments can also buy and own land. Whomever owns the land also owns the oil, gas, coal, and other minerals found below the surface.
+            Once a piece of leased land starts producing a commodity, like oil, the producer generally sells it. Though, the producer may also use it on the lease or disposes of it. The proceeds of selling the commodity are subject to royalties, which result in revenue to the government.
           </Box>
         </TabtasticTab>
         <TabtasticTab label="Types">
           <Box fontSize={16}>
-            Types of Land Ownership:
+            Types of commodities:
             <ul>
-              <li>Private Lands</li>
+              <li>Oil & gas</li>
+              <li>Coal</li>
+              <li>Renewable energy</li>
+              <li>Non-energy minerals</li>
             </ul>
           </Box>
         </TabtasticTab>
-        <TabtasticTab label="Data Usage">
+        <TabtasticTab label="Data usage">
           <Box fontSize={16}>
             Production data can be used to:
             <ul>
-              <li>Analyze production volumes for coal, gas and oil</li>
-              <li>Analyze volumes by state, county and offshore region</li>
-              <li>Analyze national Native American production volumes</li>
-              <li>Calculate total volumes for all commodities extracted on federal land or Native American land</li>
-              <li>Find data by FIPS code</li>
+              <li>Analyze production volumes for coal, gas, and oil.</li>
+              <li>Analyze volumes by state, county, and offshore region.</li>
+              <li>Analyze national Native American production volumes.</li>
+              <li>Calculate total volumes for all commodities extracted on federal or Native American land.</li>
+              <li>Find data by FIPS code.</li>
             </ul>
           </Box>
         </TabtasticTab>
@@ -186,7 +192,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
     <Arrow length={80} vertical={true} />
   </Grid>
   <Grid item xs={12} sm={4}>
-  </Grid> 
+  </Grid>
 
   <Grid item xs={12} sm={5}>
   </Grid>
@@ -202,29 +208,32 @@ Learn about the process of natural resource extraction in the U.S. from land own
           <Box fontSize={16}>
             Other Types of Revenue:
             <ul>
-              <li>Royalties</li>
-              <li>Bonus</li>
-              <li>Rent</li>
+              <li><GlossaryTerm>Royalties</GlossaryTerm></li>
+              <li><GlossaryTerm>Bonus</GlossaryTerm></li>
+              <li><GlossaryTerm>Rent</GlossaryTerm></li>
+              <li>Inspection fees</li>
+              <li>Civil penalties</li>
+              <li>Other revenues</li>
             </ul>
           </Box>
         </TabtasticTab>
-        <TabtasticTab label="Data Usage">
+        <TabtasticTab label="Data usage">
           <Box fontSize={16}>
-            Revenue Data Can Be Used To:
+            Revenue data can be used to:
             <ul>
-              <li>analyze revenue trends for money collected by the federal government</li>
-              <li>analyze revenue by type</li>
-              <li>calculate amount of money collected by federal government from energy and mineral extractions</li>
-              <li>calculate revenues by commodity</li>
-              <li>analyze revenue by state, county, or offshore region</li>
-              <li>analyze national Native American revenues</li>
-              <li>analyze monthly revenue by accounting year</li>
-              <li>analyze revenue by location for Federal onshore and Federal Offshore</li>
+              <li>Analyze revenue trends for money collected by the federal government.</li>
+              <li>Analyze revenue by type.</li>
+              <li>Calculate amount of money collected by federal government from energy and mineral extractions.</li>
+              <li>Calculate revenues by commodity.</li>
+              <li>Analyze revenue by state, county, or offshore region.</li>
+              <li>Analyze national Native American revenues.</li>
+              <li>Analyze monthly revenue by accounting year.</li>
+              <li>Analyze revenue by location for Federal onshore and Federal Offshore.</li>
             </ul>
             Company revenue data can be used to:
             <ul>
-              <li>calculate amount of money paid by fiscal year to the federal government from energy and mineral extracting companies</li>
-              <li>analyze revenue type (bonuses, rents, royalties, etc.) by company</li>
+              <li>Calculate amount of money paid by fiscal year to the federal government from energy and mineral extracting companies.</li>
+              <li>Analyze revenue type (bonuses, rents, royalties, etc.) by company.</li>
             </ul>
           </Box>
         </TabtasticTab>
@@ -240,7 +249,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
     <Arrow length={80} vertical={true} />
   </Grid>
   <Grid item xs={12} sm={4}>
-  </Grid> 
+  </Grid>
 
   <Grid item xs={12} sm={5}>
   </Grid>
@@ -256,13 +265,24 @@ Learn about the process of natural resource extraction in the U.S. from land own
           <Box fontSize={16}>
             Types of Disbursement:
             <ul>
-              <li>Land and Water Conservation Fund</li>
+              <li><GlossaryTerm>Land and Water Conservation Fund</GlossaryTerm></li>
               <li>Historic Preservation Fund</li>
               <li>U.S. Treasury</li>
               <li>State and local governments</li>
               <li>Reclamation Fund</li>
               <li>Native American tribes and individuals</li>
-              <li>Other</li>
+              <li>Other funds</li>
+            </ul>
+          </Box>
+        </TabtasticTab>
+        <TabtasticTab label="Data usage">
+          <Box fontSize={16}>
+            Disbursements data can be used to:
+            <ul>
+              <li>Calculate how much money the federal government disbursed to various funds, agencies, local governments and Native Americans.</li>
+              <li>Analyze how revenue generated is being used.</li>
+              <li>Calculate what states are receiving from <GlossaryTerm>GOMESA</GlossaryTerm>.</li>
+              <li>Calculate amount disbursed to the <GlossaryTerm>Land and Water Conservation Fund</GlossaryTerm>.</li>
             </ul>
           </Box>
         </TabtasticTab>
@@ -408,7 +428,7 @@ The Land and Water Conservation Fund receives disbursements from offshore oil an
 
 [Learn about the Land and Water Conservation Fund](/how-revenue-works/lwcf)
 
-<!-- 
+<!--
 #### National Parks and Public Land Legacy Restoration Fund
 To address priority deferred maintenance projects, the National Parks and Public Land Legacy Restoration Fund receives disbursements from federal energy development revenues for five years starting in <GlossaryTerm>Fiscal Year (FY)</GlossaryTerm> 2021.
 
@@ -441,4 +461,5 @@ Data about revenue from the extractive industries is subject to a number of cont
 
 </Grid>
 </Grid>
+<br><br><br><br><br><br>
 </Container>
