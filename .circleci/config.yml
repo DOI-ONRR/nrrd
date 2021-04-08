@@ -102,6 +102,9 @@ jobs:
     resource_class: medium+
     steps:
       - checkout
+      - run:
+          name: Update package lock
+          command: npm i --package-lock-only
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
