@@ -46,7 +46,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
 <Container maxWidth="lg" component="section">
 <Grid container>
 <Grid item xs={12} sm={3}>
-<PageToc scrollOffset={190}></PageToc>
+<PageToc scrollOffset={190} excludeClassNames={['not_toc']}></PageToc>
 </Grid>
 <Grid item xs={12} sm={9}>
 
@@ -73,7 +73,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
               <li>Private</li>
               <li>Federal</li>
               <li>State & local</li>
-              <li>Native American<li>
+              <li>Native American</li>
             </ul>
           </Box>
         </TabtasticTab>
@@ -127,7 +127,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
           <Box fontSize={16}>
             Once a piece of leased land starts producing a commodity, like oil, the producer generally sells it. Though, the producer may also use it on the lease or disposes of it. The proceeds of selling the commodity are subject to royalties, which result in revenue to the government.
             <br />
-            <Link href='/query-data/?dataType=Production linkType='FilterTable'>Query production data</Link>
+            <Link href="/query-data/?dataType=Production" linkType="FilterTable">Query production data</Link>
           </Box>
         </TabtasticTab>
         <TabtasticTab label="Types">
@@ -174,28 +174,6 @@ Learn about the process of natural resource extraction in the U.S. from land own
   <Grid item xs={12} sm={1}>
   </Grid>
 
-  <Grid item xs={12} sm={3}>
-  </Grid>
-  <Grid item xs={12} sm={1}>
-  </Grid>
-  <Grid item xs={12} sm={7}>
-    <Arrow length={313} withArrow={false} />
-  </Grid>
-  <Grid item xs={12} sm={1}>
-  </Grid>
-
-  <Grid item xs={12} sm={3}>
-  </Grid>
-  <Grid item xs={12} sm={1}>
-  </Grid>
-  <Grid item xs={12} sm={3}>
-  </Grid>
-  <Grid item xs={12} sm={1}>
-    <Arrow length={80} vertical={true} />
-  </Grid>
-  <Grid item xs={12} sm={4}>
-  </Grid>
-
   <Grid item xs={12} sm={5}>
   </Grid>
   <Grid item xs={12} sm={5}>
@@ -205,8 +183,8 @@ Learn about the process of natural resource extraction in the U.S. from land own
           <Box fontSize={16}>
             ONRR collects revenues for leases, sales and production and then disburses them. ONRR reports revenue data in accounting year, which is every sale that is accounted for in a given period regardless of when the sale took place. Company revenue includes revenues by production phase and commodity by company. This dataset includes revenues for U.S. federal lands and offshore areas.
             <br />
-            <Link href='/query-data/?dataType=Revenue linkType='FilterTable'>Query revenue data</Link>
-            <Link href='/query-data/?dataType=Company linkType='FilterTable'>Query company revenue data</Link>
+            <Link href='/query-data/?dataType=Revenue' linkType='FilterTable'>Query revenue data</Link>
+            <Link href='/query-data/?dataType=Company' linkType='FilterTable'>Query company revenue data</Link>
           </Box>
         </TabtasticTab>
         <TabtasticTab label="Types">
@@ -265,7 +243,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
           <Box fontSize={16}>
             ONRR distributes the collected revenue to federal agencies, funds, and local governments according to federal laws and regulations.
             <br />
-            <Link href='/query-data/?dataType=Disbursements linkType='FilterTable'>Query disbursements data</Link>
+            <Link href='/query-data/?dataType=Disbursements' linkType='FilterTable'>Query disbursements data</Link>
           </Box>
         </TabtasticTab>
         <TabtasticTab label="Types">
