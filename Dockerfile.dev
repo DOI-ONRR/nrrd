@@ -7,4 +7,4 @@ RUN npm i --package-lock-only
 RUN npm ci
 COPY . .
 RUN gatsby clean
-CMD ["gatsby", "develop", "-H", "0.0.0.0" ]
+CMD ["gatsby", "build", "--prefix-paths" ]

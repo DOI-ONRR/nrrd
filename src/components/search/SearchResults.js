@@ -26,7 +26,7 @@ export const useStyles = makeStyles(theme => ({
 
 export const SearchResults = () => {
   const classes = useStyles()
-  const data = useStaticQuery(graphql`
+  /* const data = useStaticQuery(graphql`
     query SearchIndexQuery {
       siteSearchIndex {
         index
@@ -67,7 +67,9 @@ export const SearchResults = () => {
         </section>
       </Container>
     </>
-  )
+  )*/
+
+  return (<></>)
 }
 
 export default SearchResults
