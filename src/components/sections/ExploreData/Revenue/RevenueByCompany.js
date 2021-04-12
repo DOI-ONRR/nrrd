@@ -27,8 +27,9 @@ import {
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
+import { HorizontalStackedBarChart } from '../../../data-viz/StackedBarChart'
 
-import utils from '../../../../js/utils'
+import utils, { formatToDollarInt } from '../../../../js/utils'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
@@ -174,13 +175,13 @@ const RevenueByCompany = props => {
                         <Box component="p"></Box>
                       </TableCell>
                       <TableCell style={{ verticalAlign: 'top' }}>
-                        <Box mt={0}>{utils.formatToDollarInt(item[1].reduce((a, b) => +a + +b.revenue, 0))}</Box>
+                        <Box mt={0}>{formatToDollarInt(item[1].reduce((a, b) => +a + +b.revenue, 0))}</Box>
                       </TableCell>
                       <TableCell style={{ verticalAlign: 'top' }}>
                         <Box mt={0}>{ (item[1].reduce((a, b) => +a + +b.revenue, 0) / totalTotal * 100).toFixed(2) }%</Box>
                       </TableCell>
                       <TableCell style={{ width: '45%' }}>
-                        <StackedBarChart
+                        <HorizontalStackedBarChart
                           key={'NRS' + year + '_' + i}
                           data={item[1]}
                           collapsibleLegend={true}
@@ -190,21 +191,15 @@ const RevenueByCompany = props => {
                               return '-'
                             }
                             else {
-                              return utils.formatToDollarInt(v)
+                              return formatToDollarInt(v)
                             }
                           }}
-                          legendHeaders={ headers => {
-                            // console.debug('headers..................', headers)
-                            headers[0] = ''
-                            headers[1] = ''
-                            return headers
-                          }
-                          }
+                          legendHeaders={['', '']}
                           chartTooltip={
                             d => {
                               const r = []
                               r[0] = d.key
-                              r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                              r[1] = formatToDollarInt(d[0].data[d.key])
                               return r
                             }
                           }

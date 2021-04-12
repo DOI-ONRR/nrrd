@@ -21,10 +21,10 @@ import {
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 
-import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
+import { HorizontalStackedBarChart } from '../../../data-viz/StackedBarChart'
 import RevenueLocationTotal from './RevenueLocationTotal'
 
-import utils from '../../../../js/utils'
+import utils, { formatToDollarInt } from '../../../../js/utils'
 
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
@@ -113,6 +113,13 @@ const RevenueNationalSummary = props => {
 
   const units = 'dollars'
 
+  const colorRange = [
+    theme.palette.explore[700],
+    theme.palette.explore[500],
+    theme.palette.explore[300],
+    theme.palette.explore[100]
+  ]
+
   if (loading) {
     return (
 	    <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={2022}>
@@ -191,7 +198,7 @@ const RevenueNationalSummary = props => {
                   </Grid>
                   <Grid container item xs={12} sm={7}>
                     <Box mt={{ xs: 0, sm: 4 }} width="100%">
-                      <StackedBarChart
+                      <HorizontalStackedBarChart
                         key={`NRS${ year }_${ i }${ commodityKey }`}
                         data={item[1]}
                         legendFormat={v => {
@@ -199,20 +206,18 @@ const RevenueNationalSummary = props => {
                             return '-'
                           }
                           else {
-                            return utils.formatToDollarInt(v)
+                            return formatToDollarInt(v)
                           }
                         }}
-                        legendHeaders={ headers => {
-                          // console.debug('headers..................', headers)
-                          headers[0] = ''
-                          headers[1] = ''
-                          return headers
-                        }}
+                        // legendHeaders two dimensional array
+                        legendHeaders={['', '']}
+                        // chartTooltip two dimensional array
                         chartTooltip={
                           d => {
+                            console.log('RNS chartTooltip d: ', d)
                             const r = []
                             r[0] = d.key
-                            r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                            r[1] = formatToDollarInt(d[0].data[d.key])
                             return r
                           }
                         }
@@ -225,12 +230,7 @@ const RevenueNationalSummary = props => {
                         yOrderBy={yOrderBy}
                         horizontal
                         legendReverse={true}
-                        colorRange={[
-                          theme.palette.explore[700],
-                          theme.palette.explore[500],
-                          theme.palette.explore[300],
-                          theme.palette.explore[100]
-                        ]}
+                        colorRange={colorRange}
                       />
                     </Box>
                   </Grid>

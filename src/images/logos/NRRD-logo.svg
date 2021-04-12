@@ -4,7 +4,7 @@
 	 viewBox="0 0 850.4 173.9" style="enable-background:new 0 0 850.4 173.9;" xml:space="preserve">
 <style type="text/css">
 	.st0{enable-background:new    ;}
-	.st1{clip-path:url(#SVGID_2_);fill:#A0C7D8;}
+	.style1{clip-path:url(#SVGID_2_);fill:#A0C7D8;}
 	.st2{fill:#FFFFFF;}
 	.st3{clip-path:url(#SVGID_4_);fill:#15314B;}
 	.st4{fill:#15314B;}
@@ -20,7 +20,7 @@
 		<clipPath id="SVGID_2_">
 			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
 		</clipPath>
-		<path class="st1" d="M158.9,173.1H14.2c-7.8,0-14.2-6.4-14.2-14.2V14.2C0,6.4,6.4,0,14.2,0h144.7c7.8,0,14.2,6.4,14.2,14.2v144.7
+		<path class="style1" d="M158.9,173.1H14.2c-7.8,0-14.2-6.4-14.2-14.2V14.2C0,6.4,6.4,0,14.2,0h144.7c7.8,0,14.2,6.4,14.2,14.2v144.7
 			C173.1,166.8,166.8,173.1,158.9,173.1"/>
 	</g>
 </g>

@@ -7,7 +7,7 @@ import gql from 'graphql-tag'
 import QueryLink from '../../../../components/QueryLink'
 
 // utility functions
-import utils from '../../../../js/utils'
+import utils, { formatToDollarInt } from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -15,7 +15,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { makeStyles } from '@material-ui/core/styles'
 
 import CircularProgress from '@material-ui/core/CircularProgress'
-import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart } from '../../../data-viz/CircleChart'
 
 import {
   Box,
@@ -92,6 +92,8 @@ const DisbursementTopRecipients = props => {
     theme.palette.explore[200],
     theme.palette.explore[100]
   ]
+  const xAxis = 'recipient'
+  const yAxis = 'total'
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
 
@@ -131,12 +133,28 @@ const DisbursementTopRecipients = props => {
               <CircleChart
                 key={`DTR__${ dataSet }`}
                 data={chartData}
-                xAxis='recipient'
-                yAxis='total'
-                legendLabels={['Recipient', dataSet]}
+                xAxis={xAxis}
+                yAxis={yAxis}
+                legendHeaders={['Recipient', dataSet]}
                 legendPosition={'right'}
-                format={d => utils.formatToDollarInt(d)}
-                colorRange={colorRange} />
+                legendFormat={d => formatToDollarInt(d)}
+                colorRange={colorRange}
+                circleLabel={
+                  d => {
+                    const r = []
+                    r[0] = d.data[xAxis]
+                    r[1] = formatToDollarInt(d.data[yAxis])
+                    return r
+                  }
+                }
+                chartTooltip={
+                  d => {
+                    const r = []
+                    r[0] = d.data[xAxis]
+                    r[1] = formatToDollarInt(d.data[yAxis])
+                    return r
+                  }
+                } />
             </Box>
           </Box>
         </Grid>

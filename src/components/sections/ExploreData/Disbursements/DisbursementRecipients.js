@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart } from '../../../data-viz/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 
 import { formatToDollarInt } from '../../../../js/utils'
@@ -64,6 +64,8 @@ const DisbursementRecipients = props => {
   const dataSet = 'FY ' + year
 
   const state = props.fipsCode
+  const xAxis = 'recipient'
+  const yAxis = 'total'
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
@@ -88,12 +90,20 @@ const DisbursementRecipients = props => {
           <CircleChart
             key={`DR__${ dataSet }`}
             data={chartData.DisbursementRecipientSummary}
-            xAxis='recipient'
-            yAxis='total'
-            legendLabels={['Recipient', 'Total']}
+            xAxis={xAxis}
+            yAxis={yAxis}
+            legendHeaders={['Recipient', 'Total']}
             showLabels={false}
-            format={d => formatToDollarInt(d)}
-            formatLegendLabels={d => {
+            legendFormat={d => formatToDollarInt(d)}
+            chartTooltip={
+              d => {
+                const r = []
+                r[0] = d.data[xAxis]
+                r[1] = formatToDollarInt(d.data[yAxis])
+                return r
+              }
+            }
+            legendLabel={d => {
               if (d.match('Native')) {
                 d = 'Native American'
               }

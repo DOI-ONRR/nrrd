@@ -19,7 +19,7 @@ import {
   useTheme
 } from '@material-ui/core'
 
-import { CircleChart } from '../../../data-viz/CircleChart/CircleChart'
+import { CircleChart } from '../../../data-viz/CircleChart'
 
 const APOLLO_QUERY = gql`
   query ProductionTopLocations($year: Int!, $location: String!, $commodity: String!, $state: String!, $period: String!) {
@@ -142,6 +142,8 @@ const ProductionTopLocations = ({ title, ...props }) => {
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const key = `PTL${ year }${ state }${ commodity }${ period }`
+  const xAxis = 'location_name'
+  const yAxis = 'total'
 
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
@@ -200,13 +202,21 @@ const ProductionTopLocations = ({ title, ...props }) => {
             <CircleChart
               key={key}
               data={chartData}
-              xAxis='location_name'
-              yAxis='total'
-              legendLabels={['Location name', dataSet]}
+              xAxis={xAxis}
+              yAxis={yAxis}
+              legendHeaders={['Location name', dataSet]}
               maxCircles={6}
-              format={d => formatToCommaInt(d)}
+              chartTooltip={
+                d => {
+                  const r = []
+                  r[0] = d.data[xAxis]
+                  r[1] = formatToCommaInt(d.data[yAxis])
+                  return r
+                }
+              }
+              legendFormat={d => formatToCommaInt(d)}
               legendPosition={props.horizontal ? 'right' : 'bottom'}
-              formatLegendLabels={d => {
+              legendLabel={d => {
                 if (d === 'Native American') {
                   d = 'Native American lands'
                 }
