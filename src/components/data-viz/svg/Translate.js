@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-export const Translate = ({ x = 0, y = 0, children }) => {
+const Translate = ({ x = 0, y = 0, children }) => {
   if (!x && !y) return children
   return (
     <g transform={`translate(${ x },${ y })`}>
@@ -9,3 +9,5 @@ export const Translate = ({ x = 0, y = 0, children }) => {
     </g>
   )
 }
+
+export default Translate

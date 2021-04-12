@@ -25,6 +25,7 @@ import {
 } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
+import { HorizontalStackedBarChart } from '../../../data-viz/StackedBarChart'
 import DisbursementLocationTotal from './DisbursementLocationTotal'
 
 import utils from '../../../../js/utils'
@@ -77,7 +78,12 @@ const NationwideDisbursementSummary = props => {
   const yGroupBy = 'source'
   const xLabels = 'month'
   const units = 'dollars'
-  // const xGroups = {}
+  const colorRange = [
+    theme.palette.explore[700],
+    theme.palette.explore[500],
+    theme.palette.explore[300],
+    theme.palette.explore[100]
+  ]
 
   const createMarkup = markup => {
     return { __html: markup }
@@ -161,7 +167,7 @@ const NationwideDisbursementSummary = props => {
                       </Grid>
                       <Grid container item xs={12} sm={7}>
                         <Box mt={{ xs: 0, sm: 4 }} width="100%">
-                          <StackedBarChart
+                          <HorizontalStackedBarChart
                             key={`NDS${ dataSet }`}
                             data={item[1]}
                             legendFormat={v => {
@@ -172,13 +178,9 @@ const NationwideDisbursementSummary = props => {
                                 return utils.formatToDollarInt(v)
                               }
                             }}
-                            legendHeaders={ headers => {
-                            // console.debug('headers..................', headers)
-                              headers[0] = ''
-                              headers[1] = ''
-                              return headers
-                            }
-                            }
+                            // legendHeaders two dimensional array
+                            legendHeaders={['', '']}
+                            // chartTooltip two dimensional array
                             chartTooltip={
                               d => {
                                 const r = []
@@ -197,12 +199,7 @@ const NationwideDisbursementSummary = props => {
                             yOrderBy={yOrderBy}
                             horizontal
                             legendReverse={true}
-                            colorRange={[
-                              theme.palette.explore[700],
-                              theme.palette.explore[500],
-                              theme.palette.explore[300],
-                              theme.palette.explore[100]
-                            ]}
+                            colorRange={colorRange}
                           />
                         </Box>
                       </Grid>

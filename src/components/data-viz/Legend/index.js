@@ -1,3 +1,1 @@
-import Legend from './Legend'
-
-export default Legend
+export { default as Legend } from './Legend'

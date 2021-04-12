@@ -287,10 +287,6 @@ jobs:
           name: Build gatsby
           command: npm run build
       - run:
-          name: Run tests
-          command: npm test
-
-      - run:
           name: deploy preview to cloud.gov
           command: |
             pwd && ls -l

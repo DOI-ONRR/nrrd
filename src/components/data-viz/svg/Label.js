@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Label = ({ data, key, fill, fontSize, isClickable }) => {
+const Label = ({ key, data, fill, fontSize, isClickable }) => {
   const styles = {
     default: {
       fontSize: fontSize
@@ -20,3 +20,5 @@ export const Label = ({ data, key, fill, fontSize, isClickable }) => {
     </text>
   )
 }
+
+export default Label
