@@ -61,14 +61,6 @@ const config = {
         component: `${ __dirname }/src/components/layouts/PageLayoutManager`
       }
     },
-    {
-      resolve: 'gatsby-plugin-material-ui',
-      options: {
-        // stylesProvider: {
-        //   injectFirst: true,
-        // }
-      }
-    },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-mdx',
