@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import React, { useEffect, useRef, useState } from 'react'
 
-import { Box, Collapse, Button } from '@material-ui/core'
+import { Box, Collapse } from '@material-ui/core'
 import {
   createStyles,
   withStyles,
@@ -277,7 +277,7 @@ const CompactLegendContainer = withStyles(theme =>
   })
 )(Box)
 
-const LegendButton = withStyles(theme =>
+const LegendButton = withStyles(theme => (
   createStyles({
     root: {
       color: theme.palette.links.default,
@@ -285,9 +285,14 @@ const LegendButton = withStyles(theme =>
         textDecoration: 'underline',
       }
     },
-  })
-)(Button)
-
+  })))
+/**
+ * Stacked bar charts are used to represent multiple types of data within a single
+ * bar.  They can be either vertical or horizontal.
+ * An example exists in “Total revenue” on the [homepage](https://revenuedata.doi.gov/).
+ * This is an example of a horizontal stacked bar chart under the “Federal revenue
+ * by company” tab in [Explore Data](https://revenuedata.doi.gov/explore?dataType=Revenue&location=NF&mapLevel=State&offshoreRegions=false&period=Calendar%20Year&year=2019#nationwide-revenue-summary).
+*/
 const StackedBarChart = props => {
   const theme = useTheme()
   // const mapJson=props.mapJson || "https://cdn.jsdelivr.net/npm/us-atlas@2/us/10m.json";

@@ -29,8 +29,7 @@ const useLinkStyles = makeStyles(theme => ({
   },
 }))
 /**
- * This is the base of all button inputs on the site
- *
+ * This is the base of all button inputs on the site.
  */
 const BaseButtonInput = ({ onClick, children, variant, styleType, classes, disabled, ...props }) => {
   const theme = useTheme()
