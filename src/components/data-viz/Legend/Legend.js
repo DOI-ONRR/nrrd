@@ -51,7 +51,7 @@ const StyledTableRow = withStyles(theme =>
 const Legend = ({
   data,
   activeNode,
-  legendHeaders = [],
+  legendHeaders,
   legendFormat = d => d,
   legendLabelFormat = d => d,
   legendReverse = false,
@@ -59,11 +59,13 @@ const Legend = ({
   legendType,
   xAxis,
   yAxis,
+  xDomain,
   yOrderBy,
+  yGroupBy,
   colorScale,
   ...rest
 }) => {
-  console.log('Legend data, activeNode: ', data, activeNode)
+  console.log('Legend data: ', data)
   const theme = useTheme()
   const activeKey = (activeNode && activeNode.key) && activeNode.key
   const legendData = legendReverse ? data.reverse() : data
