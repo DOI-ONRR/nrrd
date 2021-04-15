@@ -302,6 +302,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
   }
 
   const colorScale = color()
+  const legendColorScale = color(true)
 
   // maxBarSize
   const maxBarSize = () => {
@@ -441,7 +442,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
           xAxis={xAxis}
           yAxis={yAxis}
           xDomain={xDomain}
-          colorScale={colorScale}
+          colorScale={legendColorScale}
           yOrderBy={yOrderBy}
           yGroupBy={yGroupBy}
         />
