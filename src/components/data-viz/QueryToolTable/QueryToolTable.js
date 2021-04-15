@@ -189,7 +189,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
         <Grid item xs={12}>
           <QueryToolTableProvider>
             <Box position="relative" height={_tableHeight} width={'-webkit-fill-available'} >
-              <Box zIndex={-1} position="absolute" top={0}>
+              <Box position="absolute" top={0}>
                 {(tableData && dataTableConfig) &&
                   <DataTableBase data={tableData} config={dataTableConfig} />
                 }
@@ -537,7 +537,7 @@ const DataTableBase = ({ data, config }) => {
       updateDataFilter({ [GROUP_BY]: undefined })
     }
   }, [_groupBy, _breakoutBy, config])
-  console.log(tableData)
+
   return (
     <React.Fragment>
       {(defaultColumnWidths?.length > 0 && tableData?.length > 0)
