@@ -134,7 +134,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
       : !dfc[CALENDAR_YEAR]?.includes(year.toString())).map(year => year.toString())
 
   const getAdditionalColumns = () => (dfc[PERIOD] === PERIOD_MONTHLY)
-    ? [MONTH_LONG]
+    ? []
     : ['Trend']
 
   useEffect(() => {
@@ -463,6 +463,15 @@ const DataTableBase = ({ data, config }) => {
       }
       setFixedColumns([TableGroupRow.Row, _groupBy, _breakoutBy])
     }
+    else if(_additionalColumns) {
+      setGrouping([{ columnName: _groupBy }])
+      setGroupingExtension([{ columnName: _groupBy, showWhenGrouped: true }])
+      if (data && data.length > 0) {
+        // Gets the unique values that will be expanded
+        setExpandedGroups([...new Set(data.map(item => item[_groupBy]))])
+      }
+      setFixedColumns([TableGroupRow.Row, _groupBy, _additionalColumns])
+    }
     else if (_groupBy) {
       setGrouping([])
       setGroupingExtension([])
@@ -538,6 +547,7 @@ const DataTableBase = ({ data, config }) => {
     }
   }, [_groupBy, _breakoutBy, config])
 
+  console.log(grouping)
   return (
     <React.Fragment>
       {(defaultColumnWidths?.length > 0 && tableData?.length > 0)
