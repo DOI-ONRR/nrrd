@@ -126,7 +126,9 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
     })
   }
 
-  const getSortColumn = () => [{ columnName: years[years.length - 1]?.toString(), direction: 'desc' }]
+  const getSortColumn = () => (dfc[PERIOD] === PERIOD_MONTHLY)
+    ? [{ columnName: MONTH_LONG, direction: 'asc' }]
+    : [{ columnName: years[years.length - 1]?.toString(), direction: 'desc' }]
 
   const getHideColumns = () => years.filter(year =>
     (dfc[PERIOD] === PERIOD_FISCAL_YEAR)
@@ -134,7 +136,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
       : !dfc[CALENDAR_YEAR]?.includes(year.toString())).map(year => year.toString())
 
   const getAdditionalColumns = () => (dfc[PERIOD] === PERIOD_MONTHLY)
-    ? []
+    ? [MONTH_LONG]
     : ['Trend']
 
   useEffect(() => {
@@ -151,6 +153,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
         sortColumn: getSortColumn(),
         tableHeight: _tableHeight,
         [ADDITIONAL_COLUMNS]: getAdditionalColumns(),
+        includeAdditionalColumsInGroupBy: (dfc[PERIOD] === PERIOD_MONTHLY),
         ...dfc
       })
     }
@@ -186,22 +189,23 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
       </Box>
       
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <QueryToolTableProvider>
-            <Box position="relative" height={_tableHeight} width={'-webkit-fill-available'} >
-              <Box position="absolute" top={0}>
-                {(tableData && dataTableConfig) &&
-                  <DataTableBase data={tableData} config={dataTableConfig} />
-                }
-              </Box>
-              {loading &&
-                <Box zIndex="snackbar" position="absolute" top={0} width={'-webkit-fill-available'}>
-                  <BorderLinearProgress />
-                </Box>
-              }
+        {loading &&
+          <Grid item xs={12}>
+            <Box zIndex="snackbar" style={{width: '-webkit-fill-available'}}>
+              <BorderLinearProgress />
             </Box>
-          </QueryToolTableProvider>
-        </Grid>
+            <Box zIndex="modal">
+              <Skeleton variant="rect" width={'100%'} height={_tableHeight} animation={false}/>
+            </Box>
+          </Grid>
+        }
+        {(tableData && dataTableConfig) &&
+          <Grid item xs={12}>
+            <QueryToolTableProvider>
+              <DataTableBase data={tableData} config={dataTableConfig} />
+            </QueryToolTableProvider>
+          </Grid>
+        }
       </Grid>
     </Box>
   )
@@ -463,14 +467,14 @@ const DataTableBase = ({ data, config }) => {
       }
       setFixedColumns([TableGroupRow.Row, _groupBy, _breakoutBy])
     }
-    else if(_additionalColumns) {
+    else if(_additionalColumns && config.includeAdditionalColumsInGroupBy) {
       setGrouping([{ columnName: _groupBy }])
       setGroupingExtension([{ columnName: _groupBy, showWhenGrouped: true }])
       if (data && data.length > 0) {
         // Gets the unique values that will be expanded
         setExpandedGroups([...new Set(data.map(item => item[_groupBy]))])
       }
-      setFixedColumns([TableGroupRow.Row, _groupBy, _additionalColumns])
+      setFixedColumns([TableGroupRow.Row, _groupBy, _additionalColumns[0]])
     }
     else if (_groupBy) {
       setGrouping([])
