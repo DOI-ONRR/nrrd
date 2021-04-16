@@ -6,7 +6,7 @@ import * as d3 from 'd3'
 import { Button, Collapse } from '@material-ui/core'
 import { useTheme, createStyles, withStyles } from '@material-ui/core/styles'
 import Translate from '../svg/Translate'
-import { LeftAxis, BottomAxis } from '../svg/Axis'
+import { LeftAxis, BottomAxis, CenterAxis } from '../svg/Axis'
 import { MaxExtent } from '../svg/MaxExtent'
 import Bars from '../svg/Bars'
 import { Legend } from '../Legend'
@@ -41,9 +41,6 @@ const StackedBarChart2 = ({ data, ...options }) => {
     legendData: [],
     legendHeaders: []
   })
-  const [activeNode, setActiveNode] = useState({
-    key: ''
-  })
 
   const [collapsed, setCollapsed] = useState(collapsedLegend || false)
   const title = options.title || ''
@@ -60,6 +57,10 @@ const StackedBarChart2 = ({ data, ...options }) => {
 
   const chartTooltip = options.chartTooltip || function (d) {
     console.debug('chartTooltip debug')
+    return d
+  }
+
+  const handleBarHover = options.handleBarHover || function (d) {
     return d
   }
 
@@ -93,45 +94,13 @@ const StackedBarChart2 = ({ data, ...options }) => {
       top: options.marginTop || 25,
       bottom: options.marginBottom || 30,
       left: options.marginLeft || 40,
-      right: options.marginRight || 0
+      right: options.marginRight || 25
     }
   }
 
   // Container dimensions
   dimensions.ctrWidth = dimensions.width - dimensions.margin.left - dimensions.margin.right
   dimensions.ctrHeight = dimensions.height - dimensions.margin.top - dimensions.margin.bottom
-
-  // Body dimensions
-  const body = {
-    pos: {
-      x: 0,
-      y: 0,
-    }
-  }
-
-  // Left axis positioning
-  const leftAxis = {
-    pos: {
-      x: 0,
-      y: 0,
-    },
-    size: {
-      width: dimensions.margin.left,
-      height: dimensions.ctrHeight,
-    },
-  }
-
-  // Bottom axis positioning
-  const bottomAxis = {
-    pos: {
-      x: 0,
-      y: dimensions.height - dimensions.margin.bottom,
-    },
-    size: {
-      width: dimensions.ctrWidth,
-      height: dimensions.margin.bottom,
-    },
-  }
 
   // xAxis
   const xAxis = options.xAxis || console.error('Error - no xAxis property set')
@@ -223,6 +192,11 @@ const StackedBarChart2 = ({ data, ...options }) => {
 
   const selectedIndex = options.selectedIndex || xDomain().length - 1
 
+  const [activeNode, setActiveNode] = useState({
+    key: '',
+    activeBarIndex: selectedIndex
+  })
+
   // yGroupings
   const yGroupings = xValue => {
     try {
@@ -264,7 +238,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
   // xScale
   const xScale = d3.scaleBand()
     .domain(xDomain())
-    .range([dimensions.margin.left, dimensions.ctrWidth])
+    .range([0, dimensions.ctrWidth])
     .paddingInner(0.3)
     .paddingOuter(0.1)
 
@@ -334,8 +308,54 @@ const StackedBarChart2 = ({ data, ...options }) => {
     }
   }
 
+  // Body dimensions
+  const body = {
+    pos: {
+      x: xScale.bandwidth(),
+      y: 0,
+    },
+    size: {
+      width: xScale.bandwidth()
+    }
+  }
+
+  // Left axis positioning
+  const leftAxis = {
+    pos: {
+      x: 0,
+      y: 0,
+    },
+    size: {
+      width: dimensions.margin.left,
+      height: dimensions.ctrHeight,
+    },
+  }
+
+  // Bottom axis positioning
+  const bottomAxis = {
+    pos: {
+      x: xScale.bandwidth(),
+      y: dimensions.height - dimensions.margin.bottom,
+    },
+    size: {
+      width: dimensions.ctrWidth,
+      height: dimensions.margin.bottom,
+    },
+  }
+
+  // Center axis postioning
+  const centerAxis = {
+    pos: {
+      x: dimensions.margin.left,
+      y: yScale(0)
+    },
+    size: {
+      width: dimensions.ctrWidth,
+      height: dimensions.margin.bottom,
+    },
+  }
+
   const [legendHeader, setLegendHeader] = useState([yGroupBy || yAxis, xDomain()[10]])
-  const lheaders = legendHeader
 
   // handle onHover
   const onHover = (d, index) => {
@@ -347,7 +367,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
       setActiveNode({ ...activeNode, key: '' })
     }
 
-    if (d && index) {
+    if (d) {
       const x = yOrderBy.map((key, i) => {
         const nObj = {}
         nObj[xAxis] = key
@@ -357,6 +377,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
 
       setDataset({ ...dataset, legendData: x })
       setLegendHeader([yGroupBy || yAxis, xDomain()[index]])
+      setActiveNode({ ...activeNode, activeBarIndex: index })
     }
   }
 
@@ -384,7 +405,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
   return (
     <>
       {title && <ChartTitle compact={options.compact}>{title}</ChartTitle>}
-      <svg width="100%" height="200" viewBox={`0 0 ${ viewBoxWidth } ${ viewBoxHeight }`}>
+      <svg width="100%" height="200" viewBox={`0 0 ${ viewBoxWidth } ${ viewBoxHeight }`} pointerEvents="none">
         <Translate>
           <MaxExtent
             extentPercent={extentPercent}
@@ -397,8 +418,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
         <Translate {...body.pos}>
           <Bars
             data={dataset.barData}
-            // height={dimensions.ctrHeight}
-            // width={dimensions.ctrWidth}
+            width={body.size.width}
             xScale={xScale}
             yScale={yScale}
             xAxis={xAxis}
@@ -406,6 +426,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
             isClickable={true}
             colorScale={colorScale}
             onHover={onHover}
+            handleBarHover={handleBarHover}
             showTooltips={showTooltips}
             chartTooltip={chartTooltip}
             horizontal={horizontal}
@@ -416,8 +437,10 @@ const StackedBarChart2 = ({ data, ...options }) => {
             legendHeaders={legendHeaders}
           />
         </Translate>
-        <Translate
-          {...leftAxis.pos}>
+        <Translate {...centerAxis.pos}>
+          <CenterAxis xScale={xScale} yScale={yScale} />
+        </Translate>
+        <Translate {...leftAxis.pos}>
           <LeftAxis yScale={yScale} {...leftAxis.size} />
         </Translate>
         <Translate {...bottomAxis.pos}>
@@ -427,6 +450,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
             xLabels={xLabels(xDomain())}
             xGroups={xGroups}
             dimensions={dimensions}
+            activeIndex={activeNode.activeBarIndex}
             {...bottomAxis.size} />
         </Translate>
       </svg>
@@ -435,7 +459,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
         <Legend
           data={dataset.legendData}
           activeNode={activeNode}
-          legendHeaders={lheaders}
+          legendHeaders={legendHeaders(legendHeader)}
           legendFormat={legendFormat}
           legendReverse={false}
           legendTotal={true}

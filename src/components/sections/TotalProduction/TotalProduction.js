@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+import StackedBarChart2 from '../../data-viz/StackedBarChart/StackedBarChart2'
 import SectionHeader from '../../sections/SectionHeader'
 import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link'
@@ -176,7 +177,7 @@ const TotalProduction = props => {
         const year = dateArr[0]
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
         const month = date.toLocaleString('en-US', { month: 'short' })
-        const headerArr = [headers[0], `${ month } ${ year }`]
+        const headerArr = [headers[0].charAt(0).toUpperCase() + headers[0].slice(1), `${ month } ${ year }`]
         return headerArr
       }
     }
@@ -211,7 +212,7 @@ const TotalProduction = props => {
       legendHeaders = (headers, row) => {
         const fySoFar = (period === DFC.PERIOD_FISCAL_YEAR && (currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[1] > maxFiscalYear - 1)
         const cySoFar = (period === DFC.PERIOD_CALENDAR_YEAR && (currentMonthNum !== parseInt('12') || startMonth === endMonth) && headers[1] > maxCalendarYear - 1)
-        const headerArr = [headers[0], `${ periodAbbr } ${ headers[1] } ${ (fySoFar || cySoFar) ? currentYearSoFarText : '' }`]
+        const headerArr = [headers[0].charAt(0).toUpperCase() + headers[0].slice(1), `${ periodAbbr } ${ headers[1] } ${ (fySoFar || cySoFar) ? currentYearSoFarText : '' }`]
         return headerArr
       }
     }
@@ -239,7 +240,7 @@ const TotalProduction = props => {
           </Grid>
           <Grid item xs={12} md={7}>
             {commodity === 'Oil (bbl)' &&
-              <StackedBarChart
+              <StackedBarChart2
                 key={`tpsbc__${ monthly }${ period }${ commodity }${ dataType }`}
                 title={'Oil (bbl)'}
                 data={chartData.filter(row => row.product === 'Oil (bbl)')}
@@ -259,7 +260,7 @@ const TotalProduction = props => {
               />
             }
             {commodity === 'Gas (mcf)' &&
-              <StackedBarChart
+              <StackedBarChart2
                 key={`tpsbc__${ monthly }${ period }${ commodity }`}
                 title={'Gas (mcf)'}
                 data={chartData.filter(row => row.product === 'Gas (mcf)')}
@@ -285,7 +286,7 @@ const TotalProduction = props => {
               />
             }
             {commodity === 'Coal (tons)' &&
-              <StackedBarChart
+              <StackedBarChart2
                 key={`tpsbc__${ monthly }${ period }${ commodity }`}
                 title={'Coal (tons)'}
                 data={chartData.filter(row => row.product === 'Coal (tons)')}

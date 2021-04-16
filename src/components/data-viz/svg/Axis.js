@@ -53,7 +53,7 @@ export const LeftAxis = ({ yScale, width }) => {
   )
 }
 
-export const BottomAxis = ({ data, xScale, width, xGroups, xLabels, dimensions }) => {
+export const BottomAxis = ({ data, xScale, width, xGroups, xLabels, dimensions, activeIndex }) => {
   const xAxisRef = useRef(null)
   const xAxisGroupRef = useRef(null)
 
@@ -80,27 +80,31 @@ export const BottomAxis = ({ data, xScale, width, xGroups, xLabels, dimensions }
       .selectAll('text')
       .attr('x', x)
       .attr('y', y)
-      .style('font-size', '.95rem')
-  }, [xScale, width])
+      .style('font-size', '1rem')
+      .attr('font-weight', (d, i) => {
+        return i === activeIndex ? 'bold' : 'normal'
+      })
+  }, [xScale, width, activeIndex])
 
   useLayoutEffect(() => {
     if (xGroups) {
       const xAxisLabels = d3.select(xAxisRef.current)
       const xAxisNode = xAxisLabels.node().getBBox()
+      console.log('xAxisNode: ', xAxisNode)
       const groupLines = d3.select(xAxisGroupRef.current)
       const groupItemWidth = (dimensions.width / data.length)
       const padding = (xScale.bandwidth() * 0.2)
-      let xPos = dimensions.margin.left
+      let xPos = 0
 
       Object.keys(xGroups).sort().map((name, index) => {
         const groupLineWidth = xPos + (groupItemWidth * xGroups[name].length) - (padding + dimensions.margin.right)
 
         groupLines.append('line')
           .attr('x1', xPos + padding)
-          .attr('x2', groupLineWidth - 75)
+          .attr('x2', groupLineWidth - dimensions.margin.right)
           .attr('stroke', '#a7bcc7')
           .attr('stroke-width', 1)
-          .attr('transform', 'translate(0, 25)')
+          .attr('transform', `translate(0, ${ xAxisNode.height + 2 })`)
 
         groupLines.append('text')
           .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))
@@ -119,5 +123,26 @@ export const BottomAxis = ({ data, xScale, width, xGroups, xLabels, dimensions }
       <g className='x-axis' ref={xAxisRef} />
       <g className='x-axis-groups' ref={xAxisGroupRef} />
     </>
+  )
+}
+
+export const CenterAxis = ({ xScale, yScale }) => {
+  const centerAxisRef = useRef(null)
+  useLayoutEffect(() => {
+    const host = d3.select(centerAxisRef.current)
+
+    const centerLine = () => d3.axisBottom(xScale)
+      .tickSize(1)
+      .tickFormat('')
+
+    host.append('g')
+      .attr('class', 'x-centerline')
+      .attr('fill', '#bdbdbd')
+      .attr('stroke-width', 1)
+      .call(centerLine())
+  }, [xScale])
+
+  return (
+    <g className='x-centerline' ref={centerAxisRef} />
   )
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useState } from 'react'
+import React, { useRef, useEffect, useLayoutEffect, useState } from 'react'
 import * as d3 from 'd3'
 
 import Bar from './Bar'
@@ -12,6 +12,7 @@ const Bars = ({
   colorScale,
   chartTooltip,
   onHover,
+  handleBarHover,
   showTooltips,
   isClickable,
   horizontal,
@@ -24,64 +25,74 @@ const Bars = ({
 }) => {
   // console.log('Bars data: ', data)
   const barsRef = useRef(null)
+  const barGroupRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(selectedIndex)
   const [currentIndex, setCurrentIndex] = useState(selectedIndex)
 
+  // generate unique key
   const generateKey = pre => {
     return `${ pre }_${ new Date().getTime() }`
   }
 
-  // const handleMouseEnter = () => {
-  //   setCurrentIndex(currentIndex)
-  // }
-
-  // const handleMouseLeave = () => {
-  //   setActiveIndex(activeIndex)
-  // }
-
-  useLayoutEffect(() => {
-    const handleBarHover = (hover, index) => {
-      if (hover === true) {
-        d3.selectAll('.bars .bar').filter((d, i, nodes) => {
-          if (i === index) {
-            const selectedElement = d3.selectAll('.bars .active')
-            selectedElement.attr('class', 'bar')
-          }
-          d3.select(nodes[index])
-            .attr('selected', true)
-            .attr('class', 'bar active')
-        })
-      }
-      else {
-        d3.selectAll('.bars .bar').filter((d, i, nodes) => {
-          // console.log('hover false nodes: ', nodes)
+  // handle bar active states
+  const handleBarSelection = (hover, index) => {
+    if (hover === true) {
+      d3.selectAll('.bars .bar').filter((d, i, nodes) => {
+        if (i === index) {
           const selectedElement = d3.selectAll('.bars .active')
-          if (selectedElement) {
-            selectedElement.attr('selected', false)
-            selectedElement.attr('class', 'bar')
-          }
-          d3.select(nodes[activeIndex])
-            .attr('selected', true)
-            .attr('class', 'bar active')
-        })
-      }
+          selectedElement.attr('class', 'bar')
+        }
+        d3.select(nodes[index])
+          .attr('selected', true)
+          .attr('class', 'bar active')
+      })
     }
+    else {
+      d3.selectAll('.bars .bar').filter((d, i, nodes) => {
+        // console.log('hover false nodes: ', nodes)
+        const selectedElement = d3.selectAll('.bars .active')
+        if (selectedElement) {
+          selectedElement.attr('selected', false)
+          selectedElement.attr('class', 'bar')
+        }
+        d3.select(nodes[activeIndex])
+          .attr('selected', true)
+          .attr('class', 'bar active')
+      })
+    }
+  }
 
-    const bars = d3.select(barsRef.current).selectAll('.bar')
-    bars
-      .on('click', (d, i) => {
-        setActiveIndex(i)
-        handleBarHover(true, i)
-      })
-      .on('mouseover', (d, i) => {
-        setCurrentIndex(i)
-        handleBarHover(true, i)
-      })
-      .on('mouseout', (d, i) => {
-        setActiveIndex(activeIndex)
-        handleBarHover(false, activeIndex)
-      })
-  }, [data, activeIndex, currentIndex])
+  // event handlers
+  const handleOnClick = (d, i) => {
+    // console.log('bars handleOnclick i: ', i)
+    handleBarSelection(true, i)
+    setActiveIndex(i)
+    onHover(d, i)
+    handleBarHover(xDomain()[i])
+  }
+
+  const handleMouseEnter = (d, i) => {
+    // console.log('bars handleMouseEnter d: ', d, i)
+    handleBarSelection(true, i)
+    setCurrentIndex(i)
+    onHover(d, i)
+    handleBarHover(xDomain()[i])
+  }
+
+  const handleMouseLeave = (d, i) => {
+    // console.log('bars handleMouseLeave d: ', d, i)
+    handleBarSelection(false)
+    setActiveIndex(activeIndex)
+    setCurrentIndex(activeIndex)
+    onHover(d, i)
+    handleBarHover(xDomain()[activeIndex])
+  }
+
+  useEffect(() => {
+    if (data.length > 0) handleOnClick(data[activeIndex][0][0].data, activeIndex)
+  }, [data])
+
+  // console.log('bars data: ', data)
 
   const bars = horizontal
     ? data.map((d, i) => (
@@ -100,18 +111,21 @@ const Bars = ({
         { ...rest }
       />
     ))
-    : data.map((item, i) => {
+    : data.map((item, index) => {
       const domain = xDomain()
       // console.log('data.map item, i: ', item, i)
       return (
         <g
-          key={`bar__${ i }`}
-          className={`${ (i === activeIndex) ? 'bar active' : 'bar' }`}
-          transform={`translate(${ xScale(domain[i]) }, 0)`}>
+          key={`bar__${ index }`}
+          className={`${ (index === activeIndex) ? 'bar active' : 'bar' }`}
+          transform={`translate(${ xScale(domain[index]) }, 0)`}
+          tabIndex={index}
+          ref={barGroupRef}>
           { item.map((d, i) => (
             // console.log('item.map d, i: ', d)
             <Bar
               key={`sbar_bar__${ generateKey(i) }`}
+              pointerEvents="all"
               data={(d.index === 0) ? d[0].data : undefined}
               selectedData={data[currentIndex][0][0].data}
               barIndexes={[activeIndex, currentIndex]}
@@ -122,9 +136,13 @@ const Bars = ({
               fill={colorScale(i)}
               chartTooltip={chartTooltip}
               onHover={onHover}
+              onMouseEnter={() => handleMouseEnter(data[index][0][0].data, index)}
+              onMouseLeave={() => handleMouseLeave(data[activeIndex][0][0].data, activeIndex)}
+              onClick={() => handleOnClick(data[activeIndex][0][0].data, index)}
               showTooltips={showTooltips}
               isClickable={isClickable}
               legendHeaders={legendHeaders}
+              tabIndex={i}
               { ...rest }
             />
           ))

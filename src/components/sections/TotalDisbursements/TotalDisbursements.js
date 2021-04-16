@@ -228,7 +228,7 @@ const TotalDisbursements = props => {
         const year = dateArr[0]
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
         const month = date.toLocaleString('en-US', { month: 'short' })
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], `${ month } ${ year }`]
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), `${ month } ${ year }`]
         return headerArr
       }
     }
@@ -247,7 +247,7 @@ const TotalDisbursements = props => {
 
       xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)
       xLabels = (x, i) => {
-        console.log('xLabels x, i: ', x, i)
+        // console.log('xLabels x, i: ', x, i)
         return x.map(v => '\'' + v.toString().substr(2))
       }
 

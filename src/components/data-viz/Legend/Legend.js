@@ -86,7 +86,7 @@ const Legend = ({
 
   return (
     <TableContainer>
-      <Table aria-label="Chart legend table">
+      <Table size="small" aria-label="Chart legend table">
         {legendHeaders && legendHeaders.length > 0 &&
         <TableHead>
           <TableRow>
@@ -101,11 +101,11 @@ const Legend = ({
               <StyledTableRow
                 key={`lstr__${ i }`}
                 style={{ backgroundColor: (activeKey === row[xAxis]) ? theme.palette.grey[200] : '' }}>
-                <StyledTableBodyCell style={{ verticalAlign: 'top', width: 25 }}>
+                <StyledTableBodyCell style={{ verticalAlign: 'middle', width: 25 }}>
                   <Rect
                     width={20}
                     height={20}
-                    styles={{ fill: (legendType === 'circle') ? colorScale(i + 2) : colorScale(i), marginTop: 5 }}
+                    styles={{ fill: (legendType === 'circle') ? colorScale(i + 2) : colorScale(i), marginTop: 0 }}
                   />
                 </StyledTableBodyCell>
                 <StyledTableBodyCell>
@@ -117,7 +117,7 @@ const Legend = ({
                   </GlossaryTerm>
                 </StyledTableBodyCell>
                 <StyledTableBodyCell align="right">
-                  {legendFormat(row[rowTotal])}
+                  {row[rowTotal] === '-' ? row[rowTotal] : legendFormat(row[rowTotal])}
                 </StyledTableBodyCell>
               </StyledTableRow>
             )

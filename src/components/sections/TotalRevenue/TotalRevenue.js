@@ -10,6 +10,7 @@ import {
 import { useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+import StackedBarChart2 from '../../data-viz/StackedBarChart/StackedBarChart2'
 import SectionHeader from '../../sections/SectionHeader'
 import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link/'
@@ -266,7 +267,7 @@ const TotalRevenue = props => {
         const year = dateArr[0]
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
         const month = date.toLocaleString('en-US', { month: 'short' })
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], `${ month } ${ year }`]
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), `${ month } ${ year }`]
         return headerArr
       }
     }
@@ -333,7 +334,7 @@ const TotalRevenue = props => {
 
       legendHeaders = (headers, row) => {
         const headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('09') && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], headerLabel]
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), headerLabel]
         return headerArr
       }
     }
@@ -355,7 +356,7 @@ const TotalRevenue = props => {
             maxCalendarYear={maxCalendarYear} />
         </Grid>
         <Grid item xs={12} md={7}>
-          <StackedBarChart
+          <StackedBarChart2
             key={`trsbc__${ monthly }${ period }${ breakoutBy }`}
             data={chartData}
             legendFormat={v => utils.formatToDollarInt(v)}
