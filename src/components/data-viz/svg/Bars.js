@@ -120,9 +120,12 @@ const Bars = ({
           className={`${ (index === activeIndex) ? 'bar active' : 'bar' }`}
           transform={`translate(${ xScale(domain[index]) }, 0)`}
           tabIndex={index}
-          ref={barGroupRef}>
+          ref={barGroupRef}
+          pointerEvents="none"
+          onMouseEnter={() => handleMouseEnter(data[index][0][0].data, index)}
+          onMouseLeave={() => handleMouseLeave(data[activeIndex][0][0].data, activeIndex)}
+          onClick={() => handleOnClick(data[activeIndex][0][0].data, index)}>
           { item.map((d, i) => (
-            // console.log('item.map d, i: ', d)
             <Bar
               key={`sbar_bar__${ generateKey(i) }`}
               pointerEvents="all"
@@ -136,9 +139,9 @@ const Bars = ({
               fill={colorScale(i)}
               chartTooltip={chartTooltip}
               onHover={onHover}
-              onMouseEnter={() => handleMouseEnter(data[index][0][0].data, index)}
-              onMouseLeave={() => handleMouseLeave(data[activeIndex][0][0].data, activeIndex)}
-              onClick={() => handleOnClick(data[activeIndex][0][0].data, index)}
+              // onMouseEnter={e => handleMouseEnter(e, data[index][0][0].data, index)}
+              // onMouseLeave={e => handleMouseLeave(e, data[activeIndex][0][0].data, activeIndex)}
+              // onClick={() => handleOnClick(data[activeIndex][0][0].data, index)}
               showTooltips={showTooltips}
               isClickable={isClickable}
               legendHeaders={legendHeaders}
