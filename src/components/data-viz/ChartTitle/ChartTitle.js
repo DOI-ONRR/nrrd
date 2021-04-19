@@ -34,7 +34,7 @@ const CompactContainer = withStyles((theme, additionalStyles) =>
 )(Box)
 
 /**
- * This is to display and format a title for a chart
+ * This is to display and format a title for a chart.
  */
 const ChartTitle = props => {
   const theme = useTheme()

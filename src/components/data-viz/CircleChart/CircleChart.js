@@ -9,6 +9,11 @@ import { Legend } from '../Legend'
 import Circles from '../svg/Circles'
 import CircleLabel from '../svg/CircleLabel'
 
+/**
+ * Circle charts provide  a way to visualize hierarchically structured data.
+ *
+ * An example exists in the “Compare revenue” section in [Explore data](https://revenuedata.doi.gov/explore?dataType=Revenue&location=NF&mapLevel=State&offshoreRegions=false&period=Calendar%20Year&year=2019#top-nationwide-locations).
+ */
 const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabels = true, showTooltips = true, ...options }) => {
   // console.log('CircleChart: ', options)
   const [activeNode, setActiveNode] = useState({
