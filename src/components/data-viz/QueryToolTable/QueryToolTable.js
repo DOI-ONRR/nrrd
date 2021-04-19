@@ -32,6 +32,8 @@ import withQueryManager from '../../withQueryManager'
 import { QueryToolTableProvider, QueryToolTableContext } from '../../../stores'
 
 import Skeleton from '@material-ui/lab/Skeleton'
+import Backdrop from '@material-ui/core/Backdrop'
+import LinearProgress from '@material-ui/core/LinearProgress'
 import CustomTable from './Custom/CustomTable'
 import CustomTableHead from './Custom/CustomTableHead'
 import CustomTableCell from './Custom/CustomTableCell'
@@ -44,6 +46,7 @@ import TotalProvider from './Custom/TotalProvider'
 import CustomGroupCellContent from './Custom/CustomGroupCellContent'
 
 import {
+  withStyles,
   makeStyles,
   Box,
   Grid
@@ -166,21 +169,39 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
 
+  const BorderLinearProgress = withStyles((theme) => ({
+    root: {
+      height: 10,
+      width: '-webkit-fill-available'
+    },
+    bar: {
+      backgroundColor: theme.palette.blue[200],
+    },
+  }))(LinearProgress);
+
   return (
     <Box className={classes.root}>
+      <Box zIndex="tooltip" position="absolute">
+        <Backdrop open={loading} />
+      </Box>
+      
       <Grid container spacing={2}>
-        {loading &&
-          <Grid item xs={12}>
-            <Skeleton variant="rect" width={'100%'} height={_tableHeight} />
-          </Grid>
-        }
-        {(tableData && dataTableConfig) &&
-          <Grid item xs={12}>
-            <QueryToolTableProvider>
-              <DataTableBase data={tableData} config={dataTableConfig} />
-            </QueryToolTableProvider>
-          </Grid>
-        }
+        <Grid item xs={12}>
+          <QueryToolTableProvider>
+            <Box position="relative" height={_tableHeight} width={'-webkit-fill-available'} >
+              <Box position="absolute" top={0}>
+                {(tableData && dataTableConfig) &&
+                  <DataTableBase data={tableData} config={dataTableConfig} />
+                }
+              </Box>
+              {loading &&
+                <Box zIndex="snackbar" position="absolute" top={0} width={'-webkit-fill-available'}>
+                  <BorderLinearProgress />
+                </Box>
+              }
+            </Box>
+          </QueryToolTableProvider>
+        </Grid>
       </Grid>
     </Box>
   )
@@ -588,11 +609,9 @@ const DataTableBase = ({ data, config }) => {
             </TableGrid>
           </Grid>
         </Grid>
-        : <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Skeleton variant="rect" width={'100%'} height={config.tableHeight} />
-          </Grid>
-        </Grid>
+        : <Box zIndex="modal">
+          <Skeleton variant="rect" width={'100%'} height={config.tableHeight} animation={false}/>
+        </Box>
       }
     </React.Fragment>
   )
