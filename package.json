@@ -75,7 +75,7 @@
     "react-live": "^2.2.3",
     "react-redux": "^7.2.0",
     "react-scroll": "^1.7.16",
-    "react-stickynode": "^2.1.1",
+    "react-stickynode": "^3.0.5",
     "react-swipeable-views": "^0.13.9",
     "react-window": "^1.8.5",
     "regexpu-core": "^4.7.0",
@@ -129,7 +129,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean",
-    "build": "gatsby build --prefix-paths",
+    "build": "NODE_OPTIONS=--max-old-space-size=4096 gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "format": "eslint --fix 'src/**'",
     "start": "npm run develop",

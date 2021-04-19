@@ -1,6 +1,7 @@
  
 
 
+
 cf target -o doi-onrr -s dev  # unnecessary login will prompt you for org ans space
 # Login
 cf login -a api.fr.cloud.gov --sso
@@ -31,6 +32,7 @@ cf env hasura-$DB_ENV # to see the password for our Hasura instance!
 # 1) dev
 # 2) sandbox
 # 3) prod
+
 
 
 
@@ -134,3 +136,5 @@ dbname=$(cf curl /v2/apps/$myapp_guid/env | jq -r '.system_env_json.VCAP_SERVICE
 psql postgres://$creds@localhost:$DB_PORT/$dbname
 
 # do repairs here or restore see above
+
+

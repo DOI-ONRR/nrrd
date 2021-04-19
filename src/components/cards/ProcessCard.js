@@ -42,10 +42,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 /**
- * This component is allows you to specify a step in a process
- *
+ * This component allows you to specify a step in a process.
+ * An example exists in both the “Offshore” and “Onshore” tabs in [How revenue
+ * works](https://revenuedata.doi.gov/how-revenue-works/offshore-oil-gas).
  */
-const ProcessCard = ({ children, step, name, defaultExpanded }) => {
+const ProcessCard = ({ children, step, name, defaultExpanded, padding, contentIndent, centerTitle }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
@@ -58,16 +59,16 @@ const ProcessCard = ({ children, step, name, defaultExpanded }) => {
   }
 
   return (
-    <Box mb={1}>
-      <Card variant='outlined'>
-        <Box p={3} pt={0}>
+    <Box mb={0} height='100%'>
+      <Card variant='outlined' style={{ height: 'inherit' }}>
+        <Box p={padding} pt={0}>
           <Grid container alignItems='center'>
-            <Grid item xs={10}>
+            <Grid item xs={mobile ? 10 : 12} style={(centerTitle) ? { textAlign: 'center' } : { textAlign: 'left' }}>
               {step &&
                 <Typography variant='h2' className={classes.step}>{step}</Typography>
               }
               {name &&
-                <Typography variant='h2' className={classes.name}>{name}</Typography>
+                <Typography variant='h2' className={classes.name + ' not_toc'}>{name}</Typography>
               }
             </Grid>
             {mobile &&
@@ -88,7 +89,7 @@ const ProcessCard = ({ children, step, name, defaultExpanded }) => {
             }
           </Grid>
           <Collapse in={mobile ? expanded : true} timeout="auto" unmountOnExit>
-            <Box pl={5}>
+            <Box pl={contentIndent}>
               { children }
             </Box>
           </Collapse>
@@ -110,10 +111,18 @@ ProcessCard.propTypes = {
   ]),
   /** In mobile the card collapses and this allows it to be expanded on initial render */
   defaultExpanded: PropTypes.bool,
+  /** The space around the outside of the process card */
+  padding: PropTypes.bool,
+  /** The space arounf the outside of the content */
+  contentIndent: PropTypes.bool,
+  /** Specify if title should be centered */
+  centerTitle: PropTypes.bool,
 }
 
 ProcessCard.defaultProps = {
   defaultExpanded: false,
+  padding: 3,
+  contentIndent: 5
 }
 ProcessCard.Preview = {
   group: 'Cards',

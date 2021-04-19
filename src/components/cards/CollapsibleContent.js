@@ -23,10 +23,8 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
 }))
-
 /**
- * This component allows to show and hide content.
- *
+ * This component allows the user to show and hide content.
  */
 const CollapsibleContent = ({ show, children }) => {
   const theme = useTheme()
