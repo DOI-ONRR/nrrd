@@ -20,22 +20,21 @@ tags:
 
 # How Revenue Works
 
-In the U.S., land and the resources beneath it can be owned by private individuals and corporations or by federal, state, local, and Native American governments. This makes the U.S. different from nearly every other country; in many places oil, gas, coal, and other minerals simply belong to the government, but in the U.S. there is widespread private ownership of these resources.
-
-Learn what [governs natural resource extraction](#what-laws-regulations-govern-natural-resource-extraction-in-the-us) in the U.S., how [resources result in federal revenue](#how-do-natural-resources-result-in-federal-revenue), and what [processes ensure accuracy and accountability](#how-does-the-us-ensure-accuracy-accountability-in-natural-resource-revenue) in this industry.
+Private individuals and corporations as well as the federal, state and local government can own the land and the resources beneath it. This makes the U.S. different from nearly every other country. In many places, oil, gas, coal, and other minerals belong to the government. But, in the U.S. there is widespread private ownership of these resources.
+<br />
+Learn about the process of natural resource extraction in the U.S. from land ownership to disbursement of revenue and what processes ensure accuracy.
 
 </Box>
 </Grid>
 <Grid item xs={12} sm={4} >
 <Box p={3} border={4} borderTop={0} borderBottom={0} borderColor='white'>
-{/* <Grid item xs={12}> */}
 
 **Natural resource extraction in the U.S. is governed by laws and regulations tied primarily to land ownership and the commodities being extracted.**
 
 <Box align='center'>
-  <HowItWorksRibbonGraphicImg style={{height:'100px', maxWidth: '100%'}} alignSelf='center'></HowItWorksRibbonGraphicImg>
+  <HowItWorksRibbonGraphicImg style={{height:'100px', maxWidth: '100%', alignSelf: 'center'}} ></HowItWorksRibbonGraphicImg>
 </Box>
-{/* </Grid> */}
+
 </Box>
 </Grid>
 </Grid>
@@ -47,9 +46,241 @@ Learn what [governs natural resource extraction](#what-laws-regulations-govern-n
 <Container maxWidth="lg" component="section">
 <Grid container>
 <Grid item xs={12} sm={3}>
-<PageToc scrollOffset={190}></PageToc>
+<PageToc scrollOffset={190} excludeClassNames={['not_toc']}></PageToc>
 </Grid>
 <Grid item xs={12} sm={9}>
+
+<h2 alt='Site data'>What data is on this site?</h2>
+
+---
+<Grid container
+  direction="row"
+  justify="center"
+  alignItems="stretch"
+  spacing={0}>
+  <Grid item xs={12} sm={3}>
+    <ProcessCard name={'Ownership'} padding={0} contentIndent={0} centerTitle={true} >
+      <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
+        <TabtasticTab label="Description">
+          <Box fontSize={16}>
+            The data on this website is for energy and minerals on federal lands, Native American lands, and the <GlossaryTerm>Outer Continental Shelf</GlossaryTerm>. Private individuals, corporations and state and local governments can also buy and own land. Whomever owns the land also owns the oil, gas, coal, and other minerals found below the surface.
+          </Box>
+        </TabtasticTab>
+        <TabtasticTab label="Types">
+          <Box fontSize={16}>
+            Types of land ownership:
+            <ul>
+              <li>Private</li>
+              <li>Federal</li>
+              <li>State & local</li>
+              <li>Native American</li>
+            </ul>
+          </Box>
+        </TabtasticTab>
+      </Tabtastic>
+    </ProcessCard>
+  </Grid>
+  <Grid item xs={12} sm={1}>
+    <Hidden xsDown>
+      <Arrow length={80} />
+    </Hidden>
+  </Grid>
+  <Grid item xs={12} sm={3}>
+    <ProcessCard name={'Leasing'} padding={0} contentIndent={0} centerTitle={true}>
+      <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
+        <TabtasticTab label="Description">
+          <Box fontSize={16}>
+            The Bureau of Ocean Energy Management (BOEM) manages offshore leasing and the Bureau of Land Management (BLM) manages onshore leasing. BOEM and BLM award leases through a competitive bidding process. Also, the Bureau of Indian Affairs (BIA), in consultation with BLM, manages leases on Native American lands.
+          </Box>
+        </TabtasticTab>
+        <TabtasticTab label="Types">
+          <Box fontSize={16}>
+            Types of leases:<br />
+            BOEM (federal offshore)
+            <ul>
+              <li>Oil & gas</li>
+              <li>Wind</li>
+            </ul>
+            BLM (Federal Onshore)
+            <ul>
+              <li>Coal</li>
+              <li>Oil & gas</li>
+              <li>Non-energy minerals</li>
+              <li>Renewable energy</li>
+            </ul>
+            BIA (Native American onshore)
+            <ul>
+              <li>Coal</li>
+              <li>Oil & gas</li>
+              <li>Non-energy minerals</li>
+            </ul>
+          </Box>
+        </TabtasticTab>
+      </Tabtastic>
+    </ProcessCard>
+  </Grid>
+  <Grid item xs={12} sm={1}>
+    <Hidden xsDown>
+      <Arrow length={80} />
+    </Hidden>
+  </Grid>
+  <Grid item xs={12} sm={4}>
+    <ProcessCard name={'Production'} padding={0} contentIndent={0} centerTitle={true}>
+      <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
+        <TabtasticTab label="Description">
+          <Box fontSize={16}>
+            Once a piece of leased land starts producing a commodity, like oil, the producer generally sells it. Though, the producer may also use it on the lease or disposes of it. The proceeds of selling the commodity are subject to royalties, which result in revenue to the government.
+            <br />
+            <Link href="/query-data/?dataType=Production" linkType="FilterTable">Query production data</Link>
+          </Box>
+        </TabtasticTab>
+        <TabtasticTab label="Types">
+          <Box fontSize={16}>
+            Types of commodities:
+            <ul>
+              <li>Oil & gas</li>
+              <li>Coal</li>
+              <li>Renewable energy</li>
+              <li>Non-energy minerals</li>
+            </ul>
+          </Box>
+        </TabtasticTab>
+        <TabtasticTab label="Data usage">
+          <Box fontSize={16}>
+            Production data can be used to:
+            <ul>
+              <li>Analyze production volumes for coal, gas, and oil.</li>
+              <li>Analyze volumes by state, county, and offshore region.</li>
+              <li>Analyze national Native American production volumes.</li>
+              <li>Calculate total volumes for all commodities extracted on federal or Native American land.</li>
+              <li>Find data by FIPS code.</li>
+            </ul>
+          </Box>
+        </TabtasticTab>
+      </Tabtastic>
+    </ProcessCard>
+  </Grid>
+
+  <Grid item xs={12} sm={4}>
+  </Grid>
+  <Grid item xs={12} sm={3}>
+    <Hidden xsDown>
+      <Arrow length={80} vertical={true} />
+    </Hidden>
+  </Grid>
+  <Grid item xs={12} sm={1}>
+  </Grid>
+  <Grid item xs={12} sm={4}>
+    <Hidden xsDown>
+      <Arrow length={80} vertical={true} />
+    </Hidden>
+  </Grid>
+
+  <Grid item xs={12} sm={5}>
+  </Grid>
+  <Grid item xs={12} sm={6}>
+    <ProcessCard name={'Revenue'} padding={0} contentIndent={0} centerTitle={true}>
+      <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
+        <TabtasticTab label="Description">
+          <Box fontSize={16}>
+            ONRR collects revenues for leases, sales and production and then disburses them. ONRR reports revenue data in accounting year, which is every sale that is accounted for in a given period regardless of when the sale took place. Company revenue includes revenues by production phase and commodity by company. This dataset includes revenues for U.S. federal lands and offshore areas.
+            <br />
+            <Link href='/query-data/?dataType=Revenue' linkType='FilterTable'>Query revenue data</Link>
+            <Link href='/query-data/?dataType=Federal revenue by company' linkType='FilterTable'>Query company revenue data</Link>
+          </Box>
+        </TabtasticTab>
+        <TabtasticTab label="Types">
+          <Box fontSize={16}>
+            Other Types of Revenue:
+            <ul>
+              <li><GlossaryTerm>Royalties</GlossaryTerm></li>
+              <li><GlossaryTerm>Bonus</GlossaryTerm></li>
+              <li><GlossaryTerm>Rent</GlossaryTerm></li>
+              <li>Inspection fees</li>
+              <li>Civil penalties</li>
+              <li>Other revenues</li>
+            </ul>
+          </Box>
+        </TabtasticTab>
+        <TabtasticTab label="Data usage">
+          <Box fontSize={16}>
+            Revenue data can be used to:
+            <ul>
+              <li>Analyze revenue trends for money collected by the federal government.</li>
+              <li>Analyze revenue by type.</li>
+              <li>Calculate amount of money collected by federal government from energy and mineral extractions.</li>
+              <li>Calculate revenues by commodity.</li>
+              <li>Analyze revenue by state, county, or offshore region.</li>
+              <li>Analyze national Native American revenues.</li>
+              <li>Analyze monthly revenue by accounting year.</li>
+              <li>Analyze revenue by location for Federal onshore and Federal Offshore.</li>
+            </ul>
+            Company revenue data can be used to:
+            <ul>
+              <li>Calculate amount of money paid by fiscal year to the federal government from energy and mineral extracting companies.</li>
+              <li>Analyze revenue type (bonuses, rents, royalties, etc.) by company.</li>
+            </ul>
+          </Box>
+        </TabtasticTab>
+      </Tabtastic>
+    </ProcessCard>
+  </Grid>
+  <Grid item xs={12} sm={1}>
+  </Grid>
+
+  <Grid item xs={12} sm={5}>
+  </Grid>
+  <Grid item xs={12} sm={6}>
+    <Hidden xsDown>
+      <Arrow length={80} vertical={true} />
+    </Hidden>
+  </Grid>
+  <Grid item xs={12} sm={1}>
+  </Grid>
+
+  <Grid item xs={12} sm={5}>
+  </Grid>
+  <Grid item xs={12} sm={6}>
+    <ProcessCard name={'Disbursements'} padding={0} contentIndent={0} centerTitle={true}>
+      <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
+        <TabtasticTab label="Description">
+          <Box fontSize={16}>
+            ONRR distributes the collected revenue to federal agencies, funds, and local governments according to federal laws and regulations.
+            <br />
+            <Link href='/query-data/?dataType=Disbursements' linkType='FilterTable'>Query disbursements data</Link>
+          </Box>
+        </TabtasticTab>
+        <TabtasticTab label="Types">
+          <Box fontSize={16}>
+            Types of Disbursement:
+            <ul>
+              <li><GlossaryTerm>Land and Water Conservation Fund</GlossaryTerm></li>
+              <li>Historic Preservation Fund</li>
+              <li>U.S. Treasury</li>
+              <li>State and local governments</li>
+              <li>Reclamation Fund</li>
+              <li>Native American tribes and individuals</li>
+              <li>Other funds</li>
+            </ul>
+          </Box>
+        </TabtasticTab>
+        <TabtasticTab label="Data usage">
+          <Box fontSize={16}>
+            Disbursements data can be used to:
+            <ul>
+              <li>Calculate how much money the federal government disbursed to various funds, agencies, local governments and Native Americans.</li>
+              <li>Analyze how revenue generated is being used.</li>
+              <li>Calculate what states are receiving from <GlossaryTerm>GOMESA</GlossaryTerm>.</li>
+              <li>Calculate amount disbursed to the <GlossaryTerm>Land and Water Conservation Fund</GlossaryTerm>.</li>
+            </ul>
+          </Box>
+        </TabtasticTab>
+      </Tabtastic>
+    </ProcessCard>
+  </Grid>
+  <Grid item xs={12} sm={1}>
+  </Grid>
+</Grid>
 
 <h2 alt='Land ownership'>Who owns natural resources in the U.S.?</h2>
 
