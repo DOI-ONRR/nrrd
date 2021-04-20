@@ -22,7 +22,8 @@ import {
   RECIPIENT,
   COMPANY_NAME,
   PERIOD_MONTHLY,
-  MONTH_LONG
+  MONTH_LONG,
+  STATE_OFFSHORE_NAME
 } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DownloadContext } from '../../../stores/download-store'
@@ -423,6 +424,10 @@ const DataTableBase = ({ data, config }) => {
       setColumnNames(colNames)
       setDefaultColumnWidths(colNames.map((column, index) => {
         let width = (parseInt(column.name) > 100) ? 200 : 250
+        console.log(column.name, column, STATE_OFFSHORE_NAME)
+        if (column.name === STATE_OFFSHORE_NAME) {
+          width = 325
+        }
         if (column.name === RECIPIENT) {
           width = 350
         }
