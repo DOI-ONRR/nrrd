@@ -226,7 +226,7 @@ const TotalRevenue = props => {
     yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
     break
   default:
-    yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal Offshore', 'Federal Onshore']
+    yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
     break
   }
 

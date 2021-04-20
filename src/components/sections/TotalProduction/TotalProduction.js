@@ -105,7 +105,7 @@ const TotalProduction = props => {
   let xAxis = 'year'
   const yAxis = 'sum'
   const yGroupBy = 'source'
-  const yOrderBy = ['Native American', 'Federal Offshore', 'Federal Onshore']
+  const yOrderBy = ['Native American', 'Federal offshore', 'Federal onshore']
   let xLabels
   let maxFiscalYear
   let maxCalendarYear
