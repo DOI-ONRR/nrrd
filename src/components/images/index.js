@@ -14,6 +14,7 @@ import OnrrLogoSvg from '-!svg-react-loader!../../images/logos/ONRR-mark.svg'
 import NrrdLogoSvg from '-!svg-react-loader!../../images/logos/NRRD-logo.svg'
 
 import Rig404Svg from '-!svg-react-loader!../../images/svg/rig-404.svg'
+import LineWithArrowSvg from '-!svg-react-loader!../../images/svg/line-with-arrow.svg'
 
 import IconOilSvg from '-!svg-react-loader!../../images/icons/icon-oil.svg'
 import IconCoalSvg from '-!svg-react-loader!../../images/icons/icon-coal.svg'
@@ -102,6 +103,7 @@ export const OnrrLogoImg = props => <OnrrLogoSvg {...props} />
 export const NrrdLogoImg = props => <NrrdLogoSvg {...props} />
 
 export const Rig404Img = props => <Rig404Svg {...props} />
+export const LineWithArrowImg = props => <LineWithArrowSvg {...props} />
 
 export const IconOilImg = props => <IconOilSvg {...props} />
 export const IconCoalImg = props => <IconCoalSvg {...props} />

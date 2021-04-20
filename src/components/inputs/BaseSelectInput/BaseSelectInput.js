@@ -92,8 +92,7 @@ const BaseInput = withStyles(theme =>
 )(InputBase)
 
 /**
- * This is used to create a single or multi select drop down
- *
+ * This is used to create a single or multi select drop down.
  */
 const BaseSelectInput = ({
   data, onChange, selectType, defaultSelected, selected, defaultSelectAll, helperText, label, variant, showClearSelected, theme, disabled, ...props

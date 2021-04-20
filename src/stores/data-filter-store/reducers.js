@@ -175,8 +175,10 @@ const initialState = {
     [MONTHLY]: 'Yearly',
     [BREAKOUT_BY]: 'source',
     [COMMODITY]: 'Oil (bbl)',
+    [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_FISCAL_YEAR),
+
     dataTypesCache: {
-      [REVENUE]: {
+	  [REVENUE]: {
         [DATA_TYPE]: REVENUE,
         [PERIOD]: PERIOD_FISCAL_YEAR,
         [FISCAL_YEAR]: getLatestYear(REVENUE, PERIOD_FISCAL_YEAR).toString(),
@@ -186,8 +188,10 @@ const initialState = {
         [YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR),
         [MONTHLY]: 'Yearly',
         [BREAKOUT_BY]: 'source',
-      },
-      [PRODUCTION]: {
+	      [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_FISCAL_YEAR),
+
+	  },
+	  [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
         [PERIOD]: PERIOD_FISCAL_YEAR,
         [FISCAL_YEAR]: getLatestYear(PRODUCTION, PERIOD_FISCAL_YEAR).toString(),
@@ -197,8 +201,9 @@ const initialState = {
         [YEAR]: getLatestYear(PRODUCTION, PERIOD_CALENDAR_YEAR),
         [MONTHLY]: 'Yearly',
         [COMMODITY]: 'Oil (bbl)',
-      },
-      [DISBURSEMENT]: {
+	      [PERIOD_ALL_YEARS]: getAllYears(PRODUCTION, PERIOD_FISCAL_YEAR),
+	  },
+	  [DISBURSEMENT]: {
         [DATA_TYPE]: DISBURSEMENT,
         [GROUP_BY]: RECIPIENT,
         [PERIOD]: PERIOD_FISCAL_YEAR,
@@ -208,7 +213,8 @@ const initialState = {
         [YEAR]: getLatestYear(DISBURSEMENT, PERIOD_FISCAL_YEAR),
         [MONTHLY]: 'Yearly',
         [BREAKOUT_BY]: 'source',
-      }
+	      [PERIOD_ALL_YEARS]: getAllYears(DISBURSEMENT, PERIOD_FISCAL_YEAR),
+	  }
     }
   }
 }
