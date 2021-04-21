@@ -127,10 +127,11 @@ const AppToolbar = props => {
               <Link href='/explore' linkType='Header' style={{ color: 'white' }}>Explore data</Link>
               <Link href='/query-data' linkType='Header' style={{ color: 'white' }}>Query data</Link>
               <Link href='/downloads' linkType='Header' style={{ color: 'white' }}>Download data</Link>
+              <Link href='/glossary' linkType='Header' style={{ color: 'white' }}>Glossary</Link>
               <Link href='/how-revenue-works' linkType='Header' style={{ color: 'white' }}>How revenue works</Link>
             </div>
           </Hidden>
-          <Hidden lgUp smDown>
+          {/* <Hidden lgUp smDown>
             <div className={classes.mainMenuWrap}>
               <DataMenu label="Data">
                 <Link href='/explore' linkType='Header' style={{ marginLeft: 0 }}>Explore data</Link>
@@ -139,17 +140,18 @@ const AppToolbar = props => {
               </DataMenu>
               <Link href='/how-revenue-works' linkType='Header' style={{ color: 'white' }}>How revenue works</Link>
             </div>
-          </Hidden>
-          <Hidden smDown>
+          </Hidden> */}
+          <Hidden mdDown>
             <div>
               <SearchSite />
             </div>
           </Hidden>
-          <Hidden mdUp>
+          <Hidden lgUp smDown>
             <MobileMenu>
               <Link href='/explore' linkType='Header'>Explore data</Link>
               <Link href='/query-data' linkType='Header'>Query data</Link>
               <Link href='/downloads' linkType='Header'>Download data</Link>
+              <Link href='/glossary' linkType='Header' style={{ color: 'white' }}>Glossary</Link>
               <hr style={{ borderColor: 'rgba(255, 255, 255, .25)', borderWidth: 0.5, maxWidth: '90%' }} />
               <Link href='/how-revenue-works' linkType='Header'>How revenue works</Link>
               <Link href='/about' linkType='Header'>About</Link>
