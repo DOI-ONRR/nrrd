@@ -23,13 +23,23 @@ const Bar = ({
   height,
   fill,
   chartTooltip,
-  onHover,
+  onHover = d => d,
   showTooltips,
   isClickable,
   ...rest
 }) => {
   // console.log('bar data: ', data)
   const [isActive, setIsActive] = useState(undefined)
+
+  const handleMouseEnter = () => {
+    setIsActive(true)
+    onHover(data)
+  }
+
+  const handleMouseLeave = () => {
+    setIsActive(false)
+    onHover(undefined)
+  }
 
   return (
     <WithTooltip
@@ -45,8 +55,9 @@ const Bar = ({
         y={y}
         height={height}
         width={width}
-        // fillOpacity={fillOpacity}
         fill={fill}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         { ...rest }
       />
     </WithTooltip>

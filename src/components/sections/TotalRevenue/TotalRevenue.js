@@ -190,7 +190,7 @@ const TotalRevenue = props => {
   const { loading, error, data } = useQuery(QUERY)
   console.debug('data: ', data)
   const handleBarHover = d => {
-    revenueComparison.current.setSelectedItem(d)
+    revenueComparison.current.setSelectedItem(d[2])
   }
 
   if (loading) {
@@ -254,15 +254,7 @@ const TotalRevenue = props => {
     maxFiscalYear = periodAllYears[periodAllYears.length - 1]
     maxCalendarYear = periodAllYears[periodAllYears.length - 1]
 
-    /* maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
-	 return (prev.year > current.year) ? prev.year : current.year
-       *     })
-       *     maxCalendarYear = data.total_monthly_calendar_revenue.reduce((prev, current) => {
-	 return (prev.year > current.year) ? prev.year : current.year
-       *     })
-       */
     // Month range
-
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
 	  if (period === DFC.PERIOD_FISCAL_YEAR) {
 	      currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
@@ -443,7 +435,7 @@ const TotalRevenue = props => {
             legendHeaders={legendHeaders}
             primaryColor={theme.palette.explore[700]}
             secondaryColor={theme.palette.explore[100]}
-            handleBarHover={handleBarHover}
+            handleBarHover={d => handleBarHover(d)}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
 		        <Link href='/downloads/revenue/'>Source file</Link>

@@ -13,9 +13,10 @@ const Bars = ({
   chartTooltip,
   onHover,
   handleBarHover,
+  handleBarData,
   showTooltips,
   isClickable,
-  horizontal,
+  horizontal = false,
   maxBarSize,
   barOffsetX,
   xDomain,
@@ -64,33 +65,34 @@ const Bars = ({
 
   // event handlers
   const handleOnClick = (d, i) => {
-    // console.log('bars handleOnclick i: ', i)
+    console.log('bars handleOnclick i: ', i)
+    const dArr = [d, i, xDomain()[i]]
     handleBarSelection(true, i)
     setActiveIndex(i)
-    onHover(d, i)
-    handleBarHover(xDomain()[i])
+    handleBarHover(dArr)
+    handleBarData(dArr)
   }
 
   const handleMouseEnter = (d, i) => {
-    // console.log('bars handleMouseEnter d: ', d, i)
+    const dArr = [d, i, xDomain()[i]]
     handleBarSelection(true, i)
     setCurrentIndex(i)
-    onHover(d, i)
-    handleBarHover(xDomain()[i])
+    handleBarHover(dArr)
+    handleBarData(dArr)
   }
 
   const handleMouseLeave = (d, i) => {
-    // console.log('bars handleMouseLeave d: ', d, i)
+    const dArr = [d, i, xDomain()[i]]
     handleBarSelection(false)
     setActiveIndex(activeIndex)
     setCurrentIndex(activeIndex)
-    onHover(d, i)
-    handleBarHover(xDomain()[activeIndex])
+    handleBarHover(dArr)
+    handleBarData(dArr)
   }
 
   useEffect(() => {
     if (data && data.length > 0 && !horizontal) handleOnClick(data[activeIndex][0][0].data, activeIndex)
-  }, [data])
+  }, [data, activeIndex])
 
   // console.log('bars data: ', data)
 
@@ -108,6 +110,7 @@ const Bars = ({
         onHover={onHover}
         showTooltips={showTooltips}
         isClickable={isClickable}
+        onHover={onHover}
         { ...rest }
       />
     ))
@@ -138,10 +141,6 @@ const Bars = ({
               width={maxBarSize()}
               fill={colorScale(i)}
               chartTooltip={chartTooltip}
-              onHover={onHover}
-              // onMouseEnter={e => handleMouseEnter(e, data[index][0][0].data, index)}
-              // onMouseLeave={e => handleMouseLeave(e, data[activeIndex][0][0].data, activeIndex)}
-              // onClick={() => handleOnClick(data[activeIndex][0][0].data, index)}
               showTooltips={showTooltips}
               isClickable={isClickable}
               legendHeaders={legendHeaders}

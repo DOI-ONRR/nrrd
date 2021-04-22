@@ -257,8 +257,6 @@ const HorizontalStackedBarChart = ({
         <Translate {...body.pos}>
           <Bars
             data={dataset.barData}
-            // height={dimensions.ctrHeight}
-            // width={dimensions.ctrWidth}
             xScale={xScale}
             yScale={yScale}
             xAxis={xAxis}
@@ -269,6 +267,7 @@ const HorizontalStackedBarChart = ({
             showTooltips={showTooltips}
             chartTooltip={chartTooltip}
             horizontal={horizontal}
+            xDomain={xDomain}
           />
         </Translate>
       </svg>

@@ -60,10 +60,6 @@ const StackedBarChart2 = ({ data, ...options }) => {
     return d
   }
 
-  const handleBarHover = options.handleBarHover || function (d) {
-    return d
-  }
-
   const showTooltips = options.showToolips || false
 
   const extentPercent = options.extentPercent || 0.05
@@ -358,26 +354,22 @@ const StackedBarChart2 = ({ data, ...options }) => {
   const [legendHeader, setLegendHeader] = useState([yGroupBy || yAxis, xDomain()[10]])
 
   // handle onHover
-  const onHover = (d, index) => {
-    console.log('onHover: ', d, index)
-    if (d && d.key) {
-      setActiveNode({ ...activeNode, key: d.key })
-    }
-    else {
-      setActiveNode({ ...activeNode, key: '' })
-    }
+  const handleBarHover = options.handleBarHover || function (d) {
+    return d
+  }
 
+  const handleBarData = d => {
     if (d) {
       const x = yOrderBy.map((key, i) => {
         const nObj = {}
         nObj[xAxis] = key
-        nObj.total = d[key] || '-'
+        nObj.total = d[0][key] || '-'
         return nObj
       })
 
       setDataset({ ...dataset, legendData: x })
-      setLegendHeader([yGroupBy || yAxis, xDomain()[index]])
-      setActiveNode({ ...activeNode, activeBarIndex: index })
+      setLegendHeader([yGroupBy || yAxis, xDomain()[d[1]]])
+      setActiveNode({ ...activeNode, activeBarIndex: d[1] })
     }
   }
 
@@ -400,7 +392,6 @@ const StackedBarChart2 = ({ data, ...options }) => {
     setDataset({ ...dataset, barData: d, legendData: x })
   }, [data])
 
-  console.log('dataset: ', dataset)
 
   return (
     <>
@@ -425,8 +416,8 @@ const StackedBarChart2 = ({ data, ...options }) => {
             yAxis={yAxis}
             isClickable={true}
             colorScale={colorScale}
-            onHover={onHover}
             handleBarHover={handleBarHover}
+            handleBarData={handleBarData}
             showTooltips={showTooltips}
             chartTooltip={chartTooltip}
             horizontal={horizontal}

@@ -96,7 +96,7 @@ const TotalProduction = props => {
   }
 
   const handleBarHover = d => {
-    productionComparison.current.setSelectedItem(d)
+    productionComparison.current.setSelectedItem(d[2])
   }
 
   const { loading, error, data } = useQuery(TOTAL_PRODUCTION_QUERY)
@@ -255,7 +255,7 @@ const TotalProduction = props => {
                 units='bbl'
                 showLegendUnits
                 legendHeaders={legendHeaders}
-                handleBarHover={handleBarHover}
+                handleBarHover={d => handleBarHover(d)}
               />
             }
             {commodity === 'Gas (mcf)' &&
@@ -281,7 +281,7 @@ const TotalProduction = props => {
                 units='mcf'
                 showLegendUnits
                 legendHeaders={legendHeaders}
-                handleBarHover={handleBarHover}
+                handleBarHover={d => handleBarHover(d)}
               />
             }
             {commodity === 'Coal (tons)' &&
@@ -312,7 +312,7 @@ const TotalProduction = props => {
                 units='tons'
                 showLegendUnits
                 legendHeaders={legendHeaders}
-                handleBarHover={handleBarHover}
+                handleBarHover={d => handleBarHover(d)}
               />
             }
             <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">

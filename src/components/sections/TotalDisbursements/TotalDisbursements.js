@@ -103,7 +103,7 @@ const TotalDisbursements = props => {
   const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY)
 
   const handleBarHover = d => {
-    disbursementsComparison.current.setSelectedItem(d)
+    disbursementsComparison.current.setSelectedItem(d[2])
   }
 
   if (loading) {
@@ -273,21 +273,6 @@ const TotalDisbursements = props => {
             maxCalendarYear={maxCalendarYear} />
         </Grid>
         <Grid item xs={12} md={7}>
-          {/* <StackedBarChart
-            key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
-            title={chartTitle}
-            units={units}
-            data={chartData}
-            xAxis={xAxis}
-            yAxis={yAxis}
-            xGroups={xGroups}
-            yGroupBy={yGroupBy}
-            yOrderBy={yOrderBy}
-            xLabels={xLabels}
-            legendFormat={v => utils.formatToDollarInt(v)}
-            legendHeaders={legendHeaders}
-            handleBarHover={handleBarHover}
-          /> */}
           <StackedBarChart2
             key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
             title={chartTitle}
@@ -301,7 +286,7 @@ const TotalDisbursements = props => {
             xLabels={d => xLabels(d)}
             legendFormat={d => utils.formatToDollarInt(d)}
             legendHeaders={legendHeaders}
-            handleBarHover={handleBarHover}
+            handleBarHover={d => handleBarHover(d)}
             showTooltips={false}
             chartTooltip={
               d => {
