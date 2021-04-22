@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import {
   GroupBySelectInput,
   GroupByStickySelectInput,
@@ -24,11 +25,13 @@ const CustomTableHeaderCell = ({ getMessage, onAddColumn, onRemoveColumn, groupB
   const GroupByStickyColumnHeader = () => {
     return (
       <Grid container alignItems="flex-start">
-        <Grid item xs={(onAddColumn) ? 7 : 12}>
-          <GroupByStickySelectInput data={[{ option: DISPLAY_NAMES[state[GROUP_BY_STICKY]].default, value: state[GROUP_BY_STICKY] }]} />
+        <Grid item xs={(onAddColumn) ? 9 : 12}>
+          <Box mt={2} textAlign={'end'}>
+            {restProps.column.title}
+          </Box>
         </Grid>
         {onAddColumn &&
-          <Grid item xs={5}>
+          <Grid item xs={3}>
             <BaseButtonInput onClick={onAddColumn} styleType={'link'} style={{ top: '-8px' }}>
               + Add column
             </BaseButtonInput>
