@@ -21,6 +21,19 @@ const useStyles = makeStyles(theme => ({
   anchor: {
     paddingTop: 100,
     marginTop: -100,
+  },
+  glossaryAnchor: {
+    color: theme.palette.links.default,
+    textDecoration: 'none',
+    padding: '0',
+    display: 'inline-block',
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    margin: '0 4px 0',
+    '&:hover, &.active': {
+      fontWeight: 'bold',
+      textDecoration: 'underline'
+    }
   }
 }))
 
@@ -52,7 +65,8 @@ const GlossaryTerm = ({ term }) => (
   </Box>
 )
 
-const GlossaryTerms = ({ title = 'Glossary', ...rest }) => {
+const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
+  console.log('GlossaryTerms location: ', location)
   const results = useStaticQuery(graphql`
     query AllGlossaryTermsQuery {
       mdx(fileAbsolutePath: {regex: "/content-partials/Glossary/"}) {
@@ -69,6 +83,7 @@ const GlossaryTerms = ({ title = 'Glossary', ...rest }) => {
   `)
 
   const [category, setCategory] = useState('ONRR')
+  const classes = useStyles()
 
   const handleChange = value => {
     setCategory(value)
@@ -125,6 +140,21 @@ const GlossaryTerms = ({ title = 'Glossary', ...rest }) => {
   // filtered group terms
   const filteredTerms = f && f.map(term => <GlossaryTerm term={term} />)
 
+  // set active class for anchor links
+  const activeClass = item => {
+    let c = ''
+    if (location.hash.replace('#', '') === item) {
+      c = 'active'
+    }
+    else if (location.hash.replace('#', '') === 'eight' && item === '#') {
+      c = 'active'
+    } else {
+      c = ''
+    }
+
+    return c
+  }
+
   console.log('filteredTerms: ', filteredTerms)
 
   return (
@@ -142,7 +172,9 @@ const GlossaryTerms = ({ title = 'Glossary', ...rest }) => {
               <Grid item xs={12} md={6}>
                 <Box display="flex" justifyContent="center">
                   {gMenu.map((item, i) => (
-                    <Box display="inline-block" style={{ marginRight: theme.spacing(1) }} key={`gmenu__${ i }`}><a href={`#${ item === '#' ? 'eight' : item }`} style={{ color: theme.palette.links.default }}>{item}</a></Box>
+                    <Box display="inline-block" key={`gmenu__${ i }`}>
+                      <a className={`${ classes.glossaryAnchor } ${ activeClass(item) }`} href={`#${ item === '#' ? 'eight' : item }`}>{item}</a>
+                    </Box>
                   ))}
                 </Box>
               </Grid>

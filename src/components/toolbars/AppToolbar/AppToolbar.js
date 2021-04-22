@@ -85,9 +85,6 @@ const useStyles = makeStyles(theme => ({
   },
   mainMenuWrap: {
     display: 'inherit',
-    '& a:nth-child(3)': {
-      paddingRight: theme.spacing(1.5),
-    },
     '& a:last-child': {
       borderLeft: '1px solid white',
       paddingLeft: theme.spacing(4),
