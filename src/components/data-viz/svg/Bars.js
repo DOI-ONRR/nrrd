@@ -89,7 +89,7 @@ const Bars = ({
   }
 
   useEffect(() => {
-    if (data.length > 0) handleOnClick(data[activeIndex][0][0].data, activeIndex)
+    if (data && data.length > 0 && !horizontal) handleOnClick(data[activeIndex][0][0].data, activeIndex)
   }, [data])
 
   // console.log('bars data: ', data)
