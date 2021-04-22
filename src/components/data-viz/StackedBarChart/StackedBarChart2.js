@@ -392,7 +392,6 @@ const StackedBarChart2 = ({ data, ...options }) => {
     setDataset({ ...dataset, barData: d, legendData: x })
   }, [data])
 
-
   return (
     <>
       {title && <ChartTitle compact={options.compact}>{title}</ChartTitle>}
