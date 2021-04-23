@@ -192,7 +192,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
       <Grid container spacing={2}>
         {loading &&
           <Grid item xs={12}>
-            <Box zIndex="snackbar" style={{width: '-webkit-fill-available'}}>
+            <Box zIndex="snackbar" style={{ width: '-webkit-fill-available' }}>
               <BorderLinearProgress />
             </Box>
             <Box zIndex="modal">
@@ -472,7 +472,7 @@ const DataTableBase = ({ data, config }) => {
       }
       setFixedColumns([TableGroupRow.Row, _groupBy, _breakoutBy])
     }
-    else if(_additionalColumns && config.includeAdditionalColumsInGroupBy) {
+    else if (_additionalColumns && config.includeAdditionalColumsInGroupBy) {
       setGrouping([{ columnName: _groupBy }])
       setGroupingExtension([{ columnName: _groupBy, showWhenGrouped: true }])
       if (data && data.length > 0) {
