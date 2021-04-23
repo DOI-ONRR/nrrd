@@ -11,8 +11,7 @@ import {
 
 import {
   makeStyles,
-  fade,
-  useTheme
+  fade
 } from '@material-ui/core/styles'
 
 import BaseToolbar from '../BaseToolbar'
@@ -111,7 +110,6 @@ const useStyles = makeStyles(theme => ({
 
 const AppToolbar = props => {
   const classes = useStyles()
-  const theme = useTheme()
   return (
     <Box className={classes.root} displayPrint="none">
       <AppBar position="static" style={{ position: 'relative' }}>
@@ -128,16 +126,6 @@ const AppToolbar = props => {
               <Link href='/how-revenue-works' linkType='Header' style={{ color: 'white' }}>How revenue works</Link>
             </div>
           </Hidden>
-          {/* <Hidden lgUp smDown>
-            <div className={classes.mainMenuWrap}>
-              <DataMenu label="Data">
-                <Link href='/explore' linkType='Header' style={{ marginLeft: 0 }}>Explore data</Link>
-                <Link href='/query-data' linkType='Header' style={{ marginLeft: 0 }}>Query data</Link>
-                <Link href='/downloads' linkType='Header' style={{ marginLeft: 0 }}>Download data</Link>
-              </DataMenu>
-              <Link href='/how-revenue-works' linkType='Header' style={{ color: 'white' }}>How revenue works</Link>
-            </div>
-          </Hidden> */}
           <Hidden mdDown>
             <div>
               <SearchSite />

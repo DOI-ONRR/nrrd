@@ -34,6 +34,7 @@ export const SearchResults = () => {
     }
   `
   )
+
   const index = Index.load(data.siteSearchIndex.index)
   console.log(index)
   let urlParams = new URLSearchParams()
@@ -46,6 +47,8 @@ export const SearchResults = () => {
     // Map over each ID and return the full document
     .map(({ ref }) => index.documentStore.getDoc(ref))
   )
+
+  console.log('SearchResults results: ', results)
 
   return (
     <>

@@ -66,7 +66,6 @@ const GlossaryTerm = ({ term }) => (
 )
 
 const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
-  console.log('GlossaryTerms location: ', location)
   const results = useStaticQuery(graphql`
     query AllGlossaryTermsQuery {
       mdx(fileAbsolutePath: {regex: "/content-partials/Glossary/"}) {
