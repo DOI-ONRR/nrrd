@@ -533,7 +533,10 @@ const MapContext = props => {
           open={open}
           autoHideDuration={6000}
           onClose={handleMapSnackbarClose}
-          message="Only four locations can be viewed at once. Remove one of the locations to add another."
+          message={
+            'Only four locations can be viewed at once. \
+             Remove one of the locations to add another.'
+          }
           action={
             <>
               <IconButton size="small" aria-label="close" color="inherit" onClick={handleMapSnackbarClose}>
