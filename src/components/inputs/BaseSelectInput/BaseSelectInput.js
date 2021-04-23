@@ -69,6 +69,7 @@ const BaseInput = withStyles(theme =>
   createStyles({
     root: {
       marginTop: theme.spacing(0.5),
+      textAlign: 'left',
       'label + &': {
         marginTop: theme.spacing(1.5),
       },

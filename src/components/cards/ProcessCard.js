@@ -68,7 +68,7 @@ const ProcessCard = ({ children, step, name, defaultExpanded, padding, contentIn
                 <Typography variant='h2' className={classes.step}>{step}</Typography>
               }
               {name &&
-                <Typography variant='h2' className={classes.name+' not_toc'}>{name}</Typography>
+                <Typography variant='h2' className={classes.name + ' not_toc'}>{name}</Typography>
               }
             </Grid>
             {mobile &&

@@ -17,10 +17,22 @@ import {
   GlossaryCategorySelectInput
 } from '../inputs'
 
+import {
+  animateScroll as scroll
+} from 'react-scroll'
+
 const useStyles = makeStyles(theme => ({
   anchor: {
     paddingTop: 100,
     marginTop: -100,
+  },
+  glossaryAnchorMenu: {
+    textAlign: 'center',
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'left',
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1)
+    }
   },
   glossaryAnchor: {
     color: theme.palette.links.default,
@@ -33,6 +45,13 @@ const useStyles = makeStyles(theme => ({
     '&:hover, &.active': {
       fontWeight: 'bold',
       textDecoration: 'underline'
+    }
+  },
+  glossarySelectMenu: {
+    textAlign: 'right',
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'left',
+      marginBottom: theme.spacing(1)
     }
   }
 }))
@@ -51,9 +70,10 @@ const GlossaryCategoryContainer = withStyles(theme =>
 )(Paper)
 
 const GlossaryGroup = ({ term }) => {
+  console.log('GlossaryGroup term: ', term)
   const classes = useStyles()
   return (
-    <h2 id={term.group === '8' ? 'eight' : term.group} className={classes.anchor}>{term.group === '8' ? '#' : term.group}</h2>
+    <h2 id={term.group === '8' ? '#' : term.group} className={classes.anchor}>{term.group === '8' ? '#' : term.group}</h2>
   )
 }
 
@@ -90,7 +110,15 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
   }
   const theme = useTheme()
   const terms = results.mdx.frontmatter.terms
-  // console.log('GlossaryTerms terms: ', terms)
+
+  // scroll to top of page
+  const scrollToTop = () => {
+    scroll.scrollToTop({
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+    })
+  }
 
   // group terms by first letter of term
   const data = terms.reduce((r, e) => {
@@ -142,14 +170,15 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
   // set active class for anchor links
   const activeClass = item => {
     let c = ''
-    if (location.hash.replace('#', '') === item) {
+    if (location.hash.replace('#', '') === item || location.hash === '#') {
       c = 'active'
     }
-    else if (location.hash.replace('#', '') === 'eight' && item === '#') {
-      c = 'active'
-    } else {
-      c = ''
-    }
+    // else if (location.hash.replace('#', '') === '#') {
+    //   c = 'active'
+    // }
+    // else {
+    //   c = ''
+    // }
 
     return c
   }
@@ -169,16 +198,16 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
                 <Box><h1 style={{ margin: 0 }}>{title}</h1></Box>
               </Grid>
               <Grid item xs={12} md={6}>
-                <Box display="flex" justifyContent="center">
+                <Box className={classes.glossaryAnchorMenu}>
                   {gMenu.map((item, i) => (
                     <Box display="inline-block" key={`gmenu__${ i }`}>
-                      <a className={`${ classes.glossaryAnchor } ${ activeClass(item) }`} href={`#${ item === '#' ? 'eight' : item }`}>{item}</a>
+                      <a className={`${ classes.glossaryAnchor } ${ activeClass(item) }`} onClick={item === '#' ? scrollToTop : undefined} href={`#${ item !== '#' ? item : '' }`}>{item}</a>
                     </Box>
                   ))}
                 </Box>
               </Grid>
               <Grid item xs={12} md={3}>
-                <Box display="flex" flexDirection="row-reverse">
+                <Box className={classes.glossarySelectMenu}>
                   <GlossaryCategorySelectInput
                     data={gcats}
                     defaultSelected={category}

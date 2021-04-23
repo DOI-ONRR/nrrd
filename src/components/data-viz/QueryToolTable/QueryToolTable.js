@@ -169,7 +169,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
 
-  const BorderLinearProgress = withStyles((theme) => ({
+  const BorderLinearProgress = withStyles(theme => ({
     root: {
       height: 10,
       width: '-webkit-fill-available'
@@ -177,14 +177,14 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
     bar: {
       backgroundColor: theme.palette.blue[200],
     },
-  }))(LinearProgress);
+  }))(LinearProgress)
 
   return (
     <Box className={classes.root}>
       <Box zIndex="tooltip" position="absolute">
         <Backdrop open={loading} />
       </Box>
-      
+
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <QueryToolTableProvider>
