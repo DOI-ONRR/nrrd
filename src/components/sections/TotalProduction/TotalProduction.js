@@ -85,6 +85,7 @@ const TOTAL_PRODUCTION_QUERY = gql`
 const TotalProduction = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const { monthly, period, commodity, dataType } = filterState
+  console.log('filterState: ', filterState)
   const [selected, setSelected] = useState(undefined)
   const productionComparison = useRef(null)
   const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
@@ -104,7 +105,7 @@ const TotalProduction = props => {
   let xAxis = 'year'
   const yAxis = 'sum'
   const yGroupBy = 'source'
-  const yOrderBy = ['Native American', 'Federal Offshore', 'Federal Onshore']
+  const yOrderBy = ['Native American', 'Federal offshore', 'Federal onshore']
   let xLabels
   let maxFiscalYear
   let maxCalendarYear
@@ -116,8 +117,6 @@ const TotalProduction = props => {
   let monthRangeText
   let currentYearSoFarText
   let currentMonthNum
-
-  console.log('TotalProduction init commodity: ', commodity)
 
   if (loading) {
     return 'Loading...'
@@ -142,7 +141,7 @@ const TotalProduction = props => {
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         comparisonData = data.total_monthly_calendar_production.filter(row => row.product === commodity)
-        chartData = data.total_monthly_calendar_production.filter(row => row.product === commodity && row.year >= maxCalendarYear - 1)
+        chartData = data.total_monthly_calendar_production.filter(row => row.product === commodity && row.year >= maxCalendarYear)
       }
       else {
         comparisonData = data.total_monthly_last_two_years_production.filter(row => row.product === commodity)

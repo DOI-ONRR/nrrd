@@ -3,8 +3,8 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import {
-    Box,
-    Grid
+  Box,
+  Grid
 } from '@material-ui/core'
 
 import { useTheme } from '@material-ui/core/styles'
@@ -20,7 +20,7 @@ import utils, { formatDate } from '../../../js/utils'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
-const FISCAL= gql`
+const FISCAL = gql`
     query TotalYearlyRevenue {  
 	total_yearly_fiscal_revenue {
 	    period
@@ -37,9 +37,9 @@ const FISCAL= gql`
 	}
 
     }
-`;
+`
 
-const CALENDAR= gql`
+const CALENDAR = gql`
     query TotalYearlyRevenue {  
 	total_yearly_calendar_revenue {
 	    period
@@ -78,7 +78,7 @@ const CALENDAR= gql`
 	}
 	
     }
-`;
+`
 
 const TOTAL_REVENUE_QUERY = gql`
 query TotalYearlyRevenue {
@@ -164,38 +164,36 @@ query TotalYearlyRevenue {
 
 // TotalRevenue component
 const TotalRevenue = props => {
-    const theme = useTheme()
-    const { state: filterState, updateDataFilter  } = useContext(DataFilterContext)
-    const { monthly, period, breakoutBy, dataType, periodAllYears } = filterState
-    const revenueComparison = useRef(null)
+  const theme = useTheme()
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  const { monthly, period, breakoutBy, dataType, periodAllYears } = filterState
+  const revenueComparison = useRef(null)
 
-    const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
-    const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
-    let QUERY=FISCAL
-    console.debug("filterState: ", filterState, " CONSTANTS: ",DFC.PERIOD_CALENDER_YEAR,  DFC.PERIOD_FISCAL_YEAR,DFC.MONTHLY_CAPITALIZED) 
-    if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
-	console.debug("FISCAL")
-	QUERY=FISCAL
-	
-    }
-    else if (filterState.period === DFC.PERIOD_CALENDAR_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
-	console.debug("CALENDAR")
-	QUERY=CALENDAR
-    } else {
-	
-	console.debug("DEFAULT")
-	QUERY=TOTAL_REVENUE_QUERY
-    }
-    
-    const { loading, error, data } = useQuery(QUERY)
-    console.debug("data: ", data)
-    const handleBarHover = d => {
-	revenueComparison.current.setSelectedItem(d)
+  const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
+  const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
+  let QUERY = FISCAL
+  console.debug('filterState: ', filterState, ' CONSTANTS: ', DFC.PERIOD_CALENDER_YEAR, DFC.PERIOD_FISCAL_YEAR, DFC.MONTHLY_CAPITALIZED)
+  if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
+    console.debug('FISCAL')
+    QUERY = FISCAL
+  }
+  else if (filterState.period === DFC.PERIOD_CALENDAR_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
+    console.debug('CALENDAR')
+    QUERY = CALENDAR
+  }
+  else {
+    console.debug('DEFAULT')
+    QUERY = TOTAL_REVENUE_QUERY
+  }
+
+  const { loading, error, data } = useQuery(QUERY)
+  console.debug('data: ', data)
+  const handleBarHover = d => {
+    revenueComparison.current.setSelectedItem(d)
   }
 
   if (loading) {
     return 'Loading...'
-
   }
 
   if (error) return `Error! ${ error.message }`
@@ -222,13 +220,13 @@ const TotalRevenue = props => {
 
   switch (breakoutBy) {
   case 'revenue_type':
-    yOrderBy = ['Other Revenues', 'Inspection Fees', 'Civil Penalties', 'Rents', 'Bonus', 'Royalties']
+    yOrderBy = ['Other revenues', 'Inspection fees', 'Civil penalties', 'Rents', 'Bonus', 'Royalties']
     break
   case 'commodity':
     yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
     break
   default:
-    yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal Offshore', 'Federal Onshore']
+    yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
     break
   }
 
@@ -250,25 +248,25 @@ const TotalRevenue = props => {
   }
 
   if (data) {
-      // console.log('TotalRevenue data: ', data)
-      console.debug("Period all years:", periodAllYears)
-      maxFiscalYear=periodAllYears[periodAllYears.length-1]
-      maxCalendarYear= periodAllYears[periodAllYears.length-1]
+    // console.log('TotalRevenue data: ', data)
+    console.debug('Period all years:', periodAllYears)
+    maxFiscalYear = periodAllYears[periodAllYears.length - 1]
+    maxCalendarYear = periodAllYears[periodAllYears.length - 1]
 
-      /* maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
+    /* maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
 	 return (prev.year > current.year) ? prev.year : current.year
        *     })
        *     maxCalendarYear = data.total_monthly_calendar_revenue.reduce((prev, current) => {
 	 return (prev.year > current.year) ? prev.year : current.year
        *     })
        */
-      // Month range
+    // Month range
 
-      if (monthly === DFC.MONTHLY_CAPITALIZED) {
+    if (monthly === DFC.MONTHLY_CAPITALIZED) {
 	  if (period === DFC.PERIOD_FISCAL_YEAR) {
-	      currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth 
+	      currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
 
-              switch (yGroupBy) {
+        switch (yGroupBy) {
 		  case 'revenue_type':
 		      comparisonData = data.total_monthly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_monthly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear && yOrderBy.includes(item.revenue_type)))
@@ -285,10 +283,10 @@ const TotalRevenue = props => {
         }
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
-	  currentMonthNum = data.total_yearly_calendar_revenue[data.total_yearly_calendar_revenue.length - 1].currentMonth 
+	  currentMonthNum = data.total_yearly_calendar_revenue[data.total_yearly_calendar_revenue.length - 1].currentMonth
 
-          switch (yGroupBy) {
-              case 'revenue_type':
+        switch (yGroupBy) {
+        case 'revenue_type':
 		  comparisonData = data.total_monthly_calendar_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_monthly_calendar_revenue.filter(item => (item.year >= maxCalendarYear && yOrderBy.includes(item.revenue_type)))
           break
@@ -355,9 +353,9 @@ const TotalRevenue = props => {
     }
     else {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
-	  currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth  
-          switch (yGroupBy) {
-              case 'revenue_type':
+	  currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
+        switch (yGroupBy) {
+        case 'revenue_type':
 		  comparisonData = data.total_yearly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_yearly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.revenue_type)))
           break
@@ -380,9 +378,9 @@ const TotalRevenue = props => {
         })
       }
       else {
-	  currentMonthNum = data.total_yearly_calendar_revenue[data.total_yearly_calendar_revenue.length - 1].currentMonth 
-          switch (yGroupBy) {
-              case 'revenue_type':
+	  currentMonthNum = data.total_yearly_calendar_revenue[data.total_yearly_calendar_revenue.length - 1].currentMonth
+        switch (yGroupBy) {
+        case 'revenue_type':
 		  comparisonData = data.total_yearly_calendar_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_yearly_calendar_revenue.filter(item => item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.revenue_type))
           break
@@ -426,10 +424,10 @@ const TotalRevenue = props => {
     // console.log('TotalRevenue chartData: ', chartData)
   }
   return (
-      <>
-	<Grid container spacing={4}>
-              <Grid item xs={12} md={7}>
-		<StackedBarChart
+    <>
+      <Grid container spacing={4}>
+        <Grid item xs={12} md={7}>
+          <StackedBarChart
 		    key={`trsbc__${ monthly }${ period }${ breakoutBy }`}
 		    data={chartData}
 		    legendFormat={v => utils.formatToDollarInt(v)}
@@ -445,12 +443,12 @@ const TotalRevenue = props => {
 		    primaryColor={theme.palette.explore[700]}
 		    secondaryColor={theme.palette.explore[100]}
 		    handleBarHover={handleBarHover}
-		/>
-		<Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
+          />
+          <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
 		  <Link href='/downloads/revenue/'>Source file</Link>
-		</Box>
-              </Grid>
-              <Grid item xs={12} md={5}>
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={5}>
 		 <ComparisonTable
 		    key={`trct__${ monthly }${ period }${ breakoutBy }`}
 		    ref={revenueComparison}
@@ -460,11 +458,10 @@ const TotalRevenue = props => {
 		    monthRange={monthRange}
 		    />
 
-          </Grid>
-	</Grid>
-      </>
+        </Grid>
+      </Grid>
+    </>
   )
 }
 
 export default TotalRevenue
-

@@ -50,13 +50,12 @@ const HomeDataFilters = props => {
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { monthly, dataType, year, commodity, fiscalYear, calendarYear } = filterState
-    console.debug("FilterState ---------------------------------------------------------------------->");
-    console.debug(filterState)
-  const maxFiscalYear=fiscalYear
-  const maxCalendarYear=calendarYear
+  console.debug('FilterState ---------------------------------------------------------------------->')
+  console.debug(filterState)
+  const maxFiscalYear = fiscalYear
+  const maxCalendarYear = calendarYear
 
-
- // const calendarYear = (dataType === DFC.PRODUCTION) ? maxCalendarYear - 1 : maxCalendarYear
+  // const calendarYear = (dataType === DFC.PRODUCTION) ? maxCalendarYear - 1 : maxCalendarYear
 
   const MENU_OPTIONS = {
     [DFC.MONTHLY]: [
