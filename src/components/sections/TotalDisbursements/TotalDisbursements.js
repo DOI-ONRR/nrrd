@@ -136,7 +136,7 @@ const TotalDisbursements = props => {
       'State and local governments',
       'U.S. Treasury'
     ]
-    : ['Native American', 'Federal Offshore', 'Federal Onshore']
+    : ['Native American', 'Federal offshore', 'Federal onshore']
 
   if (error) return `Error! ${ error.message }`
   if (data) {
