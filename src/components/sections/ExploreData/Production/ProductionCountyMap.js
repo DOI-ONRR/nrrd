@@ -153,9 +153,13 @@ const ProductionCountyMap = props => {
     break
   }
 
+  const skipQuery = fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS ||
+			      fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
+			      props.regionType === 'County' || props.regionType === 'Offshore' || !inView
+
   const { loading, error, data } = useQuery(PRODUCTION_QUERY, {
     variables: { year: year, product: product, state: fipsCode, period: period },
-    skip: inView === false || fipsCode === DFC.NATIVE_AMERICAN_FIPS || locationType === ''
+    skip: skipQuery
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]

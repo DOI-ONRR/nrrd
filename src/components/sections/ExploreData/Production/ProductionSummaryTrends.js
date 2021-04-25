@@ -58,8 +58,7 @@ const ProductionSummaryTrends = props => {
   })
 
  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, product: product, period: period },
-     skip: inView === false
+     variables: { state: state, product: product, period: period }
  })
 
   const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
