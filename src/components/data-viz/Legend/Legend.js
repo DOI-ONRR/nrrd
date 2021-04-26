@@ -101,7 +101,7 @@ const Legend = ({
               <StyledTableRow
                 key={`lstr__${ i }`}
                 style={{ backgroundColor: (activeKey === row[xAxis]) ? theme.palette.grey[200] : '' }}>
-                <StyledTableBodyCell style={{ verticalAlign: 'middle', width: 25 }}>
+                <StyledTableBodyCell style={{ verticalAlign: 'middle', width: '5%' }}>
                   <Rect
                     width={20}
                     height={20}
