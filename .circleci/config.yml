@@ -287,6 +287,13 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
+      - aws-s3/sync:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          to: static/downloads/            
       - run:
           name: Build gatsby
           command: npm run build
@@ -313,7 +320,14 @@ workflows:
           filters:
             branches:
               ignore:
-                - master
+            s-s3/sync:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          to: static/downloads/            
+    - master
                 - staging
       - lint:
           filters:
