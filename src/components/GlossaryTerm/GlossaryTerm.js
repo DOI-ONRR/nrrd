@@ -61,6 +61,8 @@ const GlossaryTerm = ({ children, termKey, ...rest }) => {
   const termResults = terms.filter(term =>
     (glossaryTermKey.toLowerCase() === term.name.toLowerCase()) || (term.tags && term.tags.findIndex(tag => tag.toLowerCase() === glossaryTermKey.toLowerCase()) > -1))
 
+  console.log('GlossaryTerm termResults: ', termResults)
+
   if (termResults.length > 1) {
     console.warn(`Found more than 1 definition for the term: ${ children }. Will use the first result returned.`, termResults)
   }
