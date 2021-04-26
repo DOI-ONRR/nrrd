@@ -10,12 +10,13 @@ import {
   Grid
 } from '@material-ui/core'
 
-import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+// import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import StackedBarChart2 from '../../data-viz/StackedBarChart/StackedBarChart2'
 import SectionHeader from '../../sections/SectionHeader'
 import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link'
 import ComparisonTable from '../ComparisonTable'
+import GlossaryTerm from '../../GlossaryTerm/GlossaryTerm'
 
 import utils, { formatDate } from '../../../js/utils'
 
@@ -241,7 +242,7 @@ const TotalProduction = props => {
             {commodity === 'Oil (bbl)' &&
               <StackedBarChart2
                 key={`tpsbc__${ monthly }${ period }${ commodity }${ dataType }`}
-                title={'Oil (bbl)'}
+                title={['Oil ', <GlossaryTerm termKey={'(bbl)'}>(bbl)</GlossaryTerm>]}
                 data={chartData.filter(row => row.product === 'Oil (bbl)')}
                 xAxis={xAxis}
                 yAxis={yAxis}
@@ -261,7 +262,7 @@ const TotalProduction = props => {
             {commodity === 'Gas (mcf)' &&
               <StackedBarChart2
                 key={`tpsbc__${ monthly }${ period }${ commodity }`}
-                title={'Gas (mcf)'}
+                title={['Gas ', <GlossaryTerm termKey={'(mcf)'}>(mcf)</GlossaryTerm>]}
                 data={chartData.filter(row => row.product === 'Gas (mcf)')}
                 xAxis={xAxis}
                 yAxis={yAxis}
@@ -287,7 +288,7 @@ const TotalProduction = props => {
             {commodity === 'Coal (tons)' &&
               <StackedBarChart2
                 key={`tpsbc__${ monthly }${ period }${ commodity }`}
-                title={'Coal (tons)'}
+                title={['Coal ', <GlossaryTerm termKey={'(tons)'}>(tons)</GlossaryTerm>]}
                 data={chartData.filter(row => row.product === 'Coal (tons)')}
                 xAxis={xAxis}
                 yAxis={yAxis}

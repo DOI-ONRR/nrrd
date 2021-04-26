@@ -38,7 +38,7 @@ export const MaxExtent = ({ extentPercent, extentMarginOfError, yMax, units, dim
     const getMetricLongUnit = str => {
       const suffix = { k: 'k', M: ' million', G: ' billion' }
       return str.replace(/(\.0+)?([kMG])$/, function (_, zeroes, s) {
-        return suffix[s] || s
+        return suffix[s] + ' ' || s
       })
     }
 

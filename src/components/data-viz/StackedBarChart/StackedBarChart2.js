@@ -34,7 +34,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
     collapsibleLegend,
     collapsedLegend
   } = options
-  // console.log('StackedBarChart2 data: ', data)
+  console.log('StackedBarChart2 options: ', options)
   const theme = useTheme()
   const [dataset, setDataset] = useState({
     barData: [],
