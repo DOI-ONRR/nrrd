@@ -90,7 +90,7 @@ const Legend = ({
         {legendHeaders && legendHeaders.length > 0 &&
         <TableHead>
           <TableRow>
-            <StyledTableHeadCell colSpan={2}>{legendHeaders[0]}</StyledTableHeadCell>
+            <StyledTableHeadCell colSpan={2} width="50%">{legendHeaders[0]}</StyledTableHeadCell>
             <StyledTableHeadCell align="right">{legendHeaders[1]}</StyledTableHeadCell>
           </TableRow>
         </TableHead>

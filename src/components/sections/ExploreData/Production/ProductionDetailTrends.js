@@ -15,6 +15,7 @@ import {
 
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
+import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm'
 import * as d3 from 'd3'
 
 const useStyles = makeStyles(theme => ({
@@ -129,7 +130,9 @@ const ProductionDetailTrends = props => {
     return (
       <>
         <Box textAlign="center" className={classes.root} key={props.key}>
-          <Box component="h2" mt={0} mb={0} style={{ whiteSpace: 'nowrap' }} >{utils.formatToCommaInt(locData) + ' ' + unit}</Box>
+          <Box component="h2" mt={0} mb={0} style={{ whiteSpace: 'nowrap' }}>
+            {`${ utils.formatToCommaInt(locData) }`} <GlossaryTerm termKey={unit}>{unit}</GlossaryTerm>
+          </Box>
           <Box component="span" mb={4}>{year && <span>{dataSet} production</span>}</Box>
           {sparkData.length > 1 && (
             <Box mt={4}>
