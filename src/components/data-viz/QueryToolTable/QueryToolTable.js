@@ -173,7 +173,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
     throw new Error('Data Filter Context has an undefined state. Please verify you have the Data Filter Provider included in your page or component.')
   }
 
-  const BorderLinearProgress = withStyles((theme) => ({
+  const BorderLinearProgress = withStyles(theme => ({
     root: {
       height: 10,
       width: '-webkit-fill-available'
@@ -181,18 +181,18 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
     bar: {
       backgroundColor: theme.palette.blue[200],
     },
-  }))(LinearProgress);
+  }))(LinearProgress)
 
   return (
     <Box className={classes.root}>
       <Box zIndex="tooltip" position="absolute">
         <Backdrop open={loading} />
       </Box>
-      
+
       <Grid container spacing={2}>
         {loading &&
           <Grid item xs={12}>
-            <Box zIndex="snackbar" style={{width: '-webkit-fill-available'}}>
+            <Box zIndex="snackbar" style={{ width: '-webkit-fill-available' }}>
               <BorderLinearProgress />
             </Box>
             <Box zIndex="modal">
@@ -472,7 +472,7 @@ const DataTableBase = ({ data, config }) => {
       }
       setFixedColumns([TableGroupRow.Row, _groupBy, _breakoutBy])
     }
-    else if(_additionalColumns && config.includeAdditionalColumsInGroupBy) {
+    else if (_additionalColumns && config.includeAdditionalColumsInGroupBy) {
       setGrouping([{ columnName: _groupBy }])
       setGroupingExtension([{ columnName: _groupBy, showWhenGrouped: true }])
       if (data && data.length > 0) {

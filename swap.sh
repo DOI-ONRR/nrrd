@@ -11,12 +11,12 @@ fi
 
 echo "$current swapping to $new"
 
-cf unbind-service hasura-prod  $current
-cf bind-service hasura-prod $new
-cf restage hasura-prod
-
-cf unbind-service hasura-dev $new
-cf bind-service hasura-dev $current
+cf unbind-service hasura-dev  $current
+cf bind-service hasura-dev $new
 cf restage hasura-dev
+
+cf unbind-service hasura-prod $new
+cf bind-service hasura-prod $current
+cf restage hasura-prod
 
 
