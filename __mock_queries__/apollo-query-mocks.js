@@ -18,6 +18,7 @@ import QUERY_TOOL_COMMODITY_RESULTS from './__apollo_mock_results__/Commodity_re
 import QUERY_TOOL_CALENDAR_YEAR_RESULTS from './__apollo_mock_results__/CalendarYear_results'
 import QUERY_TOOL_FISCAL_YEAR_RESULTS from './__apollo_mock_results__/FiscalYear_results'
 import QUERY_TOOL_COMPANY_NAME_RESULTS from './__apollo_mock_results__/CompanyName_results'
+import QUERY_TOOL_REVENUE_RESULTS from './__apollo_mock_results__/QueryToolRevenue_results'
 
 const QUERY_TOOL_REVENUE_TYPE = {
   request: {
@@ -80,13 +81,23 @@ const QUERY_TOOL_COMPANY_NAME = {
   }
 }
 
+const QUERY_TOOL_TABLE_REVENUE = {
+  request: {
+    query: QueryManager.getQuery(QK_QUERY_TOOL, DFS.QUERY_TOOL_TABLE_REVENUE[DFS.DATA_FILTER_DEFAULTS_MOCK]),
+    ...QueryManager.getVariables(QK_QUERY_TOOL, DFS.QUERY_TOOL_TABLE_REVENUE[DFS.DATA_FILTER_DEFAULTS_MOCK])
+  },
+  result: {
+    data: QUERY_TOOL_REVENUE_RESULTS
+  }
+}
 const mocks = [
   QUERY_TOOL_REVENUE_TYPE,
   QUERY_TOOL_PERIOD,
   QUERY_TOOL_COMMODITY,
   QUERY_TOOL_CALENDAR_YEAR,
   QUERY_TOOL_FISCAL_YEAR,
-  QUERY_TOOL_COMPANY_NAME
+  QUERY_TOOL_COMPANY_NAME,
+  QUERY_TOOL_TABLE_REVENUE
 ]
 
 export default mocks
