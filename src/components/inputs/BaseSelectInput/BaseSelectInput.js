@@ -169,19 +169,20 @@ const BaseSelectInput = ({
           label={label}
           input={theme}
           classes={{ root: classes.selectInput }}
+          native
         >
           {showClearSelected &&
-          <MenuItem value={'Clear'}>
+          <option value={'Clear'}>
             <em>Clear selected</em>
-          </MenuItem>
+          </option>
           }
           {data &&
            data.map((item, i) =>
-             <MenuItem
+             <option
                key={`${ item.option }_${ i }`}
                value={item.value || item.option}>
                {item.option}
-             </MenuItem>)
+             </option>)
           }
         </Select>
         {helperText &&
