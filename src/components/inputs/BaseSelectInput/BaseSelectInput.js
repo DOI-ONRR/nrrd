@@ -119,9 +119,9 @@ const BaseSelectInput = ({
     const labelSlug = formatToSlug(label)
 
     /**
-   * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
-   * If not it will check to see if an option has been set as default = true
-   */
+     * We have multiple ways to specify a default value. It will check to see if a defaultSelected has been specified.
+     * If not it will check to see if an option has been set as default = true
+     */
     const getDefaultSelected = () => {
       let defaultItem
       if (data) {
