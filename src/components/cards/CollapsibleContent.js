@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-})) 
+}))
 /**
  * This component allows the user to show and hide content.
  */

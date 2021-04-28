@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }))
- /**
+/**
  * This banner is used to mark content on our site as archived as part of United
  * States Extracted Industries Transparency Initiative (USEITI).
  */
