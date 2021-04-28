@@ -180,7 +180,7 @@ const ProductionCountyMap = props => {
     return (
       <>
         {mapData &&
-       <Box className={classes.root}>
+       <Box className={classes.root} ref={ref}>
          {(locationType === DFC.COUNTY_CAPITALIZED || locationType === DFC.STATE) &&
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Production by county</Box>
@@ -210,7 +210,10 @@ const ProductionCountyMap = props => {
     )
   }
   else {
-    return <Box className={classes.root} />
+    return (
+	<Box className={classes.root} ref={ref}>
+	</Box>
+    )  
   }
 }
 

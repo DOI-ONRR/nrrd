@@ -8,6 +8,8 @@ import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import * as d3 from 'd3'
+import { useInView } from 'react-intersection-observer'
+
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -92,9 +94,14 @@ const ProductionOverTime = props => {
   const cards = pageState.cards
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-
+const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { product: product, period: period }
+    variables: { product: product, period: period },
+    skip: inView === false
   })
 
   const handleDelete = props.handleDelete || ((e, fips) => {
@@ -144,6 +151,7 @@ const ProductionOverTime = props => {
     // console.log('chartData: ', chartData)
 
     return (
+	<div ref={ref} >
       <Container id={utils.formatToSlug(title)}>
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
@@ -179,10 +187,16 @@ const ProductionOverTime = props => {
           </Box>
         </Grid>
       </Container>
+</div> 
     )
   }
   else {
-    return (null)
+      return (
+	  <Box className={classes.root} ref={ref}>
+	  </Box>
+	  
+      )
+      
   }
 }
 

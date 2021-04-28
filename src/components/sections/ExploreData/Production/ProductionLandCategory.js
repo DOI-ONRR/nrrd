@@ -9,6 +9,7 @@ import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { useInView } from 'react-intersection-observer'
 
 import * as d3 from 'd3'
 
@@ -50,13 +51,13 @@ const APOLLO_QUERY = gql`
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: '100%',
-    width: '100%',
-    margin: theme.spacing(1),
-    '@media (max-width: 768px)': {
       maxWidth: '100%',
-      margin: 0,
-    }
+      width: '100%',
+      margin: theme.spacing(1),
+      '@media (max-width: 768px)': {
+	  maxWidth: '100%',
+	  margin: 0,
+      }
   },
   progressContainer: {
     maxWidth: '25%',
@@ -107,8 +108,16 @@ const ProductionLandCategory = ({ title, ...props }) => {
   }
 
   // console.log('ProductionLandCategory useQuery vars: ', state, locationType, commodity, period)
+    const { ref, inView, entry } = useInView({
+	/* Optional options */
+	threshold: 0,
+	triggerOnce: true
+    })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location: locationType, commodity, period } })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, { 
+      variables: { state, location: locationType, commodity, period },
+      skip: inView === false
+})
   if (loading) {
     return (
       <div className={classes.progressContainer}>
@@ -147,7 +156,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
 
     if (!noChartData) {
       return (
-
+	  <div ref={ref}>
         <Box className={classes.root}>
           {title && <Box component="h4" fontWeight="bold" mb={2}>{title + ' (' + unit + ')'}</Box>}
           <Box>
@@ -183,7 +192,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
             </QueryLink>
           }
         </Box>
-
+	  </div>
       )
     }
     else {
@@ -191,7 +200,9 @@ const ProductionLandCategory = ({ title, ...props }) => {
     }
   }
   else {
-    return null
+      return (<div className={classes.progressContainer} ref={ref}>
+	<CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </div>)
   }
 }
 
