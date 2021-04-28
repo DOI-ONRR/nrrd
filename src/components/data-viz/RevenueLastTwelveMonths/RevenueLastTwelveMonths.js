@@ -52,7 +52,7 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
     const month = date.toLocaleString('default', { month: 'short' })
     const year = headers[1].substring(0, 4)
     const name = (yGroupBy === 'revenue_type') ? 'Revenue type' : DISPLAY_NAMES[headers[0]]?.default
-    const headerArr = [name, '', `${ month } ${ year }`]
+    const headerArr = [name, `${ month } ${ year }`]
     return headerArr
   }
 
