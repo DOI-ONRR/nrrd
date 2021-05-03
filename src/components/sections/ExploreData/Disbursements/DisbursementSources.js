@@ -8,7 +8,7 @@ import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { formatToDollarInt } from '../../../../js/utils'
-
+import { useInView } from 'react-intersection-observer'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
@@ -59,6 +59,11 @@ const DisbursementSources = props => {
   const state = props.fipsCode
   const xAxis = 'source'
   const yAxis = 'total'
+ const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
@@ -77,7 +82,7 @@ const DisbursementSources = props => {
     chartData = data
     if (chartData.DisbursementSourceSummary.length > 1) {
       return (
-        <Box className={classes.root}>
+        <Box className={classes.root}  ref={ref}>
           <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box>
             <CircleChart
@@ -111,7 +116,7 @@ const DisbursementSources = props => {
     else if (chartData.DisbursementSourceSummary.length === 1) {
 	  const source = chartData.DisbursementSourceSummary[0].source
       return (
-        <Box className={classes.boxSection}>
+        <Box className={classes.boxSection} ref={ref}> >
           <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box fontSize="subtitle2.fontSize">
           All of  disbursements were from {source.toLowerCase()} production.</Box>
@@ -121,7 +126,7 @@ const DisbursementSources = props => {
   }
 
   return (
-    <Box className={classes.root}>&nbsp;</Box>
+    <Box className={classes.root}  ref={ref}>&nbsp;</Box>
   )
 }
 

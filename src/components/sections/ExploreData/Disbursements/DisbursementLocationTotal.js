@@ -6,6 +6,7 @@ import gql from 'graphql-tag'
 
 import utils from '../../../../js/utils'
 import * as d3 from 'd3'
+import { useInView } from 'react-intersection-observer'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -24,9 +25,14 @@ const DisbursementLocationTotal = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
+    const { ref, inView, entry } = useInView({
+	/* Optional options */
+	threshold: 0,
+    })
 
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { location: ['NF', 'NA'], year: year, period }
+    variables: { location: ['NF', 'NA'], year: year, period },
+      skip: inView === false,
   })
 
   if (loading) return ''
@@ -64,14 +70,17 @@ const DisbursementLocationTotal = props => {
     }
 
     return (
-      <>
+      <div ref={ref} >
         After collecting revenue from natural resource extraction, the Office of Natural Resources Revenue (ONRR) distributes that money to different agencies,
         funds, and local governments for public use. This process is called "disbursement." <strong>In {period.toLowerCase()} {year},
         ONRR disbursed {utils.formatToDollarInt(nationwideSummary[0].total)} from federal sources and {utils.formatToDollarInt(nativeSummary[0].total)}
 	      {' '}from Native American sources for a total of {utils.formatToDollarInt(nationwideSummary[0].total + nativeSummary[0].total)}</strong>.
-      </>
+      </div>
     )
   }
+   else {
+       return (<span ref={ref} ></span>) 
+   }
 }
 
 export default DisbursementLocationTotal

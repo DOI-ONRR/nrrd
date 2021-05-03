@@ -6,7 +6,7 @@ import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
 
 import utils from '../../../../js/utils'
-
+import { useInView } from 'react-intersection-observer'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -102,10 +102,15 @@ const DisbursementRecipientSummary = props => {
     regionType: props.regionType,
     locationName: props.locationName
   }
-
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
-  })
+    const { ref, inView, entry } = useInView({
+	/* Optional options */
+	threshold: 0,
+	triggerOnce: true
+    })
+    const { loading, error, data } = useQuery(APOLLO_QUERY, {
+	variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL },
+	skip: inView === false
+    })
 
   if (loading) {
     return ''
@@ -145,78 +150,87 @@ const DisbursementRecipientSummary = props => {
         return { recipient: com, data: d }
       })
 
-    return (
-      <>
-        <Grid container>
-          <Grid item xs={12} zeroMinWidth>
-            <Typography
-              variant="subtitle2"
-              style={{ fontWeight: 'bold', marginBottom: 10 }}>
-              Top Recipients
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid container>
-          <Paper className={classes.paper} style={{ marginBottom: 10 }}>
-            <Table
-              className={classes.table}
-              size="small"
-              aria-label="top Recipients table"
-            >
-              <TableBody>
-                {topRecipients &&
-                  topRecipients.map((row, i) => {
-                    return (
-                      <TableRow key={i}>
-                        <TableCell component="th" scope="row">
-                          <Typography style={{ fontSize: '.8rem' }}>
-                            {row.recipient}
-                          </Typography>
-                        </TableCell>
-                        <TableCell align="right">
-                          <Sparkline
-                            key={'DRS' + dataSet }
-                            data={row.data}
-                            highlightIndex={row.data.findIndex(
-                              x => x[0] === parseInt(year)
-                            )}
-                          />
-                        </TableCell>
-                        <TableCell align="right">
-                          <Typography style={{ fontSize: '.8rem' }}>
-                            {utils.formatToSigFig_Dollar(
-                              Math.floor(
-                                // eslint-disable-next-line standard/computed-property-even-spacing
-                                topRecipients[i].data[
-                                  row.data.findIndex(x => x[0] === parseInt(year))
-                                ][1]
-                              ),
-                              3
-                            )}
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                    )
-                  })}
-              </TableBody>
-            </Table>
-          </Paper>
-        </Grid>
-      </>
+    return (<div ref={ref}>
+            <Grid container >
+              <Grid item xs={12} zeroMinWidth>
+		<Typography
+		    variant="subtitle2"
+		    style={{ fontWeight: 'bold', marginBottom: 10 }}>
+		  Top Recipients
+		</Typography>
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Paper className={classes.paper} style={{ marginBottom: 10 }}>
+		<Table
+		    className={classes.table}
+		    size="small"
+		    aria-label="top Recipients table"
+		>
+		  <TableBody>
+                    {topRecipients &&
+                     topRecipients.map((row, i) => {
+			 return (
+			     <TableRow key={i}>
+                               <TableCell component="th" scope="row">
+				 <Typography style={{ fontSize: '.8rem' }}>
+				   {row.recipient}
+				 </Typography>
+                               </TableCell>
+                               <TableCell align="right">
+				 <Sparkline
+				     key={'DRS' + dataSet }
+				     data={row.data}
+				     highlightIndex={row.data.findIndex(
+					 x => x[0] === parseInt(year)
+				     )}
+				 />
+                               </TableCell>
+                               <TableCell align="right">
+				 <Typography style={{ fontSize: '.8rem' }}>
+				   {utils.formatToSigFig_Dollar(
+				       Math.floor(
+					   // eslint-disable-next-line standard/computed-property-even-spacing
+					   topRecipients[i].data[
+					       row.data.findIndex(x => x[0] === parseInt(year))
+					   ][1]
+				       ),
+				       3
+				   )}
+				 </Typography>
+                               </TableCell>
+			     </TableRow>
+			 )
+                    })}
+		  </TableBody>
+		</Table>
+              </Paper>
+            </Grid>
+</div>
     )
   }
-  else {
-    return (
-      <Box className={classes.boxSection}>
-        {data.cardFiscalDisbursementSummary.length === 0 &&
-        data.cardDisbursementRecipientSummary.length === 0 &&
-        data.cardDisbursementSparkdata.length === 0 &&
-          <Typography variant="caption">
-            <Box><LocationName location={location} />{` ${ nativeAmerican ? 'land' : '' } did not have disbursements from ${ minYear } to ${ year }.`}</Box>
-          </Typography>
-        }
-      </Box>
-    )
+    else if ( data &&
+	      data.cardFiscalDisbursementSummary.length === 0 &&
+	      data.cardDisbursementRecipientSummary.length === 0 &&
+	      data.cardDisbursementSparkdata.length === 0
+    ) {
+	return ( 
+	    <div ref={ref}>
+	      <Box className={classes.boxSection}   >
+		{data.cardFiscalDisbursementSummary.length === 0 &&
+		 data.cardDisbursementRecipientSummary.length === 0 &&
+		 data.cardDisbursementSparkdata.length === 0 &&
+		 <Typography variant="caption">
+		   <Box><LocationName location={location} />{` ${ nativeAmerican ? 'land' : '' } did not have disbursements from ${ minYear } to ${ year }.`}</Box>
+		 </Typography>
+		}
+	      </Box>
+	    </div>
+	)
+  } else { 
+      return (
+	  <div ref={ref}></div>
+      )
   }
 }
 

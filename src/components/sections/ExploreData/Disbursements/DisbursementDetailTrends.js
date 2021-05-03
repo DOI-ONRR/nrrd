@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import utils from '../../../../js/utils'
-
+import { useInView } from 'react-intersection-observer'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
@@ -69,9 +69,15 @@ const DisbursementDetailTrends = props => {
     regionType: props.regionType,
     locationName: props.locationName
   }
+ const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+     triggerOnce: true
+  })
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: DFC.FISCAL_YEAR_LABEL, year: year }
+    variables: { state: state, period: DFC.FISCAL_YEAR_LABEL, year: year }, 
+    skip: inView === false,    
   })
 
   if (loading) return 'Loading...'
@@ -126,7 +132,7 @@ const DisbursementDetailTrends = props => {
 
     return (
       <>
-        <Box textAlign="center" className={classes.boxTopSection} key={props.key}>
+        <Box textAlign="center" ref={ref} className={classes.boxTopSection} key={props.key}>
           <Box component="h2" mt={0} mb={0}>{locData && utils.formatToDollarInt(locData)}</Box>
           <Box component="span" mb={4}>{year && <span>{dataSet} Disbursements</span>}</Box>
           {sparkData.length > 1 && (
@@ -166,7 +172,7 @@ const DisbursementDetailTrends = props => {
   else {
     return (
       <>
-        <Box textAlign="center" className={classes.root} key={props.key}>
+        <Box textAlign="center" ref={ref} className={classes.root} key={props.key}>
           <Box><LocationName location={location} />{` ${ nativeAmerican ? 'land' : '' } did not have disbursements from ${ minYear } to ${ year }.`}</Box>
         </Box>
       </>
