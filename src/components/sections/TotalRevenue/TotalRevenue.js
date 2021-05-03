@@ -10,6 +10,7 @@ import {
 import { useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+import StackedBarChart2 from '../../data-viz/StackedBarChart/StackedBarChart2'
 import SectionHeader from '../../sections/SectionHeader'
 import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link/'
@@ -189,7 +190,7 @@ const TotalRevenue = props => {
   const { loading, error, data } = useQuery(QUERY)
   console.debug('data: ', data)
   const handleBarHover = d => {
-    revenueComparison.current.setSelectedItem(d)
+    revenueComparison.current.setSelectedItem(d[2])
   }
 
   if (loading) {
@@ -253,15 +254,7 @@ const TotalRevenue = props => {
     maxFiscalYear = periodAllYears[periodAllYears.length - 1]
     maxCalendarYear = periodAllYears[periodAllYears.length - 1]
 
-    /* maxFiscalYear = data.total_monthly_fiscal_revenue.reduce((prev, current) => {
-	 return (prev.year > current.year) ? prev.year : current.year
-       *     })
-       *     maxCalendarYear = data.total_monthly_calendar_revenue.reduce((prev, current) => {
-	 return (prev.year > current.year) ? prev.year : current.year
-       *     })
-       */
     // Month range
-
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
 	  if (period === DFC.PERIOD_FISCAL_YEAR) {
 	      currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
@@ -347,7 +340,7 @@ const TotalRevenue = props => {
         const year = dateArr[0]
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
         const month = date.toLocaleString('en-US', { month: 'short' })
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], `${ month } ${ year }`]
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), `${ month } ${ year }`]
         return headerArr
       }
     }
@@ -416,7 +409,7 @@ const TotalRevenue = props => {
 
       legendHeaders = (headers, row) => {
         const headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('09') && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], headerLabel]
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), headerLabel]
         return headerArr
       }
     }
@@ -427,37 +420,36 @@ const TotalRevenue = props => {
     <>
       <Grid container spacing={4}>
         <Grid item xs={12} md={7}>
-          <StackedBarChart
-		    key={`trsbc__${ monthly }${ period }${ breakoutBy }`}
-		    data={chartData}
-		    legendFormat={v => utils.formatToDollarInt(v)}
-		    title={chartTitle}
-		    units={units}
-		    xAxis={xAxis}
-		    xLabels={xLabels}
-		    yAxis={yAxis}
-		    xGroups={xGroups}
-		    yGroupBy={yGroupBy}
-		    yOrderBy={yOrderBy}
-		    legendHeaders={legendHeaders}
-		    primaryColor={theme.palette.explore[700]}
-		    secondaryColor={theme.palette.explore[100]}
-		    handleBarHover={handleBarHover}
+          <StackedBarChart2
+            key={`trsbc__${ monthly }${ period }${ breakoutBy }`}
+            data={chartData}
+            legendFormat={v => utils.formatToDollarInt(v)}
+            title={chartTitle}
+            units={units}
+            xAxis={xAxis}
+            xLabels={xLabels}
+            yAxis={yAxis}
+            xGroups={xGroups}
+            yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
+            legendHeaders={legendHeaders}
+            primaryColor={theme.palette.explore[700]}
+            secondaryColor={theme.palette.explore[100]}
+            handleBarHover={d => handleBarHover(d)}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
-		  <Link href='/downloads/revenue/'>Source file</Link>
+		        <Link href='/downloads/revenue/'>Source file</Link>
           </Box>
         </Grid>
         <Grid item xs={12} md={5}>
-		 <ComparisonTable
-		    key={`trct__${ monthly }${ period }${ breakoutBy }`}
-		    ref={revenueComparison}
-		    data={comparisonData}
-		    yGroupBy={yGroupBy}
-		    yOrderBy={yOrderBy}
-		    monthRange={monthRange}
-		    />
-
+          <ComparisonTable
+            key={`trct__${ monthly }${ period }${ breakoutBy }`}
+            ref={revenueComparison}
+            data={comparisonData}
+            yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
+            monthRange={monthRange}
+          />
         </Grid>
       </Grid>
     </>

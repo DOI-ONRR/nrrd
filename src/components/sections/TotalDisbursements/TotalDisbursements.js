@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core'
 
 import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+import StackedBarChart2 from '../../data-viz/StackedBarChart/StackedBarChart2'
 import SectionHeader from '../../sections/SectionHeader'
 import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link'
@@ -93,7 +94,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
 // TotalDisbursements
 const TotalDisbursements = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy, dataType } = filterState
+  const { monthly, period, breakoutBy, dataType, year } = filterState
   const disbursementsComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } by ${ period.toLowerCase() } (dollars)`
@@ -102,7 +103,7 @@ const TotalDisbursements = props => {
   const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY)
 
   const handleBarHover = d => {
-    disbursementsComparison.current.setSelectedItem(d)
+    disbursementsComparison.current.setSelectedItem(d[2])
   }
 
   if (loading) {
@@ -227,7 +228,7 @@ const TotalDisbursements = props => {
         const year = dateArr[0]
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
         const month = date.toLocaleString('en-US', { month: 'short' })
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : headers[0], `${ month } ${ year }`]
+        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), `${ month } ${ year }`]
         return headerArr
       }
     }
@@ -246,11 +247,13 @@ const TotalDisbursements = props => {
 
       xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)
       xLabels = (x, i) => {
+        // console.log('xLabels x, i: ', x, i)
         return x.map(v => '\'' + v.toString().substr(2))
       }
 
-      legendHeaders = (headers, row) => {
-        const headerArr = [headers[0], `${ periodAbbr } ${ headers[1] } ${ ((currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`]
+      legendHeaders = headers => {
+        console.log('legendHeaders: ', headers)
+        const headerArr = [breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), `${ periodAbbr } ${ headers[1] } ${ ((currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`]
         return headerArr
       }
     }
@@ -270,7 +273,7 @@ const TotalDisbursements = props => {
             maxCalendarYear={maxCalendarYear} />
         </Grid>
         <Grid item xs={12} md={7}>
-          <StackedBarChart
+          <StackedBarChart2
             key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
             title={chartTitle}
             units={units}
@@ -280,10 +283,20 @@ const TotalDisbursements = props => {
             xGroups={xGroups}
             yGroupBy={yGroupBy}
             yOrderBy={yOrderBy}
-            xLabels={xLabels}
-            legendFormat={v => utils.formatToDollarInt(v)}
+            xLabels={d => xLabels(d)}
+            legendFormat={d => utils.formatToDollarInt(d)}
             legendHeaders={legendHeaders}
-            handleBarHover={handleBarHover}
+            handleBarHover={d => handleBarHover(d)}
+            showTooltips={false}
+            chartTooltip={
+              d => {
+                // console.log('chartTooltip d: ', d)
+                const r = []
+                r[0] = d.key
+                r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                return r
+              }
+            }
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
             { (monthly === DFC.MONTHLY_CAPITALIZED)
