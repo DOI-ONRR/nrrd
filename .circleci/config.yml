@@ -102,10 +102,7 @@ jobs:
             - run:
                 command: |
                   git diff --name-only dev | grep database\/ | wc -w
-          steps:
-            -run:
-               command: |
-                 echo "DWGH"
+          
                  
   nrrd-preview:
     docker:
