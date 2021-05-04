@@ -92,7 +92,6 @@ jobs:
           path: ./test-results
 
   nrrd-database:
-    working_directory: ~/database
     machine:
       image: ubuntu-2004:202010-01
     steps:
@@ -108,7 +107,7 @@ jobs:
       - run:
           name: "Begin database build"
           command: |
-            echo "do we get here"
+            cd ~/database
       - run:
           name: "Update OS"
           command: sudo apt-get update
