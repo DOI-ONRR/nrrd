@@ -35,6 +35,7 @@ const config = {
       email: 'nrrd@onrr.gov'
     },
   },
+  flags: { PRESERVE_WEBPACK_CACHE: false },
   plugins: [
     'gatsby-transformer-react-docgen',
     {

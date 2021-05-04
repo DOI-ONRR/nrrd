@@ -34,7 +34,7 @@
     "elasticlunr": "^0.9.5",
     "eslint-plugin-flowtype": "^5.6.0",
     "etl": "^0.6.12",
-    "exceljs": "^4.2.1",
+    "exceljs": "^3.8.0",
     "file-saver": "^2.0.2",
     "gatsby": "^3.4.0",
     "gatsby-cli": "^3.4.0",

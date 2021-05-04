@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
  * images with lazy loading and reduced file sizes. The image is loaded using a
@@ -15,22 +15,14 @@ import Img from 'gatsby-image'
 export default ({ alt, ...rest }) => {
   const data = useStaticQuery(graphql`
   query {
-      imageSharp(fluid: {originalName: {eq: "doi.png"}}) {
-        fluid {
-          ...GatsbyImageSharpFluid
+      file(relativePath: {eq: "logos/doi.png"}) {
+        childImageSharp {
+          gatsbyImageData
         }
       }
     }
   `)
-  if (!data.imageSharp) {
-    console.warn('doi.png did not load from graphql')
-    return <></>
-  }
   return (
-    <>
-      {data.imageSharp &&
-        <Img fluid={data.imageSharp.fluid} alt={alt || 'Department of the Interior'} {...rest} />
-      }
-    </>
+    <GatsbyImage image={data.file.childImageSharp.gatsbyImageData} alt={alt || 'Department of the Interior'} {...rest}/>
   )
 }
