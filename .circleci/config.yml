@@ -99,7 +99,7 @@ jobs:
       - run:
           name: "Check for database changes"
           command: |
-            CHANGES=`git diff --name-only dev | grep foodatabase\/ | wc -w`
+            CHANGES=`git diff --name-only dev | grep database\/ | wc -w`
             echo $?
             echo $CHANGES
                         echo $?
