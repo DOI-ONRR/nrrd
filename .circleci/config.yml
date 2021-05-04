@@ -107,7 +107,7 @@ jobs:
       - run:
           name: "Begin database build"
           command: |
-            cd ~/database
+            ls -l
       - run:
           name: "Update OS"
           command: sudo apt-get update
