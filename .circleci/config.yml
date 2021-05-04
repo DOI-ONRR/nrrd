@@ -97,7 +97,6 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout:
-          path: ~/database
       - run:
           name: "Check for database changes"
           command: |
