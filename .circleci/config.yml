@@ -100,12 +100,9 @@ jobs:
           name: "Check for database changes"
           command: |
             CHANGES=`git diff --name-only dev | grep foodatabase\/ | wc -w` || echo $?
-            echo $CHANGES
-                        echo $?
             if [ "$CHANGES" = "0" ]; then
-              echo $?
-              echo "halting no database changes"
-              echo $?
+              echo "Halting database build -  no database changes"
+              circleci-agent step halt
             fi
       - run:
           name: "Begin database build"
