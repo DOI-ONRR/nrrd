@@ -91,6 +91,22 @@ jobs:
       - store_artifacts:
           path: ./test-results
 
+  nrrd-database:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - when:
+          condition:
+            not:
+            - run:
+                command: |
+                  git diff --name-only dev | grep database\/ | wc -w
+          steps:
+            -run:
+               command: |
+                 echo "DWGH"
+                 
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
