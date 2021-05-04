@@ -96,8 +96,19 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
+      - run:
+          name: "Check for database changes"
+          command: |
+            CHANGES=`git diff --name-only dev | grep database\/ | wc -w`
+            if [ "$CHANGES" = "0" ]; then
+              circleci-agent step halt
+            fi
+      - run:
+          name: "Begin database build"
+          command: |
+            echo "do we get here"
 
-              
+                 
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
