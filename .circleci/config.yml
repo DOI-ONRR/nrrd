@@ -108,15 +108,19 @@ jobs:
           name: "Begin database build"
           command: |
             cd database
+            ls -l
       - run:
           name: "Update OS"
           command: sudo apt-get update
       - run:
           name: "Install posgres client"
-          command: sudo apt-get install  --fix-missing  postgresql-client && cp .pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
+          command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
       - run:
           name: "Docker compose"
-          command: cat docker-compose.yaml
+          command: |
+            cd database
+            cat docker-compose.yaml
+            docker-compose up -d
             
                  
   nrrd-preview:
