@@ -92,10 +92,12 @@ jobs:
           path: ./test-results
 
   nrrd-database:
+    working_directory: ~/database
     machine:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
+          path: ~/database
       - run:
           name: "Check for database changes"
           command: |
@@ -108,7 +110,16 @@ jobs:
           name: "Begin database build"
           command: |
             echo "do we get here"
-
+      - run:
+          name: "Update OS"
+          command: sudo apt-get update
+      - run:
+          name: "Install posgres client"
+          command: sudo apt-get install  --fix-missing  postgresql-client && cp .pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
+      - run:
+          name: "Docker compose"
+          command: cat docker-compose.yaml
+            
                  
   nrrd-preview:
     docker:
