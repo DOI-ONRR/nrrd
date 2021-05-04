@@ -178,7 +178,12 @@ const config = {
         // should be an object or a function that is executed in the browser
         //
         // Defaults to null
-        defaultDataLayer: { platform: 'nrrd_data_layer' },
+        defaultDataLayer: function () {
+          return {
+            pageType: window.pageType,
+            platform: 'nrrd_data_layer'
+          }
+        },
         // Specify optional GTM environment details.
         // gtmAuth: 'YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING',
         gtmPreview: 'NRRD_CLOUD_GOV_PREVIEW_BRANCH',

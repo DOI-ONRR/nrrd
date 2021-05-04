@@ -16,13 +16,16 @@ import {
   Hidden,
   Slide,
   Snackbar,
-  useMediaQuery
+  useMediaQuery,
+  IconButton
 } from '@material-ui/core'
 
-import { animateScroll as scroll } from 'react-scroll'
+import CloseIcon from '@material-ui/icons/Close'
+
+// import { animateScroll as scroll } from 'react-scroll'
 
 import MapLevel from './MapLevel'
-import MapControls from './MapControls'
+// import MapControls from './MapControls'
 import ExploreDataToolbar from '../../toolbars/ExploreDataToolbar'
 
 import { ExploreDataContext } from '../../../stores/explore-data-store'
@@ -269,6 +272,18 @@ const MapContext = props => {
   const matchesXsDown = useMediaQuery(theme.breakpoints.down('xs'))
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
+  // Map snackbar
+  const [open, setOpen] = useState(false)
+
+  const handleMapSnackbarOpen = () => {
+    setOpen(true)
+  }
+
+  const handleMapSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') return
+    setOpen(false)
+  }
+
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
 
@@ -283,13 +298,6 @@ const MapContext = props => {
     offshoreRegions: StringParam,
     commodity: StringParam,
     year: StringParam,
-  })
-
-  // Map snackbar
-  const [mapSnackbarState, setMapSnackbarState] = useState({
-    open: false,
-    vertical: 'bottom',
-    horizontal: 'center'
   })
 
   const MAX_CARDS = (props.MaxCards) ? props.MaxCards : 3 // 3 cards means 4 cards
@@ -314,16 +322,6 @@ const MapContext = props => {
       label: 'Add Native American'
     }
   ]
-
-  const { vertical, horizontal, open } = mapSnackbarState
-
-  const handleMapSnackbar = newState => () => {
-    setMapSnackbarState({ open: true, ...newState })
-  }
-
-  const handleMapSnackbarClose = () => {
-    // setMapSnackbarState({ ...mapSnackbarState, open: false })
-  }
 
   // onLink
   const onLink = (state, x, y, k) => {
@@ -357,8 +355,7 @@ const MapContext = props => {
         cards.push(stateObj)
       }
       else {
-        // TODO: snackbar not triggering atm
-        handleMapSnackbar({ vertical: 'bottom', horizontal: 'center' })
+        handleMapSnackbarOpen()
       }
     }
 
@@ -366,7 +363,7 @@ const MapContext = props => {
   }
 
   const onClick = (d, fips) => {
-    console.debug('on click', d, 'fips', fips)
+    // console.debug('on click', d, 'fips', fips)
     onLink(d)
   }
 
@@ -532,12 +529,21 @@ const MapContext = props => {
       </Container>
       <Container>
         <Snackbar
-          anchorOrigin={{ vertical, horizontal }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
           open={open}
-          onClose={handleMapSnackbarClose}
-          message="Only four locations can be viewed at once. Remove one of the location cards to add another location."
-          key={vertical + horizontal}
           autoHideDuration={6000}
+          onClose={handleMapSnackbarClose}
+          message={
+            'Only four locations can be viewed at once. \
+             Remove one of the locations to add another.'
+          }
+          action={
+            <>
+              <IconButton size="small" aria-label="close" color="inherit" onClick={handleMapSnackbarClose}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </>
+          }
         />
       </Container>
     </>
