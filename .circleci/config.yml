@@ -123,8 +123,9 @@ jobs:
 
       - run:
           name: "Restore Database schema"
-          command: pg_restore --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
-       - run:
+          command: |
+            pg_restore --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
+      - run:
           name: "Load Revenue"
           no_output_timeout: 30m
           command: bash ./database/src/ELT/monthly_revenue.load.sh
