@@ -105,7 +105,7 @@ jobs:
           steps:
             -run:
                command: |
-                 echo "DWGH"
+                 echo DWGH
                  
   nrrd-preview:
     docker:
