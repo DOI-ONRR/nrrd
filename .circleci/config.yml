@@ -128,28 +128,28 @@ jobs:
       - run:
           name: "Load Revenue"
           no_output_timeout: 30m
-          command: bash ./database/src/ELT/monthly_revenue.load.sh
+          command: cd database && bash ./src/ELT/monthly_revenue.load.sh
       - run:
           name: "Load Monthly Production"
-          command: psql --host=localhost --user=postgres< ./database/src/ELT/monthly_production.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql    
       - run:
           name: "Load Fiscal Production"
-          command: psql --host=localhost --user=postgres< ./database/src/ELT/fiscal_year_production.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql    
       - run:
           name: "Load Calendar Production"
-          command: psql --host=localhost --user=postgres< ./database/src/ELT/calendar_year_production.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql    
       - run:
           name: "Load Monthly Disbursement"
-          command: psql --host=localhost --user=postgres< ./database/src/ELT/monthly_disbursement.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql    
       - run:
           name: "Load Fiscal Disbursement"
-          command: psql --host=localhost --user=postgres< ./database/src/ELT/fiscal_year_disbursement.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql    
       - run:
           name: "Load Revenue By Company"
-          command: psql --host=localhost --user=postgres < ./database/src/ELT/revenue_by_company.elt.sql
+          command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
       - run:
           name: "Update metadata"
-          command: psql --host=localhost --user=postgres< ./database/src/ELT/update_metadata.sql
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/update_metadata.sql
       - run:
           name: "Backup database"
           command: pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -F t -f /tmp/database_backup.pg || echo $?         
