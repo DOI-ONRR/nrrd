@@ -16,6 +16,8 @@ update monthly_disbursement_elt set fund_type = COALESCE(fund_type,''),
 			      ;
 
 \echo update fund_class and recipient
+update  monthly_disbursement_elt set fund_type='Lease Processing and Improvement (BLM)' where fund_type='BLM - Permit Processing and Improvement' 
+;
 
 update monthly_disbursement_elt set fund_class='Other funds' where fund_type != '' and fund_class = '';
 update monthly_disbursement_elt set fund_class='Native American tribes and individuals', recipient='Native American tribes and individuals' where fund_type = 'U.S. TreasuryAI' or fund_type='American Indian Tribes' or fund_type='Native American Tribes & Allottees' ;
@@ -55,7 +57,8 @@ update monthly_revenue_elt set revenue_type=initcap(revenue_type) ;
 update monthly_revenue_elt set revenue_type=REPLACE(revenue_type, '1spc1', ' ') ;
 
 \echo 'Update county and fips_code'
-
+update monthly_disbursement_elt set county='Hidalgo County' where county='Hidalgo Caounty';
+update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' County', ''),' Parish',''), ' Borough',''),'');
 update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' County', ''),' Parish',''), ' Borough',''),'');
 update monthly_disbursement_elt e set fips_code = l.fips_code FROM county_lookup l WHERE e.county=l.county and e.state=l.state;
 
@@ -77,6 +80,7 @@ update monthly_disbursement_elt set commodity=REPLACE(commodity, '1oprn1','(') ;
 update monthly_disbursement_elt set commodity=REPLACE(commodity, '1cprn1', ')') ;
 
 update monthly_disbursement_elt set commodity=REPLACE(commodity, '1spc1', ' ') ;
+
 
 \echo 'Insert location records'
 insert into location (land_class, land_category,  state, county, fips_code) select
