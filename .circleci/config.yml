@@ -129,7 +129,7 @@ jobs:
             psql --version
             ls -lart ./database/backup/database_backup.pg
             pg_restore --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
-             psql --user=postgres --host=localhost
+
       - run:
           name: "Load Revenue"
           no_output_timeout: 30m
