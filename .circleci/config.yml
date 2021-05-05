@@ -171,7 +171,7 @@ jobs:
             bash tunnel.sh hasura-sandbox
             source ./.tunnelrc
             cat ./.tunnelrc
-            psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
+            psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;create schema hdb_catalog; create schema hdb_views;'
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-sandbox
 
