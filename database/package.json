@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "author": "Mojo Nichols <mojo.nichols>",
     "scripts": {
-        "backup": "docker exec -it -u root database_postgres_1 pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -F t -f ./backup/database_backup.pg && docker exec -it -u root database_postgres_1 bash ./src/scripts/table_backup.sh",
+        "backup": "docker exec -it -u root database_postgres_1 pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f ./backup/database_backup.pg && docker exec -it -u root database_postgres_1 bash ./src/scripts/table_backup.sh",
         "build": "docker exec -it -u root database_postgres_1 pg_restore --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres ./backup/database_backup.pg  && docker-compose down && docker-compose up -d",
         "clean": "docker-compose down --rmi all --volumes && docker-compose up -d",
         "psql": "docker exec -it -u root database_postgres_1 psql  --user=postgres --host=localhost"
