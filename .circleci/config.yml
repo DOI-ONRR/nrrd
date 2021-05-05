@@ -125,8 +125,7 @@ jobs:
       - run:
           name: "Restore Database schema"
           command: |
-             psql --user=postgres --host=localhost -c 'drop schema public cascade;drop schema hdb_catelog cascade; drop schema hdb_views;  create schema public;'
-             pg_restore --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
+             pg_restore --verbose --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
 
       # - run:
       #     name: "Load Revenue"
