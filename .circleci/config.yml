@@ -126,7 +126,7 @@ jobs:
       - run:
           name: "Restore Database schema"
           command: |
-           
+            ls -lart ./database/backup/database_backup.pg
             pg_restore --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
       - run:
           name: "Load Revenue"
@@ -155,7 +155,9 @@ jobs:
           command: cd database && psql --host=localhost --user=postgres< ./src/ELT/update_metadata.sql
       - run:
           name: "Backup database"
-          command: pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -F t -f /tmp/database_backup.pg || echo $?         
+          command: |
+            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -F t -f /tmp/database_backup.pg || echo $?
+            ls -lart /tmp/database_backup.pg 
       - run:
           name: "Deploy to cloud.gov"
           command: |
@@ -171,7 +173,7 @@ jobs:
             bash tunnel.sh hasura-sandbox
             source ./.tunnelrc
             cat ./.tunnelrc
-            psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;create schema hdb_catalog; create schema hdb_views;'
+            psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-sandbox
 
