@@ -110,18 +110,17 @@ jobs:
             cd database
             ls -l
       - run:
-          name: "Update OS"
-          command: sudo apt-get update
-      - run:
-          name: "Install posgres client"
-          command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
-      - run:
           name: "Docker compose"
           command: |
             cd database
             sudo docker-compose up -d
 
-            
+      - run:
+          name: "Update OS"
+          command: sudo apt-get update
+      - run:
+          name: "Install posgres client"
+          command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
       - run:
           name: "Restore Database schema"
           command: |
