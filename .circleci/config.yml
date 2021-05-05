@@ -120,15 +120,14 @@ jobs:
           command: |
             cd database
             sudo docker-compose up -d
-            sudo docker-compose down --rmi all --volumes --remove-orphans
-            sudo docker-compose up -d
+
             
       - run:
           name: "Restore Database schema"
           command: |
-            psql --version
-            ls -lart ./database/backup/database_backup.pg
-            pg_restore --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
+             psql --user=postgres --host=localhost -c '\dn'
+             psql --user=postgres --host=localhost -c 'drop schema public cascade;drop schema hdb_catelog cascade; drop schema hdb_views;  create schema public;'
+             pg_restore --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
 
       - run:
           name: "Load Revenue"
