@@ -1,0 +1,26 @@
+Fields,Definitions
+Month,The month the revenue was collected by ONRR.
+Calendar Year,Is the period between January 1 and December 31 for a given year.
+Fiscal Year,"The year the revenue was generated. The federal fiscal year runs from October 1 of the prior year through September 30 of the year being described. For example, Fiscal Year 2018 is between October 1, 2017, and September 30, 2018."
+Land Class,This field distinguishes federal lands and waters from Native American lands.
+Federal,"Federal lands are owned by or under the jurisdiction of the federal government, including: public domain lands, acquired lands, military acquired lands, and Outer Continental Shelf"
+Native American,"Includes Tribal lands held in trust by the federal government for a tribe’s use, and allotments held in trust by the federal government for individual Native American use."
+Land Category,This field distinguishes between onshore and offshore revenue.
+Onshore,Situated or occurring on land.
+Offshore,"Submerged lands located farther than three miles off a state’s coastline, or three marine leagues into the Gulf of Mexico off of Texas and Western Florida."
+Not Tied to a Lease,Some revenues - such as civil penalties - are not tied to either onshore or offshore.
+State,Contains the name of the state.
+County Code,"Contains county, parish, and borough names."
+FIPS Code,"Federal Information Processing Standards (FIPS), now known as Federal Information Processing Series, are numeric codes assigned by the National Institute of Standards and Technology (NIST). Typically, FIPS codes deal with US states and counties. US states are identified by a 2-digit number, while US counties are identified by a 3-digit number."
+Revenue Type,Revenues from U.S. natural resources fall into one of several types.
+Royalties,A natural resource lease holder pays royalties after the lease starts producing a commodity in paying quantities. The amount is based on a percentage of the revenue from the commodity sold. The exact percentage is set in the original lease document that went along with the lease sale.
+Bonus,The amount paid by the highest successful bidder for a natural resource lease. The winning bid.
+Rents,"A natural resource lease might not produce anything in paying quantities for some time after it is sold. Until it does, periodic payments are made for the right to continue exploration and development of the land for future natural resource production. These payments are called rent."
+Civil Penalties,"ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws."
+Inspection Fees,The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.
+Other Revenues,"This category includes revenues that are not included in the royalty, rent, or bonus categories, such as minimum royalties, estimated royalties, settlement agreements, and interest."
+Mineral Lease Type,"Is the type of lease revenue is being generated from. An oil or gas mineral lease type can generate revenue not only from oil or gas but also, CO2, helium, NGL, and sulfur."
+Commodity,"The Department of the Interior collects revenues on over 60 different products. The majority of revenues come from oil, gas, coal, and renewables (geothermal and wind), but you will find many other product categories in these datasets."
+Product,Commodity type is often further broken down into product.
+Revenue,Total Revenue
+Oil or Gas (pre-production),"The commodity category used for offshore oil and gas rents and bonuses. At the time of lease sale, it isn’t known whether a lease will produce oil, gas or both oil and gas. After a lease starts producing a commodity (or commodities), the lease owner starts paying royalties. These can then be associated with either oil or gas. Hence, rent and bonus lines of data will be associated with an “Oil or Gas (pre-production)” commodity type, while royalty lines of data will be associated with either “Oil” or “Gas” commodity types."

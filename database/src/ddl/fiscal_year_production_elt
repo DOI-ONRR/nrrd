@@ -1,0 +1,14 @@
+Fiscal Year	Land Category	Land Class	State	County	FIPS Code	Offshore Region	Product	 Volume 
+
+drop table if exists fiscal_year_production_elt;
+create table fiscal_year_production_elt (
+fiscal_year  varchar(255),
+land_category varchar(255),
+land_class varchar(255),
+state varchar(255),
+county varchar(255),
+fips_code varchar(255),
+offshore_region varchar(255),
+product varchar(255),
+volume varchar(255)
+)

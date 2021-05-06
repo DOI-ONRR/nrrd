@@ -1,0 +1,49 @@
+
+## Notes from linux with psql pg_dump and pg_restore installed (aka postgres client): 
+sudo docker-compose down --rmi all --volumes
+
+sudo docker-compose up -d
+
+
+alias psql-shell='psql postgres://postgres:postgrespassword@localhost:5432/postgres'
+
+
+psql-shell < ./app/src/ddl/all.ddl.sql
+
+
+pg_dump postgres://postgres:postgrespassword@db:5432/postgres -F t -f ./src/ddl/all.ddl.pg
+pg_restore --user=postgres --port=5432 --host=localhost  --clean --no-owner --no-acl --dbname=postgres ./src/ddl/all.ddl.pg	
+password:
+
+
+psql-shell < ./app/src/ELT/monthly_revenue.load.sql
+
+
+
+
+## Without using locally installed postgres client
+
+
+# Data Management Processes
+## Data Updates
+ 1 Create a branch in nrrd-data
+ 2 Add a new Monthly Revenue file or Replace Production/Disbursements/Revenue By Company file
+ 3 Check in/Push Branch
+ 4 CircleCi Runs and deploys data to Sandbox DB
+ 5 To review data updates go to https://data-nrrd.app.cloud.gov/
+ 6 Once approved then merge branch to main and this will deploy data to our Dev DB
+ 7 Go to https://dev-nrrd.app.cloud.gov/ to review the updates on that site
+ 8 This will now be ready to deploy to production
+## For Developers
+ 1 Create a branch in nrrd-data
+ 2 Make updates to the local DB
+ 3 Dump DB
+ 4 Check in/Push branch
+ 5 Deploys to sandbox
+ 6 Update Frontend code to point to Sandbox and preview changes
+ 7 Once approved merge nrrd-data branch to main and nrrd branch to dev
+ 8 Changes should not be ready to deploy to production
+ 
+
+
+
