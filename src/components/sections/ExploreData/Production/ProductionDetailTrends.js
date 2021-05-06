@@ -17,6 +17,7 @@ import {
 
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
+import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm'
 import * as d3 from 'd3'
 
 const useStyles = makeStyles(theme => ({

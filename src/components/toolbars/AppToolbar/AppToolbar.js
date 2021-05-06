@@ -11,8 +11,7 @@ import {
 
 import {
   makeStyles,
-  fade,
-  useTheme
+  fade
 } from '@material-ui/core/styles'
 
 import BaseToolbar from '../BaseToolbar'
@@ -85,9 +84,6 @@ const useStyles = makeStyles(theme => ({
   },
   mainMenuWrap: {
     display: 'inherit',
-    '& a:nth-child(3)': {
-      paddingRight: theme.spacing(1.5),
-    },
     '& a:last-child': {
       borderLeft: '1px solid white',
       paddingLeft: theme.spacing(4),
@@ -114,7 +110,6 @@ const useStyles = makeStyles(theme => ({
 
 const AppToolbar = props => {
   const classes = useStyles()
-  const theme = useTheme()
   return (
     <Box className={classes.root} displayPrint="none">
       <AppBar position="static" style={{ position: 'relative' }}>
@@ -127,29 +122,21 @@ const AppToolbar = props => {
               <Link href='/explore' linkType='Header' style={{ color: 'white' }}>Explore data</Link>
               <Link href='/query-data' linkType='Header' style={{ color: 'white' }}>Query data</Link>
               <Link href='/downloads' linkType='Header' style={{ color: 'white' }}>Download data</Link>
+              <Link href='/glossary' linkType='Header' style={{ color: 'white' }}>Glossary</Link>
               <Link href='/how-revenue-works' linkType='Header' style={{ color: 'white' }}>How revenue works</Link>
             </div>
           </Hidden>
-          <Hidden lgUp smDown>
-            <div className={classes.mainMenuWrap}>
-              <DataMenu label="Data">
-                <Link href='/explore' linkType='Header' style={{ marginLeft: 0 }}>Explore data</Link>
-                <Link href='/query-data' linkType='Header' style={{ marginLeft: 0 }}>Query data</Link>
-                <Link href='/downloads' linkType='Header' style={{ marginLeft: 0 }}>Download data</Link>
-              </DataMenu>
-              <Link href='/how-revenue-works' linkType='Header' style={{ color: 'white' }}>How revenue works</Link>
-            </div>
-          </Hidden>
-          <Hidden smDown>
+          <Hidden mdDown>
             <div>
               <SearchSite />
             </div>
           </Hidden>
-          <Hidden mdUp>
+          <Hidden lgUp smDown>
             <MobileMenu>
               <Link href='/explore' linkType='Header'>Explore data</Link>
               <Link href='/query-data' linkType='Header'>Query data</Link>
               <Link href='/downloads' linkType='Header'>Download data</Link>
+              <Link href='/glossary' linkType='Header' style={{ color: 'white' }}>Glossary</Link>
               <hr style={{ borderColor: 'rgba(255, 255, 255, .25)', borderWidth: 0.5, maxWidth: '90%' }} />
               <Link href='/how-revenue-works' linkType='Header'>How revenue works</Link>
               <Link href='/about' linkType='Header'>About</Link>

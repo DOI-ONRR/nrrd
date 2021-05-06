@@ -5,6 +5,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from 'test-utils'
 
 import StackedBarChart from './StackedBarChart'
+import StackedBarChart2 from './StackedBarChart2'
 
 const chartData = [
   { year: 2011, source: 'Federal - not tied to a location', sum: 3914026.89, __typename: 'total_yearly_fiscal_revenue' },
@@ -133,7 +134,7 @@ describe('Stacked Bar Chart component:', () => {
   })
 
   test('Collapsible Legend collapsed = true Bar Chart  rendered succesfully', () => {
-	    render(<StackedBarChart
+	    render(<StackedBarChart2
 			 data={chartData}
 			 title={chartTitle}
 			 xAxis={xAxis}
@@ -148,7 +149,7 @@ describe('Stacked Bar Chart component:', () => {
   })
 
   test('Collapsible Legend collapsed = false Bar Chart  rendered succesfully', () => {
-    render(<StackedBarChart
+    render(<StackedBarChart2
 			     data={chartData}
 			     title={chartTitle}
 			     xAxis={xAxis}
