@@ -211,7 +211,129 @@ jobs:
       - run:
           name: "list bucket"
           command: |
-            aws s3 ls s3://${NPS_BUCKET_NAME}/    
+            aws s3 ls s3://${NPS_BUCKET_NAME}/
+
+  nrrd-dev-database:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: "Check for database changes"
+          command: |
+            CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
+            if [ "$CHANGES" = "0" ]; then
+              echo "Halting database build -  no database changes"
+              circleci-agent step halt
+            fi
+      - run:
+          name: "Begin database build"
+          command: |
+            cd database
+            ls -l
+      - run:
+          name: "Docker compose"
+          command: |
+            cd database
+            sudo docker-compose up -d
+
+      - run:
+          name: "Update OS"
+          command: sudo apt-get update
+      - run:
+          name: "Install posgres client"
+          command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
+      - run:
+          name: "Restore Database schema"
+          command: |
+             pg_restore --verbose --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
+
+      - run:
+          name: "Load Revenue"
+          no_output_timeout: 30m
+          command: cd database && bash ./src/ELT/monthly_revenue.load.sh
+      - run:
+          name: "Load Monthly Production"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql    
+      - run:
+          name: "Load Fiscal Production"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql    
+      - run:
+          name: "Load Calendar Production"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql    
+      - run:
+          name: "Load Monthly Disbursement"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql    
+      - run:
+          name: "Load Fiscal Disbursement"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql    
+      - run:
+          name: "Load Revenue By Company"
+          command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
+      - run:
+          name: "Update metadata"
+          command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
+      - run:
+          name: "Backup database"
+          command: |
+            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
+      - run:
+          name: "Deploy to cloud.gov"
+          command: |
+            cd database
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb 
+            cf api https://api.fr.cloud.gov
+            echo "$PROD CF_USERNAME"
+            cf auth "$PROD_CF_USERNAME" "$PROD_CF_PASSWORD"
+            cf target -o "$PROD_CF_ORG" -s "$PROD_CF_SPACE"
+            cf apps
+            cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
+            bash tunnel.sh hasura-dev
+            source ./.tunnelrc
+            cat ./.tunnelrc
+            psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
+            pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
+            cf restage hasura-dev
+
+      - run:
+          name: "Install ssconvert"
+          command: sudo apt-get install gnumeric
+      - run:
+          name: "Generate downloads"
+          command: |
+                cd database
+                npm install
+                bash ./src/scripts/downloads.sh
+                node ./src/scripts/downloads.js
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls /tmp/downloads/*
+      - store_artifacts:
+          path: /tmp/database_backup.pg
+          destination: database_backup.pg
+      - store_artifacts:
+          path: /tmp/downloads
+          destination: downloads
+      - aws-s3/sync:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: /tmp/downloads/
+          to: 's3://$NPS_BUCKET_NAME/downloads/'
+      - aws-s3/copy:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: /tmp/database_backup.pg
+          to: 's3://$NPS_BUCKET_NAME/backup/database_backup.pg'
+      - run:
+          name: "list bucket"
+          command: |
+            aws s3 ls s3://${NPS_BUCKET_NAME}/              
                  
   nrrd-preview:
     docker:
@@ -364,7 +486,7 @@ workflows:
                 - dev
       - nrrd-preview:
           context:
-            - DEV
+            - STAGE
           requires:
             - nrrd-database
           filters:
@@ -382,7 +504,16 @@ workflows:
 
   dev:
     jobs:
+      - nrrd-dev-database:
+          context:
+            - DEV
+          filters:
+            branches:
+              only: dev
       - dev:
+          context:
+          requires:
+            - nrrd-database
           filters:
             branches:
               only: dev
