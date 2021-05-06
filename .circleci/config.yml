@@ -150,13 +150,11 @@ jobs:
           command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
       - run:
           name: "Update metadata"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/update_metadata.sql
+          command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
       - run:
           name: "Backup database"
           command: |
-            ls -lart /tmp/database_backup.pg
-            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -F t -f /tmp/database_backup.pg || echo $?
-            ls -lart /tmp/database_backup.pg 
+            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
       - run:
           name: "Deploy to cloud.gov"
           command: |
