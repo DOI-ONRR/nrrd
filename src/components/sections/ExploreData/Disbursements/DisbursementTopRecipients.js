@@ -17,10 +17,10 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import { CircleChart } from '../../../data-viz/CircleChart'
 
 import {
-    Box,
-    Container,
-    Grid,
-    useTheme
+  Box,
+  Container,
+  Grid,
+  useTheme
 } from '@material-ui/core'
 
 const APOLLO_QUERY = gql`
@@ -91,26 +91,26 @@ const DisbursementTopRecipients = props => {
     theme.palette.explore[200],
     theme.palette.explore[100]
   ]
-    const xAxis = 'recipient'
-    const yAxis = 'total'
-    const { ref, inView, entry } = useInView({
-	/* Optional options */
-	threshold: 0,
-	triggerOnce: true
-    })
+  const xAxis = 'recipient'
+  const yAxis = 'total'
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
-    const { loading, error, data } = useQuery(APOLLO_QUERY, {
-	variables: { year }, 
-	skip: inView === false
-    })
-    
-    if (loading) {
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { year },
+    skip: inView === false
+  })
+
+  if (loading) {
     return (
-	<div className={classes.progressContainer} ref={ref} >
-          <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-	</div>
+      <div className={classes.progressContainer} ref={ref} >
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </div>
     )
-    }
+  }
   if (error) return `Error! ${ error.message }`
   let chartData = []
   const dataSet = `FY ${ year }`
@@ -169,10 +169,10 @@ const DisbursementTopRecipients = props => {
     )
   }
   else {
-    return ( 
-	<div className={classes.progressContainer} ref={ref} >
-          <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-	</div>
+    return (
+      <div className={classes.progressContainer} ref={ref} >
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </div>
     )
   }
 }

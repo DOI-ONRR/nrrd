@@ -65,14 +65,14 @@ const NationwideDisbursementSummary = props => {
   const dataSet = 'FY ' + year
 
   const { title } = props
-    const { ref, inView, entry } = useInView({
+  const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
   })
   const { loading, error, data } = useQuery(NATIONWIDE_DISBURSEMENT_SUMMARY_QUERY, {
     variables: { year },
-      skip: inView === false 
+    skip: inView === false
   })
 
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
@@ -221,9 +221,9 @@ const NationwideDisbursementSummary = props => {
   }
   else {
     return (
-	<Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={300}>
-          <CircularProgress />
-	</Box>
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={300}>
+        <CircularProgress />
+      </Box>
     )
   }
 }

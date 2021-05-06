@@ -59,7 +59,7 @@ const DisbursementSources = props => {
   const state = props.fipsCode
   const xAxis = 'source'
   const yAxis = 'total'
- const { ref, inView, entry } = useInView({
+  const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
@@ -82,7 +82,7 @@ const DisbursementSources = props => {
     chartData = data
     if (chartData.DisbursementSourceSummary.length > 1) {
       return (
-        <Box className={classes.root}  ref={ref}>
+        <Box className={classes.root} ref={ref}>
           <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box>
             <CircleChart
@@ -126,7 +126,7 @@ const DisbursementSources = props => {
   }
 
   return (
-    <Box className={classes.root}  ref={ref}>&nbsp;</Box>
+    <Box className={classes.root} ref={ref}>&nbsp;</Box>
   )
 }
 

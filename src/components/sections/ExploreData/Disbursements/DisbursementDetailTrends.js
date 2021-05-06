@@ -69,15 +69,15 @@ const DisbursementDetailTrends = props => {
     regionType: props.regionType,
     locationName: props.locationName
   }
- const { ref, inView, entry } = useInView({
+  const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
-     triggerOnce: true
+    triggerOnce: true
   })
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: DFC.FISCAL_YEAR_LABEL, year: year }, 
-    skip: inView === false,    
+    variables: { state: state, period: DFC.FISCAL_YEAR_LABEL, year: year },
+    skip: inView === false,
   })
 
   if (loading) return 'Loading...'

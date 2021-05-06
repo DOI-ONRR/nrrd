@@ -90,21 +90,21 @@ const DisbursementsOverTime = props => {
 
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
- const { ref, inView, entry } = useInView({
+  const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
   })
-  const { loading, error, data } = useQuery(APOLLO_QUERY,{
-      skip: inView === false
-})
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    skip: inView === false
+  })
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
   if (loading) {
     return (
-      <div className={classes.progressContainer}  ref={ref} >
+      <div className={classes.progressContainer} ref={ref} >
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />
       </div>
     )
@@ -132,7 +132,7 @@ const DisbursementsOverTime = props => {
     chartData = [years, ...sums]
 
     return (
-      <Container id={utils.formatToSlug(title)} ref={ref}  >
+      <Container id={utils.formatToSlug(title)} ref={ref} >
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h4" color="secondary.dark">{title}</Box>
@@ -172,9 +172,9 @@ const DisbursementsOverTime = props => {
   }
   else {
     return (
-	<div className={classes.progressContainer}  ref={ref} >
-          <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-	</div>
+      <div className={classes.progressContainer} ref={ref} >
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </div>
     )
   }
 }

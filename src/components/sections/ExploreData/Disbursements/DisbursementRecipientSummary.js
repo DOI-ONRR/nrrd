@@ -102,15 +102,15 @@ const DisbursementRecipientSummary = props => {
     regionType: props.regionType,
     locationName: props.locationName
   }
-    const { ref, inView, entry } = useInView({
-	/* Optional options */
-	threshold: 0,
-	triggerOnce: true
-    })
-    const { loading, error, data } = useQuery(APOLLO_QUERY, {
-	variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL },
-	skip: inView === false
-    })
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL },
+    skip: inView === false
+  })
 
   if (loading) {
     return ''
@@ -151,33 +151,33 @@ const DisbursementRecipientSummary = props => {
       })
 
     return (<div ref={ref}>
-            <Grid container >
-              <Grid item xs={12} zeroMinWidth>
-		<Typography
+      <Grid container >
+        <Grid item xs={12} zeroMinWidth>
+          <Typography
 		    variant="subtitle2"
 		    style={{ fontWeight: 'bold', marginBottom: 10 }}>
 		  Top Recipients
-		</Typography>
-              </Grid>
-            </Grid>
-            <Grid container>
-              <Paper className={classes.paper} style={{ marginBottom: 10 }}>
-		<Table
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container>
+        <Paper className={classes.paper} style={{ marginBottom: 10 }}>
+          <Table
 		    className={classes.table}
 		    size="small"
 		    aria-label="top Recipients table"
-		>
+          >
 		  <TableBody>
-                    {topRecipients &&
+              {topRecipients &&
                      topRecipients.map((row, i) => {
 			 return (
 			     <TableRow key={i}>
-                               <TableCell component="th" scope="row">
+                           <TableCell component="th" scope="row">
 				 <Typography style={{ fontSize: '.8rem' }}>
 				   {row.recipient}
 				 </Typography>
-                               </TableCell>
-                               <TableCell align="right">
+                           </TableCell>
+                           <TableCell align="right">
 				 <Sparkline
 				     key={'DRS' + dataSet }
 				     data={row.data}
@@ -185,8 +185,8 @@ const DisbursementRecipientSummary = props => {
 					 x => x[0] === parseInt(year)
 				     )}
 				 />
-                               </TableCell>
-                               <TableCell align="right">
+                           </TableCell>
+                           <TableCell align="right">
 				 <Typography style={{ fontSize: '.8rem' }}>
 				   {utils.formatToSigFig_Dollar(
 				       Math.floor(
@@ -198,39 +198,40 @@ const DisbursementRecipientSummary = props => {
 				       3
 				   )}
 				 </Typography>
-                               </TableCell>
+                           </TableCell>
 			     </TableRow>
 			 )
-                    })}
+                     })}
 		  </TableBody>
-		</Table>
-              </Paper>
-            </Grid>
-</div>
+          </Table>
+        </Paper>
+      </Grid>
+    </div>
     )
   }
-    else if ( data &&
+  else if (data &&
 	      data.cardFiscalDisbursementSummary.length === 0 &&
 	      data.cardDisbursementRecipientSummary.length === 0 &&
 	      data.cardDisbursementSparkdata.length === 0
-    ) {
-	return ( 
+  ) {
+    return (
 	    <div ref={ref}>
-	      <Box className={classes.boxSection}   >
-		{data.cardFiscalDisbursementSummary.length === 0 &&
+	      <Box className={classes.boxSection} >
+          {data.cardFiscalDisbursementSummary.length === 0 &&
 		 data.cardDisbursementRecipientSummary.length === 0 &&
 		 data.cardDisbursementSparkdata.length === 0 &&
 		 <Typography variant="caption">
 		   <Box><LocationName location={location} />{` ${ nativeAmerican ? 'land' : '' } did not have disbursements from ${ minYear } to ${ year }.`}</Box>
 		 </Typography>
-		}
+          }
 	      </Box>
 	    </div>
-	)
-  } else { 
-      return (
+    )
+  }
+  else {
+    return (
 	  <div ref={ref}></div>
-      )
+    )
   }
 }
 

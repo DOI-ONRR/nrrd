@@ -76,7 +76,7 @@ const DisbursementRecipients = props => {
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL },
-      skip: inView === false
+    skip: inView === false
   })
 
   if (loading) {
@@ -143,7 +143,7 @@ const DisbursementRecipients = props => {
     }
     else if (chartData.DisbursementRecipientSummary.length === 1) {
       return (
-        <Box className={classes.boxSection}  ref={ref}   >
+        <Box className={classes.boxSection} ref={ref} >
           <Box component="h4" fontWeight="bold">Disbursements by recipients</Box>
           <Box fontSize="subtitle2.fontSize">
           All of  disbursements went to the state</Box>
@@ -153,7 +153,7 @@ const DisbursementRecipients = props => {
   }
 
   return (
-    <Box className={classes.root}  ref={ref}  ></Box>
+    <Box className={classes.root} ref={ref} ></Box>
   )
 }
 

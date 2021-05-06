@@ -25,14 +25,14 @@ const DisbursementLocationTotal = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-    const { ref, inView, entry } = useInView({
-	/* Optional options */
-	threshold: 0,
-    })
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  })
 
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
     variables: { location: ['NF', 'NA'], year: year, period },
-      skip: inView === false,
+    skip: inView === false,
   })
 
   if (loading) return ''
@@ -78,9 +78,9 @@ const DisbursementLocationTotal = props => {
       </div>
     )
   }
-   else {
-       return (<span ref={ref} ></span>) 
-   }
+  else {
+    return (<span ref={ref} ></span>)
+  }
 }
 
 export default DisbursementLocationTotal
