@@ -511,7 +511,6 @@ workflows:
             branches:
               only: dev
       - dev:
-          context:
           requires:
             - nrrd-dev-database
           filters:
