@@ -486,7 +486,7 @@ workflows:
                 - dev
       - nrrd-preview:
           context:
-            - STAGE
+            - DEV
           requires:
             - nrrd-database
           filters:
