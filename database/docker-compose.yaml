@@ -1,16 +1,45 @@
 version: '3.6'
 services:
+  postgres:
+    image: postgres:12
+    ports:
+    - "5432:5432"
+    restart: always
+    volumes:
+    - db_data:/var/lib/postgresql/data
+    - ./src:/src
+    - ./ddl:/ddl
+    - ./backup:/backup
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
   graphql-engine:
-    image: hasura/graphql-engine:v1.0.0-beta.6
+    image: hasura/graphql-engine:v1.3.3
     ports:
     - "8080:8080"
-    - "80:8080"
+    depends_on:
+    - "postgres"
     restart: always
     environment:
-      # database url to connect
-      HASURA_GRAPHQL_DATABASE_URL: ${DATABASE_URL}
-      # enable the console served by server
-      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set "false" to disable console
-      ## uncomment next line to set an admin secret key
-      HASURA_GRAPHQL_ADMIN_SECRET: myonrrsecretkey
-      
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres/postgres
+      ## enable the console served by server
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      ## enable debugging mode. It is recommended to disable this in production
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      ## uncomment next line to set an admin secret
+      HASURA_GRAPHQL_ADMIN_SECRET: hasura2pass!
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: public
+  #create-db:
+  #  build:
+  #    context: .
+  #    dockerfile: Dockerfile.dev
+  #  volumes:
+  #    - .:/app
+  #  environment:
+  #    PGPASSWORD: postgrespassword
+  #  depends_on:
+  #    - "postgres"
+  #    - "graphql-engine"
+volumes:
+  db_data:
+

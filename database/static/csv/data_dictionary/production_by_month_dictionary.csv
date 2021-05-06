@@ -1,0 +1,10 @@
+Fields,Definitions
+Month,The month for which the production occurred.
+Calendar Year,The calendar year for the month in which the production occurred.
+Land Class,This field distinguishes federal lands and waters from Native American lands.
+Land Category,This field distinguishes between onshore and offshore prouction.
+Commodity,"We have monthly data for oil, gas, and coal, since these are high-volume commodities that result in the most revenue. This field includes the units for each commodity in parantheses."
+Oil Prod Vol (bbl),Oil production is measured in barrels (bbl)
+Gas Prod Vol (Mcf),Gas (natural gas) is measured in thousand cubic feet (mcf)
+Coal Prod Vol (ton),Coal is measured in tons. A ton is 2000 pounds.
+Volume,Shows the production volume (amount produced). The units for volume are shown in the preceding field (Commodity).
