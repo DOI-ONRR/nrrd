@@ -223,7 +223,8 @@ jobs:
           command: |
 
             echo "for now assume database changes"
-            
+             CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
+             echo "Number of database changes $CHANGES"
             # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
 
             
