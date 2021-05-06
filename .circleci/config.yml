@@ -513,7 +513,7 @@ workflows:
       - dev:
           context:
           requires:
-            - nrrd-database
+            - nrrd-dev-database
           filters:
             branches:
               only: dev
