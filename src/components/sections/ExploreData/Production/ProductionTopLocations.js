@@ -64,57 +64,69 @@ const APOLLO_QUERY = gql`
       }
   }
 `
-
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: '100%',
-    width: '100%',
-    margin: theme.spacing(1),
-    '@media (max-width: 768px)': {
-      maxWidth: '100%',
-      margin: 0,
-    }
-  },
-  progressContainer: {
-    maxWidth: '25%',
     display: 'flex',
-    '& > *': {
-      marginTop: theme.spacing(3),
-      marginRight: 'auto',
-      marginLeft: 'auto',
-    }
-  },
-  circularProgressRoot: {
-    color: theme.palette.primary.dark,
-  },
-  chartHorizontal: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     '& .chart-container': {
-      display: 'flex',
-      '@media (max-width: 426px)': {
-        display: 'block',
-        margin: 0,
-      },
-      '& .chart': {
-        marginRight: theme.spacing(2),
-        width: '70%',
-        '@media (max-width: 426px)': {
-          marginRight: 0,
-        },
-      },
-    },
-  },
-  chartVertical: {
-    '& .chart-container': {
-      display: 'block',
-      margin: 0,
-    },
-    '& .chart': {
-      margin: 0,
-      width: '100%',
+	    display: 'flex',
+	    flexDirection: 'column',
     },
   }
 }))
 
+/* 
+ * const useStyles = makeStyles(theme => ({
+ *   root: {
+ *     maxWidth: '100%',
+ *     width: '100%',
+ *     margin: theme.spacing(1),
+ *     '@media (max-width: 768px)': {
+ *       maxWidth: '100%',
+ *       margin: 0,
+ *     }
+ *   },
+ *   progressContainer: {
+ *     maxWidth: '25%',
+ *     display: 'flex',
+ *     '& > *': {
+ *       marginTop: theme.spacing(3),
+ *       marginRight: 'auto',
+ *       marginLeft: 'auto',
+ *     }
+ *   },
+ *   circularProgressRoot: {
+ *     color: theme.palette.primary.dark,
+ *   },
+ *   chartHorizontal: {
+ *     '& .chart-container': {
+ *       display: 'flex',
+ *       '@media (max-width: 426px)': {
+ *         display: 'block',
+ *         margin: 0,
+ *       },
+ *       '& .chart': {
+ *         marginRight: theme.spacing(2),
+ *         width: '70%',
+ *         '@media (max-width: 426px)': {
+ *           marginRight: 0,
+ *         },
+ *       },
+ *     },
+ *   },
+ *   chartVertical: {
+ *     '& .chart-container': {
+ *       display: 'block',
+ *       margin: 0,
+ *     },
+ *     '& .chart': {
+ *       margin: 0,
+ *       width: '100%',
+ *     },
+ *   }
+ * }))
+ *  */
 const ProductionTopLocations = ({ title, ...props }) => {
   // console.log('ProudctionTopLocations props: ', props)
   const classes = useStyles()
