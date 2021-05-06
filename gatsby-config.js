@@ -153,14 +153,6 @@ const config = {
       }
     },
     {
-      resolve: 'gatsby-plugin-offline',
-      options: {
-        workboxConfig: {
-          maximumFileSizeToCacheInBytes: 20000000
-        },
-      },
-    },
-    {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {
         id: process.env.GTM_ID,
@@ -196,6 +188,14 @@ const config = {
       }
     },
     'gatsby-plugin-use-query-params',
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        workboxConfig: {
+          maximumFileSizeToCacheInBytes: 20000000
+        },
+      },
+    },
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
