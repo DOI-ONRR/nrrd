@@ -35,7 +35,7 @@ const ProductionLocationTotal = props => {
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
- const { ref, inView, entry } = useInView({
+  const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
@@ -85,7 +85,7 @@ const ProductionLocationTotal = props => {
     const nativeTotal = nativeSummary.length > 0 ? nativeSummary[0].total : 0
 
     return (
-      <div  ref={ref}>
+      <div ref={ref}>
         The Office of Natural Resources Revenue (ONRR) collects detailed data about the volume of mineral and energy commodities companies
         produce from federal and Native American lands and waters. <strong>For {period.toLowerCase()} {year}, companies reported to ONRR
         that they produced {utils.formatToCommaInt(nationwideSummary[0].total)} {unit} of {product.toLowerCase()} from federal sources and
@@ -93,12 +93,13 @@ const ProductionLocationTotal = props => {
         {` ${ utils.formatToCommaInt(nationwideSummary[0].total + nativeTotal) }`} {unit} of {product.toLowerCase()}.</strong>
       </div>
     )
-  } else {
-      return (
-	  <div  ref={ref}>
+  }
+  else {
+    return (
+	  <div ref={ref}>
 	  </div>
-	  
-      )
+
+    )
   }
 }
 

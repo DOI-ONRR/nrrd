@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-/* 
+/*
  * const useStyles = makeStyles(theme => ({
  *   root: {
  *     maxWidth: '100%',
@@ -157,7 +157,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const key = `PTL${ year }${ state }${ commodity }${ period }`
   const xAxis = 'location_name'
   const yAxis = 'total'
-    const { ref, inView, entry } = useInView({
+  const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
@@ -177,16 +177,16 @@ const ProductionTopLocations = ({ title, ...props }) => {
     )
   }
   if (error) return `Error! ${ error.message }`
-    
-    let chartData = []
-    let dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
-    let unitAbbr = ''
 
-    if (data) {
-	if (data.state_production_summary.length || data.production_summary.length) {
+  let chartData = []
+  let dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
+  let unitAbbr = ''
+
+  if (data) {
+    if (data.state_production_summary.length || data.production_summary.length) {
 	    if (data.state_production_summary.length > 0 && locationType === DFC.COUNTY_CAPITALIZED) {
-		unitAbbr = data.state_production_summary[0].unit_abbr
-		chartData = d3.nest()
+        unitAbbr = data.state_production_summary[0].unit_abbr
+        chartData = d3.nest()
 			      .key(k => k.location_name)
 			      .rollup(v => d3.sum(v, i => i.total))
 			      .entries(data.state_production_summary).map(item => {
@@ -195,12 +195,12 @@ const ProductionTopLocations = ({ title, ...props }) => {
 			      })
 	    }
 	    else { // Don't show top locations for any card except state and nationwide federal
-		// quick and dirty - most definately probably a better way to handle this
-		if (locationType !== DFC.COUNTY_CAPITALIZED) {
+        // quick and dirty - most definately probably a better way to handle this
+        if (locationType !== DFC.COUNTY_CAPITALIZED) {
 		    unitAbbr = data.production_summary[0].unit_abbr
 		    let tmp = data.production_summary
 		    if (props.fipsCode) {
-			tmp = data.production_summary.filter(d => d.location !== 'NA')
+            tmp = data.production_summary.filter(d => d.location !== 'NA')
 		    }
 		    chartData = d3.nest()
 				  .key(k => k.location_name)
@@ -209,12 +209,12 @@ const ProductionTopLocations = ({ title, ...props }) => {
 				      const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
 				      return r
 				  })
-		}
+        }
 	    }
 	    dataSet = dataSet + ` (${ unitAbbr })`
-	    
+
 	    if (chartData.length > 0) {
-		return (
+        return (
 		    <div ref={ref}>
 		    <Box className={classes.root}>
 		    {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
@@ -227,26 +227,26 @@ const ProductionTopLocations = ({ title, ...props }) => {
 		    legendHeaders={['Location name', dataSet]}
 		    maxCircles={6}
 		    chartTooltip={
-			d => {
+                    d => {
 			    const r = []
 			    r[0] = d.data[xAxis]
 			    r[1] = formatToCommaInt(d.data[yAxis])
 			    return r
-			}
+                    }
 		    }
 		    legendFormat={d => formatToCommaInt(d)}
 		    legendPosition={props.horizontal ? 'right' : 'bottom'}
 		    legendLabel={d => {
-			if (d === 'Native American') {
+                    if (d === 'Native American') {
 			    d = 'Native American lands'
-			}
-			else if (d === 'Gulf of Mexico, Central Gulf of Mexico') {
+                    }
+                    else if (d === 'Gulf of Mexico, Central Gulf of Mexico') {
 			    d = 'Central Gulf'
-			}
-			else if (d === 'Gulf of Mexico, Western Gulf of Mexico') {
+                    }
+                    else if (d === 'Gulf of Mexico, Western Gulf of Mexico') {
 			    d = 'Western Gulf'
-			}
-			return d
+                    }
+                    return d
 		    }}
 		    showLabels={!!props.horizontal}
 		    />
@@ -263,24 +263,24 @@ const ProductionTopLocations = ({ title, ...props }) => {
 		     </Box>
 		    }
 		    </Box>
-      </div> 
-		)
+          </div>
+        )
 	    }
 	    else {
-		return <Box className={classes.root} ref={ref} ></Box>
+        return <Box className={classes.root} ref={ref} ></Box>
 	    }
     }
-	else {
+    else {
 	    return (<div className={classes.progressContainer} ref={ref}>
 	      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
 	    </div>)
-	}
     }
-    else {
-	return (<div className={classes.progressContainer} ref={ref}>
+  }
+  else {
+    return (<div className={classes.progressContainer} ref={ref}>
 	  <CircularProgress classes={{ root: classes.circularProgressRoot }} />
-	</div>)
-    }  
+    </div>)
+  }
 }
 
 export default ProductionTopLocations

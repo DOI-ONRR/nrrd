@@ -134,39 +134,40 @@ const ProductionDetailTrends = props => {
     locationTotalData = data.locationTotal
     locData = locationTotalData.length > 0 ? locationTotalData.map(item => item.total).reduce((prev, next) => prev + next) : 0
   }
-  if (data ) {
-      if (data.production_summary && data.production_summary.length > 0) {
+  if (data) {
+    if (data.production_summary && data.production_summary.length > 0) {
 	  return (
 	      <div ref={ref}>
-		<Box textAlign="center" className={classes.root} key={props.key}>
+          <Box textAlign="center" className={classes.root} key={props.key}>
 		  <Box component="h2" mt={0} mb={0} style={{ whiteSpace: 'nowrap' }} >{utils.formatToCommaInt(locData) + ' ' + unit}</Box>
 		  <Box component="span" mb={4}>{year && <span>{dataSet} production</span>}</Box>
 		  {sparkData.length > 1 && (
 		      <Box mt={4}>
-			<Sparkline
+                <Sparkline
 			    key={'PDT' + dataSet + '_' + product }
 			    data={sparkData}
 			    highlightIndex={highlightIndex}
-			/>
+                />
 			Production trend ({sparkMin} - {sparkMax})
 		      </Box>
 		  )}
-		</Box>
+          </Box>
 	      </div>
 	  )
-      }
-      else {
+    }
+    else {
 	  return (
 	      <>
-		<Box textAlign="center" className={classes.root} key={props.key}>
+          <Box textAlign="center" className={classes.root} key={props.key}>
 		  <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } did not produce any ${ product } from ${ minYear || 2003 } to ${ year }.`}</Box>
-		</Box>
+          </Box>
 	      </>)
-      }
-  } else {
-      return (<div className={classes.progressContainer} ref={ref}>
-	<CircularProgress classes={{ root: classes.circularProgressRoot }} />
-      </div>)
+    }
+  }
+  else {
+    return (<div className={classes.progressContainer} ref={ref}>
+      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
   }
 }
 export default ProductionDetailTrends

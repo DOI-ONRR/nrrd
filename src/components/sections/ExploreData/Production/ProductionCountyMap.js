@@ -131,7 +131,7 @@ const ProductionCountyMap = props => {
     maxColor
   } = props
 
-    const { ref, inView, entry } = useInView({
+  const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
@@ -211,9 +211,9 @@ const ProductionCountyMap = props => {
   }
   else {
     return (
-	<Box className={classes.root} ref={ref}>
-	</Box>
-    )  
+      <Box className={classes.root} ref={ref}>
+      </Box>
+    )
   }
 }
 
