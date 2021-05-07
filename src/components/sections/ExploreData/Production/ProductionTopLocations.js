@@ -20,6 +20,7 @@ import {
 } from '@material-ui/core'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
+import { useInView } from 'react-intersection-observer'
 
 const APOLLO_QUERY = gql`
   query ProductionTopLocations($year: Int!, $location: String!, $commodity: String!, $state: String!, $period: String!) {
@@ -63,57 +64,69 @@ const APOLLO_QUERY = gql`
       }
   }
 `
-
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: '100%',
-    width: '100%',
-    margin: theme.spacing(1),
-    '@media (max-width: 768px)': {
-      maxWidth: '100%',
-      margin: 0,
-    }
-  },
-  progressContainer: {
-    maxWidth: '25%',
     display: 'flex',
-    '& > *': {
-      marginTop: theme.spacing(3),
-      marginRight: 'auto',
-      marginLeft: 'auto',
-    }
-  },
-  circularProgressRoot: {
-    color: theme.palette.primary.dark,
-  },
-  chartHorizontal: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     '& .chart-container': {
-      display: 'flex',
-      '@media (max-width: 426px)': {
-        display: 'block',
-        margin: 0,
-      },
-      '& .chart': {
-        marginRight: theme.spacing(2),
-        width: '70%',
-        '@media (max-width: 426px)': {
-          marginRight: 0,
-        },
-      },
-    },
-  },
-  chartVertical: {
-    '& .chart-container': {
-      display: 'block',
-      margin: 0,
-    },
-    '& .chart': {
-      margin: 0,
-      width: '100%',
+	    display: 'flex',
+	    flexDirection: 'column',
     },
   }
 }))
 
+/*
+ * const useStyles = makeStyles(theme => ({
+ *   root: {
+ *     maxWidth: '100%',
+ *     width: '100%',
+ *     margin: theme.spacing(1),
+ *     '@media (max-width: 768px)': {
+ *       maxWidth: '100%',
+ *       margin: 0,
+ *     }
+ *   },
+ *   progressContainer: {
+ *     maxWidth: '25%',
+ *     display: 'flex',
+ *     '& > *': {
+ *       marginTop: theme.spacing(3),
+ *       marginRight: 'auto',
+ *       marginLeft: 'auto',
+ *     }
+ *   },
+ *   circularProgressRoot: {
+ *     color: theme.palette.primary.dark,
+ *   },
+ *   chartHorizontal: {
+ *     '& .chart-container': {
+ *       display: 'flex',
+ *       '@media (max-width: 426px)': {
+ *         display: 'block',
+ *         margin: 0,
+ *       },
+ *       '& .chart': {
+ *         marginRight: theme.spacing(2),
+ *         width: '70%',
+ *         '@media (max-width: 426px)': {
+ *           marginRight: 0,
+ *         },
+ *       },
+ *     },
+ *   },
+ *   chartVertical: {
+ *     '& .chart-container': {
+ *       display: 'block',
+ *       margin: 0,
+ *     },
+ *     '& .chart': {
+ *       margin: 0,
+ *       width: '100%',
+ *     },
+ *   }
+ * }))
+ *  */
 const ProductionTopLocations = ({ title, ...props }) => {
   // console.log('ProudctionTopLocations props: ', props)
   const classes = useStyles()
@@ -144,11 +157,16 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const key = `PTL${ year }${ state }${ commodity }${ period }`
   const xAxis = 'location_name'
   const yAxis = 'total'
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location: locationType, commodity, state, period },
-      skip: props.fipsCode === DFC.NATIVE_AMERICAN_FIPS || props.regionType === DFC.COUNTY_CAPITALIZED || props.regionType === DFC.OFFSHORE_CAPITALIZED
+      skip: inView === false && (props.fipsCode === DFC.NATIVE_AMERICAN_FIPS || props.regionType === DFC.COUNTY_CAPITALIZED || props.regionType === DFC.OFFSHORE_CAPITALIZED)
     })
 
   if (loading) {
@@ -164,93 +182,104 @@ const ProductionTopLocations = ({ title, ...props }) => {
   let dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
   let unitAbbr = ''
 
-  if (data && (data.state_production_summary.length || data.production_summary.length)) {
-    if (data.state_production_summary.length > 0 && locationType === DFC.COUNTY_CAPITALIZED) {
-      unitAbbr = data.state_production_summary[0].unit_abbr
-      chartData = d3.nest()
-        .key(k => k.location_name)
-        .rollup(v => d3.sum(v, i => i.total))
-        .entries(data.state_production_summary).map(item => {
-          const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
-          return r
-        })
-    }
-    else { // Don't show top locations for any card except state and nationwide federal
-      // quick and dirty - most definately probably a better way to handle this
-      if (locationType !== DFC.COUNTY_CAPITALIZED) {
-        unitAbbr = data.production_summary[0].unit_abbr
-        let tmp = data.production_summary
-        if (props.fipsCode) {
-          tmp = data.production_summary.filter(d => d.location !== 'NA')
-        }
+  if (data) {
+    if (data.state_production_summary.length || data.production_summary.length) {
+	    if (data.state_production_summary.length > 0 && locationType === DFC.COUNTY_CAPITALIZED) {
+        unitAbbr = data.state_production_summary[0].unit_abbr
         chartData = d3.nest()
-          .key(k => k.location_name)
-          .rollup(v => d3.sum(v, i => i.total))
-          .entries(tmp).map(item => {
-            const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
-            return r
-          })
-      }
-    }
-    dataSet = dataSet + ` (${ unitAbbr })`
+			      .key(k => k.location_name)
+			      .rollup(v => d3.sum(v, i => i.total))
+			      .entries(data.state_production_summary).map(item => {
+				  const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
+				  return r
+			      })
+	    }
+	    else { // Don't show top locations for any card except state and nationwide federal
+        // quick and dirty - most definately probably a better way to handle this
+        if (locationType !== DFC.COUNTY_CAPITALIZED) {
+		    unitAbbr = data.production_summary[0].unit_abbr
+		    let tmp = data.production_summary
+		    if (props.fipsCode) {
+            tmp = data.production_summary.filter(d => d.location !== 'NA')
+		    }
+		    chartData = d3.nest()
+				  .key(k => k.location_name)
+				  .rollup(v => d3.sum(v, i => i.total))
+				  .entries(tmp).map(item => {
+				      const r = { total: item.value, location_name: item.key, unit_abbr: unitAbbr }
+				      return r
+				  })
+        }
+	    }
+	    dataSet = dataSet + ` (${ unitAbbr })`
 
-    if (chartData.length > 0) {
-      return (
-        <Box className={classes.root}>
-          {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
-          <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
-            <CircleChart
-              key={key}
-              data={chartData}
-              xAxis={xAxis}
-              yAxis={yAxis}
-              legendHeaders={['Location name', dataSet]}
-              maxCircles={6}
-              chartTooltip={
-                d => {
-                  const r = []
-                  r[0] = d.data[xAxis]
-                  r[1] = formatToCommaInt(d.data[yAxis])
-                  return r
-                }
-              }
-              legendFormat={d => formatToCommaInt(d)}
-              legendPosition={props.horizontal ? 'right' : 'bottom'}
-              legendLabel={d => {
-                if (d === 'Native American') {
-                  d = 'Native American lands'
-                }
-                else if (d === 'Gulf of Mexico, Central Gulf of Mexico') {
-                  d = 'Central Gulf'
-                }
-                else if (d === 'Gulf of Mexico, Western Gulf of Mexico') {
-                  d = 'Western Gulf'
-                }
-                return d
-              }}
-              showLabels={!!props.horizontal}
-            />
-          </Box>
-          {props.showQueryLink &&
-            <Box>
-              <QueryLink
-                groupBy={(state === DFC.NATIONWIDE_FEDERAL_FIPS) ? DFC.LAND_TYPE : DFC.COUNTY}
-                linkType="FilterTable"
-                landType={(state === DFC.NATIVE_AMERICAN_FIPS) ? DFC.NATIVE_AMERICAN : 'Federal Offshore,Federal Onshore,Mixed Exploratory'}
-                {...props}>
-                Query production by location
-              </QueryLink>
-            </Box>
-          }
-        </Box>
-      )
+	    if (chartData.length > 0) {
+        return (
+		    <div ref={ref}>
+		    <Box className={classes.root}>
+		    {title && <Box component="h4" fontWeight="bold" mb={2}>{title}</Box>}
+		    <Box className={props.horizontal ? classes.chartHorizontal : classes.chartVertical}>
+		    <CircleChart
+		    key={key}
+		    data={chartData}
+		    xAxis={xAxis}
+		    yAxis={yAxis}
+		    legendHeaders={['Location name', dataSet]}
+		    maxCircles={6}
+		    chartTooltip={
+                    d => {
+			    const r = []
+			    r[0] = d.data[xAxis]
+			    r[1] = formatToCommaInt(d.data[yAxis])
+			    return r
+                    }
+		    }
+		    legendFormat={d => formatToCommaInt(d)}
+		    legendPosition={props.horizontal ? 'right' : 'bottom'}
+		    legendLabel={d => {
+                    if (d === 'Native American') {
+			    d = 'Native American lands'
+                    }
+                    else if (d === 'Gulf of Mexico, Central Gulf of Mexico') {
+			    d = 'Central Gulf'
+                    }
+                    else if (d === 'Gulf of Mexico, Western Gulf of Mexico') {
+			    d = 'Western Gulf'
+                    }
+                    return d
+		    }}
+		    showLabels={!!props.horizontal}
+		    />
+		    </Box>
+		    {props.showQueryLink &&
+		     <Box>
+		       <QueryLink
+			   groupBy={(state === DFC.NATIONWIDE_FEDERAL_FIPS) ? DFC.LAND_TYPE : DFC.COUNTY}
+			   linkType="FilterTable"
+			   landType={(state === DFC.NATIVE_AMERICAN_FIPS) ? DFC.NATIVE_AMERICAN : 'Federal Offshore,Federal Onshore,Mixed Exploratory'}
+			 {...props}>
+			 Query production by location
+		       </QueryLink>
+		     </Box>
+		    }
+		    </Box>
+          </div>
+        )
+	    }
+	    else {
+        return <Box className={classes.root} ref={ref} ></Box>
+	    }
     }
     else {
-      return <Box className={classes.root}></Box>
+	    return (<div className={classes.progressContainer} ref={ref}>
+	      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+	    </div>)
     }
   }
   else {
-    return <Box className={classes.root}></Box>
+    return (<div className={classes.progressContainer} ref={ref}>
+	  <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
   }
 }
 
