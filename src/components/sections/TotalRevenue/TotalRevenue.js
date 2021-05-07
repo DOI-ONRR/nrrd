@@ -22,15 +22,14 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const FISCAL = gql`
-    query TotalYearlyRevenue {  
-	total_yearly_fiscal_revenue {
+    query TotalYearlyRevenue($period_group: String!, $breakout_group: String!)  {  
+	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {sort_order: asc}) {
 	    period
 	    sum
-	    source: land_type
-	    year
+	    source
+	    year: fiscal_year
 	    revenue_type
 	    sort_order
-	    commodity_order
 	    commodity
 	    fiscalMonth: fiscal_month
 	    currentMonth: month
@@ -173,10 +172,12 @@ const TotalRevenue = props => {
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
   const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
   let QUERY = FISCAL
+  let VARIABLES={period_group: 'Fiscal Year', breakout_group: 'Source'}
   console.debug('filterState: ', filterState, ' CONSTANTS: ', DFC.PERIOD_CALENDER_YEAR, DFC.PERIOD_FISCAL_YEAR, DFC.MONTHLY_CAPITALIZED)
   if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
     console.debug('FISCAL')
-    QUERY = FISCAL
+      QUERY = FISCAL
+      VARIABLES={period_group: 'Fiscal Year', breakout_group: 'Source'}
   }
   else if (filterState.period === DFC.PERIOD_CALENDAR_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
     console.debug('CALENDAR')
@@ -186,8 +187,9 @@ const TotalRevenue = props => {
     console.debug('DEFAULT')
     QUERY = TOTAL_REVENUE_QUERY
   }
+ console.debug("=====================================================?", VARIABLES);
 
-  const { loading, error, data } = useQuery(QUERY)
+  const { loading, error, data } = useQuery(QUERY,{variables: VARIABLES})
   console.debug('data: ', data)
   const handleBarHover = d => {
     revenueComparison.current.setSelectedItem(d[2])
