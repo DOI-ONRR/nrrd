@@ -16,7 +16,7 @@ update monthly_disbursement_elt set fund_type = COALESCE(fund_type,''),
 			      ;
 
 \echo update fund_class and recipient
-update  monthly_disbursement_elt set fund_type='Lease Processing and Improvement (BLM)' where fund_type='BLM - Permit Processing and Improvement' 
+update  monthly_disbursement_elt set fund_type='Lease Processing Improvement (BLM)' where fund_type='BLM - Permit Processing and Improvement' 
 ;
 
 update monthly_disbursement_elt set fund_class='Other funds' where fund_type != '' and fund_class = '';
@@ -58,6 +58,7 @@ update monthly_revenue_elt set revenue_type=REPLACE(revenue_type, '1spc1', ' ') 
 
 \echo 'Update county and fips_code'
 update monthly_disbursement_elt set county='Hidalgo County' where county='Hidalgo Caounty';
+update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' county', ''),' parish',''), ' borough',''),'');
 update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' County', ''),' Parish',''), ' Borough',''),'');
 update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' County', ''),' Parish',''), ' Borough',''),'');
 update monthly_disbursement_elt e set fips_code = l.fips_code FROM county_lookup l WHERE e.county=l.county and e.state=l.state;
