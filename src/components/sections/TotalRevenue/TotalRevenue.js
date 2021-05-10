@@ -41,14 +41,13 @@ const FISCAL = gql`
 
 const CALENDAR = gql`
     query TotalYearlyRevenue {  
-	total_yearly_calendar_revenue {
+	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {sort_order: asc}) {
 	    period
 	    sum
-	    source: land_type
-	    year
+	    source
+	    year: calendar_year
 	    revenue_type
 	    sort_order
-	    commodity_order
 	    commodity
 	    monthLong: month_long
 	}
@@ -61,7 +60,6 @@ const CALENDAR = gql`
 	    year
 	    revenue_type
 	    sort_order
-	    commodity_order
 	    commodity
 	}
 	total_monthly_calendar_revenue {
@@ -73,7 +71,6 @@ const CALENDAR = gql`
 	    year
 	    revenue_type
 	    sort_order
-	    commodity_order
 	    commodity
 	}
 	
@@ -161,7 +158,17 @@ query TotalYearlyRevenue {
     }
   }
 `
+/*
 
+create view total_revenue_summary as 
+select * from _mview_cy_source
+union
+select * from _mview_fy_commodity
+union
+select * from _mview_fy_revenue_type
+union
+select * from _mview_fy_source
+*/
 // TotalRevenue component
 const TotalRevenue = props => {
   const theme = useTheme()
@@ -177,7 +184,7 @@ const TotalRevenue = props => {
   if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
     console.debug('FISCAL')
       QUERY = FISCAL
-      VARIABLES={period_group: 'Fiscal Year', breakout_group: 'Source'}
+      VARIABLES={period_group:  period || 'Fiscal Year', breakout_group: breakoutBy || 'source'}
   }
   else if (filterState.period === DFC.PERIOD_CALENDAR_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
     console.debug('CALENDAR')
