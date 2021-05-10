@@ -16,7 +16,7 @@ update monthly_disbursement_elt set fund_type = COALESCE(fund_type,''),
 			      ;
 
 \echo update fund_class and recipient
-update  monthly_disbursement_elt set fund_type='Lease Processing Improvement (BLM)' where fund_type='BLM - Permit Processing and Improvement' 
+update  monthly_disbursement_elt set fund_type='Lease Process Improvement (BLM)' where fund_type='BLM - Permit Processing and Improvement' 
 ;
 
 update monthly_disbursement_elt set fund_class='Other funds' where fund_type != '' and fund_class = '';
