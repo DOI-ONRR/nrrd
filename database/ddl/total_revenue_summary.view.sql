@@ -21,37 +21,69 @@ SET row_security = off;
 --
 
 CREATE VIEW public.total_revenue_summary AS
- SELECT fy_source_mview.period_group,
-    fy_source_mview.breakout_group,
-    fy_source_mview.source,
-    fy_source_mview.revenue_type,
-    fy_source_mview.commodity,
-    fy_source_mview.sort_order,
-    fy_source_mview.period,
-    fy_source_mview.period_date,
-    fy_source_mview.month_long,
-    fy_source_mview.month,
-    fy_source_mview.fiscal_month,
-    fy_source_mview.fiscal_year,
-    fy_source_mview.calendar_year,
-    fy_source_mview.sum
-   FROM public.fy_source_mview
+ SELECT _mview_cy_source.period_group,
+    _mview_cy_source.breakout_group,
+    _mview_cy_source.source,
+    _mview_cy_source.revenue_type,
+    _mview_cy_source.commodity,
+    _mview_cy_source.sort_order,
+    _mview_cy_source.period,
+    _mview_cy_source.period_date,
+    _mview_cy_source.month_long,
+    _mview_cy_source.month,
+    _mview_cy_source.fiscal_month,
+    _mview_cy_source.fiscal_year,
+    _mview_cy_source.calendar_year,
+    _mview_cy_source.sum
+   FROM public._mview_cy_source
 UNION
- SELECT cy_source_mview.period_group,
-    cy_source_mview.breakout_group,
-    cy_source_mview.source,
-    cy_source_mview.revenue_type,
-    cy_source_mview.commodity,
-    cy_source_mview.sort_order,
-    cy_source_mview.period,
-    cy_source_mview.period_date,
-    cy_source_mview.month_long,
-    cy_source_mview.month,
-    cy_source_mview.fiscal_month,
-    cy_source_mview.fiscal_year,
-    cy_source_mview.calendar_year,
-    cy_source_mview.sum
-   FROM public.cy_source_mview;
+ SELECT _mview_fy_commodity.period_group,
+    _mview_fy_commodity.breakout_group,
+    _mview_fy_commodity.source,
+    _mview_fy_commodity.revenue_type,
+    _mview_fy_commodity.commodity,
+    _mview_fy_commodity.sort_order,
+    _mview_fy_commodity.period,
+    _mview_fy_commodity.period_date,
+    _mview_fy_commodity.month_long,
+    _mview_fy_commodity.month,
+    _mview_fy_commodity.fiscal_month,
+    _mview_fy_commodity.fiscal_year,
+    _mview_fy_commodity.calendar_year,
+    _mview_fy_commodity.sum
+   FROM public._mview_fy_commodity
+UNION
+ SELECT _mview_fy_revenue_type.period_group,
+    _mview_fy_revenue_type.breakout_group,
+    _mview_fy_revenue_type.source,
+    _mview_fy_revenue_type.revenue_type,
+    _mview_fy_revenue_type.commodity,
+    _mview_fy_revenue_type.sort_order,
+    _mview_fy_revenue_type.period,
+    _mview_fy_revenue_type.period_date,
+    _mview_fy_revenue_type.month_long,
+    _mview_fy_revenue_type.month,
+    _mview_fy_revenue_type.fiscal_month,
+    _mview_fy_revenue_type.fiscal_year,
+    _mview_fy_revenue_type.calendar_year,
+    _mview_fy_revenue_type.sum
+   FROM public._mview_fy_revenue_type
+UNION
+ SELECT _mview_fy_source.period_group,
+    _mview_fy_source.breakout_group,
+    _mview_fy_source.source,
+    _mview_fy_source.revenue_type,
+    _mview_fy_source.commodity,
+    _mview_fy_source.sort_order,
+    _mview_fy_source.period,
+    _mview_fy_source.period_date,
+    _mview_fy_source.month_long,
+    _mview_fy_source.month,
+    _mview_fy_source.fiscal_month,
+    _mview_fy_source.fiscal_year,
+    _mview_fy_source.calendar_year,
+    _mview_fy_source.sum
+   FROM public._mview_fy_source;
 
 
 ALTER TABLE public.total_revenue_summary OWNER TO postgres;
