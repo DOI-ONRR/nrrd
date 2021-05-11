@@ -3,8 +3,8 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import {
-    Box,
-    Grid
+  Box,
+  Grid
 } from '@material-ui/core'
 
 import { useTheme } from '@material-ui/core/styles'
@@ -137,7 +137,7 @@ const TOTAL_REVENUE_QUERY = gql`
 `
 /*
 
-   create or replace view total_revenue_summary as 
+   create or replace view total_revenue_summary as
    select * from _mview_cy_commodity
    union
    select * from _mview_cy_revenue_type
@@ -152,7 +152,7 @@ const TOTAL_REVENUE_QUERY = gql`
  */
 // TotalRevenue component
 const TotalRevenue = props => {
-    const theme = useTheme()
+  const theme = useTheme()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { monthly, period, breakoutBy, dataType, periodAllYears } = filterState
   const revenueComparison = useRef(null)
@@ -160,25 +160,25 @@ const TotalRevenue = props => {
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
   const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
   let QUERY = FISCAL
-  let VARIABLES={period_group: 'Fiscal Year', breakout_group: 'source'}
+  let VARIABLES = { period_group: 'Fiscal Year', breakout_group: 'source' }
   console.debug('filterState: ', filterState, ' CONSTANTS: ', DFC.PERIOD_CALENDER_YEAR, DFC.PERIOD_FISCAL_YEAR, DFC.MONTHLY_CAPITALIZED)
   if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
     console.debug('FISCAL')
-      QUERY = FISCAL
-      VARIABLES={period_group:  period || 'Fiscal Year', breakout_group: breakoutBy || 'source'}
+    QUERY = FISCAL
+    VARIABLES = { period_group: period || 'Fiscal Year', breakout_group: breakoutBy || 'source' }
   }
   else if (filterState.period === DFC.PERIOD_CALENDAR_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
     console.debug('CALENDAR')
     QUERY = CALENDAR
-      VARIABLES={period_group: filterState.period || 'Calendar Year', breakout_group: filterState.breakoutBy || 'source'}
+    VARIABLES = { period_group: filterState.period || 'Calendar Year', breakout_group: filterState.breakoutBy || 'source' }
   }
   else {
     console.debug('DEFAULT')
     QUERY = TOTAL_REVENUE_QUERY
   }
- console.debug("=====================================================?", VARIABLES);
+  console.debug('=====================================================?', VARIABLES)
 
-  const { loading, error, data } = useQuery(QUERY,{variables: VARIABLES})
+  const { loading, error, data } = useQuery(QUERY, { variables: VARIABLES })
   console.debug('data: ', data)
   const handleBarHover = d => {
     revenueComparison.current.setSelectedItem(d[2])

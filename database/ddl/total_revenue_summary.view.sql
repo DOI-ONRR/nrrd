@@ -21,6 +21,38 @@ SET row_security = off;
 --
 
 CREATE VIEW public.total_revenue_summary AS
+ SELECT _mview_cy_commodity.period_group,
+    _mview_cy_commodity.breakout_group,
+    _mview_cy_commodity.source,
+    _mview_cy_commodity.revenue_type,
+    _mview_cy_commodity.commodity,
+    _mview_cy_commodity.sort_order,
+    _mview_cy_commodity.period,
+    _mview_cy_commodity.period_date,
+    _mview_cy_commodity.month_long,
+    _mview_cy_commodity.month,
+    _mview_cy_commodity.fiscal_month,
+    _mview_cy_commodity.fiscal_year,
+    _mview_cy_commodity.calendar_year,
+    _mview_cy_commodity.sum
+   FROM public._mview_cy_commodity
+UNION
+ SELECT _mview_cy_revenue_type.period_group,
+    _mview_cy_revenue_type.breakout_group,
+    _mview_cy_revenue_type.source,
+    _mview_cy_revenue_type.revenue_type,
+    _mview_cy_revenue_type.commodity,
+    _mview_cy_revenue_type.sort_order,
+    _mview_cy_revenue_type.period,
+    _mview_cy_revenue_type.period_date,
+    _mview_cy_revenue_type.month_long,
+    _mview_cy_revenue_type.month,
+    _mview_cy_revenue_type.fiscal_month,
+    _mview_cy_revenue_type.fiscal_year,
+    _mview_cy_revenue_type.calendar_year,
+    _mview_cy_revenue_type.sum
+   FROM public._mview_cy_revenue_type
+UNION
  SELECT _mview_cy_source.period_group,
     _mview_cy_source.breakout_group,
     _mview_cy_source.source,
