@@ -234,6 +234,14 @@ const ProductionTopLocations = ({ title, ...props }) => {
 			    return r
                     }
 		    }
+        circleLabel={
+          d => {
+            const r = []
+            r[0] = d.data[xAxis]
+            r[1] = formatToCommaInt(d.data[yAxis])
+            return r
+          }
+        }
 		    legendFormat={d => formatToCommaInt(d)}
 		    legendPosition={props.horizontal ? 'right' : 'bottom'}
 		    legendLabel={d => {
