@@ -350,7 +350,6 @@ export default class D3StackedBarChart {
   }
 
   _chart () {
-    console.log('_chart')
     try {
       const self = this
       const stack = d3.stack()
@@ -1010,14 +1009,11 @@ export default class D3StackedBarChart {
   }
 
   yOrder () {
-    console.log('yOrder')
     if (this.options.yOrderBy && this.options.yGroupBy) {
       if (typeof (this.options.yOrderBy) === 'object') {
-        console.log('yOrder 1')
         this.yOrderBy = this.options.yOrderBy
       }
       else if (typeof (this.options.yOrderBy) === 'string') {
-        console.log('yOrder 2')
         /*d3.nest()
           .key(k => k[this.options.yGroupBy])
           .rollup(v => d3.sum(v, d => d[this.yAxis]))
@@ -1028,7 +1024,6 @@ export default class D3StackedBarChart {
           }, {})*/
       }
       else {
-        console.log('yOrder 3')
         /*d3.nest()
           .key(k => k[this.options.yGroupBy])
           .rollup(v => d3.sum(v, d => d[this.yAxis]))
@@ -1066,7 +1061,6 @@ export default class D3StackedBarChart {
 
   groupData () {
     try {
-      console.log('groupData')
       const r = [] /* d3.nest()
         .key(k => k[this.xAxis])
         .entries(this.data)*/
@@ -1081,7 +1075,6 @@ export default class D3StackedBarChart {
 
   yGroupData (xValue) {
     try {
-      console.log('yGroupData')
       if (this.options.yGroupBy) {
         const data = xValue ? this.data.filter(r => r[this.xAxis] === xValue) : this.data
         // console.debug(data)
