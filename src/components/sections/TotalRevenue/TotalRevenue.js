@@ -70,14 +70,13 @@ const TOTAL_REVENUE_QUERY = gql`
 	    monthLong: month_long
 	}
 
-	total_yearly_calendar_revenue {
+	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc, sort_order: asc}) {
 	    period
 	    sum
-	    source: land_type
-	    year
+	    source
+	    year: calendar_year
 	    revenue_type
 	    sort_order
-	    commodity_order
 	    commodity
 	    monthLong: month_long
 	}
@@ -91,7 +90,6 @@ const TOTAL_REVENUE_QUERY = gql`
 	    year
 	    revenue_type
 	    sort_order
-	    commodity_order
 	    commodity
 	}
 
@@ -104,7 +102,6 @@ const TOTAL_REVENUE_QUERY = gql`
 	    year
 	    revenue_type
 	    sort_order
-	    commodity_order
 	    commodity
 	}
 
@@ -174,6 +171,7 @@ const TotalRevenue = props => {
   }
   else {
     console.debug('DEFAULT')
+      VARIABLES = { period_group: filterState.period || 'Calendar Year', breakout_group: filterState.breakoutBy || 'source' }
     QUERY = TOTAL_REVENUE_QUERY
   }
   console.debug('=====================================================?', VARIABLES)
