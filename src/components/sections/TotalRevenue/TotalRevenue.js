@@ -449,14 +449,7 @@ const TotalRevenue = props => {
           </Box>
         </Grid>
         <Grid item xs={12} md={5}>
-		 <ComparisonTable
-		    key={`trct__${ monthly }${ period }${ breakoutBy }`}
-		    ref={revenueComparison}
-		    data={comparisonData}
-		    yGroupBy={yGroupBy}
-		    yOrderBy={yOrderBy}
-		    monthRange={monthRange}
-		    />
+fsdfasd
 
         </Grid>
       </Grid>

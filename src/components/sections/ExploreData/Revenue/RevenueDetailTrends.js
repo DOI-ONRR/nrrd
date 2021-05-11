@@ -108,11 +108,11 @@ const RevenueDetailTrends = props => {
     sparkMax = periodData.reduce((max, p) => parseInt(periodData[0].period_date.substring(0, 4)) > max ? parseInt(periodData[0].period_date.substring(0, 4)) : max, parseInt(periodData[periodData.length - 1].period_date.substring(0, 4)))
 
     // console.debug('sparkMin', sparkMin, periodData)
-    fiscalData = d3.nest()
+    fiscalData = [] /*d3.nest()
       .key(k => k.year)
       .rollup(v => d3.sum(v, i => i.total))
       .entries(data.revenue_summary)
-      .map(d => [parseInt(d.key), d.value])
+      .map(d => [parseInt(d.key), d.value]) */
 
     // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
     sparkData = periodData.map((item, i) => {
