@@ -3,8 +3,8 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import {
-  Box,
-  Grid
+    Box,
+    Grid
 } from '@material-ui/core'
 
 import { useTheme } from '@material-ui/core/styles'
@@ -23,7 +23,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const FISCAL = gql`
     query TotalYearlyRevenue($period_group: String!, $breakout_group: String!)  {  
-	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {sort_order: asc}) {
+	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc, sort_order: asc}) {
 	    period
 	    sum
 	    source
@@ -40,8 +40,8 @@ const FISCAL = gql`
 `
 
 const CALENDAR = gql`
-    query TotalYearlyRevenue {  
-	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {sort_order: asc}) {
+    query TotalYearlyRevenue($period_group: String!, $breakout_group: String!) {  
+	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {calendar_year: asc, sort_order: asc}) {
 	    period
 	    sum
 	    source
@@ -51,6 +51,37 @@ const CALENDAR = gql`
 	    commodity
 	    monthLong: month_long
 	}
+	
+    }
+`
+
+const TOTAL_REVENUE_QUERY = gql`
+    query TotalYearlyRevenue($period_group: String!, $breakout_group: String!) {
+	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc, sort_order: asc}) {
+	    period
+	    sum
+	    source
+	    year: fiscal_year
+	    revenue_type
+	    sort_order
+	    commodity
+	    fiscalMonth: fiscal_month
+	    currentMonth: month
+	    monthLong: month_long
+	}
+
+	total_yearly_calendar_revenue {
+	    period
+	    sum
+	    source: land_type
+	    year
+	    revenue_type
+	    sort_order
+	    commodity_order
+	    commodity
+	    monthLong: month_long
+	}
+
 	total_monthly_fiscal_revenue {
 	    source: land_type
 	    sum
@@ -60,8 +91,10 @@ const CALENDAR = gql`
 	    year
 	    revenue_type
 	    sort_order
+	    commodity_order
 	    commodity
 	}
+
 	total_monthly_calendar_revenue {
 	    source: land_type
 	    sum
@@ -71,107 +104,55 @@ const CALENDAR = gql`
 	    year
 	    revenue_type
 	    sort_order
+	    commodity_order
 	    commodity
 	}
-	
-    }
-`
 
-const TOTAL_REVENUE_QUERY = gql`
-query TotalYearlyRevenue {
-    total_yearly_fiscal_revenue {
-      period
-      sum
-      source: land_type
-      year
-      revenue_type
-      sort_order
-      commodity_order
-      commodity
-      fiscalMonth: fiscal_month
-      currentMonth: month
-      monthLong: month_long
-    }
+	total_monthly_last_twelve_revenue {
+	    source: land_type
+	    sum
+	    month_long
+	    period_date
+	    month
+	    year
+	    revenue_type
+	    sort_order
+	    commodity_order
+	    commodity
+	}
 
-    total_yearly_calendar_revenue {
-      period
-      sum
-      source: land_type
-      year
-      revenue_type
-      sort_order
-      commodity_order
-      commodity
-      monthLong: month_long
+	total_monthly_last_three_years_revenue {
+	    source: land_type
+	    sum
+	    month_long
+	    period_date
+	    month
+	    year
+	    revenue_type
+	    sort_order
+	    commodity_order
+	    commodity
+	}
     }
-
-    total_monthly_fiscal_revenue {
-      source: land_type
-      sum
-      month_long
-      period_date
-      month
-      year
-      revenue_type
-      sort_order
-      commodity_order
-      commodity
-    }
-
-    total_monthly_calendar_revenue {
-	source: land_type
-	sum
-	month_long
-	period_date
-	month
-	year
-	revenue_type
-	sort_order
-	commodity_order
-	commodity
-    }
-
-      total_monthly_last_twelve_revenue {
-	  source: land_type
-	  sum
-	  month_long
-	  period_date
-	  month
-	  year
-	  revenue_type
-	  sort_order
-	  commodity_order
-	  commodity
-      }
-
-    total_monthly_last_three_years_revenue {
-      source: land_type
-      sum
-      month_long
-      period_date
-      month
-      year
-      revenue_type
-      sort_order
-      commodity_order
-      commodity
-    }
-  }
 `
 /*
 
-create view total_revenue_summary as 
-select * from _mview_cy_source
-union
-select * from _mview_fy_commodity
-union
-select * from _mview_fy_revenue_type
-union
-select * from _mview_fy_source
-*/
+   create or replace view total_revenue_summary as 
+   select * from _mview_cy_commodity
+   union
+   select * from _mview_cy_revenue_type
+   union
+   select * from _mview_cy_source
+   union
+   select * from _mview_fy_commodity
+   union
+   select * from _mview_fy_revenue_type
+   union
+   select * from _mview_fy_source
+ */
 // TotalRevenue component
 const TotalRevenue = props => {
-  const theme = useTheme()
+    const theme = useTheme()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { monthly, period, breakoutBy, dataType, periodAllYears } = filterState
   const revenueComparison = useRef(null)
@@ -179,7 +160,7 @@ const TotalRevenue = props => {
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
   const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
   let QUERY = FISCAL
-  let VARIABLES={period_group: 'Fiscal Year', breakout_group: 'Source'}
+  let VARIABLES={period_group: 'Fiscal Year', breakout_group: 'source'}
   console.debug('filterState: ', filterState, ' CONSTANTS: ', DFC.PERIOD_CALENDER_YEAR, DFC.PERIOD_FISCAL_YEAR, DFC.MONTHLY_CAPITALIZED)
   if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
     console.debug('FISCAL')
@@ -189,6 +170,7 @@ const TotalRevenue = props => {
   else if (filterState.period === DFC.PERIOD_CALENDAR_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
     console.debug('CALENDAR')
     QUERY = CALENDAR
+      VARIABLES={period_group: filterState.period || 'Calendar Year', breakout_group: filterState.breakoutBy || 'source'}
   }
   else {
     console.debug('DEFAULT')
