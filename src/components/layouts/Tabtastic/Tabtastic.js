@@ -224,7 +224,7 @@ const Tabtastic = props => {
 
     if (updateDataFilter) {
       updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedChild.props.label, [DFC.BREAKOUT_BY]: DFC.SOURCE })
-      navigate(`?tab=${ formattedLabel }`)
+      window?.history.replaceState(null, null, `?tab=${ formattedLabel }`)
     }
   }
 
