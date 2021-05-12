@@ -70,7 +70,7 @@ const GlossaryCategoryContainer = withStyles(theme =>
 )(Paper)
 
 const GlossaryGroup = ({ term }) => {
-  console.log('GlossaryGroup term: ', term)
+  // console.log('GlossaryGroup term: ', term)
   const classes = useStyles()
   return (
     <h2 id={term.group === '8' ? '#' : term.group} className={classes.anchor}>{term.group === '8' ? '#' : term.group}</h2>
@@ -105,6 +105,7 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
   const classes = useStyles()
 
   const handleChange = value => {
+    console.log('handleChange')
     setCategory(value)
     window.scrollTo(0, 0)
   }
@@ -183,7 +184,7 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
     return c
   }
 
-  console.log('filteredTerms: ', filteredTerms)
+  // console.log('filteredTerms: ', filteredTerms)
 
   return (
     <>
