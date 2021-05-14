@@ -261,7 +261,7 @@ export default class d3Map {
 	  .on('zoom', zoomed)
 	  .on('end', ended)
 
-    const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
+    const AKR = new Set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
     _chart.call(zoom)
     // this turns on and off zoom
     let zoomEnabled = false
@@ -379,7 +379,7 @@ export default class d3Map {
       .text(d => `Alaska Offshore Region  ${ format(data.get('AKR')) }`).transition().duration(3000)
     */
 
-    const POR = d3.set(['WAO', 'NOC', 'CEC', 'SOC'])
+    const POR = new Set(['WAO', 'NOC', 'CEC', 'SOC'])
     g.append('path')
       .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function (d) {
         return POR.has(d.id)
@@ -407,7 +407,7 @@ export default class d3Map {
       .append('title')
       .text(d => `Pacific Offshore Region  ${ format(data.get('POR')) }`).transition().duration(3000)
 
-    const GMR = d3.set(['WGM', 'CGM', 'EGM'])
+    const GMR = new Set(['WGM', 'CGM', 'EGM'])
     g.append('path')
       .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function (d) {
         return GMR.has(d.id)
@@ -434,7 +434,7 @@ export default class d3Map {
       .append('title')
       .text(d => `Gulf of Mexico Offshore Region  ${ format(data.get('GMR')) }`).transition().duration(3000)
 
-    const AOR = d3.set(['NOA', 'MDA', 'SOA', 'FLS'])
+    const AOR = new Set(['NOA', 'MDA', 'SOA', 'FLS'])
     g.append('path')
       .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function (d) {
         return AOR.has(d.id)
