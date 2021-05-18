@@ -1,49 +1,52 @@
 
 import {
-  DATA_FILTER_KEY,
-  EXCLUDE_PROPS,
-  REVENUE,
-  PRODUCTION,
-  DISBURSEMENT,
-  REVENUE_BY_COMPANY,
-  COMPANY_NAME,
-  LAND_TYPE,
-  OFFSHORE_REGION,
-  US_STATE,
-  US_STATE_NAME,
-  COUNTY,
-  COUNTY_NAME,
-  COMMODITY,
-  COMMODITY_ORDER,
-  PRODUCT,
-  REVENUE_TYPE,
-  PERIOD,
-  RECIPIENT,
-  SOURCE,
-  SINGLE_STR,
-  MULTI_STR,
-  MULTI_INT,
-  ALL_DISBURSEMENT_YEARS,
-  ALL_REVENUE_YEARS,
-  ALL_REVENUE_BY_COMPANY_YEARS,
-  ALL_PRODUCTION_YEARS,
-  ALL_PRODUCTION_MONTHLY_YEARS,
-  DATA_TYPE,
-  STATE_OFFSHORE_NAME,
-  FISCAL_YEAR,
-  CALENDAR_YEAR,
-  LOCAL_RECIPIENT,
-  PERIOD_MONTHLY,
-  MONTH_LONG
+    DATA_FILTER_KEY,
+    EXCLUDE_PROPS,
+    REVENUE,
+    PRODUCTION,
+    DISBURSEMENT,
+    REVENUE_BY_COMPANY,
+    COMPANY_NAME,
+    LAND_TYPE,
+    G1,
+    G2,
+    G3,
+    OFFSHORE_REGION,
+    US_STATE,
+    US_STATE_NAME,
+    COUNTY,
+    COUNTY_NAME,
+    COMMODITY,
+    COMMODITY_ORDER,
+    PRODUCT,
+    REVENUE_TYPE,
+    PERIOD,
+    RECIPIENT,
+    SOURCE,
+    SINGLE_STR,
+    MULTI_STR,
+    MULTI_INT,
+    ALL_DISBURSEMENT_YEARS,
+    ALL_REVENUE_YEARS,
+    ALL_REVENUE_BY_COMPANY_YEARS,
+    ALL_PRODUCTION_YEARS,
+    ALL_PRODUCTION_MONTHLY_YEARS,
+    DATA_TYPE,
+    STATE_OFFSHORE_NAME,
+    FISCAL_YEAR,
+    CALENDAR_YEAR,
+    LOCAL_RECIPIENT,
+    PERIOD_MONTHLY,
+    MONTH_LONG
 } from '../../constants'
 import gql from 'graphql-tag'
 
 // Helper functions for using a variable config to create the vairable list and values
 import {
-  getDataFilterVariableValues,
-  getDataFilterVariableList,
-  getDataFilterWhereClauses,
-  DATA_FILTER_KEY_TO_DB_COLUMNS as DB_COLS
+    getDataFilterVariableValues,
+    getDataFilterVariableList,
+    getDataFilterWhereClauses,
+    DATA_FILTER_KEY_TO_DB_COLUMNS as DB_COLS
 } from './index'
 
 import getDataFilterQuery from './data-filter-queries'
@@ -52,25 +55,28 @@ import getDataFilterQuery from './data-filter-queries'
 
 // This is a simple data filter variable config that specifies which variables are used by the query and the type
 const VARIABLE_CONFIGS = {
-  [REVENUE]: [
-    { [LAND_TYPE]: MULTI_STR },
-    { [COUNTY]: MULTI_STR },
-    { [COMMODITY]: MULTI_STR },
-    { [REVENUE_TYPE]: MULTI_STR },
-    { [STATE_OFFSHORE_NAME]: MULTI_STR },
-    { [PERIOD]: SINGLE_STR },
-    { [FISCAL_YEAR]: MULTI_INT },
-    { [CALENDAR_YEAR]: MULTI_INT }
-  ],
-  [PRODUCTION]: [
-    { [LAND_TYPE]: MULTI_STR },
-    { [COUNTY]: MULTI_STR },
-    { [PRODUCT]: MULTI_STR },
-    { [STATE_OFFSHORE_NAME]: MULTI_STR },
-    { [PERIOD]: SINGLE_STR },
-    { [FISCAL_YEAR]: MULTI_INT },
-    { [CALENDAR_YEAR]: MULTI_INT },
-    { [MONTH_LONG]: MULTI_STR }
+    [REVENUE]: [
+	{ [G1] : SINGLE_STR},
+	{ [G2] : SINGLE_STR},
+	{ [G3] : SINGLE_STR},
+	{ [LAND_TYPE]: MULTI_STR },
+	{ [COUNTY]: MULTI_STR },
+	{ [COMMODITY]: MULTI_STR },
+	{ [REVENUE_TYPE]: MULTI_STR },
+	{ [STATE_OFFSHORE_NAME]: MULTI_STR },
+	{ [PERIOD]: SINGLE_STR },
+	{ [FISCAL_YEAR]: MULTI_INT },
+	{ [CALENDAR_YEAR]: MULTI_INT }
+    ],
+    [PRODUCTION]: [
+	{ [LAND_TYPE]: MULTI_STR },
+	{ [COUNTY]: MULTI_STR },
+	{ [PRODUCT]: MULTI_STR },
+	{ [STATE_OFFSHORE_NAME]: MULTI_STR },
+	{ [PERIOD]: SINGLE_STR },
+	{ [FISCAL_YEAR]: MULTI_INT },
+	{ [CALENDAR_YEAR]: MULTI_INT },
+	{ [MONTH_LONG]: MULTI_STR }
   ],
   [DISBURSEMENT]: [
     { [RECIPIENT]: MULTI_STR },
@@ -91,7 +97,10 @@ const VARIABLE_CONFIGS = {
   ],
   ALL_YEARS: {
     [REVENUE]: [
-      { [LAND_TYPE]: MULTI_STR },
+ 	{ [G1] : SINGLE_STR},
+	{ [G2] : SINGLE_STR},
+	{ [G3] : SINGLE_STR},  
+	{ [LAND_TYPE]: MULTI_STR },
       { [COUNTY]: MULTI_STR },
       { [COMMODITY]: MULTI_STR },
       { [REVENUE_TYPE]: MULTI_STR },
@@ -122,20 +131,20 @@ const VARIABLE_CONFIGS = {
     ]
   },
 }
-const getVariableValues = state => getDataFilterVariableValues(state, VARIABLE_CONFIGS[state[DATA_TYPE]])
+const getVariableValues = (state, options) => getDataFilterVariableValues(state, VARIABLE_CONFIGS[state[DATA_TYPE]], options)
 const getVariableConfig = state => VARIABLE_CONFIGS[state[DATA_TYPE]]
-export const getVariables = (state, options) => getVariableValues(state)
+export const getVariables = (state, options) => getVariableValues(state, options)
 
 // STEP 2: Define all the queries needed
 
 const VIEWS = {
-  [REVENUE]: 'query_tool_revenue',
+  [REVENUE]: 'query_tool_revenue_try',
   [PRODUCTION]: 'query_tool_production',
   [DISBURSEMENT]: 'query_tool_disbursement',
   [REVENUE_BY_COMPANY]: 'query_tool_fed_revenue_by_company'
 }
 const REVENUE_QUERY = whereClause => (
-  `results:${ VIEWS[REVENUE] }(
+    `results:${ VIEWS[REVENUE] }(
     where: {
       ${ whereClause }
     }) {
@@ -148,6 +157,9 @@ const REVENUE_QUERY = whereClause => (
     ${ FISCAL_YEAR }: ${ DB_COLS[FISCAL_YEAR] }
     ${ REVENUE }: ${ DB_COLS[REVENUE] }
     ${ MONTH_LONG }: ${ DB_COLS[MONTH_LONG] }
+    ${ G1 }: ${ DB_COLS[G1] }
+    ${ G2 }: ${ DB_COLS[G2] }
+    ${ G3 }: ${ DB_COLS[G3] }
   }
   counts:${ VIEWS[REVENUE] }_aggregate (
     where: {
@@ -165,7 +177,7 @@ const REVENUE_QUERY = whereClause => (
 )
 
 const PRODUCTION_QUERY = whereClause => (
-  `results:${ VIEWS[PRODUCTION] }(
+    `results:${ VIEWS[PRODUCTION] }(
     where: {
       ${ whereClause }
     }) {
@@ -248,7 +260,7 @@ const REVENUE_BY_COMPANY_QUERY = whereClause => (
  */
 export const getQuery = (state, options) => {
   if (options[DATA_FILTER_KEY]) {
-    return QUERIES.DATA_FILTERS(state, VARIABLE_CONFIGS[state[DATA_TYPE]], options)
+      return QUERIES.DATA_FILTERS(state, VARIABLE_CONFIGS[state[DATA_TYPE]], options)
   }
   return QUERIES[state[DATA_TYPE]](state, VARIABLE_CONFIGS[state[DATA_TYPE]])
 }
@@ -282,7 +294,7 @@ const QUERIES = {
     const excludeProps = options[EXCLUDE_PROPS] ? options[EXCLUDE_PROPS] : []
     return (
       gql`query GetQueryToolFilter_${ options[DATA_FILTER_KEY] }
-          (${ getDataFilterVariableList(state, variableConfig) })
+          (${ getDataFilterVariableList(state, variableConfig, options) })
           {${ getDataFilterQuery(
         VIEWS[state[DATA_TYPE]],
         options[DATA_FILTER_KEY],

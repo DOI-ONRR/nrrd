@@ -424,7 +424,6 @@ const DataTableBase = ({ data, config }) => {
       setColumnNames(colNames)
       setDefaultColumnWidths(colNames.map((column, index) => {
         let width = (parseInt(column.name) > 100) ? 200 : 250
-        console.log(column.name, column, STATE_OFFSHORE_NAME)
         if (column.name === STATE_OFFSHORE_NAME) {
           width = 325
         }
@@ -556,7 +555,6 @@ const DataTableBase = ({ data, config }) => {
     }
   }, [_groupBy, _breakoutBy, config])
 
-  console.log(grouping)
   return (
     <React.Fragment>
       {(defaultColumnWidths?.length > 0 && tableData?.length > 0)
