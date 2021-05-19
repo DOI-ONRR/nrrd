@@ -66,11 +66,12 @@ update location set fips_code=state where length(state)=2 and county='';
 
 update location set location_name=concat(state_name, ', ', county), region_type='County', district_type='County' where length(fips_code)=5;
 update location set location_name=state_name, region_type='State', district_type='State' where length(state)=2 and region_type not in('County');
-
+update location set location_name='Not tied to a lease'  where location_name='';
+update location set location_order='ZZZ' where location_name='Not tied to a lease';
 \echo 'update land type'
 
 update location set land_type='Federal - not tied to a lease', location_name='Not tied to a lease' where land_class='Federal' and land_category='Not Tied to a Lease';
-update location set land_type='Native American', location_name='Location not published' where land_class='Native American';
+update location set land_type='Native American', location_name='Location not published', location_order='zzz' where land_class='Native American';
 update location set land_type='Federal onshore' where land_class='Federal' and land_category='Onshore';
 update location set land_type='Federal offshore' where land_class='Federal' and land_category='Offshore';
 update location set land_type='Federal onshore'  where land_class='Mixed Exploratory' and land_category='Onshore';
