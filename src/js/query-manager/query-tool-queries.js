@@ -138,7 +138,7 @@ export const getVariables = (state, options) => getVariableValues(state, options
 // STEP 2: Define all the queries needed
 
 const VIEWS = {
-  [REVENUE]: 'query_tool_revenue_try',
+  [REVENUE]: 'query_tool_revenue',
   [PRODUCTION]: 'query_tool_production',
   [DISBURSEMENT]: 'query_tool_disbursement',
   [REVENUE_BY_COMPANY]: 'query_tool_fed_revenue_by_company'

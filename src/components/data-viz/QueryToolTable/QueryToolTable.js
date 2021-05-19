@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 
 import {
+  G1,G2,G3,
   ALL_YEARS,
   REVENUE,
   PRODUCTION,
@@ -148,7 +149,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
         showOnlySubtotalRow: (dfc[DATA_TYPE] === PRODUCTION && (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
         pivotColumn: getPivotColumn(),
         pivotColumnValue: getPivotColumnValue(),
-        omitGroupBreakoutByOptions: [MONTH_LONG],
+        omitGroupBreakoutByOptions: [MONTH_LONG,G1,G2,G3],
         height: _tableHeight,
         hideColumns: getHideColumns(),
         sortColumn: getSortColumn(),

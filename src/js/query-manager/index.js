@@ -190,7 +190,6 @@ export const getDataFilterVariableValues = (state, config, options) => {
 	}
 
 	if(checkCommodityAggregation(key,state, config, options)) {
-	    results[G2] = "location"
 	    results[G3] = "commodity"
 	} else {
 	    results[G3] = ""
@@ -211,6 +210,10 @@ export const checkFundAggregation = (key,state, config, options) => {
     if(FUND_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
 	console.debug("AGG FUND dfk true :", key)
 	return true
+    } 
+    else if(FUND_AGGREGATION.includes(state.groupBy)) {
+	console.debug("AGG FUND  true gb :", key, state.groupBy)
+	return true
     }
 
     
@@ -222,10 +225,7 @@ export const checkFundAggregation = (key,state, config, options) => {
 	}
     }
 
-    if(FUND_AGGREGATION.includes(state.groupBy)) {
-	console.debug("AGG FUND  true gb :", key, state.groupBy)
-	return true
-    }
+
     console.debug("AGG FUND false :", key, state.groupBy, key)
     return false
     
@@ -235,6 +235,10 @@ export const checkFundAggregation = (key,state, config, options) => {
 export const checkLocationAggregation = (key,state, config, options) => {
     if(LOCATION_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
 	console.debug("LOC AGG dfk true :", key, state[key])
+	return true
+    } 
+    else if(LOCATION_AGGREGATION.includes(state.groupBy)) {
+	console.debug("LOC AGG true gb :", key, state.groupBy)
 	return true
     }
 
@@ -246,10 +250,7 @@ export const checkLocationAggregation = (key,state, config, options) => {
 	}
     }
 
-    if(LOCATION_AGGREGATION.includes(state.groupBy)) {
-	console.debug("LOC AGG true gb :", key, state.groupBy)
-	return true
-    }
+
     console.debug("LOC AGG false :",key, state.groupBy, key)
     return false
     
@@ -259,6 +260,9 @@ export const checkLocationAggregation = (key,state, config, options) => {
 export const checkCommodityAggregation = (key,state, config, options) => {
     if(COMMODITY_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
 	console.debug("COM AGG dfk true :", key, state[key])
+	return true
+    } else if(COMMODITY_AGGREGATION.includes(state.groupBy)) {
+	console.debug("COM AGG true gb :", key, state.groupBy)
 	return true
     }
 
@@ -271,10 +275,7 @@ export const checkCommodityAggregation = (key,state, config, options) => {
 	}
     }
 
-    if(COMMODITY_AGGREGATION.includes(state.groupBy)) {
-	console.debug("COM AGG true gb :", key, state.groupBy)
-	return true
-    }
+
     console.debug("COM AGG false :",key, state.groupBy, key)
     return false
     
@@ -323,3 +324,23 @@ export const getDataFilterVariableList = (state, config, options) => {
     
     return result
 }
+
+
+/*
+
+create view query_tool_revenue_try as
+select * from _mview_fund_qtr
+UNION
+select * from _mview_location_qtr
+UNION
+select * from _mview_commodity_qtr
+UNION
+select * from _mview_fund_location_qtr
+UNION
+select * from _mview_fund_commodity_qtr
+UNION
+select * from _mview_location_commodity_qtr
+UNION
+select * from _mview_fund_location_commodity_qtr
+
+*/
