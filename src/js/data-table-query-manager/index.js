@@ -84,23 +84,29 @@ const VARIABLES = {
   }),
     [PRODUCTION]: state => ({
     variables: {
-      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS || !state[LAND_TYPE]) ? undefined : state[LAND_TYPE].split(','),
-      [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
-      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
-      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
-      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
-      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
+	[LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS || !state[LAND_TYPE]) ? undefined : state[LAND_TYPE].split(','),
+	[OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
+	[US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
+	[COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+	[COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
+      	[G1]: state[G1],
+	[G2]: state[G2],
+	[G3]: state[G3],
+	[PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
-  }),
-  [DISBURSEMENT]: state => ({
+    }),
+    [DISBURSEMENT]: state => ({
     variables: {
-      [RECIPIENT]: (state[RECIPIENT] === ZERO_OPTIONS || !state[RECIPIENT]) ? undefined : state[RECIPIENT].split(','),
-      [SOURCE]: (state[SOURCE] === ZERO_OPTIONS || !state[SOURCE]) ? undefined : state[SOURCE].split(','),
-      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
-      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
-      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
+	[RECIPIENT]: (state[RECIPIENT] === ZERO_OPTIONS || !state[RECIPIENT]) ? undefined : state[RECIPIENT].split(','),
+	[SOURCE]: (state[SOURCE] === ZERO_OPTIONS || !state[SOURCE]) ? undefined : state[SOURCE].split(','),
+	[US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
+	[COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+	[G1]: state[G1],
+	[G2]: state[G2],
+	[G3]: state[G3],
+	[PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
-  })
+    })
 }
 
 const VARIABLE_LIST_REVENUE = ''.concat(
@@ -125,14 +131,20 @@ const VARIABLE_LIST_PRODUCTION = ''.concat(
     '$state: [String!],',
     '$county: [String!],',
     '$commodity: [String!],',
-    '$period: String,'
+    '$period: String,',
+    '$g1: String,',
+    '$g2: String,',
+    '$g3: String,'
 )
 const VARIABLE_LIST_DISBURSEMENT = ''.concat(
     '$recipient: [String!],',
     '$source: [String!],',
     '$state: [String!],',
     '$county: [String!],',
-    '$period: String,'
+    '$period: String,',
+    '$g1: String,',
+    '$g2: String,',
+    '$g3: String,'
 )
 
 const REVENUE_QUERY = `
@@ -145,9 +157,6 @@ const REVENUE_QUERY = `
       commodity: {_in: $commodity},
       revenue_type: {_in: $revenueType},
       period: {_eq: $period},
-      period: {_eq: $g1},
-      period: {_eq: $g2},
-      period: {_eq: $g3},
     }) {
     ${ LOCATION_NAME }: location_name  
     ${ LAND_TYPE }: land_type

@@ -207,6 +207,9 @@ export const getDataFilterVariableValues = (state, config, options) => {
 }
 
 export const checkFundAggregation = (key,state, config, options) => {
+    if(state.dataType==='Production') {
+	return false
+    }
     if(FUND_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
 	console.debug("AGG FUND dfk true :", key)
 	return true
@@ -237,7 +240,7 @@ export const checkLocationAggregation = (key,state, config, options) => {
 	console.debug("LOC AGG dfk true :", key, state[key])
 	return true
     } 
-    else if(LOCATION_AGGREGATION.includes(state.groupBy)) {
+    else if(LOCATION_AGGREGATION.includes(state.groupBy) ) {
 	console.debug("LOC AGG true gb :", key, state.groupBy)
 	return true
     }
@@ -258,10 +261,11 @@ export const checkLocationAggregation = (key,state, config, options) => {
 
 }
 export const checkCommodityAggregation = (key,state, config, options) => {
+    console.debug(state.groupBySticky, " VS ", COMMODITY_AGGREGATION);
     if(COMMODITY_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
 	console.debug("COM AGG dfk true :", key, state[key])
 	return true
-    } else if(COMMODITY_AGGREGATION.includes(state.groupBy)) {
+    } else if(COMMODITY_AGGREGATION.includes(state.groupBy) || COMMODITY_AGGREGATION.includes(state.groupBySticky) ) {
 	console.debug("COM AGG true gb :", key, state.groupBy)
 	return true
     }
