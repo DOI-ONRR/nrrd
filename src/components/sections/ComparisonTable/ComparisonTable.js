@@ -93,29 +93,29 @@ const ComparisonTable = forwardRef((props, ref) => {
     }
   }))
 
-    const comparisonTitle = 'Comparison'
-    const periodAbbr = period === DFC.PERIOD_CALENDAR_YEAR ? 'CY' : 'FY'
+  const comparisonTitle = 'Comparison'
+  const periodAbbr = period === DFC.PERIOD_CALENDAR_YEAR ? 'CY' : 'FY'
 
-    // Get the latest date then subtract 1 year to filter previous year data to compare current year data
-    const currentYear = parseInt(selectedItem.year)
+  // Get the latest date then subtract 1 year to filter previous year data to compare current year data
+  const currentYear = parseInt(selectedItem.year)
 
-    // Get previous year
-    const previousYear = currentYear - 1
+  // Get previous year
+  const previousYear = currentYear - 1
 
-    // console.log('previousYear: ', previousYear)
+  // console.log('previousYear: ', previousYear)
 
-    // Text output
-    const month = (monthly === DFC.MONTHLY_CAPITALIZED && selectedItem.month) && selectedItem.month.substring(0, 3)
-    const previousYearText = `${ periodAbbr } ${ previousYear }`
-    const changeText = 'Change'
+  // Text output
+  const month = (monthly === DFC.MONTHLY_CAPITALIZED && selectedItem.month) && selectedItem.month.substring(0, 3)
+  const previousYearText = `${ periodAbbr } ${ previousYear }`
+  const changeText = 'Change'
 
-    // grouped data
-    const groupedData = utils.groupBy(data, yGroupBy)
-    console.debug("data :", data)
-    console.debug("groupeData :", groupedData)
-    // comparison data
-    const comparisonData = Object.entries(groupedData).map((item, index) => {
-	const newObj = {}
+  // grouped data
+  const groupedData = utils.groupBy(data, yGroupBy)
+  console.debug('data :', data)
+  console.debug('groupeData :', groupedData)
+  // comparison data
+  const comparisonData = Object.entries(groupedData).map((item, index) => {
+    const newObj = {}
     newObj.key = item[0]
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
@@ -128,7 +128,7 @@ const ComparisonTable = forwardRef((props, ref) => {
       let previousSum = {}
       // check for comparison with current fiscal month range
       if (period === DFC.PERIOD_FISCAL_YEAR && selectedItem.month !== 'September') {
-          previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
+        previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR && selectedItem.month !== 'December') {
         previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
@@ -142,12 +142,12 @@ const ComparisonTable = forwardRef((props, ref) => {
       newObj.current = { ...item[1].filter(item => item.year === currentYear)[0], sum: currentSum }
     }
 
-	return newObj
-    })
-    console.debug("comparisonData :", comparisonData); 
-    comparisonData.sort((a, b) => yOrderBy.indexOf(a.previous[yGroupBy]) - yOrderBy.indexOf(b.previous[yGroupBy]))
+    return newObj
+  })
+  console.debug('comparisonData :', comparisonData)
+  comparisonData.sort((a, b) => yOrderBy.indexOf(a.previous[yGroupBy]) - yOrderBy.indexOf(b.previous[yGroupBy]))
 
-    const cData = comparisonData.slice().sort((a, b) => yOrderBy.indexOf(a.key) - yOrderBy.indexOf(b.key))
+  const cData = comparisonData.slice().sort((a, b) => yOrderBy.indexOf(a.key) - yOrderBy.indexOf(b.key))
 
   // console.log('comparisonData: ', comparisonData)
   // console.log('cData: ', cData)
