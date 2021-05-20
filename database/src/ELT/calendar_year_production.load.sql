@@ -14,6 +14,12 @@ and offshore_region is null
 and product is null
 and volume is null;
 
+
+\echo 'Formated volume'
+update fiscal_year_production_elt set volume=REPLACE(volume, '(','-');
+update fiscal_year_production_elt set volume=REPLACE(volume, ')',''); 
+
+
 update calendar_year_production_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' County', ''),' Parish',''), ' Borough',''),'');
 update calendar_year_production_elt e set fips_code = l.fips_code FROM county_lookup l WHERE e.county=l.county and e.state=l.state;
 

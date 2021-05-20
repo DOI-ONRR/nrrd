@@ -190,6 +190,7 @@ const TotalProduction = props => {
           }
         })
         comparisonData = data.total_yearly_fiscal_production.filter(row => row.product === commodity)
+	  console.debug("COMPARISON DATA:", comparisonData);
         chartData = data.total_yearly_fiscal_production.filter(item => item.year >= maxFiscalYear - 10)
         xGroups['Fiscal Year'] = chartData.filter(row => row.product === commodity).map((row, i) => row.year)
       }

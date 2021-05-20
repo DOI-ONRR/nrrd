@@ -42,6 +42,10 @@ insert into monthly_revenue_elt select accept_date, 'Native American', land_cate
 delete from monthly_revenue_elt where land_class_code like '%Indian%';
 
 
+\echo 'Formated revenue'
+update monthly_revenue_elt set revenue=REPLACE(revenue, '(','-');
+update monthly_revenue_elt set revenue=REPLACE(revenue, ')',''); 
+
 \echo 'Update NULLS to \'\' '
 update monthly_revenue_elt set land_class_code = COALESCE(land_class_code,''),
                               land_category_code_desc = COALESCE(land_category_code_desc,''),
@@ -122,6 +126,7 @@ on conflict DO NOTHING;
 \echo 'Insert revenue type and source into fund table'
 insert into fund (revenue_type, source)  select
 	COALESCE(revenue_type,''),
+        
 	COALESCE(land_category_code_desc,'') 
 from monthly_revenue_elt
 group by revenue_type,land_category_code_desc
