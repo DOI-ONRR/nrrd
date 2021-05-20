@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import React, { useEffect, useRef, useState } from 'react'
 
-import { Box, Collapse } from '@material-ui/core'
+import { Box, Collapse, Button } from '@material-ui/core'
 import {
   createStyles,
   withStyles,
@@ -285,7 +285,7 @@ const LegendButton = withStyles(theme => (
         textDecoration: 'underline',
       }
     },
-  })))
+  })))(Button)
 /**
  * Stacked bar charts are used to represent multiple types of data within a single
  * bar.  They can be either vertical or horizontal.
@@ -332,7 +332,11 @@ const StackedBarChart = props => {
           ? <CompactChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }} disableInteraction={options.disableInteraction}/>
           : <DefaultChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }} />
         }
-        { props.collapsibleLegend && <LegendButton variant='text' onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</LegendButton> }
+        { props.collapsibleLegend &&
+          <LegendButton variant='text' onClick={ () => setCollapsed(!collapsed) }>
+            {buttonValue}
+          </LegendButton>
+        }
         <Collapse in={!collapsed}>
           {options.compact
             ? <CompactLegendContainer id='legend_div' />
