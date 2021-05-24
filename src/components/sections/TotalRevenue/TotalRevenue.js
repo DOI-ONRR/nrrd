@@ -150,35 +150,34 @@ const TOTAL_REVENUE_QUERY = gql`
  */
 // TotalRevenue component
 const TotalRevenue = props => {
-  const theme = useTheme()
-  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy, dataType, periodAllYears } = filterState
-  const revenueComparison = useRef(null)
+    const theme = useTheme()
+    const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+    filterState.period=(filterState.monthly !== DFC.MONTHLY_CAPITALIZED && filterState.period === "Most recent 12 months") ? DFC.PERIOD_FISCAL_YEAR : filterState.period
+    const { monthly, period, breakoutBy, dataType, periodAllYears } = filterState
+    const revenueComparison = useRef(null)
 
-  const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
-  const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
-  let QUERY = FISCAL
-  let VARIABLES = { period_group: 'Fiscal Year', breakout_group: 'source' }
-  console.debug('filterState: ', filterState, ' CONSTANTS: ', DFC.PERIOD_CALENDER_YEAR, DFC.PERIOD_FISCAL_YEAR, DFC.MONTHLY_CAPITALIZED)
-  if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
-    console.debug('FISCAL')
+    const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
+    const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
+    let QUERY = FISCAL
+    let VARIABLES = { period_group: 'Fiscal Year', breakout_group: 'source' }
+
+    if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
+
     QUERY = FISCAL
     VARIABLES = { period_group: period || 'Fiscal Year', breakout_group: breakoutBy || 'source' }
   }
   else if (filterState.period === DFC.PERIOD_CALENDAR_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
-    console.debug('CALENDAR')
     QUERY = CALENDAR
     VARIABLES = { period_group: filterState.period || 'Calendar Year', breakout_group: filterState.breakoutBy || 'source' }
   }
   else {
     console.debug('DEFAULT')
-      VARIABLES = { period_group: filterState.period || 'Calendar Year', breakout_group: filterState.breakoutBy || 'source' }
+      VARIABLES = { period_group: filterState.period || 'Fiscal Year', breakout_group: filterState.breakoutBy || 'source' }
     QUERY = TOTAL_REVENUE_QUERY
   }
-  console.debug('=====================================================?', VARIABLES)
 
   const { loading, error, data } = useQuery(QUERY, { variables: VARIABLES })
-  console.debug('data: ', data)
+
   const handleBarHover = d => {
     revenueComparison.current.setSelectedItem(d[2])
   }
@@ -335,6 +334,7 @@ const TotalRevenue = props => {
       }
     }
     else {
+	console.debug("=============================PERIOD===================================+>", period)
       if (period === DFC.PERIOD_FISCAL_YEAR) {
 	  currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
         switch (yGroupBy) {
