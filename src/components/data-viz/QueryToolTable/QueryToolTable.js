@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 
 import {
+  G1,G2,G3,
   ALL_YEARS,
   REVENUE,
   PRODUCTION,
@@ -148,7 +149,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
         showOnlySubtotalRow: (dfc[DATA_TYPE] === PRODUCTION && (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
         pivotColumn: getPivotColumn(),
         pivotColumnValue: getPivotColumnValue(),
-        omitGroupBreakoutByOptions: [MONTH_LONG],
+        omitGroupBreakoutByOptions: [MONTH_LONG,G1,G2,G3],
         height: _tableHeight,
         hideColumns: getHideColumns(),
         sortColumn: getSortColumn(),
@@ -424,7 +425,6 @@ const DataTableBase = ({ data, config }) => {
       setColumnNames(colNames)
       setDefaultColumnWidths(colNames.map((column, index) => {
         let width = (parseInt(column.name) > 100) ? 200 : 250
-        console.log(column.name, column, STATE_OFFSHORE_NAME)
         if (column.name === STATE_OFFSHORE_NAME) {
           width = 325
         }
@@ -556,7 +556,6 @@ const DataTableBase = ({ data, config }) => {
     }
   }, [_groupBy, _breakoutBy, config])
 
-  console.log(grouping)
   return (
     <React.Fragment>
       {(defaultColumnWidths?.length > 0 && tableData?.length > 0)

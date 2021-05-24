@@ -93,7 +93,9 @@ export const NATIONWIDE_FEDERAL_FIPS = 'NF'
 export const OFFSHORE_CAPITALIZED = 'Offshore'
 export const ONSHORE = 'Onshore'
 export const FEDERAL = 'Federal'
-
+export const G1 = 'g1'
+export const G2 = 'g2'
+export const G3 = 'g3'
 // export const CALENDAR_YEAR = 'Calendar Year' // use PERIOD_CALENDAR_YEAR
 export const FISCAL_YEAR_LABEL = 'Fiscal Year'
 export const MONTHLY_CAPITALIZED = 'Monthly'
@@ -112,11 +114,15 @@ export const DATA_TYPES = [REVENUE, PRODUCTION, DISBURSEMENT]
 export const REVENUE_BY_COMPANY = 'Federal revenue by company'
 export const DATA_TYPES_PLUS = [REVENUE, REVENUE_BY_COMPANY, PRODUCTION, DISBURSEMENT]
 
+export const FUND_AGGREGATION = [REVENUE_TYPE]
+export const LOCATION_AGGREGATION = [LAND_TYPE,STATE_OFFSHORE_NAME]
+export const COMMODITY_AGGREGATION = [COMMODITY, PRODUCT]
+
 export const TREND_LIMIT = 10
 export const MAX_CARDS = 3
 
 export const DISPLAY_NAMES = {
-  [MONTH_LONG]: {
+    [MONTH_LONG]: {
     default: 'Month',
     plural: 'Months',
   },
@@ -149,14 +155,26 @@ export const DISPLAY_NAMES = {
     plural: 'Revenue types',
   },
   [LAND_TYPE]: {
-    default: 'Land type',
-    plural: 'Land types',
+      default: 'Land type',
+      plural: 'Land types',
   },
-  [COMMODITY]: {
-    default: 'Commodity',
-    plural: 'Commodities',
+  [G1]: {
+      default: 'g1',
+      plural: 'g1s',
   },
-  [PRODUCT]: {
+  [G2]: {
+      default: 'g2',
+      plural: 'g2s',
+  },
+  [G3]: {
+      default: 'g3',
+      plural: 'g3s',
+  },
+    [COMMODITY]: {
+	default: 'Commodity',
+	plural: 'Commodities',
+    },
+    [PRODUCT]: {
     default: 'Product',
     plural: 'Products',
   },

@@ -9,7 +9,7 @@ import utils from '../../../../js/utils'
 import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import * as d3 from 'd3'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-
+import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import LineChart from '../../../data-viz/LineChart/LineChart.js'
 import ChipLabel from '../../ExploreData/ChipLabel'
@@ -90,15 +90,21 @@ const DisbursementsOverTime = props => {
 
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
-
-  const { loading, error, data } = useQuery(APOLLO_QUERY)
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    skip: inView === false
+  })
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
   if (loading) {
     return (
-      <div className={classes.progressContainer}>
+      <div className={classes.progressContainer} ref={ref} >
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />
       </div>
     )
@@ -126,7 +132,7 @@ const DisbursementsOverTime = props => {
     chartData = [years, ...sums]
 
     return (
-      <Container id={utils.formatToSlug(title)}>
+      <Container id={utils.formatToSlug(title)} ref={ref} >
         <Grid item md={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
             <Box component="h4" color="secondary.dark">{title}</Box>
@@ -165,7 +171,11 @@ const DisbursementsOverTime = props => {
     )
   }
   else {
-    return (null)
+    return (
+      <div className={classes.progressContainer} ref={ref} >
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </div>
+    )
   }
 }
 

@@ -11,9 +11,8 @@ import utils, { formatToDollarInt } from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-
+import { useInView } from 'react-intersection-observer'
 import { makeStyles } from '@material-ui/core/styles'
-
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { CircleChart } from '../../../data-viz/CircleChart'
 
@@ -25,13 +24,13 @@ import {
 } from '@material-ui/core'
 
 const APOLLO_QUERY = gql`
-  query NationwideDisbursemtSummary($year: Int!) {
-    fiscal_disbursement_recipient_summary( where: {year: {_eq: $year}}) {
-      total
-      recipient
-      year
-    }
-  }
+    query NationwideDisbursemtSummary($year: Int!) {
+	fiscal_disbursement_recipient_summary( where: {year: {_eq: $year}}) {
+	    total
+	    recipient
+	    year
+   }
+}
 `
 const useStyles = makeStyles(theme => ({
   root: {
@@ -94,12 +93,20 @@ const DisbursementTopRecipients = props => {
   ]
   const xAxis = 'recipient'
   const yAxis = 'total'
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { year } })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { year },
+    skip: inView === false
+  })
 
   if (loading) {
     return (
-      <div className={classes.progressContainer}>
+      <div className={classes.progressContainer} ref={ref} >
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />
       </div>
     )
@@ -111,7 +118,7 @@ const DisbursementTopRecipients = props => {
     chartData = data.fiscal_disbursement_recipient_summary
 
     return (
-      <Container id={utils.formatToSlug(title)}>
+      <Container id={utils.formatToSlug(title)} ref={ref} >
         <Grid item xs={12}>
           <Box color="secondary.main" mt={5} mb={2} borderBottom={2} display="flex" justifyContent="space-between">
             <Box component="h3" color="secondary.dark" display="inline">{title}</Box>
@@ -162,7 +169,11 @@ const DisbursementTopRecipients = props => {
     )
   }
   else {
-    return (null)
+    return (
+      <div className={classes.progressContainer} ref={ref} >
+        <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+      </div>
+    )
   }
 }
 

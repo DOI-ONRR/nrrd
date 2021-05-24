@@ -11,6 +11,8 @@ import {
   DATA_FILTER_CONSTANTS as DFC,
   DISPLAY_NAMES
 } from '../../../../constants'
+import { useInView } from 'react-intersection-observer'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import {
   Box,
@@ -63,9 +65,14 @@ const NationwideDisbursementSummary = props => {
   const dataSet = 'FY ' + year
 
   const { title } = props
-
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
   const { loading, error, data } = useQuery(NATIONWIDE_DISBURSEMENT_SUMMARY_QUERY, {
-    variables: { year }
+    variables: { year },
+    skip: inView === false
   })
 
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
@@ -104,7 +111,7 @@ const NationwideDisbursementSummary = props => {
     nationwideSummaryData = Object.entries(groupData)
 
     return (
-      <Container id={utils.formatToSlug(title)}>
+      <Container id={utils.formatToSlug(title)} ref={ref} >
         <Grid container>
           <Grid item md={12}>
             <Box mt={10} mb={1} color="secondary.main" borderBottom={5}>
@@ -213,7 +220,11 @@ const NationwideDisbursementSummary = props => {
     )
   }
   else {
-    return (null)
+    return (
+      <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={300}>
+        <CircularProgress />
+      </Box>
+    )
   }
 }
 

@@ -12,7 +12,10 @@ import {
   RECIPIENT,
   SOURCE,
   FISCAL_YEAR,
-  US_STATE_NAME
+  US_STATE_NAME,
+  G1,
+  G2,
+  G3
 } from '../../constants'
 
 import {
@@ -132,7 +135,7 @@ const DATA_FILTER_QUERIES = {
         option: ${ DB_COLS[SOURCE] }
       }`),
   [US_STATE_NAME]: (view, whereClause) => (
-    `options:${ view }(
+      `options:${ view }(
       where: {
         ${ whereClause }
       },
@@ -141,10 +144,40 @@ const DATA_FILTER_QUERIES = {
       ) {
         option: ${ DB_COLS[US_STATE_NAME] }
       }`),
+  [G1]: (view, whereClause) => (
+      `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[G1] },
+      order_by: {${ DB_COLS[G1] }: asc}
+      ) {
+        option: ${ DB_COLS[G1] }
+      }`),
+  [G2]: (view, whereClause) => (
+      `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[G2] },
+      order_by: {${ DB_COLS[G2] }: asc}
+      ) {
+        option: ${ DB_COLS[G2] }
+      }`),
+  [G3]: (view, whereClause) => (
+      `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[G3] },
+      order_by: {${ DB_COLS[G3] }: asc}
+      ) {
+        option: ${ DB_COLS[G3] }
+      }`),
 }
 
 export default (view, dataFilterKey, whereClause) => {
-  if (!DATA_FILTER_QUERIES[dataFilterKey]) {
+    if (!DATA_FILTER_QUERIES[dataFilterKey]) {
     throw Error(`A data filter query does not exist for ${ dataFilterKey }. Please add query for this key.`)
   }
   return DATA_FILTER_QUERIES[dataFilterKey](view, whereClause)

@@ -6,9 +6,9 @@
 ## TEAM MEMBERS
 
     Nathan Brannberg -- Product Owner -- Department of the Interior, Office of Natural Resources Revenue
+    Daniel Coleman -- Content Strategist -- Department of the Interior, OFfice of Natural Resources Revenue
     Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Lindsay Goldstein -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
-    Jeff Keene -- Developer -- Department of the Interior, Office of Natural Resources Revenue
     Shannon McHarg -- UX Designer -- Department of the Interior, Office of Natural Resources Revenue
 
 
@@ -16,10 +16,12 @@
     Sarah Aranda -- UX Intern -- Virtual Student Federal Service
     Alexandra Budz -- Visual Designer -- Open Opportunities
     Jerome Louis -- Contract Developer
+    Christa McCurdy -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
     Brandi Nichols -- UX Intern -- Virtual Student Federal Service
     Mojo Nichols -- Contract Developer
     Matthew Sao -- Data Intern -- Virtual Student Federal Service
     Jamie Wang -- UX Intern -- Virtual Student Federal Service
+    Meshan White -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
 
 # PAST TEAM
 
@@ -32,6 +34,7 @@
     Brian Hedberg -- Developer -- 18F
     Michelle Hertzfeld --  Product Manager and UX -- 18F
     Ryan Johnson -- Content Strategist -- Department of the Interior, Office of Natural Resources Revenue
+    Jeff Keene -- Developer -- Department of the Interior, Office of Natural Resources Revenue
     Robert Kronebusch -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Corey Mahoney -- Content Designer -- 18F
     Jennifer Malcolm -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue

@@ -8,6 +8,7 @@ import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import * as d3 from 'd3'
+import { useInView } from 'react-intersection-observer'
 
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -92,9 +93,14 @@ const ProductionOverTime = props => {
   const cards = pageState.cards
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { product: product, period: period }
+    variables: { product: product, period: period },
+    skip: inView === false
   })
 
   const handleDelete = props.handleDelete || ((e, fips) => {
@@ -144,45 +150,51 @@ const ProductionOverTime = props => {
     // console.log('chartData: ', chartData)
 
     return (
-      <Container id={utils.formatToSlug(title)}>
-        <Grid item md={12}>
-          <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
-            <Box component="h4" color="secondary.dark">{`${ title } (${ units[0] })`}</Box>
-          </Box>
-        </Grid>
-        <Grid item md={12}>
-          <LineChart
-            key={'POT' + period + cards.length + product }
-            data={chartData}
-            chartColors={[theme.palette.explore[400], theme.palette.explore[300], theme.palette.explore[200], theme.palette.explore[100]]}
-            lineDashes={LINE_DASHES}
-            lineTooltip={
-              (d, i) => {
-                const r = []
-                r[0] = `${ cards[i].locationName }: ${ utils.formatToCommaInt(d) } (${ units[i] })`
-                return r
+      <div ref={ref} >
+        <Container id={utils.formatToSlug(title)}>
+          <Grid item md={12}>
+            <Box color="secondary.main" mt={5} mb={2} borderBottom={2}>
+              <Box component="h4" color="secondary.dark">{`${ title } (${ units[0] })`}</Box>
+            </Box>
+          </Grid>
+          <Grid item md={12}>
+            <LineChart
+              key={'POT' + period + cards.length + product }
+              data={chartData}
+              chartColors={[theme.palette.explore[400], theme.palette.explore[300], theme.palette.explore[200], theme.palette.explore[100]]}
+              lineDashes={LINE_DASHES}
+              lineTooltip={
+                (d, i) => {
+                  const r = []
+                  r[0] = `${ cards[i].locationName }: ${ utils.formatToCommaInt(d) } (${ units[i] })`
+                  return r
+                }
+              } />
+            <Box mt={1} className={classes.chipContainer}>
+              {
+                cards.map((card, i) => {
+                  return (
+                    <Chip
+                      key={`ProductionOverTimeChip_${ card.fipsCode }`}
+                      variant='outlined'
+                      onDelete={ e => handleDelete(e, card.fipsCode)}
+                      label={<ChipLabel labelIndex={i} label={card.locationName} />}
+                      classes={{ root: classes.chipRoot }} />
+                  )
+                })
               }
-            } />
-          <Box mt={1} className={classes.chipContainer}>
-            {
-              cards.map((card, i) => {
-                return (
-                  <Chip
-                    key={`ProductionOverTimeChip_${ card.fipsCode }`}
-                    variant='outlined'
-                    onDelete={ e => handleDelete(e, card.fipsCode)}
-                    label={<ChipLabel labelIndex={i} label={card.locationName} />}
-                    classes={{ root: classes.chipRoot }} />
-                )
-              })
-            }
-          </Box>
-        </Grid>
-      </Container>
+            </Box>
+          </Grid>
+        </Container>
+      </div>
     )
   }
   else {
-    return (null)
+    return (
+	  <Box className={classes.root} ref={ref}>
+	  </Box>
+
+    )
   }
 }
 
