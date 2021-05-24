@@ -49,6 +49,7 @@ const CALENDAR = gql`
 	    revenue_type
 	    sort_order
 	    commodity
+            currentMonth: month
 	    monthLong: month_long
 	}
 	
