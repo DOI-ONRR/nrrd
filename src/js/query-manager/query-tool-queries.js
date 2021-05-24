@@ -69,9 +69,6 @@ const VARIABLE_CONFIGS = {
 	{ [CALENDAR_YEAR]: MULTI_INT }
     ],
     [PRODUCTION]: [
-	{ [G1] : SINGLE_STR},
-	{ [G2] : SINGLE_STR},
-	{ [G3] : SINGLE_STR},
 	{ [LAND_TYPE]: MULTI_STR },
 	{ [COUNTY]: MULTI_STR },
 	{ [PRODUCT]: MULTI_STR },
@@ -82,9 +79,6 @@ const VARIABLE_CONFIGS = {
 	{ [MONTH_LONG]: MULTI_STR }
     ],
     [DISBURSEMENT]: [
-	{ [G1] : SINGLE_STR},
-	{ [G2] : SINGLE_STR},
-	{ [G3] : SINGLE_STR},
 	{ [RECIPIENT]: MULTI_STR },
 	{ [SOURCE]: MULTI_STR },
 	{ [US_STATE_NAME]: MULTI_STR },
@@ -195,10 +189,6 @@ const PRODUCTION_QUERY = whereClause => (
     ${ CALENDAR_YEAR }: ${ DB_COLS[CALENDAR_YEAR] }
     ${ FISCAL_YEAR }: ${ DB_COLS[FISCAL_YEAR] }
     ${ PRODUCTION }: ${ DB_COLS[PRODUCTION] }
-    ${ G1 }: ${ DB_COLS[G1] }
-    ${ G2 }: ${ DB_COLS[G2] }
-    ${ G3 }: ${ DB_COLS[G3] }
-
   }
   counts:${ VIEWS[PRODUCTION] }_aggregate (
     where: {
@@ -227,10 +217,6 @@ const DISBURSEMENT_QUERY = whereClause => (
     ${ CALENDAR_YEAR }: ${ DB_COLS[CALENDAR_YEAR] }
     ${ FISCAL_YEAR }: ${ DB_COLS[FISCAL_YEAR] }
     ${ DISBURSEMENT }: ${ DB_COLS[DISBURSEMENT] }
-    ${ G1 }: ${ DB_COLS[G1] }
-    ${ G2 }: ${ DB_COLS[G2] }
-    ${ G3 }: ${ DB_COLS[G3] }
-
   }
   counts:${ VIEWS[DISBURSEMENT] }_aggregate (
     where: {

@@ -176,29 +176,31 @@ export const getDataFilterVariableValues = (state, config, options) => {
     const results = {}
     config.forEach(prop => {
 	const key = Object.keys(prop)[0]
-
-	if(checkFundAggregation(key,state, config, options)) {
-	    results[G1] = "fund"
-	} else {
+	if(state.dataType===REVENUE) {
+	    if(checkFundAggregation(key,state, config, options)) {
+		results[G1] = "fund"
+	    } else {
 	    results[G1] = ""
 	}
 
-	if(checkLocationAggregation(key,state, config, options)) {
-	    results[G2] = "location"
+	    if(checkLocationAggregation(key,state, config, options)) {
+		results[G2] = "location"
+	    } else {
+		results[G2] = ""
+	    }
+	    
+	    if(checkCommodityAggregation(key,state, config, options)) {
+		results[G3] = "commodity"
+	    } else {
+		results[G3] = ""
+	    }
 	} else {
-	    results[G2] = ""
+	    delete results[G1];
+	    delete results[G2];
+	    delete results[G3];
 	}
-
-	if(checkCommodityAggregation(key,state, config, options)) {
-	    results[G3] = "commodity"
-	} else {
-	    results[G3] = ""
-	}
-	
 	results[Object.keys(prop)[0]] = getDataFilterValue(Object.keys(prop)[0], state)
-
-	results[Object.keys(prop)[0]] = getDataFilterValue(Object.keys(prop)[0], state)
-	
+	    
     })
 
 
