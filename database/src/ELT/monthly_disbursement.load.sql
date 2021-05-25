@@ -15,6 +15,10 @@ update monthly_disbursement_elt set fund_type = COALESCE(fund_type,''),
                               category = COALESCE(category,'')
 			      ;
 
+\echo 'Formated disbursement'
+update monthly_disbursements_elt set disbursement=REPLACE(disbursement, '(','-');
+update monthly_disbursements_elt set disbursement=REPLACE(disbursement, ')','');
+
 \echo update fund_class and recipient
 update  monthly_disbursement_elt set fund_type='Lease Process Improvement (BLM)' where fund_type='BLM - Permit Processing and Improvement' 
 ;

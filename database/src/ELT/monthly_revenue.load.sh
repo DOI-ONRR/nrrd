@@ -36,6 +36,12 @@ and commodity is null
 and product_code_desc is null 
 and revenue is null;
 
+
+\echo 'Formated revenue'
+update monthly_revenue_elt set revenue=REPLACE(revenue, '(','-');
+update monthly_revenue_elt set revenue=REPLACE(revenue, ')',''); 
+
+
 \echo 'Summarize Native American Data'
 insert into monthly_revenue_elt select accept_date, 'Native American', land_category_code_desc, 'Native American', '', 'NA',  '' ,revenue_type ,mineral_production_code_desc, commodity, product_code_desc, sum(to_number(revenue, 'L999G999G999G999D99')) from monthly_revenue_elt where land_class_code like '%Indian%' group by accept_date, land_category_code_desc, revenue_type ,mineral_production_code_desc, commodity, product_code_desc;
 \echo 'Delete Native American Detail'
@@ -122,6 +128,7 @@ on conflict DO NOTHING;
 \echo 'Insert revenue type and source into fund table'
 insert into fund (revenue_type, source)  select
 	COALESCE(revenue_type,''),
+        
 	COALESCE(land_category_code_desc,'') 
 from monthly_revenue_elt
 group by revenue_type,land_category_code_desc
