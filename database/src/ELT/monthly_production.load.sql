@@ -14,6 +14,10 @@ and land_category is null
 and commodity is null
 and volume is null;
 
+\echo 'Formated volume'
+update monthly_production_elt set volume=REPLACE(volume, '(','-');
+update monthly_production_elt set volume=REPLACE(volume, ')',''); 
+
 
 \echo 'Insert location records'
 insert into location (land_class, land_category,  state, county, fips_code, offshore_region) select
