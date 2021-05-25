@@ -470,7 +470,6 @@ jobs:
             # bash ./swap.sh
             cf push nrrd -f ./manifest.yml
 
-
 workflows:
   audits:
     jobs:
