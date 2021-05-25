@@ -70,11 +70,18 @@ update location set location_name=state_name, region_type='State', district_type
 \echo 'update land type'
 
 update location set land_type='Federal - not tied to a lease', location_name='Not tied to a lease' where land_class='Federal' and land_category='Not Tied to a Lease';
-update location set land_type='Native American', location_name='Location not published' where land_class='Native American';
+
+
+update location set land_type='Native American', location_name='Location not published', location_order='zzz' where land_class='Native American';
 update location set land_type='Federal onshore' where land_class='Federal' and land_category='Onshore';
 update location set land_type='Federal offshore' where land_class='Federal' and land_category='Offshore';
 update location set land_type='Federal onshore'  where land_class='Mixed Exploratory' and land_category='Onshore';
 update location set land_type='Federal offshore'  where land_class='Mixed Exploratory' and land_category='Offshore';
+
+update location set location_name=concat(land_class, ' ', lower(land_category)), location_order='zZz' where location_name='' and land_category='Onshore';
+update location set location_name=concat(land_class, ' ', lower(land_category)), location_order='zZZ' where location_name='' and land_category='Offshore';
+update location set location_name=concat(land_class, ' ', lower(land_category)), location_order='ZZZ' where location_name='' and land_category='Onshore & Offshore';
+update location set location_order='zzZ' where location_name='Not tied to a lease';
 
 \echo 'update location order'
 update location set location_order=concat(state,'1') where offshore_region ='' and region_type='State';

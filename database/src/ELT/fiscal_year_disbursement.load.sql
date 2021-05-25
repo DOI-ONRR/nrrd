@@ -15,7 +15,12 @@ update fiscal_year_disbursement_elt set fund_type = COALESCE(fund_type,''),
 			      ;
 
 
+\echo 'Formated disbursement'
+update monthly_disbursements_elt set disbursement=REPLACE(disbursement, '(','-');
+update monthly_disbursements_elt set disbursement=REPLACE(disbursement, ')','');
+
 \echo update fund_class and recipient
+
 
 update fiscal_year_disbursement_elt set fund_class='Other funds' where fund_type != '' and fund_class = '';
 

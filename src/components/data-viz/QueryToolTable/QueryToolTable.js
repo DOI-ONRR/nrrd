@@ -425,6 +425,7 @@ const DataTableBase = ({ data, config }) => {
       setColumnNames(colNames)
       setDefaultColumnWidths(colNames.map((column, index) => {
         let width = (parseInt(column.name) > 100) ? 200 : 250
+
         if (column.name === STATE_OFFSHORE_NAME) {
           width = 325
         }
