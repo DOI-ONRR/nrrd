@@ -21,159 +21,38 @@ SET row_security = off;
 --
 
 CREATE VIEW public.query_tool_revenue AS
- SELECT _mview_fund_qtr.g1,
-    _mview_fund_qtr.g2,
-    _mview_fund_qtr.g3,
-    _mview_fund_qtr.location_name,
-    _mview_fund_qtr.location_order,
-    _mview_fund_qtr.land_type,
-    _mview_fund_qtr.region_type,
-    _mview_fund_qtr.district_type,
-    _mview_fund_qtr.state_name,
-    _mview_fund_qtr.county,
-    _mview_fund_qtr.county_name,
-    _mview_fund_qtr.state_offshore_name,
-    _mview_fund_qtr.commodity,
-    _mview_fund_qtr.commodity_order,
-    _mview_fund_qtr.revenue_type,
-    _mview_fund_qtr.period,
-    _mview_fund_qtr.fiscal_year,
-    _mview_fund_qtr.calendar_year,
-    _mview_fund_qtr.month_long,
-    _mview_fund_qtr.revenue
-   FROM public._mview_fund_qtr
-UNION
- SELECT _mview_location_qtr.g1,
-    _mview_location_qtr.g2,
-    _mview_location_qtr.g3,
-    _mview_location_qtr.location_name,
-    _mview_location_qtr.location_order,
-    _mview_location_qtr.land_type,
-    _mview_location_qtr.region_type,
-    _mview_location_qtr.district_type,
-    _mview_location_qtr.state_name,
-    _mview_location_qtr.county,
-    _mview_location_qtr.county_name,
-    _mview_location_qtr.state_offshore_name,
-    _mview_location_qtr.commodity,
-    _mview_location_qtr.commodity_order,
-    _mview_location_qtr.revenue_type,
-    _mview_location_qtr.period,
-    _mview_location_qtr.fiscal_year,
-    _mview_location_qtr.calendar_year,
-    _mview_location_qtr.month_long,
-    _mview_location_qtr.revenue
-   FROM public._mview_location_qtr
-UNION
- SELECT _mview_commodity_qtr.g1,
-    _mview_commodity_qtr.g2,
-    _mview_commodity_qtr.g3,
-    _mview_commodity_qtr.location_name,
-    _mview_commodity_qtr.location_order,
-    _mview_commodity_qtr.land_type,
-    _mview_commodity_qtr.region_type,
-    _mview_commodity_qtr.district_type,
-    _mview_commodity_qtr.state_name,
-    _mview_commodity_qtr.county,
-    _mview_commodity_qtr.county_name,
-    _mview_commodity_qtr.state_offshore_name,
-    _mview_commodity_qtr.commodity,
-    _mview_commodity_qtr.commodity_order,
-    _mview_commodity_qtr.revenue_type,
-    _mview_commodity_qtr.period,
-    _mview_commodity_qtr.fiscal_year,
-    _mview_commodity_qtr.calendar_year,
-    _mview_commodity_qtr.month_long,
-    _mview_commodity_qtr.revenue
-   FROM public._mview_commodity_qtr
-UNION
- SELECT _mview_fund_location_qtr.g1,
-    _mview_fund_location_qtr.g2,
-    _mview_fund_location_qtr.g3,
-    _mview_fund_location_qtr.location_name,
-    _mview_fund_location_qtr.location_order,
-    _mview_fund_location_qtr.land_type,
-    _mview_fund_location_qtr.region_type,
-    _mview_fund_location_qtr.district_type,
-    _mview_fund_location_qtr.state_name,
-    _mview_fund_location_qtr.county,
-    _mview_fund_location_qtr.county_name,
-    _mview_fund_location_qtr.state_offshore_name,
-    _mview_fund_location_qtr.commodity,
-    _mview_fund_location_qtr.commodity_order,
-    _mview_fund_location_qtr.revenue_type,
-    _mview_fund_location_qtr.period,
-    _mview_fund_location_qtr.fiscal_year,
-    _mview_fund_location_qtr.calendar_year,
-    _mview_fund_location_qtr.month_long,
-    _mview_fund_location_qtr.revenue
-   FROM public._mview_fund_location_qtr
-UNION
- SELECT _mview_fund_commodity_qtr.g1,
-    _mview_fund_commodity_qtr.g2,
-    _mview_fund_commodity_qtr.g3,
-    _mview_fund_commodity_qtr.location_name,
-    _mview_fund_commodity_qtr.location_order,
-    _mview_fund_commodity_qtr.land_type,
-    _mview_fund_commodity_qtr.region_type,
-    _mview_fund_commodity_qtr.district_type,
-    _mview_fund_commodity_qtr.state_name,
-    _mview_fund_commodity_qtr.county,
-    _mview_fund_commodity_qtr.county_name,
-    _mview_fund_commodity_qtr.state_offshore_name,
-    _mview_fund_commodity_qtr.commodity,
-    _mview_fund_commodity_qtr.commodity_order,
-    _mview_fund_commodity_qtr.revenue_type,
-    _mview_fund_commodity_qtr.period,
-    _mview_fund_commodity_qtr.fiscal_year,
-    _mview_fund_commodity_qtr.calendar_year,
-    _mview_fund_commodity_qtr.month_long,
-    _mview_fund_commodity_qtr.revenue
-   FROM public._mview_fund_commodity_qtr
-UNION
- SELECT _mview_location_commodity_qtr.g1,
-    _mview_location_commodity_qtr.g2,
-    _mview_location_commodity_qtr.g3,
-    _mview_location_commodity_qtr.location_name,
-    _mview_location_commodity_qtr.location_order,
-    _mview_location_commodity_qtr.land_type,
-    _mview_location_commodity_qtr.region_type,
-    _mview_location_commodity_qtr.district_type,
-    _mview_location_commodity_qtr.state_name,
-    _mview_location_commodity_qtr.county,
-    _mview_location_commodity_qtr.county_name,
-    _mview_location_commodity_qtr.state_offshore_name,
-    _mview_location_commodity_qtr.commodity,
-    _mview_location_commodity_qtr.commodity_order,
-    _mview_location_commodity_qtr.revenue_type,
-    _mview_location_commodity_qtr.period,
-    _mview_location_commodity_qtr.fiscal_year,
-    _mview_location_commodity_qtr.calendar_year,
-    _mview_location_commodity_qtr.month_long,
-    _mview_location_commodity_qtr.revenue
-   FROM public._mview_location_commodity_qtr
-UNION
- SELECT _mview_fund_location_commodity_qtr.g1,
-    _mview_fund_location_commodity_qtr.g2,
-    _mview_fund_location_commodity_qtr.g3,
-    _mview_fund_location_commodity_qtr.location_name,
-    _mview_fund_location_commodity_qtr.location_order,
-    _mview_fund_location_commodity_qtr.land_type,
-    _mview_fund_location_commodity_qtr.region_type,
-    _mview_fund_location_commodity_qtr.district_type,
-    _mview_fund_location_commodity_qtr.state_name,
-    _mview_fund_location_commodity_qtr.county,
-    _mview_fund_location_commodity_qtr.county_name,
-    _mview_fund_location_commodity_qtr.state_offshore_name,
-    _mview_fund_location_commodity_qtr.commodity,
-    _mview_fund_location_commodity_qtr.commodity_order,
-    _mview_fund_location_commodity_qtr.revenue_type,
-    _mview_fund_location_commodity_qtr.period,
-    _mview_fund_location_commodity_qtr.fiscal_year,
-    _mview_fund_location_commodity_qtr.calendar_year,
-    _mview_fund_location_commodity_qtr.month_long,
-    _mview_fund_location_commodity_qtr.revenue
-   FROM public._mview_fund_location_commodity_qtr;
+ SELECT location.location_name,
+    location.location_order,
+    location.land_type,
+    location.region_type,
+    location.district_type,
+    location.state_name,
+    location.county,
+    commodity.commodity,
+    commodity.commodity_order,
+    fund.revenue_type,
+    period.period,
+    period.fiscal_year,
+    period.calendar_year,
+        CASE
+            WHEN ((period.month_long)::text <> ''::text) THEN (period.month_long)::text
+            ELSE NULL::text
+        END AS month_long,
+    (revenue.revenue)::double precision AS revenue,
+        CASE
+            WHEN ((location.county)::text <> ''::text) THEN concat(location.state_name, ', ', location.county, ' ', location.district_type)
+            ELSE NULL::text
+        END AS county_name,
+        CASE
+            WHEN ((location.region_type)::text = 'County'::text) THEN location.state_name
+            WHEN ((location.region_type)::text = 'Offshore'::text) THEN (concat('Offshore ', location.location_name))::character varying
+            ELSE location.location_name
+        END AS state_offshore_name
+   FROM ((((public.revenue
+     JOIN public.period USING (period_id))
+     JOIN public.location USING (location_id))
+     JOIN public.commodity USING (commodity_id))
+     JOIN public.fund USING (fund_id));
 
 
 ALTER TABLE public.query_tool_revenue OWNER TO postgres;
