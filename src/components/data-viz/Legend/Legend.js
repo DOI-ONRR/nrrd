@@ -51,7 +51,7 @@ const StyledTableRow = withStyles(theme =>
 const Legend = ({
   data,
   activeNode,
-  legendHeaders = [],
+  legendHeaders,
   legendFormat = d => d,
   legendLabelFormat = d => d,
   legendReverse = false,
@@ -59,11 +59,13 @@ const Legend = ({
   legendType,
   xAxis,
   yAxis,
+  xDomain,
   yOrderBy,
+  yGroupBy,
   colorScale,
   ...rest
 }) => {
-  console.log('Legend data, activeNode: ', data, activeNode)
+  console.log('Legend data: ', data)
   const theme = useTheme()
   const activeKey = (activeNode && activeNode.key) && activeNode.key
   const legendData = legendReverse ? data.reverse() : data
@@ -79,16 +81,16 @@ const Legend = ({
 
   // legend total
   if (legendTotal) {
-    total = legendData.reduce((acc, key) => acc + key[rowTotal], 0)
+    total = legendData.filter(item => !isNaN(item.total)).reduce((acc, key) => acc + key[rowTotal], 0)
   }
 
   return (
     <TableContainer>
-      <Table aria-label="Chart legend table">
+      <Table size="small" aria-label="Chart legend table">
         {legendHeaders && legendHeaders.length > 0 &&
         <TableHead>
           <TableRow>
-            <StyledTableHeadCell colSpan={2}>{legendHeaders[0]}</StyledTableHeadCell>
+            <StyledTableHeadCell colSpan={2} width="50%">{legendHeaders[0]}</StyledTableHeadCell>
             <StyledTableHeadCell align="right">{legendHeaders[1]}</StyledTableHeadCell>
           </TableRow>
         </TableHead>
@@ -99,11 +101,11 @@ const Legend = ({
               <StyledTableRow
                 key={`lstr__${ i }`}
                 style={{ backgroundColor: (activeKey === row[xAxis]) ? theme.palette.grey[200] : '' }}>
-                <StyledTableBodyCell style={{ verticalAlign: 'top', width: 25 }}>
+                <StyledTableBodyCell style={{ verticalAlign: 'middle', width: '5%' }}>
                   <Rect
                     width={20}
                     height={20}
-                    styles={{ fill: (legendType === 'circle') ? colorScale(i + 2) : colorScale(i), marginTop: 5 }}
+                    styles={{ fill: (legendType === 'circle') ? colorScale(i + 2) : colorScale(i), marginTop: 0 }}
                   />
                 </StyledTableBodyCell>
                 <StyledTableBodyCell>
@@ -115,7 +117,7 @@ const Legend = ({
                   </GlossaryTerm>
                 </StyledTableBodyCell>
                 <StyledTableBodyCell align="right">
-                  {legendFormat(row[rowTotal])}
+                  {row[rowTotal] === '-' ? row[rowTotal] : legendFormat(row[rowTotal])}
                 </StyledTableBodyCell>
               </StyledTableRow>
             )

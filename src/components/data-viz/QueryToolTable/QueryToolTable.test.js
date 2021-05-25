@@ -15,7 +15,7 @@ jest.mock('../../../stores/data-filter-store/reducers', () => {
   const dataFilterState = require('../../../../__mock_queries__/data-filter-states')
   return ({
     get initialState () {
-      return dataFilterState.REVENUE_DATA_TYPE_ONLY
+      return dataFilterState.QUERY_TOOL_TABLE_REVENUE
     },
     get types () {
       return {}
@@ -28,6 +28,7 @@ jest.mock('../../../stores/data-filter-store/reducers', () => {
 
 describe('Data Table:', () => {
   test('Data Table rendered successfully', async () => {
+    render(<QueryToolTable />)
     expect(true).toBeTruthy()
   })
 })

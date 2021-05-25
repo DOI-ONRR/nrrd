@@ -5,6 +5,7 @@ import gql from 'graphql-tag'
 
 import utils from '../../../../js/utils'
 import * as d3 from 'd3'
+import { useInView } from 'react-intersection-observer'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -34,9 +35,14 @@ const ProductionLocationTotal = props => {
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
-
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
   const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], year: year, period: period, product: product }
+    variables: { location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], year: year, period: period, product: product },
+    skip: inView === false
   })
 
   if (loading) return ''
@@ -79,13 +85,20 @@ const ProductionLocationTotal = props => {
     const nativeTotal = nativeSummary.length > 0 ? nativeSummary[0].total : 0
 
     return (
-      <>
+      <div ref={ref}>
         The Office of Natural Resources Revenue (ONRR) collects detailed data about the volume of mineral and energy commodities companies
         produce from federal and Native American lands and waters. <strong>For {period.toLowerCase()} {year}, companies reported to ONRR
         that they produced {utils.formatToCommaInt(nationwideSummary[0].total)} {unit} of {product.toLowerCase()} from federal sources and
         {` ${ utils.formatToCommaInt(nativeTotal) }`} {unit} of {product.toLowerCase()} from Native American sources for a total of
         {` ${ utils.formatToCommaInt(nationwideSummary[0].total + nativeTotal) }`} {unit} of {product.toLowerCase()}.</strong>
-      </>
+      </div>
+    )
+  }
+  else {
+    return (
+	  <div ref={ref}>
+	  </div>
+
     )
   }
 }

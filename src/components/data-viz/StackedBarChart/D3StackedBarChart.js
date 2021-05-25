@@ -328,7 +328,6 @@ export default class D3StackedBarChart {
       const maxExtentGroup = self.chart.append('g').attr('class', 'maxExtent')
 
       const maxExtentValue = this.maxExtent()
-
       maxExtentGroup.append('text')
         .attr('width', self._width)
         .attr('x', 5)
@@ -383,6 +382,7 @@ export default class D3StackedBarChart {
         .data((d, i) => {
           const yd = self.yGroupData(d)
           const r = stack([yd])
+          console.log('stacked yo: ', r)
           return r
         })
         .enter().append('g')
@@ -390,6 +390,7 @@ export default class D3StackedBarChart {
           return `stacked-bar-chart-${ i }`
         })
         .style('fill', (d, i) => {
+          console.log('color fill d, i: ', d, i)
           return color(i)
         })
         .append('rect')
@@ -682,7 +683,6 @@ export default class D3StackedBarChart {
       const color = this.color(true)
       const yOrderBy = this.options.yOrderBy
       const labels = this.yGroupings()
-
       let dataArr
 
       if (horizontal) {
@@ -696,8 +696,6 @@ export default class D3StackedBarChart {
           return [key, data[key] || '-']
         })
       }
-
-      console.log('dataArr: ', dataArr)
 
       if (legendReverse) {
         dataArr = dataArr.reverse()

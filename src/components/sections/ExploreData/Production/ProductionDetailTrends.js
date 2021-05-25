@@ -7,6 +7,8 @@ import utils from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { useInView } from 'react-intersection-observer'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -15,6 +17,7 @@ import {
 
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
+import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm'
 import * as d3 from 'd3'
 
 const useStyles = makeStyles(theme => ({
@@ -57,9 +60,15 @@ const ProductionDetailTrends = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const state = props.fipsCode
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, product: product, period: period, year: year }
+    variables: { state: state, product: product, period: period, year: year },
+    skip: inView === false
   })
 
   if (loading) return ''
@@ -125,33 +134,40 @@ const ProductionDetailTrends = props => {
     locationTotalData = data.locationTotal
     locData = locationTotalData.length > 0 ? locationTotalData.map(item => item.total).reduce((prev, next) => prev + next) : 0
   }
-  if (data && data.production_summary && data.production_summary.length > 0) {
-    return (
-      <>
-        <Box textAlign="center" className={classes.root} key={props.key}>
-          <Box component="h2" mt={0} mb={0} style={{ whiteSpace: 'nowrap' }} >{utils.formatToCommaInt(locData) + ' ' + unit}</Box>
-          <Box component="span" mb={4}>{year && <span>{dataSet} production</span>}</Box>
-          {sparkData.length > 1 && (
-            <Box mt={4}>
-              <Sparkline
-                key={'PDT' + dataSet + '_' + product }
-                data={sparkData}
-                highlightIndex={highlightIndex}
-              />
-              Production trend ({sparkMin} - {sparkMax})
-            </Box>
-          )}
-        </Box>
-      </>
-    )
+  if (data) {
+    if (data.production_summary && data.production_summary.length > 0) {
+	  return (
+	      <div ref={ref}>
+          <Box textAlign="center" className={classes.root} key={props.key}>
+		  <Box component="h2" mt={0} mb={0} style={{ whiteSpace: 'nowrap' }} >{utils.formatToCommaInt(locData) + ' ' + unit}</Box>
+		  <Box component="span" mb={4}>{year && <span>{dataSet} production</span>}</Box>
+		  {sparkData.length > 1 && (
+		      <Box mt={4}>
+                <Sparkline
+			    key={'PDT' + dataSet + '_' + product }
+			    data={sparkData}
+			    highlightIndex={highlightIndex}
+                />
+			Production trend ({sparkMin} - {sparkMax})
+		      </Box>
+		  )}
+          </Box>
+	      </div>
+	  )
+    }
+    else {
+	  return (
+	      <>
+          <Box textAlign="center" className={classes.root} key={props.key}>
+		  <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } did not produce any ${ product } from ${ minYear || 2003 } to ${ year }.`}</Box>
+          </Box>
+	      </>)
+    }
   }
   else {
-    return (
-      <>
-        <Box textAlign="center" className={classes.root} key={props.key}>
-          <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } did not produce any ${ product } from ${ minYear || 2003 } to ${ year }.`}</Box>
-        </Box>
-      </>)
+    return (<div className={classes.progressContainer} ref={ref}>
+      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
   }
 }
 export default ProductionDetailTrends

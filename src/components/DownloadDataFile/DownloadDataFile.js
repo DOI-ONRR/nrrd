@@ -18,7 +18,7 @@ const DownloadDataFile = props => {
   const range = minDate + ' - ' + maxDate
   const suffix = (props.linkType === 'DownloadCsv') ? 'csv' : 'xlsx'
   return (<>
-	  <Link linkType={props.linkType} href={ href + '.' + suffix } >
+	  <Link linkType={props.linkType} href={ href } >
 	    {props.children + ', ' + range + ' (' + suffix + ', ' + size + ')' }
 	  </Link>
   </>

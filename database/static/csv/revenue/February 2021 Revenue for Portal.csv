@@ -1,0 +1,2018 @@
+Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS Code,Agency State Region Code Desc,Revenue Type,Mineral Production Code Desc,Commodity,Product Code Desc,Revenue
+2/1/2021,Federal,Not Tied to a Lease,,,,,Civil Penalties,,,,"$271,927.08"
+2/1/2021,Federal,Not Tied to a Lease,,,,,Other Revenues,,,,"$21,661.89"
+2/1/2021,Federal,Offshore,,,,ALASKA OCS,Other Revenues,Oil & Gas,Oil & Gas,,"$61,401.12"
+2/1/2021,Federal,Offshore,,,,ALASKA OCS,Royalties,Oil & Gas,Oil,Oil,"$285,690.19"
+2/1/2021,Federal,Offshore,,,,ATLANTIC OCS,Rents,Oil & Gas,Oil & Gas,,$60.00
+2/1/2021,Federal,Offshore,,,,ATLANTIC OCS,Rents,Wind,Wind,,"$239,121.00"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Bonus,Oil & Gas,Oil & Gas,,"$36,538,332.00"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Flash Gas,$0.00
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Gas Lost - Flared or Vented,$20.30
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,$580.90
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,"$16,227.97"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,$601.15
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,NGL,Gas Plant Products,"-$6,565.37"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Condensate,"$280,378.22"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Drip or Scrubber Condensate,-$80.45
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Inlet Scrubber,$0.00
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Oil,"-$54,990.33"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$10,948,494.61"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"-$2,580,584.66"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Rents,Oil & Gas,Oil & Gas,,"$92,160.00"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Rents,Oil & Gas,Oil & Gas,,"$2,856,669.00"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Flash Gas,"$67,540.40"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$3,622.59"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$68,639.88"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$13,418,810.63"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$200,669.67"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$5,863,580.69"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Condensate,"$11,633,267.40"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$161,343.86"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$168,362.59"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Oil,"$264,438,563.11"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,"$5,563.64"
+2/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Sulfur,Sulfur,"$4,622.96"
+2/1/2021,Federal,Offshore,,,,PACIFIC OCS,Other Revenues,Oil & Gas,Oil & Gas,,"$17,139.26"
+2/1/2021,Federal,Offshore,,,,PACIFIC OCS,Other Revenues,Oil & Gas,Oil & Gas,,"$8,297.02"
+2/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,284.70"
+2/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$5,664.15"
+2/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Gas,Unprocessed Gas,"-$774,395.84"
+2/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,NGL,Gas Plant Products,"$6,274.52"
+2/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Oil,Condensate,"$4,207.43"
+2/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Oil,Oil,"$734,421.74"
+2/1/2021,Federal,Offshore,,,,,Inspection Fees,,,,"$2,732,998.87"
+2/1/2021,Federal,Offshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$18.67
+2/1/2021,Federal,Offshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$6,480.00"
+2/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Other Revenues,Oil & Gas,Oil,Oil,"$48,218.01"
+2/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Rents,Oil & Gas,Oil & Gas,,"$408,090.00"
+2/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,824.23"
+2/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$1,828.14"
+2/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Oil,Oil,"$1,853,848.56"
+2/1/2021,Federal,Onshore,AK,Ikpikpuk Riv,02185,ALASKA,Rents,Oil & Gas,Oil & Gas,,"$824,154.00"
+2/1/2021,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$13.74
+2/1/2021,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$553,883.12"
+2/1/2021,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Oil,Oil,"$99,013.69"
+2/1/2021,Federal,Onshore,AK,Naknek,02185,ALASKA,Bonus,Oil & Gas,Oil & Gas,,"$12,112,498.00"
+2/1/2021,Federal,Onshore,AK,Naknek,02185,ALASKA,Rents,Oil & Gas,Oil & Gas,,"$4,477,487.00"
+2/1/2021,Federal,Onshore,AK,Umiat,02185,ALASKA,Rents,Oil & Gas,Oil & Gas,,"$793,993.00"
+2/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.16
+2/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$560.93
+2/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$83.06
+2/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$2.61
+2/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,$12.56
+2/1/2021,Federal,Onshore,AL,Covington,01039,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$324.00
+2/1/2021,Federal,Onshore,AL,Escambia,01053,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$4,183.99"
+2/1/2021,Federal,Onshore,AL,Lamar,01075,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$113.81
+2/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.80
+2/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,683.72"
+2/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$249.30
+2/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$26.60
+2/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,$37.69
+2/1/2021,Federal,Onshore,AL,Mobile Offshore,01097,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$34.91
+2/1/2021,Federal,Onshore,AL,Mobile Offshore,01097,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$4.73
+2/1/2021,Federal,Onshore,AL,Mobile Offshore,01097,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$0.97
+2/1/2021,Federal,Onshore,AL,Mobile Offshore,01097,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,$0.21
+2/1/2021,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$15.67
+2/1/2021,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$2,651.38"
+2/1/2021,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$345.46
+2/1/2021,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,472.68"
+2/1/2021,Federal,Onshore,AR,Cleburne,05023,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$512.35
+2/1/2021,Federal,Onshore,AR,Cleburne,05023,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$6,097.06"
+2/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$1.71
+2/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$5.17
+2/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$16.76
+2/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$10.26
+2/1/2021,Federal,Onshore,AR,Conway,05029,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$368.15
+2/1/2021,Federal,Onshore,AR,Conway,05029,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$13,395.46"
+2/1/2021,Federal,Onshore,AR,Crawford,05033,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$565.55
+2/1/2021,Federal,Onshore,AR,Crawford,05033,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,398.85"
+2/1/2021,Federal,Onshore,AR,Faulkner,05045,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$479.75
+2/1/2021,Federal,Onshore,AR,Franklin,05047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$445.00
+2/1/2021,Federal,Onshore,AR,Franklin,05047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$1.12
+2/1/2021,Federal,Onshore,AR,Franklin,05047,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,181.04"
+2/1/2021,Federal,Onshore,AR,Johnson,05071,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$3,717.80"
+2/1/2021,Federal,Onshore,AR,Johnson,05071,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$69.19
+2/1/2021,Federal,Onshore,AR,Johnson,05071,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$5,680.13"
+2/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$22,305.00"
+2/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$61.18
+2/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Rents,Oil & Gas,Oil & Gas,,"$3,559.50"
+2/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,181.38"
+2/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$113,173.81"
+2/1/2021,Federal,Onshore,AR,Montgomery,05097,EAST STATES,Other Revenues,Hardrock,Hardrock,,-$1.19
+2/1/2021,Federal,Onshore,AR,Montgomery,05097,EAST STATES,Royalties,Hardrock,Quartz,Quartz Crystal,$1.20
+2/1/2021,Federal,Onshore,AR,Pope,05115,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$217.73
+2/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$7,157.28"
+2/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$120.66
+2/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$681.20
+2/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$52,877.39"
+2/1/2021,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$240.00
+2/1/2021,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$80.32
+2/1/2021,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$8,362.71"
+2/1/2021,Federal,Onshore,AR,White,05145,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$117.88
+2/1/2021,Federal,Onshore,AR,White,05145,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$3,269.60"
+2/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$2,805.00"
+2/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$226.32
+2/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$5,471.47"
+2/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$33,553.75"
+2/1/2021,Federal,Onshore,AZ,Maricopa,04013,ARIZONA,Other Revenues,Sodium,Sodium,,-$12.00
+2/1/2021,Federal,Onshore,AZ,Maricopa,04013,ARIZONA,Rents,Sodium,Sodium,,-$20.00
+2/1/2021,Federal,Onshore,AZ,Maricopa,04013,ARIZONA,Royalties,Sodium,Sodium,Salt,"$1,517.08"
+2/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,-$489.00
+2/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,$843.77
+2/1/2021,Federal,Onshore,CA,Imperial,06025,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$31,588.23"
+2/1/2021,Federal,Onshore,CA,Inyo,06027,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$3,086.82"
+2/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Bonus,Oil & Gas,Oil & Gas,,"$46,168.00"
+2/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$160.00
+2/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,"$2,270.70"
+2/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,-$600.00
+2/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,"$6,364.00"
+2/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$300.00
+2/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,806.43"
+2/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$12,438.06"
+2/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Oil,Condensate,"$4,519.76"
+2/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$3,566,462.13"
+2/1/2021,Federal,Onshore,CA,Kings,06031,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$4,381.73"
+2/1/2021,Federal,Onshore,CA,Lake,06033,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds","$266,954.24"
+2/1/2021,Federal,Onshore,CA,Lassen,06035,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Millions of BTUs","$8,229.71"
+2/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$85.83
+2/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,410.27"
+2/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Royalties,Oil & Gas,Oil,Condensate,-$116.90
+2/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$69,890.06"
+2/1/2021,Federal,Onshore,CA,Mono,06051,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$40,167.50"
+2/1/2021,Federal,Onshore,CA,Monterey,06053,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$5,329.82"
+2/1/2021,Federal,Onshore,CA,Sacramento,06067,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,036.71"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Other Revenues,Potassium,Potassium,,"-$19,233.00"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Other Revenues,Sodium,Sodium,,"-$31,431.55"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Rents,Sodium,Sodium,,"$3,460.00"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Phosphate,Potassium Sulphate-Standard,"$1,241.47"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Soda Ash,Soda Ash,"$132,888.90"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Anhydrous Sodium Sulfate,"$14,657.64"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Anhydrous,$0.00
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Decahydrate,"$19,440.72"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Pentahydrate,"$54,382.80"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Boric Acid,"$23,241.24"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Salt,"$16,380.62"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Sodium Bi-Carbonate,"$3,232.69"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Phosphate,Potassium Sulphate-Standard,$797.37
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Soda Ash,Soda Ash,"$71,911.03"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Anhydrous Sodium Sulfate,"$9,398.41"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Anhydrous,$0.00
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Decahydrate,"$12,148.42"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Pentahydrate,"$34,065.61"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Boric Acid,"$14,538.48"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Calcium Chloride,$0.00
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Salt,"$10,797.04"
+2/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,"$1,672.97"
+2/1/2021,Federal,Onshore,CA,San Luis Obispo,06079,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$0.37
+2/1/2021,Federal,Onshore,CA,San Luis Obispo,06079,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$4,101.30"
+2/1/2021,Federal,Onshore,CA,Santa Barbar,06083,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$17.92
+2/1/2021,Federal,Onshore,CA,Santa Barbar,06083,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$22,110.59"
+2/1/2021,Federal,Onshore,CA,Solano,06095,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$4,745.38"
+2/1/2021,Federal,Onshore,CA,Sonoma,06097,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds","$378,499.41"
+2/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$2,898.24"
+2/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$154.11
+2/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$6,475.09"
+2/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$3,580.58"
+2/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$85,427.03"
+2/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$110.99
+2/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$9,579.71"
+2/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$7,953.70"
+2/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$5,388.14"
+2/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$47,099.60"
+2/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$42.59
+2/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$160.99
+2/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,$177.24
+2/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$2,020.35"
+2/1/2021,Federal,Onshore,CO,Archuleta,08007,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$21,808.28"
+2/1/2021,Federal,Onshore,CO,Archuleta,08007,COLORADO,Rents,Oil & Gas,Oil & Gas,,"-$1,411.67"
+2/1/2021,Federal,Onshore,CO,Archuleta,08007,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,$174.75
+2/1/2021,Federal,Onshore,CO,Baca,08009,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$120.00
+2/1/2021,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$71.88
+2/1/2021,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,$0.65
+2/1/2021,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,Oil,Condensate,$169.13
+2/1/2021,Federal,Onshore,CO,Cheyenne,08017,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$50.84
+2/1/2021,Federal,Onshore,CO,Cheyenne,08017,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$1.38
+2/1/2021,Federal,Onshore,CO,Cheyenne,08017,COLORADO,Royalties,Oil & Gas,Oil,Oil,$606.24
+2/1/2021,Federal,Onshore,CO,Delta,08029,COLORADO,Rents,Coal,Coal,,"$1,566.00"
+2/1/2021,Federal,Onshore,CO,Delta,08029,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$24,302.00"
+2/1/2021,Federal,Onshore,CO,Delta,08029,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,198.29"
+2/1/2021,Federal,Onshore,CO,Dolores,08033,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$939.79
+2/1/2021,Federal,Onshore,CO,Dolores,08033,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$436,275.90"
+2/1/2021,Federal,Onshore,CO,Dolores,08033,COLORADO,Royalties,Oil & Gas,Oil,Oil,$127.87
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$164,464.09"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$256,265.38"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$20,687.32"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$1,299.09"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$108,340.27"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,926,204.83"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$254,013.58"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$506,440.77"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$172,463.50"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$4,952.66"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$1,603.60"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$14,949.11"
+2/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$485.11
+2/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$180.50
+2/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$13,695.50"
+2/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Coal,Coal,Coal,"$143,638.60"
+2/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,$47.14
+2/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$45,975.74"
+2/1/2021,Federal,Onshore,CO,Huerfano,08055,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$222.86
+2/1/2021,Federal,Onshore,CO,Huerfano,08055,COLORADO,Rents,Oil & Gas,Oil & Gas,,$80.00
+2/1/2021,Federal,Onshore,CO,Huerfano,08055,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$22,612.94"
+2/1/2021,Federal,Onshore,CO,Jackson,08057,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$93.33
+2/1/2021,Federal,Onshore,CO,Jackson,08057,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$148,280.16"
+2/1/2021,Federal,Onshore,CO,Kiowa,08061,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$56.45
+2/1/2021,Federal,Onshore,CO,Kiowa,08061,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$1,600.16"
+2/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$10,633.28"
+2/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$60.17
+2/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Coal,Coal,Coal,"$85,099.65"
+2/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$64,781.53"
+2/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,395.55"
+2/1/2021,Federal,Onshore,CO,Larimer,08069,COLORADO,Royalties,Oil & Gas,Oil,Oil,$512.92
+2/1/2021,Federal,Onshore,CO,Las Animas,08071,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$37,921.12"
+2/1/2021,Federal,Onshore,CO,Lincoln,08073,COLORADO,Rents,Oil & Gas,Oil & Gas,,$900.00
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$9,691.09"
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$1,404.54"
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$2,885.68"
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$15,298.16"
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$271,487.85"
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$16,776.71"
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$51,158.20"
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$3,979.18"
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,-$82.76
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$5,066.28"
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$11,618.05"
+2/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$17.10
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Coal,Coal,,"$5,644.96"
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$3,597.51"
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$106.43
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Rents,Oil & Gas,Oil & Gas,,$20.00
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$5,338.00"
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Coal,Coal,Coal,"$1,043,388.32"
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$8,673.72"
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$76,087.13"
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$201,349.54"
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$17,910.84"
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$15,776.30"
+2/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$14,981.89"
+2/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$2,935.81"
+2/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$1,801,451.58"
+2/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$8.31
+2/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$287.52
+2/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,$14.23
+2/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$5.83
+2/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$20,806.90"
+2/1/2021,Federal,Onshore,CO,Phillips,08095,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$372.39
+2/1/2021,Federal,Onshore,CO,Prowers,08099,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$3.03
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Coal,Coal,,"$1,460.02"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$16,150.77"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$52,888.66"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Rents,Oil & Gas,Oil & Gas,,-$378.32
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$23,466.00"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Rents,Sodium,Sodium,,"-$4,946.00"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Coal,Coal,Coal,"$190,994.16"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$3.32
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$25,137.82"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$712,482.44"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$8,271.09"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$185,734.34"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$76,875.12"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$3,117.90"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$747,264.74"
+2/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,"$86,901.52"
+2/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$2,620.00"
+2/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Royalties,Coal,Coal,Coal,$0.00
+2/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$2,766.25"
+2/1/2021,Federal,Onshore,CO,San Juan,08111,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$300.00
+2/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$1,706.03"
+2/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$944.10
+2/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,260.04"
+2/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$17,843.15"
+2/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,706.03"
+2/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,989.10"
+2/1/2021,Federal,Onshore,CO,Washington,08121,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$280.86
+2/1/2021,Federal,Onshore,CO,Washington,08121,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$1,695.75"
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$183,718.75"
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$4,277.59"
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Rents,Oil & Gas,Oil & Gas,,$120.00
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$22,396.41"
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$311,403.41"
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$4,421.23"
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$335,517.26"
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$76,479.75"
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$17,143.11"
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$2,990.90"
+2/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$2,302,748.33"
+2/1/2021,Federal,Onshore,CO,Yuma,08125,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$1,423.44"
+2/1/2021,Federal,Onshore,CO,Yuma,08125,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$127.00
+2/1/2021,Federal,Onshore,CO,Yuma,08125,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$27,068.76"
+2/1/2021,Federal,Onshore,FL,Hardee,12049,EAST STATES,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,$0.00
+2/1/2021,Federal,Onshore,FL,Polk,12105,EAST STATES,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,$0.00
+2/1/2021,Federal,Onshore,ID,Bingham,16011,IDAHO,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,$0.00
+2/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Bonus,Phosphate,Phosphate,,"$701,994.60"
+2/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Other Revenues,Phosphate,Phosphate,,"$5,115.26"
+2/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Rents,Phosphate,Phosphate,,"-$4,248.41"
+2/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Royalties,Phosphate,Phosphate,Ferro Phosphorous Slag,$0.00
+2/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,"$211,818.19"
+2/1/2021,Federal,Onshore,ID,Clark,16033,IDAHO,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,$0.00
+2/1/2021,Federal,Onshore,IL,Clinton,17027,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$3,855.05"
+2/1/2021,Federal,Onshore,IL,Franklin,17055,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$4,096.71"
+2/1/2021,Federal,Onshore,KS,Comanche,20033,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$35.45
+2/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"-$6,785.70"
+2/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,$320.00
+2/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$127.32
+2/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$8,718.37"
+2/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$38.25
+2/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$3,675.79"
+2/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$26,179.81"
+2/1/2021,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$5.83
+2/1/2021,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$482.96
+2/1/2021,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$237.92
+2/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$1.26
+2/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$10.01
+2/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$156.56
+2/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$1.31
+2/1/2021,Federal,Onshore,KS,Haskell,20081,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"-$1,156.50"
+2/1/2021,Federal,Onshore,KS,Haskell,20081,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,502.20"
+2/1/2021,Federal,Onshore,KS,Haskell,20081,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,143.52"
+2/1/2021,Federal,Onshore,KS,Haskell,20081,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$990.64
+2/1/2021,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"-$6,578.30"
+2/1/2021,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$316.39
+2/1/2021,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$18,443.95"
+2/1/2021,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$570.06
+2/1/2021,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$8,782.10"
+2/1/2021,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$2,296.92"
+2/1/2021,Federal,Onshore,KS,Lane,20101,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$2,830.59"
+2/1/2021,Federal,Onshore,KS,Meade,20119,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$1.05
+2/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$213.39
+2/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$1,965.88"
+2/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,-$72.15
+2/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$168.58
+2/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$20,756.00"
+2/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,059.14"
+2/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$14,556.27"
+2/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$3,795.90"
+2/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Oil,Sweet Crude,"$8,674.01"
+2/1/2021,Federal,Onshore,KS,Seward,20175,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$154.86
+2/1/2021,Federal,Onshore,KS,Seward,20175,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$603.07
+2/1/2021,Federal,Onshore,KS,Seward,20175,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$182.16
+2/1/2021,Federal,Onshore,KS,Seward,20175,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$238.19
+2/1/2021,Federal,Onshore,KS,Stanton,20187,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$17.15
+2/1/2021,Federal,Onshore,KS,Stanton,20187,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$198.53
+2/1/2021,Federal,Onshore,KS,Stanton,20187,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$36.34
+2/1/2021,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$64.87
+2/1/2021,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$22.12
+2/1/2021,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,405.25"
+2/1/2021,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,241.73"
+2/1/2021,Federal,Onshore,KS,Trego,20195,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$1,086.96"
+2/1/2021,Federal,Onshore,KY,Clay,21051,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$172.55
+2/1/2021,Federal,Onshore,KY,Clay,21051,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-$10.26
+2/1/2021,Federal,Onshore,KY,Clay,21051,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$631.82
+2/1/2021,Federal,Onshore,KY,Clay,21051,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$751.80
+2/1/2021,Federal,Onshore,KY,Henderson,21101,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$3,082.13"
+2/1/2021,Federal,Onshore,KY,Lawrence,21127,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$20.97
+2/1/2021,Federal,Onshore,KY,Lawrence,21127,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.01
+2/1/2021,Federal,Onshore,KY,Leslie,21131,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$298.25
+2/1/2021,Federal,Onshore,KY,Leslie,21131,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$998.35
+2/1/2021,Federal,Onshore,KY,Leslie,21131,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$1,035.70"
+2/1/2021,Federal,Onshore,KY,Letcher,21133,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$41.43
+2/1/2021,Federal,Onshore,KY,Meade,21163,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.00
+2/1/2021,Federal,Onshore,KY,Pike,21195,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$60.37
+2/1/2021,Federal,Onshore,LA,Avoyelles,22009,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$264.00
+2/1/2021,Federal,Onshore,LA,Bienville,22013,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$977.53
+2/1/2021,Federal,Onshore,LA,Bienville,22013,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,$0.38
+2/1/2021,Federal,Onshore,LA,Bossier,22015,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$2,197.16"
+2/1/2021,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$434.43
+2/1/2021,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$0.17
+2/1/2021,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$113,053.60"
+2/1/2021,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,"$25,535.84"
+2/1/2021,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,"$26,481.04"
+2/1/2021,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$5,587.53"
+2/1/2021,Federal,Onshore,LA,Caddo,22017,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$6,842.72"
+2/1/2021,Federal,Onshore,LA,Caddo,22017,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$1,135.30"
+2/1/2021,Federal,Onshore,LA,Cameron,22023,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$19,467.73"
+2/1/2021,Federal,Onshore,LA,Cameron,22023,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$12,346.90"
+2/1/2021,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$1.04
+2/1/2021,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$16.62
+2/1/2021,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$887.86
+2/1/2021,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$707.57
+2/1/2021,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,$0.08
+2/1/2021,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$242.83
+2/1/2021,Federal,Onshore,LA,De Soto,22031,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$133.14
+2/1/2021,Federal,Onshore,LA,De Soto,22031,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$83,547.26"
+2/1/2021,Federal,Onshore,LA,E Baton Rouge,22033,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$3.14
+2/1/2021,Federal,Onshore,LA,E Baton Rouge,22033,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$18.91
+2/1/2021,Federal,Onshore,LA,Jefferson,22051,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$0.17
+2/1/2021,Federal,Onshore,LA,Jefferson,22051,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,"$1,466.32"
+2/1/2021,Federal,Onshore,LA,Jefferson,22051,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$2,320.93"
+2/1/2021,Federal,Onshore,LA,La Salle,22059,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$4.00
+2/1/2021,Federal,Onshore,LA,Lincoln,22061,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$1.40
+2/1/2021,Federal,Onshore,LA,Lincoln,22061,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$38.34
+2/1/2021,Federal,Onshore,LA,Lincoln,22061,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$18.36
+2/1/2021,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,-$34.11
+2/1/2021,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$34.93
+2/1/2021,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$3,352.28"
+2/1/2021,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$148.32
+2/1/2021,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,154.89"
+2/1/2021,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$90,839.87"
+2/1/2021,Federal,Onshore,LA,Rapides,22079,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$1,114.13"
+2/1/2021,Federal,Onshore,LA,S Pass,22721,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.00
+2/1/2021,Federal,Onshore,LA,S Pass,22721,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$2.08
+2/1/2021,Federal,Onshore,LA,S Pass,22721,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$0.15
+2/1/2021,Federal,Onshore,LA,S Pass,22721,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$0.68
+2/1/2021,Federal,Onshore,LA,S Pass,22721,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$55.22
+2/1/2021,Federal,Onshore,LA,St Martin,22099,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$50.38
+2/1/2021,Federal,Onshore,LA,St Martin,22099,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,$43.47
+2/1/2021,Federal,Onshore,LA,St Martin,22099,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$4,263.85"
+2/1/2021,Federal,Onshore,LA,W Delta,22719,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.00
+2/1/2021,Federal,Onshore,LA,W Delta,22719,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$1.40
+2/1/2021,Federal,Onshore,LA,W Delta,22719,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$0.49
+2/1/2021,Federal,Onshore,LA,W Delta,22719,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$5.90
+2/1/2021,Federal,Onshore,LA,Webster,22119,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$1.31
+2/1/2021,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$735.76
+2/1/2021,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$124.33
+2/1/2021,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$413.01
+2/1/2021,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,$102.03
+2/1/2021,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$563.87
+2/1/2021,Federal,Onshore,MI,Alcona,26001,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$910.00
+2/1/2021,Federal,Onshore,MI,Alcona,26001,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$111.95
+2/1/2021,Federal,Onshore,MI,Clare,26035,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$223.07
+2/1/2021,Federal,Onshore,MI,Clare,26035,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$638.52
+2/1/2021,Federal,Onshore,MI,Crawford,26039,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,202.43"
+2/1/2021,Federal,Onshore,MI,Grand Trvse,26055,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$160.00
+2/1/2021,Federal,Onshore,MI,Jackson,26075,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$719.54
+2/1/2021,Federal,Onshore,MI,Manistee,26101,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$422.00
+2/1/2021,Federal,Onshore,MI,Montmorency,26119,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$3,067.48"
+2/1/2021,Federal,Onshore,MI,Montmorency,26119,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$5,340.97"
+2/1/2021,Federal,Onshore,MI,Montmorency,26119,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$1.11
+2/1/2021,Federal,Onshore,MI,Muskegon,26121,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$60.00
+2/1/2021,Federal,Onshore,MI,Newaygo,26123,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,975.00"
+2/1/2021,Federal,Onshore,MI,Ogemaw,26129,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$100.94
+2/1/2021,Federal,Onshore,MI,Ogemaw,26129,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$35.23
+2/1/2021,Federal,Onshore,MI,Oscoda,26135,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$120.00
+2/1/2021,Federal,Onshore,MI,Oscoda,26135,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$8,113.70"
+2/1/2021,Federal,Onshore,MI,Oscoda,26135,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$285.22
+2/1/2021,Federal,Onshore,MI,Oscoda,26135,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,310.35"
+2/1/2021,Federal,Onshore,MI,Oscoda,26135,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$83.29
+2/1/2021,Federal,Onshore,MI,Otsego,26137,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$149.09
+2/1/2021,Federal,Onshore,MI,Roscommon,26143,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$536.37
+2/1/2021,Federal,Onshore,MI,Roscommon,26143,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$566.00
+2/1/2021,Federal,Onshore,MO,Crawford,29055,EAST STATES,Rents,Hardrock,Hardrock,,"-$1,564.84"
+2/1/2021,Federal,Onshore,MO,Crawford,29055,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,"$4,747.48"
+2/1/2021,Federal,Onshore,MO,Crawford,29055,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,"$3,619.47"
+2/1/2021,Federal,Onshore,MO,Crawford,29055,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,$95.13
+2/1/2021,Federal,Onshore,MO,Dent,29065,EAST STATES,Rents,Hardrock,Hardrock,,"-$2,960.02"
+2/1/2021,Federal,Onshore,MO,Dent,29065,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,$0.00
+2/1/2021,Federal,Onshore,MO,Dent,29065,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,$325.62
+2/1/2021,Federal,Onshore,MO,Dent,29065,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,$51.96
+2/1/2021,Federal,Onshore,MO,Iron,29093,EAST STATES,Rents,Hardrock,Hardrock,,"-$12,486.42"
+2/1/2021,Federal,Onshore,MO,Iron,29093,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,"$71,402.54"
+2/1/2021,Federal,Onshore,MO,Iron,29093,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,"$201,355.35"
+2/1/2021,Federal,Onshore,MO,Iron,29093,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,"$33,823.47"
+2/1/2021,Federal,Onshore,MO,Madison,29123,EAST STATES,Rents,Hardrock,Hardrock,,-$570.00
+2/1/2021,Federal,Onshore,MO,Madison,29123,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,$0.00
+2/1/2021,Federal,Onshore,MO,Madison,29123,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,$0.00
+2/1/2021,Federal,Onshore,MO,Madison,29123,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,$0.00
+2/1/2021,Federal,Onshore,MO,Reynolds,29179,EAST STATES,Rents,Hardrock,Hardrock,,"-$13,375.76"
+2/1/2021,Federal,Onshore,MO,Reynolds,29179,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,"$42,496.28"
+2/1/2021,Federal,Onshore,MO,Reynolds,29179,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,"$297,410.47"
+2/1/2021,Federal,Onshore,MO,Reynolds,29179,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,"$37,404.16"
+2/1/2021,Federal,Onshore,MO,Shannon,29203,EAST STATES,Rents,Hardrock,Hardrock,,-$640.00
+2/1/2021,Federal,Onshore,MO,Shannon,29203,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,"$5,399.32"
+2/1/2021,Federal,Onshore,MO,Shannon,29203,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,"$1,860.94"
+2/1/2021,Federal,Onshore,MO,Shannon,29203,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,$0.00
+2/1/2021,Federal,Onshore,MO,Washington,29221,EAST STATES,Rents,Hardrock,Hardrock,,"-$2,034.96"
+2/1/2021,Federal,Onshore,MO,Washington,29221,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,$0.00
+2/1/2021,Federal,Onshore,MO,Washington,29221,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,$0.00
+2/1/2021,Federal,Onshore,MO,Washington,29221,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,$0.00
+2/1/2021,Federal,Onshore,MS,Adams,28001,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$3,194.88"
+2/1/2021,Federal,Onshore,MS,Forrest,28035,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$117.00
+2/1/2021,Federal,Onshore,MS,Forrest,28035,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,134.59"
+2/1/2021,Federal,Onshore,MS,Forrest,28035,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,$137.26
+2/1/2021,Federal,Onshore,MS,Franklin,28037,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$42.01
+2/1/2021,Federal,Onshore,MS,Franklin,28037,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$27,338.91"
+2/1/2021,Federal,Onshore,MS,George,28039,EAST STATES,Rents,Oil & Gas,Oil & Gas,,"$1,813.50"
+2/1/2021,Federal,Onshore,MS,Lamar,28073,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$5,592.75"
+2/1/2021,Federal,Onshore,MS,Lowndes,28087,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,108.37"
+2/1/2021,Federal,Onshore,MS,Lowndes,28087,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$87.80
+2/1/2021,Federal,Onshore,MS,Lowndes,28087,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$102.80
+2/1/2021,Federal,Onshore,MS,Perry,28111,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$60.00
+2/1/2021,Federal,Onshore,MS,Perry,28111,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$27,603.64"
+2/1/2021,Federal,Onshore,MS,Smith,28129,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$120.00
+2/1/2021,Federal,Onshore,MS,Smith,28129,EAST STATES,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$686.66
+2/1/2021,Federal,Onshore,MS,Smith,28129,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,"$10,162.84"
+2/1/2021,Federal,Onshore,MS,Stone,28131,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$61.50
+2/1/2021,Federal,Onshore,MS,Wayne,28153,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$5,364.26"
+2/1/2021,Federal,Onshore,MS,Wilkinson,28157,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$186.15
+2/1/2021,Federal,Onshore,MT,Big Horn,30003,MONTANA,Other Revenues,Coal,Coal,,"$28,796.80"
+2/1/2021,Federal,Onshore,MT,Big Horn,30003,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$14,520.00"
+2/1/2021,Federal,Onshore,MT,Big Horn,30003,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$1,065.59"
+2/1/2021,Federal,Onshore,MT,Big Horn,30003,MONTANA,Rents,Coal,Coal,,"$6,813.00"
+2/1/2021,Federal,Onshore,MT,Big Horn,30003,MONTANA,Rents,Oil & Gas,Oil & Gas,,$39.00
+2/1/2021,Federal,Onshore,MT,Big Horn,30003,MONTANA,Royalties,Coal,Coal,Coal,"$306,820.94"
+2/1/2021,Federal,Onshore,MT,Blaine,30005,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$0.93
+2/1/2021,Federal,Onshore,MT,Blaine,30005,MONTANA,Rents,Oil & Gas,Oil & Gas,,$6.00
+2/1/2021,Federal,Onshore,MT,Blaine,30005,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,304.96"
+2/1/2021,Federal,Onshore,MT,Blaine,30005,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$15,721.75"
+2/1/2021,Federal,Onshore,MT,Blaine,30005,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$9,607.98"
+2/1/2021,Federal,Onshore,MT,Carbon,30009,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$2.36
+2/1/2021,Federal,Onshore,MT,Carbon,30009,MONTANA,Rents,Oil & Gas,Oil & Gas,,$640.00
+2/1/2021,Federal,Onshore,MT,Carbon,30009,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,068.40"
+2/1/2021,Federal,Onshore,MT,Carbon,30009,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$3,927.17"
+2/1/2021,Federal,Onshore,MT,Carbon,30009,MONTANA,Royalties,Oil & Gas,Oil,Condensate,$10.39
+2/1/2021,Federal,Onshore,MT,Carbon,30009,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$69,409.65"
+2/1/2021,Federal,Onshore,MT,Carter,30011,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$4,320.15"
+2/1/2021,Federal,Onshore,MT,Chouteau,30015,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,090.13"
+2/1/2021,Federal,Onshore,MT,Dawson,30021,MONTANA,Rents,Oil & Gas,Oil & Gas,,$491.75
+2/1/2021,Federal,Onshore,MT,Dawson,30021,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$58,873.67"
+2/1/2021,Federal,Onshore,MT,Fallon,30025,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$224.19
+2/1/2021,Federal,Onshore,MT,Fallon,30025,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,-$719.66
+2/1/2021,Federal,Onshore,MT,Fallon,30025,MONTANA,Rents,Oil & Gas,Oil & Gas,,$120.00
+2/1/2021,Federal,Onshore,MT,Fallon,30025,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$927.49
+2/1/2021,Federal,Onshore,MT,Fallon,30025,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$0.81
+2/1/2021,Federal,Onshore,MT,Fallon,30025,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$31,681.85"
+2/1/2021,Federal,Onshore,MT,Fallon,30025,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$581,596.12"
+2/1/2021,Federal,Onshore,MT,Fergus,30027,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$158.61
+2/1/2021,Federal,Onshore,MT,Garfield,30033,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$1,183.38"
+2/1/2021,Federal,Onshore,MT,Glacier,30035,MONTANA,Rents,Oil & Gas,Oil & Gas,,$736.50
+2/1/2021,Federal,Onshore,MT,Glacier,30035,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$29.37
+2/1/2021,Federal,Onshore,MT,Glacier,30035,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$1,238.44"
+2/1/2021,Federal,Onshore,MT,Hill,30041,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,731.36"
+2/1/2021,Federal,Onshore,MT,Liberty,30051,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$40.00
+2/1/2021,Federal,Onshore,MT,Liberty,30051,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$665.20
+2/1/2021,Federal,Onshore,MT,Liberty,30051,MONTANA,Royalties,Oil & Gas,Oil,Oil,$908.47
+2/1/2021,Federal,Onshore,MT,Musselshell,30065,MONTANA,Rents,Oil & Gas,Oil & Gas,,$340.50
+2/1/2021,Federal,Onshore,MT,Musselshell,30065,MONTANA,Royalties,Coal,Coal,Coal,"$210,423.51"
+2/1/2021,Federal,Onshore,MT,Musselshell,30065,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$1,188.17"
+2/1/2021,Federal,Onshore,MT,Petroleum,30069,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$3,929.11"
+2/1/2021,Federal,Onshore,MT,Phillips,30071,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$2,909.62"
+2/1/2021,Federal,Onshore,MT,Phillips,30071,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,-$320.00
+2/1/2021,Federal,Onshore,MT,Phillips,30071,MONTANA,Rents,Oil & Gas,Oil & Gas,,$711.00
+2/1/2021,Federal,Onshore,MT,Phillips,30071,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$85,351.09"
+2/1/2021,Federal,Onshore,MT,Pondera,30073,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$1,208.63"
+2/1/2021,Federal,Onshore,MT,Pondera,30073,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$11.80
+2/1/2021,Federal,Onshore,MT,Powder River,30075,MONTANA,Bonus,Oil & Gas,Oil,Oil,$0.00
+2/1/2021,Federal,Onshore,MT,Powder River,30075,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$0.10
+2/1/2021,Federal,Onshore,MT,Powder River,30075,MONTANA,Rents,Oil & Gas,Oil & Gas,,$0.00
+2/1/2021,Federal,Onshore,MT,Powder River,30075,MONTANA,Rents,Oil & Gas,Oil & Gas,,"$3,960.00"
+2/1/2021,Federal,Onshore,MT,Powder River,30075,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$285,600.23"
+2/1/2021,Federal,Onshore,MT,Prairie,30079,MONTANA,Rents,Oil & Gas,Oil & Gas,,$611.25
+2/1/2021,Federal,Onshore,MT,Prairie,30079,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$111.73
+2/1/2021,Federal,Onshore,MT,Prairie,30079,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$14,909.76"
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$472.11
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$10.26
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Rents,Oil & Gas,Oil & Gas,,$64.50
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Coal,Coal,Coal,$0.00
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$353.31
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$32.79
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$3,191.30"
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$71.85
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$4,946.52"
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$51.27
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,$252.78
+2/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$207,159.48"
+2/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,-$320.00
+2/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$161.15
+2/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$116.26
+2/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$85.42
+2/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,183.11"
+2/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,983.81"
+2/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Condensate,$0.70
+2/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$47.50
+2/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,$273.41
+2/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$50,763.24"
+2/1/2021,Federal,Onshore,MT,Rosebud,30087,MONTANA,Rents,Oil & Gas,Oil & Gas,,$211.00
+2/1/2021,Federal,Onshore,MT,Rosebud,30087,MONTANA,Royalties,Coal,Coal,Coal,"$541,888.61"
+2/1/2021,Federal,Onshore,MT,Rosebud,30087,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$3,259.07"
+2/1/2021,Federal,Onshore,MT,Sheridan,30091,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$63.38
+2/1/2021,Federal,Onshore,MT,Sheridan,30091,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$54,047.10"
+2/1/2021,Federal,Onshore,MT,Sheridan,30091,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$8,755.39"
+2/1/2021,Federal,Onshore,MT,Stillwater,30095,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$1,965.12"
+2/1/2021,Federal,Onshore,MT,Toole,30101,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$199.45
+2/1/2021,Federal,Onshore,MT,Toole,30101,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$10.52
+2/1/2021,Federal,Onshore,MT,Toole,30101,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$105.49
+2/1/2021,Federal,Onshore,MT,Toole,30101,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$503.08
+2/1/2021,Federal,Onshore,MT,Toole,30101,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,439.43"
+2/1/2021,Federal,Onshore,MT,Toole,30101,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,$32.98
+2/1/2021,Federal,Onshore,MT,Toole,30101,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$7,773.10"
+2/1/2021,Federal,Onshore,MT,Treasure,30103,MONTANA,Royalties,Coal,Coal,Coal,$0.00
+2/1/2021,Federal,Onshore,MT,Valley,30105,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$24.67
+2/1/2021,Federal,Onshore,MT,Valley,30105,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$5,850.16"
+2/1/2021,Federal,Onshore,MT,Wibaux,30109,MONTANA,Rents,Oil & Gas,Oil & Gas,,$600.50
+2/1/2021,Federal,Onshore,MT,Wibaux,30109,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,986.31"
+2/1/2021,Federal,Onshore,MT,Wibaux,30109,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$62,490.25"
+2/1/2021,Federal,Onshore,NC,Clay,37043,EAST STATES,Rents,Hardrock,Hardrock,,-$158.00
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$3,086.01"
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$40,350.72"
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Rents,Oil & Gas,Oil & Gas,,$597.00
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$27,247.03"
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$51.59
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$5,102.64"
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,149.47"
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$10,692.84"
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$915.21
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,$208.01
+2/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$401,039.88"
+2/1/2021,Federal,Onshore,ND,Bottineau,38009,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$0.33
+2/1/2021,Federal,Onshore,ND,Bottineau,38009,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$2,218.19"
+2/1/2021,Federal,Onshore,ND,Bowman,38011,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$371.00
+2/1/2021,Federal,Onshore,ND,Bowman,38011,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$1.07
+2/1/2021,Federal,Onshore,ND,Bowman,38011,MONTANA,Rents,Oil & Gas,Oil & Gas,,$481.50
+2/1/2021,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$4,337.03"
+2/1/2021,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,039.79"
+2/1/2021,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$12,897.61"
+2/1/2021,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$380,299.46"
+2/1/2021,Federal,Onshore,ND,Burke,38013,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$190.00
+2/1/2021,Federal,Onshore,ND,Burke,38013,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$2.13
+2/1/2021,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$19.07
+2/1/2021,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$8.46
+2/1/2021,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,460.98"
+2/1/2021,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$253.12
+2/1/2021,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,511.58"
+2/1/2021,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$8.35
+2/1/2021,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,$635.86
+2/1/2021,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$8,998.04"
+2/1/2021,Federal,Onshore,ND,Divide,38023,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$1.77
+2/1/2021,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$0.66
+2/1/2021,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.70
+2/1/2021,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$9.11
+2/1/2021,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$64.81
+2/1/2021,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,$7.31
+2/1/2021,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,$0.02
+2/1/2021,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$6,751.93"
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$52,011.00"
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$298.32
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Rents,Oil & Gas,Oil & Gas,,$256.00
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$16,080.25"
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$4,874.62"
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$154,056.72"
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$219.62
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$167,310.93"
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$19.52
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$37,397.56"
+2/1/2021,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$946,713.48"
+2/1/2021,Federal,Onshore,ND,Golden Valle,38033,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$60.00
+2/1/2021,Federal,Onshore,ND,Golden Valle,38033,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$104.83
+2/1/2021,Federal,Onshore,ND,Golden Valle,38033,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$6.07
+2/1/2021,Federal,Onshore,ND,Golden Valle,38033,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$12.31
+2/1/2021,Federal,Onshore,ND,Golden Valle,38033,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,159.22"
+2/1/2021,Federal,Onshore,ND,Golden Valle,38033,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,013.64"
+2/1/2021,Federal,Onshore,ND,Golden Valle,38033,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,770.45"
+2/1/2021,Federal,Onshore,ND,Golden Valle,38033,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,$25.86
+2/1/2021,Federal,Onshore,ND,Golden Valle,38033,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$71,668.44"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Other Revenues,Oil & Gas,NGL,Gas Plant Products,$0.04
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Other Revenues,Oil & Gas,Oil,Oil,"$4,347.99"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$92,239.31"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$223,696.61"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Rents,Oil & Gas,Oil & Gas,,"$3,701.83"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$15,161.59"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$8,786.00"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$698,616.15"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$39,914.07"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$894,864.06"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Oil,Condensate,"$6,745.36"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"-$2,749.24"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$110,748.12"
+2/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$4,555,961.14"
+2/1/2021,Federal,Onshore,ND,Mclean,38055,MONTANA,Royalties,Coal,Coal,Coal,"$24,286.11"
+2/1/2021,Federal,Onshore,ND,Mercer,38057,MONTANA,Royalties,Coal,Coal,Coal,"$40,000.66"
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Other Revenues,Oil & Gas,NGL,Gas Plant Products,$0.01
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Other Revenues,Oil & Gas,Oil,Oil,-$825.70
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$42,499.00"
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$66,442.57"
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$1,244.28"
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,188.67"
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$129,262.84"
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$230.33
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$165,791.72"
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$15,049.79"
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$6,419.08"
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$2,352,799.72"
+2/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Oil,Sweet Crude,"$2,851.41"
+2/1/2021,Federal,Onshore,ND,Oliver,38065,MONTANA,Royalties,Coal,Coal,Coal,"$18,816.89"
+2/1/2021,Federal,Onshore,ND,Renville,38075,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$0.01
+2/1/2021,Federal,Onshore,ND,Renville,38075,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$4,835.06"
+2/1/2021,Federal,Onshore,ND,Slope,38087,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$40.00
+2/1/2021,Federal,Onshore,ND,Slope,38087,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$0.01
+2/1/2021,Federal,Onshore,ND,Slope,38087,MONTANA,Rents,Oil & Gas,Oil & Gas,,"$1,276.00"
+2/1/2021,Federal,Onshore,ND,Slope,38087,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$448.91
+2/1/2021,Federal,Onshore,ND,Slope,38087,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$27,543.70"
+2/1/2021,Federal,Onshore,ND,Stark,38089,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$2,675.41"
+2/1/2021,Federal,Onshore,ND,Stark,38089,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$2.36
+2/1/2021,Federal,Onshore,ND,Stark,38089,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$264.75
+2/1/2021,Federal,Onshore,ND,Stark,38089,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,$453.19
+2/1/2021,Federal,Onshore,ND,Stark,38089,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$14.22
+2/1/2021,Federal,Onshore,ND,Stark,38089,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$14,381.64"
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Other Revenues,Oil & Gas,NGL,Gas Plant Products,$0.06
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Other Revenues,Oil & Gas,Oil,Oil,-$57.05
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,"$1,121.69"
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$355.65
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Rents,Oil & Gas,Oil & Gas,,$360.00
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Coal,Coal,Leonardite,"$4,147.78"
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$10,775.82"
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$701.88
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$31,843.44"
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$50.96
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$29,137.48"
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Oil,Condensate,$103.11
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$2,370.50"
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$2,491.15"
+2/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$362,147.01"
+2/1/2021,Federal,Onshore,NE,Cheyenne,31033,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$3,364.22"
+2/1/2021,Federal,Onshore,NE,Cheyenne,31033,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$5,508.01"
+2/1/2021,Federal,Onshore,NE,Dundy,31057,WYOMING,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$13.86
+2/1/2021,Federal,Onshore,NE,Hitchcock,31087,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$1,390.02"
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$12,387.24"
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$12,695.62"
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,$716.50
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$5.40
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$7,550.25"
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$37,076.82"
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$8,187.51"
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$51,140.46"
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$167.27
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$2,961.46"
+2/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$542,235.38"
+2/1/2021,Federal,Onshore,NM,Colfax,35007,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$1.34
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Gas Lost - Flared or Vented,$0.00
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.00
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,$0.00
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,$0.00
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$6,601,598.49"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$1,032,759.77"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"$3,280.00"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"$12,355.00"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Rents,Potassium,Potassium,,"-$87,836.97"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$3,277.04"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$135,869.45"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$714,950.17"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$13,805,707.20"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"-$10,310,051.95"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$10,803,749.24"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,"$2,977,680.65"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$181,942.26"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$3,952.70"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$44,665,801.79"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,"$4,087.85"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Langbeinite,"$617,000.37"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Granular,"$58,280.05"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Standard,"$78,121.99"
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Potash,$0.00
+2/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Sodium,Salt,"$79,717.45"
+2/1/2021,Federal,Onshore,NM,Harding,35021,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$316.04
+2/1/2021,Federal,Onshore,NM,Harding,35021,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$33,537.94"
+2/1/2021,Federal,Onshore,NM,Hidalgo,35023,NEW MEXICO,Rents,Geothermal,Geothermal,,"$12,505.00"
+2/1/2021,Federal,Onshore,NM,Hidalgo,35023,NEW MEXICO,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$21,282.88"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Gas Lost - Flared or Vented,$0.00
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.00
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,$0.00
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Oil,Condensate,"$4,129.29"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$4,654,174.81"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$212,795.59"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"-$1,970.00"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"$10,141.50"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Rents,Potassium,Potassium,,"-$18,610.03"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$88,115.90"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$452,484.14"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$5,444,338.87"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"-$103,612.85"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$6,827,439.33"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,"$448,749.84"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$127,550.03"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$22,294.44"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$55,746,901.93"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,"$5,387.47"
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Langbeinite,$872.61
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Granular,$0.00
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Standard,$0.00
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Potash,$0.00
+2/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Sodium,Salt,$0.00
+2/1/2021,Federal,Onshore,NM,Mckinley,35031,NEW MEXICO,Rents,Coal,Coal,,"$1,920.00"
+2/1/2021,Federal,Onshore,NM,Mckinley,35031,NEW MEXICO,Royalties,Coal,Coal,Coal,$0.00
+2/1/2021,Federal,Onshore,NM,Mckinley,35031,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$1,311.70"
+2/1/2021,Federal,Onshore,NM,Mckinley,35031,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$14.67
+2/1/2021,Federal,Onshore,NM,Mckinley,35031,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$0.00
+2/1/2021,Federal,Onshore,NM,Otero,35035,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$201.02
+2/1/2021,Federal,Onshore,NM,Quay,35037,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$41.17
+2/1/2021,Federal,Onshore,NM,Quay,35037,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$2,608.60"
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$85,272.36"
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$1,875.46"
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,$563.00
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"$1,010.00"
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$610,012.21"
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$166,526.54"
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,168,881.63"
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$95,714.37"
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,286,712.26"
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,"$99,199.71"
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$35.82
+2/1/2021,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$213,348.24"
+2/1/2021,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$3,110.00"
+2/1/2021,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"-$3,783.65"
+2/1/2021,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$400.06
+2/1/2021,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$238.51
+2/1/2021,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$4,509.03"
+2/1/2021,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$303.68
+2/1/2021,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$4,093.30"
+2/1/2021,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$78,734.01"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Other Revenues,Coal,Coal,,"$3,019.60"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$71,702.96"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$5,213.36"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,$774.00
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"$1,532.00"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Coal,Coal,Coal,"$519,903.31"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$1,329,373.86"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$214,553.09"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,107,812.41"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"-$125,606.24"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds","-$26,608.42"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,496,050.94"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,"$55,752.51"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$65.61
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$1,108,401.51"
+2/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Oil,Sweet Crude,"-$5,250.92"
+2/1/2021,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$3,802.48"
+2/1/2021,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$1,693.74"
+2/1/2021,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"$1,280.00"
+2/1/2021,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$6,959.75"
+2/1/2021,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$9,310.11"
+2/1/2021,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$99,258.73"
+2/1/2021,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"-$64,599.30"
+2/1/2021,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$129,871.44"
+2/1/2021,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$633,709.41"
+2/1/2021,Federal,Onshore,NM,Union,35059,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$197.14
+2/1/2021,Federal,Onshore,NM,Union,35059,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$12,556.72"
+2/1/2021,Federal,Onshore,NV,Churchill,32001,NEVADA,Other Revenues,Geothermal,Geothermal,,$9.69
+2/1/2021,Federal,Onshore,NV,Churchill,32001,NEVADA,Other Revenues,Geothermal,Geothermal,,$151.82
+2/1/2021,Federal,Onshore,NV,Churchill,32001,NEVADA,Rents,Geothermal,Geothermal,,-$338.75
+2/1/2021,Federal,Onshore,NV,Churchill,32001,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Hundreds of Gallons","$5,723.98"
+2/1/2021,Federal,Onshore,NV,Churchill,32001,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$69,675.72"
+2/1/2021,Federal,Onshore,NV,Esmeralda,32009,NEVADA,Royalties,Potassium,Potassium,Potash,$0.00
+2/1/2021,Federal,Onshore,NV,Eureka,32011,NEVADA,Rents,Oil & Gas,Oil & Gas,,$180.00
+2/1/2021,Federal,Onshore,NV,Eureka,32011,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",$777.61
+2/1/2021,Federal,Onshore,NV,Eureka,32011,NEVADA,Royalties,Oil & Gas,Oil,Oil,"$12,767.54"
+2/1/2021,Federal,Onshore,NV,Humboldt,32013,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$24,750.71"
+2/1/2021,Federal,Onshore,NV,Lander,32015,NEVADA,Rents,Geothermal,Geothermal,,-$170.00
+2/1/2021,Federal,Onshore,NV,Lander,32015,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$156,750.71"
+2/1/2021,Federal,Onshore,NV,Lyon,32019,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$1,357.41"
+2/1/2021,Federal,Onshore,NV,Mineral,32021,NEVADA,Rents,Geothermal,Geothermal,,-$220.96
+2/1/2021,Federal,Onshore,NV,Mineral,32021,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$43,883.16"
+2/1/2021,Federal,Onshore,NV,Nye,32023,NEVADA,Other Revenues,Oil & Gas,Oil & Gas,,"$2,481.03"
+2/1/2021,Federal,Onshore,NV,Nye,32023,NEVADA,Rents,Oil & Gas,Oil & Gas,,"$27,256.50"
+2/1/2021,Federal,Onshore,NV,Nye,32023,NEVADA,Royalties,Oil & Gas,Oil,Oil,"$105,730.07"
+2/1/2021,Federal,Onshore,NV,Pershing,32027,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$4,064.26"
+2/1/2021,Federal,Onshore,NV,Washoe,32031,NEVADA,Other Revenues,Geothermal,Geothermal,,$17.63
+2/1/2021,Federal,Onshore,NV,Washoe,32031,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$51,139.01"
+2/1/2021,Federal,Onshore,NV,White Pine,32033,NEVADA,Rents,Oil & Gas,Oil & Gas,,"$37,603.50"
+2/1/2021,Federal,Onshore,NY,Chautauqua,36013,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$585.46
+2/1/2021,Federal,Onshore,NY,Seneca,36099,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$75.01
+2/1/2021,Federal,Onshore,NY,Steuben,36101,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$346.00
+2/1/2021,Federal,Onshore,OH,Athens,39009,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$105.51
+2/1/2021,Federal,Onshore,OH,Lawrence,39087,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$87.95
+2/1/2021,Federal,Onshore,OH,Lawrence,39087,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$86.18
+2/1/2021,Federal,Onshore,OH,Mahoning,39099,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,384.46"
+2/1/2021,Federal,Onshore,OH,Mahoning,39099,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$2,547.88"
+2/1/2021,Federal,Onshore,OH,Monroe,39111,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"-$5,962.50"
+2/1/2021,Federal,Onshore,OH,Monroe,39111,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,193.39"
+2/1/2021,Federal,Onshore,OH,Monroe,39111,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$114.00
+2/1/2021,Federal,Onshore,OH,Monroe,39111,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-$33.00
+2/1/2021,Federal,Onshore,OH,Monroe,39111,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$52,942.32"
+2/1/2021,Federal,Onshore,OH,Muskingum,39119,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$34.82
+2/1/2021,Federal,Onshore,OH,Noble,39121,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$10.71
+2/1/2021,Federal,Onshore,OH,Perry,39127,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,597.01"
+2/1/2021,Federal,Onshore,OH,Portage,39133,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$3,086.81"
+2/1/2021,Federal,Onshore,OH,Portage,39133,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$2,181.10"
+2/1/2021,Federal,Onshore,OH,Stark,39151,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.51
+2/1/2021,Federal,Onshore,OH,Stark,39151,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$432.41
+2/1/2021,Federal,Onshore,OH,Trumbull,39155,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,136.45"
+2/1/2021,Federal,Onshore,OH,Trumbull,39155,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$341.64
+2/1/2021,Federal,Onshore,OH,Washington,39167,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$35.04
+2/1/2021,Federal,Onshore,OH,Washington,39167,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,932.35"
+2/1/2021,Federal,Onshore,OH,Washington,39167,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$244.01
+2/1/2021,Federal,Onshore,OK,Alfalfa,40003,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$279.59
+2/1/2021,Federal,Onshore,OK,Alfalfa,40003,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$30,233.79"
+2/1/2021,Federal,Onshore,OK,Alfalfa,40003,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$24,705.75"
+2/1/2021,Federal,Onshore,OK,Alfalfa,40003,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$117,933.70"
+2/1/2021,Federal,Onshore,OK,Atoka,40005,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$64.64
+2/1/2021,Federal,Onshore,OK,Atoka,40005,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$15.14
+2/1/2021,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$161.27
+2/1/2021,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$13.64
+2/1/2021,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$292.19
+2/1/2021,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$4,184.93"
+2/1/2021,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$237.63
+2/1/2021,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$1,607.01"
+2/1/2021,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-$50.00
+2/1/2021,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-$0.18
+2/1/2021,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$81.16
+2/1/2021,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,229.36"
+2/1/2021,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$434.19
+2/1/2021,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$185.07
+2/1/2021,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$3.70
+2/1/2021,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-$345.63
+2/1/2021,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$243.72
+2/1/2021,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$4,264.01"
+2/1/2021,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$44,310.73"
+2/1/2021,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,311.94"
+2/1/2021,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$24,409.53"
+2/1/2021,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$223.93
+2/1/2021,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,$0.96
+2/1/2021,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$30,817.84"
+2/1/2021,Federal,Onshore,OK,Caddo,40015,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$1.18
+2/1/2021,Federal,Onshore,OK,Caddo,40015,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$723.73
+2/1/2021,Federal,Onshore,OK,Caddo,40015,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$55.12
+2/1/2021,Federal,Onshore,OK,Caddo,40015,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,$3.89
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$561.79
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$2.11
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,$122.00
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$320.21
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$15,758.67"
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,643.35"
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$12,016.01"
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,"$1,452.90"
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,$1.56
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$7,811.96"
+2/1/2021,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$0.24
+2/1/2021,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$217.75
+2/1/2021,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,041.36"
+2/1/2021,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$28,422.93"
+2/1/2021,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$9,943.76"
+2/1/2021,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$17,078.48"
+2/1/2021,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$75.20
+2/1/2021,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$434.10
+2/1/2021,Federal,Onshore,OK,Comanche,40031,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$1,643.11"
+2/1/2021,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$614.00
+2/1/2021,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$0.26
+2/1/2021,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$262.90
+2/1/2021,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$4,267.06"
+2/1/2021,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$327.92
+2/1/2021,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$539.44
+2/1/2021,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$346.67
+2/1/2021,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$773.13
+2/1/2021,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Oil,Sweet Crude,-$455.93
+2/1/2021,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$15,010.41"
+2/1/2021,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$34.22
+2/1/2021,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"$1,762.50"
+2/1/2021,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$796.98
+2/1/2021,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$25,379.88"
+2/1/2021,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,481.28"
+2/1/2021,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$16,891.95"
+2/1/2021,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$40,136.81"
+2/1/2021,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$338.00
+2/1/2021,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$6.04
+2/1/2021,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$404.82
+2/1/2021,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$4,250.87"
+2/1/2021,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$201.73
+2/1/2021,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$4,428.63"
+2/1/2021,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$17,066.71"
+2/1/2021,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,Oil,Sweet Crude,-$423.00
+2/1/2021,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$43.13
+2/1/2021,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$496.61
+2/1/2021,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$0.12
+2/1/2021,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$501.49
+2/1/2021,Federal,Onshore,OK,Garvin,40049,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$635.18
+2/1/2021,Federal,Onshore,OK,Garvin,40049,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$107.94
+2/1/2021,Federal,Onshore,OK,Garvin,40049,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$81.96
+2/1/2021,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-$901.79
+2/1/2021,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$0.02
+2/1/2021,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$158.48
+2/1/2021,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$4,261.06"
+2/1/2021,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$44.86
+2/1/2021,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$4,422.16"
+2/1/2021,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$626.25
+2/1/2021,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$4,092.75"
+2/1/2021,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Oil,Sweet Crude,$112.95
+2/1/2021,Federal,Onshore,OK,Greer,40055,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$62.25
+2/1/2021,Federal,Onshore,OK,Greer,40055,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$17.78
+2/1/2021,Federal,Onshore,OK,Greer,40055,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$3.50
+2/1/2021,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-$5.25
+2/1/2021,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$2.35
+2/1/2021,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$4.29
+2/1/2021,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$220.62
+2/1/2021,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$730.29
+2/1/2021,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$60.60
+2/1/2021,Federal,Onshore,OK,Haskell,40061,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$132.40
+2/1/2021,Federal,Onshore,OK,Haskell,40061,NEW MEXICO,Royalties,Coal,Coal,Coal,$0.00
+2/1/2021,Federal,Onshore,OK,Haskell,40061,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,334.35"
+2/1/2021,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$44.00
+2/1/2021,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$0.04
+2/1/2021,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$267.19
+2/1/2021,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$84.58
+2/1/2021,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$105.72
+2/1/2021,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$9.49
+2/1/2021,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,Oil,Sweet Crude,$28.67
+2/1/2021,Federal,Onshore,OK,Latimer,40077,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$60.00
+2/1/2021,Federal,Onshore,OK,Latimer,40077,NEW MEXICO,Royalties,Coal,Coal,Coal,$0.00
+2/1/2021,Federal,Onshore,OK,Latimer,40077,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$1.12
+2/1/2021,Federal,Onshore,OK,Latimer,40077,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,735.71"
+2/1/2021,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"-$2,373.00"
+2/1/2021,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$3,201.07"
+2/1/2021,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Rents,Coal,Coal,,"$5,607.00"
+2/1/2021,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Royalties,Coal,Coal,Coal,$0.00
+2/1/2021,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,$5.14
+2/1/2021,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$98.06
+2/1/2021,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$297.42
+2/1/2021,Federal,Onshore,OK,Major,40093,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$5,267.22"
+2/1/2021,Federal,Onshore,OK,Major,40093,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$51.56
+2/1/2021,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$89.75
+2/1/2021,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,898.46"
+2/1/2021,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$6,352.06"
+2/1/2021,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,340.12"
+2/1/2021,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,"$7,347.12"
+2/1/2021,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$5,406.73"
+2/1/2021,Federal,Onshore,OK,Mcintosh,40091,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$3.55
+2/1/2021,Federal,Onshore,OK,Pittsburg,40121,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$87.98
+2/1/2021,Federal,Onshore,OK,Pittsburg,40121,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$66.63
+2/1/2021,Federal,Onshore,OK,Pittsburg,40121,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$28,625.14"
+2/1/2021,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$917.55
+2/1/2021,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$306.68
+2/1/2021,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,046.34"
+2/1/2021,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$46,747.62"
+2/1/2021,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$4,421.13"
+2/1/2021,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$24,591.90"
+2/1/2021,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,"$12,671.03"
+2/1/2021,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$5,526.51"
+2/1/2021,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Oil,Sweet Crude,"-$5,395.28"
+2/1/2021,Federal,Onshore,OK,Sequoyah,40135,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$2.70
+2/1/2021,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$3.00
+2/1/2021,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.85
+2/1/2021,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$821.27
+2/1/2021,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$4,931.00"
+2/1/2021,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$437.78
+2/1/2021,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$22.83
+2/1/2021,Federal,Onshore,OK,Tillman,40141,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$1,488.15"
+2/1/2021,Federal,Onshore,OK,Washita,40149,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$1,070.30"
+2/1/2021,Federal,Onshore,OK,Washita,40149,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,-$0.02
+2/1/2021,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$6,497.17"
+2/1/2021,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$3,667.68"
+2/1/2021,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$6.29
+2/1/2021,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,986.80"
+2/1/2021,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,435.62"
+2/1/2021,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$895.83
+2/1/2021,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$587.75
+2/1/2021,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$1,084.43"
+2/1/2021,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$2,533.17"
+2/1/2021,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$159.99
+2/1/2021,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.01
+2/1/2021,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$34.14
+2/1/2021,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$365.94
+2/1/2021,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$11.96
+2/1/2021,Federal,Onshore,PA,Armstrong,42005,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$41.00
+2/1/2021,Federal,Onshore,PA,Armstrong,42005,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.01
+2/1/2021,Federal,Onshore,PA,Bradford,42015,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$867.98
+2/1/2021,Federal,Onshore,PA,Forest,42053,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$108.30
+2/1/2021,Federal,Onshore,PA,Forest,42053,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$39.71
+2/1/2021,Federal,Onshore,PA,Forest,42053,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$888.04
+2/1/2021,Federal,Onshore,PA,Indiana,42063,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$168.60
+2/1/2021,Federal,Onshore,PA,Indiana,42063,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$31.45
+2/1/2021,Federal,Onshore,PA,Westmoreland,42129,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$40.05
+2/1/2021,Federal,Onshore,PA,Westmoreland,42129,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$102.23
+2/1/2021,Federal,Onshore,SC,Abbeville,45001,EAST STATES,Royalties,Hardrock,Gold,Gold Ore,$0.00
+2/1/2021,Federal,Onshore,SC,Abbeville,45001,EAST STATES,Royalties,Hardrock,Gold,Gold Placer,$0.00
+2/1/2021,Federal,Onshore,SD,Douglas,46043,MONTANA,Royalties,Oil & Gas,Oil,Oil,$69.47
+2/1/2021,Federal,Onshore,SD,Fall River,46047,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$4.60
+2/1/2021,Federal,Onshore,SD,Fall River,46047,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$18,614.20"
+2/1/2021,Federal,Onshore,SD,Harding,46063,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,$2.18
+2/1/2021,Federal,Onshore,SD,Harding,46063,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$44.88
+2/1/2021,Federal,Onshore,SD,Harding,46063,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$25.84
+2/1/2021,Federal,Onshore,SD,Harding,46063,MONTANA,Royalties,Oil & Gas,Oil,Oil,"$48,154.82"
+2/1/2021,Federal,Onshore,TX,Bowie,48037,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$822.86
+2/1/2021,Federal,Onshore,TX,Brazos,48041,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$99.25
+2/1/2021,Federal,Onshore,TX,Brazos,48041,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$956.48
+2/1/2021,Federal,Onshore,TX,Burleson,48051,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$10.97
+2/1/2021,Federal,Onshore,TX,Burleson,48051,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$164.63
+2/1/2021,Federal,Onshore,TX,Burleson,48051,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$420.60
+2/1/2021,Federal,Onshore,TX,Burleson,48051,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$1,539.38"
+2/1/2021,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$12.77
+2/1/2021,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$557.36
+2/1/2021,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$475.76
+2/1/2021,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$736.97
+2/1/2021,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$129.20
+2/1/2021,Federal,Onshore,TX,Denton,48121,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$24.14
+2/1/2021,Federal,Onshore,TX,Denton,48121,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$34,505.05"
+2/1/2021,Federal,Onshore,TX,Freestone,48161,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$19.79
+2/1/2021,Federal,Onshore,TX,Freestone,48161,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$440.80
+2/1/2021,Federal,Onshore,TX,Galveston,48167,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$4,706.96"
+2/1/2021,Federal,Onshore,TX,Gray,48179,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$517.44
+2/1/2021,Federal,Onshore,TX,Grayson,48181,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$114.64
+2/1/2021,Federal,Onshore,TX,Grayson,48181,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$6.97
+2/1/2021,Federal,Onshore,TX,Grayson,48181,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$106.72
+2/1/2021,Federal,Onshore,TX,Grayson,48181,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$39,858.76"
+2/1/2021,Federal,Onshore,TX,Harrison,48203,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$220.72
+2/1/2021,Federal,Onshore,TX,Harrison,48203,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$75.19
+2/1/2021,Federal,Onshore,TX,Hemphill,48211,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$255.49
+2/1/2021,Federal,Onshore,TX,Hemphill,48211,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$192.41
+2/1/2021,Federal,Onshore,TX,Hidalgo,48215,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$292.29
+2/1/2021,Federal,Onshore,TX,Hidalgo,48215,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$75.83
+2/1/2021,Federal,Onshore,TX,Hidalgo,48215,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$30.94
+2/1/2021,Federal,Onshore,TX,Houston,48225,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$2,801.21"
+2/1/2021,Federal,Onshore,TX,Houston,48225,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$5,164.98"
+2/1/2021,Federal,Onshore,TX,Houston,48225,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$20,011.70"
+2/1/2021,Federal,Onshore,TX,Jackson,48239,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$106.01
+2/1/2021,Federal,Onshore,TX,Jackson,48239,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$86.72
+2/1/2021,Federal,Onshore,TX,Jackson,48239,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$1,431.01"
+2/1/2021,Federal,Onshore,TX,Johnson,48251,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$104.88
+2/1/2021,Federal,Onshore,TX,Johnson,48251,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,031.47"
+2/1/2021,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$5,090.00"
+2/1/2021,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$5.98
+2/1/2021,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,131.03"
+2/1/2021,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$8,777.11"
+2/1/2021,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$9,025.05"
+2/1/2021,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$4,154.63"
+2/1/2021,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$59,027.95"
+2/1/2021,Federal,Onshore,TX,Lee,48287,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$13.88
+2/1/2021,Federal,Onshore,TX,Lee,48287,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,055.29"
+2/1/2021,Federal,Onshore,TX,Lee,48287,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$16.17
+2/1/2021,Federal,Onshore,TX,Lee,48287,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,$523.18
+2/1/2021,Federal,Onshore,TX,Live Oak,48297,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$986.49
+2/1/2021,Federal,Onshore,TX,Live Oak,48297,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$775.70
+2/1/2021,Federal,Onshore,TX,Live Oak,48297,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$4,956.76"
+2/1/2021,Federal,Onshore,TX,Mcmullen,48311,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.46
+2/1/2021,Federal,Onshore,TX,Mcmullen,48311,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$868.59
+2/1/2021,Federal,Onshore,TX,Mcmullen,48311,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$588.91
+2/1/2021,Federal,Onshore,TX,Mcmullen,48311,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$20.44
+2/1/2021,Federal,Onshore,TX,Mcmullen,48311,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$3,956.82"
+2/1/2021,Federal,Onshore,TX,Montague,48337,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$0.00
+2/1/2021,Federal,Onshore,TX,Montague,48337,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$83.92
+2/1/2021,Federal,Onshore,TX,Montague,48337,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$59.11
+2/1/2021,Federal,Onshore,TX,Montgomery,48339,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$23,751.16"
+2/1/2021,Federal,Onshore,TX,Montgomery,48339,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$167.99
+2/1/2021,Federal,Onshore,TX,Montgomery,48339,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,551.42"
+2/1/2021,Federal,Onshore,TX,Montgomery,48339,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$20,922.60"
+2/1/2021,Federal,Onshore,TX,Montgomery,48339,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$78.55
+2/1/2021,Federal,Onshore,TX,Montgomery,48339,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$21,576.73"
+2/1/2021,Federal,Onshore,TX,Nacogdoches,48347,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,266.28"
+2/1/2021,Federal,Onshore,TX,Nacogdoches,48347,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$0.40
+2/1/2021,Federal,Onshore,TX,Ochiltree,48357,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$81.43
+2/1/2021,Federal,Onshore,TX,Pecos,48371,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$463.21
+2/1/2021,Federal,Onshore,TX,Pecos,48371,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$625.05
+2/1/2021,Federal,Onshore,TX,Pecos,48371,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$4,754.26"
+2/1/2021,Federal,Onshore,TX,Sabine,48403,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$10,726.32"
+2/1/2021,Federal,Onshore,TX,Sabine,48403,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$9,119.91"
+2/1/2021,Federal,Onshore,TX,San Augustin,48405,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$3.36
+2/1/2021,Federal,Onshore,TX,San Augustin,48405,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$3,973.72"
+2/1/2021,Federal,Onshore,TX,San Jacinto,48407,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$6,760.20"
+2/1/2021,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$47,000.00"
+2/1/2021,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$107.61
+2/1/2021,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,"$1,470.00"
+2/1/2021,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,487.20"
+2/1/2021,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$4,442.81"
+2/1/2021,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$346,201.44"
+2/1/2021,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,103.92"
+2/1/2021,Federal,Onshore,TX,Starr,48427,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$33.85
+2/1/2021,Federal,Onshore,TX,Starr,48427,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$39,304.86"
+2/1/2021,Federal,Onshore,TX,Tarrant,48439,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$0.00
+2/1/2021,Federal,Onshore,TX,Tarrant,48439,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),$441.62
+2/1/2021,Federal,Onshore,TX,Tarrant,48439,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$450.54
+2/1/2021,Federal,Onshore,TX,Tarrant,48439,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$12,982.56"
+2/1/2021,Federal,Onshore,TX,Tarrant,48439,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$51,096.03"
+2/1/2021,Federal,Onshore,TX,Tarrant,48439,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$7,032.86"
+2/1/2021,Federal,Onshore,TX,Walker,48471,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$3,248.84"
+2/1/2021,Federal,Onshore,TX,Walker,48471,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,$22.38
+2/1/2021,Federal,Onshore,TX,Walker,48471,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$339.63
+2/1/2021,Federal,Onshore,TX,Walker,48471,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,831.60"
+2/1/2021,Federal,Onshore,TX,Walker,48471,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,-$78.61
+2/1/2021,Federal,Onshore,TX,Walker,48471,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$2,872.14"
+2/1/2021,Federal,Onshore,TX,Washington,48477,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$151.45
+2/1/2021,Federal,Onshore,TX,Wheeler,48483,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$6,803.86"
+2/1/2021,Federal,Onshore,TX,Wheeler,48483,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$3,366.53"
+2/1/2021,Federal,Onshore,TX,Wheeler,48483,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$98.76
+2/1/2021,Federal,Onshore,TX,Wheeler,48483,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,165.03"
+2/1/2021,Federal,Onshore,TX,Wheeler,48483,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$65.76
+2/1/2021,Federal,Onshore,TX,Wheeler,48483,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$1,171.54"
+2/1/2021,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$4,853.27"
+2/1/2021,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$22,283.62"
+2/1/2021,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,893.57"
+2/1/2021,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$20,643.03"
+2/1/2021,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$229.65
+2/1/2021,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$3,854.62"
+2/1/2021,Federal,Onshore,TX,Zapata,48505,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$2,022.56"
+2/1/2021,Federal,Onshore,TX,Zapata,48505,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,197.99"
+2/1/2021,Federal,Onshore,UT,Beaver,49001,UTAH,Bonus,Geothermal,Geothermal,,"$102,622.00"
+2/1/2021,Federal,Onshore,UT,Beaver,49001,UTAH,Rents,Geothermal,Geothermal,,"$43,702.04"
+2/1/2021,Federal,Onshore,UT,Beaver,49001,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$32,040.83"
+2/1/2021,Federal,Onshore,UT,Beaver,49001,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds","$27,368.36"
+2/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"$2,696.00"
+2/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,$887.77
+2/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Rents,Coal,Coal,,"$21,147.00"
+2/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Rents,Oil & Gas,Oil & Gas,,"$1,280.00"
+2/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Coal,Coal,Coal,$0.00
+2/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Coal,Coal,Coal Waste (Sub-Econ),$0.00
+2/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Coal,Coal,Coal-Subbituminous-Raw,$0.00
+2/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$3,347.05"
+2/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$28,708.87"
+2/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$221,397.59"
+2/1/2021,Federal,Onshore,UT,Daggett,49009,UTAH,Rents,Oil & Gas,Oil & Gas,,$503.50
+2/1/2021,Federal,Onshore,UT,Daggett,49009,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$15,580.54"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"-$20,983.04"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"$5,552.27"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Rents,Oil & Gas,Oil & Gas,,"$25,099.00"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$4,660.71"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$26,297.42"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,"-$1,122.31"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,NGL,Gas Plant Products,"$11,509.32"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Oil,Condensate,"$1,544.83"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$3,968.51"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Oil,Inlet Scrubber,$180.77
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Oil,Oil,"$622,758.63"
+2/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Oil,Yellow Wax Crude,"$1,667.56"
+2/1/2021,Federal,Onshore,UT,Emery,49015,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,$802.84
+2/1/2021,Federal,Onshore,UT,Emery,49015,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"$6,416.00"
+2/1/2021,Federal,Onshore,UT,Emery,49015,UTAH,Rents,Coal,Coal,,$180.00
+2/1/2021,Federal,Onshore,UT,Emery,49015,UTAH,Rents,Oil & Gas,Oil & Gas,,"$70,952.92"
+2/1/2021,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Coal,Coal,Coal,"$565,776.52"
+2/1/2021,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Coal,Coal,Coal Waste (Sub-Econ),$0.00
+2/1/2021,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$1,570.29"
+2/1/2021,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$32,817.45"
+2/1/2021,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,738.85"
+2/1/2021,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$7,168.70"
+2/1/2021,Federal,Onshore,UT,Garfield,49017,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"$3,900.00"
+2/1/2021,Federal,Onshore,UT,Garfield,49017,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,$99.58
+2/1/2021,Federal,Onshore,UT,Garfield,49017,UTAH,Rents,Oil & Gas,Oil & Gas,,$320.00
+2/1/2021,Federal,Onshore,UT,Garfield,49017,UTAH,Royalties,Oil & Gas,Oil,Oil,"$34,041.51"
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Other Revenues,Gold,Gold,,"$1,953.00"
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"$1,124.19"
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"$3,456.32"
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Rents,Gold,Gold,,$651.00
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Rents,Oil & Gas,Oil & Gas,,"-$1,063.96"
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Rents,Oil & Gas,Oil & Gas,,"$14,124.83"
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,063.50"
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$27,738.60"
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,304.18"
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,473.95"
+2/1/2021,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,Oil,Oil,"$1,611.91"
+2/1/2021,Federal,Onshore,UT,Iron,49021,UTAH,Bonus,Geothermal,Geothermal,,"$1,096.00"
+2/1/2021,Federal,Onshore,UT,Iron,49021,UTAH,Rents,Geothermal,Geothermal,,"$1,096.00"
+2/1/2021,Federal,Onshore,UT,Juab,49023,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,$1.09
+2/1/2021,Federal,Onshore,UT,Juab,49023,UTAH,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$108.13
+2/1/2021,Federal,Onshore,UT,Juab,49023,UTAH,Royalties,Oil & Gas,NGL,Gas Plant Products,$6.06
+2/1/2021,Federal,Onshore,UT,Kane,49025,UTAH,Royalties,Coal,Coal,Coal,"-$235,062.93"
+2/1/2021,Federal,Onshore,UT,Millard,49027,UTAH,Bonus,Geothermal,Geothermal,,"$10,884.00"
+2/1/2021,Federal,Onshore,UT,Millard,49027,UTAH,Rents,Geothermal,Geothermal,,"$39,260.96"
+2/1/2021,Federal,Onshore,UT,Millard,49027,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$4,277.73"
+2/1/2021,Federal,Onshore,UT,Piute,49031,UTAH,Royalties,Clay,Clay,Clay,"$1,328.04"
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"-$7,784.85"
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"$13,698.75"
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Rents,Oil & Gas,Oil & Gas,,"$5,525.27"
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$759.22
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$275.81
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$31,953.19"
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$8,454.01"
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,NGL,Gas Plant Products,"$6,149.00"
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Oil,Condensate,"$6,183.03"
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$743.11
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Oil,Oil,"$61,891.49"
+2/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Oil,Sweet Crude,"$76,402.31"
+2/1/2021,Federal,Onshore,UT,San Pete,49039,UTAH,Royalties,Coal,Coal,Coal,"$132,398.11"
+2/1/2021,Federal,Onshore,UT,San Pete,49039,UTAH,Royalties,Oil & Gas,Oil,Oil,"$33,034.87"
+2/1/2021,Federal,Onshore,UT,Sevier,49041,UTAH,Rents,Oil & Gas,Oil & Gas,,"$36,775.00"
+2/1/2021,Federal,Onshore,UT,Sevier,49041,UTAH,Royalties,Coal,Coal,Coal,"$105,935.24"
+2/1/2021,Federal,Onshore,UT,Sevier,49041,UTAH,Royalties,Oil & Gas,Oil,Oil,"$536,259.68"
+2/1/2021,Federal,Onshore,UT,Summit,49043,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"$1,871.00"
+2/1/2021,Federal,Onshore,UT,Summit,49043,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,295.00"
+2/1/2021,Federal,Onshore,UT,Tooele,49045,UTAH,Rents,Potassium,Potassium,,"-$24,289.73"
+2/1/2021,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Potassium,Magnesium Chloride Brine,"$5,128.19"
+2/1/2021,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Potassium,Manure Salts,$0.00
+2/1/2021,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Potassium,Potash,"$18,864.54"
+2/1/2021,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Sodium,Salt,$297.00
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Other Revenues,Gilsonite,Gilsonite,,-$720.00
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"$7,951.00"
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,"$159,421.96"
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Rents,Oil & Gas,Oil & Gas,,$88.50
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Rents,Oil & Gas,Oil & Gas,,"$69,331.47"
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Gilsonite,Gilsonite,Gilsonite,"$105,311.82"
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$130,713.04"
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,072,840.65"
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$25,231.51"
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,NGL,Gas Plant Products,"$296,442.54"
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Oil,Condensate,"$265,029.55"
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$62,149.84"
+2/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Oil,Oil,"$1,052,581.51"
+2/1/2021,Federal,Onshore,UT,Utah,49049,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,$639.10
+2/1/2021,Federal,Onshore,UT,Utah,49049,UTAH,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$21.98
+2/1/2021,Federal,Onshore,UT,Utah,49049,UTAH,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$317.16
+2/1/2021,Federal,Onshore,UT,Utah,49049,UTAH,Royalties,Oil & Gas,NGL,Gas Plant Products,$237.77
+2/1/2021,Federal,Onshore,UT,Utah,49049,UTAH,Royalties,Oil & Gas,Oil,Condensate,$517.97
+2/1/2021,Federal,Onshore,UT,Utah,49049,UTAH,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$59.97
+2/1/2021,Federal,Onshore,UT,Wayne,49055,UTAH,Rents,Oil & Gas,Oil & Gas,,$111.86
+2/1/2021,Federal,Onshore,VA,Dickenson,51051,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,067.91"
+2/1/2021,Federal,Onshore,VA,Giles,51071,EAST STATES,Royalties,Hardrock,Limestone,Limestone,$0.00
+2/1/2021,Federal,Onshore,VA,Wise,51195,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$47.65
+2/1/2021,Federal,Onshore,VA,Wise,51195,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$498.55
+2/1/2021,Federal,Onshore,WA,Whatcom,53073,OREGON,Rents,Geothermal,Geothermal,,"$37,122.80"
+2/1/2021,Federal,Onshore,WV,Braxton,54007,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$263.33
+2/1/2021,Federal,Onshore,WV,Lewis,54041,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$603.97
+2/1/2021,Federal,Onshore,WV,Lewis,54041,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$540.01
+2/1/2021,Federal,Onshore,WV,Mingo,54059,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,279.59"
+2/1/2021,Federal,Onshore,WV,Pendleton,54071,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$629.62
+2/1/2021,Federal,Onshore,WV,Pendleton,54071,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$689.80
+2/1/2021,Federal,Onshore,WV,Preston,54077,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$396.98
+2/1/2021,Federal,Onshore,WV,Randolph,54083,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$303.13
+2/1/2021,Federal,Onshore,WV,Tucker,54093,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$239.20
+2/1/2021,Federal,Onshore,WV,Tucker,54093,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$40.56
+2/1/2021,Federal,Onshore,WV,Wyoming,54109,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$121.61
+2/1/2021,Federal,Onshore,WY,Albany,56001,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.66
+2/1/2021,Federal,Onshore,WY,Albany,56001,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$3,929.28"
+2/1/2021,Federal,Onshore,WY,Big Horn,56003,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$10.00
+2/1/2021,Federal,Onshore,WY,Big Horn,56003,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$4,114.39"
+2/1/2021,Federal,Onshore,WY,Big Horn,56003,WYOMING,Rents,Oil & Gas,Oil & Gas,,$25.00
+2/1/2021,Federal,Onshore,WY,Big Horn,56003,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$5,836.00"
+2/1/2021,Federal,Onshore,WY,Big Horn,56003,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,444.41"
+2/1/2021,Federal,Onshore,WY,Big Horn,56003,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$22,739.45"
+2/1/2021,Federal,Onshore,WY,Big Horn,56003,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$13,768.40"
+2/1/2021,Federal,Onshore,WY,Big Horn,56003,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$165,670.25"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$146,421.92"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$47,161.13"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Rents,Coal,Coal,,"$19,563.00"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Rents,Oil & Gas,Oil & Gas,,$664.00
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$32,695.59"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Coal,Coal,Coal,"$25,392,556.92"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,"-$84,626.62"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$3,031.75"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$49,032.56"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$701,363.56"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$39,023.94"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$580,829.32"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Oil,Condensate,"$19,257.83"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"-$375,154.85"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$444,320.87"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$4,869,052.44"
+2/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$115.98
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Other Revenues,Coal,Coal,,"-$3,426,923.52"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$38,509.17"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$7,419.07"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Rents,Coal,Coal,,"$7,980.00"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$6,694.80"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,"-$168,131.70"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$22,824.01"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$360,276.74"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$69,872.60"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$154,837.56"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Oil,Condensate,"$37,485.71"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$146.18
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$2,199.64"
+2/1/2021,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$240,714.04"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"-$451,183.23"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$2,695.45"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Rents,Coal,Coal,,"$8,430.00"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$2,901.00"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$78,556.50"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Coal,Coal,Coal,"$3,334.46"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,"-$1,818.59"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$15,313.17"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$69,520.99"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$832,769.03"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"-$347,807.98"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$797,227.11"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Oil,Condensate,"$14,533.30"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$22,368.53"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$106,498.64"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$7,329,944.40"
+2/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,"$1,400.04"
+2/1/2021,Federal,Onshore,WY,Crook,56011,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$3,422.00"
+2/1/2021,Federal,Onshore,WY,Crook,56011,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$519.75
+2/1/2021,Federal,Onshore,WY,Crook,56011,WYOMING,Rents,Oil & Gas,Oil & Gas,,$215.00
+2/1/2021,Federal,Onshore,WY,Crook,56011,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$1,042.00"
+2/1/2021,Federal,Onshore,WY,Crook,56011,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$265.00
+2/1/2021,Federal,Onshore,WY,Crook,56011,WYOMING,Royalties,Oil & Gas,Oil,Condensate,"$1,204.09"
+2/1/2021,Federal,Onshore,WY,Crook,56011,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$178,414.81"
+2/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$498.80
+2/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$1,446.09"
+2/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$139,804.50"
+2/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$12,815.26"
+2/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$408,139.94"
+2/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$161,646.70"
+2/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$41,080.21"
+2/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Oil,Condensate,"$34,480.31"
+2/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$204,879.41"
+2/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,"$9,865.29"
+2/1/2021,Federal,Onshore,WY,Hot Springs,56017,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$1,316.26"
+2/1/2021,Federal,Onshore,WY,Hot Springs,56017,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$90.95
+2/1/2021,Federal,Onshore,WY,Hot Springs,56017,WYOMING,Rents,Oil & Gas,Oil & Gas,,$380.00
+2/1/2021,Federal,Onshore,WY,Hot Springs,56017,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$1,087.75"
+2/1/2021,Federal,Onshore,WY,Hot Springs,56017,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$440,043.43"
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$27,930.66"
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$7,728.03"
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$32,182.41"
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,"-$287,945.56"
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$306.37
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,546.79"
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$26,443.64"
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$26,034.95"
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$37,225.06"
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$854.33
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,$634.32
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$276,560.31"
+2/1/2021,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$1.08
+2/1/2021,Federal,Onshore,WY,Laramie,56021,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$1,700.00"
+2/1/2021,Federal,Onshore,WY,Laramie,56021,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$370.35
+2/1/2021,Federal,Onshore,WY,Laramie,56021,WYOMING,Rents,Oil & Gas,Oil & Gas,,$60.00
+2/1/2021,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$8.46
+2/1/2021,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$528.02
+2/1/2021,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,390.34"
+2/1/2021,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,367.56"
+2/1/2021,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$786.99
+2/1/2021,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$37,349.52"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"-$6,799.17"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$1,352.44"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Coal,Coal,Coal,"$253,354.27"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$36,214.95"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$568,193.69"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$143,729.83"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$203,132.59"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Oil,Condensate,"$26,980.84"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$2,579.06"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$5,600.10"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$27,410.88"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,"$3,618.86"
+2/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Sodium,Sodium,Salt,$0.00
+2/1/2021,Federal,Onshore,WY,Natrona,56025,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,-$372.52
+2/1/2021,Federal,Onshore,WY,Natrona,56025,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$1,061.62"
+2/1/2021,Federal,Onshore,WY,Natrona,56025,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$15,793.50"
+2/1/2021,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$10,413.51"
+2/1/2021,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$225,259.75"
+2/1/2021,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$3,048.55"
+2/1/2021,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$73,745.42"
+2/1/2021,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Oil,Condensate,"$24,816.45"
+2/1/2021,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$184,980.06"
+2/1/2021,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,$792.98
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$161.00
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$541.63
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Rents,Oil & Gas,Oil & Gas,,$240.00
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$3,040.00"
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$612.29
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,439.29"
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$8,442.55"
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,$389.22
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$12,760.21"
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,$322.46
+2/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$223,979.93"
+2/1/2021,Federal,Onshore,WY,Park,56029,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$4,366.22"
+2/1/2021,Federal,Onshore,WY,Park,56029,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$4,672.27"
+2/1/2021,Federal,Onshore,WY,Park,56029,WYOMING,Rents,Oil & Gas,Oil & Gas,,$479.50
+2/1/2021,Federal,Onshore,WY,Park,56029,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$20,335.25"
+2/1/2021,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$23,264.31"
+2/1/2021,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,921.78"
+2/1/2021,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$15,338.24"
+2/1/2021,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,Oil,Condensate,$30.10
+2/1/2021,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$1,102,642.41"
+2/1/2021,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,$746.00
+2/1/2021,Federal,Onshore,WY,Sheridan,56033,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$429.22
+2/1/2021,Federal,Onshore,WY,Sheridan,56033,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$2,484.46"
+2/1/2021,Federal,Onshore,WY,Sheridan,56033,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$7,911.06"
+2/1/2021,Federal,Onshore,WY,Sheridan,56033,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.03
+2/1/2021,Federal,Onshore,WY,Sheridan,56033,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$0.43
+2/1/2021,Federal,Onshore,WY,Sheridan,56033,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,$0.14
+2/1/2021,Federal,Onshore,WY,Sheridan,56033,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$1,604.73"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$926,002.84"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$9,305.92"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Rents,Oil & Gas,Oil & Gas,,-$460.00
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$41,932.00"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$190,707.19"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,-$184.61
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$125,755.45"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$12,962,610.75"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,229,061.52"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$5,921,578.33"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Oil,Condensate,"$1,091,508.11"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$4.10
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$4,260.34"
+2/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$77,135.02"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Bonus,Coal,Coal,,"$347,600.00"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"-$7,102.10"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$24,547.50"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Other Revenues,Sodium,Sodium,,"-$5,268.00"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$4,158.00"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$38,192.50"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Rents,Sodium,Sodium,,"-$48,014.00"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Coal,Coal,Coal,"$1,850,939.63"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$26,351.62"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$446,605.42"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,477,676.28"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$203,146.69"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Oil,Condensate,"$129,017.84"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$724.08
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$3,371.56"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$266,730.13"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Mine Water,Mine Water,"$2,896.89"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Soda Ash,Soda Ash,"$740,609.67"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Caustic,$0.00
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Purge Liquor,"$6,190.81"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,"$18,138.69"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Bisulfite,$0.00
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Decahydrate,$0.00
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Sesquicarbonate,"$135,265.53"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sulfide,"$9,250.34"
+2/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Trona Ore,"$23,199.06"
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$78.00
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$18.15
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$5,960.00"
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,033.29"
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$131,614.91"
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$135,847.64"
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$43,395.79"
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Oil,Condensate,"$16,087.56"
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$4,650.82"
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$29,743.54"
+2/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,"$8,454.48"
+2/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$936.76
+2/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$450.82
+2/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$9,131.84"
+2/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,912.93"
+2/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$20,826.77"
+2/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$8,404.40"
+2/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,$916.35
+2/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$149,608.96"
+2/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$557.00
+2/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$2,356.14"
+2/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$9,440.00"
+2/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,740.09"
+2/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$5,366.21"
+2/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$13,304.37"
+2/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$21.60
+2/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,$562.23
+2/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$90,623.27"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$322.49
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$6,366.25"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Copper,Copper,,"$22,537.89"
+2/1/2021,Indian,Onshore,,,,,Royalties,Copper,Copper,Copper,$0.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Copper,Copper,Copper Concentrate,$0.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Copper,Molybdenum Concentrate,Molybdenum Concentrate,$0.00
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Copper,Copper,,"$119,128.78"
+2/1/2021,Indian,Onshore,,,,,Royalties,Copper,Copper,Copper,$0.00
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$12,868.00"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$58.71
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$32,789.47"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$115,263.94"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$1,400,453.98"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$623.53
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$4,562.78"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$2,200,133.77"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$275.11
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$214,265.86"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$31.82
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"-$3,348.09"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$11,107.93"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$120.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,$35.47
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Coal,Coal,,"$609,332.49"
+2/1/2021,Indian,Onshore,,,,,Rents,Coal,Coal,,"$5,640.52"
+2/1/2021,Indian,Onshore,,,,,Royalties,Coal,Coal,Coal,"$382,558.23"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Asphaltic Crude,"$1,662.65"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sour Crude,-$93.44
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$48.80
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$1,204.45"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$176.12
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$50.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$769.70
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$272.06
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,"$61,713.82"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$324.91
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$222.46
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$7,710.54"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$7,099.31"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,297.17"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-$880.67
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Black Wax Crude,"$1,504.79"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,"$1,420.64"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$2,756.73"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$120.17
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$120.78
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$575.24
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$29.65
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$443.17
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$329.18
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$411.25
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$22.91
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,$86.06
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,"$16,954.71"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$39,943.62"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$76.25
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$16.50
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,$301.89
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$8,154.29"
+2/1/2021,Indian,Onshore,,,,,Rents,Coal,Coal,,"$4,988.01"
+2/1/2021,Indian,Onshore,,,,,Royalties,Coal,Coal,Coal,$0.00
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$55.81
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$400.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$4.62
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$10.81
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,$1.03
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$147.67
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$4.91
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$3.20
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$11.82
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$823.96
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,$0.00
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$1,376,433.85"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$175,212.52"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$70,543.18"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$560.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$241.65
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$39,093.10"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$165,267.25"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,350,863.39"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$223,509.60"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$91.34
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,$970.01
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,"$10,501.94"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$25,703,287.28"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,$0.00
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$355,909.72"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$43,668.03"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$22,023.45"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$1,151.66"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$2,918.29"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$17,451.09"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$257,958.30"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,981,145.74"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$251,100.98"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$14,284.36"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$41,050.41"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$11,143.14"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,"$1,444.91"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$24,657,413.37"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$25,936.65"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$53,294.16"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$3,080.09"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,190.03"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$11,186.43"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$77,435.33"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$25,836.71"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$281.22
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$2,677.38"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$15.35
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$1,658,609.23"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$5,681.94"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$2,383.34"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$102.92
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$565.37
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,525.44"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,962.85"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$50.58
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,$429.60
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$73,160.46"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$80,852.50"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$36,046.23"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$4,433.04"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$0.74
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$250.56
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$32,318.54"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$279,745.26"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$7,321.59"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$194.95
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,$190.24
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$8.48
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$2,535,213.43"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$1,400.16"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$3,733.69"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$1,505.16"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$3.30
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$25.25
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,351.26"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$292.55
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,686.95"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$42.76
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,$160.15
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$50,982.88"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Mining-Unspecified,Mining-Unspecified,,"-$1,000.00"
+2/1/2021,Indian,Onshore,,,,,Royalties,Mining-Unspecified,Humate,Humate,"$8,790.00"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Oil,$239.43
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$4,803.02"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$852.79
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$672.09
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$12,792.98"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,$366.23
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,293.33"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$149,008.64"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$609,295.15"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$141,722.55"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$12,187.02"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$47,839.38"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$3,152.15"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$0.30
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"-$3,546.86"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$17,900.07"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,$858.49
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$6,933.70"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$13,105.51"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$15,492.11"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$40,198.78"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$200.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Coal,Coal,Coal,"$2,878,423.63"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$16,436.02"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$768.28
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$7,596.46"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$81,548.33"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$63,553.86"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Helium,Helium,"$26,718.12"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$103,060.25"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$3,858.09"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$883,965.34"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$4,700.00"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$766.16
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-$953.73
+2/1/2021,Indian,Onshore,,,,,Royalties,Gypsum,Gypsum,Gypsum,"$63,287.76"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,$844.14
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$8,194.69"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$84,221.39"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$12,344.18"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$88,950.22"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$367,312.85"
+2/1/2021,Indian,Onshore,,,,,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",$362.91
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$5,481.62"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$53,455.98"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$8,435.83"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$5,788.64"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$1,778.03"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$0.97
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$9,321.42"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$163,578.77"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$537,672.79"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$53,163.92"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$110,692.19"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$336.66
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$275,585.14"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$18.97
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,-$0.08
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,-$3.28
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,NGL,Gas Plant Products,-$10.83
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-$15.03
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$5,402.70"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$2,074.39"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$2,728.57"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$275.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$211.55
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$14,067.62"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$66,646.49"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$21,907.02"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$10,331.30"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$109,784.95"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$11,367.59"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$552.11
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$1,685.22"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$1,026.67"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,396.23"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$441,822.92"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$942.86
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$77,195.42"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$320.94
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$117,108.16"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sour Crude,"-$1,340.19"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-$156.63
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$0.00
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$27.79
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$200.00
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$175.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-$3.62
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$69.22
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$128.78
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$69.50
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,"$28,118.45"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$3,220.89"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$13.70
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$480.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$1,876.20"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$360.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$78.82
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,111.36"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$2.55
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$442.46
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$143.16
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$128.88
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-$33.61
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$5,217.21"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$25.29
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$200.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,"$1,259.01"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$1,958.54"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,"-$1,086.33"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$89.75
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-$51.11
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$209.46
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$105.72
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$157.15
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$192.46
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$674.94
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$37,868.35"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$9,502.71"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$1,174.00"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$736.46
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$50,806.72"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$221.60
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$6,383.59"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$55,406.06"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$1,230.84"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$967.78
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$320.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$921.07
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$10,134.91"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$74,774.73"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$6,086.69"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$2,703.84"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$7.31
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$78,688.70"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,-$0.44
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,-$4.83
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-$116.17
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$215.46
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$0.40
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$260.13
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,803.93"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$221.08
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$6,985.81"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,-$16.76
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$1,589.03"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$0.23
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$114.51
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$290.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,499.19"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$19,991.73"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,280.11"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$1,356.69"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$24.99
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$42,143.59"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$51.45
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$31.20
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$8.04
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,$62.68
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,096.59"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,-$4.95
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$443.25
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$139.31
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$6,691.95"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$51.55
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$1,855.62"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sour Crude,-$35.57
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,$515.39
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$107.10
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$970.77
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$312.76
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$1,135.25"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$129.02
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$4,003.82"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,475.60"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,035.69"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$29,195.18"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$194,136.22"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$772.49
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-$37.36
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$29.72
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,630,357.42"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$5.84
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,$44.92
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$2,257,396.59"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$3,053.47"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,-$437.81
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$9,144.18"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$520.34
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$290.51
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$3,274.35"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-$120.00
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$99.22
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,922.45"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$87.95
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$0.44
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$27.27
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,-$3.05
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$24.17
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$310.70
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$31.38
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$1.74
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$630.07
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$881.67
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$257.40
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$55.56
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,$21.65
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$655.85
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$885.47
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$120.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,546.07"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$5,273.02"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$22,572.77"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-$36.30
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$162.84
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,$142.19
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$546.07
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-$9.05
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$264.32
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$132.63
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$1,104.77"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$0.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$4,646.37"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$26.43
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$197.50
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$535.36
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$3,528.35"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$625.37
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$788.08
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$24,275.38"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$98.71
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$1,025.62"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$197.07
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$26.49
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$99.47
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,215.36"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,"$3,126.83"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$5,158.95"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$142.28
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$366.54
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$20.33
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$6,910.82"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$8,128.04"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$822.35
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-$181.71
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$6.39
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,$149.31
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$1.47
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$5,774.76"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Limestone,Limestone,,"$4,527.11"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$882.24
+2/1/2021,Indian,Onshore,,,,,Royalties,Limestone,Limestone,Limestone,$0.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,744.01"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,-$87.15
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sour Crude,-$238.56
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-$69.01
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-$208.87
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$70.18
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$174.15
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,976.73"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,"$7,440.85"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$5,430.93"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$120.14
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$156.20
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$5,799.00"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$96.82
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$50.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,973.15"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,$0.00
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$5,656.64"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$66.62
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$13,203.58"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"-$9,640.93"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$7,834.95"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$6,838.45"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$12.28
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,255.26"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,-$11.97
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$733.92
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$1,573.23"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$5,290.81"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$89,528.82"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$9,883.55"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$709.86
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$634.41
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$22,187.62"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$205,636.26"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$236,977.56"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$54,784.93"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Black Wax Crude,"$635,300.01"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$6,221.08"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$4,390.95"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$10,106.15"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Oil,"-$69,394.36"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Yellow Wax Crude,"$1,977,945.21"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,$0.00
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$28,053.51"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$145.97
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$9,057.84"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$12,803.74"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$16,441.79"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$7,669.96"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$134,303.99"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"-$97,790.11"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$635.24
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$1,183.88"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Oil,"-$2,167,476.62"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$4,173,180.90"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"-$15,902.70"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$3,842.72"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$15,903.30"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$4,181.76"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$7,585.02"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$198,039.93"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,167.25"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Black Wax Crude,"$4,319,411.85"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$2,135.99"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$706.53
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$1,641.62"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Oil,"-$3,604,198.79"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Yellow Wax Crude,"$726,194.66"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,$30.20
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$3,270.95"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,$850.60
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Yellow Wax Crude,"$8,908.22"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Sand & Gravel,Sand & Gravel,,"$15,000.00"
+2/1/2021,Indian,Onshore,,,,,Royalties,Sand & Gravel,Sand & Gravel,Sand/Gravel,$228.20
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Sand & Gravel,Sand & Gravel,,$0.00
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$93,186.88"
+2/1/2021,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,"$10,731.98"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,"$1,920.00"
+2/1/2021,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,$150.00
+2/1/2021,Indian,Onshore,,,,,Rents,Sand & Gravel,Sand & Gravel,,-$320.00
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$9,855.29"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$62,337.38"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Asphaltic Crude,"$999,576.03"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,"$2,907.96"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,"$13,873.71"
+2/1/2021,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,"$1,791.16"
