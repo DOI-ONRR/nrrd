@@ -514,6 +514,11 @@ workflows:
             branches:
               only: master
 
+      - nrrd-dev-database:
+          context:
+            - DEV
+          requires:
+            - deploy
   dev:
     jobs:
       - nrrd-dev-database:
@@ -532,4 +537,3 @@ workflows:
       #     requires:
       #       - dev
 
-              
