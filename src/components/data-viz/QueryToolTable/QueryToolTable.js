@@ -348,15 +348,17 @@ const DataTableBase = ({ data, config }) => {
   }
   // Returns a list of options available for the group by and breakout columns
   const getBreakoutByOptions = () => {
-    const options = columnNames.filter(item => (
-      item.name !== _groupBySticky &&
-      item.name !== _groupBy &&
-      item.name !== config.pivotColumn &&
-      item.name !== config.pivotColumnValue &&
-      !config?.omitGroupBreakoutByOptions?.includes(item.name) &&
-      !_additionalColumns?.includes(item.name) &&
-      !pivotColumnNames?.includes(item.name)
-    ))
+      console.debug("-----------------------------columnNames--------------------------------", columnNames)
+      console.debug("-----------------------------config--------------------------------", columnNames)
+      const options = columnNames.filter(item => (
+	  item.name !== _groupBySticky &&
+	  item.name !== _groupBy &&
+	  item.name !== config.pivotColumn &&
+	  item.name !== config.pivotColumnValue &&
+	  !config?.omitGroupBreakoutByOptions?.includes(item.name) &&
+	  !_additionalColumns?.includes(item.name) &&
+	  !pivotColumnNames?.includes(item.name)
+      ))
     return options.map(item => ({ option: item.title, value: item.name }))
   }
 
@@ -463,8 +465,11 @@ const DataTableBase = ({ data, config }) => {
 
   // STEP 3: Logic to update table display after columns are updated
   useEffect(() => {
-    if (_groupBy && (_breakoutBy !== NO_BREAKOUT_BY && _breakoutBy)) {
-      setGrouping([{ columnName: _groupBy }])
+
+      
+      if (_groupBy && (_breakoutBy !== NO_BREAKOUT_BY && _breakoutBy)) {
+
+	  setGrouping([{ columnName: _groupBy }])
       setGroupingExtension([{ columnName: _groupBy, showWhenGrouped: true }])
       if (data && data.length > 0) {
         // Gets the unique values that will be expanded
