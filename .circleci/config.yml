@@ -152,6 +152,9 @@ jobs:
           name: "Update metadata"
           command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
       - run:
+          name: "Refresh views"
+          command: cd database && bash ./src/scripts/refresh_materialized_views.sh 
+      - run:
           name: "Backup database"
           command: |
             pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
@@ -279,6 +282,9 @@ jobs:
       - run:
           name: "Update metadata"
           command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
+      - run:
+          name: "Refresh views"
+          command: cd database && bash ./src/scripts/refresh_materialized_views.sh 
       - run:
           name: "Backup database"
           command: |
