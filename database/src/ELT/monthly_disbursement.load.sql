@@ -1,7 +1,7 @@
 truncate table  monthly_disbursement_elt;
 delete from disbursement where period_id in (select period_id from period where period='Monthly');
 
-\copy monthly_disbursement_elt (month,calendar_year,fund_type,land_category,disbursement_type,state ,county,commodity,category,disbursement) FROM './static/csv/disbursements/monthly_disbursements.csv' WITH  DELIMITER ',' CSV HEADER;
+\copy monthly_disbursement_elt (month,calendar_year,fund_type,treasury_fund,land_category,disbursement_type,state ,county,commodity,category,disbursement) FROM './static/csv/disbursements/monthly_disbursements.csv' WITH  DELIMITER ',' CSV HEADER;
 
 
 \echo 'Update NULLS to \'\' '
@@ -16,8 +16,8 @@ update monthly_disbursement_elt set fund_type = COALESCE(fund_type,''),
 			      ;
 
 \echo 'Formated disbursement'
-update monthly_disbursements_elt set disbursement=REPLACE(disbursement, '(','-');
-update monthly_disbursements_elt set disbursement=REPLACE(disbursement, ')','');
+update monthly_disbursement_elt set disbursement=REPLACE(disbursement, '(','-');
+update monthly_disbursement_elt set disbursement=REPLACE(disbursement, ')','');
 
 \echo update fund_class and recipient
 update  monthly_disbursement_elt set fund_type='Lease Process Improvement (BLM)' where fund_type='BLM - Permit Processing and Improvement' 

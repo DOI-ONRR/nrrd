@@ -26,7 +26,7 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
   // const yOrderByTest = [...new Set(data?.results.map(item => item.recipient))]
   const yOrderBy = (yGroupBy === SOURCE)
     ? ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
-    : ['Other Revenues', 'Inspection Fees', 'Civil Penalties', 'Rents', 'Bonus', 'Royalties']
+    : ['Other revenues', 'Inspection fees', 'Civil penalties', 'Rents', 'Bonus', 'Royalties']
 
   const xGroups = data?.results.reduce((g, row, i) => {
     const r = g

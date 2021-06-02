@@ -81,7 +81,7 @@ const Legend = ({
 
   // legend total
   if (legendTotal) {
-    total = legendData.reduce((acc, key) => acc + key[rowTotal], 0)
+    total = legendData.filter(item => !isNaN(item.total)).reduce((acc, key) => acc + key[rowTotal], 0)
   }
 
   return (

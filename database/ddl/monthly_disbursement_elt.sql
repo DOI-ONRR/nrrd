@@ -30,6 +30,7 @@ CREATE TABLE public.monthly_disbursement_elt (
     fund_type character varying(255),
     fund_class character varying(255),
     recipient character varying(255),
+    treasury_fund character varying(255),
     land_category character varying(255),
     disbursement_type character varying(255),
     state character varying(255),
