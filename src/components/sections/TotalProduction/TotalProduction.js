@@ -143,7 +143,7 @@ const TotalProduction = props => {
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         comparisonData = data.total_monthly_calendar_production.filter(row => row.product === commodity)
-        chartData = data.total_monthly_calendar_production.filter(row => row.product === commodity && row.year >= maxCalendarYear)
+        chartData = data.total_monthly_calendar_production.filter(row => row.product === commodity && row.year >= maxCalendarYear - 1)
       }
       else {
         comparisonData = data.total_monthly_last_two_years_production.filter(row => row.product === commodity)
@@ -159,7 +159,7 @@ const TotalProduction = props => {
         return r
       }, [])
       console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', xGroups)
-      console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', chartData)
+      console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXCHARTDATA', chartData)
 
       xAxis = 'period_date'
       xLabels = (x, i) => {
@@ -190,7 +190,7 @@ const TotalProduction = props => {
           }
         })
         comparisonData = data.total_yearly_fiscal_production.filter(row => row.product === commodity)
-	  console.debug('COMPARISON DATA:', comparisonData)
+	      // console.debug('COMPARISON DATA:', comparisonData)
         chartData = data.total_yearly_fiscal_production.filter(item => item.year >= maxFiscalYear - 10)
         xGroups['Fiscal Year'] = chartData.filter(row => row.product === commodity).map((row, i) => row.year)
       }

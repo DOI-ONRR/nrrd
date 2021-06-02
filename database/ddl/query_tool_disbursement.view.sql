@@ -24,7 +24,7 @@ CREATE VIEW public.query_tool_disbursement AS
  SELECT period.period,
         CASE
             WHEN ((location.state_name)::text <> ''::text) THEN (location.state_name)::text
-            ELSE NULL::text
+            ELSE (location.location_name)::text
         END AS state_name,
         CASE
             WHEN ((location.region_type)::text = 'County'::text) THEN concat(location.state_name, ', ', location.county, ' ', location.district_type)

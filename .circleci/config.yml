@@ -152,6 +152,9 @@ jobs:
           name: "Update metadata"
           command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
       - run:
+          name: "Refresh views"
+          command: cd database && bash ./src/scripts/refresh_materialized_views.sh 
+      - run:
           name: "Backup database"
           command: |
             pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
@@ -279,6 +282,9 @@ jobs:
       - run:
           name: "Update metadata"
           command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
+      - run:
+          name: "Refresh views"
+          command: cd database && bash ./src/scripts/refresh_materialized_views.sh 
       - run:
           name: "Backup database"
           command: |
@@ -445,6 +451,13 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
+      - aws-s3/sync:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          to: static/downloads/            
       - run:
           name: Build gatsby
           command: npm run build
@@ -462,7 +475,6 @@ jobs:
             cf target -o "$PROD_CF_ORG" -s "$PROD_CF_SPACE"
             bash ./swap.sh
             cf push nrrd -f ./manifest.yml
-
 
 workflows:
   audits:
@@ -508,6 +520,11 @@ workflows:
             branches:
               only: master
 
+      - nrrd-dev-database:
+          context:
+            - DEV
+          requires:
+            - deploy
   dev:
     jobs:
       - nrrd-dev-database:
@@ -526,4 +543,3 @@ workflows:
       #     requires:
       #       - dev
 
-              
