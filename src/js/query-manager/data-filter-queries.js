@@ -135,7 +135,7 @@ const DATA_FILTER_QUERIES = {
         option: ${ DB_COLS[SOURCE] }
       }`),
   [US_STATE_NAME]: (view, whereClause) => (
-      `options:${ view }(
+    `options:${ view }(
       where: {
         ${ whereClause }
       },
@@ -145,7 +145,7 @@ const DATA_FILTER_QUERIES = {
         option: ${ DB_COLS[US_STATE_NAME] }
       }`),
   [G1]: (view, whereClause) => (
-      `options:${ view }(
+    `options:${ view }(
       where: {
         ${ whereClause }
       },
@@ -155,7 +155,7 @@ const DATA_FILTER_QUERIES = {
         option: ${ DB_COLS[G1] }
       }`),
   [G2]: (view, whereClause) => (
-      `options:${ view }(
+    `options:${ view }(
       where: {
         ${ whereClause }
       },
@@ -165,7 +165,7 @@ const DATA_FILTER_QUERIES = {
         option: ${ DB_COLS[G2] }
       }`),
   [G3]: (view, whereClause) => (
-      `options:${ view }(
+    `options:${ view }(
       where: {
         ${ whereClause }
       },
@@ -177,7 +177,7 @@ const DATA_FILTER_QUERIES = {
 }
 
 export default (view, dataFilterKey, whereClause) => {
-    if (!DATA_FILTER_QUERIES[dataFilterKey]) {
+  if (!DATA_FILTER_QUERIES[dataFilterKey]) {
     throw Error(`A data filter query does not exist for ${ dataFilterKey }. Please add query for this key.`)
   }
   return DATA_FILTER_QUERIES[dataFilterKey](view, whereClause)

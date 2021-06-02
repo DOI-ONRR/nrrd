@@ -1,11 +1,11 @@
 import {
-    FUND_AGGREGATION,
-    LOCATION_AGGREGATION,
-    COMMODITY_AGGREGATION,
-    DATA_FILTER_KEY,
-    EXCLUDE_PROPS,
-    DATA_TYPE,
-    PRODUCTION,
+  FUND_AGGREGATION,
+  LOCATION_AGGREGATION,
+  COMMODITY_AGGREGATION,
+  DATA_FILTER_KEY,
+  EXCLUDE_PROPS,
+  DATA_TYPE,
+  PRODUCTION,
   REVENUE,
   DISBURSEMENT,
   PERIOD,
@@ -83,33 +83,31 @@ export default QueryManager
  * Crosswalk object to map data filter keys to database columns
  */
 export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
-    [COMMODITY]: 'commodity',
-    [COMMODITY_ORDER]: 'commodity_order',
-    [US_STATE]: 'state',
-    [US_STATE_NAME]: 'state_name',
-    [COUNTY]: 'county',
-    [COUNTY_NAME]: 'county_name',
-    [LAND_TYPE]: 'land_type',
-    [OFFSHORE_REGION]: 'offshore_region',
-    [REVENUE_TYPE]: 'revenue_type',
-    [PERIOD]: 'period',
-    [STATE_OFFSHORE_NAME]: 'state_offshore_name',
-    [FISCAL_YEAR]: 'fiscal_year',
-    [CALENDAR_YEAR]: 'calendar_year',
-    [PRODUCT]: 'product',
-    [RECIPIENT]: 'recipient',
-    [SOURCE]: 'source',
-    [LOCAL_RECIPIENT]: 'local_recipient',
-    [COMPANY_NAME]: 'corporate_name',
-    [MONTH_LONG]: 'month_long',
-    [REVENUE]: 'revenue',
-    [PRODUCTION]: 'production',
-    [DISBURSEMENT]: 'disbursement',
-    [G1]: 'g1',
-    [G2]: 'g2',
-    [G3]: 'g3'
-
-
+  [COMMODITY]: 'commodity',
+  [COMMODITY_ORDER]: 'commodity_order',
+  [US_STATE]: 'state',
+  [US_STATE_NAME]: 'state_name',
+  [COUNTY]: 'county',
+  [COUNTY_NAME]: 'county_name',
+  [LAND_TYPE]: 'land_type',
+  [OFFSHORE_REGION]: 'offshore_region',
+  [REVENUE_TYPE]: 'revenue_type',
+  [PERIOD]: 'period',
+  [STATE_OFFSHORE_NAME]: 'state_offshore_name',
+  [FISCAL_YEAR]: 'fiscal_year',
+  [CALENDAR_YEAR]: 'calendar_year',
+  [PRODUCT]: 'product',
+  [RECIPIENT]: 'recipient',
+  [SOURCE]: 'source',
+  [LOCAL_RECIPIENT]: 'local_recipient',
+  [COMPANY_NAME]: 'corporate_name',
+  [MONTH_LONG]: 'month_long',
+  [REVENUE]: 'revenue',
+  [PRODUCTION]: 'production',
+  [DISBURSEMENT]: 'disbursement',
+  [G1]: 'g1',
+  [G2]: 'g2',
+  [G3]: 'g3'
 
 }
 
@@ -150,19 +148,17 @@ export const getDataFilterWhereClauses = (config, excludeProps) => {
   }
 
   config.forEach(prop => {
-      const key = Object.keys(prop)[0]
-      if (!excludeProps || !excludeProps.includes(key)) {
-	  
+    const key = Object.keys(prop)[0]
+    if (!excludeProps || !excludeProps.includes(key)) {
 	  if (DATA_FILTER_KEY_TO_DB_COLUMNS[key]) {
-              results =
+        results =
 		  results.concat(`${ DATA_FILTER_KEY_TO_DB_COLUMNS[key] }: ${ getClause(key, prop[key]) },`)
-
-
 	  }
-      } else {
-      }
+    }
+    else {
+    }
   })
-    return results
+  return results
 }
 
 /**
@@ -171,124 +167,111 @@ export const getDataFilterWhereClauses = (config, excludeProps) => {
  * @param {array} config
  */
 export const getDataFilterVariableValues = (state, config, options) => {
-
-    console.debug("getDataFilterVariableValues: ", state, config, options)
-    const results = {}
-    config.forEach(prop => {
-	const key = Object.keys(prop)[0]
-	if(state.dataType===REVENUE) {
-	    if(checkFundAggregation(key,state, config, options)) {
-		results[G1] = "fund"
-	    } else {
-	    results[G1] = ""
-	}
-
-	    if(checkLocationAggregation(key,state, config, options)) {
-		results[G2] = "location"
-	    } else {
-		results[G2] = ""
+  console.debug('getDataFilterVariableValues: ', state, config, options)
+  const results = {}
+  config.forEach(prop => {
+    const key = Object.keys(prop)[0]
+    if (state.dataType === REVENUE) {
+	    if (checkFundAggregation(key, state, config, options)) {
+        results[G1] = 'fund'
 	    }
-	    
-	    if(checkCommodityAggregation(key,state, config, options)) {
-		results[G3] = "commodity"
-	    } else {
-		results[G3] = ""
+      else {
+	    results[G1] = ''
+      }
+
+	    if (checkLocationAggregation(key, state, config, options)) {
+        results[G2] = 'location'
 	    }
-	} else {
-	    delete results[G1];
-	    delete results[G2];
-	    delete results[G3];
-	}
-	results[Object.keys(prop)[0]] = getDataFilterValue(Object.keys(prop)[0], state)
-	    
-    })
+      else {
+        results[G2] = ''
+	    }
 
+	    if (checkCommodityAggregation(key, state, config, options)) {
+        results[G3] = 'commodity'
+	    }
+      else {
+        results[G3] = ''
+	    }
+    }
+    else {
+	    delete results[G1]
+	    delete results[G2]
+	    delete results[G3]
+    }
+    results[Object.keys(prop)[0]] = getDataFilterValue(Object.keys(prop)[0], state)
+  })
 
-    console.debug("getDataFilterVariableValues RESULTS: ", results) 
-    return ({ variables: results })
+  console.debug('getDataFilterVariableValues RESULTS: ', results)
+  return ({ variables: results })
 }
 
-export const checkFundAggregation = (key,state, config, options) => {
-    if(state.dataType==='Production') {
-	return false
-    }
-    if(FUND_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
-	console.debug("AGG FUND dfk true :", key)
-	return true
-    } 
-    else if(FUND_AGGREGATION.includes(state.groupBy)) {
-	console.debug("AGG FUND  true gb :", key, state.groupBy)
-	return true
-    }
-
-    
-    let keys=Object.keys(state)
-    for(let ii = 0; ii < keys.length; ii++) { 
-	if(FUND_AGGREGATION.includes(keys[ii])) {
-	    console.debug("AGG FUND true :", key, state[key])
-	    return true
-	}
-    }
-
-
-    console.debug("AGG FUND false :", key, state.groupBy, key)
+export const checkFundAggregation = (key, state, config, options) => {
+  if (state.dataType === 'Production') {
     return false
-    
+  }
+  if (FUND_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
+    console.debug('AGG FUND dfk true :', key)
+    return true
+  }
+  else if (FUND_AGGREGATION.includes(state.groupBy)) {
+    console.debug('AGG FUND  true gb :', key, state.groupBy)
+    return true
+  }
 
-
-}
-export const checkLocationAggregation = (key,state, config, options) => {
-    if(LOCATION_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
-	console.debug("LOC AGG dfk true :", key, state[key])
-	return true
-    } 
-    else if(LOCATION_AGGREGATION.includes(state.groupBy) ) {
-	console.debug("LOC AGG true gb :", key, state.groupBy)
-	return true
-    }
-
-    let keys=Object.keys(state)
-    for(let ii = 0; ii < keys.length; ii++) { 
-	if(LOCATION_AGGREGATION.includes(keys[ii])) {
-	    console.debug("LOC AGG true :", key, state[key])
+  const keys = Object.keys(state)
+  for (let ii = 0; ii < keys.length; ii++) {
+    if (FUND_AGGREGATION.includes(keys[ii])) {
+	    console.debug('AGG FUND true :', key, state[key])
 	    return true
-	}
     }
+  }
 
-
-    console.debug("LOC AGG false :",key, state.groupBy, key)
-    return false
-    
-
-
+  console.debug('AGG FUND false :', key, state.groupBy, key)
+  return false
 }
-export const checkCommodityAggregation = (key,state, config, options) => {
-    console.debug(state.groupBySticky, " VS ", COMMODITY_AGGREGATION);
-    if(COMMODITY_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
-	console.debug("COM AGG dfk true :", key, state[key])
-	return true
-    } else if(COMMODITY_AGGREGATION.includes(state.groupBy) || COMMODITY_AGGREGATION.includes(state.groupBySticky) ) {
-	console.debug("COM AGG true gb :", key, state.groupBy)
-	return true
-    }
+export const checkLocationAggregation = (key, state, config, options) => {
+  if (LOCATION_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
+    console.debug('LOC AGG dfk true :', key, state[key])
+    return true
+  }
+  else if (LOCATION_AGGREGATION.includes(state.groupBy)) {
+    console.debug('LOC AGG true gb :', key, state.groupBy)
+    return true
+  }
 
-
-    let keys=Object.keys(state)
-    for(let ii = 0; ii < keys.length; ii++) { 
-	if(COMMODITY_AGGREGATION.includes(keys[ii])) {
-	    console.debug("COM AGG true :", key, state[key])
+  const keys = Object.keys(state)
+  for (let ii = 0; ii < keys.length; ii++) {
+    if (LOCATION_AGGREGATION.includes(keys[ii])) {
+	    console.debug('LOC AGG true :', key, state[key])
 	    return true
-	}
     }
+  }
 
-
-    console.debug("COM AGG false :",key, state.groupBy, key)
-    return false
-    
-
-
+  console.debug('LOC AGG false :', key, state.groupBy, key)
+  return false
 }
+export const checkCommodityAggregation = (key, state, config, options) => {
+  console.debug(state.groupBySticky, ' VS ', COMMODITY_AGGREGATION)
+  if (COMMODITY_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
+    console.debug('COM AGG dfk true :', key, state[key])
+    return true
+  }
+  else if (COMMODITY_AGGREGATION.includes(state.groupBy) || COMMODITY_AGGREGATION.includes(state.groupBySticky)) {
+    console.debug('COM AGG true gb :', key, state.groupBy)
+    return true
+  }
 
+  const keys = Object.keys(state)
+  for (let ii = 0; ii < keys.length; ii++) {
+    if (COMMODITY_AGGREGATION.includes(keys[ii])) {
+	    console.debug('COM AGG true :', key, state[key])
+	    return true
+    }
+  }
+
+  console.debug('COM AGG false :', key, state.groupBy, key)
+  return false
+}
 
 /**
  * Helper method to get the values for a specific data filter input/property
@@ -296,21 +279,20 @@ export const checkCommodityAggregation = (key,state, config, options) => {
  * @param {array} config
  */
 export const getDataFilterValue = (key, state) => {
-    switch (key) {
-      case PERIOD:
+  switch (key) {
+  case PERIOD:
 	  return (!state[key]) ? undefined : state[key]
-      case FISCAL_YEAR:
+  case FISCAL_YEAR:
 	  return (state[PERIOD] === PERIOD_FISCAL_YEAR)
 	       ? state[key]?.split(',')
 	       : undefined
-      case CALENDAR_YEAR:
+  case CALENDAR_YEAR:
 	  return (state[PERIOD] === PERIOD_CALENDAR_YEAR || state[PERIOD] === PERIOD_MONTHLY) ? state[key]?.split(',') : undefined
-      case MONTH_LONG:
+  case MONTH_LONG:
 	  return undefined
   }
-    return (!state[key]) ? undefined : state[key].split(',')
+  return (!state[key]) ? undefined : state[key].split(',')
 }
-
 
 /**
  * Helper method to create the variable list for the query
@@ -321,16 +303,12 @@ export const getDataFilterValue = (key, state) => {
 export const getDataFilterVariableList = (state, config, options) => {
   let result = ''
   config.forEach(prop => {
-      
-      const key = Object.keys(prop)[0]
+    const key = Object.keys(prop)[0]
 	      result = result.concat(`$${ key }: ${ prop[key] }`)
-
   })
-    
-    
-    return result
-}
 
+  return result
+}
 
 /*
 

@@ -23,7 +23,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const FISCAL = gql`
     query TotalYearlyRevenue($period_group: String!, $breakout_group: String!)  {  
-	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc, sort_order: asc}) {
+	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc, fiscal_month: asc, sort_order: asc}) {
 	    period
 	    sum
 	    source
@@ -41,7 +41,7 @@ const FISCAL = gql`
 
 const CALENDAR = gql`
     query TotalYearlyRevenue($period_group: String!, $breakout_group: String!) {  
-	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {calendar_year: asc, sort_order: asc}) {
+	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {calendar_year: asc, month: asc, sort_order: asc}) {
 	    period
 	    sum
 	    source
@@ -58,7 +58,7 @@ const CALENDAR = gql`
 
 const TOTAL_REVENUE_QUERY = gql`
     query TotalYearlyRevenue($period_group: String!, $breakout_group: String!) {
-	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc, sort_order: asc}) {
+	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc,fiscal_month: asc,  sort_order: asc}) {
 	    period
 	    sum
 	    source
@@ -71,7 +71,7 @@ const TOTAL_REVENUE_QUERY = gql`
 	    monthLong: month_long
 	}
 
-	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc, sort_order: asc}) {
+	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {calendar_year: asc, month: asc, sort_order: asc}) {
 	    period
 	    sum
 	    source
@@ -82,7 +82,7 @@ const TOTAL_REVENUE_QUERY = gql`
 	    monthLong: month_long
 	}
 
-	total_monthly_fiscal_revenue {
+	total_monthly_fiscal_revenue( order_by: {year: asc, month: asc, sort_order: asc})  {
 	    source: land_type
 	    sum
 	    month_long
@@ -94,7 +94,7 @@ const TOTAL_REVENUE_QUERY = gql`
 	    commodity
 	}
 
-	total_monthly_calendar_revenue {
+	total_monthly_calendar_revenue( order_by: {year: asc, month: asc, sort_order: asc}) {
 	    source: land_type
 	    sum
 	    month_long
@@ -106,7 +106,7 @@ const TOTAL_REVENUE_QUERY = gql`
 	    commodity
 	}
 
-	total_monthly_last_twelve_revenue {
+	total_monthly_last_twelve_revenue( order_by: {year: asc, month: asc, sort_order: asc}) {
 	    source: land_type
 	    sum
 	    month_long
@@ -119,7 +119,7 @@ const TOTAL_REVENUE_QUERY = gql`
 	    commodity
 	}
 
-	total_monthly_last_three_years_revenue {
+	total_monthly_last_three_years_revenue( order_by: {year: asc, month: asc, sort_order: asc}) {
 	    source: land_type
 	    sum
 	    month_long
@@ -150,19 +150,18 @@ const TOTAL_REVENUE_QUERY = gql`
  */
 // TotalRevenue component
 const TotalRevenue = props => {
-    const theme = useTheme()
-    const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-    filterState.period=(filterState.monthly !== DFC.MONTHLY_CAPITALIZED && filterState.period === "Most recent 12 months") ? DFC.PERIOD_FISCAL_YEAR : filterState.period
-    const { monthly, period, breakoutBy, dataType, periodAllYears } = filterState
-    const revenueComparison = useRef(null)
+  const theme = useTheme()
+  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  filterState.period = (filterState.monthly !== DFC.MONTHLY_CAPITALIZED && filterState.period === 'Most recent 12 months') ? DFC.PERIOD_FISCAL_YEAR : filterState.period
+  const { monthly, period, breakoutBy, dataType, periodAllYears } = filterState
+  const revenueComparison = useRef(null)
 
-    const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
-    const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
-    let QUERY = FISCAL
-    let VARIABLES = { period_group: 'Fiscal Year', breakout_group: 'source' }
+  const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
+  const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
+  let QUERY = FISCAL
+  let VARIABLES = { period_group: 'Fiscal Year', breakout_group: 'source' }
 
-    if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
-
+  if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
     QUERY = FISCAL
     VARIABLES = { period_group: period || 'Fiscal Year', breakout_group: breakoutBy || 'source' }
   }
@@ -171,8 +170,7 @@ const TotalRevenue = props => {
     VARIABLES = { period_group: filterState.period || 'Calendar Year', breakout_group: filterState.breakoutBy || 'source' }
   }
   else {
-    console.debug('DEFAULT')
-      VARIABLES = { period_group: filterState.period || 'Fiscal Year', breakout_group: filterState.breakoutBy || 'source' }
+    VARIABLES = { period_group: filterState.period || 'Fiscal Year', breakout_group: filterState.breakoutBy || 'source' }
     QUERY = TOTAL_REVENUE_QUERY
   }
 
@@ -239,7 +237,7 @@ const TotalRevenue = props => {
 
   if (data) {
     // console.log('TotalRevenue data: ', data)
-    console.debug('Period all years:', periodAllYears)
+
     maxFiscalYear = periodAllYears[periodAllYears.length - 1]
     maxCalendarYear = periodAllYears[periodAllYears.length - 1]
 
@@ -334,12 +332,11 @@ const TotalRevenue = props => {
       }
     }
     else {
-	console.debug("=============================PERIOD===================================+>", period)
       if (period === DFC.PERIOD_FISCAL_YEAR) {
 	  currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
         switch (yGroupBy) {
         case 'revenue_type':
-		  comparisonData = data.total_yearly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
+          comparisonData = data.total_yearly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_yearly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.revenue_type)))
           break
         case 'commodity':
@@ -353,11 +350,12 @@ const TotalRevenue = props => {
           break
         }
         xGroups[DFC.PERIOD_FISCAL_YEAR] = chartData.map((row, i) => row.year)
-
         data.total_yearly_fiscal_revenue.filter(item => {
           if (item.year === (maxFiscalYear + 1)) {
-            if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
-          }
+            if (monthRange.indexOf(item.monthLong) === -1) {
+              monthRange.push(item.monthLong)
+	    }
+	  }
         })
       }
       else {
