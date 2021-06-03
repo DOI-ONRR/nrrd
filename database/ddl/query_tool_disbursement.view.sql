@@ -26,6 +26,7 @@ CREATE VIEW public.query_tool_disbursement AS
             WHEN ((location.state_name)::text <> ''::text) THEN (location.state_name)::text
             ELSE (location.location_name)::text
         END AS state_name,
+    location.location_order,
         CASE
             WHEN ((location.region_type)::text = 'County'::text) THEN concat(location.state_name, ', ', location.county, ' ', location.district_type)
             WHEN ((location.region_type)::text = 'State'::text) THEN concat('Disbursements to ', location.state_name)

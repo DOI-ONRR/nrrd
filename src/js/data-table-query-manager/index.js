@@ -5,6 +5,9 @@ import {
   DISBURSEMENT,
   LOCATION_NAME,
   LAND_TYPE,
+G1, 
+G2,
+G3,
   REGION_TYPE,
   DISTRICT_TYPE,
   OFFSHORE_REGION,
@@ -67,62 +70,81 @@ export default DataTableQueryManager
 const VARIABLES = {
   [REVENUE]: state => ({
     variables: {
-      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS || !state[LAND_TYPE]) ? undefined : state[LAND_TYPE].split(','),
-      [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
-      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
-      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
-      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
-      [REVENUE_TYPE]: (state[REVENUE_TYPE] === ZERO_OPTIONS || !state[REVENUE_TYPE]) ? undefined : state[REVENUE_TYPE].split(','),
-      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
+	[LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS || !state[LAND_TYPE]) ? undefined : state[LAND_TYPE].split(','),
+	[OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
+	[US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
+	[COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+	[COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
+	[REVENUE_TYPE]: (state[REVENUE_TYPE] === ZERO_OPTIONS || !state[REVENUE_TYPE]) ? undefined : state[REVENUE_TYPE].split(','),
+	[G1]: state[G1],
+	[G2]: state[G2],
+	[G3]: state[G3],
+	[PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
   }),
-  [PRODUCTION]: state => ({
+    [PRODUCTION]: state => ({
     variables: {
-      [LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS || !state[LAND_TYPE]) ? undefined : state[LAND_TYPE].split(','),
-      [OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
-      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
-      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
-      [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
-      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
+	[LAND_TYPE]: (state[LAND_TYPE] === ZERO_OPTIONS || !state[LAND_TYPE]) ? undefined : state[LAND_TYPE].split(','),
+	[OFFSHORE_REGION]: (state[OFFSHORE_REGION] === ZERO_OPTIONS || !state[OFFSHORE_REGION]) ? undefined : state[OFFSHORE_REGION].split(','),
+	[US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
+	[COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+	[COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
+      	[G1]: state[G1],
+	[G2]: state[G2],
+	[G3]: state[G3],
+	[PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
-  }),
-  [DISBURSEMENT]: state => ({
+    }),
+    [DISBURSEMENT]: state => ({
     variables: {
-      [RECIPIENT]: (state[RECIPIENT] === ZERO_OPTIONS || !state[RECIPIENT]) ? undefined : state[RECIPIENT].split(','),
-      [SOURCE]: (state[SOURCE] === ZERO_OPTIONS || !state[SOURCE]) ? undefined : state[SOURCE].split(','),
-      [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
-      [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
-      [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
+	[RECIPIENT]: (state[RECIPIENT] === ZERO_OPTIONS || !state[RECIPIENT]) ? undefined : state[RECIPIENT].split(','),
+	[SOURCE]: (state[SOURCE] === ZERO_OPTIONS || !state[SOURCE]) ? undefined : state[SOURCE].split(','),
+	[US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
+	[COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+	[G1]: state[G1],
+	[G2]: state[G2],
+	[G3]: state[G3],
+	[PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
-  })
+    })
 }
 
 const VARIABLE_LIST_REVENUE = ''.concat(
-  '$landType: [String!],',
-  '$landCategory: String,',
-  '$offshoreRegion: [String!],',
-  '$state: [String!],',
-  '$county: [String!],',
-  '$commodity: [String!],',
-  '$revenueType: [String!],',
-  '$period: String,'
+    '$landType: [String!],',
+    '$landCategory: String,',
+    '$offshoreRegion: [String!],',
+    '$state: [String!],',
+    '$county: [String!],',
+    '$commodity: [String!],',
+    '$revenueType: [String!],',
+    '$period: String,',
+    '$g1: String,',
+    '$g2: String,',
+    '$g3: String,'
+
 )
 const VARIABLE_LIST_PRODUCTION = ''.concat(
-  '$landType: [String!],',
-  '$landClass: String,',
-  '$landCategory: String,',
-  '$offshoreRegion: [String!],',
-  '$state: [String!],',
-  '$county: [String!],',
-  '$commodity: [String!],',
-  '$period: String,'
+    '$landType: [String!],',
+    '$landClass: String,',
+    '$landCategory: String,',
+    '$offshoreRegion: [String!],',
+    '$state: [String!],',
+    '$county: [String!],',
+    '$commodity: [String!],',
+    '$period: String,',
+    '$g1: String,',
+    '$g2: String,',
+    '$g3: String,'
 )
 const VARIABLE_LIST_DISBURSEMENT = ''.concat(
-  '$recipient: [String!],',
-  '$source: [String!],',
-  '$state: [String!],',
-  '$county: [String!],',
-  '$period: String,'
+    '$recipient: [String!],',
+    '$source: [String!],',
+    '$state: [String!],',
+    '$county: [String!],',
+    '$period: String,',
+    '$g1: String,',
+    '$g2: String,',
+    '$g3: String,'
 )
 
 const REVENUE_QUERY = `
@@ -188,7 +210,7 @@ const DISBURSEMENT_QUERY = `
  * Get the queries based on data type and the data filter option
  */
 const QUERIES = {
-  [REVENUE]: gql`query GetDataTableRevenue(${ VARIABLE_LIST_REVENUE }){${ REVENUE_QUERY }}`,
-  [PRODUCTION]: gql`query GetDataTableProduction(${ VARIABLE_LIST_PRODUCTION }){${ PRODUCTION_QUERY }}`,
-  [DISBURSEMENT]: gql`query GetDataTableProduction(${ VARIABLE_LIST_DISBURSEMENT }){${ DISBURSEMENT_QUERY }}`,
+    [REVENUE]: gql`query GetDataTableRevenue(${ VARIABLE_LIST_REVENUE }){${ REVENUE_QUERY }}`,
+    [PRODUCTION]: gql`query GetDataTableProduction(${ VARIABLE_LIST_PRODUCTION }){${ PRODUCTION_QUERY }}`,
+    [DISBURSEMENT]: gql`query GetDataTableProduction(${ VARIABLE_LIST_DISBURSEMENT }){${ DISBURSEMENT_QUERY }}`,
 }

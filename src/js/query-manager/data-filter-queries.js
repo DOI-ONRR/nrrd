@@ -12,7 +12,10 @@ import {
   RECIPIENT,
   SOURCE,
   FISCAL_YEAR,
-  US_STATE_NAME
+  US_STATE_NAME,
+  G1,
+  G2,
+  G3
 } from '../../constants'
 
 import {
@@ -82,7 +85,7 @@ const DATA_FILTER_QUERIES = {
         option: ${ DB_COLS[REVENUE_TYPE] }
       }`),
   [STATE_OFFSHORE_NAME]: (view, whereClause) => (
-    `options:${ view }(
+      `options:${ view }(
       where: {
         ${ whereClause }
       },
@@ -91,8 +94,8 @@ const DATA_FILTER_QUERIES = {
       ) {
         option: ${ DB_COLS[STATE_OFFSHORE_NAME] }
       }`),
-  [LAND_TYPE]: (view, whereClause) => (
-    `options:${ view }(
+    [LAND_TYPE]: (view, whereClause) => (
+	`options:${ view }(
       where: {
         ${ whereClause }
       },
@@ -101,8 +104,8 @@ const DATA_FILTER_QUERIES = {
       ) {
         option: ${ DB_COLS[LAND_TYPE] }
       }`),
-  [PRODUCT]: (view, whereClause) => (
-    `options:${ view }(
+    [PRODUCT]: (view, whereClause) => (
+	`options:${ view }(
       where: {
         ${ whereClause }
       },
@@ -111,8 +114,8 @@ const DATA_FILTER_QUERIES = {
       ) {
         option: ${ DB_COLS[PRODUCT] }
       }`),
-  [RECIPIENT]: (view, whereClause) => (
-    `options:${ view }(
+    [RECIPIENT]: (view, whereClause) => (
+	`options:${ view }(
       where: {
         ${ whereClause }
       },
@@ -121,8 +124,8 @@ const DATA_FILTER_QUERIES = {
       ) {
         option: ${ DB_COLS[RECIPIENT] }
       }`),
-  [SOURCE]: (view, whereClause) => (
-    `options:${ view }(
+    [SOURCE]: (view, whereClause) => (
+	`options:${ view }(
       where: {
         ${ whereClause }
       },
@@ -131,20 +134,50 @@ const DATA_FILTER_QUERIES = {
       ) {
         option: ${ DB_COLS[SOURCE] }
       }`),
-  [US_STATE_NAME]: (view, whereClause) => (
-    `options:${ view }(
+    [US_STATE_NAME]: (view, whereClause) => (
+	`options:${ view }(
       where: {
         ${ whereClause }
       },
-      distinct_on: ${ DB_COLS[US_STATE_NAME] },
-      order_by: {${ DB_COLS[US_STATE_NAME] }: asc}
+      distinct_on: location_order,
+      order_by: {location_order: asc}
       ) {
         option: ${ DB_COLS[US_STATE_NAME] }
+      }`),
+    [G1]: (view, whereClause) => (
+	`options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[G1] },
+      order_by: {${ DB_COLS[G1] }: asc}
+      ) {
+        option: ${ DB_COLS[G1] }
+      }`),
+    [G2]: (view, whereClause) => (
+	`options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[G2] },
+      order_by: {${ DB_COLS[G2] }: asc}
+      ) {
+        option: ${ DB_COLS[G2] }
+      }`),
+    [G3]: (view, whereClause) => (
+	`options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[G3] },
+      order_by: {${ DB_COLS[G3] }: asc}
+      ) {
+        option: ${ DB_COLS[G3] }
       }`),
 }
 
 export default (view, dataFilterKey, whereClause) => {
-  if (!DATA_FILTER_QUERIES[dataFilterKey]) {
+    if (!DATA_FILTER_QUERIES[dataFilterKey]) {
     throw Error(`A data filter query does not exist for ${ dataFilterKey }. Please add query for this key.`)
   }
   return DATA_FILTER_QUERIES[dataFilterKey](view, whereClause)
