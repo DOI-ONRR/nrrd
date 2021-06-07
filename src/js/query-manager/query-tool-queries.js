@@ -1,52 +1,52 @@
 
 import {
-    DATA_FILTER_KEY,
-    EXCLUDE_PROPS,
-    REVENUE,
-    PRODUCTION,
-    DISBURSEMENT,
-    REVENUE_BY_COMPANY,
-    COMPANY_NAME,
-    LAND_TYPE,
-    G1,
-    G2,
-    G3,
-    OFFSHORE_REGION,
-    US_STATE,
-    US_STATE_NAME,
-    COUNTY,
-    COUNTY_NAME,
-    COMMODITY,
-    COMMODITY_ORDER,
-    PRODUCT,
-    REVENUE_TYPE,
-    PERIOD,
-    RECIPIENT,
-    SOURCE,
-    SINGLE_STR,
-    MULTI_STR,
-    MULTI_INT,
-    ALL_DISBURSEMENT_YEARS,
-    ALL_REVENUE_YEARS,
-    ALL_REVENUE_BY_COMPANY_YEARS,
-    ALL_PRODUCTION_YEARS,
-    ALL_PRODUCTION_MONTHLY_YEARS,
-    DATA_TYPE,
-    STATE_OFFSHORE_NAME,
-    FISCAL_YEAR,
-    CALENDAR_YEAR,
-    LOCAL_RECIPIENT,
-    PERIOD_MONTHLY,
-    MONTH_LONG
+  DATA_FILTER_KEY,
+  EXCLUDE_PROPS,
+  REVENUE,
+  PRODUCTION,
+  DISBURSEMENT,
+  REVENUE_BY_COMPANY,
+  COMPANY_NAME,
+  LAND_TYPE,
+  G1,
+  G2,
+  G3,
+  OFFSHORE_REGION,
+  US_STATE,
+  US_STATE_NAME,
+  COUNTY,
+  COUNTY_NAME,
+  COMMODITY,
+  COMMODITY_ORDER,
+  PRODUCT,
+  REVENUE_TYPE,
+  PERIOD,
+  RECIPIENT,
+  SOURCE,
+  SINGLE_STR,
+  MULTI_STR,
+  MULTI_INT,
+  ALL_DISBURSEMENT_YEARS,
+  ALL_REVENUE_YEARS,
+  ALL_REVENUE_BY_COMPANY_YEARS,
+  ALL_PRODUCTION_YEARS,
+  ALL_PRODUCTION_MONTHLY_YEARS,
+  DATA_TYPE,
+  STATE_OFFSHORE_NAME,
+  FISCAL_YEAR,
+  CALENDAR_YEAR,
+  LOCAL_RECIPIENT,
+  PERIOD_MONTHLY,
+  MONTH_LONG
 } from '../../constants'
 import gql from 'graphql-tag'
 
 // Helper functions for using a variable config to create the vairable list and values
 import {
-    getDataFilterVariableValues,
-    getDataFilterVariableList,
-    getDataFilterWhereClauses,
-    DATA_FILTER_KEY_TO_DB_COLUMNS as DB_COLS
+  getDataFilterVariableValues,
+  getDataFilterVariableList,
+  getDataFilterWhereClauses,
+  DATA_FILTER_KEY_TO_DB_COLUMNS as DB_COLS
 } from './index'
 
 import getDataFilterQuery from './data-filter-queries'
@@ -55,52 +55,52 @@ import getDataFilterQuery from './data-filter-queries'
 
 // This is a simple data filter variable config that specifies which variables are used by the query and the type
 const VARIABLE_CONFIGS = {
+  [REVENUE]: [
+    { [G1]: SINGLE_STR },
+    { [G2]: SINGLE_STR },
+    { [G3]: SINGLE_STR },
+    { [LAND_TYPE]: MULTI_STR },
+    { [COUNTY]: MULTI_STR },
+    { [COMMODITY]: MULTI_STR },
+    { [REVENUE_TYPE]: MULTI_STR },
+    { [STATE_OFFSHORE_NAME]: MULTI_STR },
+    { [PERIOD]: SINGLE_STR },
+    { [FISCAL_YEAR]: MULTI_INT },
+    { [CALENDAR_YEAR]: MULTI_INT }
+  ],
+  [PRODUCTION]: [
+    { [LAND_TYPE]: MULTI_STR },
+    { [COUNTY]: MULTI_STR },
+    { [PRODUCT]: MULTI_STR },
+    { [STATE_OFFSHORE_NAME]: MULTI_STR },
+    { [PERIOD]: SINGLE_STR },
+    { [FISCAL_YEAR]: MULTI_INT },
+    { [CALENDAR_YEAR]: MULTI_INT },
+    { [MONTH_LONG]: MULTI_STR }
+  ],
+  [DISBURSEMENT]: [
+    { [RECIPIENT]: MULTI_STR },
+    { [SOURCE]: MULTI_STR },
+    { [US_STATE_NAME]: MULTI_STR },
+    { [LOCAL_RECIPIENT]: MULTI_STR },
+    { [PERIOD]: SINGLE_STR },
+    { [FISCAL_YEAR]: MULTI_INT },
+    { [CALENDAR_YEAR]: MULTI_INT },
+    { [COMMODITY]: MULTI_STR },
+  ],
+  [REVENUE_BY_COMPANY]: [
+    { [PERIOD]: SINGLE_STR },
+    { [COMMODITY]: MULTI_STR },
+    { [REVENUE_TYPE]: MULTI_STR },
+    { [COMPANY_NAME]: MULTI_STR },
+    { [CALENDAR_YEAR]: MULTI_INT }
+  ],
+  ALL_YEARS: {
     [REVENUE]: [
-	{ [G1] : SINGLE_STR},
-	{ [G2] : SINGLE_STR},
-	{ [G3] : SINGLE_STR},
-	{ [LAND_TYPE]: MULTI_STR },
-	{ [COUNTY]: MULTI_STR },
-	{ [COMMODITY]: MULTI_STR },
-	{ [REVENUE_TYPE]: MULTI_STR },
-	{ [STATE_OFFSHORE_NAME]: MULTI_STR },
-	{ [PERIOD]: SINGLE_STR },
-	{ [FISCAL_YEAR]: MULTI_INT },
-	{ [CALENDAR_YEAR]: MULTI_INT }
-    ],
-    [PRODUCTION]: [
-	{ [LAND_TYPE]: MULTI_STR },
-	{ [COUNTY]: MULTI_STR },
-	{ [PRODUCT]: MULTI_STR },
-	{ [STATE_OFFSHORE_NAME]: MULTI_STR },
-	{ [PERIOD]: SINGLE_STR },
-	{ [FISCAL_YEAR]: MULTI_INT },
-	{ [CALENDAR_YEAR]: MULTI_INT },
-	{ [MONTH_LONG]: MULTI_STR }
-    ],
-    [DISBURSEMENT]: [
-	{ [RECIPIENT]: MULTI_STR },
-	{ [SOURCE]: MULTI_STR },
-	{ [US_STATE_NAME]: MULTI_STR },
-	{ [LOCAL_RECIPIENT]: MULTI_STR },
-	{ [PERIOD]: SINGLE_STR },
-	{ [FISCAL_YEAR]: MULTI_INT },
-	{ [CALENDAR_YEAR]: MULTI_INT },
-	{ [COMMODITY]: MULTI_STR },
-    ],
-    [REVENUE_BY_COMPANY]: [
-	{ [PERIOD]: SINGLE_STR },
-	{ [COMMODITY]: MULTI_STR },
-	{ [REVENUE_TYPE]: MULTI_STR },
-	{ [COMPANY_NAME]: MULTI_STR },
-	{ [CALENDAR_YEAR]: MULTI_INT }
-    ],
-    ALL_YEARS: {
-    [REVENUE]: [
- 	{ [G1] : SINGLE_STR},
-	{ [G2] : SINGLE_STR},
-	{ [G3] : SINGLE_STR},  
-	{ [LAND_TYPE]: MULTI_STR },
+      { [G1]: SINGLE_STR },
+      { [G2]: SINGLE_STR },
+      { [G3]: SINGLE_STR },
+      { [LAND_TYPE]: MULTI_STR },
       { [COUNTY]: MULTI_STR },
       { [COMMODITY]: MULTI_STR },
       { [REVENUE_TYPE]: MULTI_STR },
@@ -144,7 +144,7 @@ const VIEWS = {
   [REVENUE_BY_COMPANY]: 'query_tool_fed_revenue_by_company'
 }
 const REVENUE_QUERY = whereClause => (
-    `results:${ VIEWS[REVENUE] }(
+  `results:${ VIEWS[REVENUE] }(
     where: {
       ${ whereClause }
     }) {
@@ -177,7 +177,7 @@ const REVENUE_QUERY = whereClause => (
 )
 
 const PRODUCTION_QUERY = whereClause => (
-    `results:${ VIEWS[PRODUCTION] }(
+  `results:${ VIEWS[PRODUCTION] }(
     where: {
       ${ whereClause }
     }) {
@@ -204,7 +204,7 @@ const PRODUCTION_QUERY = whereClause => (
   }`)
 
 const DISBURSEMENT_QUERY = whereClause => (
-    `results:${ VIEWS[DISBURSEMENT] }(
+  `results:${ VIEWS[DISBURSEMENT] }(
     where: {
       ${ whereClause }
     }) {
@@ -233,7 +233,7 @@ const DISBURSEMENT_QUERY = whereClause => (
   }`)
 
 const REVENUE_BY_COMPANY_QUERY = whereClause => (
-    `results:${ VIEWS[REVENUE_BY_COMPANY] }(
+  `results:${ VIEWS[REVENUE_BY_COMPANY] }(
     where: {
       ${ whereClause }
     }) {
@@ -260,7 +260,7 @@ const REVENUE_BY_COMPANY_QUERY = whereClause => (
  */
 export const getQuery = (state, options) => {
   if (options[DATA_FILTER_KEY]) {
-      return QUERIES.DATA_FILTERS(state, VARIABLE_CONFIGS[state[DATA_TYPE]], options)
+    return QUERIES.DATA_FILTERS(state, VARIABLE_CONFIGS[state[DATA_TYPE]], options)
   }
   return QUERIES[state[DATA_TYPE]](state, VARIABLE_CONFIGS[state[DATA_TYPE]])
 }
