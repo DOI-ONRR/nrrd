@@ -71,8 +71,8 @@ export const GroupBySelectInput = compose(
   BaseComponent => withDataFilterContext(BaseComponent, GROUP_BY))(BaseSelectInput)
 
 export const BreakoutBySelectInput = compose(
-  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[BREAKOUT_BY].default} showClearSelected={false} {...props} />),
-  BaseComponent => withDataFilterContext(BaseComponent, BREAKOUT_BY))(BaseSelectInput)
+    BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[BREAKOUT_BY].default} showClearSelected={false} {...props} />),
+    BaseComponent => withDataFilterContext(BaseComponent, BREAKOUT_BY))(BaseSelectInput)
 
 export const FilterToggleInput = ({ children, ...props }) => <BaseToggle data={['Filter']} {...props}>{children}</BaseToggle>
 
@@ -80,5 +80,6 @@ export const MapLevelToggleInput = withDataFilterContext(BaseMultiToggle, MAP_LE
 export const OffshoreRegionsSwitchInput = withDataFilterContext(BaseSwitch, OFFSHORE_REGIONS)
 export const YearlyMonthlyToggleInput = withDataFilterContext(BaseMultiToggle, MONTHLY)
 export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
+export const ProductSelectInput = createEnhancedSelect(PRODUCT, 'Multi')
 
 export const GlossaryCategorySelectInput = ({ data, children, ...props }) => <BaseSelectInput data={data} {...props}>{children}</BaseSelectInput>

@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import {
   BreakoutBySelectInput,
-  CommoditySelectInput,
+  ProductSelectInput,
   PeriodSelectInput,
   YearlyMonthlyToggleInput
 } from '../../inputs'
@@ -49,7 +49,7 @@ const HomeDataFilters = props => {
   const classes = useStyles()
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { monthly, dataType, year, commodity, fiscalYear, calendarYear } = filterState
+  const { monthly, dataType, year, product, fiscalYear, calendarYear } = filterState
   console.debug('FilterState ---------------------------------------------------------------------->')
   console.debug(filterState)
   const maxFiscalYear = fiscalYear
@@ -75,14 +75,14 @@ const HomeDataFilters = props => {
       [DFC.REVENUE]: [
         { value: DFC.SOURCE, option: 'Source' },
         { value: 'revenue_type', option: 'Revenue Type' },
-        { value: 'commodity', option: 'Commodity' }
+        { value: 'product', option: 'Product' }
       ],
       [DFC.DISBURSEMENT]: [
         { value: DFC.SOURCE, option: 'Source' },
         { value: DFC.RECIPIENT, option: 'Recipient' },
       ]
     },
-    [DFC.COMMODITY]: [
+    [DFC.PRODUCT]: [
       { value: 'Oil (bbl)', option: 'Oil (bbl)' },
       { value: 'Gas (mcf)', option: 'Gas (mcf)' },
       { value: 'Coal (tons)', option: 'Coal (tons)' }
@@ -94,6 +94,8 @@ const HomeDataFilters = props => {
       updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
     }
     else {
+
+	console.debug("==========================================================>", "Do we update", monthly, filterState)
       updateDataFilter({ ...filterState, [DFC.PERIOD]: DFC.PERIOD_FISCAL_YEAR })
     }
   }, [monthly])
@@ -130,11 +132,11 @@ const HomeDataFilters = props => {
           showClearSelected={false} />
       }
       {dataType === DFC.PRODUCTION &&
-        <CommoditySelectInput
-          dataFilterKey={DFC.COMMODITY}
-          data={MENU_OPTIONS[DFC.COMMODITY]}
-          selected={commodity || MENU_OPTIONS[DFC.COMMODITY][0].option}
-          label="Commodity"
+        <ProductSelectInput
+          dataFilterKey={DFC.PRODUCT}
+          data={MENU_OPTIONS[DFC.PRODUCT]}
+          selected={product || MENU_OPTIONS[DFC.PRODUCT][0].option}
+          label="Product"
           selectType="Single"
           showClearSelected={false} />
       }

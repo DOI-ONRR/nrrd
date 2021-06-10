@@ -106,6 +106,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
   // xDomain
   const xDomain = () => {
     try {
+	console.debug("xDomain() ", data)
       const r = data.map((row, i) => {
         return row[xAxis]
       })

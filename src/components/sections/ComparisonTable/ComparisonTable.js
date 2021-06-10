@@ -60,9 +60,10 @@ const ComparisonTable = forwardRef((props, ref) => {
   console.debug('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
-  const { period, monthly, year, dataType, commodity } = filterState
+    const { period, monthly, year, dataType, product } = filterState
+    console.debug(' -=--------------------> data -=--->', data)
   const [selectedItem, setSelectedItem] = useState({
-    month: data[data.length - 1].month_long ? data[data.length - 1].month_long : data[data.length - 1].monthLong,
+    month: data[data.length - 1].month_long,
     year: data[data.length - 1].year || year
   })
 
@@ -86,7 +87,7 @@ const ComparisonTable = forwardRef((props, ref) => {
       }
       else {
         const currentSelectedYearData = data.filter(item => item.year === d)
-        const currentSelectedYearDataMaxMonth = currentSelectedYearData[currentSelectedYearData.length - 1].monthLong
+        const currentSelectedYearDataMaxMonth = currentSelectedYearData[currentSelectedYearData.length - 1].month_long
         const year = d
         setSelectedItem({ ...selectedItem, year: year, month: currentSelectedYearDataMaxMonth })
       }
@@ -126,12 +127,14 @@ const ComparisonTable = forwardRef((props, ref) => {
     }
     else {
       let previousSum = {}
-      // check for comparison with current fiscal month range
-      if (period === DFC.PERIOD_FISCAL_YEAR && selectedItem.month !== 'September') {
-        previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
+	console.debug(" ------- previousYEAR ------ ", previousYear, "---- previousSUM ---", previousSum, " --- item ---",  item )
+	// check for comparison with current fiscal month range
+	if (period === DFC.PERIOD_FISCAL_YEAR && selectedItem.month !== 'September') {
+            previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
       }
-      else if (period === DFC.PERIOD_CALENDAR_YEAR && selectedItem.month !== 'December') {
-        previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
+
+	else if (period === DFC.PERIOD_CALENDAR_YEAR && selectedItem.month !== 'December') {
+			  previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
       }
       else {
         previousSum = item[1].filter(item => item.year === previousYear).reduce((prev, curr) => prev + curr.sum, 0)
@@ -160,7 +163,8 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   // unit text, grab unit from string looking for parens
   const regExp = /\(([^)]+)\)/
-  const unitText = commodity.match(regExp)[0]
+  const unitText = product.match(regExp)[0]
+
 
   // Comparison Text
   let comparisonText
@@ -196,11 +200,12 @@ const ComparisonTable = forwardRef((props, ref) => {
       return utils.formatToDollarInt(sum)
     }
   }
-
-  return (
-    <Box ref={ref}>
-      {comparisonTitle && <ChartTitle compact={false}>{comparisonTitle}</ChartTitle>}
-      <Box className={classes.comparisonTableContent}>
+    console.debug("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCdata ", cData)
+    console.debug(currentYearTotal+" && "+previousYearTotal+" && "+currentYearTotal +"!== 0 && " + previousYearTotal +" !== 0")
+    return (
+	<Box ref={ref}>
+	{comparisonTitle && <ChartTitle compact={false}>{comparisonTitle}</ChartTitle>}
+	<Box className={classes.comparisonTableContent}>
         {monthly === DFC.MONTHLY_CAPITALIZED ? monthlyComparisonText : yearlyComparisonText }
       </Box>
       <TableContainer className={classes.comparisonTable}>
@@ -257,22 +262,22 @@ const ComparisonTable = forwardRef((props, ref) => {
               <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
                 <Box fontWeight="bold">
                   {previousYearTotal !== 0 ? formatSum(previousYearTotal) : '-'}
-                </Box>
-              </TableCell>
-              <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
-                <Box fontWeight="bold">
-                  {((currentYearTotal && previousYearTotal) && (currentYearTotal !== 0 && previousYearTotal !== 0))
+    </Box>
+		</TableCell>
+		<TableCell align="right" classes={{ root: classes.tableCellRoot }}>
+                  <Box fontWeight="bold">
+                    {((currentYearTotal && previousYearTotal) && (currentYearTotal !== 0 && previousYearTotal !== 0))
                     ? <PercentDifference
-                      currentAmount={currentYearTotal}
-                      previousAmount={previousYearTotal}
+			  currentAmount={currentYearTotal}
+			  previousAmount={previousYearTotal}
                     />
                     : '-'
-                  }
-                </Box>
-              </TableCell>
+                    }
+                  </Box>
+		</TableCell>
             </TableRow>
           </TableBody>
-		      </Table>
+      </Table>
 		    </TableContainer>
     </Box>
 
