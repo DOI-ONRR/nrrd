@@ -126,6 +126,8 @@ const TotalProduction = props => {
   let monthRangeText
   let currentYearSoFarText
   let currentMonthNum
+  let [commodity, unit_abbrev] = product.split(' (')
+    unit_abbrev='('+unit_abbrev
 
   if (loading) {
     return 'Loading...'
@@ -260,6 +262,7 @@ const TotalProduction = props => {
           <Grid item xs={12} md={7}>
               <StackedBarChart2
                 key={`tpsbc__${ monthly }${ period }${ product }${ dataType }`}
+	        title={[commodity,' ', <GlossaryTerm termKey={unit_abbrev}>{unit_abbrev}</GlossaryTerm>]}
                 data={chartData.filter(row => (row.product === product))}
                 xAxis={xAxis}
                 yAxis={yAxis}
