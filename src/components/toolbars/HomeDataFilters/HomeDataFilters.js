@@ -50,8 +50,8 @@ const HomeDataFilters = props => {
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { monthly, dataType, year, product, fiscalYear, calendarYear } = filterState
-  console.debug('FilterState ---------------------------------------------------------------------->')
-  console.debug(filterState)
+  // console.debug('FilterState ---------------------------------------------------------------------->')
+  // console.debug(filterState)
   const maxFiscalYear = fiscalYear
   const maxCalendarYear = calendarYear
 
@@ -94,8 +94,7 @@ const HomeDataFilters = props => {
       updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
     }
     else {
-
-	console.debug("==========================================================>", "Do we update", monthly, filterState)
+      // console.debug("==========================================================>", "Do we update", monthly, filterState)
       updateDataFilter({ ...filterState, [DFC.PERIOD]: DFC.PERIOD_FISCAL_YEAR })
     }
   }, [monthly])

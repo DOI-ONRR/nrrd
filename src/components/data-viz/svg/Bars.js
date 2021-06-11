@@ -65,7 +65,7 @@ const Bars = ({
 
   // event handlers
   const handleOnClick = (d, i) => {
-    console.log('bars handleOnclick i: ', i)
+    // console.log('bars handleOnclick i: ', i)
     const dArr = [d, i, xDomain()[i]]
     handleBarSelection(true, i)
     setActiveIndex(i)

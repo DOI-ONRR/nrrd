@@ -71,8 +71,8 @@ export const GroupBySelectInput = compose(
   BaseComponent => withDataFilterContext(BaseComponent, GROUP_BY))(BaseSelectInput)
 
 export const BreakoutBySelectInput = compose(
-    BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[BREAKOUT_BY].default} showClearSelected={false} {...props} />),
-    BaseComponent => withDataFilterContext(BaseComponent, BREAKOUT_BY))(BaseSelectInput)
+  BaseComponent => props => (<BaseComponent label={DISPLAY_NAMES[BREAKOUT_BY].default} showClearSelected={false} {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, BREAKOUT_BY))(BaseSelectInput)
 
 export const FilterToggleInput = ({ children, ...props }) => <BaseToggle data={['Filter']} {...props}>{children}</BaseToggle>
 

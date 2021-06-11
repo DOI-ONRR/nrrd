@@ -57,11 +57,11 @@ const ComparisonTable = forwardRef((props, ref) => {
   const theme = useTheme()
   const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-  console.debug('ComparisonTable props: ', props)
+  // console.debug('ComparisonTable props: ', props)
 
   const { state: filterState } = useContext(DataFilterContext)
-    const { period, monthly, year, dataType, product } = filterState
-    console.debug(' -=--------------------> data -=--->', data)
+  const { period, monthly, year, dataType, product } = filterState
+  // console.debug(' -=--------------------> data -=--->', data)
   const [selectedItem, setSelectedItem] = useState({
     month: data[data.length - 1].month_long,
     year: data[data.length - 1].year || year
@@ -71,7 +71,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   const monthlyComparisonText = 'Compares data for the selected month to the same month in the previous year.'
 
   useEffect(() => {
-    console.debug('ComparisonTable selectedItem: ', selectedItem)
+    // console.debug('ComparisonTable selectedItem: ', selectedItem)
   }, [selectedItem])
 
   useImperativeHandle(ref, () => ({
@@ -112,8 +112,8 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   // grouped data
   const groupedData = utils.groupBy(data, yGroupBy)
-  console.debug('data :', data)
-  console.debug('groupeData :', groupedData)
+  // console.debug('data :', data)
+  // console.debug('groupeData :', groupedData)
   // comparison data
   const comparisonData = Object.entries(groupedData).map((item, index) => {
     const newObj = {}
@@ -127,13 +127,13 @@ const ComparisonTable = forwardRef((props, ref) => {
     }
     else {
       let previousSum = {}
-	console.debug(" ------- previousYEAR ------ ", previousYear, "---- previousSUM ---", previousSum, " --- item ---",  item )
-	// check for comparison with current fiscal month range
-	if (period === DFC.PERIOD_FISCAL_YEAR && selectedItem.month !== 'September') {
-            previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
+      // console.debug(" ------- previousYEAR ------ ", previousYear, "---- previousSUM ---", previousSum, " --- item ---",  item )
+      // check for comparison with current fiscal month range
+      if (period === DFC.PERIOD_FISCAL_YEAR && selectedItem.month !== 'September') {
+        previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
       }
 
-	else if (period === DFC.PERIOD_CALENDAR_YEAR && selectedItem.month !== 'December') {
+      else if (period === DFC.PERIOD_CALENDAR_YEAR && selectedItem.month !== 'December') {
 			  previousSum = item[1].filter(item => item.year === previousYear && monthRange.includes(item.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
       }
       else {
@@ -147,7 +147,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
     return newObj
   })
-  console.debug('comparisonData :', comparisonData)
+  // console.debug('comparisonData :', comparisonData)
   comparisonData.sort((a, b) => yOrderBy.indexOf(a.previous[yGroupBy]) - yOrderBy.indexOf(b.previous[yGroupBy]))
 
   const cData = comparisonData.slice().sort((a, b) => yOrderBy.indexOf(a.key) - yOrderBy.indexOf(b.key))
@@ -164,7 +164,6 @@ const ComparisonTable = forwardRef((props, ref) => {
   // unit text, grab unit from string looking for parens
   const regExp = /\(([^)]+)\)/
   const unitText = product.match(regExp)[0]
-
 
   // Comparison Text
   let comparisonText
@@ -200,12 +199,12 @@ const ComparisonTable = forwardRef((props, ref) => {
       return utils.formatToDollarInt(sum)
     }
   }
-    console.debug("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCdata ", cData)
-    console.debug(currentYearTotal+" && "+previousYearTotal+" && "+currentYearTotal +"!== 0 && " + previousYearTotal +" !== 0")
-    return (
-	<Box ref={ref}>
-	{comparisonTitle && <ChartTitle compact={false}>{comparisonTitle}</ChartTitle>}
-	<Box className={classes.comparisonTableContent}>
+  // console.debug("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCdata ", cData)
+  // console.debug(currentYearTotal+" && "+previousYearTotal+" && "+currentYearTotal +"!== 0 && " + previousYearTotal +" !== 0")
+  return (
+    <Box ref={ref}>
+      {comparisonTitle && <ChartTitle compact={false}>{comparisonTitle}</ChartTitle>}
+      <Box className={classes.comparisonTableContent}>
         {monthly === DFC.MONTHLY_CAPITALIZED ? monthlyComparisonText : yearlyComparisonText }
       </Box>
       <TableContainer className={classes.comparisonTable}>
@@ -262,22 +261,22 @@ const ComparisonTable = forwardRef((props, ref) => {
               <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
                 <Box fontWeight="bold">
                   {previousYearTotal !== 0 ? formatSum(previousYearTotal) : '-'}
-    </Box>
-		</TableCell>
-		<TableCell align="right" classes={{ root: classes.tableCellRoot }}>
-                  <Box fontWeight="bold">
-                    {((currentYearTotal && previousYearTotal) && (currentYearTotal !== 0 && previousYearTotal !== 0))
+                </Box>
+              </TableCell>
+              <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
+                <Box fontWeight="bold">
+                  {((currentYearTotal && previousYearTotal) && (currentYearTotal !== 0 && previousYearTotal !== 0))
                     ? <PercentDifference
 			  currentAmount={currentYearTotal}
 			  previousAmount={previousYearTotal}
                     />
                     : '-'
-                    }
-                  </Box>
-		</TableCell>
+                  }
+                </Box>
+              </TableCell>
             </TableRow>
           </TableBody>
-      </Table>
+        </Table>
 		    </TableContainer>
     </Box>
 

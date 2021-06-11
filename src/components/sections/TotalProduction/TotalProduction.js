@@ -6,8 +6,8 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import {
-    Box,
-    Grid
+  Box,
+  Grid
 } from '@material-ui/core'
 
 // import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
@@ -19,9 +19,6 @@ import ComparisonTable from '../ComparisonTable'
 import GlossaryTerm from '../../GlossaryTerm/GlossaryTerm'
 
 import utils, { formatDate } from '../../../js/utils'
-
-
-
 
 const TOTAL_PRODUCTION_QUERY = gql`
     query TotalYearlyProduction {
@@ -91,9 +88,9 @@ const TOTAL_PRODUCTION_QUERY = gql`
 
 // TotalProduction
 const TotalProduction = props => {
-    const { state: filterState } = useContext(DataFilterContext)
+  const { state: filterState } = useContext(DataFilterContext)
   const { monthly, period, product, dataType } = filterState
-  console.log('filterState: ', filterState)
+  // console.log('filterState: ', filterState)
   const [selected, setSelected] = useState(undefined)
   const productionComparison = useRef(null)
   const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
@@ -115,7 +112,7 @@ const TotalProduction = props => {
   const yGroupBy = 'source'
   const yOrderBy = ['Native American', 'Federal offshore', 'Federal onshore']
   let xLabels
-  let maxYear 
+  let maxYear
   let maxFiscalYear
   let maxCalendarYear
   let xGroups = {}
@@ -126,8 +123,8 @@ const TotalProduction = props => {
   let monthRangeText
   let currentYearSoFarText
   let currentMonthNum
-  let [commodity, unit_abbrev] = product.split(' (')
-    unit_abbrev='('+unit_abbrev
+  let [commodity, unitAbbrev] = product.split(' (')
+  unitAbbrev = '(' + unitAbbrev
 
   if (loading) {
     return 'Loading...'
@@ -143,7 +140,7 @@ const TotalProduction = props => {
       return (prev.year > current.year) ? prev.year : current.year
     })
 
-    console.log('maxFiscalYear, maxCalendarYear: ', maxFiscalYear, maxCalendarYear)
+    // console.log('maxFiscalYear, maxCalendarYear: ', maxFiscalYear, maxCalendarYear)
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -152,22 +149,20 @@ const TotalProduction = props => {
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         comparisonData = data.total_monthly_calendar_production.filter(row => row.product === product)
-        chartData = data.total_monthly_calendar_production.filter(row => row.product === product && row.year === maxCalendarYear - 1 )
+        chartData = data.total_monthly_calendar_production.filter(row => row.product === product && row.year === maxCalendarYear - 1)
       }
       else {
         comparisonData = data.total_monthly_last_two_years_production.filter(row => row.product === product && row.year >= maxCalendarYear - 2)
-	  let maxDate=data.total_monthly_last_twelve_production[data.total_monthly_last_twelve_production.length-1].period_date;
-	  
-	  let minDate=new Date(maxDate+' 00:00:00');
-	  minDate.setFullYear(minDate.getFullYear() -1);
-	  console.debug("MD------", minDate)
-        chartData = data.total_monthly_last_twelve_production.filter(row => row.product === product && new Date(row.period_date) >= minDate  )
+	  const maxDate = data.total_monthly_last_twelve_production[data.total_monthly_last_twelve_production.length - 1].period_date
 
-
+	  const minDate = new Date(maxDate + ' 00:00:00')
+	  minDate.setFullYear(minDate.getFullYear() - 1)
+	  // console.debug("MD------", minDate)
+        chartData = data.total_monthly_last_twelve_production.filter(row => row.product === product && new Date(row.period_date) >= minDate)
       }
 
-      xGroups = chartData.filter(row => row.product === product ).reduce((g, row, i) => {
-	console.log('xGroup g, row: ', g, row)
+      xGroups = chartData.filter(row => row.product === product).reduce((g, row, i) => {
+        // console.log('xGroup g, row: ', g, row)
         const r = g
         const year = row.period_date.substring(0, 4)
         const months = g[year] || []
@@ -175,8 +170,8 @@ const TotalProduction = props => {
         r[year] = months
         return r
       }, [])
-      console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', xGroups)
-      console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXCHARTDATA', chartData)
+      // console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', xGroups)
+      // console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXCHARTDATA', chartData)
 
       xAxis = 'period_date'
       xLabels = (x, i) => {
@@ -189,7 +184,7 @@ const TotalProduction = props => {
       }
 
       legendHeaders = (headers, row) => {
-        console.log('legendHeaders: ', headers, row)
+        // console.log('legendHeaders: ', headers, row)
         const dateArr = formatDate(headers[1])
         const year = dateArr[0]
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
@@ -200,21 +195,21 @@ const TotalProduction = props => {
     }
     else {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
-	  maxYear=maxFiscalYear
+	  maxYear = maxFiscalYear
         currentMonthNum = data.total_yearly_fiscal_production[data.total_yearly_fiscal_production.length - 1].month
-	  console.debug("===============>DWE GET HERE", data)
+	  // console.debug("===============>DWE GET HERE", data)
         data.total_yearly_fiscal_production.filter(item => {
           if (item.year === (maxFiscalYear)) {
             if (monthRange.indexOf(item.month_long) === -1) monthRange.push(item.month_long)
           }
         })
-        comparisonData = data.total_yearly_fiscal_production.filter(row => (row.product === product && row.year <=maxYear) )
-	 console.debug('COMPARISON DATA:', comparisonData, ' Data ', data )
+        comparisonData = data.total_yearly_fiscal_production.filter(row => (row.product === product && row.year <= maxYear))
+	 // console.debug('COMPARISON DATA:', comparisonData, ' Data ', data )
         chartData = data.total_yearly_fiscal_production.filter(item => item.year >= maxFiscalYear - 10)
         xGroups['Fiscal Year'] = chartData.filter(row => row.product === product).map((row, i) => row.year)
       }
       else {
-	   maxYear=maxCalendarYear
+	   maxYear = maxCalendarYear
         currentMonthNum = data.total_yearly_calendar_production[data.total_yearly_calendar_production.length - 1].month
         data.total_yearly_calendar_production.filter(item => {
           if (item.year === (maxCalendarYear)) {
@@ -260,33 +255,33 @@ const TotalProduction = props => {
               maxCalendarYear={maxCalendarYear} />
           </Grid>
           <Grid item xs={12} md={7}>
-              <StackedBarChart2
-                key={`tpsbc__${ monthly }${ period }${ product }${ dataType }`}
-	        title={[commodity,' ', <GlossaryTerm termKey={unit_abbrev}>{unit_abbrev}</GlossaryTerm>]}
-                data={chartData.filter(row => (row.product === product))}
-                xAxis={xAxis}
-                yAxis={yAxis}
-                xGroups={xGroups}
-                yGroupBy={yGroupBy}
-                yOrderBy={yOrderBy}
-                xLabels={xLabels}
-                legendFormat={v => {
-                  if (v) {
-                    return utils.formatToCommaInt(v)
-                  }
-                  else {
-                    return '-'
-                  }
-                }}
-                onSelect={ d => handleSelect(d) }
-                selectedIndex={selected}
-                units='bbl'
-                showLegendUnits
-                legendHeaders={legendHeaders}
-                handleBarHover={d => handleBarHover(d)}
-              />
+            <StackedBarChart2
+              key={`tpsbc__${ monthly }${ period }${ product }${ dataType }`}
+	        title={[commodity, ' ', <GlossaryTerm termKey={unitAbbrev}>{unitAbbrev}</GlossaryTerm>]}
+              data={chartData.filter(row => (row.product === product))}
+              xAxis={xAxis}
+              yAxis={yAxis}
+              xGroups={xGroups}
+              yGroupBy={yGroupBy}
+              yOrderBy={yOrderBy}
+              xLabels={xLabels}
+              legendFormat={v => {
+                if (v) {
+                  return utils.formatToCommaInt(v)
+                }
+                else {
+                  return '-'
+                }
+              }}
+              onSelect={ d => handleSelect(d) }
+              selectedIndex={selected}
+              units='bbl'
+              showLegendUnits
+              legendHeaders={legendHeaders}
+              handleBarHover={d => handleBarHover(d)}
+            />
             <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
-            <Link href='/downloads/production-by-month/'>Source file</Link>
+              <Link href='/downloads/production-by-month/'>Source file</Link>
             </Box>
           </Grid>
           <Grid item xs={12} md={5}>
