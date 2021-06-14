@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 
 import {
-  G1,G2,G3,
+  G1, G2, G3,
   ALL_YEARS,
   REVENUE,
   PRODUCTION,
@@ -149,7 +149,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
         showOnlySubtotalRow: (dfc[DATA_TYPE] === PRODUCTION && (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
         pivotColumn: getPivotColumn(),
         pivotColumnValue: getPivotColumnValue(),
-        omitGroupBreakoutByOptions: [MONTH_LONG,G1,G2,G3],
+        omitGroupBreakoutByOptions: [MONTH_LONG, G1, G2, G3],
         height: _tableHeight,
         hideColumns: getHideColumns(),
         sortColumn: getSortColumn(),
@@ -348,9 +348,9 @@ const DataTableBase = ({ data, config }) => {
   }
   // Returns a list of options available for the group by and breakout columns
   const getBreakoutByOptions = () => {
-      console.debug("-----------------------------columnNames--------------------------------", columnNames)
-      console.debug("-----------------------------config--------------------------------", columnNames)
-      const options = columnNames.filter(item => (
+    console.debug('-----------------------------columnNames--------------------------------', columnNames)
+    console.debug('-----------------------------config--------------------------------', columnNames)
+    const options = columnNames.filter(item => (
 	  item.name !== _groupBySticky &&
 	  item.name !== _groupBy &&
 	  item.name !== config.pivotColumn &&
@@ -358,7 +358,7 @@ const DataTableBase = ({ data, config }) => {
 	  !config?.omitGroupBreakoutByOptions?.includes(item.name) &&
 	  !_additionalColumns?.includes(item.name) &&
 	  !pivotColumnNames?.includes(item.name)
-      ))
+    ))
     return options.map(item => ({ option: item.title, value: item.name }))
   }
 
@@ -465,10 +465,7 @@ const DataTableBase = ({ data, config }) => {
 
   // STEP 3: Logic to update table display after columns are updated
   useEffect(() => {
-
-      
-      if (_groupBy && (_breakoutBy !== NO_BREAKOUT_BY && _breakoutBy)) {
-
+    if (_groupBy && (_breakoutBy !== NO_BREAKOUT_BY && _breakoutBy)) {
 	  setGrouping([{ columnName: _groupBy }])
       setGroupingExtension([{ columnName: _groupBy, showWhenGrouped: true }])
       if (data && data.length > 0) {

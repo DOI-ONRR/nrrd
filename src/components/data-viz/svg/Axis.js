@@ -90,7 +90,7 @@ export const BottomAxis = ({ data, xScale, width, xGroups, xLabels, dimensions, 
     if (xGroups) {
       const xAxisLabels = d3.select(xAxisRef.current)
       const xAxisNode = xAxisLabels.node().getBBox()
-      console.log('xAxisNode: ', xAxisNode)
+      // console.log('xAxisNode: ', xAxisNode)
       const groupLines = d3.select(xAxisGroupRef.current)
       const groupItemWidth = (dimensions.width / data.length)
       const padding = (xScale.bandwidth() * 0.2)

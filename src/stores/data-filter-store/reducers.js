@@ -174,7 +174,7 @@ const initialState = {
     [YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR),
     [MONTHLY]: 'Yearly',
     [BREAKOUT_BY]: 'source',
-    [COMMODITY]: 'Oil (bbl)',
+    [PRODUCT]: 'Oil (bbl)',
     [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_FISCAL_YEAR),
 
     dataTypesCache: {
@@ -200,7 +200,7 @@ const initialState = {
         [MAP_LEVEL]: STATE,
         [YEAR]: getLatestYear(PRODUCTION, PERIOD_CALENDAR_YEAR),
         [MONTHLY]: 'Yearly',
-        [COMMODITY]: 'Oil (bbl)',
+        [PRODUCT]: 'Oil (bbl)',
 	      [PERIOD_ALL_YEARS]: getAllYears(PRODUCTION, PERIOD_FISCAL_YEAR),
 	  },
 	  [DISBURSEMENT]: {

@@ -65,7 +65,7 @@ const Legend = ({
   colorScale,
   ...rest
 }) => {
-  console.log('Legend data: ', data)
+  // console.log('Legend data: ', data)
   const theme = useTheme()
   const activeKey = (activeNode && activeNode.key) && activeNode.key
   const legendData = legendReverse ? data.reverse() : data
