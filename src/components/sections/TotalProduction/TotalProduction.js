@@ -43,7 +43,7 @@ const TOTAL_PRODUCTION_QUERY = gql`
 	    monthLong: month_long
 	}   
 
-	total_monthly_fiscal_production: total_production_summary(order_by: {fiscal_year: asc, month: asc}) {
+	total_monthly_fiscal_production: total_production_summary(order_by: {fiscal_year: asc, fiscal_month: asc}) {
 	    source
 	    product
 	    sum: total
