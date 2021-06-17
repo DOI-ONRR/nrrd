@@ -273,7 +273,8 @@ from monthly_revenue_elt e
          and product_code_desc=product
      join period p on 
          extract(year from accept_date + interval '3 months')=p.fiscal_year
-        and period_date <= (select max(period_date) from period where fiscal_month=12)
+        and period_date <= (select max(period_date) from period where fiscal_month=12) 
+        and  period_date >= (select min(period_date) from period where fiscal_month=1)
         and period='Fiscal Year'
 	 
 
@@ -296,6 +297,7 @@ select
        	to_date(concat('01/01/',extract(year from accept_date)), 'MM/DD/YYYY')
 from monthly_revenue_elt
 where accept_date <= (select max(accept_date) from monthly_revenue_elt where extract(month from accept_date) = 12)
+   and  accept_date >= (select min(accept_date) from monthly_revenue_elt where extract(month from accept_date) = 1) 
 group by extract(year from accept_date) order by  extract(year from accept_date)  
 
 
