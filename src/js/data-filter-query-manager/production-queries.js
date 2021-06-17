@@ -222,7 +222,7 @@ const PRODUCT_OPTIONS_QUERY = `
       state: {_in: $state},
       county: {_in: $county},
       commodity: {_in: $commodity},
-      product: {_neq: ""},
+      product: {_in: $product},
       period: {_eq: $period},
       fiscal_year: {_in: $fiscalYear},
       calendar_year: {_in: $calendarYear},
