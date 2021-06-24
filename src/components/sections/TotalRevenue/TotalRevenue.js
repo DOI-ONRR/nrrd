@@ -22,15 +22,14 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const FISCAL = gql`
-    query TotalYearlyRevenue {  
-	total_yearly_fiscal_revenue {
+    query TotalYearlyRevenue($period_group: String!, $breakout_group: String!)  {  
+	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc, fiscal_month: asc, sort_order: asc}) {
 	    period
 	    sum
-	    source: land_type
-	    year
+	    source
+	    year: fiscal_year
 	    revenue_type
 	    sort_order
-	    commodity_order
 	    commodity
 	    fiscalMonth: fiscal_month
 	    currentMonth: month
@@ -41,154 +40,142 @@ const FISCAL = gql`
 `
 
 const CALENDAR = gql`
-    query TotalYearlyRevenue {  
-	total_yearly_calendar_revenue {
+    query TotalYearlyRevenue($period_group: String!, $breakout_group: String!) {  
+	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {calendar_year: asc, month: asc, sort_order: asc}) {
 	    period
 	    sum
-	    source: land_type
-	    year
+	    source
+	    year: calendar_year
 	    revenue_type
 	    sort_order
-	    commodity_order
 	    commodity
+            currentMonth: month
 	    monthLong: month_long
-	}
-	total_monthly_fiscal_revenue {
-	    source: land_type
-	    sum
-	    month_long
-	    period_date
-	    month
-	    year
-	    revenue_type
-	    sort_order
-	    commodity_order
-	    commodity
-	}
-	total_monthly_calendar_revenue {
-	    source: land_type
-	    sum
-	    month_long
-	    period_date
-	    month
-	    year
-	    revenue_type
-	    sort_order
-	    commodity_order
-	    commodity
 	}
 	
     }
 `
 
 const TOTAL_REVENUE_QUERY = gql`
-query TotalYearlyRevenue {
-    total_yearly_fiscal_revenue {
-      period
-      sum
-      source: land_type
-      year
-      revenue_type
-      sort_order
-      commodity_order
-      commodity
-      fiscalMonth: fiscal_month
-      currentMonth: month
-      monthLong: month_long
-    }
+    query TotalYearlyRevenue($period_group: String!, $breakout_group: String!) {
+	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc,fiscal_month: asc,  sort_order: asc}) {
+	    period
+	    sum
+	    source
+	    year: fiscal_year
+	    revenue_type
+	    sort_order
+	    commodity
+	    fiscalMonth: fiscal_month
+	    currentMonth: month
+	    monthLong: month_long
+	}
 
-    total_yearly_calendar_revenue {
-      period
-      sum
-      source: land_type
-      year
-      revenue_type
-      sort_order
-      commodity_order
-      commodity
-      monthLong: month_long
-    }
+	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {calendar_year: asc, month: asc, sort_order: asc}) {
+	    period
+	    sum
+	    source
+	    year: calendar_year
+	    revenue_type
+	    sort_order
+	    commodity
+	    monthLong: month_long
+	}
 
-    total_monthly_fiscal_revenue {
-      source: land_type
-      sum
-      month_long
-      period_date
-      month
-      year
-      revenue_type
-      sort_order
-      commodity_order
-      commodity
-    }
+	total_monthly_fiscal_revenue( order_by: {year: asc, month: asc, sort_order: asc})  {
+	    source: land_type
+	    sum
+	    month_long
+	    period_date
+	    month
+	    year
+	    revenue_type
+	    sort_order
+	    commodity
+	}
 
-    total_monthly_calendar_revenue {
-	source: land_type
-	sum
-	month_long
-	period_date
-	month
-	year
-	revenue_type
-	sort_order
-	commodity_order
-	commodity
-    }
+	total_monthly_calendar_revenue( order_by: {year: asc, month: asc, sort_order: asc}) {
+	    source: land_type
+	    sum
+	    month_long
+	    period_date
+	    month
+	    year
+	    revenue_type
+	    sort_order
+	    commodity
+	}
 
-      total_monthly_last_twelve_revenue {
-	  source: land_type
-	  sum
-	  month_long
-	  period_date
-	  month
-	  year
-	  revenue_type
-	  sort_order
-	  commodity_order
-	  commodity
-      }
+	total_monthly_last_twelve_revenue( order_by: {year: asc, month: asc, sort_order: asc}) {
+	    source: land_type
+	    sum
+	    month_long
+	    period_date
+	    month
+	    year
+	    revenue_type
+	    sort_order
+	    commodity_order
+	    commodity
+	}
 
-    total_monthly_last_three_years_revenue {
-      source: land_type
-      sum
-      month_long
-      period_date
-      month
-      year
-      revenue_type
-      sort_order
-      commodity_order
-      commodity
+	total_monthly_last_three_years_revenue( order_by: {year: asc, month: asc, sort_order: asc}) {
+	    source: land_type
+	    sum
+	    month_long
+	    period_date
+	    month
+	    year
+	    revenue_type
+	    sort_order
+	    commodity_order
+	    commodity
+	}
     }
-  }
 `
+/*
 
+   create or replace view total_revenue_summary as
+   select * from _mview_cy_commodity
+   union
+   select * from _mview_cy_revenue_type
+   union
+   select * from _mview_cy_source
+   union
+   select * from _mview_fy_commodity
+   union
+   select * from _mview_fy_revenue_type
+   union
+   select * from _mview_fy_source
+ */
 // TotalRevenue component
 const TotalRevenue = props => {
   const theme = useTheme()
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  filterState.period = (filterState.monthly !== DFC.MONTHLY_CAPITALIZED && filterState.period === 'Most recent 12 months') ? DFC.PERIOD_FISCAL_YEAR : filterState.period
   const { monthly, period, breakoutBy, dataType, periodAllYears } = filterState
   const revenueComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
   const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
   let QUERY = FISCAL
-  console.debug('filterState: ', filterState, ' CONSTANTS: ', DFC.PERIOD_CALENDER_YEAR, DFC.PERIOD_FISCAL_YEAR, DFC.MONTHLY_CAPITALIZED)
+  let VARIABLES = { period_group: 'Fiscal Year', breakout_group: 'source' }
+
   if (filterState.period === DFC.PERIOD_FISCAL_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
-    console.debug('FISCAL')
     QUERY = FISCAL
+    VARIABLES = { period_group: period || 'Fiscal Year', breakout_group: breakoutBy || 'source' }
   }
   else if (filterState.period === DFC.PERIOD_CALENDAR_YEAR && filterState.monthly !== DFC.MONTHLY_CAPITALIZED) {
-    console.debug('CALENDAR')
     QUERY = CALENDAR
+    VARIABLES = { period_group: filterState.period || 'Calendar Year', breakout_group: filterState.breakoutBy || 'source' }
   }
   else {
-    console.debug('DEFAULT')
+    VARIABLES = { period_group: filterState.period || 'Fiscal Year', breakout_group: filterState.breakoutBy || 'source' }
     QUERY = TOTAL_REVENUE_QUERY
   }
 
-  const { loading, error, data } = useQuery(QUERY)
-  console.debug('data: ', data)
+  const { loading, error, data } = useQuery(QUERY, { variables: VARIABLES })
+
   const handleBarHover = d => {
     revenueComparison.current.setSelectedItem(d[2])
   }
@@ -250,9 +237,9 @@ const TotalRevenue = props => {
 
   if (data) {
     // console.log('TotalRevenue data: ', data)
-    console.debug('Period all years:', periodAllYears)
-    maxFiscalYear = periodAllYears[periodAllYears.length - 1]
-    maxCalendarYear = periodAllYears[periodAllYears.length - 1]
+
+    maxFiscalYear = periodAllYears[period][periodAllYears[period].length - 1]
+    maxCalendarYear = periodAllYears[period][periodAllYears[period].length - 1]
 
     // Month range
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
@@ -349,7 +336,7 @@ const TotalRevenue = props => {
 	  currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
         switch (yGroupBy) {
         case 'revenue_type':
-		  comparisonData = data.total_yearly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
+          comparisonData = data.total_yearly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_yearly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.revenue_type)))
           break
         case 'commodity':
@@ -363,14 +350,15 @@ const TotalRevenue = props => {
           break
         }
         xGroups[DFC.PERIOD_FISCAL_YEAR] = chartData.map((row, i) => row.year)
-
         data.total_yearly_fiscal_revenue.filter(item => {
           if (item.year === (maxFiscalYear + 1)) {
-            if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
-          }
+            if (monthRange.indexOf(item.monthLong) === -1) {
+              monthRange.push(item.monthLong)
+	    }
+	  }
         })
       }
-      else {
+	else {
 	  currentMonthNum = data.total_yearly_calendar_revenue[data.total_yearly_calendar_revenue.length - 1].currentMonth
         switch (yGroupBy) {
         case 'revenue_type':
@@ -396,15 +384,14 @@ const TotalRevenue = props => {
           }
         })
       }
+	startMonth = monthRange[0]
+	endMonth = monthRange[monthRange.length - 1]
+	monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
+	currentYearSoFarText = `so far ${ monthRangeText }`
 
-      startMonth = monthRange[0]
-      endMonth = monthRange[monthRange.length - 1]
-      monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
-      currentYearSoFarText = `so far ${ monthRangeText }`
-
-      xAxis = 'year'
-      xLabels = (x, i) => {
-        return x.map(v => '\'' + v.toString().substr(2))
+	xAxis = 'year'
+	xLabels = (x, i) => {
+            return x.map(v => '\'' + v.toString().substr(2))
       }
 
       legendHeaders = (headers, row) => {

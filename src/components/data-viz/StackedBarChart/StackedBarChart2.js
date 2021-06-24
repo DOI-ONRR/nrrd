@@ -34,7 +34,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
     collapsibleLegend,
     collapsedLegend
   } = options
-  console.log('StackedBarChart2 options: ', options)
+  // console.log('StackedBarChart2 options: ', options)
   const theme = useTheme()
   const [dataset, setDataset] = useState({
     barData: [],
@@ -51,12 +51,12 @@ const StackedBarChart2 = ({ data, ...options }) => {
   }
 
   const legendFormat = options.legendFormat || function (d) {
-    console.debug('legend format')
+    // console.debug('legend format')
     return d
   }
 
   const chartTooltip = options.chartTooltip || function (d) {
-    console.debug('chartTooltip debug')
+    // console.debug('chartTooltip debug')
     return d
   }
 
@@ -106,6 +106,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
   // xDomain
   const xDomain = () => {
     try {
+      // console.debug("xDomain() ", data)
       const r = data.map((row, i) => {
         return row[xAxis]
       })
@@ -380,7 +381,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
       d.push(barData(item))
     })
 
-    console.log('useEffect d: ', d)
+    // console.log('useEffect d: ', d)
 
     const x = yOrderBy.map((key, i) => {
       const nObj = {}

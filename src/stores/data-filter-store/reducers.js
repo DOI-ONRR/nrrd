@@ -85,7 +85,10 @@ const getLastFiveYears = (dataType, period) => (ALL_YEARS[dataType][period].leng
   : ALL_YEARS[dataType][period].toString()
 
 const getLatestYear = (dataType, period) => ALL_YEARS[dataType][period].slice(ALL_YEARS[dataType][period].length - 1)[0]
-const getAllYears = (dataType, period) => ALL_YEARS[dataType][period]
+const getAllYears = (dataType) => {
+    console.debug("ALL_YEARS: ", ALL_YEARS, " Data Type : ", dataType);
+    return ALL_YEARS[dataType]
+}
 
 const initialState = {
   [QUERY_TABLE_FILTER_DEFAULT]: {
@@ -132,7 +135,7 @@ const initialState = {
     [OFFSHORE_REGIONS]: false,
     [MAP_LEVEL]: STATE,
     [YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR),
-    [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_CALENDAR_YEAR),
+    [PERIOD_ALL_YEARS]: getAllYears(REVENUE),
     dataTypesCache: {
       [REVENUE]: {
         [DATA_TYPE]: REVENUE,
@@ -142,7 +145,7 @@ const initialState = {
         [OFFSHORE_REGIONS]: false,
         [MAP_LEVEL]: STATE,
         [YEAR]: getLatestYear(REVENUE, PERIOD_FISCAL_YEAR),
-        [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_FISCAL_YEAR),
+        [PERIOD_ALL_YEARS]: getAllYears(REVENUE),
       },
       [PRODUCTION]: {
         [DATA_TYPE]: PRODUCTION,
@@ -174,7 +177,7 @@ const initialState = {
     [YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR),
     [MONTHLY]: 'Yearly',
     [BREAKOUT_BY]: 'source',
-    [COMMODITY]: 'Oil (bbl)',
+    [PRODUCT]: 'Oil (bbl)',
     [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_FISCAL_YEAR),
 
     dataTypesCache: {
@@ -200,7 +203,7 @@ const initialState = {
         [MAP_LEVEL]: STATE,
         [YEAR]: getLatestYear(PRODUCTION, PERIOD_CALENDAR_YEAR),
         [MONTHLY]: 'Yearly',
-        [COMMODITY]: 'Oil (bbl)',
+        [PRODUCT]: 'Oil (bbl)',
 	      [PERIOD_ALL_YEARS]: getAllYears(PRODUCTION, PERIOD_FISCAL_YEAR),
 	  },
 	  [DISBURSEMENT]: {

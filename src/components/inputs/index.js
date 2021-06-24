@@ -80,5 +80,6 @@ export const MapLevelToggleInput = withDataFilterContext(BaseMultiToggle, MAP_LE
 export const OffshoreRegionsSwitchInput = withDataFilterContext(BaseSwitch, OFFSHORE_REGIONS)
 export const YearlyMonthlyToggleInput = withDataFilterContext(BaseMultiToggle, MONTHLY)
 export const CommoditySelectInput = createEnhancedSelect(COMMODITY, 'Multi')
+export const ProductSelectInput = createEnhancedSelect(PRODUCT, 'Multi')
 
 export const GlossaryCategorySelectInput = ({ data, children, ...props }) => <BaseSelectInput data={data} {...props}>{children}</BaseSelectInput>
