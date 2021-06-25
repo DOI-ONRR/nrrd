@@ -78,9 +78,9 @@ update location set land_type='Federal offshore' where land_class='Federal' and 
 update location set land_type='Federal onshore'  where land_class='Mixed Exploratory' and land_category='Onshore';
 update location set land_type='Federal offshore'  where land_class='Mixed Exploratory' and land_category='Offshore';
 
-update location set location_name=concat(land_class, ' ', lower(land_category)), location_order='zZz' where location_name='' and land_category='Onshore';
-update location set location_name=concat(land_class, ' ', lower(land_category)), location_order='zZZ' where location_name='' and land_category='Offshore';
-update location set location_name=concat(land_class, ' ', lower(land_category)), location_order='ZZZ' where location_name='' and land_category='Onshore & Offshore';
+update location set location_name='Not tied to a location', location_order='zZz' where location_name='' and land_category='Onshore';
+update location set location_name='Not tied to a region', location_order='zZZ' where location_name='' and land_category='Offshore';
+update location set location_name='Onshore & offshore', location_order='ZZZ' where location_name='' and land_category='Onshore & Offshore';
 update location set location_order='zzZ' where location_name='Not tied to a lease';
 
 \echo 'update location order'
