@@ -1,4 +1,4 @@
 ---
 applications:
 - name: nrrd
-  memory: 512M
+  memory: 100M
