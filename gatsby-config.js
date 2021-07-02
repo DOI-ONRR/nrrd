@@ -34,6 +34,7 @@ const config = {
       zip: '20240',
       email: 'nrrd@onrr.gov'
     },
+    siteUrl: 'https://revenuedata.doi.gov',
   },
   plugins: [
     'gatsby-transformer-react-docgen',
@@ -202,6 +203,7 @@ const config = {
         exclude: ['error', 'warn'], // <- will remove all console calls except these
       }
     },
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-use-query-params',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
