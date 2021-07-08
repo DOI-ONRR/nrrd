@@ -75,7 +75,7 @@ const HomeDataFilters = props => {
       [DFC.REVENUE]: [
         { value: DFC.SOURCE, option: 'Source' },
         { value: 'revenue_type', option: 'Revenue Type' },
-        { value: 'product', option: 'Product' }
+        { value: 'commodity', option: 'Commodity' }
       ],
       [DFC.DISBURSEMENT]: [
         { value: DFC.SOURCE, option: 'Source' },
