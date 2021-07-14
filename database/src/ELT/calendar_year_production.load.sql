@@ -21,6 +21,7 @@ update fiscal_year_production_elt set volume=REPLACE(volume, ')','');
 
 
 update calendar_year_production_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' County', ''),' Parish',''), ' Borough',''),'');
+update calendar_year_production_elt set state='', county='', fips_code='GMR', offshore_region='Gulf of Mexico' where state='LA' and land_category='Offshore'
 update calendar_year_production_elt e set fips_code = l.fips_code FROM county_lookup l WHERE e.county=l.county and e.state=l.state;
 
 \echo update production(commodity)
