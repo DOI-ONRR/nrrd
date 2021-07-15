@@ -238,12 +238,12 @@ const TotalRevenue = props => {
   if (data) {
     // console.log('TotalRevenue data: ', data)
 
-    maxFiscalYear = periodAllYears[period][periodAllYears[period].length - 1]
-    maxCalendarYear = periodAllYears[period][periodAllYears[period].length - 1]
+    maxFiscalYear = periodAllYears[DFC.PERIOD_FISCAL_YEAR][periodAllYears[DFC.PERIOD_FISCAL_YEAR].length - 1]
+    maxCalendarYear = periodAllYears[DFC.PERIOD_CALENDAR_YEAR][periodAllYears[DFC.PERIOD_CALENDAR_YEAR].length - 1]
 
     // Month range
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
-	  if (period === DFC.PERIOD_FISCAL_YEAR) {
+	    if (period === DFC.PERIOD_FISCAL_YEAR) {
 	      currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
 
         switch (yGroupBy) {
