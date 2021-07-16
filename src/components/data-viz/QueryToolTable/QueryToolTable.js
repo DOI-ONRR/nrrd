@@ -134,8 +134,8 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
 
   const getHideColumns = () => years.filter(year =>
     (dfc[PERIOD] === PERIOD_FISCAL_YEAR)
-      ? !dfc[FISCAL_YEAR]?.includes(year.toString())
-      : !dfc[CALENDAR_YEAR]?.includes(year.toString())).map(year => year.toString())
+      ? !dfc[FISCAL_YEAR]?.includes(year?.toString())
+      : !dfc[CALENDAR_YEAR]?.includes(year?.toString())).map(year => year?.toString())
 
   const getAdditionalColumns = () => (dfc[PERIOD] === PERIOD_MONTHLY)
     ? [MONTH_LONG]
