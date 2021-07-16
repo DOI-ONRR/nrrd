@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
+  lighthouse-check: foo-software/lighthouse-check@0.0.8
 
 jobs:
   lint:
@@ -25,6 +26,7 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./test-results 
+  
   unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -68,6 +70,12 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./__tests__/__image_snapshots__/
+
+  lighthouse-test:
+    executor: lighthouse-check/default
+    steps:
+      - lighthouse-check/audit:
+          urls: https://revenuedata.doi.gov, https://revenuedata.doi.gov/explore, https://revenuedata.doi.gov/query-data
 
   lighthouse:
     docker:
@@ -394,7 +402,6 @@ jobs:
           command: |
             bash ./.circleci/cleanup-previews.sh
 
-
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -486,6 +493,13 @@ workflows:
                 - master
                 - staging
       - lint:
+          filters:
+            branches:
+              ignore:
+                - master
+                - staging
+
+      - lighthouse-test:
           filters:
             branches:
               ignore:
