@@ -358,7 +358,7 @@ const TotalRevenue = props => {
 	  }
         })
       }
-	else {
+      else {
 	  currentMonthNum = data.total_yearly_calendar_revenue[data.total_yearly_calendar_revenue.length - 1].currentMonth
         switch (yGroupBy) {
         case 'revenue_type':
@@ -384,14 +384,14 @@ const TotalRevenue = props => {
           }
         })
       }
-	startMonth = monthRange[0]
-	endMonth = monthRange[monthRange.length - 1]
-	monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
-	currentYearSoFarText = `so far ${ monthRangeText }`
+      startMonth = monthRange[0]
+      endMonth = monthRange[monthRange.length - 1]
+      monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
+      currentYearSoFarText = `so far ${ monthRangeText }`
 
-	xAxis = 'year'
-	xLabels = (x, i) => {
-            return x.map(v => '\'' + v.toString().substr(2))
+      xAxis = 'year'
+      xLabels = (x, i) => {
+        return x.map(v => '\'' + v.toString().substr(2))
       }
 
       legendHeaders = (headers, row) => {
