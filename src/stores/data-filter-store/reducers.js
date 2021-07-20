@@ -85,9 +85,9 @@ const getLastFiveYears = (dataType, period) => (ALL_YEARS[dataType][period].leng
   : ALL_YEARS[dataType][period].toString()
 
 const getLatestYear = (dataType, period) => ALL_YEARS[dataType][period].slice(ALL_YEARS[dataType][period].length - 1)[0]
-const getAllYears = (dataType) => {
-    console.debug("ALL_YEARS: ", ALL_YEARS, " Data Type : ", dataType);
-    return ALL_YEARS[dataType]
+const getAllYears = dataType => {
+  console.debug('ALL_YEARS: ', ALL_YEARS, ' Data Type : ', dataType)
+  return ALL_YEARS[dataType]
 }
 
 const initialState = {
