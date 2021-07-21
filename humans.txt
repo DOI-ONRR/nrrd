@@ -10,14 +10,13 @@
     Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Lindsay Goldstein -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Shannon McHarg -- UX Designer -- Department of the Interior, Office of Natural Resources Revenue
+    Christine Thomas -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
 
 
 ## CONTRIBUTORS
     Sarah Aranda -- UX Intern -- Virtual Student Federal Service
-    Alexandra Budz -- Visual Designer -- Open Opportunities
     Jerome Louis -- Contract Developer
     Christa McCurdy -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
-    Brandi Nichols -- UX Intern -- Virtual Student Federal Service
     Mojo Nichols -- Contract Developer
     Matthew Sao -- Data Intern -- Virtual Student Federal Service
     Jamie Wang -- UX Intern -- Virtual Student Federal Service
@@ -53,8 +52,10 @@
     Qituwra Anderson -- UX Researcher -- 18F
     Adam Biagianti -- Developer -- 18F
     Aaron Borden -- Developer -- 18F
+    Alexandra Budz -- Visual Designer -- Open Opportunities
     Edward Chang -- Development Intern -- Department of the Interior, Office of Natural Resources Revenue
     Alena Huang -- UX Intern -- Virtual Student Federal Service
+    Brandi Nichols -- UX Intern -- Virtual Student Federal Service
     Jeremiah Kimelman -- Developer -- 18F
     Shawnique Muller -- 18F
     Annie Persson -- UX Intern -- Virtual Student Federal Service
