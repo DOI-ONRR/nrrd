@@ -996,7 +996,12 @@ export default class D3StackedBarChart {
 
   yDomain () {
     try {
-      const r = Array.from(d3.rollup(this.data, v => d3.sum(v, i => i[this.yAxis]), d => d[this.xAxis]).values())
+      const r = d3.nest()
+        .key(k => k[this.xAxis])
+        .rollup(v => d3.sum(v, i => i[this.yAxis]))
+        .entries(this.data)
+        .map(y => y.value)
+
       const domain = [...(new Set(r.sort((a, b) => a - b)))]
       this._yDomain = domain
       return domain
@@ -1012,43 +1017,46 @@ export default class D3StackedBarChart {
         this.yOrderBy = this.options.yOrderBy
       }
       else if (typeof (this.options.yOrderBy) === 'string') {
-        /*d3.nest()
+        d3.nest()
           .key(k => k[this.options.yGroupBy])
           .rollup(v => d3.sum(v, d => d[this.yAxis]))
           .entries(this.data)
           .reduce((acc, d, i) => {
             acc[d.key] = d.value
             return acc
-          }, {})*/
+          }, {})
       }
       else {
-        /*d3.nest()
+        d3.nest()
           .key(k => k[this.options.yGroupBy])
           .rollup(v => d3.sum(v, d => d[this.yAxis]))
           .entries(this.data)
           .reduce((acc, d, i) => {
             acc[d.key] = d.value
             return acc
-          }, {})*/
+          }, {})
         // console.debug("else", r)
       }
     }
   }
 
   yGroupings (xValue) {
-
     try {
       if (this.options.yGroupBy) {
         const data = xValue ? this.data.filter(r => r[this.xAxis] === xValue) : this.data
-        const r = d3.groups(data, d => d[this.options.yGroupBy])
-          .sort((a, b) => this.options.yOrderBy.indexOf(a[0]) - this.options.yOrderBy.indexOf(b[0]))
-          .map(y => y[0])
+        const r = d3.nest()
+          .key(k => k[this.options.yGroupBy])
+          .sortKeys((a, b) => this.options.yOrderBy.indexOf(a) - this.options.yOrderBy.indexOf(b))
+          .entries(data)
+          .map(y => y.key)
         return r.reverse()
       }
       else {
         const data = xValue ? this.data.filter(r => r[this.xAxis] === xValue) : this.data
-        const r = d3.groups(data, d => d[this.yAxis])
-          .map(y => y[0])
+        const r = d3.nest()
+          .key(k => k[this.yAxis])
+          .entries(data)
+          .map(y => y.key)
         return r.reverse()
       }
     }
@@ -1059,9 +1067,9 @@ export default class D3StackedBarChart {
 
   groupData () {
     try {
-      const r = [] /* d3.nest()
+      const r = d3.nest()
         .key(k => k[this.xAxis])
-        .entries(this.data)*/
+        .entries(this.data)
 
       // console.debug("RRRR: ", r)
       return r
@@ -1076,10 +1084,15 @@ export default class D3StackedBarChart {
       if (this.options.yGroupBy) {
         const data = xValue ? this.data.filter(r => r[this.xAxis] === xValue) : this.data
         // console.debug(data)
-        const r = Array.from(d3.rollup(data, v => d3.sum(v, i => i[this.yAxis]), d => d[this.options.yGroupBy])).reduce((acc, d, i) => {
-          acc[d[0]] = d[1]
-          return acc
-        }, {})
+        const r = d3.nest()
+        //            .key(k => k[this.xAxis])
+          .key(k => k[this.options.yGroupBy])
+          .rollup(v => d3.sum(v, d => d[this.yAxis]))
+          .entries(data)
+          .reduce((acc, d, i) => {
+            acc[d.key] = d.value
+            return acc
+          }, {})
 
         // console.debug("yGroupData: ",r)
         return r
@@ -1115,7 +1128,7 @@ export default class D3StackedBarChart {
     try {
       const data = this.data
       const groupTotals = []
-      /*d3.nest()
+      d3.nest()
         .key(k => k[this.xAxis])
         .key(k => k[this.options.yGroupBy])
         .rollup((d, i) => {
@@ -1127,7 +1140,7 @@ export default class D3StackedBarChart {
         .map(d => {
           // console.log('map d', d)
           d.values.forEach(v => groupTotals.push(v.value.total))
-        })*/
+        })
 
       const minVal = d3.min(groupTotals)
       const yMin = (minVal < 0) ? minVal * 1.5 : 0
