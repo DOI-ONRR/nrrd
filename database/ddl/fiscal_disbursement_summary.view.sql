@@ -1,4 +1,26 @@
-CREATE OR REPLACE VIEW "public"."fiscal_disbursement_summary" AS 
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.7 (Debian 12.7-1.pgdg100+1)
+-- Dumped by pg_dump version 12.7 (Debian 12.7-1.pgdg100+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: fiscal_disbursement_summary; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW public.fiscal_disbursement_summary AS
  SELECT a.location_type,
     a.land_category,
     a.fiscal_year,
@@ -8,20 +30,16 @@ CREATE OR REPLACE VIEW "public"."fiscal_disbursement_summary" AS
    FROM (( SELECT 'State'::text AS location_type,
             location.land_category,
             period.fiscal_year,
-              location.state as state_or_area,
+            location.state AS state_or_area,
             sum(disbursement.disbursement) AS sum,
             count(DISTINCT commodity.commodity) AS distinct_commodities
-           FROM (((disbursement
-             JOIN period USING (period_id))
-             JOIN location USING (location_id))
-             JOIN commodity USING (commodity_id))
-          WHERE ((period.period)::text = 'Fiscal Year'::text) and region_type='State'
+           FROM (((public.disbursement
+             JOIN public.period USING (period_id))
+             JOIN public.location USING (location_id))
+             JOIN public.commodity USING (commodity_id))
+          WHERE (((period.period)::text = 'Fiscal Year'::text) AND ((location.region_type)::text = 'State'::text))
           GROUP BY location.state, location.land_category, period.fiscal_year
-          ORDER BY period.fiscal_year,
-                CASE
-                    WHEN ((location.land_category)::text = 'Offshore'::text) THEN location.offshore_planning_area_code
-                    ELSE location.state
-                END)
+          ORDER BY period.fiscal_year, location.state)
         UNION
         ( SELECT 'County'::text AS location_type,
             location.land_category,
@@ -29,11 +47,11 @@ CREATE OR REPLACE VIEW "public"."fiscal_disbursement_summary" AS
             location.fips_code AS state_or_area,
             sum(disbursement.disbursement) AS sum,
             count(DISTINCT commodity.commodity) AS distinct_commodities
-           FROM (((disbursement
-             JOIN period USING (period_id))
-             JOIN location USING (location_id))
-             JOIN commodity USING (commodity_id))
-          WHERE ((period.period)::text = 'Fiscal Year'::text) and region_type='County'
+           FROM (((public.disbursement
+             JOIN public.period USING (period_id))
+             JOIN public.location USING (location_id))
+             JOIN public.commodity USING (commodity_id))
+          WHERE (((period.period)::text = 'Fiscal Year'::text) AND ((location.region_type)::text = 'County'::text))
           GROUP BY location.fips_code, location.land_category, period.fiscal_year
           ORDER BY period.fiscal_year, location.fips_code)
         UNION
@@ -43,10 +61,10 @@ CREATE OR REPLACE VIEW "public"."fiscal_disbursement_summary" AS
             'Nationwide Federal'::text AS state_or_area,
             sum(disbursement.disbursement) AS sum,
             count(DISTINCT commodity.commodity) AS distinct_commodities
-           FROM (((disbursement
-             JOIN period USING (period_id))
-             JOIN location USING (location_id))
-             JOIN commodity USING (commodity_id))
+           FROM (((public.disbursement
+             JOIN public.period USING (period_id))
+             JOIN public.location USING (location_id))
+             JOIN public.commodity USING (commodity_id))
           WHERE (((period.period)::text = 'Fiscal Year'::text) AND ((location.land_class)::text = 'Federal'::text))
           GROUP BY 'Nationwide Federal'::text, period.fiscal_year
           ORDER BY period.fiscal_year, 'Nationwide Federal'::text)
@@ -57,11 +75,19 @@ CREATE OR REPLACE VIEW "public"."fiscal_disbursement_summary" AS
             'Native American'::text AS state_or_area,
             sum(disbursement.disbursement) AS sum,
             count(DISTINCT commodity.commodity) AS distinct_commodities
-           FROM (((disbursement
-             JOIN period USING (period_id))
-             JOIN location USING (location_id))
-             JOIN commodity USING (commodity_id))
+           FROM (((public.disbursement
+             JOIN public.period USING (period_id))
+             JOIN public.location USING (location_id))
+             JOIN public.commodity USING (commodity_id))
           WHERE (((period.period)::text = 'Fiscal Year'::text) AND ((location.land_class)::text = 'Native American'::text))
           GROUP BY 'Native American'::text, period.fiscal_year
           ORDER BY period.fiscal_year, 'Native American'::text)) a
   ORDER BY a.fiscal_year, a.state_or_area;
+
+
+ALTER TABLE public.fiscal_disbursement_summary OWNER TO postgres;
+
+--
+-- PostgreSQL database dump complete
+--
+

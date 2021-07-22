@@ -4,6 +4,8 @@ import gql from 'graphql-tag'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
+import { useInView } from 'react-intersection-observer'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { formatToDollarInt } from '../../../../js/utils'
 
@@ -66,13 +68,23 @@ const DisbursementRecipients = props => {
   const state = props.fipsCode
   const xAxis = 'recipient'
   const yAxis = 'total'
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
+    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL },
+    skip: inView === false
   })
 
   if (loading) {
-    return 'Loading ... '
+    return (
+      <Box display="flex" justifyContent="center" ref={ref} height={300}>
+        <CircularProgress />
+      </Box>
+    )
   }
   if (error) return `Error! ${ error.message }`
 
@@ -84,7 +96,7 @@ const DisbursementRecipients = props => {
     chartData = data
 
     if (chartData.DisbursementRecipientSummary.length > 1) {
-      return (<Box className={classes.root}>
+      return (<Box className={classes.root} ref={ref} >
         <Box component="h4" fontWeight="bold">Disbursements by recipient</Box>
         <Box>
           <CircleChart
@@ -131,7 +143,7 @@ const DisbursementRecipients = props => {
     }
     else if (chartData.DisbursementRecipientSummary.length === 1) {
       return (
-        <Box className={classes.boxSection}>
+        <Box className={classes.boxSection} ref={ref} >
           <Box component="h4" fontWeight="bold">Disbursements by recipients</Box>
           <Box fontSize="subtitle2.fontSize">
           All of  disbursements went to the state</Box>
@@ -141,7 +153,7 @@ const DisbursementRecipients = props => {
   }
 
   return (
-    <Box className={classes.root}></Box>
+    <Box className={classes.root} ref={ref} ></Box>
   )
 }
 

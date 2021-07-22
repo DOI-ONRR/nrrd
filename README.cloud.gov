@@ -17,7 +17,7 @@ export DB_ENV=sandbox && export DB_PORT=7222 || export DB_ENV=dev && export DB_P
 
 # README doesn't show how to get DATABASE URL or PORT - This is because we put these in config of hasura and then on the next step (bind-service they get crated.
 
-cf push hasura-$DB_ENV -c 'graphql-engine --database-url $DATABASE_URL serve --server-port $PORT' --docker-image hasura/graphql-engine --health-check-type none --no-start
+cf push hasura-$DB_ENV -c 'graphql-engine --database-url $DATABASE_URL serve --server-port $PORT' --docker-image hasura/graphql-engine:v1.2.2  --health-check-type none --no-start
 cf bind-service hasura-$DB_ENV  $DB_ENV-psql
 cf set-env hasura-$DB_ENV HASURA_GRAPHQL_ADMIN_SECRET' 'SUPER SECRET PASSWORD THAT IS NOT THIS'
 cf start hasura-$DB_ENV
@@ -136,5 +136,6 @@ dbname=$(cf curl /v2/apps/$myapp_guid/env | jq -r '.system_env_json.VCAP_SERVICE
 psql postgres://$creds@localhost:$DB_PORT/$dbname
 
 # do repairs here or restore see above
+
 
 

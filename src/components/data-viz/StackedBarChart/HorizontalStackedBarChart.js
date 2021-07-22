@@ -34,7 +34,7 @@ const HorizontalStackedBarChart = ({
     yAxis,
     yGroupBy,
     yOrderBy,
-    horizontal,
+    horizontal = true,
     showTooltips = true,
     collapsibleLegend,
     collapsedLegend
@@ -257,8 +257,6 @@ const HorizontalStackedBarChart = ({
         <Translate {...body.pos}>
           <Bars
             data={dataset.barData}
-            // height={dimensions.ctrHeight}
-            // width={dimensions.ctrWidth}
             xScale={xScale}
             yScale={yScale}
             xAxis={xAxis}
@@ -268,6 +266,8 @@ const HorizontalStackedBarChart = ({
             onHover={onHover}
             showTooltips={showTooltips}
             chartTooltip={chartTooltip}
+            horizontal={horizontal}
+            xDomain={xDomain}
           />
         </Translate>
       </svg>

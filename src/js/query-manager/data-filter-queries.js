@@ -12,7 +12,10 @@ import {
   RECIPIENT,
   SOURCE,
   FISCAL_YEAR,
-  US_STATE_NAME
+  US_STATE_NAME,
+  G1,
+  G2,
+  G3
 } from '../../constants'
 
 import {
@@ -136,10 +139,40 @@ const DATA_FILTER_QUERIES = {
       where: {
         ${ whereClause }
       },
-      distinct_on: ${ DB_COLS[US_STATE_NAME] },
-      order_by: {${ DB_COLS[US_STATE_NAME] }: asc}
+      distinct_on: location_order,
+      order_by: {location_order: asc}
       ) {
         option: ${ DB_COLS[US_STATE_NAME] }
+      }`),
+  [G1]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[G1] },
+      order_by: {${ DB_COLS[G1] }: asc}
+      ) {
+        option: ${ DB_COLS[G1] }
+      }`),
+  [G2]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[G2] },
+      order_by: {${ DB_COLS[G2] }: asc}
+      ) {
+        option: ${ DB_COLS[G2] }
+      }`),
+  [G3]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: ${ DB_COLS[G3] },
+      order_by: {${ DB_COLS[G3] }: asc}
+      ) {
+        option: ${ DB_COLS[G3] }
       }`),
 }
 

@@ -5,6 +5,9 @@ import {
   DISBURSEMENT,
   LOCATION_NAME,
   LAND_TYPE,
+  G1,
+  G2,
+  G3,
   REGION_TYPE,
   DISTRICT_TYPE,
   OFFSHORE_REGION,
@@ -73,6 +76,9 @@ const VARIABLES = {
       [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
       [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
       [REVENUE_TYPE]: (state[REVENUE_TYPE] === ZERO_OPTIONS || !state[REVENUE_TYPE]) ? undefined : state[REVENUE_TYPE].split(','),
+      [G1]: state[G1],
+      [G2]: state[G2],
+      [G3]: state[G3],
       [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
   }),
@@ -83,6 +89,9 @@ const VARIABLES = {
       [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
       [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
       [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
+      [G1]: state[G1],
+      [G2]: state[G2],
+      [G3]: state[G3],
       [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
   }),
@@ -92,6 +101,9 @@ const VARIABLES = {
       [SOURCE]: (state[SOURCE] === ZERO_OPTIONS || !state[SOURCE]) ? undefined : state[SOURCE].split(','),
       [US_STATE]: (state[US_STATE] === ZERO_OPTIONS || !state[US_STATE]) ? undefined : state[US_STATE].split(','),
       [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
+      [G1]: state[G1],
+      [G2]: state[G2],
+      [G3]: state[G3],
       [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
   })
@@ -105,7 +117,11 @@ const VARIABLE_LIST_REVENUE = ''.concat(
   '$county: [String!],',
   '$commodity: [String!],',
   '$revenueType: [String!],',
-  '$period: String,'
+  '$period: String,',
+  '$g1: String,',
+  '$g2: String,',
+  '$g3: String,'
+
 )
 const VARIABLE_LIST_PRODUCTION = ''.concat(
   '$landType: [String!],',
@@ -115,14 +131,20 @@ const VARIABLE_LIST_PRODUCTION = ''.concat(
   '$state: [String!],',
   '$county: [String!],',
   '$commodity: [String!],',
-  '$period: String,'
+  '$period: String,',
+  '$g1: String,',
+  '$g2: String,',
+  '$g3: String,'
 )
 const VARIABLE_LIST_DISBURSEMENT = ''.concat(
   '$recipient: [String!],',
   '$source: [String!],',
   '$state: [String!],',
   '$county: [String!],',
-  '$period: String,'
+  '$period: String,',
+  '$g1: String,',
+  '$g2: String,',
+  '$g3: String,'
 )
 
 const REVENUE_QUERY = `

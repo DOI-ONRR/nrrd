@@ -224,7 +224,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
         </Box>
         <Box mr={2}>
           {state[DATA_TYPE] === REVENUE &&
-            <Link href={'/downloads/federal-revenue-by-location/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
+            <Link href={'/downloads/revenue/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
           }
           {state[DATA_TYPE] === PRODUCTION &&
             <Link href={'/downloads/production/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>

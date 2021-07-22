@@ -13,7 +13,22 @@ const WithTooltip = ({ showTooltips, isActive, data, chartTooltip, children }) =
     : children
 )
 
-const Bar = ({ key, data, x, y, width, height, fill, chartTooltip, onHover, showTooltips, isClickable, ...rest }) => {
+const Bar = ({
+  data,
+  selectedData,
+  barIndexes,
+  x,
+  y,
+  width,
+  height,
+  fill,
+  chartTooltip,
+  onHover = d => d,
+  showTooltips,
+  isClickable,
+  ...rest
+}) => {
+  // console.log('bar data: ', data)
   const [isActive, setIsActive] = useState(undefined)
 
   const handleMouseEnter = () => {
@@ -34,14 +49,12 @@ const Bar = ({ key, data, x, y, width, height, fill, chartTooltip, onHover, show
       data={data}>
       <rect
         pointerEvents="all"
-        aria-label={key}
         className={'rect'}
         style={isClickable ? { cursor: 'pointer' } : {}}
         x={x}
         y={y}
         height={height}
         width={width}
-        // fillOpacity={fillOpacity}
         fill={fill}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

@@ -20,7 +20,7 @@ const config = {
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
     keywords: 'Oil and gas, Coal, Renewable energy, Nonenergy minerals, Natural resource policy, Natural resource data, Extractives industries, Federal revenues, Production, 8(g) offshore revenue, offshore production, abanonded mine lands fund, mining reclamation tax, onrr state disbursement data, Native American land ownership, coal extraction, Department of the Interior, DOI, BLM coal leases, gomesa, gomesa funding, energy resource revenue, ONRR, state royalty, us eiti, solar industry, geothermal',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
-    version: 'v6.3.3',
+    version: 'v6.3.7',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -34,6 +34,7 @@ const config = {
       zip: '20240',
       email: 'nrrd@onrr.gov'
     },
+    siteUrl: 'https://revenuedata.doi.gov',
   },
   flags: { PRESERVE_WEBPACK_CACHE: false },
   plugins: [
@@ -131,7 +132,7 @@ const config = {
       resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
       options: {
         // Fields to index
-        fields: ['title', 'description', 'tags'],
+        fields: ['title', 'description', 'tags', 'glossary'],
         // How to resolve each field's value for a supported node type
         resolvers: {
           // For any node of type MarkdownRemark, list how to resolve the fields' values
@@ -139,7 +140,8 @@ const config = {
             title: node => node.frontmatter.title,
             tags: node => node.frontmatter.tag || node.frontmatter.tags,
             description: node => node.frontmatter.description,
-            path: node => node.fields.slug
+            path: node => node.fields.slug,
+            glossary: node => node.frontmatter.glossary
           }
         },
         // Optional filter to limit indexed nodes
@@ -187,6 +189,7 @@ const config = {
         exclude: ['error', 'warn'], // <- will remove all console calls except these
       }
     },
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-use-query-params',
     {
       resolve: 'gatsby-plugin-offline',

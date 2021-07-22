@@ -1,4 +1,9 @@
 import {
+  FUND_AGGREGATION,
+  LOCATION_AGGREGATION,
+  COMMODITY_AGGREGATION,
+  DATA_FILTER_KEY,
+  EXCLUDE_PROPS,
   DATA_TYPE,
   PRODUCTION,
   REVENUE,
@@ -24,6 +29,9 @@ import {
   STATE_OFFSHORE_NAME,
   OFFSHORE_REGION,
   LAND_TYPE,
+  G1,
+  G2,
+  G3,
   PRODUCT,
   RECIPIENT,
   SOURCE,
@@ -96,7 +104,11 @@ export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
   [MONTH_LONG]: 'month_long',
   [REVENUE]: 'revenue',
   [PRODUCTION]: 'production',
-  [DISBURSEMENT]: 'disbursement'
+  [DISBURSEMENT]: 'disbursement',
+  [G1]: 'g1',
+  [G2]: 'g2',
+  [G3]: 'g3'
+
 }
 
 /**
@@ -126,7 +138,6 @@ const VARIABLES = {
  */
 export const getDataFilterWhereClauses = (config, excludeProps) => {
   let results = ''
-
   const getClause = (key, type) => {
     switch (type) {
     case MULTI_INT:
@@ -144,8 +155,9 @@ export const getDataFilterWhereClauses = (config, excludeProps) => {
           results.concat(`${ DATA_FILTER_KEY_TO_DB_COLUMNS[key] }: ${ getClause(key, prop[key]) },`)
       }
     }
+    else {
+    }
   })
-
   return results
 }
 
@@ -154,12 +166,124 @@ export const getDataFilterWhereClauses = (config, excludeProps) => {
  * @param {object} state
  * @param {array} config
  */
-export const getDataFilterVariableValues = (state, config) => {
+export const getDataFilterVariableValues = (state, config, options) => {
+  console.debug('getDataFilterVariableValues: ', state, config, options)
+
   const results = {}
   config.forEach(prop => {
+    const key = Object.keys(prop)[0]
+    if (state.dataType === REVENUE) {
+      if (checkFundAggregation(key, state, config, options)) {
+        results[G1] = 'fund'
+      }
+      else {
+        results[G1] = ''
+      }
+
+      if (checkLocationAggregation(key, state, config, options)) {
+        results[G2] = 'location'
+      }
+      else {
+        results[G2] = ''
+      }
+
+      if (checkCommodityAggregation(key, state, config, options)) {
+        results[G3] = 'commodity'
+      }
+      else {
+        results[G3] = ''
+      }
+    }
+    else {
+      delete results[G1]
+      delete results[G2]
+      delete results[G3]
+    }
     results[Object.keys(prop)[0]] = getDataFilterValue(Object.keys(prop)[0], state)
   })
+
+  console.debug('getDataFilterVariableValues RESULTS: ', results)
   return ({ variables: results })
+}
+
+export const checkFundAggregation = (key, state, config, options) => {
+  if (state.dataType === 'Production') {
+    return false
+  }
+  if (FUND_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
+    //    console.debug("AGG FUND dfk true :", key)
+    return true
+  }
+  else if (FUND_AGGREGATION.includes(state.groupBy)) {
+    //    console.debug("AGG FUND  true gb :", key, state.groupBy)
+    return true
+  }
+  else if (FUND_AGGREGATION.includes(state.breakoutBy)) {
+    //    console.debug("AGG FUND  true gb :", key, state.groupBy)
+    return true
+  }
+
+  const keys = Object.keys(state)
+  for (let ii = 0; ii < keys.length; ii++) {
+    if (FUND_AGGREGATION.includes(keys[ii])) {
+      //        console.debug("AGG FUND true :", key, state[key])
+      return true
+    }
+  }
+
+  //  console.debug("AGG FUND false :", key, state.groupBy, key)
+  return false
+}
+export const checkLocationAggregation = (key, state, config, options) => {
+  if (LOCATION_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
+    // console.debug("LOC AGG dfk true :", key, state[key])
+    return true
+  }
+  else if (LOCATION_AGGREGATION.includes(state.groupBy)) {
+    // console.debug("LOC AGG true gb :", key, state.groupBy)
+    return true
+  }
+  else if (LOCATION_AGGREGATION.includes(state.breakoutBy)) {
+    // console.debug("LOC AGG true gb :", key, state.groupBy)
+    return true
+  }
+
+  const keys = Object.keys(state)
+  for (let ii = 0; ii < keys.length; ii++) {
+    if (LOCATION_AGGREGATION.includes(keys[ii])) {
+      // console.debug("LOC AGG true :", key, state[key])
+      return true
+    }
+  }
+
+  // console.debug("LOC AGG false :",key, state.groupBy, key)
+  return false
+}
+export const checkCommodityAggregation = (key, state, config, options) => {
+  // console.debug(state.groupBySticky, " VS ", COMMODITY_AGGREGATION);
+  if (COMMODITY_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
+    // console.debug("COM AGG dfk true :", key, state[key])
+    return true
+  }
+  else if (COMMODITY_AGGREGATION.includes(state.groupBy)) {
+    // console.debug("COM AGG true gb :", key, state.groupBy)
+    return true
+  }
+  else if (COMMODITY_AGGREGATION.includes(state.breakoutBy)) {
+    // console.debug("COM AGG true gb :", key, state.groupBy)
+    return true
+  }
+
+  const keys = Object.keys(state)
+  for (let ii = 0; ii < keys.length; ii++) {
+    if (COMMODITY_AGGREGATION.includes(keys[ii])) {
+      // console.debug("COM AGG true :", key, state[key])
+      return true
+    }
+  }
+
+  // console.debug("COM AGG false :",key, state.groupBy, key)
+  return false
 }
 
 /**
@@ -188,11 +312,32 @@ export const getDataFilterValue = (key, state) => {
  * @param {object} state
  * @param {array} config
  */
-export const getDataFilterVariableList = (state, config) => {
+
+export const getDataFilterVariableList = (state, config, options) => {
   let result = ''
   config.forEach(prop => {
     const key = Object.keys(prop)[0]
     result = result.concat(`$${ key }: ${ prop[key] }`)
   })
+
   return result
 }
+
+/*
+
+create view query_tool_revenue_try as
+select * from _mview_fund_qtr
+UNION
+select * from _mview_location_qtr
+UNION
+select * from _mview_commodity_qtr
+UNION
+select * from _mview_fund_location_qtr
+UNION
+select * from _mview_fund_commodity_qtr
+UNION
+select * from _mview_location_commodity_qtr
+UNION
+select * from _mview_fund_location_commodity_qtr
+
+*/

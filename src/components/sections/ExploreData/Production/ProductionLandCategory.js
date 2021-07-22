@@ -9,6 +9,7 @@ import { ExploreDataContext } from '../../../../stores/explore-data-store'
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
+import { useInView } from 'react-intersection-observer'
 
 import * as d3 from 'd3'
 
@@ -54,8 +55,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     margin: theme.spacing(1),
     '@media (max-width: 768px)': {
-      maxWidth: '100%',
-      margin: 0,
+	  maxWidth: '100%',
+	  margin: 0,
     }
   },
   progressContainer: {
@@ -107,8 +108,16 @@ const ProductionLandCategory = ({ title, ...props }) => {
   }
 
   // console.log('ProductionLandCategory useQuery vars: ', state, locationType, commodity, period)
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, { variables: { state, location: locationType, commodity, period } })
+  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+    variables: { state, location: locationType, commodity, period },
+    skip: inView === false
+  })
   if (loading) {
     return (
       <div className={classes.progressContainer}>
@@ -147,43 +156,43 @@ const ProductionLandCategory = ({ title, ...props }) => {
 
     if (!noChartData) {
       return (
-
-        <Box className={classes.root}>
-          {title && <Box component="h4" fontWeight="bold" mb={2}>{title + ' (' + unit + ')'}</Box>}
-          <Box>
-            <LineChart
-              key={'PLC' + dataSet + period + commodity}
-              data={chartData}
-              chartColors={[theme.palette.explore[400], theme.palette.explore[300], theme.palette.explore[200], theme.palette.explore[100]]}
-              lineDashes={LINE_DASHES}
-              lineTooltip={
-                (d, i) => {
-                  const r = []
-                  const card = cards && cards.filter(item => item.fipsCode === data.production_summary[i].location)[0]
-                  r[0] = `${ card.locationName }: ${ utils.formatToCommaInt(d) } (${ data.production_summary[i].unit_abbr })`
-                  return r
+	  <div ref={ref}>
+          <Box className={classes.root}>
+            {title && <Box component="h4" fontWeight="bold" mb={2}>{title + ' (' + unit + ')'}</Box>}
+            <Box>
+              <LineChart
+                key={'PLC' + dataSet + period + commodity}
+                data={chartData}
+                chartColors={[theme.palette.explore[400], theme.palette.explore[300], theme.palette.explore[200], theme.palette.explore[100]]}
+                lineDashes={LINE_DASHES}
+                lineTooltip={
+                  (d, i) => {
+                    const r = []
+                    const card = cards && cards.filter(item => item.fipsCode === data.production_summary[i].location)[0]
+                    r[0] = `${ card.locationName }: ${ utils.formatToCommaInt(d) } (${ data.production_summary[i].unit_abbr })`
+                    return r
+                  }
                 }
-              }
-            />
-          </Box>
-          {(isNativeAmerican || isNationwideFederal || locationType === DFC.OFFSHORE_CAPITALIZED) &&
+              />
+            </Box>
+            {(isNativeAmerican || isNationwideFederal || locationType === DFC.OFFSHORE_CAPITALIZED) &&
             <QueryLink
               groupBy={(props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? DFC.DATA_TYPE : DFC.STATE_OFFSHORE_NAME}
               linkType="FilterTable" {...props}
               landType={(props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? DFC.NATIVE_AMERICAN : 'Federal Offshore,Federal Onshore,Mixed Exploratory'}>
                 Query production over time
             </QueryLink>
-          }
+            }
 
-          {(isCounty || isState) &&
+            {(isCounty || isState) &&
             <QueryLink
               groupBy={DFC.COUNTY}
               linkType="FilterTable" {...props}>
                 Query production over time
             </QueryLink>
-          }
-        </Box>
-
+            }
+          </Box>
+	  </div>
       )
     }
     else {
@@ -191,7 +200,9 @@ const ProductionLandCategory = ({ title, ...props }) => {
     }
   }
   else {
-    return null
+    return (<div className={classes.progressContainer} ref={ref}>
+      <CircularProgress classes={{ root: classes.circularProgressRoot }} />
+    </div>)
   }
 }
 

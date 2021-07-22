@@ -35,6 +35,15 @@ const initialState = {
       regionType: '',
       districtType: undefined,
       county: ''
+    },
+    {
+      fipsCode: 'NA',
+      name: 'Native American',
+      locationName: 'Native American',
+      state: 'Native American',
+      regionType: '',
+      districtType: undefined,
+      county: ''
     }
   ],
   mapX: -180,

@@ -13,7 +13,7 @@ import QueryLink from '../../../../components/QueryLink'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-
+import { useInView } from 'react-intersection-observer'
 import mapCounties from '../counties.json'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -131,6 +131,12 @@ const ProductionCountyMap = props => {
     maxColor
   } = props
 
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
+
   let locationType
   switch (regionType) {
   case DFC.STATE:
@@ -147,9 +153,13 @@ const ProductionCountyMap = props => {
     break
   }
 
+  const skipQuery = fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS ||
+			      fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
+			      props.regionType === 'County' || props.regionType === 'Offshore' || !inView
+
   const { loading, error, data } = useQuery(PRODUCTION_QUERY, {
     variables: { year: year, product: product, state: fipsCode, period: period },
-    skip: fipsCode === DFC.NATIVE_AMERICAN_FIPS || locationType === ''
+    skip: skipQuery
   })
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
@@ -170,7 +180,7 @@ const ProductionCountyMap = props => {
     return (
       <>
         {mapData &&
-       <Box className={classes.root}>
+       <Box className={classes.root} ref={ref}>
          {(locationType === DFC.COUNTY_CAPITALIZED || locationType === DFC.STATE) &&
          <>
            <Box component="h4" fontWeight="bold" mb={2}>Production by county</Box>
@@ -200,7 +210,10 @@ const ProductionCountyMap = props => {
     )
   }
   else {
-    return <Box className={classes.root} />
+    return (
+      <Box className={classes.root} ref={ref}>
+      </Box>
+    )
   }
 }
 

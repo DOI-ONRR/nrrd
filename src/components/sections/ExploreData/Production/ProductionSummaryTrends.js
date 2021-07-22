@@ -13,7 +13,7 @@ import LocationName from '../LocationName'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-
+import { useInView } from 'react-intersection-observer'
 import utils from '../../../../js/utils'
 
 const APOLLO_QUERY = gql`
@@ -50,6 +50,12 @@ const ProductionSummaryTrends = props => {
   const state = props.fipsCode
   const key = `${ dataSet }_${ product }_${ state }`
   const minYear = periodAllYears[0]
+
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+    triggerOnce: true
+  })
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, product: product, period: period }

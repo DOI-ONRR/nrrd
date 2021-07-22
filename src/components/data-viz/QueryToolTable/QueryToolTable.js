@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 
 import {
+  G1, G2, G3,
   ALL_YEARS,
   REVENUE,
   PRODUCTION,
@@ -133,8 +134,8 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
 
   const getHideColumns = () => years.filter(year =>
     (dfc[PERIOD] === PERIOD_FISCAL_YEAR)
-      ? !dfc[FISCAL_YEAR]?.includes(year.toString())
-      : !dfc[CALENDAR_YEAR]?.includes(year.toString())).map(year => year.toString())
+      ? !dfc[FISCAL_YEAR]?.includes(year?.toString())
+      : !dfc[CALENDAR_YEAR]?.includes(year?.toString())).map(year => year?.toString())
 
   const getAdditionalColumns = () => (dfc[PERIOD] === PERIOD_MONTHLY)
     ? [MONTH_LONG]
@@ -148,7 +149,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
         showOnlySubtotalRow: (dfc[DATA_TYPE] === PRODUCTION && (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
         pivotColumn: getPivotColumn(),
         pivotColumnValue: getPivotColumnValue(),
-        omitGroupBreakoutByOptions: [MONTH_LONG],
+        omitGroupBreakoutByOptions: [MONTH_LONG, G1, G2, G3],
         height: _tableHeight,
         hideColumns: getHideColumns(),
         sortColumn: getSortColumn(),
@@ -347,14 +348,16 @@ const DataTableBase = ({ data, config }) => {
   }
   // Returns a list of options available for the group by and breakout columns
   const getBreakoutByOptions = () => {
+    console.debug('-----------------------------columnNames--------------------------------', columnNames)
+    console.debug('-----------------------------config--------------------------------', columnNames)
     const options = columnNames.filter(item => (
-      item.name !== _groupBySticky &&
-      item.name !== _groupBy &&
-      item.name !== config.pivotColumn &&
-      item.name !== config.pivotColumnValue &&
-      !config?.omitGroupBreakoutByOptions?.includes(item.name) &&
-      !_additionalColumns?.includes(item.name) &&
-      !pivotColumnNames?.includes(item.name)
+	  item.name !== _groupBySticky &&
+	  item.name !== _groupBy &&
+	  item.name !== config.pivotColumn &&
+	  item.name !== config.pivotColumnValue &&
+	  !config?.omitGroupBreakoutByOptions?.includes(item.name) &&
+	  !_additionalColumns?.includes(item.name) &&
+	  !pivotColumnNames?.includes(item.name)
     ))
     return options.map(item => ({ option: item.title, value: item.name }))
   }
@@ -424,7 +427,6 @@ const DataTableBase = ({ data, config }) => {
       setColumnNames(colNames)
       setDefaultColumnWidths(colNames.map((column, index) => {
         let width = (parseInt(column.name) > 100) ? 200 : 250
-        console.log(column.name, column, STATE_OFFSHORE_NAME)
         if (column.name === STATE_OFFSHORE_NAME) {
           width = 325
         }
@@ -464,7 +466,7 @@ const DataTableBase = ({ data, config }) => {
   // STEP 3: Logic to update table display after columns are updated
   useEffect(() => {
     if (_groupBy && (_breakoutBy !== NO_BREAKOUT_BY && _breakoutBy)) {
-      setGrouping([{ columnName: _groupBy }])
+	  setGrouping([{ columnName: _groupBy }])
       setGroupingExtension([{ columnName: _groupBy, showWhenGrouped: true }])
       if (data && data.length > 0) {
         // Gets the unique values that will be expanded
@@ -556,7 +558,6 @@ const DataTableBase = ({ data, config }) => {
     }
   }, [_groupBy, _breakoutBy, config])
 
-  console.log(grouping)
   return (
     <React.Fragment>
       {(defaultColumnWidths?.length > 0 && tableData?.length > 0)
