@@ -4,7 +4,7 @@ orbs:
 parameters:
   image-tag:
     type: string
-    default: "16.5.0"
+    default: "14.17.3"
 
 jobs:
   lint:
