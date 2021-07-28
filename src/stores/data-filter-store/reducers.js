@@ -4,6 +4,7 @@
  */
 
 import {
+G1,G2,G3,
   ALL_YEARS,
   REVENUE,
   REVENUE_TYPE,
@@ -65,14 +66,14 @@ const reducer = (state, action) => {
     const dataType = state.dataType
 
     const dataTypeCache = {
-      [DATA_TYPE]: state[DATA_TYPE],
-      [PERIOD]: state[PERIOD],
-      [FISCAL_YEAR]: state[FISCAL_YEAR],
-      [CALENDAR_YEAR]: state[CALENDAR_YEAR]
+	[DATA_TYPE]: state[DATA_TYPE],
+	[PERIOD]: state[PERIOD],
+	[FISCAL_YEAR]: state[FISCAL_YEAR],
+	[CALENDAR_YEAR]: state[CALENDAR_YEAR]
     }
 
-    const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
-
+      const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
+      console.debug("Clear filters", updatedDataTypesCache, " State ", state) 
     return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
   }
   default:

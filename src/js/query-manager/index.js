@@ -211,28 +211,29 @@ export const checkFundAggregation = (key, state, config, options) => {
     return false
   }
   if (FUND_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
-    //    console.debug("AGG FUND dfk true :", key)
+       // console.debug("AGG FUND dfk true :", key)
     return true
   }
   else if (FUND_AGGREGATION.includes(state.groupBy)) {
-    //    console.debug("AGG FUND  true gb :", key, state.groupBy)
+       // console.debug("AGG FUND  true gb :", key, state.groupBy)
     return true
   }
   else if (FUND_AGGREGATION.includes(state.breakoutBy)) {
-    //    console.debug("AGG FUND  true gb :", key, state.groupBy)
+       // console.debug("AGG FUND  true gb :", key, state.groupBy)
     return true
   }
 
   const keys = Object.keys(state)
   for (let ii = 0; ii < keys.length; ii++) {
     if (FUND_AGGREGATION.includes(keys[ii])) {
-      //        console.debug("AGG FUND true :", key, state[key])
+        //   console.debug("AGG FUND true :", key, state[key])
       return true
     }
   }
 
-  //  console.debug("AGG FUND false :", key, state.groupBy, key)
-  return false
+//    console.debug("AGG FUND false :", key, state.groupBy, key)
+  //  console.debug("AGG FUND STATE :", key, state, config, options)
+    return false
 }
 export const checkLocationAggregation = (key, state, config, options) => {
   if (LOCATION_AGGREGATION.includes(options[DATA_FILTER_KEY])) {

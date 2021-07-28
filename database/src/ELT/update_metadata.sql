@@ -101,6 +101,7 @@ update location set fips_code='AOR' , location_name='Atlantic', offshore_region 
 
 \echo 'update commodity order'
 
-update commodity set commodity_order=1.1  where commodity like '%Oil %';
+update commodity set commodity_order=1.1  where commodity like '%Oil shale%';
+update commodity set commodity_order=1.2  where commodity like '%Oil & gas (pre-production)';
 update commodity set commodity_order='ZZZ'  where commodity ='Not tied to a commodity';
 
