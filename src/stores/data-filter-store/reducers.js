@@ -67,6 +67,7 @@ const reducer = (state, action) => {
 
     const dataTypeCache = {
 	[DATA_TYPE]: state[DATA_TYPE],
+	[GROUP_BY]: state[GROUP_BY],
 	[PERIOD]: state[PERIOD],
 	[FISCAL_YEAR]: state[FISCAL_YEAR],
 	[CALENDAR_YEAR]: state[CALENDAR_YEAR]

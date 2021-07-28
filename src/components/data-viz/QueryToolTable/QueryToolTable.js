@@ -144,6 +144,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
   useEffect(() => {
     if (data) {
       setTableData(transformDataToTableData(data.results, data.counts))
+	console.debug("DFC Data", dfc)
       setDataTableConfig({
         showSummaryRow: (dfc[DATA_TYPE] !== PRODUCTION || (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
         showOnlySubtotalRow: (dfc[DATA_TYPE] === PRODUCTION && (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
@@ -557,82 +558,84 @@ const DataTableBase = ({ data, config }) => {
       updateDataFilter({ [GROUP_BY]: undefined })
     }
   }, [_groupBy, _breakoutBy, config])
-
-  return (
-    <React.Fragment>
-      {(defaultColumnWidths?.length > 0 && tableData?.length > 0)
-        ? <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <TableGrid
-              rows={tableData}
-              columns={columnNames}>
-              <TotalProvider
-                for={columnNames.filter(item => !item.name.startsWith('y')).map(item => item.name)}
-              />
-              <SortingState
-                sorting={sorting}
-                onSortingChange={setSorting}
-              />
-              <GroupingState
-                grouping={grouping}
-                expandedGroups={expandedGroups}
-                onExpandedGroupsChange={setExpandedGroups}
-              />
-              <SummaryState
-                totalItems={totalSummaryItems}
-                groupItems={groupSummaryItems}
-              />
-              <IntegratedSorting columnExtensions={integratedSortingColumnExtensions} />
-              <IntegratedGrouping />
-              <IntegratedSummary calculator={summaryCalculator} />
-              <Table
-                columnExtensions={tableColumnExtensions}
-                cellComponent={CustomTableCell}
-                tableComponent={CustomTable}
-                headComponent={CustomTableHead}
-                height={config.height || 550}
-              />
-              <TableColumnReordering
-                order={columnOrder}
-              />
-              <TableColumnResizing columnWidths={defaultColumnWidths} onColumnWidthsChange={setDefaultColumnWidths} />
-              <TableHeaderRow
-                contentComponent={props =>
-                  <CustomTableHeaderCell
-                    groupByOptions={getGroupByOptions()}
-                    breakoutByOptions={getBreakoutByOptions()}
-                    onAddColumn={!_breakoutBy && addBreakoutByColumnHandler}
-                    onRemoveColumn={_breakoutBy && removeBreakoutByColumnHandler}
-                    {...props} />}
-                showSortingControls
-                sortLabelComponent={CustomTableHeaderSortLabel}/>
-              <TableColumnVisibility
-                hiddenColumnNames={hiddenColumnNames}
-              />
-              <TableGroupRow
-                contentComponent={CustomGroupCellContent}
-                columnExtensions={groupingExtension} />
-              {config.showOnlySubtotalRow &&
-                <TableSummaryRow
-                  groupRowComponent={CustomTableSummaryRowGroupRow}
-                  totalRowComponent={() => <></>}
-                  itemComponent={CustomTableSummaryRowItem}
-                />
-              }
-              {(config.showSummaryRow && !config.showOnlySubtotalRow) &&
-                <TableSummaryRow
-                  groupRowComponent={CustomTableSummaryRowGroupRow}
-                  totalRowComponent={CustomTableSummaryRowTotalRow}
-                  itemComponent={CustomTableSummaryRowItem}
-                />
-              }
-            </TableGrid>
-          </Grid>
-        </Grid>
-        : <Box zIndex="modal">
-          <Skeleton variant="rect" width={'100%'} height={config.tableHeight} animation={false}/>
-        </Box>
-      }
-    </React.Fragment>
-  )
+    console.debug("Config Data: ", config)
+    console.debug("table Data ", tableData, " column names ", columnNames)
+    console.debug("Data ", data, " pivot data ", pivotData)
+    return (
+	<React.Fragment>
+	  {(defaultColumnWidths?.length > 0 && tableData?.length > 0)
+	  ? <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TableGrid
+		  rows={tableData}
+		  columns={columnNames}>
+		<TotalProvider
+                    for={columnNames.filter(item => !item.name.startsWith('y')).map(item => item.name)}
+		/>
+		<SortingState
+                    sorting={sorting}
+                    onSortingChange={setSorting}
+		/>
+		<GroupingState
+                    grouping={grouping}
+                    expandedGroups={expandedGroups}
+                    onExpandedGroupsChange={setExpandedGroups}
+		/>
+		<SummaryState
+                    totalItems={totalSummaryItems}
+                    groupItems={groupSummaryItems}
+		/>
+		<IntegratedSorting columnExtensions={integratedSortingColumnExtensions} />
+		<IntegratedGrouping />
+		<IntegratedSummary calculator={summaryCalculator} />
+		<Table
+                    columnExtensions={tableColumnExtensions}
+                    cellComponent={CustomTableCell}
+                    tableComponent={CustomTable}
+                    headComponent={CustomTableHead}
+                    height={config.height || 550}
+		/>
+		<TableColumnReordering
+                    order={columnOrder}
+		/>
+		<TableColumnResizing columnWidths={defaultColumnWidths} onColumnWidthsChange={setDefaultColumnWidths} />
+		<TableHeaderRow
+                    contentComponent={props =>
+			<CustomTableHeaderCell
+			    groupByOptions={getGroupByOptions()}
+			    breakoutByOptions={getBreakoutByOptions()}
+			    onAddColumn={!_breakoutBy && addBreakoutByColumnHandler}
+			    onRemoveColumn={_breakoutBy && removeBreakoutByColumnHandler}
+			{...props} />}
+                    showSortingControls
+                    sortLabelComponent={CustomTableHeaderSortLabel}/>
+		<TableColumnVisibility
+                    hiddenColumnNames={hiddenColumnNames}
+		/>
+		<TableGroupRow
+                    contentComponent={CustomGroupCellContent}
+                    columnExtensions={groupingExtension} />
+		{config.showOnlySubtotalRow &&
+		 <TableSummaryRow
+                     groupRowComponent={CustomTableSummaryRowGroupRow}
+                     totalRowComponent={() => <></>}
+                     itemComponent={CustomTableSummaryRowItem}
+		 />
+		}
+		{(config.showSummaryRow && !config.showOnlySubtotalRow) &&
+		 <TableSummaryRow
+                     groupRowComponent={CustomTableSummaryRowGroupRow}
+                     totalRowComponent={CustomTableSummaryRowTotalRow}
+                     itemComponent={CustomTableSummaryRowItem}
+		 />
+		}
+              </TableGrid>
+            </Grid>
+	  </Grid>
+	  : <Box zIndex="modal">
+            <Skeleton variant="rect" width={'100%'} height={config.tableHeight} animation={false}/>
+	  </Box>
+	  }
+	</React.Fragment>
+    )
 }
