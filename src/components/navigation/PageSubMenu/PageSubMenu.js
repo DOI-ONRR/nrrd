@@ -137,9 +137,9 @@ const PageSubMenu = ({ children, menuItems, ...props }) => {
     }
   }, [subMenu.menuItems, filterState])
 
-  useEffect(() => {
-    console.log('subMenuWrapperRef: ', subMenuWrapperRef)
-  }, [])
+  // useEffect(() => {
+  //    console.log('subMenuWrapperRef: ', subMenuWrapperRef)
+  // }, [])
 
   return (
     <>

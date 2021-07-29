@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { withStyles, createStyles } from '@material-ui/core/styles'
 import { Box, Tooltip } from '@material-ui/core'
 
-import { formatToDollarInt } from '../../../js/utils'
+// not used import { formatToDollarInt } from '../../../js/utils'
 
 const StyledTooltip = withStyles(theme =>
   createStyles({

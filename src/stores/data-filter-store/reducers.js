@@ -4,7 +4,7 @@
  */
 
 import {
-G1,G2,G3,
+  // not used  G1, G2, G3,
   ALL_YEARS,
   REVENUE,
   REVENUE_TYPE,
@@ -35,7 +35,7 @@ G1,G2,G3,
   STATE,
   REVENUE_BY_COMPANY,
   COMPANY_NAME,
-  COMMODITY,
+  // COMMODITY,
   PERIOD_ALL_YEARS
 } from '../../constants'
 
@@ -66,15 +66,15 @@ const reducer = (state, action) => {
     const dataType = state.dataType
 
     const dataTypeCache = {
-	[DATA_TYPE]: state[DATA_TYPE],
-	[GROUP_BY]: state[GROUP_BY],
-	[PERIOD]: state[PERIOD],
-	[FISCAL_YEAR]: state[FISCAL_YEAR],
-	[CALENDAR_YEAR]: state[CALENDAR_YEAR]
+      [DATA_TYPE]: state[DATA_TYPE],
+      [GROUP_BY]: state[GROUP_BY],
+      [PERIOD]: state[PERIOD],
+      [FISCAL_YEAR]: state[FISCAL_YEAR],
+      [CALENDAR_YEAR]: state[CALENDAR_YEAR]
     }
 
-      const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
-      console.debug("Clear filters", updatedDataTypesCache, " State ", state) 
+    const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
+    //      console.debug("Clear filters", updatedDataTypesCache, " State ", state)
     return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
   }
   default:
@@ -88,7 +88,7 @@ const getLastFiveYears = (dataType, period) => (ALL_YEARS[dataType][period].leng
 
 const getLatestYear = (dataType, period) => ALL_YEARS[dataType][period].slice(ALL_YEARS[dataType][period].length - 1)[0]
 const getAllYears = dataType => {
-  console.debug('ALL_YEARS: ', ALL_YEARS, ' Data Type : ', dataType)
+//  console.debug('ALL_YEARS: ', ALL_YEARS, ' Data Type : ', dataType)
   return ALL_YEARS[dataType]
 }
 

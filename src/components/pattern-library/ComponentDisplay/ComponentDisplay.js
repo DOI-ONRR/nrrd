@@ -63,7 +63,7 @@ const ComponentDisplay = ({ children }) => {
     componentsInGroup.includes(item.displayName) &&
     !item.parent.relativePath.includes('DataTable/Custom'))
 
-  const content = (Array.isArray(children)) ? children : [children]
+  // not used   const content = (Array.isArray(children)) ? children : [children]
 
   // const getNotes = key => content.filter(child => child?.props.noteKeys?.includes(key))
 

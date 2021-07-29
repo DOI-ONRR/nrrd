@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+// not used import PropTypes from 'prop-types'
 
 import * as d3 from 'd3'
 
@@ -26,7 +26,7 @@ const LegendButton = withStyles(theme =>
 const StackedBarChart2 = ({ data, ...options }) => {
   const {
     barSize,
-    legendReverse,
+    // not used legendReverse,
     units,
     yGroupBy,
     yOrderBy,

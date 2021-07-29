@@ -118,7 +118,7 @@ const RevenueCountyMap = props => {
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true

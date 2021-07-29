@@ -93,7 +93,7 @@ const DisbursementTopRecipients = props => {
   ]
   const xAxis = 'recipient'
   const yAxis = 'total'
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { useStaticQuery, graphql } from 'gatsby'
@@ -105,7 +105,7 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
   const classes = useStyles()
 
   const handleChange = value => {
-    console.log('handleChange')
+    // console.log('handleChange')
     setCategory(value)
     window.scrollTo(0, 0)
   }
@@ -202,7 +202,10 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
                 <Box className={classes.glossaryAnchorMenu}>
                   {gMenu.map((item, i) => (
                     <Box display="inline-block" key={`gmenu__${ i }`}>
-                      <a className={`${ classes.glossaryAnchor } ${ activeClass(item) }`} onClick={item === '#' ? scrollToTop : undefined} href={`#${ item !== '#' ? item : '' }`}>{item}</a>
+                      <a
+                        className={`${ classes.glossaryAnchor } ${ activeClass(item) }`}
+                        onClick={item === '#' ? scrollToTop : undefined}
+                        href={`#${ item !== '#' ? item : '' }`}>{item}</a>
                     </Box>
                   ))}
                 </Box>
@@ -233,7 +236,9 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
             paddingBottom: theme.spacing(1),
             borderBottom: `3px dashed ${ theme.palette.common.white }`
           }}>The Office of Natural Resources Revenue (ONRR)</h4>
-          <p>The ONRR is part of the U.S. Department of the Interior, and is responsible for collecting, disbursing, and verifying federal and Indian energy and other natural resource revenue</p>
+          <p>The ONRR is part of the U.S. Department of the Interior,
+             and is responsible for collecting, disbursing, and verifying
+             federal and Indian energy and other natural resource revenue</p>
         </>
           }
           { (category !== 'ONRR') &&

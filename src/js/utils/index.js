@@ -314,10 +314,8 @@ const utils = {
     // add 2 to d3 format so as not to lose precision
 
     const num = d3.format(`.${ precision + 2 }s`)(value)
-    console.log('num: ', num)
 
     let suffix = num.substring(num.length - 1)
-    console.log('suffix: ', suffix)
     if (suffix === 0) {
       suffix = ''
     }

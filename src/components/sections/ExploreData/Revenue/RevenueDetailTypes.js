@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import * as d3 from 'd3'
 
-import utils, { formatToDollarInt } from '../../../../js/utils'
+import { formatToDollarInt } from '../../../../js/utils'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -13,7 +13,7 @@ import { CircleChart } from '../../../data-viz/CircleChart'
 import QueryLink from '../../../../components/QueryLink'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -46,7 +46,7 @@ const APOLLO_QUERY = gql`
 
 const RevenueDetailTypes = props => {
   const classes = useStyles()
-  const theme = useTheme()
+  // not used const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
@@ -58,7 +58,7 @@ const RevenueDetailTypes = props => {
   // const isNativeAmerican = props.fipsCode && props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
   // const isNationwideFederal = props.fipsCode && props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS
   // const isState = props.fipsCode && props.fipsCode.length === 2 && !isNativeAmerican && !isNationwideFederal
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true

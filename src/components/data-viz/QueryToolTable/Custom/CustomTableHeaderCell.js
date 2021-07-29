@@ -4,15 +4,15 @@ import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import {
   GroupBySelectInput,
-  GroupByStickySelectInput,
+  // GroupByStickySelectInput,
   BreakoutBySelectInput
 } from '../../../inputs'
 import BaseButtonInput from '../../../inputs/BaseButtonInput'
 import {
   BREAKOUT_BY,
   GROUP_BY,
-  GROUP_BY_STICKY,
-  DISPLAY_NAMES
+  GROUP_BY_STICKY
+  // DISPLAY_NAMES
 } from '../../../../constants'
 
 import CustomTableHeaderSortLabel from './CustomTableHeaderSortLabel'

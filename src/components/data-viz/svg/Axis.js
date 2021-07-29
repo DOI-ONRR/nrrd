@@ -8,8 +8,8 @@ export const LeftAxis = ({ yScale, width }) => {
     if (start == null || end == null) {
       return
     }
-    const pxPerTick = 30
-    const tickCount = Math.ceil((end - start) / pxPerTick)
+    // not used const pxPerTick = 30
+    // not used const tickCount = Math.ceil((end - start) / pxPerTick)
     const createYAxis = () => (d3.axisLeft(yScale).ticks(3).tickSize(0).tickFormat(d => {
       if (d > 1000000000) {
         return `${ d / 1000000000 }B`

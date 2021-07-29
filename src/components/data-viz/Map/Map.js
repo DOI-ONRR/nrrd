@@ -129,20 +129,20 @@ const Map = props => {
   const onClick =
         props.onClick ||
         function (d, i) {
-          console.debug('Default onClick function', d, i)
+          // console.debug('Default onClick function', d, i)
         }
   const classes = useStyles()
   const minColor = props.minColor
   const maxColor = props.maxColor
   const onZoom = props.onZoom_d || function () {
-    console.debug('Map onZoom default')
+    // console.debug('Map onZoom default')
   }
   const disableMapControls = props.disableMapControls || false
   const onZoomEnd = props.onZoomEnd_d || function () {
-    console.debug('Map onZoomEnd default')
+    // console.debug('Map onZoomEnd default')
   }
   const zoomIn = props.zoomIn_d || function () {
-    console.debug('Map zoomIn default')
+    // console.debug('Map zoomIn default')
   }
   const mapZoom = props.mapZoom
   const mapX = props.mapX
@@ -171,7 +171,7 @@ const Map = props => {
   const createMap = () => {
     const us = mapJsonObject
     // const offshore = mapJsonObject.offshore
-    console.debug('OPTIONS: ', options)
+    // console.debug('OPTIONS: ', options)
     const data = observableData(mapData)
     data.title = mapTitle
     map = new D3Map(
@@ -211,7 +211,7 @@ const Map = props => {
         <div className='map'></div>
         { !disableMapControls &&
           <MapControls handleClick={d => {
-	          console.log('handling click: ', d)
+	          // console.log('handling click: ', d)
 	        }}/>
         }
       </div>
