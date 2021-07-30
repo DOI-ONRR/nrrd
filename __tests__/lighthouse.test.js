@@ -5,7 +5,7 @@ const lighthouse = require('lighthouse')
 // Launch Chrome from node
 const chromeLauncher = require('chrome-launcher')
 
-const BASEURL = `https://dev-nrrd.app.cloud.gov`
+const BASEURL = `https://preview-nrrd.app.cloud.gov/`
 
 // Lighthouse config
 // https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md
@@ -58,26 +58,23 @@ describe('Site Audits via Lighthouse', () => {
 
   // Accessibility test
   it('passes an accessibility audit through Lighthouse', () => {
-    expect(lh.categories['accessibility'].score).toBeGreaterThanOrEqual(0.8)
+    expect(lh.categories['accessibility'].score).toBeGreaterThanOrEqual(0.85)
   })
 
   // Performance test
   it('passes a performance audit through Lighthouse', () => {
-    expect(lh.categories['performance'].score).toBeGreaterThanOrEqual(0.8)
+    expect(lh.categories['performance'].score).toBeGreaterThanOrEqual(0.70)
   })
 
   // Best Practice test
   it('passes a best practice audit through Lighthouse', () => {
-    expect(lh.categories['best-practices'].score).toBeGreaterThanOrEqual(0.8)
+    expect(lh.categories['best-practices'].score).toBeGreaterThanOrEqual(0.85)
   })
 
   // SEO test
   it('passes a SEO audit through Lighthouse', () => {
-    expect(lh.categories['seo'].score).toBeGreaterThanOrEqual(0.8)
+    expect(lh.categories['seo'].score).toBeGreaterThanOrEqual(0.85)
   })
 
-  // Progressive Web App
-  it('passes PWA(Progress Web App) audit through Lighthouse', () => {
-    expect(lh.categories['pwa'].score).toBeGreaterThanOrEqual(0.8)
-  })
+
 })

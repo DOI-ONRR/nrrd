@@ -86,10 +86,11 @@ jobs:
           paths:
             - node_modules
       - run:
-          name: Run lighthouse audit
-          command: npm run test-lighthouse
+          name: Run lighthouse
+          command: npm run test:lighthouse
       - store_artifacts:
           path: ./tmp/lighthouse-audit-results
+  
 
   # lighthouse:
   #   executor: lighthouse-check/default
