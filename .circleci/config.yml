@@ -97,13 +97,18 @@ jobs:
     executor: lighthouse-check/default
     steps:
       - lighthouse-check/audit:
-          urls: https://revenuedata.doi.gov,https://revenuedata.doi.gov/explore,https://revenuedata.doi.gov/query-data,https://revenuedata.doi.gov/downloads,https://revenuedata.doi.gov/glossary,https://revenuedata.doi.gov/how-revenue-works
+          urls: https://revenuedata.doi.gov,
+            https://revenuedata.doi.gov/explore?dataType=Revenue&location=NF%2CNA&mapLevel=State&offshoreRegions=false&period=Calendar%20Year&year=2020,
+            https://revenuedata.doi.gov/query-data,
+            https://revenuedata.doi.gov/downloads,
+            https://revenuedata.doi.gov/glossary,
+            https://revenuedata.doi.gov/how-revenue-works
       - lighthouse-check/validate-status:
           minAccessibilityScore: '90'
           minBestPracticesScore: '90'
-          minPerformanceScore: '85'
+          minPerformanceScore: '80'
           minProgressiveWebAppScore: '90'
-          minSeoScore: '50'
+          minSeoScore: '70'
 
   nrrd-database:
     machine:
