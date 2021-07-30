@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
+  lighthouse-check: foo-software/lighthouse-check@0.0.13
 
 jobs:
   lint:
@@ -25,6 +26,7 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./test-results 
+  
   unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -69,27 +71,33 @@ jobs:
       - store_artifacts:
           path: ./__tests__/__image_snapshots__/
 
+  # lighthouse:
+  #   docker:
+  #     - image: circleci/node:12.13.0-browsers
+  #   steps:
+  #     - checkout
+  #     - restore_cache:
+  #         key: v3-node-modules-{{ checksum "package-lock.json" }}
+  #     - run:
+  #         name: Install node dependencies
+  #         command: npm install
+  #     - save_cache:
+  #         key: v3-node-modules-{{ checksum "package-lock.json" }}
+  #         paths:
+  #           - node_modules
+  #     - run:
+  #         name: Run lighthouse audit
+  #         command: npm run test-lighthouse
+  #     - store_test_results:
+  #         path: ./test-results
+  #     - store_artifacts:
+  #         path: ./test-results
+
   lighthouse:
-    docker:
-      - image: circleci/node:12.13.0-browsers
+    executor: lighthouse-check/default
     steps:
-      - checkout
-      - restore_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install node dependencies
-          command: npm install
-      - save_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Run lighthouse audit
-          command: npm run test-lighthouse
-      - store_test_results:
-          path: ./test-results
-      - store_artifacts:
-          path: ./test-results
+      - lighthouse-check/audit:
+          urls: https://revenuedata.doi.gov,https://revenuedata.doi.gov/explore,https://revenuedata.doi.gov/query-data,https://revenuedata.doi.gov/downloads,https://revenuedata.doi.gov/glossary,https://revenuedata.doi.gov/how-revenue-works
 
   nrrd-database:
     machine:
@@ -394,7 +402,6 @@ jobs:
           command: |
             bash ./.circleci/cleanup-previews.sh
 
-
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -486,6 +493,13 @@ workflows:
                 - master
                 - staging
       - lint:
+          filters:
+            branches:
+              ignore:
+                - master
+                - staging
+      
+      - lighthouse:
           filters:
             branches:
               ignore:
