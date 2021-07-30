@@ -388,11 +388,13 @@ const DataTableBase = ({ data, config }) => {
   const [expandedGroups, setExpandedGroups] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
-  const [groupBySticky, setGroupBySticky] = useState(columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
+  // const [groupBySticky, setGroupBySticky] = useState([])
+
+  //
 
   // Instance variables
 
-  const _groupBySticky = groupBySticky // set above to make groupBySticky a used variable
+  const _groupBySticky = (columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
   //  old code not set in setGroupBySticky columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY]
   const _breakoutBy = columnNames.find(col => col.name === config[BREAKOUT_BY]) && config[BREAKOUT_BY]
   const _additionalColumns = config[ADDITIONAL_COLUMNS]
@@ -466,10 +468,10 @@ const DataTableBase = ({ data, config }) => {
   }, [pivotData])
 
   // STEP 3: Set group by sticky if there are any
-  useEffect(() => {
-    setGroupBySticky(columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
-  }, [columnNames])
-
+  /* useEffect(() => {
+     *    setGroupBySticky(columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
+     * }, [columnNames])
+     */
   // STEP 3: Logic to update table display after columns are updated
   useEffect(() => {
     if (_groupBy && (_breakoutBy !== NO_BREAKOUT_BY && _breakoutBy)) {
