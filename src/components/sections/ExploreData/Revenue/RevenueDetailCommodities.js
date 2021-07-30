@@ -12,7 +12,7 @@ import QueryLink from '../../../../components/QueryLink'
 import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -47,7 +47,7 @@ const APOLLO_QUERY = gql`
 const RevenueDetailCommodities = props => {
   // console.log('RevenueDetailCommodities props: ', props)
   const classes = useStyles()
-  const theme = useTheme()
+  // not used const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const state = props.fipsCode
@@ -60,7 +60,7 @@ const RevenueDetailCommodities = props => {
   const yAxis = 'total'
 
   const isCounty = state && state.length === 5
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true

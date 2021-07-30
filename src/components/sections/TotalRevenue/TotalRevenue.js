@@ -9,10 +9,10 @@ import {
 
 import { useTheme } from '@material-ui/core/styles'
 
-import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+// not used import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import StackedBarChart2 from '../../data-viz/StackedBarChart/StackedBarChart2'
-import SectionHeader from '../../sections/SectionHeader'
-import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
+// not used import SectionHeader from '../../sections/SectionHeader'
+// not used import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link/'
 import ComparisonTable from '../ComparisonTable'
 
@@ -23,7 +23,10 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
 const FISCAL = gql`
     query TotalYearlyRevenue($period_group: String!, $breakout_group: String!)  {  
-	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc, fiscal_month: asc, sort_order: asc}) {
+	total_yearly_fiscal_revenue: total_revenue_summary(
+	  where: {period_group: {_eq: $period_group},  
+	  breakout_group:  {_eq: $breakout_group}}, 
+	  order_by: {fiscal_year: asc, fiscal_month: asc, sort_order: asc}) {
 	    period
 	    sum
 	    source
@@ -41,7 +44,10 @@ const FISCAL = gql`
 
 const CALENDAR = gql`
     query TotalYearlyRevenue($period_group: String!, $breakout_group: String!) {  
-	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {calendar_year: asc, month: asc, sort_order: asc}) {
+	total_yearly_calendar_revenue: total_revenue_summary(
+	  where: {period_group: {_eq: $period_group},  
+	  breakout_group:  {_eq: $breakout_group}}, 
+	    order_by: {calendar_year: asc, month: asc, sort_order: asc}) {
 	    period
 	    sum
 	    source
@@ -58,7 +64,9 @@ const CALENDAR = gql`
 
 const TOTAL_REVENUE_QUERY = gql`
     query TotalYearlyRevenue($period_group: String!, $breakout_group: String!) {
-	total_yearly_fiscal_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {fiscal_year: asc,fiscal_month: asc,  sort_order: asc}) {
+	total_yearly_fiscal_revenue: total_revenue_summary(
+	    where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, 
+	    order_by: {fiscal_year: asc,fiscal_month: asc,  sort_order: asc}) {
 	    period
 	    sum
 	    source
@@ -71,7 +79,9 @@ const TOTAL_REVENUE_QUERY = gql`
 	    monthLong: month_long
 	}
 
-	total_yearly_calendar_revenue: total_revenue_summary(where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, order_by: {calendar_year: asc, month: asc, sort_order: asc}) {
+	total_yearly_calendar_revenue: total_revenue_summary(
+	    where: {period_group: {_eq: $period_group},  breakout_group:  {_eq: $breakout_group}}, 
+	    order_by: {calendar_year: asc, month: asc, sort_order: asc}) {
 	    period
 	    sum
 	    source
@@ -151,9 +161,9 @@ const TOTAL_REVENUE_QUERY = gql`
 // TotalRevenue component
 const TotalRevenue = props => {
   const theme = useTheme()
-  const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
+  const { state: filterState } = useContext(DataFilterContext)
   filterState.period = (filterState.monthly !== DFC.MONTHLY_CAPITALIZED && filterState.period === 'Most recent 12 months') ? DFC.PERIOD_FISCAL_YEAR : filterState.period
-  const { monthly, period, breakoutBy, dataType, periodAllYears } = filterState
+  const { monthly, period, breakoutBy, periodAllYears } = filterState
   const revenueComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`

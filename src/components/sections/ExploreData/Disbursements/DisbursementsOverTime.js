@@ -90,7 +90,7 @@ const DisbursementsOverTime = props => {
 
   const { state: pageState, updateExploreDataCards } = useContext(ExploreDataContext)
   const cards = pageState.cards
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true

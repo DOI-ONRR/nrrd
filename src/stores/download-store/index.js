@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer } from 'react'
 import { useActions } from './actions.js'
 import { initialState, reducer } from './reducers'
 

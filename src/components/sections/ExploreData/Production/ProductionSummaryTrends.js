@@ -13,7 +13,7 @@ import LocationName from '../LocationName'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import { useInView } from 'react-intersection-observer'
+// not used summary cards import { useInView } from 'react-intersection-observer'
 import utils from '../../../../js/utils'
 
 const APOLLO_QUERY = gql`
@@ -51,12 +51,6 @@ const ProductionSummaryTrends = props => {
   const key = `${ dataSet }_${ product }_${ state }`
   const minYear = periodAllYears[0]
 
-  const { ref, inView, entry } = useInView({
-    /* Optional options */
-    threshold: 0,
-    triggerOnce: true
-  })
-
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
     variables: { state: state, product: product, period: period }
   })
@@ -81,7 +75,7 @@ const ProductionSummaryTrends = props => {
 
   if (loading) {
     return (
-      <Grid container>
+      <Grid container >
         <Typography style={{ fontSize: '.8rem' }}>
         Loading....{' '}
         </Typography>
@@ -165,10 +159,13 @@ const ProductionSummaryTrends = props => {
   else {
     return (
       <>
-        <Grid container>
+        <Grid container >
           <Grid item xs={12}>
             <Typography variant="caption">
-              <Box><LocationName location={location} /> {`${ nativeAmerican ? 'land' : '' } did not produce any ${ product } from ${ minYear || 2003 } to ${ year }.`} </Box>
+              <Box>
+                <LocationName location={location} />
+                {`${ nativeAmerican ? 'land' : '' } did not produce any ${ product } from ${ minYear || 2003 } to ${ year }.`}
+              </Box>
             </Typography>
           </Grid>
         </Grid>

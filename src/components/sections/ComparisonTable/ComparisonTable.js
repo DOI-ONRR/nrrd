@@ -120,10 +120,20 @@ const ComparisonTable = forwardRef((props, ref) => {
     newObj.key = item[0]
 
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
-      const previousSum = item[1].filter(item => parseInt(item.period_date.substring(0, 4)) === previousYear && item.month_long === selectedItem.month).reduce((prev, curr) => prev + curr.sum, 0)
-      const currentSum = item[1].filter(item => parseInt(item.period_date.substring(0, 4)) === currentYear && item.month_long === selectedItem.month).reduce((prev, curr) => prev + curr.sum, 0)
-      newObj.previous = { ...item[1].filter(item => parseInt(item.period_date.substring(0, 4)) === previousYear && item.month_long === selectedItem.month)[0], sum: previousSum }
-      newObj.current = { ...item[1].filter(item => parseInt(item.period_date.substring(0, 4)) === currentYear && item.month_long === selectedItem.month)[0], sum: currentSum }
+      const previousSum = item[1].filter(item =>
+        parseInt(item.period_date.substring(0, 4)) === previousYear && item.month_long === selectedItem.month).reduce((prev, curr) => prev + curr.sum, 0)
+      const currentSum = item[1].filter(item =>
+        parseInt(item.period_date.substring(0, 4)) === currentYear && item.month_long === selectedItem.month).reduce((prev, curr) => prev + curr.sum, 0)
+      newObj.previous = {
+        ...item[1].filter(item =>
+          parseInt(item.period_date.substring(0, 4)) === previousYear && item.month_long === selectedItem.month)[0],
+        sum: previousSum
+      }
+      newObj.current = {
+        ...item[1].filter(item =>
+          parseInt(item.period_date.substring(0, 4)) === currentYear && item.month_long === selectedItem.month)[0],
+        sum: currentSum
+      }
     }
     else {
       let previousSum = {}
@@ -218,7 +228,8 @@ const ComparisonTable = forwardRef((props, ref) => {
               }
               <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">
-                  {month ? `${ month } ${ previousYear } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }` : `${ previousYearText } ${ comparisonText } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`}
+                  {month ? `${ month } ${ previousYear } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`
+                    : `${ previousYearText } ${ comparisonText } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`}
                 </Box>
               </TableCell>
               <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>

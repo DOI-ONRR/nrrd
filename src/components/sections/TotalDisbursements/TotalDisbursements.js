@@ -11,7 +11,7 @@ import {
   Grid
 } from '@material-ui/core'
 
-import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+// not used import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import StackedBarChart2 from '../../data-viz/StackedBarChart/StackedBarChart2'
 import SectionHeader from '../../sections/SectionHeader'
 import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
@@ -94,7 +94,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
 // TotalDisbursements
 const TotalDisbursements = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy, dataType, year } = filterState
+  const { monthly, period, breakoutBy, dataType } = filterState
   const disbursementsComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } by ${ period.toLowerCase() } (dollars)`
@@ -252,8 +252,10 @@ const TotalDisbursements = props => {
       }
 
       legendHeaders = headers => {
-        console.log('legendHeaders: ', headers)
-        const headerArr = [breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), `${ periodAbbr } ${ headers[1] } ${ ((currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`]
+        // console.log('legendHeaders: ', headers)
+        const headerArr = [breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1),
+			   `${ periodAbbr } ${ headers[1] } ${ ((currentMonthNum !== parseInt('09') ||
+                            startMonth === endMonth) && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`]
         return headerArr
       }
     }

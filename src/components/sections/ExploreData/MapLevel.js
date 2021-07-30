@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 
 import {
   Box
@@ -58,7 +58,7 @@ const MapLevel = props => {
     offshoreRegions
   } = filterState
 
-  const mapLevelLabel = `Map level ${ mapLevel || DFC.STATE } ${ offshoreRegions ? ' and offshore' : '' }`
+  // const mapLevelLabel = `Map level ${ mapLevel || DFC.STATE } ${ offshoreRegions ? ' and offshore' : '' }`
   const offshore = (offshoreRegions === true || (offshoreRegions === 1 || offshoreRegions === '1'))
 
   return (

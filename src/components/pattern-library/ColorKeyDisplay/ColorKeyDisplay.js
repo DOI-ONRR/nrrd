@@ -19,7 +19,13 @@ const ColorKeyDisplay = ({ keys, children }) => {
                   if (typeof theme.palette[key][subKey] === 'string') {
                     return (
                       <Grid item key={`${ key }.${ subKey }`} xs={12} sm={3} md={2}>
-                        <Box pl={2} bgcolor={theme.palette[key][subKey]} border={1} borderColor='#e0e0e0' color={theme.palette.getContrastText(theme.palette[key][subKey])}>
+                        <Box
+                          pl={2}
+                          bgcolor={theme.palette[key][subKey]}
+                          border={1}
+                          borderColor='#e0e0e0'
+                          color={theme.palette.getContrastText(theme.palette[key][subKey])}
+                        >
                           <Typography variant={'caption'}>
                             {`${ key }.${ subKey }`}<br></br>{`${ theme.palette[key][subKey] }`}
                           </Typography>
@@ -31,7 +37,13 @@ const ColorKeyDisplay = ({ keys, children }) => {
                     return (
                       <Grid key={key} container direction="row" justify="flex-start" alignItems="stretch">
                         <Grid item xs={12} sm={3} md={2}>
-                          <Box pl={2} bgcolor={theme.palette[key]} border={1} borderColor='#e0e0e0' color={theme.palette.getContrastText(theme.palette[key])}>
+                          <Box
+                            pl={2}
+                            bgcolor={theme.palette[key]}
+                            border={1}
+                            borderColor='#e0e0e0'
+                            color={theme.palette.getContrastText(theme.palette[key])}
+                          >
                             <Typography variant={'caption'}>{`${ key }`}<br></br>{`${ theme.palette[key] }`}</Typography>
                           </Box>
                         </Grid>

@@ -108,7 +108,7 @@ const ProductionLandCategory = ({ title, ...props }) => {
   }
 
   // console.log('ProductionLandCategory useQuery vars: ', state, locationType, commodity, period)
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true

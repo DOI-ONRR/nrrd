@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import utils from '../../../js/utils'
-import PercentDifference from '../../utils/PercentDifference'
+// not used import PercentDifference from '../../utils/PercentDifference'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
@@ -92,7 +92,7 @@ const DisbursementTrends = props => {
     // console.debug('currentYearDate', currentYearDate)
     // console.debug('fiscalYearData', fiscalYearData)
     // Get previous year
-    const previousYear = currentYear - 1
+    // not used const previousYear = currentYear - 1
 
     // Trends
     const trends = aggregateData(data.disbursement_trends)
@@ -109,7 +109,7 @@ const DisbursementTrends = props => {
       currentFiscalYearText = currentFiscalYearText + ' so far'
     }
     const longCurrentYearText = `${ maxMonth } ${ fiscalYearData[fiscalYearData.length - 1].calendarYear }`
-    const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
+    // commented out down below in JSX not used const previousFiscalYearText = `from FY${ previousYear.toString().substring(2) }`
     const currentTrendText = `FY${ minYear } - FY${ maxYear }`
 
 	  year = trends[0].histData[trends[0].histData.length - 1][0] || filterState[DFC.YEAR]

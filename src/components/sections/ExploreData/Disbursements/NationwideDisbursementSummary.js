@@ -26,7 +26,7 @@ import {
   useTheme
 } from '@material-ui/core/styles'
 
-import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
+// not used import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 import { HorizontalStackedBarChart } from '../../../data-viz/StackedBarChart'
 import DisbursementLocationTotal from './DisbursementLocationTotal'
 
@@ -65,7 +65,7 @@ const NationwideDisbursementSummary = props => {
   const dataSet = 'FY ' + year
 
   const { title } = props
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true

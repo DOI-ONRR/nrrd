@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 
 import {
   G1, G2, G3,
-  ALL_YEARS,
+  // not used  ALL_YEARS,
   REVENUE,
   PRODUCTION,
   REVENUE_BY_COMPANY,
@@ -31,7 +31,10 @@ import { DownloadContext } from '../../../stores/download-store'
 import { toTitleCase, aggregateSum, destructuringSwap } from '../../../js/utils'
 
 import withQueryManager from '../../withQueryManager'
-import { QueryToolTableProvider, QueryToolTableContext } from '../../../stores'
+import {
+  QueryToolTableProvider
+  // not used QueryToolTableContext
+} from '../../../stores'
 
 import Skeleton from '@material-ui/lab/Skeleton'
 import Backdrop from '@material-ui/core/Backdrop'
@@ -144,6 +147,7 @@ const QueryToolTable = withQueryManager(({ data, loading }) => {
   useEffect(() => {
     if (data) {
       setTableData(transformDataToTableData(data.results, data.counts))
+      //    console.debug("DFC Data", dfc)
       setDataTableConfig({
         showSummaryRow: (dfc[DATA_TYPE] !== PRODUCTION || (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
         showOnlySubtotalRow: (dfc[DATA_TYPE] === PRODUCTION && (dfc[PRODUCT] && dfc[PRODUCT].split(',').length === 1)),
@@ -348,16 +352,16 @@ const DataTableBase = ({ data, config }) => {
   }
   // Returns a list of options available for the group by and breakout columns
   const getBreakoutByOptions = () => {
-    console.debug('-----------------------------columnNames--------------------------------', columnNames)
-    console.debug('-----------------------------config--------------------------------', columnNames)
+    //    console.debug('-----------------------------columnNames--------------------------------', columnNames)
+    //    console.debug('-----------------------------config--------------------------------', columnNames)
     const options = columnNames.filter(item => (
-	  item.name !== _groupBySticky &&
-	  item.name !== _groupBy &&
-	  item.name !== config.pivotColumn &&
-	  item.name !== config.pivotColumnValue &&
-	  !config?.omitGroupBreakoutByOptions?.includes(item.name) &&
-	  !_additionalColumns?.includes(item.name) &&
-	  !pivotColumnNames?.includes(item.name)
+      item.name !== _groupBySticky &&
+      item.name !== _groupBy &&
+      item.name !== config.pivotColumn &&
+      item.name !== config.pivotColumnValue &&
+      !config?.omitGroupBreakoutByOptions?.includes(item.name) &&
+      !_additionalColumns?.includes(item.name) &&
+      !pivotColumnNames?.includes(item.name)
     ))
     return options.map(item => ({ option: item.title, value: item.name }))
   }
@@ -384,9 +388,14 @@ const DataTableBase = ({ data, config }) => {
   const [expandedGroups, setExpandedGroups] = useState([])
   const [groupingExtension, setGroupingExtension] = useState([])
   const [groupSummaryItems, setGroupSummaryItems] = useState([])
-  const [groupBySticky, setGroupBySticky] = useState([])
+  // const [groupBySticky, setGroupBySticky] = useState([])
+
+  //
+
   // Instance variables
-  const _groupBySticky = columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY]
+
+  const _groupBySticky = (columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
+  //  old code not set in setGroupBySticky columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY]
   const _breakoutBy = columnNames.find(col => col.name === config[BREAKOUT_BY]) && config[BREAKOUT_BY]
   const _additionalColumns = config[ADDITIONAL_COLUMNS]
   const _groupBy = getGroupBy()
@@ -459,14 +468,14 @@ const DataTableBase = ({ data, config }) => {
   }, [pivotData])
 
   // STEP 3: Set group by sticky if there are any
-  useEffect(() => {
-    setGroupBySticky(columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
-  }, [columnNames])
-
+  /* useEffect(() => {
+     *    setGroupBySticky(columnNames.find(col => col.name === config[GROUP_BY_STICKY]) && config[GROUP_BY_STICKY])
+     * }, [columnNames])
+     */
   // STEP 3: Logic to update table display after columns are updated
   useEffect(() => {
     if (_groupBy && (_breakoutBy !== NO_BREAKOUT_BY && _breakoutBy)) {
-	  setGrouping([{ columnName: _groupBy }])
+      setGrouping([{ columnName: _groupBy }])
       setGroupingExtension([{ columnName: _groupBy, showWhenGrouped: true }])
       if (data && data.length > 0) {
         // Gets the unique values that will be expanded
@@ -557,7 +566,9 @@ const DataTableBase = ({ data, config }) => {
       updateDataFilter({ [GROUP_BY]: undefined })
     }
   }, [_groupBy, _breakoutBy, config])
-
+  //    console.debug("Config Data: ", config)
+  //    console.debug("table Data ", tableData, " column names ", columnNames)
+  //    console.debug("Data ", data, " pivot data ", pivotData)
   return (
     <React.Fragment>
       {(defaultColumnWidths?.length > 0 && tableData?.length > 0)
@@ -613,18 +624,18 @@ const DataTableBase = ({ data, config }) => {
                 contentComponent={CustomGroupCellContent}
                 columnExtensions={groupingExtension} />
               {config.showOnlySubtotalRow &&
-                <TableSummaryRow
-                  groupRowComponent={CustomTableSummaryRowGroupRow}
-                  totalRowComponent={() => <></>}
-                  itemComponent={CustomTableSummaryRowItem}
-                />
+         <TableSummaryRow
+           groupRowComponent={CustomTableSummaryRowGroupRow}
+           totalRowComponent={() => <></>}
+           itemComponent={CustomTableSummaryRowItem}
+         />
               }
               {(config.showSummaryRow && !config.showOnlySubtotalRow) &&
-                <TableSummaryRow
-                  groupRowComponent={CustomTableSummaryRowGroupRow}
-                  totalRowComponent={CustomTableSummaryRowTotalRow}
-                  itemComponent={CustomTableSummaryRowItem}
-                />
+         <TableSummaryRow
+           groupRowComponent={CustomTableSummaryRowGroupRow}
+           totalRowComponent={CustomTableSummaryRowTotalRow}
+           itemComponent={CustomTableSummaryRowItem}
+         />
               }
             </TableGrid>
           </Grid>

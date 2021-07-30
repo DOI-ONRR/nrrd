@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import PropTypes from 'prop-types'
+// not used import PropTypes from 'prop-types'
 
 import * as d3 from 'd3'
 import { Grid } from '@material-ui/core'
@@ -12,7 +12,9 @@ import CircleLabel from '../svg/CircleLabel'
 /**
  * Circle charts provide  a way to visualize hierarchically structured data.
  *
- * An example exists in the “Compare revenue” section in [Explore data](https://revenuedata.doi.gov/explore?dataType=Revenue&location=NF&mapLevel=State&offshoreRegions=false&period=Calendar%20Year&year=2019#top-nationwide-locations).
+ * An example exists in the “Compare revenue”
+ * section in [Explore data]
+ * (https://revenuedata.doi.gov/explore?dataType=Revenue&location=NF&mapLevel=State&offshoreRegions=false&period=Calendar%20Year&year=2019#top-nationwide-locations).
  */
 const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabels = true, showTooltips = true, ...options }) => {
   // console.log('CircleChart: ', options)
@@ -44,12 +46,12 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
   const yAxis = options.yAxis
   const xAxis = options.xAxis
 
-  const format = options.labelFormat || function () {
-    console.debug('format func')
-  }
+  // not used  const format = options.labelFormat || function () {
+  // console.debug('format func')
+  //  }
 
   const legendFormat = options.legendFormat || function () {
-    console.debug('format func')
+    // console.debug('format func')
   }
 
   const legendLabel = options.legendLabel || function (d) {
@@ -66,7 +68,7 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
 
   // roll up other dat
   const rollUpOther = data => {
-    console.log('rollUpOther data: ', data)
+    // console.log('rollUpOther data: ', data)
     try {
       if (maxCircles + 1 < data.length) {
         const tmp = data
@@ -82,7 +84,7 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
         o[xAxis] = 'Other'
         o[yAxis] = other
         data.push(o)
-        console.debug('OTHER :', o)
+        // console.debug('OTHER :', o)
       }
 
       return data
@@ -128,7 +130,8 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
 
   const root = pack({ name: 'root', children: otherDataSet })
 
-  // xDomain
+  // xDomain (currently not used commenting out
+  /*
   const xDomain = () => {
     try {
       const r = data.map((row, i) => {
@@ -141,7 +144,7 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
       console.warn('Error: ', err)
     }
   }
-
+*/
   // yDomain
   const yDomain = () => {
     try {
@@ -170,7 +173,7 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
   const colorScale = color()
 
   const onHover = d => {
-    console.log('CC handleOnHover: ', d)
+    // console.log('CC handleOnHover: ', d)
     if (d && d.data) {
       setActiveNode({ ...activeNode, key: d.data[xAxis] })
     }
