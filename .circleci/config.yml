@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
+  lighthouse-check: foo-software/lighthouse-check@0.0.13
 
 jobs:
   lint:
@@ -72,46 +73,41 @@ jobs:
 
   lighthouse:
     docker:
-      - image: kporras07/lighthouse-ci
-
+      - image: circleci/node:12.13.0-browsers
     steps:
       - checkout
-
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
-          name: Run lighthouse against staging deployment
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run lighthouse
+          command: npm run test:lighthouse
+      - store_artifacts:
+          path: ./tmp/lighthouse-audit-results
+  
 
-          # Set TEST_URL as an environment variable so that our custom config
-          environment:
-            TEST_URL: https://dev-nrrd.app.cloud.gov
-
-          # - Extract max JS bundle size, as well as a regular expression that
-          #   identifies our main JS bundle, from their definitions in `package.json`.
-          #   Store them in environment variables so that our custom confg
-          #   can reference them.
-          #
-          # - Invoke `lighthouse`, passing in a custom config file via --config-path.
-          #   The config file is how we include our custom audit.
-          #
-          # - The container is defined to run as user `chrome` (side note, can't run
-          #   Chrome browser as root!) We store the Lighthouse reports in user 
-          #   `chrome`'s home directory via the --output-path.
-          #
-          # - Also via --output-path, the reports will have in their file 
-          #   name `anonymous` (as opposed to authenticated) and a checksum 
-          #   of a unique value from the container where they were executed 
-          #
-          # - We use --output to get reports in html, so people can view them, 
-          #   AND json, so we can extract scores from them programmatically.
-          command: |
-            MAX_BUNDLE_SIZE_KB="$(node -p 'require("./package.json").lighthouse.maxBundleSizeKb')" \
-            JS_BUNDLE_REGEX="$(node -p 'require("./package.json").lighthouse.jsBundleRegex')" \
-            lighthouse $TEST_URL \
-              --config-path=./lighthouse-config/custom-config.js \
-              --port=9222 \
-              --chrome-flags=\"--headless\" \
-              --output-path=/home/chrome/reports/anonymous-"$(echo -n $CIRCLE_SHELL_ENV | md5sum | awk '{print $1}')" \
-              --output=json \
-              --output=html
+  lighthouse:
+    executor: lighthouse-check/default
+    steps:
+      - lighthouse-check/audit:
+          urls: https://revenuedata.doi.gov,
+            https://revenuedata.doi.gov/explore?dataType=Revenue&location=NF%2CNA&mapLevel=State&offshoreRegions=false&period=Calendar%20Year&year=2020,
+            https://revenuedata.doi.gov/query-data,
+            https://revenuedata.doi.gov/downloads,
+            https://revenuedata.doi.gov/glossary,
+            https://revenuedata.doi.gov/how-revenue-works
+      - lighthouse-check/validate-status:
+          minAccessibilityScore: '90'
+          minBestPracticesScore: '90'
+          minPerformanceScore: '80'
+          minProgressiveWebAppScore: '90'
+          minSeoScore: '70'
 
   nrrd-database:
     machine:
