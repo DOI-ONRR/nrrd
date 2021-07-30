@@ -71,25 +71,25 @@ jobs:
       - store_artifacts:
           path: ./__tests__/__image_snapshots__/
 
-  lighthouse:
-    docker:
-      - image: circleci/node:12.13.0-browsers
-    steps:
-      - checkout
-      - restore_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install node dependencies
-          command: npm install
-      - save_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Run lighthouse
-          command: npm run test:lighthouse
-      - store_artifacts:
-          path: ./tmp/lighthouse-audit-results
+  # lighthouse:
+  #   docker:
+  #     - image: circleci/node:12.13.0-browsers
+  #   steps:
+  #     - checkout
+  #     - restore_cache:
+  #         key: v3-node-modules-{{ checksum "package-lock.json" }}
+  #     - run:
+  #         name: Install node dependencies
+  #         command: npm install
+  #     - save_cache:
+  #         key: v3-node-modules-{{ checksum "package-lock.json" }}
+  #         paths:
+  #           - node_modules
+  #     - run:
+  #         name: Run lighthouse
+  #         command: npm run test:lighthouse
+  #     - store_artifacts:
+  #         path: ./tmp/lighthouse-audit-results
   
 
   lighthouse:
