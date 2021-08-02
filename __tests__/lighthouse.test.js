@@ -5,7 +5,7 @@ const lighthouse = require('lighthouse')
 // Launch Chrome from node
 const chromeLauncher = require('chrome-launcher')
 
-const BASEURL = `https://preview-nrrd.app.cloud.gov/`
+const BASEURL = 'https://revenuedata.doi.gov'
 
 // Lighthouse config
 // https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md
