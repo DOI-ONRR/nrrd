@@ -71,38 +71,28 @@ jobs:
       - store_artifacts:
           path: ./__tests__/__image_snapshots__/
 
-  # lighthouse:
-  #   docker:
-  #     - image: circleci/node:12.13.0-browsers
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         key: v3-node-modules-{{ checksum "package-lock.json" }}
-  #     - run:
-  #         name: Install node dependencies
-  #         command: npm install
-  #     - save_cache:
-  #         key: v3-node-modules-{{ checksum "package-lock.json" }}
-  #         paths:
-  #           - node_modules
-  #     - run:
-  #         name: Run lighthouse
-  #         command: npm run test:lighthouse
-  #     - store_artifacts:
-  #         path: ./tmp/lighthouse-audit-results
-  
-
   lighthouse:
-    executor: lighthouse-check/default
+    docker:
+      - image: circleci/node:12.13.0-browsers
     steps:
-      - lighthouse-check/audit:
-          urls: https://revenuedata.doi.gov/,https://revenuedata.doi.gov/explore,https://revenuedata.doi.gov/query-data,https://revenuedata.doi.gov/downloads,https://revenuedata.doi.gov/glossary,https://revenuedata.doi.gov/how-revenue-works
-      - lighthouse-check/validate-status:
-          minAccessibilityScore: '90'
-          minBestPracticesScore: '90'
-          minPerformanceScore: '80'
-          minProgressiveWebAppScore: '90'
-          minSeoScore: '70'
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run lighthouse
+          command: npm run test-lighthouse
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./lighthouse
+  
 
   nrrd-database:
     machine:
