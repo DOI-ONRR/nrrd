@@ -4,7 +4,9 @@ const fs = require('fs');
 const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
 
-const BASEURL = 'https://revenuedata.doi.gov'
+const BASEURL = process.env.CIRCLE_BRANCH ? `https://nrrd-preview.app.cloud.gov/sites/${ process.env.CIRCLE_BRANCH }` : 'https://dev-nrrd.app.cloud.gov/'
+
+console.log('BASEURL-------------------->', BASEURL)
 
 // Lighthouse config
 // https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md
