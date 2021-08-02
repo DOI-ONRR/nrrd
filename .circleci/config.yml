@@ -85,7 +85,7 @@ jobs:
           paths:
             - node_modules
       - run:
-          name: Run lighthouse
+          name: Run lighthouse audit
           command: npm run test-lighthouse
       - store_artifacts:
           path: ./__tests__/lighthouse/
