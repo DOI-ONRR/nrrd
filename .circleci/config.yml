@@ -88,10 +88,8 @@ jobs:
       - run:
           name: Run lighthouse
           command: npm run test-lighthouse
-      - store_test_results:
-          path: ./test-results
       - store_artifacts:
-          path: ./test-results/lighthouse-audits
+          path: ./__tests__/lighthouse/
   
 
   nrrd-database:
