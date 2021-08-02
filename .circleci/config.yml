@@ -91,7 +91,7 @@ jobs:
       - store_test_results:
           path: ./test-results
       - store_artifacts:
-          path: ./lighthouse
+          path: ./test-results/lighthouse-audits
   
 
   nrrd-database:

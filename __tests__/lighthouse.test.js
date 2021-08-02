@@ -77,7 +77,7 @@ describe('Site Audits via Lighthouse', () => {
     // console.log(scores); // eg. {performance: 0.98, seo: 0.97, accessibility: 0.99..}
     console.log(printCLITable(scores))
 
-    // fs.writeFileSync('/tmp/artifacts/report.html', result.report)
+    fs.writeFileSync('./test-results/lighthouse-audits/report.html', result.report)
   }, 45000)
 
   // Accessibility test
