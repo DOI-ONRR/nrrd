@@ -5,7 +5,7 @@ const chromeLauncher = require('chrome-launcher')
 
 // Read the csv file and store the
 // urls in an array
-const array = fs.readFileSync('./__audits__/lighthouse/site_urls.csv').toString().split('\n')
+const array = fs.readFileSync('./__audits__/site_urls.csv').toString().split('\n')
 
 // Declare a resultant array to store
 // the generated scores and initialize
@@ -108,15 +108,7 @@ result.push(
     }
   }
 
-  // Append the result in a report.csv
-  // file and end the program
-  try {
-    fs.appendFileSync(`./__audits__/lighthouse/lhreport__${ getDateString() }.csv`, result.toString())
-  }
-  catch (e) {
-  // statements to handle any exceptions
-    console.error(e, 'Error appendFileSync') // pass exception object to error handler
-  }
-
+  // Append the result in a lhreport.csv
+	fs.appendFileSync(`./__audits__/lighthouse/lhreport__${ getDateString() }.csv`, result.toString())
   await chrome.kill()
 })()

@@ -85,7 +85,7 @@ jobs:
           paths:
             - node_modules
       - run:
-          name: Run lighthouse audit
+          name: Run lighthouse tests
           command: npm run test-lighthouse
       - run:
           name: Create lighthouse audit report
