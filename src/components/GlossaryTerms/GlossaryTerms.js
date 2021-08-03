@@ -61,8 +61,8 @@ const GlossaryCategoryContainer = withStyles(theme =>
   createStyles({
     root: {
       padding: theme.spacing(2),
-      backgroundColor: '#79BBDA',
-      color: theme.palette.common.white,
+      backgroundColor: theme.palette.info.main,
+      color: theme.palette.common.black,
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(4)
     }
