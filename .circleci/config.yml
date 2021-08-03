@@ -87,6 +87,9 @@ jobs:
       - run:
           name: Run lighthouse audit
           command: npm run test-lighthouse
+      - run:
+          name: Create lighthouse audit report
+          command: node __tests__/lighthouse.audit.js
       - store_artifacts:
           path: ./__tests__/lighthouse/
   
