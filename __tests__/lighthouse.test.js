@@ -64,15 +64,6 @@ describe('Site Audits via Lighthouse', () => {
   beforeAll(async () => {
     const result = await launchChromeAndRunLighthouse(BASEURL, opts, config)
     lh = result.lhr
-
-    // get urls to test against
-    const array = fs.readFileSync("./__tests__/lighthouse/site_urls.csv").toString().split("\n")
-
-    console.log('site urls array---------->', array)
-
-    // write report
-    const reportHtml = result.report
-    fs.writeFileSync('./__tests__/lighthouse/lhreport.csv', reportHtml)
   }, 45000)
 
   // Accessibility test

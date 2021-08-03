@@ -89,9 +89,9 @@ jobs:
           command: npm run test-lighthouse
       - run:
           name: Create lighthouse audit report
-          command: node __tests__/lighthouse.audit.js
+          command: node __audits__/lighthouse.audit.js
       - store_artifacts:
-          path: ./__tests__/lighthouse/
+          path: ./__audits__/lighthouse/
   
 
   nrrd-database:
