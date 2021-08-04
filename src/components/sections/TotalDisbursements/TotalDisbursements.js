@@ -122,7 +122,7 @@ const TotalDisbursements = props => {
   let legendHeaders
   let currentMonthNum
   let currentYearSoFarText
-  const monthRange = []
+  const monthRange = ['']
   let monthRangeText
   let startMonth
   let endMonth
@@ -157,7 +157,7 @@ const TotalDisbursements = props => {
       }
     })
 
-    startMonth = monthRange[0]
+    startMonth = monthRange[1]
     endMonth = monthRange[monthRange.length - 1]
     monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
     currentYearSoFarText = `so far ${ monthRangeText }`

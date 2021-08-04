@@ -113,7 +113,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   // grouped data
   const groupedData = utils.groupBy(data, yGroupBy)
   // console.debug('data :', data)
-  // console.debug('groupeData :', groupedData)
+  //   console.debug('Comparison groupeData :', groupedData)
   // comparison data
   const comparisonData = Object.entries(groupedData).map((item, index) => {
     const newObj = {}
@@ -209,8 +209,8 @@ const ComparisonTable = forwardRef((props, ref) => {
       return utils.formatToDollarInt(sum)
     }
   }
-  // console.debug("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCdata ", cData)
-  // console.debug(currentYearTotal+" && "+previousYearTotal+" && "+currentYearTotal +"!== 0 && " + previousYearTotal +" !== 0")
+  // console.debug("Comparison CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCdata ", cData)
+  // console.debug("Comparison "+currentYearTotal+" && "+previousYearTotal+" && "+currentYearTotal +"!== 0 && " + previousYearTotal +" !== 0")
   return (
     <Box ref={ref}>
       {comparisonTitle && <ChartTitle compact={false}>{comparisonTitle}</ChartTitle>}
