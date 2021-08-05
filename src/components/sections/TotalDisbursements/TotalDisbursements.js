@@ -119,28 +119,30 @@ const TotalDisbursements = props => {
   let maxFiscalYear
   let maxCalendarYear
   let xGroups = {}
-  let legendHeaders
-  let currentMonthNum
-  let currentYearSoFarText
-  const monthRange = ['']
-  let monthRangeText
-  let startMonth
-  let endMonth
-  const yOrderBy = (breakoutBy === DFC.RECIPIENT)
-    ? [
-      'Other funds',
-      'Historic Preservation Fund',
-      'Land and Water Conservation Fund',
-      'Native American tribes and individuals',
-      'Reclamation Fund',
-      'State and local governments',
-      'U.S. Treasury'
-    ]
-    : ['Native American', 'Federal offshore', 'Federal onshore']
+    let legendHeaders
+    let currentMonthNum
+    let currentYearSoFarText
+    const monthRange = ["",undefined]
+    let monthRangeText
+    let startMonth
+    let endMonth
+    const yOrderBy = (breakoutBy === DFC.RECIPIENT)
+		   ? [
+		       'Other funds',
+		       'Historic Preservation Fund',
+		       'Land and Water Conservation Fund',
+		       'Native American tribes and individuals',
+		       'Reclamation Fund',
+		       'State and local governments',
+		       'U.S. Treasury'
+		   ]
+		   : ['Native American', 'Federal offshore', 'Federal onshore']
 
-  if (error) return `Error! ${ error.message }`
-  if (data) {
-    // console.log('TotalDisbursements data: ', data)
+    //console.debug(" Comparison yOrderBy ", yOrderBy)
+
+    if (error) return `Error! ${ error.message }`
+    if (data) {
+	// console.log('TotalDisbursements data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
@@ -154,10 +156,10 @@ const TotalDisbursements = props => {
     data.total_yearly_fiscal_disbursement.filter(item => {
       if (item.year === (maxFiscalYear + 1)) {
         if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
-      }
+      } 	  
     })
 
-    startMonth = monthRange[1]
+    startMonth = monthRange[2]
     endMonth = monthRange[monthRange.length - 1]
     monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
     currentYearSoFarText = `so far ${ monthRangeText }`
@@ -234,15 +236,16 @@ const TotalDisbursements = props => {
     }
     else {
       switch (breakoutBy) {
-      case 'recipient':
-        comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
-        chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
-        // console.log('chartData: ', chartData)
-        break
-      default:
-        comparisonData = data.total_yearly_fiscal_disbursement
-        chartData = data.total_yearly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 9)
-        break
+	  case 'recipient':
+              comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
+              chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
+              console.log('Comparison chartData: ', chartData, " comparison ", comparisonData, " total_yearly_fiscal_disbursement ", data.total_yearly_fiscal_disbursement)
+	      //console.debug("Comparison yOrderBy ", yOrderBy)
+              break
+	  default:
+              comparisonData = data.total_yearly_fiscal_disbursement
+              chartData = data.total_yearly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 9)
+              break
       }
 
       xGroups['Fiscal Year'] = chartData.map((row, i) => row.year)
@@ -260,66 +263,67 @@ const TotalDisbursements = props => {
       }
     }
   }
-
-  return (
-    <>
-      <SectionHeader
-        title="Total disbursements"
-        linkLabel="disbursements"
-        showLinks
-      />
-      <Grid container spacing={4}>
-        <Grid item xs={12}>
-          <HomeDataFilters
-            maxFiscalYear={maxFiscalYear}
-            maxCalendarYear={maxCalendarYear} />
-        </Grid>
-        <Grid item xs={12} md={7}>
-          <StackedBarChart2
-            key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
-            title={chartTitle}
-            units={units}
-            data={chartData}
-            xAxis={xAxis}
-            yAxis={yAxis}
-            xGroups={xGroups}
-            yGroupBy={yGroupBy}
-            yOrderBy={yOrderBy}
-            xLabels={d => xLabels(d)}
-            legendFormat={d => utils.formatToDollarInt(d)}
-            legendHeaders={legendHeaders}
-            handleBarHover={d => handleBarHover(d)}
-            showTooltips={false}
-            chartTooltip={
-              d => {
-                // console.log('chartTooltip d: ', d)
-                const r = []
-                r[0] = d.key
-                r[1] = utils.formatToDollarInt(d[0].data[d.key])
-                return r
-              }
-            }
-          />
-          <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
-            { (monthly === DFC.MONTHLY_CAPITALIZED)
-              ? <Link href='/downloads/disbursements-by-month/'>Source file</Link>
-              : <Link href='/downloads/disbursements/'>Source file</Link>
-            }
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={5}>
-          <ComparisonTable
-            key={`tdct__${ monthly }${ period }${ breakoutBy }`}
-            ref={disbursementsComparison}
-            data={comparisonData}
-            yGroupBy={yGroupBy}
-            yOrderBy={yOrderBy}
-            monthRange={monthRange}
-          />
-        </Grid>
-      </Grid>
-    </>
-  )
+    //console.debug('Comparison chartData: ', chartData, " comparison ", comparisonData, " total_yearly_fiscal_disbursement ", data.total_yearly_fiscal_disbursement)
+    //console.debug("Comparison yOrderBy ", yOrderBy)
+    return (
+	<>
+	  <SectionHeader
+              title="Total disbursements"
+              linkLabel="disbursements"
+              showLinks
+	  />
+	  <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <HomeDataFilters
+		  maxFiscalYear={maxFiscalYear}
+		  maxCalendarYear={maxCalendarYear} />
+            </Grid>
+            <Grid item xs={12} md={7}>
+              <StackedBarChart2
+		  key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
+		  title={chartTitle}
+		  units={units}
+		  data={chartData}
+		  xAxis={xAxis}
+		  yAxis={yAxis}
+		  xGroups={xGroups}
+		  yGroupBy={yGroupBy}
+		  yOrderBy={yOrderBy}
+		  xLabels={d => xLabels(d)}
+		  legendFormat={d => utils.formatToDollarInt(d)}
+		  legendHeaders={legendHeaders}
+		  handleBarHover={d => handleBarHover(d)}
+		  showTooltips={false}
+		  chartTooltip={
+		  d => {
+                      // console.log('chartTooltip d: ', d)
+                      const r = []
+                      r[0] = d.key
+                      r[1] = utils.formatToDollarInt(d[0].data[d.key])
+                      return r
+		  }
+		  }
+              />
+              <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
+		{ (monthly === DFC.MONTHLY_CAPITALIZED)
+		  ? <Link href='/downloads/disbursements-by-month/'>Source file</Link>
+		  : <Link href='/downloads/disbursements/'>Source file</Link>
+		}
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <ComparisonTable
+		  key={`tdct__${ monthly }${ period }${ breakoutBy }`}
+		  ref={disbursementsComparison}
+		  data={comparisonData}
+		  yGroupBy={yGroupBy}
+		  yOrderBy={yOrderBy}
+		  monthRange={monthRange}
+              />
+            </Grid>
+	  </Grid>
+	</>
+    )
 }
 
 export default TotalDisbursements
