@@ -87,7 +87,8 @@ const ComparisonTable = forwardRef((props, ref) => {
       }
       else {
         const currentSelectedYearData = data.filter(item => item.year === d)
-        const currentSelectedYearDataMaxMonth = currentSelectedYearData[currentSelectedYearData.length - 1].month_long || currentSelectedYearData[currentSelectedYearData.length - 1].monthLong
+        const currentSelectedYearDataMaxMonth = currentSelectedYearData[currentSelectedYearData.length - 1].month_long ||
+           currentSelectedYearData[currentSelectedYearData.length - 1].monthLong
         const year = d
         setSelectedItem({ ...selectedItem, year: year, month: currentSelectedYearDataMaxMonth })
       }
@@ -139,7 +140,7 @@ const ComparisonTable = forwardRef((props, ref) => {
       let previousSum = {}
       // //console.debug(" ------- previousYEAR ------ ", previousYear, "---- previousSUM ---", previousSum, " --- item ---",  item )
       // check for comparison with current fiscal month range
-	console.debug("comparison selected Item ",  selectedItem)
+      // console.debug("comparison selected Item ",  selectedItem)
       if (period === DFC.PERIOD_FISCAL_YEAR && selectedItem.month !== 'September' && selectedItem.month !== undefined) {
         previousSum = item[1].filter(itm => itm.year === previousYear && monthRange.includes(itm.monthLong)).reduce((prev, curr) => prev + curr.sum, 0)
       }
