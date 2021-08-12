@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from 'test-utils'
 
 import CircleChart from './CircleChart'
-import Circles from '../svg/Circles'
+// not used import Circles from '../svg/Circles'
 
 const chartData = [
   { location_name: 'Gulf of Mexico', total: 5163524881.620001 },

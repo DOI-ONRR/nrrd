@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { navigate } from '@reach/router'
+// not used import { navigate } from '@reach/router'
 
 import { makeStyles, withStyles, createStyles, useTheme } from '@material-ui/core/styles'
 import { Typography, Box, Tabs, Tab } from '@material-ui/core'
@@ -224,7 +224,7 @@ const Tabtastic = props => {
 
     if (updateDataFilter) {
       updateDataFilter({ ...filterState, [DFC.DATA_TYPE]: selectedChild.props.label, [DFC.BREAKOUT_BY]: DFC.SOURCE })
-      window?.history.replaceState(null, null, `?tab=${ formattedLabel }`)
+      return window?.history.replaceState(null, null, `?tab=${ formattedLabel }`)
     }
   }
 

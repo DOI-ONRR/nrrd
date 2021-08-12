@@ -25,7 +25,7 @@ const DisbursementLocationTotal = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
   })

@@ -3,8 +3,8 @@ import {
   LOCATION_AGGREGATION,
   COMMODITY_AGGREGATION,
   DATA_FILTER_KEY,
-  EXCLUDE_PROPS,
-  DATA_TYPE,
+  // not used   EXCLUDE_PROPS,
+  // not used DATA_TYPE,
   PRODUCTION,
   REVENUE,
   DISBURSEMENT,
@@ -38,8 +38,8 @@ import {
   LOCAL_RECIPIENT,
   COMMODITY_ORDER,
   COMPANY_NAME,
-  MONTH_LONG,
-  MONTHLY
+  MONTH_LONG
+  // not used MONTHLY
 } from '../../constants'
 
 import {
@@ -167,7 +167,7 @@ export const getDataFilterWhereClauses = (config, excludeProps) => {
  * @param {array} config
  */
 export const getDataFilterVariableValues = (state, config, options) => {
-  console.debug('getDataFilterVariableValues: ', state, config, options)
+//  console.debug('getDataFilterVariableValues: ', state, config, options)
 
   const results = {}
   config.forEach(prop => {
@@ -202,7 +202,7 @@ export const getDataFilterVariableValues = (state, config, options) => {
     results[Object.keys(prop)[0]] = getDataFilterValue(Object.keys(prop)[0], state)
   })
 
-  console.debug('getDataFilterVariableValues RESULTS: ', results)
+  //  console.debug('getDataFilterVariableValues RESULTS: ', results)
   return ({ variables: results })
 }
 
@@ -211,27 +211,28 @@ export const checkFundAggregation = (key, state, config, options) => {
     return false
   }
   if (FUND_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
-    //    console.debug("AGG FUND dfk true :", key)
+    // console.debug("AGG FUND dfk true :", key)
     return true
   }
   else if (FUND_AGGREGATION.includes(state.groupBy)) {
-    //    console.debug("AGG FUND  true gb :", key, state.groupBy)
+    // console.debug("AGG FUND  true gb :", key, state.groupBy)
     return true
   }
   else if (FUND_AGGREGATION.includes(state.breakoutBy)) {
-    //    console.debug("AGG FUND  true gb :", key, state.groupBy)
+    // console.debug("AGG FUND  true gb :", key, state.groupBy)
     return true
   }
 
   const keys = Object.keys(state)
   for (let ii = 0; ii < keys.length; ii++) {
     if (FUND_AGGREGATION.includes(keys[ii])) {
-      //        console.debug("AGG FUND true :", key, state[key])
+      //   console.debug("AGG FUND true :", key, state[key])
       return true
     }
   }
 
-  //  console.debug("AGG FUND false :", key, state.groupBy, key)
+  //    console.debug("AGG FUND false :", key, state.groupBy, key)
+  //  console.debug("AGG FUND STATE :", key, state, config, options)
   return false
 }
 export const checkLocationAggregation = (key, state, config, options) => {

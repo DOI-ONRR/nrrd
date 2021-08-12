@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
@@ -18,8 +19,8 @@ import {
   Box,
   CircularProgress,
   Container,
-  Grid,
-  useTheme
+  Grid
+  // not used useTheme
 } from '@material-ui/core'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
@@ -80,7 +81,7 @@ const useStyles = makeStyles(theme => ({
 
 const RevenueTopLocations = props => {
   const classes = useStyles()
-  const theme = useTheme()
+  // not used   const theme = useTheme()
   const { title } = props
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -97,7 +98,7 @@ const RevenueTopLocations = props => {
     locations.push('Native American')
   }
 
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
 	    /* Optional options */
 	    threshold: 0,
 	    triggerOnce: true

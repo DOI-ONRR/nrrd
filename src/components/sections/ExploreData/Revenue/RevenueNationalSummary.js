@@ -90,7 +90,7 @@ const RevenueNationalSummary = props => {
   const commodityKey = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'All'
   const { title } = props
 
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
@@ -214,7 +214,7 @@ const RevenueNationalSummary = props => {
                         // chartTooltip two dimensional array
                         chartTooltip={
                           d => {
-                            console.log('RNS chartTooltip d: ', d)
+                            // console.log('RNS chartTooltip d: ', d)
                             const r = []
                             r[0] = d.key
                             r[1] = formatToDollarInt(d[0].data[d.key])

@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer } from 'react'
 import { useActions } from './actions.js'
 import { initialState, reducer } from './reducers'
 
@@ -26,7 +26,7 @@ function DataFilterProvider ({ children, defaults, urlParams }) {
   const actions = useActions(state, dispatch)
 
   // Log new state
-  useEffect(() => console.log('DataFilterProvider newState: ', state), [state])
+  // useEffect(() => console.log('DataFilterProvider newState: ', state), [state])
 
   return (
     <DataFilterContext.Provider value={{ state, ...actions }}>

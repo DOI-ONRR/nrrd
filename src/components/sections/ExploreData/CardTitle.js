@@ -8,6 +8,8 @@ import {
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 import mapStates from './states.json'
 
+import GlossaryTerm from '../../GlossaryTerm/GlossaryTerm'
+
 const useStyles = makeStyles(theme => ({
   cardTitle: {
     fontSize: '1.25rem',
@@ -33,7 +35,9 @@ const CardTitle = props => {
       {/* States */}
       { (fips && fips.length === 2) &&
         <Grid container>
-          <Grid item xs={12} className={classes.cardTitle}>{card.name}</Grid>
+          <Grid item xs={12} className={classes.cardTitle}>
+            <GlossaryTerm termKey={card.name}>{card.name}</GlossaryTerm>
+          </Grid>
           <Grid item xs={12} className={classes.cardSubtitle}>{DFC.USA}</Grid>
         </Grid>
       }

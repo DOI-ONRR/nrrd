@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import {
   AppBar,
-  Button,
+  // not used  Button,
   Hidden,
-  Menu,
-  MenuItem,
+  // not used  Menu,
+  // not used MenuItem,
   Box
 } from '@material-ui/core'
 
@@ -152,37 +152,38 @@ const AppToolbar = props => {
 
 export default AppToolbar
 
-const DataMenu = ({ children, label, ...props }) => {
-  const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState(null)
+/* Not used
+   const DataMenu = ({ children, label, ...props }) => {
+ *  const classes = useStyles()
+ *  const [anchorEl, setAnchorEl] = useState(null)
 
-  const handleClick = e => {
-    setAnchorEl(e.currentTarget)
-  }
+ *  const handleClick = e => {
+ *    setAnchorEl(e.currentTarget)
+ *  }
 
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
+ *  const handleClose = () => {
+ *    setAnchorEl(null)
+ *  }
 
-  return (
-    <div className={classes.mobileMainMenu}>
-      <Button aria-controls="mobile-main-menu" aria-haspopup="true" onClick={handleClick}>
-        {label}
-      </Button>
-      <Menu
-        id="mobile-main-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        {...props}
-      >
-        {
-          children.map((child, i) =>
-            <MenuItem key={i} onClick={handleClose}>{child}</MenuItem>
-          )
-        }
-      </Menu>
-    </div>
-  )
-}
+ *  return (
+ *    <div className={classes.mobileMainMenu}>
+ *      <Button aria-controls="mobile-main-menu" aria-haspopup="true" onClick={handleClick}>
+ *        {label}
+ *      </Button>
+ *      <Menu
+ *        id="mobile-main-menu"
+ *        anchorEl={anchorEl}
+ *        keepMounted
+ *        open={Boolean(anchorEl)}
+ *        onClose={handleClose}
+ *        {...props}
+ *      >
+ *        {
+ *          children.map((child, i) =>
+ *            <MenuItem key={i} onClick={handleClose}>{child}</MenuItem>
+ *          )
+ *        }
+ *      </Menu>
+ *    </div>
+ *  )
+   } */

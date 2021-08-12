@@ -24,7 +24,7 @@ import {
   TableCell
 } from '@material-ui/core'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { useTheme } from '@material-ui/core/styles'
 
 import StackedBarChart from '../../../data-viz/StackedBarChart/StackedBarChart'
 import { HorizontalStackedBarChart } from '../../../data-viz/StackedBarChart'
@@ -34,7 +34,9 @@ import utils, { formatToDollarInt } from '../../../../js/utils'
 // revenue type by land but just take one year of front page to do poc
 const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
   query RevenueNational($year: Int!, $commodities: [String!]) {
-   federal_revenue_by_company_type_summary(order_by: {company_rank: asc, revenue: desc,  type_order: desc }, where: {calendar_year: {_eq: $year}, commodity: {_in: $commodities} }) {
+   federal_revenue_by_company_type_summary(
+       order_by: {company_rank: asc, revenue: desc,  type_order: desc }, 
+       where: {calendar_year: {_eq: $year}, commodity: {_in: $commodities} }) {
     corporate_name
     calendar_year
     revenue_type
@@ -45,32 +47,33 @@ const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
    }
   }
 `
-const useStyles = makeStyles(theme => ({
-  root: {
-    maxWidth: '100%',
-    width: '100%',
-    margin: theme.spacing(1),
-    '@media (max-width: 768px)': {
-      maxWidth: '100%',
-    },
-  },
-  progressContainer: {
-    maxWidth: '25%',
-    display: 'flex',
-    '& > *': {
-      marginTop: theme.spacing(3),
-      marginRight: 'auto',
-      marginLeft: 'auto',
-    }
-  },
-  circularProgressRoot: {
-    color: theme.palette.primary.dark,
-  }
-}))
-
+/* not used
+ * const useStyles = makeStyles(theme => ({
+ *   root: {
+ *     maxWidth: '100%',
+ *     width: '100%',
+ *     margin: theme.spacing(1),
+ *     '@media (max-width: 768px)': {
+ *       maxWidth: '100%',
+ *     },
+ *   },
+ *   progressContainer: {
+ *     maxWidth: '25%',
+ *     display: 'flex',
+ *     '& > *': {
+ *       marginTop: theme.spacing(3),
+ *       marginRight: 'auto',
+ *       marginLeft: 'auto',
+ *     }
+ *   },
+ *   circularProgressRoot: {
+ *     color: theme.palette.primary.dark,
+ *   }
+ * }))
+ *
+*/
 const RevenueByCompany = props => {
-  console.log('RevenueByCompany props: ', props)
-  const classes = useStyles()
+  // not used const classes = useStyles()
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
@@ -78,7 +81,7 @@ const RevenueByCompany = props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const { title } = props
 
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true

@@ -167,7 +167,7 @@ const YearSlider = props => {
 
   const minYear = periodAllYears[period][0]
   const maxYear = (period === DFC.PERIOD_FISCAL_YEAR) ? parseInt(fiscalYear) : parseInt(calendarYear)
-    console.debug("period all years: ", periodAllYears)
+  // console.debug('period all years: ', periodAllYears)
   customMarks.push(
     {
       label: minYear.toString(),

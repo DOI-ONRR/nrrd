@@ -17,7 +17,7 @@ import {
 
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
-import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm'
+// not used import GlossaryTerm from '../../../GlossaryTerm/GlossaryTerm'
 import * as d3 from 'd3'
 
 const useStyles = makeStyles(theme => ({
@@ -60,7 +60,7 @@ const ProductionDetailTrends = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const product = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
   const state = props.fipsCode
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true

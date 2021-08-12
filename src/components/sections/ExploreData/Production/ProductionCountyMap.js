@@ -131,7 +131,7 @@ const ProductionCountyMap = props => {
     maxColor
   } = props
 
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true

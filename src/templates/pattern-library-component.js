@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import path from 'path'
+import React from 'react'
+// not used import PropTypes from 'prop-types'
+// not used import path from 'path'
 
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import Grid from '@material-ui/core/Grid'
+// not used import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'

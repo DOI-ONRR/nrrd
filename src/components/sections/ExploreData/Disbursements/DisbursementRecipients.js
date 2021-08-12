@@ -12,7 +12,7 @@ import { formatToDollarInt } from '../../../../js/utils'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Box
 } from '@material-ui/core'
@@ -60,7 +60,7 @@ const APOLLO_QUERY = gql`
 const DisbursementRecipients = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const classes = useStyles()
-  const theme = useTheme()
+  // not used  const theme = useTheme()
 
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
@@ -68,7 +68,7 @@ const DisbursementRecipients = props => {
   const state = props.fipsCode
   const xAxis = 'recipient'
   const yAxis = 'total'
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
