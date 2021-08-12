@@ -71,7 +71,7 @@ const RevenueDetailTrends = props => {
   else if (commodities && commodities.length > 1) {
     commodityText = 'revenue from the selected commodities'
   }
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
   })

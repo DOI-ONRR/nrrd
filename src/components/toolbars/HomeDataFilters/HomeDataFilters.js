@@ -53,7 +53,7 @@ const HomeDataFilters = props => {
   // console.debug('FilterState ---------------------------------------------------------------------->')
   // console.debug(filterState)
   const maxFiscalYear = fiscalYear
-  const maxCalendarYear = calendarYear
+  // not used const maxCalendarYear = calendarYear
 
   // const calendarYear = (dataType === DFC.PRODUCTION) ? maxCalendarYear - 1 : maxCalendarYear
 

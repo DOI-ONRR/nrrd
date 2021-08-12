@@ -15,8 +15,8 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
-  CircularProgress,
-  useTheme
+  CircularProgress
+  // not used useTheme
 } from '@material-ui/core'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
@@ -130,7 +130,7 @@ const useStyles = makeStyles(theme => ({
 const ProductionTopLocations = ({ title, ...props }) => {
   // console.log('ProudctionTopLocations props: ', props)
   const classes = useStyles()
-  const theme = useTheme()
+  //  const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   const year = (filterState[DFC.YEAR]) ? filterState[DFC.YEAR] : 2019
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
@@ -157,7 +157,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const key = `PTL${ year }${ state }${ commodity }${ period }`
   const xAxis = 'location_name'
   const yAxis = 'total'
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
@@ -166,7 +166,9 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const { loading, error, data } = useQuery(APOLLO_QUERY,
     {
       variables: { year, location: locationType, commodity, state, period },
-      skip: inView === false && (props.fipsCode === DFC.NATIVE_AMERICAN_FIPS || props.regionType === DFC.COUNTY_CAPITALIZED || props.regionType === DFC.OFFSHORE_CAPITALIZED)
+      skip: inView === false && (props.fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
+                                 props.regionType === DFC.COUNTY_CAPITALIZED ||
+                                 props.regionType === DFC.OFFSHORE_CAPITALIZED)
     })
 
   if (loading) {

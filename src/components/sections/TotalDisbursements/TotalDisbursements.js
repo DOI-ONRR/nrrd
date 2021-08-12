@@ -11,7 +11,7 @@ import {
   Grid
 } from '@material-ui/core'
 
-import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
+// not used import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import StackedBarChart2 from '../../data-viz/StackedBarChart/StackedBarChart2'
 import SectionHeader from '../../sections/SectionHeader'
 import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
@@ -94,7 +94,7 @@ const TOTAL_DISBURSEMENTS_QUERY = gql`
 // TotalDisbursements
 const TotalDisbursements = props => {
   const { state: filterState } = useContext(DataFilterContext)
-  const { monthly, period, breakoutBy, dataType, year } = filterState
+  const { monthly, period, breakoutBy, dataType } = filterState
   const disbursementsComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } by ${ period.toLowerCase() } (dollars)`
@@ -122,21 +122,23 @@ const TotalDisbursements = props => {
   let legendHeaders
   let currentMonthNum
   let currentYearSoFarText
-  const monthRange = []
+  const monthRange = ['', undefined]
   let monthRangeText
   let startMonth
   let endMonth
   const yOrderBy = (breakoutBy === DFC.RECIPIENT)
-    ? [
-      'Other funds',
-      'Historic Preservation Fund',
-      'Land and Water Conservation Fund',
-      'Native American tribes and individuals',
-      'Reclamation Fund',
-      'State and local governments',
-      'U.S. Treasury'
-    ]
-    : ['Native American', 'Federal offshore', 'Federal onshore']
+		   ? [
+		       'Other funds',
+		       'Historic Preservation Fund',
+		       'Land and Water Conservation Fund',
+		       'Native American tribes and individuals',
+		       'Reclamation Fund',
+		       'State and local governments',
+		       'U.S. Treasury'
+		   ]
+		   : ['Native American', 'Federal offshore', 'Federal onshore']
+
+  // console.debug(" Comparison yOrderBy ", yOrderBy)
 
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -157,7 +159,7 @@ const TotalDisbursements = props => {
       }
     })
 
-    startMonth = monthRange[0]
+    startMonth = monthRange[2]
     endMonth = monthRange[monthRange.length - 1]
     monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
     currentYearSoFarText = `so far ${ monthRangeText }`
@@ -234,12 +236,13 @@ const TotalDisbursements = props => {
     }
     else {
       switch (breakoutBy) {
-      case 'recipient':
+	  case 'recipient':
         comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
         chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
-        // console.log('chartData: ', chartData)
+        // console.log('Comparison chartData: ', chartData, ' comparison ', comparisonData, ' total_yearly_fiscal_disbursement ', data.total_yearly_fiscal_disbursement)
+	      // console.debug("Comparison yOrderBy ", yOrderBy)
         break
-      default:
+	  default:
         comparisonData = data.total_yearly_fiscal_disbursement
         chartData = data.total_yearly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 9)
         break
@@ -252,70 +255,73 @@ const TotalDisbursements = props => {
       }
 
       legendHeaders = headers => {
-        console.log('legendHeaders: ', headers)
-        const headerArr = [breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), `${ periodAbbr } ${ headers[1] } ${ ((currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`]
+        // console.log('legendHeaders: ', headers)
+        const headerArr = [breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1),
+			   `${ periodAbbr } ${ headers[1] } ${ ((currentMonthNum !== parseInt('09') ||
+                            startMonth === endMonth) && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`]
         return headerArr
       }
     }
   }
-
+  // console.debug('Comparison chartData: ', chartData, " comparison ", comparisonData, " total_yearly_fiscal_disbursement ", data.total_yearly_fiscal_disbursement)
+  // console.debug("Comparison yOrderBy ", yOrderBy)
   return (
     <>
-      <SectionHeader
+	  <SectionHeader
         title="Total disbursements"
         linkLabel="disbursements"
         showLinks
-      />
-      <Grid container spacing={4}>
+	  />
+	  <Grid container spacing={4}>
         <Grid item xs={12}>
           <HomeDataFilters
-            maxFiscalYear={maxFiscalYear}
-            maxCalendarYear={maxCalendarYear} />
+		  maxFiscalYear={maxFiscalYear}
+		  maxCalendarYear={maxCalendarYear} />
         </Grid>
         <Grid item xs={12} md={7}>
           <StackedBarChart2
-            key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
-            title={chartTitle}
-            units={units}
-            data={chartData}
-            xAxis={xAxis}
-            yAxis={yAxis}
-            xGroups={xGroups}
-            yGroupBy={yGroupBy}
-            yOrderBy={yOrderBy}
-            xLabels={d => xLabels(d)}
-            legendFormat={d => utils.formatToDollarInt(d)}
-            legendHeaders={legendHeaders}
-            handleBarHover={d => handleBarHover(d)}
-            showTooltips={false}
-            chartTooltip={
-              d => {
+		  key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
+		  title={chartTitle}
+		  units={units}
+		  data={chartData}
+		  xAxis={xAxis}
+		  yAxis={yAxis}
+		  xGroups={xGroups}
+		  yGroupBy={yGroupBy}
+		  yOrderBy={yOrderBy}
+		  xLabels={d => xLabels(d)}
+		  legendFormat={d => utils.formatToDollarInt(d)}
+		  legendHeaders={legendHeaders}
+		  handleBarHover={d => handleBarHover(d)}
+		  showTooltips={false}
+		  chartTooltip={
+		  d => {
                 // console.log('chartTooltip d: ', d)
                 const r = []
                 r[0] = d.key
                 r[1] = utils.formatToDollarInt(d[0].data[d.key])
                 return r
-              }
-            }
+		  }
+		  }
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
             { (monthly === DFC.MONTHLY_CAPITALIZED)
-              ? <Link href='/downloads/disbursements-by-month/'>Source file</Link>
-              : <Link href='/downloads/disbursements/'>Source file</Link>
+		  ? <Link href='/downloads/disbursements-by-month/'>Source file</Link>
+		  : <Link href='/downloads/disbursements/'>Source file</Link>
             }
           </Box>
         </Grid>
         <Grid item xs={12} md={5}>
           <ComparisonTable
-            key={`tdct__${ monthly }${ period }${ breakoutBy }`}
-            ref={disbursementsComparison}
-            data={comparisonData}
-            yGroupBy={yGroupBy}
-            yOrderBy={yOrderBy}
-            monthRange={monthRange}
+		  key={`tdct__${ monthly }${ period }${ breakoutBy }`}
+		  ref={disbursementsComparison}
+		  data={comparisonData}
+		  yGroupBy={yGroupBy}
+		  yOrderBy={yOrderBy}
+		  monthRange={monthRange}
           />
         </Grid>
-      </Grid>
+	  </Grid>
     </>
   )
 }

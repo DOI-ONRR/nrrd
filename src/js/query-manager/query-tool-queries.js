@@ -11,13 +11,13 @@ import {
   G1,
   G2,
   G3,
-  OFFSHORE_REGION,
+  // not used   OFFSHORE_REGION,
   US_STATE,
   US_STATE_NAME,
   COUNTY,
   COUNTY_NAME,
   COMMODITY,
-  COMMODITY_ORDER,
+  // not used COMMODITY_ORDER,
   PRODUCT,
   REVENUE_TYPE,
   PERIOD,
@@ -26,11 +26,13 @@ import {
   SINGLE_STR,
   MULTI_STR,
   MULTI_INT,
-  ALL_DISBURSEMENT_YEARS,
-  ALL_REVENUE_YEARS,
-  ALL_REVENUE_BY_COMPANY_YEARS,
-  ALL_PRODUCTION_YEARS,
-  ALL_PRODUCTION_MONTHLY_YEARS,
+  /* not used
+   *  ALL_DISBURSEMENT_YEARS,
+   * ALL_REVENUE_YEARS,
+   * ALL_REVENUE_BY_COMPANY_YEARS,
+   * ALL_PRODUCTION_YEARS,
+   * ALL_PRODUCTION_MONTHLY_YEARS,
+   */
   DATA_TYPE,
   STATE_OFFSHORE_NAME,
   FISCAL_YEAR,
@@ -132,7 +134,7 @@ const VARIABLE_CONFIGS = {
   },
 }
 const getVariableValues = (state, options) => getDataFilterVariableValues(state, VARIABLE_CONFIGS[state[DATA_TYPE]], options)
-const getVariableConfig = state => VARIABLE_CONFIGS[state[DATA_TYPE]]
+// not used const getVariableConfig = state => VARIABLE_CONFIGS[state[DATA_TYPE]]
 export const getVariables = (state, options) => getVariableValues(state, options)
 
 // STEP 2: Define all the queries needed

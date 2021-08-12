@@ -3,19 +3,19 @@ import { flowRight as compose } from 'lodash'
 
 import {
   DATA_FILTER_KEY,
-  LAND_TYPE,
+  // not used LAND_TYPE,
   OFFSHORE_REGIONS,
   COMMODITY,
   PRODUCT,
-  RECIPIENT,
-  SOURCE,
+  // not used RECIPIENT,
+  // not used SOURCE,
   DISPLAY_NAMES,
   GROUP_BY,
   GROUP_BY_STICKY,
   BREAKOUT_BY,
   PERIOD,
   MAP_LEVEL,
-  US_STATE_NAME,
+  // not used US_STATE_NAME,
   PERIOD_TYPES,
   MONTHLY
 } from '../../constants'

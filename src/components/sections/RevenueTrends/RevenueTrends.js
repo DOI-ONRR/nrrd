@@ -56,7 +56,6 @@ const RevenueTrends = props => {
 
   const { state: filterState } = useContext(DataFilterContext)
   const { monthly, period } = filterState
-  let year
 
   const { loading, error, data } = useQuery(APOLLO_QUERY)
   const revenueTrendsTitle = monthly === 'Monthly' ? 'Month over month comparison' : 'Year over year comparison'
@@ -91,7 +90,7 @@ const RevenueTrends = props => {
     // Get the latest date then subtract 1 year to filter previous year data to compare current year data
     const currentMonth = monthLookup(yearlyData[0].data[0].month)
     const currentYear = yearlyData[yearlyData.length - 1].fiscalYear
-    const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
+    // not used const currentYearDate = new Date(`${ currentYear }-${ currentMonth }-01`)
 
     // Get previous year
     const previousYear = currentYear - 2
@@ -100,9 +99,9 @@ const RevenueTrends = props => {
     const trends = aggregateData(data.revenue_trends)
 
     // maxMonth Min/Max Year
-    const maxMonth = currentYearDate.toLocaleString('en-us', { timeZone: 'UTC', month: 'long' })
-    const minYear = trends[0].histData[0][0].substring(2)
-    const maxYear = trends[0].histData[trends[0].histData.length - 1][0].substring(2)
+    // not used const maxMonth = currentYearDate.toLocaleString('en-us', { timeZone: 'UTC', month: 'long' })
+    // not used const minYear = trends[0].histData[0][0].substring(2)
+    // not used const maxYear = trends[0].histData[trends[0].histData.length - 1][0].substring(2)
 
     // Text output
     const previousYearText = `${ periodAbbr }${ previousYear.toString().substring(2) }`
@@ -111,12 +110,12 @@ const RevenueTrends = props => {
     if (currentMonth !== '09') {
       currentYearText = `${ currentYearText } ${ (period === DFC.PERIOD_FISCAL_YEAR) ? ' so far' : '' }`
     }
-    const longCurrentYearText = `${ maxMonth } ${ currentYear }`
-    const currentTrendText = `${ periodAbbr } ${ minYear } - ${ periodAbbr } ${ maxYear }`
-    const changeText = `Change ${ periodAbbr }${ previousYear } ${ periodAbbr }${ maxYear }`
+    // not used const longCurrentYearText = `${ maxMonth } ${ currentYear }`
+    // not used const currentTrendText = `${ periodAbbr } ${ minYear } - ${ periodAbbr } ${ maxYear }`
+    // not usede const changeText = `Change ${ periodAbbr }${ previousYear } ${ periodAbbr }${ maxYear }`
     // console.debug("Fitler State", filterState, "DFC.year", DFC.YEAR, " OR ", trends[0], "WTH ", DFC)
 
-    year = trends[0].histData[trends[0].histData.length - 1][0] || filterState[DFC.YEAR]
+    // not used commented out in jsx year = trends[0].histData[trends[0].histData.length - 1][0] || filterState[DFC.YEAR]
     return (
 		  <Box component="section">
 		    <Box color="secondary.main" mb={2} borderBottom={2} pb={1}>

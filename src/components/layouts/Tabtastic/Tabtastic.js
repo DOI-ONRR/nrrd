@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { navigate } from '@reach/router'
+// not used import { navigate } from '@reach/router'
 
 import { makeStyles, withStyles, createStyles, useTheme } from '@material-ui/core/styles'
 import { Typography, Box, Tabs, Tab } from '@material-ui/core'

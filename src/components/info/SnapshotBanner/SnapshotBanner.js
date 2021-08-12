@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 
 import { OnrrLogoImg } from '../../images'
-import { Typography } from '@material-ui/core'
+// not used import { Typography } from '@material-ui/core'
 import Link from '../../Link'
 import PrintIcon from '@material-ui/icons/Print'
 import IconButton from '@material-ui/core/IconButton'

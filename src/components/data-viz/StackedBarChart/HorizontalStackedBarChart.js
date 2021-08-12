@@ -7,7 +7,7 @@ import { Button, Collapse } from '@material-ui/core'
 import { useTheme, createStyles, withStyles } from '@material-ui/core/styles'
 
 import Translate from '../svg/Translate'
-import { LeftAxis, BottomAxis } from '../svg/Axis'
+// import { LeftAxis, BottomAxis } from '../svg/Axis'
 import Bars from '../svg/Bars'
 import { Legend } from '../Legend'
 
@@ -28,8 +28,8 @@ const HorizontalStackedBarChart = ({
 }) => {
   const {
     legendHeaders,
-    legendReverse,
-    units,
+    // not used legendReverse,
+    // not used units,
     xAxis,
     yAxis,
     yGroupBy,
@@ -40,7 +40,7 @@ const HorizontalStackedBarChart = ({
     collapsedLegend
   } = options
 
-  console.log('HorizontalStackedBarChart data: ', data)
+  // console.log('HorizontalStackedBarChart data: ', data)
 
   const theme = useTheme()
   const [dataset, setDataset] = useState({
@@ -55,7 +55,7 @@ const HorizontalStackedBarChart = ({
   const buttonValue = collapsed ? 'Show details' : 'Hide details'
 
   const legendFormat = options.legendFormat || function (d) {
-    console.debug('legend format')
+    // console.debug('legend format')
     return d
   }
 
@@ -228,7 +228,7 @@ const HorizontalStackedBarChart = ({
 
   const colorScale = color()
 
-  console.log('Chart data: ', barData(xDomain()[0]))
+  // console.log('Chart data: ', barData(xDomain()[0]))
 
   useEffect(() => {
     const d = barData(xDomain()[0])
@@ -242,7 +242,7 @@ const HorizontalStackedBarChart = ({
   }, [data])
 
   const onHover = d => {
-    console.log('handleOnHover: ', d)
+    // console.log('handleOnHover: ', d)
     if (d && d.key) {
       setActiveNode({ ...activeNode, key: d.key })
     }

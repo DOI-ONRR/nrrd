@@ -22,7 +22,7 @@ const CircleLabel = ({ data, width, height, xAxis, yAxis, colorScale, onHover, c
   }
 
   const xLabels = data.map((d, i) => {
-    console.log('xLabels d: ', d)
+    // console.log('xLabels d: ', d)
     const xLabel = (i > 0) ? circleLabel(d) : ''
     return (
       <Translate

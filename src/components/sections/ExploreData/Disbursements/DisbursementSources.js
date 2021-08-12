@@ -59,14 +59,15 @@ const DisbursementSources = props => {
   const state = props.fipsCode
   const xAxis = 'source'
   const yAxis = 'total'
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
   })
 
   const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL }
+    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL },
+    skip: inView === false
   })
 
   if (loading) {
