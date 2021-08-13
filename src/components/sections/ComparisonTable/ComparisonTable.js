@@ -67,7 +67,7 @@ const ComparisonTable = forwardRef((props, ref) => {
     year: data[data.length - 1].year || year
   })
 
-  const yearlyComparisonText = `Compares data for the selected ${ period.toLowerCase() } to the previous ${ period.toLowerCase() }. For the current ${ period.toLowerCase() } it compares the months we have data for for the same months in the previous ${ period.toLowerCase() }.`
+  const yearlyComparisonText = `Compares data for the selected ${ period.toLowerCase() } to the previous ${ period.toLowerCase() }. For the current ${ period.toLowerCase() }, we compare the months for which we have data with the same months in the previous ${ period.toLowerCase() }.`
   const monthlyComparisonText = 'Compares data for the selected month to the same month in the previous year.'
 
   useEffect(() => {
