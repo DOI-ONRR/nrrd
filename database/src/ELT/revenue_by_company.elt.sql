@@ -2,8 +2,8 @@ truncate federal_revenue_by_company;
 \copy federal_revenue_by_company (calendar_year,corporate_name,revenue_agency_type,commodity,raw_revenue) FROM 'static/csv/federal_revenue_by_company_CY2013-CY2019.csv' DELIMITER ',' CSV HEADER;
 
 \echo 'Formated negative values'
-update federal_revenue_by_company set revenue=REPLACE(revenue, '(','-');
-update federal_revenue_by_company set revenue=REPLACE(revenue, ')',''); 
+update federal_revenue_by_company set raw_revenue=REPLACE(raw_revenue, '(','-');
+update federal_revenue_by_company set raw_revenue=REPLACE(raw_revenue, ')',''); 
 
 
 update federal_revenue_by_company set revenue=to_number(raw_revenue, 'L999G999G999G999D99') ;
