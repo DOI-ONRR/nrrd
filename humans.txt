@@ -24,7 +24,7 @@
     Christopher Robey -- Development Intern -- Virtual Student Federal Service
     Matthew Sao -- Data Intern -- Virtual Student Federal Service
     Kaitlyn Tran -- UX Intern -- Virtual Student Federal Service
-    Cat Vojslavel -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
+    Cat Vojslavek -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
 
 # PAST TEAM
 
