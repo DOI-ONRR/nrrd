@@ -1,11 +1,12 @@
 // https://github.com/GoogleChrome/lighthouse/blob/master/docs/readme.md#using-programmatically
-
 // Node CLI for Lighthouse https://www.npmjs.com/package/lighthouse#using-the-node-cli
-const lighthouse = require('lighthouse')
-// Launch Chrome from node
-const chromeLauncher = require('chrome-launcher')
+const fs = require('fs');
+const lighthouse = require('lighthouse');
+const chromeLauncher = require('chrome-launcher');
 
-const BASEURL = `https://preview-nrrd.app.cloud.gov/`
+const BASEURL = process.env.CIRCLE_BRANCH
+  ? `https://nrrd-preview.app.cloud.gov/sites/${ process.env.CIRCLE_BRANCH }`
+  : 'https://dev-nrrd.app.cloud.gov/'
 
 // Lighthouse config
 // https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md
@@ -30,6 +31,15 @@ const opts = {
     '--list-all-audits',
     '--disable-network-emulation',
     '--headless'
+  ],
+  logLevel: 'info', 
+  output: 'html', 
+  onlyCategories: [
+    'performance', 
+    'accessibility', 
+    'best-practices', 
+    'seo', 
+    'pwa'
   ]
 }
 
@@ -58,12 +68,12 @@ describe('Site Audits via Lighthouse', () => {
 
   // Accessibility test
   it('passes an accessibility audit through Lighthouse', () => {
-    expect(lh.categories['accessibility'].score).toBeGreaterThanOrEqual(0.7)
+    expect(lh.categories['accessibility'].score).toBeGreaterThanOrEqual(0.90)
   })
 
   // Performance test
   it('passes a performance audit through Lighthouse', () => {
-    expect(lh.categories['performance'].score).toBeGreaterThanOrEqual(0.7)
+    expect(lh.categories['performance'].score).toBeGreaterThanOrEqual(0.85)
   })
 
   // Best Practice test
