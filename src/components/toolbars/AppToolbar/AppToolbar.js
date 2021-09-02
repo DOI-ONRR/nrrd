@@ -131,7 +131,7 @@ const AppToolbar = props => {
               <SearchSite />
             </div>
           </Hidden>
-          <Hidden lgUp smDown>
+          <Hidden lgUp>
             <MobileMenu>
               <Link href='/explore' linkType='Header'>Explore data</Link>
               <Link href='/query-data' linkType='Header'>Query data</Link>
