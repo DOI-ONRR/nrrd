@@ -1,6 +1,8 @@
+# Orb 'circleci/aws-s3@2.0.0' resolved to 'circleci/aws-s3@2.0.0'
+# Orb 'foo-software/lighthouse-check@0.0.8' resolved to 'foo-software/lighthouse-check@0.0.8'
 version: 2
 jobs:
-  lighthouse_audit:
+  unit_tests:
     docker:
     - image: circleci/node:12.13.0-browsers
     steps:
@@ -15,23 +17,16 @@ jobs:
         paths:
         - node_modules
     - run:
-        name: Build gatsby
-        command: npm run build
-    - run:
-        name: Run test reports with JUnit
-        command: |
-          mkdir -p test-results/junit
-          echo 'test-results/junit directory succesfully created...'
-          npm run test --ci --runInBand --reporters=default --reporters=jest-junit
-        environment:
-          JEST_JUNIT_OUPUT_DIR: ./test-results/junit
+        name: Run unit tests
+        command: npm run test-unit-tests
     - store_test_results:
-        path: test-results/junit
+        path: ./test-results
     - store_artifacts:
-        path: test-results/junit
-  quick:
+        path: ./coverage
+  lint:
     docker:
-    - image: circleci/node:12.13.0
+    - image: circleci/node:12.4
+    working_directory: ~/repo
     steps:
     - checkout
     - restore_cache:
@@ -44,39 +39,464 @@ jobs:
         paths:
         - node_modules
     - run:
-        name: Build gatsby
-        command: npm run build
-  preview:
-    docker:
-    - image: circleci/node:12.13.0
-    resource_class: xlarge
-    environment:
-    - TEST_REPORTS: /tmp/test-reports
-    steps:
-    - checkout
-    - restore_cache:
-        key: v3-node-modules-{{ checksum "package-lock.json" }}
-    - run:
-        name: Install node dependencies
-        command: npm install
-    - save_cache:
-        key: v3-node-modules-{{ checksum "package-lock.json" }}
-        paths:
-        - node_modules
-    - run:
-        name: Build gatsby
-        command: npm run build
-    - run:
-        name: deploy preview to cloud.gov
-        command: |
-          curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-          sudo dpkg -i cf-cli_amd64.deb
-          bash .circleci/preview.sh
+        command: npm run lint
+        when: always
     - store_test_results:
-        path: /tmp/test-reports
-  deploy:
+        path: ./test-results
+    - store_artifacts:
+        path: ./test-results
+  lighthouse-test:
+    docker:
+    - image: foosoftware/lighthouse-check:latest
+    steps:
+    - run:
+        command: |
+          mkdir /tmp/artifacts
+          lighthouse-check --verbose --isOrb \
+            --apiToken  \
+            --author $CIRCLE_USERNAME \
+            --awsAccessKeyId $LIGHTHOUSE_CHECK_AWS_ACCESS_KEY_ID \
+            --awsBucket $LIGHTHOUSE_CHECK_AWS_BUCKET \
+            --awsRegion $LIGHTHOUSE_CHECK_AWS_REGION \
+            --awsSecretAccessKey $LIGHTHOUSE_CHECK_AWS_SECRET_ACCESS_KEY \
+            --branch $CIRCLE_BRANCH \
+            --configFile  \
+            --emulatedFormFactor  \
+            --locale  \
+            --outputDirectory /tmp/artifacts \
+            --pr $CIRCLE_PULL_REQUEST \
+            --prCommentAccessToken  \
+            --prCommentUrl  \
+            --sha $CIRCLE_SHA1 \
+            --slackWebhookUrl $LIGHTHOUSE_CHECK_SLACK_WEBHOOK_URL \
+            --tag  \
+            --throttling  \
+            --throttlingMethod  \
+            --timeout 10 \
+            --urls https://revenuedata.doi.gov, https://revenuedata.doi.gov/explore, https://revenuedata.doi.gov/query-data \
+            --wait true \
+        name: Run a Lighthouse audit and save results
+    - store_artifacts:
+        name: Store Artifacts
+        path: /tmp/artifacts
+  nrrd-database:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+    - checkout
+    - run:
+        name: Check for database changes
+        command: |
+          CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
+          if [ "$CHANGES" = "0" ]; then
+            echo "Halting database build -  no database changes"
+            circleci-agent step halt
+          fi
+    - run:
+        name: Begin database build
+        command: |
+          cd database
+          ls -l
+    - run:
+        name: Docker compose
+        command: |
+          cd database
+          sudo docker-compose up -d
+    - run:
+        name: Update OS
+        command: sudo apt-get update
+    - run:
+        name: Install posgres client
+        command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
+    - run:
+        name: Restore Database schema
+        command: |
+          pg_restore --verbose --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
+    - run:
+        name: Load Revenue
+        no_output_timeout: 30m
+        command: cd database && bash ./src/ELT/monthly_revenue.load.sh
+    - run:
+        name: Load Monthly Production
+        command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql
+    - run:
+        name: Load Fiscal Production
+        command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql
+    - run:
+        name: Load Calendar Production
+        command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql
+    - run:
+        name: Load Monthly Disbursement
+        command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql
+    - run:
+        name: Load Fiscal Disbursement
+        command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql
+    - run:
+        name: Load Revenue By Company
+        command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
+    - run:
+        name: Update metadata
+        command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
+    - run:
+        name: Refresh views
+        command: cd database && bash ./src/scripts/refresh_materialized_views.sh
+    - run:
+        name: Backup database
+        command: |
+          pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
+    - run:
+        name: Deploy to cloud.gov
+        command: "cd database\ncurl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'\nsudo dpkg -i cf-cli_amd64.deb \ncf api https://api.fr.cloud.gov\necho \"$CF_USERNAME\"\ncf auth \"$CF_USERNAME\" \"$CF_PASSWORD\"\ncf target -o \"$CF_ORG\" -s \"$CF_SPACE\"\ncf apps\ncf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64\nbash tunnel.sh hasura-sandbox\nsource ./.tunnelrc\ncat ./.tunnelrc\npsql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'\npg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?\ncf restage hasura-sandbox\n"
+    - run:
+        name: Install ssconvert
+        command: sudo apt-get install gnumeric
+    - run:
+        name: Generate downloads
+        command: |
+          cd database
+          npm install
+          bash ./src/scripts/downloads.sh
+          node ./src/scripts/downloads.js
+    - run:
+        name: list generated downloads
+        command: |
+          ls /tmp/downloads/*
+    - store_artifacts:
+        path: /tmp/database_backup.pg
+        destination: database_backup.pg
+    - store_artifacts:
+        path: /tmp/downloads
+        destination: downloads
+    - run:
+        command: |
+          AWS_VER_REGEXP_2='aws-cli\/2.\d*.\d*'
+          AWS_VER_REGEXP_1='aws-cli\/1.\d*.\d*'
+          # initialize installed version to zero, to signify not installed (Or we want to ignore the installed version and re-install).
+          AWS_CLI_INSTALLED_VERSION="0"
+          AWS_CLI_VERSION_SELECTED="2"
+
+          if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+
+          if [ "false" == "false" ]; then
+              if ! command -v aws --version >/dev/null 2>&1  ; then
+                  echo AWS is not installed
+              else
+                  echo AWS is currently installed.
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+                      echo AWS CLI v2 is installed
+                      AWS_CLI_INSTALLED_VERSION="2"
+                  fi
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_1; then
+                      echo AWS CLI v1 is installed
+                      AWS_CLI_INSTALLED_VERSION="1"
+                  fi
+              fi
+          else
+              echo "Skipping version check. Installing CLI"
+          fi
+
+          AWS_V2_UPDATE_PARAM=""
+          if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+              AWS_V2_UPDATE_PARAM="--update"
+          fi
+
+          #If the desired version of the CLI is not installed, install it.
+          if [[ $AWS_CLI_VERSION_SELECTED != $AWS_CLI_INSTALLED_VERSION ]]; then
+
+              #uninstall AWS CLI if it is installed.
+              if which aws; then
+                  echo Uninstalling old CLI
+                  $SUDO rm -rf $(which aws)
+              fi
+              case $AWS_CLI_VERSION_SELECTED in
+                  "1")
+                      if ! command -v python >/dev/null 2>&1 && ! command -v python3 >/dev/null 2>&1 ; then
+                          echo "Your environment does not seem to have Python installed, a requirement of the AWS CLI."
+                          echo "Please either utilize the AWS CLI v2, or select an envionment with Python installed."
+                          echo "Recommended image: cimg:/python:3.8"
+                          exit 1
+                      fi
+                      # install CLI v1
+                      export PIP=$(which pip pip3 | head -1)
+                      if [[ -n $PIP ]]; then
+                          if which sudo > /dev/null; then
+                              sudo $PIP install awscli --upgrade
+                          else
+                              # This installs the AWS CLI to ~/.local/bin. Make sure that ~/.local/bin is in your $PATH.
+                              $PIP install awscli --upgrade --user
+                          fi
+                      elif [[ $(which unzip curl | wc -l) -eq 2 ]]; then
+                          cd
+                          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+                          unzip awscli-bundle.zip
+                          if which sudo > /dev/null; then
+                              sudo ~/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+                          else
+                              # This installs the AWS CLI to the default location (~/.local/lib/aws) and create a symbolic link (symlink) at ~/bin/aws. Make sure that ~/bin is in your $PATH.
+                              awscli-bundle/install -b ~/bin/aws
+                          fi
+                          rm -rf awscli-bundle*
+                          cd -
+                      else
+                          echo "Unable to install AWS CLI. Please install pip."
+                          exit 1
+                      fi
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/1"; then
+                          echo "AWS CLI V1 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V1. Exiting."
+                          exit 1
+                      fi
+                  ;;
+                  "2")
+                      # install CLI v2
+
+                      cd /tmp || exit
+
+                      # PLATFORM CHECK: mac vs. alpine vs. other linux
+                      if uname -a | grep Darwin; then
+                          SYS_ENV_PLATFORM=darwin
+                      elif uname -a | grep Linux; then
+                          SYS_ENV_PLATFORM=linux
+                      else
+                          echo "This platform appears to be unsupported."
+                          uname -a
+                          exit 1
+                      fi
+
+                      case $SYS_ENV_PLATFORM in
+                          linux)
+                              curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                              unzip awscliv2.zip
+                              $SUDO ./aws/install $AWS_V2_UPDATE_PARAM
+                              rm awscliv2.zip
+                              ;;
+                          darwin)
+                              curl -sSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+                              $SUDO installer -pkg AWSCLIV2.pkg -target /
+                              rm AWSCLIV2.pkg
+                              ;;
+                          *)
+                              echo "This orb does not currently support your platform. If you believe it should, please consider opening an issue on the GitHub repository:"
+                              echo "https://github.com/CircleCI-Public/aws-cli-orb/issues/new"
+                              exit 1
+                          ;;
+                      esac
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/2"; then
+                          echo "AWS CLI V2 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V2. Exiting."
+                          exit 1
+                      fi
+                  ;;
+              esac
+
+          else
+              echo "The v${AWS_CLI_VERSION_SELECTED} AWS CLI is already installed."
+              exit 0
+          fi
+        name: Install AWS CLI v2
+    - run:
+        command: |
+          if [ -z "${AWS_PAGER}" ]; then
+            echo 'export AWS_PAGER=""' >> $BASH_ENV
+            echo "AWS_PAGER is being set to the empty string to disable all output paging for AWS CLI commands."
+            echo "You can set the 'disable-aws-pager' parameter to 'false' to disable this behavior."
+          fi
+        name: Disable AWS pager if not already configured
+    - run:
+        command: |
+          aws configure set aws_access_key_id \
+            $NPS_AWS_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Access Key ID
+    - run:
+        command: |
+          aws configure set aws_secret_access_key \
+            $NPS_AWS_SECRET_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Secret Access Key
+    - run:
+        command: |
+          aws configure set default.region $NPS_AWS_REGION \
+            --profile default
+        name: Configure AWS default region
+    - deploy:
+        command: "aws s3 sync \\\n  /tmp/downloads/ s3://$NPS_BUCKET_NAME/downloads/ \n"
+        name: S3 Sync
+    - run:
+        command: |
+          AWS_VER_REGEXP_2='aws-cli\/2.\d*.\d*'
+          AWS_VER_REGEXP_1='aws-cli\/1.\d*.\d*'
+          # initialize installed version to zero, to signify not installed (Or we want to ignore the installed version and re-install).
+          AWS_CLI_INSTALLED_VERSION="0"
+          AWS_CLI_VERSION_SELECTED="2"
+
+          if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+
+          if [ "false" == "false" ]; then
+              if ! command -v aws --version >/dev/null 2>&1  ; then
+                  echo AWS is not installed
+              else
+                  echo AWS is currently installed.
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+                      echo AWS CLI v2 is installed
+                      AWS_CLI_INSTALLED_VERSION="2"
+                  fi
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_1; then
+                      echo AWS CLI v1 is installed
+                      AWS_CLI_INSTALLED_VERSION="1"
+                  fi
+              fi
+          else
+              echo "Skipping version check. Installing CLI"
+          fi
+
+          AWS_V2_UPDATE_PARAM=""
+          if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+              AWS_V2_UPDATE_PARAM="--update"
+          fi
+
+          #If the desired version of the CLI is not installed, install it.
+          if [[ $AWS_CLI_VERSION_SELECTED != $AWS_CLI_INSTALLED_VERSION ]]; then
+
+              #uninstall AWS CLI if it is installed.
+              if which aws; then
+                  echo Uninstalling old CLI
+                  $SUDO rm -rf $(which aws)
+              fi
+              case $AWS_CLI_VERSION_SELECTED in
+                  "1")
+                      if ! command -v python >/dev/null 2>&1 && ! command -v python3 >/dev/null 2>&1 ; then
+                          echo "Your environment does not seem to have Python installed, a requirement of the AWS CLI."
+                          echo "Please either utilize the AWS CLI v2, or select an envionment with Python installed."
+                          echo "Recommended image: cimg:/python:3.8"
+                          exit 1
+                      fi
+                      # install CLI v1
+                      export PIP=$(which pip pip3 | head -1)
+                      if [[ -n $PIP ]]; then
+                          if which sudo > /dev/null; then
+                              sudo $PIP install awscli --upgrade
+                          else
+                              # This installs the AWS CLI to ~/.local/bin. Make sure that ~/.local/bin is in your $PATH.
+                              $PIP install awscli --upgrade --user
+                          fi
+                      elif [[ $(which unzip curl | wc -l) -eq 2 ]]; then
+                          cd
+                          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+                          unzip awscli-bundle.zip
+                          if which sudo > /dev/null; then
+                              sudo ~/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+                          else
+                              # This installs the AWS CLI to the default location (~/.local/lib/aws) and create a symbolic link (symlink) at ~/bin/aws. Make sure that ~/bin is in your $PATH.
+                              awscli-bundle/install -b ~/bin/aws
+                          fi
+                          rm -rf awscli-bundle*
+                          cd -
+                      else
+                          echo "Unable to install AWS CLI. Please install pip."
+                          exit 1
+                      fi
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/1"; then
+                          echo "AWS CLI V1 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V1. Exiting."
+                          exit 1
+                      fi
+                  ;;
+                  "2")
+                      # install CLI v2
+
+                      cd /tmp || exit
+
+                      # PLATFORM CHECK: mac vs. alpine vs. other linux
+                      if uname -a | grep Darwin; then
+                          SYS_ENV_PLATFORM=darwin
+                      elif uname -a | grep Linux; then
+                          SYS_ENV_PLATFORM=linux
+                      else
+                          echo "This platform appears to be unsupported."
+                          uname -a
+                          exit 1
+                      fi
+
+                      case $SYS_ENV_PLATFORM in
+                          linux)
+                              curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                              unzip awscliv2.zip
+                              $SUDO ./aws/install $AWS_V2_UPDATE_PARAM
+                              rm awscliv2.zip
+                              ;;
+                          darwin)
+                              curl -sSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+                              $SUDO installer -pkg AWSCLIV2.pkg -target /
+                              rm AWSCLIV2.pkg
+                              ;;
+                          *)
+                              echo "This orb does not currently support your platform. If you believe it should, please consider opening an issue on the GitHub repository:"
+                              echo "https://github.com/CircleCI-Public/aws-cli-orb/issues/new"
+                              exit 1
+                          ;;
+                      esac
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/2"; then
+                          echo "AWS CLI V2 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V2. Exiting."
+                          exit 1
+                      fi
+                  ;;
+              esac
+
+          else
+              echo "The v${AWS_CLI_VERSION_SELECTED} AWS CLI is already installed."
+              exit 0
+          fi
+        name: Install AWS CLI v2
+    - run:
+        command: |
+          if [ -z "${AWS_PAGER}" ]; then
+            echo 'export AWS_PAGER=""' >> $BASH_ENV
+            echo "AWS_PAGER is being set to the empty string to disable all output paging for AWS CLI commands."
+            echo "You can set the 'disable-aws-pager' parameter to 'false' to disable this behavior."
+          fi
+        name: Disable AWS pager if not already configured
+    - run:
+        command: |
+          aws configure set aws_access_key_id \
+            $NPS_AWS_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Access Key ID
+    - run:
+        command: |
+          aws configure set aws_secret_access_key \
+            $NPS_AWS_SECRET_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Secret Access Key
+    - run:
+        command: |
+          aws configure set default.region $NPS_AWS_REGION \
+            --profile default
+        name: Configure AWS default region
+    - run:
+        command: aws s3 cp /tmp/database_backup.pg s3://$NPS_BUCKET_NAME/backup/database_backup.pg
+        name: S3 Copy /tmp/database_backup.pg -> s3://$NPS_BUCKET_NAME/backup/database_backup.pg
+    - run:
+        name: list bucket
+        command: |
+          aws s3 ls s3://${NPS_BUCKET_NAME}/
+  nrrd-preview:
     docker:
     - image: circleci/node:12.13.0
+    resource_class: medium+
     steps:
     - checkout
     - restore_cache:
@@ -89,279 +509,1200 @@ jobs:
         paths:
         - node_modules
     - run:
+        command: |
+          ls -lart static/downloads
+    - run:
+        command: |
+          AWS_VER_REGEXP_2='aws-cli\/2.\d*.\d*'
+          AWS_VER_REGEXP_1='aws-cli\/1.\d*.\d*'
+          # initialize installed version to zero, to signify not installed (Or we want to ignore the installed version and re-install).
+          AWS_CLI_INSTALLED_VERSION="0"
+          AWS_CLI_VERSION_SELECTED="2"
+
+          if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+
+          if [ "false" == "false" ]; then
+              if ! command -v aws --version >/dev/null 2>&1  ; then
+                  echo AWS is not installed
+              else
+                  echo AWS is currently installed.
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+                      echo AWS CLI v2 is installed
+                      AWS_CLI_INSTALLED_VERSION="2"
+                  fi
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_1; then
+                      echo AWS CLI v1 is installed
+                      AWS_CLI_INSTALLED_VERSION="1"
+                  fi
+              fi
+          else
+              echo "Skipping version check. Installing CLI"
+          fi
+
+          AWS_V2_UPDATE_PARAM=""
+          if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+              AWS_V2_UPDATE_PARAM="--update"
+          fi
+
+          #If the desired version of the CLI is not installed, install it.
+          if [[ $AWS_CLI_VERSION_SELECTED != $AWS_CLI_INSTALLED_VERSION ]]; then
+
+              #uninstall AWS CLI if it is installed.
+              if which aws; then
+                  echo Uninstalling old CLI
+                  $SUDO rm -rf $(which aws)
+              fi
+              case $AWS_CLI_VERSION_SELECTED in
+                  "1")
+                      if ! command -v python >/dev/null 2>&1 && ! command -v python3 >/dev/null 2>&1 ; then
+                          echo "Your environment does not seem to have Python installed, a requirement of the AWS CLI."
+                          echo "Please either utilize the AWS CLI v2, or select an envionment with Python installed."
+                          echo "Recommended image: cimg:/python:3.8"
+                          exit 1
+                      fi
+                      # install CLI v1
+                      export PIP=$(which pip pip3 | head -1)
+                      if [[ -n $PIP ]]; then
+                          if which sudo > /dev/null; then
+                              sudo $PIP install awscli --upgrade
+                          else
+                              # This installs the AWS CLI to ~/.local/bin. Make sure that ~/.local/bin is in your $PATH.
+                              $PIP install awscli --upgrade --user
+                          fi
+                      elif [[ $(which unzip curl | wc -l) -eq 2 ]]; then
+                          cd
+                          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+                          unzip awscli-bundle.zip
+                          if which sudo > /dev/null; then
+                              sudo ~/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+                          else
+                              # This installs the AWS CLI to the default location (~/.local/lib/aws) and create a symbolic link (symlink) at ~/bin/aws. Make sure that ~/bin is in your $PATH.
+                              awscli-bundle/install -b ~/bin/aws
+                          fi
+                          rm -rf awscli-bundle*
+                          cd -
+                      else
+                          echo "Unable to install AWS CLI. Please install pip."
+                          exit 1
+                      fi
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/1"; then
+                          echo "AWS CLI V1 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V1. Exiting."
+                          exit 1
+                      fi
+                  ;;
+                  "2")
+                      # install CLI v2
+
+                      cd /tmp || exit
+
+                      # PLATFORM CHECK: mac vs. alpine vs. other linux
+                      if uname -a | grep Darwin; then
+                          SYS_ENV_PLATFORM=darwin
+                      elif uname -a | grep Linux; then
+                          SYS_ENV_PLATFORM=linux
+                      else
+                          echo "This platform appears to be unsupported."
+                          uname -a
+                          exit 1
+                      fi
+
+                      case $SYS_ENV_PLATFORM in
+                          linux)
+                              curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                              unzip awscliv2.zip
+                              $SUDO ./aws/install $AWS_V2_UPDATE_PARAM
+                              rm awscliv2.zip
+                              ;;
+                          darwin)
+                              curl -sSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+                              $SUDO installer -pkg AWSCLIV2.pkg -target /
+                              rm AWSCLIV2.pkg
+                              ;;
+                          *)
+                              echo "This orb does not currently support your platform. If you believe it should, please consider opening an issue on the GitHub repository:"
+                              echo "https://github.com/CircleCI-Public/aws-cli-orb/issues/new"
+                              exit 1
+                          ;;
+                      esac
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/2"; then
+                          echo "AWS CLI V2 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V2. Exiting."
+                          exit 1
+                      fi
+                  ;;
+              esac
+
+          else
+              echo "The v${AWS_CLI_VERSION_SELECTED} AWS CLI is already installed."
+              exit 0
+          fi
+        name: Install AWS CLI v2
+    - run:
+        command: |
+          if [ -z "${AWS_PAGER}" ]; then
+            echo 'export AWS_PAGER=""' >> $BASH_ENV
+            echo "AWS_PAGER is being set to the empty string to disable all output paging for AWS CLI commands."
+            echo "You can set the 'disable-aws-pager' parameter to 'false' to disable this behavior."
+          fi
+        name: Disable AWS pager if not already configured
+    - run:
+        command: |
+          aws configure set aws_access_key_id \
+            $NPS_AWS_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Access Key ID
+    - run:
+        command: |
+          aws configure set aws_secret_access_key \
+            $NPS_AWS_SECRET_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Secret Access Key
+    - run:
+        command: |
+          aws configure set default.region $NPS_AWS_REGION \
+            --profile default
+        name: Configure AWS default region
+    - deploy:
+        command: "aws s3 sync \\\n  s3://$NPS_BUCKET_NAME/downloads/ static/downloads/ \n"
+        name: S3 Sync
+    - run:
+        command: |
+          ls -lart static/downloads
+    - run:
         name: Build gatsby
-        command: npm run build
+        command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql && npm run build
     - run:
-        name: Run tests
-        command: npm test
+        command: |
+          AWS_VER_REGEXP_2='aws-cli\/2.\d*.\d*'
+          AWS_VER_REGEXP_1='aws-cli\/1.\d*.\d*'
+          # initialize installed version to zero, to signify not installed (Or we want to ignore the installed version and re-install).
+          AWS_CLI_INSTALLED_VERSION="0"
+          AWS_CLI_VERSION_SELECTED="2"
+
+          if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+
+          if [ "false" == "false" ]; then
+              if ! command -v aws --version >/dev/null 2>&1  ; then
+                  echo AWS is not installed
+              else
+                  echo AWS is currently installed.
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+                      echo AWS CLI v2 is installed
+                      AWS_CLI_INSTALLED_VERSION="2"
+                  fi
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_1; then
+                      echo AWS CLI v1 is installed
+                      AWS_CLI_INSTALLED_VERSION="1"
+                  fi
+              fi
+          else
+              echo "Skipping version check. Installing CLI"
+          fi
+
+          AWS_V2_UPDATE_PARAM=""
+          if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+              AWS_V2_UPDATE_PARAM="--update"
+          fi
+
+          #If the desired version of the CLI is not installed, install it.
+          if [[ $AWS_CLI_VERSION_SELECTED != $AWS_CLI_INSTALLED_VERSION ]]; then
+
+              #uninstall AWS CLI if it is installed.
+              if which aws; then
+                  echo Uninstalling old CLI
+                  $SUDO rm -rf $(which aws)
+              fi
+              case $AWS_CLI_VERSION_SELECTED in
+                  "1")
+                      if ! command -v python >/dev/null 2>&1 && ! command -v python3 >/dev/null 2>&1 ; then
+                          echo "Your environment does not seem to have Python installed, a requirement of the AWS CLI."
+                          echo "Please either utilize the AWS CLI v2, or select an envionment with Python installed."
+                          echo "Recommended image: cimg:/python:3.8"
+                          exit 1
+                      fi
+                      # install CLI v1
+                      export PIP=$(which pip pip3 | head -1)
+                      if [[ -n $PIP ]]; then
+                          if which sudo > /dev/null; then
+                              sudo $PIP install awscli --upgrade
+                          else
+                              # This installs the AWS CLI to ~/.local/bin. Make sure that ~/.local/bin is in your $PATH.
+                              $PIP install awscli --upgrade --user
+                          fi
+                      elif [[ $(which unzip curl | wc -l) -eq 2 ]]; then
+                          cd
+                          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+                          unzip awscli-bundle.zip
+                          if which sudo > /dev/null; then
+                              sudo ~/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+                          else
+                              # This installs the AWS CLI to the default location (~/.local/lib/aws) and create a symbolic link (symlink) at ~/bin/aws. Make sure that ~/bin is in your $PATH.
+                              awscli-bundle/install -b ~/bin/aws
+                          fi
+                          rm -rf awscli-bundle*
+                          cd -
+                      else
+                          echo "Unable to install AWS CLI. Please install pip."
+                          exit 1
+                      fi
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/1"; then
+                          echo "AWS CLI V1 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V1. Exiting."
+                          exit 1
+                      fi
+                  ;;
+                  "2")
+                      # install CLI v2
+
+                      cd /tmp || exit
+
+                      # PLATFORM CHECK: mac vs. alpine vs. other linux
+                      if uname -a | grep Darwin; then
+                          SYS_ENV_PLATFORM=darwin
+                      elif uname -a | grep Linux; then
+                          SYS_ENV_PLATFORM=linux
+                      else
+                          echo "This platform appears to be unsupported."
+                          uname -a
+                          exit 1
+                      fi
+
+                      case $SYS_ENV_PLATFORM in
+                          linux)
+                              curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                              unzip awscliv2.zip
+                              $SUDO ./aws/install $AWS_V2_UPDATE_PARAM
+                              rm awscliv2.zip
+                              ;;
+                          darwin)
+                              curl -sSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+                              $SUDO installer -pkg AWSCLIV2.pkg -target /
+                              rm AWSCLIV2.pkg
+                              ;;
+                          *)
+                              echo "This orb does not currently support your platform. If you believe it should, please consider opening an issue on the GitHub repository:"
+                              echo "https://github.com/CircleCI-Public/aws-cli-orb/issues/new"
+                              exit 1
+                          ;;
+                      esac
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/2"; then
+                          echo "AWS CLI V2 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V2. Exiting."
+                          exit 1
+                      fi
+                  ;;
+              esac
+
+          else
+              echo "The v${AWS_CLI_VERSION_SELECTED} AWS CLI is already installed."
+              exit 0
+          fi
+        name: Install AWS CLI v2
     - run:
-        name: deploy preview to cloud.gov
-        command: "pwd && ls -l\t\ncurl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'\nsudo dpkg -i cf-cli_amd64.deb\t  \n# Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.\n# $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.\ncf api https://api.fr.cloud.gov\ncf auth \"$PROD_CF_USERNAME\" \"$PROD_CF_PASSWORD\"\ncf target -o \"$PROD_CF_ORG\" -s \"$PROD_CF_SPACE\"\ncf push nrrd -f ./manifest.yml\n"
-  dev:
-    docker:
-    - image: circleci/node:12.13.0
-    resource_class: xlarge
-    steps:
-    - checkout
-    - restore_cache:
-        key: v3-node-modules-{{ checksum "package-lock.json" }}
+        command: |
+          if [ -z "${AWS_PAGER}" ]; then
+            echo 'export AWS_PAGER=""' >> $BASH_ENV
+            echo "AWS_PAGER is being set to the empty string to disable all output paging for AWS CLI commands."
+            echo "You can set the 'disable-aws-pager' parameter to 'false' to disable this behavior."
+          fi
+        name: Disable AWS pager if not already configured
     - run:
-        name: Install node dependencies
-        command: npm install
-    - save_cache:
-        key: v3-node-modules-{{ checksum "package-lock.json" }}
-        paths:
-        - node_modules
+        command: |
+          aws configure set aws_access_key_id \
+            $NPS_AWS_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Access Key ID
     - run:
-        name: Build gatsby
-        command: npm run build
+        command: |
+          aws configure set aws_secret_access_key \
+            $NPS_AWS_SECRET_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Secret Access Key
     - run:
-        name: Run tests
-        command: npm test
+        command: |
+          aws configure set default.region $NPS_AWS_REGION \
+            --profile default
+        name: Configure AWS default region
+    - deploy:
+        command: "aws s3 sync \\\n  public s3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH \n"
+        name: S3 Sync
     - run:
-        name: deploy to cloud.gov
-        command: "pwd && ls -l\t\ncurl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'\nsudo dpkg -i cf-cli_amd64.deb\t  \n# Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.\n# $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.\ncf api https://api.fr.cloud.gov\ncf auth \"$DEV_CF_USERNAME\" \"$DEV_CF_PASSWORD\"\ncf target -o \"$DEV_CF_ORG\" -s \"$DEV_CF_SPACE\"\ncf push dev-nrrd -f ./manifest.yml\n"
+        command: "ls -lart static/downloads \n"
     - run:
         name: clean up
         command: |
-          which cf
-          bash ./.circleci/cleanup.sh
+          bash ./.circleci/cleanup-previews.sh
+  deploy:
+    docker:
+    - image: circleci/node:12.13.0-browsers
+    resource_class: medium+
+    steps:
+    - checkout
+    - restore_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+    - run:
+        name: Install node dependencies
+        command: npm install
+    - save_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+    - run:
+        command: |
+          AWS_VER_REGEXP_2='aws-cli\/2.\d*.\d*'
+          AWS_VER_REGEXP_1='aws-cli\/1.\d*.\d*'
+          # initialize installed version to zero, to signify not installed (Or we want to ignore the installed version and re-install).
+          AWS_CLI_INSTALLED_VERSION="0"
+          AWS_CLI_VERSION_SELECTED="2"
+
+          if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+
+          if [ "false" == "false" ]; then
+              if ! command -v aws --version >/dev/null 2>&1  ; then
+                  echo AWS is not installed
+              else
+                  echo AWS is currently installed.
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+                      echo AWS CLI v2 is installed
+                      AWS_CLI_INSTALLED_VERSION="2"
+                  fi
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_1; then
+                      echo AWS CLI v1 is installed
+                      AWS_CLI_INSTALLED_VERSION="1"
+                  fi
+              fi
+          else
+              echo "Skipping version check. Installing CLI"
+          fi
+
+          AWS_V2_UPDATE_PARAM=""
+          if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+              AWS_V2_UPDATE_PARAM="--update"
+          fi
+
+          #If the desired version of the CLI is not installed, install it.
+          if [[ $AWS_CLI_VERSION_SELECTED != $AWS_CLI_INSTALLED_VERSION ]]; then
+
+              #uninstall AWS CLI if it is installed.
+              if which aws; then
+                  echo Uninstalling old CLI
+                  $SUDO rm -rf $(which aws)
+              fi
+              case $AWS_CLI_VERSION_SELECTED in
+                  "1")
+                      if ! command -v python >/dev/null 2>&1 && ! command -v python3 >/dev/null 2>&1 ; then
+                          echo "Your environment does not seem to have Python installed, a requirement of the AWS CLI."
+                          echo "Please either utilize the AWS CLI v2, or select an envionment with Python installed."
+                          echo "Recommended image: cimg:/python:3.8"
+                          exit 1
+                      fi
+                      # install CLI v1
+                      export PIP=$(which pip pip3 | head -1)
+                      if [[ -n $PIP ]]; then
+                          if which sudo > /dev/null; then
+                              sudo $PIP install awscli --upgrade
+                          else
+                              # This installs the AWS CLI to ~/.local/bin. Make sure that ~/.local/bin is in your $PATH.
+                              $PIP install awscli --upgrade --user
+                          fi
+                      elif [[ $(which unzip curl | wc -l) -eq 2 ]]; then
+                          cd
+                          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+                          unzip awscli-bundle.zip
+                          if which sudo > /dev/null; then
+                              sudo ~/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+                          else
+                              # This installs the AWS CLI to the default location (~/.local/lib/aws) and create a symbolic link (symlink) at ~/bin/aws. Make sure that ~/bin is in your $PATH.
+                              awscli-bundle/install -b ~/bin/aws
+                          fi
+                          rm -rf awscli-bundle*
+                          cd -
+                      else
+                          echo "Unable to install AWS CLI. Please install pip."
+                          exit 1
+                      fi
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/1"; then
+                          echo "AWS CLI V1 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V1. Exiting."
+                          exit 1
+                      fi
+                  ;;
+                  "2")
+                      # install CLI v2
+
+                      cd /tmp || exit
+
+                      # PLATFORM CHECK: mac vs. alpine vs. other linux
+                      if uname -a | grep Darwin; then
+                          SYS_ENV_PLATFORM=darwin
+                      elif uname -a | grep Linux; then
+                          SYS_ENV_PLATFORM=linux
+                      else
+                          echo "This platform appears to be unsupported."
+                          uname -a
+                          exit 1
+                      fi
+
+                      case $SYS_ENV_PLATFORM in
+                          linux)
+                              curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                              unzip awscliv2.zip
+                              $SUDO ./aws/install $AWS_V2_UPDATE_PARAM
+                              rm awscliv2.zip
+                              ;;
+                          darwin)
+                              curl -sSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+                              $SUDO installer -pkg AWSCLIV2.pkg -target /
+                              rm AWSCLIV2.pkg
+                              ;;
+                          *)
+                              echo "This orb does not currently support your platform. If you believe it should, please consider opening an issue on the GitHub repository:"
+                              echo "https://github.com/CircleCI-Public/aws-cli-orb/issues/new"
+                              exit 1
+                          ;;
+                      esac
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/2"; then
+                          echo "AWS CLI V2 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V2. Exiting."
+                          exit 1
+                      fi
+                  ;;
+              esac
+
+          else
+              echo "The v${AWS_CLI_VERSION_SELECTED} AWS CLI is already installed."
+              exit 0
+          fi
+        name: Install AWS CLI v2
+    - run:
+        command: |
+          if [ -z "${AWS_PAGER}" ]; then
+            echo 'export AWS_PAGER=""' >> $BASH_ENV
+            echo "AWS_PAGER is being set to the empty string to disable all output paging for AWS CLI commands."
+            echo "You can set the 'disable-aws-pager' parameter to 'false' to disable this behavior."
+          fi
+        name: Disable AWS pager if not already configured
+    - run:
+        command: |
+          aws configure set aws_access_key_id \
+            $NPS_AWS_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Access Key ID
+    - run:
+        command: |
+          aws configure set aws_secret_access_key \
+            $NPS_AWS_SECRET_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Secret Access Key
+    - run:
+        command: |
+          aws configure set default.region $NPS_AWS_REGION \
+            --profile default
+        name: Configure AWS default region
+    - deploy:
+        command: "aws s3 sync \\\n  s3://$NPS_BUCKET_NAME/downloads/ static/downloads/ \n"
+        name: S3 Sync
+    - run:
+        name: Build gatsby
+        command: npm run build
+    - run:
+        name: deploy preview to cloud.gov
+        command: |
+          pwd && ls -l
+          curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+          sudo dpkg -i cf-cli_amd64.deb
+          cp Staticfile ./public
+          # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+          # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+          cf api https://api.fr.cloud.gov
+          cf auth "$PROD_CF_USERNAME" "$PROD_CF_PASSWORD"
+          cf target -o "$PROD_CF_ORG" -s "$PROD_CF_SPACE"
+          bash ./swap.sh
+          cf push nrrd -f ./manifest.yml
+  nrrd-dev-database:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+    - checkout
+    - run:
+        name: Check for database changes
+        command: |2
+
+          echo "for now assume database changes"
+           CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
+           echo "Number of database changes $CHANGES"
+          # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
+
+
+          # if [ "$CHANGES" = "0" ]; then
+          #   echo "Halting database build -  no database changes"
+          #   circleci-agent step halt
+          # fi
+    - run:
+        name: Begin database build
+        command: |
+          cd database
+          ls -l
+    - run:
+        name: Docker compose
+        command: |
+          cd database
+          sudo docker-compose up -d
+    - run:
+        name: Update OS
+        command: sudo apt-get update
+    - run:
+        name: Install posgres client
+        command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
+    - run:
+        name: Restore Database schema
+        command: |
+          pg_restore --verbose --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
+    - run:
+        name: Load Revenue
+        no_output_timeout: 30m
+        command: cd database && bash ./src/ELT/monthly_revenue.load.sh
+    - run:
+        name: Load Monthly Production
+        command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql
+    - run:
+        name: Load Fiscal Production
+        command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql
+    - run:
+        name: Load Calendar Production
+        command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql
+    - run:
+        name: Load Monthly Disbursement
+        command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql
+    - run:
+        name: Load Fiscal Disbursement
+        command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql
+    - run:
+        name: Load Revenue By Company
+        command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
+    - run:
+        name: Update metadata
+        command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
+    - run:
+        name: Refresh views
+        command: cd database && bash ./src/scripts/refresh_materialized_views.sh
+    - run:
+        name: Backup database
+        command: |
+          pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
+    - run:
+        name: Deploy to cloud.gov
+        command: "cd database\ncurl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'\nsudo dpkg -i cf-cli_amd64.deb \ncf api https://api.fr.cloud.gov\necho \"$PROD CF_USERNAME\"\ncf auth \"$PROD_CF_USERNAME\" \"$PROD_CF_PASSWORD\"\ncf target -o \"$PROD_CF_ORG\" -s \"$PROD_CF_SPACE\"\ncf apps\ncf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64\nbash tunnel.sh hasura-dev\nsource ./.tunnelrc\ncat ./.tunnelrc\npsql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'\npg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?\ncf restage hasura-dev\n"
+    - run:
+        name: Install ssconvert
+        command: sudo apt-get install gnumeric
+    - run:
+        name: Generate downloads
+        command: |
+          cd database
+          npm install
+          bash ./src/scripts/downloads.sh
+          node ./src/scripts/downloads.js
+    - run:
+        name: list generated downloads
+        command: |
+          ls /tmp/downloads/*
+    - store_artifacts:
+        path: /tmp/database_backup.pg
+        destination: database_backup.pg
+    - store_artifacts:
+        path: /tmp/downloads
+        destination: downloads
+    - run:
+        command: |
+          AWS_VER_REGEXP_2='aws-cli\/2.\d*.\d*'
+          AWS_VER_REGEXP_1='aws-cli\/1.\d*.\d*'
+          # initialize installed version to zero, to signify not installed (Or we want to ignore the installed version and re-install).
+          AWS_CLI_INSTALLED_VERSION="0"
+          AWS_CLI_VERSION_SELECTED="2"
+
+          if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+
+          if [ "false" == "false" ]; then
+              if ! command -v aws --version >/dev/null 2>&1  ; then
+                  echo AWS is not installed
+              else
+                  echo AWS is currently installed.
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+                      echo AWS CLI v2 is installed
+                      AWS_CLI_INSTALLED_VERSION="2"
+                  fi
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_1; then
+                      echo AWS CLI v1 is installed
+                      AWS_CLI_INSTALLED_VERSION="1"
+                  fi
+              fi
+          else
+              echo "Skipping version check. Installing CLI"
+          fi
+
+          AWS_V2_UPDATE_PARAM=""
+          if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+              AWS_V2_UPDATE_PARAM="--update"
+          fi
+
+          #If the desired version of the CLI is not installed, install it.
+          if [[ $AWS_CLI_VERSION_SELECTED != $AWS_CLI_INSTALLED_VERSION ]]; then
+
+              #uninstall AWS CLI if it is installed.
+              if which aws; then
+                  echo Uninstalling old CLI
+                  $SUDO rm -rf $(which aws)
+              fi
+              case $AWS_CLI_VERSION_SELECTED in
+                  "1")
+                      if ! command -v python >/dev/null 2>&1 && ! command -v python3 >/dev/null 2>&1 ; then
+                          echo "Your environment does not seem to have Python installed, a requirement of the AWS CLI."
+                          echo "Please either utilize the AWS CLI v2, or select an envionment with Python installed."
+                          echo "Recommended image: cimg:/python:3.8"
+                          exit 1
+                      fi
+                      # install CLI v1
+                      export PIP=$(which pip pip3 | head -1)
+                      if [[ -n $PIP ]]; then
+                          if which sudo > /dev/null; then
+                              sudo $PIP install awscli --upgrade
+                          else
+                              # This installs the AWS CLI to ~/.local/bin. Make sure that ~/.local/bin is in your $PATH.
+                              $PIP install awscli --upgrade --user
+                          fi
+                      elif [[ $(which unzip curl | wc -l) -eq 2 ]]; then
+                          cd
+                          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+                          unzip awscli-bundle.zip
+                          if which sudo > /dev/null; then
+                              sudo ~/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+                          else
+                              # This installs the AWS CLI to the default location (~/.local/lib/aws) and create a symbolic link (symlink) at ~/bin/aws. Make sure that ~/bin is in your $PATH.
+                              awscli-bundle/install -b ~/bin/aws
+                          fi
+                          rm -rf awscli-bundle*
+                          cd -
+                      else
+                          echo "Unable to install AWS CLI. Please install pip."
+                          exit 1
+                      fi
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/1"; then
+                          echo "AWS CLI V1 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V1. Exiting."
+                          exit 1
+                      fi
+                  ;;
+                  "2")
+                      # install CLI v2
+
+                      cd /tmp || exit
+
+                      # PLATFORM CHECK: mac vs. alpine vs. other linux
+                      if uname -a | grep Darwin; then
+                          SYS_ENV_PLATFORM=darwin
+                      elif uname -a | grep Linux; then
+                          SYS_ENV_PLATFORM=linux
+                      else
+                          echo "This platform appears to be unsupported."
+                          uname -a
+                          exit 1
+                      fi
+
+                      case $SYS_ENV_PLATFORM in
+                          linux)
+                              curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                              unzip awscliv2.zip
+                              $SUDO ./aws/install $AWS_V2_UPDATE_PARAM
+                              rm awscliv2.zip
+                              ;;
+                          darwin)
+                              curl -sSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+                              $SUDO installer -pkg AWSCLIV2.pkg -target /
+                              rm AWSCLIV2.pkg
+                              ;;
+                          *)
+                              echo "This orb does not currently support your platform. If you believe it should, please consider opening an issue on the GitHub repository:"
+                              echo "https://github.com/CircleCI-Public/aws-cli-orb/issues/new"
+                              exit 1
+                          ;;
+                      esac
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/2"; then
+                          echo "AWS CLI V2 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V2. Exiting."
+                          exit 1
+                      fi
+                  ;;
+              esac
+
+          else
+              echo "The v${AWS_CLI_VERSION_SELECTED} AWS CLI is already installed."
+              exit 0
+          fi
+        name: Install AWS CLI v2
+    - run:
+        command: |
+          if [ -z "${AWS_PAGER}" ]; then
+            echo 'export AWS_PAGER=""' >> $BASH_ENV
+            echo "AWS_PAGER is being set to the empty string to disable all output paging for AWS CLI commands."
+            echo "You can set the 'disable-aws-pager' parameter to 'false' to disable this behavior."
+          fi
+        name: Disable AWS pager if not already configured
+    - run:
+        command: |
+          aws configure set aws_access_key_id \
+            $NPS_AWS_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Access Key ID
+    - run:
+        command: |
+          aws configure set aws_secret_access_key \
+            $NPS_AWS_SECRET_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Secret Access Key
+    - run:
+        command: |
+          aws configure set default.region $NPS_AWS_REGION \
+            --profile default
+        name: Configure AWS default region
+    - deploy:
+        command: "aws s3 sync \\\n  /tmp/downloads/ s3://$NPS_BUCKET_NAME/downloads/ \n"
+        name: S3 Sync
+    - run:
+        command: |
+          AWS_VER_REGEXP_2='aws-cli\/2.\d*.\d*'
+          AWS_VER_REGEXP_1='aws-cli\/1.\d*.\d*'
+          # initialize installed version to zero, to signify not installed (Or we want to ignore the installed version and re-install).
+          AWS_CLI_INSTALLED_VERSION="0"
+          AWS_CLI_VERSION_SELECTED="2"
+
+          if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+
+          if [ "false" == "false" ]; then
+              if ! command -v aws --version >/dev/null 2>&1  ; then
+                  echo AWS is not installed
+              else
+                  echo AWS is currently installed.
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+                      echo AWS CLI v2 is installed
+                      AWS_CLI_INSTALLED_VERSION="2"
+                  fi
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_1; then
+                      echo AWS CLI v1 is installed
+                      AWS_CLI_INSTALLED_VERSION="1"
+                  fi
+              fi
+          else
+              echo "Skipping version check. Installing CLI"
+          fi
+
+          AWS_V2_UPDATE_PARAM=""
+          if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+              AWS_V2_UPDATE_PARAM="--update"
+          fi
+
+          #If the desired version of the CLI is not installed, install it.
+          if [[ $AWS_CLI_VERSION_SELECTED != $AWS_CLI_INSTALLED_VERSION ]]; then
+
+              #uninstall AWS CLI if it is installed.
+              if which aws; then
+                  echo Uninstalling old CLI
+                  $SUDO rm -rf $(which aws)
+              fi
+              case $AWS_CLI_VERSION_SELECTED in
+                  "1")
+                      if ! command -v python >/dev/null 2>&1 && ! command -v python3 >/dev/null 2>&1 ; then
+                          echo "Your environment does not seem to have Python installed, a requirement of the AWS CLI."
+                          echo "Please either utilize the AWS CLI v2, or select an envionment with Python installed."
+                          echo "Recommended image: cimg:/python:3.8"
+                          exit 1
+                      fi
+                      # install CLI v1
+                      export PIP=$(which pip pip3 | head -1)
+                      if [[ -n $PIP ]]; then
+                          if which sudo > /dev/null; then
+                              sudo $PIP install awscli --upgrade
+                          else
+                              # This installs the AWS CLI to ~/.local/bin. Make sure that ~/.local/bin is in your $PATH.
+                              $PIP install awscli --upgrade --user
+                          fi
+                      elif [[ $(which unzip curl | wc -l) -eq 2 ]]; then
+                          cd
+                          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+                          unzip awscli-bundle.zip
+                          if which sudo > /dev/null; then
+                              sudo ~/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+                          else
+                              # This installs the AWS CLI to the default location (~/.local/lib/aws) and create a symbolic link (symlink) at ~/bin/aws. Make sure that ~/bin is in your $PATH.
+                              awscli-bundle/install -b ~/bin/aws
+                          fi
+                          rm -rf awscli-bundle*
+                          cd -
+                      else
+                          echo "Unable to install AWS CLI. Please install pip."
+                          exit 1
+                      fi
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/1"; then
+                          echo "AWS CLI V1 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V1. Exiting."
+                          exit 1
+                      fi
+                  ;;
+                  "2")
+                      # install CLI v2
+
+                      cd /tmp || exit
+
+                      # PLATFORM CHECK: mac vs. alpine vs. other linux
+                      if uname -a | grep Darwin; then
+                          SYS_ENV_PLATFORM=darwin
+                      elif uname -a | grep Linux; then
+                          SYS_ENV_PLATFORM=linux
+                      else
+                          echo "This platform appears to be unsupported."
+                          uname -a
+                          exit 1
+                      fi
+
+                      case $SYS_ENV_PLATFORM in
+                          linux)
+                              curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                              unzip awscliv2.zip
+                              $SUDO ./aws/install $AWS_V2_UPDATE_PARAM
+                              rm awscliv2.zip
+                              ;;
+                          darwin)
+                              curl -sSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+                              $SUDO installer -pkg AWSCLIV2.pkg -target /
+                              rm AWSCLIV2.pkg
+                              ;;
+                          *)
+                              echo "This orb does not currently support your platform. If you believe it should, please consider opening an issue on the GitHub repository:"
+                              echo "https://github.com/CircleCI-Public/aws-cli-orb/issues/new"
+                              exit 1
+                          ;;
+                      esac
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/2"; then
+                          echo "AWS CLI V2 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V2. Exiting."
+                          exit 1
+                      fi
+                  ;;
+              esac
+
+          else
+              echo "The v${AWS_CLI_VERSION_SELECTED} AWS CLI is already installed."
+              exit 0
+          fi
+        name: Install AWS CLI v2
+    - run:
+        command: |
+          if [ -z "${AWS_PAGER}" ]; then
+            echo 'export AWS_PAGER=""' >> $BASH_ENV
+            echo "AWS_PAGER is being set to the empty string to disable all output paging for AWS CLI commands."
+            echo "You can set the 'disable-aws-pager' parameter to 'false' to disable this behavior."
+          fi
+        name: Disable AWS pager if not already configured
+    - run:
+        command: |
+          aws configure set aws_access_key_id \
+            $NPS_AWS_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Access Key ID
+    - run:
+        command: |
+          aws configure set aws_secret_access_key \
+            $NPS_AWS_SECRET_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Secret Access Key
+    - run:
+        command: |
+          aws configure set default.region $NPS_AWS_REGION \
+            --profile default
+        name: Configure AWS default region
+    - run:
+        command: aws s3 cp /tmp/database_backup.pg s3://$NPS_BUCKET_NAME/backup/database_backup.pg
+        name: S3 Copy /tmp/database_backup.pg -> s3://$NPS_BUCKET_NAME/backup/database_backup.pg
+    - run:
+        name: list bucket
+        command: "aws s3 ls s3://${NPS_BUCKET_NAME}/              \n     \n"
+  dev:
+    docker:
+    - image: circleci/node:12.13.0-browsers
+    resource_class: medium+
+    steps:
+    - checkout
+    - restore_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+    - run:
+        name: Install node dependencies
+        command: npm install
+    - save_cache:
+        key: v3-node-modules-{{ checksum "package-lock.json" }}
+        paths:
+        - node_modules
+    - run:
+        command: |
+          AWS_VER_REGEXP_2='aws-cli\/2.\d*.\d*'
+          AWS_VER_REGEXP_1='aws-cli\/1.\d*.\d*'
+          # initialize installed version to zero, to signify not installed (Or we want to ignore the installed version and re-install).
+          AWS_CLI_INSTALLED_VERSION="0"
+          AWS_CLI_VERSION_SELECTED="2"
+
+          if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+
+          if [ "false" == "false" ]; then
+              if ! command -v aws --version >/dev/null 2>&1  ; then
+                  echo AWS is not installed
+              else
+                  echo AWS is currently installed.
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+                      echo AWS CLI v2 is installed
+                      AWS_CLI_INSTALLED_VERSION="2"
+                  fi
+                  if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_1; then
+                      echo AWS CLI v1 is installed
+                      AWS_CLI_INSTALLED_VERSION="1"
+                  fi
+              fi
+          else
+              echo "Skipping version check. Installing CLI"
+          fi
+
+          AWS_V2_UPDATE_PARAM=""
+          if aws --version 2>&1 | grep -q $AWS_VER_REGEXP_2; then
+              AWS_V2_UPDATE_PARAM="--update"
+          fi
+
+          #If the desired version of the CLI is not installed, install it.
+          if [[ $AWS_CLI_VERSION_SELECTED != $AWS_CLI_INSTALLED_VERSION ]]; then
+
+              #uninstall AWS CLI if it is installed.
+              if which aws; then
+                  echo Uninstalling old CLI
+                  $SUDO rm -rf $(which aws)
+              fi
+              case $AWS_CLI_VERSION_SELECTED in
+                  "1")
+                      if ! command -v python >/dev/null 2>&1 && ! command -v python3 >/dev/null 2>&1 ; then
+                          echo "Your environment does not seem to have Python installed, a requirement of the AWS CLI."
+                          echo "Please either utilize the AWS CLI v2, or select an envionment with Python installed."
+                          echo "Recommended image: cimg:/python:3.8"
+                          exit 1
+                      fi
+                      # install CLI v1
+                      export PIP=$(which pip pip3 | head -1)
+                      if [[ -n $PIP ]]; then
+                          if which sudo > /dev/null; then
+                              sudo $PIP install awscli --upgrade
+                          else
+                              # This installs the AWS CLI to ~/.local/bin. Make sure that ~/.local/bin is in your $PATH.
+                              $PIP install awscli --upgrade --user
+                          fi
+                      elif [[ $(which unzip curl | wc -l) -eq 2 ]]; then
+                          cd
+                          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+                          unzip awscli-bundle.zip
+                          if which sudo > /dev/null; then
+                              sudo ~/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+                          else
+                              # This installs the AWS CLI to the default location (~/.local/lib/aws) and create a symbolic link (symlink) at ~/bin/aws. Make sure that ~/bin is in your $PATH.
+                              awscli-bundle/install -b ~/bin/aws
+                          fi
+                          rm -rf awscli-bundle*
+                          cd -
+                      else
+                          echo "Unable to install AWS CLI. Please install pip."
+                          exit 1
+                      fi
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/1"; then
+                          echo "AWS CLI V1 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V1. Exiting."
+                          exit 1
+                      fi
+                  ;;
+                  "2")
+                      # install CLI v2
+
+                      cd /tmp || exit
+
+                      # PLATFORM CHECK: mac vs. alpine vs. other linux
+                      if uname -a | grep Darwin; then
+                          SYS_ENV_PLATFORM=darwin
+                      elif uname -a | grep Linux; then
+                          SYS_ENV_PLATFORM=linux
+                      else
+                          echo "This platform appears to be unsupported."
+                          uname -a
+                          exit 1
+                      fi
+
+                      case $SYS_ENV_PLATFORM in
+                          linux)
+                              curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                              unzip awscliv2.zip
+                              $SUDO ./aws/install $AWS_V2_UPDATE_PARAM
+                              rm awscliv2.zip
+                              ;;
+                          darwin)
+                              curl -sSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+                              $SUDO installer -pkg AWSCLIV2.pkg -target /
+                              rm AWSCLIV2.pkg
+                              ;;
+                          *)
+                              echo "This orb does not currently support your platform. If you believe it should, please consider opening an issue on the GitHub repository:"
+                              echo "https://github.com/CircleCI-Public/aws-cli-orb/issues/new"
+                              exit 1
+                          ;;
+                      esac
+                      # Installation check
+                      if aws --version &> grep -q "aws-cli/2"; then
+                          echo "AWS CLI V2 has been installed successfully"
+                          exit 0
+                      else
+                          echo "There was an issue installing the AWS CLI V2. Exiting."
+                          exit 1
+                      fi
+                  ;;
+              esac
+
+          else
+              echo "The v${AWS_CLI_VERSION_SELECTED} AWS CLI is already installed."
+              exit 0
+          fi
+        name: Install AWS CLI v2
+    - run:
+        command: |
+          if [ -z "${AWS_PAGER}" ]; then
+            echo 'export AWS_PAGER=""' >> $BASH_ENV
+            echo "AWS_PAGER is being set to the empty string to disable all output paging for AWS CLI commands."
+            echo "You can set the 'disable-aws-pager' parameter to 'false' to disable this behavior."
+          fi
+        name: Disable AWS pager if not already configured
+    - run:
+        command: |
+          aws configure set aws_access_key_id \
+            $NPS_AWS_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Access Key ID
+    - run:
+        command: |
+          aws configure set aws_secret_access_key \
+            $NPS_AWS_SECRET_ACCESS_KEY \
+            --profile default
+        name: Configure AWS Secret Access Key
+    - run:
+        command: |
+          aws configure set default.region $NPS_AWS_REGION \
+            --profile default
+        name: Configure AWS default region
+    - deploy:
+        command: "aws s3 sync \\\n  s3://$NPS_BUCKET_NAME/downloads/ static/downloads/ \n"
+        name: S3 Sync
+    - run:
+        name: Build gatsby
+        command: npm run build
+    - run:
+        name: deploy to cloud.gov
+        command: "pwd && ls -l\ncurl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'\nsudo dpkg -i cf-cli_amd64.deb  \n# Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.\n# $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.\ncp Staticfile ./public\ncf api https://api.fr.cloud.gov\ncf auth \"$DEV_CF_USERNAME\" \"$DEV_CF_PASSWORD\"\ncf target -o \"$DEV_CF_ORG\" -s \"$DEV_CF_SPACE\"\ncf push dev-nrrd -f ./manifest.yml\n"
 workflows:
   audits:
     jobs:
-    - lighthouse_audit:
-        filters:
-          branches:
-            ignore:
-            - preview
-            - master
-            - dev
-    - quick:
+    - unit_tests:
         filters:
           branches:
             ignore:
             - master
-            - dev
+            - staging
+    - lint:
+        filters:
+          branches:
+            ignore:
+            - master
+            - staging
+    - lighthouse-test:
+        filters:
+          branches:
+            ignore:
+            - master
+            - staging
   preview:
     jobs:
-    - preview:
+    - nrrd-database:
         filters:
           branches:
             ignore:
             - master
             - dev
+        context:
+        - DEV
+    - nrrd-preview:
+        filters:
+          branches:
+            ignore:
+            - master
+            - dev
+        requires:
+        - nrrd-database
+        context:
+        - DEV
   deploy:
     jobs:
     - deploy:
         filters:
           branches:
             only: master
+    - nrrd-dev-database:
+        requires:
+        - deploy
+        context:
+        - DEV
   dev:
     jobs:
+    - nrrd-dev-database:
+        filters:
+          branches:
+            only: dev
+        context:
+        - DEV
     - dev:
         filters:
           branches:
             only: dev
+        requires:
+        - nrrd-dev-database
   version: 2
-
-# Original config.yml file:
-# version: 2.1
-# jobs:
-#   lighthouse_audit:
-#     docker:
-#       - image: circleci/node:12.13.0-browsers
-#     steps:
-#       - checkout
-#       - restore_cache:
-#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
-#       - run:
-#           name: Install node dependencies
-#           command: npm install
-#       - save_cache:
-#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
-#           paths:
-#             - node_modules
-#       - run:
-#           name: Build gatsby
-#           command: npm run build
-#       # - run: 
-#       #     name: Javascript Linter
-#       #     command: npm run lint --ci --format junit -o reports/junit/js-lint-results.xml
-#       - run:
-#           name: Run test reports with JUnit
-#           command: |
-#             mkdir -p test-results/junit
-#             echo 'test-results/junit directory succesfully created...'
-#             npm run test --ci --runInBand --reporters=default --reporters=jest-junit
-#           environment:
-#             JEST_JUNIT_OUPUT_DIR: \"./test-results/junit\"
-#       - store_test_results:
-#           path: test-results/junit
-#       - store_artifacts:
-#           path: test-results/junit
-#   
-#   quick:
-#     docker:
-#       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-#       - image: circleci/node:12.13.0
-#     steps:
-#       - checkout
-#       - restore_cache:
-#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
-#       - run:
-#           name: Install node dependencies
-#           command: npm install
-#       - save_cache:
-#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
-#           paths:
-#             - node_modules
-#       - run:
-#           name: Build gatsby
-#           command: npm run build
-#               
-#   preview:
-#     docker:
-#       - image: circleci/node:12.13.0
-#     environment:
-#       TEST_REPORTS: /tmp/test-reports   
-#     steps:
-#       - checkout
-#       - restore_cache:
-#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
-#       - run:
-#           name: Install node dependencies
-#           command: npm install
-#       - save_cache:
-#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
-#           paths:
-#             - node_modules
-#       - run:
-#           name: Build gatsby
-#           command: npm run build
-#       - run:
-#           name: deploy preview to cloud.gov
-#           command: |
-#             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-#             sudo dpkg -i cf-cli_amd64.deb
-#             bash .circleci/preview.sh
-# 
-#       # Upload test results
-#       
-#       - store_test_results:
-#           path: /tmp/test-reports
-#    
-#   dev:
-#     docker:
-#       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-#       - image: circleci/node:12.13.0
-#     steps:
-#       - checkout
-#       - restore_cache:
-#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
-#       - run:
-#           name: Install node dependencies
-#           command: npm install
-#       - save_cache:
-#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
-#           paths:
-#             - node_modules
-#       - run:
-#           name: Build gatsby
-#           command: npm run build
-#       - run:
-#           name: Run tests
-#           command: npm test
-#       - run:
-#           name: deploy to cloud.gov
-#           command: |
-#             pwd && ls -l\t
-#             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-#             sudo dpkg -i cf-cli_amd64.deb\t  
-#             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
-#             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
-#             cf api https://api.fr.cloud.gov
-#             cf auth \"$DEV_CF_USERNAME\" \"$DEV_CF_PASSWORD\"
-#             cf target -o \"$DEV_CF_ORG\" -s \"$DEV_CF_SPACE\"
-#             cf push dev-nrrd -f ./manifest.yml
-#       - run:
-#           name: clean up
-#           command: |
-#             which cf
-#             bash ./.circleci/cleanup.sh
-# 
-#   deploy:
-#     docker:
-#       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-#       - image: circleci/node:12.13.0
-#     steps:
-#       - checkout
-#       - restore_cache:
-#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
-#       - run:
-#           name: Install node dependencies
-#           command: npm install
-#       - save_cache:
-#           key: v3-node-modules-{{ checksum \"package-lock.json\" }}
-#           paths:
-#             - node_modules
-#       - run:
-#           name: Build gatsby
-#           command: npm run build
-#       - run:
-#           name: Run tests
-#           command: npm test
-# 
-#       - run:
-#           name: deploy preview to cloud.gov
-#           command: |
-#             pwd && ls -l\t
-#             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-#             sudo dpkg -i cf-cli_amd64.deb\t  
-#             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
-#             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
-#             cf api https://api.fr.cloud.gov
-#             cf auth \"$PROD_CF_USERNAME\" \"$PROD_CF_PASSWORD\"
-#             cf target -o \"$PROD_CF_ORG\" -s \"$PROD_CF_SPACE\"
-#             cf push nrrd -f ./manifest.yml
-# 
-# workflows:
-#   audits:
-#     jobs:
-#       - lighthouse_audit:
-#           filters:
-#             branches:
-#               ignore:
-#                 - preview
-#                 - master
-#                 - dev
-#       - quick:
-#           filters:
-#             branches:
-#               ignore:
-#                 - master
-#                 - dev
-#           
-#                 
-#   preview:
-#     jobs:
-#       - preview:
-#           filters:
-#             branches:
-#               ignore:
-#                 - master
-#                 - dev
-#   deploy:
-#     jobs:
-#       - deploy:
-#           filters:
-#             branches:
-#               only: master
-# 
-#   dev:
-#     jobs:
-#       - dev:
-#           filters:
-#             branches:
-#               only: dev
-# 
-#               

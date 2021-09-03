@@ -15,12 +15,16 @@
 
 ## CONTRIBUTORS
     Sarah Aranda -- UX Intern -- Virtual Student Federal Service
+    Rawa Aziz -- Data Intern -- Virtual Student Federal Service
+    Cody Eckstein -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
+    Kiara Gomez -- Data Intern -- Virtual Student Federal Service
+    Jae Kwon -- UX Intern -- Virtual Student Federal Service
     Jerome Louis -- Contract Developer
-    Christa McCurdy -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
     Mojo Nichols -- Contract Developer
+    Christopher Robey -- Development Intern -- Virtual Student Federal Service
     Matthew Sao -- Data Intern -- Virtual Student Federal Service
-    Jamie Wang -- UX Intern -- Virtual Student Federal Service
-    Meshan White -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
+    Kaitlyn Tran -- UX Intern -- Virtual Student Federal Service
+    Cat Vojslavek -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
 
 # PAST TEAM
 
@@ -57,12 +61,15 @@
     Alena Huang -- UX Intern -- Virtual Student Federal Service
     Brandi Nichols -- UX Intern -- Virtual Student Federal Service
     Jeremiah Kimelman -- Developer -- 18F
+    Christa McCurdy -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
     Shawnique Muller -- 18F
     Annie Persson -- UX Intern -- Virtual Student Federal Service
     Ben Peterson -- UX Researcher -- 18F
     Marco Segreto -- Developer -- 18F
     Jennifer Thibault -- Visual Designer -- 18F
     Atul Varma -- Developer -- 18F
+    Jamie Wang -- UX Intern -- Virtual Student Federal Service
+    Meshan White -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
 
 # CREDITS
 
