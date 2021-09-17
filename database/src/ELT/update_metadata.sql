@@ -105,3 +105,40 @@ update commodity set commodity_order=1.1  where commodity like '%Oil shale%';
 update commodity set commodity_order=1.2  where commodity like '%Oil & gas (pre-production)';
 update commodity set commodity_order='ZZZ'  where commodity ='Not tied to a commodity';
 
+
+
+
+
+delete from disbursement where period_id=239;
+
+insert into disbursement(location_id, period_id, commodity_id, fund_id, disbursement, unit, unit_abbr, duplicate_no) 
+(select disbursement.location_id, 239, disbursement.commodity_id, disbursement.fund_id, sum(disbursement) as disbursement, 'dollars', '$', 1 
+from disbursement join period using (period_id) 
+where period_date >= '2018-10-01' and period_date < '2019-10-01' and period='Monthly' 
+group by  disbursement.location_id, disbursement.commodity_id, disbursement.fund_id)
+;
+
+
+delete from disbursement where period_id=240;
+
+insert into disbursement(location_id, period_id, commodity_id, fund_id, disbursement, unit, unit_abbr, duplicate_no) 
+(select disbursement.location_id, 240, disbursement.commodity_id, disbursement.fund_id, sum(disbursement) as disbursement, 'dollars', '$', 1 
+from disbursement join period using (period_id) 
+where period_date >= '2019-10-01' and period_date < '2020-10-01' and period='Monthly' 
+group by  disbursement.location_id, disbursement.commodity_id, disbursement.fund_id)
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
