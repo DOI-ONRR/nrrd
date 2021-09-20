@@ -39,7 +39,7 @@ update fiscal_year_disbursement_elt set fund_class='State and local governments'
 
 update fiscal_year_disbursement_elt set fund_class='U.S. Treasury' , recipient='U.S. Treasury' where lower(fund_type) like 'u.s.%gomesa%' and county='';
 update fiscal_year_disbursement_elt set fund_class='State and local governments' , recipient='State' where lower(fund_type) like 'state%gomesa%' and county='';
-update fiscal_year_disbursement_elt set fund_class='State and local governments' , recipient='County' where lower(fund_type)='%gomesa%' and county != '';
+update fiscal_year_disbursement_elt set fund_class='State and local governments' , recipient='County' where lower(fund_type) like '%gomesa%' and county != '';
 
 
 
