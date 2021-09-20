@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.7 (Debian 12.7-1.pgdg100+1)
--- Dumped by pg_dump version 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1)
+-- Dumped from database version 12.8 (Debian 12.8-1.pgdg100+1)
+-- Dumped by pg_dump version 12.8 (Debian 12.8-1.pgdg100+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -23,7 +23,7 @@ SET row_security = off;
 CREATE VIEW public.download_fiscal_year_disbursements AS
  SELECT period.period_date AS "Date",
     period.fiscal_year AS "Fiscal Year",
-    fund.fund_type AS "Fund Type",
+    fund.fund_class AS "Fund Type",
     fund.source AS "Source",
     location.state_name AS "State",
     location.county AS "County",
