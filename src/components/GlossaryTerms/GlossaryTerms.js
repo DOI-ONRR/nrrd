@@ -121,6 +121,11 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
     })
   }
 
+  // disclaimer 
+  const disclaimer = () => {
+    return { __html: rest.disclaimer }
+  }
+
   // group terms by first letter of term
   const data = terms.reduce((r, e) => {
     const group = e.name[0].toUpperCase()
@@ -227,6 +232,7 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
         </Box>
       </StickyWrapper>
       <Container maxWidth="lg">
+        <Box dangerouslySetInnerHTML={ disclaimer() } pt={3}></Box>
         <GlossaryCategoryContainer>
           { (category === 'ONRR') &&
         <>
