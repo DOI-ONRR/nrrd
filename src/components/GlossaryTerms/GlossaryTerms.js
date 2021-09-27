@@ -121,7 +121,7 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
     })
   }
 
-  // disclaimer 
+  // disclaimer
   const disclaimer = () => {
     return { __html: rest.disclaimer }
   }
