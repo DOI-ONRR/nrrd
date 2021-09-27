@@ -163,10 +163,13 @@ fund_id;
 
 \echo 'summarize monthly disbursement fact records into fiscal year'
 
-delete from disbursement where period_id in (select
-distinct perioid_id
+
+delete from disbursement where period_id in (select period_id from disbursement join period using (period_id) 
+where period='Fiscal Year' and fiscal_year in (select
+distinct fiscal_year
 from disbursement join period using (period_id)
-where period='Monthly' and fiscal_month=12);
+where period='Monthly' and fiscal_month=12) ;
+
 
 
 
