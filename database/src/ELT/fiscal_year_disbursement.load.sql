@@ -168,7 +168,7 @@ delete from disbursement where period_id in (select period_id from disbursement 
 where period='Fiscal Year' and fiscal_year in (select
 distinct fiscal_year
 from disbursement join period using (period_id)
-where period='Monthly' and fiscal_month=12) ;
+where period='Monthly' and fiscal_month=12)) ;
 
 
 
