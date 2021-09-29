@@ -43,7 +43,7 @@ EOF
 
 echo $Host:$Port:$Name:$Username:$Password >> ~/.pgpass
 
-cat ./.tunnelrc
+#cat ./.tunnelrc
 echo "Tunnel and variables established to use on command line type"
 echo
 echo "to use variables:"
