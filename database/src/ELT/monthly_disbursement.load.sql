@@ -24,7 +24,8 @@ update  monthly_disbursement_elt set fund_type='Lease Process Improvement (BLM)'
 ;
 
 update monthly_disbursement_elt set fund_class='Other funds' where fund_type != '' and fund_class = '';
-update monthly_disbursement_elt set fund_class='Native American tribes and individuals', recipient='Native American tribes and individuals' where fund_type = 'U.S. TreasuryAI' or fund_type='American Indian Tribes' or fund_type='Native American Tribes & Allottees' ;
+update monthly_disbursement_elt set fund_type='Native American tribes and individuals', fund_class='Native American tribes and individuals', recipient='Native American tribes and individuals' where fund_type = 'U.S. TreasuryAI' or fund_type='American Indian Tribes' or fund_type='Native American Tribes & Allottees' ;
+
 
 update  monthly_disbursement_elt set fund_class='U.S. Treasury' , recipient='U.S. Treasury' where fund_type='U.S. Treasury' or fund_type='U.S. Treasury - GoMESA';
 
@@ -65,6 +66,8 @@ update monthly_disbursement_elt set county='Hidalgo County' where county='Hidalg
 update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' county', ''),' parish',''), ' borough',''),'');
 update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' County', ''),' Parish',''), ' Borough',''),'');
 update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' County', ''),' Parish',''), ' Borough',''),'');
+update monthly_disbursement_elt set county=COALESCE(REPLACE(county,' Paris',''),'');
+
 update monthly_disbursement_elt e set fips_code = l.fips_code FROM county_lookup l WHERE e.county=l.county and e.state=l.state;
 
 \echo 'Update commodity'
