@@ -66,6 +66,8 @@ update monthly_disbursement_elt set county='Hidalgo County' where county='Hidalg
 update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' county', ''),' parish',''), ' borough',''),'');
 update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' County', ''),' Parish',''), ' Borough',''),'');
 update monthly_disbursement_elt set county=COALESCE(REPLACE(REPLACE(REPLACE(county,' County', ''),' Parish',''), ' Borough',''),'');
+update monthly_disbursement_elt set county=COALESCE(REPLACE(county,' Paris',''),'');
+
 update monthly_disbursement_elt e set fips_code = l.fips_code FROM county_lookup l WHERE e.county=l.county and e.state=l.state;
 
 \echo 'Update commodity'
