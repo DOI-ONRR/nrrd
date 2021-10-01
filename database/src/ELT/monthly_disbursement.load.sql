@@ -53,8 +53,11 @@ update monthly_disbursement_elt set fund_class='Land and Water Conservation Fund
 update  monthly_disbursement_elt set fund_class='Reclamation Fund',  recipient='Reclamation Fund' where fund_type='Reclamation Fund' or fund_type='Reclamation'
 ;
 
+update monthly_disbursement_elt set fund_type=concat(fund_type,' - 8(g) offshore') where disbursement_type like '%8(g)%';
 
-update monthly_disbursement_elt set fund_class='Other funds', recipient=fund_type where fund_type not in ('','Historic Preservation Fund',  'U.S. Treasury - GoMESA', 'U.S. Treasury', 'State', 'U.S. TreasuryAI','American Indian Tribes','Native American Tribes & Allottees') and fund_class='' and recipient='';
+update monthly_disbursement_elt set fund_type=concat(fund_type,' - GOMESA offshore') where disbursement_type like '%GoMESA%';
+
+update monthly_disbursement_elt set fund_class='Other funds', recipient=fund_type where fund_type not in ('','Historic Preservation Fund',  'U.S. Treasury - GoMESA', 'U.S. Treasury', 'State', 'U.S. TreasuryAI','American Indian Tribes','Native American Tribes & Allottees','Native American tribes and individuals') and fund_class='' and recipient='';
 
 \echo 'Update revenue type'
 update monthly_revenue_elt set revenue_type=REPLACE(revenue_type, ' ', '1spc1') ;
