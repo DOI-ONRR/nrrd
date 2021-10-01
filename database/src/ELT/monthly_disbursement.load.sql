@@ -92,7 +92,7 @@ update monthly_disbursement_elt set commodity=REPLACE(commodity, '1spc1', ' ') ;
 
 \echo 'Insert location records'
 insert into location (land_class, land_category,  state, county, fips_code) select
-      	CASE WHEN fund_type = 'Native American Tribes & Allottees' or fund_type='U.S. TreasuryAI' THEN 'Native American' ELSE 'Federal' END as land_class,
+      	CASE WHEN fund_type = 'Native American tribes and individuals' THEN 'Native American' ELSE 'Federal' END as land_class,
 	COALESCE(land_category,'')  as land_category,
 	COALESCE(state,'') ,
 	COALESCE(county,'')  as county,
@@ -173,7 +173,7 @@ count(*) as cnt
 from monthly_disbursement_elt e
      join location l
      on
-     CASE WHEN e.fund_type = 'Native American Tribes & Allottees' or fund_type='U.S. TreasuryAI' THEN 'Native American' ELSE 'Federal' END = l.land_class
+     CASE WHEN e.fund_type = 'Native American tribes and individuals' THEN 'Native American' ELSE 'Federal' END = l.land_class
      and COALESCE(e.land_category,'') = l.land_category
      and COALESCE(e.state,'')=l.state
      and  COALESCE(e.county,'') = l.county
