@@ -39,7 +39,7 @@ update fiscal_year_disbursement_elt set fund_class='State and local governments'
 
 update fiscal_year_disbursement_elt set fund_class='U.S. Treasury' , recipient='U.S. Treasury' where lower(fund_type) like 'u.s.%gomesa%' and county='';
 update fiscal_year_disbursement_elt set fund_class='State and local governments' , recipient='State' where lower(fund_type) like 'state%gomesa%' and county='';
-update fiscal_year_disbursement_elt set fund_class='State and local governments' , recipient='County' where lower(fund_type)='%gomesa%' and county != '';
+update fiscal_year_disbursement_elt set fund_class='State and local governments' , recipient='County' where lower(fund_type) like '%gomesa%' and county != '';
 
 
 
@@ -160,3 +160,31 @@ group by location_id, period_id, commodity_id,
 fund_id;
 
 
+
+\echo 'summarize monthly disbursement fact records into fiscal year'
+
+
+delete from disbursement where period_id in (select period_id from disbursement join period using (period_id) 
+where period='Fiscal Year' and fiscal_year in (select
+distinct fiscal_year
+from disbursement join period using (period_id)
+where period='Monthly' and fiscal_month=12)) ;
+
+
+
+
+insert into disbursement(location_id, period_id, commodity_id, fund_id, disbursement, unit, unit_abbr, duplicate_no)
+ select t1.location_id,t2.period_id,t1.commodity_id, t1.fund_id,t1.disbursement, 'dollars', '$', 1
+from (select disbursement.location_id, disbursement.commodity_id,
+disbursement.fund_id, sum(disbursement) as disbursement , fiscal_year
+from disbursement join period using (period_id)
+where fiscal_year in (select distinct fiscal_year
+from disbursement join period using (period_id)
+where period='Monthly' and fiscal_month=12) and period='Monthly'
+group by  fiscal_year, disbursement.location_id, disbursement.commodity_id, disbursement.fund_id) t1 join
+(
+select period_id, fiscal_year, period from period
+where fiscal_year in
+(select distinct fiscal_year
+from disbursement join period using (period_id)
+where period='Monthly' and fiscal_month=12) and period='Fiscal Year' ) t2 on (t1.fiscal_year=t2.fiscal_year);
