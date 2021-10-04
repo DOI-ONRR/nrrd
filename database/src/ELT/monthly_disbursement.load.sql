@@ -24,7 +24,7 @@ update  monthly_disbursement_elt set fund_type='Lease Process Improvement (BLM)'
 ;
 
 update monthly_disbursement_elt set fund_class='Other funds' where fund_type != '' and fund_class = '';
-update monthly_disbursement_elt set fund_type='Native American tribes and individuals', fund_class='Native American tribes and individuals', recipient='Native American tribes and individuals' where fund_type = 'U.S. TreasuryAI' or fund_type='American Indian Tribes' or fund_type='Native American Tribes & Allottees' ;
+update monthly_disbursement_elt set fund_type='Native American Tribes & Allottees', fund_class='Native American tribes and individuals', recipient='Native American tribes and individuals' where fund_type = 'U.S. TreasuryAI' or fund_type='American Indian Tribes' or fund_type='Native American Tribes & Allottees' ;
 
 
 update  monthly_disbursement_elt set fund_class='U.S. Treasury' , recipient='U.S. Treasury' where fund_type='U.S. Treasury' or fund_type='U.S. Treasury - GoMESA';
@@ -53,8 +53,11 @@ update monthly_disbursement_elt set fund_class='Land and Water Conservation Fund
 update  monthly_disbursement_elt set fund_class='Reclamation Fund',  recipient='Reclamation Fund' where fund_type='Reclamation Fund' or fund_type='Reclamation'
 ;
 
+update monthly_disbursement_elt set fund_type=concat(fund_type,' 8(g)') where disbursement_type like '%8(g)%';
 
-update monthly_disbursement_elt set fund_class='Other funds', recipient=fund_type where fund_type not in ('','Historic Preservation Fund',  'U.S. Treasury - GoMESA', 'U.S. Treasury', 'State', 'U.S. TreasuryAI','American Indian Tribes','Native American Tribes & Allottees') and fund_class='' and recipient='';
+update monthly_disbursement_elt set fund_type=concat(fund_type,' - GoMESA') where disbursement_type like '%GoMESA%';
+
+update monthly_disbursement_elt set fund_class='Other funds', recipient=fund_type where fund_type not in ('','Historic Preservation Fund',  'U.S. Treasury - GoMESA', 'U.S. Treasury', 'State', 'U.S. TreasuryAI','American Indian Tribes','Native American Tribes & Allottees','Native American tribes and individuals') and fund_class='' and recipient='';
 
 \echo 'Update revenue type'
 update monthly_revenue_elt set revenue_type=REPLACE(revenue_type, ' ', '1spc1') ;
@@ -92,7 +95,7 @@ update monthly_disbursement_elt set commodity=REPLACE(commodity, '1spc1', ' ') ;
 
 \echo 'Insert location records'
 insert into location (land_class, land_category,  state, county, fips_code) select
-      	CASE WHEN fund_type = 'Native American Tribes & Allottees' or fund_type='U.S. TreasuryAI' THEN 'Native American' ELSE 'Federal' END as land_class,
+      	CASE WHEN fund_type = 'Native American Tribes & Allottees' THEN 'Native American' ELSE 'Federal' END as land_class,
 	COALESCE(land_category,'')  as land_category,
 	COALESCE(state,'') ,
 	COALESCE(county,'')  as county,
@@ -173,7 +176,7 @@ count(*) as cnt
 from monthly_disbursement_elt e
      join location l
      on
-     CASE WHEN e.fund_type = 'Native American Tribes & Allottees' or fund_type='U.S. TreasuryAI' THEN 'Native American' ELSE 'Federal' END = l.land_class
+     CASE WHEN e.fund_type = 'Native American Tribes & Allottees' THEN 'Native American' ELSE 'Federal' END = l.land_class
      and COALESCE(e.land_category,'') = l.land_category
      and COALESCE(e.state,'')=l.state
      and  COALESCE(e.county,'') = l.county
