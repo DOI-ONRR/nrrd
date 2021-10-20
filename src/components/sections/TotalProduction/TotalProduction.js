@@ -226,7 +226,7 @@ const TotalProduction = props => {
       }
 
       legendHeaders = (headers, row) => {
-        const fySoFar = (period === DFC.PERIOD_FISCAL_YEAR && (currentMonthNum !== parseInt('09') || startMonth === endMonth) && headers[1] > maxFiscalYear - 1)
+        const fySoFar = (period === DFC.PERIOD_FISCAL_YEAR && (currentMonthNum !== parseInt('12') || startMonth === endMonth) && headers[1] > maxFiscalYear - 1)
         const cySoFar = (period === DFC.PERIOD_CALENDAR_YEAR && (currentMonthNum !== parseInt('12') || startMonth === endMonth) && headers[1] > maxCalendarYear - 1)
         const headerArr = [headers[0].charAt(0).toUpperCase() + headers[0].slice(1),
           `${ periodAbbr } ${ headers[1] } ${ (fySoFar || cySoFar) ? currentYearSoFarText : '' }`]
