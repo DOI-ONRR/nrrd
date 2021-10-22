@@ -258,7 +258,7 @@ const TotalProduction = props => {
           <Grid item xs={12} md={7}>
             <StackedBarChart2
               key={`tpsbc__${ monthly }${ period }${ product }${ dataType }`}
-	        title={[commodity, ' ', <GlossaryTerm termKey={unitAbbrev}>{unitAbbrev}</GlossaryTerm>]}
+	            title={[commodity, ' ', <GlossaryTerm termKey={unitAbbrev}>{unitAbbrev}</GlossaryTerm>]}
               data={chartData.filter(row => (row.product === product))}
               xAxis={xAxis}
               yAxis={yAxis}

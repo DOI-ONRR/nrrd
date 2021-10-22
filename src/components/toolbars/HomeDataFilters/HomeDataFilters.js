@@ -50,7 +50,7 @@ const HomeDataFilters = props => {
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { monthly, dataType, year, product, fiscalYear, calendarYear } = filterState
-  // console.debug('FilterState ---------------------------------------------------------------------->')
+  console.debug('FilterState ---------------------------------------------------------------------->')
   // console.debug(filterState)
   const maxFiscalYear = fiscalYear
   // not used const maxCalendarYear = calendarYear
@@ -91,7 +91,7 @@ const HomeDataFilters = props => {
 
   useEffect(() => {
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
-      updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
+      // updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
     }
     else {
       // console.debug("==========================================================>", "Do we update", monthly, filterState)
