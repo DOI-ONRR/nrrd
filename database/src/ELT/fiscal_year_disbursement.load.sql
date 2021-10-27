@@ -111,6 +111,21 @@ group by fiscal_year
 on conflict DO NOTHING;
 
 
+insert into period (period, calendar_year, fiscal_year, month, month_long, month_short, fiscal_month, period_date )
+select
+        'Fiscal Year',
+	calendar_year,
+	extract(year from period_date + interval '3 months') as  fiscal_year,
+	0,
+	'',
+	'',
+	0,
+	period_date
+from (select month, calendar_year,
+to_date(concat('01 ',month,' ',calendar_year), 'DD Month YYYY') as period_date 
+from monthly_disbursement_elt group by month, calendar_year) table1
+group by period_date,month, calendar_year order by period_date
+on conflict DO NOTHING;
 
 
 \echo 'Insert disbursement fact records'
