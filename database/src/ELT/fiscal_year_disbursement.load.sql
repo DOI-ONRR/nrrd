@@ -112,15 +112,15 @@ on conflict DO NOTHING;
 
 
 insert into period (period, calendar_year, fiscal_year, month, month_long, month_short, fiscal_month, period_date )
-select
+select distinct
         'Fiscal Year',
-	calendar_year,
+		extract(year from period_date + interval '3 months') as  fiscal_year,
 	extract(year from period_date + interval '3 months') as  fiscal_year,
 	0,
 	'',
 	'',
 	0,
-	period_date
+	to_date(concat('01/01/',extract(year from period_date + interval '3 months')), 'MM/DD/YYYY') as period_date
 from (select month, calendar_year,
 to_date(concat('01 ',month,' ',calendar_year), 'DD Month YYYY') as period_date 
 from monthly_disbursement_elt group by month, calendar_year) table1
