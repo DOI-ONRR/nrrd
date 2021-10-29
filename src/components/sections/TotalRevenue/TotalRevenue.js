@@ -251,6 +251,7 @@ const TotalRevenue = props => {
     maxFiscalYear = periodAllYears[DFC.PERIOD_FISCAL_YEAR][periodAllYears[DFC.PERIOD_FISCAL_YEAR].length - 1]
     maxCalendarYear = periodAllYears[DFC.PERIOD_CALENDAR_YEAR][periodAllYears[DFC.PERIOD_CALENDAR_YEAR].length - 1]
 
+      
     // Month range
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
 	    if (period === DFC.PERIOD_FISCAL_YEAR) {
@@ -361,7 +362,7 @@ const TotalRevenue = props => {
         }
         xGroups[DFC.PERIOD_FISCAL_YEAR] = chartData.map((row, i) => row.year)
         data.total_yearly_fiscal_revenue.filter(item => {
-          if (item.year === (maxFiscalYear + 1)) {
+          if (item.year === maxFiscalYear ) {
             if (monthRange.indexOf(item.monthLong) === -1) {
               monthRange.push(item.monthLong)
 	    }
@@ -394,7 +395,9 @@ const TotalRevenue = props => {
           }
         })
       }
-      startMonth = monthRange[0]
+	console.debug("MR ", monthRange, "Ite m ", data)
+
+	startMonth = monthRange[0]
       endMonth = monthRange[monthRange.length - 1]
       monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
       currentYearSoFarText = `so far ${ monthRangeText }`
