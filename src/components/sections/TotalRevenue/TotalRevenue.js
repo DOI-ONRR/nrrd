@@ -408,7 +408,7 @@ const TotalRevenue = props => {
       }
 
       legendHeaders = (headers, row) => {
-        const headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('09') && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`
+        const headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('09') && headers[1] >= maxFiscalYear) ? currentYearSoFarText : '' }`
         const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), headerLabel]
         return headerArr
       }
