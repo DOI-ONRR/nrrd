@@ -362,7 +362,7 @@ const TotalRevenue = props => {
         }
         xGroups[DFC.PERIOD_FISCAL_YEAR] = chartData.map((row, i) => row.year)
         data.total_yearly_fiscal_revenue.filter(item => {
-          if (item.year === maxFiscalYear ) {
+          if (item.year >= maxFiscalYear ) {
             if (monthRange.indexOf(item.monthLong) === -1) {
               monthRange.push(item.monthLong)
 	    }
