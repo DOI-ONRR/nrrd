@@ -251,12 +251,18 @@ const TotalRevenue = props => {
     maxFiscalYear = periodAllYears[DFC.PERIOD_FISCAL_YEAR][periodAllYears[DFC.PERIOD_FISCAL_YEAR].length - 1]
     maxCalendarYear = periodAllYears[DFC.PERIOD_CALENDAR_YEAR][periodAllYears[DFC.PERIOD_CALENDAR_YEAR].length - 1]
 
+
+    //   maxCalendarYear = data.total_monthly_calendar_revenue.filter(f=> f.month === 12).reduce((prev, current) => {
+    //   return (prev.year > current.year) ? prev.year : current.year
+    // })
       
     // Month range
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
 	    if (period === DFC.PERIOD_FISCAL_YEAR) {
 	      currentMonthNum = data.total_yearly_fiscal_revenue[data.total_yearly_fiscal_revenue.length - 1].currentMonth
-
+		maxFiscalYear = data.total_monthly_fiscal_revenue.filter( f => f.month === 12).reduce((prev, current) => {
+     		    return (prev.year > current.year) ? prev.year : current.year
+		})
         switch (yGroupBy) {
 		  case 'revenue_type':
 		      comparisonData = data.total_monthly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
