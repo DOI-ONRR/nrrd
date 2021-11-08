@@ -182,7 +182,7 @@ location_id,
 period_id,
 commodity_id,
 fund_id,
-sum(to_number(revenue, 'L999G999G999G999D99')),
+sum(to_number(revenue, 'L999G999G999G999D99999')),
 'dollars',
 '$',
 count(*) as cnt
@@ -250,7 +250,7 @@ location_id,
 period_id,
 commodity_id,
 fund_id,
-sum(to_number(revenue, 'L999G999G999G999D99')),
+sum(to_number(revenue, 'L999G999G999G999D99999')),
 'dollars',
 '$',
 count(*) as cnt
@@ -276,7 +276,8 @@ from monthly_revenue_elt e
         and period_date <= (select max(period_date) from period where fiscal_month=12) 
         and  period_date >= (select min(period_date) from period where fiscal_month=1)
         and period='Fiscal Year'
-	 
+	
+    where accept_date <= ( select max(accept_date) from monthly_revenue_elt where extract(month from accept_date) = 9)
 
 group by location_id, period_id, commodity_id, 
 fund_id;
@@ -315,7 +316,7 @@ location_id,
 period_id,
 commodity_id,
 fund_id,
-sum(to_number(revenue, 'L999G999G999G999D99')),
+sum(to_number(revenue, 'L999G999G999G999D99999')),
 'dollars',
 '$',
 count(*) as cnt
@@ -341,6 +342,8 @@ from monthly_revenue_elt e
 	 extract(year from accept_date)=p.calendar_year
          and period='Calendar Year'
 	 and period_date <= (select max(period_date) from period where month=12)
+
+where accept_date <= ( select max(accept_date) from monthly_revenue_elt where extract(month from accept_date) = 12)
 	 
 
 group by location_id, period_id, commodity_id, 

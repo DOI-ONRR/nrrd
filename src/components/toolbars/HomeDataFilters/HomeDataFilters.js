@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { DATA_FILTER_CONSTANTS as DFC, ALL_YEARS } from '../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -49,10 +49,12 @@ const HomeDataFilters = props => {
   const classes = useStyles()
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { monthly, dataType, year, product, fiscalYear, calendarYear } = filterState
-  // console.debug('FilterState ---------------------------------------------------------------------->')
-  // console.debug(filterState)
-  const maxFiscalYear = fiscalYear
+    const { monthly, dataType, year, product,  fiscalYear, calendarYear } = filterState
+   console.debug('FilterState ---------------------------------------------------------------------->')
+   console.debug(filterState)
+    const maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].at(-1)
+    const maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].at(-1)
+    console.debug(ALL_YEARS, maxFiscalYear) 
   // not used const maxCalendarYear = calendarYear
 
   // const calendarYear = (dataType === DFC.PRODUCTION) ? maxCalendarYear - 1 : maxCalendarYear
@@ -68,8 +70,8 @@ const HomeDataFilters = props => {
     ],
     monthlyPeriod: [
       { value: 'Most recent 12 months', option: 'Most recent 12 months' },
-      { value: DFC.PERIOD_FISCAL_YEAR, option: `Fiscal year ${ monthly === DFC.MONTHLY ? maxFiscalYear : year }` },
-      { value: DFC.PERIOD_CALENDAR_YEAR, option: `Calendar year ${ calendarYear }` }
+      { value: DFC.PERIOD_FISCAL_YEAR, option: `Fiscal year ${ monthly === DFC.PERIOD_MONTHLY ? maxFiscalYear : year }` },
+	{ value: DFC.PERIOD_CALENDAR_YEAR, option: `Calendar year ${dataType === DFC.DISBURSMENTS ?  maxCalendarYear : year  }`, disabled : `${dataType === DFC.DISBURSMENT ? true : false}` }
     ],
     [DFC.BREAKOUT_BY]: {
       [DFC.REVENUE]: [
@@ -88,17 +90,21 @@ const HomeDataFilters = props => {
       { value: 'Coal (tons)', option: 'Coal (tons)' }
     ]
   }
+    console.debug( monthly, " === ",DFC.MONTHLY," ? ",maxFiscalYear," : ",year) 
+/*  useEffect(() => {
+      console.debug("==========", DFC.PERIOD, "=============",DFC.PERIOD_FISCAL_YEAR,"===================================>", "Do we update", monthly, filterState)
 
-  useEffect(() => {
-    if (monthly === DFC.MONTHLY_CAPITALIZED) {
-      updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
+     if (monthly === DFC.MONTHLY_CAPITALIZED) {
+	 updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
     }
     else {
-      // console.debug("==========================================================>", "Do we update", monthly, filterState)
-      updateDataFilter({ ...filterState, [DFC.PERIOD]: DFC.PERIOD_FISCAL_YEAR })
+	updateDataFilter({ ...filterState, [DFC.PERIOD]: DFC.PERIOD_FISCAL_YEAR })
+	updateDataFilter({ ...filterState, [DFC.FISCAL_YEAR]: maxFiscalYear })
+	updateDataFilter({ ...filterState, [DFC.CALENDAR_YEAR]: maxCalendarYear })
     }
-  }, [monthly])
-
+  }, [monthly]) 
+*/
+    console.debug("monthly: ", monthly, "MENU_OPTIONS", MENU_OPTIONS)
   return (
     <div className={classes.sectionControlsContainer}>
       <YearlyMonthlyToggleInput

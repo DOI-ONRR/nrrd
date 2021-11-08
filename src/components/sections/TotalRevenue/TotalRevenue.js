@@ -19,7 +19,7 @@ import ComparisonTable from '../ComparisonTable'
 import utils, { formatDate } from '../../../js/utils'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { DATA_FILTER_CONSTANTS as DFC, ALL_YEARS } from '../../../constants'
 
 const FISCAL = gql`
     query TotalYearlyRevenue($period_group: String!, $breakout_group: String!)  {  
@@ -163,7 +163,7 @@ const TotalRevenue = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)
   filterState.period = (filterState.monthly !== DFC.MONTHLY_CAPITALIZED && filterState.period === 'Most recent 12 months') ? DFC.PERIOD_FISCAL_YEAR : filterState.period
-  const { monthly, period, breakoutBy, periodAllYears } = filterState
+    const { monthly, period, breakoutBy, periodAllYears, dataType } = filterState
   const revenueComparison = useRef(null)
 
   const chartTitle = props.chartTitle || `${ DFC.REVENUE } by ${ period.toLowerCase() } (dollars)`
@@ -247,9 +247,10 @@ const TotalRevenue = props => {
 
   if (data) {
     // console.log('TotalRevenue data: ', data)
-
-    maxFiscalYear = periodAllYears[DFC.PERIOD_FISCAL_YEAR][periodAllYears[DFC.PERIOD_FISCAL_YEAR].length - 1]
-    maxCalendarYear = periodAllYears[DFC.PERIOD_CALENDAR_YEAR][periodAllYears[DFC.PERIOD_CALENDAR_YEAR].length - 1]
+      maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].at(-1)
+      maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].at(-1)
+    //maxFiscalYear = periodAllYears[DFC.PERIOD_FISCAL_YEAR][periodAllYears[DFC.PERIOD_FISCAL_YEAR].length - 1]
+    //maxCalendarYear = periodAllYears[DFC.PERIOD_CALENDAR_YEAR][periodAllYears[DFC.PERIOD_CALENDAR_YEAR].length - 1]
 
 
     //   maxCalendarYear = data.total_monthly_calendar_revenue.filter(f=> f.month === 12).reduce((prev, current) => {

@@ -3,7 +3,7 @@ import React, { useContext, useRef } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { DATA_FILTER_CONSTANTS as DFC, ALL_YEARS } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import {
@@ -142,19 +142,25 @@ const TotalDisbursements = props => {
 
   if (error) return `Error! ${ error.message }`
   if (data) {
-    // console.log('TotalDisbursements data: ', data)
+      const allYears= ALL_YEARS
+      const fy=DFC.PERIOD_FISCAL_YEAR
+      const cy=DFC.PERIOD_CALENDAR_YEAR
+      console.debug("all years: ", allYears, "data type", dataType, "fy ", fy, "cy ", cy)
+      maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].at(-1)
+      maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].at(-1)
+   /*   // console.log('TotalDisbursements data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
     maxCalendarYear = data.total_monthly_calendar_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
-
+    */
     // Month range and month range text
     currentMonthNum = data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth
-
+      console.debug("maxFiscalYear ", maxFiscalYear)
     data.total_yearly_fiscal_disbursement.filter(item => {
-      if (item.year === (maxFiscalYear + 1)) {
+      if (item.year === (maxFiscalYear)) {
         if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
       }
     })
@@ -163,19 +169,22 @@ const TotalDisbursements = props => {
     endMonth = monthRange[monthRange.length - 1]
     monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
     currentYearSoFarText = `so far ${ monthRangeText }`
-
+      console.debug("ALL YEARS: ", ALL_YEARS, "total dibusrement: ",  data.total_monthly_fiscal_disbursement)
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
         switch (yGroupBy) {
         case 'recipient':
           comparisonData = data.total_monthly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
-          chartData = data.total_monthly_fiscal_disbursement_last_two_years.filter(item => yOrderBy.includes(item.recipient))
+          chartData = data.total_monthly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
           break
         default:
           comparisonData = data.total_monthly_fiscal_disbursement
-          chartData = data.total_monthly_fiscal_disbursement_last_two_years
+            chartData = data.total_monthly_fiscal_disbursement.filter(item => item.year === maxFiscalYear)
           break
         }
+	  
+	  console.debug("Chart DATA: " , chartData, "total_fiscal",
+		        data.total_monthly_fiscal_disbursement_last_two_years)
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         switch (yGroupBy) {
@@ -244,7 +253,7 @@ const TotalDisbursements = props => {
         break
 	  default:
         comparisonData = data.total_yearly_fiscal_disbursement
-        chartData = data.total_yearly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 9)
+        chartData = data.total_yearly_fiscal_disbursement //.filter(item => item.year >= maxFiscalYear - 9)
         break
       }
 
@@ -263,8 +272,8 @@ const TotalDisbursements = props => {
       }
     }
   }
-  // console.debug('Comparison chartData: ', chartData, " comparison ", comparisonData, " total_yearly_fiscal_disbursement ", data.total_yearly_fiscal_disbursement)
-  // console.debug("Comparison yOrderBy ", yOrderBy)
+  console.debug('Comparison chartData: ', chartData, " comparison ", comparisonData, " total_yearly_fiscal_disbursement ", data.total_yearly_fiscal_disbursement)
+    console.debug("Comparison yOrderBy ", yOrderBy, "xAxis ", xAxis)
   return (
     <>
 	  <SectionHeader
