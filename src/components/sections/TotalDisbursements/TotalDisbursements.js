@@ -146,8 +146,8 @@ const TotalDisbursements = props => {
       const fy=DFC.PERIOD_FISCAL_YEAR
       const cy=DFC.PERIOD_CALENDAR_YEAR
       console.debug("all years: ", allYears, "data type", dataType, "fy ", fy, "cy ", cy)
-      maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].at(-1)
-      maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].at(-1)
+      maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR][ ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
+      maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR][ ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
    /*   // console.log('TotalDisbursements data: ', data)
     maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year

@@ -247,8 +247,8 @@ const TotalRevenue = props => {
 
   if (data) {
     // console.log('TotalRevenue data: ', data)
-      maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].at(-1)
-      maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].at(-1)
+      maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR][ ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
+      maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR][ ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
     //maxFiscalYear = periodAllYears[DFC.PERIOD_FISCAL_YEAR][periodAllYears[DFC.PERIOD_FISCAL_YEAR].length - 1]
     //maxCalendarYear = periodAllYears[DFC.PERIOD_CALENDAR_YEAR][periodAllYears[DFC.PERIOD_CALENDAR_YEAR].length - 1]
 

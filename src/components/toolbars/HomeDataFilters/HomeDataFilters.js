@@ -52,8 +52,8 @@ const HomeDataFilters = props => {
     const { monthly, dataType, year, product,  fiscalYear, calendarYear } = filterState
    console.debug('FilterState ---------------------------------------------------------------------->')
    console.debug(filterState)
-    const maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].at(-1)
-    const maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].at(-1)
+    const maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR][ ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
+    const maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR][ ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
     console.debug(ALL_YEARS, maxFiscalYear) 
   // not used const maxCalendarYear = calendarYear
 
