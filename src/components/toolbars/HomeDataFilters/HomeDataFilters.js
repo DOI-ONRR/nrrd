@@ -91,7 +91,7 @@ const HomeDataFilters = props => {
     ]
   }
     console.debug( monthly, " === ",DFC.MONTHLY," ? ",maxFiscalYear," : ",year) 
-/*  useEffect(() => {
+  useEffect(() => {
       console.debug("==========", DFC.PERIOD, "=============",DFC.PERIOD_FISCAL_YEAR,"===================================>", "Do we update", monthly, filterState)
 
      if (monthly === DFC.MONTHLY_CAPITALIZED) {
@@ -103,7 +103,7 @@ const HomeDataFilters = props => {
 	updateDataFilter({ ...filterState, [DFC.CALENDAR_YEAR]: maxCalendarYear })
     }
   }, [monthly]) 
-*/
+
     console.debug("monthly: ", monthly, "MENU_OPTIONS", MENU_OPTIONS)
   return (
     <div className={classes.sectionControlsContainer}>
