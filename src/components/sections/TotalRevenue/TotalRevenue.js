@@ -248,7 +248,7 @@ const TotalRevenue = props => {
   if (data) {
     // console.log('TotalRevenue data: ', data)
       maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR][ ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
-      maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR][ ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
+      maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR][ ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].length - 1]
     //maxFiscalYear = periodAllYears[DFC.PERIOD_FISCAL_YEAR][periodAllYears[DFC.PERIOD_FISCAL_YEAR].length - 1]
     //maxCalendarYear = periodAllYears[DFC.PERIOD_CALENDAR_YEAR][periodAllYears[DFC.PERIOD_CALENDAR_YEAR].length - 1]
 
@@ -267,16 +267,16 @@ const TotalRevenue = props => {
         switch (yGroupBy) {
 		  case 'revenue_type':
 		      comparisonData = data.total_monthly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
-          chartData = data.total_monthly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear && yOrderBy.includes(item.revenue_type)))
+          chartData = data.total_monthly_fiscal_revenue.filter(item => (item.year == maxFiscalYear && yOrderBy.includes(item.revenue_type)))
           break
         case 'commodity':
           commodityChartData = rollUpCommodityData(data.total_monthly_fiscal_revenue)
           comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
-          chartData = commodityChartData.filter(item => (item.year >= maxFiscalYear && yOrderBy.includes(item.commodity)))
+          chartData = commodityChartData.filter(item => (item.year == maxFiscalYear && yOrderBy.includes(item.commodity)))
           break
         default:
           comparisonData = data.total_monthly_fiscal_revenue
-          chartData = data.total_monthly_fiscal_revenue.filter(item => item.year >= maxFiscalYear)
+          chartData = data.total_monthly_fiscal_revenue.filter(item => item.year == maxFiscalYear)
           break
         }
       }
@@ -286,16 +286,16 @@ const TotalRevenue = props => {
         switch (yGroupBy) {
         case 'revenue_type':
 		  comparisonData = data.total_monthly_calendar_revenue.filter(item => yOrderBy.includes(item.revenue_type))
-          chartData = data.total_monthly_calendar_revenue.filter(item => (item.year >= maxCalendarYear && yOrderBy.includes(item.revenue_type)))
+          chartData = data.total_monthly_calendar_revenue.filter(item => (item.year == maxCalendarYear && yOrderBy.includes(item.revenue_type)))
           break
         case 'commodity':
           commodityChartData = rollUpCommodityData(data.total_monthly_calendar_revenue)
           comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
-          chartData = commodityChartData.filter(item => (item.year >= maxCalendarYear && yOrderBy.includes(item.commodity)))
+          chartData = commodityChartData.filter(item => (item.year == maxCalendarYear && yOrderBy.includes(item.commodity)))
           break
         default:
           comparisonData = data.total_monthly_calendar_revenue
-          chartData = data.total_monthly_calendar_revenue.filter(item => item.year >= maxCalendarYear)
+          chartData = data.total_monthly_calendar_revenue.filter(item => item.year == maxCalendarYear)
           break
         }
       }
