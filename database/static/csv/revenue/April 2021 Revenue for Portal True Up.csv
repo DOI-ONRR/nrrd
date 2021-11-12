@@ -14,14 +14,14 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Gas Lost - Flared or Vented,$21.76
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$6,896.28"
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,NGL,Gas Plant Products,"-$1,359.18"
-4/1/2021,Federal,Offshore,OG,Miss Canyon,,GULF OF MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$10,946.45"
+4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$10,946.45"
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$8,112,931.33"
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Inlet Scrubber,$0.55
-4/1/2021,Federal,Offshore,OG,Miss Canyon,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,$185.97
+4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,$185.97
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$253,601.19"
-4/1/2021,Federal,Offshore,OG,Miss Canyon,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Oil,"-$8,141.17"
+4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Oil,"-$8,141.17"
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Oil,"-$1,059,723.74"
-4/1/2021,Federal,Offshore,OG,Miss Canyon,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Oil,"$178,125.97"
+4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Oil,"$178,125.97"
 4/1/2021,Federal,Offshore,,,,ALASKA OCS,Royalties,Oil & Gas,Oil,Oil,"$385,576.17"
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Oil,"$271,291,868.55"
 4/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Oil,Oil,"$949,780.17"
@@ -31,65 +31,65 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,$539.45
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$238,958.58"
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,"$2,216.75"
-4/1/2021,Federal,Offshore,OG,Miss Canyon,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$18,861.93"
+4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$18,861.93"
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$18,053,123.72"
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,-$388.80
-4/1/2021,Federal,Offshore,OG,Miss Canyon,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$785.40
+4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$785.40
 4/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$3,265,856.75"
 4/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Gas,Unprocessed Gas,$392.00
 4/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Bonus,Oil & Gas,Oil & Gas,,"-$28,000.00"
 4/1/2021,Federal,Onshore,ND,Oliver,38065,MONTANA,Bonus,Coal,Coal,,"$63,000.00"
-4/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.27
-4/1/2021,Federal,Onshore,AL,Conecuh,01035,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.01
-4/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.09
-4/1/2021,Federal,Onshore,AR,Cleburne,05023,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$20.09
-4/1/2021,Federal,Onshore,AR,Conway,05029,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$97.68
-4/1/2021,Federal,Onshore,AR,Crawford,05033,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.95
-4/1/2021,Federal,Onshore,AR,Faulkner,05045,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.02
-4/1/2021,Federal,Onshore,AR,Franklin,05047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$34.42
-4/1/2021,Federal,Onshore,AR,Johnson,05071,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.19
-4/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$8,289.00"
-4/1/2021,Federal,Onshore,AR,Pope,05115,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.07
-4/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$180.12
-4/1/2021,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$23.71
-4/1/2021,Federal,Onshore,AR,White,05145,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$8.73
-4/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,357.59"
-4/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$119.72
-4/1/2021,Federal,Onshore,CA,Glenn,06021,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$2.42
-4/1/2021,Federal,Onshore,CA,Inyo,06027,CALIFORNIA,Other Revenues,Geothermal,Geothermal,,$141.14
-4/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,"$3,531.23"
-4/1/2021,Federal,Onshore,CA,Kings,06031,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$11.32
-4/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$83.86
-4/1/2021,Federal,Onshore,CA,Monterey,06053,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$0.14
-4/1/2021,Federal,Onshore,CA,San Benito,06069,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$160.00
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Other Revenues,Potassium,Potassium,,"-$1,200.00"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Other Revenues,Sodium,Sodium,,$0.96
-4/1/2021,Federal,Onshore,CA,San Luis Obispo,06079,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$0.63
-4/1/2021,Federal,Onshore,CA,Santa Barbar,06083,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$41.89
-4/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$18.46
-4/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$3.23
-4/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$0.75
-4/1/2021,Federal,Onshore,CO,Archuleta,08007,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$5.64
-4/1/2021,Federal,Onshore,CO,Dolores,08033,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$2,162.17"
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$529,359.00"
-4/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$0.36
-4/1/2021,Federal,Onshore,CO,Huerfano,08055,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$6.94
-4/1/2021,Federal,Onshore,CO,Jackson,08057,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$942.35
-4/1/2021,Federal,Onshore,CO,Kiowa,08061,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$400.00
-4/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$2,190.92"
-4/1/2021,Federal,Onshore,CO,Logan,08075,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$400.00
-4/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$323.12
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Coal,Coal,,"$13,488.65"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$279.06
-4/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$517.81
-4/1/2021,Federal,Onshore,CO,Prowers,08099,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$320.00
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Coal,Coal,,"$4,435.25"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$166,194.69"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Sodium,Sodium,,"$3,960.00"
-4/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$250.00
-4/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$480.00
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$342,931.49"
-4/1/2021,Federal,Onshore,CO,Yuma,08125,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$16.47
+4/1/2021,Federal,Onshore,AL,Baldwin,1003,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.27
+4/1/2021,Federal,Onshore,AL,Conecuh,1035,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.01
+4/1/2021,Federal,Onshore,AL,Mobile,1097,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.09
+4/1/2021,Federal,Onshore,AR,Cleburne,5023,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$20.09
+4/1/2021,Federal,Onshore,AR,Conway,5029,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$97.68
+4/1/2021,Federal,Onshore,AR,Crawford,5033,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.95
+4/1/2021,Federal,Onshore,AR,Faulkner,5045,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.02
+4/1/2021,Federal,Onshore,AR,Franklin,5047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$34.42
+4/1/2021,Federal,Onshore,AR,Johnson,5071,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.19
+4/1/2021,Federal,Onshore,AR,Logan,5083,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$8,289.00"
+4/1/2021,Federal,Onshore,AR,Pope,5115,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$0.07
+4/1/2021,Federal,Onshore,AR,Sebastian,5131,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$180.12
+4/1/2021,Federal,Onshore,AR,Van Buren,5141,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$23.71
+4/1/2021,Federal,Onshore,AR,White,5145,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$8.73
+4/1/2021,Federal,Onshore,AR,Yell,5149,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,357.59"
+4/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$119.72
+4/1/2021,Federal,Onshore,CA,Glenn,6021,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$2.42
+4/1/2021,Federal,Onshore,CA,Inyo,6027,CALIFORNIA,Other Revenues,Geothermal,Geothermal,,$141.14
+4/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,"$3,531.23"
+4/1/2021,Federal,Onshore,CA,Kings,6031,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$11.32
+4/1/2021,Federal,Onshore,CA,Los Angeles,6037,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$83.86
+4/1/2021,Federal,Onshore,CA,Monterey,6053,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$0.14
+4/1/2021,Federal,Onshore,CA,San Benito,6069,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$160.00
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Other Revenues,Potassium,Potassium,,"-$1,200.00"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Other Revenues,Sodium,Sodium,,$0.96
+4/1/2021,Federal,Onshore,CA,San Luis Obispo,6079,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$0.63
+4/1/2021,Federal,Onshore,CA,Santa Barbar,6083,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$41.89
+4/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$18.46
+4/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$3.23
+4/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$0.75
+4/1/2021,Federal,Onshore,CO,Archuleta,8007,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$5.64
+4/1/2021,Federal,Onshore,CO,Dolores,8033,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$2,162.17"
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$529,359.00"
+4/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$0.36
+4/1/2021,Federal,Onshore,CO,Huerfano,8055,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$6.94
+4/1/2021,Federal,Onshore,CO,Jackson,8057,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$942.35
+4/1/2021,Federal,Onshore,CO,Kiowa,8061,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$400.00
+4/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$2,190.92"
+4/1/2021,Federal,Onshore,CO,Logan,8075,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$400.00
+4/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$323.12
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Other Revenues,Coal,Coal,,"$13,488.65"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$279.06
+4/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$517.81
+4/1/2021,Federal,Onshore,CO,Prowers,8099,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$320.00
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Other Revenues,Coal,Coal,,"$4,435.25"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$166,194.69"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Other Revenues,Sodium,Sodium,,"$3,960.00"
+4/1/2021,Federal,Onshore,CO,Routt,8107,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$250.00
+4/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$480.00
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$342,931.49"
+4/1/2021,Federal,Onshore,CO,Yuma,8125,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$16.47
 4/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Other Revenues,Phosphate,Phosphate,,"$10,893.00"
 4/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$3,180.79"
 4/1/2021,Federal,Onshore,KY,Letcher,21133,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$27.11
@@ -231,28 +231,28 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$7,883.89"
 4/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$2,512.92"
 4/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$3,409.74"
-4/1/2021,Federal,Onshore,AL,Covington,01039,EAST STATES,Rents,Oil & Gas,Oil & Gas,,"$11,408.00"
-4/1/2021,Federal,Onshore,AL,Escambia,01053,EAST STATES,Rents,Oil & Gas,Oil & Gas,,"$3,650.00"
-4/1/2021,Federal,Onshore,AR,Cleburne,05023,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$60.00
-4/1/2021,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Rents,Oil & Gas,Oil & Gas,,"$1,320.00"
-4/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,$20.00
-4/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,"$1,346.00"
-4/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,$320.00
-4/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Rents,Oil & Gas,Oil & Gas,,$201.00
-4/1/2021,Federal,Onshore,CO,Archuleta,08007,COLORADO,Rents,Oil & Gas,Oil & Gas,,$576.00
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$2,651.85"
-4/1/2021,Federal,Onshore,CO,Jackson,08057,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$1,008.00"
-4/1/2021,Federal,Onshore,CO,Las Animas,08071,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$3,673.50"
-4/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$7,807.65"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Rents,Coal,Coal,,"$7,701.00"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$14,916.11"
-4/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Rents,Oil & Gas,Oil & Gas,,$52.50
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$48,739.03"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Rents,Sodium,Sodium,,$0.00
-4/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Rents,Coal,Coal,,$720.00
-4/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Rents,Oil & Gas,Oil & Gas,,$195.00
-4/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$1,044.00"
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Rents,Oil & Gas,Oil & Gas,,$279.00
+4/1/2021,Federal,Onshore,AL,Covington,1039,EAST STATES,Rents,Oil & Gas,Oil & Gas,,"$11,408.00"
+4/1/2021,Federal,Onshore,AL,Escambia,1053,EAST STATES,Rents,Oil & Gas,Oil & Gas,,"$3,650.00"
+4/1/2021,Federal,Onshore,AR,Cleburne,5023,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$60.00
+4/1/2021,Federal,Onshore,AR,Van Buren,5141,EAST STATES,Rents,Oil & Gas,Oil & Gas,,"$1,320.00"
+4/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,$20.00
+4/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,"$1,346.00"
+4/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,$320.00
+4/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Rents,Oil & Gas,Oil & Gas,,$201.00
+4/1/2021,Federal,Onshore,CO,Archuleta,8007,COLORADO,Rents,Oil & Gas,Oil & Gas,,$576.00
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$2,651.85"
+4/1/2021,Federal,Onshore,CO,Jackson,8057,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$1,008.00"
+4/1/2021,Federal,Onshore,CO,Las Animas,8071,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$3,673.50"
+4/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$7,807.65"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Rents,Coal,Coal,,"$7,701.00"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$14,916.11"
+4/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Rents,Oil & Gas,Oil & Gas,,$52.50
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$48,739.03"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Rents,Sodium,Sodium,,$0.00
+4/1/2021,Federal,Onshore,CO,Routt,8107,COLORADO,Rents,Coal,Coal,,$720.00
+4/1/2021,Federal,Onshore,CO,Routt,8107,COLORADO,Rents,Oil & Gas,Oil & Gas,,$195.00
+4/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$1,044.00"
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Rents,Oil & Gas,Oil & Gas,,$279.00
 4/1/2021,Federal,Onshore,FL,Hardee,12049,EAST STATES,Rents,Phosphate,Phosphate,,$602.00
 4/1/2021,Federal,Onshore,FL,Polk,12105,EAST STATES,Rents,Phosphate,Phosphate,,$322.00
 4/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Rents,Phosphate,Phosphate,,"$3,447.00"
@@ -331,22 +331,22 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$7,687.50"
 4/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$2,097.00"
 4/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Rents,Oil & Gas,Oil & Gas,,"$16,078.65"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Anhydrous Sodium Sulfate,"$13,893.19"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Anhydrous Sodium Sulfate,"$8,913.42"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Anhydrous Sodium Sulfate,"$13,893.19"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Anhydrous Sodium Sulfate,"$8,913.42"
 4/1/2021,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Oil,Black Wax Crude,"-$80,313.21"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Anhydrous,$0.00
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Anhydrous,$0.00
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Decahydrate,"$32,209.37"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Decahydrate,"$20,175.22"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Pentahydrate,"$46,843.11"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Pentahydrate,"$29,339.04"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Boric Acid,"$32,550.38"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Boric Acid,"$20,364.67"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Calcium Chloride,$0.00
-4/1/2021,Federal,Onshore,CO,Dolores,08033,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$446,192.50"
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),$633.74
-4/1/2021,Federal,Onshore,CO,Huerfano,08055,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$18,067.36"
-4/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$2,050,412.48"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Anhydrous,$0.00
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Anhydrous,$0.00
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Decahydrate,"$32,209.37"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Decahydrate,"$20,175.22"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Pentahydrate,"$46,843.11"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Pentahydrate,"$29,339.04"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Boric Acid,"$32,550.38"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Boric Acid,"$20,364.67"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Calcium Chloride,$0.00
+4/1/2021,Federal,Onshore,CO,Dolores,8033,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$446,192.50"
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),$633.74
+4/1/2021,Federal,Onshore,CO,Huerfano,8055,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$18,067.36"
+4/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$2,050,412.48"
 4/1/2021,Federal,Onshore,NM,Harding,35021,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$36,695.00"
 4/1/2021,Federal,Onshore,NM,Quay,35037,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$2,876.41"
 4/1/2021,Federal,Onshore,NM,Union,35059,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$13,822.23"
@@ -357,12 +357,12 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),"$253,277.51"
 4/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Caustic,$0.00
 4/1/2021,Federal,Onshore,UT,Piute,49031,UTAH,Royalties,Clay,Clay,Clay,"$3,707.26"
-4/1/2021,Federal,Onshore,AL,Jefferson,01073,EAST STATES,Royalties,Coal,Coal,Coal,"-$1,728.94"
-4/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Coal,Coal,Coal,"$420,593.04"
-4/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Coal,Coal,Coal,"$68,967.82"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Coal,Coal,Coal,"$2,108,389.92"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Coal,Coal,Coal,"$582,753.37"
-4/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Royalties,Coal,Coal,Coal,$0.00
+4/1/2021,Federal,Onshore,AL,Jefferson,1073,EAST STATES,Royalties,Coal,Coal,Coal,"-$1,728.94"
+4/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Royalties,Coal,Coal,Coal,"$420,593.04"
+4/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Royalties,Coal,Coal,Coal,"$68,967.82"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Coal,Coal,Coal,"$2,108,389.92"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Coal,Coal,Coal,"$582,753.37"
+4/1/2021,Federal,Onshore,CO,Routt,8107,COLORADO,Royalties,Coal,Coal,Coal,$0.00
 4/1/2021,Federal,Onshore,MT,Big Horn,30003,MONTANA,Royalties,Coal,Coal,Coal,"$1,768,554.90"
 4/1/2021,Federal,Onshore,MT,Musselshell,30065,MONTANA,Royalties,Coal,Coal,Coal,"$59,760.28"
 4/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Coal,Coal,Coal,$0.00
@@ -384,11 +384,11 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Coal,Coal,Coal,"$25,651,927.87"
 4/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Coal,Coal,Coal,$6.86
 4/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Coal,Coal,Coal,"$979,679.67"
-4/1/2021,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$2,799.57"
-4/1/2021,Federal,Onshore,CO,Archuleta,08007,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,$588.95
-4/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,$24.23
-4/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$46,506.97"
-4/1/2021,Federal,Onshore,CO,Las Animas,08071,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$57,233.03"
+4/1/2021,Federal,Onshore,AL,Tuscaloosa,1125,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$2,799.57"
+4/1/2021,Federal,Onshore,CO,Archuleta,8007,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,$588.95
+4/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,$24.23
+4/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$46,506.97"
+4/1/2021,Federal,Onshore,CO,Las Animas,8071,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$57,233.03"
 4/1/2021,Federal,Onshore,NM,Colfax,35007,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$2,719.26"
 4/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$3,303.69"
 4/1/2021,Federal,Onshore,NM,Mckinley,35031,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,"$1,392.92"
@@ -406,16 +406,16 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,-$62.48
 4/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Coal,Coal,Coal Waste (Sub-Econ),$0.00
 4/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Oil,Condensate,"$1,728.89"
-4/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Oil,Condensate,"$3,188.13"
-4/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$6,133.56"
-4/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$2,499.71"
-4/1/2021,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,Oil,Condensate,$199.34
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$168,135.26"
-4/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$5,702.85"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Oil,Condensate,$37.63
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$59,220.90"
-4/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$1,451.46"
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$57,091.45"
+4/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Oil,Condensate,"$3,188.13"
+4/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$6,133.56"
+4/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$2,499.71"
+4/1/2021,Federal,Onshore,CO,Broomfield,8014,COLORADO,Royalties,Oil & Gas,Oil,Condensate,$199.34
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$168,135.26"
+4/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$5,702.85"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,Oil,Condensate,$37.63
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$59,220.90"
+4/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$1,451.46"
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Oil,Condensate,"$57,091.45"
 4/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,$532.65
 4/1/2021,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,"$37,698.78"
 4/1/2021,Federal,Onshore,LA,Caddo,22017,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,$11.75
@@ -469,12 +469,12 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,MO,Reynolds,29179,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,"$114,075.80"
 4/1/2021,Federal,Onshore,MO,Shannon,29203,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,"$40,692.90"
 4/1/2021,Federal,Onshore,MO,Washington,29221,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,$0.00
-4/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$1,981.97"
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$20,782.79"
-4/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$4.49
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$6,209.65"
-4/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$1,430.32"
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$19,674.02"
+4/1/2021,Federal,Onshore,AK,Harrison Bay,2185,ALASKA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$1,981.97"
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$20,782.79"
+4/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$4.49
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$6,209.65"
+4/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$1,430.32"
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,"$19,674.02"
 4/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$9.64
 4/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$1.75
 4/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$602.35
@@ -508,9 +508,9 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$283.79
 4/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,$25.32
 4/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Royalties,Phosphate,Phosphate,Ferro Phosphorous Slag,$0.00
-4/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$300.00
-4/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$1,267.49"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$6.60
+4/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$300.00
+4/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,"$1,267.49"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$6.60
 4/1/2021,Federal,Onshore,LA,E Baton Rouge,22033,EAST STATES,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$0.32
 4/1/2021,Federal,Onshore,MS,Smith,28129,EAST STATES,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$790.45
 4/1/2021,Federal,Onshore,MT,Fallon,30025,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$729.35
@@ -536,21 +536,21 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,$668.05
 4/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Other Revenues,Oil & Gas,NGL,Gas Plant Products,$0.03
 4/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Other Revenues,Oil & Gas,NGL,Gas Plant Products,$0.01
-4/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$13.62
-4/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,$588.18
-4/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$134,838.03"
-4/1/2021,Federal,Onshore,CA,Kings,06031,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,$760.32
-4/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$5,332.72"
-4/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$8,903.49"
-4/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,$298.72
-4/1/2021,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,$0.75
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$669,662.48"
-4/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$54,868.76"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,290.35"
-4/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,$26.33
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$440,252.19"
-4/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,855.72"
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$385,553.44"
+4/1/2021,Federal,Onshore,AR,Columbia,5027,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,$13.62
+4/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,$588.18
+4/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$134,838.03"
+4/1/2021,Federal,Onshore,CA,Kings,6031,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,$760.32
+4/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,"$5,332.72"
+4/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$8,903.49"
+4/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,$298.72
+4/1/2021,Federal,Onshore,CO,Broomfield,8014,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,$0.75
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$669,662.48"
+4/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$54,868.76"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$1,290.35"
+4/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,$26.33
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$440,252.19"
+4/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,855.72"
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$385,553.44"
 4/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,621.48"
 4/1/2021,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$257.39
 4/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,$1.34
@@ -650,10 +650,10 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$2,331.54"
 4/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,"$13,937.06"
 4/1/2021,Federal,Onshore,NV,Churchill,32001,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Hundreds of Gallons",$498.91
-4/1/2021,Federal,Onshore,CA,Lassen,06035,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Millions of BTUs","$5,839.24"
-4/1/2021,Federal,Onshore,CA,Imperial,06025,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$30,657.87"
-4/1/2021,Federal,Onshore,CA,Inyo,06027,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$56,576.38"
-4/1/2021,Federal,Onshore,CA,Mono,06051,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$281,930.95"
+4/1/2021,Federal,Onshore,CA,Lassen,6035,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Millions of BTUs","$5,839.24"
+4/1/2021,Federal,Onshore,CA,Imperial,6025,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$30,657.87"
+4/1/2021,Federal,Onshore,CA,Inyo,6027,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$56,576.38"
+4/1/2021,Federal,Onshore,CA,Mono,6051,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$281,930.95"
 4/1/2021,Federal,Onshore,NM,Hidalgo,35023,NEW MEXICO,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$18,172.13"
 4/1/2021,Federal,Onshore,NV,Churchill,32001,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$386,790.95"
 4/1/2021,Federal,Onshore,NV,Eureka,32011,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",$653.69
@@ -665,17 +665,17 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,NV,Washoe,32031,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$38,504.57"
 4/1/2021,Federal,Onshore,UT,Beaver,49001,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$67,825.25"
 4/1/2021,Federal,Onshore,UT,Millard,49027,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours","$6,579.68"
-4/1/2021,Federal,Onshore,CA,Lake,06033,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds","$231,506.13"
-4/1/2021,Federal,Onshore,CA,Sonoma,06097,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds","$367,147.07"
+4/1/2021,Federal,Onshore,CA,Lake,6033,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds","$231,506.13"
+4/1/2021,Federal,Onshore,CA,Sonoma,6097,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds","$367,147.07"
 4/1/2021,Federal,Onshore,UT,Beaver,49001,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds","$27,248.10"
-4/1/2021,Federal,Onshore,CA,Inyo,06027,CALIFORNIA,Royalties,Geothermal,Geothermal,Geothermal - sulfur,$14.92
+4/1/2021,Federal,Onshore,CA,Inyo,6027,CALIFORNIA,Royalties,Geothermal,Geothermal,Geothermal - sulfur,$14.92
 4/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Gilsonite,Gilsonite,Gilsonite,"$141,665.29"
 4/1/2021,Federal,Onshore,SC,Abbeville,45001,EAST STATES,Royalties,Hardrock,Gold,Gold Ore,$0.00
 4/1/2021,Federal,Onshore,SC,Abbeville,45001,EAST STATES,Royalties,Hardrock,Gold,Gold Placer,$0.00
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,$927.77
-4/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$5,548.88"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,$2.16
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$3,351.32"
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,$927.77
+4/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$5,548.88"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,$2.16
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,"$3,351.32"
 4/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,$572.19
 4/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,$180.85
 4/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,$84.77
@@ -722,34 +722,34 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Granular,$0.00
 4/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Standard,"$104,147.72"
 4/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Standard,$0.00
-4/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Other Revenues,Oil & Gas,Oil,Oil,"$7,317.83"
-4/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Oil,Oil,"$378,289.29"
-4/1/2021,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Oil,Oil,"$188,382.91"
-4/1/2021,Federal,Onshore,AL,Escambia,01053,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$7,514.46"
-4/1/2021,Federal,Onshore,AL,Lamar,01075,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$70.60
-4/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$512.32
-4/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$12,383.67"
-4/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$4,730,729.40"
-4/1/2021,Federal,Onshore,CA,Kings,06031,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$17,989.25"
-4/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$133,894.51"
-4/1/2021,Federal,Onshore,CA,Monterey,06053,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$6,418.42"
-4/1/2021,Federal,Onshore,CA,San Luis Obispo,06079,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$7,086.27"
-4/1/2021,Federal,Onshore,CA,Santa Barbar,06083,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$24,468.72"
-4/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$142,369.52"
-4/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$40,705.76"
-4/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Oil,Oil,$45.29
-4/1/2021,Federal,Onshore,CO,Cheyenne,08017,COLORADO,Royalties,Oil & Gas,Oil,Oil,$639.29
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$23,260.77"
-4/1/2021,Federal,Onshore,CO,Jackson,08057,COLORADO,Royalties,Oil & Gas,Oil,Oil,"-$2,269,832.63"
-4/1/2021,Federal,Onshore,CO,Kiowa,08061,COLORADO,Royalties,Oil & Gas,Oil,Oil,$663.46
-4/1/2021,Federal,Onshore,CO,Larimer,08069,COLORADO,Royalties,Oil & Gas,Oil,Oil,$694.15
-4/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$7,076.56"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$105,347.14"
-4/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$6,286.73"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$888,444.49"
-4/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$5,878.86"
-4/1/2021,Federal,Onshore,CO,Washington,08121,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$2,059.26"
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$2,391,114.28"
+4/1/2021,Federal,Onshore,AK,Harrison Bay,2185,ALASKA,Other Revenues,Oil & Gas,Oil,Oil,"$7,317.83"
+4/1/2021,Federal,Onshore,AK,Harrison Bay,2185,ALASKA,Royalties,Oil & Gas,Oil,Oil,"$378,289.29"
+4/1/2021,Federal,Onshore,AK,Kenai (Pre),2122,ALASKA,Royalties,Oil & Gas,Oil,Oil,"$188,382.91"
+4/1/2021,Federal,Onshore,AL,Escambia,1053,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$7,514.46"
+4/1/2021,Federal,Onshore,AL,Lamar,1075,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$70.60
+4/1/2021,Federal,Onshore,AL,Mobile,1097,EAST STATES,Royalties,Oil & Gas,Oil,Oil,$512.32
+4/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$12,383.67"
+4/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$4,730,729.40"
+4/1/2021,Federal,Onshore,CA,Kings,6031,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$17,989.25"
+4/1/2021,Federal,Onshore,CA,Los Angeles,6037,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$133,894.51"
+4/1/2021,Federal,Onshore,CA,Monterey,6053,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$6,418.42"
+4/1/2021,Federal,Onshore,CA,San Luis Obispo,6079,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$7,086.27"
+4/1/2021,Federal,Onshore,CA,Santa Barbar,6083,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$24,468.72"
+4/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,"$142,369.52"
+4/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$40,705.76"
+4/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Royalties,Oil & Gas,Oil,Oil,$45.29
+4/1/2021,Federal,Onshore,CO,Cheyenne,8017,COLORADO,Royalties,Oil & Gas,Oil,Oil,$639.29
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$23,260.77"
+4/1/2021,Federal,Onshore,CO,Jackson,8057,COLORADO,Royalties,Oil & Gas,Oil,Oil,"-$2,269,832.63"
+4/1/2021,Federal,Onshore,CO,Kiowa,8061,COLORADO,Royalties,Oil & Gas,Oil,Oil,$663.46
+4/1/2021,Federal,Onshore,CO,Larimer,8069,COLORADO,Royalties,Oil & Gas,Oil,Oil,$694.15
+4/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$7,076.56"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$105,347.14"
+4/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$6,286.73"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$888,444.49"
+4/1/2021,Federal,Onshore,CO,Routt,8107,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$5,878.86"
+4/1/2021,Federal,Onshore,CO,Washington,8121,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$2,059.26"
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Oil,Oil,"$2,391,114.28"
 4/1/2021,Federal,Onshore,IL,Clinton,17027,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$4,691.51"
 4/1/2021,Federal,Onshore,IL,Franklin,17055,EAST STATES,Royalties,Oil & Gas,Oil,Oil,"$3,690.27"
 4/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,"$28,576.19"
@@ -894,24 +894,24 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$89,231.24"
 4/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$117,699.01"
 4/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Oil,Oil,"$146,104.64"
-4/1/2021,Federal,Onshore,AK,Kenai (Post),02122,ALASKA,Other Revenues,Oil & Gas,Oil & Gas,,"$32,117.27"
-4/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,000.00"
-4/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,000.00"
-4/1/2021,Federal,Onshore,AR,Franklin,05047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$2,560.00"
-4/1/2021,Federal,Onshore,AR,Johnson,05071,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$417.64
-4/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$3.37
-4/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$17.00
-4/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$2,663.35"
-4/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$836.65
-4/1/2021,Federal,Onshore,CO,Delta,08029,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$3,692.41"
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$3,641,525.08"
-4/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$10,940.00"
-4/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$1,506,438.34"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-$15.54
-4/1/2021,Federal,Onshore,CO,Pitkin,08097,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$17,763.22"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$338,387.78"
-4/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-$296.16
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$45,253.71"
+4/1/2021,Federal,Onshore,AK,Kenai (Post),2122,ALASKA,Other Revenues,Oil & Gas,Oil & Gas,,"$32,117.27"
+4/1/2021,Federal,Onshore,AL,Baldwin,1003,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,000.00"
+4/1/2021,Federal,Onshore,AL,Mobile,1097,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$1,000.00"
+4/1/2021,Federal,Onshore,AR,Franklin,5047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,"$2,560.00"
+4/1/2021,Federal,Onshore,AR,Johnson,5071,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$417.64
+4/1/2021,Federal,Onshore,AR,Yell,5149,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$3.37
+4/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,$17.00
+4/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$2,663.35"
+4/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,$836.65
+4/1/2021,Federal,Onshore,CO,Delta,8029,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$3,692.41"
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$3,641,525.08"
+4/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$10,940.00"
+4/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$1,506,438.34"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-$15.54
+4/1/2021,Federal,Onshore,CO,Pitkin,8097,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"$17,763.22"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$338,387.78"
+4/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-$296.16
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,"-$45,253.71"
 4/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,"$5,258.29"
 4/1/2021,Federal,Onshore,KY,Clay,21051,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$136.53
 4/1/2021,Federal,Onshore,KY,Lawrence,21127,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,$23.34
@@ -1015,11 +1015,11 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,"$5,596.39"
 4/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,-$120.00
 4/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,$617.25
-4/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,-$18.15
-4/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,$200.00
-4/1/2021,Federal,Onshore,CO,Dolores,08033,COLORADO,Rents,Oil & Gas,Oil & Gas,,$220.00
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$1,557.80"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$11,622.65"
+4/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,-$18.15
+4/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,$200.00
+4/1/2021,Federal,Onshore,CO,Dolores,8033,COLORADO,Rents,Oil & Gas,Oil & Gas,,$220.00
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$1,557.80"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Rents,Oil & Gas,Oil & Gas,,"$11,622.65"
 4/1/2021,Federal,Onshore,MD,Garrett,24023,EAST STATES,Rents,Oil & Gas,Oil & Gas,,$496.00
 4/1/2021,Federal,Onshore,MT,Blaine,30005,MONTANA,Rents,Oil & Gas,Oil & Gas,,"$4,111.59"
 4/1/2021,Federal,Onshore,MT,Chouteau,30015,MONTANA,Rents,Oil & Gas,Oil & Gas,,$262.91
@@ -1055,26 +1055,26 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.00
 4/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.00
 4/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,$0.00
-4/1/2021,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$180.25
-4/1/2021,Federal,Onshore,AR,Cleburne,05023,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-$261.93
-4/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$4.60
-4/1/2021,Federal,Onshore,AR,Conway,05029,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$148.09
-4/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,953.96"
-4/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$658.27
-4/1/2021,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-$799.86
-4/1/2021,Federal,Onshore,AR,White,05145,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$102.71
-4/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$259.64
-4/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,849.51"
-4/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$167.03
-4/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$103.88
-4/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$49.85
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$172,976.25"
-4/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,972.12"
-4/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$71,771.90"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$4,701.23"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$59,313.79"
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$92,100.69"
-4/1/2021,Federal,Onshore,CO,Yuma,08125,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$659.29
+4/1/2021,Federal,Onshore,AL,Tuscaloosa,1125,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$180.25
+4/1/2021,Federal,Onshore,AR,Cleburne,5023,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-$261.93
+4/1/2021,Federal,Onshore,AR,Columbia,5027,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$4.60
+4/1/2021,Federal,Onshore,AR,Conway,5029,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$148.09
+4/1/2021,Federal,Onshore,AR,Logan,5083,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,953.96"
+4/1/2021,Federal,Onshore,AR,Sebastian,5131,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$658.27
+4/1/2021,Federal,Onshore,AR,Van Buren,5141,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-$799.86
+4/1/2021,Federal,Onshore,AR,White,5145,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$102.71
+4/1/2021,Federal,Onshore,AR,Yell,5149,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$259.64
+4/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$1,849.51"
+4/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$167.03
+4/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$103.88
+4/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$49.85
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$172,976.25"
+4/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$2,972.12"
+4/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$71,771.90"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$4,701.23"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$59,313.79"
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,"$92,100.69"
+4/1/2021,Federal,Onshore,CO,Yuma,8125,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$659.29
 4/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$70.90
 4/1/2021,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$5.86
 4/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,$1.72
@@ -1162,27 +1162,27 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Potash,$0.00
 4/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Potash,$0.00
 4/1/2021,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Potassium,Potash,"$31,358.31"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Phosphate,Potassium Sulphate-Standard,"$12,051.96"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Phosphate,Potassium Sulphate-Standard,"$7,715.07"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Phosphate,Potassium Sulphate-Standard,"$12,051.96"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Phosphate,Potassium Sulphate-Standard,"$7,715.07"
 4/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,$0.00
 4/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,$0.00
 4/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,$0.00
 4/1/2021,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,$0.00
-4/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$8.18
-4/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$187,360.86"
-4/1/2021,Federal,Onshore,CA,Sacramento,06067,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$902.23
-4/1/2021,Federal,Onshore,CA,Solano,06095,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$4,129.72"
-4/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$10,390.20"
-4/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$52,530.99"
-4/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$159.46
-4/1/2021,Federal,Onshore,CO,Baca,08009,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$188.72
-4/1/2021,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$70.20
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$8,421,542.87"
-4/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,684,941.77"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$21,053.80"
-4/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$50.74
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,664,276.15"
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,093,693.15"
+4/1/2021,Federal,Onshore,AR,Columbia,5027,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$8.18
+4/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$187,360.86"
+4/1/2021,Federal,Onshore,CA,Sacramento,6067,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$902.23
+4/1/2021,Federal,Onshore,CA,Solano,6095,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$4,129.72"
+4/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$10,390.20"
+4/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$52,530.99"
+4/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$159.46
+4/1/2021,Federal,Onshore,CO,Baca,8009,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$188.72
+4/1/2021,Federal,Onshore,CO,Broomfield,8014,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$70.20
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$8,421,542.87"
+4/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,684,941.77"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$21,053.80"
+4/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$50.74
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$2,664,276.15"
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,093,693.15"
 4/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$4,895.70"
 4/1/2021,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$610.60
 4/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,$8.05
@@ -1293,18 +1293,18 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$1,416.08"
 4/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,"$6,348.98"
 4/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Purge Liquor,"$17,976.32"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Salt,"$16,781.95"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Salt,"$12,919.11"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Salt,"$16,781.95"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Salt,"$12,919.11"
 4/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Sodium,Salt,"$90,019.37"
 4/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Sodium,Salt,$0.00
 4/1/2021,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Sodium,Salt,$0.00
 4/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Sodium,Sodium,Salt,$0.00
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Soda Ash,Soda Ash,"$131,135.58"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Soda Ash,Soda Ash,"$70,495.55"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Soda Ash,Soda Ash,"$131,135.58"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Soda Ash,Soda Ash,"$70,495.55"
 4/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Soda Ash,Soda Ash,"$1,398,184.66"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Sodium Bi-Carbonate,"$3,661.44"
-4/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,"$1,897.57"
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,"$95,581.44"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Sodium Bi-Carbonate,"$3,661.44"
+4/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,"$1,897.57"
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,"$95,581.44"
 4/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,"$54,107.81"
 4/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Bisulfite,$0.00
 4/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Decahydrate,$0.00
@@ -1320,42 +1320,42 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 4/1/2021,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Oil,Sweet Crude,"$51,147.88"
 4/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Trona Ore,"$75,162.85"
 4/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,$0.00
-4/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$0.00
-4/1/2021,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$206,639.93"
-4/1/2021,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,166.90"
-4/1/2021,Federal,Onshore,AR,Cleburne,05023,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$6,430.63"
-4/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$48.36
-4/1/2021,Federal,Onshore,AR,Conway,05029,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$18,343.11"
-4/1/2021,Federal,Onshore,AR,Crawford,05033,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$14,967.18"
-4/1/2021,Federal,Onshore,AR,Faulkner,05045,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$7,340.31"
-4/1/2021,Federal,Onshore,AR,Franklin,05047,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$6,823.73"
-4/1/2021,Federal,Onshore,AR,Johnson,05071,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$38,020.12"
-4/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$652,352.41"
-4/1/2021,Federal,Onshore,AR,Pope,05115,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$3,167.08"
-4/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$211,008.21"
-4/1/2021,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$20,682.73"
-4/1/2021,Federal,Onshore,AR,White,05145,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$4,641.90"
-4/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$53,395.37"
-4/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,021.94"
-4/1/2021,Federal,Onshore,CA,Glenn,06021,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$21.08
-4/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$11,251.28"
-4/1/2021,Federal,Onshore,CA,Kings,06031,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,317.59"
-4/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$20,961.33"
-4/1/2021,Federal,Onshore,CA,San Joaquin,06077,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$13.59
-4/1/2021,Federal,Onshore,CO,Delta,08029,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$15,049.58"
-4/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$698,390.26"
-4/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$153,620.40"
-4/1/2021,Federal,Onshore,CO,Kiowa,08061,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$489.11
-4/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$38,662.39"
-4/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$75,869.36"
-4/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$372.82
-4/1/2021,Federal,Onshore,CO,Phillips,08095,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,831.80"
-4/1/2021,Federal,Onshore,CO,Prowers,08099,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$1.55
-4/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$33,706.99"
-4/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$4,751.57"
-4/1/2021,Federal,Onshore,CO,Washington,08121,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$408.64
-4/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$857.24
-4/1/2021,Federal,Onshore,CO,Yuma,08125,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$119,191.36"
+4/1/2021,Federal,Onshore,AK,Harrison Bay,2185,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$0.00
+4/1/2021,Federal,Onshore,AK,Kenai (Pre),2122,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$206,639.93"
+4/1/2021,Federal,Onshore,AL,Tuscaloosa,1125,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$2,166.90"
+4/1/2021,Federal,Onshore,AR,Cleburne,5023,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$6,430.63"
+4/1/2021,Federal,Onshore,AR,Columbia,5027,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,$48.36
+4/1/2021,Federal,Onshore,AR,Conway,5029,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$18,343.11"
+4/1/2021,Federal,Onshore,AR,Crawford,5033,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$14,967.18"
+4/1/2021,Federal,Onshore,AR,Faulkner,5045,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$7,340.31"
+4/1/2021,Federal,Onshore,AR,Franklin,5047,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$6,823.73"
+4/1/2021,Federal,Onshore,AR,Johnson,5071,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$38,020.12"
+4/1/2021,Federal,Onshore,AR,Logan,5083,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$652,352.41"
+4/1/2021,Federal,Onshore,AR,Pope,5115,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$3,167.08"
+4/1/2021,Federal,Onshore,AR,Sebastian,5131,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$211,008.21"
+4/1/2021,Federal,Onshore,AR,Van Buren,5141,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$20,682.73"
+4/1/2021,Federal,Onshore,AR,White,5145,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$4,641.90"
+4/1/2021,Federal,Onshore,AR,Yell,5149,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$53,395.37"
+4/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,021.94"
+4/1/2021,Federal,Onshore,CA,Glenn,6021,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$21.08
+4/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$11,251.28"
+4/1/2021,Federal,Onshore,CA,Kings,6031,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,317.59"
+4/1/2021,Federal,Onshore,CA,Los Angeles,6037,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$20,961.33"
+4/1/2021,Federal,Onshore,CA,San Joaquin,6077,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,$13.59
+4/1/2021,Federal,Onshore,CO,Delta,8029,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$15,049.58"
+4/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$698,390.26"
+4/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$153,620.40"
+4/1/2021,Federal,Onshore,CO,Kiowa,8061,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$489.11
+4/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$38,662.39"
+4/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$75,869.36"
+4/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$372.82
+4/1/2021,Federal,Onshore,CO,Phillips,8095,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$1,831.80"
+4/1/2021,Federal,Onshore,CO,Prowers,8099,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$1.55
+4/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$33,706.99"
+4/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$4,751.57"
+4/1/2021,Federal,Onshore,CO,Washington,8121,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$408.64
+4/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$857.24
+4/1/2021,Federal,Onshore,CO,Yuma,8125,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,"$119,191.36"
 4/1/2021,Federal,Onshore,KS,Comanche,20033,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$38.20
 4/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$43.23
 4/1/2021,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,$409.73

@@ -20,9 +20,9 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,NGL,Gas Plant Products,10536.21
 5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Inlet Scrubber,-0.12
 5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,423750.43
-5/1/2021,Federal,Offshore,OG,Miss Canyon,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Oil,-5618.45
+5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Oil,-5618.45
 5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Oil,Oil,-42827.23
-5/1/2021,Federal,Offshore,OG,Miss Canyon,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Oil,-73207.29
+5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Oil,-73207.29
 5/1/2021,Federal,Offshore,,,,ALASKA OCS,Royalties,Oil & Gas,Oil,Oil,355709.8
 5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Oil,Oil,261979406
 5/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Oil,Oil,5502326.55
@@ -34,7 +34,7 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,19552.29
 5/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2253.33
 5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,11855.19
-5/1/2021,Federal,Offshore,OG,Miss Canyon,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,-11301.63
+5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,-11301.63
 5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,15201406.74
 5/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,12847.21
 5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Sulfur,Sulfur,71.19
@@ -42,9 +42,9 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,12019.85
 5/1/2021,Federal,Offshore,,,,GULF OF MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,3121931.3
 5/1/2021,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Gas,Unprocessed Gas,137524.12
-5/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Bonus,Coal,Coal,,686880
-5/1/2021,Federal,Onshore,CO,Las Animas,08071,COLORADO,Bonus,Oil & Gas,Oil & Gas,,1078901
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Bonus,Oil & Gas,Oil & Gas,,407160
+5/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Bonus,Coal,Coal,,686880
+5/1/2021,Federal,Onshore,CO,Las Animas,8071,COLORADO,Bonus,Oil & Gas,Oil & Gas,,1078901
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Bonus,Oil & Gas,Oil & Gas,,407160
 5/1/2021,Federal,Onshore,KS,Decatur,20039,NEW MEXICO,Bonus,Oil & Gas,Oil & Gas,,32320
 5/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Bonus,Oil & Gas,Oil & Gas,,678520
 5/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Bonus,Oil & Gas,Oil & Gas,,3197386
@@ -52,44 +52,44 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Bonus,Oil & Gas,Oil & Gas,,258
 5/1/2021,Federal,Onshore,OK,Major,40093,NEW MEXICO,Bonus,Oil & Gas,Oil & Gas,,120
 5/1/2021,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Bonus,Oil & Gas,Oil & Gas,,127000
-5/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,1.04
-5/1/2021,Federal,Onshore,AR,Conway,05029,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,1.09
-5/1/2021,Federal,Onshore,AR,Crawford,05033,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,25.12906136
-5/1/2021,Federal,Onshore,AR,Faulkner,05045,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,0.16
-5/1/2021,Federal,Onshore,AR,Franklin,05047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,0.44
-5/1/2021,Federal,Onshore,AR,Johnson,05071,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,1511.01
-5/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,109.94
-5/1/2021,Federal,Onshore,AR,Montgomery,05097,EAST STATES,Other Revenues,Hardrock,Hardrock,,-12.15
-5/1/2021,Federal,Onshore,AR,Pope,05115,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,0.1
-5/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,329.7109386
-5/1/2021,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,0.19
-5/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,4.42
-5/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,0.07
-5/1/2021,Federal,Onshore,CA,Imperial,06025,CALIFORNIA,Other Revenues,Geothermal,Geothermal,,116.29
-5/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,5302.61
-5/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,93.14
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Other Revenues,Potassium,Potassium,,-546
-5/1/2021,Federal,Onshore,CA,San Luis Obispo,06079,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,0.8
-5/1/2021,Federal,Onshore,CA,Santa Barbar,06083,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,26.62
-5/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,107.64
-5/1/2021,Federal,Onshore,CO,Archuleta,08007,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,0.00782427
-5/1/2021,Federal,Onshore,CO,Cheyenne,08017,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-0.8
-5/1/2021,Federal,Onshore,CO,Dolores,08033,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,18.4
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,14099.09251
-5/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,3.49596135
-5/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,28.21217573
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,12500.39316
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Coal,Coal,,12123.22
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,2354.92
-5/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,2753.62
-5/1/2021,Federal,Onshore,CO,Pitkin,08097,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,133.918365
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Coal,Coal,,1795.97
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,4884.68
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Sodium,Sodium,,-3960
-5/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,94.5
-5/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,13475.4
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,3086.43
-5/1/2021,Federal,Onshore,CO,Yuma,08125,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,153.41
+5/1/2021,Federal,Onshore,AL,Mobile,1097,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,1.04
+5/1/2021,Federal,Onshore,AR,Conway,5029,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,1.09
+5/1/2021,Federal,Onshore,AR,Crawford,5033,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,25.12906136
+5/1/2021,Federal,Onshore,AR,Faulkner,5045,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,0.16
+5/1/2021,Federal,Onshore,AR,Franklin,5047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,0.44
+5/1/2021,Federal,Onshore,AR,Johnson,5071,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,1511.01
+5/1/2021,Federal,Onshore,AR,Logan,5083,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,109.94
+5/1/2021,Federal,Onshore,AR,Montgomery,5097,EAST STATES,Other Revenues,Hardrock,Hardrock,,-12.15
+5/1/2021,Federal,Onshore,AR,Pope,5115,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,0.1
+5/1/2021,Federal,Onshore,AR,Sebastian,5131,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,329.7109386
+5/1/2021,Federal,Onshore,AR,Van Buren,5141,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,0.19
+5/1/2021,Federal,Onshore,AR,Yell,5149,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,4.42
+5/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,0.07
+5/1/2021,Federal,Onshore,CA,Imperial,6025,CALIFORNIA,Other Revenues,Geothermal,Geothermal,,116.29
+5/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,5302.61
+5/1/2021,Federal,Onshore,CA,Los Angeles,6037,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,93.14
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Other Revenues,Potassium,Potassium,,-546
+5/1/2021,Federal,Onshore,CA,San Luis Obispo,6079,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,0.8
+5/1/2021,Federal,Onshore,CA,Santa Barbar,6083,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,26.62
+5/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,107.64
+5/1/2021,Federal,Onshore,CO,Archuleta,8007,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,0.00782427
+5/1/2021,Federal,Onshore,CO,Cheyenne,8017,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-0.8
+5/1/2021,Federal,Onshore,CO,Dolores,8033,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,18.4
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,14099.09251
+5/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,3.49596135
+5/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,28.21217573
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,12500.39316
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Other Revenues,Coal,Coal,,12123.22
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,2354.92
+5/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,2753.62
+5/1/2021,Federal,Onshore,CO,Pitkin,8097,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,133.918365
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Other Revenues,Coal,Coal,,1795.97
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,4884.68
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Other Revenues,Sodium,Sodium,,-3960
+5/1/2021,Federal,Onshore,CO,Routt,8107,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,94.5
+5/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,13475.4
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,3086.43
+5/1/2021,Federal,Onshore,CO,Yuma,8125,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,153.41
 5/1/2021,Federal,Onshore,ID,Bingham,16011,IDAHO,Other Revenues,Phosphate,Phosphate,,1047.535941
 5/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Other Revenues,Phosphate,Phosphate,,11945.46406
 5/1/2021,Federal,Onshore,ID,Payette,16075,IDAHO,Other Revenues,Oil & Gas,Oil & Gas,,840
@@ -228,29 +228,29 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,17608.66682
 5/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,3171.3476
 5/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,608.4435986
-5/1/2021,Federal,Onshore,AK,Kenai (Post),02122,ALASKA,Rents,Geothermal,Geothermal,,7680
-5/1/2021,Federal,Onshore,AR,Faulkner,05045,EAST STATES,Rents,Oil & Gas,Oil & Gas,,160
-5/1/2021,Federal,Onshore,AR,Scott,05127,EAST STATES,Rents,Oil & Gas,Oil & Gas,,240
-5/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Rents,Oil & Gas,Oil & Gas,,162
-5/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,1245
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Rents,Sodium,Sodium,,-1299
-5/1/2021,Federal,Onshore,CA,Siskiyou,06093,CALIFORNIA,Rents,Geothermal,Geothermal,,12800
-5/1/2021,Federal,Onshore,CO,Archuleta,08007,COLORADO,Rents,Oil & Gas,Oil & Gas,,3616.67263
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Rents,Oil & Gas,Oil & Gas,,17158.36672
-5/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Rents,Oil & Gas,Oil & Gas,,15381.25626
-5/1/2021,Federal,Onshore,CO,Jackson,08057,COLORADO,Rents,Oil & Gas,Oil & Gas,,420
-5/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Rents,Coal,Coal,,7389
-5/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Rents,Oil & Gas,Oil & Gas,,25569.32737
-5/1/2021,Federal,Onshore,CO,Las Animas,08071,COLORADO,Rents,Oil & Gas,Oil & Gas,,97978.5
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Rents,Oil & Gas,Oil & Gas,,2566.853006
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Rents,Coal,Coal,,4242
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Rents,Oil & Gas,Oil & Gas,,6195.86
-5/1/2021,Federal,Onshore,CO,Morgan,08087,COLORADO,Rents,Oil & Gas,Oil & Gas,,-672
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Rents,Oil & Gas,Oil & Gas,,52297.21401
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Rents,Sodium,Sodium,,-9700
-5/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Rents,Oil & Gas,Oil & Gas,,34654
-5/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Rents,Oil & Gas,Oil & Gas,,340
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Rents,Oil & Gas,Oil & Gas,,41820.5
+5/1/2021,Federal,Onshore,AK,Kenai (Post),2122,ALASKA,Rents,Geothermal,Geothermal,,7680
+5/1/2021,Federal,Onshore,AR,Faulkner,5045,EAST STATES,Rents,Oil & Gas,Oil & Gas,,160
+5/1/2021,Federal,Onshore,AR,Scott,5127,EAST STATES,Rents,Oil & Gas,Oil & Gas,,240
+5/1/2021,Federal,Onshore,AR,Sebastian,5131,EAST STATES,Rents,Oil & Gas,Oil & Gas,,162
+5/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,1245
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Rents,Sodium,Sodium,,-1299
+5/1/2021,Federal,Onshore,CA,Siskiyou,6093,CALIFORNIA,Rents,Geothermal,Geothermal,,12800
+5/1/2021,Federal,Onshore,CO,Archuleta,8007,COLORADO,Rents,Oil & Gas,Oil & Gas,,3616.67263
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Rents,Oil & Gas,Oil & Gas,,17158.36672
+5/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Rents,Oil & Gas,Oil & Gas,,15381.25626
+5/1/2021,Federal,Onshore,CO,Jackson,8057,COLORADO,Rents,Oil & Gas,Oil & Gas,,420
+5/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Rents,Coal,Coal,,7389
+5/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Rents,Oil & Gas,Oil & Gas,,25569.32737
+5/1/2021,Federal,Onshore,CO,Las Animas,8071,COLORADO,Rents,Oil & Gas,Oil & Gas,,97978.5
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Rents,Oil & Gas,Oil & Gas,,2566.853006
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Rents,Coal,Coal,,4242
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Rents,Oil & Gas,Oil & Gas,,6195.86
+5/1/2021,Federal,Onshore,CO,Morgan,8087,COLORADO,Rents,Oil & Gas,Oil & Gas,,-672
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Rents,Oil & Gas,Oil & Gas,,52297.21401
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Rents,Sodium,Sodium,,-9700
+5/1/2021,Federal,Onshore,CO,Routt,8107,COLORADO,Rents,Oil & Gas,Oil & Gas,,34654
+5/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Rents,Oil & Gas,Oil & Gas,,340
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Rents,Oil & Gas,Oil & Gas,,41820.5
 5/1/2021,Federal,Onshore,ID,Bingham,16011,IDAHO,Rents,Phosphate,Phosphate,,349.178647
 5/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Rents,Phosphate,Phosphate,,655.821353
 5/1/2021,Federal,Onshore,KS,Decatur,20039,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,480
@@ -349,21 +349,21 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Rents,Oil & Gas,Oil & Gas,,2238.5
 5/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Rents,Oil & Gas,Oil & Gas,,360
 5/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Rents,Oil & Gas,Oil & Gas,,4869
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Anhydrous Sodium Sulfate,13445.5
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Anhydrous Sodium Sulfate,8626.27
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Anhydrous,0
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Anhydrous,0
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Decahydrate,27164.04
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Decahydrate,17005.92
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Pentahydrate,60999.76
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Pentahydrate,38257.34
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Boric Acid,33309.16
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Boric Acid,20942.35
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Calcium Chloride,0
-5/1/2021,Federal,Onshore,CO,Dolores,08033,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),95870.06762
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),2110.25
-5/1/2021,Federal,Onshore,CO,Huerfano,08055,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),27610.36
-5/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),867324.2924
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Anhydrous Sodium Sulfate,13445.5
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Anhydrous Sodium Sulfate,8626.27
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Anhydrous,0
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Anhydrous,0
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Decahydrate,27164.04
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Decahydrate,17005.92
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Pentahydrate,60999.76
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Pentahydrate,38257.34
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Boric Acid,33309.16
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Boric Acid,20942.35
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Calcium Chloride,0
+5/1/2021,Federal,Onshore,CO,Dolores,8033,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),95870.06762
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),2110.25
+5/1/2021,Federal,Onshore,CO,Huerfano,8055,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),27610.36
+5/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),867324.2924
 5/1/2021,Federal,Onshore,NM,Harding,35021,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),46054.57721
 5/1/2021,Federal,Onshore,NM,Quay,35037,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),2731.3054
 5/1/2021,Federal,Onshore,NM,Union,35059,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),13042.52739
@@ -373,11 +373,11 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),264303.52
 5/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Caustic,0
 5/1/2021,Federal,Onshore,UT,Piute,49031,UTAH,Royalties,Clay,Clay,Clay,0
-5/1/2021,Federal,Onshore,AL,Jefferson,01073,EAST STATES,Royalties,Coal,Coal,Coal,0
-5/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Coal,Coal,Coal,327006.74
-5/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Coal,Coal,Coal,169970.28
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Coal,Coal,Coal,1774924.059
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Coal,Coal,Coal,297729.1113
+5/1/2021,Federal,Onshore,AL,Jefferson,1073,EAST STATES,Royalties,Coal,Coal,Coal,0
+5/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Royalties,Coal,Coal,Coal,327006.74
+5/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Royalties,Coal,Coal,Coal,169970.28
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Coal,Coal,Coal,1774924.059
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Coal,Coal,Coal,297729.1113
 5/1/2021,Federal,Onshore,MT,Big Horn,30003,MONTANA,Royalties,Coal,Coal,Coal,773884.49
 5/1/2021,Federal,Onshore,MT,Musselshell,30065,MONTANA,Royalties,Coal,Coal,Coal,73632.51
 5/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Coal,Coal,Coal,0
@@ -399,14 +399,14 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Coal,Coal,Coal,1497.014431
 5/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Coal,Coal,Coal,0
 5/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Coal,Coal,Coal,705484.18
-5/1/2021,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,2136.66
-5/1/2021,Federal,Onshore,AR,Scott,05127,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,6.61971558
-5/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,350.3402844
-5/1/2021,Federal,Onshore,CO,Archuleta,08007,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,370686.899
-5/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,51
-5/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,357805.001
-5/1/2021,Federal,Onshore,CO,Las Animas,08071,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,28645.86
-5/1/2021,Federal,Onshore,CO,San Juan,08111,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,2466.52
+5/1/2021,Federal,Onshore,AL,Tuscaloosa,1125,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,2136.66
+5/1/2021,Federal,Onshore,AR,Scott,5127,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,6.61971558
+5/1/2021,Federal,Onshore,AR,Sebastian,5131,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,350.3402844
+5/1/2021,Federal,Onshore,CO,Archuleta,8007,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,370686.899
+5/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,51
+5/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,357805.001
+5/1/2021,Federal,Onshore,CO,Las Animas,8071,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,28645.86
+5/1/2021,Federal,Onshore,CO,San Juan,8111,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,2466.52
 5/1/2021,Federal,Onshore,NM,Colfax,35007,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,905.22
 5/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,8242.16
 5/1/2021,Federal,Onshore,NM,Mckinley,35031,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,1464.21
@@ -425,17 +425,17 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Coal,Coal,Coal Waste (Sub-Econ),0
 5/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Oil,Condensate,1825.83
 5/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Other Revenues,Oil & Gas,Oil,Condensate,-8.9
-5/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Oil,Condensate,3465
-5/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Oil,Condensate,7274.879268
-5/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Oil,Condensate,3020.560732
-5/1/2021,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,Oil,Condensate,211.29
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Condensate,307545.2957
-5/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Oil & Gas,Oil,Condensate,54.5
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Condensate,8434.791543
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Oil,Condensate,50602.738
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Condensate,100803.3448
-5/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,Oil,Condensate,1239.48
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Condensate,61762.22
+5/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Oil,Condensate,3465
+5/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Royalties,Oil & Gas,Oil,Condensate,7274.879268
+5/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Royalties,Oil & Gas,Oil,Condensate,3020.560732
+5/1/2021,Federal,Onshore,CO,Broomfield,8014,COLORADO,Royalties,Oil & Gas,Oil,Condensate,211.29
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Oil,Condensate,307545.2957
+5/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Royalties,Oil & Gas,Oil,Condensate,54.5
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Oil,Condensate,8434.791543
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,Oil,Condensate,50602.738
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Oil,Condensate,100803.3448
+5/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Royalties,Oil & Gas,Oil,Condensate,1239.48
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Oil,Condensate,61762.22
 5/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,577.93
 5/1/2021,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,1302.39
 5/1/2021,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,-3.61
@@ -501,12 +501,12 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,MO,Reynolds,29179,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,87965.80262
 5/1/2021,Federal,Onshore,MO,Shannon,29203,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,22452.53
 5/1/2021,Federal,Onshore,MO,Washington,29221,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,0
-5/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,1640.67
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,29778.86635
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,131.4860701
-5/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,2.62
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,16520.79758
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,13224.46
+5/1/2021,Federal,Onshore,AK,Harrison Bay,2185,ALASKA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,1640.67
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,29778.86635
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,131.4860701
+5/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,2.62
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,16520.79758
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,13224.46
 5/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,88.04084161
 5/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,67.52915839
 5/1/2021,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,704.69
@@ -545,9 +545,9 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,-44201.11
 5/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,29.7
 5/1/2021,Federal,Onshore,ID,Caribou,16029,IDAHO,Royalties,Phosphate,Phosphate,Ferro Phosphorous Slag,0
-5/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,300
-5/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,2922.56
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,0.49
+5/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,300
+5/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,2922.56
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,0.49
 5/1/2021,Federal,Onshore,LA,E Baton Rouge,22033,EAST STATES,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,0.02
 5/1/2021,Federal,Onshore,MS,Smith,28129,EAST STATES,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,649.33
 5/1/2021,Federal,Onshore,MT,Fallon,30025,MONTANA,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,849.47
@@ -573,23 +573,23 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Other Revenues,Oil & Gas,NGL,Gas Plant Products,0.02
 5/1/2021,Federal,Onshore,ND,Mountrail,38061,MONTANA,Other Revenues,Oil & Gas,NGL,Gas Plant Products,0.02
 5/1/2021,Federal,Onshore,ND,Williams,38105,MONTANA,Other Revenues,Oil & Gas,NGL,Gas Plant Products,0.02
-5/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,49.76
-5/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,149.4
-5/1/2021,Federal,Onshore,AL,Mobile Offshore,01097,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,11.59
-5/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,14.68
-5/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,312.1081899
-5/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,153203.6
-5/1/2021,Federal,Onshore,CA,Kings,06031,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,412.1518101
-5/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,4973.51
-5/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,8247.114782
-5/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,374.4352178
-5/1/2021,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,0.77
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,1153662.266
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,98475.07929
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,22463.89
-5/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,3506.37
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,360239.6747
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,540062.28
+5/1/2021,Federal,Onshore,AL,Baldwin,1003,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,49.76
+5/1/2021,Federal,Onshore,AL,Mobile,1097,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,149.4
+5/1/2021,Federal,Onshore,AL,Mobile Offshore,1097,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,11.59
+5/1/2021,Federal,Onshore,AR,Columbia,5027,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,14.68
+5/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,312.1081899
+5/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,153203.6
+5/1/2021,Federal,Onshore,CA,Kings,6031,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,412.1518101
+5/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,4973.51
+5/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,8247.114782
+5/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,374.4352178
+5/1/2021,Federal,Onshore,CO,Broomfield,8014,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,0.77
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,1153662.266
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,98475.07929
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,22463.89
+5/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,3506.37
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,360239.6747
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,540062.28
 5/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,3930.734765
 5/1/2021,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,358.27
 5/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,1.89
@@ -699,10 +699,10 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,2386.259331
 5/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,11091.42
 5/1/2021,Federal,Onshore,NV,Churchill,32001,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Hundreds of Gallons",603.93
-5/1/2021,Federal,Onshore,CA,Lassen,06035,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Millions of BTUs",6430.35
-5/1/2021,Federal,Onshore,CA,Imperial,06025,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",48.9
-5/1/2021,Federal,Onshore,CA,Inyo,06027,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",9957.96
-5/1/2021,Federal,Onshore,CA,Mono,06051,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",35816.39
+5/1/2021,Federal,Onshore,CA,Lassen,6035,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Millions of BTUs",6430.35
+5/1/2021,Federal,Onshore,CA,Imperial,6025,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",48.9
+5/1/2021,Federal,Onshore,CA,Inyo,6027,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",9957.96
+5/1/2021,Federal,Onshore,CA,Mono,6051,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",35816.39
 5/1/2021,Federal,Onshore,NM,Hidalgo,35023,NEW MEXICO,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",14044.34
 5/1/2021,Federal,Onshore,NV,Churchill,32001,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",323302.3095
 5/1/2021,Federal,Onshore,NV,Eureka,32011,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",501.38
@@ -713,16 +713,16 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,NV,Washoe,32031,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",27185.61
 5/1/2021,Federal,Onshore,UT,Beaver,49001,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",32806.66751
 5/1/2021,Federal,Onshore,UT,Millard,49027,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",2472.152487
-5/1/2021,Federal,Onshore,CA,Lake,06033,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds",250720.9715
-5/1/2021,Federal,Onshore,CA,Sonoma,06097,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds",378311.8185
+5/1/2021,Federal,Onshore,CA,Lake,6033,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds",250720.9715
+5/1/2021,Federal,Onshore,CA,Sonoma,6097,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds",378311.8185
 5/1/2021,Federal,Onshore,UT,Beaver,49001,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds",27234.57
 5/1/2021,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Gilsonite,Gilsonite,Gilsonite,124622.81
 5/1/2021,Federal,Onshore,SC,Abbeville,45001,EAST STATES,Royalties,Hardrock,Gold,Gold Ore,0
 5/1/2021,Federal,Onshore,SC,Abbeville,45001,EAST STATES,Royalties,Hardrock,Gold,Gold Placer,0
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,2072.59
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,7771.52
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,7169.65
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,4288.71
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,2072.59
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,7771.52
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,7169.65
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,4288.71
 5/1/2021,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,647.2321877
 5/1/2021,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,637.5378123
 5/1/2021,Federal,Onshore,MT,Sheridan,30091,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,2.31
@@ -772,36 +772,36 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Granular,0
 5/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Standard,0
 5/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Standard,0
-5/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Other Revenues,Oil & Gas,Oil,Oil,8369.14
+5/1/2021,Federal,Onshore,AK,Harrison Bay,2185,ALASKA,Other Revenues,Oil & Gas,Oil,Oil,8369.14
 5/1/2021,Federal,Onshore,WY,Converse,56009,WYOMING,Other Revenues,Oil & Gas,Oil,Oil,6885.36
-5/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Oil,Oil,369558.34
-5/1/2021,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Oil,Oil,218378.56
-5/1/2021,Federal,Onshore,AL,Conecuh,01035,EAST STATES,Royalties,Oil & Gas,Oil,Oil,1785.74
-5/1/2021,Federal,Onshore,AL,Escambia,01053,EAST STATES,Royalties,Oil & Gas,Oil,Oil,5111.11
-5/1/2021,Federal,Onshore,AL,Lamar,01075,EAST STATES,Royalties,Oil & Gas,Oil,Oil,100.84
-5/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Oil,Oil,546.85
-5/1/2021,Federal,Onshore,AL,Mobile Offshore,01097,EAST STATES,Royalties,Oil & Gas,Oil,Oil,0.3
-5/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,13273.52575
-5/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,4702007.33
-5/1/2021,Federal,Onshore,CA,Kings,06031,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,27056.13425
-5/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,125222.09
-5/1/2021,Federal,Onshore,CA,Monterey,06053,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,6408.14
-5/1/2021,Federal,Onshore,CA,Santa Barbar,06083,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,2530.73
-5/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,146211.9
-5/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Oil,Oil,33932.31
-5/1/2021,Federal,Onshore,CO,Cheyenne,08017,COLORADO,Royalties,Oil & Gas,Oil,Oil,909.54
-5/1/2021,Federal,Onshore,CO,Dolores,08033,COLORADO,Royalties,Oil & Gas,Oil,Oil,428.983125
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Oil,3041.36
-5/1/2021,Federal,Onshore,CO,Jackson,08057,COLORADO,Royalties,Oil & Gas,Oil,Oil,32594.24
-5/1/2021,Federal,Onshore,CO,Kiowa,08061,COLORADO,Royalties,Oil & Gas,Oil,Oil,3362.22
-5/1/2021,Federal,Onshore,CO,Larimer,08069,COLORADO,Royalties,Oil & Gas,Oil,Oil,467.98
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Oil,12528.9
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Oil,Oil,65676.9548
-5/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Oil,Oil,55960.92688
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Oil,899966.4952
-5/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Royalties,Oil & Gas,Oil,Oil,3595.96
-5/1/2021,Federal,Onshore,CO,Washington,08121,COLORADO,Royalties,Oil & Gas,Oil,Oil,720
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Oil,4347686.51
+5/1/2021,Federal,Onshore,AK,Harrison Bay,2185,ALASKA,Royalties,Oil & Gas,Oil,Oil,369558.34
+5/1/2021,Federal,Onshore,AK,Kenai (Pre),2122,ALASKA,Royalties,Oil & Gas,Oil,Oil,218378.56
+5/1/2021,Federal,Onshore,AL,Conecuh,1035,EAST STATES,Royalties,Oil & Gas,Oil,Oil,1785.74
+5/1/2021,Federal,Onshore,AL,Escambia,1053,EAST STATES,Royalties,Oil & Gas,Oil,Oil,5111.11
+5/1/2021,Federal,Onshore,AL,Lamar,1075,EAST STATES,Royalties,Oil & Gas,Oil,Oil,100.84
+5/1/2021,Federal,Onshore,AL,Mobile,1097,EAST STATES,Royalties,Oil & Gas,Oil,Oil,546.85
+5/1/2021,Federal,Onshore,AL,Mobile Offshore,1097,EAST STATES,Royalties,Oil & Gas,Oil,Oil,0.3
+5/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,13273.52575
+5/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,4702007.33
+5/1/2021,Federal,Onshore,CA,Kings,6031,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,27056.13425
+5/1/2021,Federal,Onshore,CA,Los Angeles,6037,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,125222.09
+5/1/2021,Federal,Onshore,CA,Monterey,6053,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,6408.14
+5/1/2021,Federal,Onshore,CA,Santa Barbar,6083,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,2530.73
+5/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,146211.9
+5/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Royalties,Oil & Gas,Oil,Oil,33932.31
+5/1/2021,Federal,Onshore,CO,Cheyenne,8017,COLORADO,Royalties,Oil & Gas,Oil,Oil,909.54
+5/1/2021,Federal,Onshore,CO,Dolores,8033,COLORADO,Royalties,Oil & Gas,Oil,Oil,428.983125
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Oil,Oil,3041.36
+5/1/2021,Federal,Onshore,CO,Jackson,8057,COLORADO,Royalties,Oil & Gas,Oil,Oil,32594.24
+5/1/2021,Federal,Onshore,CO,Kiowa,8061,COLORADO,Royalties,Oil & Gas,Oil,Oil,3362.22
+5/1/2021,Federal,Onshore,CO,Larimer,8069,COLORADO,Royalties,Oil & Gas,Oil,Oil,467.98
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Oil,Oil,12528.9
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,Oil,Oil,65676.9548
+5/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,Oil,Oil,55960.92688
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Oil,Oil,899966.4952
+5/1/2021,Federal,Onshore,CO,Routt,8107,COLORADO,Royalties,Oil & Gas,Oil,Oil,3595.96
+5/1/2021,Federal,Onshore,CO,Washington,8121,COLORADO,Royalties,Oil & Gas,Oil,Oil,720
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Oil,Oil,4347686.51
 5/1/2021,Federal,Onshore,IL,Clinton,17027,EAST STATES,Royalties,Oil & Gas,Oil,Oil,6938.17
 5/1/2021,Federal,Onshore,IL,Franklin,17055,EAST STATES,Royalties,Oil & Gas,Oil,Oil,6802.81
 5/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,32832.44086
@@ -959,23 +959,23 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Oil,Oil,85101.61065
 5/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,Oil,Oil,186730.2593
 5/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Oil,Oil,97942.37239
-5/1/2021,Federal,Onshore,AR,Franklin,05047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,10.74
-5/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,902
-5/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,863
-5/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,160
-5/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,68
-5/1/2021,Federal,Onshore,CO,Cheyenne,08017,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,190.87
-5/1/2021,Federal,Onshore,CO,Delta,08029,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,3139.704022
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-2465521.565
-5/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,782.105978
-5/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-72867.76
-5/1/2021,Federal,Onshore,CO,Las Animas,08071,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,960
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-71244.31574
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-1.5
-5/1/2021,Federal,Onshore,CO,Pitkin,08097,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,5319.40004
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-572722.6596
-5/1/2021,Federal,Onshore,CO,Routt,08107,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,3120
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,1251191.83
+5/1/2021,Federal,Onshore,AR,Franklin,5047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,10.74
+5/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,902
+5/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,863
+5/1/2021,Federal,Onshore,CA,Los Angeles,6037,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,160
+5/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,68
+5/1/2021,Federal,Onshore,CO,Cheyenne,8017,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,190.87
+5/1/2021,Federal,Onshore,CO,Delta,8029,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,3139.704022
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-2465521.565
+5/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,782.105978
+5/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-72867.76
+5/1/2021,Federal,Onshore,CO,Las Animas,8071,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,960
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-71244.31574
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-1.5
+5/1/2021,Federal,Onshore,CO,Pitkin,8097,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,5319.40004
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-572722.6596
+5/1/2021,Federal,Onshore,CO,Routt,8107,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,3120
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,1251191.83
 5/1/2021,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,80
 5/1/2021,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-1175
 5/1/2021,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-839
@@ -1085,9 +1085,9 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,WY,Uinta,56041,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,165956.53
 5/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,80
 5/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,2862.93
-5/1/2021,Federal,Onshore,CO,Archuleta,08007,COLORADO,Rents,Oil & Gas,Oil & Gas,,160
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Rents,Oil & Gas,Oil & Gas,,235
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Rents,Oil & Gas,Oil & Gas,,1672
+5/1/2021,Federal,Onshore,CO,Archuleta,8007,COLORADO,Rents,Oil & Gas,Oil & Gas,,160
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Rents,Oil & Gas,Oil & Gas,,235
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Rents,Oil & Gas,Oil & Gas,,1672
 5/1/2021,Federal,Onshore,MT,Carbon,30009,MONTANA,Rents,Oil & Gas,Oil & Gas,,77
 5/1/2021,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Rents,Oil & Gas,Oil & Gas,,2432
 5/1/2021,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,-2030
@@ -1114,8 +1114,8 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,WY,Sublette,56035,WYOMING,Rents,Oil & Gas,Oil & Gas,,400
 5/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Rents,Oil & Gas,Oil & Gas,,4486
 5/1/2021,Federal,Onshore,WY,Teton,56039,WYOMING,Rents,Oil & Gas,Oil & Gas,,315
-5/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,3.73
-5/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,11.22
+5/1/2021,Federal,Onshore,AL,Baldwin,1003,EAST STATES,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,3.73
+5/1/2021,Federal,Onshore,AL,Mobile,1097,EAST STATES,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,11.22
 5/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,14473.20361
 5/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,8641.44639
 5/1/2021,Federal,Onshore,OK,Caddo,40015,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,0.01
@@ -1129,28 +1129,28 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,ID,Clark,16033,IDAHO,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,0
 5/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,0
 5/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,0
-5/1/2021,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,172.61
-5/1/2021,Federal,Onshore,AR,Cleburne,05023,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,856.73
-5/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1.81
-5/1/2021,Federal,Onshore,AR,Conway,05029,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,828.52
-5/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2882.45
-5/1/2021,Federal,Onshore,AR,Scott,05127,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,0.12633045
-5/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,132.1536696
-5/1/2021,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,618.44
-5/1/2021,Federal,Onshore,AR,White,05145,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,243.12
-5/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2201.7
-5/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1437.65
-5/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1468.72
-5/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,133.9584636
-5/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,64.01153636
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,606295.7047
-5/1/2021,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1550.04
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,30698.55226
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,9167.38
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,139068.8231
-5/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,4841.87
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,30587.91
-5/1/2021,Federal,Onshore,CO,Yuma,08125,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,52.98
+5/1/2021,Federal,Onshore,AL,Tuscaloosa,1125,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,172.61
+5/1/2021,Federal,Onshore,AR,Cleburne,5023,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,856.73
+5/1/2021,Federal,Onshore,AR,Columbia,5027,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1.81
+5/1/2021,Federal,Onshore,AR,Conway,5029,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,828.52
+5/1/2021,Federal,Onshore,AR,Logan,5083,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2882.45
+5/1/2021,Federal,Onshore,AR,Scott,5127,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,0.12633045
+5/1/2021,Federal,Onshore,AR,Sebastian,5131,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,132.1536696
+5/1/2021,Federal,Onshore,AR,Van Buren,5141,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,618.44
+5/1/2021,Federal,Onshore,AR,White,5145,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,243.12
+5/1/2021,Federal,Onshore,AR,Yell,5149,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2201.7
+5/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1437.65
+5/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1468.72
+5/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,133.9584636
+5/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,64.01153636
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,606295.7047
+5/1/2021,Federal,Onshore,CO,La Plata,8067,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1550.04
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,30698.55226
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,9167.38
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,139068.8231
+5/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,4841.87
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,30587.91
+5/1/2021,Federal,Onshore,CO,Yuma,8125,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,52.98
 5/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,74.78
 5/1/2021,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,8.9
 5/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,0.84
@@ -1246,29 +1246,29 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Potash,0
 5/1/2021,Federal,Onshore,NV,Esmeralda,32009,NEVADA,Royalties,Potassium,Potassium,Potash,0
 5/1/2021,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Potassium,Potash,0
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Phosphate,Potassium Sulphate-Standard,4096.25
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Phosphate,Potassium Sulphate-Standard,2587.1
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Phosphate,Potassium Sulphate-Standard,4096.25
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Phosphate,Potassium Sulphate-Standard,2587.1
 5/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,0
 5/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,0
 5/1/2021,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,0
-5/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,887.99
-5/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2665.45
-5/1/2021,Federal,Onshore,AL,Mobile Offshore,01097,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,72.14
-5/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,4.77
-5/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,223563.87
-5/1/2021,Federal,Onshore,CA,Sacramento,06067,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1339.960323
-5/1/2021,Federal,Onshore,CA,Solano,06095,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6133.489677
-5/1/2021,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6306.27
-5/1/2021,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6586.976061
-5/1/2021,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,277.4039388
-5/1/2021,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,77.98
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,7804187.137
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,590601.7847
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,77985.73
-5/1/2021,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,26.02
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1948587.579
-5/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,42085.13
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,556438.46
+5/1/2021,Federal,Onshore,AL,Baldwin,1003,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,887.99
+5/1/2021,Federal,Onshore,AL,Mobile,1097,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2665.45
+5/1/2021,Federal,Onshore,AL,Mobile Offshore,1097,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,72.14
+5/1/2021,Federal,Onshore,AR,Columbia,5027,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,4.77
+5/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,223563.87
+5/1/2021,Federal,Onshore,CA,Sacramento,6067,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1339.960323
+5/1/2021,Federal,Onshore,CA,Solano,6095,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6133.489677
+5/1/2021,Federal,Onshore,CA,Ventura,6111,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6306.27
+5/1/2021,Federal,Onshore,CO,Adams,8001,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6586.976061
+5/1/2021,Federal,Onshore,CO,Arapahoe,8005,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,277.4039388
+5/1/2021,Federal,Onshore,CO,Broomfield,8014,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,77.98
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,7804187.137
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,590601.7847
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,77985.73
+5/1/2021,Federal,Onshore,CO,Montezuma,8083,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,26.02
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1948587.579
+5/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,42085.13
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,556438.46
 5/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6721.922317
 5/1/2021,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,465.76
 5/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,8.13
@@ -1390,29 +1390,29 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,656.68
 5/1/2021,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,4564.83
 5/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Purge Liquor,14835.34
-5/1/2021,Federal,Onshore,AR,Montgomery,05097,EAST STATES,Royalties,Hardrock,Quartz,Quartz Crystal,12.15
-5/1/2021,Federal,Onshore,AZ,Maricopa,04013,ARIZONA,Royalties,Sodium,Sodium,Salt,0
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Salt,14584.73
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Salt,28113.6
+5/1/2021,Federal,Onshore,AR,Montgomery,5097,EAST STATES,Royalties,Hardrock,Quartz,Quartz Crystal,12.15
+5/1/2021,Federal,Onshore,AZ,Maricopa,4013,ARIZONA,Royalties,Sodium,Sodium,Salt,0
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Salt,14584.73
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Salt,28113.6
 5/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Sodium,Salt,48963.27
 5/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Sodium,Salt,0
 5/1/2021,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Sodium,Salt,0
 5/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Sodium,Sodium,Salt,0
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Soda Ash,Soda Ash,108897.48
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Soda Ash,Soda Ash,58596.13
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Soda Ash,Soda Ash,108897.48
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Soda Ash,Soda Ash,58596.13
 5/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Soda Ash,Soda Ash,1000698.26
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Sodium Bi-Carbonate,3930.35
-5/1/2021,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,2036.64
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,90665.28
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Potassium,Sodium,Sodium Bi-Carbonate,3930.35
+5/1/2021,Federal,Onshore,CA,San Bernardino,6071,CALIFORNIA,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,2036.64
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,90665.28
 5/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,24822.28
 5/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Bisulfite,0
 5/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Decahydrate,0
 5/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Sesquicarbonate,268892.81
 5/1/2021,Federal,Onshore,OK,Comanche,40031,NEW MEXICO,Royalties,Oil & Gas,Oil,Sour Crude,-6881.41
 5/1/2021,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sulfide,0
-5/1/2021,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,67.24
-5/1/2021,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,201.83
-5/1/2021,Federal,Onshore,AL,Mobile Offshore,01097,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,0.06
+5/1/2021,Federal,Onshore,AL,Baldwin,1003,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,67.24
+5/1/2021,Federal,Onshore,AL,Mobile,1097,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,201.83
+5/1/2021,Federal,Onshore,AL,Mobile Offshore,1097,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,0.06
 5/1/2021,Federal,Onshore,MT,Carbon,30009,MONTANA,Royalties,Oil & Gas,Sulfur,Sulfur,14.44
 5/1/2021,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,45022.11632
 5/1/2021,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,1974.26612
@@ -1431,41 +1431,41 @@ Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS 
 5/1/2021,Federal,Onshore,LA,Bossier,22015,EAST STATES,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,0
 5/1/2021,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,0
 5/1/2021,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,0
-5/1/2021,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,94.78
-5/1/2021,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,375682.5
-5/1/2021,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,2331.44
-5/1/2021,Federal,Onshore,AR,Cleburne,05023,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,10508.97
-5/1/2021,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,18.15
-5/1/2021,Federal,Onshore,AR,Conway,05029,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,19459.94
-5/1/2021,Federal,Onshore,AR,Crawford,05033,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,3800.630583
-5/1/2021,Federal,Onshore,AR,Faulkner,05045,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,599.34
-5/1/2021,Federal,Onshore,AR,Franklin,05047,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,1121.54
-5/1/2021,Federal,Onshore,AR,Johnson,05071,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,5502.71
-5/1/2021,Federal,Onshore,AR,Logan,05083,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,163109.6242
-5/1/2021,Federal,Onshore,AR,Pope,05115,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,201.21
-5/1/2021,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,53496.09942
-5/1/2021,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,10647.03
-5/1/2021,Federal,Onshore,AR,White,05145,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,5356.66
-5/1/2021,Federal,Onshore,AR,Yell,05149,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,26491.8658
-5/1/2021,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,733.324583
-5/1/2021,Federal,Onshore,CA,Glenn,06021,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,17.54
-5/1/2021,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,12748.32
-5/1/2021,Federal,Onshore,CA,Kings,06031,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,964.7854171
-5/1/2021,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,2852.81
-5/1/2021,Federal,Onshore,CA,San Joaquin,06077,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,25.71
-5/1/2021,Federal,Onshore,CO,Delta,08029,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1483.549555
-5/1/2021,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,289291.0856
-5/1/2021,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,54625.05045
-5/1/2021,Federal,Onshore,CO,Kiowa,08061,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,34.66
-5/1/2021,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,28293.29122
-5/1/2021,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,328788.2104
-5/1/2021,Federal,Onshore,CO,Phillips,08095,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,307.35
-5/1/2021,Federal,Onshore,CO,Prowers,08099,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,3.43
-5/1/2021,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,19197.71282
-5/1/2021,Federal,Onshore,CO,San Miguel,08113,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,4270.93
-5/1/2021,Federal,Onshore,CO,Washington,08121,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,402.04
-5/1/2021,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1029.82
-5/1/2021,Federal,Onshore,CO,Yuma,08125,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,28142.52
+5/1/2021,Federal,Onshore,AK,Harrison Bay,2185,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,94.78
+5/1/2021,Federal,Onshore,AK,Kenai (Pre),2122,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,375682.5
+5/1/2021,Federal,Onshore,AL,Tuscaloosa,1125,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,2331.44
+5/1/2021,Federal,Onshore,AR,Cleburne,5023,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,10508.97
+5/1/2021,Federal,Onshore,AR,Columbia,5027,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,18.15
+5/1/2021,Federal,Onshore,AR,Conway,5029,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,19459.94
+5/1/2021,Federal,Onshore,AR,Crawford,5033,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,3800.630583
+5/1/2021,Federal,Onshore,AR,Faulkner,5045,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,599.34
+5/1/2021,Federal,Onshore,AR,Franklin,5047,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,1121.54
+5/1/2021,Federal,Onshore,AR,Johnson,5071,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,5502.71
+5/1/2021,Federal,Onshore,AR,Logan,5083,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,163109.6242
+5/1/2021,Federal,Onshore,AR,Pope,5115,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,201.21
+5/1/2021,Federal,Onshore,AR,Sebastian,5131,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,53496.09942
+5/1/2021,Federal,Onshore,AR,Van Buren,5141,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,10647.03
+5/1/2021,Federal,Onshore,AR,White,5145,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,5356.66
+5/1/2021,Federal,Onshore,AR,Yell,5149,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,26491.8658
+5/1/2021,Federal,Onshore,CA,Fresno,6019,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,733.324583
+5/1/2021,Federal,Onshore,CA,Glenn,6021,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,17.54
+5/1/2021,Federal,Onshore,CA,Kern,6029,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,12748.32
+5/1/2021,Federal,Onshore,CA,Kings,6031,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,964.7854171
+5/1/2021,Federal,Onshore,CA,Los Angeles,6037,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,2852.81
+5/1/2021,Federal,Onshore,CA,San Joaquin,6077,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,25.71
+5/1/2021,Federal,Onshore,CO,Delta,8029,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1483.549555
+5/1/2021,Federal,Onshore,CO,Garfield,8045,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,289291.0856
+5/1/2021,Federal,Onshore,CO,Gunnison,8051,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,54625.05045
+5/1/2021,Federal,Onshore,CO,Kiowa,8061,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,34.66
+5/1/2021,Federal,Onshore,CO,Mesa,8077,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,28293.29122
+5/1/2021,Federal,Onshore,CO,Moffat,8081,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,328788.2104
+5/1/2021,Federal,Onshore,CO,Phillips,8095,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,307.35
+5/1/2021,Federal,Onshore,CO,Prowers,8099,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,3.43
+5/1/2021,Federal,Onshore,CO,Rio Blanco,8103,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,19197.71282
+5/1/2021,Federal,Onshore,CO,San Miguel,8113,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,4270.93
+5/1/2021,Federal,Onshore,CO,Washington,8121,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,402.04
+5/1/2021,Federal,Onshore,CO,Weld,8123,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1029.82
+5/1/2021,Federal,Onshore,CO,Yuma,8125,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,28142.52
 5/1/2021,Federal,Onshore,KS,Comanche,20033,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,50.69
 5/1/2021,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,38.66
 5/1/2021,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,171.47
