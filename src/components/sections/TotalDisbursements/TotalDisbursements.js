@@ -175,7 +175,7 @@ const TotalDisbursements = props => {
         switch (yGroupBy) {
         case 'recipient':
           comparisonData = data.total_monthly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
-          chartData = data.total_monthly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
+          chartData = data.total_monthly_fiscal_disbursement.filter(item => item.year === maxFiscalYear && yOrderBy.includes(item.recipient))
           break
         default:
           comparisonData = data.total_monthly_fiscal_disbursement

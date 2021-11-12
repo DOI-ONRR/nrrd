@@ -414,9 +414,15 @@ const TotalRevenue = props => {
         return x.map(v => '\'' + v.toString().substr(2))
       }
 
-      legendHeaders = (headers, row) => {
-        const headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('09') && headers[1] >= maxFiscalYear) ? currentYearSoFarText : '' }`
-        const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), headerLabel]
+	legendHeaders = (headers, row) => {
+	    let headerLabel=''
+	    if(period === DFC.PERIOD_FISCAL_YEAR) {
+		headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('09') && headers[1] >= maxFiscalYear) ? currentYearSoFarText : '' }`
+	    }
+	    else if (period === DFC.PERIOD_CALENDAR_YEAR) {
+		headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('12') && headers[1] >= maxCalendarYear) ? currentYearSoFarText : '' }`
+	    }
+            const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), headerLabel]
         return headerArr
       }
     }
