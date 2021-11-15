@@ -207,7 +207,7 @@ const TotalRevenue = props => {
   let xGroups = {}
   let legendHeaders
   let currentMonthNum
-  let currentYearSoFarText
+  let currentYearSoFarText = ''
   const monthRange = []
   let monthRangeText
   let startMonth
@@ -394,11 +394,12 @@ const TotalRevenue = props => {
           }
         })
       }
+	if(monthRange.length > 0) {	
       startMonth = monthRange[0]
       endMonth = monthRange[monthRange.length - 1]
       monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
       currentYearSoFarText = `so far ${ monthRangeText }`
-
+      }
       xAxis = 'year'
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
