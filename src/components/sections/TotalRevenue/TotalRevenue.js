@@ -207,7 +207,7 @@ const TotalRevenue = props => {
   let xGroups = {}
   let legendHeaders
   let currentMonthNum
-  let currentYearSoFarText
+  let currentYearSoFarText = ''
   const monthRange = []
   let monthRangeText
   let startMonth
@@ -394,18 +394,24 @@ const TotalRevenue = props => {
           }
         })
       }
+	if(monthRange.length > 0) {	
       startMonth = monthRange[0]
       endMonth = monthRange[monthRange.length - 1]
       monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
       currentYearSoFarText = `so far ${ monthRangeText }`
-
+      }
       xAxis = 'year'
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
       }
 
-      legendHeaders = (headers, row) => {
-        const headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('09') && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`
+	legendHeaders = (headers, row) => {
+	    let headerLabel=`${ periodAbbr } ${ headers[1] }`
+	    if(period === DFC.PERIOD_FISCAL_YEAR) {
+		headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('09') && headers[1] > maxFiscalYear) ? currentYearSoFarText : '' }`
+	    } else {
+	        headerLabel = `${ periodAbbr } ${ headers[1] } ${ (currentMonthNum !== parseInt('12') && headers[1] > maxCalendarYear) ? currentYearSoFarText : '' }`
+	    }
         const headerArr = [(breakoutBy === 'revenue_type') ? 'Revenue type' : breakoutBy.charAt(0).toUpperCase() + breakoutBy.slice(1), headerLabel]
         return headerArr
       }
