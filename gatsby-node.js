@@ -116,7 +116,7 @@ const createYearsCache = ({ graphql, reporter }) => {
           disbursement_fiscal_years: period(distinct_on: fiscal_year, where: {disbursements: {disbursement: {_is_null: false}, period: {period: {_eq: "Fiscal Year"}}}}, order_by: {fiscal_year: asc}) {
             fiscal_year
           }
-          disbursement_calendar_years: period(distinct_on: calendar_year, where: {disbursements: {disbursement: {_is_null: false}, period: {period: {_eq: "Monthly"}}}}, order_by: {calendar_year: asc}) {
+          disbursement_calendar_years: period(distinct_on: calendar_year, where: {disbursements: {disbursement: {_is_null: false}, period: {period: {_eq: "Monthly"}, month: {_eq: 12}}}}, order_by: {calendar_year: asc}) {
             calendar_year
           }
           federal_revenue_by_company_calendar_years: federal_revenue_by_company(distinct_on: calendar_year, order_by: {calendar_year: asc}) {
