@@ -97,7 +97,7 @@ update location set location_order=concat('1-', fips_code) where offshore_region
 update location set fips_code='POR', location_name='Pacific', location_order='1-POR', region_type='Offshore' where lower(offshore_region) like '%pacific%'  and state='' and county='';
 update location set location_name='Alaska', fips_code='AKR', offshore_region='Alaska', location_order='1-AKR', region_type='Offshore' where lower(offshore_region) like '%alaska%' and state='' and county='';
 update location set fips_code='GMR', location_name='Gulf of Mexico', location_order='1-GMR' , offshore_region = 'Gulf of Mexico', region_type='Offshore'   where lower(offshore_region) like '%gulf%' and state='' and county='' ;
-update location set fips_code='AOR' , location_name='Atlantic', offshore_region = 'Atlantic', location_order='1-GMR', region_type='Offshore'   where lower(offshore_region) like '%atlantic%'  and state='' and county='';
+update location set fips_code='AOR' , location_name='Atlantic', offshore_region = 'Atlantic', location_order='1-AOR', region_type='Offshore'   where lower(offshore_region) like '%atlantic%'  and state='' and county='';
 
 \echo 'update commodity order'
 
