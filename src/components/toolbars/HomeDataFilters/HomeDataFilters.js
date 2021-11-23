@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 
 import { DataFilterContext } from '../../../stores/data-filter-store'
-import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
+import { DATA_FILTER_CONSTANTS as DFC,ALL_YEARS } from '../../../constants'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -50,10 +50,11 @@ const HomeDataFilters = props => {
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { monthly, dataType, year, product, fiscalYear, calendarYear } = filterState
-  console.debug('FilterState ---------------------------------------------------------------------->')
+    console.debug('FilterState ---------------------------------------------------------------------->', filterState)
   // console.debug(filterState)
-  const maxFiscalYear = fiscalYear
-  // not used const maxCalendarYear = calendarYear
+  const maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR][ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length -1]
+  const maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR][ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].length -1]
+    // not used const maxCalendarYear = calendarYear
 
   // const calendarYear = (dataType === DFC.PRODUCTION) ? maxCalendarYear - 1 : maxCalendarYear
 
@@ -68,8 +69,8 @@ const HomeDataFilters = props => {
     ],
     monthlyPeriod: [
       { value: 'Most recent 12 months', option: 'Most recent 12 months' },
-      { value: DFC.PERIOD_FISCAL_YEAR, option: `Fiscal year ${ monthly === DFC.MONTHLY ? maxFiscalYear : year }` },
-      { value: DFC.PERIOD_CALENDAR_YEAR, option: `Calendar year ${ calendarYear }` }
+      { value: DFC.PERIOD_FISCAL_YEAR, option: `Fiscal year  ${ maxFiscalYear}` },
+      { value: DFC.PERIOD_CALENDAR_YEAR, option: `Calendar year ${ maxCalendarYear }` }
     ],
     [DFC.BREAKOUT_BY]: {
       [DFC.REVENUE]: [
@@ -91,7 +92,7 @@ const HomeDataFilters = props => {
 
   useEffect(() => {
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
-      // updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
+	updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
     }
     else {
       // console.debug("==========================================================>", "Do we update", monthly, filterState)

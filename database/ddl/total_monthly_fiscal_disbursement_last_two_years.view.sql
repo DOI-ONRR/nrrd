@@ -22,8 +22,8 @@ SET row_security = off;
 
 CREATE VIEW public.total_monthly_fiscal_disbursement_last_two_years AS
  SELECT period.period,
-    period.calendar_year AS year,
-    period.month,
+    period.fiscal_year AS year,
+    period.fiscal_month AS month,
     period.month_long,
     period.period_date,
     location.land_type,
@@ -46,20 +46,20 @@ CREATE VIEW public.total_monthly_fiscal_disbursement_last_two_years AS
      JOIN public.location USING (location_id))
      JOIN public.fund USING (fund_id))
   WHERE (((period.period)::text = 'Monthly'::text) AND (period.fiscal_year > ( SELECT max((period_1.fiscal_year - 2)) AS max
-           FROM (public.revenue revenue_1
+           FROM (public.disbursement disbursment_1
              JOIN public.period period_1 USING (period_id))
           WHERE ((period_1.period)::text = 'Monthly'::text))) AND (period.fiscal_year <= ( SELECT max(period_1.fiscal_year) AS max
-           FROM (public.revenue revenue_1
+           FROM (public.disbursement disbursment_1
              JOIN public.period period_1 USING (period_id))
           WHERE (period_1.fiscal_month = 12))))
-  GROUP BY period.period, period.calendar_year, period.month, period.month_long, period.period_date, location.land_type, fund.fund_class, fund.recipient, fund.source,
+  GROUP BY period.period, period.fiscal_year, period.fiscal_month, period.month_long, period.period_date, location.land_type, fund.fund_class, fund.recipient, fund.source,
         CASE
             WHEN ((location.land_type)::text = 'Native American'::text) THEN 2
             WHEN ((location.land_type)::text = 'Federal onshore'::text) THEN 4
             WHEN ((location.land_type)::text = 'Federal offshore'::text) THEN 3
             ELSE 0
         END
-  ORDER BY period.period, period.calendar_year, period.month, period.month_long, period.period_date,
+  ORDER BY period.period, period.fiscal_year, period.fiscal_month, period.month_long, period.period_date,
         CASE
             WHEN ((location.land_type)::text = 'Native American'::text) THEN 2
             WHEN ((location.land_type)::text = 'Federal onshore'::text) THEN 4
