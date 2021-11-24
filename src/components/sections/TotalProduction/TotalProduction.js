@@ -155,7 +155,7 @@ const TotalProduction = props => {
         comparisonData = data.total_monthly_last_two_years_production.filter(row => row.product === product && row.year >= maxCalendarYear - 2)
 	  const maxDate = data.total_monthly_last_twelve_production[data.total_monthly_last_twelve_production.length - 1].period_date
 
-	  const minDate = new Date(maxDate + ' 00:00:00')
+	  const minDate = new Date(maxDate.replace(/-/g, '/') + ' 00:00:00')
 	  minDate.setFullYear(minDate.getFullYear() - 1)
 	  // console.debug("MD------", minDate)
         chartData = data.total_monthly_last_twelve_production.filter(row => row.product === product && new Date(row.period_date) >= minDate)
