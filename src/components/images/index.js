@@ -99,7 +99,7 @@ export const HowItWorksRibbonGraphicImg = props => <HowItWorksRibbonGraphicSvg {
 // eslint-disable-next-line max-len
 export const AmlUnappropGrowthImg = ({ alt, ...props }) => <AmlUnappropGrowthSvg {...props} alt={alt || "Chart shows the growth of the AML fund's unappropriated balance from 1989 to 2017. It grew from around $500 million to nearly $2.5 billion dollars in 2015, before falling slightly to $2.38 billion in 2017."}/>
 
-export const OnrrLogoImg = props => <OnrrLogoSvg {...props} />
+// export const OnrrLogoImg = props => <OnrrLogoSvg {...props} />
 export const NrrdLogoImg = props => <NrrdLogoSvg {...props} />
 
 export const Rig404Img = props => <Rig404Svg {...props} />
