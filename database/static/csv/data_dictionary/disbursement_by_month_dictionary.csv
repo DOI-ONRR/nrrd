@@ -1,6 +1,5 @@
 Fields,Definitions
-Month,The month the disbursement occurred.
-Calendar Year,The period between January 1 and December 31 for a given year.
+Date,The date the disbursement occurred
 Fund Type,The type of recipient receiving the disbursement.
 BLM-Nat Petrol Reserve-2,Funds from oil and gas leases directed to the National Petroleum Reserve in Alaska.
 Bureau of Land Management,Certain funds are directed back to the federal agencies that administer these lands and waters to help cover the agencies’ operational costs.
@@ -8,22 +7,25 @@ Bureau of Ocean Energy Management,Certain funds are directed back to the federal
 Bureau of Safety & Environmental Enforcement,Certain funds are directed back to the federal agencies that administer these lands and waters to help cover the agencies’ operational costs.
 Fish & Wildlife,Certain funds are directed back to the federal agencies that administer these lands and waters to help cover the agencies’ operational costs.
 Forest Service,Certain funds are directed back to the federal agencies that administer these lands and waters to help cover the agencies’ operational costs.
-Land & Water Conservation Fund,"This fund provides matching grants to states and local governments to buy and develop public outdoor recreation areas across the 50 states. The Gulf of Mexico Energy Security Act (GOMESA) of 2006 specifies that 12.5% of revenues from certain gulf leases be directed to the LWCF stateside program. States can receive up to $125 million a year in funding. This portion of LWCF funds is not subject to the congressional appropriation process, but are otherwise treated similarly to regular LWCF funds."
+Land & Water Conservation Fund,This fund provides matching grants to states and local governments to buy and develop public outdoor recreation areas across the 50 states. 
+Land and Water Conservation Fund GOMESA�,"The Gulf of Mexico Energy Security Act (GOMESA) of 2006 specifies that 12.5% of revenues from certain gulf leases be directed to the LWCF stateside program. States can receive up to $125 million a year in funding. This portion of LWCF funds is not subject to the congressional appropriation process, but are otherwise treated similarly to regular LWCF funds."
 Lease Process Improvement (BLM),This fund was established to support the coordination and processing of oil and gas leases on federal onshore land.
 Native American Tribes & Allottees,"ONRR disburses 100% of revenue collected from resource extraction on Native American lands back to Native American tribes, nations, and individual Indian landowners."
 Reclamation Fund,"Established by Congress in 1902, funds the development of irrigation projects on arid and semiarid lands of the 17 western states."
-State Fund,"Funds disbursed to states fall under the jurisdiction of each state, and each state determines how the funds will be used."
+State ,"Funds disbursed to states fall under the jurisdiction of each state, and each state determines how the funds will be used."
+State 8(g),27% of revenue from leases in the 8(g) Zone (the first three nautical miles of the Outer Continental Shelf) are shared with states.
+State GOMESA,"37.5% of revenue from certain leases in the Gulf of Mexico are shared with Alabama, Louisiana, Mississippi, and Texas."
 U.S Treasury,"Funds disbursed to the Treasury go to the General Fund, which is the federal government’s basic operating fund. The General Fund pays for roughly two-thirds of all federal expenditures, including the U.S. military, national parks, and schools."
-U.S. TreasuryAI,Funds disbursed to Native American deposit accounts within the U.S. Treasury Deposit accounts are funds that are collected by the U.S. Treasury but do not belong to the federal government.
+U.S. Treasury GOMESA�,The Gulf of Mexico Energy Security Act (GOMESA) of 2006 specifies that 50% of revenues from certain gulf leases be directed to the U.S. Treasury.
 Land Category,Whether the origin of the revenue being disbursed is offshore or onshore.
 Disbursement Type,"Disbursement types are guided by revenue-sharing legislation and agreements. For example, GOMESA and 8(g) direct portions of offshore revenue to states, local governments, and designated funds. Disbursements from the production of geothermal energy is also shared with county governments."
 State,The state that received the disbursement in accordance with revenue-sharing legislation.
 County,"The county, parish, or borough that received the disbursement in accordance with revenue-sharing legislation."
-Commodity,"The commodity that generated the revenue. For oil and gas, the commodity listed depends on the phase of production. Since it's unknown whether a lease will produce oil, gas, or both, the two commodities are combined in the bonus and rent phases and listed as Oil or Gas (pre-production)."
 Category (dollar),Includes the phases of lease payments.
 Bonuses,The amount paid by the highest bidder for a natural resource lease.
 Rents,The annual payment for leasing lands or waters before production starts.
 Royalties,"Payments for extracted natural resources, determined by a percentage of the resources’ production value."
 Other Distributions,Revenues from fees and civil penalties.
 Sequestration,Represents statutory spending limits which are withheld from certain government programs. Some program funds are returned in following fiscal year.
-Disbursement (dollar),The amount disbursed.
+Commodity,"Refers to the commodity that generated the revenue. For oil and gas, the commodity listed depends on the phase of production. Since it's unknown whether a lease will produce oil, gas, or both, the two commodities are combined in the bonus and rent phases and listed as ""Oil & Gas (pre-production)."""
+Disbursement (dollar),The amount disbursed
