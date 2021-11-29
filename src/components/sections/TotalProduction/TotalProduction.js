@@ -276,7 +276,7 @@ const TotalProduction = props => {
               }}
               onSelect={ d => handleSelect(d) }
               selectedIndex={selected}
-              units='bbl'
+              units={unitAbbrev}
               showLegendUnits
               legendHeaders={legendHeaders}
               handleBarHover={d => handleBarHover(d)}
