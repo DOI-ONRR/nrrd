@@ -13,7 +13,7 @@ const DownloadDataFile = props => {
   const href = './../' + props.dataSet
   const minDate = metaData[props.dataSet]?.minDate
   const maxDate = metaData[props.dataSet]?.maxDate
-  const size = utils.bytesToSize(metaData[props.dataSet].size)
+  const size = utils.bytesToSize(metaData[props.dataSet]?.size)
 
   const range = minDate + ' - ' + maxDate
   const suffix = (props.linkType === 'DownloadCsv') ? 'csv' : 'xlsx'
