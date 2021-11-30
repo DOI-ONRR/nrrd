@@ -6,7 +6,7 @@ import useTheme from '@material-ui/styles/useTheme'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 
-import OnrrLogoImg from '../../images/OnrrLogoImg'
+import { OnrrLogoImg } from '../../images'
 // not used import { Typography } from '@material-ui/core'
 import Link from '../../Link'
 import PrintIcon from '@material-ui/icons/Print'
