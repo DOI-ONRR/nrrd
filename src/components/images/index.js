@@ -10,7 +10,7 @@ import HowMainIconCoalSvg from '-!svg-react-loader!../../images/how-it-works/how
 import HowItWorksRibbonGraphicSvg from '-!svg-react-loader!../../images/how-it-works/how-it-works-ribbon-graphic.svg'
 import AmlUnappropGrowthSvg from '-!svg-react-loader!../../images/how-it-works/AML_unapprop-growth.svg'
 
-import OnrrLogoSvg from '-!svg-react-loader!../../images/logos/ONRR-mark.svg'
+// import OnrrLogoSvg from '-!svg-react-loader!../../images/logos/ONRR-mark.svg'
 import NrrdLogoSvg from '-!svg-react-loader!../../images/logos/NRRD-logo.svg'
 
 import Rig404Svg from '-!svg-react-loader!../../images/svg/rig-404.svg'
