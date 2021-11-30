@@ -158,23 +158,23 @@ const TotalDisbursements = props => {
         if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
       }
     })
-    if(monthRange.length > 2) {
+    if (monthRange.length > 2) {
       startMonth = monthRange[2]
       endMonth = monthRange[monthRange.length - 1]
-	monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
-    currentYearSoFarText = `so far ${ monthRangeText }`
+      monthRangeText = startMonth === endMonth ? `(${ startMonth.substring(0, 3) })` : `(${ startMonth.substring(0, 3) } - ${ endMonth.substring(0, 3) })`
+      currentYearSoFarText = `so far ${ monthRangeText }`
     }
-      
+
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
         switch (yGroupBy) {
         case 'recipient':
           comparisonData = data.total_monthly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
-          chartData = data.total_monthly_fiscal_disbursement_last_two_years.filter(item => yOrderBy.includes(item.recipient) && item.year >= maxFiscalYear )
+          chartData = data.total_monthly_fiscal_disbursement_last_two_years.filter(item => yOrderBy.includes(item.recipient) && item.year >= maxFiscalYear)
           break
         default:
           comparisonData = data.total_monthly_fiscal_disbursement
-            chartData = data.total_monthly_fiscal_disbursement_last_two_years.filter(item => item.year >= maxFiscalYear)
+          chartData = data.total_monthly_fiscal_disbursement_last_two_years.filter(item => item.year >= maxFiscalYear)
           break
         }
       }
