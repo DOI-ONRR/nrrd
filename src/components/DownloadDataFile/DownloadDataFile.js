@@ -11,8 +11,8 @@ const DownloadDataFile = props => {
   // console.debug('UTILS: ', utils)
   // console.debug('childrin', props)
   const href = './../' + props.dataSet
-  const minDate = metaData[props.dataSet].minDate
-  const maxDate = metaData[props.dataSet].maxDate
+  const minDate = metaData[props.dataSet]?.minDate
+  const maxDate = metaData[props.dataSet]?.maxDate
   const size = utils.bytesToSize(metaData[props.dataSet].size)
 
   const range = minDate + ' - ' + maxDate
