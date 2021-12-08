@@ -36,7 +36,7 @@ const SnapshotBanner = () => {
           <Box ml={1}>
             <Grid container alignItems="center">
               <Box component='span' mr={1} mt={'5px'}>
-                <OnrrLogoImg style={{ height: '50px' }}/>
+                <OnrrLogoImg style={{ height: '50px', width: '50px' }} />
               </Box>
               <Box component='span'>
                 <Box style={{ fontSize: '0.7rem', lineHeight: '0.7rem', color: 'white' }}>
