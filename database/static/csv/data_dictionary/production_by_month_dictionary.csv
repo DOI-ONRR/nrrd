@@ -2,7 +2,7 @@ Fields,Definitions
 Date,The date in which the production occurred.
 Land Class,This field distinguishes federal lands and waters from Native American lands.
 Federal,"Federal lands are owned by or under the jurisdiction of the federal government, including: public domain lands, acquired lands, military acquired lands, and Outer Continental Shelf."
-Native American,"Native American includes Tribal lands held in trust by the federal government for a tribe�s use, and allotments held in trust by the federal government for individual Native American use."
+Native American,"Native American includes Tribal lands held in trust by the federal government for a tribe's use, and allotments held in trust by the federal government for individual Native American use."
 Land Category,This field distinguishes between onshore and offshore prouction.
 Onshore,Situated or occurring on land
 Offshore,"Submerged lands located farther than three miles off a state's coastline, or three marine leagues into the Gulf of Mexico off of Texas and Western Florida"
