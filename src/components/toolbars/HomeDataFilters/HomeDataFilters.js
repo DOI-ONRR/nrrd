@@ -53,12 +53,12 @@ const HomeDataFilters = props => {
   console.debug('FilterState ---------------------------------------------------------------------->', filterState)
   // console.debug(filterState)
   // not used const maxCalendarYear = calendarYear
- let maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR][ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
-  let maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR][ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].length - 1]
+  let maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR][ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
+  const maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR][ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].length - 1]
   // not used const maxCalendarYear = calendarYear
-    if(dataType==="Production" && props.maxFiscalYear ) {
-      maxFiscalYear=props.maxFiscalYear
-    }
+  if (dataType === 'Production' && props.maxFiscalYear) {
+    maxFiscalYear = props.maxFiscalYear
+  }
   // const calendarYear = (dataType === DFC.PRODUCTION) ? maxCalendarYear - 1 : maxCalendarYear
 
   const MENU_OPTIONS = {
