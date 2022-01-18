@@ -5,7 +5,7 @@ orbs:
 jobs:
   lint:
     docker:
-      - image: circleci/node:12.4
+      - image: circleci/node:16.13
     working_directory: ~/repo
     steps:
       - checkout
@@ -28,7 +28,7 @@ jobs:
   
   unit_tests:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:16.13.0-browsers
     steps:
       - checkout
       - restore_cache:
@@ -50,7 +50,7 @@ jobs:
 
   end_to_end_tests:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:16.13.0-browsers
     steps:
       - checkout
       - restore_cache:
@@ -72,7 +72,7 @@ jobs:
 
   lighthouse:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:16.13.0-browsers
     steps:
       - checkout
       - restore_cache:
@@ -350,7 +350,7 @@ jobs:
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0
+      - image: circleci/node:16.13.0
     resource_class: medium+
     steps:
       - checkout
@@ -397,7 +397,7 @@ jobs:
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:16.13.0-browsers
     resource_class: medium+
     steps:
       - checkout
@@ -437,7 +437,7 @@ jobs:
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:16.13.0-browsers
     resource_class: medium+
     steps:
       - checkout
