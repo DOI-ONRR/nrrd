@@ -139,7 +139,7 @@ const TotalProduction = props => {
     maxCalendarYear = data.total_monthly_calendar_production.reduce((prev, current) => {
       return (prev.year > current.year) ? prev.year : current.year
     })
-currentMonthNum = data.total_yearly_fiscal_production[data.total_yearly_fiscal_production.length - 1].currentMonth
+    currentMonthNum = data.total_yearly_fiscal_production[data.total_yearly_fiscal_production.length - 1].currentMonth
 
     data.total_yearly_fiscal_production.filter(item => {
       if (item.year === (maxFiscalYear + 1)) {
@@ -158,11 +158,11 @@ currentMonthNum = data.total_yearly_fiscal_production[data.total_yearly_fiscal_p
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
         comparisonData = data.total_monthly_fiscal_production.filter(row => row.product === product)
-        chartData = data.total_monthly_fiscal_production.filter(row => row.product === product && row.year === maxFiscalYear )
+        chartData = data.total_monthly_fiscal_production.filter(row => row.product === product && row.year === maxFiscalYear)
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         comparisonData = data.total_monthly_calendar_production.filter(row => row.product === product)
-        chartData = data.total_monthly_calendar_production.filter(row => row.product === product && row.year === maxCalendarYear -1)
+        chartData = data.total_monthly_calendar_production.filter(row => row.product === product && row.year === maxCalendarYear - 1)
       }
       else {
         comparisonData = data.total_monthly_last_two_years_production.filter(row => row.product === product && row.year >= maxCalendarYear - 2)
