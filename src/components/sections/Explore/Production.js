@@ -1,6 +1,6 @@
 import React from 'react'
 import Explore from './Explore'
-import Link from '../../Link'
+import Link from '../../../components/Link'
 
 const ExploreProduction = props => {
   return (
