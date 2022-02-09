@@ -37,6 +37,7 @@
     "etl": "^0.6.12",
     "exceljs": "^3.8.0",
     "file-saver": "^2.0.2",
+    "follow-redirects": "^1.14.7",
     "fs": "0.0.1-security",
     "gatsby": "^2.24.85",
     "gatsby-cli": "^2.12.16",
