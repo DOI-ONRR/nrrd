@@ -236,7 +236,8 @@ const TotalProduction = props => {
       }
       else {
 	   maxYear = maxCalendarYear
-        currentMonthNum = data.total_yearly_calendar_production[data.total_yearly_calendar_production.length - 1].month
+          currentMonthNum = data.total_yearly_calendar_production[data.total_yearly_calendar_production.length - 1].month
+           monthRange=[]
         data.total_yearly_calendar_production.filter(item => {
           if (item.year === (maxCalendarYear)) {
             if (monthRange.indexOf(item.month_long) === -1) monthRange.push(item.month_long)
