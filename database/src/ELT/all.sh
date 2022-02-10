@@ -6,3 +6,4 @@ psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql
 psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql
 psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
 psql --host=localhost --user=postgres< ./src/ELT/update_metadata.sql
+bash ./src/scripts/refresh_materialized_views.sh
