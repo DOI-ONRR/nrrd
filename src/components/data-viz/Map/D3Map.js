@@ -513,7 +513,7 @@ export default class d3Map {
 
     const g = legend
       .append('g')
-      .attr('transform', 'translate(30,0)')
+      .attr('transform', 'translate(35,0)')
     const width = 200
     const height = 20
     const sorted = data.values.sort((a, b) => a - b)
