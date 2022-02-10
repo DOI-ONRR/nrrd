@@ -56,7 +56,7 @@ const SnapshotBanner = () => {
                 <IconButton size="small" color='inherit' aria-label="print" component="span" onClick={() => window.print()} style={{ marginRight: '5px' }}>
                   <PrintIcon />
                 </IconButton>
-                Monthly Snapshot
+                Monthly Fact Sheet
               </Box>
             </Grid>
             <Grid item xs={12}>
