@@ -82,7 +82,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2003,Federal,Onshore,CO,Bent,8011,,Gas (Mcf),"54,950"
 2003,Federal,Onshore,CO,Bent,8011,,Oil (bbl),24
 2003,Federal,Onshore,CO,Broomfield,8014,,Gas (Mcf),8
-2003,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl), -   
+2003,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl),0
 2003,Federal,Onshore,CO,Cheyenne,8017,,Gas (Mcf),"281,905"
 2003,Federal,Onshore,CO,Cheyenne,8017,,Oil (bbl),"39,585"
 2003,Federal,Onshore,CO,Delta,8029,,Coal (ton),"4,782,468"
@@ -252,7 +252,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2003,Federal,Onshore,MO,Reynolds,29179,,Zinc Concentrate (ton),"53,926"
 2003,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"31,960"
 2003,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"43,926"
-2003,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2003,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2003,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),"1,231"
 2003,Federal,Onshore,MS,Covington,28031,,Oil (bbl),390
 2003,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"37,080"
@@ -440,7 +440,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2003,Federal,Onshore,OK,Canadian,40017,,Gas (Mcf),"212,843"
 2003,Federal,Onshore,OK,Canadian,40017,,Oil (bbl),"3,900"
 2003,Federal,Onshore,OK,Coal,40029,,Gas (Mcf),"21,742"
-2003,Federal,Onshore,OK,Coal,40029,,Oil (bbl), -   
+2003,Federal,Onshore,OK,Coal,40029,,Oil (bbl),0
 2003,Federal,Onshore,OK,Comanche,40031,,Oil (bbl),"1,084"
 2003,Federal,Onshore,OK,Creek,40037,,Gas (Mcf),20
 2003,Federal,Onshore,OK,Creek,40037,,Oil (bbl),85
@@ -778,7 +778,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2004,Federal,Onshore,CO,Bent,8011,,Gas (Mcf),"46,485"
 2004,Federal,Onshore,CO,Bent,8011,,Oil (bbl),21
 2004,Federal,Onshore,CO,Broomfield,8014,,Gas (Mcf),8
-2004,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl), -   
+2004,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl),0
 2004,Federal,Onshore,CO,Cheyenne,8017,,Gas (Mcf),"225,297"
 2004,Federal,Onshore,CO,Cheyenne,8017,,Oil (bbl),"38,226"
 2004,Federal,Onshore,CO,Delta,8029,,Coal (ton),"3,552,243"
@@ -953,7 +953,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2004,Federal,Onshore,MO,Washington,29221,,Lead Concentrate (ton),296
 2004,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"20,057"
 2004,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"42,195"
-2004,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2004,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2004,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),564
 2004,Federal,Onshore,MS,Covington,28031,,Oil (bbl),397
 2004,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"103,283"
@@ -973,7 +973,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2004,Federal,Onshore,MS,Lawrence,28077,,Gas (Mcf),703
 2004,Federal,Onshore,MS,Lawrence,28077,,Oil (bbl),6
 2004,Federal,Onshore,MS,Lowndes,28087,,Gas (Mcf),"102,623"
-2004,Federal,Onshore,MS,Lowndes,28087,,Oil (bbl), -   
+2004,Federal,Onshore,MS,Lowndes,28087,,Oil (bbl),0
 2004,Federal,Onshore,MS,Monroe,28095,,Gas (Mcf),"125,980"
 2004,Federal,Onshore,MS,Monroe,28095,,Oil (bbl),1
 2004,Federal,Onshore,MS,Pearl River,28109,,Gas (Mcf),"15,005"
@@ -1234,7 +1234,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2004,Federal,Onshore,TX,Shelby,48419,,Gas (Mcf),"10,412,851"
 2004,Federal,Onshore,TX,Shelby,48419,,Oil (bbl),"28,150"
 2004,Federal,Onshore,TX,Starr,48427,,Gas (Mcf),"11,124,314"
-2004,Federal,Onshore,TX,Starr,48427,,Oil (bbl), -   
+2004,Federal,Onshore,TX,Starr,48427,,Oil (bbl),0
 2004,Federal,Onshore,TX,Taylor,48441,,Gas (Mcf),"5,539"
 2004,Federal,Onshore,TX,Washington,48477,,Gas (Mcf),"385,592"
 2004,Federal,Onshore,TX,Washington,48477,,Oil (bbl),"8,350"
@@ -1484,7 +1484,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2005,Federal,Onshore,CO,Bent,8011,,Gas (Mcf),"43,076"
 2005,Federal,Onshore,CO,Bent,8011,,Oil (bbl),12
 2005,Federal,Onshore,CO,Broomfield,8014,,Gas (Mcf),7
-2005,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl), -   
+2005,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl),0
 2005,Federal,Onshore,CO,Cheyenne,8017,,Gas (Mcf),"208,444"
 2005,Federal,Onshore,CO,Cheyenne,8017,,Oil (bbl),"34,119"
 2005,Federal,Onshore,CO,Delta,8029,,Coal (ton),"5,575,374"
@@ -1658,7 +1658,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2005,Federal,Onshore,MO,Washington,29221,,Zinc Concentrate (ton),71
 2005,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"16,260"
 2005,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"37,631"
-2005,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2005,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2005,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),631
 2005,Federal,Onshore,MS,Covington,28031,,Oil (bbl),502
 2005,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"177,508"
@@ -2203,7 +2203,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2006,Federal,Onshore,CO,Bent,8011,,Gas (Mcf),"45,735"
 2006,Federal,Onshore,CO,Bent,8011,,Oil (bbl),3
 2006,Federal,Onshore,CO,Broomfield,8014,,Gas (Mcf),8
-2006,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl), -   
+2006,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl),0
 2006,Federal,Onshore,CO,Cheyenne,8017,,Gas (Mcf),"195,770"
 2006,Federal,Onshore,CO,Cheyenne,8017,,Oil (bbl),"32,609"
 2006,Federal,Onshore,CO,Delta,8029,,Coal (ton),"4,221,527"
@@ -2265,7 +2265,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2006,Federal,Onshore,IL,Franklin,17055,,Gas (Mcf),"7,249"
 2006,Federal,Onshore,IL,Franklin,17055,,Oil (bbl),"12,931"
 2006,Federal,Onshore,KS,Comanche,20033,,Gas (Mcf),"7,903"
-2006,Federal,Onshore,KS,Comanche,20033,,Oil (bbl), -   
+2006,Federal,Onshore,KS,Comanche,20033,,Oil (bbl),0
 2006,Federal,Onshore,KS,Ellsworth,20053,,Gas (Mcf),"14,605"
 2006,Federal,Onshore,KS,Finney,20055,,Gas (Mcf),"1,536,425"
 2006,Federal,Onshore,KS,Finney,20055,,Oil (bbl),"22,496"
@@ -2309,7 +2309,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2006,Federal,Onshore,LA,Claiborne,22027,,Gas (Mcf),"190,501"
 2006,Federal,Onshore,LA,Claiborne,22027,,Oil (bbl),"22,543"
 2006,Federal,Onshore,LA,De Soto,22031,,Gas (Mcf),"14,745"
-2006,Federal,Onshore,LA,De Soto,22031,,Oil (bbl), -   
+2006,Federal,Onshore,LA,De Soto,22031,,Oil (bbl),0
 2006,Federal,Onshore,LA,E Baton Rouge,22033,,Gas (Mcf),"74,641"
 2006,Federal,Onshore,LA,E Baton Rouge,22033,,Oil (bbl),"7,042"
 2006,Federal,Onshore,LA,La Salle,22059,,Gas (Mcf),422
@@ -2374,7 +2374,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2006,Federal,Onshore,MO,Washington,29221,,Lead Concentrate (ton),159
 2006,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"13,422"
 2006,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"61,641"
-2006,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2006,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2006,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),854
 2006,Federal,Onshore,MS,Covington,28031,,Oil (bbl),499
 2006,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"284,781"
@@ -2932,7 +2932,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2007,Federal,Onshore,CO,Bent,8011,,Gas (Mcf),"36,810"
 2007,Federal,Onshore,CO,Bent,8011,,Oil (bbl),15
 2007,Federal,Onshore,CO,Broomfield,8014,,Gas (Mcf),5
-2007,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl), -   
+2007,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl),0
 2007,Federal,Onshore,CO,Cheyenne,8017,,Gas (Mcf),"162,336"
 2007,Federal,Onshore,CO,Cheyenne,8017,,Oil (bbl),"26,597"
 2007,Federal,Onshore,CO,Delta,8029,,Coal (ton),"4,641,748"
@@ -3108,7 +3108,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2007,Federal,Onshore,MO,Washington,29221,,Zinc Concentrate (ton),9
 2007,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"11,107"
 2007,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"78,635"
-2007,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2007,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2007,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),946
 2007,Federal,Onshore,MS,Covington,28031,,Oil (bbl),676
 2007,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"179,049"
@@ -3684,7 +3684,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2008,Federal,Onshore,CO,Bent,8011,,Gas (Mcf),"38,818"
 2008,Federal,Onshore,CO,Bent,8011,,Oil (bbl),18
 2008,Federal,Onshore,CO,Broomfield,8014,,Gas (Mcf),5
-2008,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl), -   
+2008,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl),0
 2008,Federal,Onshore,CO,Cheyenne,8017,,Gas (Mcf),"154,719"
 2008,Federal,Onshore,CO,Cheyenne,8017,,Oil (bbl),"24,904"
 2008,Federal,Onshore,CO,Delta,8029,,Coal (ton),"5,358,535"
@@ -3788,7 +3788,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2008,Federal,Onshore,LA,Caddo,22017,,Gas (Mcf),"56,361"
 2008,Federal,Onshore,LA,Caddo,22017,,Oil (bbl),"8,224"
 2008,Federal,Onshore,LA,Caldwell,22021,,Gas (Mcf),"23,097"
-2008,Federal,Onshore,LA,Cameron,22023,,Gas (Mcf), -   
+2008,Federal,Onshore,LA,Cameron,22023,,Gas (Mcf),0
 2008,Federal,Onshore,LA,Claiborne,22027,,Gas (Mcf),"181,817"
 2008,Federal,Onshore,LA,Claiborne,22027,,Oil (bbl),"17,179"
 2008,Federal,Onshore,LA,De Soto,22031,,Gas (Mcf),"47,421"
@@ -3867,7 +3867,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2008,Federal,Onshore,MO,Washington,29221,,Zinc Concentrate (ton),25
 2008,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"7,774"
 2008,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"63,526"
-2008,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2008,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2008,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),"1,090"
 2008,Federal,Onshore,MS,Covington,28031,,Oil (bbl),669
 2008,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"151,117"
@@ -4441,7 +4441,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2009,Federal,Onshore,CO,Bent,8011,,Gas (Mcf),"34,575"
 2009,Federal,Onshore,CO,Bent,8011,,Oil (bbl),8
 2009,Federal,Onshore,CO,Broomfield,8014,,Gas (Mcf),5
-2009,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl), -   
+2009,Federal,Onshore,CO,Broomfield,8014,,Oil (bbl),0
 2009,Federal,Onshore,CO,Cheyenne,8017,,Gas (Mcf),"142,511"
 2009,Federal,Onshore,CO,Cheyenne,8017,,Oil (bbl),"24,117"
 2009,Federal,Onshore,CO,Delta,8029,,Coal (ton),"3,590,540"
@@ -4869,8 +4869,8 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2009,Federal,Onshore,SD,Harding,46063,,Oil (bbl),"155,287"
 2009,Federal,Onshore,TX,Bowie,48037,,Gas (Mcf),203
 2009,Federal,Onshore,TX,Bowie,48037,,Oil (bbl),"2,294"
-2009,Federal,Onshore,TX,Brazos,48041,,Gas (Mcf), -   
-2009,Federal,Onshore,TX,Brazos,48041,,Oil (bbl), -   
+2009,Federal,Onshore,TX,Brazos,48041,,Gas (Mcf),0
+2009,Federal,Onshore,TX,Brazos,48041,,Oil (bbl),0
 2009,Federal,Onshore,TX,Burleson,48051,,Gas (Mcf),"147,715"
 2009,Federal,Onshore,TX,Burleson,48051,,Oil (bbl),"9,097"
 2009,Federal,Onshore,TX,Chambers,48071,,Oil (bbl),"1,371"
@@ -5275,7 +5275,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2010,Federal,Onshore,KS,Seward,20175,,Gas (Mcf),"141,688"
 2010,Federal,Onshore,KS,Seward,20175,,Oil (bbl),344
 2010,Federal,Onshore,KS,Stanton,20187,,Gas (Mcf),"35,282"
-2010,Federal,Onshore,KS,Stanton,20187,,Oil (bbl), -   
+2010,Federal,Onshore,KS,Stanton,20187,,Oil (bbl),0
 2010,Federal,Onshore,KS,Stevens,20189,,Gas (Mcf),"281,471"
 2010,Federal,Onshore,KS,Stevens,20189,,Oil (bbl),5
 2010,Federal,Onshore,KS,Trego,20195,,Oil (bbl),"1,695"
@@ -5627,8 +5627,8 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2010,Federal,Onshore,SD,Harding,46063,,Oil (bbl),"132,803"
 2010,Federal,Onshore,TX,Bowie,48037,,Gas (Mcf),342
 2010,Federal,Onshore,TX,Bowie,48037,,Oil (bbl),"3,783"
-2010,Federal,Onshore,TX,Brazos,48041,,Gas (Mcf), -   
-2010,Federal,Onshore,TX,Brazos,48041,,Oil (bbl), -   
+2010,Federal,Onshore,TX,Brazos,48041,,Gas (Mcf),0
+2010,Federal,Onshore,TX,Brazos,48041,,Oil (bbl),0
 2010,Federal,Onshore,TX,Burleson,48051,,Gas (Mcf),"9,174"
 2010,Federal,Onshore,TX,Burleson,48051,,Oil (bbl),449
 2010,Federal,Onshore,TX,Chambers,48071,,Oil (bbl),"2,787"
@@ -5663,7 +5663,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2010,Federal,Onshore,TX,Montgomery,48339,,Oil (bbl),"1,711"
 2010,Federal,Onshore,TX,Nacogdoches,48347,,Gas (Mcf),"358,213"
 2010,Federal,Onshore,TX,Nacogdoches,48347,,Oil (bbl),397
-2010,Federal,Onshore,TX,Newton,48351,,Gas (Mcf), -   
+2010,Federal,Onshore,TX,Newton,48351,,Gas (Mcf),0
 2010,Federal,Onshore,TX,Nueces,48355,,Gas (Mcf),"46,508"
 2010,Federal,Onshore,TX,Nueces,48355,,Oil (bbl),453
 2010,Federal,Onshore,TX,Ochiltree,48357,,Gas (Mcf),"4,373"
@@ -6142,7 +6142,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2011,Federal,Onshore,MS,Jones,28067,,Oil (bbl),"1,319"
 2011,Federal,Onshore,MS,Lamar,28073,,Oil (bbl),"19,614"
 2011,Federal,Onshore,MS,Lawrence,28077,,Gas (Mcf),128
-2011,Federal,Onshore,MS,Lawrence,28077,,Oil (bbl), -   
+2011,Federal,Onshore,MS,Lawrence,28077,,Oil (bbl),0
 2011,Federal,Onshore,MS,Lowndes,28087,,Gas (Mcf),"65,450"
 2011,Federal,Onshore,MS,Lowndes,28087,,Oil (bbl),289
 2011,Federal,Onshore,MS,Monroe,28095,,Gas (Mcf),"29,016"
@@ -6878,7 +6878,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2012,Federal,Onshore,MO,Washington,29221,,Zinc Concentrate (ton),117
 2012,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"3,390"
 2012,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"23,536"
-2012,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2012,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2012,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),854
 2012,Federal,Onshore,MS,Covington,28031,,Oil (bbl),876
 2012,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"119,849"
@@ -6893,7 +6893,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2012,Federal,Onshore,MS,Jones,28067,,Oil (bbl),"1,262"
 2012,Federal,Onshore,MS,Lamar,28073,,Oil (bbl),"44,581"
 2012,Federal,Onshore,MS,Lawrence,28077,,Gas (Mcf),73
-2012,Federal,Onshore,MS,Lawrence,28077,,Oil (bbl), -   
+2012,Federal,Onshore,MS,Lawrence,28077,,Oil (bbl),0
 2012,Federal,Onshore,MS,Lowndes,28087,,Gas (Mcf),"53,343"
 2012,Federal,Onshore,MS,Lowndes,28087,,Oil (bbl),251
 2012,Federal,Onshore,MS,Monroe,28095,,Gas (Mcf),"27,044"
@@ -7471,7 +7471,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2013,Federal,Onshore,CO,Garfield,8045,,Oil (bbl),"595,363"
 2013,Federal,Onshore,CO,Gunnison,8051,,Coal (ton),"6,195,174"
 2013,Federal,Onshore,CO,Gunnison,8051,,Gas (Mcf),"1,089,381"
-2013,Federal,Onshore,CO,Gunnison,8051,,Oil (bbl), -   
+2013,Federal,Onshore,CO,Gunnison,8051,,Oil (bbl),0
 2013,Federal,Onshore,CO,Huerfano,8055,,Gas (Mcf),"4,412,638"
 2013,Federal,Onshore,CO,Jackson,8057,,Gas (Mcf),"543,715"
 2013,Federal,Onshore,CO,Jackson,8057,,Oil (bbl),"59,536"
@@ -7637,7 +7637,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2013,Federal,Onshore,MO,Washington,29221,,Lead Concentrate (ton),16
 2013,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"2,750"
 2013,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"19,428"
-2013,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2013,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2013,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),843
 2013,Federal,Onshore,MS,Covington,28031,,Oil (bbl),824
 2013,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"96,422"
@@ -7652,7 +7652,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2013,Federal,Onshore,MS,Jones,28067,,Oil (bbl),"1,004"
 2013,Federal,Onshore,MS,Lamar,28073,,Oil (bbl),"88,060"
 2013,Federal,Onshore,MS,Lawrence,28077,,Gas (Mcf),24
-2013,Federal,Onshore,MS,Lawrence,28077,,Oil (bbl), -   
+2013,Federal,Onshore,MS,Lawrence,28077,,Oil (bbl),0
 2013,Federal,Onshore,MS,Lowndes,28087,,Gas (Mcf),"53,002"
 2013,Federal,Onshore,MS,Lowndes,28087,,Oil (bbl),153
 2013,Federal,Onshore,MS,Monroe,28095,,Gas (Mcf),"25,848"
@@ -7859,7 +7859,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2013,Federal,Onshore,OK,Le Flore,40079,,Gas (Mcf),"44,925"
 2013,Federal,Onshore,OK,Lincoln,40081,,Gas (Mcf),"40,285"
 2013,Federal,Onshore,OK,Lincoln,40081,,Oil (bbl),"1,910"
-2013,Federal,Onshore,OK,Logan,40083,,Oil (bbl), -   
+2013,Federal,Onshore,OK,Logan,40083,,Oil (bbl),0
 2013,Federal,Onshore,OK,Major,40093,,Gas (Mcf),"797,173"
 2013,Federal,Onshore,OK,Major,40093,,Oil (bbl),"27,884"
 2013,Federal,Onshore,OK,Mcintosh,40091,,Gas (Mcf),"22,378"
@@ -8333,7 +8333,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2014,Federal,Onshore,LA,E Baton Rouge,22033,,Oil (bbl),923
 2014,Federal,Onshore,LA,Lafourche,22057,,Oil (bbl),2
 2014,Federal,Onshore,LA,Lincoln,22061,,Gas (Mcf),"1,210"
-2014,Federal,Onshore,LA,Lincoln,22061,,Oil (bbl), -   
+2014,Federal,Onshore,LA,Lincoln,22061,,Oil (bbl),0
 2014,Federal,Onshore,LA,Morehouse,22067,,Gas (Mcf),"1,368"
 2014,Federal,Onshore,LA,Natchitoches,22069,,Oil (bbl),17
 2014,Federal,Onshore,LA,Ouachita,22073,,Gas (Mcf),415
@@ -8401,7 +8401,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2014,Federal,Onshore,MO,Washington,29221,,Zinc Concentrate (ton),81
 2014,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"2,018"
 2014,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"18,527"
-2014,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2014,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2014,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),938
 2014,Federal,Onshore,MS,Covington,28031,,Oil (bbl),754
 2014,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"89,049"
@@ -9083,7 +9083,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2015,Federal,Onshore,LA,E Baton Rouge,22033,,Gas (Mcf),"5,526"
 2015,Federal,Onshore,LA,E Baton Rouge,22033,,Oil (bbl),635
 2015,Federal,Onshore,LA,Grant,22043,,Oil (bbl),"25,342"
-2015,Federal,Onshore,LA,Lafourche,22057,,Oil (bbl), -   
+2015,Federal,Onshore,LA,Lafourche,22057,,Oil (bbl),0
 2015,Federal,Onshore,LA,Lincoln,22061,,Gas (Mcf),"1,761"
 2015,Federal,Onshore,LA,Lincoln,22061,,Oil (bbl),22
 2015,Federal,Onshore,LA,Morehouse,22067,,Gas (Mcf),"1,394"
@@ -9151,7 +9151,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2015,Federal,Onshore,MO,Washington,29221,,Zinc Concentrate (ton),32
 2015,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"1,996"
 2015,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"15,146"
-2015,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2015,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2015,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),942
 2015,Federal,Onshore,MS,Covington,28031,,Oil (bbl),699
 2015,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"85,981"
@@ -9792,7 +9792,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2016,Federal,Onshore,IL,Franklin,17055,,Gas (Mcf),"9,231"
 2016,Federal,Onshore,IL,Franklin,17055,,Oil (bbl),"7,843"
 2016,Federal,Onshore,KS,Comanche,20033,,Gas (Mcf),"3,528"
-2016,Federal,Onshore,KS,Comanche,20033,,Oil (bbl), -   
+2016,Federal,Onshore,KS,Comanche,20033,,Oil (bbl),0
 2016,Federal,Onshore,KS,Ellsworth,20053,,Gas (Mcf),"1,923"
 2016,Federal,Onshore,KS,Finney,20055,,Gas (Mcf),"646,761"
 2016,Federal,Onshore,KS,Finney,20055,,Oil (bbl),"19,580"
@@ -9908,7 +9908,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2016,Federal,Onshore,MO,Washington,29221,,Copper Concentrate (ton),47
 2016,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"1,606"
 2016,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"12,184"
-2016,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2016,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2016,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),885
 2016,Federal,Onshore,MS,Covington,28031,,Oil (bbl),580
 2016,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"86,067"
@@ -9916,7 +9916,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2016,Federal,Onshore,MS,Franklin,28037,,Gas (Mcf),"1,919"
 2016,Federal,Onshore,MS,Franklin,28037,,Oil (bbl),"161,644"
 2016,Federal,Onshore,MS,Jasper,28061,,Gas (Mcf),"2,615"
-2016,Federal,Onshore,MS,Jasper,28061,,Oil (bbl), -   
+2016,Federal,Onshore,MS,Jasper,28061,,Oil (bbl),0
 2016,Federal,Onshore,MS,Jeffer Davis,28065,,Gas (Mcf),"8,069"
 2016,Federal,Onshore,MS,Jeffer Davis,28065,,Oil (bbl),139
 2016,Federal,Onshore,MS,Jones,28067,,Gas (Mcf),"3,919"
@@ -10425,7 +10425,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2017,Federal,Onshore,AR,Van Buren,5141,,Gas (Mcf),"1,685,043"
 2017,Federal,Onshore,AR,White,5145,,Gas (Mcf),"241,431"
 2017,Federal,Onshore,AR,Yell,5149,,Gas (Mcf),"347,856"
-2017,Federal,Onshore,AR,Yell,5149,,Oil (bbl), -   
+2017,Federal,Onshore,AR,Yell,5149,,Oil (bbl),0
 2017,Federal,Onshore,CA,Fresno,6019,,Gas (Mcf),"20,284"
 2017,Federal,Onshore,CA,Fresno,6019,,Oil (bbl),"30,294"
 2017,Federal,Onshore,CA,Glenn,6021,,Gas (Mcf),"5,616"
@@ -11583,7 +11583,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2018,Federal,Onshore,OK,Payne,40119,,Gas (Mcf),280
 2018,Federal,Onshore,OK,Payne,40119,,Oil (bbl),148
 2018,Federal,Onshore,OK,Pittsburg,40121,,Gas (Mcf),"978,274"
-2018,Federal,Onshore,OK,Pittsburg,40121,,Oil (bbl), -   
+2018,Federal,Onshore,OK,Pittsburg,40121,,Oil (bbl),0
 2018,Federal,Onshore,OK,Roger Mills,40129,,Gas (Mcf),"3,855,687"
 2018,Federal,Onshore,OK,Roger Mills,40129,,Oil (bbl),"107,072"
 2018,Federal,Onshore,OK,Sequoyah,40135,,Gas (Mcf),"18,792"
@@ -11863,7 +11863,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2019,Federal,Onshore,CA,Fresno,6019,,Oil (bbl),"34,965"
 2019,Federal,Onshore,CA,Glenn,6021,,Gas (Mcf),"5,070"
 2019,Federal,Onshore,CA,Imperial,6025,,"Geothermal - Electrical Generation, Kilowatt Hours (kwh)","217,014,899"
-2019,Federal,Onshore,CA,Imperial,6025,,Unprocessed Gas (MMBtu), -   
+2019,Federal,Onshore,CA,Imperial,6025,,Unprocessed Gas (MMBtu),0
 2019,Federal,Onshore,CA,Inyo,6027,,"Geothermal - Electrical Generation, Kilowatt Hours (kwh)","272,145,394"
 2019,Federal,Onshore,CA,Inyo,6027,,Geothermal - sulfur (lton),"2,276"
 2019,Federal,Onshore,CA,Kern,6029,,Gas (Mcf),"7,302,294"
@@ -12067,7 +12067,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2019,Federal,Onshore,MO,Washington,29221,,Zinc Concentrate (ton),5
 2019,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"5,406"
 2019,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"10,513"
-2019,Federal,Onshore,MS,Clarke,28023,,Oil (bbl), -   
+2019,Federal,Onshore,MS,Clarke,28023,,Oil (bbl),0
 2019,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),584
 2019,Federal,Onshore,MS,Covington,28031,,Oil (bbl),417
 2019,Federal,Onshore,MS,Forrest,28035,,Gas (Mcf),"95,448"
@@ -12379,7 +12379,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2019,Federal,Onshore,TX,Wise,48497,,Gas (Mcf),"2,127,600"
 2019,Federal,Onshore,TX,Wise,48497,,Oil (bbl),"18,612"
 2019,Federal,Onshore,TX,Zapata,48505,,Gas (Mcf),"140,675"
-2019,Federal,Onshore,TX,Zapata,48505,,Oil (bbl), -   
+2019,Federal,Onshore,TX,Zapata,48505,,Oil (bbl),0
 2019,Federal,Onshore,UT,Beaver,49001,,"Geothermal - Electrical Generation, Kilowatt Hours (kwh)","104,210,267"
 2019,Federal,Onshore,UT,Beaver,49001,,"Geothermal - Electrical Generation, Thousands of Pounds (klb)","2,724,172,345"
 2019,Federal,Onshore,UT,Carbon,49007,,Coal (ton),"429,899"
@@ -12763,7 +12763,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2020,Federal,Onshore,MO,Shannon,29203,,Lead Concentrate (ton),304
 2020,Federal,Onshore,MO,Shannon,29203,,Zinc Concentrate (ton),17
 2020,Federal,Onshore,MO,Washington,29221,,Lead Concentrate (ton),4
-2020,Federal,Onshore,MO,Washington,29221,,Zinc Concentrate (ton), -   
+2020,Federal,Onshore,MO,Washington,29221,,Zinc Concentrate (ton),0
 2020,Federal,Onshore,MS,Adams,28001,,Oil (bbl),"5,227"
 2020,Federal,Onshore,MS,Chickasaw,28017,,Gas (Mcf),"8,169"
 2020,Federal,Onshore,MS,Covington,28031,,Gas (Mcf),505
@@ -13092,7 +13092,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2020,Federal,Onshore,UT,Kane,49025,,Coal (ton),"389,045"
 2020,Federal,Onshore,UT,Millard,49027,,"Geothermal - Electrical Generation, Kilowatt Hours (kwh)","4,925,961"
 2020,Federal,Onshore,UT,Piute,49031,,Clay (ton),"65,945"
-2020,Federal,Onshore,UT,Salt Lake,49035,,Gas (Mcf), -   
+2020,Federal,Onshore,UT,Salt Lake,49035,,Gas (Mcf),0
 2020,Federal,Onshore,UT,Salt Lake,49035,,Oil (bbl),"1,071"
 2020,Federal,Onshore,UT,San Juan,49037,,Gas (Mcf),"4,721,212"
 2020,Federal,Onshore,UT,San Juan,49037,,Oil (bbl),"267,241"
@@ -13589,7 +13589,7 @@ Fiscal Year,Land Category,Land Class,State,County,FIPS Code,Offshore Region,Prod
 2021,Federal,Onshore,NV,Eureka,32011,,Gas (Mcf),"4,177"
 2021,Federal,Onshore,NV,Eureka,32011,,"Geothermal - Electrical Generation, Kilowatt Hours (kwh)","2,742,214"
 2021,Federal,Onshore,NV,Eureka,32011,,Oil (bbl),"29,209"
-2021,Federal,Onshore,NV,Eureka,32011,,Processed (Residue) Gas (MMBtu), -   
+2021,Federal,Onshore,NV,Eureka,32011,,Processed (Residue) Gas (MMBtu),0
 2021,Federal,Onshore,NV,Humboldt,32013,,"Geothermal - Electrical Generation, Kilowatt Hours (kwh)","87,067,771"
 2021,Federal,Onshore,NV,Lander,32015,,"Geothermal - Electrical Generation, Kilowatt Hours (kwh)","1,035,549,619"
 2021,Federal,Onshore,NV,Lyon,32019,,"Geothermal - Electrical Generation, Kilowatt Hours (kwh)","11,718,229"
