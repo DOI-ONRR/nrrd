@@ -61,7 +61,7 @@ const IconLink = ({ icon, children, pl = 0, mt = 2, style, ...rest }) => (
   </Box>
 )
 
-const BaseLink = ({ href, disableRouting, className = '', children, linkType, ...rest }) => {
+const BaseLink = ({ href, disableRouting, className = '', children, linkType, target, ...rest }) => {
   const theme = useTheme()
   const styles = useStyles(theme)
 
@@ -94,10 +94,10 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ..
   return (
     <React.Fragment>
       {(!disableRouting && isRelative)
-        ? <GatsbyLink to={url} className={classes} {...rest}>
+        ? <GatsbyLink to={url} className={classes} target={target} {...rest}>
           {children}
         </GatsbyLink>
-        : <a href={url} className={classes} {...rest} data-testid={'AnchorLink'}>
+        : <a href={url} className={classes} {...rest} target={target} data-testid={'AnchorLink'}>
           {children}
         </a>
       }
