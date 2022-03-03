@@ -3,11 +3,11 @@ title: Home
 includeToc: false
 permalink: /
 tags:
-- Page
-- Home
-- Revenue
-- Disbursements
-- Production
+  - Page
+  - Home
+  - Revenue
+  - Disbursements
+  - Production
 ---
 
 <DataFilterProviderWrapper defaults='home_data_filter_default'>
@@ -125,19 +125,17 @@ tags:
                   <Typography variant="body1">
                     Below are renewables fact sheets by fiscal year for geothermal and wind energy on federal and Native American lands.
                   </Typography>
-                  <a href="../static/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY21.pdf">FY 2021 renewables fact sheet (PDF)</a><br />
-                  <a href="../static/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY20.pdf">FY 2020 renewables fact sheet (PDF)</a><br />
-                  <a href="../static/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY19.pdf">FY 2019 renewables fact sheet(PDF)</a><br />
-                  <a href="../static/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY18.pdf">FY 2018 renewables fact sheet (PDF)</a><br />
-
-
+                  <Link href="../static/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY21.pdf">FY 2021 renewables fact sheet (PDF)</Link>
+                  <Link href="../static/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY20.pdf">FY 2020 renewables fact sheet (PDF)</Link>
+                  <Link href="../static/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY19.pdf">FY 2019 renewables fact sheet(PDF)</Link>
+                  <Link href="../static/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY18.pdf">FY 2018 renewables fact sheet (PDF)</Link>
                   <Typography variant="h3">
                   Monthly Fact Sheet
                   </Typography>
                   <Typography variant="body1">
-                  Below is a fact sheet summarizing disbursements, revenue, and production data by month on federal and Native American land.
+                    Below is a fact sheet summarizing disbursements, revenue, and production data by month on federal and Native American land.
                   </Typography>
-                  <a href="https://revenuedata.doi.gov/fact-sheet/">Most recent monthly fact sheet</a><br />
+                  <Link href="https://revenuedata.doi.gov/fact-sheet/">Most recent monthly fact sheet</Link>
                 </Grid>
               </Grid>
             </TabtasticTab>
@@ -145,6 +143,7 @@ tags:
         </Grid>
       </Grid>
     </Box>
+
   </Container>
   <Hidden mdUp>
     <Container maxWidth={false} component="section" style={{ backgroundColor: '#f0f6fa' }}>
