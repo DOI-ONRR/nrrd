@@ -10,21 +10,18 @@
     Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Lindsay Goldstein -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Shannon McHarg -- UX Designer -- Department of the Interior, Office of Natural Resources Revenue
+    Mojo Nichols -- Developer -- Department of the Interior, Office of Natural Resources Revenue
     Christine Thomas -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
 
 
 ## CONTRIBUTORS
-    Sarah Aranda -- UX Intern -- Virtual Student Federal Service
-    Rawa Aziz -- Data Intern -- Virtual Student Federal Service
-    Cody Eckstein -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
-    Kiara Gomez -- Data Intern -- Virtual Student Federal Service
+
+    Isabel Hernandez -- UX Intern -- Virtual Student Federal Service
     Jae Kwon -- UX Intern -- Virtual Student Federal Service
     Jerome Louis -- Contract Developer
-    Mojo Nichols -- Contract Developer
     Christopher Robey -- Development Intern -- Virtual Student Federal Service
     Matthew Sao -- Data Intern -- Virtual Student Federal Service
     Kaitlyn Tran -- UX Intern -- Virtual Student Federal Service
-    Cat Vojslavek -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
 
 # PAST TEAM
 
@@ -41,11 +38,11 @@
     Robert Kronebusch -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Corey Mahoney -- Content Designer -- 18F
     Jennifer Malcolm -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
+    Chris Mentasti -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Alex Pandel -- UX Designer and Researcher -- 18F
     Eric Ronne -- Visual Designer -- 18F
     Jon Swedin -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Judy Wilson -- Product Owner -- Department of the Interior, Office of Natural Resources Revenue
-    Chris Mentasti -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
 
     Beta site (team emeritus)
     Nick Bristow -- Developer -- 18F
@@ -54,10 +51,14 @@
 ## CONTRIBUTORS
 
     Qituwra Anderson -- UX Researcher -- 18F
+    Sarah Aranda -- UX Intern -- Virtual Student Federal Service
+    Rawa Aziz -- Data Intern -- Virtual Student Federal Service
     Adam Biagianti -- Developer -- 18F
     Aaron Borden -- Developer -- 18F
     Alexandra Budz -- Visual Designer -- Open Opportunities
     Edward Chang -- Development Intern -- Department of the Interior, Office of Natural Resources Revenue
+    Cody Eckstein -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
+    Kiara Gomez -- Data Intern -- Virtual Student Federal Service
     Alena Huang -- UX Intern -- Virtual Student Federal Service
     Brandi Nichols -- UX Intern -- Virtual Student Federal Service
     Jeremiah Kimelman -- Developer -- 18F
@@ -68,8 +69,11 @@
     Marco Segreto -- Developer -- 18F
     Jennifer Thibault -- Visual Designer -- 18F
     Atul Varma -- Developer -- 18F
+    Cat Vojslavek -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
     Jamie Wang -- UX Intern -- Virtual Student Federal Service
     Meshan White -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
+    
+    
 
 # CREDITS
 
