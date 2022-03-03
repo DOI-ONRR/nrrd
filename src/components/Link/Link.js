@@ -61,7 +61,7 @@ const IconLink = ({ icon, children, pl = 0, mt = 2, style, ...rest }) => (
   </Box>
 )
 
-const BaseLink = ({ href, disableRouting, className = '', children, linkType, ...rest }) => {
+const BaseLink = ({ href, disableRouting, className = '', children, linkType, target, ...rest }) => {
   const theme = useTheme()
   const styles = useStyles(theme)
 
