@@ -3,11 +3,11 @@ title: Home
 includeToc: false
 permalink: /
 tags:
-- Page
-- Home
-- Revenue
-- Disbursements
-- Production
+  - Page
+  - Home
+  - Revenue
+  - Disbursements
+  - Production
 ---
 
 <DataFilterProviderWrapper defaults='home_data_filter_default'>
@@ -29,7 +29,7 @@ tags:
             fontWeight: 'normal',
             fontSize: '1.4rem',
             lineHeight: '2.25rem' }}>
-            Companies pay to produce energy and minerals on federal lands, Native American lands, and the <GlossaryTerm>Outer Continental Shelf</GlossaryTerm>.  
+            Companies pay to produce energy and minerals on federal lands, Native American lands, and the <GlossaryTerm>Outer Continental Shelf</GlossaryTerm>.
             The payments these companies make include <GlossaryTerm>bonuses</GlossaryTerm>, <GlossaryTerm>rents</GlossaryTerm>, and <GlossaryTerm>royalties</GlossaryTerm>.
             The Office of Natural Resources Revenue (ONRR) collects these payments and distributes them. The payments go to federal and local governments and Native Americans.
         </Box>
@@ -113,10 +113,37 @@ tags:
                 </Grid>
               </Grid>
             </TabtasticTab>
+            <TabtasticTab label="Fact Sheets">
+              <Grid container spacing={4}>
+                <Grid item xs={12}>
+                  <Typography variant="h2">
+                  Fact Sheets
+                  </Typography>
+                  <Typography variant="h3">
+                  Renewable Fact Sheets
+                  </Typography>
+                  <Typography variant="body1">
+                    Below are renewables fact sheets by fiscal year for geothermal and wind energy on federal and Native American lands.
+                  </Typography>
+                  <Link href="/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY21.pdf" target="_blank" disableRouting="true">FY 2021 renewables fact sheet (PDF)</Link>
+                  <Link href="/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY20.pdf" target="_blank" disableRouting="true">FY 2020 renewables fact sheet (PDF)</Link>
+                  <Link href="/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY19.pdf" target="_blank" disableRouting="true">FY 2019 renewables fact sheet (PDF)</Link>
+                  <Link href="/downloads/renewables-fact-sheets/Renewables-Fact-Sheet-FY18.pdf" target="_blank" disableRouting="true">FY 2018 renewables fact sheet (PDF)</Link>
+                  <Typography variant="h3">
+                  Monthly Fact Sheet
+                  </Typography>
+                  <Typography variant="body1">
+                    Below is a fact sheet summarizing disbursements, revenue, and production data by month on federal and Native American land.
+                  </Typography>
+                  <a href="https://revenuedata.doi.gov/fact-sheet/" target="_blank">Most recent monthly fact sheet</a>
+                </Grid>
+              </Grid>
+            </TabtasticTab>
           </Tabtastic>
         </Grid>
       </Grid>
     </Box>
+
   </Container>
   <Hidden mdUp>
     <Container maxWidth={false} component="section" style={{ backgroundColor: '#f0f6fa' }}>
