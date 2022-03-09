@@ -244,7 +244,7 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
           }}>The Office of Natural Resources Revenue (ONRR)</h4>
           <p>The ONRR is part of the U.S. Department of the Interior,
              and is responsible for collecting, disbursing, and verifying
-             federal and Indian energy and other natural resource revenue</p>
+             federal and Indian energy and other natural resource revenue.</p>
         </>
           }
           { (category !== 'ONRR') &&
