@@ -60,8 +60,8 @@ select
 	extract(year from period_date) as calendar_year,
 	extract(year from period_date + interval '3 months') as  fiscal_year,
 	extract(month from period_date) as month,	
-	to_char(period_date, 'Month') as month_long,
-	to_char(period_date, 'Mon') as month_short,
+	trim(to_char(period_date, 'Month')) as month_long,
+	trim(to_char(period_date, 'Mon')) as month_short,
 	extract(month from period_date + interval '3 months') as fiscal_month,	
 	period_date
 from (select  period_date 
