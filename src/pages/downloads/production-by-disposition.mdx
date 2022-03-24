@@ -50,6 +50,13 @@ We update this production data every month, but final production numbers aren't 
 
 ## About the data
 
+A note about “Mixed Exploratory” versus “Federal” categories of production
+
+To build our data visualizations, we've aggregated production from two types of jurisdictions: “federal” and “mixed exploratory.”
+
+-**Federal production** is production from federal onshore and offshore minerals.
+
+-**“Mixed exploratory”** is a temporary jurisdictional unit that provides for the exploration and development of an entire geologic structure or area consisting of federal and/or Native American minerals, with other mineral ownership, so that drilling and production may proceed in the most efficient and economic manner.
 
 ## Data dictionary
 
@@ -60,8 +67,9 @@ We update this production data every month, but final production numbers aren't 
 
 **Land Class**  This field distinguishes federal lands and waters from Native American lands.
 
-* **Federal**  [Federal lands](https://fas.org/sgp/crs/misc/R42346.pdf) are owned by or under the jurisdiction of the federal government, including: public domain lands, acquired lands, military acquired lands, and [Outer Continental Shelf](https://www.boem.gov/OCS-Lands-Act-History/).
-* **Native American**  includes Tribal lands held in trust by the federal government for a tribe’s use, and allotments held in trust by the federal government for individual Native American use.
+* **Federal**  includes Federal minerals that are owned by or under the jurisdiction of the federal government, including: public domain, acquired, military acquired, and [Outer Continental Shelf](https://www.boem.gov/OCS-Lands-Act-History/).
+* **Native American**  includes Tribal minerals held in trust by the federal government for a tribe’s use, and allotments held in trust by the federal government for individual Native American use.
+* **Mixed Exploratory** is a temporary jurisdictional unit that is used until production is proven on that location (see above).
 <br />
 
 **Land Category**  This field distinguishes between onshore and offshore production.
@@ -70,7 +78,25 @@ We update this production data every month, but final production numbers aren't 
 * **Offshore**  Submerged lands located farther than three miles off a state’s coastline, or three marine leagues into the Gulf of Mexico off of Texas and Western Florida
 <br />
 
-**Commodity** We have monthly data for oil, gas, and coal, since these are high-volume commodities that result in the most revenue. This field includes the units for each commodity in parentheses.
+**State** The state where the production occurred
+<br />
+
+**County** The county where the production occurred
+<br />
+
+**FIPS Code** Federal Information Processing Standard (FIPS) code is a five-digit code which uniquely identifies counties and county equivalents in the U.S., certain U.S. possessions, and certain freely associated states. The first two digits are the FIPS state code and the last three are the county code within the state or possession.
+<br />
+
+**Offshore Region** BOEM separates offshore areas into four regions: Gulf of Mexico, Atlantic, Pacific, and Alaska. For more information on offshore regions, including spatial boundaries, see BOEM's [maps and GIS data](http://www.boem.gov/Maps-and-GIS-Data/).
+<br />
+
+**Disposition Code* This field is a two-digit code indicating the means of product removal from the report entity.
+<br />
+
+**Disposition Description** This field describes how the oil or gas is used and/or where it goes.
+<br />
+
+**Commodity** Products are listed individually but may also fall into like categories.
 
   - **Oil Prod Vol (bbl)**  Oil production, measured in barrels (bbl)
   - **Gas Prod Vol (Mcf)**  Gas (natural gas), measured in thousand cubic feet (Mcf)
