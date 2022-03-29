@@ -1,14 +1,16 @@
 truncate table  monthly_production_elt;
 delete from production where period_id in (select period_id from period where period='Monthly');
 
-\copy monthly_production_elt (month, calendar_year, land_class, land_category, commodity, volume) FROM './static/csv/production/monthly_production.csv' WITH  DELIMITER ',' CSV HEADER;
+-- \copy monthly_production_elt (month, calendar_year, land_class, land_category, commodity, volume) FROM './static/csv/production/monthly_production.csv' WITH  DELIMITER ',' CSV HEADER;
+
+\copy monthly_production_elt (period_date, land_class, land_category, commodity, volume) FROM './static/csv/production/monthly_production.csv' WITH  DELIMITER ',' CSV HEADER;
+
 
 update monthly_production_elt set commodity=REPLACE(commodity,'(ton)','(tons)') where commodity like 'Coal%';
 
 
 \echo 'delete empty rows'
-delete from monthly_production_elt where month is null
-and calendar_year is null 
+delete from monthly_production_elt where period_date is null
 and land_class is null
 and land_category is null
 and commodity is null
@@ -55,16 +57,15 @@ on conflict DO NOTHING;
 insert into period (period, calendar_year, fiscal_year, month, month_long, month_short, fiscal_month, period_date )
 select
         'Monthly',
-	to_number(calendar_year, '9999'),
+	extract(year from period_date) as calendar_year,
 	extract(year from period_date + interval '3 months') as  fiscal_year,
 	extract(month from period_date) as month,	
-	month as month_long,
-	to_char(period_date, 'Mon') as month_short,
+	trim(to_char(period_date, 'Month')) as month_long,
+	trim(to_char(period_date, 'Mon')) as month_short,
 	extract(month from period_date + interval '3 months') as fiscal_month,	
 	period_date
-from (select month, calendar_year,
-to_date(concat('01 ',month,' ',calendar_year), 'DD Month YYYY') as period_date 
-from monthly_production_elt group by month, calendar_year) table1
+from (select  period_date 
+from monthly_production_elt group by period_date) table1
 group by period_date,month, calendar_year order by period_date
 on conflict DO NOTHING;
 
@@ -94,5 +95,5 @@ from monthly_production_elt e
      join period p
      on
        'Monthly'= p.period
-       AND TO_DATE(concat('01 ',e.month,' ',e.calendar_year), 'DD Month YYYY') = p.period_date
+       AND e.period_date = p.period_date
 group by location_id, period_id, commodity_id, volume, e.commodity;
