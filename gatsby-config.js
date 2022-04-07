@@ -164,7 +164,8 @@ const config = {
       resolve: 'gatsby-plugin-offline',
       options: {
         workboxConfig: {
-          maximumFileSizeToCacheInBytes: 20000000
+          importWorkboxFrom: 'cdn',
+          maximumFileSizeToCacheInBytes: 20000000,
         },
       },
     },
