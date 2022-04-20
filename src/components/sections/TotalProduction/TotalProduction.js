@@ -172,8 +172,11 @@ const TotalProduction = props => {
         chartData = data.total_monthly_fiscal_production.filter(row => row.product === product && row.year === maxFiscalYear)
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
+        const maxDate = data.total_monthly_calendar_production.filter( row => row.month == 12).pop()
+        console.debug("DWGH _------------");
+
         comparisonData = data.total_monthly_calendar_production.filter(row => row.product === product)
-        chartData = data.total_monthly_calendar_production.filter(row => row.product === product && row.year === maxCalendarYear)
+        chartData = data.total_monthly_calendar_production.filter(row => row.product === product && row.year == maxDate.year)
       }
       else {
         comparisonData = data.total_monthly_last_two_years_production.filter(row => row.product === product && row.year >= maxCalendarYear - 2)
