@@ -49,10 +49,10 @@ update fiscal_year_production_elt set product=REPLACE(product, '1dsh1', '-') ;
 update fiscal_year_production_elt set product=REPLACE(product, '1spc1', ' ') ;
 
 \echo 'Clean up offshore region'
-update fiscal_year_production_elt set offshore_region='Alaska', fips_code='AKR' where offshore_region='Offshore Alaska';
-update fiscal_year_production_elt set offshore_region='Pacific', fips_code='POR' where offshore_region='Offshore Pacific';
-update fiscal_year_production_elt set offshore_region='Atlantic', fips_code='AOR' where offshore_region='Offshore Atlantic';
-update fiscal_year_production_elt set offshore_region='Gulf of Mexico', fips_code='GMR' where offshore_region='Offshore Gulf';
+update fiscal_year_production_elt set offshore_region='Alaska',fips_code='AKR',  county='', state='' where offshore_region='Offshore Alaska';
+update fiscal_year_production_elt set offshore_region='Pacific', fips_code='POR',  county='', state='' where offshore_region='Offshore Pacific';
+update fiscal_year_production_elt set offshore_region='Atlantic',  fips_code='AOR',  county='', state='' where offshore_region='Offshore Atlantic';
+update fiscal_year_production_elt set offshore_region='Gulf of Mexico', fips_code='GMR', county='', state='' where offshore_region='Offshore Gulf';
 
 
 

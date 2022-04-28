@@ -127,6 +127,10 @@ jobs:
              pg_restore --verbose --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
 
       - run:
+          name: "Truncate reference data."
+          no_output_timeout: 30m
+          command: cd database && psql --host=localhost --user=postgres -c 'truncate period cascade; truncate location cascade; truncate commodity cascade;'
+      - run:
           name: "Load Revenue"
           no_output_timeout: 30m
           command: cd database && bash ./src/ELT/monthly_revenue.load.sh
