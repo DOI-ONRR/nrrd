@@ -478,9 +478,11 @@ jobs:
             cf auth "$PROD_CF_USERNAME" "$PROD_CF_PASSWORD"
             cf target -o "$PROD_CF_ORG" -s "$PROD_CF_SPACE"
             bash ./swap.sh
+      - run:
+          name: Build gatsby
+          command: |
             npm run build
-            cf push nrrd -f ./manifest.yml
-
+            cf push nrrd -f ./manifest.yml   
 
 workflows:
   audits:
