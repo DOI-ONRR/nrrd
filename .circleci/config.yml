@@ -466,9 +466,6 @@ jobs:
           from: 's3://$NPS_BUCKET_NAME/downloads/'
           to: static/downloads/            
       - run:
-          name: Build gatsby
-          command: npm run build
-      - run:
           name: deploy preview to cloud.gov
           command: |
             pwd && ls -l
@@ -482,6 +479,9 @@ jobs:
             cf target -o "$PROD_CF_ORG" -s "$PROD_CF_SPACE"
             bash ./swap.sh
             cf push nrrd -f ./manifest.yml
+      - run:
+          name: Build gatsby
+          command: npm run build
 
 workflows:
   audits:
