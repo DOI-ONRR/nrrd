@@ -1,6 +1,6 @@
 ---
 applications:
-- name: nrrd
+- name: nrrd-preview
   path: ./public
   buildpacks:
    - staticfile_buildpack
