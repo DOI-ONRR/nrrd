@@ -9,7 +9,6 @@
     Daniel Coleman -- Content Strategist -- Department of the Interior, OFfice of Natural Resources Revenue
     Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Lindsay Goldstein -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
-    Shannon McHarg -- UX Designer -- Department of the Interior, Office of Natural Resources Revenue
     Mojo Nichols -- Developer -- Department of the Interior, Office of Natural Resources Revenue
     Christine Thomas -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
 
@@ -38,6 +37,7 @@
     Robert Kronebusch -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Corey Mahoney -- Content Designer -- 18F
     Jennifer Malcolm -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
+    Shannon McHarg -- UX Designer -- Department of the Interior, Office of Natural Resources Revenue
     Chris Mentasti -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Alex Pandel -- UX Designer and Researcher -- 18F
     Eric Ronne -- Visual Designer -- 18F
