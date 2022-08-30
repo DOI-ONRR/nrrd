@@ -90,6 +90,7 @@ const main = async () => {
   console.debug('MJ   ', metaJson)
   const data = JSON.stringify(metaJson)
   fs.writeFileSync('/tmp/downloads/downloads.json', data)
+
 }
 
 main()

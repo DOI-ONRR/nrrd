@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.8 (Debian 12.8-1.pgdg110+1)
--- Dumped by pg_dump version 12.8 (Debian 12.8-1.pgdg110+1)
+-- Dumped from database version 12.9 (Debian 12.9-1.pgdg110+1)
+-- Dumped by pg_dump version 13.5 (Ubuntu 13.5-0ubuntu0.21.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -25,8 +25,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.monthly_production_elt (
-    month character varying(255),
-    calendar_year character varying(255),
+    period_date date,
     land_class character varying(255),
     land_category character varying(255),
     commodity character varying(255),
