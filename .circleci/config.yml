@@ -387,7 +387,9 @@ jobs:
 
       - run:
           name: Build gatsby
-          command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql && npm run build
+          command: |
+            printenv 
+            export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql && export CIRCLE_STAGE='nrrd-preview' && npm run build
       - aws-s3/sync:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
