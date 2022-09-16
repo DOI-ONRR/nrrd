@@ -401,8 +401,8 @@ jobs:
       - run:
           name: check downloads
           command: |
-                ls -lart static/downloads
-		cat static/downloads/downloads.json
+            ls -lart static/downloads
+            cat static/downloads/downloads.json
       - run:
           name: clean up
           command: |
