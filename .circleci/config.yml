@@ -330,6 +330,7 @@ jobs:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
+            cat /tmp/downloads/downloads.json
       - store_artifacts:
           path: /tmp/database_backup.pg
           destination: database_backup.pg
@@ -353,7 +354,7 @@ jobs:
       - run:
           name: "list bucket"
           command: |
-            aws s3 ls s3://${NPS_BUCKET_NAME}/              
+            aws s3 ls -l  s3://${NPS_BUCKET_NAME}/              
                  
   nrrd-preview:
     docker:
@@ -382,9 +383,10 @@ jobs:
           from: 's3://$NPS_BUCKET_NAME/downloads/'
           to: static/downloads/
       - run:
+          name: check downloads
           command: |
             ls -lart static/downloads
-
+            cat static/downloads/downloads.json
       - run:
           name: Build gatsby
           command: |
@@ -396,9 +398,11 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: public
           to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH'
-      - run: 
+      - run:
+          name: check downloads
           command: |
-                ls -lart static/downloads 
+                ls -lart static/downloads
+		cat static/downloads/downloads.json
       - run:
           name: clean up
           command: |
@@ -468,6 +472,12 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://$NPS_BUCKET_NAME/downloads/'
           to: static/downloads/            
+      - run:
+          name: check downlaods
+          command: |
+            pwd  && ls -l
+            ls -l static/downloads
+	    cat static/downloads/downloads.json
       - run:
           name: Build gatsby
           command: npm run build
