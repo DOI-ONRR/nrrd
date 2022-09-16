@@ -354,7 +354,7 @@ jobs:
       - run:
           name: "list bucket"
           command: |
-            aws s3 ls -l  s3://${NPS_BUCKET_NAME}/              
+            aws s3 ls s3://${NPS_BUCKET_NAME}/              
                  
   nrrd-preview:
     docker:
