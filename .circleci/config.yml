@@ -364,7 +364,7 @@ jobs:
       - run:
           name: "cat s3 downloads.json"
           command: |
-            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads/downloads.json | cat              
+            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads/downloads.json - | cat              
       - run:
           name: "list bucket"
           command: |
