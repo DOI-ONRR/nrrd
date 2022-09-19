@@ -485,10 +485,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-      - run:
-          name: "cat s3 downloads.json"
-          command: |
-            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads/downloads.json - | cat              
+
       - aws-s3/sync:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
@@ -496,6 +493,10 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://$NPS_BUCKET_NAME/downloads/'
           to: static/downloads/            
+      - run:
+          name: "cat s3 downloads.json"
+          command: |
+            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads/downloads.json - | cat              
       - run:
           name: check downloads
           command: |
