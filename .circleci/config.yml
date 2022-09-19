@@ -195,6 +195,7 @@ jobs:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
+	    cat /tmp/downloads/downloads.json
       - store_artifacts:
           path: /tmp/database_backup.pg
           destination: database_backup.pg
@@ -342,8 +343,8 @@ jobs:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: /tmp/downloads/
-          to: 's3://$NPS_BUCKET_NAME/downloads/'
+          from: /tmp/downloads
+          to: 's3://$NPS_BUCKET_NAME/downloads'
       - aws-s3/copy:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
