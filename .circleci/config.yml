@@ -220,6 +220,7 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
+            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads
 
   nrrd-dev-database:
     machine:
@@ -338,8 +339,15 @@ jobs:
       - store_artifacts:
           path: /tmp/downloads
           destination: downloads
-      - aws-s3/sync:
-          arguments: |
+      # - aws-s3/sync:
+      #     arguments: |
+      #     aws-access-key-id: NPS_AWS_ACCESS_KEY
+      #     aws-region: NPS_AWS_REGION
+      #     aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+      #     from: /tmp/downloads
+      #     to: 's3://$NPS_BUCKET_NAME/downloads'
+      - aws-s3/copy:
+          arguments: "--recursive " |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
@@ -356,6 +364,7 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/              
+            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads              
                  
   nrrd-preview:
     docker:
@@ -474,7 +483,7 @@ jobs:
           from: 's3://$NPS_BUCKET_NAME/downloads/'
           to: static/downloads/            
       - run:
-          name: check downlaods
+          name: check downloads
           command: |
             pwd  && ls -l
             ls -l static/downloads
