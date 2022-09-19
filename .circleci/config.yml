@@ -220,7 +220,7 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
-            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads
+            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads2
 
   nrrd-dev-database:
     machine:
@@ -345,7 +345,7 @@ jobs:
       #     aws-region: NPS_AWS_REGION
       #     aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
       #     from: /tmp/downloads
-      #     to: 's3://$NPS_BUCKET_NAME/downloads'
+      #     to: 's3://$NPS_BUCKET_NAME/downloads2'
       - aws-s3/copy:
           arguments: |
             --recursive --debug
@@ -353,7 +353,7 @@ jobs:
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/downloads
-          to: 's3://$NPS_BUCKET_NAME/downloads'
+          to: 's3://$NPS_BUCKET_NAME/downloads2'
       - aws-s3/copy:
           arguments: |
             --debug
@@ -365,12 +365,12 @@ jobs:
       - run:
           name: "cat s3 downloads.json"
           command: |
-            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads/downloads.json - | cat              
+            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads2/downloads.json - | cat              
       - run:
           name: "list bucket"
           command: |
             aws --debug s3 ls s3://${NPS_BUCKET_NAME}/              
-            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads              
+            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads2              
                  
   nrrd-preview:
     docker:
@@ -394,13 +394,13 @@ jobs:
       - run:
           name: "cat s3 downloads.json"
           command: |
-            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads/downloads.json - | cat              
+            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads2/downloads.json - | cat              
       - aws-s3/sync:
           arguments: | 
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          from: 's3://$NPS_BUCKET_NAME/downloads2/'
           to: static/downloads/
       - run:
           name: check downloads
@@ -449,7 +449,7 @@ jobs:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          from: 's3://$NPS_BUCKET_NAME/downloads2/'
           to: static/downloads/            
       - run:
           name: Build gatsby
@@ -492,12 +492,12 @@ jobs:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          from: 's3://$NPS_BUCKET_NAME/downloads2/'
           to: static/downloads/            
       - run:
           name: "cat s3 downloads.json"
           command: |
-            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads/downloads.json - | cat              
+            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads2/downloads.json - | cat              
       - run:
           name: check downloads
           command: |
@@ -541,7 +541,7 @@ jobs:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          from: 's3://$NPS_BUCKET_NAME/downloads2/'
           to: static/downloads/            
       - run:
           name: Build gatsby
