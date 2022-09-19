@@ -195,7 +195,7 @@ jobs:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
-	    cat /tmp/downloads/downloads.json
+            cat /tmp/downloads/downloads.json
       - store_artifacts:
           path: /tmp/database_backup.pg
           destination: database_backup.pg
