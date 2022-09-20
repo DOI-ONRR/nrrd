@@ -342,7 +342,7 @@ jobs:
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
 
-nrrd-preview-old:
+  nrrd-preview-old:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0
