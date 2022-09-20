@@ -90,7 +90,6 @@ jobs:
       - store_artifacts:
           path: ./__audits__/lighthouse/
 
-
   nrrd-database:
     machine:
       image: ubuntu-2004:202010-01
@@ -233,8 +232,6 @@ jobs:
              CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
              echo "Number of database changes $CHANGES"
             # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
-
-
             # if [ "$CHANGES" = "0" ]; then
             #   echo "Halting database build -  no database changes"
             #   circleci-agent step halt
