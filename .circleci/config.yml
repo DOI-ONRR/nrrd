@@ -313,10 +313,33 @@ jobs:
                 npm install
                 bash ./src/scripts/downloads.sh
                 node ./src/scripts/downloads.js
+                cd ..
+                cp /tmp/downloads/* static/downloads
       - run:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
+            ls -lart static/downloads
+
+# imported from dev job bbelopw
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: deploy to cloud.gov
+          command: |
+            pwd && ls -l
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+            # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+            cp Staticfile ./public
+            cf api https://api.fr.cloud.gov
+            cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
+            cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
+            cf push dev-nrrd -f ./manifest.yml
+# imported because of issue with s3 storage/downloads metadata
+
       - store_artifacts:
           path: /tmp/database_backup.pg
           destination: database_backup.pg
@@ -450,22 +473,22 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://$NPS_BUCKET_NAME/downloads/'
           to: static/downloads/
-      - run:
-          name: Build gatsby
-          command: npm run build
-      - run:
-          name: deploy to cloud.gov
-          command: |
-            pwd && ls -l
-            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb
-            # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
-            # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
-            cp Staticfile ./public
-            cf api https://api.fr.cloud.gov
-            cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
-            cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
-            cf push dev-nrrd -f ./manifest.yml
+      # - run:
+      #     name: Build gatsby
+      #     command: npm run build
+      # - run:
+      #     name: deploy to cloud.gov
+      #     command: |
+      #       pwd && ls -l
+      #       curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+      #       sudo dpkg -i cf-cli_amd64.deb
+      #       # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+      #       # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+      #       cp Staticfile ./public
+      #       cf api https://api.fr.cloud.gov
+      #       cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
+      #       cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
+      #       cf push dev-nrrd -f ./manifest.yml
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
