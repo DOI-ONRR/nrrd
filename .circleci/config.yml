@@ -327,7 +327,7 @@ jobs:
           command: npm install
       - run:
           name: Build gatsby
-          command:export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
+          command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
       - run:
           name: deploy to cloud.gov
           command: |
