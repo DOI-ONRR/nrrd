@@ -403,7 +403,6 @@ jobs:
           name: clean up
           command: |
             bash ./.circleci/cleanup-previews.sh
-
   nrrd-preview-new:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -443,8 +442,6 @@ jobs:
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
             cf push dev-nrrd -f ./manifest.staging.yml
-
-
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
