@@ -24,8 +24,8 @@ jobs:
       - store_test_results:
           path: ./test-results
       - store_artifacts:
-          path: ./test-results 
-  
+          path: ./test-results
+
   unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -89,7 +89,7 @@ jobs:
           command: node __audits__/lighthouse.audit.js
       - store_artifacts:
           path: ./__audits__/lighthouse/
-  
+
 
   nrrd-database:
     machine:
@@ -136,19 +136,19 @@ jobs:
           command: cd database && bash ./src/ELT/monthly_revenue.load.sh
       - run:
           name: "Load Monthly Production"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql
       - run:
           name: "Load Fiscal Production"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql
       - run:
           name: "Load Calendar Production"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql
       - run:
           name: "Load Monthly Disbursement"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql
       - run:
           name: "Load Fiscal Disbursement"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql
       - run:
           name: "Load Revenue By Company"
           command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
@@ -157,7 +157,7 @@ jobs:
           command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
       - run:
           name: "Refresh views"
-          command: cd database && bash ./src/scripts/refresh_materialized_views.sh 
+          command: cd database && bash ./src/scripts/refresh_materialized_views.sh
       - run:
           name: "Backup database"
           command: |
@@ -167,7 +167,7 @@ jobs:
           command: |
             cd database
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb 
+            sudo dpkg -i cf-cli_amd64.deb
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
@@ -234,7 +234,7 @@ jobs:
              echo "Number of database changes $CHANGES"
             # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
 
-            
+
             # if [ "$CHANGES" = "0" ]; then
             #   echo "Halting database build -  no database changes"
             #   circleci-agent step halt
@@ -271,19 +271,19 @@ jobs:
           command: cd database && bash ./src/ELT/monthly_revenue.load.sh
       - run:
           name: "Load Monthly Production"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql
       - run:
           name: "Load Fiscal Production"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql
       - run:
           name: "Load Calendar Production"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql
       - run:
           name: "Load Monthly Disbursement"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql
       - run:
           name: "Load Fiscal Disbursement"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql    
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql
       - run:
           name: "Load Revenue By Company"
           command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
@@ -292,7 +292,7 @@ jobs:
           command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
       - run:
           name: "Refresh views"
-          command: cd database && bash ./src/scripts/refresh_materialized_views.sh 
+          command: cd database && bash ./src/scripts/refresh_materialized_views.sh
       - run:
           name: "Backup database"
           command: |
@@ -302,7 +302,7 @@ jobs:
           command: |
             cd database
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb 
+            sudo dpkg -i cf-cli_amd64.deb
             cf api https://api.fr.cloud.gov
             echo "$PROD CF_USERNAME"
             cf auth "$PROD_CF_USERNAME" "$PROD_CF_PASSWORD"
@@ -353,8 +353,8 @@ jobs:
       - run:
           name: "list bucket"
           command: |
-            aws s3 ls s3://${NPS_BUCKET_NAME}/              
-                 
+            aws s3 ls s3://${NPS_BUCKET_NAME}/
+
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -394,9 +394,9 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: public
           to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH'
-      - run: 
+      - run:
           command: |
-                ls -lart static/downloads 
+                ls -lart static/downloads
       - run:
           name: clean up
           command: |
@@ -424,7 +424,7 @@ jobs:
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://$NPS_BUCKET_NAME/downloads/'
-          to: static/downloads/            
+          to: static/downloads/
       - run:
           name: Build gatsby
           command: npm run build
@@ -433,7 +433,7 @@ jobs:
           command: |
             pwd && ls -l
             curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb  
+            sudo dpkg -i cf-cli_amd64.deb
             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
             cp Staticfile ./public
@@ -481,12 +481,7 @@ jobs:
             cf auth "$PROD_CF_USERNAME" "$PROD_CF_PASSWORD"
             cf target -o "$PROD_CF_ORG" -s "$PROD_CF_SPACE"
             bash ./swap.sh
-      - run:
-          name: Re-build gatsby
-          command: |
-            npm run clean  
-            npm run build
-            cf push nrrd -f ./manifest.yml   
+            cf push nrrd -f ./manifest.yml
 
 workflows:
   audits:
@@ -503,7 +498,7 @@ workflows:
               ignore:
                 - master
                 - staging
-      
+
       - lighthouse:
           filters:
             branches:
@@ -531,7 +526,7 @@ workflows:
               ignore:
                 - master
                 - dev
-                
+
   deploy:
     jobs:
       - deploy:
@@ -561,4 +556,3 @@ workflows:
       # - end_to_end_tests:
       #     requires:
       #       - dev
-
