@@ -479,7 +479,6 @@ jobs:
       - run:
           name: "list generated downloads"
           command: |
-            ls /tmp/downloads/*
             ls -lart static/downloads
 
       # - run:
