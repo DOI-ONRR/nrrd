@@ -327,7 +327,7 @@ jobs:
           command: npm install
       - run:
           name: Build gatsby
-          command: npm run build
+          command:export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
       - run:
           name: deploy to cloud.gov
           command: |
@@ -368,7 +368,7 @@ jobs:
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
 
-  nrrd-preview-old:
+  nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0
@@ -414,7 +414,7 @@ jobs:
           command: |
             bash ./.circleci/cleanup-previews.sh
 
-  nrrd-preview:
+  nrrd-preview-new:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
