@@ -523,7 +523,7 @@ jobs:
       - run:
           name: deploy preview to cloud.gov
           command: |
-	    cat static/downloads/downloads.json
+           cat static/downloads/downloads.json
       - run:
           name: Build gatsby
           command: npm run build
