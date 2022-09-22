@@ -317,7 +317,7 @@ jobs:
                 cp /tmp/downloads/* static/downloads
       - persist_to_workspace:
           root: /tmp/downloads
-          paths: *
+          paths: ./*
       - run:
           name: "list generated downloads"
           command: |
