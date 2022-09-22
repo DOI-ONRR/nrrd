@@ -523,11 +523,18 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
-      - attach_workspace:
+	  
+      - run:
+          name: deploy preview to cloud.gov
+          command: |
+             mkdir /tmp/downloads
+
+      - attach_workspace: 
           at: /tmp/downloads
       - run:
           name: deploy preview to cloud.gov
           command: |
+	   ls /tmp/downloads
            cp /tmp/downloads/*  static/downloads/
            cat static/downloads/downloads.json
       - run:
