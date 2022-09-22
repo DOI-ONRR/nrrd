@@ -315,12 +315,15 @@ jobs:
                 node ./src/scripts/downloads.js
                 cd ..
                 cp /tmp/downloads/* static/downloads
+      - persist_to_workspace:
+          root: /tmp/downloads
+          paths: *
       - run:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
             ls -lart static/downloads/*
-
+    
 # imported from dev job bbelopw
       - run:
           name: Install node dependencies
@@ -520,9 +523,12 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
+      - attach_workspace:
+          at: /tmp/downloads
       - run:
           name: deploy preview to cloud.gov
           command: |
+           cp /tmp/downloads  static/downloads/
            cat static/downloads/downloads.json
       - run:
           name: Build gatsby
