@@ -90,7 +90,7 @@ const main = async () => {
   console.debug('MJ   ', metaJson)
   const data = JSON.stringify(metaJson)
   fs.writeFileSync('/tmp/downloads/downloads.json', data)
-  console.log('To install in currend dev or build environtment copy /tmp/downloads/* to nrrd/static/downloads')
+
 }
 
 main()
