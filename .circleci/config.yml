@@ -4,8 +4,8 @@ orbs:
 jobs:
   lint:
     docker:
-      - image: circleci/node:12.working
-    4_directory: ~/repo
+      - image: circleci/node:12.4
+    working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
@@ -523,7 +523,7 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
-  
+	  
       - run:
           name: deploy preview to cloud.gov
           command: |
@@ -534,7 +534,7 @@ jobs:
       - run:
           name: deploy preview to cloud.gov
           command: |
-           ls /tmp/downloads
+	   ls /tmp/downloads
            cp /tmp/downloads/*  static/downloads/
            cat static/downloads/downloads.json
       - run:
