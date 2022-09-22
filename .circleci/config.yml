@@ -521,6 +521,10 @@ jobs:
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
       - run:
+          name: deploy preview to cloud.gov
+          command: |
+	    cat static/downloads/downloads.json
+      - run:
           name: Build gatsby
           command: npm run build
       - run:
