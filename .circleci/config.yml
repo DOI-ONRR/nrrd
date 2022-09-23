@@ -232,9 +232,9 @@ jobs:
             #   circleci-agent step halt
             # fi
       - persist_to_workspace:
-          root: .
+          root: workspace
           paths:
-            - workspace
+            - .
       - run:
           name: "add file to persists"
           command: |
