@@ -233,7 +233,8 @@ jobs:
           root: /tmp/workspace
           paths:
 	    - static/downloads
-
+          command: |
+            echo "for now assume database changes"  > /tmp/worksapce/static/downloads/SPECIALFILE.txt
 
   nrrd-dev-database-test:
     machine:
