@@ -231,7 +231,7 @@ jobs:
             #   circleci-agent step halt
             # fi
       - persist_to_workspace:
-          root: /tmp/
+          root: .
           paths:
             - static/downloads
       - run:
@@ -541,7 +541,7 @@ jobs:
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - attach_workspace: 
-          at: /tmp/
+          at: .
       - run:
           name: "show static files"
           command: |
