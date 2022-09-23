@@ -229,6 +229,29 @@ jobs:
             #   echo "Halting database build -  no database changes"
             #   circleci-agent step halt
             # fi
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+	    - static/downloads
+
+
+  nrrd-dev-database-test:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: "Check for database changes"
+          command: |
+            echo "for now assume database changes"
+             CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
+             echo "Number of database changes $CHANGES"
+            # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
+
+            # if [ "$CHANGES" = "0" ]; then
+            #   echo "Halting database build -  no database changes"
+            #   circleci-agent step halt
+            # fi
       - run:
           name: "Begin database build"
           command: |
@@ -316,12 +339,14 @@ jobs:
                 cd ..
                 cp /tmp/downloads/* static/downloads
       - persist_to_workspace:
-          root: /tmp/downloads
-          paths: ./*
+          root: /tmp/workspace
+          paths:
+	    - static/downloads
       - run:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
+	    cp /tmp/downloads/* /tmp/workspace/downloads
             ls -lart static/downloads/*
     
 # imported from dev job bbelopw
@@ -500,7 +525,25 @@ jobs:
       #       cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
       #       cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
       #       cf push dev-nrrd -f ./manifest.yml
+
   deploy:
+    docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.13.0-browsers
+    resource_class: medium+
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - attach_workspace: 
+          at: /tmp/workspace
+      - run:
+          name: "show static files"
+          command: |
+ 	    ls -lart /tmp/workspace/downloads
+	    
+
+  deploy-test:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
