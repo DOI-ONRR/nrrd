@@ -212,7 +212,8 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
-  nrrd-dev-database:
+
+nrrd-dev-database:
     machine:
       image: ubuntu-2004:202010-01
     steps:
@@ -232,7 +233,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-    - static/downloads
+      - static/downloads
           command: |
             echo "for now assume database changes"  > /tmp/worksapce/static/downloads/SPECIALFILE.txt
 
