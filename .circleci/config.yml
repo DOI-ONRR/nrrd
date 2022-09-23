@@ -236,7 +236,7 @@ nrrd-dev-database:
             - static/downloads
       - run:
           name: "add file to persists"
-            command: |
+          command: |
             echo "for now assume database changes"  > /tmp/worksapce/static/downloads/SPECIALFILE.txt
             echo "for now assume database changes"  > static/downloads/SPECIALFILE2.txt
 
