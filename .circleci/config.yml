@@ -233,9 +233,12 @@ nrrd-dev-database:
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-      - static/downloads
-          command: |
+            - static/downloads
+      - run:
+          name: "add file to persists"
+            command: |
             echo "for now assume database changes"  > /tmp/worksapce/static/downloads/SPECIALFILE.txt
+            echo "for now assume database changes"  > static/downloads/SPECIALFILE2.txt
 
   nrrd-dev-database-test:
     machine:
