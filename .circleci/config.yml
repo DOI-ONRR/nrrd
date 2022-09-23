@@ -545,7 +545,7 @@ jobs:
           name: "show static files"
           command: |
            ls -lart ./static/downloads
-           cat ./static/downloads/
+           cat ./static/downloads/SPECIALFILE2.txt
     
 
   deploy-test:
