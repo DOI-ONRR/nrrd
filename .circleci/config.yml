@@ -231,13 +231,13 @@ jobs:
             #   circleci-agent step halt
             # fi
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: /tmp/
           paths:
             - static/downloads
       - run:
           name: "add file to persists"
           command: |
-            echo "for now assume database changes"  > /tmp/worksapce/static/downloads/SPECIALFILE.txt
+            echo "for now assume database changes"  > /tmp/static/downloads/SPECIALFILE.txt
             echo "for now assume database changes"  > static/downloads/SPECIALFILE2.txt
 
   nrrd-dev-database-test:
@@ -344,7 +344,7 @@ jobs:
                 cd ..
                 cp /tmp/downloads/* static/downloads
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: /tmp/
           paths:
             - static/downloads
       - run:
@@ -541,11 +541,11 @@ jobs:
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - attach_workspace: 
-          at: /tmp/workspace
+          at: /tmp/
       - run:
           name: "show static files"
           command: |
-           ls -lart /tmp/workspace/downloads
+           ls -lart /tmp/static/downloads
     
 
   deploy-test:
