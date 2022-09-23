@@ -251,7 +251,7 @@ jobs:
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - attach_workspace: 
-          at: .
+          at: ./workspace
       - run:
           name: "show static files"
           command: |
