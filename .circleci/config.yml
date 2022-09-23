@@ -232,7 +232,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-	    - static/downloads
+    - static/downloads
           command: |
             echo "for now assume database changes"  > /tmp/worksapce/static/downloads/SPECIALFILE.txt
 
@@ -342,12 +342,12 @@ jobs:
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-	    - static/downloads
+            - static/downloads
       - run:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
-	    cp /tmp/downloads/* /tmp/workspace/downloads
+            cp /tmp/downloads/* /tmp/workspace/downloads
             ls -lart static/downloads/*
     
 # imported from dev job bbelopw
@@ -541,8 +541,8 @@ jobs:
       - run:
           name: "show static files"
           command: |
- 	    ls -lart /tmp/workspace/downloads
-	    
+           ls -lart /tmp/workspace/downloads
+    
 
   deploy-test:
     docker:
