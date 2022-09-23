@@ -237,7 +237,7 @@ jobs:
       - run:
           name: "add file to persists"
           command: |
-            echo "for now assume database changes"  > static/downloads/SPECIALFILE2.txt
+            echo "for now assume database changes"  > ./static/downloads/SPECIALFILE2.txt
 
   nrrd-dev-database-test:
     machine:
@@ -544,7 +544,8 @@ jobs:
       - run:
           name: "show static files"
           command: |
-           ls -lart /tmp/static/downloads
+           ls -lart ./static/downloads
+           cat ./static/downloads/
     
 
   deploy-test:
