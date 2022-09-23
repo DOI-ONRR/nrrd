@@ -257,7 +257,6 @@ jobs:
           command: |
            ls -lart ./workspace
            cat ./worksapce/SPECIALFILE2.txt
-	   
   nrrd-dev-database-test:
     machine:
       image: ubuntu-2004:202010-01
