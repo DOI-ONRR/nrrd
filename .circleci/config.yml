@@ -238,8 +238,25 @@ jobs:
       - run:
           name: "add file to persists"
           command: |
-            echo "for now assume database changes"  > ./static/downloads/SPECIALFILE2.txt
+            echo "for now assume database changes"  > ./workspace/SPECIALFILE2.txt
 
+
+  deploy:
+    docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.13.0-browsers
+    resource_class: medium+
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - attach_workspace: 
+          at: .
+      - run:
+          name: "show static files"
+          command: |
+           ls -lart ./workspace
+           cat ./worksapce/SPECIALFILE2.txt
   nrrd-dev-database-test:
     machine:
       image: ubuntu-2004:202010-01
@@ -530,23 +547,6 @@ jobs:
       #       cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
       #       cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
       #       cf push dev-nrrd -f ./manifest.yml
-
-  deploy:
-    docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
-    resource_class: medium+
-    steps:
-      - checkout
-      - restore_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - attach_workspace: 
-          at: .
-      - run:
-          name: "show static files"
-          command: |
-           ls -lart ./static/downloads
-           cat ./static/downloads/SPECIALFILE2.txt
     
 
   deploy-test:
