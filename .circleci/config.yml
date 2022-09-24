@@ -1,4 +1,4 @@
-Tversion: 2.1
+version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
 jobs:
@@ -196,16 +196,16 @@ jobs:
           destination: downloads
       - aws-s3/sync:
           arguments: |
-          aws-access-key-id: $NPS_AWS_ACCESS_KEY
-          aws-region: $NPSs_AWS_REGION
-          aws-secret-access-key: $NPSs_AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/downloads/
-          to: 's3://$$NPSss_BUCKET_NAME/downloads/'
+          to: 's3://$NPS_BUCKET_NAME/downloads/'
       - aws-s3/copy:
           arguments: |
-          aws-access-key-id: $NPSss_AWS_ACCESS_KEY
-          aws-region: $NPS_AWS_REGION
-          aws-secret-access-key: $NPS_AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/database_backup.pg
           to: 's3://$NPS_BUCKET_NAME/backup/database_backup.pg'
       - run:
@@ -213,7 +213,7 @@ jobs:
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
 
-  nrrd-dev-database-test:
+  nrrd-dev-database:
     machine:
       image: ubuntu-2004:202010-01
     steps:
@@ -240,7 +240,7 @@ jobs:
             echo "for now assume database changes"  > ./workspace/SPECIALFILE2.txt
 
 
-  deploy-test:
+  deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
@@ -400,16 +400,16 @@ jobs:
           destination: downloads
       - aws-s3/sync:
           arguments: |
-          aws-access-key-id: $NPS_AWS_ACCESS_KEY
-          aws-region: $NPS_AWS_REGION
-          aws-secret-access-key: $NPS_AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/downloads/
           to: 's3://${NPS_BUCKET_NAME}/downloads/'
       - aws-s3/copy:
           arguments: |
-          aws-access-key-id: $NPS_AWS_ACCESS_KEY
-          aws-region: $NPS_AWS_REGION
-          aws-secret-access-key: $NPS_AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/database_backup.pg
           to: 's3://${NPS_BUCKET_NAME}/backup/database_backup.pg'
       - run:
@@ -438,9 +438,9 @@ jobs:
             ls -lart static/downloads
       - aws-s3/sync:
           arguments: |
-          aws-access-key-id: $NPS_AWS_ACCESS_KEY
-          aws-region: $NPS_AWS_REGION
-          aws-secret-access-key: $NPS_AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
       - run:
@@ -450,9 +450,9 @@ jobs:
           name: Build gatsby
           command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql &&  export CIRCLE_STAGE='nrrd-preview' && npm run build
       - aws-s3/sync:
-          aws-access-key-id: $NPS_AWS_ACCESS_KEY
-          aws-region: $NPS_AWS_REGION
-          aws-secret-access-key: $NPS_AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: public
           to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH'
       - run:
@@ -481,9 +481,9 @@ jobs:
             - node_modules
       - aws-s3/sync:
           arguments: |
-          aws-access-key-id: $NPS_AWS_ACCESS_KEY
-          aws-region: $NPS_AWS_REGION
-          aws-secret-access-key: $NPS_AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://$NPS_BUCKET_NAME/downloads/'
           to: static/downloads/
       - run:
@@ -520,9 +520,9 @@ jobs:
             - node_modules
       - aws-s3/sync:
           arguments: |
-          aws-access-key-id: $NPS_AWS_ACCESS_KEY
-          aws-region: $NPS_AWS_REGION
-          aws-secret-access-key: $NPS_AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
       - run:
@@ -548,7 +548,7 @@ jobs:
       #       cf push dev-nrrd -f ./manifest.yml
     
 
-  deploy:
+  deploy-test:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
@@ -566,9 +566,9 @@ jobs:
             - node_modules
       - aws-s3/sync:
           arguments: |
-          aws-access-key-id: $NPS_AWS_ACCESS_KEY
-          aws-region: $NPS_AWS_REGION
-          aws-secret-access-key: $NPS_AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
   
