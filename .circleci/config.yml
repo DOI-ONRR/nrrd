@@ -328,7 +328,7 @@ jobs:
       - run:
           name: "Backup database"
           command: |
-            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
+            pg_dump postgres//postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
       - run:
           name: "Deploy to cloud.gov"
           command: |
@@ -359,10 +359,6 @@ jobs:
                 node ./src/scripts/downloads.js
                 cd ..
                 cp /tmp/downloads/* static/downloads
-      - persist_to_workspace:
-          root: /tmp/
-          paths:
-            - static/downloads
       - run:
           name: "list generated downloads"
           command: |
