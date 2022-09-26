@@ -213,7 +213,7 @@ jobs:
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
 
-  nrrd-dev-database:
+  nrrd-dev-database-test::
     machine:
       image: ubuntu-2004:202010-01
     steps:
@@ -256,7 +256,7 @@ jobs:
           command: |
            ls -lart ./workspace
            cat ./worksapce/SPECIALFILE2.txt
-  nrrd-dev-database-test:
+  nrrd-dev-database:
     machine:
       image: ubuntu-2004:202010-01
     steps:
