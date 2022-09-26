@@ -399,7 +399,7 @@ jobs:
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/downloads/
-          to: 's3://${NPS_BUCKET_NAME}/new2/downloads'
+          to: 's3://${NPS_BUCKET_NAME}/downloads'
       - aws-s3/copy:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
@@ -410,7 +410,7 @@ jobs:
       - run:
           name: "list bucket"
           command: |
-            aws s3 ls s3://${NPS_BUCKET_NAME}/new/downloads/*
+            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads/
 
   nrrd-preview:
     docker:
@@ -523,7 +523,7 @@ jobs:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://${NPS_BUCKET_NAME}/new2/downloads/'
+          from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
       - run:
           name: "list generated downloads"
@@ -548,7 +548,7 @@ jobs:
             cf push dev-nrrd -f ./manifest.yml
     
 
-  deploy-test:
+  deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
