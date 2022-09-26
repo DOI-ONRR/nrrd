@@ -529,6 +529,11 @@ jobs:
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
       - run:
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+            cat static/downloads/downloads.json
+      - run:
           name: Build gatsby
           command: npm run build
       - run:
