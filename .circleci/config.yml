@@ -213,7 +213,7 @@ jobs:
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
 
-  nrrd-dev-database-test::
+  nrrd-dev-database-test:
     machine:
       image: ubuntu-2004:202010-01
     steps:
