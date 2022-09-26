@@ -410,7 +410,7 @@ jobs:
       - run:
           name: "list bucket"
           command: |
-            aws s3 ls s3://${NPS_BUCKET_NAME}/
+            aws s3 ls s3://${NPS_BUCKET_NAME}/new/downloads/*
 
   nrrd-preview:
     docker:
