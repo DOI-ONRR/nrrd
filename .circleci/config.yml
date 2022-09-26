@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
 jobs:
+  lint:
     docker:
       - image: circleci/node:12.4
     working_directory: ~/repo
@@ -229,49 +230,6 @@ jobs:
             #   echo "Halting database build -  no database changes"
             #   circleci-agent step halt
             # fi
-      - persist_to_workspace:
-          root: workspace
-          paths:
-            - .
-      - run:
-          name: "add file to persists"
-          command: |
-            echo "for now assume database changes"  > ./workspace/SPECIALFILE2.txt
-
-
-  deploy:
-    docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
-    resource_class: medium+
-    steps:
-      - checkout
-      - restore_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - attach_workspace: 
-          at: ./workspace
-      - run:
-          name: "show static files"
-          command: |
-           ls -lart ./workspace
-           cat ./workspace/SPECIALFILE2.txt
-  nrrd-dev-database:
-    machine:
-      image: ubuntu-2004:202010-01
-    steps:
-      - checkout
-      - run:
-          name: "Check for database changes"
-          command: |
-            echo "for now assume database changes"
-             CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
-             echo "Number of database changes $CHANGES"
-            # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
-
-            # if [ "$CHANGES" = "0" ]; then
-            #   echo "Halting database build -  no database changes"
-            #   circleci-agent step halt
-            # fi
       - run:
           name: "Begin database build"
           command: |
@@ -327,7 +285,7 @@ jobs:
       - run:
           name: "Backup database"
           command: |
-            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
+            pg_dump postgres//postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
       - run:
           name: "Deploy to cloud.gov"
           command: |
@@ -358,37 +316,32 @@ jobs:
                 node ./src/scripts/downloads.js
                 cd ..
                 cp /tmp/downloads/* static/downloads
-      - persist_to_workspace:
-          root: /tmp/
-          paths:
-            - static/downloads
       - run:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
-            cp /tmp/downloads/* /tmp/workspace/downloads
             ls -lart static/downloads/*
     
 # imported from dev job bbelopw
-      - run:
-          name: Install node dependencies
-          command: npm install
-      - run:
-          name: Build gatsby
-          command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
-      - run:
-          name: deploy to cloud.gov
-          command: |
-            pwd && ls -l
-            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb
-            # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
-            # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
-            cp Staticfile ./public
-            cf api https://api.fr.cloud.gov
-            cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
-            cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
-            cf push dev-nrrd -f ./manifest.yml
+      # - run:
+      #     name: Install node dependencies
+      #     command: npm install
+      # - run:
+      #     name: Build gatsby
+      #     command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
+      # - run:
+      #     name: deploy to cloud.gov
+      #     command: |
+      #       pwd && ls -l
+      #       curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+      #       sudo dpkg -i cf-cli_amd64.deb
+      #       # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+      #       # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+      #       cp Staticfile ./public
+      #       cf api https://api.fr.cloud.gov
+      #       cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
+      #       cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
+      #       cf push dev-nrrd -f ./manifest.yml
 # imported because of issue with s3 storage/downloads metadata
 
       - store_artifacts:
@@ -403,7 +356,7 @@ jobs:
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/downloads/
-          to: 's3://${NPS_BUCKET_NAME}/downloads/'
+          to: 's3://${NPS_BUCKET_NAME}/downloads'
       - aws-s3/copy:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
@@ -414,7 +367,7 @@ jobs:
       - run:
           name: "list bucket"
           command: |
-            aws s3 ls s3://${NPS_BUCKET_NAME}/
+            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads/
 
   nrrd-preview:
     docker:
@@ -517,6 +470,11 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+           # rm static/downloads/downloads.json
       - aws-s3/sync:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
@@ -528,26 +486,26 @@ jobs:
           name: "list generated downloads"
           command: |
             ls -lart static/downloads
-
-      # - run:
-      #     name: Build gatsby
-      #     command: npm run build
-      # - run:
-      #     name: deploy to cloud.gov
-      #     command: |
-      #       pwd && ls -l
-      #       curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-      #       sudo dpkg -i cf-cli_amd64.deb
-      #       # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
-      #       # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
-      #       cp Staticfile ./public
-      #       cf api https://api.fr.cloud.gov
-      #       cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
-      #       cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
-      #       cf push dev-nrrd -f ./manifest.yml
+            cat static/downloads/downloads.json
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: deploy to cloud.gov
+          command: |
+            pwd && ls -l
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+            # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+            cp Staticfile ./public
+            cf api https://api.fr.cloud.gov
+            cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
+            cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
+            cf push dev-nrrd -f ./manifest.yml
     
 
-  deploy-test:
+  deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
@@ -664,6 +622,8 @@ workflows:
             branches:
               only: dev
       - dev:
+          context:
+            - DEV
           requires:
             - nrrd-dev-database
           filters:
