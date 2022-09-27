@@ -285,7 +285,7 @@ jobs:
       - run:
           name: "Backup database"
           command: |
-            pg_dump postgres//postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
+            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
       - run:
           name: "Deploy to cloud.gov"
           command: |
