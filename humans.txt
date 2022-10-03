@@ -6,7 +6,6 @@
 ## TEAM MEMBERS
 
     Nathan Brannberg -- Product Owner -- Department of the Interior, Office of Natural Resources Revenue
-    Daniel Coleman -- Content Strategist -- Department of the Interior, OFfice of Natural Resources Revenue
     Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Lindsay Goldstein -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Mojo Nichols -- Developer -- Department of the Interior, Office of Natural Resources Revenue
@@ -16,11 +15,8 @@
 ## CONTRIBUTORS
 
     Isabel Hernandez -- UX Intern -- Virtual Student Federal Service
-    Jae Kwon -- UX Intern -- Virtual Student Federal Service
-    Jerome Louis -- Contract Developer
-    Christopher Robey -- Development Intern -- Virtual Student Federal Service
     Matthew Sao -- Data Intern -- Virtual Student Federal Service
-    Kaitlyn Tran -- UX Intern -- Virtual Student Federal Service
+    
 
 # PAST TEAM
 
@@ -29,12 +25,14 @@
     Jamie Albrecht -- Content Designer --18F
     Shawn Allen -- Designer Developer -- 18F
     Isabelle Brantley -- Content -- Independent Administrator/Deloitte
+    Daniel Coleman -- Content Strategist -- Department of the Interior, OFfice of Natural Resources Revenue
     Nicole Fenton -- Content Designer -- 18F
     Brian Hedberg -- Developer -- 18F
     Michelle Hertzfeld --  Product Manager and UX -- 18F
     Ryan Johnson -- Content Strategist -- Department of the Interior, Office of Natural Resources Revenue
     Jeff Keene -- Developer -- Department of the Interior, Office of Natural Resources Revenue
     Robert Kronebusch -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
+    Jerome Louis -- Developer -- Contractor, Department of the Interior, Office of Natural Resources Revenue
     Corey Mahoney -- Content Designer -- 18F
     Jennifer Malcolm -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Shannon McHarg -- UX Designer -- Department of the Interior, Office of Natural Resources Revenue
@@ -62,17 +60,19 @@
     Alena Huang -- UX Intern -- Virtual Student Federal Service
     Brandi Nichols -- UX Intern -- Virtual Student Federal Service
     Jeremiah Kimelman -- Developer -- 18F
+    Jae Kwon -- UX Intern -- Virtual Student Federal Service
     Christa McCurdy -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
     Shawnique Muller -- 18F
     Annie Persson -- UX Intern -- Virtual Student Federal Service
     Ben Peterson -- UX Researcher -- 18F
+    Christopher Robey -- Development Intern -- Virtual Student Federal Service
     Marco Segreto -- Developer -- 18F
     Jennifer Thibault -- Visual Designer -- 18F
+    Kaitlyn Tran -- UX Intern -- Virtual Student Federal Service
     Atul Varma -- Developer -- 18F
     Cat Vojslavek -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
     Jamie Wang -- UX Intern -- Virtual Student Federal Service
     Meshan White -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
-    
     
 
 # CREDITS
