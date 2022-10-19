@@ -6,10 +6,11 @@
 ## TEAM MEMBERS
 
     Nathan Brannberg -- Product Owner -- Department of the Interior, Office of Natural Resources Revenue
+    Erin Elzi -- Digital Services Specialist -- Department of the Interior, Office of Natural Resources Revenue
     Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
-    Lindsay Goldstein -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
+    Lindsay Goldstein -- Program Analyst -- Department of the Interior, Office of Natural Resources Revenue
     Mojo Nichols -- Developer -- Department of the Interior, Office of Natural Resources Revenue
-    Christine Thomas -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
+    Christine Thomas -- Program Analyst (Content Strategist) -- Department of the Interior, Office of Natural Resources Revenue
 
 
 ## CONTRIBUTORS
