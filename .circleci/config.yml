@@ -186,15 +186,11 @@ jobs:
                 node ./src/scripts/downloads.js
                 cd ..
                 cp /tmp/downloads/* static/downloads
-        - run:
-            name: "list generated downloads"
-            command: |
-              ls /tmp/downloads/*
-              ls -lart static/downloads/*
       - run:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
+            ls -lart static/downloads/*
       - store_artifacts:
           path: /tmp/database_backup.pg
           destination: database_backup.pg
