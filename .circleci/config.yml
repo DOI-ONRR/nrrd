@@ -184,6 +184,13 @@ jobs:
                 npm install
                 bash ./src/scripts/downloads.sh
                 node ./src/scripts/downloads.js
+                cd ..
+                cp /tmp/downloads/* static/downloads
+        - run:
+            name: "list generated downloads"
+            command: |
+              ls /tmp/downloads/*
+              ls -lart static/downloads/*
       - run:
           name: "list generated downloads"
           command: |
