@@ -321,7 +321,7 @@ jobs:
           command: |
             ls /tmp/downloads/*
             ls -lart static/downloads/*
-    
+
 # imported from dev job bbelopw
       # - run:
       #     name: Install node dependencies
@@ -400,7 +400,7 @@ jobs:
             ls -lart static/downloads
       - run:
           name: Build gatsby
-          command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql && npm run build
+          command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql &&  export CIRCLE_STAGE='nrrd-preview' && npm run build
       - aws-s3/sync:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
@@ -503,7 +503,7 @@ jobs:
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
             cf push dev-nrrd -f ./manifest.yml
-    
+
 
   deploy:
     docker:
