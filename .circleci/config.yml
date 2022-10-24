@@ -314,7 +314,7 @@ jobs:
                 npm install
                 bash ./src/scripts/downloads.sh
                 node ./src/scripts/downloads.js
-       - run:
+      - run:
           name: "list generated downloads"
           command: |
              ls /tmp/downloads/*
