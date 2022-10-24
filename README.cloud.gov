@@ -1,4 +1,4 @@
-foo 
+foo
 
 
 
@@ -12,7 +12,7 @@ cf create-service aws-rds medium-psql onrr-psql
 cf services
 
 
-# sandbox or dev or prod-a or prod-b 
+# sandbox or dev or prod-a or prod-b
 export DB_ENV=sandbox && export DB_PORT=7222 || export DB_ENV=dev && export DB_PORT=7223 || export DB_ENV=nrrd-a && export DB_PORT=7724 || export DB_ENV=nrrd-b && export DB_PORT=7725
 
 # README doesn't show how to get DATABASE URL or PORT - This is because we put these in config of hasura and then on the next step (bind-service they get crated.
@@ -22,7 +22,7 @@ cf bind-service hasura-$DB_ENV  $DB_ENV-psql
 cf set-env hasura-$DB_ENV HASURA_GRAPHQL_ADMIN_SECRET' 'SUPER SECRET PASSWORD THAT IS NOT THIS'
 cf start hasura-$DB_ENV
 cf set-env hasura-$DB_ENV HASURA_GRAPHQL_ENABLE_CONSOLE true
-cf set-env hasura-$DB_ENV HASURA_GRAPHQL_UNAUTHORIZED_ROLE public 
+cf set-env hasura-$DB_ENV HASURA_GRAPHQL_UNAUTHORIZED_ROLE public
 cf restage hasura-$DB_ENV
 
 cf env hasura-$DB_ENV # to see the password for our Hasura instance!
@@ -36,7 +36,7 @@ cf env hasura-$DB_ENV # to see the password for our Hasura instance!
 
 
 
-#create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.  
+#create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.
 
 myapp_guid=$(cf app --guid hasura-$DB_ENV)
 creds=$(cf curl /v2/apps/$myapp_guid/env | jq -r '[.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .username, .password] | join(":")')\n
@@ -64,11 +64,11 @@ echo $creds   # username:password
 export DB_USER=<username>
 export DB_PASSWORD=<password>
 
-export DB_USER=`echo -n $creds | cut -d: -f1`                                           
+export DB_USER=`echo -n $creds | cut -d: -f1`
 export DB_PASSWORD=`echo -n  $creds | cut -d: -f2`
 export DB_DATABASE=$dbname
 export DB_HOST=localhost
- 
+
 
 
 #
@@ -84,7 +84,7 @@ cf env $DB_ENV
 
 
 #BACK UP Restoring from database:
-# in this example port 7222 has tunnel to psql-sandbox (source) 
+# in this example port 7222 has tunnel to psql-sandbox (source)
 # port 7223 has port to psql-onrr (target)
 
 export DATE=`date +'%F_%T'`
@@ -107,17 +107,17 @@ Password: <ENTER PASSWORD>
 
 cf restage hasura-$DB_ENV (where we are in the shell  configure for hasura-onrr
 
-update location set fips_code=concat('0',fips_code) where length(fips_code)=4 
+update location set fips_code=concat('0',fips_code) where length(fips_code)=4
 
 
 #recover if hassura keeps crashing
 export DB_ENV=<db_env to recover>  && export DB_PORT=7726
-cf push hasura-recover -f manifest.staging.yml 
+cf push hasura-recover -f manifest.staging.yml
 cf bind-service hasura-recover  $DB_ENV-psql
 
 
 
-#create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.  
+#create tunnel to postgres to run node scripts against it. The exported variables can be put into login init so that this doesn't have to be done each time.
 
 myapp_guid=$(cf app --guid hasura-recover)
 creds=$(cf curl /v2/apps/$myapp_guid/env | jq -r '[.system_env_json.VCAP_SERVICES."aws-rds"[0].credentials | .username, .password] | join(":")')\n
@@ -136,11 +136,3 @@ dbname=$(cf curl /v2/apps/$myapp_guid/env | jq -r '.system_env_json.VCAP_SERVICE
 psql postgres://$creds@localhost:$DB_PORT/$dbname
 
 # do repairs here or restore see above
-
-
-
-
-
-
-
-
