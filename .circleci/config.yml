@@ -1,4 +1,4 @@
-version: 2.1
+vversion: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
 jobs:
@@ -212,7 +212,6 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
-
   nrrd-dev-database:
     machine:
       image: ubuntu-2004:202010-01
@@ -225,7 +224,6 @@ jobs:
              CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
              echo "Number of database changes $CHANGES"
             # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
-
             # if [ "$CHANGES" = "0" ]; then
             #   echo "Halting database build -  no database changes"
             #   circleci-agent step halt
@@ -285,7 +283,7 @@ jobs:
       - run:
           name: "Backup database"
           command: |
-            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
+            pg_dump postgres//postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
       - run:
           name: "Deploy to cloud.gov"
           command: |
@@ -314,11 +312,14 @@ jobs:
                 npm install
                 bash ./src/scripts/downloads.sh
                 node ./src/scripts/downloads.js
+                cd ..
+                cp /tmp/downloads/* static/downloads
       - run:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
-
+            ls -lart static/downloads/*
+    
 # imported from dev job bbelopw
       # - run:
       #     name: Install node dependencies
@@ -365,7 +366,6 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/downloads/
-
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -411,7 +411,6 @@ jobs:
           name: clean up
           command: |
             bash ./.circleci/cleanup-previews.sh
-
   nrrd-preview-new:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -467,6 +466,11 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+           # rm static/downloads/downloads.json
       - aws-s3/sync:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
@@ -474,6 +478,11 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+            cat static/downloads/downloads.json
       - run:
           name: Build gatsby
           command: npm run build
@@ -490,7 +499,7 @@ jobs:
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
             cf push dev-nrrd -f ./manifest.yml
-
+    
 
   deploy:
     docker:
@@ -515,6 +524,11 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+            cat static/downloads/downloads.json
       - run:
           name: Build gatsby
           command: npm run build
