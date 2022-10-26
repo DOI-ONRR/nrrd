@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
+
 jobs:
   lint:
     docker:
@@ -46,6 +47,7 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./coverage
+
   end_to_end_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -67,6 +69,7 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./__tests__/__image_snapshots__/
+
   lighthouse:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -86,6 +89,7 @@ jobs:
           command: node __audits__/lighthouse.audit.js
       - store_artifacts:
           path: ./__audits__/lighthouse/
+
 
   nrrd-database:
     machine:
@@ -212,7 +216,6 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
-
   nrrd-dev-database:
     machine:
       image: ubuntu-2004:202010-01
@@ -225,7 +228,6 @@ jobs:
              CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
              echo "Number of database changes $CHANGES"
             # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
-
             # if [ "$CHANGES" = "0" ]; then
             #   echo "Halting database build -  no database changes"
             #   circleci-agent step halt
@@ -320,30 +322,6 @@ jobs:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
-            ls -lart static/downloads/*
-
-# imported from dev job bbelopw
-      # - run:
-      #     name: Install node dependencies
-      #     command: npm install
-      # - run:
-      #     name: Build gatsby
-      #     command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
-      # - run:
-      #     name: deploy to cloud.gov
-      #     command: |
-      #       pwd && ls -l
-      #       curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-      #       sudo dpkg -i cf-cli_amd64.deb
-      #       # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
-      #       # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
-      #       cp Staticfile ./public
-      #       cf api https://api.fr.cloud.gov
-      #       cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
-      #       cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
-      #       cf push dev-nrrd -f ./manifest.yml
-# imported because of issue with s3 storage/downloads metadata
-
       - store_artifacts:
           path: /tmp/database_backup.pg
           destination: database_backup.pg
@@ -356,19 +334,18 @@ jobs:
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/downloads/
-          to: 's3://${NPS_BUCKET_NAME}/downloads'
+          to: 's3://$NPS_BUCKET_NAME/downloads/'
       - aws-s3/copy:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/database_backup.pg
-          to: 's3://${NPS_BUCKET_NAME}/backup/database_backup.pg'
+          to: 's3://$NPS_BUCKET_NAME/backup/database_backup.pg'
       - run:
           name: "list bucket"
           command: |
-            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads/
-
+            aws s3 ls s3://${NPS_BUCKET_NAME}/
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -393,7 +370,7 @@ jobs:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://${NPS_BUCKET_NAME}/downloads/'
+          from: 's3://$NPS_BUCKET_NAME/downloads/'
           to: static/downloads/
       - run:
           command: |
@@ -414,46 +391,6 @@ jobs:
           name: clean up
           command: |
             bash ./.circleci/cleanup-previews.sh
-
-  nrrd-preview-new:
-    docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
-    resource_class: medium+
-    steps:
-      - checkout
-      - restore_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install node dependencies
-          command: npm install
-      - save_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - aws-s3/sync:
-          arguments: |
-          aws-access-key-id: NPS_AWS_ACCESS_KEY
-          aws-region: NPS_AWS_REGION
-          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://$NPS_BUCKET_NAME/downloads/'
-          to: static/downloads/
-      - run:
-          name: Build gatsby
-          command: npm run build
-      - run:
-          name: deploy to cloud.gov
-          command: |
-            pwd && ls -l
-            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb
-            # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
-            # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
-            cp Staticfile ./public
-            cf api https://api.fr.cloud.gov
-            cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
-            cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
-            cf push dev-nrrd -f ./manifest.staging.yml
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -480,7 +417,7 @@ jobs:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://${NPS_BUCKET_NAME}/downloads/'
+          from: 's3://$NPS_BUCKET_NAME/downloads/'
           to: static/downloads/
       - run:
           name: "list generated downloads"
@@ -503,8 +440,6 @@ jobs:
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
             cf push dev-nrrd -f ./manifest.yml
-
-
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -521,19 +456,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-      # - aws-s3/sync:
-      #     arguments: |
-      #     aws-access-key-id: NPS_AWS_ACCESS_KEY
-      #     aws-region: NPS_AWS_REGION
-      #     aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-      #     from: 's3://${NPS_BUCKET_NAME}/downloads/'
-      #     to: static/downloads/
-      - run:
-          name: "list generated downloads"
-          command: |
-            ls -lart static/downloads
-            cat static/downloads/downloads.json
-            echo ${NPS_BUCKET_NAME} ${NPS_AWS_ACCESS_KEY}
+
       - run:
           name: Build gatsby
           command: npm run build
@@ -573,6 +496,7 @@ workflows:
               ignore:
                 - master
                 - staging
+
   preview:
     jobs:
       - nrrd-database:
@@ -600,6 +524,7 @@ workflows:
           filters:
             branches:
               only: master
+
       - nrrd-dev-database:
           context:
             - DEV
@@ -614,8 +539,6 @@ workflows:
             branches:
               only: dev
       - dev:
-          context:
-            - DEV
           requires:
             - nrrd-dev-database
           filters:
