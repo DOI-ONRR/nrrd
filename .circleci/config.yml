@@ -550,7 +550,7 @@ workflows:
               ignore:
                 - master
                 - staging
-   preview:
+  preview:
     jobs:
       - nrrd-database:
           context:
@@ -573,7 +573,7 @@ workflows:
 
   deploy:
     jobs:
-      - deploy:
+       - deploy:
           filters:
             branches:
               only: master
