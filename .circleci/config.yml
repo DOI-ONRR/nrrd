@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
-
 jobs:
   lint:
     docker:
@@ -216,6 +215,7 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
+
   nrrd-dev-database:
     machine:
       image: ubuntu-2004:202010-01
@@ -346,6 +346,7 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
+
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -391,7 +392,7 @@ jobs:
           name: clean up
           command: |
             bash ./.circleci/cleanup-previews.sh
-   dev:
+  dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
