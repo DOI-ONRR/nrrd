@@ -537,7 +537,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: npm install
-          command: npm clean
+          command: npm run clean
       - run:
           name: Build gatsby
           command: npm run build
