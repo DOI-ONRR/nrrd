@@ -514,7 +514,7 @@ jobs:
     resource_class: medium+
     steps:
       - run:
-          name: Mike installing nasm 
+          name: Mike installing nasm
           command: sudo apt install nasm
       - checkout
       - restore_cache:
@@ -543,7 +543,7 @@ jobs:
           command: npm cache clean --force
       - run:
           name: npm install
-          command: npm install
+          command: npm install --legacy-peer-deps
       - run:
           name: Build gatsby
           command: npm run build
