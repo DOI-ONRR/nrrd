@@ -510,7 +510,7 @@ jobs:
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:16-bullseye-browsers-legacy
     resource_class: medium+
     steps:
       - run:
