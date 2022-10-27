@@ -598,12 +598,13 @@ workflows:
       - nrrd-dev-database:
             context:
               - DEV
-            requires:
-              - deploy
+
       - deploy:
           filters:
             branches:
               only: master
+          requires:
+                  - nrrd-dev-database
 
   dev:
     jobs:
