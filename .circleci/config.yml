@@ -516,9 +516,6 @@ jobs:
       - checkout
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install node dependencies
-          command: npm ci
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -538,7 +535,10 @@ jobs:
       - run:
           name: npm install
           command: rm -rf node_modules package-lock.json
-        - run:
+      - run:
+        name: npm cache clean --force
+        command: npm cache clean --force
+      - run:
           name: npm install
           command: npm install
       - run:
