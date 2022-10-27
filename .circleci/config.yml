@@ -507,15 +507,15 @@ jobs:
             cf push dev-nrrd -f ./manifest.yml
 
 
-  deploy:
+deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
     resource_class: medium+
     steps:
       - checkout
-    restore_cache:
-         key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
           command: rm -rf node_modules package-lock.json
