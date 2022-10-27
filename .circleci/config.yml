@@ -510,15 +510,15 @@ jobs:
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:16-bullseye-browsers-legacy
+      - image: circleci/node:12.13.0-browsers
     resource_class: medium+
     steps:
-      - run:
-          name: Mike installing nasm
-          command: sudo apt install nasm
       - checkout
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm ci
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -537,13 +537,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: npm install
-          command: rm -rf node_modules package-lock.json
-      - run:
-          name: npm cache clean --force
-          command: npm cache clean --force
-      - run:
-          name: npm install
-          command: npm install --legacy-peer-deps
+          command: npm i gatsby gatsby-core-utils
       - run:
           name: Build gatsby
           command: npm run build
