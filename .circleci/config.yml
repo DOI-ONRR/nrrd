@@ -397,7 +397,7 @@ jobs:
             ls -lart static/downloads
       - run:
           name: npm install
-          command: npm install
+          command: npm i -g gatsby
       - run:
           name: Build gatsby
           command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql &&  export CIRCLE_STAGE='nrrd-preview' && npm run build
@@ -488,7 +488,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: npm install
-          command: npm install
+          command: npm i -g gatsby
       - run:
           name: Build gatsby
           command: npm run build
@@ -537,7 +537,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: npm install
-          command: npm install
+          command: npm i -g gatsby
       - run:
           name: Build gatsby
           command: npm run build
