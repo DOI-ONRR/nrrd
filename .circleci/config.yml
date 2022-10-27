@@ -532,7 +532,7 @@ deploy:
             cat static/downloads/downloads.json
       - run:
           name: npm install
-          command: npm ci
+          command: npm install
       - run:
           name: Build gatsby
           command: npm run build
