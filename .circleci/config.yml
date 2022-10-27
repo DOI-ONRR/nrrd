@@ -359,7 +359,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -377,6 +377,7 @@ jobs:
       - run:
           command: |
             ls -lart static/downloads
+
       - run:
           name: Build gatsby
           command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql &&  export CIRCLE_STAGE='nrrd-preview' && npm run build
@@ -429,7 +430,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: Build gatsby
-          command: npm ci
+          command: npm run build
       - run:
           name: deploy to cloud.gov
           command: |
