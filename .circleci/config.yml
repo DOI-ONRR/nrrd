@@ -13,7 +13,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm ci
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -35,7 +35,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm ci
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -57,7 +57,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm ci
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -79,7 +79,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm ci
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -185,7 +185,7 @@ jobs:
           name: "Generate downloads"
           command: |
                 cd database
-                npm install
+                npm ci
                 bash ./src/scripts/downloads.sh
                 node ./src/scripts/downloads.js
       - run:
@@ -314,7 +314,7 @@ jobs:
           name: "Generate downloads"
           command: |
                 cd database
-                npm install
+                npm ci
                 bash ./src/scripts/downloads.sh
                 node ./src/scripts/downloads.js
                 cd ..
@@ -359,7 +359,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm ci
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -405,7 +405,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm ci
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -429,7 +429,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: Build gatsby
-          command: npm run build
+          command: npm ci
       - run:
           name: deploy to cloud.gov
           command: |
@@ -455,7 +455,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm ci
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
