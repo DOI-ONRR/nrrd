@@ -595,15 +595,16 @@ workflows:
 
   deploy:
     jobs:
+      - nrrd-dev-database:
+            context:
+              - DEV
+            requires:
+              - deploy
       - deploy:
           filters:
             branches:
               only: master
-      - nrrd-dev-database:
-          context:
-            - DEV
-          requires:
-            - deploy
+
   dev:
     jobs:
       - nrrd-dev-database:
