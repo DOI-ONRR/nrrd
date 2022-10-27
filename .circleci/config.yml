@@ -513,6 +513,9 @@ jobs:
       - image: circleci/node:12.13.0-browsers
     resource_class: medium+
     steps:
+      - run:
+          name: Mike installing nasm 
+          command: sudo apt install nasm
       - checkout
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
