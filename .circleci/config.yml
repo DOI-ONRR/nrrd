@@ -397,7 +397,7 @@ jobs:
             ls -lart static/downloads
       - run:
           name: Build gatsby
-          command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql &&  export CIRCLE_STAGE='nrrd-preview' && npm run build
+          command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql &&  export CIRCLE_STAGE='nrrd-preview' && npm run develop
       - aws-s3/sync:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
@@ -485,7 +485,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: Build gatsby
-          command: npm run build
+          command: npm run develop
       - run:
           name: deploy to cloud.gov
           command: |
@@ -531,7 +531,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: Build gatsby
-          command: npm run build
+          command: npm run develop
       - run:
           name: deploy preview to cloud.gov
           command: |
