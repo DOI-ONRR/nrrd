@@ -514,8 +514,8 @@ jobs:
     resource_class: medium+
     steps:
       - checkout
-      - restore_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      # restore_cache:
+        #  key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
           command: npm ci
@@ -537,7 +537,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: npm install
-          command: npm i gatsby gatsby-core-utils
+          command: npm clean
       - run:
           name: Build gatsby
           command: npm run build
