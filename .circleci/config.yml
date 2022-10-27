@@ -518,7 +518,7 @@ jobs:
         #  key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: rm -rf node_modules && rm ./package-lock.json && npm install
+          command: rm -rf node_modules package-lock.json
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
