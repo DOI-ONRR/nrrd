@@ -12,7 +12,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -34,7 +34,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -55,7 +55,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -76,7 +76,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -181,7 +181,7 @@ jobs:
           name: "Generate downloads"
           command: |
                 cd database
-                npm ci
+                npm install
                 bash ./src/scripts/downloads.sh
                 node ./src/scripts/downloads.js
       - run:
@@ -309,7 +309,7 @@ jobs:
           name: "Generate downloads"
           command: |
                 cd database
-                npm ci
+                npm install
                 bash ./src/scripts/downloads.sh
                 node ./src/scripts/downloads.js
                 cd ..
@@ -319,6 +319,7 @@ jobs:
           command: |
             ls /tmp/downloads/*
             ls -lart static/downloads/*
+
 # imported from dev job bbelopw
       # - run:
       #     name: Install node dependencies
@@ -376,7 +377,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -394,9 +395,6 @@ jobs:
       - run:
           command: |
             ls -lart static/downloads
-      - run:
-          name: npm install
-          command: npm i -g gatsby
       - run:
           name: Build gatsby
           command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql &&  export CIRCLE_STAGE='nrrd-preview' && npm run build
@@ -424,7 +422,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -463,7 +461,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -486,9 +484,6 @@ jobs:
             ls -lart static/downloads
             cat static/downloads/downloads.json
       - run:
-          name: npm install
-          command: npm i -g gatsby
-      - run:
           name: Build gatsby
           command: npm run build
       - run:
@@ -504,6 +499,8 @@ jobs:
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
             cf push dev-nrrd -f ./manifest.yml
+
+
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -515,21 +512,24 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-      - aws-s3/sync:
-          arguments: |
-          aws-access-key-id: NPS_AWS_ACCESS_KEY
-          aws-region: NPS_AWS_REGION
-          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://$NPS_BUCKET_NAME/downloads/'
-          to: static/downloads/
+      # - aws-s3/sync:
+      #     arguments: |
+      #     aws-access-key-id: NPS_AWS_ACCESS_KEY
+      #     aws-region: NPS_AWS_REGION
+      #     aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+      #     from: 's3://${NPS_BUCKET_NAME}/downloads/'
+      #     to: static/downloads/
       - run:
-          name: npm install
-          command: npm i gatsby gatsby-core-utils
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+            cat static/downloads/downloads.json
+            echo ${NPS_BUCKET_NAME} ${NPS_AWS_ACCESS_KEY}
       - run:
           name: Build gatsby
           command: npm run build
