@@ -27929,6 +27929,7 @@ August,2022,U.S. Treasury,2039,Onshore,,,,Phosphate,Royalties,"101,148.99"
 August,2022,U.S. Treasury,2039,Onshore,,,,Potassium,Royalties,"171,822.28"
 August,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Other Distributions,-136.1
 August,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Royalties,"219,537.17"
+<<<<<<< HEAD
 September,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Coal,Rents & Bonuses,"23,052.00"
 September,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Gilsonite,Rents & Bonuses,38.25
 September,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Oil & Gas,Rents & Bonuses,"291,525.03"
@@ -28299,3 +28300,5 @@ September,2022,U.S. Treasury,2039,Onshore,,,,Phosphate,Other Distributions,"3,33
 September,2022,U.S. Treasury,2039,Onshore,,,,Phosphate,Royalties,"114,852.78"
 September,2022,U.S. Treasury,2039,Onshore,,,,Potassium,Royalties,"100,518.98"
 September,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Royalties,"211,410.94"
+=======
+>>>>>>> release6.7.0
