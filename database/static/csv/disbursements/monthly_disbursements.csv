@@ -1201,7 +1201,7 @@ January,2017,Reclamation Fund,,Onshore,,,,Potassium,Other Distributions,"343,735
 January,2017,Reclamation Fund,,Onshore,,,,Potassium,Royalties,"317,261.68"
 January,2017,Reclamation Fund,,Onshore,,,,Sodium,Other Distributions,"108,954.47"
 January,2017,Reclamation Fund,,Onshore,,,,Sodium,Royalties,"1,473,451.64"
-January,2017,State,,Offshore,8(g),AC,,Wind,Rents & Bonuses,"1,701.00"
+January,2017,State,,Offshore,8(g),RI,,Wind,Rents & Bonuses,"1,701.00"
 January,2017,State,,Offshore,8(g),AK,,Oil,Royalties,"76,447.59"
 January,2017,State,,Offshore,8(g),AK,,Oil & Gas,Other Distributions,86.18
 January,2017,State,,Offshore,8(g),AK,,Oil & Gas,Rents & Bonuses,"61,824.13"
@@ -27567,365 +27567,365 @@ July,2022,U.S. Treasury,2039,Onshore,,,,Potassium,Other Distributions,"-5,566.97
 July,2022,U.S. Treasury,2039,Onshore,,,,Potassium,Royalties,"361,085.52"
 July,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Other Distributions,"-3,857.79"
 July,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Royalties,"452,952.16"
-August,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Coal,Rents & Bonuses,"62,632.50 "
-August,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Gilsonite,Rents & Bonuses,(21.00)
-August,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Oil & Gas,Rents & Bonuses,"151,878.52 "
-August,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Phosphate,Rents & Bonuses,(707.50)
-August,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Sodium,Rents & Bonuses,"(2,078.00)"
-August,2022,Bureau of Land Management,,Onshore,,,,Gas,Royalties,"41,230.73 "
-August,2022,Bureau of Land Management,,Onshore,,,,Oil,Royalties,"108,921.02 "
-August,2022,Bureau of Land Management,,Onshore,,,,Oil & Gas,Other Distributions,"2,418.17 "
-August,2022,Bureau of Land Management,,Onshore,,,,Oil & Gas,Rents & Bonuses,40.00 
-August,2022,Bureau of Ocean Energy Management,,Offshore,,,,Oil & Gas,Rents & Bonuses,"3,180,021.03 "
-August,2022,Bureau of Safety & Environmental Enforcement,,Offshore,,,,,Other Distributions,"2,288,325.49 "
-August,2022,Bureau of Safety & Environmental Enforcement,,Offshore,,,,Oil & Gas,Rents & Bonuses,"1,383,094.32 "
-August,2022,Fish & Wildlife,,Onshore,,,,Gas,Royalties,"55,868.56 "
-August,2022,Fish & Wildlife,,Onshore,,,,Oil,Royalties,"168,542.08 "
-August,2022,Fish & Wildlife,,Onshore,,,,Oil & Gas,Other Distributions,"2,172.36 "
-August,2022,Forest Service,,Onshore,,,,Coal,Royalties,"40,080.85 "
-August,2022,Forest Service,,Onshore,,,,Copper,Royalties,"181,204.04 "
-August,2022,Forest Service,,Onshore,,,,Gas,Royalties,"9,592,562.44 "
-August,2022,Forest Service,,Onshore,,,,Hardrock,Other Distributions,358.39 
-August,2022,Forest Service,,Onshore,,,,Hardrock,Rents & Bonuses,122.25 
-August,2022,Forest Service,,Onshore,,,,Lead/Zinc,Royalties,"429,545.75 "
-August,2022,Forest Service,,Onshore,,,,Oil,Royalties,"28,824,214.80 "
-August,2022,Forest Service,,Onshore,,,,Oil & Gas,Other Distributions,"631,246.48 "
-August,2022,Forest Service,,Onshore,,,,Oil & Gas,Rents & Bonuses,"18,156.50 "
-August,2022,Forest Service,,Onshore,,,,Quartz,Royalties,8.36 
-August,2022,Land & Water Conservation Fund,,Offshore,GoMESA,,,Gas,Royalties,"1,600,725.15 "
-August,2022,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil,Royalties,"15,190,893.84 "
-August,2022,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"180,241.21 "
-August,2022,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Royalties,"678,536.74 "
-August,2022,Native American Tribes & Allottees,,Onshore,,,,,Other Distributions,"582,040.83 "
-August,2022,Native American Tribes & Allottees,,Onshore,,,,Coal,Other Distributions,"739,196.68 "
-August,2022,Native American Tribes & Allottees,,Onshore,,,,Coal,Royalties,"4,530,893.20 "
-August,2022,Native American Tribes & Allottees,,Onshore,,,,Gas,Other Distributions,(74.38)
-August,2022,Native American Tribes & Allottees,,Onshore,,,,Gas,Royalties,"37,754,071.04 "
-August,2022,Native American Tribes & Allottees,,Onshore,,,,Oil,Other Distributions,"(5,935.90)"
-August,2022,Native American Tribes & Allottees,,Onshore,,,,Oil,Royalties,"124,400,152.64 "
-August,2022,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Other Distributions,"3,407,221.58 "
-August,2022,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Rents & Bonuses,"130,361.44 "
-August,2022,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Royalties,"227,437.89 "
-August,2022,Reclamation Fund,,Onshore,,,,Coal,Other Distributions,"42,884.65 "
-August,2022,Reclamation Fund,,Onshore,,,,Coal,Royalties,"17,946,331.06 "
-August,2022,Reclamation Fund,,Onshore,,,,Gas,Other Distributions,182.13 
-August,2022,Reclamation Fund,,Onshore,,,,Gas,Royalties,"107,042,131.03 "
-August,2022,Reclamation Fund,,Onshore,,,,Gilsonite,Other Distributions,271.20 
-August,2022,Reclamation Fund,,Onshore,,,,Gilsonite,Royalties,"59,480.37 "
-August,2022,Reclamation Fund,,Onshore,,,,Oil,Other Distributions,"12,516.04 "
-August,2022,Reclamation Fund,,Onshore,,,,Oil,Royalties,"215,074,332.69 "
-August,2022,Reclamation Fund,,Onshore,,,,Oil & Gas,Other Distributions,"14,534,679.02 "
-August,2022,Reclamation Fund,,Onshore,,,,Oil & Gas,Rents & Bonuses,(560.06)
-August,2022,Reclamation Fund,,Onshore,,,,Oil & Gas,Royalties,"2,418,248.08 "
-August,2022,Reclamation Fund,,Onshore,,,,Phosphate,Other Distributions,"2,143.20 "
-August,2022,Reclamation Fund,,Onshore,,,,Phosphate,Royalties,"404,595.98 "
-August,2022,Reclamation Fund,,Onshore,,,,Potassium,Royalties,"687,288.68 "
-August,2022,Reclamation Fund,,Onshore,,,,Sodium,Other Distributions,(544.40)
-August,2022,Reclamation Fund,,Onshore,,,,Sodium,Royalties,"878,147.37 "
-August,2022,State,,Offshore,8(g),AK,,Oil,Royalties,"151,255.07 "
-August,2022,State,,Offshore,8(g),AL,,,Royalties,"(134,850.00)"
-August,2022,State,,Offshore,8(g),AL,,Gas,Royalties,"456,749.37 "
-August,2022,State,,Offshore,8(g),AL,,Oil,Royalties,"1,692.05 "
-August,2022,State,,Offshore,8(g),AL,,Oil & Gas,Other Distributions,"88,247.68 "
-August,2022,State,,Offshore,8(g),AL,,Oil & Gas,Royalties,144.10 
-August,2022,State,,Offshore,8(g),CA,,Gas,Royalties,"2,829.94 "
-August,2022,State,,Offshore,8(g),CA,,Oil,Royalties,"236,293.03 "
-August,2022,State,,Offshore,8(g),CA,,Oil & Gas,Other Distributions,"2,263.67 "
-August,2022,State,,Offshore,8(g),CA,,Oil & Gas,Royalties,1.12 
-August,2022,State,,Offshore,8(g),LA,,Gas,Royalties,"361,542.67 "
-August,2022,State,,Offshore,8(g),LA,,Oil,Other Distributions,(667.41)
-August,2022,State,,Offshore,8(g),LA,,Oil,Royalties,"212,894.32 "
-August,2022,State,,Offshore,8(g),LA,,Oil & Gas,Other Distributions,"147,996.02 "
-August,2022,State,,Offshore,8(g),MS,,,Royalties,"36,907.88 "
-August,2022,State,,Offshore,8(g),MS,,Gas,Royalties,"14,544.31 "
-August,2022,State,,Offshore,8(g),MS,,Oil & Gas,Other Distributions,"2,150.82 "
-August,2022,State,,Offshore,8(g),TX,,,Royalties,"97,942.12 "
-August,2022,State,,Offshore,8(g),TX,,Gas,Royalties,"10,453.49 "
-August,2022,State,,Offshore,8(g),TX,,Oil & Gas,Other Distributions,10.50 
-August,2022,State,,Onshore,Geothermal,CA,Inyo County,,Sequestration,(563.23)
-August,2022,State,,Onshore,Geothermal,CA,Inyo County,Geothermal,Other Distributions,"1,215.50 "
-August,2022,State,,Onshore,Geothermal,CA,Inyo County,Geothermal,Royalties,"8,665.81 "
-August,2022,State,,Onshore,Geothermal,CA,Lake County,,Sequestration,"(3,580.91)"
-August,2022,State,,Onshore,Geothermal,CA,Lake County,Geothermal,Royalties,"62,823.05 "
-August,2022,State,,Onshore,Geothermal,CA,Mono County,,Sequestration,(992.38)
-August,2022,State,,Onshore,Geothermal,CA,Mono County,Geothermal,Royalties,"17,410.24 "
-August,2022,State,,Onshore,Geothermal,CA,Sonoma County,,Sequestration,"(6,040.10)"
-August,2022,State,,Onshore,Geothermal,CA,Sonoma County,Geothermal,Royalties,"105,966.75 "
-August,2022,State,,Onshore,Geothermal,ID,Washington County,,Sequestration,(247.95)
-August,2022,State,,Onshore,Geothermal,ID,Washington County,Geothermal,Rents & Bonuses,"4,350.00 "
-August,2022,State,,Onshore,Geothermal,NV,Churchill County,,Sequestration,"(6,892.73)"
-August,2022,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Other Distributions,36.56 
-August,2022,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Rents & Bonuses,(93.67)
-August,2022,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Royalties,"120,982.23 "
-August,2022,State,,Onshore,Geothermal,NV,Eureka County,,Sequestration,(9.08)
-August,2022,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Royalties,159.28 
-August,2022,State,,Onshore,Geothermal,NV,Humboldt County,,Sequestration,(566.83)
-August,2022,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Rents & Bonuses,"4,952.50 "
-August,2022,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Royalties,"4,991.93 "
-August,2022,State,,Onshore,Geothermal,NV,Lander County,,Sequestration,"(3,019.54)"
-August,2022,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Rents & Bonuses,(42.50)
-August,2022,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Royalties,"53,016.89 "
-August,2022,State,,Onshore,Geothermal,NV,Lyon County,,Sequestration,(10.44)
-August,2022,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Rents & Bonuses,(65.19)
-August,2022,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Royalties,248.37 
-August,2022,State,,Onshore,Geothermal,NV,Mineral County,,Sequestration,(295.06)
-August,2022,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Rents & Bonuses,(55.24)
-August,2022,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Royalties,"5,231.73 "
-August,2022,State,,Onshore,Geothermal,NV,Pershing County,,Sequestration,(3.53)
-August,2022,State,,Onshore,Geothermal,NV,Pershing County,Geothermal,Royalties,62.01 
-August,2022,State,,Onshore,Geothermal,NV,Washoe County,,Sequestration,(265.91)
-August,2022,State,,Onshore,Geothermal,NV,Washoe County,Geothermal,Royalties,"4,665.01 "
-August,2022,State,,Onshore,Geothermal,UT,Beaver County,,Sequestration,(711.83)
-August,2022,State,,Onshore,Geothermal,UT,Beaver County,Geothermal,Royalties,"12,488.24 "
-August,2022,State,,Onshore,Geothermal,UT,Millard County,,Sequestration,(8.04)
-August,2022,State,,Onshore,Geothermal,UT,Millard County,Geothermal,Royalties,141.08 
-August,2022,State,,Onshore,State,AK,,,Royalties,"(22,511.91)"
-August,2022,State,,Onshore,State,AK,,,Sequestration,"(320,349.71)"
-August,2022,State,,Onshore,State,AK,,Gas,Royalties,"1,427,999.08 "
-August,2022,State,,Onshore,State,AK,,Oil,Other Distributions,"117,262.11 "
-August,2022,State,,Onshore,State,AK,,Oil,Royalties,"4,079,973.17 "
-August,2022,State,,Onshore,State,AK,,Oil & Gas,Other Distributions,"14,981.55 "
-August,2022,State,,Onshore,State,AK,,Oil & Gas,Rents & Bonuses,"2,466.49 "
-August,2022,State,,Onshore,State,AL,,,Royalties,"(8,037.47)"
-August,2022,State,,Onshore,State,AL,,,Sequestration,"(22,807.41)"
-August,2022,State,,Onshore,State,AL,,Coal,Royalties,"397,457.43 "
-August,2022,State,,Onshore,State,AL,,Gas,Royalties,"7,060.65 "
-August,2022,State,,Onshore,State,AL,,Oil,Royalties,"3,552.91 "
-August,2022,State,,Onshore,State,AL,,Oil & Gas,Other Distributions,5.70 
-August,2022,State,,Onshore,State,AL,,Oil & Gas,Royalties,90.92 
-August,2022,State,,Onshore,State,AR,,,Royalties,"(1,456.95)"
-August,2022,State,,Onshore,State,AR,,,Sequestration,"(7,623.35)"
-August,2022,State,,Onshore,State,AR,,Gas,Royalties,"135,196.02 "
-August,2022,State,,Onshore,State,AR,,Hardrock,Other Distributions,95.74 
-August,2022,State,,Onshore,State,AR,,Hardrock,Rents & Bonuses,32.66 
-August,2022,State,,Onshore,State,AR,,Oil & Gas,Other Distributions,"(1,332.73)"
-August,2022,State,,Onshore,State,AR,,Oil & Gas,Rents & Bonuses,"1,206.00 "
-August,2022,State,,Onshore,State,AR,,Quartz,Royalties,2.25 
-August,2022,State,,Onshore,State,CA,,,Other Distributions,14.94 
-August,2022,State,,Onshore,State,CA,,,Royalties,"(118,871.35)"
-August,2022,State,,Onshore,State,CA,,,Sequestration,"(332,008.52)"
-August,2022,State,,Onshore,State,CA,,Gas,Royalties,"112,696.57 "
-August,2022,State,,Onshore,State,CA,,Geothermal,Other Distributions,"2,431.00 "
-August,2022,State,,Onshore,State,CA,,Geothermal,Royalties,"389,746.95 "
-August,2022,State,,Onshore,State,CA,,Oil,Royalties,"5,191,784.31 "
-August,2022,State,,Onshore,State,CA,,Oil & Gas,Other Distributions,"1,034.93 "
-August,2022,State,,Onshore,State,CA,,Oil & Gas,Rents & Bonuses,60.00 
-August,2022,State,,Onshore,State,CA,,Potassium,Royalties,"9,843.05 "
-August,2022,State,,Onshore,State,CA,,Sodium,Other Distributions,"(1,948.50)"
-August,2022,State,,Onshore,State,CA,,Sodium,Rents & Bonuses,(649.50)
-August,2022,State,,Onshore,State,CA,,Sodium,Royalties,"238,568.45 "
-August,2022,State,,Onshore,State,CO,,,Other Distributions,431.15 
-August,2022,State,,Onshore,State,CO,,,Royalties,"(318,105.06)"
-August,2022,State,,Onshore,State,CO,,,Sequestration,"(888,601.72)"
-August,2022,State,,Onshore,State,CO,,Coal,Other Distributions,190.68 
-August,2022,State,,Onshore,State,CO,,Coal,Rents & Bonuses,"1,276.50 "
-August,2022,State,,Onshore,State,CO,,Coal,Royalties,"779,989.98 "
-August,2022,State,,Onshore,State,CO,,Gas,Royalties,"9,765,967.82 "
-August,2022,State,,Onshore,State,CO,,Oil,Royalties,"1,380,648.72 "
-August,2022,State,,Onshore,State,CO,,Oil & Gas,Other Distributions,"1,775,961.63 "
-August,2022,State,,Onshore,State,CO,,Oil & Gas,Rents & Bonuses,"71,299.46 "
-August,2022,State,,Onshore,State,CO,,Oil & Gas,Royalties,"2,080,602.25 "
-August,2022,State,,Onshore,State,CO,,Sodium,Other Distributions,"1,268.00 "
-August,2022,State,,Onshore,State,CO,,Sodium,Royalties,"49,972.68 "
-August,2022,State,,Onshore,State,ID,,,Royalties,"(10,328.33)"
-August,2022,State,,Onshore,State,ID,,,Sequestration,"(28,847.02)"
-August,2022,State,,Onshore,State,ID,,Geothermal,Rents & Bonuses,"8,700.00 "
-August,2022,State,,Onshore,State,ID,,Phosphate,Other Distributions,"2,679.00 "
-August,2022,State,,Onshore,State,ID,,Phosphate,Rents & Bonuses,(707.50)
-August,2022,State,,Onshore,State,ID,,Phosphate,Royalties,"505,744.98 "
-August,2022,State,,Onshore,State,IL,,,Sequestration,(672.52)
-August,2022,State,,Onshore,State,IL,,Oil,Royalties,"11,798.60 "
-August,2022,State,,Onshore,State,KS,,,Other Distributions,0.01 
-August,2022,State,,Onshore,State,KS,,,Royalties,"(1,517.18)"
-August,2022,State,,Onshore,State,KS,,,Sequestration,"(4,237.49)"
-August,2022,State,,Onshore,State,KS,,Gas,Royalties,"32,522.74 "
-August,2022,State,,Onshore,State,KS,,Oil,Royalties,"42,717.95 "
-August,2022,State,,Onshore,State,KS,,Oil & Gas,Other Distributions,318.93 
-August,2022,State,,Onshore,State,KS,,Oil & Gas,Rents & Bonuses,299.50 
-August,2022,State,,Onshore,State,KY,,,Sequestration,(702.61)
-August,2022,State,,Onshore,State,KY,,Gas,Royalties,281.79 
-August,2022,State,,Onshore,State,KY,,Oil,Royalties,601.75 
-August,2022,State,,Onshore,State,KY,,Oil & Gas,Other Distributions,"11,443.08 "
-August,2022,State,,Onshore,State,LA,,,Royalties,"(3,919.34)"
-August,2022,State,,Onshore,State,LA,,,Sequestration,"(23,848.33)"
-August,2022,State,,Onshore,State,LA,,Gas,Royalties,"305,097.95 "
-August,2022,State,,Onshore,State,LA,,Oil,Royalties,"91,930.62 "
-August,2022,State,,Onshore,State,LA,,Oil & Gas,Other Distributions,"25,259.51 "
-August,2022,State,,Onshore,State,LA,,Oil & Gas,Rents & Bonuses,23.00 
-August,2022,State,,Onshore,State,MI,,,Royalties,(223.74)
-August,2022,State,,Onshore,State,MI,,,Sequestration,(665.23)
-August,2022,State,,Onshore,State,MI,,Gas,Royalties,"10,652.94 "
-August,2022,State,,Onshore,State,MI,,Oil,Royalties,"1,201.43 "
-August,2022,State,,Onshore,State,MI,,Oil & Gas,Rents & Bonuses,40.00 
-August,2022,State,,Onshore,State,MO,,,Sequestration,"(11,604.24)"
-August,2022,State,,Onshore,State,MO,,Copper,Royalties,"60,401.30 "
-August,2022,State,,Onshore,State,MO,,Lead/Zinc,Royalties,"143,181.88 "
-August,2022,State,,Onshore,State,MS,,,Royalties,(46.46)
-August,2022,State,,Onshore,State,MS,,,Sequestration,"(2,886.39)"
-August,2022,State,,Onshore,State,MS,,Gas,Royalties,"2,670.61 "
-August,2022,State,,Onshore,State,MS,,Oil,Royalties,"47,588.68 "
-August,2022,State,,Onshore,State,MS,,Oil & Gas,Other Distributions,425.56 
-August,2022,State,,Onshore,State,MT,,,Other Distributions,6.80 
-August,2022,State,,Onshore,State,MT,,,Royalties,"(118,606.36)"
-August,2022,State,,Onshore,State,MT,,,Sequestration,"(331,267.95)"
-August,2022,State,,Onshore,State,MT,,Coal,Other Distributions,474.02 
-August,2022,State,,Onshore,State,MT,,Coal,Rents & Bonuses,"2,445.00 "
-August,2022,State,,Onshore,State,MT,,Coal,Royalties,"4,014,854.16 "
-August,2022,State,,Onshore,State,MT,,Gas,Royalties,"227,535.56 "
-August,2022,State,,Onshore,State,MT,,Oil,Royalties,"1,658,992.07 "
-August,2022,State,,Onshore,State,MT,,Oil & Gas,Other Distributions,"27,110.38 "
-August,2022,State,,Onshore,State,MT,,Oil & Gas,Rents & Bonuses,"(1,382.87)"
-August,2022,State,,Onshore,State,MT,,Oil & Gas,Royalties,289.63 
-August,2022,State,,Onshore,State,ND,,,Other Distributions,4.85 
-August,2022,State,,Onshore,State,ND,,,Royalties,"(201,151.33)"
-August,2022,State,,Onshore,State,ND,,,Sequestration,"(992,744.63)"
-August,2022,State,,Onshore,State,ND,,Coal,Royalties,"119,374.42 "
-August,2022,State,,Onshore,State,ND,,Gas,Royalties,"2,986,277.74 "
-August,2022,State,,Onshore,State,ND,,Oil,Royalties,"14,653,950.51 "
-August,2022,State,,Onshore,State,ND,,Oil & Gas,Other Distributions,"(143,572.69)"
-August,2022,State,,Onshore,State,ND,,Oil & Gas,Rents & Bonuses,"1,689.00 "
-August,2022,State,,Onshore,State,NE,,,Royalties,(56.17)
-August,2022,State,,Onshore,State,NE,,,Sequestration,(156.88)
-August,2022,State,,Onshore,State,NE,,Oil,Royalties,"2,346.66 "
-August,2022,State,,Onshore,State,NE,,Oil & Gas,Other Distributions,381.80 
-August,2022,State,,Onshore,State,NE,,Oil & Gas,Rents & Bonuses,80.00 
-August,2022,State,,Onshore,State,NM,,,Other Distributions,"3,598.59 "
-August,2022,State,,Onshore,State,NM,,,Royalties,"(6,034,240.32)"
-August,2022,State,,Onshore,State,NM,,,Sequestration,"(17,215,862.73)"
-August,2022,State,,Onshore,State,NM,,Coal,Other Distributions,"2,095.80 "
-August,2022,State,,Onshore,State,NM,,Coal,Rents & Bonuses,"2,947.50 "
-August,2022,State,,Onshore,State,NM,,Coal,Royalties,"178,670.21 "
-August,2022,State,,Onshore,State,NM,,Gas,Other Distributions,228.02 
-August,2022,State,,Onshore,State,NM,,Gas,Royalties,"84,742,863.89 "
-August,2022,State,,Onshore,State,NM,,Geothermal,Royalties,"2,575.29 "
-August,2022,State,,Onshore,State,NM,,Oil,Other Distributions,"15,654.16 "
-August,2022,State,,Onshore,State,NM,,Oil,Royalties,"215,226,214.56 "
-August,2022,State,,Onshore,State,NM,,Oil & Gas,Other Distributions,"6,938,487.41 "
-August,2022,State,,Onshore,State,NM,,Oil & Gas,Rents & Bonuses,"19,011.51 "
-August,2022,State,,Onshore,State,NM,,Oil & Gas,Royalties,"37,291.26 "
-August,2022,State,,Onshore,State,NM,,Potassium,Royalties,"849,268.34 "
-August,2022,State,,Onshore,State,NM,,Sodium,Royalties,"48,013.08 "
-August,2022,State,,Onshore,State,NV,,,Other Distributions,14.88 
-August,2022,State,,Onshore,State,NV,,,Royalties,"(10,703.34)"
-August,2022,State,,Onshore,State,NV,,,Sequestration,"(29,895.29)"
-August,2022,State,,Onshore,State,NV,,Geothermal,Other Distributions,73.14 
-August,2022,State,,Onshore,State,NV,,Geothermal,Rents & Bonuses,"9,391.77 "
-August,2022,State,,Onshore,State,NV,,Geothermal,Royalties,"378,715.46 "
-August,2022,State,,Onshore,State,NV,,Oil,Royalties,"142,301.38 "
-August,2022,State,,Onshore,State,NV,,Oil & Gas,Other Distributions,701.28 
-August,2022,State,,Onshore,State,NV,,Oil & Gas,Rents & Bonuses,"3,984.00 "
-August,2022,State,,Onshore,State,OH,,,Royalties,(0.98)
-August,2022,State,,Onshore,State,OH,,,Sequestration,"(7,699.99)"
-August,2022,State,,Onshore,State,OH,,Gas,Royalties,"100,903.73 "
-August,2022,State,,Onshore,State,OH,,Oil,Royalties,"5,267.53 "
-August,2022,State,,Onshore,State,OH,,Oil & Gas,Other Distributions,"28,856.13 "
-August,2022,State,,Onshore,State,OH,,Oil & Gas,Rents & Bonuses,61.00 
-August,2022,State,,Onshore,State,OK,,,Other Distributions,1.30 
-August,2022,State,,Onshore,State,OK,,,Royalties,"(6,180.74)"
-August,2022,State,,Onshore,State,OK,,,Sequestration,"(22,155.07)"
-August,2022,State,,Onshore,State,OK,,Gas,Royalties,"293,174.07 "
-August,2022,State,,Onshore,State,OK,,Hardrock,Other Distributions,23.72 
-August,2022,State,,Onshore,State,OK,,Hardrock,Rents & Bonuses,8.09 
-August,2022,State,,Onshore,State,OK,,Oil,Royalties,"70,240.75 "
-August,2022,State,,Onshore,State,OK,,Oil & Gas,Other Distributions,"30,200.14 "
-August,2022,State,,Onshore,State,OK,,Oil & Gas,Rents & Bonuses,"1,217.75 "
-August,2022,State,,Onshore,State,OK,,Quartz,Royalties,0.54 
-August,2022,State,,Onshore,State,PA,,Gas,Royalties,324.16 
-August,2022,State,,Onshore,State,PA,,Oil & Gas,Other Distributions,(324.16)
-August,2022,State,,Onshore,State,SD,,,Other Distributions,0.90 
-August,2022,State,,Onshore,State,SD,,,Royalties,"(1,120.87)"
-August,2022,State,,Onshore,State,SD,,,Sequestration,"(3,130.65)"
-August,2022,State,,Onshore,State,SD,,Gas,Royalties,21.81 
-August,2022,State,,Onshore,State,SD,,Oil,Royalties,"48,532.04 "
-August,2022,State,,Onshore,State,SD,,Oil & Gas,Other Distributions,508.78 
-August,2022,State,,Onshore,State,SD,,Oil & Gas,Rents & Bonuses,"6,981.00 "
-August,2022,State,,Onshore,State,TX,,,Royalties,"(1,759.41)"
-August,2022,State,,Onshore,State,TX,,,Sequestration,"(50,031.43)"
-August,2022,State,,Onshore,State,TX,,Gas,Royalties,"826,619.98 "
-August,2022,State,,Onshore,State,TX,,Oil,Royalties,"27,617.65 "
-August,2022,State,,Onshore,State,TX,,Oil & Gas,Other Distributions,"20,425.98 "
-August,2022,State,,Onshore,State,TX,,Oil & Gas,Rents & Bonuses,"4,612.50 "
-August,2022,State,,Onshore,State,TX,,Oil & Gas,Royalties,227.59 
-August,2022,State,,Onshore,State,UT,,,Other Distributions,83.08 
-August,2022,State,,Onshore,State,UT,,,Royalties,"(198,282.83)"
-August,2022,State,,Onshore,State,UT,,,Sequestration,"(557,172.81)"
-August,2022,State,,Onshore,State,UT,,Coal,Other Distributions,"50,845.45 "
-August,2022,State,,Onshore,State,UT,,Coal,Rents & Bonuses,"19,599.00 "
-August,2022,State,,Onshore,State,UT,,Coal,Royalties,"983,021.17 "
-August,2022,State,,Onshore,State,UT,,Gas,Royalties,"4,861,171.80 "
-August,2022,State,,Onshore,State,UT,,Geothermal,Royalties,"25,258.70 "
-August,2022,State,,Onshore,State,UT,,Gilsonite,Other Distributions,339.00 
-August,2022,State,,Onshore,State,UT,,Gilsonite,Rents & Bonuses,(21.00)
-August,2022,State,,Onshore,State,UT,,Gilsonite,Royalties,"74,350.52 "
-August,2022,State,,Onshore,State,UT,,Oil,Royalties,"3,461,191.94 "
-August,2022,State,,Onshore,State,UT,,Oil & Gas,Other Distributions,"495,148.78 "
-August,2022,State,,Onshore,State,UT,,Oil & Gas,Rents & Bonuses,"(27,794.18)"
-August,2022,State,,Onshore,State,UT,,Oil & Gas,Royalties,"5,051.67 "
-August,2022,State,,Onshore,State,UT,,Potassium,Other Distributions,"(11,164.16)"
-August,2022,State,,Onshore,State,UT,,Potassium,Rents & Bonuses,0.01 
-August,2022,State,,Onshore,State,UT,,Potassium,Royalties,"35,761.45 "
-August,2022,State,,Onshore,State,UT,,Sodium,Royalties,401.01 
-August,2022,State,,Onshore,State,VA,,,Sequestration,(276.55)
-August,2022,State,,Onshore,State,VA,,Gas,Royalties,"4,756.75 "
-August,2022,State,,Onshore,State,VA,,Oil & Gas,Other Distributions,95.05 
-August,2022,State,,Onshore,State,WV,,,Sequestration,(637.46)
-August,2022,State,,Onshore,State,WV,,Gas,Royalties,"1,673.13 "
-August,2022,State,,Onshore,State,WV,,Oil & Gas,Other Distributions,"9,510.34 "
-August,2022,State,,Onshore,State,WY,,,Other Distributions,"2,148.84 "
-August,2022,State,,Onshore,State,WY,,,Royalties,"(1,828,906.96)"
-August,2022,State,,Onshore,State,WY,,,Sequestration,"(5,108,259.62)"
-August,2022,State,,Onshore,State,WY,,Coal,Rents & Bonuses,"36,364.50 "
-August,2022,State,,Onshore,State,WY,,Coal,Royalties,"15,959,546.86 "
-August,2022,State,,Onshore,State,WY,,Gas,Other Distributions,0.00 
-August,2022,State,,Onshore,State,WY,,Gas,Royalties,"31,255,681.82 "
-August,2022,State,,Onshore,State,WY,,Oil,Other Distributions,(8.32)
-August,2022,State,,Onshore,State,WY,,Oil,Royalties,"33,277,064.30 "
-August,2022,State,,Onshore,State,WY,,Oil & Gas,Other Distributions,"9,182,989.35 "
-August,2022,State,,Onshore,State,WY,,Oil & Gas,Rents & Bonuses,"74,741.19 "
-August,2022,State,,Onshore,State,WY,,Oil & Gas,Royalties,"899,265.16 "
-August,2022,State,,Onshore,State,WY,,Sodium,Rents & Bonuses,"(1,428.50)"
-August,2022,State,,Onshore,State,WY,,Sodium,Royalties,"761,131.59 "
-August,2022,U.S. Treasury,1060,Offshore,,,,,Other Distributions,"9,778.31 "
-August,2022,U.S. Treasury,1099,Onshore,,,,,Other Distributions,"320,927.38 "
-August,2022,U.S. Treasury,1099,Onshore,,,,,Royalties,"48,862.00 "
-August,2022,U.S. Treasury,1435,Offshore,,,,Oil & Gas,Other Distributions,"331,097.86 "
-August,2022,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"24,777.05 "
-August,2022,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Royalties,"(1,628.37)"
-August,2022,U.S. Treasury,1435,Onshore,,,,Coal,Other Distributions,160.80 
-August,2022,U.S. Treasury,1435,Onshore,,,,Oil & Gas,Other Distributions,"1,097,911.86 "
-August,2022,U.S. Treasury,1811,Onshore,,,,Coal,Rents & Bonuses,(843.00)
-August,2022,U.S. Treasury,1811,Onshore,,,,Geothermal,Rents & Bonuses,"9,045.88 "
-August,2022,U.S. Treasury,1811,Onshore,,,,Oil & Gas,Rents & Bonuses,"6,177.79 "
-August,2022,U.S. Treasury,1820,Offshore,,,,Oil & Gas,Rents & Bonuses,"9,030.00 "
-August,2022,U.S. Treasury,1820,Offshore,,,,Wind,Rents & Bonuses,"330,273.00 "
-August,2022,U.S. Treasury,1820,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"696,175.12 "
-August,2022,U.S. Treasury,2020,Offshore,,,,Gas,Other Distributions,"166,743.91 "
-August,2022,U.S. Treasury,2020,Offshore,,,,Gas,Royalties,"50,417,348.70 "
-August,2022,U.S. Treasury,2020,Offshore,,,,Oil,Other Distributions,"(25,857.58)"
-August,2022,U.S. Treasury,2020,Offshore,,,,Oil,Royalties,"538,936,537.26 "
-August,2022,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Other Distributions,"5,552,117.79 "
-August,2022,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Royalties,395.22 
-August,2022,U.S. Treasury,2020,Offshore,GoMESA,,,Gas,Royalties,"6,402,906.27 "
-August,2022,U.S. Treasury,2020,Offshore,GoMESA,,,Oil,Royalties,"60,763,578.98 "
-August,2022,U.S. Treasury,2020,Offshore,GoMESA,,,Oil & Gas,Royalties,"2,715,775.66 "
-August,2022,U.S. Treasury,2039,Onshore,,,,,Other Distributions,"(6,305.34)"
-August,2022,U.S. Treasury,2039,Onshore,,,,,Royalties,"9,015,645.57 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Clay,Royalties,600.58 
-August,2022,U.S. Treasury,2039,Onshore,,,,Coal,Other Distributions,"10,560.42 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Coal,Royalties,"4,486,582.87 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Gas,Other Distributions,45.57 
-August,2022,U.S. Treasury,2039,Onshore,,,,Gas,Royalties,"31,573,603.86 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Geothermal,Other Distributions,"1,252.07 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Geothermal,Royalties,"398,148.21 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Gilsonite,Other Distributions,67.80 
-August,2022,U.S. Treasury,2039,Onshore,,,,Gilsonite,Royalties,"14,870.10 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Oil,Other Distributions,"120,391.22 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Oil,Royalties,"62,829,872.45 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Other Distributions,"2,987,599.67 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Rents & Bonuses,659.98 
-August,2022,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Royalties,"605,111.18 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Phosphate,Other Distributions,535.80 
-August,2022,U.S. Treasury,2039,Onshore,,,,Phosphate,Royalties,"101,148.99 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Potassium,Royalties,"171,822.28 "
-August,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Other Distributions,(136.10)
-August,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Royalties,"219,537.17 "
+August,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Coal,Rents & Bonuses,"62,632.50"
+August,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Gilsonite,Rents & Bonuses,-21
+August,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Oil & Gas,Rents & Bonuses,"151,878.52"
+August,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Phosphate,Rents & Bonuses,-707.5
+August,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Sodium,Rents & Bonuses,"-2,078.00"
+August,2022,Bureau of Land Management,,Onshore,,,,Gas,Royalties,"41,230.73"
+August,2022,Bureau of Land Management,,Onshore,,,,Oil,Royalties,"108,921.02"
+August,2022,Bureau of Land Management,,Onshore,,,,Oil & Gas,Other Distributions,"2,418.17"
+August,2022,Bureau of Land Management,,Onshore,,,,Oil & Gas,Rents & Bonuses,40
+August,2022,Bureau of Ocean Energy Management,,Offshore,,,,Oil & Gas,Rents & Bonuses,"3,180,021.03"
+August,2022,Bureau of Safety & Environmental Enforcement,,Offshore,,,,,Other Distributions,"2,288,325.49"
+August,2022,Bureau of Safety & Environmental Enforcement,,Offshore,,,,Oil & Gas,Rents & Bonuses,"1,383,094.32"
+August,2022,Fish & Wildlife,,Onshore,,,,Gas,Royalties,"55,868.56"
+August,2022,Fish & Wildlife,,Onshore,,,,Oil,Royalties,"168,542.08"
+August,2022,Fish & Wildlife,,Onshore,,,,Oil & Gas,Other Distributions,"2,172.36"
+August,2022,Forest Service,,Onshore,,,,Coal,Royalties,"40,080.85"
+August,2022,Forest Service,,Onshore,,,,Copper,Royalties,"181,204.04"
+August,2022,Forest Service,,Onshore,,,,Gas,Royalties,"9,592,562.44"
+August,2022,Forest Service,,Onshore,,,,Hardrock,Other Distributions,358.39
+August,2022,Forest Service,,Onshore,,,,Hardrock,Rents & Bonuses,122.25
+August,2022,Forest Service,,Onshore,,,,Lead/Zinc,Royalties,"429,545.75"
+August,2022,Forest Service,,Onshore,,,,Oil,Royalties,"28,824,214.80"
+August,2022,Forest Service,,Onshore,,,,Oil & Gas,Other Distributions,"631,246.48"
+August,2022,Forest Service,,Onshore,,,,Oil & Gas,Rents & Bonuses,"18,156.50"
+August,2022,Forest Service,,Onshore,,,,Quartz,Royalties,8.36
+August,2022,Land & Water Conservation Fund,,Offshore,GoMESA,,,Gas,Royalties,"1,600,725.15"
+August,2022,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil,Royalties,"15,190,893.84"
+August,2022,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"180,241.21"
+August,2022,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Royalties,"678,536.74"
+August,2022,Native American Tribes & Allottees,,Onshore,,,,,Other Distributions,"582,040.83"
+August,2022,Native American Tribes & Allottees,,Onshore,,,,Coal,Other Distributions,"739,196.68"
+August,2022,Native American Tribes & Allottees,,Onshore,,,,Coal,Royalties,"4,530,893.20"
+August,2022,Native American Tribes & Allottees,,Onshore,,,,Gas,Other Distributions,-74.38
+August,2022,Native American Tribes & Allottees,,Onshore,,,,Gas,Royalties,"37,754,071.04"
+August,2022,Native American Tribes & Allottees,,Onshore,,,,Oil,Other Distributions,"-5,935.90"
+August,2022,Native American Tribes & Allottees,,Onshore,,,,Oil,Royalties,"124,400,152.64"
+August,2022,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Other Distributions,"3,407,221.58"
+August,2022,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Rents & Bonuses,"130,361.44"
+August,2022,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Royalties,"227,437.89"
+August,2022,Reclamation Fund,,Onshore,,,,Coal,Other Distributions,"42,884.65"
+August,2022,Reclamation Fund,,Onshore,,,,Coal,Royalties,"17,946,331.06"
+August,2022,Reclamation Fund,,Onshore,,,,Gas,Other Distributions,182.13
+August,2022,Reclamation Fund,,Onshore,,,,Gas,Royalties,"107,042,131.03"
+August,2022,Reclamation Fund,,Onshore,,,,Gilsonite,Other Distributions,271.2
+August,2022,Reclamation Fund,,Onshore,,,,Gilsonite,Royalties,"59,480.37"
+August,2022,Reclamation Fund,,Onshore,,,,Oil,Other Distributions,"12,516.04"
+August,2022,Reclamation Fund,,Onshore,,,,Oil,Royalties,"215,074,332.69"
+August,2022,Reclamation Fund,,Onshore,,,,Oil & Gas,Other Distributions,"14,534,679.02"
+August,2022,Reclamation Fund,,Onshore,,,,Oil & Gas,Rents & Bonuses,-560.06
+August,2022,Reclamation Fund,,Onshore,,,,Oil & Gas,Royalties,"2,418,248.08"
+August,2022,Reclamation Fund,,Onshore,,,,Phosphate,Other Distributions,"2,143.20"
+August,2022,Reclamation Fund,,Onshore,,,,Phosphate,Royalties,"404,595.98"
+August,2022,Reclamation Fund,,Onshore,,,,Potassium,Royalties,"687,288.68"
+August,2022,Reclamation Fund,,Onshore,,,,Sodium,Other Distributions,-544.4
+August,2022,Reclamation Fund,,Onshore,,,,Sodium,Royalties,"878,147.37"
+August,2022,State,,Offshore,8(g),AK,,Oil,Royalties,"151,255.07"
+August,2022,State,,Offshore,8(g),AL,,,Royalties,"-134,850.00"
+August,2022,State,,Offshore,8(g),AL,,Gas,Royalties,"456,749.37"
+August,2022,State,,Offshore,8(g),AL,,Oil,Royalties,"1,692.05"
+August,2022,State,,Offshore,8(g),AL,,Oil & Gas,Other Distributions,"88,247.68"
+August,2022,State,,Offshore,8(g),AL,,Oil & Gas,Royalties,144.1
+August,2022,State,,Offshore,8(g),CA,,Gas,Royalties,"2,829.94"
+August,2022,State,,Offshore,8(g),CA,,Oil,Royalties,"236,293.03"
+August,2022,State,,Offshore,8(g),CA,,Oil & Gas,Other Distributions,"2,263.67"
+August,2022,State,,Offshore,8(g),CA,,Oil & Gas,Royalties,1.12
+August,2022,State,,Offshore,8(g),LA,,Gas,Royalties,"361,542.67"
+August,2022,State,,Offshore,8(g),LA,,Oil,Other Distributions,-667.41
+August,2022,State,,Offshore,8(g),LA,,Oil,Royalties,"212,894.32"
+August,2022,State,,Offshore,8(g),LA,,Oil & Gas,Other Distributions,"147,996.02"
+August,2022,State,,Offshore,8(g),MS,,,Royalties,"36,907.88"
+August,2022,State,,Offshore,8(g),MS,,Gas,Royalties,"14,544.31"
+August,2022,State,,Offshore,8(g),MS,,Oil & Gas,Other Distributions,"2,150.82"
+August,2022,State,,Offshore,8(g),TX,,,Royalties,"97,942.12"
+August,2022,State,,Offshore,8(g),TX,,Gas,Royalties,"10,453.49"
+August,2022,State,,Offshore,8(g),TX,,Oil & Gas,Other Distributions,10.5
+August,2022,State,,Onshore,Geothermal,CA,Inyo County,,Sequestration,-563.23
+August,2022,State,,Onshore,Geothermal,CA,Inyo County,Geothermal,Other Distributions,"1,215.50"
+August,2022,State,,Onshore,Geothermal,CA,Inyo County,Geothermal,Royalties,"8,665.81"
+August,2022,State,,Onshore,Geothermal,CA,Lake County,,Sequestration,"-3,580.91"
+August,2022,State,,Onshore,Geothermal,CA,Lake County,Geothermal,Royalties,"62,823.05"
+August,2022,State,,Onshore,Geothermal,CA,Mono County,,Sequestration,-992.38
+August,2022,State,,Onshore,Geothermal,CA,Mono County,Geothermal,Royalties,"17,410.24"
+August,2022,State,,Onshore,Geothermal,CA,Sonoma County,,Sequestration,"-6,040.10"
+August,2022,State,,Onshore,Geothermal,CA,Sonoma County,Geothermal,Royalties,"105,966.75"
+August,2022,State,,Onshore,Geothermal,ID,Washington County,,Sequestration,-247.95
+August,2022,State,,Onshore,Geothermal,ID,Washington County,Geothermal,Rents & Bonuses,"4,350.00"
+August,2022,State,,Onshore,Geothermal,NV,Churchill County,,Sequestration,"-6,892.73"
+August,2022,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Other Distributions,36.56
+August,2022,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Rents & Bonuses,-93.67
+August,2022,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Royalties,"120,982.23"
+August,2022,State,,Onshore,Geothermal,NV,Eureka County,,Sequestration,-9.08
+August,2022,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Royalties,159.28
+August,2022,State,,Onshore,Geothermal,NV,Humboldt County,,Sequestration,-566.83
+August,2022,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Rents & Bonuses,"4,952.50"
+August,2022,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Royalties,"4,991.93"
+August,2022,State,,Onshore,Geothermal,NV,Lander County,,Sequestration,"-3,019.54"
+August,2022,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Rents & Bonuses,-42.5
+August,2022,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Royalties,"53,016.89"
+August,2022,State,,Onshore,Geothermal,NV,Lyon County,,Sequestration,-10.44
+August,2022,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Rents & Bonuses,-65.19
+August,2022,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Royalties,248.37
+August,2022,State,,Onshore,Geothermal,NV,Mineral County,,Sequestration,-295.06
+August,2022,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Rents & Bonuses,-55.24
+August,2022,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Royalties,"5,231.73"
+August,2022,State,,Onshore,Geothermal,NV,Pershing County,,Sequestration,-3.53
+August,2022,State,,Onshore,Geothermal,NV,Pershing County,Geothermal,Royalties,62.01
+August,2022,State,,Onshore,Geothermal,NV,Washoe County,,Sequestration,-265.91
+August,2022,State,,Onshore,Geothermal,NV,Washoe County,Geothermal,Royalties,"4,665.01"
+August,2022,State,,Onshore,Geothermal,UT,Beaver County,,Sequestration,-711.83
+August,2022,State,,Onshore,Geothermal,UT,Beaver County,Geothermal,Royalties,"12,488.24"
+August,2022,State,,Onshore,Geothermal,UT,Millard County,,Sequestration,-8.04
+August,2022,State,,Onshore,Geothermal,UT,Millard County,Geothermal,Royalties,141.08
+August,2022,State,,Onshore,State,AK,,,Royalties,"-22,511.91"
+August,2022,State,,Onshore,State,AK,,,Sequestration,"-320,349.71"
+August,2022,State,,Onshore,State,AK,,Gas,Royalties,"1,427,999.08"
+August,2022,State,,Onshore,State,AK,,Oil,Other Distributions,"117,262.11"
+August,2022,State,,Onshore,State,AK,,Oil,Royalties,"4,079,973.17"
+August,2022,State,,Onshore,State,AK,,Oil & Gas,Other Distributions,"14,981.55"
+August,2022,State,,Onshore,State,AK,,Oil & Gas,Rents & Bonuses,"2,466.49"
+August,2022,State,,Onshore,State,AL,,,Royalties,"-8,037.47"
+August,2022,State,,Onshore,State,AL,,,Sequestration,"-22,807.41"
+August,2022,State,,Onshore,State,AL,,Coal,Royalties,"397,457.43"
+August,2022,State,,Onshore,State,AL,,Gas,Royalties,"7,060.65"
+August,2022,State,,Onshore,State,AL,,Oil,Royalties,"3,552.91"
+August,2022,State,,Onshore,State,AL,,Oil & Gas,Other Distributions,5.7
+August,2022,State,,Onshore,State,AL,,Oil & Gas,Royalties,90.92
+August,2022,State,,Onshore,State,AR,,,Royalties,"-1,456.95"
+August,2022,State,,Onshore,State,AR,,,Sequestration,"-7,623.35"
+August,2022,State,,Onshore,State,AR,,Gas,Royalties,"135,196.02"
+August,2022,State,,Onshore,State,AR,,Hardrock,Other Distributions,95.74
+August,2022,State,,Onshore,State,AR,,Hardrock,Rents & Bonuses,32.66
+August,2022,State,,Onshore,State,AR,,Oil & Gas,Other Distributions,"-1,332.73"
+August,2022,State,,Onshore,State,AR,,Oil & Gas,Rents & Bonuses,"1,206.00"
+August,2022,State,,Onshore,State,AR,,Quartz,Royalties,2.25
+August,2022,State,,Onshore,State,CA,,,Other Distributions,14.94
+August,2022,State,,Onshore,State,CA,,,Royalties,"-118,871.35"
+August,2022,State,,Onshore,State,CA,,,Sequestration,"-332,008.52"
+August,2022,State,,Onshore,State,CA,,Gas,Royalties,"112,696.57"
+August,2022,State,,Onshore,State,CA,,Geothermal,Other Distributions,"2,431.00"
+August,2022,State,,Onshore,State,CA,,Geothermal,Royalties,"389,746.95"
+August,2022,State,,Onshore,State,CA,,Oil,Royalties,"5,191,784.31"
+August,2022,State,,Onshore,State,CA,,Oil & Gas,Other Distributions,"1,034.93"
+August,2022,State,,Onshore,State,CA,,Oil & Gas,Rents & Bonuses,60
+August,2022,State,,Onshore,State,CA,,Potassium,Royalties,"9,843.05"
+August,2022,State,,Onshore,State,CA,,Sodium,Other Distributions,"-1,948.50"
+August,2022,State,,Onshore,State,CA,,Sodium,Rents & Bonuses,-649.5
+August,2022,State,,Onshore,State,CA,,Sodium,Royalties,"238,568.45"
+August,2022,State,,Onshore,State,CO,,,Other Distributions,431.15
+August,2022,State,,Onshore,State,CO,,,Royalties,"-318,105.06"
+August,2022,State,,Onshore,State,CO,,,Sequestration,"-888,601.72"
+August,2022,State,,Onshore,State,CO,,Coal,Other Distributions,190.68
+August,2022,State,,Onshore,State,CO,,Coal,Rents & Bonuses,"1,276.50"
+August,2022,State,,Onshore,State,CO,,Coal,Royalties,"779,989.98"
+August,2022,State,,Onshore,State,CO,,Gas,Royalties,"9,765,967.82"
+August,2022,State,,Onshore,State,CO,,Oil,Royalties,"1,380,648.72"
+August,2022,State,,Onshore,State,CO,,Oil & Gas,Other Distributions,"1,775,961.63"
+August,2022,State,,Onshore,State,CO,,Oil & Gas,Rents & Bonuses,"71,299.46"
+August,2022,State,,Onshore,State,CO,,Oil & Gas,Royalties,"2,080,602.25"
+August,2022,State,,Onshore,State,CO,,Sodium,Other Distributions,"1,268.00"
+August,2022,State,,Onshore,State,CO,,Sodium,Royalties,"49,972.68"
+August,2022,State,,Onshore,State,ID,,,Royalties,"-10,328.33"
+August,2022,State,,Onshore,State,ID,,,Sequestration,"-28,847.02"
+August,2022,State,,Onshore,State,ID,,Geothermal,Rents & Bonuses,"8,700.00"
+August,2022,State,,Onshore,State,ID,,Phosphate,Other Distributions,"2,679.00"
+August,2022,State,,Onshore,State,ID,,Phosphate,Rents & Bonuses,-707.5
+August,2022,State,,Onshore,State,ID,,Phosphate,Royalties,"505,744.98"
+August,2022,State,,Onshore,State,IL,,,Sequestration,-672.52
+August,2022,State,,Onshore,State,IL,,Oil,Royalties,"11,798.60"
+August,2022,State,,Onshore,State,KS,,,Other Distributions,0.01
+August,2022,State,,Onshore,State,KS,,,Royalties,"-1,517.18"
+August,2022,State,,Onshore,State,KS,,,Sequestration,"-4,237.49"
+August,2022,State,,Onshore,State,KS,,Gas,Royalties,"32,522.74"
+August,2022,State,,Onshore,State,KS,,Oil,Royalties,"42,717.95"
+August,2022,State,,Onshore,State,KS,,Oil & Gas,Other Distributions,318.93
+August,2022,State,,Onshore,State,KS,,Oil & Gas,Rents & Bonuses,299.5
+August,2022,State,,Onshore,State,KY,,,Sequestration,-702.61
+August,2022,State,,Onshore,State,KY,,Gas,Royalties,281.79
+August,2022,State,,Onshore,State,KY,,Oil,Royalties,601.75
+August,2022,State,,Onshore,State,KY,,Oil & Gas,Other Distributions,"11,443.08"
+August,2022,State,,Onshore,State,LA,,,Royalties,"-3,919.34"
+August,2022,State,,Onshore,State,LA,,,Sequestration,"-23,848.33"
+August,2022,State,,Onshore,State,LA,,Gas,Royalties,"305,097.95"
+August,2022,State,,Onshore,State,LA,,Oil,Royalties,"91,930.62"
+August,2022,State,,Onshore,State,LA,,Oil & Gas,Other Distributions,"25,259.51"
+August,2022,State,,Onshore,State,LA,,Oil & Gas,Rents & Bonuses,23
+August,2022,State,,Onshore,State,MI,,,Royalties,-223.74
+August,2022,State,,Onshore,State,MI,,,Sequestration,-665.23
+August,2022,State,,Onshore,State,MI,,Gas,Royalties,"10,652.94"
+August,2022,State,,Onshore,State,MI,,Oil,Royalties,"1,201.43"
+August,2022,State,,Onshore,State,MI,,Oil & Gas,Rents & Bonuses,40
+August,2022,State,,Onshore,State,MO,,,Sequestration,"-11,604.24"
+August,2022,State,,Onshore,State,MO,,Copper,Royalties,"60,401.30"
+August,2022,State,,Onshore,State,MO,,Lead/Zinc,Royalties,"143,181.88"
+August,2022,State,,Onshore,State,MS,,,Royalties,-46.46
+August,2022,State,,Onshore,State,MS,,,Sequestration,"-2,886.39"
+August,2022,State,,Onshore,State,MS,,Gas,Royalties,"2,670.61"
+August,2022,State,,Onshore,State,MS,,Oil,Royalties,"47,588.68"
+August,2022,State,,Onshore,State,MS,,Oil & Gas,Other Distributions,425.56
+August,2022,State,,Onshore,State,MT,,,Other Distributions,6.8
+August,2022,State,,Onshore,State,MT,,,Royalties,"-118,606.36"
+August,2022,State,,Onshore,State,MT,,,Sequestration,"-331,267.95"
+August,2022,State,,Onshore,State,MT,,Coal,Other Distributions,474.02
+August,2022,State,,Onshore,State,MT,,Coal,Rents & Bonuses,"2,445.00"
+August,2022,State,,Onshore,State,MT,,Coal,Royalties,"4,014,854.16"
+August,2022,State,,Onshore,State,MT,,Gas,Royalties,"227,535.56"
+August,2022,State,,Onshore,State,MT,,Oil,Royalties,"1,658,992.07"
+August,2022,State,,Onshore,State,MT,,Oil & Gas,Other Distributions,"27,110.38"
+August,2022,State,,Onshore,State,MT,,Oil & Gas,Rents & Bonuses,"-1,382.87"
+August,2022,State,,Onshore,State,MT,,Oil & Gas,Royalties,289.63
+August,2022,State,,Onshore,State,ND,,,Other Distributions,4.85
+August,2022,State,,Onshore,State,ND,,,Royalties,"-201,151.33"
+August,2022,State,,Onshore,State,ND,,,Sequestration,"-992,744.63"
+August,2022,State,,Onshore,State,ND,,Coal,Royalties,"119,374.42"
+August,2022,State,,Onshore,State,ND,,Gas,Royalties,"2,986,277.74"
+August,2022,State,,Onshore,State,ND,,Oil,Royalties,"14,653,950.51"
+August,2022,State,,Onshore,State,ND,,Oil & Gas,Other Distributions,"-143,572.69"
+August,2022,State,,Onshore,State,ND,,Oil & Gas,Rents & Bonuses,"1,689.00"
+August,2022,State,,Onshore,State,NE,,,Royalties,-56.17
+August,2022,State,,Onshore,State,NE,,,Sequestration,-156.88
+August,2022,State,,Onshore,State,NE,,Oil,Royalties,"2,346.66"
+August,2022,State,,Onshore,State,NE,,Oil & Gas,Other Distributions,381.8
+August,2022,State,,Onshore,State,NE,,Oil & Gas,Rents & Bonuses,80
+August,2022,State,,Onshore,State,NM,,,Other Distributions,"3,598.59"
+August,2022,State,,Onshore,State,NM,,,Royalties,"-6,034,240.32"
+August,2022,State,,Onshore,State,NM,,,Sequestration,"-17,215,862.73"
+August,2022,State,,Onshore,State,NM,,Coal,Other Distributions,"2,095.80"
+August,2022,State,,Onshore,State,NM,,Coal,Rents & Bonuses,"2,947.50"
+August,2022,State,,Onshore,State,NM,,Coal,Royalties,"178,670.21"
+August,2022,State,,Onshore,State,NM,,Gas,Other Distributions,228.02
+August,2022,State,,Onshore,State,NM,,Gas,Royalties,"84,742,863.89"
+August,2022,State,,Onshore,State,NM,,Geothermal,Royalties,"2,575.29"
+August,2022,State,,Onshore,State,NM,,Oil,Other Distributions,"15,654.16"
+August,2022,State,,Onshore,State,NM,,Oil,Royalties,"215,226,214.56"
+August,2022,State,,Onshore,State,NM,,Oil & Gas,Other Distributions,"6,938,487.41"
+August,2022,State,,Onshore,State,NM,,Oil & Gas,Rents & Bonuses,"19,011.51"
+August,2022,State,,Onshore,State,NM,,Oil & Gas,Royalties,"37,291.26"
+August,2022,State,,Onshore,State,NM,,Potassium,Royalties,"849,268.34"
+August,2022,State,,Onshore,State,NM,,Sodium,Royalties,"48,013.08"
+August,2022,State,,Onshore,State,NV,,,Other Distributions,14.88
+August,2022,State,,Onshore,State,NV,,,Royalties,"-10,703.34"
+August,2022,State,,Onshore,State,NV,,,Sequestration,"-29,895.29"
+August,2022,State,,Onshore,State,NV,,Geothermal,Other Distributions,73.14
+August,2022,State,,Onshore,State,NV,,Geothermal,Rents & Bonuses,"9,391.77"
+August,2022,State,,Onshore,State,NV,,Geothermal,Royalties,"378,715.46"
+August,2022,State,,Onshore,State,NV,,Oil,Royalties,"142,301.38"
+August,2022,State,,Onshore,State,NV,,Oil & Gas,Other Distributions,701.28
+August,2022,State,,Onshore,State,NV,,Oil & Gas,Rents & Bonuses,"3,984.00"
+August,2022,State,,Onshore,State,OH,,,Royalties,-0.98
+August,2022,State,,Onshore,State,OH,,,Sequestration,"-7,699.99"
+August,2022,State,,Onshore,State,OH,,Gas,Royalties,"100,903.73"
+August,2022,State,,Onshore,State,OH,,Oil,Royalties,"5,267.53"
+August,2022,State,,Onshore,State,OH,,Oil & Gas,Other Distributions,"28,856.13"
+August,2022,State,,Onshore,State,OH,,Oil & Gas,Rents & Bonuses,61
+August,2022,State,,Onshore,State,OK,,,Other Distributions,1.3
+August,2022,State,,Onshore,State,OK,,,Royalties,"-6,180.74"
+August,2022,State,,Onshore,State,OK,,,Sequestration,"-22,155.07"
+August,2022,State,,Onshore,State,OK,,Gas,Royalties,"293,174.07"
+August,2022,State,,Onshore,State,OK,,Hardrock,Other Distributions,23.72
+August,2022,State,,Onshore,State,OK,,Hardrock,Rents & Bonuses,8.09
+August,2022,State,,Onshore,State,OK,,Oil,Royalties,"70,240.75"
+August,2022,State,,Onshore,State,OK,,Oil & Gas,Other Distributions,"30,200.14"
+August,2022,State,,Onshore,State,OK,,Oil & Gas,Rents & Bonuses,"1,217.75"
+August,2022,State,,Onshore,State,OK,,Quartz,Royalties,0.54
+August,2022,State,,Onshore,State,PA,,Gas,Royalties,324.16
+August,2022,State,,Onshore,State,PA,,Oil & Gas,Other Distributions,-324.16
+August,2022,State,,Onshore,State,SD,,,Other Distributions,0.9
+August,2022,State,,Onshore,State,SD,,,Royalties,"-1,120.87"
+August,2022,State,,Onshore,State,SD,,,Sequestration,"-3,130.65"
+August,2022,State,,Onshore,State,SD,,Gas,Royalties,21.81
+August,2022,State,,Onshore,State,SD,,Oil,Royalties,"48,532.04"
+August,2022,State,,Onshore,State,SD,,Oil & Gas,Other Distributions,508.78
+August,2022,State,,Onshore,State,SD,,Oil & Gas,Rents & Bonuses,"6,981.00"
+August,2022,State,,Onshore,State,TX,,,Royalties,"-1,759.41"
+August,2022,State,,Onshore,State,TX,,,Sequestration,"-50,031.43"
+August,2022,State,,Onshore,State,TX,,Gas,Royalties,"826,619.98"
+August,2022,State,,Onshore,State,TX,,Oil,Royalties,"27,617.65"
+August,2022,State,,Onshore,State,TX,,Oil & Gas,Other Distributions,"20,425.98"
+August,2022,State,,Onshore,State,TX,,Oil & Gas,Rents & Bonuses,"4,612.50"
+August,2022,State,,Onshore,State,TX,,Oil & Gas,Royalties,227.59
+August,2022,State,,Onshore,State,UT,,,Other Distributions,83.08
+August,2022,State,,Onshore,State,UT,,,Royalties,"-198,282.83"
+August,2022,State,,Onshore,State,UT,,,Sequestration,"-557,172.81"
+August,2022,State,,Onshore,State,UT,,Coal,Other Distributions,"50,845.45"
+August,2022,State,,Onshore,State,UT,,Coal,Rents & Bonuses,"19,599.00"
+August,2022,State,,Onshore,State,UT,,Coal,Royalties,"983,021.17"
+August,2022,State,,Onshore,State,UT,,Gas,Royalties,"4,861,171.80"
+August,2022,State,,Onshore,State,UT,,Geothermal,Royalties,"25,258.70"
+August,2022,State,,Onshore,State,UT,,Gilsonite,Other Distributions,339
+August,2022,State,,Onshore,State,UT,,Gilsonite,Rents & Bonuses,-21
+August,2022,State,,Onshore,State,UT,,Gilsonite,Royalties,"74,350.52"
+August,2022,State,,Onshore,State,UT,,Oil,Royalties,"3,461,191.94"
+August,2022,State,,Onshore,State,UT,,Oil & Gas,Other Distributions,"495,148.78"
+August,2022,State,,Onshore,State,UT,,Oil & Gas,Rents & Bonuses,"-27,794.18"
+August,2022,State,,Onshore,State,UT,,Oil & Gas,Royalties,"5,051.67"
+August,2022,State,,Onshore,State,UT,,Potassium,Other Distributions,"-11,164.16"
+August,2022,State,,Onshore,State,UT,,Potassium,Rents & Bonuses,0.01
+August,2022,State,,Onshore,State,UT,,Potassium,Royalties,"35,761.45"
+August,2022,State,,Onshore,State,UT,,Sodium,Royalties,401.01
+August,2022,State,,Onshore,State,VA,,,Sequestration,-276.55
+August,2022,State,,Onshore,State,VA,,Gas,Royalties,"4,756.75"
+August,2022,State,,Onshore,State,VA,,Oil & Gas,Other Distributions,95.05
+August,2022,State,,Onshore,State,WV,,,Sequestration,-637.46
+August,2022,State,,Onshore,State,WV,,Gas,Royalties,"1,673.13"
+August,2022,State,,Onshore,State,WV,,Oil & Gas,Other Distributions,"9,510.34"
+August,2022,State,,Onshore,State,WY,,,Other Distributions,"2,148.84"
+August,2022,State,,Onshore,State,WY,,,Royalties,"-1,828,906.96"
+August,2022,State,,Onshore,State,WY,,,Sequestration,"-5,108,259.62"
+August,2022,State,,Onshore,State,WY,,Coal,Rents & Bonuses,"36,364.50"
+August,2022,State,,Onshore,State,WY,,Coal,Royalties,"15,959,546.86"
+August,2022,State,,Onshore,State,WY,,Gas,Other Distributions,0
+August,2022,State,,Onshore,State,WY,,Gas,Royalties,"31,255,681.82"
+August,2022,State,,Onshore,State,WY,,Oil,Other Distributions,-8.32
+August,2022,State,,Onshore,State,WY,,Oil,Royalties,"33,277,064.30"
+August,2022,State,,Onshore,State,WY,,Oil & Gas,Other Distributions,"9,182,989.35"
+August,2022,State,,Onshore,State,WY,,Oil & Gas,Rents & Bonuses,"74,741.19"
+August,2022,State,,Onshore,State,WY,,Oil & Gas,Royalties,"899,265.16"
+August,2022,State,,Onshore,State,WY,,Sodium,Rents & Bonuses,"-1,428.50"
+August,2022,State,,Onshore,State,WY,,Sodium,Royalties,"761,131.59"
+August,2022,U.S. Treasury,1060,Offshore,,,,,Other Distributions,"9,778.31"
+August,2022,U.S. Treasury,1099,Onshore,,,,,Other Distributions,"320,927.38"
+August,2022,U.S. Treasury,1099,Onshore,,,,,Royalties,"48,862.00"
+August,2022,U.S. Treasury,1435,Offshore,,,,Oil & Gas,Other Distributions,"331,097.86"
+August,2022,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"24,777.05"
+August,2022,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Royalties,"-1,628.37"
+August,2022,U.S. Treasury,1435,Onshore,,,,Coal,Other Distributions,160.8
+August,2022,U.S. Treasury,1435,Onshore,,,,Oil & Gas,Other Distributions,"1,097,911.86"
+August,2022,U.S. Treasury,1811,Onshore,,,,Coal,Rents & Bonuses,-843
+August,2022,U.S. Treasury,1811,Onshore,,,,Geothermal,Rents & Bonuses,"9,045.88"
+August,2022,U.S. Treasury,1811,Onshore,,,,Oil & Gas,Rents & Bonuses,"6,177.79"
+August,2022,U.S. Treasury,1820,Offshore,,,,Oil & Gas,Rents & Bonuses,"9,030.00"
+August,2022,U.S. Treasury,1820,Offshore,,,,Wind,Rents & Bonuses,"330,273.00"
+August,2022,U.S. Treasury,1820,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"696,175.12"
+August,2022,U.S. Treasury,2020,Offshore,,,,Gas,Other Distributions,"166,743.91"
+August,2022,U.S. Treasury,2020,Offshore,,,,Gas,Royalties,"50,417,348.70"
+August,2022,U.S. Treasury,2020,Offshore,,,,Oil,Other Distributions,"-25,857.58"
+August,2022,U.S. Treasury,2020,Offshore,,,,Oil,Royalties,"538,936,537.26"
+August,2022,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Other Distributions,"5,552,117.79"
+August,2022,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Royalties,395.22
+August,2022,U.S. Treasury,2020,Offshore,GoMESA,,,Gas,Royalties,"6,402,906.27"
+August,2022,U.S. Treasury,2020,Offshore,GoMESA,,,Oil,Royalties,"60,763,578.98"
+August,2022,U.S. Treasury,2020,Offshore,GoMESA,,,Oil & Gas,Royalties,"2,715,775.66"
+August,2022,U.S. Treasury,2039,Onshore,,,,,Other Distributions,"-6,305.34"
+August,2022,U.S. Treasury,2039,Onshore,,,,,Royalties,"9,015,645.57"
+August,2022,U.S. Treasury,2039,Onshore,,,,Clay,Royalties,600.58
+August,2022,U.S. Treasury,2039,Onshore,,,,Coal,Other Distributions,"10,560.42"
+August,2022,U.S. Treasury,2039,Onshore,,,,Coal,Royalties,"4,486,582.87"
+August,2022,U.S. Treasury,2039,Onshore,,,,Gas,Other Distributions,45.57
+August,2022,U.S. Treasury,2039,Onshore,,,,Gas,Royalties,"31,573,603.86"
+August,2022,U.S. Treasury,2039,Onshore,,,,Geothermal,Other Distributions,"1,252.07"
+August,2022,U.S. Treasury,2039,Onshore,,,,Geothermal,Royalties,"398,148.21"
+August,2022,U.S. Treasury,2039,Onshore,,,,Gilsonite,Other Distributions,67.8
+August,2022,U.S. Treasury,2039,Onshore,,,,Gilsonite,Royalties,"14,870.10"
+August,2022,U.S. Treasury,2039,Onshore,,,,Oil,Other Distributions,"120,391.22"
+August,2022,U.S. Treasury,2039,Onshore,,,,Oil,Royalties,"62,829,872.45"
+August,2022,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Other Distributions,"2,987,599.67"
+August,2022,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Rents & Bonuses,659.98
+August,2022,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Royalties,"605,111.18"
+August,2022,U.S. Treasury,2039,Onshore,,,,Phosphate,Other Distributions,535.8
+August,2022,U.S. Treasury,2039,Onshore,,,,Phosphate,Royalties,"101,148.99"
+August,2022,U.S. Treasury,2039,Onshore,,,,Potassium,Royalties,"171,822.28"
+August,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Other Distributions,-136.1
+August,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Royalties,"219,537.17"
