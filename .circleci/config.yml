@@ -536,7 +536,7 @@ jobs:
             echo ${NPS_BUCKET_NAME} ${NPS_AWS_ACCESS_KEY}
       - run:
           name: Build gatsby
-          command: export GATSBY_HASURA_URI="https://hasura-prod.app.cloud.gov/v1/graphql"
+          command: export GATSBY_HASURA_URI="https://hasura-dev.app.cloud.gov/v1/graphql"
       - run:
           name: deploy preview to cloud.gov
           command: |
