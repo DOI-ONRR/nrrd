@@ -1,7 +1,7 @@
 const fetch = require('isomorphic-fetch')
 const { createHttpLink } = require('apollo-link-http')
 
-const activeEnv = (process.env.CIRCLE_BRANCH === 'master') ? 'prd' : 'dev'
+const activeEnv = (process.env.prd === 'master') ? 'prd' : 'dev'
 require('dotenv').config({
   path: `.env.${ activeEnv }`
 })
@@ -9,6 +9,7 @@ require('dotenv').config({
 const GOOGLE_ANALYTICS_ID = (activeEnv === 'prd') ? process.env.GOOGLE_ANALYTICS_ID : ''
 // eslint-disable-next-line max-len
 const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
+const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'master.env.prd')
 
 const config = {
   pathPrefix: PATH_PREFIX,
