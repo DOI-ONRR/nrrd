@@ -534,15 +534,12 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
-      - run:
-          name: Build gatsby
-          command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
-      - run:
+       - run:
            name: npm install
            command: npm install
       - run:
-           name: Build gatsby
-           command: npm run build
+          name: Build gatsby
+          command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
       - run:
           name: deploy preview to cloud.gov
           command: |
