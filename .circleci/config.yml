@@ -489,7 +489,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: Build gatsby
-          command: export GATSBY_HASURA_URI="https://hasura-dev.app.cloud.gov/v1/graphql"
+          command: export GATSBY_HASURA_URI="https://hasura-sandbox.app.cloud.gov/v1/graphql" && npm run build
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -525,7 +525,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: Build gatsby
-          command: export GATSBY_HASURA_URI="https://hasura-dev.app.cloud.gov/v1/graphql"
+          command: export GATSBY_HASURA_URI="https://hasura-dev.app.cloud.gov/v1/graphql" && npm run build
 
 workflows:
   audits:
