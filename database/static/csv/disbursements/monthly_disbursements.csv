@@ -1201,7 +1201,7 @@ January,2017,Reclamation Fund,,Onshore,,,,Potassium,Other Distributions,"343,735
 January,2017,Reclamation Fund,,Onshore,,,,Potassium,Royalties,"317,261.68"
 January,2017,Reclamation Fund,,Onshore,,,,Sodium,Other Distributions,"108,954.47"
 January,2017,Reclamation Fund,,Onshore,,,,Sodium,Royalties,"1,473,451.64"
-January,2017,State,,Offshore,8(g),RI,,Wind,Rents & Bonuses,"1,701.00"
+January,2017,State,,Offshore,8(g),AC,,Wind,Rents & Bonuses,"1,701.00"
 January,2017,State,,Offshore,8(g),AK,,Oil,Royalties,"76,447.59"
 January,2017,State,,Offshore,8(g),AK,,Oil & Gas,Other Distributions,86.18
 January,2017,State,,Offshore,8(g),AK,,Oil & Gas,Rents & Bonuses,"61,824.13"
@@ -27929,7 +27929,6 @@ August,2022,U.S. Treasury,2039,Onshore,,,,Phosphate,Royalties,"101,148.99"
 August,2022,U.S. Treasury,2039,Onshore,,,,Potassium,Royalties,"171,822.28"
 August,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Other Distributions,-136.1
 August,2022,U.S. Treasury,2039,Onshore,,,,Sodium,Royalties,"219,537.17"
-<<<<<<< HEAD
 September,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Coal,Rents & Bonuses,"23,052.00"
 September,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Gilsonite,Rents & Bonuses,38.25
 September,2022,BLM - Permit Processing and Improvement,,Onshore,,,,Oil & Gas,Rents & Bonuses,"291,525.03"
