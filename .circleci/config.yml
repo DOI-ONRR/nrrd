@@ -566,6 +566,7 @@ workflows:
               ignore:
                 - master
                 - staging
+
   preview:
     jobs:
       - nrrd-database:
@@ -586,17 +587,19 @@ workflows:
               ignore:
                 - master
                 - dev
+
   deploy:
     jobs:
       - deploy:
           filters:
             branches:
               only: master
-          requires:
-                  - nrrd-dev-database
-    - nrrd-dev-database:
+
+      - nrrd-dev-database:
           context:
             - DEV
+          requires:
+            - deploy
   dev:
     jobs:
       - nrrd-dev-database:
@@ -606,8 +609,6 @@ workflows:
             branches:
               only: dev
       - dev:
-          context:
-            - DEV
           requires:
             - nrrd-dev-database
           filters:
