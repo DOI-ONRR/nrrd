@@ -586,7 +586,7 @@ workflows:
               ignore:
                 - master
                 - dev
-deploy:
+  deploy:
     jobs:
       - deploy:
           filters:
