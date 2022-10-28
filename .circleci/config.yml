@@ -510,6 +510,9 @@ jobs:
     resource_class: medium+
     steps:
       - checkout
+      - run:
+          name: install nasm
+          command: sudo apt install nasm
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
@@ -532,11 +535,14 @@ jobs:
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
       - run:
-          command: |
-              ls -lart static/downloads
-      - run:
           name: Build gatsby
           command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
+       - run:
+           name: npm install
+           command: npm install
+       - run:
+           name: Build gatsby
+           command: npm run build
       - run:
           name: deploy preview to cloud.gov
           command: |
