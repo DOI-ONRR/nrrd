@@ -499,7 +499,7 @@ jobs:
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
             cf push dev-nrrd -f ./manifest.yml
-deploy:
+  deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
@@ -586,17 +586,20 @@ workflows:
               ignore:
                 - master
                 - dev
-deploy:
+
+  deploy:
     jobs:
+      - nrrd-dev-database:
+            context:
+              - DEV
+
       - deploy:
           filters:
             branches:
               only: master
-      - nrrd-dev-database:
-          context:
-            - DEV
           requires:
-            - deploy
+                  - nrrd-dev-database
+
   dev:
     jobs:
       - nrrd-dev-database:
