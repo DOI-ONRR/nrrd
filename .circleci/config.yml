@@ -499,21 +499,18 @@ jobs:
             cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
             cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
             cf push dev-nrrd -f ./manifest.yml
-  deploy:
+deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: circleci/node:12.13.0-browsers
     resource_class: medium+
     steps:
       - checkout
-      - run:
-          name: install nasm
-          command: sudo apt install nasm
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: rm -rf node_modules package-lock.json
+          command: npm install
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -523,16 +520,13 @@ jobs:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
       - run:
           name: "list generated downloads"
           command: |
             ls -lart static/downloads
             cat static/downloads/downloads.json
-      - run:
-          name: npm install
-          command: npm install
       - run:
           name: Build gatsby
           command: npm run build
