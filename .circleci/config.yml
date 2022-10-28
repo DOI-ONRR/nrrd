@@ -212,6 +212,7 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
+
   nrrd-dev-database:
     machine:
       image: ubuntu-2004:202010-01
@@ -224,6 +225,7 @@ jobs:
              CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
              echo "Number of database changes $CHANGES"
             # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
+
             # if [ "$CHANGES" = "0" ]; then
             #   echo "Halting database build -  no database changes"
             #   circleci-agent step halt
@@ -366,6 +368,7 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/downloads/
+
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -411,6 +414,7 @@ jobs:
           name: clean up
           command: |
             bash ./.circleci/cleanup-previews.sh
+
   nrrd-preview-new:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
