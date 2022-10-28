@@ -537,7 +537,7 @@ jobs:
       - run:
           name: Build gatsby
           command: export GATSBY_HASURA_URI="https://hasura-dev.app.cloud.gov/v1/graphql"
-    - run:
+     - run:
         name: deploy to cloud.gov
         command: |
           pwd && ls -l
