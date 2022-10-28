@@ -534,7 +534,7 @@ jobs:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
-       - run:
+      - run:
            name: npm install
            command: npm install
       - run:
