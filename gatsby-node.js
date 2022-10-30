@@ -103,7 +103,7 @@ const createYearsCache = ({ graphql, reporter }) => {
             calendar_year
           }
   ****/
-  
+
   return new Promise((resolve, reject) => {
     resolve(
       graphql(`
@@ -183,7 +183,7 @@ const createComponentsCache = ({ graphql, reporter }) => {
   return new Promise((resolve, reject) => {
 	    resolve(
 	      graphql(`
-        {  
+        {
           allMdx(filter: {fileAbsolutePath: {regex: "/content-partials/"}}) {
             edges {
               node {
