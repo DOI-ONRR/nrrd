@@ -30,7 +30,7 @@ exports.createPages = ({ graphql, reporter, actions }) => {
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     node: {
-      fs: 'empty'
+      fs: 'false'
     }
   })
 }
