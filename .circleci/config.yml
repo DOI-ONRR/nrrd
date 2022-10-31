@@ -526,7 +526,7 @@ jobs:
           to: static/downloads/
       - run:
           name: npm install
-          command: npm install
+          command:  npm i-g gatsby
       - run:
           name: Build gatsby
           command: npm run build
