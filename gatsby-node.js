@@ -42,7 +42,6 @@ const createRedirects = ({ graphql, reporter, createRedirect }) => {
   return new Promise((resolve, reject) => {
     resolve(
       graphql(`
-      {
         query redirects {
           allMdx(filter: {fileAbsolutePath: {regex: "/content-partials/Redirects/"}}) {
             nodes {
@@ -97,14 +96,6 @@ const createYearsCache = ({ graphql, reporter }) => {
   const DISBURSEMENT = 'Disbursements'
   const PRODUCTION = 'Production'
   const REVENUE_BY_COMPANY = 'Federal revenue by company'
-
-
-  /***** pulled from production part query below
-            production_calendar_years: period(distinct_on: calendar_year, where: {productions: {volume: {_is_null: false}, period: {period: {_eq: "Calendar Year"}}}}, order_by: {calendar_year: asc}) {
-            calendar_year
-          }
-  ****/
-
   return new Promise((resolve, reject) => {
     resolve(
       graphql(`
@@ -119,7 +110,7 @@ const createYearsCache = ({ graphql, reporter }) => {
           production_fiscal_years: period(distinct_on: fiscal_year, where: {productions: {volume: {_is_null: false}, period: {period: {_eq: "Fiscal Year"}}}}, order_by: {fiscal_year: asc}) {
             fiscal_year
           }
-          production_calendar_years: period(distinct_on: calendar_year, where: {productions: {volume: {_is_null: false}, period: {period: {_eq: "Monthly"}, month: {_eq: 12}} }}, order_by: {calendar_year: asc}) {
+          production_calendar_years: period(distinct_on: calendar_year, where: {productions: {volume: {_is_null: false}, period: {period: {_eq: "Calendar Year"}}}}, order_by: {calendar_year: asc}) {
             calendar_year
           }
           disbursement_fiscal_years: period(distinct_on: fiscal_year, where: {disbursements: {disbursement: {_is_null: false}, period: {period: {_eq: "Fiscal Year"}}}}, order_by: {fiscal_year: asc}) {
