@@ -512,15 +512,6 @@ jobs:
     resource_class: medium+
     steps:
       - checkout
-      - restore_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install node dependencies
-          command: rm -rf node_modules && rm ./package-lock.json
-      - save_cache:
-          key: v3-node-modules-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
       - aws-s3/sync:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
@@ -538,7 +529,7 @@ jobs:
           command: npm install
       - run:
           name: Build gatsby
-          command: npm run build
+          command: rm -rf node_modules && rm ./package-lock.json && npm install
       - run:
           name: deploy preview to cloud.gov
           command: |
