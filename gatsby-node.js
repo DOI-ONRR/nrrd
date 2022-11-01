@@ -27,6 +27,12 @@ exports.createPages = ({ graphql, reporter, actions }) => {
   ])
 }
 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    node: { fs: 'empty' },
+    })
+  }
+
 // Create redirects from Redirect.mdx frontmatter
 const createRedirects = ({ graphql, reporter, createRedirect }) => {
   console.info('creating redirects')
