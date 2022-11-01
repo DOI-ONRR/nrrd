@@ -535,6 +535,7 @@ jobs:
          command: |
                 ls -lart static/downloads
                 cat static/downloads/downloads.json
+                echo ${NPS_BUCKET_NAME} ${NPS_AWS_ACCESS_KEY}
       - run:
           name: Build gatsby
           command: npm run build
