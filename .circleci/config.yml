@@ -523,7 +523,6 @@ jobs:
           name: "list generated downloads"
           command: |
             ls -lart static/downloads
-            cat static/downloads/downloads.
       - run:
           name: npm install
           command: npm install
