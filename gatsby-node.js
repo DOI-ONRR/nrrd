@@ -107,7 +107,6 @@ const createYearsCache = ({ graphql, reporter }) => {
   return new Promise((resolve, reject) => {
     resolve(
       graphql(`
-      {
         onrr {
           revenue_fiscal_years: period(distinct_on: fiscal_year, where: {revenues: {revenue: {_is_null: false}, period: {period: {_eq: "Fiscal Year"}}}}, order_by: {fiscal_year: asc}) {
             fiscal_year
