@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
-
 jobs:
   lint:
     docker:
@@ -47,7 +46,6 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./coverage
-
   end_to_end_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -69,7 +67,6 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./__tests__/__image_snapshots__/
-
   lighthouse:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -89,7 +86,6 @@ jobs:
           command: node __audits__/lighthouse.audit.js
       - store_artifacts:
           path: ./__audits__/lighthouse/
-
 
   nrrd-database:
     machine:
@@ -192,7 +188,6 @@ jobs:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
-            cat /tmp/downloads/downloads.json
       - store_artifacts:
           path: /tmp/database_backup.pg
           destination: database_backup.pg
@@ -217,7 +212,6 @@ jobs:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
-            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads
   nrrd-dev-database:
     machine:
       image: ubuntu-2004:202010-01
@@ -230,7 +224,6 @@ jobs:
              CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
              echo "Number of database changes $CHANGES"
             # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
-
             # if [ "$CHANGES" = "0" ]; then
             #   echo "Halting database build -  no database changes"
             #   circleci-agent step halt
@@ -319,50 +312,59 @@ jobs:
                 npm install
                 bash ./src/scripts/downloads.sh
                 node ./src/scripts/downloads.js
+                cd ..
+                cp /tmp/downloads/* static/downloads
       - run:
           name: "list generated downloads"
           command: |
             ls /tmp/downloads/*
-            cat /tmp/downloads/downloads.json
+            ls -lart static/downloads/*
+# imported from dev job bbelopw
+      # - run:
+      #     name: Install node dependencies
+      #     command: npm install
+      # - run:
+      #     name: Build gatsby
+      #     command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
+      # - run:
+      #     name: deploy to cloud.gov
+      #     command: |
+      #       pwd && ls -l
+      #       curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+      #       sudo dpkg -i cf-cli_amd64.deb
+      #       # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+      #       # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+      #       cp Staticfile ./public
+      #       cf api https://api.fr.cloud.gov
+      #       cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
+      #       cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
+      #       cf push dev-nrrd -f ./manifest.yml
+# imported because of issue with s3 storage/downloads metadata
+
       - store_artifacts:
           path: /tmp/database_backup.pg
           destination: database_backup.pg
       - store_artifacts:
           path: /tmp/downloads
           destination: downloads
-      # - aws-s3/sync:
-      #     arguments: |
-      #     aws-access-key-id: NPS_AWS_ACCESS_KEY
-      #     aws-region: NPS_AWS_REGION
-      #     aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-      #     from: /tmp/downloads
-      #     to: 's3://$NPS_BUCKET_NAME/downloads'
-      - aws-s3/copy:
+      - aws-s3/sync:
           arguments: |
-            --recursive  --cache-control max-age=0,public
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: /tmp/downloads
-          to: 's3://$NPS_BUCKET_NAME/downloads'
+          from: /tmp/downloads/
+          to: 's3://${NPS_BUCKET_NAME}/downloads'
       - aws-s3/copy:
           arguments: |
-            --debug
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/database_backup.pg
-          to: 's3://$NPS_BUCKET_NAME/backup/database_backup.pg'
-      - run:
-          name: "cat s3 downloads.json"
-          command: |
-            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads/downloads.json - | cat
+          to: 's3://${NPS_BUCKET_NAME}/backup/database_backup.pg'
       - run:
           name: "list bucket"
           command: |
-            aws --debug s3 ls s3://${NPS_BUCKET_NAME}/
-            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads
-
+            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads/
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -382,27 +384,19 @@ jobs:
       - run:
           command: |
             ls -lart static/downloads
-      - run:
-          name: "cat s3 downloads.json"
-          command: |
-            aws s3 cp s3://${NPS_BUCKET_NAME}/downloads/downloads.json - | cat
       - aws-s3/sync:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
       - run:
-          name: check downloads
           command: |
             ls -lart static/downloads
-            cat static/downloads/downloads.json
       - run:
           name: Build gatsby
-          command: |
-            printenv
-            export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql && export CIRCLE_STAGE='nrrd-preview' && npm run build
+          command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql &&  export CIRCLE_STAGE='nrrd-preview' && npm run build
       - aws-s3/sync:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
@@ -410,15 +404,12 @@ jobs:
           from: public
           to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH'
       - run:
-          name: check downloads
           command: |
-            ls -lart static/downloads
-            cat static/downloads/downloads.json
+                ls -lart static/downloads
       - run:
           name: clean up
           command: |
             bash ./.circleci/cleanup-previews.sh
-
   nrrd-preview-new:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -461,7 +452,7 @@ jobs:
   dev:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0
+      - image: circleci/node:12.13.0-browsers
     resource_class: medium+
     steps:
       - checkout
@@ -479,14 +470,12 @@ jobs:
           command: |
             ls -lart static/downloads
            # rm static/downloads/downloads.json
-
-      - aws-s3/copy:
+      - aws-s3/sync:
           arguments: |
-            --recursive --cache-control max-age=0,public
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          from: 's3://${NPS_BUCKET_NAME}/downloads/'
           to: static/downloads/
       - run:
           name: "list generated downloads"
@@ -519,11 +508,6 @@ jobs:
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
-          name: "list generated downloads"
-          command: |
-             ls -lart static/downloads
-            # rm static/downloads/downloads.jso
-      - run:
           name: Install node dependencies
           command: npm install
       - save_cache:
@@ -531,11 +515,10 @@ jobs:
           paths:
             - node_modules
       - run:
-         name: "list generated downloads"
-         command: |
-                ls -lart static/downloads
-                cat static/downloads/downloads.json
-                echo ${NPS_BUCKET_NAME} ${NPS_AWS_ACCESS_KEY}
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+            cat static/downloads/downloads.json
       - run:
           name: Build gatsby
           command: npm run build
@@ -575,7 +558,6 @@ workflows:
               ignore:
                 - master
                 - staging
-
   preview:
     jobs:
       - nrrd-database:
@@ -603,7 +585,6 @@ workflows:
           filters:
             branches:
               only: master
-
       - nrrd-dev-database:
           context:
             - DEV
@@ -618,6 +599,8 @@ workflows:
             branches:
               only: dev
       - dev:
+          context:
+            - DEV
           requires:
             - nrrd-dev-database
           filters:
