@@ -516,7 +516,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: rm -rf node_modules && rm ./package-lock.json && npm install
+          command: rm -rf node_modules && rm ./package-lock.json
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -532,7 +532,10 @@ jobs:
           name: "list generated downloads"
           command: |
             ls -lart static/downloads
-            cat static/downloads/downloads.json
+            cat static/downloads/downloads.
+      - run:
+          name: npm install
+          command: npm install
       - run:
           name: Build gatsby
           command: npm run build
