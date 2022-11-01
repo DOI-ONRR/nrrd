@@ -520,7 +520,7 @@ jobs:
       - run:
           name: Install node dependencies
           command: rm -rf node_modules && rm ./package-lock.json
-        - run:
+      - run:
             command: |
               ls -lart static/downloads
       - aws-s3/sync:
