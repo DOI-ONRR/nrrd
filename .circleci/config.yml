@@ -1,4 +1,4 @@
-version: 2.1
+vversion: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
 jobs:
@@ -520,16 +520,6 @@ jobs:
       - run:
           name: Install node dependencies
           command: rm -rf node_modules && rm ./package-lock.json
-      - run:
-            command: |
-              ls -lart static/downloads
-      - aws-s3/sync:
-          arguments: |
-          aws-access-key-id: NPS_AWS_ACCESS_KEY
-          aws-region: NPS_AWS_REGION
-          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://${NPS_BUCKET_NAME}/downloads/'
-          to: static/downloads/
       - run:
           name: "list generated downloads"
           command: |
