@@ -512,14 +512,14 @@ jobs:
     resource_class: medium+
     steps:
       - checkout
-      - run:
-          name: install nasm
-          command: sudo apt install nasm
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
           command: rm -rf node_modules && rm ./package-lock.json
+       - run:
+           name: npm install
+           command: npm install
       - run:
           name: "list generated downloads"
           command: |
@@ -530,15 +530,8 @@ jobs:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: 's3://${NPS_BUCKET_NAME}/downloads/'
+          from: 's3://$NPS_BUCKET_NAM}/downloads/'
           to: static/downloads/
-      - run:
-          name: "list generated downloads"
-          command: |
-            ls -lart static/downloads
-      - run:
-          name: npm install
-          command: npm install
       - run:
           name: Build Gatsby
           command: npm run build
