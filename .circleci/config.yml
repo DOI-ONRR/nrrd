@@ -535,7 +535,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: Build gatsby
-          command: npm run build
+          command: rm -rf node_modules && rm ./package-lock.json && npm install
       - run:
           name: deploy preview to cloud.gov
           command: |
