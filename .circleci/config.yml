@@ -518,7 +518,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: rm -rf node_modules && rm ./package-lock.json
+          command: rm -rf node_modules
       - aws-s3/sync:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
@@ -532,11 +532,8 @@ jobs:
             ls -lart static/downloads
             cat static/downloads/downloads.json
       - run:
-          name: npm install
-          command: npm update
-      - run:
-            name: npm install
-            command: npm install
+        name: npm install
+        command: npm install -g gatsby-cli
       - run:
           name: Build Gatsby
           command: npm run build
