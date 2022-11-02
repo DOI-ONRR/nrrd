@@ -536,7 +536,7 @@ jobs:
           command: npm update
       - run:
             name: npm install
-            command: npm install
+            command: npm install gatsby@latest
       - run:
           name: Build Gatsby
           command: npm run build
