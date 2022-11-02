@@ -512,9 +512,6 @@ jobs:
     resource_class: medium+
     steps:
       - checkout
-      - run:
-          name: install nasm
-          command: sudo apt install nasm
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
@@ -536,6 +533,7 @@ jobs:
           name: "list generated downloads"
           command: |
             ls -lart static/downloads
+            cat static/downloads/downloads.json
       - run:
           name: npm install
           command: npm install
