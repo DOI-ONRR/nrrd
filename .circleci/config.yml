@@ -515,6 +515,8 @@ jobs:
       - run:
           name: install nasm
           command: sudo apt install nasm
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
           command: rm -rf node_modules && rm ./package-lock.json
