@@ -181,7 +181,6 @@ const createComponentsCache = ({ graphql, reporter }) => {
   return new Promise((resolve, reject) => {
 	    resolve(
 	      graphql(`
-        {
           allMdx(filter: {fileAbsolutePath: {regex: "/content-partials/"}}) {
             edges {
               node {
