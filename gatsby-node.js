@@ -40,9 +40,8 @@ const createRedirects = ({ graphql, reporter, createRedirect }) => {
   console.info('creating redirects')
 
   return new Promise((resolve, reject) => {
-	    resolve(
-	      graphql(`
-        {
+    resolve(
+      graphql(`
         query redirects {
           allMdx(filter: {fileAbsolutePath: {regex: "/content-partials/Redirects/"}}) {
             nodes {
