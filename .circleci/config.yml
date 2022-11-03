@@ -508,13 +508,15 @@ jobs:
   deploy:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
+      - image: circleci/node:14.18.2-browsers
     resource_class: medium+
     steps:
       - checkout
       - run:
           name: install nasm
           command: sudo apt install nasm
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
           command: rm -rf node_modules && rm ./package-lock.json
