@@ -165,7 +165,7 @@ jobs:
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o "$CF_ORG" -s "$CF_SPACE" -v
+            cf target -o "doi-onrr" -s "dev" -v
             cf apps
             cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
             bash tunnel.sh hasura-sandbox
