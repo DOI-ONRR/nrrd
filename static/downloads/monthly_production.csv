@@ -1,7 +1,7 @@
 Date,Land Class,Land Category,Commodity,Volume
 01/01/2003,Native American,Onshore,Gas Prod Vol (mcf),33558379
-01/01/2003,Native American,Onshore,Coal Prod Vol (tons),2400984
 01/01/2003,Native American,Onshore,Oil Prod Vol (bbl),999810
+01/01/2003,Native American,Onshore,Coal Prod Vol (tons),2400984
 01/01/2003,Federal,Onshore,Oil Prod Vol (bbl),8403385
 01/01/2003,Federal,Onshore,Gas Prod Vol (mcf),253491221
 01/01/2003,Federal,Onshore,Coal Prod Vol (tons),37822686
@@ -623,1251 +623,1259 @@ Date,Land Class,Land Category,Commodity,Volume
 06/01/2009,Native American,Onshore,Gas Prod Vol (mcf),23403173
 06/01/2009,Native American,Onshore,Oil Prod Vol (bbl),958713
 06/01/2009,Native American,Onshore,Coal Prod Vol (tons),2309024
-07/01/2009,Native American,Onshore,Coal Prod Vol (tons),2345725
 07/01/2009,Native American,Onshore,Oil Prod Vol (bbl),987501
+07/01/2009,Native American,Onshore,Coal Prod Vol (tons),2345725
 07/01/2009,Native American,Onshore,Gas Prod Vol (mcf),25110437
 07/01/2009,Federal,Onshore,Coal Prod Vol (tons),38422646
 07/01/2009,Federal,Onshore,Oil Prod Vol (bbl),8499648
 07/01/2009,Federal,Onshore,Gas Prod Vol (mcf),319828789
 07/01/2009,Federal,Offshore,Oil Prod Vol (bbl),55925642
 07/01/2009,Federal,Offshore,Gas Prod Vol (mcf),230760423
-08/01/2009,Federal,Offshore,Oil Prod Vol (bbl),55884224
-08/01/2009,Federal,Offshore,Gas Prod Vol (mcf),217147780
 08/01/2009,Federal,Onshore,Gas Prod Vol (mcf),331204155
-08/01/2009,Native American,Onshore,Gas Prod Vol (mcf),25138584
+08/01/2009,Federal,Offshore,Gas Prod Vol (mcf),217147780
+08/01/2009,Federal,Offshore,Oil Prod Vol (bbl),55884224
+08/01/2009,Native American,Onshore,Coal Prod Vol (tons),2209028
 08/01/2009,Native American,Onshore,Oil Prod Vol (bbl),1004966
+08/01/2009,Native American,Onshore,Gas Prod Vol (mcf),25138584
 08/01/2009,Federal,Onshore,Oil Prod Vol (bbl),8552886
 08/01/2009,Federal,Onshore,Coal Prod Vol (tons),39778243
-08/01/2009,Native American,Onshore,Coal Prod Vol (tons),2209028
-09/01/2009,Native American,Onshore,Gas Prod Vol (mcf),23768868
-09/01/2009,Federal,Onshore,Oil Prod Vol (bbl),8357009
+09/01/2009,Federal,Offshore,Oil Prod Vol (bbl),54473598
 09/01/2009,Federal,Onshore,Gas Prod Vol (mcf),309641586
 09/01/2009,Federal,Onshore,Coal Prod Vol (tons),39392564
-09/01/2009,Federal,Offshore,Gas Prod Vol (mcf),206493077
-09/01/2009,Federal,Offshore,Oil Prod Vol (bbl),54473598
-09/01/2009,Native American,Onshore,Coal Prod Vol (tons),2364021
+09/01/2009,Federal,Onshore,Oil Prod Vol (bbl),8357009
+09/01/2009,Native American,Onshore,Gas Prod Vol (mcf),23768868
 09/01/2009,Native American,Onshore,Oil Prod Vol (bbl),1003691
+09/01/2009,Native American,Onshore,Coal Prod Vol (tons),2364021
+09/01/2009,Federal,Offshore,Gas Prod Vol (mcf),206493077
 10/01/2009,Federal,Onshore,Gas Prod Vol (mcf),337856219
 10/01/2009,Federal,Onshore,Oil Prod Vol (bbl),8699225
 10/01/2009,Federal,Onshore,Coal Prod Vol (tons),38081710
-10/01/2009,Federal,Offshore,Gas Prod Vol (mcf),215125831
-10/01/2009,Native American,Onshore,Gas Prod Vol (mcf),24517781
-10/01/2009,Federal,Offshore,Oil Prod Vol (bbl),55599926
 10/01/2009,Native American,Onshore,Oil Prod Vol (bbl),1089543
 10/01/2009,Native American,Onshore,Coal Prod Vol (tons),1966556
-11/01/2009,Federal,Offshore,Oil Prod Vol (bbl),48909581
-11/01/2009,Federal,Offshore,Gas Prod Vol (mcf),200203611
-11/01/2009,Federal,Onshore,Coal Prod Vol (tons),37613625
+10/01/2009,Federal,Offshore,Gas Prod Vol (mcf),215125831
+10/01/2009,Federal,Offshore,Oil Prod Vol (bbl),55599926
+10/01/2009,Native American,Onshore,Gas Prod Vol (mcf),24517781
 11/01/2009,Federal,Onshore,Oil Prod Vol (bbl),8581969
-11/01/2009,Federal,Onshore,Gas Prod Vol (mcf),333974725
-11/01/2009,Native American,Onshore,Gas Prod Vol (mcf),23542045
-11/01/2009,Native American,Onshore,Oil Prod Vol (bbl),1033736
+11/01/2009,Federal,Onshore,Coal Prod Vol (tons),37613625
 11/01/2009,Native American,Onshore,Coal Prod Vol (tons),1840979
-12/01/2009,Federal,Onshore,Oil Prod Vol (bbl),8648739
+11/01/2009,Native American,Onshore,Oil Prod Vol (bbl),1033736
+11/01/2009,Federal,Offshore,Gas Prod Vol (mcf),200203611
+11/01/2009,Native American,Onshore,Gas Prod Vol (mcf),23542045
+11/01/2009,Federal,Offshore,Oil Prod Vol (bbl),48909581
+11/01/2009,Federal,Onshore,Gas Prod Vol (mcf),333974725
+12/01/2009,Native American,Onshore,Oil Prod Vol (bbl),1032140
 12/01/2009,Federal,Onshore,Gas Prod Vol (mcf),335505718
+12/01/2009,Federal,Onshore,Oil Prod Vol (bbl),8648739
+12/01/2009,Federal,Onshore,Coal Prod Vol (tons),36374302
 12/01/2009,Federal,Offshore,Gas Prod Vol (mcf),207384694
 12/01/2009,Federal,Offshore,Oil Prod Vol (bbl),54068444
-12/01/2009,Native American,Onshore,Gas Prod Vol (mcf),23292025
-12/01/2009,Native American,Onshore,Oil Prod Vol (bbl),1032140
 12/01/2009,Native American,Onshore,Coal Prod Vol (tons),1932698
-12/01/2009,Federal,Onshore,Coal Prod Vol (tons),36374302
-01/01/2010,Native American,Onshore,Coal Prod Vol (tons),1612890
-01/01/2010,Federal,Onshore,Gas Prod Vol (mcf),335528631
-01/01/2010,Federal,Onshore,Oil Prod Vol (bbl),8664021
-01/01/2010,Federal,Onshore,Coal Prod Vol (tons),37386236
+12/01/2009,Native American,Onshore,Gas Prod Vol (mcf),23292025
 01/01/2010,Federal,Offshore,Gas Prod Vol (mcf),210405098
-01/01/2010,Federal,Offshore,Oil Prod Vol (bbl),53333292
+01/01/2010,Federal,Onshore,Coal Prod Vol (tons),37386236
+01/01/2010,Federal,Onshore,Oil Prod Vol (bbl),8664021
+01/01/2010,Federal,Onshore,Gas Prod Vol (mcf),335528631
+01/01/2010,Native American,Onshore,Coal Prod Vol (tons),1612890
 01/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1030770
 01/01/2010,Native American,Onshore,Gas Prod Vol (mcf),23518112
-02/01/2010,Native American,Onshore,Coal Prod Vol (tons),1892405
+01/01/2010,Federal,Offshore,Oil Prod Vol (bbl),53333292
 02/01/2010,Federal,Offshore,Oil Prod Vol (bbl),49713898
 02/01/2010,Federal,Offshore,Gas Prod Vol (mcf),195216277
-02/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1007180
-02/01/2010,Native American,Onshore,Gas Prod Vol (mcf),21544205
 02/01/2010,Federal,Onshore,Gas Prod Vol (mcf),302935781
 02/01/2010,Federal,Onshore,Oil Prod Vol (bbl),8035512
+02/01/2010,Native American,Onshore,Gas Prod Vol (mcf),21544205
+02/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1007180
 02/01/2010,Federal,Onshore,Coal Prod Vol (tons),36431663
+02/01/2010,Native American,Onshore,Coal Prod Vol (tons),1892405
+03/01/2010,Federal,Onshore,Gas Prod Vol (mcf),336236081
+03/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9114448
 03/01/2010,Federal,Onshore,Coal Prod Vol (tons),39183219
 03/01/2010,Federal,Offshore,Gas Prod Vol (mcf),217164653
 03/01/2010,Federal,Offshore,Oil Prod Vol (bbl),51699886
 03/01/2010,Native American,Onshore,Coal Prod Vol (tons),1743062
 03/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1213525
 03/01/2010,Native American,Onshore,Gas Prod Vol (mcf),24141593
-03/01/2010,Federal,Onshore,Gas Prod Vol (mcf),336236081
-03/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9114448
+04/01/2010,Native American,Onshore,Gas Prod Vol (mcf),23736903
+04/01/2010,Federal,Onshore,Coal Prod Vol (tons),37425825
 04/01/2010,Federal,Onshore,Oil Prod Vol (bbl),8719143
+04/01/2010,Federal,Onshore,Gas Prod Vol (mcf),327624306
 04/01/2010,Federal,Offshore,Oil Prod Vol (bbl),46376079
 04/01/2010,Federal,Offshore,Gas Prod Vol (mcf),201009584
-04/01/2010,Federal,Onshore,Coal Prod Vol (tons),37425825
-04/01/2010,Native American,Onshore,Gas Prod Vol (mcf),23736903
 04/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1219445
 04/01/2010,Native American,Onshore,Coal Prod Vol (tons),1795669
-04/01/2010,Federal,Onshore,Gas Prod Vol (mcf),327624306
-05/01/2010,Federal,Onshore,Coal Prod Vol (tons),37145269
-05/01/2010,Federal,Onshore,Gas Prod Vol (mcf),334600478
-05/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9176809
 05/01/2010,Federal,Offshore,Gas Prod Vol (mcf),199958155
-05/01/2010,Federal,Offshore,Oil Prod Vol (bbl),49626770
-05/01/2010,Native American,Onshore,Gas Prod Vol (mcf),24979576
-05/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1266489
 05/01/2010,Native American,Onshore,Coal Prod Vol (tons),1742781
-06/01/2010,Federal,Onshore,Coal Prod Vol (tons),36578041
-06/01/2010,Federal,Onshore,Oil Prod Vol (bbl),8797950
-06/01/2010,Federal,Onshore,Gas Prod Vol (mcf),311054161
-06/01/2010,Native American,Onshore,Gas Prod Vol (mcf),24313633
+05/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1266489
+05/01/2010,Native American,Onshore,Gas Prod Vol (mcf),24979576
+05/01/2010,Federal,Onshore,Coal Prod Vol (tons),37145269
+05/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9176809
+05/01/2010,Federal,Onshore,Gas Prod Vol (mcf),334600478
+05/01/2010,Federal,Offshore,Oil Prod Vol (bbl),49626770
 06/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1325224
 06/01/2010,Native American,Onshore,Coal Prod Vol (tons),1582003
-06/01/2010,Federal,Offshore,Gas Prod Vol (mcf),185250833
+06/01/2010,Native American,Onshore,Gas Prod Vol (mcf),24313633
 06/01/2010,Federal,Offshore,Oil Prod Vol (bbl),48242226
-07/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9194401
-07/01/2010,Native American,Onshore,Gas Prod Vol (mcf),24871418
+06/01/2010,Federal,Offshore,Gas Prod Vol (mcf),185250833
+06/01/2010,Federal,Onshore,Gas Prod Vol (mcf),311054161
+06/01/2010,Federal,Onshore,Oil Prod Vol (bbl),8797950
+06/01/2010,Federal,Onshore,Coal Prod Vol (tons),36578041
 07/01/2010,Federal,Onshore,Gas Prod Vol (mcf),328556560
-07/01/2010,Federal,Offshore,Oil Prod Vol (bbl),46375765
-07/01/2010,Federal,Offshore,Gas Prod Vol (mcf),185163298
+07/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9194401
+07/01/2010,Federal,Onshore,Coal Prod Vol (tons),38135193
+07/01/2010,Native American,Onshore,Gas Prod Vol (mcf),24871418
 07/01/2010,Native American,Onshore,Coal Prod Vol (tons),1609279
 07/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1433348
-07/01/2010,Federal,Onshore,Coal Prod Vol (tons),38135193
-08/01/2010,Federal,Onshore,Gas Prod Vol (mcf),330769610
-08/01/2010,Native American,Onshore,Coal Prod Vol (tons),1735723
-08/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1543911
-08/01/2010,Native American,Onshore,Gas Prod Vol (mcf),25421508
-08/01/2010,Federal,Offshore,Oil Prod Vol (bbl),49994148
+07/01/2010,Federal,Offshore,Oil Prod Vol (bbl),46375765
+07/01/2010,Federal,Offshore,Gas Prod Vol (mcf),185163298
 08/01/2010,Federal,Offshore,Gas Prod Vol (mcf),194157724
-08/01/2010,Federal,Onshore,Coal Prod Vol (tons),41050494
+08/01/2010,Federal,Onshore,Gas Prod Vol (mcf),330769610
 08/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9202527
-09/01/2010,Federal,Onshore,Oil Prod Vol (bbl),8919594
-09/01/2010,Federal,Onshore,Coal Prod Vol (tons),40744704
+08/01/2010,Federal,Onshore,Coal Prod Vol (tons),41050494
+08/01/2010,Federal,Offshore,Oil Prod Vol (bbl),49994148
+08/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1543911
+08/01/2010,Native American,Onshore,Coal Prod Vol (tons),1735723
+08/01/2010,Native American,Onshore,Gas Prod Vol (mcf),25421508
+09/01/2010,Native American,Onshore,Gas Prod Vol (mcf),24879088
+09/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1549059
+09/01/2010,Native American,Onshore,Coal Prod Vol (tons),2038643
 09/01/2010,Federal,Offshore,Oil Prod Vol (bbl),49462002
 09/01/2010,Federal,Offshore,Gas Prod Vol (mcf),183401434
-09/01/2010,Native American,Onshore,Coal Prod Vol (tons),2038643
-09/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1549059
-09/01/2010,Native American,Onshore,Gas Prod Vol (mcf),24879088
 09/01/2010,Federal,Onshore,Gas Prod Vol (mcf),319651678
-10/01/2010,Native American,Onshore,Coal Prod Vol (tons),1795394
+09/01/2010,Federal,Onshore,Oil Prod Vol (bbl),8919594
+09/01/2010,Federal,Onshore,Coal Prod Vol (tons),40744704
+10/01/2010,Federal,Onshore,Coal Prod Vol (tons),40725641
+10/01/2010,Federal,Offshore,Gas Prod Vol (mcf),188878849
+10/01/2010,Federal,Offshore,Oil Prod Vol (bbl),50405056
 10/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1640050
+10/01/2010,Native American,Onshore,Gas Prod Vol (mcf),26000391
 10/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9320888
 10/01/2010,Federal,Onshore,Gas Prod Vol (mcf),328181396
-10/01/2010,Federal,Offshore,Oil Prod Vol (bbl),50405056
-10/01/2010,Federal,Offshore,Gas Prod Vol (mcf),188878849
-10/01/2010,Federal,Onshore,Coal Prod Vol (tons),40725641
-10/01/2010,Native American,Onshore,Gas Prod Vol (mcf),26000391
-11/01/2010,Federal,Offshore,Gas Prod Vol (mcf),175284415
-11/01/2010,Native American,Onshore,Coal Prod Vol (tons),1605752
+10/01/2010,Native American,Onshore,Coal Prod Vol (tons),1795394
 11/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1587249
-11/01/2010,Federal,Onshore,Coal Prod Vol (tons),32529749
-11/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9097309
 11/01/2010,Federal,Onshore,Gas Prod Vol (mcf),321833964
+11/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9097309
+11/01/2010,Federal,Onshore,Coal Prod Vol (tons),32529749
 11/01/2010,Native American,Onshore,Gas Prod Vol (mcf),25341225
+11/01/2010,Native American,Onshore,Coal Prod Vol (tons),1605752
 11/01/2010,Federal,Offshore,Oil Prod Vol (bbl),46255609
-12/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9182135
-12/01/2010,Federal,Offshore,Oil Prod Vol (bbl),48149279
+11/01/2010,Federal,Offshore,Gas Prod Vol (mcf),175284415
 12/01/2010,Federal,Offshore,Gas Prod Vol (mcf),186299435
-12/01/2010,Native American,Onshore,Coal Prod Vol (tons),1832658
-12/01/2010,Federal,Onshore,Gas Prod Vol (mcf),332402232
+12/01/2010,Federal,Onshore,Oil Prod Vol (bbl),9182135
 12/01/2010,Federal,Onshore,Coal Prod Vol (tons),39561979
+12/01/2010,Native American,Onshore,Coal Prod Vol (tons),1832658
 12/01/2010,Native American,Onshore,Oil Prod Vol (bbl),1625454
+12/01/2010,Federal,Offshore,Oil Prod Vol (bbl),48149279
 12/01/2010,Native American,Onshore,Gas Prod Vol (mcf),26100056
-01/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9144381
-01/01/2011,Federal,Onshore,Coal Prod Vol (tons),39877057
-01/01/2011,Native American,Onshore,Coal Prod Vol (tons),2253425
+12/01/2010,Federal,Onshore,Gas Prod Vol (mcf),332402232
 01/01/2011,Native American,Onshore,Gas Prod Vol (mcf),24900277
-01/01/2011,Native American,Onshore,Oil Prod Vol (bbl),1634597
-01/01/2011,Federal,Offshore,Oil Prod Vol (bbl),50130882
 01/01/2011,Federal,Offshore,Gas Prod Vol (mcf),185479180
+01/01/2011,Native American,Onshore,Oil Prod Vol (bbl),1634597
+01/01/2011,Native American,Onshore,Coal Prod Vol (tons),2253425
+01/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9144381
 01/01/2011,Federal,Onshore,Gas Prod Vol (mcf),319214541
+01/01/2011,Federal,Offshore,Oil Prod Vol (bbl),50130882
+01/01/2011,Federal,Onshore,Coal Prod Vol (tons),39877057
+02/01/2011,Native American,Onshore,Coal Prod Vol (tons),1494323
+02/01/2011,Native American,Onshore,Oil Prod Vol (bbl),1508589
+02/01/2011,Federal,Offshore,Gas Prod Vol (mcf),158707052
 02/01/2011,Federal,Offshore,Oil Prod Vol (bbl),41096257
 02/01/2011,Native American,Onshore,Gas Prod Vol (mcf),23120072
-02/01/2011,Native American,Onshore,Oil Prod Vol (bbl),1508589
-02/01/2011,Federal,Onshore,Coal Prod Vol (tons),33559379
-02/01/2011,Federal,Onshore,Oil Prod Vol (bbl),8112245
-02/01/2011,Native American,Onshore,Coal Prod Vol (tons),1494323
 02/01/2011,Federal,Onshore,Gas Prod Vol (mcf),287727514
-02/01/2011,Federal,Offshore,Gas Prod Vol (mcf),158707052
-03/01/2011,Native American,Onshore,Gas Prod Vol (mcf),26360548
+02/01/2011,Federal,Onshore,Oil Prod Vol (bbl),8112245
+02/01/2011,Federal,Onshore,Coal Prod Vol (tons),33559379
 03/01/2011,Federal,Offshore,Oil Prod Vol (bbl),44884224
-03/01/2011,Federal,Offshore,Gas Prod Vol (mcf),175768911
-03/01/2011,Federal,Onshore,Gas Prod Vol (mcf),325381481
-03/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9490556
+03/01/2011,Native American,Onshore,Coal Prod Vol (tons),1772654
+03/01/2011,Native American,Onshore,Gas Prod Vol (mcf),26360548
 03/01/2011,Federal,Onshore,Coal Prod Vol (tons),40399470
 03/01/2011,Native American,Onshore,Oil Prod Vol (bbl),1741854
-03/01/2011,Native American,Onshore,Coal Prod Vol (tons),1772654
+03/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9490556
+03/01/2011,Federal,Offshore,Gas Prod Vol (mcf),175768911
+03/01/2011,Federal,Onshore,Gas Prod Vol (mcf),325381481
 04/01/2011,Federal,Onshore,Coal Prod Vol (tons),37741587
-04/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9317724
-04/01/2011,Native American,Onshore,Coal Prod Vol (tons),1684420
-04/01/2011,Native American,Onshore,Gas Prod Vol (mcf),24718944
-04/01/2011,Native American,Onshore,Oil Prod Vol (bbl),1764901
-04/01/2011,Federal,Onshore,Gas Prod Vol (mcf),318400930
-04/01/2011,Federal,Offshore,Gas Prod Vol (mcf),167789343
 04/01/2011,Federal,Offshore,Oil Prod Vol (bbl),42220274
+04/01/2011,Native American,Onshore,Coal Prod Vol (tons),1684420
+04/01/2011,Federal,Offshore,Gas Prod Vol (mcf),167789343
+04/01/2011,Native American,Onshore,Oil Prod Vol (bbl),1764901
+04/01/2011,Native American,Onshore,Gas Prod Vol (mcf),24718944
+04/01/2011,Federal,Onshore,Gas Prod Vol (mcf),318400930
+04/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9317724
+05/01/2011,Federal,Onshore,Coal Prod Vol (tons),36119698
 05/01/2011,Federal,Offshore,Gas Prod Vol (mcf),169921979
+05/01/2011,Native American,Onshore,Gas Prod Vol (mcf),25623727
 05/01/2011,Native American,Onshore,Oil Prod Vol (bbl),1881667
 05/01/2011,Native American,Onshore,Coal Prod Vol (tons),1936675
-05/01/2011,Native American,Onshore,Gas Prod Vol (mcf),25623727
 05/01/2011,Federal,Onshore,Gas Prod Vol (mcf),328038412
 05/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9682976
-05/01/2011,Federal,Onshore,Coal Prod Vol (tons),36119698
 05/01/2011,Federal,Offshore,Oil Prod Vol (bbl),44363248
-06/01/2011,Federal,Offshore,Oil Prod Vol (bbl),41591064
-06/01/2011,Federal,Onshore,Gas Prod Vol (mcf),315268246
-06/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9360508
-06/01/2011,Federal,Onshore,Coal Prod Vol (tons),33705453
-06/01/2011,Federal,Offshore,Gas Prod Vol (mcf),156395662
-06/01/2011,Native American,Onshore,Coal Prod Vol (tons),1973047
 06/01/2011,Native American,Onshore,Oil Prod Vol (bbl),1920912
+06/01/2011,Native American,Onshore,Coal Prod Vol (tons),1973047
+06/01/2011,Federal,Offshore,Gas Prod Vol (mcf),156395662
 06/01/2011,Native American,Onshore,Gas Prod Vol (mcf),25304092
-07/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9759438
-07/01/2011,Federal,Onshore,Gas Prod Vol (mcf),328464067
-07/01/2011,Native American,Onshore,Coal Prod Vol (tons),1889907
+06/01/2011,Federal,Onshore,Coal Prod Vol (tons),33705453
+06/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9360508
+06/01/2011,Federal,Onshore,Gas Prod Vol (mcf),315268246
+06/01/2011,Federal,Offshore,Oil Prod Vol (bbl),41591064
 07/01/2011,Native American,Onshore,Oil Prod Vol (bbl),2041080
-07/01/2011,Native American,Onshore,Gas Prod Vol (mcf),26269565
+07/01/2011,Native American,Onshore,Coal Prod Vol (tons),1889907
 07/01/2011,Federal,Offshore,Oil Prod Vol (bbl),39506992
-07/01/2011,Federal,Offshore,Gas Prod Vol (mcf),154434321
+07/01/2011,Federal,Onshore,Gas Prod Vol (mcf),328464067
+07/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9759438
 07/01/2011,Federal,Onshore,Coal Prod Vol (tons),32683729
+07/01/2011,Federal,Offshore,Gas Prod Vol (mcf),154434321
+07/01/2011,Native American,Onshore,Gas Prod Vol (mcf),26269565
 08/01/2011,Federal,Offshore,Oil Prod Vol (bbl),41366053
-08/01/2011,Federal,Offshore,Gas Prod Vol (mcf),156756922
-08/01/2011,Native American,Onshore,Coal Prod Vol (tons),1454592
-08/01/2011,Native American,Onshore,Oil Prod Vol (bbl),2162388
-08/01/2011,Native American,Onshore,Gas Prod Vol (mcf),26237577
-08/01/2011,Federal,Onshore,Coal Prod Vol (tons),37915804
-08/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9825421
 08/01/2011,Federal,Onshore,Gas Prod Vol (mcf),310826051
-09/01/2011,Native American,Onshore,Oil Prod Vol (bbl),2076573
-09/01/2011,Native American,Onshore,Gas Prod Vol (mcf),25041026
-09/01/2011,Federal,Onshore,Gas Prod Vol (mcf),314877337
+08/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9825421
+08/01/2011,Federal,Onshore,Coal Prod Vol (tons),37915804
+08/01/2011,Federal,Offshore,Gas Prod Vol (mcf),156756922
+08/01/2011,Native American,Onshore,Gas Prod Vol (mcf),26237554
+08/01/2011,Native American,Onshore,Oil Prod Vol (bbl),2162388
+08/01/2011,Native American,Onshore,Coal Prod Vol (tons),1454592
+09/01/2011,Federal,Offshore,Oil Prod Vol (bbl),34587995
 09/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9548693
 09/01/2011,Federal,Onshore,Coal Prod Vol (tons),37324003
-09/01/2011,Federal,Offshore,Oil Prod Vol (bbl),34587995
-09/01/2011,Federal,Offshore,Gas Prod Vol (mcf),130388401
+09/01/2011,Native American,Onshore,Gas Prod Vol (mcf),25041004
+09/01/2011,Native American,Onshore,Oil Prod Vol (bbl),2076573
 09/01/2011,Native American,Onshore,Coal Prod Vol (tons),1698967
-10/01/2011,Native American,Onshore,Gas Prod Vol (mcf),26138494
+09/01/2011,Federal,Onshore,Gas Prod Vol (mcf),314877337
+09/01/2011,Federal,Offshore,Gas Prod Vol (mcf),130388401
+10/01/2011,Federal,Onshore,Coal Prod Vol (tons),40660412
+10/01/2011,Federal,Onshore,Gas Prod Vol (mcf),333004952
 10/01/2011,Federal,Offshore,Gas Prod Vol (mcf),148438761
 10/01/2011,Federal,Offshore,Oil Prod Vol (bbl),41943012
-10/01/2011,Federal,Onshore,Coal Prod Vol (tons),40660412
-10/01/2011,Federal,Onshore,Oil Prod Vol (bbl),10026075
-10/01/2011,Federal,Onshore,Gas Prod Vol (mcf),333004952
-10/01/2011,Native American,Onshore,Coal Prod Vol (tons),2034208
+10/01/2011,Native American,Onshore,Gas Prod Vol (mcf),26138472
 10/01/2011,Native American,Onshore,Oil Prod Vol (bbl),2381101
-11/01/2011,Federal,Onshore,Coal Prod Vol (tons),40681394
+10/01/2011,Native American,Onshore,Coal Prod Vol (tons),2034208
+10/01/2011,Federal,Onshore,Oil Prod Vol (bbl),10026075
 11/01/2011,Federal,Onshore,Gas Prod Vol (mcf),323702865
-11/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9923332
-11/01/2011,Federal,Offshore,Gas Prod Vol (mcf),144154101
-11/01/2011,Federal,Offshore,Oil Prod Vol (bbl),40078413
-11/01/2011,Native American,Onshore,Gas Prod Vol (mcf),25563916
-11/01/2011,Native American,Onshore,Oil Prod Vol (bbl),2472685
 11/01/2011,Native American,Onshore,Coal Prod Vol (tons),1886110
-12/01/2011,Federal,Onshore,Gas Prod Vol (mcf),329176549
+11/01/2011,Native American,Onshore,Oil Prod Vol (bbl),2472685
+11/01/2011,Native American,Onshore,Gas Prod Vol (mcf),25563894
+11/01/2011,Federal,Offshore,Oil Prod Vol (bbl),40078413
+11/01/2011,Federal,Offshore,Gas Prod Vol (mcf),144154101
+11/01/2011,Federal,Onshore,Coal Prod Vol (tons),40681394
+11/01/2011,Federal,Onshore,Oil Prod Vol (bbl),9923332
 12/01/2011,Federal,Offshore,Gas Prod Vol (mcf),149275236
-12/01/2011,Federal,Offshore,Oil Prod Vol (bbl),40799780
-12/01/2011,Federal,Onshore,Coal Prod Vol (tons),41214293
-12/01/2011,Native American,Onshore,Gas Prod Vol (mcf),26076743
 12/01/2011,Native American,Onshore,Oil Prod Vol (bbl),2531892
 12/01/2011,Native American,Onshore,Coal Prod Vol (tons),1235289
+12/01/2011,Federal,Onshore,Coal Prod Vol (tons),41214293
 12/01/2011,Federal,Onshore,Oil Prod Vol (bbl),10166120
-01/01/2012,Federal,Offshore,Gas Prod Vol (mcf),146853973
-01/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26586135
+12/01/2011,Federal,Onshore,Gas Prod Vol (mcf),329176549
+12/01/2011,Federal,Offshore,Oil Prod Vol (bbl),40799780
+12/01/2011,Native American,Onshore,Gas Prod Vol (mcf),26076720
 01/01/2012,Federal,Onshore,Coal Prod Vol (tons),39621589
 01/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10287182
 01/01/2012,Federal,Onshore,Gas Prod Vol (mcf),332568949
 01/01/2012,Native American,Onshore,Oil Prod Vol (bbl),2670141
-01/01/2012,Native American,Onshore,Coal Prod Vol (tons),1981835
 01/01/2012,Federal,Offshore,Oil Prod Vol (bbl),42371529
+01/01/2012,Federal,Offshore,Gas Prod Vol (mcf),146853973
+01/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26586112
+01/01/2012,Native American,Onshore,Coal Prod Vol (tons),1981835
 02/01/2012,Federal,Onshore,Gas Prod Vol (mcf),309072429
-02/01/2012,Native American,Onshore,Gas Prod Vol (mcf),24902931
-02/01/2012,Native American,Onshore,Oil Prod Vol (bbl),2536190
-02/01/2012,Native American,Onshore,Coal Prod Vol (tons),1848570
-02/01/2012,Federal,Offshore,Gas Prod Vol (mcf),135487179
 02/01/2012,Federal,Offshore,Oil Prod Vol (bbl),40147723
+02/01/2012,Federal,Offshore,Gas Prod Vol (mcf),135487179
 02/01/2012,Federal,Onshore,Coal Prod Vol (tons),36249605
+02/01/2012,Native American,Onshore,Oil Prod Vol (bbl),2536190
 02/01/2012,Federal,Onshore,Oil Prod Vol (bbl),9752477
-03/01/2012,Federal,Onshore,Gas Prod Vol (mcf),328682586
-03/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10544482
+02/01/2012,Native American,Onshore,Coal Prod Vol (tons),1848570
+02/01/2012,Native American,Onshore,Gas Prod Vol (mcf),24902909
 03/01/2012,Federal,Onshore,Coal Prod Vol (tons),32908329
-03/01/2012,Federal,Offshore,Oil Prod Vol (bbl),43613510
-03/01/2012,Federal,Offshore,Gas Prod Vol (mcf),145920616
-03/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26481947
 03/01/2012,Native American,Onshore,Oil Prod Vol (bbl),2777846
 03/01/2012,Native American,Onshore,Coal Prod Vol (tons),1930970
-04/01/2012,Native American,Onshore,Coal Prod Vol (tons),1386877
-04/01/2012,Federal,Onshore,Gas Prod Vol (mcf),313874167
+03/01/2012,Federal,Offshore,Gas Prod Vol (mcf),145920616
+03/01/2012,Federal,Offshore,Oil Prod Vol (bbl),43613510
+03/01/2012,Federal,Onshore,Gas Prod Vol (mcf),328682586
+03/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10544482
+03/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26481924
 04/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10066500
-04/01/2012,Federal,Onshore,Coal Prod Vol (tons),29041032
+04/01/2012,Native American,Onshore,Gas Prod Vol (mcf),25586578
+04/01/2012,Native American,Onshore,Oil Prod Vol (bbl),2787069
+04/01/2012,Native American,Onshore,Coal Prod Vol (tons),1386877
 04/01/2012,Federal,Offshore,Gas Prod Vol (mcf),137363324
 04/01/2012,Federal,Offshore,Oil Prod Vol (bbl),39320671
-04/01/2012,Native American,Onshore,Gas Prod Vol (mcf),25586600
-04/01/2012,Native American,Onshore,Oil Prod Vol (bbl),2787069
+04/01/2012,Federal,Onshore,Coal Prod Vol (tons),29041032
+04/01/2012,Federal,Onshore,Gas Prod Vol (mcf),313874167
 05/01/2012,Native American,Onshore,Oil Prod Vol (bbl),2811422
-05/01/2012,Native American,Onshore,Coal Prod Vol (tons),1625737
-05/01/2012,Federal,Offshore,Oil Prod Vol (bbl),38822569
-05/01/2012,Federal,Offshore,Gas Prod Vol (mcf),136218453
-05/01/2012,Federal,Onshore,Gas Prod Vol (mcf),320210254
+05/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26421578
 05/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10446813
 05/01/2012,Federal,Onshore,Coal Prod Vol (tons),31329856
-05/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26421600
-06/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10142120
-06/01/2012,Native American,Onshore,Gas Prod Vol (mcf),25315856
-06/01/2012,Native American,Onshore,Oil Prod Vol (bbl),2852977
-06/01/2012,Native American,Onshore,Coal Prod Vol (tons),1568194
-06/01/2012,Federal,Offshore,Gas Prod Vol (mcf),123805252
-06/01/2012,Federal,Offshore,Oil Prod Vol (bbl),35147767
+05/01/2012,Federal,Onshore,Gas Prod Vol (mcf),320210254
+05/01/2012,Federal,Offshore,Gas Prod Vol (mcf),136218453
+05/01/2012,Federal,Offshore,Oil Prod Vol (bbl),38822569
+05/01/2012,Native American,Onshore,Coal Prod Vol (tons),1625737
 06/01/2012,Federal,Onshore,Gas Prod Vol (mcf),308107219
+06/01/2012,Federal,Offshore,Oil Prod Vol (bbl),35147767
+06/01/2012,Native American,Onshore,Coal Prod Vol (tons),1568194
+06/01/2012,Native American,Onshore,Oil Prod Vol (bbl),2852977
+06/01/2012,Federal,Offshore,Gas Prod Vol (mcf),123805252
+06/01/2012,Native American,Onshore,Gas Prod Vol (mcf),25315835
 06/01/2012,Federal,Onshore,Coal Prod Vol (tons),32317862
-07/01/2012,Native American,Onshore,Coal Prod Vol (tons),1447117
+06/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10142120
 07/01/2012,Native American,Onshore,Oil Prod Vol (bbl),3070508
-07/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26153721
 07/01/2012,Federal,Onshore,Gas Prod Vol (mcf),317506393
-07/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10690796
+07/01/2012,Native American,Onshore,Coal Prod Vol (tons),1447117
 07/01/2012,Federal,Onshore,Coal Prod Vol (tons),39360710
-07/01/2012,Federal,Offshore,Oil Prod Vol (bbl),40555623
 07/01/2012,Federal,Offshore,Gas Prod Vol (mcf),133565729
+07/01/2012,Federal,Offshore,Oil Prod Vol (bbl),40555623
+07/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10690796
+07/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26153699
 08/01/2012,Federal,Onshore,Gas Prod Vol (mcf),311499993
-08/01/2012,Federal,Offshore,Gas Prod Vol (mcf),114346490
-08/01/2012,Native American,Onshore,Coal Prod Vol (tons),1468942
+08/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26327754
 08/01/2012,Native American,Onshore,Oil Prod Vol (bbl),3153774
-08/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26327776
-08/01/2012,Federal,Offshore,Oil Prod Vol (bbl),35705140
+08/01/2012,Native American,Onshore,Coal Prod Vol (tons),1468942
 08/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10786966
 08/01/2012,Federal,Onshore,Coal Prod Vol (tons),40126533
-09/01/2012,Native American,Onshore,Gas Prod Vol (mcf),25716125
-09/01/2012,Federal,Onshore,Gas Prod Vol (mcf),300304443
-09/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10586306
+08/01/2012,Federal,Offshore,Oil Prod Vol (bbl),35705140
+08/01/2012,Federal,Offshore,Gas Prod Vol (mcf),114346490
 09/01/2012,Federal,Onshore,Coal Prod Vol (tons),37476124
-09/01/2012,Federal,Offshore,Oil Prod Vol (bbl),37032761
-09/01/2012,Federal,Offshore,Gas Prod Vol (mcf),116053260
+09/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10586306
+09/01/2012,Federal,Onshore,Gas Prod Vol (mcf),300304443
+09/01/2012,Native American,Onshore,Gas Prod Vol (mcf),25716103
 09/01/2012,Native American,Onshore,Coal Prod Vol (tons),1427953
+09/01/2012,Federal,Offshore,Gas Prod Vol (mcf),116053260
+09/01/2012,Federal,Offshore,Oil Prod Vol (bbl),37032761
 09/01/2012,Native American,Onshore,Oil Prod Vol (bbl),3267781
-10/01/2012,Native American,Onshore,Coal Prod Vol (tons),1746130
-10/01/2012,Federal,Onshore,Gas Prod Vol (mcf),311282118
-10/01/2012,Federal,Onshore,Oil Prod Vol (bbl),11199817
-10/01/2012,Federal,Offshore,Oil Prod Vol (bbl),42876369
 10/01/2012,Federal,Offshore,Gas Prod Vol (mcf),132738053
-10/01/2012,Federal,Onshore,Coal Prod Vol (tons),35275148
-10/01/2012,Native American,Onshore,Gas Prod Vol (mcf),27022931
+10/01/2012,Native American,Onshore,Gas Prod Vol (mcf),27022909
+10/01/2012,Federal,Offshore,Oil Prod Vol (bbl),42876369
+10/01/2012,Native American,Onshore,Coal Prod Vol (tons),1746130
+10/01/2012,Federal,Onshore,Oil Prod Vol (bbl),11199817
 10/01/2012,Native American,Onshore,Oil Prod Vol (bbl),3737925
-11/01/2012,Native American,Onshore,Coal Prod Vol (tons),1340397
-11/01/2012,Federal,Offshore,Oil Prod Vol (bbl),42989847
-11/01/2012,Federal,Offshore,Gas Prod Vol (mcf),130674659
-11/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10881979
-11/01/2012,Native American,Onshore,Gas Prod Vol (mcf),25910691
-11/01/2012,Native American,Onshore,Oil Prod Vol (bbl),3695915
-11/01/2012,Federal,Onshore,Gas Prod Vol (mcf),301257340
+10/01/2012,Federal,Onshore,Coal Prod Vol (tons),35275148
+10/01/2012,Federal,Onshore,Gas Prod Vol (mcf),311282118
+11/01/2012,Native American,Onshore,Gas Prod Vol (mcf),25910669
 11/01/2012,Federal,Onshore,Coal Prod Vol (tons),36099698
-12/01/2012,Federal,Onshore,Oil Prod Vol (bbl),11228525
-12/01/2012,Federal,Onshore,Gas Prod Vol (mcf),305695064
-12/01/2012,Native American,Onshore,Coal Prod Vol (tons),1058533
+11/01/2012,Federal,Onshore,Oil Prod Vol (bbl),10881979
+11/01/2012,Federal,Onshore,Gas Prod Vol (mcf),301257340
+11/01/2012,Federal,Offshore,Gas Prod Vol (mcf),130674659
+11/01/2012,Native American,Onshore,Coal Prod Vol (tons),1340397
+11/01/2012,Native American,Onshore,Oil Prod Vol (bbl),3695915
+11/01/2012,Federal,Offshore,Oil Prod Vol (bbl),42989847
 12/01/2012,Federal,Offshore,Oil Prod Vol (bbl),44284811
-12/01/2012,Federal,Offshore,Gas Prod Vol (mcf),132157417
-12/01/2012,Native American,Onshore,Oil Prod Vol (bbl),3830025
-12/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26213283
+12/01/2012,Native American,Onshore,Coal Prod Vol (tons),1058533
 12/01/2012,Federal,Onshore,Coal Prod Vol (tons),32703305
-01/01/2013,Native American,Onshore,Oil Prod Vol (bbl),3562472
-01/01/2013,Federal,Onshore,Coal Prod Vol (tons),33492410
+12/01/2012,Native American,Onshore,Oil Prod Vol (bbl),3830025
+12/01/2012,Native American,Onshore,Gas Prod Vol (mcf),26213261
+12/01/2012,Federal,Onshore,Gas Prod Vol (mcf),305695064
+12/01/2012,Federal,Onshore,Oil Prod Vol (bbl),11228525
+12/01/2012,Federal,Offshore,Gas Prod Vol (mcf),132157417
 01/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11018875
 01/01/2013,Federal,Onshore,Gas Prod Vol (mcf),297227058
+01/01/2013,Federal,Onshore,Coal Prod Vol (tons),33492410
 01/01/2013,Federal,Offshore,Oil Prod Vol (bbl),43030510
 01/01/2013,Federal,Offshore,Gas Prod Vol (mcf),128828789
-01/01/2013,Native American,Onshore,Gas Prod Vol (mcf),24745370
+01/01/2013,Native American,Onshore,Gas Prod Vol (mcf),24745347
+01/01/2013,Native American,Onshore,Oil Prod Vol (bbl),3562471
 01/01/2013,Native American,Onshore,Coal Prod Vol (tons),1414729
-02/01/2013,Federal,Onshore,Gas Prod Vol (mcf),274035773
 02/01/2013,Federal,Onshore,Coal Prod Vol (tons),30481388
-02/01/2013,Federal,Offshore,Gas Prod Vol (mcf),113767791
 02/01/2013,Federal,Onshore,Oil Prod Vol (bbl),10174812
+02/01/2013,Federal,Onshore,Gas Prod Vol (mcf),274035773
+02/01/2013,Federal,Offshore,Gas Prod Vol (mcf),113767791
 02/01/2013,Federal,Offshore,Oil Prod Vol (bbl),38448062
-02/01/2013,Native American,Onshore,Gas Prod Vol (mcf),23504733
-02/01/2013,Native American,Onshore,Oil Prod Vol (bbl),3508485
 02/01/2013,Native American,Onshore,Coal Prod Vol (tons),1722483
-03/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11515415
-03/01/2013,Federal,Offshore,Oil Prod Vol (bbl),40558883
-03/01/2013,Native American,Onshore,Coal Prod Vol (tons),1601392
-03/01/2013,Federal,Onshore,Coal Prod Vol (tons),31554258
+02/01/2013,Native American,Onshore,Oil Prod Vol (bbl),3508485
+02/01/2013,Native American,Onshore,Gas Prod Vol (mcf),23504713
 03/01/2013,Federal,Offshore,Gas Prod Vol (mcf),123165425
 03/01/2013,Federal,Onshore,Gas Prod Vol (mcf),303445996
-03/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26520435
+03/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11515415
+03/01/2013,Federal,Onshore,Coal Prod Vol (tons),31554258
+03/01/2013,Native American,Onshore,Coal Prod Vol (tons),1601392
 03/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4193166
-04/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4034686
-04/01/2013,Federal,Onshore,Coal Prod Vol (tons),30641951
+03/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26520413
+03/01/2013,Federal,Offshore,Oil Prod Vol (bbl),40558883
+04/01/2013,Native American,Onshore,Gas Prod Vol (mcf),25995040
 04/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11286440
-04/01/2013,Federal,Onshore,Gas Prod Vol (mcf),295192606
+04/01/2013,Federal,Onshore,Coal Prod Vol (tons),30641951
+04/01/2013,Native American,Onshore,Coal Prod Vol (tons),1775937
+04/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4034686
 04/01/2013,Federal,Offshore,Oil Prod Vol (bbl),41775088
 04/01/2013,Federal,Offshore,Gas Prod Vol (mcf),120833610
-04/01/2013,Native American,Onshore,Coal Prod Vol (tons),1775937
-04/01/2013,Native American,Onshore,Gas Prod Vol (mcf),25995062
-05/01/2013,Federal,Onshore,Gas Prod Vol (mcf),297807296
-05/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11536245
-05/01/2013,Federal,Onshore,Coal Prod Vol (tons),32892522
-05/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26666303
+04/01/2013,Federal,Onshore,Gas Prod Vol (mcf),295192606
+05/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26666281
+05/01/2013,Federal,Offshore,Oil Prod Vol (bbl),38906651
+05/01/2013,Federal,Offshore,Gas Prod Vol (mcf),118972733
 05/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4242084
 05/01/2013,Native American,Onshore,Coal Prod Vol (tons),1231695
-05/01/2013,Federal,Offshore,Gas Prod Vol (mcf),118972733
-05/01/2013,Federal,Offshore,Oil Prod Vol (bbl),38906651
-06/01/2013,Federal,Onshore,Coal Prod Vol (tons),32945999
+05/01/2013,Federal,Onshore,Coal Prod Vol (tons),32892522
+05/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11536245
+05/01/2013,Federal,Onshore,Gas Prod Vol (mcf),297807296
+06/01/2013,Federal,Offshore,Oil Prod Vol (bbl),35322200
 06/01/2013,Federal,Offshore,Gas Prod Vol (mcf),109160091
-06/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11277746
-06/01/2013,Federal,Onshore,Gas Prod Vol (mcf),289853228
-06/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26210936
+06/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26210914
 06/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4176255
 06/01/2013,Native American,Onshore,Coal Prod Vol (tons),1464335
-06/01/2013,Federal,Offshore,Oil Prod Vol (bbl),35322200
-07/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4622733
-07/01/2013,Native American,Onshore,Gas Prod Vol (mcf),27448792
-07/01/2013,Federal,Onshore,Gas Prod Vol (mcf),298375773
-07/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11788942
-07/01/2013,Federal,Onshore,Coal Prod Vol (tons),35878382
+06/01/2013,Federal,Onshore,Gas Prod Vol (mcf),289853228
+06/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11277746
+06/01/2013,Federal,Onshore,Coal Prod Vol (tons),32945999
 07/01/2013,Federal,Offshore,Oil Prod Vol (bbl),40238209
-07/01/2013,Federal,Offshore,Gas Prod Vol (mcf),114719325
+07/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11788942
+07/01/2013,Native American,Onshore,Gas Prod Vol (mcf),27448771
+07/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4622733
 07/01/2013,Native American,Onshore,Coal Prod Vol (tons),1548969
-08/01/2013,Federal,Onshore,Coal Prod Vol (tons),36459087
-08/01/2013,Federal,Offshore,Gas Prod Vol (mcf),109136315
-08/01/2013,Native American,Onshore,Coal Prod Vol (tons),1719610
+07/01/2013,Federal,Onshore,Coal Prod Vol (tons),35878382
+07/01/2013,Federal,Onshore,Gas Prod Vol (mcf),298375773
+07/01/2013,Federal,Offshore,Gas Prod Vol (mcf),114719325
 08/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4908252
-08/01/2013,Native American,Onshore,Gas Prod Vol (mcf),27247310
 08/01/2013,Federal,Offshore,Oil Prod Vol (bbl),38444750
-08/01/2013,Federal,Onshore,Gas Prod Vol (mcf),298468170
+08/01/2013,Federal,Onshore,Coal Prod Vol (tons),36459087
 08/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11832547
-09/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26367698
+08/01/2013,Federal,Offshore,Gas Prod Vol (mcf),109136315
+08/01/2013,Native American,Onshore,Gas Prod Vol (mcf),27247288
+08/01/2013,Native American,Onshore,Coal Prod Vol (tons),1719610
+08/01/2013,Federal,Onshore,Gas Prod Vol (mcf),298468170
+09/01/2013,Federal,Offshore,Oil Prod Vol (bbl),41195387
 09/01/2013,Federal,Onshore,Gas Prod Vol (mcf),276755086
+09/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26367677
+09/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4739399
+09/01/2013,Native American,Onshore,Coal Prod Vol (tons),1632862
+09/01/2013,Federal,Offshore,Gas Prod Vol (mcf),113630915
 09/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11555185
 09/01/2013,Federal,Onshore,Coal Prod Vol (tons),35116078
-09/01/2013,Federal,Offshore,Gas Prod Vol (mcf),113630915
-09/01/2013,Federal,Offshore,Oil Prod Vol (bbl),41195387
-09/01/2013,Native American,Onshore,Coal Prod Vol (tons),1632862
-09/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4739399
-10/01/2013,Federal,Offshore,Gas Prod Vol (mcf),107193917
-10/01/2013,Federal,Offshore,Oil Prod Vol (bbl),38063930
+10/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4963906
 10/01/2013,Federal,Onshore,Coal Prod Vol (tons),32376034
 10/01/2013,Federal,Onshore,Oil Prod Vol (bbl),12016859
 10/01/2013,Federal,Onshore,Gas Prod Vol (mcf),304174637
-10/01/2013,Native American,Onshore,Gas Prod Vol (mcf),27555009
-10/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4963907
+10/01/2013,Federal,Offshore,Gas Prod Vol (mcf),107193917
+10/01/2013,Federal,Offshore,Oil Prod Vol (bbl),38063930
+10/01/2013,Native American,Onshore,Gas Prod Vol (mcf),27554987
 10/01/2013,Native American,Onshore,Coal Prod Vol (tons),1750278
-11/01/2013,Federal,Onshore,Gas Prod Vol (mcf),293446679
-11/01/2013,Federal,Offshore,Gas Prod Vol (mcf),113186673
 11/01/2013,Federal,Offshore,Oil Prod Vol (bbl),40705222
-11/01/2013,Native American,Onshore,Coal Prod Vol (tons),1970620
-11/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4756354
-11/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26391683
+11/01/2013,Federal,Offshore,Gas Prod Vol (mcf),113186673
 11/01/2013,Federal,Onshore,Coal Prod Vol (tons),33665424
 11/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11569193
-12/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4688368
-12/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26047371
+11/01/2013,Federal,Onshore,Gas Prod Vol (mcf),293446679
+11/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26391662
+11/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4756354
+11/01/2013,Native American,Onshore,Coal Prod Vol (tons),1970620
+12/01/2013,Federal,Offshore,Oil Prod Vol (bbl),41536399
+12/01/2013,Federal,Offshore,Gas Prod Vol (mcf),112085694
 12/01/2013,Federal,Onshore,Gas Prod Vol (mcf),293551512
 12/01/2013,Federal,Onshore,Oil Prod Vol (bbl),11843503
 12/01/2013,Federal,Onshore,Coal Prod Vol (tons),32510561
-12/01/2013,Federal,Offshore,Gas Prod Vol (mcf),112085694
-12/01/2013,Federal,Offshore,Oil Prod Vol (bbl),41536399
+12/01/2013,Native American,Onshore,Oil Prod Vol (bbl),4688368
+12/01/2013,Native American,Onshore,Gas Prod Vol (mcf),26047350
 12/01/2013,Native American,Onshore,Coal Prod Vol (tons),1894694
-01/01/2014,Federal,Offshore,Gas Prod Vol (mcf),107846232
 01/01/2014,Federal,Onshore,Gas Prod Vol (mcf),296470582
+01/01/2014,Native American,Onshore,Gas Prod Vol (mcf),26626444
+01/01/2014,Federal,Offshore,Oil Prod Vol (bbl),42113512
+01/01/2014,Federal,Offshore,Gas Prod Vol (mcf),107846232
 01/01/2014,Federal,Onshore,Oil Prod Vol (bbl),12254058
 01/01/2014,Federal,Onshore,Coal Prod Vol (tons),34790955
-01/01/2014,Native American,Onshore,Gas Prod Vol (mcf),26626467
-01/01/2014,Native American,Onshore,Oil Prod Vol (bbl),4683904
 01/01/2014,Native American,Onshore,Coal Prod Vol (tons),1757529
-01/01/2014,Federal,Offshore,Oil Prod Vol (bbl),42113512
-02/01/2014,Native American,Onshore,Oil Prod Vol (bbl),4402221
-02/01/2014,Federal,Onshore,Gas Prod Vol (mcf),269354878
-02/01/2014,Federal,Offshore,Oil Prod Vol (bbl),38741358
-02/01/2014,Federal,Offshore,Gas Prod Vol (mcf),100353829
-02/01/2014,Native American,Onshore,Coal Prod Vol (tons),1485922
-02/01/2014,Native American,Onshore,Gas Prod Vol (mcf),24634318
+01/01/2014,Native American,Onshore,Oil Prod Vol (bbl),4683904
 02/01/2014,Federal,Onshore,Coal Prod Vol (tons),29682030
 02/01/2014,Federal,Onshore,Oil Prod Vol (bbl),11341258
-03/01/2014,Federal,Onshore,Coal Prod Vol (tons),34623327
+02/01/2014,Federal,Onshore,Gas Prod Vol (mcf),269354878
+02/01/2014,Native American,Onshore,Gas Prod Vol (mcf),24634297
+02/01/2014,Native American,Onshore,Oil Prod Vol (bbl),4402221
+02/01/2014,Native American,Onshore,Coal Prod Vol (tons),1485922
+02/01/2014,Federal,Offshore,Gas Prod Vol (mcf),100353829
+02/01/2014,Federal,Offshore,Oil Prod Vol (bbl),38741358
+03/01/2014,Native American,Onshore,Oil Prod Vol (bbl),4866801
 03/01/2014,Federal,Onshore,Oil Prod Vol (bbl),12940251
 03/01/2014,Federal,Onshore,Gas Prod Vol (mcf),300491964
-03/01/2014,Federal,Offshore,Oil Prod Vol (bbl),42350207
-03/01/2014,Federal,Offshore,Gas Prod Vol (mcf),110289136
-03/01/2014,Native American,Onshore,Gas Prod Vol (mcf),27401952
-03/01/2014,Native American,Onshore,Oil Prod Vol (bbl),4866801
 03/01/2014,Native American,Onshore,Coal Prod Vol (tons),1998634
-04/01/2014,Federal,Onshore,Gas Prod Vol (mcf),289101273
-04/01/2014,Native American,Onshore,Coal Prod Vol (tons),1820690
-04/01/2014,Federal,Onshore,Coal Prod Vol (tons),32988348
-04/01/2014,Federal,Offshore,Gas Prod Vol (mcf),110515310
+03/01/2014,Federal,Offshore,Gas Prod Vol (mcf),110289136
+03/01/2014,Federal,Onshore,Coal Prod Vol (tons),34623327
+03/01/2014,Federal,Offshore,Oil Prod Vol (bbl),42350207
+03/01/2014,Native American,Onshore,Gas Prod Vol (mcf),27401929
 04/01/2014,Federal,Offshore,Oil Prod Vol (bbl),44227740
-04/01/2014,Native American,Onshore,Gas Prod Vol (mcf),27072272
-04/01/2014,Native American,Onshore,Oil Prod Vol (bbl),4879723
+04/01/2014,Native American,Onshore,Gas Prod Vol (mcf),27072251
+04/01/2014,Native American,Onshore,Coal Prod Vol (tons),1820690
+04/01/2014,Federal,Onshore,Gas Prod Vol (mcf),289101273
 04/01/2014,Federal,Onshore,Oil Prod Vol (bbl),12699465
-05/01/2014,Native American,Onshore,Gas Prod Vol (mcf),27619342
-05/01/2014,Federal,Offshore,Oil Prod Vol (bbl),45565794
-05/01/2014,Federal,Onshore,Coal Prod Vol (tons),34429428
-05/01/2014,Federal,Onshore,Oil Prod Vol (bbl),13477659
-05/01/2014,Federal,Onshore,Gas Prod Vol (mcf),296614955
+04/01/2014,Federal,Onshore,Coal Prod Vol (tons),32988348
+04/01/2014,Native American,Onshore,Oil Prod Vol (bbl),4879723
+04/01/2014,Federal,Offshore,Gas Prod Vol (mcf),110515310
 05/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5155714
 05/01/2014,Native American,Onshore,Coal Prod Vol (tons),1935957
 05/01/2014,Federal,Offshore,Gas Prod Vol (mcf),116214621
-06/01/2014,Federal,Onshore,Gas Prod Vol (mcf),287713549
-06/01/2014,Federal,Offshore,Oil Prod Vol (bbl),44049359
-06/01/2014,Native American,Onshore,Gas Prod Vol (mcf),26723129
+05/01/2014,Federal,Offshore,Oil Prod Vol (bbl),45565794
+05/01/2014,Federal,Onshore,Gas Prod Vol (mcf),296614955
+05/01/2014,Federal,Onshore,Oil Prod Vol (bbl),13477659
+05/01/2014,Federal,Onshore,Coal Prod Vol (tons),34429428
+05/01/2014,Native American,Onshore,Gas Prod Vol (mcf),27619318
+06/01/2014,Native American,Onshore,Gas Prod Vol (mcf),26723107
 06/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5235052
-06/01/2014,Native American,Onshore,Coal Prod Vol (tons),1138596
-06/01/2014,Federal,Onshore,Coal Prod Vol (tons),33330150
 06/01/2014,Federal,Onshore,Oil Prod Vol (bbl),13236308
+06/01/2014,Federal,Onshore,Gas Prod Vol (mcf),287713549
+06/01/2014,Native American,Onshore,Coal Prod Vol (tons),1138596
+06/01/2014,Federal,Offshore,Oil Prod Vol (bbl),44049359
 06/01/2014,Federal,Offshore,Gas Prod Vol (mcf),112392061
-07/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5253772
+06/01/2014,Federal,Onshore,Coal Prod Vol (tons),33330150
+07/01/2014,Native American,Onshore,Gas Prod Vol (mcf),27629138
 07/01/2014,Native American,Onshore,Coal Prod Vol (tons),1683686
-07/01/2014,Native American,Onshore,Gas Prod Vol (mcf),27629160
+07/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5253772
 07/01/2014,Federal,Onshore,Coal Prod Vol (tons),35490509
 07/01/2014,Federal,Onshore,Oil Prod Vol (bbl),13992353
 07/01/2014,Federal,Onshore,Gas Prod Vol (mcf),295062512
-07/01/2014,Federal,Offshore,Gas Prod Vol (mcf),115129019
 07/01/2014,Federal,Offshore,Oil Prod Vol (bbl),45970762
+07/01/2014,Federal,Offshore,Gas Prod Vol (mcf),115129019
+08/01/2014,Native American,Onshore,Gas Prod Vol (mcf),28293885
+08/01/2014,Federal,Offshore,Gas Prod Vol (mcf),116132898
+08/01/2014,Federal,Offshore,Oil Prod Vol (bbl),46295033
 08/01/2014,Native American,Onshore,Coal Prod Vol (tons),1750222
-08/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5536082
-08/01/2014,Native American,Onshore,Gas Prod Vol (mcf),28293907
 08/01/2014,Federal,Onshore,Coal Prod Vol (tons),36037153
 08/01/2014,Federal,Onshore,Oil Prod Vol (bbl),13894243
 08/01/2014,Federal,Onshore,Gas Prod Vol (mcf),290280277
-08/01/2014,Federal,Offshore,Oil Prod Vol (bbl),46295033
-08/01/2014,Federal,Offshore,Gas Prod Vol (mcf),116132898
-09/01/2014,Federal,Onshore,Gas Prod Vol (mcf),285498779
-09/01/2014,Federal,Offshore,Oil Prod Vol (bbl),44314603
-09/01/2014,Federal,Offshore,Gas Prod Vol (mcf),111795848
-09/01/2014,Native American,Onshore,Gas Prod Vol (mcf),26920605
+08/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5536082
+09/01/2014,Native American,Onshore,Gas Prod Vol (mcf),26920583
 09/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5379878
 09/01/2014,Native American,Onshore,Coal Prod Vol (tons),1690498
+09/01/2014,Federal,Offshore,Gas Prod Vol (mcf),111795848
+09/01/2014,Federal,Offshore,Oil Prod Vol (bbl),44314603
 09/01/2014,Federal,Onshore,Coal Prod Vol (tons),32763629
 09/01/2014,Federal,Onshore,Oil Prod Vol (bbl),13484442
-10/01/2014,Federal,Onshore,Oil Prod Vol (bbl),14728938
+09/01/2014,Federal,Onshore,Gas Prod Vol (mcf),285498779
+10/01/2014,Native American,Onshore,Coal Prod Vol (tons),1618495
+10/01/2014,Native American,Onshore,Gas Prod Vol (mcf),27123310
 10/01/2014,Federal,Onshore,Coal Prod Vol (tons),35706815
-10/01/2014,Federal,Onshore,Gas Prod Vol (mcf),294713901
 10/01/2014,Federal,Offshore,Gas Prod Vol (mcf),116050717
 10/01/2014,Federal,Offshore,Oil Prod Vol (bbl),45952636
-10/01/2014,Native American,Onshore,Gas Prod Vol (mcf),27123332
+10/01/2014,Federal,Onshore,Oil Prod Vol (bbl),14729169
+10/01/2014,Federal,Onshore,Gas Prod Vol (mcf),294714177
 10/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5432839
-10/01/2014,Native American,Onshore,Coal Prod Vol (tons),1618495
-11/01/2014,Federal,Onshore,Oil Prod Vol (bbl),14351794
-11/01/2014,Federal,Onshore,Coal Prod Vol (tons),34749343
-11/01/2014,Native American,Onshore,Gas Prod Vol (mcf),26250398
+11/01/2014,Native American,Onshore,Gas Prod Vol (mcf),26250376
 11/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5312997
-11/01/2014,Federal,Offshore,Gas Prod Vol (mcf),106704659
-11/01/2014,Federal,Offshore,Oil Prod Vol (bbl),43283494
 11/01/2014,Native American,Onshore,Coal Prod Vol (tons),1438145
-11/01/2014,Federal,Onshore,Gas Prod Vol (mcf),287985736
-12/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5373899
-12/01/2014,Federal,Onshore,Coal Prod Vol (tons),34896430
-12/01/2014,Native American,Onshore,Coal Prod Vol (tons),1610645
-12/01/2014,Federal,Onshore,Gas Prod Vol (mcf),295269164
-12/01/2014,Federal,Onshore,Oil Prod Vol (bbl),15269538
+11/01/2014,Federal,Offshore,Oil Prod Vol (bbl),43283494
+11/01/2014,Federal,Offshore,Gas Prod Vol (mcf),106704659
+11/01/2014,Federal,Onshore,Coal Prod Vol (tons),34749343
+11/01/2014,Federal,Onshore,Oil Prod Vol (bbl),14352132
+11/01/2014,Federal,Onshore,Gas Prod Vol (mcf),287986128
 12/01/2014,Federal,Offshore,Gas Prod Vol (mcf),113023911
+12/01/2014,Federal,Onshore,Gas Prod Vol (mcf),295269704
+12/01/2014,Federal,Onshore,Oil Prod Vol (bbl),15269814
+12/01/2014,Federal,Onshore,Coal Prod Vol (tons),34896430
 12/01/2014,Federal,Offshore,Oil Prod Vol (bbl),46728405
-12/01/2014,Native American,Onshore,Gas Prod Vol (mcf),26999953
-01/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15211959
-01/01/2015,Federal,Offshore,Gas Prod Vol (mcf),113368270
+12/01/2014,Native American,Onshore,Gas Prod Vol (mcf),26999931
+12/01/2014,Native American,Onshore,Oil Prod Vol (bbl),5373899
+12/01/2014,Native American,Onshore,Coal Prod Vol (tons),1610645
 01/01/2015,Federal,Offshore,Oil Prod Vol (bbl),46704429
-01/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5416463
-01/01/2015,Native American,Onshore,Gas Prod Vol (mcf),26664202
+01/01/2015,Native American,Onshore,Gas Prod Vol (mcf),26664181
+01/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5416462
 01/01/2015,Native American,Onshore,Coal Prod Vol (tons),1534367
 01/01/2015,Federal,Onshore,Coal Prod Vol (tons),35837786
-01/01/2015,Federal,Onshore,Gas Prod Vol (mcf),290628851
-02/01/2015,Native American,Onshore,Coal Prod Vol (tons),1558406
-02/01/2015,Federal,Onshore,Oil Prod Vol (bbl),14131892
+01/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15212131
+01/01/2015,Federal,Onshore,Gas Prod Vol (mcf),290629293
+01/01/2015,Federal,Offshore,Gas Prod Vol (mcf),113368270
 02/01/2015,Federal,Onshore,Coal Prod Vol (tons),30718492
-02/01/2015,Federal,Onshore,Gas Prod Vol (mcf),264770870
-02/01/2015,Native American,Onshore,Gas Prod Vol (mcf),24026435
-02/01/2015,Federal,Offshore,Gas Prod Vol (mcf),100576192
-02/01/2015,Federal,Offshore,Oil Prod Vol (bbl),42327937
 02/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5050097
-03/01/2015,Federal,Onshore,Coal Prod Vol (tons),32855558
-03/01/2015,Native American,Onshore,Coal Prod Vol (tons),1441836
+02/01/2015,Native American,Onshore,Gas Prod Vol (mcf),24026415
+02/01/2015,Federal,Onshore,Gas Prod Vol (mcf),264770870
+02/01/2015,Federal,Offshore,Oil Prod Vol (bbl),42327937
+02/01/2015,Federal,Offshore,Gas Prod Vol (mcf),100576192
+02/01/2015,Federal,Onshore,Oil Prod Vol (bbl),14131892
+02/01/2015,Native American,Onshore,Coal Prod Vol (tons),1558406
 03/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5591852
-03/01/2015,Native American,Onshore,Gas Prod Vol (mcf),26978014
-03/01/2015,Federal,Onshore,Oil Prod Vol (bbl),16275366
-03/01/2015,Federal,Onshore,Gas Prod Vol (mcf),296727910
 03/01/2015,Federal,Offshore,Oil Prod Vol (bbl),44235910
 03/01/2015,Federal,Offshore,Gas Prod Vol (mcf),101933470
-04/01/2015,Native American,Onshore,Gas Prod Vol (mcf),25668787
+03/01/2015,Federal,Onshore,Coal Prod Vol (tons),32855558
+03/01/2015,Native American,Onshore,Coal Prod Vol (tons),1441836
+03/01/2015,Federal,Onshore,Gas Prod Vol (mcf),296728020
+03/01/2015,Native American,Onshore,Gas Prod Vol (mcf),26977992
+03/01/2015,Federal,Onshore,Oil Prod Vol (bbl),16275563
+04/01/2015,Federal,Onshore,Gas Prod Vol (mcf),289534503
+04/01/2015,Federal,Onshore,Coal Prod Vol (tons),28846112
 04/01/2015,Federal,Offshore,Oil Prod Vol (bbl),46465840
 04/01/2015,Federal,Offshore,Gas Prod Vol (mcf),113010854
-04/01/2015,Native American,Onshore,Coal Prod Vol (tons),1541307
-04/01/2015,Federal,Onshore,Coal Prod Vol (tons),28846112
-04/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15867711
-04/01/2015,Federal,Onshore,Gas Prod Vol (mcf),289534270
+04/01/2015,Native American,Onshore,Gas Prod Vol (mcf),25668766
 04/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5037177
-05/01/2015,Federal,Onshore,Gas Prod Vol (mcf),294265395
+04/01/2015,Native American,Onshore,Coal Prod Vol (tons),1541307
+04/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15867920
 05/01/2015,Federal,Offshore,Oil Prod Vol (bbl),45003548
-05/01/2015,Federal,Offshore,Gas Prod Vol (mcf),117142766
-05/01/2015,Federal,Onshore,Oil Prod Vol (bbl),16010814
+05/01/2015,Native American,Onshore,Gas Prod Vol (mcf),26307236
 05/01/2015,Native American,Onshore,Coal Prod Vol (tons),1799151
 05/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5088119
-05/01/2015,Native American,Onshore,Gas Prod Vol (mcf),26307258
 05/01/2015,Federal,Onshore,Coal Prod Vol (tons),27400394
-06/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5117171
-06/01/2015,Federal,Offshore,Oil Prod Vol (bbl),43143757
+05/01/2015,Federal,Onshore,Oil Prod Vol (bbl),16010960
+05/01/2015,Federal,Onshore,Gas Prod Vol (mcf),294265675
+05/01/2015,Federal,Offshore,Gas Prod Vol (mcf),117142766
 06/01/2015,Federal,Onshore,Coal Prod Vol (tons),28418282
-06/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15511815
-06/01/2015,Native American,Onshore,Coal Prod Vol (tons),1698264
+06/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15511924
+06/01/2015,Federal,Onshore,Gas Prod Vol (mcf),285068278
+06/01/2015,Federal,Offshore,Oil Prod Vol (bbl),43143757
 06/01/2015,Federal,Offshore,Gas Prod Vol (mcf),109719979
-06/01/2015,Federal,Onshore,Gas Prod Vol (mcf),285066956
-06/01/2015,Native American,Onshore,Gas Prod Vol (mcf),25166131
-07/01/2015,Federal,Offshore,Oil Prod Vol (bbl),49229102
-07/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15508865
-07/01/2015,Native American,Onshore,Gas Prod Vol (mcf),27106881
-07/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5552482
+06/01/2015,Native American,Onshore,Gas Prod Vol (mcf),25166110
+06/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5117171
+06/01/2015,Native American,Onshore,Coal Prod Vol (tons),1698264
 07/01/2015,Native American,Onshore,Coal Prod Vol (tons),1528851
-07/01/2015,Federal,Onshore,Gas Prod Vol (mcf),291326757
+07/01/2015,Federal,Offshore,Oil Prod Vol (bbl),49229102
 07/01/2015,Federal,Offshore,Gas Prod Vol (mcf),121187670
+07/01/2015,Federal,Onshore,Gas Prod Vol (mcf),291324542
+07/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15508992
 07/01/2015,Federal,Onshore,Coal Prod Vol (tons),32434763
+07/01/2015,Native American,Onshore,Gas Prod Vol (mcf),27106859
+07/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5552482
 08/01/2015,Federal,Offshore,Gas Prod Vol (mcf),123314133
+08/01/2015,Federal,Onshore,Gas Prod Vol (mcf),291403036
+08/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15509611
 08/01/2015,Federal,Onshore,Coal Prod Vol (tons),35097309
-08/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15509514
-08/01/2015,Native American,Onshore,Coal Prod Vol (tons),1671527
 08/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5525414
-08/01/2015,Native American,Onshore,Gas Prod Vol (mcf),27092990
-08/01/2015,Federal,Onshore,Gas Prod Vol (mcf),291402695
+08/01/2015,Native American,Onshore,Coal Prod Vol (tons),1671527
 08/01/2015,Federal,Offshore,Oil Prod Vol (bbl),51147545
-09/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5222907
-09/01/2015,Federal,Offshore,Oil Prod Vol (bbl),50452460
-09/01/2015,Federal,Offshore,Gas Prod Vol (mcf),120441426
-09/01/2015,Native American,Onshore,Gas Prod Vol (mcf),26101974
+08/01/2015,Native American,Onshore,Gas Prod Vol (mcf),27092968
 09/01/2015,Federal,Onshore,Coal Prod Vol (tons),32645633
-09/01/2015,Federal,Onshore,Oil Prod Vol (bbl),14851465
-09/01/2015,Federal,Onshore,Gas Prod Vol (mcf),283271780
+09/01/2015,Federal,Offshore,Gas Prod Vol (mcf),120441426
+09/01/2015,Federal,Offshore,Oil Prod Vol (bbl),50452460
+09/01/2015,Native American,Onshore,Gas Prod Vol (mcf),26101953
+09/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5222906
 09/01/2015,Native American,Onshore,Coal Prod Vol (tons),1660818
-10/01/2015,Federal,Offshore,Oil Prod Vol (bbl),49587310
-10/01/2015,Federal,Offshore,Gas Prod Vol (mcf),115302272
+09/01/2015,Federal,Onshore,Gas Prod Vol (mcf),283261721
+09/01/2015,Federal,Onshore,Oil Prod Vol (bbl),14851553
+10/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15077212
 10/01/2015,Federal,Onshore,Coal Prod Vol (tons),34933375
-10/01/2015,Federal,Onshore,Oil Prod Vol (bbl),15077134
-10/01/2015,Federal,Onshore,Gas Prod Vol (mcf),291382016
-10/01/2015,Native American,Onshore,Coal Prod Vol (tons),1590550
+10/01/2015,Federal,Offshore,Gas Prod Vol (mcf),115302272
+10/01/2015,Federal,Offshore,Oil Prod Vol (bbl),49587310
+10/01/2015,Native American,Onshore,Gas Prod Vol (mcf),27681546
 10/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5405090
-10/01/2015,Native American,Onshore,Gas Prod Vol (mcf),27681568
-11/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5330952
-11/01/2015,Native American,Onshore,Coal Prod Vol (tons),1236781
-11/01/2015,Federal,Onshore,Gas Prod Vol (mcf),283322586
-11/01/2015,Federal,Onshore,Coal Prod Vol (tons),31907688
-11/01/2015,Federal,Onshore,Oil Prod Vol (bbl),14787292
-11/01/2015,Native American,Onshore,Gas Prod Vol (mcf),27025668
+10/01/2015,Native American,Onshore,Coal Prod Vol (tons),1590550
+10/01/2015,Federal,Onshore,Gas Prod Vol (mcf),291382374
 11/01/2015,Federal,Offshore,Gas Prod Vol (mcf),105588726
+11/01/2015,Federal,Onshore,Coal Prod Vol (tons),31907688
+11/01/2015,Federal,Onshore,Oil Prod Vol (bbl),14787360
+11/01/2015,Federal,Onshore,Gas Prod Vol (mcf),283324888
+11/01/2015,Native American,Onshore,Coal Prod Vol (tons),1236781
+11/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5330952
+11/01/2015,Native American,Onshore,Gas Prod Vol (mcf),27025647
 11/01/2015,Federal,Offshore,Oil Prod Vol (bbl),46342274
-12/01/2015,Federal,Onshore,Oil Prod Vol (bbl),14277509
-12/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5352151
-12/01/2015,Native American,Onshore,Coal Prod Vol (tons),1228030
-12/01/2015,Federal,Onshore,Coal Prod Vol (tons),24654378
-12/01/2015,Native American,Onshore,Gas Prod Vol (mcf),27499487
-12/01/2015,Federal,Onshore,Gas Prod Vol (mcf),284949760
+12/01/2015,Native American,Onshore,Gas Prod Vol (mcf),27495884
 12/01/2015,Federal,Offshore,Gas Prod Vol (mcf),112562559
 12/01/2015,Federal,Offshore,Oil Prod Vol (bbl),50386866
+12/01/2015,Federal,Onshore,Gas Prod Vol (mcf),284950111
+12/01/2015,Federal,Onshore,Oil Prod Vol (bbl),14277584
+12/01/2015,Federal,Onshore,Coal Prod Vol (tons),24654378
+12/01/2015,Native American,Onshore,Coal Prod Vol (tons),1228030
+12/01/2015,Native American,Onshore,Oil Prod Vol (bbl),5352151
 01/01/2016,Federal,Offshore,Gas Prod Vol (mcf),109568272
-01/01/2016,Native American,Onshore,Oil Prod Vol (bbl),5233695
-01/01/2016,Native American,Onshore,Gas Prod Vol (mcf),27414814
 01/01/2016,Federal,Onshore,Coal Prod Vol (tons),22385252
-01/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14382679
-01/01/2016,Federal,Onshore,Gas Prod Vol (mcf),279280759
-01/01/2016,Native American,Onshore,Coal Prod Vol (tons),1216479
 01/01/2016,Federal,Offshore,Oil Prod Vol (bbl),50020253
-02/01/2016,Native American,Onshore,Gas Prod Vol (mcf),25718459
+01/01/2016,Native American,Onshore,Coal Prod Vol (tons),1216479
+01/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14383323
+01/01/2016,Native American,Onshore,Oil Prod Vol (bbl),5233695
+01/01/2016,Federal,Onshore,Gas Prod Vol (mcf),279288499
+01/01/2016,Native American,Onshore,Gas Prod Vol (mcf),27411241
 02/01/2016,Native American,Onshore,Coal Prod Vol (tons),1100191
-02/01/2016,Federal,Onshore,Coal Prod Vol (tons),21437741
-02/01/2016,Federal,Onshore,Gas Prod Vol (mcf),263252703
 02/01/2016,Federal,Offshore,Gas Prod Vol (mcf),101488595
-02/01/2016,Federal,Offshore,Oil Prod Vol (bbl),45501444
-02/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13859741
+02/01/2016,Federal,Offshore,Oil Prod Vol (bbl),45505131
+02/01/2016,Federal,Onshore,Coal Prod Vol (tons),21437741
+02/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13860622
+02/01/2016,Federal,Onshore,Gas Prod Vol (mcf),263262290
+02/01/2016,Native American,Onshore,Gas Prod Vol (mcf),25714903
 02/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4804611
-03/01/2016,Native American,Onshore,Gas Prod Vol (mcf),27657771
-03/01/2016,Native American,Onshore,Coal Prod Vol (tons),1349184
-03/01/2016,Federal,Onshore,Coal Prod Vol (tons),20238449
-03/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14801420
 03/01/2016,Federal,Offshore,Gas Prod Vol (mcf),111857668
+03/01/2016,Federal,Onshore,Coal Prod Vol (tons),20238449
+03/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14802366
+03/01/2016,Federal,Onshore,Gas Prod Vol (mcf),284599686
+03/01/2016,Native American,Onshore,Gas Prod Vol (mcf),27655010
 03/01/2016,Native American,Onshore,Oil Prod Vol (bbl),5350367
+03/01/2016,Native American,Onshore,Coal Prod Vol (tons),1349184
 03/01/2016,Federal,Offshore,Oil Prod Vol (bbl),50565057
-03/01/2016,Federal,Onshore,Gas Prod Vol (mcf),284587553
-04/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4920501
 04/01/2016,Federal,Onshore,Coal Prod Vol (tons),18209082
-04/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14005428
-04/01/2016,Federal,Onshore,Gas Prod Vol (mcf),271691573
-04/01/2016,Native American,Onshore,Coal Prod Vol (tons),701080
-04/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26376695
-04/01/2016,Federal,Offshore,Oil Prod Vol (bbl),47768910
 04/01/2016,Federal,Offshore,Gas Prod Vol (mcf),102054082
-05/01/2016,Federal,Onshore,Gas Prod Vol (mcf),273573993
-05/01/2016,Native American,Onshore,Coal Prod Vol (tons),1022304
-05/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14115079
-05/01/2016,Federal,Onshore,Coal Prod Vol (tons),17466152
+04/01/2016,Federal,Offshore,Oil Prod Vol (bbl),47768910
+04/01/2016,Native American,Onshore,Coal Prod Vol (tons),701080
+04/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4920501
+04/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26376013
+04/01/2016,Federal,Onshore,Gas Prod Vol (mcf),271704461
+04/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14006502
 05/01/2016,Federal,Offshore,Oil Prod Vol (bbl),50008267
-05/01/2016,Federal,Offshore,Gas Prod Vol (mcf),111068152
-05/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26890726
+05/01/2016,Federal,Onshore,Coal Prod Vol (tons),17466152
+05/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14116004
+05/01/2016,Federal,Onshore,Gas Prod Vol (mcf),273582730
 05/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4890465
-06/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4678981
-06/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13541853
-06/01/2016,Federal,Onshore,Gas Prod Vol (mcf),267979551
-06/01/2016,Native American,Onshore,Gas Prod Vol (mcf),25496417
+05/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26890712
+05/01/2016,Native American,Onshore,Coal Prod Vol (tons),1022304
+05/01/2016,Federal,Offshore,Gas Prod Vol (mcf),111068152
 06/01/2016,Native American,Onshore,Coal Prod Vol (tons),956567
-06/01/2016,Federal,Onshore,Coal Prod Vol (tons),24182132
-06/01/2016,Federal,Offshore,Oil Prod Vol (bbl),47084486
+06/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13542383
+06/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4678981
+06/01/2016,Native American,Onshore,Gas Prod Vol (mcf),25496397
 06/01/2016,Federal,Offshore,Gas Prod Vol (mcf),97958674
-07/01/2016,Federal,Onshore,Coal Prod Vol (tons),23325633
-07/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14061176
-07/01/2016,Federal,Offshore,Oil Prod Vol (bbl),49158798
+06/01/2016,Federal,Onshore,Coal Prod Vol (tons),24182132
+06/01/2016,Federal,Onshore,Gas Prod Vol (mcf),267984375
+06/01/2016,Federal,Offshore,Oil Prod Vol (bbl),47084486
 07/01/2016,Federal,Offshore,Gas Prod Vol (mcf),103309659
-07/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4934887
-07/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26078850
-07/01/2016,Federal,Onshore,Gas Prod Vol (mcf),262448162
+07/01/2016,Federal,Onshore,Coal Prod Vol (tons),23325633
+07/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14062381
 07/01/2016,Native American,Onshore,Coal Prod Vol (tons),976850
-08/01/2016,Federal,Onshore,Gas Prod Vol (mcf),265850950
-08/01/2016,Native American,Onshore,Coal Prod Vol (tons),1385942
-08/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4792672
-08/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26585841
+07/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4934887
+07/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26078906
+07/01/2016,Federal,Onshore,Gas Prod Vol (mcf),262462331
+07/01/2016,Federal,Offshore,Oil Prod Vol (bbl),49158798
 08/01/2016,Federal,Offshore,Gas Prod Vol (mcf),106372472
 08/01/2016,Federal,Offshore,Oil Prod Vol (bbl),50732254
 08/01/2016,Federal,Onshore,Coal Prod Vol (tons),29500444
-08/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13863568
-09/01/2016,Federal,Offshore,Gas Prod Vol (mcf),98150292
-09/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26044646
+08/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26585879
+08/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4792673
+08/01/2016,Native American,Onshore,Coal Prod Vol (tons),1385942
+08/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13864552
+08/01/2016,Federal,Onshore,Gas Prod Vol (mcf),265864306
+09/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13373156
+09/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26044804
 09/01/2016,Native American,Onshore,Oil Prod Vol (bbl),4711994
-09/01/2016,Native American,Onshore,Coal Prod Vol (tons),1093319
-09/01/2016,Federal,Onshore,Coal Prod Vol (tons),27801819
-09/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13372239
-09/01/2016,Federal,Onshore,Gas Prod Vol (mcf),269725169
 09/01/2016,Federal,Offshore,Oil Prod Vol (bbl),45793968
-10/01/2016,Native American,Onshore,Oil Prod Vol (bbl),5428862
-10/01/2016,Native American,Onshore,Coal Prod Vol (tons),1317886
+09/01/2016,Federal,Offshore,Gas Prod Vol (mcf),98150292
+09/01/2016,Federal,Onshore,Coal Prod Vol (tons),27801819
+09/01/2016,Federal,Onshore,Gas Prod Vol (mcf),269739226
+09/01/2016,Native American,Onshore,Coal Prod Vol (tons),1093319
+10/01/2016,Federal,Onshore,Gas Prod Vol (mcf),282319091
+10/01/2016,Federal,Onshore,Coal Prod Vol (tons),30281973
 10/01/2016,Federal,Offshore,Gas Prod Vol (mcf),104778383
 10/01/2016,Federal,Offshore,Oil Prod Vol (bbl),50359060
-10/01/2016,Federal,Onshore,Gas Prod Vol (mcf),282305156
-10/01/2016,Federal,Onshore,Coal Prod Vol (tons),30281973
-10/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14487323
-10/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26989129
-11/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13919327
-11/01/2016,Native American,Onshore,Oil Prod Vol (bbl),5028201
-11/01/2016,Federal,Offshore,Oil Prod Vol (bbl),51136340
-11/01/2016,Native American,Onshore,Coal Prod Vol (tons),1334842
+10/01/2016,Native American,Onshore,Coal Prod Vol (tons),1317886
+10/01/2016,Native American,Onshore,Oil Prod Vol (bbl),5428864
+10/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26989225
+10/01/2016,Federal,Onshore,Oil Prod Vol (bbl),14488466
 11/01/2016,Federal,Offshore,Gas Prod Vol (mcf),102108663
-11/01/2016,Federal,Onshore,Gas Prod Vol (mcf),270187944
-11/01/2016,Native American,Onshore,Gas Prod Vol (mcf),25653955
+11/01/2016,Federal,Onshore,Gas Prod Vol (mcf),270204574
+11/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13920705
 11/01/2016,Federal,Onshore,Coal Prod Vol (tons),29341898
-12/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26039995
-12/01/2016,Native American,Onshore,Coal Prod Vol (tons),1275026
-12/01/2016,Native American,Onshore,Oil Prod Vol (bbl),5216235
-12/01/2016,Federal,Onshore,Gas Prod Vol (mcf),274346790
-12/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13996836
-12/01/2016,Federal,Onshore,Coal Prod Vol (tons),27874498
+11/01/2016,Native American,Onshore,Gas Prod Vol (mcf),25654058
+11/01/2016,Native American,Onshore,Oil Prod Vol (bbl),5028204
+11/01/2016,Native American,Onshore,Coal Prod Vol (tons),1334842
+11/01/2016,Federal,Offshore,Oil Prod Vol (bbl),51136340
+12/01/2016,Federal,Onshore,Oil Prod Vol (bbl),13998124
 12/01/2016,Federal,Offshore,Oil Prod Vol (bbl),54384739
 12/01/2016,Federal,Offshore,Gas Prod Vol (mcf),108062380
+12/01/2016,Federal,Onshore,Coal Prod Vol (tons),27874498
+12/01/2016,Native American,Onshore,Gas Prod Vol (mcf),26040019
+12/01/2016,Native American,Onshore,Oil Prod Vol (bbl),5216235
+12/01/2016,Native American,Onshore,Coal Prod Vol (tons),1275026
+12/01/2016,Federal,Onshore,Gas Prod Vol (mcf),274364101
+01/01/2017,Federal,Onshore,Oil Prod Vol (bbl),14043275
 01/01/2017,Native American,Onshore,Oil Prod Vol (bbl),5398421
 01/01/2017,Native American,Onshore,Coal Prod Vol (tons),1386837
 01/01/2017,Federal,Offshore,Oil Prod Vol (bbl),54837583
-01/01/2017,Federal,Onshore,Coal Prod Vol (tons),30451363
-01/01/2017,Federal,Onshore,Oil Prod Vol (bbl),14042348
-01/01/2017,Federal,Onshore,Gas Prod Vol (mcf),269099879
-01/01/2017,Native American,Onshore,Gas Prod Vol (mcf),25484891
 01/01/2017,Federal,Offshore,Gas Prod Vol (mcf),106371815
+01/01/2017,Native American,Onshore,Gas Prod Vol (mcf),25485024
+01/01/2017,Federal,Onshore,Gas Prod Vol (mcf),269118884
+01/01/2017,Federal,Onshore,Coal Prod Vol (tons),30451363
+02/01/2017,Native American,Onshore,Oil Prod Vol (bbl),5018883
 02/01/2017,Native American,Onshore,Coal Prod Vol (tons),1270347
 02/01/2017,Federal,Onshore,Coal Prod Vol (tons),26764551
-02/01/2017,Federal,Onshore,Oil Prod Vol (bbl),13342714
-02/01/2017,Federal,Onshore,Gas Prod Vol (mcf),245339563
-02/01/2017,Native American,Onshore,Gas Prod Vol (mcf),23238888
+02/01/2017,Federal,Onshore,Gas Prod Vol (mcf),245357829
+02/01/2017,Federal,Onshore,Oil Prod Vol (bbl),13343760
 02/01/2017,Federal,Offshore,Oil Prod Vol (bbl),49591707
+02/01/2017,Native American,Onshore,Gas Prod Vol (mcf),23238986
 02/01/2017,Federal,Offshore,Gas Prod Vol (mcf),93083105
-02/01/2017,Native American,Onshore,Oil Prod Vol (bbl),5018883
-03/01/2017,Native American,Onshore,Oil Prod Vol (bbl),5672611
-03/01/2017,Federal,Onshore,Coal Prod Vol (tons),24856969
-03/01/2017,Federal,Onshore,Gas Prod Vol (mcf),275689151
-03/01/2017,Federal,Onshore,Oil Prod Vol (bbl),15196728
-03/01/2017,Native American,Onshore,Gas Prod Vol (mcf),26037440
 03/01/2017,Federal,Offshore,Gas Prod Vol (mcf),106321792
-03/01/2017,Federal,Offshore,Oil Prod Vol (bbl),55601996
+03/01/2017,Native American,Onshore,Oil Prod Vol (bbl),5672931
 03/01/2017,Native American,Onshore,Coal Prod Vol (tons),994299
+03/01/2017,Federal,Offshore,Oil Prod Vol (bbl),55601996
+03/01/2017,Federal,Onshore,Gas Prod Vol (mcf),275691727
+03/01/2017,Federal,Onshore,Oil Prod Vol (bbl),15196771
+03/01/2017,Federal,Onshore,Coal Prod Vol (tons),24856969
+03/01/2017,Native American,Onshore,Gas Prod Vol (mcf),26037678
 04/01/2017,Native American,Onshore,Coal Prod Vol (tons),1006718
-04/01/2017,Federal,Offshore,Oil Prod Vol (bbl),50482895
-04/01/2017,Federal,Onshore,Gas Prod Vol (mcf),267973577
-04/01/2017,Federal,Onshore,Oil Prod Vol (bbl),14735255
-04/01/2017,Federal,Onshore,Coal Prod Vol (tons),23773493
+04/01/2017,Federal,Onshore,Gas Prod Vol (mcf),267974356
 04/01/2017,Native American,Onshore,Oil Prod Vol (bbl),5546940
-04/01/2017,Native American,Onshore,Gas Prod Vol (mcf),25373433
+04/01/2017,Native American,Onshore,Gas Prod Vol (mcf),25373549
+04/01/2017,Federal,Onshore,Oil Prod Vol (bbl),14735238
+04/01/2017,Federal,Onshore,Coal Prod Vol (tons),23773493
+04/01/2017,Federal,Offshore,Oil Prod Vol (bbl),50482895
 04/01/2017,Federal,Offshore,Gas Prod Vol (mcf),95311046
-05/01/2017,Federal,Onshore,Oil Prod Vol (bbl),15636577
-05/01/2017,Native American,Onshore,Gas Prod Vol (mcf),27053604
-05/01/2017,Native American,Onshore,Oil Prod Vol (bbl),5786951
-05/01/2017,Federal,Offshore,Oil Prod Vol (bbl),52785897
-05/01/2017,Native American,Onshore,Coal Prod Vol (tons),1133016
+05/01/2017,Native American,Onshore,Gas Prod Vol (mcf),27053687
 05/01/2017,Federal,Offshore,Gas Prod Vol (mcf),99387215
+05/01/2017,Federal,Offshore,Oil Prod Vol (bbl),52785897
+05/01/2017,Federal,Onshore,Gas Prod Vol (mcf),271119721
+05/01/2017,Federal,Onshore,Oil Prod Vol (bbl),15636616
 05/01/2017,Federal,Onshore,Coal Prod Vol (tons),26338321
-05/01/2017,Federal,Onshore,Gas Prod Vol (mcf),271106376
-06/01/2017,Native American,Onshore,Coal Prod Vol (tons),1211408
+05/01/2017,Native American,Onshore,Coal Prod Vol (tons),1133016
+05/01/2017,Native American,Onshore,Oil Prod Vol (bbl),5786951
 06/01/2017,Federal,Onshore,Coal Prod Vol (tons),26859514
-06/01/2017,Federal,Onshore,Oil Prod Vol (bbl),14470674
-06/01/2017,Federal,Onshore,Gas Prod Vol (mcf),264699742
-06/01/2017,Native American,Onshore,Oil Prod Vol (bbl),5859550
-06/01/2017,Native American,Onshore,Gas Prod Vol (mcf),26769624
+06/01/2017,Native American,Onshore,Coal Prod Vol (tons),1211408
+06/01/2017,Federal,Onshore,Oil Prod Vol (bbl),14470707
 06/01/2017,Federal,Offshore,Oil Prod Vol (bbl),49430710
+06/01/2017,Native American,Onshore,Oil Prod Vol (bbl),5859550
 06/01/2017,Federal,Offshore,Gas Prod Vol (mcf),90631984
-07/01/2017,Native American,Onshore,Oil Prod Vol (bbl),6042329
+06/01/2017,Native American,Onshore,Gas Prod Vol (mcf),26769741
+06/01/2017,Federal,Onshore,Gas Prod Vol (mcf),264718634
+07/01/2017,Federal,Onshore,Coal Prod Vol (tons),29686410
+07/01/2017,Federal,Onshore,Oil Prod Vol (bbl),15271542
+07/01/2017,Federal,Onshore,Gas Prod Vol (mcf),272452046
 07/01/2017,Federal,Offshore,Gas Prod Vol (mcf),97838828
-07/01/2017,Native American,Onshore,Gas Prod Vol (mcf),27745434
+07/01/2017,Native American,Onshore,Gas Prod Vol (mcf),27745550
+07/01/2017,Native American,Onshore,Oil Prod Vol (bbl),6042259
 07/01/2017,Native American,Onshore,Coal Prod Vol (tons),920473
 07/01/2017,Federal,Offshore,Oil Prod Vol (bbl),55000657
-07/01/2017,Federal,Onshore,Coal Prod Vol (tons),29686410
-07/01/2017,Federal,Onshore,Oil Prod Vol (bbl),15271568
-07/01/2017,Federal,Onshore,Gas Prod Vol (mcf),272434227
-08/01/2017,Federal,Offshore,Oil Prod Vol (bbl),53913173
-08/01/2017,Federal,Onshore,Gas Prod Vol (mcf),271859395
-08/01/2017,Federal,Onshore,Oil Prod Vol (bbl),15821925
-08/01/2017,Federal,Onshore,Coal Prod Vol (tons),30158575
-08/01/2017,Federal,Offshore,Gas Prod Vol (mcf),92785932
-08/01/2017,Native American,Onshore,Gas Prod Vol (mcf),28459658
-08/01/2017,Native American,Onshore,Oil Prod Vol (bbl),6439312
 08/01/2017,Native American,Onshore,Coal Prod Vol (tons),1203341
-09/01/2017,Native American,Onshore,Oil Prod Vol (bbl),6216478
-09/01/2017,Federal,Onshore,Coal Prod Vol (tons),27217702
-09/01/2017,Federal,Onshore,Oil Prod Vol (bbl),16232187
-09/01/2017,Federal,Onshore,Gas Prod Vol (mcf),268446774
-09/01/2017,Federal,Offshore,Gas Prod Vol (mcf),88478791
-09/01/2017,Native American,Onshore,Gas Prod Vol (mcf),27605437
-09/01/2017,Federal,Offshore,Oil Prod Vol (bbl),51299174
+08/01/2017,Native American,Onshore,Oil Prod Vol (bbl),6439312
+08/01/2017,Native American,Onshore,Gas Prod Vol (mcf),28459776
+08/01/2017,Federal,Offshore,Oil Prod Vol (bbl),53913173
+08/01/2017,Federal,Onshore,Coal Prod Vol (tons),30158575
+08/01/2017,Federal,Onshore,Gas Prod Vol (mcf),271901406
+08/01/2017,Federal,Onshore,Oil Prod Vol (bbl),15822235
+08/01/2017,Federal,Offshore,Gas Prod Vol (mcf),92785932
+09/01/2017,Native American,Onshore,Gas Prod Vol (mcf),27605698
+09/01/2017,Federal,Onshore,Oil Prod Vol (bbl),16232222
+09/01/2017,Federal,Onshore,Gas Prod Vol (mcf),268462798
 09/01/2017,Native American,Onshore,Coal Prod Vol (tons),958857
+09/01/2017,Federal,Onshore,Coal Prod Vol (tons),27217702
+09/01/2017,Federal,Offshore,Oil Prod Vol (bbl),51299174
+09/01/2017,Federal,Offshore,Gas Prod Vol (mcf),88478791
+09/01/2017,Native American,Onshore,Oil Prod Vol (bbl),6216478
+10/01/2017,Native American,Onshore,Gas Prod Vol (mcf),29055166
 10/01/2017,Native American,Onshore,Oil Prod Vol (bbl),6571246
-10/01/2017,Native American,Onshore,Gas Prod Vol (mcf),29055089
-10/01/2017,Federal,Offshore,Gas Prod Vol (mcf),80366448
-10/01/2017,Federal,Offshore,Oil Prod Vol (bbl),46471476
-10/01/2017,Federal,Onshore,Coal Prod Vol (tons),27484858
-10/01/2017,Federal,Onshore,Oil Prod Vol (bbl),17248471
-10/01/2017,Federal,Onshore,Gas Prod Vol (mcf),278307900
 10/01/2017,Native American,Onshore,Coal Prod Vol (tons),1123323
-11/01/2017,Federal,Onshore,Coal Prod Vol (tons),26341943
-11/01/2017,Federal,Onshore,Gas Prod Vol (mcf),272252808
-11/01/2017,Federal,Offshore,Oil Prod Vol (bbl),51449164
-11/01/2017,Federal,Offshore,Gas Prod Vol (mcf),81784016
+10/01/2017,Federal,Offshore,Oil Prod Vol (bbl),46471476
+10/01/2017,Federal,Offshore,Gas Prod Vol (mcf),80366448
+10/01/2017,Federal,Onshore,Gas Prod Vol (mcf),278322871
+10/01/2017,Federal,Onshore,Coal Prod Vol (tons),27484858
+10/01/2017,Federal,Onshore,Oil Prod Vol (bbl),17248428
 11/01/2017,Native American,Onshore,Coal Prod Vol (tons),1147396
+11/01/2017,Federal,Offshore,Gas Prod Vol (mcf),81784016
+11/01/2017,Federal,Onshore,Coal Prod Vol (tons),26341943
 11/01/2017,Native American,Onshore,Oil Prod Vol (bbl),6563639
-11/01/2017,Native American,Onshore,Gas Prod Vol (mcf),28985512
-11/01/2017,Federal,Onshore,Oil Prod Vol (bbl),16951202
-12/01/2017,Federal,Onshore,Gas Prod Vol (mcf),284065596
-12/01/2017,Federal,Onshore,Oil Prod Vol (bbl),18029987
+11/01/2017,Native American,Onshore,Gas Prod Vol (mcf),28985608
+11/01/2017,Federal,Onshore,Gas Prod Vol (mcf),272297802
+11/01/2017,Federal,Offshore,Oil Prod Vol (bbl),51449164
+11/01/2017,Federal,Onshore,Oil Prod Vol (bbl),16951234
+12/01/2017,Federal,Onshore,Oil Prod Vol (bbl),18030027
+12/01/2017,Federal,Onshore,Coal Prod Vol (tons),26144818
 12/01/2017,Native American,Onshore,Coal Prod Vol (tons),1361183
 12/01/2017,Native American,Onshore,Oil Prod Vol (bbl),6761970
-12/01/2017,Native American,Onshore,Gas Prod Vol (mcf),30824714
+12/01/2017,Native American,Onshore,Gas Prod Vol (mcf),30824839
 12/01/2017,Federal,Offshore,Oil Prod Vol (bbl),49115809
-12/01/2017,Federal,Onshore,Coal Prod Vol (tons),26144818
 12/01/2017,Federal,Offshore,Gas Prod Vol (mcf),78469512
-01/01/2018,Native American,Onshore,Oil Prod Vol (bbl),6683736
-01/01/2018,Native American,Onshore,Gas Prod Vol (mcf),31209774
+12/01/2017,Federal,Onshore,Gas Prod Vol (mcf),284078751
 01/01/2018,Native American,Onshore,Coal Prod Vol (tons),1354891
-01/01/2018,Federal,Onshore,Coal Prod Vol (tons),24632904
-01/01/2018,Federal,Onshore,Oil Prod Vol (bbl),17637116
-01/01/2018,Federal,Onshore,Gas Prod Vol (mcf),282043584
 01/01/2018,Federal,Offshore,Oil Prod Vol (bbl),51241840
+01/01/2018,Native American,Onshore,Oil Prod Vol (bbl),6683736
+01/01/2018,Native American,Onshore,Gas Prod Vol (mcf),31209835
 01/01/2018,Federal,Offshore,Gas Prod Vol (mcf),79016482
-02/01/2018,Federal,Onshore,Gas Prod Vol (mcf),256014718
-02/01/2018,Federal,Offshore,Gas Prod Vol (mcf),74931945
-02/01/2018,Federal,Offshore,Oil Prod Vol (bbl),48387661
-02/01/2018,Native American,Onshore,Gas Prod Vol (mcf),28248397
-02/01/2018,Native American,Onshore,Oil Prod Vol (bbl),5893797
+01/01/2018,Federal,Onshore,Oil Prod Vol (bbl),17637139
+01/01/2018,Federal,Onshore,Coal Prod Vol (tons),24632904
+01/01/2018,Federal,Onshore,Gas Prod Vol (mcf),282055933
 02/01/2018,Native American,Onshore,Coal Prod Vol (tons),701497
+02/01/2018,Native American,Onshore,Gas Prod Vol (mcf),28248409
+02/01/2018,Native American,Onshore,Oil Prod Vol (bbl),5893797
 02/01/2018,Federal,Onshore,Coal Prod Vol (tons),25195995
-02/01/2018,Federal,Onshore,Oil Prod Vol (bbl),16658143
-03/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32574360
-03/01/2018,Native American,Onshore,Oil Prod Vol (bbl),6970449
-03/01/2018,Native American,Onshore,Coal Prod Vol (tons),827534
-03/01/2018,Federal,Onshore,Gas Prod Vol (mcf),284609329
-03/01/2018,Federal,Onshore,Oil Prod Vol (bbl),18740743
-03/01/2018,Federal,Onshore,Coal Prod Vol (tons),25653837
+02/01/2018,Federal,Onshore,Oil Prod Vol (bbl),16552467
+02/01/2018,Federal,Onshore,Gas Prod Vol (mcf),255860547
+02/01/2018,Federal,Offshore,Oil Prod Vol (bbl),48387661
+02/01/2018,Federal,Offshore,Gas Prod Vol (mcf),74931945
+03/01/2018,Federal,Onshore,Gas Prod Vol (mcf),284396406
 03/01/2018,Federal,Offshore,Gas Prod Vol (mcf),84070752
 03/01/2018,Federal,Offshore,Oil Prod Vol (bbl),53328724
-04/01/2018,Federal,Onshore,Gas Prod Vol (mcf),275200270
-04/01/2018,Federal,Onshore,Oil Prod Vol (bbl),18974805
-04/01/2018,Federal,Onshore,Coal Prod Vol (tons),22442433
-04/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32436410
-04/01/2018,Federal,Offshore,Gas Prod Vol (mcf),76396877
-04/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7438693
+03/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32574379
+03/01/2018,Native American,Onshore,Oil Prod Vol (bbl),6970555
+03/01/2018,Native American,Onshore,Coal Prod Vol (tons),827534
+03/01/2018,Federal,Onshore,Coal Prod Vol (tons),25653837
+03/01/2018,Federal,Onshore,Oil Prod Vol (bbl),18626532
+04/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32436428
+04/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7438796
 04/01/2018,Native American,Onshore,Coal Prod Vol (tons),815363
+04/01/2018,Federal,Onshore,Gas Prod Vol (mcf),274977670
+04/01/2018,Federal,Onshore,Oil Prod Vol (bbl),18914505
+04/01/2018,Federal,Onshore,Coal Prod Vol (tons),22442433
+04/01/2018,Federal,Offshore,Gas Prod Vol (mcf),76396877
 04/01/2018,Federal,Offshore,Oil Prod Vol (bbl),48560684
-05/01/2018,Federal,Onshore,Gas Prod Vol (mcf),282057003
-05/01/2018,Federal,Onshore,Oil Prod Vol (bbl),19650526
-05/01/2018,Native American,Onshore,Gas Prod Vol (mcf),33141255
-05/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7683395
-05/01/2018,Native American,Onshore,Coal Prod Vol (tons),1223737
+05/01/2018,Federal,Onshore,Gas Prod Vol (mcf),281948882
+05/01/2018,Federal,Onshore,Oil Prod Vol (bbl),19617369
 05/01/2018,Federal,Onshore,Coal Prod Vol (tons),22509973
-05/01/2018,Federal,Offshore,Oil Prod Vol (bbl),48110830
+05/01/2018,Native American,Onshore,Gas Prod Vol (mcf),33141371
 05/01/2018,Federal,Offshore,Gas Prod Vol (mcf),78906455
-06/01/2018,Federal,Offshore,Oil Prod Vol (bbl),50368222
-06/01/2018,Federal,Onshore,Oil Prod Vol (bbl),18583658
-06/01/2018,Federal,Onshore,Gas Prod Vol (mcf),269755786
-06/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32110141
-06/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7214370
+05/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7683704
+05/01/2018,Native American,Onshore,Coal Prod Vol (tons),1223737
+05/01/2018,Federal,Offshore,Oil Prod Vol (bbl),48110830
+06/01/2018,Federal,Onshore,Gas Prod Vol (mcf),269648872
+06/01/2018,Federal,Onshore,Oil Prod Vol (bbl),18551191
+06/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32110258
+06/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7215189
 06/01/2018,Native American,Onshore,Coal Prod Vol (tons),1024930
 06/01/2018,Federal,Onshore,Coal Prod Vol (tons),24851719
+06/01/2018,Federal,Offshore,Oil Prod Vol (bbl),50368222
 06/01/2018,Federal,Offshore,Gas Prod Vol (mcf),79075861
 07/01/2018,Federal,Offshore,Oil Prod Vol (bbl),58348430
-07/01/2018,Federal,Offshore,Gas Prod Vol (mcf),92152785
-07/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32576171
-07/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7217577
+07/01/2018,Federal,Onshore,Oil Prod Vol (bbl),19594733
+07/01/2018,Federal,Onshore,Gas Prod Vol (mcf),282366120
+07/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32576327
+07/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7218204
 07/01/2018,Native American,Onshore,Coal Prod Vol (tons),1200779
 07/01/2018,Federal,Onshore,Coal Prod Vol (tons),26629804
-07/01/2018,Federal,Onshore,Oil Prod Vol (bbl),19616294
-07/01/2018,Federal,Onshore,Gas Prod Vol (mcf),282454799
-08/01/2018,Federal,Offshore,Gas Prod Vol (mcf),98046470
+07/01/2018,Federal,Offshore,Gas Prod Vol (mcf),92152785
 08/01/2018,Federal,Offshore,Oil Prod Vol (bbl),61083179
-08/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7404178
-08/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32840681
-08/01/2018,Federal,Onshore,Coal Prod Vol (tons),27555964
-08/01/2018,Federal,Onshore,Oil Prod Vol (bbl),21068597
-08/01/2018,Federal,Onshore,Gas Prod Vol (mcf),284128293
+08/01/2018,Federal,Offshore,Gas Prod Vol (mcf),98046470
+08/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32840816
+08/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7404697
 08/01/2018,Native American,Onshore,Coal Prod Vol (tons),1444528
-09/01/2018,Native American,Onshore,Coal Prod Vol (tons),1182334
-09/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7554464
-09/01/2018,Federal,Onshore,Oil Prod Vol (bbl),21440893
-09/01/2018,Federal,Onshore,Gas Prod Vol (mcf),276874473
-09/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32314092
-09/01/2018,Federal,Onshore,Coal Prod Vol (tons),29721951
+08/01/2018,Federal,Onshore,Coal Prod Vol (tons),27555964
+08/01/2018,Federal,Onshore,Oil Prod Vol (bbl),21050215
+08/01/2018,Federal,Onshore,Gas Prod Vol (mcf),284069118
 09/01/2018,Federal,Offshore,Gas Prod Vol (mcf),88571134
 09/01/2018,Federal,Offshore,Oil Prod Vol (bbl),54369621
-10/01/2018,Federal,Onshore,Coal Prod Vol (tons),26731949
+09/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7554932
+09/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32314220
+09/01/2018,Federal,Onshore,Coal Prod Vol (tons),29721951
+09/01/2018,Federal,Onshore,Oil Prod Vol (bbl),21422043
+09/01/2018,Federal,Onshore,Gas Prod Vol (mcf),276782408
+09/01/2018,Native American,Onshore,Coal Prod Vol (tons),1182334
 10/01/2018,Native American,Onshore,Coal Prod Vol (tons),1252350
-10/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7796532
-10/01/2018,Native American,Onshore,Gas Prod Vol (mcf),33263333
+10/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7796971
+10/01/2018,Federal,Onshore,Oil Prod Vol (bbl),23163907
+10/01/2018,Federal,Onshore,Gas Prod Vol (mcf),290474395
+10/01/2018,Native American,Onshore,Gas Prod Vol (mcf),33263454
+10/01/2018,Federal,Onshore,Coal Prod Vol (tons),26731949
 10/01/2018,Federal,Offshore,Gas Prod Vol (mcf),86433987
-10/01/2018,Federal,Onshore,Gas Prod Vol (mcf),290559021
-10/01/2018,Federal,Onshore,Oil Prod Vol (bbl),23181051
 10/01/2018,Federal,Offshore,Oil Prod Vol (bbl),54680103
-11/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32005153
-11/01/2018,Federal,Offshore,Gas Prod Vol (mcf),90531662
-11/01/2018,Native American,Onshore,Coal Prod Vol (tons),1487964
-11/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7793424
-11/01/2018,Federal,Onshore,Oil Prod Vol (bbl),22108310
-11/01/2018,Federal,Onshore,Gas Prod Vol (mcf),278724170
 11/01/2018,Federal,Onshore,Coal Prod Vol (tons),26932688
+11/01/2018,Native American,Onshore,Coal Prod Vol (tons),1487964
+11/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7793786
+11/01/2018,Native American,Onshore,Gas Prod Vol (mcf),32005269
+11/01/2018,Federal,Offshore,Gas Prod Vol (mcf),90531662
+11/01/2018,Federal,Onshore,Gas Prod Vol (mcf),278635941
+11/01/2018,Federal,Onshore,Oil Prod Vol (bbl),22104922
 11/01/2018,Federal,Offshore,Oil Prod Vol (bbl),58952526
-12/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7938266
+12/01/2018,Native American,Onshore,Gas Prod Vol (mcf),33046343
 12/01/2018,Federal,Offshore,Gas Prod Vol (mcf),92326984
-12/01/2018,Native American,Onshore,Gas Prod Vol (mcf),33046242
-12/01/2018,Federal,Onshore,Oil Prod Vol (bbl),23392575
-12/01/2018,Federal,Onshore,Gas Prod Vol (mcf),289383566
-12/01/2018,Federal,Offshore,Oil Prod Vol (bbl),59996519
-12/01/2018,Federal,Onshore,Coal Prod Vol (tons),28361627
 12/01/2018,Native American,Onshore,Coal Prod Vol (tons),1368888
+12/01/2018,Native American,Onshore,Oil Prod Vol (bbl),7938609
+12/01/2018,Federal,Onshore,Oil Prod Vol (bbl),23380404
+12/01/2018,Federal,Onshore,Gas Prod Vol (mcf),289315303
+12/01/2018,Federal,Onshore,Coal Prod Vol (tons),28361627
+12/01/2018,Federal,Offshore,Oil Prod Vol (bbl),59996519
+01/01/2019,Native American,Onshore,Oil Prod Vol (bbl),8080033
 01/01/2019,Federal,Offshore,Gas Prod Vol (mcf),94248423
-01/01/2019,Native American,Onshore,Coal Prod Vol (tons),1150322
-01/01/2019,Native American,Onshore,Oil Prod Vol (bbl),8079709
+01/01/2019,Native American,Onshore,Gas Prod Vol (mcf),32484216
+01/01/2019,Federal,Onshore,Oil Prod Vol (bbl),23661441
+01/01/2019,Federal,Onshore,Gas Prod Vol (mcf),281714120
 01/01/2019,Federal,Offshore,Oil Prod Vol (bbl),59870632
-01/01/2019,Federal,Onshore,Gas Prod Vol (mcf),281778395
-01/01/2019,Federal,Onshore,Oil Prod Vol (bbl),23673237
 01/01/2019,Federal,Onshore,Coal Prod Vol (tons),28977593
-01/01/2019,Native American,Onshore,Gas Prod Vol (mcf),32484100
-02/01/2019,Federal,Offshore,Oil Prod Vol (bbl),48948892
-02/01/2019,Federal,Onshore,Oil Prod Vol (bbl),21988214
-02/01/2019,Federal,Onshore,Gas Prod Vol (mcf),257639263
-02/01/2019,Native American,Onshore,Gas Prod Vol (mcf),28785062
-02/01/2019,Federal,Onshore,Coal Prod Vol (tons),22819653
-02/01/2019,Native American,Onshore,Oil Prod Vol (bbl),7164449
+01/01/2019,Native American,Onshore,Coal Prod Vol (tons),1150322
+02/01/2019,Federal,Offshore,Gas Prod Vol (mcf),80429416
 02/01/2019,Native American,Onshore,Coal Prod Vol (tons),1113086
-02/01/2019,Federal,Offshore,Gas Prod Vol (mcf),80429418
+02/01/2019,Native American,Onshore,Oil Prod Vol (bbl),7164716
+02/01/2019,Federal,Offshore,Oil Prod Vol (bbl),48945100
+02/01/2019,Federal,Onshore,Gas Prod Vol (mcf),257640040
+02/01/2019,Federal,Onshore,Oil Prod Vol (bbl),21978535
+02/01/2019,Federal,Onshore,Coal Prod Vol (tons),22819653
+02/01/2019,Native American,Onshore,Gas Prod Vol (mcf),28785146
+03/01/2019,Federal,Offshore,Oil Prod Vol (bbl),60021466
+03/01/2019,Federal,Onshore,Oil Prod Vol (bbl),25162904
+03/01/2019,Federal,Onshore,Gas Prod Vol (mcf),287054615
+03/01/2019,Native American,Onshore,Gas Prod Vol (mcf),33239475
+03/01/2019,Federal,Onshore,Coal Prod Vol (tons),18331999
+03/01/2019,Native American,Onshore,Oil Prod Vol (bbl),8410769
 03/01/2019,Native American,Onshore,Coal Prod Vol (tons),979629
 03/01/2019,Federal,Offshore,Gas Prod Vol (mcf),96098533
-03/01/2019,Federal,Offshore,Oil Prod Vol (bbl),60021466
-03/01/2019,Federal,Onshore,Gas Prod Vol (mcf),286937232
-03/01/2019,Federal,Onshore,Oil Prod Vol (bbl),25191135
-03/01/2019,Federal,Onshore,Coal Prod Vol (tons),18331999
-03/01/2019,Native American,Onshore,Gas Prod Vol (mcf),33239362
-03/01/2019,Native American,Onshore,Oil Prod Vol (bbl),8410516
-04/01/2019,Native American,Onshore,Gas Prod Vol (mcf),33524912
-04/01/2019,Federal,Onshore,Gas Prod Vol (mcf),279070827
-04/01/2019,Federal,Offshore,Oil Prod Vol (bbl),59304897
-04/01/2019,Federal,Onshore,Oil Prod Vol (bbl),24446226
-04/01/2019,Federal,Onshore,Coal Prod Vol (tons),25741411
-04/01/2019,Native American,Onshore,Oil Prod Vol (bbl),8273417
 04/01/2019,Native American,Onshore,Coal Prod Vol (tons),1556977
 04/01/2019,Federal,Offshore,Gas Prod Vol (mcf),91170577
-05/01/2019,Federal,Onshore,Coal Prod Vol (tons),24071406
-05/01/2019,Federal,Offshore,Gas Prod Vol (mcf),91694201
-05/01/2019,Native American,Onshore,Gas Prod Vol (mcf),34417853
+04/01/2019,Federal,Offshore,Oil Prod Vol (bbl),59304897
+04/01/2019,Federal,Onshore,Gas Prod Vol (mcf),279028206
+04/01/2019,Federal,Onshore,Oil Prod Vol (bbl),24413700
+04/01/2019,Federal,Onshore,Coal Prod Vol (tons),25741411
+04/01/2019,Native American,Onshore,Gas Prod Vol (mcf),33525026
+04/01/2019,Native American,Onshore,Oil Prod Vol (bbl),8273649
+05/01/2019,Federal,Onshore,Gas Prod Vol (mcf),289756867
+05/01/2019,Federal,Onshore,Oil Prod Vol (bbl),25744613
 05/01/2019,Federal,Offshore,Oil Prod Vol (bbl),59782992
-05/01/2019,Native American,Onshore,Oil Prod Vol (bbl),8579972
-05/01/2019,Federal,Onshore,Gas Prod Vol (mcf),289651483
-05/01/2019,Federal,Onshore,Oil Prod Vol (bbl),25773514
+05/01/2019,Federal,Onshore,Coal Prod Vol (tons),24071406
+05/01/2019,Native American,Onshore,Oil Prod Vol (bbl),8580209
 05/01/2019,Native American,Onshore,Coal Prod Vol (tons),1347300
-06/01/2019,Federal,Onshore,Coal Prod Vol (tons),22173626
-06/01/2019,Federal,Onshore,Gas Prod Vol (mcf),281014880
-06/01/2019,Federal,Onshore,Oil Prod Vol (bbl),24804041
-06/01/2019,Native American,Onshore,Coal Prod Vol (tons),1002502
-06/01/2019,Native American,Onshore,Oil Prod Vol (bbl),8760004
-06/01/2019,Native American,Onshore,Gas Prod Vol (mcf),33817612
-06/01/2019,Federal,Offshore,Oil Prod Vol (bbl),58113934
+05/01/2019,Federal,Offshore,Gas Prod Vol (mcf),91694201
+05/01/2019,Native American,Onshore,Gas Prod Vol (mcf),34417948
 06/01/2019,Federal,Offshore,Gas Prod Vol (mcf),85301063
-07/01/2019,Federal,Offshore,Oil Prod Vol (bbl),47897047
-07/01/2019,Federal,Onshore,Gas Prod Vol (mcf),273941636
-07/01/2019,Native American,Onshore,Coal Prod Vol (tons),906463
-07/01/2019,Native American,Onshore,Oil Prod Vol (bbl),9335514
-07/01/2019,Native American,Onshore,Gas Prod Vol (mcf),35381652
-07/01/2019,Federal,Offshore,Gas Prod Vol (mcf),70626888
+06/01/2019,Federal,Onshore,Coal Prod Vol (tons),22173626
+06/01/2019,Federal,Onshore,Oil Prod Vol (bbl),24780479
+06/01/2019,Native American,Onshore,Gas Prod Vol (mcf),33817712
+06/01/2019,Federal,Offshore,Oil Prod Vol (bbl),58113934
+06/01/2019,Native American,Onshore,Oil Prod Vol (bbl),8760227
+06/01/2019,Federal,Onshore,Gas Prod Vol (mcf),281116227
+06/01/2019,Native American,Onshore,Coal Prod Vol (tons),1002502
 07/01/2019,Federal,Onshore,Coal Prod Vol (tons),24792370
-07/01/2019,Federal,Onshore,Oil Prod Vol (bbl),24846975
-08/01/2019,Native American,Onshore,Gas Prod Vol (mcf),35593931
+07/01/2019,Federal,Onshore,Gas Prod Vol (mcf),273881867
+07/01/2019,Federal,Onshore,Oil Prod Vol (bbl),24791482
+07/01/2019,Native American,Onshore,Coal Prod Vol (tons),906463
+07/01/2019,Native American,Onshore,Oil Prod Vol (bbl),9335315
+07/01/2019,Native American,Onshore,Gas Prod Vol (mcf),35380417
+07/01/2019,Federal,Offshore,Oil Prod Vol (bbl),47897047
+07/01/2019,Federal,Offshore,Gas Prod Vol (mcf),70626888
 08/01/2019,Federal,Offshore,Oil Prod Vol (bbl),63762478
-08/01/2019,Federal,Onshore,Gas Prod Vol (mcf),281937486
-08/01/2019,Federal,Onshore,Oil Prod Vol (bbl),25565639
-08/01/2019,Federal,Onshore,Coal Prod Vol (tons),27972989
+08/01/2019,Federal,Onshore,Gas Prod Vol (mcf),281617175
 08/01/2019,Native American,Onshore,Coal Prod Vol (tons),1341162
-08/01/2019,Native American,Onshore,Oil Prod Vol (bbl),9335897
+08/01/2019,Native American,Onshore,Oil Prod Vol (bbl),9336119
+08/01/2019,Native American,Onshore,Gas Prod Vol (mcf),35592353
 08/01/2019,Federal,Offshore,Gas Prod Vol (mcf),94278465
-09/01/2019,Federal,Offshore,Gas Prod Vol (mcf),87655669
-09/01/2019,Native American,Onshore,Coal Prod Vol (tons),847728
-09/01/2019,Native American,Onshore,Oil Prod Vol (bbl),9423490
-09/01/2019,Native American,Onshore,Gas Prod Vol (mcf),35432784
+08/01/2019,Federal,Onshore,Coal Prod Vol (tons),27972989
+08/01/2019,Federal,Onshore,Oil Prod Vol (bbl),25498587
+09/01/2019,Native American,Onshore,Gas Prod Vol (mcf),35430112
+09/01/2019,Federal,Offshore,Oil Prod Vol (bbl),57909375
+09/01/2019,Federal,Onshore,Gas Prod Vol (mcf),281478204
+09/01/2019,Federal,Onshore,Oil Prod Vol (bbl),25643086
 09/01/2019,Federal,Onshore,Coal Prod Vol (tons),25445787
-09/01/2019,Federal,Onshore,Oil Prod Vol (bbl),25697144
-09/01/2019,Federal,Onshore,Gas Prod Vol (mcf),281718188
-09/01/2019,Federal,Offshore,Oil Prod Vol (bbl),57909529
-10/01/2019,Native American,Onshore,Coal Prod Vol (tons),711302
-10/01/2019,Federal,Onshore,Coal Prod Vol (tons),25341262
+09/01/2019,Native American,Onshore,Coal Prod Vol (tons),847728
+09/01/2019,Native American,Onshore,Oil Prod Vol (bbl),9423586
+09/01/2019,Federal,Offshore,Gas Prod Vol (mcf),87655669
 10/01/2019,Federal,Offshore,Gas Prod Vol (mcf),89982310
+10/01/2019,Native American,Onshore,Coal Prod Vol (tons),711302
+10/01/2019,Native American,Onshore,Oil Prod Vol (bbl),10244194
+10/01/2019,Native American,Onshore,Gas Prod Vol (mcf),37153149
+10/01/2019,Federal,Onshore,Coal Prod Vol (tons),25341262
+10/01/2019,Federal,Onshore,Oil Prod Vol (bbl),26864801
+10/01/2019,Federal,Onshore,Gas Prod Vol (mcf),293489787
 10/01/2019,Federal,Offshore,Oil Prod Vol (bbl),59691419
-10/01/2019,Federal,Onshore,Gas Prod Vol (mcf),293719889
-10/01/2019,Federal,Onshore,Oil Prod Vol (bbl),26901662
-10/01/2019,Native American,Onshore,Oil Prod Vol (bbl),10243686
-10/01/2019,Native American,Onshore,Gas Prod Vol (mcf),37154918
-11/01/2019,Federal,Onshore,Gas Prod Vol (mcf),285430539
+11/01/2019,Native American,Onshore,Coal Prod Vol (tons),552751
 11/01/2019,Federal,Onshore,Coal Prod Vol (tons),21889815
 11/01/2019,Federal,Offshore,Gas Prod Vol (mcf),87007476
-11/01/2019,Federal,Onshore,Oil Prod Vol (bbl),27046723
-11/01/2019,Native American,Onshore,Gas Prod Vol (mcf),36011933
-11/01/2019,Native American,Onshore,Coal Prod Vol (tons),552751
 11/01/2019,Federal,Offshore,Oil Prod Vol (bbl),60367084
-11/01/2019,Native American,Onshore,Oil Prod Vol (bbl),10147845
-12/01/2019,Federal,Onshore,Oil Prod Vol (bbl),28341342
-12/01/2019,Native American,Onshore,Gas Prod Vol (mcf),36058005
+11/01/2019,Federal,Onshore,Gas Prod Vol (mcf),285277650
+11/01/2019,Federal,Onshore,Oil Prod Vol (bbl),27039937
+11/01/2019,Native American,Onshore,Oil Prod Vol (bbl),10147877
+11/01/2019,Native American,Onshore,Gas Prod Vol (mcf),36009936
+12/01/2019,Federal,Onshore,Gas Prod Vol (mcf),294397752
 12/01/2019,Federal,Onshore,Coal Prod Vol (tons),23608717
-12/01/2019,Native American,Onshore,Oil Prod Vol (bbl),9931780
-12/01/2019,Federal,Offshore,Oil Prod Vol (bbl),61766172
 12/01/2019,Federal,Offshore,Gas Prod Vol (mcf),90859399
+12/01/2019,Federal,Onshore,Oil Prod Vol (bbl),28361029
+12/01/2019,Native American,Onshore,Gas Prod Vol (mcf),36212986
 12/01/2019,Native American,Onshore,Coal Prod Vol (tons),540830
-12/01/2019,Federal,Onshore,Gas Prod Vol (mcf),294450217
+12/01/2019,Federal,Offshore,Oil Prod Vol (bbl),61766172
+12/01/2019,Native American,Onshore,Oil Prod Vol (bbl),10158425
+01/01/2020,Federal,Onshore,Oil Prod Vol (bbl),28092595
+01/01/2020,Native American,Onshore,Gas Prod Vol (mcf),35130295
+01/01/2020,Federal,Onshore,Coal Prod Vol (tons),23240339
+01/01/2020,Native American,Onshore,Oil Prod Vol (bbl),9301617
+01/01/2020,Federal,Offshore,Oil Prod Vol (bbl),62011112
 01/01/2020,Federal,Offshore,Gas Prod Vol (mcf),89679645
 01/01/2020,Native American,Onshore,Coal Prod Vol (tons),607705
-01/01/2020,Native American,Onshore,Oil Prod Vol (bbl),9086971
-01/01/2020,Federal,Onshore,Gas Prod Vol (mcf),293564196
-01/01/2020,Native American,Onshore,Gas Prod Vol (mcf),34952321
-01/01/2020,Federal,Onshore,Oil Prod Vol (bbl),28143679
-01/01/2020,Federal,Onshore,Coal Prod Vol (tons),23240339
-01/01/2020,Federal,Offshore,Oil Prod Vol (bbl),62011112
-02/01/2020,Native American,Onshore,Gas Prod Vol (mcf),33309989
+01/01/2020,Federal,Onshore,Gas Prod Vol (mcf),293309968
 02/01/2020,Federal,Offshore,Gas Prod Vol (mcf),84329674
-02/01/2020,Federal,Offshore,Oil Prod Vol (bbl),58208418
-02/01/2020,Federal,Onshore,Gas Prod Vol (mcf),271358930
-02/01/2020,Federal,Onshore,Oil Prod Vol (bbl),27073855
-02/01/2020,Federal,Onshore,Coal Prod Vol (tons),19524985
 02/01/2020,Native American,Onshore,Coal Prod Vol (tons),466920
-02/01/2020,Native American,Onshore,Oil Prod Vol (bbl),8691243
-03/01/2020,Federal,Onshore,Gas Prod Vol (mcf),289217710
-03/01/2020,Federal,Onshore,Oil Prod Vol (bbl),30136769
+02/01/2020,Native American,Onshore,Oil Prod Vol (bbl),8853711
+02/01/2020,Federal,Onshore,Gas Prod Vol (mcf),270847765
+02/01/2020,Native American,Onshore,Gas Prod Vol (mcf),33415354
+02/01/2020,Federal,Onshore,Oil Prod Vol (bbl),26823055
+02/01/2020,Federal,Onshore,Coal Prod Vol (tons),19524985
+02/01/2020,Federal,Offshore,Oil Prod Vol (bbl),58219112
+03/01/2020,Native American,Onshore,Gas Prod Vol (mcf),35127188
 03/01/2020,Federal,Offshore,Gas Prod Vol (mcf),91294848
+03/01/2020,Federal,Offshore,Oil Prod Vol (bbl),61644510
+03/01/2020,Federal,Onshore,Gas Prod Vol (mcf),288848518
+03/01/2020,Federal,Onshore,Oil Prod Vol (bbl),29886775
 03/01/2020,Federal,Onshore,Coal Prod Vol (tons),19661724
-03/01/2020,Federal,Offshore,Oil Prod Vol (bbl),61655202
 03/01/2020,Native American,Onshore,Coal Prod Vol (tons),569826
-03/01/2020,Native American,Onshore,Oil Prod Vol (bbl),9021149
-03/01/2020,Native American,Onshore,Gas Prod Vol (mcf),35005026
-04/01/2020,Federal,Offshore,Oil Prod Vol (bbl),57683240
-04/01/2020,Federal,Onshore,Oil Prod Vol (bbl),26550438
-04/01/2020,Federal,Onshore,Gas Prod Vol (mcf),265156686
+03/01/2020,Native American,Onshore,Oil Prod Vol (bbl),9207785
 04/01/2020,Federal,Onshore,Coal Prod Vol (tons),16640682
-04/01/2020,Native American,Onshore,Gas Prod Vol (mcf),31409059
-04/01/2020,Native American,Onshore,Oil Prod Vol (bbl),7740618
+04/01/2020,Federal,Onshore,Gas Prod Vol (mcf),265145760
+04/01/2020,Federal,Offshore,Oil Prod Vol (bbl),57683240
 04/01/2020,Native American,Onshore,Coal Prod Vol (tons),582654
 04/01/2020,Federal,Offshore,Gas Prod Vol (mcf),83484944
+04/01/2020,Native American,Onshore,Oil Prod Vol (bbl),7931390
+04/01/2020,Native American,Onshore,Gas Prod Vol (mcf),31611128
+04/01/2020,Federal,Onshore,Oil Prod Vol (bbl),26329836
 05/01/2020,Federal,Offshore,Gas Prod Vol (mcf),67633280
-05/01/2020,Federal,Offshore,Oil Prod Vol (bbl),50152170
-05/01/2020,Federal,Onshore,Gas Prod Vol (mcf),255951642
-05/01/2020,Federal,Onshore,Oil Prod Vol (bbl),22166820
-05/01/2020,Native American,Onshore,Gas Prod Vol (mcf),27515403
-05/01/2020,Native American,Onshore,Oil Prod Vol (bbl),5441342
-05/01/2020,Native American,Onshore,Coal Prod Vol (tons),380998
+05/01/2020,Federal,Onshore,Gas Prod Vol (mcf),256066469
 05/01/2020,Federal,Onshore,Coal Prod Vol (tons),17586691
-06/01/2020,Federal,Onshore,Oil Prod Vol (bbl),23065749
-06/01/2020,Federal,Onshore,Coal Prod Vol (tons),17628063
-06/01/2020,Federal,Onshore,Gas Prod Vol (mcf),250500719
-06/01/2020,Native American,Onshore,Oil Prod Vol (bbl),6960601
-06/01/2020,Native American,Onshore,Gas Prod Vol (mcf),28884220
-06/01/2020,Federal,Offshore,Oil Prod Vol (bbl),47015341
-06/01/2020,Federal,Offshore,Gas Prod Vol (mcf),65027302
+05/01/2020,Federal,Onshore,Oil Prod Vol (bbl),22005730
+05/01/2020,Native American,Onshore,Gas Prod Vol (mcf),27748867
+05/01/2020,Native American,Onshore,Oil Prod Vol (bbl),5617758
+05/01/2020,Native American,Onshore,Coal Prod Vol (tons),380998
+05/01/2020,Federal,Offshore,Oil Prod Vol (bbl),50151870
+06/01/2020,Federal,Onshore,Gas Prod Vol (mcf),250603257
 06/01/2020,Native American,Onshore,Coal Prod Vol (tons),324627
-07/01/2020,Native American,Onshore,Gas Prod Vol (mcf),30308306
-07/01/2020,Federal,Offshore,Gas Prod Vol (mcf),71395258
-07/01/2020,Native American,Onshore,Oil Prod Vol (bbl),7533535
-07/01/2020,Native American,Onshore,Coal Prod Vol (tons),456822
+06/01/2020,Federal,Offshore,Gas Prod Vol (mcf),65027302
+06/01/2020,Federal,Offshore,Oil Prod Vol (bbl),47015341
+06/01/2020,Federal,Onshore,Oil Prod Vol (bbl),22938656
+06/01/2020,Federal,Onshore,Coal Prod Vol (tons),17628063
+06/01/2020,Native American,Onshore,Oil Prod Vol (bbl),7090181
+06/01/2020,Native American,Onshore,Gas Prod Vol (mcf),29071515
 07/01/2020,Federal,Onshore,Coal Prod Vol (tons),18744268
-07/01/2020,Federal,Onshore,Gas Prod Vol (mcf),263494222
-07/01/2020,Federal,Onshore,Oil Prod Vol (bbl),25605067
+07/01/2020,Native American,Onshore,Coal Prod Vol (tons),456822
+07/01/2020,Native American,Onshore,Oil Prod Vol (bbl),7628948
+07/01/2020,Native American,Onshore,Gas Prod Vol (mcf),30455749
+07/01/2020,Federal,Offshore,Gas Prod Vol (mcf),71395258
 07/01/2020,Federal,Offshore,Oil Prod Vol (bbl),51717242
+07/01/2020,Federal,Onshore,Gas Prod Vol (mcf),263339386
+07/01/2020,Federal,Onshore,Oil Prod Vol (bbl),25453802
+08/01/2020,Native American,Onshore,Gas Prod Vol (mcf),31393094
 08/01/2020,Federal,Onshore,Coal Prod Vol (tons),21662515
-08/01/2020,Native American,Onshore,Gas Prod Vol (mcf),31257203
+08/01/2020,Federal,Onshore,Oil Prod Vol (bbl),26408999
+08/01/2020,Federal,Onshore,Gas Prod Vol (mcf),264253272
 08/01/2020,Federal,Offshore,Oil Prod Vol (bbl),37241489
 08/01/2020,Federal,Offshore,Gas Prod Vol (mcf),47202221
-08/01/2020,Native American,Onshore,Oil Prod Vol (bbl),7821244
-08/01/2020,Federal,Onshore,Gas Prod Vol (mcf),264658751
-08/01/2020,Federal,Onshore,Oil Prod Vol (bbl),26583040
 08/01/2020,Native American,Onshore,Coal Prod Vol (tons),811777
-09/01/2020,Federal,Onshore,Gas Prod Vol (mcf),257779460
-09/01/2020,Native American,Onshore,Coal Prod Vol (tons),486541
-09/01/2020,Federal,Onshore,Oil Prod Vol (bbl),26492686
-09/01/2020,Federal,Onshore,Coal Prod Vol (tons),20929316
+08/01/2020,Native American,Onshore,Oil Prod Vol (bbl),7913602
+09/01/2020,Native American,Onshore,Oil Prod Vol (bbl),7709761
+09/01/2020,Native American,Onshore,Gas Prod Vol (mcf),30814264
 09/01/2020,Federal,Offshore,Oil Prod Vol (bbl),46423923
-09/01/2020,Federal,Offshore,Gas Prod Vol (mcf),51978574
-09/01/2020,Native American,Onshore,Gas Prod Vol (mcf),30699916
-09/01/2020,Native American,Onshore,Oil Prod Vol (bbl),7631492
-10/01/2020,Federal,Onshore,Gas Prod Vol (mcf),268661012
-10/01/2020,Federal,Onshore,Oil Prod Vol (bbl),29559558
-10/01/2020,Native American,Onshore,Coal Prod Vol (tons),681669
-10/01/2020,Native American,Onshore,Oil Prod Vol (bbl),8113146
-10/01/2020,Native American,Onshore,Gas Prod Vol (mcf),31978526
+09/01/2020,Federal,Offshore,Gas Prod Vol (mcf),51978539
+09/01/2020,Federal,Onshore,Oil Prod Vol (bbl),26319980
+09/01/2020,Federal,Onshore,Coal Prod Vol (tons),20929316
+09/01/2020,Federal,Onshore,Gas Prod Vol (mcf),257230030
+09/01/2020,Native American,Onshore,Coal Prod Vol (tons),486541
 10/01/2020,Federal,Onshore,Coal Prod Vol (tons),19441593
 10/01/2020,Federal,Offshore,Oil Prod Vol (bbl),33408050
-10/01/2020,Federal,Offshore,Gas Prod Vol (mcf),42466569
-11/01/2020,Native American,Onshore,Oil Prod Vol (bbl),8246783
-11/01/2020,Native American,Onshore,Gas Prod Vol (mcf),31384272
-11/01/2020,Federal,Offshore,Gas Prod Vol (mcf),64187883
-11/01/2020,Federal,Offshore,Oil Prod Vol (bbl),52062218
-11/01/2020,Native American,Onshore,Coal Prod Vol (tons),506081
-11/01/2020,Federal,Onshore,Gas Prod Vol (mcf),265755020
-11/01/2020,Federal,Onshore,Oil Prod Vol (bbl),28547504
+10/01/2020,Federal,Offshore,Gas Prod Vol (mcf),42466620
+10/01/2020,Federal,Onshore,Gas Prod Vol (mcf),267982056
+10/01/2020,Native American,Onshore,Gas Prod Vol (mcf),32116216
+10/01/2020,Native American,Onshore,Coal Prod Vol (tons),681669
+10/01/2020,Native American,Onshore,Oil Prod Vol (bbl),8190143
+10/01/2020,Federal,Onshore,Oil Prod Vol (bbl),29331595
 11/01/2020,Federal,Onshore,Coal Prod Vol (tons),21158487
-12/01/2020,Federal,Onshore,Oil Prod Vol (bbl),28850168
-12/01/2020,Federal,Onshore,Gas Prod Vol (mcf),270387489
+11/01/2020,Native American,Onshore,Gas Prod Vol (mcf),31535296
+11/01/2020,Native American,Onshore,Coal Prod Vol (tons),506081
+11/01/2020,Federal,Offshore,Oil Prod Vol (bbl),52062218
+11/01/2020,Federal,Offshore,Gas Prod Vol (mcf),64187883
+11/01/2020,Federal,Onshore,Gas Prod Vol (mcf),264943729
+11/01/2020,Federal,Onshore,Oil Prod Vol (bbl),28224939
+11/01/2020,Native American,Onshore,Oil Prod Vol (bbl),8320423
+12/01/2020,Federal,Onshore,Gas Prod Vol (mcf),269228794
 12/01/2020,Federal,Onshore,Coal Prod Vol (tons),20593483
-12/01/2020,Native American,Onshore,Gas Prod Vol (mcf),31736912
-12/01/2020,Native American,Onshore,Oil Prod Vol (bbl),8078719
-12/01/2020,Native American,Onshore,Coal Prod Vol (tons),420167
-12/01/2020,Federal,Offshore,Oil Prod Vol (bbl),56740272
+12/01/2020,Federal,Offshore,Oil Prod Vol (bbl),56740342
 12/01/2020,Federal,Offshore,Gas Prod Vol (mcf),71395384
+12/01/2020,Native American,Onshore,Gas Prod Vol (mcf),31857575
+12/01/2020,Native American,Onshore,Oil Prod Vol (bbl),8145506
+12/01/2020,Native American,Onshore,Coal Prod Vol (tons),420167
+12/01/2020,Federal,Onshore,Oil Prod Vol (bbl),28525051
+01/01/2021,Federal,Onshore,Oil Prod Vol (bbl),29604026
+01/01/2021,Federal,Onshore,Gas Prod Vol (mcf),270938631
+01/01/2021,Federal,Onshore,Coal Prod Vol (tons),20200911
+01/01/2021,Native American,Onshore,Gas Prod Vol (mcf),31657365
+01/01/2021,Native American,Onshore,Oil Prod Vol (bbl),8000822
 01/01/2021,Native American,Onshore,Coal Prod Vol (tons),608236
-01/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7911523
 01/01/2021,Federal,Offshore,Oil Prod Vol (bbl),56538799
 01/01/2021,Federal,Offshore,Gas Prod Vol (mcf),75706038
-01/01/2021,Native American,Onshore,Gas Prod Vol (mcf),31512551
-01/01/2021,Federal,Onshore,Gas Prod Vol (mcf),272047456
-01/01/2021,Federal,Onshore,Oil Prod Vol (bbl),29915060
-01/01/2021,Federal,Onshore,Coal Prod Vol (tons),20200911
-02/01/2021,Federal,Offshore,Oil Prod Vol (bbl),50650475
-02/01/2021,Federal,Offshore,Gas Prod Vol (mcf),67773127
-02/01/2021,Federal,Onshore,Coal Prod Vol (tons),16788034
-02/01/2021,Federal,Onshore,Gas Prod Vol (mcf),238901991
-02/01/2021,Federal,Onshore,Oil Prod Vol (bbl),25610256
-02/01/2021,Native American,Onshore,Gas Prod Vol (mcf),26365415
-02/01/2021,Native American,Onshore,Oil Prod Vol (bbl),6242764
+02/01/2021,Native American,Onshore,Oil Prod Vol (bbl),6305146
 02/01/2021,Native American,Onshore,Coal Prod Vol (tons),248471
-03/01/2021,Federal,Offshore,Gas Prod Vol (mcf),77959103
-03/01/2021,Federal,Offshore,Oil Prod Vol (bbl),58667906
-03/01/2021,Native American,Onshore,Gas Prod Vol (mcf),31235986
-03/01/2021,Federal,Onshore,Oil Prod Vol (bbl),32425917
-03/01/2021,Federal,Onshore,Gas Prod Vol (mcf),272686515
-03/01/2021,Native American,Onshore,Oil Prod Vol (bbl),6929030
-03/01/2021,Native American,Onshore,Coal Prod Vol (tons),445654
+02/01/2021,Federal,Offshore,Oil Prod Vol (bbl),50650475
+02/01/2021,Federal,Onshore,Coal Prod Vol (tons),16788034
+02/01/2021,Federal,Onshore,Oil Prod Vol (bbl),25391149
+02/01/2021,Federal,Onshore,Gas Prod Vol (mcf),238101765
+02/01/2021,Federal,Offshore,Gas Prod Vol (mcf),67773127
+02/01/2021,Native American,Onshore,Gas Prod Vol (mcf),26479185
 03/01/2021,Federal,Onshore,Coal Prod Vol (tons),21175115
-04/01/2021,Federal,Onshore,Oil Prod Vol (bbl),32730100
-04/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30400062
-04/01/2021,Native American,Onshore,Oil Prod Vol (bbl),6659052
-04/01/2021,Native American,Onshore,Coal Prod Vol (tons),443191
-04/01/2021,Federal,Offshore,Gas Prod Vol (mcf),73281109
+03/01/2021,Federal,Offshore,Gas Prod Vol (mcf),77959103
+03/01/2021,Federal,Offshore,Oil Prod Vol (bbl),58668061
+03/01/2021,Native American,Onshore,Coal Prod Vol (tons),445654
+03/01/2021,Native American,Onshore,Gas Prod Vol (mcf),31397818
+03/01/2021,Federal,Onshore,Gas Prod Vol (mcf),274719096
+03/01/2021,Federal,Onshore,Oil Prod Vol (bbl),32171055
+03/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7003261
 04/01/2021,Federal,Offshore,Oil Prod Vol (bbl),54231552
-04/01/2021,Federal,Onshore,Gas Prod Vol (mcf),271809954
+04/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30532640
+04/01/2021,Native American,Onshore,Oil Prod Vol (bbl),6724951
+04/01/2021,Native American,Onshore,Coal Prod Vol (tons),443191
+04/01/2021,Federal,Onshore,Gas Prod Vol (mcf),271900234
+04/01/2021,Federal,Onshore,Oil Prod Vol (bbl),32206981
 04/01/2021,Federal,Onshore,Coal Prod Vol (tons),19646932
+04/01/2021,Federal,Offshore,Gas Prod Vol (mcf),73280925
+05/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7064110
+05/01/2021,Native American,Onshore,Gas Prod Vol (mcf),31536271
+05/01/2021,Federal,Onshore,Oil Prod Vol (bbl),33898711
+05/01/2021,Federal,Onshore,Gas Prod Vol (mcf),282288353
 05/01/2021,Federal,Onshore,Coal Prod Vol (tons),23369615
-05/01/2021,Federal,Onshore,Oil Prod Vol (bbl),34429118
-05/01/2021,Federal,Onshore,Gas Prod Vol (mcf),281956426
-05/01/2021,Federal,Offshore,Oil Prod Vol (bbl),56724203
 05/01/2021,Federal,Offshore,Gas Prod Vol (mcf),75314723
-05/01/2021,Native American,Onshore,Gas Prod Vol (mcf),31354493
-05/01/2021,Native American,Onshore,Oil Prod Vol (bbl),6976908
+05/01/2021,Federal,Offshore,Oil Prod Vol (bbl),56724203
 05/01/2021,Native American,Onshore,Coal Prod Vol (tons),217087
-06/01/2021,Federal,Offshore,Oil Prod Vol (bbl),53947178
+06/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30961479
+06/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7468997
 06/01/2021,Native American,Onshore,Coal Prod Vol (tons),636423
-06/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7169945
-06/01/2021,Federal,Onshore,Gas Prod Vol (mcf),268904180
-06/01/2021,Federal,Onshore,Oil Prod Vol (bbl),33438860
-06/01/2021,Federal,Onshore,Coal Prod Vol (tons),22685365
-06/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30555978
 06/01/2021,Federal,Offshore,Gas Prod Vol (mcf),70703706
-07/01/2021,Federal,Onshore,Coal Prod Vol (tons),20460271
-07/01/2021,Federal,Offshore,Gas Prod Vol (mcf),74699847
-07/01/2021,Federal,Offshore,Oil Prod Vol (bbl),57713686
+06/01/2021,Federal,Offshore,Oil Prod Vol (bbl),53947178
+06/01/2021,Federal,Onshore,Coal Prod Vol (tons),22685365
+06/01/2021,Federal,Onshore,Oil Prod Vol (bbl),33222780
+06/01/2021,Federal,Onshore,Gas Prod Vol (mcf),269847823
+07/01/2021,Native American,Onshore,Oil Prod Vol (bbl),6758755
 07/01/2021,Native American,Onshore,Coal Prod Vol (tons),637267
-07/01/2021,Native American,Onshore,Oil Prod Vol (bbl),6466964
-07/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30042470
-07/01/2021,Federal,Onshore,Gas Prod Vol (mcf),282116747
-07/01/2021,Federal,Onshore,Oil Prod Vol (bbl),34825788
-08/01/2021,Federal,Onshore,Oil Prod Vol (bbl),36424869
-08/01/2021,Federal,Onshore,Coal Prod Vol (tons),23674527
-08/01/2021,Federal,Offshore,Gas Prod Vol (mcf),64611541
-08/01/2021,Federal,Onshore,Gas Prod Vol (mcf),282873400
-08/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7056515
-08/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30720286
+07/01/2021,Federal,Offshore,Oil Prod Vol (bbl),57713686
+07/01/2021,Federal,Onshore,Gas Prod Vol (mcf),283488403
+07/01/2021,Federal,Offshore,Gas Prod Vol (mcf),74699847
+07/01/2021,Federal,Onshore,Oil Prod Vol (bbl),34669553
+07/01/2021,Federal,Onshore,Coal Prod Vol (tons),20460271
+07/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30435270
 08/01/2021,Federal,Offshore,Oil Prod Vol (bbl),48407770
+08/01/2021,Federal,Onshore,Coal Prod Vol (tons),23674527
+08/01/2021,Native American,Onshore,Gas Prod Vol (mcf),31035096
+08/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7245997
 08/01/2021,Native American,Onshore,Coal Prod Vol (tons),329302
-09/01/2021,Federal,Offshore,Gas Prod Vol (mcf),37719340
-09/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30459401
+08/01/2021,Federal,Onshore,Oil Prod Vol (bbl),36355034
+08/01/2021,Federal,Onshore,Gas Prod Vol (mcf),284974136
+08/01/2021,Federal,Offshore,Gas Prod Vol (mcf),64611541
 09/01/2021,Federal,Onshore,Coal Prod Vol (tons),23389963
-09/01/2021,Federal,Onshore,Oil Prod Vol (bbl),35459418
-09/01/2021,Federal,Onshore,Gas Prod Vol (mcf),278029337
-09/01/2021,Federal,Offshore,Oil Prod Vol (bbl),32236285
-09/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7127248
+09/01/2021,Federal,Onshore,Oil Prod Vol (bbl),35405969
 09/01/2021,Native American,Onshore,Coal Prod Vol (tons),516764
-10/01/2021,Federal,Onshore,Gas Prod Vol (mcf),288482169
-10/01/2021,Federal,Offshore,Gas Prod Vol (mcf),63278698
+09/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7326639
+09/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30789142
+09/01/2021,Federal,Onshore,Gas Prod Vol (mcf),280096813
+09/01/2021,Federal,Offshore,Gas Prod Vol (mcf),37721896
+09/01/2021,Federal,Offshore,Oil Prod Vol (bbl),32236285
+10/01/2021,Federal,Onshore,Gas Prod Vol (mcf),289829439
+10/01/2021,Native American,Onshore,Gas Prod Vol (mcf),31691520
+10/01/2021,Federal,Offshore,Gas Prod Vol (mcf),63279074
 10/01/2021,Federal,Offshore,Oil Prod Vol (bbl),52277625
+10/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7606100
+10/01/2021,Federal,Onshore,Oil Prod Vol (bbl),37102745
 10/01/2021,Native American,Onshore,Coal Prod Vol (tons),528526
-10/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7440060
-10/01/2021,Native American,Onshore,Gas Prod Vol (mcf),31444024
 10/01/2021,Federal,Onshore,Coal Prod Vol (tons),23755832
-10/01/2021,Federal,Onshore,Oil Prod Vol (bbl),37252155
+11/01/2021,Federal,Onshore,Oil Prod Vol (bbl),36109518
+11/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7273810
 11/01/2021,Native American,Onshore,Coal Prod Vol (tons),400951
-11/01/2021,Federal,Onshore,Oil Prod Vol (bbl),36215043
-11/01/2021,Native American,Onshore,Oil Prod Vol (bbl),7089704
-11/01/2021,Federal,Onshore,Gas Prod Vol (mcf),280601491
-11/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30479222
-11/01/2021,Federal,Offshore,Gas Prod Vol (mcf),69829604
 11/01/2021,Federal,Offshore,Oil Prod Vol (bbl),53454059
+11/01/2021,Federal,Offshore,Gas Prod Vol (mcf),69829179
+11/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30745058
+11/01/2021,Federal,Onshore,Gas Prod Vol (mcf),282049065
 11/01/2021,Federal,Onshore,Coal Prod Vol (tons),23845757
-12/01/2021,Native American,Onshore,Oil Prod Vol (bbl),6770166
-12/01/2021,Federal,Offshore,Oil Prod Vol (bbl),53179936
-12/01/2021,Federal,Onshore,Coal Prod Vol (tons),22392372
-12/01/2021,Federal,Onshore,Oil Prod Vol (bbl),36102307
-12/01/2021,Federal,Onshore,Gas Prod Vol (mcf),288523303
-12/01/2021,Federal,Offshore,Gas Prod Vol (mcf),72982555
+12/01/2021,Federal,Onshore,Gas Prod Vol (mcf),290434789
 12/01/2021,Native American,Onshore,Coal Prod Vol (tons),513215
-12/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30154832
-01/01/2022,Federal,Onshore,Gas Prod Vol (mcf),281780453
-01/01/2022,Federal,Offshore,Gas Prod Vol (mcf),69984316
-01/01/2022,Native American,Onshore,Gas Prod Vol (mcf),28967019
-01/01/2022,Federal,Offshore,Oil Prod Vol (bbl),53094029
+12/01/2021,Native American,Onshore,Oil Prod Vol (bbl),6937270
+12/01/2021,Native American,Onshore,Gas Prod Vol (mcf),30619498
+12/01/2021,Federal,Onshore,Coal Prod Vol (tons),22392372
+12/01/2021,Federal,Onshore,Oil Prod Vol (bbl),36133157
+12/01/2021,Federal,Offshore,Oil Prod Vol (bbl),53179936
+12/01/2021,Federal,Offshore,Gas Prod Vol (mcf),72982555
 01/01/2022,Native American,Onshore,Coal Prod Vol (tons),568958
-01/01/2022,Native American,Onshore,Oil Prod Vol (bbl),6426181
+01/01/2022,Federal,Offshore,Gas Prod Vol (mcf),69984316
+01/01/2022,Federal,Onshore,Oil Prod Vol (bbl),35462785
 01/01/2022,Federal,Onshore,Coal Prod Vol (tons),22396201
-01/01/2022,Federal,Onshore,Oil Prod Vol (bbl),35085818
+01/01/2022,Native American,Onshore,Oil Prod Vol (bbl),6547681
+01/01/2022,Federal,Offshore,Oil Prod Vol (bbl),53094029
+01/01/2022,Native American,Onshore,Gas Prod Vol (mcf),29425435
+01/01/2022,Federal,Onshore,Gas Prod Vol (mcf),285168503
 02/01/2022,Federal,Offshore,Oil Prod Vol (bbl),45434584
 02/01/2022,Federal,Onshore,Coal Prod Vol (tons),21054171
-02/01/2022,Federal,Onshore,Oil Prod Vol (bbl),32431512
-02/01/2022,Federal,Onshore,Gas Prod Vol (mcf),254853575
-02/01/2022,Native American,Onshore,Gas Prod Vol (mcf),25536457
-02/01/2022,Native American,Onshore,Oil Prod Vol (bbl),5429631
 02/01/2022,Native American,Onshore,Coal Prod Vol (tons),491451
-02/01/2022,Federal,Offshore,Gas Prod Vol (mcf),60426047
-03/01/2022,Federal,Onshore,Coal Prod Vol (tons),22686262
-03/01/2022,Native American,Onshore,Coal Prod Vol (tons),649954
-03/01/2022,Native American,Onshore,Oil Prod Vol (bbl),5847938
-03/01/2022,Federal,Offshore,Gas Prod Vol (mcf),68222972
+02/01/2022,Federal,Onshore,Oil Prod Vol (bbl),32834899
+02/01/2022,Federal,Onshore,Gas Prod Vol (mcf),258173466
+02/01/2022,Native American,Onshore,Gas Prod Vol (mcf),25922036
+02/01/2022,Native American,Onshore,Oil Prod Vol (bbl),5691786
+02/01/2022,Federal,Offshore,Gas Prod Vol (mcf),60423312
 03/01/2022,Federal,Offshore,Oil Prod Vol (bbl),52506753
-03/01/2022,Native American,Onshore,Gas Prod Vol (mcf),28320381
-03/01/2022,Federal,Onshore,Gas Prod Vol (mcf),286178734
-03/01/2022,Federal,Onshore,Oil Prod Vol (bbl),36182482
-04/01/2022,Native American,Onshore,Oil Prod Vol (bbl),4763725
-04/01/2022,Federal,Onshore,Oil Prod Vol (bbl),35056398
+03/01/2022,Federal,Onshore,Gas Prod Vol (mcf),291801849
+03/01/2022,Federal,Onshore,Coal Prod Vol (tons),22686262
+03/01/2022,Federal,Offshore,Gas Prod Vol (mcf),68222972
+03/01/2022,Federal,Onshore,Oil Prod Vol (bbl),37104128
+03/01/2022,Native American,Onshore,Oil Prod Vol (bbl),6018057
+03/01/2022,Native American,Onshore,Coal Prod Vol (tons),649954
+03/01/2022,Native American,Onshore,Gas Prod Vol (mcf),28671269
+04/01/2022,Native American,Onshore,Oil Prod Vol (bbl),4862243
 04/01/2022,Federal,Onshore,Coal Prod Vol (tons),19367176
-04/01/2022,Federal,Offshore,Gas Prod Vol (mcf),68827215
-04/01/2022,Federal,Offshore,Oil Prod Vol (bbl),52885116
-04/01/2022,Federal,Onshore,Gas Prod Vol (mcf),278979963
+04/01/2022,Federal,Onshore,Oil Prod Vol (bbl),36001968
+04/01/2022,Federal,Onshore,Gas Prod Vol (mcf),285177420
+04/01/2022,Federal,Offshore,Gas Prod Vol (mcf),68818025
+04/01/2022,Federal,Offshore,Oil Prod Vol (bbl),52885177
+04/01/2022,Native American,Onshore,Gas Prod Vol (mcf),25440122
 04/01/2022,Native American,Onshore,Coal Prod Vol (tons),530553
-04/01/2022,Native American,Onshore,Gas Prod Vol (mcf),25239268
-05/01/2022,Federal,Offshore,Gas Prod Vol (mcf),65508539
+05/01/2022,Native American,Onshore,Oil Prod Vol (bbl),5826025
 05/01/2022,Federal,Onshore,Coal Prod Vol (tons),21055832
-05/01/2022,Federal,Onshore,Oil Prod Vol (bbl),36742265
-05/01/2022,Federal,Onshore,Gas Prod Vol (mcf),281147721
+05/01/2022,Federal,Onshore,Oil Prod Vol (bbl),37708624
+05/01/2022,Federal,Onshore,Gas Prod Vol (mcf),287039137
+05/01/2022,Federal,Offshore,Gas Prod Vol (mcf),65379141
+05/01/2022,Native American,Onshore,Gas Prod Vol (mcf),27716343
 05/01/2022,Native American,Onshore,Coal Prod Vol (tons),598744
-05/01/2022,Native American,Onshore,Oil Prod Vol (bbl),5697286
-05/01/2022,Native American,Onshore,Gas Prod Vol (mcf),27299311
-05/01/2022,Federal,Offshore,Oil Prod Vol (bbl),50092819
-06/01/2022,Native American,Onshore,Oil Prod Vol (bbl),5641618
-06/01/2022,Native American,Onshore,Coal Prod Vol (tons),737064
+05/01/2022,Federal,Offshore,Oil Prod Vol (bbl),50092856
+06/01/2022,Federal,Onshore,Oil Prod Vol (bbl),35696091
 06/01/2022,Federal,Onshore,Coal Prod Vol (tons),20560631
-06/01/2022,Federal,Offshore,Oil Prod Vol (bbl),51330509
-06/01/2022,Federal,Onshore,Gas Prod Vol (mcf),265215727
-06/01/2022,Federal,Onshore,Oil Prod Vol (bbl),34433719
-06/01/2022,Federal,Offshore,Gas Prod Vol (mcf),65514735
-06/01/2022,Native American,Onshore,Gas Prod Vol (mcf),26936601
+06/01/2022,Native American,Onshore,Oil Prod Vol (bbl),5780709
+06/01/2022,Native American,Onshore,Gas Prod Vol (mcf),27306447
+06/01/2022,Federal,Offshore,Oil Prod Vol (bbl),52384326
+06/01/2022,Federal,Offshore,Gas Prod Vol (mcf),67557833
+06/01/2022,Federal,Onshore,Gas Prod Vol (mcf),273442004
+06/01/2022,Native American,Onshore,Coal Prod Vol (tons),737064
+07/01/2022,Federal,Onshore,Gas Prod Vol (mcf),265396590
+07/01/2022,Federal,Onshore,Coal Prod Vol (tons),23870195
+07/01/2022,Federal,Offshore,Oil Prod Vol (bbl),52450717
+07/01/2022,Federal,Offshore,Gas Prod Vol (mcf),69184731
+07/01/2022,Native American,Onshore,Coal Prod Vol (tons),656987
+07/01/2022,Native American,Onshore,Oil Prod Vol (bbl),5717346
+07/01/2022,Native American,Onshore,Gas Prod Vol (mcf),27971517
+07/01/2022,Federal,Onshore,Oil Prod Vol (bbl),35398205
