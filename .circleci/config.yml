@@ -584,6 +584,8 @@ workflows:
   deploy:
     jobs:
       - deploy:
+        context:
+          - PROD
           filters:
             branches:
               only: master
