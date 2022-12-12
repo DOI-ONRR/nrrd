@@ -1,0 +1,7 @@
+---
+applications:
+- name: hasura-sandbox-interface
+  memory: 512M
+
+
+  # this is a manifest to build the interface to the database.  It is used for automated tunneling. 
