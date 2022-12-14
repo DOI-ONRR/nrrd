@@ -209,7 +209,6 @@ jobs:
       - checkout
       - load-database:
           version: "sandbox"
-
       - run:
           name: "Deploy to hasura-sandbox cloud.gov"
           command: |
