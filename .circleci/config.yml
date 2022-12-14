@@ -1,8 +1,13 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
-executors:
+commands:
   load-database:
+    description: "Building database"
+    parameters:
+      version:
+        type: string
+        default: "database"
     steps:
       - run:
           name: "Check for database changes"
@@ -54,7 +59,7 @@ executors:
           command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql
       - run:
           name: "Load Fiscal Disbursement"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sq
       - run:
           name: "Load Revenue By Company"
           command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
@@ -69,6 +74,11 @@ executors:
           command: |
             pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
   generate-downloads:
+    description: "generate downloads"
+    parameters:
+      version:
+        type: string
+        default: "database"
     steps:
       - run:
         name: "Generate downloads"
@@ -197,7 +207,9 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - load-database
+      - load-database:
+          version: "sandbox"
+
       - run:
           name: "Deploy to hasura-sandbox cloud.gov"
           command: |
@@ -219,13 +231,15 @@ jobs:
       - run:
           name: "Install ssconvert"
           command: sudo apt-get install gnumeric
-      - generate-downloads
+      - generate-downloads:
+          version: "sandbox"
   dev-database:
     machine:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - load-database
+      - load-database:
+            version: "dev"
       - run:
           name: "Deploy to cloud.gov"
           command: |
@@ -244,14 +258,16 @@ jobs:
             psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-dev
-     - generate-downloads
+     - generate-downloads:
+           version: "dev"
   prod-database:
     machine:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - load-database
-      - run:
+      - load-database:
+          version: "prod" 
+     - run:
           name: "Deploy to cloud.gov"
           command: |
             cd database
@@ -269,7 +285,8 @@ jobs:
             psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-dev
-     - generate-downloads     
+     - generate-downloads:
+         version: "prod"
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
