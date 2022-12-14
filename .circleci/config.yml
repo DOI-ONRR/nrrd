@@ -442,7 +442,7 @@ workflows:
           context:
             - DEV
           requires:
-            - nrrd-database
+            - sandbox-database
           filters:
             branches:
               ignore:
