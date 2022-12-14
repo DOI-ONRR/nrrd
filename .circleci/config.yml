@@ -4,10 +4,6 @@ orbs:
 commands:
   load-database:
     description: "Building database"
-    parameters:
-      version:
-        type: string
-        default: "database"
     steps:
       - run:
           name: "Check for database changes"
@@ -75,14 +71,10 @@ commands:
             pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
   generate-downloads:
     description: "generate downloads"
-    parameters:
-      version:
-        type: string
-        default: "database"
     steps:
       - run:
-        name: "Generate downloads"
-        command: |
+          name: "Generate downloads"
+          command: |
               cd database
               npm install
               bash ./src/scripts/downloads.sh
@@ -207,8 +199,7 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - load-database:
-          version: "sandbox"
+      - load-database
       - run:
           name: "Deploy to hasura-sandbox cloud.gov"
           command: |
@@ -230,8 +221,7 @@ jobs:
       - run:
           name: "Install ssconvert"
           command: sudo apt-get install gnumeric
-      - generate-downloads:
-          version: "sandbox"
+      - generate-downloads
   dev-database:
     machine:
       image: ubuntu-2004:202010-01
@@ -264,8 +254,7 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - load-database:
-          version: "prod" 
+      - load-database
       - run:
           name: "Deploy to cloud.gov"
           command: |
@@ -284,8 +273,7 @@ jobs:
             psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-dev
-      - generate-downloads:
-          version: "prod"
+      - generate-downloads
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
