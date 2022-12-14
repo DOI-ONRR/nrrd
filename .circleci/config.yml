@@ -266,7 +266,7 @@ jobs:
       - checkout
       - load-database:
           version: "prod" 
-     - run:
+      - run:
           name: "Deploy to cloud.gov"
           command: |
             cd database
