@@ -227,8 +227,7 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - load-database:
-            version: "dev"
+      - load-database
       - run:
           name: "Deploy to cloud.gov"
           command: |
@@ -247,8 +246,7 @@ jobs:
             psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-dev
-      - generate-downloads:
-          version: "dev"
+      - generate-downloads
   prod-database:
     machine:
       image: ubuntu-2004:202010-01
