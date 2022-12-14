@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
-commands:
+executors:
   load-database:
     steps:
       - run:
@@ -220,7 +220,6 @@ jobs:
           name: "Install ssconvert"
           command: sudo apt-get install gnumeric
       - generate-downloads
-      
   dev-database:
     machine:
       image: ubuntu-2004:202010-01
