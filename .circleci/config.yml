@@ -258,7 +258,7 @@ jobs:
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-dev
      - generate-downloads:
-           version: "dev"
+         version: "dev"
   prod-database:
     machine:
       image: ubuntu-2004:202010-01
