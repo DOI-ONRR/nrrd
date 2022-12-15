@@ -73,6 +73,9 @@ commands:
     description: "generate downloads"
     steps:
       - run:
+          name: "Install ssconvert"
+          command: sudo apt-get install gnumeric
+      - run:
           name: "Generate downloads"
           command: |
               cd database
@@ -218,9 +221,6 @@ jobs:
             psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-sandbox
-      - run:
-          name: "Install ssconvert"
-          command: sudo apt-get install gnumeric
       - generate-downloads
   dev-database:
     machine:
@@ -240,7 +240,7 @@ jobs:
             cf target -o doi-onrr -s prod 
             cf apps
             cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
-            bash tunnel.sh hasura-dev-interface
+            bash tunnel.sh hasura-prod-interface
             source ./.tunnelrc
             cat ./.tunnelrc
             psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
@@ -265,7 +265,7 @@ jobs:
             cf target -o doi-onrr -s prod 
             cf apps
             cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
-            bash tunnel.sh hasura-dev-interface
+            bash tunnel.sh hasura-prod-interface
             source ./.tunnelrc
             cat ./.tunnelrc
             psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
@@ -352,7 +352,7 @@ jobs:
             cat static/downloads/downloads.json
       - run:
           name: Build gatsby
-          command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
+          command: export GATSBY_HASURA_URI=https://hasura-prod.app.cloud.gov/v1/graphql && npm run build
       - run:
           name: deploy to cloud.gov
           command: |
