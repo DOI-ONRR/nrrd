@@ -260,6 +260,14 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
+      - run:
+          name: "Check for database changes"
+          command: |
+            CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
+            if [ "$CHANGES" = "0" ]; then
+              echo "Halting database build -  no database changes"
+              circleci-agent step halt
+            fi
       - load-database
       - run:
           name: "Deploy to cloud.gov"
