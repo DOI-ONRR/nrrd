@@ -1,0 +1,8 @@
+---
+applications:
+- name: hasura-sandbox-interface
+  buildpacks:
+   - staticfile_buildpack
+  memory: 100M
+  services:
+   - a-psql
