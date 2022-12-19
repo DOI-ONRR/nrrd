@@ -3,8 +3,15 @@ orbs:
   aws-s3: circleci/aws-s3@2.0.0
 commands:
   load-database:
-    description: "Building database"
     steps:
+      - run:
+          name: "Check for database changes"
+          command: |
+            CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
+            if [ "$CHANGES" = "0" ]; then
+              echo "Halting database build -  no database changes"
+              circleci-agent step halt
+            fi
       - run:
           name: "Begin database build"
           command: |
@@ -62,14 +69,10 @@ commands:
           command: |
             pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
   generate-downloads:
-    description: "generate downloads"
     steps:
       - run:
-          name: "Install ssconvert"
-          command: sudo apt-get install gnumeric
-      - run:
-          name: "Generate downloads"
-          command: |
+        name: "Generate downloads"
+        command: |
               cd database
               npm install
               bash ./src/scripts/downloads.sh
@@ -188,20 +191,12 @@ jobs:
           command: node __audits__/lighthouse.audit.js
       - store_artifacts:
           path: ./__audits__/lighthouse/
-
+ 
   sandbox-database:
     machine:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - run:
-          name: "Check for database changes"
-          command: |
-            CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
-            if [ "$CHANGES" = "0" ]; then
-              echo "Halting database build -  no database changes"
-              circleci-agent step halt
-            fi
       - load-database
       - run:
           name: "Deploy to hasura-sandbox cloud.gov"
@@ -212,7 +207,7 @@ jobs:
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o "$CF_ORG" -s "$CF_SPACE"
+            cf target -o doi-onrr -s dev -v
             cf apps
             cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
             bash tunnel.sh hasura-sandbox-interface
@@ -221,20 +216,16 @@ jobs:
             psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-sandbox
+      - run:
+          name: "Install ssconvert"
+          command: sudo apt-get install gnumeric
       - generate-downloads
+      
   dev-database:
     machine:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - run:
-          name: "Check for database changes"
-          command: |
-            CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
-            if [ "$CHANGES" = "0" ]; then
-              echo "Halting database build -  no database changes"
-              circleci-agent step halt
-            fi
       - load-database
       - run:
           name: "Deploy to cloud.gov"
@@ -245,7 +236,7 @@ jobs:
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o doi-onrr -s prod
+            cf target -o doi-onrr -s prod 
             cf apps
             cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
             bash tunnel.sh hasura-dev-interface
@@ -254,20 +245,12 @@ jobs:
             psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-dev
-      - generate-downloads
+     - generate-downloads
   prod-database:
     machine:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - run:
-          name: "Check for database changes"
-          command: |
-            CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
-            if [ "$CHANGES" = "0" ]; then
-              echo "Halting database build -  no database changes"
-              circleci-agent step halt
-            fi
       - load-database
       - run:
           name: "Deploy to cloud.gov"
@@ -278,16 +261,16 @@ jobs:
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o doi-onrr -s prod
+            cf target -o doi-onrr -s prod 
             cf apps
             cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
-            bash tunnel.sh hasura-prod-interface
+            bash tunnel.sh hasura-dev-interface
             source ./.tunnelrc
             cat ./.tunnelrc
             psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
             pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
             cf restage hasura-dev
-      - generate-downloads
+     - generate-downloads     
   nrrd-preview:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
@@ -458,7 +441,7 @@ workflows:
           context:
             - DEV
           requires:
-            - sandbox-database
+            - nrrd-database
           filters:
             branches:
               ignore:

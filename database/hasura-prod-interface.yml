@@ -1,0 +1,10 @@
+---
+applications:
+- name: hasura-prod-interface
+  buildpacks:
+   - staticfile_buildpack
+  memory: 100M
+  services:
+   - nrrd-a-psql
+
+  # this is a manifest to build the interface to the database.  It is used for automated tunneling. 
