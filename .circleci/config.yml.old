@@ -1,0 +1,613 @@
+version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@2.0.0
+jobs:
+  lint:
+    docker:
+      - image: circleci/node:12.4
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          command: npm run lint
+          when: always
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./test-results
+
+  unit_tests:
+    docker:
+      - image: circleci/node:12.13.0-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run unit tests
+          command: npm run test-unit-tests
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./coverage
+  end_to_end_tests:
+    docker:
+      - image: circleci/node:12.13.0-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Run end to end  tests
+          command: npm run test-end-to-end
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./__tests__/__image_snapshots__/
+  lighthouse:
+    docker:
+      - image: circleci/node:12.13.0-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Create lighthouse audit report
+          command: node __audits__/lighthouse.audit.js
+      - store_artifacts:
+          path: ./__audits__/lighthouse/
+
+  nrrd-database:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: "Check for database changes"
+          command: |
+            CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
+            if [ "$CHANGES" = "0" ]; then
+              echo "Halting database build -  no database changes"
+              circleci-agent step halt
+            fi
+      - run:
+          name: "Begin database build"
+          command: |
+            cd database
+            ls -l
+      - run:
+          name: "Docker compose"
+          command: |
+            cd database
+            sudo docker-compose up -d
+      - run:
+          name: "Update OS"
+          command: sudo apt-get update
+      - run:
+          name: "Install posgres client"
+          command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
+      - run:
+          name: "Restore Database schema"
+          command: |
+             pg_restore --verbose --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
+      - run:
+          name: "Truncate reference data."
+          no_output_timeout: 30m
+          command: cd database && psql --host=localhost --user=postgres -c 'truncate period cascade; truncate location cascade; truncate commodity cascade;'
+      - run:
+          name: "Load Revenue"
+          no_output_timeout: 30m
+          command: cd database && bash ./src/ELT/monthly_revenue.load.sh
+      - run:
+          name: "Load Monthly Production"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql
+      - run:
+          name: "Load Fiscal Production"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql
+      - run:
+          name: "Load Calendar Production"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql
+      - run:
+          name: "Load Monthly Disbursement"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql
+      - run:
+          name: "Load Fiscal Disbursement"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql
+      - run:
+          name: "Load Revenue By Company"
+          command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
+      - run:
+          name: "Update metadata"
+          command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
+      - run:
+          name: "Refresh views"
+          command: cd database && bash ./src/scripts/refresh_materialized_views.sh
+      - run:
+          name: "Backup database"
+          command: |
+            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
+      - run:
+          name: "Deploy to cloud.gov"
+          command: |
+            cd database
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            cf api https://api.fr.cloud.gov
+            echo "$CF_USERNAME"
+            cf auth "$CF_USERNAME" "$CF_PASSWORD"
+            cf target -o doi-onrr -s dev -v
+            cf apps
+            cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
+            bash tunnel.sh hasura-sandbox-interface
+            source ./.tunnelrc
+            cat ./.tunnelrc
+            psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
+            pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
+            cf restage hasura-sandbox
+      - run:
+          name: "Install ssconvert"
+          command: sudo apt-get install gnumeric
+      - run:
+          name: "Generate downloads"
+          command: |
+                cd database
+                npm install
+                bash ./src/scripts/downloads.sh
+                node ./src/scripts/downloads.js
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls /tmp/downloads/*
+      - store_artifacts:
+          path: /tmp/database_backup.pg
+          destination: database_backup.pg
+      - store_artifacts:
+          path: /tmp/downloads
+          destination: downloads
+      - aws-s3/sync:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: /tmp/downloads/
+          to: 's3://$NPS_BUCKET_NAME/downloads/'
+      - aws-s3/copy:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: /tmp/database_backup.pg
+          to: 's3://$NPS_BUCKET_NAME/backup/database_backup.pg'
+      - run:
+          name: "list bucket"
+          command: |
+            aws s3 ls s3://${NPS_BUCKET_NAME}/
+  nrrd-dev-database:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: "Check for database changes"
+          command: |
+            echo "for now assume database changes"
+             CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
+             echo "Number of database changes $CHANGES"
+            # CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
+            # if [ "$CHANGES" = "0" ]; then
+            #   echo "Halting database build -  no database changes"
+            #   circleci-agent step halt
+            # fi
+      - run:
+          name: "Begin database build"
+          command: |
+            cd database
+            ls -l
+      - run:
+          name: "Docker compose"
+          command: |
+            cd database
+            sudo docker-compose up -d
+      - run:
+          name: "Update OS"
+          command: sudo apt-get update
+      - run:
+          name: "Install posgres client"
+          command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
+      - run:
+          name: "Restore Database schema"
+          command: |
+             pg_restore --verbose --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
+      - run:
+          name: "Truncate reference data."
+          no_output_timeout: 30m
+          command: cd database && psql --host=localhost --user=postgres -c 'truncate period cascade; truncate location cascade; truncate commodity cascade;'
+      - run:
+          name: "Load Revenue"
+          no_output_timeout: 30m
+          command: cd database && bash ./src/ELT/monthly_revenue.load.sh
+      - run:
+          name: "Load Monthly Production"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql
+      - run:
+          name: "Load Fiscal Production"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql
+      - run:
+          name: "Load Calendar Production"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql
+      - run:
+          name: "Load Monthly Disbursement"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql
+      - run:
+          name: "Load Fiscal Disbursement"
+          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql
+      - run:
+          name: "Load Revenue By Company"
+          command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
+      - run:
+          name: "Update metadata"
+          command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
+      - run:
+          name: "Refresh views"
+          command: cd database && bash ./src/scripts/refresh_materialized_views.sh
+      - run:
+          name: "Backup database"
+          command: |
+            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
+      - run:
+          name: "Deploy to cloud.gov"
+          command: |
+            cd database
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            cf api https://api.fr.cloud.gov
+            echo "$CF_USERNAME"
+            cf auth "$CF_USERNAME" "$CF_PASSWORD"
+            cf target -o doi-onrr -s prod 
+            cf apps
+            cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
+            bash tunnel.sh hasura-dev
+            source ./.tunnelrc
+            cat ./.tunnelrc
+            psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
+            pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
+            cf restage hasura-dev
+      - run:
+          name: "Install ssconvert"
+          command: sudo apt-get install gnumeric
+      - run:
+          name: "Generate downloads"
+          command: |
+                cd database
+                npm install
+                bash ./src/scripts/downloads.sh
+                node ./src/scripts/downloads.js
+                cd ..
+                cp /tmp/downloads/* static/downloads
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls /tmp/downloads/*
+            ls -lart static/downloads/*
+# imported from dev job bbelopw
+      # - run:
+      #     name: Install node dependencies
+      #     command: npm install
+      # - run:
+      #     name: Build gatsby
+      #     command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
+      # - run:
+      #     name: deploy to cloud.gov
+      #     command: |
+      #       pwd && ls -l
+      #       curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+      #       sudo dpkg -i cf-cli_amd64.deb
+      #       # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+      #       # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+      #       cp Staticfile ./public
+      #       cf api https://api.fr.cloud.gov
+      #       cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
+      #       cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
+      #       cf push dev-nrrd -f ./manifest.yml
+# imported because of issue with s3 storage/downloads metadata
+
+      - store_artifacts:
+          path: /tmp/database_backup.pg
+          destination: database_backup.pg
+      - store_artifacts:
+          path: /tmp/downloads
+          destination: downloads
+      - aws-s3/sync:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: /tmp/downloads/
+          to: 's3://${NPS_BUCKET_NAME}/downloads'
+      - aws-s3/copy:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: /tmp/database_backup.pg
+          to: 's3://${NPS_BUCKET_NAME}/backup/database_backup.pg'
+      - run:
+          name: "list bucket"
+          command: |
+            aws s3 ls s3://${NPS_BUCKET_NAME}/downloads/
+  nrrd-preview:
+    docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.13.0
+    resource_class: medium+
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          command: |
+            ls -lart static/downloads
+      - aws-s3/sync:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: 's3://${NPS_BUCKET_NAME}/downloads/'
+          to: static/downloads/
+      - run:
+          command: |
+            ls -lart static/downloads
+      - run:
+          name: Build gatsby
+          command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql &&  export CIRCLE_STAGE='nrrd-preview' && npm run build
+      - aws-s3/sync:
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: public
+          to: 's3://$NPS_BUCKET_NAME/sites/$CIRCLE_BRANCH'
+      - run:
+          command: |
+                ls -lart static/downloads
+      - run:
+          name: clean up
+          command: |
+            bash ./.circleci/cleanup-previews.sh
+  nrrd-preview-new:
+    docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.13.0-browsers
+    resource_class: medium+
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - aws-s3/sync:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: 's3://$NPS_BUCKET_NAME/downloads/'
+          to: static/downloads/
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: deploy to cloud.gov
+          command: |
+            pwd && ls -l
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+            # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+            cp Staticfile ./public
+            cf api https://api.fr.cloud.gov
+            cf auth "$DEV_CF_USERNAME" "$DEV_CF_PASSWORD"
+            cf target -o "$DEV_CF_ORG" -s "$DEV_CF_SPACE"
+            cf push dev-nrrd -f ./manifest.staging.yml
+  dev:
+    docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.13.0-browsers
+    resource_class: medium+
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+           # rm static/downloads/downloads.json
+      - aws-s3/sync:
+          arguments: |
+          aws-access-key-id: NPS_AWS_ACCESS_KEY
+          aws-region: NPS_AWS_REGION
+          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+          from: 's3://${NPS_BUCKET_NAME}/downloads/'
+          to: static/downloads/
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+            cat static/downloads/downloads.json
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: deploy to cloud.gov
+          command: |
+            pwd && ls -l
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            cp Staticfile ./public
+            cf api https://api.fr.cloud.gov
+            cf login -u "$CF_USERNAME" -p "$CF_PASSWORD" -a api.fr.cloud.gov -o doi-onrr -s dev -v
+            cf push dev-nrrd -f ./manifest.yml
+  deploy:
+    docker:
+      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
+      - image: circleci/node:12.13.0-browsers
+    resource_class: medium+
+    steps:
+      - checkout
+      - restore_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node dependencies
+          command: npm install
+      - save_cache:
+          key: v3-node-modules-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+           # rm static/downloads/downloads.json
+      - run:
+          name: "list generated downloads"
+          command: |
+            ls -lart static/downloads
+            cat static/downloads/downloads.json
+      - run:
+          name: Build gatsby
+          command: npm run build
+      - run:
+          name: deploy preview to cloud.gov
+          command: |
+            pwd && ls -l
+            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+            sudo dpkg -i cf-cli_amd64.deb
+            cp Staticfile ./public
+            # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
+            # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
+            cf api https://api.fr.cloud.gov
+            cf auth "$CF_USERNAME" "$CF_PASSWORD"
+            cf target -o doi-onrr -s prod
+            bash ./swap.sh
+            cf push nrrd -f ./manifest.yml
+workflows:
+  audits:
+    jobs:
+      - unit_tests:
+          filters:
+            branches:
+              ignore:
+                - master
+                - staging
+      - lint:
+          filters:
+            branches:
+              ignore:
+                - master
+                - staging
+
+      - lighthouse:
+          filters:
+            branches:
+              ignore:
+                - master
+                - staging
+  preview:
+    jobs:
+      - nrrd-database:
+          context:
+            - DEV
+          filters:
+            branches:
+              ignore:
+                - master
+                - dev
+      - nrrd-preview:
+          context:
+            - DEV
+          requires:
+            - nrrd-database
+          filters:
+            branches:
+              ignore:
+                - master
+                - dev
+
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
+      - nrrd-dev-database:
+          context:
+            - DEV
+          requires:
+            - deploy
+  dev:
+    jobs:
+      - nrrd-dev-database:
+          context:
+            - DEV
+          filters:
+            branches:
+              only: dev
+      - dev:
+          context:
+            - DEV
+          requires:
+            - nrrd-dev-database
+          filters:
+            branches:
+              only: dev
+      # - end_to_end_tests:
+      #     requires:
+      #       - dev

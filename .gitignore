@@ -22,3 +22,5 @@ launch.json
 downloads/disbursements/~$disbursements.xlsx
 
 report.*.json
+.creds
+*~
