@@ -41,7 +41,6 @@
     Chris Mentasti -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Mojo Nichols -- Developer -- Department of the Interior, Office of Natural Resources Revenue
     Alex Pandel -- UX Designer and Researcher -- 18F
-    Mohan Sai Kumar Reddy -- Developer -- Contractor, Department of the Interior, Office of Natural Resources Revenue
     Eric Ronne -- Visual Designer -- 18F
     Jon Swedin -- Data Wrangler -- Department of the Interior, Office of Natural Resources Revenue
     Judy Wilson -- Product Owner -- Department of the Interior, Office of Natural Resources Revenue
