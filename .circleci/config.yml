@@ -479,6 +479,7 @@ workflows:
       - prod-database:
           context:
             - org-global
+            - nrrd
           filters:
             branches:
               only: master
