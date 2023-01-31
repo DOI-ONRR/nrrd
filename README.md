@@ -25,7 +25,7 @@ This project is in the worldwide [public domain](LICENSE.md). As stated in [CONT
 
 ## Development Notes
 
-### Testing 
+### Testing
 
 For testing our website we use the following libraries and frameworks:
 
@@ -37,7 +37,7 @@ For testing our website we use the following libraries and frameworks:
 
 The goal is to have 100% test coverage to support our Test Driven Development (TDD), continuous integration and ensure quality code delivery and user experience.
 
-We use CircleCI to run our tests when a change is committed to our code base. Of course all tests can be run from the development environment. 
+We use CircleCI to run our tests when a change is committed to our code base. Of course all tests can be run from the development environment.
 
 ## Pattern Library
 ### Edit Content for notes on colors:
@@ -78,3 +78,4 @@ const DidYouKnowCard = ({ children, title = 'Did you know?' }) => {
   ...Bunch of code
 }
 ```
++
