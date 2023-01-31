@@ -455,6 +455,8 @@ workflows:
     jobs:
       - sandbox-database:
           context:
+            - org-global
+            - nrrd
             - DEV
           filters:
             branches:
@@ -463,7 +465,7 @@ workflows:
                 - dev
       - nrrd-preview:
           context:
-            - DEV
+            - nrrd
           requires:
             - sandbox-database
           filters:
@@ -476,13 +478,14 @@ workflows:
     jobs:
       - prod-database:
           context:
-            - DEV
+            - org-global
           filters:
             branches:
               only: master
       - prod:
           context:
-            - DEV
+            - org-global
+            - nrrd
           requires:
             - prod-database
           filters:
@@ -492,13 +495,15 @@ workflows:
     jobs:
       - dev-database:
           context:
-            - DEV
+            - org-global
+            - nrrd
           filters:
             branches:
               only: dev
       - dev:
           context:
-            - DEV
+            - org-global
+            - nrrd
           requires:
             - dev-database
           filters:
