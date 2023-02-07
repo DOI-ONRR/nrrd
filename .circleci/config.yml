@@ -204,6 +204,9 @@ jobs:
             fi
       - load-database
       - run:
+         name: Wait for Postgres to start
+         command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
           name: "Deploy to hasura-sandbox cloud.gov"
           command: |
             cd database
