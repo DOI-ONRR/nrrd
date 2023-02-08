@@ -11,11 +11,6 @@ commands:
             cd database
             ls -l
       - run:
-          name: "Docker compose"
-          command: |
-            cd database
-            sudo docker-compose up -d
-      - run:
           name: "Update OS"
           command: sudo apt-get update
       - run:
