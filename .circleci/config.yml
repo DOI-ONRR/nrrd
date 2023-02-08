@@ -11,11 +11,16 @@ commands:
             cd database
             ls -l
       - run:
+          name: "Docker compose"
+          command: |
+            cd database
+            sudo docker-compose up -d
+      - run:
           name: "Update OS"
           command: sudo apt-get update
       - run:
           name: "Install posgres client"
-          command: sudo apt-get install postgresql-client
+          command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
       - run:
           name: "Restore Database schema"
           command: |
@@ -97,6 +102,7 @@ commands:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
+
 jobs:
   lint:
     docker:
@@ -120,6 +126,7 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./test-results
+
   unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -183,10 +190,8 @@ jobs:
           path: ./__audits__/lighthouse/
 
   sandbox-database:
-    docker:
-      - image: cimg/postgres:14.0
-        environment:
-          POSTGRES_USER: postgres
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - checkout
       - run:
@@ -207,7 +212,7 @@ jobs:
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o doi-onrr -s dev -v
+            cf target -o "$CF_ORG" -s "$CF_SPACE"
             cf apps
             cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
             bash tunnel.sh hasura-sandbox-interface
@@ -273,7 +278,7 @@ jobs:
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o doi-onrr -s "$CF_SPACE"
+            cf target -o doi-onrr -s prod
             cf apps
             cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
             bash tunnel.sh hasura-prod-interface
@@ -452,6 +457,7 @@ workflows:
           context:
             - org-global
             - nrrd
+            - DEV
           filters:
             branches:
               ignore:
@@ -467,6 +473,7 @@ workflows:
               ignore:
                 - master
                 - dev
+
   prod:
     jobs:
       - prod-database:
