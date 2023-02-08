@@ -193,6 +193,9 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "G7ykCq4xxPLOwy+xZi8f41fO6QT1xUUsCBnXrx9Pobo"
       - checkout
       - run:
           name: "Check for database changes"
