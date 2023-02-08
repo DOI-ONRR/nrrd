@@ -190,8 +190,8 @@ jobs:
           path: ./__audits__/lighthouse/
 
   sandbox-database:
-    machine:
-      image: cimg/postgres:14.0
+    docker:
+      - image: cimg/postgres:14.0
     steps:
       - checkout
       - run:
