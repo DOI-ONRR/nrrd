@@ -97,7 +97,6 @@ commands:
           name: "list bucket"
           command: |
             aws s3 ls s3://${NPS_BUCKET_NAME}/
-
 jobs:
   lint:
     docker:
@@ -121,7 +120,6 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./test-results
-
   unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -469,7 +467,6 @@ workflows:
               ignore:
                 - master
                 - dev
-
   prod:
     jobs:
       - prod-database:
