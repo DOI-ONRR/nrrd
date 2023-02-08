@@ -15,7 +15,7 @@ commands:
           command: sudo apt-get update
       - run:
           name: "Install posgres client"
-          command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
+          command: sudo apt-get install postgresql-client
       - run:
           name: "Restore Database schema"
           command: |
@@ -187,6 +187,8 @@ jobs:
   sandbox-database:
     docker:
       - image: cimg/postgres:14.0
+        environment:
+          POSTGRES_USER: postgres
     steps:
       - checkout
       - run:
