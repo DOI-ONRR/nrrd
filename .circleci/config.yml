@@ -454,7 +454,6 @@ workflows:
           context:
             - org-global
             - nrrd
-            - DEV
           filters:
             branches:
               ignore:
