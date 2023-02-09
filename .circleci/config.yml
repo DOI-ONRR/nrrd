@@ -196,6 +196,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "26:d3:4c:41:50:38:08:13:f2:b7:eb:f1:cd:bf:ab:8c"
+            - "c6:93:f2:f4:ac:a4:fa:e4:d6:02:ae:f9:91:94:b1:b3"
       - checkout
       - run:
           name: "Check for database changes"
