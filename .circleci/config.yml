@@ -193,9 +193,6 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "c6:93:f2:f4:ac:a4:fa:e4:d6:02:ae:f9:91:94:b1:b3"
       - checkout
       - run:
           name: "Check for database changes"
@@ -210,8 +207,9 @@ jobs:
           name: "Deploy to hasura-sandbox cloud.gov"
           command: |
             cd database
-            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb
+            wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+            sudo apt-get update
+            sudo apt-get install cf8-cli
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
