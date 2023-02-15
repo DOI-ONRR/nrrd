@@ -11,14 +11,9 @@ export const destructuringSwap = (list, iA, iB) => {
 }
 
 export const formatToDollarFloat = (value, precision) => {
-  let adjust = 0
-  if ((value < 0) && (value.toString() > 4)) {
-    adjust++
-  }
-
   return currencyFormatter.format(value, {
     symbol: '$',
-    precision: precision - 1,
+    precision: precision,
     format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
   })
 }
