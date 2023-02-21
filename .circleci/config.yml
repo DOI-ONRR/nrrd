@@ -341,7 +341,7 @@ jobs:
             bash ./.circleci/cleanup-previews.sh
   dev:
     docker:
-      - image: cimg/node:12.13.0-browsers
+      - image: cimg/node:12.13-browsers
     resource_class: medium+
     steps:
       - checkout
