@@ -49,7 +49,7 @@ const HomeDataFilters = props => {
   const classes = useStyles()
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
-  const { monthly, dataType, year, product, fiscalYear, calendarYear } = filterState
+  const { monthly, dataType, product } = filterState
   console.debug('FilterState ---------------------------------------------------------------------->', filterState)
   // console.debug(filterState)
   // not used const maxCalendarYear = calendarYear
