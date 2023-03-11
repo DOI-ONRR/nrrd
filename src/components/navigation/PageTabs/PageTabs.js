@@ -5,7 +5,7 @@ import {
 
 export default ({ children, ...rest }) => {
   return (
-    <Grid container justify='center'>
+    <Grid container justifyContent='center'>
       <ButtonGroup {...rest} >
         { children }
       </ButtonGroup>

@@ -1,36 +1,29 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
-/*
- * This component is built using `gatsby-image` to automatically serve optimized
- * images with lazy loading and reduced file sizes. The image is loaded using a
- * `useStaticQuery`, which allows us to load the image from directly within this
- * component, rather than having to pass the image data down from pages.
- *
- * For more information, see the docs:
- * - `gatsby-image`: https://gatsby.dev/gatsby-image
- * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
- */
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 export default ({ alt, ...rest }) => {
   const data = useStaticQuery(graphql`
   query {
-      imageSharp(fixed: {originalName: {eq: "AML_OSMREmap.png"}}) {
-        fixed(width: 551) {
-          ...GatsbyImageSharpFixed
+      file(relativePath: {eq: "AML_OSMREmap.png"}) {
+        childImageSharp {
+          gatsbyImageData(
+            layout: FIXED
+            width: 551
+          )
         }
       }
     }
   `)
-  if (!data.imageSharp) {
+  if (!data.file.childImageSharp.gatsbyImageData) {
     console.warn('AML_OSMREmap.png did not load from graphql')
     return <></>
   }
 
   return (
     <>
-      {data.imageSharp &&
-      <Img fixed={data.imageSharp.fixed} alt={alt || 'Office of Surface Mining Reclamation and Enforcement\'s data site.'} {...rest} />
+      {data.file.chileImageSharp.gatsbyImageData &&
+      <GatsbyImage image={data.file.childImageSharp.gatsbyImageData} alt={alt || 'Office of Surface Mining Reclamation and Enforcement\'s data site.'} {...rest} />
       }
     </>
   )

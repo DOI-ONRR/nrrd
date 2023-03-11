@@ -22,8 +22,11 @@ const ComponentDisplay = ({ children }) => {
         nodes {
           displayName
           description {
-            childMdx {
-              body
+            children {
+              ... on Mdx {
+                id
+                body
+              }
             }
           }
           childrenComponentProp {
@@ -78,7 +81,7 @@ const ComponentDisplay = ({ children }) => {
   return (
     <>
       {(typeof window !== 'undefined') &&
-      <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
+      <Grid container direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2}>
         <Grid item xs={12}>
           <ToggleToolbar buttons={groups.map(g => ({ [g]: `/patterns/components/?type=${ g }` })) } sectionSelected={type} />
         </Grid>

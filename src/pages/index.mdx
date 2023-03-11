@@ -10,6 +10,8 @@ tags:
   - Production
 ---
 
+import { Tabtastic, TabtasticTab } from '../components/layouts/Tabtastic'
+
 <DataFilterProviderWrapper defaults='home_data_filter_default'>
   <Box
     style={{
@@ -48,7 +50,7 @@ tags:
       <Grid container spacing={0}>
         <Grid item xs={12} lg={12}>
           <Tabtastic selectedTab={props.location.search}>
-            <TabtasticTab label="Revenue">
+            <TabtasticTab label="Revenue" mdxType="TabtasticTab">
               <Grid container m={0} spacing={4}>
                 <Grid item xs={12}>
                   <Typography variant="h2">
@@ -69,7 +71,7 @@ tags:
                 </Grid>
               </Grid>
             </TabtasticTab>
-            <TabtasticTab label="Disbursements">
+            <TabtasticTab label="Disbursements" mdxType="TabtasticTab">
               <Grid container spacing={4}>
                 <Grid item xs={12}>
                   <Typography variant="h2">
@@ -87,7 +89,7 @@ tags:
                 </Grid>
               </Grid>
             </TabtasticTab>
-            <TabtasticTab label="Production">
+            <TabtasticTab label="Production" mdxType="TabtasticTab">
               <Grid container spacing={4}>
                 <Grid item xs={12}>
                   <Typography variant="h2">
@@ -105,7 +107,7 @@ tags:
                 </Grid>
               </Grid>
             </TabtasticTab>
-            <TabtasticTab label="Fact Sheet">
+            <TabtasticTab label="Fact Sheets" mdxType="TabtasticTab">
               <Grid container spacing={4}>
                 <Grid item xs={12}>
                   <Typography variant="h2">

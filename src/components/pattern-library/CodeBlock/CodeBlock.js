@@ -33,7 +33,7 @@ const CodeBlock = ({ children, className, live, render, title, notes }) => {
     return (
       <>
         <MaterialUI.Typography variant="h6">{title}</MaterialUI.Typography>
-        <MaterialUI.Grid container direction="row" justify="center" alignItems="stretch" className={classes.container}>
+        <MaterialUI.Grid container direction="row" justifyContent="center" alignItems="stretch" className={classes.container}>
           <MaterialUI.Grid item xs={12}>
             <LiveProvider
               code={children}

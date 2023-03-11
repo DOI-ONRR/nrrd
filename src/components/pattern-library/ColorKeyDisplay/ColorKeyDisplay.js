@@ -14,7 +14,7 @@ const ColorKeyDisplay = ({ keys, children }) => {
         <Grid item xs={12}>
           {keys.map(key => {
             return (
-              <Grid key={key} container direction="row" justify="flex-start" alignItems="stretch" spacing={1}>
+              <Grid key={key} container direction="row" justifyContent="flex-start" alignItems="stretch" spacing={1}>
                 {Object.keys(theme.palette[key]).map(subKey => {
                   if (typeof theme.palette[key][subKey] === 'string') {
                     return (
@@ -35,7 +35,7 @@ const ColorKeyDisplay = ({ keys, children }) => {
                   }
                   else if (typeof theme.palette[key] === 'string' && theme.palette[key] !== 'light') {
                     return (
-                      <Grid key={key} container direction="row" justify="flex-start" alignItems="stretch">
+                      <Grid key={key} container direction="row" justifyContent="flex-start" alignItems="stretch">
                         <Grid item xs={12} sm={3} md={2}>
                           <Box
                             pl={2}

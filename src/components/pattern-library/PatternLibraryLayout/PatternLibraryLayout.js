@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link, navigate } from 'gatsby'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
-import { fade, makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { fade, makeStyles, createTheme, ThemeProvider } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -123,7 +123,7 @@ const overrides = {
   }
 }
 
-const theme = createMuiTheme({ palette, typography, overrides })
+const theme = createTheme({ palette, typography, overrides })
 const useStyles = makeStyles(() => ({
   grow: {
     flexGrow: 1,

@@ -11,7 +11,7 @@ import {
 
 import {
   makeStyles,
-  fade
+  alpha
 } from '@material-ui/core/styles'
 
 import BaseToolbar from '../BaseToolbar'
@@ -46,9 +46,9 @@ const useStyles = makeStyles(theme => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.black, 0.05),
+    backgroundColor: alpha(theme.palette.common.black, 0.05),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.black, 0.10),
+      backgroundColor: alpha(theme.palette.common.black, 0.10),
     },
     marginLeft: 0,
     width: '100%',

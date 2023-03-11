@@ -40,7 +40,7 @@ const TypographyDisplay = ({ children }) => {
   }
 
   return (
-    <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
+    <Grid container direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2}>
       {
         Object.keys(theme.typography).map(key => {
           if (theme.typography[key] && typeof theme.typography[key] === 'object') {

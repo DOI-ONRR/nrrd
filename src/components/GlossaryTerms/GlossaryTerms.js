@@ -88,7 +88,9 @@ const GlossaryTerm = ({ term }) => (
 const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
   const results = useStaticQuery(graphql`
     query AllGlossaryTermsQuery {
-      mdx(fileAbsolutePath: {regex: "/content-partials/Glossary/"}) {
+      mdx(internal: {
+        contentFilePath: {regex: "/content-partials/Glossary/"}
+      }) {
         frontmatter {
           terms {
             definition
@@ -199,7 +201,7 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
           boxShadow: '0px 3px 1px -2px rgb(0 0 0 / 15%), 0px 2px 2px 0px rgb(0 0 0 / 9%), 0px 1px 5px 0px rgb(0 0 0 / 7%)'
         }}>
           <Container maxWidth="lg">
-            <Grid container direction="row" justify="space-between" alignItems="center">
+            <Grid container direction="row" justifyContent="space-between" alignItems="center">
               <Grid item xs={12} md={3}>
                 <Box><h1 style={{ margin: 0 }}>{title}</h1></Box>
               </Grid>

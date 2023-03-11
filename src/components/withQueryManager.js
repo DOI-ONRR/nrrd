@@ -8,7 +8,7 @@ import { AppStatusContext } from '../stores/app-status-store'
 const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) => {
   options = options || {}
   const { state, updateQueryDataFilterCounts } = useContext(DataFilterContext)
-  const { loading, error, data } = useQuery(QueryManager.getQuery(queryKey, state, options), QueryManager.getVariables(queryKey, state, options))
+  const { loading, error, data } = useQuery(QueryManager.getQuery(queryKey, state, options || {}), QueryManager.getVariables(queryKey, state, options || {}))
   const { showErrorMessage } = useContext(AppStatusContext)
 
   useEffect(() => {
