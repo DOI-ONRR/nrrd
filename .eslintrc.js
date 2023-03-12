@@ -1,7 +1,9 @@
 module.exports = {
-  extends: ["standard"],
+  extends: ["standard", "plugin:mdx/recommended"],
   plugins: ["standard", "react", "react-hooks"],
   rules: {
+    "mdx/code-blocks": true,
+    "mdx/language-mapper": {},
     "no-var": "error", // optional, recommended when using es6+
     "no-unused-vars": 1, // recommended
     "no-tabs": ["error", { allowIndentationTabs: true }],

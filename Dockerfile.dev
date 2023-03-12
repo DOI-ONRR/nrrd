@@ -1,14 +1,10 @@
-FROM cimg/node:12.22.12-browsers
+FROM cimg/node:14.15.5-browsers
 EXPOSE 8000
-#RUN npm install --quiet -g gatsby-cli@2.19.3
 WORKDIR /app
 COPY ./package.json .
-#RUN npm install
 COPY . .
-RUN sudo apt-get update -y
-RUN sudo ln -s `which npm` /usr/local/bin/npm
-RUN sudo ln -s `which node` /usr/local/bin/node
-RUN sudo npm install --quiet -g gatsby-cli@3.15.0
-RUN npm install
-RUN gatsby clean
-CMD ["gatsby", "develop", "-H", "0.0.0.0" ]
+#RUN sudo apt-get update -y
+#RUN sudo npm install --quiet -g gatsby-cli@4.25.0
+#RUN npm install
+#RUN gatsby clean
+#CMD ["gatsby", "develop", "-H", "0.0.0.0" ]
