@@ -32,15 +32,15 @@ const useStyles = makeStyles(theme => ({
 
 const PercentDifference = ({ currentAmount, previousAmount }) => {
   const classes = useStyles()
-  const percentIncrease = ((currentAmount - previousAmount) / previousAmount) * 100
+  const percentChange = (currentAmount < previousAmount ? -1 : 1) * (Math.abs(currentAmount - previousAmount) / Math.abs(previousAmount)) * 100
   let icon
-  if (percentIncrease > 0) {
+  if (percentChange > 0) {
     icon = <ArrowUpwardIcon className={classes.trendIconUp} />
   }
-  else if (percentIncrease < 0) {
+  else if (percentChange < 0) {
     icon = <ArrowDownwardIcon className={classes.trendIconDown} />
   }
-  else if (percentIncrease === 0) {
+  else if (percentChange === 0) {
     icon = <ArrowForwardIcon className={classes.trendIconDown} />
   }
 
@@ -48,7 +48,7 @@ const PercentDifference = ({ currentAmount, previousAmount }) => {
     <span>
       { icon || '' }
       <span>
-        { (percentIncrease === 0) ? 'Flat' : `${ roundFormatParens(percentIncrease, 0) }%`}
+        { (percentChange === 0) ? 'Flat' : `${ roundFormatParens(percentChange, 0) }%`}
       </span>
     </span>
   )
