@@ -5,7 +5,7 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 export default ({ alt, ...rest }) => {
   const data = useStaticQuery(graphql`
   query {
-      file(relativePath: {eq: "BLM-mark.png"}) {
+      file(relativePath: {regex: "/BLM-mark.png/"}) {
         childImageSharp {
           gatsbyImageData(
             layout: CONSTRAINED
