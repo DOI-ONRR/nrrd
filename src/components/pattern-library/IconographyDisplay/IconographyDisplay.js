@@ -19,6 +19,9 @@ const IconographyDisplay = ({ children }) => {
     )
   }
 
+  if (Object.hasOwn(Images, '__esModule'))
+    delete Images.__esModule;
+
   return (
     <Grid container direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2}>
       {

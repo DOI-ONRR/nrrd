@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { useStaticQuery, graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -22,12 +21,7 @@ const ComponentDisplay = ({ children }) => {
         nodes {
           displayName
           description {
-            children {
-              ... on Mdx {
-                id
-                body
-              }
-            }
+            text
           }
           childrenComponentProp {
             name
@@ -106,7 +100,7 @@ const ComponentDisplay = ({ children }) => {
                       : <Box>No preview available</Box>
                     }
                     <Box m={2}><Divider /></Box>
-                    <MDXRenderer>{item.description.childMdx.body}</MDXRenderer>
+                    {item.description.text}
                   </Box>
                 </PatternLibraryCard>
               </Grid>
