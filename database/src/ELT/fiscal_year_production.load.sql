@@ -54,7 +54,9 @@ update fiscal_year_production_elt set offshore_region='Pacific', fips_code='POR'
 update fiscal_year_production_elt set offshore_region='Atlantic',  fips_code='AOR',  county='', state='' where offshore_region='Offshore Atlantic';
 update fiscal_year_production_elt set offshore_region='Gulf of Mexico', fips_code='GMR', county='', state='' where offshore_region='Offshore Gulf';
 
-
+update fiscal_year_production_elt
+set fips_code = lpad(fips_code, 5, '0')
+where county != '';
 
 \echo 'Insert location records'
 insert into location (land_class, land_category,  state, county, fips_code, offshore_region)

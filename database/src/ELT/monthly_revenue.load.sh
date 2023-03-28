@@ -64,7 +64,9 @@ product_code_desc = COALESCE(product_code_desc, '');
 
 
 \echo 'Clean up zip codes'
-update monthly_revenue_elt set fips_code=concat('0',fips_code) where length(fips_code)=4 and county_code_desc != '';
+update monthly_revenue_elt 
+set fips_code = lpad(fips_code, 5, '0') 
+where county_code_desc != '';
 
 
 \echo 'Clean up offshore region'
@@ -111,6 +113,9 @@ update monthly_revenue_elt set commodity=REPLACE(commodity, '1slsh1','/') ;
 update monthly_revenue_elt set commodity=REPLACE(commodity, '1dsh1', '-') ;
 update monthly_revenue_elt set commodity=REPLACE(commodity, '1spc1', ' ') ;
 
+update monthly_revenue_elt
+set county_code_desc = 'Santa Barbara'
+where county_code_desc = 'Santa Barbar';
 
 
 \echo 'Insert location records'

@@ -57,7 +57,9 @@ update calendar_year_production_elt set offshore_region='Pacific', fips_code='PO
 update calendar_year_production_elt set offshore_region='Atlantic', fips_code='AOR' where offshore_region='Offshore Atlantic';
 update calendar_year_production_elt set offshore_region='Gulf of Mexico', fips_code='GMR' where offshore_region='Offshore Gulf';
 
-
+update calendar_year_production_elt 
+set county = 'Santa Barbara'
+where county = 'Santa Barbar';
 
 
 \echo 'Insert location records'
