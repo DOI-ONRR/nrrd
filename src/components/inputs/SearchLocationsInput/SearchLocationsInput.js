@@ -174,7 +174,8 @@ const SearchLocationsInput = props => {
         state_locations: location(
           where: {
             fips_code: {_neq: ""},
-            region_type: {_eq: "State"}
+            region_type: {_eq: "State"},
+            county: {_eq: ""}
           },
           distinct_on: fips_code,  
         ) {
