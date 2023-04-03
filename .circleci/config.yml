@@ -191,7 +191,7 @@ jobs:
 
   sandbox-database:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2004:2023.02.1
     steps:
       - checkout
       - run:
@@ -207,8 +207,10 @@ jobs:
           name: "Deploy to hasura-sandbox cloud.gov"
           command: |
             cd database
-            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb
+            wget -q -U "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+            echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+            sudo apt-get update
+            sudo apt-get install cf8-cli
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
@@ -224,7 +226,7 @@ jobs:
       - generate-downloads
   dev-database:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2004:2023.02.1
     steps:
       - checkout
       - run:
@@ -240,8 +242,10 @@ jobs:
           name: "Deploy to cloud.gov"
           command: |
             cd database
-            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb
+            wget -q -U "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+            echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+            sudo apt-get update
+            sudo apt-get install cf8-cli
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
@@ -257,7 +261,7 @@ jobs:
       - generate-downloads
   prod-database:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2004:2023.02.1
     steps:
       - checkout
       - run:
@@ -273,8 +277,10 @@ jobs:
           name: "Deploy to cloud.gov"
           command: |
             cd database
-            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb
+            wget -q -U "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+            echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+            sudo apt-get update
+            sudo apt-get install cf8-cli
             cf api https://api.fr.cloud.gov
             echo "$CF_USERNAME"
             cf auth "$CF_USERNAME" "$CF_PASSWORD"
@@ -335,8 +341,7 @@ jobs:
             bash ./.circleci/cleanup-previews.sh
   dev:
     docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
+      - image: cimg/node:12.13-browsers
     resource_class: medium+
     steps:
       - checkout
@@ -373,8 +378,10 @@ jobs:
           name: deploy to cloud.gov
           command: |
             pwd && ls -l
-            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb
+            wget -q -U "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+            echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+            sudo apt-get update
+            sudo apt-get install cf8-cli
             cp Staticfile ./public
             cf api https://api.fr.cloud.gov
             cf login -u "$CF_USERNAME" -p "$CF_PASSWORD" -a api.fr.cloud.gov -o doi-onrr -s dev -v
@@ -382,7 +389,7 @@ jobs:
   prod:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: circleci/node:12.13.0-browsers
+      - image: cimg/node:12.13-browsers
     resource_class: medium+
     steps:
       - checkout
@@ -419,8 +426,10 @@ jobs:
           name: deploy preview to cloud.gov
           command: |
             pwd && ls -l
-            curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-            sudo dpkg -i cf-cli_amd64.deb
+            wget -q -U "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+            echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+            sudo apt-get update
+            sudo apt-get install cf8-cli
             cp Staticfile ./public
             # Set $CF_USERNAME and $CF_PASSWORD in CircleCI settings.
             # $CF_ORG, $CF_SPACE, and $APP_NAME can also be set in CircleCI settings or hardcoded here.
@@ -455,6 +464,8 @@ workflows:
     jobs:
       - sandbox-database:
           context:
+            - org-global
+            - nrrd
             - DEV
           filters:
             branches:
@@ -463,7 +474,7 @@ workflows:
                 - dev
       - nrrd-preview:
           context:
-            - DEV
+            - nrrd
           requires:
             - sandbox-database
           filters:
@@ -476,13 +487,15 @@ workflows:
     jobs:
       - prod-database:
           context:
-            - DEV
+            - org-global
+            - nrrd
           filters:
             branches:
               only: master
       - prod:
           context:
-            - DEV
+            - org-global
+            - nrrd
           requires:
             - prod-database
           filters:
@@ -492,13 +505,15 @@ workflows:
     jobs:
       - dev-database:
           context:
-            - DEV
+            - org-global
+            - nrrd
           filters:
             branches:
               only: dev
       - dev:
           context:
-            - DEV
+            - org-global
+            - nrrd
           requires:
             - dev-database
           filters:
