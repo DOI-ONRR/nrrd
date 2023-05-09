@@ -6,10 +6,12 @@ const Rect = ({
   height = 'auto',
   x = 0,
   y = 0,
-  styles
+  styles,
+  title
 }) => {
   return (
-    <svg width={width} height={height} style={styles}>
+    <svg width={width} height={height} style={styles} title={title}>
+      <title>{title}</title>
       <rect
         className="rect"
         width={width}
@@ -25,5 +27,6 @@ export default Rect
 
 Rect.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  title: PropTypes.string
 }
