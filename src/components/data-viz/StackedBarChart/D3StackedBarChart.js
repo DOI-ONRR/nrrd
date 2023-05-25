@@ -716,6 +716,9 @@ export default class D3StackedBarChart {
         .style('fill', (d, i) => {
           return color(i)
         })
+        .append('title').text(function (d, i) {
+          return self._legendForms(d[0])
+        })
         .append('rect')
         .attr('width', 20)
         .attr('height', 20)
