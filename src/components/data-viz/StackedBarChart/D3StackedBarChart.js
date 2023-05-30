@@ -705,31 +705,38 @@ export default class D3StackedBarChart {
       const tr = tbody.selectAll('tr')
         .data(dataArr)
         .enter()
-        .append('tr')
+        .append('tr')  
 
       // append color blocks into tr first cell
       tr.append('td')
         .append('div')
-        .attr('class', 'legend-rect')
-        .append('svg')
-        .attr('viewBox', '0 0 20 20')
-        .style('fill', (d, i) => {
-          return color(i)
-        })
-        .append('title').text(function (d, i) {
-          return self._legendForms(d[0])
-        })
-        .append('rect')
-        .attr('width', 20)
-        .attr('height', 20)
-        .style('background-color', (d, i) => {
-          return color(i)
-        })
-        .style('border', (d, i) => {
-          return `1px solid ${ color(i) }`
+          .attr('class', 'legend-rect')
+        .append(() => {
+          const svg = d3.create('svg')
+            .attr('viewBox', '0 0 20 20')
+            .style('fill', (d, i) => {
+              return color(i)
+            })
+
+          svg.append('title')
+          .text(function (d) {
+            return self._legendForms(d[0])
+          })
+          
+          svg.append('rect')
+            .attr('width', 20)
+            .attr('height', 20)
+            .style('background-color', (d, i) => {
+              return color(i)
+            })
+            .style('border', (d, i) => {
+              return `1px solid ${ color(i) }`
+            })
+          
+          return svg
         })
 
-      // create a cell in each row for each column
+        // create a cell in each row for each column
 
       tr.append('td')
         .html(function (d, i) {
