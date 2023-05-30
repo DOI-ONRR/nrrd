@@ -714,21 +714,21 @@ export default class D3StackedBarChart {
         .append((d, i) => {
           const title = document.createElement('title')
 
-          title.innerText = self._legendForms(d[i])
+          title.innerText = 'test'
 
           const rect = document.createElement('rect')
 
           rect.setAttribute('width', 20)
           rect.setAttribute('height', 20)
 
-          rect.style.backgroundColor = color(i)
-          rect.style.border = `1px solid ${ color(i) }`
+          rect.style.backgroundColor = 'red'
+          rect.style.border = `1px solid red`
 
           const svg = document.createElement('svg')
 
           svg.setAttribute('viewBox', '0 0 20 20')
 
-          svg.style.fill = color(i)
+          svg.style.fill = 'red'
 
           svg.append(title)
           svg.append(rect)
