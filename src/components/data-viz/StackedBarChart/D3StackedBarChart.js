@@ -724,6 +724,7 @@ export default class D3StackedBarChart {
           rect.style.backgroundColor = color(i)
           rect.style.border = `1px solid ${ color(i) }`
           rect.style.display = 'block'
+          rect.style.height = '10px;'
 
           const svg = document.createElement('svg')
 
