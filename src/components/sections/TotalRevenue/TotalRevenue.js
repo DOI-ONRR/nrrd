@@ -440,6 +440,7 @@ const TotalRevenue = props => {
             primaryColor={theme.palette.explore[700]}
             secondaryColor={theme.palette.explore[100]}
             handleBarHover={d => handleBarHover(d)}
+            svgTitle="The bar chart shows the revenue within the past 12 months, which often extends across 2 calendar years. The bar for each month shows the total amount of money collected, and different revenue sources are represented by different colors."
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
 		        <Link href='/downloads/revenue/'>Source file</Link>
