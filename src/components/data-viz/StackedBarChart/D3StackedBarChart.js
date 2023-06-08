@@ -31,6 +31,7 @@ export default class D3StackedBarChart {
       this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
       this.handleBarHover = options.handleBarHover || (() => {})
+      this.svgTitle = options.svgTitle || ''
 
       if (options.chartTooltip) {
         this.chartTooltip = options.chartTooltip
@@ -85,6 +86,8 @@ export default class D3StackedBarChart {
 
         this.chart = d3.select(this.chartDiv).append('svg')
           .attr('class', 'stacked-bar-chart')
+          .append('title')
+          .text(this.svgTitle)
 
         this.chart.attr('viewBox', `0 0 ${ (this._width + 20) } ${ this._height }`)
       }
