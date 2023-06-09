@@ -86,10 +86,10 @@ export default class D3StackedBarChart {
 
         this.chart = d3.select(this.chartDiv).append('svg')
           .attr('class', 'stacked-bar-chart')
-          .append('title')
-          .text(this.svgTitle)
 
         this.chart.attr('viewBox', `0 0 ${ (this._width + 20) } ${ this._height }`)
+
+        this.chart.append('title').text(this.svgTitle)
       }
       else {
         // reset margins

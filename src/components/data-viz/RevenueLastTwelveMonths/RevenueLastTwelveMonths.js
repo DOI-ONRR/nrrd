@@ -15,7 +15,7 @@ import { QK_REVENUE_COMMON, SOURCE, DISPLAY_NAMES } from '../../../constants'
 /**
  * This displays data related to the Revenue for the last 12 months
  */
-const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, chartHeight, skeletonHeight, ...restProps }) => {
+const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, chartHeight, skeletonHeight, svgTitle, ...restProps }) => {
   const ChartContainer = withStyles(() =>
     createStyles({
       root: restProps.style,
@@ -74,6 +74,7 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
           chartHeight={chartHeight}
           compact={true}
           disableInteraction={disableInteraction}
+          svgTitle={svgTitle}
         />
         : <Skeleton variant="rect" height={skeletonHeight} animation="wave" />
       }
