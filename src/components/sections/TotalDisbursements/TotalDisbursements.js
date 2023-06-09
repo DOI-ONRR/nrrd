@@ -281,29 +281,30 @@ const TotalDisbursements = props => {
         </Grid>
         <Grid item xs={12} md={7}>
           <StackedBarChart2
-		  key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
-		  title={chartTitle}
-		  units={units}
-		  data={chartData}
-		  xAxis={xAxis}
-		  yAxis={yAxis}
-		  xGroups={xGroups}
-		  yGroupBy={yGroupBy}
-		  yOrderBy={yOrderBy}
-		  xLabels={d => xLabels(d)}
-		  legendFormat={d => utils.formatToDollarInt(d)}
-		  legendHeaders={legendHeaders}
-		  handleBarHover={d => handleBarHover(d)}
-		  showTooltips={false}
-		  chartTooltip={
-		  d => {
+            key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
+            title={chartTitle}
+            units={units}
+            data={chartData}
+            xAxis={xAxis}
+            yAxis={yAxis}
+            xGroups={xGroups}
+            yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
+            xLabels={d => xLabels(d)}
+            legendFormat={d => utils.formatToDollarInt(d)}
+            legendHeaders={legendHeaders}
+            handleBarHover={d => handleBarHover(d)}
+            showTooltips={false}
+            chartTooltip={
+              d => {
                 // console.log('chartTooltip d: ', d)
                 const r = []
                 r[0] = d.key
                 r[1] = utils.formatToDollarInt(d[0].data[d.key])
                 return r
-		  }
-		  }
+              }
+            }
+            svgTitle="Small colored squares are used to indicate the different disbursement sources, which are then associated with dollar amounts. Yellow represents Native American; teal represents Federal offshore; and purple represents Federal onshore."
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
             { (monthly === DFC.MONTHLY_CAPITALIZED)

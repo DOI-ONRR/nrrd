@@ -308,6 +308,7 @@ const TotalProduction = props => {
               showLegendUnits
               legendHeaders={legendHeaders}
               handleBarHover={d => handleBarHover(d)}
+              svgTitle="Small colored squares are used to indicate the different production sources, which are then associated with dollar amounts. Yellow represents Native American; teal represents Federal offshore; and purple represents Federal onshore."
             />
             <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
               <Link href='/downloads/production-by-month/'>Source file</Link>
