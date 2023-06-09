@@ -509,6 +509,8 @@ export default class d3Map {
     else {
       legend = d3.select(this.node.children[0]).append('svg')
         .attr('class', 'legend')
+      legend.append('title')
+        .text('A long rectangular color swatch that ranges from light color to dark color. The light color represents low number in the value of the data and as the color becomes increasingly darker the value of the data increases.')
     }
 
     const g = legend
