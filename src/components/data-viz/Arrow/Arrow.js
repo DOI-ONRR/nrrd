@@ -12,6 +12,7 @@ const Arrow = ({ vertical, withArrow, ...restProps }) => {
 
   const HorizontalArrow = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width={length} height={ height }>
+      <title>A black arrow centered over a black line that indicates where the user should go next in the content.</title>
       <line x1="0" y1={height / 2} x2={length} y2={height / 2} stroke="black" stroke-width="4"/>
       <polygon points={trianglePoints} />
     </svg>
@@ -30,6 +31,7 @@ const Arrow = ({ vertical, withArrow, ...restProps }) => {
     const trianglePoints = `0, ${ triangleStartPoint }, ${ height / 2 }, ${ triangleStartPoint + height }, ${ height }, ${ triangleStartPoint }`
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width={height} height={length} style={{ margin: '0 auto', display: 'block' }}>
+        <title>A black arrow centered over a black line that indicates where the user should go next in the content.</title>
         <line x1={height / 2} y1="0" x2={height / 2} y2={length} stroke="black" stroke-width="4"/>
         <polygon points={trianglePoints} />
       </svg>
