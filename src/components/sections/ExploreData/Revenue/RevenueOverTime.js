@@ -143,12 +143,14 @@ const RevenueOverTime = props => {
 		       chartColors={[theme.palette.explore[400], theme.palette.explore[300], theme.palette.explore[200], theme.palette.explore[100]]}
 		       lineDashes={LINE_DASHES}
 		       lineTooltip={
-		       (d, i) => {
-			   const r = []
-			   r[0] = `${ cards[i].locationName }: ${ utils.formatToDollarInt(d) }`
-			   return r
-		       }
-		       } />
+              (d, i) => {
+                const r = []
+                r[0] = `${ cards[i].locationName }: ${ utils.formatToDollarInt(d) }`
+                return r
+              }
+            }
+            svgTitle='A line graph that shows the change in the value of the data over time. This graph compares Nationwide Federal and Native American sources.'
+          />
           <Box mt={1} className={classes.chipContainer}>
             {
 		  cards.map((card, i) => {
