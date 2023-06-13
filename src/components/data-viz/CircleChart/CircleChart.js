@@ -188,6 +188,7 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
         <Grid container spacing={3}>
           <Grid item xs={7}>
             <svg viewBox={`${ -width * 0.5 } ${ -height * 0.5 } ${ width } ${ height }`} ref={ccRef}>
+              <title>Commodities bubble chart shows the top commodities for the location selected. Different sized circles are used to reflect the difference in revenue for each commodity. The accompanying text details the commodities and the revenue amounts.</title>
               <Circles
                 data={root.descendants()}
                 width={width}
@@ -229,6 +230,7 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <svg viewBox={`${ -width * 0.5 } ${ -height * 0.5 } ${ 500 } ${ 500 }`} ref={ccRef}>
+              <title>Commodities bubble chart shows the top commodities for the location selected. Different sized circles are used to reflect the difference in revenue for each commodity. The accompanying text details the commodities and the revenue amounts.</title>
               <Circles
                 data={root.descendants()}
                 width={width}
