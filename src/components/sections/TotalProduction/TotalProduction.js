@@ -126,6 +126,21 @@ const TotalProduction = props => {
   let [commodity, unitAbbrev] = product.split(' (')
   unitAbbrev = '(' + unitAbbrev
 
+  let svgTitle = 'The bar chart shows gas production in million cubic feet within the past 12 months, which often extends across 2 calendar years. The bar for each month shows the total gas produced, and different sources are represented by different colors.'
+
+  console.log(`commodity: ${ commodity }`)
+
+  switch (commodity) {
+  case 'Oil':
+    svgTitle = 'The bar chart shows oil production in barrels within the past 12 months, which often extends across 2 calendar years. The bar for each month shows the total oil produced, and different sources are represented by different colors.'
+    break
+  case 'Coal':
+    svgTitle = 'The bar chart shows coal production in tons within the past 12 months, which often extends across 2 calendar years. The bar for each month shows the total coal produced, and different sources are represented by different colors.'
+    break
+  default:
+    break
+  }
+
   if (loading) {
     return 'Loading...'
   }
@@ -197,8 +212,6 @@ const TotalProduction = props => {
         r[year] = months
         return r
       }, [])
-      // console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', xGroups)
-      // console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXCHARTDATA', chartData)
 
       xAxis = 'period_date'
       xLabels = (x, i) => {
@@ -308,7 +321,7 @@ const TotalProduction = props => {
               showLegendUnits
               legendHeaders={legendHeaders}
               handleBarHover={d => handleBarHover(d)}
-              svgTitle="Small colored squares are used to indicate the different production sources, which are then associated with dollar amounts. Yellow represents Native American; teal represents Federal offshore; and purple represents Federal onshore."
+              svgTitle={svgTitle}
             />
             <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
               <Link href='/downloads/production-by-month/'>Source file</Link>

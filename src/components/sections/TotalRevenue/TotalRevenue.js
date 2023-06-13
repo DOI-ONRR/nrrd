@@ -216,12 +216,16 @@ const TotalRevenue = props => {
   let commodityChartData
   let commodityChartComparisonData
 
+  let svgTitle = 'The bar chart shows the revenue within the past 12 months, which often extends across 2 calendar years. The bar for each month shows the total amount of money collected, and different revenue sources are represented by different colors.'
+
   switch (breakoutBy) {
   case 'revenue_type':
     yOrderBy = ['Other revenues', 'Inspection fees', 'Civil penalties', 'Rents', 'Bonus', 'Royalties']
+    svgTitle = 'The bar chart shows the revenue within the past 12 months, which often extends across 2 calendar years. The bar for each month shows the total amount of money collected, and different revenue types are represented by different colors.'
     break
   case 'commodity':
     yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
+    svgTitle = 'Small colored squares are used to indicate the different commodity types, which are then associated with dollar amounts. Yellow represents not tied to a commodity; lime green represents other commodities; teal represents coal; medium blue represents rents; dark blue represents gas; and dark purple represents oil.'
     break
   default:
     yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
@@ -440,7 +444,7 @@ const TotalRevenue = props => {
             primaryColor={theme.palette.explore[700]}
             secondaryColor={theme.palette.explore[100]}
             handleBarHover={d => handleBarHover(d)}
-            svgTitle="The bar chart shows the revenue within the past 12 months, which often extends across 2 calendar years. The bar for each month shows the total amount of money collected, and different revenue sources are represented by different colors."
+            svgTitle={svgTitle}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
 		        <Link href='/downloads/revenue/'>Source file</Link>

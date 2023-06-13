@@ -138,7 +138,7 @@ const TotalDisbursements = props => {
 		   ]
 		   : ['Native American', 'Federal offshore', 'Federal onshore']
 
-  // console.debug(" Comparison yOrderBy ", yOrderBy)
+  let svgTitle = 'Small colored squares are used to indicate the different disbursement sources, which are then associated with dollar amounts. Yellow represents Native American; teal represents Federal offshore; and purple represents Federal onshore.'
 
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -237,13 +237,12 @@ const TotalDisbursements = props => {
     }
     else {
       switch (breakoutBy) {
-	  case 'recipient':
+      case 'recipient':
         comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
         chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
-        // console.log('Comparison chartData: ', chartData, ' comparison ', comparisonData, ' total_yearly_fiscal_disbursement ', data.total_yearly_fiscal_disbursement)
-	      // console.debug("Comparison yOrderBy ", yOrderBy)
+        svgTitle = 'The bar chart shows the disbursements within the past 12 months, which often extend across 2 calendar years. The bar for each month shows the total amount of money paid to recipients, which is further broken down into money paid to recipients, and different recipients are represented by different colors.'
         break
-	  default:
+      default:
         comparisonData = data.total_yearly_fiscal_disbursement
         chartData = data.total_yearly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 9)
         break
@@ -304,7 +303,7 @@ const TotalDisbursements = props => {
                 return r
               }
             }
-            svgTitle="Small colored squares are used to indicate the different disbursement sources, which are then associated with dollar amounts. Yellow represents Native American; teal represents Federal offshore; and purple represents Federal onshore."
+            svgTitle={svgTitle}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
             { (monthly === DFC.MONTHLY_CAPITALIZED)
