@@ -38,7 +38,7 @@ cp  /tmp/downloads/federal_revenue_by_company.csv /tmp/Federal\ Revenue\ By\ Com
 cp  ./static/csv/data_dictionary/corporate_cross_walk.csv /tmp/Corporate\ Crosswalk
 cp  ./static/csv/data_dictionary/revenue_by_company_dictionary.csv /tmp/Data\ Dictionary
  
- ssconvert  --merge-to /tmp/downloads/federal_revenue_by_company.xlsx  /tmp/Federal\ Revenue\ By\ Company /tmp/Data\ Dictionary && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
+ ssconvert  --merge-to /tmp/downloads/federal_revenue_by_company.xlsx  /tmp/Federal\ Revenue\ By\ Company /tmp/Data\ Dictionary /tmp/Corporate\ Crosswalk  && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
  echo -n "Waiting for ssconvert to finish ..."      
  while ! grep "Convert" .ssconvert > /dev/null;
  do
