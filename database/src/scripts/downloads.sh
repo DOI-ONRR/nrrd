@@ -49,7 +49,7 @@ cp  ./static/csv/data_dictionary/revenue_by_company_dictionary.csv /tmp/Data\ Di
  rm .ssconvert
  echo "" > .ssconvert
 cp  /tmp/downloads/federal_revenue_by_company.csv /tmp/Federal\ Revenue\ By\ Company
-cp  ./static/csv/corporate_cross_walk/corporate_cross_walk.csv /tmp/Data\ Dictionary
+cp  ./static/csv/data_dictionary/corporate_cross_walk.csv /tmp/Data\ Dictionary
 
  ssconvert  --merge-to /tmp/downloads/federal_revenue_by_company.xlsx  /tmp/Federal\ Revenue\ By\ Company /tmp/Data\ Dictionary && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
  echo -n "Waiting for ssconvert to finish ..."      
