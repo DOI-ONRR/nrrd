@@ -103,7 +103,7 @@ const RevenueDetailTypes = props => {
                   xAxis={xAxis}
                   yAxis={yAxis}
                   maxCircles={6}
-                  legendHeaders={['Commodity', 'Total']}
+                  legendHeaders={['Revenue type', 'Total']}
                   showLabels={false}
                   showTooltips={true}
                   chartTooltip={
