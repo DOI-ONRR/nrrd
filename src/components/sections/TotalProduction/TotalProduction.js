@@ -126,16 +126,16 @@ const TotalProduction = props => {
   let [commodity, unitAbbrev] = product.split(' (')
   unitAbbrev = '(' + unitAbbrev
 
-  let svgTitle = 'The bar chart shows gas production in million cubic feet within the past 12 months, which often extends across 2 calendar years. The bar for each month shows the total gas produced, and different sources are represented by different colors.'
+  let svgTitle = 'Bar chart displaying the amount of gas produced on a yearly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
 
   console.log(`commodity: ${ commodity }`)
 
   switch (commodity) {
   case 'Oil':
-    svgTitle = 'The bar chart shows oil production in barrels within the past 12 months, which often extends across 2 calendar years. The bar for each month shows the total oil produced, and different sources are represented by different colors.'
+    svgTitle = 'Bar chart displaying the amount of oil produced on a yearly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
     break
   case 'Coal':
-    svgTitle = 'The bar chart shows coal production in tons within the past 12 months, which often extends across 2 calendar years. The bar for each month shows the total coal produced, and different sources are represented by different colors.'
+    svgTitle = 'Bar chart displaying the amount of coal produced on a yearly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
     break
   default:
     break

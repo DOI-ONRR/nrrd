@@ -25,6 +25,8 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
     <Grid item xs={6}>
       <Box pl={'20px'} pr={'20px'}>
         <DisbursementsLastTwelveMonths title='Disbursements by recipient' chartHeight={130} skeletonHeight={347} yGroupBy={RECIPIENT} disableInteraction={true} />
+      svgTitle='Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)
+](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv)' />
       </Box>
     </Grid>
     <Grid item xs={12}>
@@ -43,13 +45,13 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
     <Grid item xs={6}>
       <Box pl={'20px'} pr={'20px'}>
         <RevenueLastTwelveMonths title='Revenue by source' yGroupBy={SOURCE} chartHeight={130} skeletonHeight={293} disableInteraction={true} 
-          svgTitle='Small colored squares are used to indicate the different revenue sources, which are then associated with dollar amounts. Yellow represents Federal that is not tied to a lease; green represents Native American; blue represents Federal offshore; and purple represents Federal onshore.' />
+          svgTitle='Bar chart displaying the amount of revenue collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar.[Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)' />
       </Box>
     </Grid>
     <Grid item xs={6}>
       <Box pl={'20px'} pr={'20px'}>
         <RevenueLastTwelveMonths title='Revenue by revenue type' yGroupBy={'revenue_type'} chartHeight={130} skeletonHeight={293} disableInteraction={true} 
-          svgTitle='Small colored squares are used to indicate the different revenue types, which are then associated with dollar amounts. Yellow represents other revenues; lime green represents inspection feeds; medium green represents civil penalties; medium blue represents rents; dark blue represents bonus; and dark purple represents royalties.' />
+          svgTitle='Bar chart displaying the amount of revenue collected on a monthly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)' />
       </Box>
     </Grid>
     <Grid item xs={12}>
@@ -68,19 +70,19 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
     <Grid item xs={4}>
       <Box pl={'10px'} pr={'10px'}>
         <ProductionLastTwelveMonths title='Oil (bbl)' filterByProduct='Oil (bbl)' units='bbl' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} 
-          svgTitle="Small colored squares are used to indicate the different production sources, which are then associated with dollar amounts. Yellow represents Native American; teal represents Federal offshore; and purple represents Federal onshore." />
+          svgTitle='Bar chart displaying the amount of oil produced on a monthly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)' />
       </Box>
     </Grid>
     <Grid item xs={4}>
       <Box pl={'10px'} pr={'10px'}>
         <ProductionLastTwelveMonths title='Gas (mcf)' filterByProduct='Gas (mcf)' units='mcf' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} 
-          svgTitle="Small colored squares are used to indicate the different production sources, which are then associated with dollar amounts. Yellow represents Native American; teal represents Federal offshore; and purple represents Federal onshore." />
+          svgTitle= 'Bar chart displaying the amount of gas produced on a monthly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)' />
       </Box>
     </Grid>
     <Grid item xs={4}>
       <Box pl={'10px'} pr={'10px'}>
         <ProductionLastTwelveMonths title='Coal (tons)' filterByProduct='Coal (tons)' units='tons' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} 
-          svgTitle="Small colored squares are used to indicate the different production sources, which are then associated with dollar amounts. Yellow represents Native American; teal represents Federal offshore; and purple represents Federal onshore." />
+          svgTitle= 'Bar chart displaying the amount of coal produced on a yearly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)' />
       </Box>
     </Grid>
   </Grid>
