@@ -254,6 +254,7 @@ const HorizontalStackedBarChart = ({
   return (
     <>
       <svg width="100%" height="40" viewBox={`0 0 ${ viewBoxWidth } ${ viewBoxHeight }`}>
+      <title>A horizontal stacked bar chart with one bar. Accompanying text includes detailed units and amounts.</title>
         <Translate {...body.pos}>
           <Bars
             data={dataset.barData}

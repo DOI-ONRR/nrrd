@@ -29,6 +29,8 @@ export default class D3LineChart {
       this.chartColors = options.chartColors
     }
 
+    this.svgTitle = options.svgTitle || ''
+
     this.chart()
 
     // end constructor
@@ -111,13 +113,17 @@ export default class D3LineChart {
       const x = d3.scaleLinear().domain([years[0], years[years.length - 1]]).range([0, width])
       // const y = d3.scaleLinear().domain([0, 40000000]).range([height, 0])
 
-      const svg = d3.select(this.chartNode).append('svg')
+      let svg = d3.select(this.chartNode).append('svg')
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
         .style('border', 'solid 1px rgba(0, 0, 0, 0.25)')
         .style('border-radius', '4px')
         .style('box-shadow', '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)')
-        .append('g')
+
+      svg.append('title')
+        .text(this.svgTitle)
+
+      svg = svg.append('g')
         .attr('transform', `translate(${ margin.left }, ${ margin.top })`)
 
       svg.append('g')

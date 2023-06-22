@@ -83,6 +83,7 @@ const DisbursementsLastTwelveMonths = ({ title, yGroupBy, data, disableInteracti
           chartHeight={chartHeight}
           compact={true}
           disableInteraction={disableInteraction}
+          svgTitle="The bar chart shows the disbursements within the past 12 months, which often extend across 2 calendar years. The bar for each month shows the total amount of money paid to recipients, which is further broken down into money paid to recipients, and different recipients are represented by different colors."
         />
         : <Skeleton variant="rect" height={skeletonHeight} animation="wave" />
       }

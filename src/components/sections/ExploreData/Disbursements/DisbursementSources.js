@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    marginTop: '2em !important',
     '& .chart-container': {
       display: 'flex',
       flexDirection: 'column',

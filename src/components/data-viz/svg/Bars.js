@@ -59,6 +59,8 @@ const Bars = ({
         d3.select(nodes[activeIndex])
           .attr('selected', true)
           .attr('class', 'bar active')
+          legend.append('title')
+          .text('A horizontal stacked bar chart with one bar. Accompanying text includes detailed units and amounts.')
       })
     }
   }

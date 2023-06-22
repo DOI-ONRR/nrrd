@@ -126,6 +126,21 @@ const TotalProduction = props => {
   let [commodity, unitAbbrev] = product.split(' (')
   unitAbbrev = '(' + unitAbbrev
 
+  let svgTitle = 'Bar chart displaying the amount of gas produced on a yearly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
+
+  console.log(`commodity: ${ commodity }`)
+
+  switch (commodity) {
+  case 'Oil':
+    svgTitle = 'Bar chart displaying the amount of oil produced on a yearly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
+    break
+  case 'Coal':
+    svgTitle = 'Bar chart displaying the amount of coal produced on a yearly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
+    break
+  default:
+    break
+  }
+
   if (loading) {
     return 'Loading...'
   }
@@ -197,8 +212,6 @@ const TotalProduction = props => {
         r[year] = months
         return r
       }, [])
-      // console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXGROUPS', xGroups)
-      // console.debug('XXXXXXXXXXXXXXXXXXXXXXXXXXXXCHARTDATA', chartData)
 
       xAxis = 'period_date'
       xLabels = (x, i) => {
@@ -308,6 +321,7 @@ const TotalProduction = props => {
               showLegendUnits
               legendHeaders={legendHeaders}
               handleBarHover={d => handleBarHover(d)}
+              svgTitle={svgTitle}
             />
             <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
               <Link href='/downloads/production-by-month/'>Source file</Link>
