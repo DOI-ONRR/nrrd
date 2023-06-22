@@ -1,6 +1,6 @@
 Fields,Definitions
 Calendar Year,Is the period between January 1 and December 31 for a given year.
-Company Name,ONRR does not have a reporting vehicle to track real-time corporate family relationships. We research the best publicly available information yearly to determine the corporate parent. This dataset is for informational purposes only and should not be used for legal purposes. Users assume all risk when referencing this dataset.
+Corporate Name,ONRR does not have a reporting vehicle to track real-time corporate family relationships. We research the best publicly available information yearly to determine the corporate parent. This dataset is for informational purposes only and should not be used for legal purposes. Users assume all risk when referencing this dataset.
 Revenue Type,Revenues from U.S. natural resources fall into one of several types.
 Royalties,"A natural resource lease owner pays royalties after the lease starts producing a commodity in paying quantities. The amount is based on a percentage of the revenue from the commodity sold. This royalty rate is set in the original lease document that went along with the lease sale. The onshore royalty rate is 12.5%. Offshore leases can have a royalty rates of 12.5%, 16.67%, 18.75%."
 Bonus,The amount paid by the highest successful bidder for a natural resource lease. The winning bid. Collected by BLM (Onshore) and ONRR (Offshore).
