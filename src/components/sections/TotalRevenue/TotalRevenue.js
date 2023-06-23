@@ -216,16 +216,16 @@ const TotalRevenue = props => {
   let commodityChartData
   let commodityChartComparisonData
 
-  let svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv).'
+  let svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
 
   switch (breakoutBy) {
   case 'revenue_type':
     yOrderBy = ['Other revenues', 'Inspection fees', 'Civil penalties', 'Rents', 'Bonus', 'Royalties']
-    svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+    svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
     break
   case 'commodity':
     yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
-    svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv.'
+    svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
     break
   default:
     yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
@@ -264,18 +264,18 @@ const TotalRevenue = props => {
 		  case 'revenue_type':
 		      comparisonData = data.total_monthly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_monthly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear && yOrderBy.includes(item.revenue_type)))
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         case 'commodity':
           commodityChartData = rollUpCommodityData(data.total_monthly_fiscal_revenue)
           comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
           chartData = commodityChartData.filter(item => (item.year >= maxFiscalYear && yOrderBy.includes(item.commodity)))
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         default:
           comparisonData = data.total_monthly_fiscal_revenue
           chartData = data.total_monthly_fiscal_revenue.filter(item => item.year >= maxFiscalYear)
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         }
       }
@@ -286,18 +286,18 @@ const TotalRevenue = props => {
         case 'revenue_type':
 		  comparisonData = data.total_monthly_calendar_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_monthly_calendar_revenue.filter(item => (item.year >= maxCalendarYear && yOrderBy.includes(item.revenue_type)))
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         case 'commodity':
           commodityChartData = rollUpCommodityData(data.total_monthly_calendar_revenue)
           comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
           chartData = commodityChartData.filter(item => (item.year >= maxCalendarYear && yOrderBy.includes(item.commodity)))
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         default:
           comparisonData = data.total_monthly_calendar_revenue
           chartData = data.total_monthly_calendar_revenue.filter(item => item.year >= maxCalendarYear)
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         }
       }
@@ -306,19 +306,19 @@ const TotalRevenue = props => {
         case 'revenue_type':
           comparisonData = data.total_monthly_last_three_years_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_monthly_last_twelve_revenue.filter(item => yOrderBy.includes(item.revenue_type))
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         case 'commodity':
           commodityChartComparisonData = rollUpCommodityData(data.total_monthly_last_three_years_revenue)
           commodityChartData = rollUpCommodityData(data.total_monthly_last_twelve_revenue)
           comparisonData = commodityChartComparisonData.filter(item => yOrderBy.includes(item.commodity))
           chartData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv.'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         default:
           comparisonData = data.total_monthly_last_three_years_revenue
           chartData = data.total_monthly_last_twelve_revenue
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         }
       }
@@ -361,18 +361,18 @@ const TotalRevenue = props => {
         case 'revenue_type':
           comparisonData = data.total_yearly_fiscal_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_yearly_fiscal_revenue.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.revenue_type)))
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         case 'commodity':
           commodityChartData = rollUpCommodityData(data.total_yearly_fiscal_revenue)
           comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
           chartData = commodityChartData.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.commodity)))
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv.'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         default:
           comparisonData = data.total_yearly_fiscal_revenue
           chartData = data.total_yearly_fiscal_revenue.filter(item => item.year >= maxFiscalYear - 9)
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv).'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         }
         xGroups[DFC.PERIOD_FISCAL_YEAR] = chartData.map((row, i) => row.year)
@@ -390,18 +390,18 @@ const TotalRevenue = props => {
         case 'revenue_type':
 		  comparisonData = data.total_yearly_calendar_revenue.filter(item => yOrderBy.includes(item.revenue_type))
           chartData = data.total_yearly_calendar_revenue.filter(item => item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.revenue_type))
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv)'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         case 'commodity':
           commodityChartData = rollUpCommodityData(data.total_yearly_calendar_revenue)
           comparisonData = commodityChartData.filter(item => yOrderBy.includes(item.commodity))
           chartData = commodityChartData.filter(item => item.year >= maxCalendarYear - 9 && yOrderBy.includes(item.commodity))
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv.'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by commodity, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         default:
           comparisonData = data.total_yearly_calendar_revenue
           chartData = data.total_yearly_calendar_revenue.filter(item => item.year >= maxCalendarYear - 9)
-          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv).'
+          svgTitle = 'Bar chart displaying the amount of revenue collected on a yearly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).'
           break
         }
 

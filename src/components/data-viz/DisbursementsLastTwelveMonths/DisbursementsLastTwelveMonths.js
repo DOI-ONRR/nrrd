@@ -82,8 +82,7 @@ const DisbursementsLastTwelveMonths = ({ title, yGroupBy, data, disableInteracti
           legendHeaders={legendHeaders}
           chartHeight={chartHeight}
           compact={true}
-          disableInteraction={disableInteraction}
-          svgTitle="Bar chart displaying the amount of disbursements on a monthly basis by recipient, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv)."
+          disableInteraction={disableInteraction}  
         />
         : <Skeleton variant="rect" height={skeletonHeight} animation="wave" />
       }
