@@ -126,16 +126,16 @@ const TotalProduction = props => {
   let [commodity, unitAbbrev] = product.split(' (')
   unitAbbrev = '(' + unitAbbrev
 
-  let svgTitle = 'Bar chart displaying the amount of gas produced on a yearly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
+  let svgTitle = 'Bar chart displaying the amount of gas produced, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
 
   console.log(`commodity: ${ commodity }`)
 
   switch (commodity) {
   case 'Oil':
-    svgTitle = 'Bar chart displaying the amount of oil produced on a yearly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
+    svgTitle = 'Bar chart displaying the amount of oil produced, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
     break
   case 'Coal':
-    svgTitle = 'Bar chart displaying the amount of coal produced on a yearly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
+    svgTitle = 'Bar chart displaying the amount of coal produced, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
     break
   default:
     break
