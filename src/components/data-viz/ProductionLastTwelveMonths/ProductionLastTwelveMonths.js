@@ -15,7 +15,7 @@ import { QK_PRODUCTION_COMMON, SOURCE } from '../../../constants'
 /**
  * This displays data related to the Production for the last 12 months
  */
-const ProductionLastTwelveMonths = ({ title, disableInteraction, filterByProduct, yGroupBy, units, data, chartHeight, skeletonHeight, ...restProps }) => {
+const ProductionLastTwelveMonths = ({ title, disableInteraction, filterByProduct, yGroupBy, units, data, chartHeight, skeletonHeight, svgTitle, ...restProps }) => {
   const ChartContainer = withStyles(() =>
     createStyles({
       root: restProps.style,
@@ -73,6 +73,7 @@ const ProductionLastTwelveMonths = ({ title, disableInteraction, filterByProduct
           chartHeight={chartHeight}
           compact={true}
           disableInteraction={disableInteraction}
+          svgTitle={svgTitle}
         />
         : <Skeleton variant="rect" height={skeletonHeight} animation="wave" />
       }
@@ -89,12 +90,14 @@ ProductionLastTwelveMonths.propTypes = {
   data: PropTypes.object,
   /** Flag to disable the hover,select and click events of the stacked bar chart */
   disableInteraction: PropTypes.bool,
+  svgTitle: PropTypes.string,
 }
 
 ProductionLastTwelveMonths.defaultProps = {
   yGroupBy: SOURCE,
   skeletonHeight: 400,
   disableInteraction: false,
+  svgTitle: ''
 }
 
 export default withQueryManager(ProductionLastTwelveMonths, QK_PRODUCTION_COMMON)

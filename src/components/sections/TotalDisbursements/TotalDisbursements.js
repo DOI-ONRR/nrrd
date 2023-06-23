@@ -138,7 +138,7 @@ const TotalDisbursements = props => {
 		   ]
 		   : ['Native American', 'Federal offshore', 'Federal onshore']
 
-  // console.debug(" Comparison yOrderBy ", yOrderBy)
+  let svgTitle = 'Bar chart displaying the amount of disbursements on a yearly basis by source, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv).'
 
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -171,10 +171,12 @@ const TotalDisbursements = props => {
         case 'recipient':
           comparisonData = data.total_monthly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
           chartData = data.total_monthly_fiscal_disbursement_last_two_years.filter(item => yOrderBy.includes(item.recipient) && item.year >= maxFiscalYear)
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         default:
           comparisonData = data.total_monthly_fiscal_disbursement
           chartData = data.total_monthly_fiscal_disbursement_last_two_years.filter(item => item.year >= maxFiscalYear)
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         }
       }
@@ -183,10 +185,12 @@ const TotalDisbursements = props => {
         case 'recipient':
           comparisonData = data.total_monthly_calendar_disbursement.filter(item => yOrderBy.includes(item.recipient))
           chartData = data.total_monthly_calendar_disbursement.filter(item => item.year >= maxCalendarYear && yOrderBy.includes(item.recipient))
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         default:
           comparisonData = data.total_monthly_calendar_disbursement
           chartData = data.total_monthly_calendar_disbursement.filter(item => item.year >= maxCalendarYear)
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         }
       }
@@ -195,10 +199,12 @@ const TotalDisbursements = props => {
         case 'recipient':
           comparisonData = data.total_monthly_last_three_years_disbursement.filter(item => yOrderBy.includes(item.recipient))
           chartData = data.total_monthly_last_twelve_disbursement.filter(item => yOrderBy.includes(item.recipient))
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         default:
           comparisonData = data.total_monthly_last_three_years_disbursement
           chartData = data.total_monthly_last_twelve_disbursement
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         }
       }
@@ -237,15 +243,15 @@ const TotalDisbursements = props => {
     }
     else {
       switch (breakoutBy) {
-	  case 'recipient':
+      case 'recipient':
         comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
         chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
-        // console.log('Comparison chartData: ', chartData, ' comparison ', comparisonData, ' total_yearly_fiscal_disbursement ', data.total_yearly_fiscal_disbursement)
-	      // console.debug("Comparison yOrderBy ", yOrderBy)
+        svgTitle = 'Bar chart displaying the amount of disbursements collected on a yearly basis by recipient refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
         break
-	  default:
+      default:
         comparisonData = data.total_yearly_fiscal_disbursement
         chartData = data.total_yearly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 9)
+        svgTitle = 'Bar chart displaying the amount of disbursements collected on a yearly basis by source refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
         break
       }
 
@@ -281,29 +287,30 @@ const TotalDisbursements = props => {
         </Grid>
         <Grid item xs={12} md={7}>
           <StackedBarChart2
-		  key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
-		  title={chartTitle}
-		  units={units}
-		  data={chartData}
-		  xAxis={xAxis}
-		  yAxis={yAxis}
-		  xGroups={xGroups}
-		  yGroupBy={yGroupBy}
-		  yOrderBy={yOrderBy}
-		  xLabels={d => xLabels(d)}
-		  legendFormat={d => utils.formatToDollarInt(d)}
-		  legendHeaders={legendHeaders}
-		  handleBarHover={d => handleBarHover(d)}
-		  showTooltips={false}
-		  chartTooltip={
-		  d => {
+            key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
+            title={chartTitle}
+            units={units}
+            data={chartData}
+            xAxis={xAxis}
+            yAxis={yAxis}
+            xGroups={xGroups}
+            yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
+            xLabels={d => xLabels(d)}
+            legendFormat={d => utils.formatToDollarInt(d)}
+            legendHeaders={legendHeaders}
+            handleBarHover={d => handleBarHover(d)}
+            showTooltips={false}
+            chartTooltip={
+              d => {
                 // console.log('chartTooltip d: ', d)
                 const r = []
                 r[0] = d.key
                 r[1] = utils.formatToDollarInt(d[0].data[d.key])
                 return r
-		  }
-		  }
+              }
+            }
+            svgTitle={svgTitle}
           />
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
             { (monthly === DFC.MONTHLY_CAPITALIZED)

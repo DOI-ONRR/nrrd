@@ -59,6 +59,7 @@ const Bars = ({
         d3.select(nodes[activeIndex])
           .attr('selected', true)
           .attr('class', 'bar active')
+       
       })
     }
   }

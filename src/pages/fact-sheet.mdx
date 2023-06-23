@@ -24,7 +24,8 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
     </Grid>
     <Grid item xs={6}>
       <Box pl={'20px'} pr={'20px'}>
-        <DisbursementsLastTwelveMonths title='Disbursements by recipient' chartHeight={130} skeletonHeight={347} yGroupBy={RECIPIENT} disableInteraction={true} />
+        <DisbursementsLastTwelveMonths title='Disbursements by recipient' chartHeight={130} skeletonHeight={347} yGroupBy={RECIPIENT} disableInteraction={true} 
+         svgTitle='Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).' />
       </Box>
     </Grid>
     <Grid item xs={12}>
@@ -42,12 +43,14 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
     </Grid>
     <Grid item xs={6}>
       <Box pl={'20px'} pr={'20px'}>
-        <RevenueLastTwelveMonths title='Revenue by source' yGroupBy={SOURCE} chartHeight={130} skeletonHeight={293} disableInteraction={true} />
+        <RevenueLastTwelveMonths title='Revenue by source' yGroupBy={SOURCE} chartHeight={130} skeletonHeight={293} disableInteraction={true} 
+          svgTitle='Bar chart displaying the amount of revenue collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar.[Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).' />
       </Box>
     </Grid>
     <Grid item xs={6}>
       <Box pl={'20px'} pr={'20px'}>
-        <RevenueLastTwelveMonths title='Revenue by revenue type' yGroupBy={'revenue_type'} chartHeight={130} skeletonHeight={293} disableInteraction={true} />
+        <RevenueLastTwelveMonths title='Revenue by revenue type' yGroupBy={'revenue_type'} chartHeight={130} skeletonHeight={293} disableInteraction={true} 
+          svgTitle='Bar chart displaying the amount of revenue collected on a monthly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).' />
       </Box>
     </Grid>
     <Grid item xs={12}>
@@ -65,17 +68,20 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
     </Grid>
     <Grid item xs={4}>
       <Box pl={'10px'} pr={'10px'}>
-        <ProductionLastTwelveMonths title='Oil (bbl)' filterByProduct='Oil (bbl)' units='bbl' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} />
+        <ProductionLastTwelveMonths title='Oil (bbl)' filterByProduct='Oil (bbl)' units='bbl' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} 
+          svgTitle='Bar chart displaying the amount of oil produced on a monthly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv/).' />
       </Box>
     </Grid>
     <Grid item xs={4}>
       <Box pl={'10px'} pr={'10px'}>
-        <ProductionLastTwelveMonths title='Gas (mcf)' filterByProduct='Gas (mcf)' units='mcf' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} />
+        <ProductionLastTwelveMonths title='Gas (mcf)' filterByProduct='Gas (mcf)' units='mcf' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} 
+          svgTitle= 'Bar chart displaying the amount of gas produced on a monthly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv/).' />
       </Box>
     </Grid>
     <Grid item xs={4}>
       <Box pl={'10px'} pr={'10px'}>
-        <ProductionLastTwelveMonths title='Coal (tons)' filterByProduct='Coal (tons)' units='tons' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} />
+        <ProductionLastTwelveMonths title='Coal (tons)' filterByProduct='Coal (tons)' units='tons' yGroupBy={SOURCE} chartHeight={120} skeletonHeight={283} disableInteraction={true} 
+          svgTitle= 'Bar chart displaying the amount of coal produced on a monthly basis, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv/.)' />
       </Box>
     </Grid>
   </Grid>

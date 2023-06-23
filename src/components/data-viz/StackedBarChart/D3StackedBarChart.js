@@ -31,6 +31,7 @@ export default class D3StackedBarChart {
       this.horizontal = options.horizontal
       this.showLegendUnits = options.showLegendUnits
       this.handleBarHover = options.handleBarHover || (() => {})
+      this.svgTitle = options.svgTitle || ''
 
       if (options.chartTooltip) {
         this.chartTooltip = options.chartTooltip
@@ -87,6 +88,9 @@ export default class D3StackedBarChart {
           .attr('class', 'stacked-bar-chart')
 
         this.chart.attr('viewBox', `0 0 ${ (this._width + 20) } ${ this._height }`)
+
+        this.chart.append('title').text(this.svgTitle)
+        
       }
       else {
         // reset margins
@@ -117,6 +121,8 @@ export default class D3StackedBarChart {
         this.chart = d3.select(this.chartDiv).append('svg')
           .attr('class', 'horizontal-stacked-bar-chart')
           .attr('transform', `translate(${ this.marginLeft }, ${ this.marginTop })`)
+           
+          
       }
 
       // chart colors
@@ -710,21 +716,34 @@ export default class D3StackedBarChart {
       // append color blocks into tr first cell
       tr.append('td')
         .append('div')
-        .attr('class', 'legend-rect')
-        .append('svg')
-        .attr('viewBox', '0 0 20 20')
-        .style('fill', (d, i) => {
-          return color(i)
+          .attr('class', 'legend-rect')
+        .append((d, i) => {
+          const title = document.createElement('title')
+
+          title.innerText = self._legendFormat(d[0])
+
+          const rect = document.createElement('rect')
+
+          rect.setAttribute('width', 10)
+          rect.setAttribute('height', 10)
+
+          rect.style.backgroundColor = color(i)
+          rect.style.border = `1px solid ${ color(i) }`
+          rect.style.display = 'block'
+          rect.style.height = '10px'
+
+          const svg = document.createElement('svg')
+
+          svg.setAttribute('viewBox', '0 0 10 10')
+
+          svg.style.fill = color(i)
+
+          svg.append(title)
+          svg.append(rect)
+
+          return svg;
         })
-        .append('rect')
-        .attr('width', 20)
-        .attr('height', 20)
-        .style('background-color', (d, i) => {
-          return color(i)
-        })
-        .style('border', (d, i) => {
-          return `1px solid ${ color(i) }`
-        })
+          
 
       // create a cell in each row for each column
 

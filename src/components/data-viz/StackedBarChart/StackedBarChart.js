@@ -305,6 +305,7 @@ const StackedBarChart = props => {
   const { data, chartHeight, ...options } = props
   const elemRef = useRef(null)
   const title = options.title || ''
+  const svgTitle = options.svgTitle || ''
   const buttonValue = collapsed ? 'Show details' : 'Hide details'
   const drawChart = () => {
     elemRef.current.querySelector('#chart_div').innerHTML = ''
@@ -325,6 +326,7 @@ const StackedBarChart = props => {
   return (
     <>
       {title && <ChartTitle compact={options.compact}>{title}</ChartTitle>}
+      <title>A horizontal stacked bar chart with one bar. Accompanying text includes detailed units and amounts.</title>
       <DefaultContainer ref={elemRef}>
         {options.horizontal &&
           <HorizontalChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }}/>
