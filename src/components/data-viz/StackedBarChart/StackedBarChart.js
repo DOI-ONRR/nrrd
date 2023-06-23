@@ -326,6 +326,7 @@ const StackedBarChart = props => {
   return (
     <>
       {title && <ChartTitle compact={options.compact}>{title}</ChartTitle>}
+      <title>A horizontal stacked bar chart with one bar. Accompanying text includes detailed units and amounts.</title>
       <DefaultContainer ref={elemRef}>
         {options.horizontal &&
           <HorizontalChartContainer id='chart_div' theme={theme} style={{ height: chartHeight }}/>
