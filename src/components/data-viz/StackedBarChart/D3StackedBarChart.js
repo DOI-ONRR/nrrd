@@ -90,6 +90,7 @@ export default class D3StackedBarChart {
         this.chart.attr('viewBox', `0 0 ${ (this._width + 20) } ${ this._height }`)
 
         this.chart.append('title').text(this.svgTitle)
+        
       }
       else {
         // reset margins
@@ -120,6 +121,8 @@ export default class D3StackedBarChart {
         this.chart = d3.select(this.chartDiv).append('svg')
           .attr('class', 'horizontal-stacked-bar-chart')
           .attr('transform', `translate(${ this.marginLeft }, ${ this.marginTop })`)
+          legend.append('title')
+          .text('A horizontal stacked bar chart with one bar. Accompanying text includes detailed units and amounts.')   
           
       }
 
