@@ -190,8 +190,8 @@ const TotalDisbursements = props => {
         default:
           comparisonData = data.total_monthly_calendar_disbursement
           chartData = data.total_monthly_calendar_disbursement.filter(item => item.year >= maxCalendarYear)
-          break
           svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
+          break
         }
       }
       else {
