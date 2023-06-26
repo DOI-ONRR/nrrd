@@ -34,76 +34,79 @@ Combined excel spreadsheet
 
 ## Scope
 
-These datasets include natural resource production for Native American lands and U.S. federal lands and offshore areas.  Neither dataset includes privately owned lands or state-owned lands.
+These datasets include natural resource production for federal lands, federal waters, and Native American lands. These datasets do not include privately owned lands or state-owned lands.
 <br />
 
-Federal production data is available by location, but Native American data is only available at the national level to protect private and personally identifiable information.
+Federal production data is available by location. Native American data is only available at the national level to protect private and personally identifiable information.
 <br />
 
-The dataset currently include data tracked and managed by the Department of the Interior’s Office of Natural Resources Revenue (ONRR). The production data for Oil and Gas is collected on Form ONRR-4054-B (Oil and Gas Operations Report, Part B). Solid mineral production is collected on Form ONRR-4430 (Solid Minerals Production and Royalty Report). Geothermal sales volumes are obtained from the Form ONRR-2014 (Report of Sales and Royalty Remittance).
+The Department of the Interior’s Office of Natural Resources Revenue (ONRR) tracks and manages this data.
+- Oil and Gas production is collected on Form ONRR-4054-B (Oil and Gas Operations Report, Part B). 
+- Solid mineral production is collected on Form ONRR-4430 (Solid Minerals Production and Royalty Report). 
+- Geothermal sales volumes are obtained from the Form ONRR-2014 (Report of Sales and Royalty Remittance).
 
 ## About the data
 
 ### Why is geothermal energy listed so many times?
 
-We can only compare production that is reported in the same unit. The standard unit of measurement for geothermal energy in the federal production dataset is kilowatt hours, but there are a few counties that report it differently. We have separate charts for each of these counties, because they report in nonstandard units:
+We can only compare production that is reported in the same unit. The standard unit of measurement for geothermal energy in the federal production dataset is kilowatt hours, but a few counties report it differently. We have separate charts for each of these counties because they report in nonstandard units:
 
-* Dona Ana County, NM reports direct use of geothermal resources in _million gallons_
-* Churchill County, NV reports direct use of geothermal resources in _hundred gallons_
-* Lassen County, CA reports direct use of geothermal resources in _million BTUs_
-* Lassen County, CA reports geothermal energy generation as _other_ (no unit)
-* Lake County, CA; Sonoma County, CA; and Beaver County, UT report geothermal energy generation in _thousand pounds_
-* Inyo County, CA reports sulfur from geothermal resources as _long tons_
+* Dona Ana County, NM reports direct use of geothermal resources in _million gallons_.
+* Churchill County, NV reports direct use of geothermal resources in _hundred gallons_.
+* Lassen County, CA reports direct use of geothermal resources in _million BTUs_.
+* Lassen County, CA reports geothermal energy generation as _other_ (no unit).
+* Lake County, CA; Sonoma County, CA; and Beaver County, UT report geothermal energy generation in _thousand pounds_.
+* Inyo County, CA reports sulfur from geothermal resources as _long tons_.
 
 ### A note about “Mixed Exploratory” versus “Federal” categories of production
 
-To build our data visualizations, we've aggregated production from two types of jurisdictions: “federal” and “mixed exploratory.”
+To build our data visualizations, we aggregated production from two types of jurisdictions: “federal” and “mixed exploratory.”
 
 * Federal production is production from federal lands and waters.
-* “Mixed exploratory” is a temporary jurisdictional unit that is used until production is proven on that location. BLM then creates a permanent unit with allocation schedules that may split that area between federal and other ownership. Payors then resubmit royalties based on the new unit allocations. These royalties are retroactive to the first production.
+* “Mixed exploratory” is a temporary jurisdictional unit. It is used until production is proven on that location. BLM then creates a permanent unit with allocation schedules that may split that area between federal and other ownership. Payors then resubmit royalties based on the new unit allocations. These royalties are retroactive to the first production.
 
-The federal government rarely gets 100% of “mixed exploratory” volumes. You can see these categories disaggregated in the federal production dataset, downloadable on this page.
+The federal government rarely gets 100% of “mixed exploratory” volumes. These categories are disaggregated in the federal production dataset, downloadable on this page.
 
 <h3 alt="Quartz crystal units">Why is quartz crystal measured in “tickets/pounds”?</h3>
 
-Quartz crystal is sometimes sold in relatively small quantities in gift shops and tourist attractions. In some cases, tourists can buy admission tickets to dig for their own minerals. For those transactions, ONRR may collect royalties on the admission tickets, not on the weight of minerals collected. Furthermore, some minerals are sold by quality, not by weight.
+Quartz crystal is sometimes sold in relatively small quantities in gift shops and tourist attractions. In some cases, tourists can buy admission tickets to dig for their own minerals. ONRR may collect royalties on the admission tickets, not on the weight of minerals collected. Some minerals are sold by quality, not by weight.
 <br />
-The unit “tickets/pounds” shows quantities measured in both tickets sold and weight sold combined, even though the units measure different things. The royalty amount for ticket transactions often don't meet ONRR's review threshold, so the specific quantities in weight may be unknown.
+The unit “tickets/pounds” shows quantities measured in both tickets sold and weight sold combined. The royalty amount for ticket transactions often does not meet ONRR's review threshold, so the specific quantities in weight may be unknown.
 
 ## Data dictionary
 
 ### Fields and definitions
 
 **Year**
-* **Calendar Year** is the period between January 1 and December 31 for a given year.
-* **Fiscal year**  The year the production occurred. The federal fiscal year runs from October 1 of the prior year through September 30 of the year being described. For example, Fiscal Year 2018 is between October 1, 2017, and September 30, 2018.
+* **Calendar Year:** The period between January 1 and December 31 for a given year.
+* **Fiscal Year:**  The year the production occurred. The federal fiscal year runs from October 1 of the prior year through September 30 of the year being described. For example, Fiscal Year 2018 is between October 1, 2017, and September 30, 2018.
 
 **Land Class**
-  * **Federal**  [Federal lands](https://fas.org/sgp/crs/misc/R42346.pdf) are owned by or under the jurisdiction of the federal government, including: public domain lands, acquired lands, military acquired lands, and [Outer Continental Shelf](https://www.boem.gov/OCS-Lands-Act-History/).
-  * **Native American**  includes Tribal lands held in trust by the federal government for a tribe’s use, and allotments held in trust by the federal government for individual Native American use.
-  * **Mixed Exploratory**  is a temporary jurisdictional unit that is used until production is proven on that location (see above).
+  * **Federal:**  [Federal lands](https://fas.org/sgp/crs/misc/R42346.pdf) are owned by or under the jurisdiction of the federal government. Federal lands include: public domain lands, acquired lands, military acquired lands, and the [Outer Continental Shelf](https://www.boem.gov/OCS-Lands-Act-History/).
+  * **Native American:**  Includes Tribal lands held in trust by the federal government for a tribe’s use, and allotments held in trust by the federal government for individual Native American use.
+  * **Mixed Exploratory:**  A temporary jurisdictional unit. It is used until production is proven on that location (see above).
 
 **Land Category**
-  * **Onshore**  Situated or occurring on land
-  * **Offshore**  Submerged lands located farther than three miles off a state’s coastline, or three marine leagues into the Gulf of Mexico off of Texas and Western Florida.
+  * **Onshore:**  Situated or occurring on land.
+  * **Offshore:**  Submerged lands located farther than three miles off a state’s coastline, or three marine leagues into the Gulf of Mexico off Texas and western Florida.
 
-**State** The state where the production occurred
+**State:** The state where the production occurred.
 <br />
 
-**County** The county where the production occurred
+**County:** The county where the production occurred.
 <br />
 
-**FIPS Code** Federal Information Processing Standard (FIPS) code is a five-digit code which uniquely identifies counties and county equivalents in the U.S., certain U.S. possessions, and certain freely associated states. The first two digits are the FIPS state code and the last three are the county code within the state or possession.
+**FIPS Code:** Federal Information Processing Standard (FIPS) code is a five-digit code which uniquely identifies counties and county equivalents in the U.S., certain U.S. possessions, and certain freely associated states. The first two digits are the FIPS state code and the last three are the county code within the state or possession.
 <br />
 
-**Offshore Region** BOEM separates offshore areas into four regions: Gulf of Mexico, Atlantic, Pacific, and Alaska. For more information on offshore regions, including spatial boundaries, see BOEM's [maps and GIS data](http://www.boem.gov/Maps-and-GIS-Data/).
+**Offshore Region:** BOEM separates offshore areas into four regions: Gulf of Mexico, Atlantic, Pacific, and Alaska. For more information on offshore regions, including spatial boundaries, see BOEM's [maps and GIS data](http://www.boem.gov/Maps-and-GIS-Data/).
 <br />
 
-**Product** Products are listed individually but may also fall into like categories.
+**Product:** Products are listed individually but may also fall into like categories.
   * **Anhydrous Sodium Sulfate** (tons)
-  * **Borate Products** (tons) include Borax-Anhydrous, Borax-Decahydrate, Borax-Pentahydrate, and Boric Acid
+  * **Borate Products** (tons): include Borax-Anhydrous, Borax-Decahydrate, Borax-Pentahydrate, and Boric Acid
   * **Borrow Sand and Gravel** (tons)
-  * **Brine Products** include Brine Barrels (converted to tons equivalent) and Magnesium Chloride Brine
+  * **Brine Products:** include Brine Barrels (converted to tons equivalent) and Magnesium Chloride Brine
   * **Calcium Chloride** (lbs)
   * **Carbon Dioxide** (tons)
   * **Cinders** (tons)
@@ -111,22 +114,22 @@ The unit “tickets/pounds” shows quantities measured in both tickets sold and
   * **Coal** (tons)
   * **Coal-Bituminous-Raw** (tons)
   * **Coal-Fines Circuit** (tons)
-  * **Other Coal Products** (tons) include Leonardite and Coal Waste (Sub-Econ)
+  * **Other Coal Products** (tons): include Leonardite and Coal Waste (Sub-Econ)
   * **Copper** (lbs)
   * **Copper Concentrate** (tons)
   * **Gas** (Mcf)
-  * **Geothermal - Direct Use**, (hundreds of gallons)
-  * **Geothermal - Direct Use**, (millions of gallons)
-  * **Geothermal - Direct Use**, (millions of BTUs)
-  * **Geothermal - Electrical Generation**, (kilowatt hours)
-  * **Geothermal - Electrical Generation**, (thousands of pounds)
-  * **Geothermal - Electrical Generation**, (other)
-  * **Geothermal - Sulfur**, (long tons)
+  * **Geothermal - Direct Use** (hundreds of gallons)
+  * **Geothermal - Direct Use** (millions of gallons)
+  * **Geothermal - Direct Use** (millions of BTUs)
+  * **Geothermal - Electrical Generation** (kilowatt hours)
+  * **Geothermal - Electrical Generation** (thousands of pounds)
+  * **Geothermal - Electrical Generation** (other)
+  * **Geothermal - Sulfur** (long tons)
   * **Gilsonite** (tons)
-  * **Gold and Silver Products** (ozs) include: Gold, Gold Placer, and Silver
-  * **Gold and Silver Products** (tons) include: Gold Ore
+  * **Gold and Silver Products** (ozs): include Gold, Gold Placer, and Silver
+  * **Gold and Silver Products** (tons): include Gold Ore
   * **Gypsum** (tons)
-  * **Hardrock Products** (tons) include: Limestone (tons) and Wavellite (spcmns)
+  * **Hardrock Products** (tons): include Limestone (tons) and Wavellite (spcmns)
   * **Humate** (tons)
   * **Langbeinite** (tons)
   * **Lead Concentrate** (tons)
@@ -138,7 +141,7 @@ The unit “tickets/pounds” shows quantities measured in both tickets sold and
   * **Oil** (bbls)
   * **Phosphate Raw Ore** (tons)
   * **Potash** (tons)
-  * **Potassium Products** (tons) include Manure Salts and Sylvite-Raw Ore
+  * **Potassium Products** (tons): include Manure Salts and Sylvite-Raw Ore
   * **Potassium Sulphate-Standard** (tons)
   * **Purge Liquor** (tons)
   * **Quartz Crystal** (tickets/lbs)
@@ -147,7 +150,7 @@ The unit “tickets/pounds” shows quantities measured in both tickets sold and
   * **Sand/Gravel-Cubic Yards** (cyds)
   * **Soda Ash** (tons)
   * **Sodium Bi-Carbonate** (tons)
-  * **Sodium Products** (tons) include Anhydrous Sodium Sulfate, Sodium Bisulfite, Sodium Decahydrate, Sodium Sesquicarbonate, Sulfide, and Trona Ore
+  * **Sodium Products** (tons): include Anhydrous Sodium Sulfate, Sodium Bisulfite, Sodium Decahydrate, Sodium Sesquicarbonate, Sulfide, and Trona Ore
   * **Zinc Concentrate** (tons)
 
-**Volume** Shows the production volume (amount produced). The units for volume are shown in the preceding field (Product).
+**Volume:** Shows the production volume (amount produced). The units for volume are shown in the preceding field (Product).
