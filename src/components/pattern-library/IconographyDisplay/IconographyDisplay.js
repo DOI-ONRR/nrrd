@@ -19,7 +19,7 @@ const IconographyDisplay = ({ children }) => {
     )
   }
 
-  if (Object.hasOwn(Images, '__esModule'))
+  if (Object.prototype.hasOwnProperty(Images, '__esModule'))
     delete Images.__esModule;
 
   return (
