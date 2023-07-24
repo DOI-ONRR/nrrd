@@ -29,9 +29,9 @@ const config = {
     officeName: 'Office of Natural Resources Revenue',
     informationDataManagement: {
       name: 'Information and Data Management',
-      street: 'Bldg 85, Entrance N-1, RM 322',
-      street: 'Denver Federal Center',
-      street: 'Sixth Ave and Kipling St',
+      street1: 'Bldg 85, Entrance N-1, RM 322',
+      street2: 'Denver Federal Center',
+      street3: 'Sixth Ave and Kipling St',
       city: 'Denver, CO',
       zip: '80225',
       email: 'nrrd@onrr.gov'
