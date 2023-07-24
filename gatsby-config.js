@@ -29,11 +29,9 @@ const config = {
     officeName: 'Office of Natural Resources Revenue',
     informationDataManagement: {
       name: 'Information and Data Management',
-      street1: 'Bldg 85, Entrance N-1, RM 322',
-      street2: 'Denver Federal Center',
-      street3: 'Sixth Ave and Kipling St',
+      street: 'PO Box 25165',
       city: 'Denver, CO',
-      zip: '80225',
+      zip: '80225-0165',
       email: 'nrrd@onrr.gov'
     },
     siteUrl: 'https://revenuedata.doi.gov',
