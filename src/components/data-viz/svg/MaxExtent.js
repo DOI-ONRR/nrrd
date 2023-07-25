@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect } from 'react'
 import * as d3 from 'd3'
 
-const MaxExtent = ({ extentPercent, extentMarginOfError, yMax, units, dimensions, maxExtentLineY }) => {
+export const MaxExtent = ({ extentPercent, extentMarginOfError, yMax, units, dimensions, maxExtentLineY }) => {
   const ref = useRef(null)
 
   useLayoutEffect(() => {
@@ -75,8 +75,6 @@ const MaxExtent = ({ extentPercent, extentMarginOfError, yMax, units, dimensions
     <g className='max-extent' ref={ref} />
   )
 }
-
-export default MaxExtent
 
 // siValue
 const siValue = (function () {
