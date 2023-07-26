@@ -29,9 +29,9 @@ const config = {
     officeName: 'Office of Natural Resources Revenue',
     informationDataManagement: {
       name: 'Information and Data Management',
-      street: '1849 C Street NW MS 5134',
-      city: 'Washington, D.C.',
-      zip: '20240',
+      street: 'PO Box 25165',
+      city: 'Denver, CO',
+      zip: '80225-0165',
       email: 'nrrd@onrr.gov'
     },
     siteUrl: 'https://revenuedata.doi.gov',
