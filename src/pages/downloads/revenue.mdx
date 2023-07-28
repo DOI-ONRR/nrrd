@@ -22,7 +22,7 @@ tags:
 
 # Revenue
 
-We offer revenue by month for January 2003 through the most recently completed month. The data includes federal offshore and onshore revenue, along with revenue from Native American lands. The data is further broken down by location, lease type, revenue type (e.g., bonuses, rents, and royalties) and commodity/product information.
+We offer revenue by month for January 2003 through the most recently completed month. The data includes revenue from federal lands, federal waters, and Native American lands. The data is further broken down by location, lease type, revenue type (e.g., bonuses, rents, and royalties), and commodity/product information.
 <br />
 We offer revenue data files for both calendar year and fiscal year. The calendar year data set is for years 2003-2022, and the fiscal year data set is for years 2004-2022. They are all <GlossaryTerm>accounting year</GlossaryTerm> data. The data contains the same fields as the monthly download files.
 <br /><br />
@@ -44,19 +44,15 @@ Combined excel spreadsheet
 
 ## Scope
 
-These datasets include natural resource revenues for U.S. federal lands and offshore areas, along with Native American lands. It does not include privately-owned lands or U.S. state lands.
+These datasets include natural resource revenues for U.S. federal lands, federal waters, and Native American lands. It does not include privately-owned lands or U.S. state lands. Federal revenue data is available by location. Native American data is only available at the national level to protect private and personally identifiable information.
 <br />
-Federal revenue data is available by location, but Native American data is only available at the national level to protect private and personally identifiable information.
-<br />
-The datasets include data tracked and managed by the Department of the Interior’s Office of Natural Resources Revenue.
-<br /><br />
-The data is presented by month, from January 2003 through the most recently completed month.
+The datasets include data tracked and managed by the Department of the Interior’s Office of Natural Resources Revenue (ONRR). The data is presented by month, from January 2003 through the most recently completed month.
 
 ### Why are some values negative?
 
-Companies can adjust and correct their payments for up to seven years after a transaction takes place. If a company overpays their royalty, rent, or bonus, they are entitled to recoup their overpayment. If the overpayment and recoupment happen in different years, the recoupment will appear as a negative amount in the Office of Natural Resources Revenue's revenue summaries.
+Companies can adjust and correct their payments for up to seven years after a transaction takes place. If a company overpays their royalty, rent, or bonus, they are entitled to recoup their overpayment. If the overpayment and recoupment happen in different years, the recoupment will appear as a negative amount in ONRR's revenue summaries.
 
-### Why is there a Gas value, an Oil value and an Oil & Gas (pre-production) value?
+### Why is there a Gas value, an Oil value, and an Oil & Gas (pre-production) value?
 
 “Oil & Gas (pre-production)” is the commodity category used for offshore oil and gas rents and bonuses. At the time of lease sale, it isn’t known whether a lease will produce oil, gas or both oil and gas. After a lease starts producing a commodity (or commodities), the lease owner starts paying royalties. These can then be associated with either oil or gas. Hence, rent and bonus lines of data will be associated with an “Oil & Gas (pre-production)” commodity type, while royalty lines of data will be associated with either “Oil” or “Gas” commodity types.
 
@@ -70,8 +66,8 @@ The fees and rates for revenue from geothermal resources on federal land depend 
 <br />
 Also, different fee rates apply to pre-2005 leases and to direct use facilities:
 
-* For leases signed before the Energy Policy Act of 2005, the lease holder’s reasonable actual transmission and generation costs are deducted from gross proceeds from electricity sales, and the resulting value is multiplied by the lease royalty rate (usually 10%).
-* For <GlossaryTerm>direct use</GlossaryTerm>, the lease holder pays the equivalent value of the least expensive, reasonable alternative energy source. Thermal energy utilized must be measured by lease holder at the inlet and outlet of facility. The resulting value is multiplied by the lease royalty rate of 10%.
+* **Leases signed before the Energy Policy Act of 2005.** The lease holder’s reasonable actual transmission and generation costs are deducted from gross proceeds from electricity sales, and the resulting value is multiplied by the lease royalty rate (usually 10%).
+* **<GlossaryTerm>Direct use</GlossaryTerm>.** The lease holder pays the equivalent value of the least expensive, reasonable alternative energy source. Thermal energy utilized must be measured by lease holder at the inlet and outlet of facility. The resulting value is multiplied by the lease royalty rate of 10%.
 
 The Bureau of Land Management has [more information about geothermal energy on federal lands](https://www.blm.gov/programs/energy-and-minerals/renewable-energy/geothermal-energy).
 
@@ -80,43 +76,43 @@ The Bureau of Land Management has [more information about geothermal energy on f
 ### Fields and definitions
 **Date**
 
-* **Date**  The date the revenue was collected by ONRR
-* **Calendar Year**  The period between January 1 and December 31 for a given year
-* **Fiscal Year**  The year the revenue was generated. The federal fiscal year runs from October 1 of the prior year through September 30 of the year being described. For example, Fiscal Year 2018 is between October 1, 2017,  and September 30, 2018.
+* **Date:**  The date the revenue was collected by ONRR.
+* **Calendar Year:**  The period between January 1 and December 31 for a given year.
+* **Fiscal Year:**  The year the revenue was generated. The federal fiscal year runs from October 1 of the prior year through September 30 of the year being described. For example, Fiscal Year 2018 is between October 1, 2017,  and September 30, 2018.
 
-**Land Class** This field distinguishes federal lands and waters from Native American lands.
+**Land Class:** This field distinguishes federal lands and waters from Native American lands.
 
-* **Federal**  [Federal lands](https://fas.org/sgp/crs/misc/R42346.pdf) are owned by or under the jurisdiction of the federal government, including: public domain lands, acquired lands, military acquired lands, and [Outer Continental Shelf](https://www.boem.gov/OCS-Lands-Act-History/).
-* **Native American**  includes Tribal lands held in trust by the federal government for a tribe’s use, and allotments held in trust by the federal government for individual Native American use.
+* **Federal:**  [Federal lands](https://fas.org/sgp/crs/misc/R42346.pdf) are owned by or under the jurisdiction of the federal government. Federal lands include: public domain lands, acquired lands, military acquired lands, and the [Outer Continental Shelf](https://www.boem.gov/OCS-Lands-Act-History/).
+* **Native American:**  Includes Tribal lands held in trust by the federal government for a tribe’s use, and allotments held in trust by the federal government for individual Native American use.
 
-**Land Category** This field distinguishes between onshore and offshore revenue.
+**Land Category:** This field distinguishes between onshore and offshore revenue.
 
-* **Onshore**  Situated or occurring on land
-* **Offshore**  Submerged lands located farther than three miles off a state’s coastline, or three marine leagues into the Gulf of Mexico off of Texas and Western Florida
-* **Not Tied to a Lease**  Some revenues - such as civil penalties - are not tied to either onshore or offshore.
+* **Onshore:**  Situated or occurring on land.
+* **Offshore:**  Submerged lands located farther than three miles off a state’s coastline, or three marine leagues into the Gulf of Mexico off Texas and western Florida
+* **Not Tied to a Lease:**  Some revenues - such as civil penalties - are not tied to either onshore or offshore.
 
-**State**  Contains the name of the state
+**State:**  Contains the name of the state.
 <br />
 
-**County**  Contains county, parish, and borough names
+**County:**  Contains county, parish, and borough names.
 <br />
 
-**FIPS Code**  Federal Information Processing Standards (FIPS), now known as Federal Information Processing Series, are numeric codes assigned by the National Institute of Standards and Technology (NIST). Typically, FIPS codes deal with U.S. states and counties. U.S. states are identified by a 2-digit number, while US counties are identified by a 3-digit number.
+**FIPS Code:**  Federal Information Processing Standards (FIPS), now known as Federal Information Processing Series, are numeric codes assigned by the National Institute of Standards and Technology (NIST). Typically, FIPS codes deal with U.S. states and counties. U.S. states are identified by a 2-digit number, while US counties are identified by a 3-digit number.
 <br />
 
-**Offshore Region** BOEM separates offshore areas into four regions: Gulf of Mexico, Atlantic, Pacific, and Alaska. For more information on offshore regions, including spatial boundaries, see BOEM's [maps and GIS data](http://www.boem.gov/Maps-and-GIS-Data/).
+**Offshore Region:** BOEM separates offshore areas into four regions: Gulf of Mexico, Atlantic, Pacific, and Alaska. For more information on offshore regions, including spatial boundaries, see BOEM's [maps and GIS data](http://www.boem.gov/Maps-and-GIS-Data/).
 <br />
 
-**Revenue Type**  Revenues from U.S. natural resources fall into one of several types:
+**Revenue Type:**  Revenues from U.S. natural resources fall into one of several types.
 
-* **Royalties**  A natural resource lease holder pays royalties after the lease starts producing a commodity in paying quantities. The amount is based on a percentage of the revenue from the commodity sold. The exact percentage is set in the original lease document that went along with the lease sale.
-* **Bonus**  The amount paid by the highest successful bidder for a natural resource lease, or the winning bid
-* **Rents**  A natural resource lease might not produce anything in paying quantities for some time after it is sold. Until it does, periodic payments are made for the right to continue exploration and development of the land for future natural resource production. These payments are called rent.
-* **Civil Penalties**  ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws.
-* **Inspection Fees**  The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.
-* **Other Revenues**  This category includes revenues that are not included in the royalty, rent, or bonus categories, such as minimum royalties, estimated royalties, settlement agreements, and interest.
+* **Royalties:**  A natural resource lease holder pays royalties after the lease starts producing a commodity in paying quantities. The amount is based on a percentage of the revenue from the commodity sold. The exact percentage is set in the original lease document that went along with the lease sale.
+* **Bonus:**  The amount paid by the highest successful bidder for a natural resource lease, or the winning bid.
+* **Rents:**  A natural resource lease might not produce anything in paying quantities for some time after it is sold. Until it does, periodic payments are made for the right to continue exploration and development of the land for future natural resource production. These payments are called rent.
+* **Civil Penalties:**  ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws.
+* **Inspection Fees:**  The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.
+* **Other Revenues:**  This category includes revenues that are not included in the royalty, rent, or bonus categories. Other revenues contain minimum royalties, estimated royalties, settlement agreements, and interest.
 
-**Mineral Lease Type**  is the type of lease revenue is being generated from. An oil or gas mineral lease type can generate revenue not only from oil or gas but also, CO2, helium, NGL, and sulfur.
+**Mineral Lease Type:**  The type of lease revenue is being generated from. An oil or gas mineral lease type can generate revenue not only from oil or gas but also, CO2, helium, NGL, and sulfur.
 
 * **Asphalt**
 * **Chat**
@@ -147,7 +143,7 @@ The Bureau of Land Management has [more information about geothermal energy on f
 * **Wind**
 
 
-**Commodity** The Department of the Interior collects revenues on over 60 different products. The majority of revenues come from oil, gas, coal, and renewables (geothermal and wind), but you will find many other product categories in these datasets.
+**Commodity:** The Department of the Interior collects revenues on over 60 different products. The majority of revenues come from oil, gas, coal, and renewables (geothermal and wind), but you will find many other product categories in these datasets.
 * **Asbestos**
 * **Asphalt**
 * **Chat**
@@ -191,7 +187,7 @@ The Bureau of Land Management has [more information about geothermal energy on f
 * **Wind**
 * **Zinc**
 
-**Product** Commodity type is often further broken down into product.
+**Product:** Commodity type is often further broken down into product.
 * **Anhydrous Sodium Sulfate**
 * **Asbestos**
 * **Asphaltic Crude**
@@ -297,4 +293,4 @@ The Bureau of Land Management has [more information about geothermal energy on f
 * **Yellow Wax Concentrate**
 * **Zinc Concentrate**
 
-**Revenue** Total revenue
+**Revenue:** Total revenue.
