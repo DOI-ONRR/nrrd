@@ -115,7 +115,7 @@ const AppToolbar = props => {
       <AppBar position="static" style={{ position: 'relative' }}>
         <BaseToolbar className={classes.baseToolbar}>
           <div>
-            <Link href='/' linkType='default' style={{ display: 'block' }}><NrrdLogoImg className={`${ classes.nrrdLogo } header-logo`} /></Link>
+            <Link href='/' linkType='default' style={{ display: 'block' }} aria-label="Link to home page"><NrrdLogoImg className={`${ classes.nrrdLogo } header-logo`} /></Link>
           </div>
           <Hidden mdDown>
             <div className={classes.mainMenuWrap}>
