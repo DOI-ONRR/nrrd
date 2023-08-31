@@ -33,7 +33,7 @@ const config = {
       city: 'Denver, CO',
       zip: '80225-0165',
       email: 'nrrd@onrr.gov',
-      email: 'onrrdatarequests@onrr.gov',
+      dataRetrieval: 'onrrdatarequests@onrr.gov',
     },
     siteUrl: 'https://revenuedata.doi.gov',
   },
