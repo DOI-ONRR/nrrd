@@ -20,7 +20,7 @@ SET row_security = off;
 -- Name: production_summary; Type: VIEW; Schema: public; Owner: postgres
 --
 
-CREATE VIEW public.production_summary AS
+CREATE OR REPLACE VIEW public.production_summary AS
  SELECT a.period,
     a.location_name,
     a.state,
@@ -72,6 +72,7 @@ CREATE VIEW public.production_summary AS
              JOIN public.location USING (location_id))
              JOIN public.commodity USING (commodity_id))
           WHERE ((location.state_name)::text <> ''::text)
+            and land_class != 'Mixed Exploratory'
           GROUP BY period.period, location.state_name, 'State'::text, location.land_category, commodity.product, commodity.commodity, period.fiscal_year, period.calendar_year, location.state, production.unit_abbr
         UNION
          SELECT period.period,
@@ -93,6 +94,7 @@ CREATE VIEW public.production_summary AS
              JOIN public.location USING (location_id))
              JOIN public.commodity USING (commodity_id))
           WHERE ((location.region_type)::text = 'County'::text)
+            and land_class != 'Mixed Exploratory'
           GROUP BY period.period, location.fips_code, location.location_name, location.land_category, commodity.product, commodity.commodity, period.fiscal_year, period.calendar_year, production.unit_abbr, location.state
         UNION
          SELECT period.period,
@@ -156,6 +158,7 @@ CREATE VIEW public.production_summary AS
              JOIN public.location USING (location_id))
              JOIN public.commodity USING (commodity_id))
           WHERE (((location.land_class)::text <> 'Native American'::text) AND (((location.location_name)::text = 'Not tied to a lease'::text) AND ((location.region_type)::text = 'State'::text)))
+            and land_class != 'Mixed Exploratory'
           GROUP BY period.period, 'State'::text, commodity.product, commodity.commodity, period.fiscal_year, period.calendar_year, production.unit_abbr, location.state) a
   ORDER BY a.year, a.location;
 
