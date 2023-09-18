@@ -1,0 +1,3 @@
+DROP TRIGGER monthly_revenue_elt_sanitize_fips_code_bri ON monthly_revenue_elt;
+
+DROP FUNCTION sanitize_fips_code;

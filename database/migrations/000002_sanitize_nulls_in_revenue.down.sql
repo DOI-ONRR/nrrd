@@ -1,0 +1,3 @@
+DROP TRIGGER IF EXISTS monthly_revenue_elt_sanitize_nulls_bri ON monthly_revenue_elt;
+
+DROP FUNCTION sanitize_nulls_in_revenue;

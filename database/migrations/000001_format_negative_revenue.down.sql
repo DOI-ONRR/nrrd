@@ -1,0 +1,3 @@
+DROP TRIGGER IF EXISTS monthly_revenue_elt_format_negative_bri ON monthly_revenue_elt;
+
+DROP FUNCTION format_negative_revenue;
