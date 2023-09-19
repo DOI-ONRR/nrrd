@@ -24,7 +24,9 @@ CREATE VIEW public.production_commodity_options AS
  SELECT DISTINCT commodity.product,
     commodity.commodity_order
    FROM (public.commodity
-     JOIN public.production USING (commodity_id))
+     JOIN public.production USING (commodity_id)
+     JOIN public.period USING (period_id))
+  WHERE period.period in ('Calendar Year', 'Fiscal Year')
   ORDER BY commodity.commodity_order;
 
 

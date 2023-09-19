@@ -296,9 +296,8 @@ jobs:
       - generate-downloads
   nrrd-preview:
     docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: cimg/node:12.13.1-browsers
-    resource_class: medium+
+    resource_class: xlarge
     steps:
       - checkout
       - restore_cache:
@@ -342,7 +341,7 @@ jobs:
   dev:
     docker:
       - image: cimg/node:12.13-browsers
-    resource_class: medium+
+    resource_class: xlarge
     steps:
       - checkout
       - restore_cache:
@@ -390,7 +389,7 @@ jobs:
     docker:
       # This image has the latest cf-cli as well as zero downtime plugins, if needed.
       - image: cimg/node:12.13-browsers
-    resource_class: medium+
+    resource_class: xlarge
     steps:
       - checkout
       - restore_cache:

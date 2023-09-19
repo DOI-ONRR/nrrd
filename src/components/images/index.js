@@ -96,10 +96,13 @@ export const HowMainIconHardrockImg = props => <HowMainIconHardrockSvg {...props
 export const HowMainIconWindImg = props => <HowMainIconWindSvg {...props} />
 export const HowMainIconCoalImg = props => <HowMainIconCoalSvg {...props} />
 export const HowItWorksRibbonGraphicImg = props => <HowItWorksRibbonGraphicSvg {...props} />
-// eslint-disable-next-line max-len
-export const AmlUnappropGrowthImg = ({ alt, ...props }) => <AmlUnappropGrowthSvg {...props} alt={alt || "Chart shows the growth of the AML fund's unappropriated balance from 1989 to 2017. It grew from around $500 million to nearly $2.5 billion dollars in 2015, before falling slightly to $2.38 billion in 2017."}/>
+export const AmlUnappropGrowthImg = ({ alt, ...props }) => <AmlUnappropGrowthSvg {...props} alt={alt || 'Chart shows the growth of the AML fund\'s unappropriated ' +
+  'balance from 1989 to 2017. It grew from around $500 million to nearly $2.5 billion dollars in 2015, before falling slightly to $2.38 billion in 2017.'}/>
 
-export const OnrrLogoImg = ({ alt, ...props }) => <OnrrLogoSvg {...props} alt={alt || "A six-color logo with the ONRR acronym in large text in the top left corner, and in smaller text below it, “Office of Natural Resources Revenue”. Behind the text is a partial sun with beams in a light blue and slightly darker blue color. Dark blue and dark purple mountains are located in the middle of the logo with white icons of a windmill, an oil pumpjack, and trees. A white offshore oil rig in the bottom-right corner is separated by the mountains by a two-tone green arc."}/>
+export const OnrrLogoImg = ({ alt, ...props }) => <OnrrLogoSvg {...props} alt={alt || 'A six-color logo with the ONRR acronym in large text in the top left corner, ' +
+  'and in smaller text below it, "Office of Natural Resources Revenue". Behind the text is a partial sun with beams in a light blue and slightly darker blue color. ' +
+  'Dark blue and dark purple mountains are located in the middle of the logo with white icons of a windmill, an oil pumpjack, and trees. A white offshore oil rig in ' +
+  'the bottom-right corner is separated by the mountains by a two-tone green arc.'}/>
 export const NrrdLogoImg = props => <NrrdLogoSvg {...props} />
 
 export const Rig404Img = props => <Rig404Svg {...props} />
