@@ -1,0 +1,3 @@
+DROP TRIGGER monthly_revenue_elt_insert_fund_ari ON monthly_revenue_elt;
+
+DROP FUNCTION insert_fund_revenue;

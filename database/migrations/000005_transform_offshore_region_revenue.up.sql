@@ -7,12 +7,16 @@ BEGIN
     CASE NEW.agency_state_region_code_desc
         WHEN 'ALASKA OCS' THEN
             NEW.agency_state_region_code_desc := 'Alaska';
+            NEW.fips_code := 'AKR';
         WHEN 'PACIFIC OCS' THEN
             NEW.agency_state_region_code_desc := 'Pacific';
+            NEW.fips_code := 'POR';
         WHEN 'ATLANTIC OCS' THEN
             NEW.agency_state_region_code_desc := 'Atlantic';
+            NEW.fips_code := 'AOR';
         WHEN 'GULF OF MEXICO' THEN
             NEW.agency_state_region_code_desc := 'Gulf of Mexico';
+            NEW.fips_code := 'GMR';
         WHEN 'NEW MEXICO', 'EAST STATES' THEN
             NEW.agency_state_region_code_desc := '';
         ELSE

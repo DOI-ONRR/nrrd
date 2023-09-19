@@ -1,0 +1,1 @@
+DROP PROCEDURE summarize_native_american_revenue;
