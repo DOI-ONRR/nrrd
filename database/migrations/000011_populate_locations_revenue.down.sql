@@ -1,3 +1,0 @@
-DROP TRIGGER monthly_revenue_elt_populate_location_ari ON monthly_revenue_elt;
-
-DROP FUNCTION populate_location_revenue;

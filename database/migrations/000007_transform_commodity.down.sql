@@ -1,3 +1,0 @@
-DROP TRIGGER monthly_revenue_elt_transform_commodity_bri ON monthly_revenue_elt;
-
-DROP FUNCTION transform_commodity;

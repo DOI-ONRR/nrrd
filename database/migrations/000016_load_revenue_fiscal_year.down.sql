@@ -1,1 +1,0 @@
-DROP PROCEDURE load_revenue_fiscal_year;

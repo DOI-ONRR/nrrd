@@ -1,8 +1,6 @@
 CREATE OR REPLACE FUNCTION ignore_empty_revenue()
   RETURNS TRIGGER
-  LANGUAGE PLPGSQL
-AS
-$$
+AS $$
 BEGIN
     
     IF NEW.accept_date is null 
@@ -22,11 +20,4 @@ BEGIN
     END IF;
 
     RETURN NEW;
-END
-$$;
-
-CREATE TRIGGER monthly_revenue_elt_ignore_empty_bri
-    BEFORE INSERT
-    ON monthly_revenue_elt
-    FOR EACH ROW
-    EXECUTE FUNCTION ignore_empty_revenue();
+END $$ LANGUAGE PLPGSQL;

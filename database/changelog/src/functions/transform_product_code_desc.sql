@@ -1,8 +1,6 @@
 CREATE OR REPLACE FUNCTION transform_product_code_desc()
     RETURNS TRIGGER
-    LANGUAGE PLPGSQL
-AS
-$$
+AS $$
 BEGIN
     CASE NEW.product_code_desc
         WHEN 'Geothermal - Direct Utilization, Hundreds of Gallons' THEN
@@ -24,11 +22,4 @@ BEGIN
     END CASE;
 
     RETURN NEW;
-END
-$$;
-
-CREATE TRIGGER monthly_revenue_elt_transform_product_code_bri
-    BEFORE INSERT
-    ON monthly_revenue_elt
-    FOR EACH ROW
-    EXECUTE FUNCTION transform_product_code_desc();
+END $$ LANGUAGE PLPGSQL;

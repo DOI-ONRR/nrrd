@@ -1,8 +1,6 @@
 CREATE OR REPLACE FUNCTION transform_offshore_region()
     RETURNS TRIGGER
-    LANGUAGE PLPGSQL
-AS
-$$
+AS $$
 BEGIN
     CASE NEW.agency_state_region_code_desc
         WHEN 'ALASKA OCS' THEN
@@ -26,11 +24,4 @@ BEGIN
     END CASE;
 
     RETURN NEW;
-END
-$$;
-
-CREATE TRIGGER monthly_revenue_elt_transform_offshore_bri
-    BEFORE INSERT
-    ON monthly_revenue_elt
-    FOR EACH ROW
-    EXECUTE FUNCTION transform_offshore_region();
+END $$ LANGUAGE PLPGSQL;

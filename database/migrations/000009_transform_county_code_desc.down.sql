@@ -1,3 +1,0 @@
-DROP TRIGGER monthly_revenue_elt_transform_county_code_desc_bri ON monthly_revenue_elt;
-
-DROP FUNCTION transform_county_code_desc;

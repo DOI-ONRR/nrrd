@@ -1,3 +1,0 @@
-DROP TRIGGER monthly_revenue_elt_transform_revenue_type_bri ON monthly_revenue_elt;
-
-DROP FUNCTION transform_revenue_type;

@@ -1,3 +1,0 @@
-DROP TRIGGER monthly_revenue_etl_insert_period_ari ON monthly_revenue_elt;
-
-DROP FUNCTION insert_period_revenue;

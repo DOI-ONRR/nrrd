@@ -1,3 +1,0 @@
-DROP TRIGGER monthly_revenue_elt_transform_offshore_bri ON monthly_revenue_elt;
-
-DROP FUNCTION transform_offshore_region;
