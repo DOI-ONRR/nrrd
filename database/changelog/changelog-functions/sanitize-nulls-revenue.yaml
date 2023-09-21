@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: sanitize-nulls-revenue
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/functions/sanitize_nulls_revenue.sql
