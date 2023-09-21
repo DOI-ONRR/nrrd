@@ -510,7 +510,8 @@ export default class d3Map {
       legend = d3.select(this.node.children[0]).append('svg')
         .attr('class', 'legend')
       legend.append('title')
-        .text('Map legend defining what the shades in the map coorelate to. The units and amounts in the legend change based on the selected data type, commodity, and period.')
+        .text('Map legend defining what the shades in the map coorelate to. ' +
+        'The units and amounts in the legend change based on the selected data type, commodity, and period.')
     }
 
     const g = legend

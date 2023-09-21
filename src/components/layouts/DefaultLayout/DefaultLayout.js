@@ -116,6 +116,7 @@ const DefaultLayout = ({ includeToc, children }) => {
             zip
             street
             email
+            contact
           }
         }
       }

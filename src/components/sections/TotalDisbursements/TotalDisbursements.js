@@ -138,7 +138,8 @@ const TotalDisbursements = props => {
 		   ]
 		   : ['Native American', 'Federal offshore', 'Federal onshore']
 
-  let svgTitle = 'Bar chart displaying the amount of disbursements on a yearly basis by source, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv).'
+  let svgTitle = 'Bar chart displaying the amount of disbursements on a yearly basis by source, refer to the data table following the chart for detailed data for each ' +
+    'bar.  [Details available in the Source (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv).'
 
   if (error) return `Error! ${ error.message }`
   if (data) {
@@ -171,12 +172,14 @@ const TotalDisbursements = props => {
         case 'recipient':
           comparisonData = data.total_monthly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
           chartData = data.total_monthly_fiscal_disbursement_last_two_years.filter(item => yOrderBy.includes(item.recipient) && item.year >= maxFiscalYear)
-          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart ' +
+            'for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         default:
           comparisonData = data.total_monthly_fiscal_disbursement
           chartData = data.total_monthly_fiscal_disbursement_last_two_years.filter(item => item.year >= maxFiscalYear)
-          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by source, refer to the data table following the chart ' +
+            'for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         }
       }
@@ -185,12 +188,14 @@ const TotalDisbursements = props => {
         case 'recipient':
           comparisonData = data.total_monthly_calendar_disbursement.filter(item => yOrderBy.includes(item.recipient))
           chartData = data.total_monthly_calendar_disbursement.filter(item => item.year >= maxCalendarYear && yOrderBy.includes(item.recipient))
-          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart ' +
+            'for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         default:
           comparisonData = data.total_monthly_calendar_disbursement
           chartData = data.total_monthly_calendar_disbursement.filter(item => item.year >= maxCalendarYear)
-          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by source, refer to the data table following the chart ' +
+            'for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         }
       }
@@ -199,12 +204,14 @@ const TotalDisbursements = props => {
         case 'recipient':
           comparisonData = data.total_monthly_last_three_years_disbursement.filter(item => yOrderBy.includes(item.recipient))
           chartData = data.total_monthly_last_twelve_disbursement.filter(item => yOrderBy.includes(item.recipient))
-          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart ' +
+            'for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         default:
           comparisonData = data.total_monthly_last_three_years_disbursement
           chartData = data.total_monthly_last_twelve_disbursement
-          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
+          svgTitle = 'Bar chart displaying the amount of disbursements collected on a monthly basis by source, refer to the data table following the chart ' +
+            'for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
           break
         }
       }
@@ -246,12 +253,14 @@ const TotalDisbursements = props => {
       case 'recipient':
         comparisonData = data.total_yearly_fiscal_disbursement.filter(item => yOrderBy.includes(item.recipient))
         chartData = data.total_yearly_fiscal_disbursement.filter(item => (item.year >= maxFiscalYear - 9 && yOrderBy.includes(item.recipient)))
-        svgTitle = 'Bar chart displaying the amount of disbursements collected on a yearly basis by recipient refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
+        svgTitle = 'Bar chart displaying the amount of disbursements collected on a yearly basis by recipient refer to the data table following the chart ' +
+          'for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
         break
       default:
         comparisonData = data.total_yearly_fiscal_disbursement
         chartData = data.total_yearly_fiscal_disbursement.filter(item => item.year >= maxFiscalYear - 9)
-        svgTitle = 'Bar chart displaying the amount of disbursements collected on a yearly basis by source refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
+        svgTitle = 'Bar chart displaying the amount of disbursements collected on a yearly basis by source refer to the data table following the chart ' +
+          'for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).'
         break
       }
 

@@ -305,7 +305,6 @@ const StackedBarChart = props => {
   const { data, chartHeight, ...options } = props
   const elemRef = useRef(null)
   const title = options.title || ''
-  const svgTitle = options.svgTitle || ''
   const buttonValue = collapsed ? 'Show details' : 'Hide details'
   const drawChart = () => {
     elemRef.current.querySelector('#chart_div').innerHTML = ''

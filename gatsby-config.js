@@ -20,7 +20,7 @@ const config = {
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
     keywords: 'Oil and gas, Coal, Renewable energy, Nonenergy minerals, Natural resource policy, Natural resource data, Extractives industries, Federal revenues, Production, 8(g) offshore revenue, offshore production, abanonded mine lands fund, mining reclamation tax, onrr state disbursement data, Native American land ownership, coal extraction, Department of the Interior, DOI, BLM coal leases, gomesa, gomesa funding, energy resource revenue, ONRR, state royalty, us eiti, solar industry, geothermal',
     googleAnalyticsId: GOOGLE_ANALYTICS_ID,
-    version: 'v6.8.6',
+    version: 'v6.8.7',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -32,7 +32,8 @@ const config = {
       street: 'PO Box 25165',
       city: 'Denver, CO',
       zip: '80225-0165',
-      email: 'nrrd@onrr.gov'
+      email: 'nrrd@onrr.gov',
+      contact: 'onrrdatarequests@onrr.gov',
     },
     siteUrl: 'https://revenuedata.doi.gov',
   },

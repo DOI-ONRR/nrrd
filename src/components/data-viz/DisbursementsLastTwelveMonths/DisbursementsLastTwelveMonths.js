@@ -82,7 +82,7 @@ const DisbursementsLastTwelveMonths = ({ title, yGroupBy, data, disableInteracti
           legendHeaders={legendHeaders}
           chartHeight={chartHeight}
           compact={true}
-          disableInteraction={disableInteraction}  
+          disableInteraction={disableInteraction}
         />
         : <Skeleton variant="rect" height={skeletonHeight} animation="wave" />
       }
