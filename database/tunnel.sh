@@ -14,14 +14,12 @@ cf connect-to-service -no-client $INTERFACE $DB_ENV > .creds &
 PID=$!
 
 
-cat .creds
 while ! grep "Leave" .creds > /dev/null;
 do
     echo "waiting for tunnel....."
     sleep 2
 
 done
-cat .creds
 
 PGID=$()
 
