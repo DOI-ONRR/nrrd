@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-23-july
+      id: revenue-23-july-csv
       author: Jeff Schwartz
       changes:
       - loadData:
@@ -45,3 +45,14 @@ databaseChangeLog:
           - column:
               header: Revenue
               name: revenue
+  - changeSet:
+      id: revenue-23-july-load
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            CALL load_native_american_revenue();
+            CALL load_revenue_monthly();
+            CALL load_revenue_fiscal_year();
+            CALL load_revenue_calendar_year();

@@ -1,7 +1,7 @@
 databaseChangeLog:
     - includeAll:
         path: changelog-functions
-        relativeToChangelogFile: true
+    - includeAll:
+        path: changelog-triggers
     - includeAll:
         path: changelog-data
-        relativeToChangelogFile: true

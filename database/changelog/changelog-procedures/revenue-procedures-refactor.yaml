@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: refactor-revenue-procedures
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/procedures/load_native_american_revenue.sql
+      - sqlFile:
+          path: src/procedures/load_revenue_calendar_year.sql
+      - sqlFile:
+          path: src/procedures/load_revenue_fiscal_year.sql
+      - sqlFile:
+          path: src/procedures/load_revenue_monthly.sql
