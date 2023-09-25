@@ -16,6 +16,7 @@ import useTheme from '@material-ui/core/styles/useTheme'
 import Footer from '../../content-partials/Footer'
 // import Header from '../../content-partials/Header'
 import ErrorMessage from '../../info/ErrorMessage'
+import ShutdownBanner from '../../content-partials/ShutdownBanner'
 import LoadingStatusBackdrop from '../../info/LoadingStatusBackdrop'
 import PageToc from '../../navigation/PageToc'
 
@@ -130,6 +131,13 @@ const DefaultLayout = ({ includeToc, children }) => {
       <StickyHeader data={data} />
       <CssBaseline />
       <main id='main-content' className={classes.mainContent}>
+        <Container maxWidth="lg">
+          <Grid container spacing={0} >
+            <Grid item xs={12}>
+              <ShutdownBanner />
+            </Grid>
+          </Grid>
+        </Container>
         <ErrorMessage />
         {includeToc
           ? <Container maxWidth="lg" component="section">
