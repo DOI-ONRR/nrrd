@@ -1,5 +1,13 @@
 databaseChangeLog:
   - changeSet:
+      id: revenue-23-july-truncate
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            TRUNCATE TABLE monthly_revenue_elt
+  - changeSet:
       id: revenue-23-july-csv
       author: Jeff Schwartz
       changes:
