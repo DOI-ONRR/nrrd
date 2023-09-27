@@ -54,5 +54,5 @@ BEGIN
             )
             ON CONFLICT DO NOTHING;
         END LOOP;
-    END LOOP
+    END LOOP;
 END $$ LANGUAGE PLPGSQL;
