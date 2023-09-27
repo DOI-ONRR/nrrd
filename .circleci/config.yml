@@ -336,15 +336,15 @@ jobs:
       - run:
           name: Assign Liquibase environment variables
           command: |
-            echo 'export PORT=`cat output | grep Port: | cut -d ' ' -f2 |  tr -d '\n'`' >> "$BASH_ENV"
-            echo 'export HOST=`cat output | grep Host: | cut -d ' ' -f2 |  tr -d '\n'`' >> "$BASH_ENV"
-            echo 'export USERNAME=`cat output | grep Username: | cut -d ' ' -f2 |  tr -d '\n'`' >> "$BASH_ENV"
-            echo 'export PASSWORD=`cat output | grep Password: | cut -d ' ' -f2 |  tr -d '\n'`' >> "$BASH_ENV"
-            echo 'export DB_NAME=`cat output | grep Name: | cut -d ' ' -f2 |  tr -d '\n'`' >> "$BASH_ENV"
+            echo export PORT=`cat output | grep Port: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export HOST=`cat output | grep Host: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export USERNAME=`cat output | grep Username: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export PASSWORD=`cat output | grep Password: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo 'export DB_NAME=`cat output | grep Name: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
 
-            echo 'export LIQUIBASE_COMMAND_USERNAME=$USERNAME' >> "$BASH_ENV"
-            echo 'export LIQUIBASE_COMMAND_PASSWORD=$PASSWORD' >> "$BASH_ENV"
-            echo 'export LIQUIBASE_COMMAND_URL=jdbc:postgresql://${HOST}:${PORT}/${DB_NAME}' >> "$BASH_ENV"
+            echo export LIQUIBASE_COMMAND_USERNAME=$USERNAME >> "$BASH_ENV"
+            echo export LIQUIBASE_COMMAND_PASSWORD=$PASSWORD >> "$BASH_ENV"
+            echo export LIQUIBASE_COMMAND_URL=jdbc:postgresql://${HOST}:${PORT}/${DB_NAME} >> "$BASH_ENV"
 
             source "$BASH_ENV"
       - run:
