@@ -333,9 +333,7 @@ jobs:
             if [ stepcount = 30 ]; then
               circleci-agent step halt
             fi
-      - run:
-          name: Assign Liquibase environment variables
-          command: |
+
             echo export PORT=`cat output | grep Port: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
             echo export HOST=`cat output | grep Host: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
             echo export USERNAME=`cat output | grep Username: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
@@ -349,14 +347,10 @@ jobs:
             echo export LIQUIBASE_COMMAND_URL=jdbc:postgresql://${HOST}:${PORT}/${DB_NAME} >> "$BASH_ENV"
 
             source "$BASH_ENV"
-      - run:
-          name: Update database
-          command: |
+
             cd database/changelog
             liquibase update
-      - run:
-          name: Backup database
-          command: |
+
             pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
       - generate-downloads
 
