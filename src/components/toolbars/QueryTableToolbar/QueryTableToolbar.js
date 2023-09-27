@@ -181,6 +181,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
           defaultSelected={downloadToolbarOpen}
           onChange={toggleDownloadToolbar}>
           <IconDownloadBaseImg className={ `${ classes.toolbarIcon }, ${ classes.exploreDataIcon }` } style={ { fill: classes.toolbarIcon.fill } }/> <span>Download</span>
+          <h1 style={{ fontSize: '1.125rem', margin: 0 }}></h1>
         </BaseToggle>
       </BaseToolbar>
       { queryDataToolbarOpen &&
