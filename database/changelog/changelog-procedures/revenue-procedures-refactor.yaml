@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       changes:
       - sqlFile:
-          path: src/procedures/load_native_american_revenue.sql
+          path: src/procedures/summarize_native_american_revenue.sql
           splitStatements: false
       - sqlFile:
           path: src/procedures/load_revenue_calendar_year.sql

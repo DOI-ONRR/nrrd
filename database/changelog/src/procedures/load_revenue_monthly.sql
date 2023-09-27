@@ -25,7 +25,7 @@ DECLARE
             AND disbursement_type = ''
         JOIN commodity c ON e.commodity = c.commodity
             AND e.mineral_production_code_desc = c.mineral_lease_type 
-            AND product_code_desc=product
+            AND product_code_desc = product
         JOIN period ON accept_date = period_date
             AND period = 'Monthly'
         GROUP BY location_id, 
@@ -53,6 +53,7 @@ BEGIN
             revenue_rec.unit,
             revenue_rec.unit_abbr,
             revenue_rec.duplicate_no
-        );
+        )
+        ON CONFLICT DO NOTHING;
     END LOOP;
 END $$ LANGUAGE PLPGSQL;

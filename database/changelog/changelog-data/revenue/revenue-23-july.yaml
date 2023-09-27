@@ -60,7 +60,7 @@ databaseChangeLog:
       - sql:
           dbms: 'postgresql'
           sql: |
-            CALL load_native_american_revenue();
+            CALL summarize_native_american_revenue();
             CALL load_revenue_monthly();
             CALL load_revenue_fiscal_year();
             CALL load_revenue_calendar_year();

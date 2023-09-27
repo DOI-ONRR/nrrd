@@ -5,5 +5,3 @@ databaseChangeLog:
         path: changelog-procedures
     - includeAll:
         path: changelog-triggers
-    - includeAll:
-        path: changelog-data
