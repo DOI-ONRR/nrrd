@@ -25,6 +25,14 @@ commands:
             echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/liquibase-keyring.gpg] https://repo.liquibase.com stable main' | sudo tee /etc/apt/sources.list.d/liquibase.list
             sudo apt-get update
             sudo apt-get install liquibase
+  install-java:
+    description: Install Java
+    steps:
+      - run:
+          name: Install Java 
+          command: |
+            sudo apt update
+            sudo apt install default-jre
   generate-downloads:
     description: "generate downloads"
     steps:
@@ -302,6 +310,7 @@ jobs:
       - checkout
       - install-cf-cli
       - install-liquibase
+      - install-java
       - run:
           name: Install cf connect-to-service plugin
           command: cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
@@ -436,3 +445,8 @@ workflows:
           context:
             - org-global
             - nrrd
+          filters:
+            branches:
+              ignore:
+                - master
+                - dev
