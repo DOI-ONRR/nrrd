@@ -347,7 +347,9 @@ jobs:
             export LIQUIBASE_COMMAND_URL=jdbc:postgresql://${HOST}:${PORT}/${DB_NAME}
       - run:
           name: Update database
-          command: liquibase update
+          command: |
+            cd database/changelog
+            liquibase update
       - run:
           name: Backup database
           command: |
@@ -438,15 +440,3 @@ workflows:
           filters:
             branches:
               only: dev
-  local:
-    jobs:
-      - migrate-database:
-          name: Migrate database
-          context:
-            - org-global
-            - nrrd
-          filters:
-            branches:
-              ignore:
-                - master
-                - dev
