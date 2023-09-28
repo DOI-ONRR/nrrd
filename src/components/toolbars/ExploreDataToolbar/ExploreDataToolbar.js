@@ -197,7 +197,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
             selected={locationTabOpen}
             onChange={toggleLocationToolbar}>
             <LocationOnIcon className={classes.toolbarIcon} />
-            <h1 style={{ fontSize: '1.125rem', margin: 0 }}><span>Add a location</span></h1>
+            <span>Add a location</span>
           </FilterToggleInput>
           <FilterToggleInput
             value="open"
@@ -206,7 +206,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
             selected={exploreMoreTabOpen}
             onChange={toggleExploreMoreToolbar}>
             <MoreVertIcon className={classes.toolbarIcon} />
-            <h1 style={{ fontSize: '1.125rem', margin: 0 }}><span>Explore more {dataType}</span></h1>
+           <span>Explore more {dataType}</span>
           </FilterToggleInput>
         </BaseToolbar>
         {exploreDataTabOpen &&
