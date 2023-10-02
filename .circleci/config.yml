@@ -39,7 +39,7 @@ commands:
     steps:
       - run:
           name: "Install ssconvert"
-          command: sudo apt-get install gnumeric
+          command: sudo apt-get install -y gnumeric
       - run:
           name: "Generate downloads"
           command: |
