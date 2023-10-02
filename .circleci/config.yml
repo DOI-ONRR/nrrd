@@ -53,7 +53,7 @@ commands:
               cd database
               npm install
               bash ./src/scripts/downloads.sh
-              node ./src/scripts/downloads.js
+              node ./src/scripts/downloads.js -host $HOST -port $PORT -username $USERNAME -password $PASSWORD -database $DB_NAME
       - run:
           name: "list generated downloads"
           command: |
@@ -327,7 +327,7 @@ jobs:
           name: Login to cf cli
           command: cf login -a api.fr.cloud.gov -u "$CF_USERNAME" -p "$CF_PASSWORD" -o doi-onrr -s $CF_SPACE
       - run:
-          name: Tunnel to database service and apply updates
+          name: Tunnel to database service
           command: |
             cf connect-to-service -no-client $CF_DB_APP $CF_DB_SERVICE > output &
             linecount=`cat output | wc -l | awk '{$1=$1};1'`
@@ -342,7 +342,9 @@ jobs:
             if [ stepcount = 30 ]; then
               circleci-agent step halt
             fi
-
+      - run:
+          name: Set liquibase environment variables
+          command: |
             echo export PORT=`cat output | grep Port: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
             echo export HOST=`cat output | grep Host: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
             echo export USERNAME=`cat output | grep Username: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
@@ -356,11 +358,15 @@ jobs:
             echo export LIQUIBASE_COMMAND_URL=jdbc:postgresql://${HOST}:${PORT}/${DB_NAME} >> "$BASH_ENV"
 
             source "$BASH_ENV"
-
+      - run:
+          name: Backup database
+          command: |
+            pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
+      - run:
+          name: Call liquibase to update migrate-database
+          command: |
             cd database/changelog
             liquibase update
-
-            pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
       - node/install
       - generate-downloads
 
