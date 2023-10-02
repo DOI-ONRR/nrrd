@@ -1,7 +1,6 @@
-#alias psql-shell='psql postgres://postgres:postgrespassword@localhost:5432/postgres'
 mkdir -p /tmp/downloads
 
-psql postgres://postgres:postgrespassword@localhost:5432/postgres  <<EOF
+psql postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME}  <<EOF
 set datestyle to SQL, MDY;
 \copy  (select "Date", "Land Class", "Land Category", "State", "County", "FIPS Code", "Offshore Region", "Revenue Type", "Mineral Lease Type", "Commodity", "Product", "Revenue" from download_monthly_revenue )  to '/tmp/downloads/monthly_revenue.csv' csv header force quote "FIPS Code"
 \copy  (select "Fiscal Year", "Land Class", "Land Category", "State", "County", "FIPS Code", "Offshore Region", "Revenue Type",  "Mineral Lease Type", "Commodity", "Product", "Revenue" from download_fiscal_year_revenue )  to '/tmp/downloads/fiscal_year_revenue.csv' csv header force quote "FIPS Code"

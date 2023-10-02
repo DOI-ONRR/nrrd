@@ -41,6 +41,9 @@ commands:
           name: "Install gnumeric"
           command: sudo apt-get install gnumeric
       - run:
+          name: Install postgres client tools
+          command: sudo apt-get install  --fix-missing  postgresql-client
+      - run:
           name: "Generate downloads"
           command: |
               cd database
