@@ -53,7 +53,7 @@ commands:
               cd database
               npm install
               bash ./src/scripts/downloads.sh
-              node ./src/scripts/downloads.js -host $HOST -port $PORT -username $USERNAME -password $PASSWORD -database $DB_NAME
+              node ./src/scripts/downloads.js --host $HOST --port $PORT --username $USERNAME --password $PASSWORD --database $DB_NAME
       - run:
           name: "list generated downloads"
           command: |
@@ -363,7 +363,7 @@ jobs:
           command: |
             pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
       - run:
-          name: Call liquibase to update migrate-database
+          name: Call liquibase to update database
           command: |
             cd database/changelog
             liquibase update
