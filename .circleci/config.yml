@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
+  node: circleci/node@5.1.0
 
 commands:
   install-cf-cli:
@@ -318,7 +319,7 @@ jobs:
           name: Login to cf cli
           command: cf login -a api.fr.cloud.gov -u "$CF_USERNAME" -p "$CF_PASSWORD" -o doi-onrr -s $CF_SPACE
       - run:
-          name: Open tunnel to database
+          name: Tunnel to database service and apply updates
           command: |
             cf connect-to-service -no-client $CF_DB_APP $CF_DB_SERVICE > output &
             linecount=`cat output | wc -l | awk '{$1=$1};1'`
@@ -352,6 +353,7 @@ jobs:
             liquibase update
 
             pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
+      - node/install
       - generate-downloads
 
 workflows:
