@@ -305,8 +305,8 @@ jobs:
             #bash ./swap.sh
             cf push nrrd -f ./manifest.yml
   migrate-database:
-    docker: 
-      - image: cimg/base:current
+    machine: 
+      image: ubuntu-2204:current
     steps:
       - checkout
       - install-cf-cli
