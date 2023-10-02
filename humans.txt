@@ -9,15 +9,16 @@
     Erin Elzi -- Digital Services Specialist -- Department of the Interior, Office of Natural Resources Revenue
     Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Lindsay Goldstein -- Program Analyst -- Department of the Interior, Office of Natural Resources Revenue
-    Alexandra McNally -- Digital Services Specialist -- Department of the Interior, Office of Natural Resources Revenue
+    Alexandra McNally -- Digital Services Specialist -- 
+    Jeff Schwartz -- Developer -- Department of the Interior, Office of Natural Resources Revenue
     Christine Thomas -- Program Analyst (Content Strategist) -- Department of the Interior, Office of Natural Resources Revenue
 
 
 ## CONTRIBUTORS
 
-    Isabel Hernandez -- UX Intern -- Virtual Student Federal Service
-    Matthew Sao -- Data Intern -- Virtual Student Federal Service
-    Jeff Schwartz -- Developer -- Open Opportunities
+    
+    
+    
     
 
 # PAST TEAM
@@ -60,6 +61,7 @@
     Edward Chang -- Development Intern -- Department of the Interior, Office of Natural Resources Revenue
     Cody Eckstein -- Cross Trainer -- Department of the Interior, Office of Natural Resources Revenue
     Kiara Gomez -- Data Intern -- Virtual Student Federal Service
+    Isabel Hernandez -- UX Intern -- Virtual Student Federal Service
     Alena Huang -- UX Intern -- Virtual Student Federal Service
     Brandi Nichols -- UX Intern -- Virtual Student Federal Service
     Jeremiah Kimelman -- Developer -- 18F
@@ -69,6 +71,8 @@
     Annie Persson -- UX Intern -- Virtual Student Federal Service
     Ben Peterson -- UX Researcher -- 18F
     Christopher Robey -- Development Intern -- Virtual Student Federal Service
+    Matthew Sao -- Data Intern -- Virtual Student Federal Service
+    Jeff Schwartz -- Developer -- Open Opportunities
     Marco Segreto -- Developer -- 18F
     Jennifer Thibault -- Visual Designer -- 18F
     Kaitlyn Tran -- UX Intern -- Virtual Student Federal Service
