@@ -38,8 +38,8 @@ commands:
     description: "generate downloads"
     steps:
       - run:
-          name: "Install ssconvert"
-          command: sudo apt-get install -y gnumeric
+          name: "Install gnumeric"
+          command: sudo apt-get install gnumeric
       - run:
           name: "Generate downloads"
           command: |
@@ -306,7 +306,7 @@ jobs:
             cf push nrrd -f ./manifest.yml
   migrate-database:
     machine: 
-      image: ubuntu-2204:current
+      image: ubuntu-2004:current
     steps:
       - checkout
       - install-cf-cli
