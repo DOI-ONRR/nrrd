@@ -338,7 +338,7 @@ jobs:
                 sleep 1
             done
             echo $stepcount
-            if [ stepcount = 30 ]; then
+            if [ stepcount = 60 ]; then
               circleci-agent step halt
             fi
       - run:
