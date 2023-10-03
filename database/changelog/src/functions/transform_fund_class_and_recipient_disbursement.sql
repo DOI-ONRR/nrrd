@@ -21,7 +21,7 @@ BEGIN
         NEW.fund_class := 'State and local governments';
         NEW.recipient := 'County';
     
-    ELSIF NEW.fund_type := 'State 8(g)' AND NEW.county = '' THEN
+    ELSIF NEW.fund_type = 'State 8(g)' AND NEW.county = '' THEN
         NEW.fund_class := 'State and local governments';
         NEW.recipient := 'State';
     
@@ -53,7 +53,7 @@ BEGIN
         NEW.fund_class := 'Reclamation Fund';
         NEW.recipient := 'Reclamation Fund';
     
-    ELSIF NEW.fund_type NOT IN ('','Historic Preservation Fund',  'U.S. Treasury - GoMESA', 'U.S. Treasury', 'State', 'U.S. TreasuryAI','American Indian Tribes','Native American Tribes & Allottees','Native American tribes and individuals') 
+    ELSIF NEW.fund_type NOT IN ('', 'Historic Preservation Fund', 'U.S. Treasury - GoMESA', 'U.S. Treasury', 'State', 'U.S. TreasuryAI', 'American Indian Tribes', 'Native American Tribes & Allottees', 'Native American tribes and individuals') 
         AND NEW.fund_class = '' 
         AND NEW.recipient = '' THEN
         

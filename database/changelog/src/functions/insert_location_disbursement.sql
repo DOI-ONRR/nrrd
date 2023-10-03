@@ -18,7 +18,7 @@ BEGIN
         COALESCE(NEW.land_category, ''),
         COALESCE(NEW.state, ''),
         COALESCE(NEW.county, ''),
-        COALESCE(NEW.fips_code, ''),
+        COALESCE(NEW.fips_code, '')
     )
     ON CONFLICT DO NOTHING;
 

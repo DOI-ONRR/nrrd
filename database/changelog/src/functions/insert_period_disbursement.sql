@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION insert_period_revenue()
+CREATE OR REPLACE FUNCTION insert_period_disbursement()
     RETURNS TRIGGER
 AS $$
 BEGIN

@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE load_disbursement_monthly
+CREATE OR REPLACE PROCEDURE load_disbursement_monthly()
 AS $$
 DECLARE
     monthly_disbursement CURSOR FOR
