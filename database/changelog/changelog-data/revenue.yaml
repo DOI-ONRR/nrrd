@@ -1,19 +1,19 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-23-july-truncate
-      author: Jeff Schwartz
+      id: revenue-YY-MONTH-truncate
+      author: <Author>
       changes:
       - sql:
           dbms: 'postgresql'
           sql: |
             TRUNCATE TABLE monthly_revenue_elt
   - changeSet:
-      id: revenue-23-july-csv
-      author: Jeff Schwartz
+      id: revenue-YY-MONTH-load-csv
+      author: <Author>
       changes:
       - loadData:
           tableName: monthly_revenue_elt
-          file: '../static/csv/revenue/July 2023 Revenue for Portal_csv.csv'
+          file: '../static/csv/revenue/FILE-NAME.csv'
           quotchar: '""'
           columns:
           - column:
@@ -54,8 +54,8 @@ databaseChangeLog:
               header: Revenue
               name: revenue
   - changeSet:
-      id: revenue-23-july-load
-      author: Jeff Schwartz
+      id: revenue-YY-MONTH-load-revenue
+      author: <Author>
       changes:
       - sql:
           dbms: 'postgresql'
