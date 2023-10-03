@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION transform_fund_type_disbursement
+CREATE OR REPLACE FUNCTION transform_fund_type_disbursement()
     RETURNS TRIGGER
 AS $$
 BEGIN

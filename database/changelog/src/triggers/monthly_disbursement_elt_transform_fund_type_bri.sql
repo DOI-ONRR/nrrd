@@ -4,4 +4,4 @@ CREATE TRIGGER monthly_disbursement_elt_transform_fund_type_bri
     BEFORE INSERT
     ON monthly_disbursement_elt
     FOR EACH ROW
-    EXECUTE FUNCTION transform_fund_type_disbursement;
+    EXECUTE FUNCTION transform_fund_type_disbursement();
