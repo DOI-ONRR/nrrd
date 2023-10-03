@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: refactor-disbursement-triggers
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_elt_format_negative_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_elt_insert_commodity_ari.sql
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_elt_insert_fund_ari.sql
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_elt_insert_location_ari.sql
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_elt_sanitize_nulls_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_elt_transform_commodity_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_elt_transform_county_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_elt_transform_fips_code_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_elt_transform_fund_class_and_recipient_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_elt_transform_fund_type_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_disbursement_etl_insert_period_ari.sql
