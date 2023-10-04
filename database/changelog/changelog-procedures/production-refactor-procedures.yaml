@@ -6,3 +6,6 @@ databaseChangeLog:
       - sqlFile:
           path: src/procedures/load_production_monthly.sql
           splitStatements: false
+      - sqlFile:
+          path: src/procedures/delete_production.sql
+          splitStatements: false

@@ -1,19 +1,19 @@
 databaseChangeLog:
   - changeSet:
-      id: production-monthly-YY-MONTH-truncate
-      author: <Author>
+      id: production-monthly-23-june-truncate
+      author: Jeff Schwartz
       changes:
       - sql:
           dbms: 'postgresql'
           sql: |
             TRUNCATE TABLE monthly_production_elt
   - changeSet:
-      id: production-monthly-YY-MONTH-load-csv
-      author: <Author>
+      id: production-monthly-23-june-load-csv
+      author: Jeff Schwartz
       changes:
       - loadData:
           tableName: monthly_production_elt
-          file: '../static/csv/production/monthly-production.csv'
+          file: '../static/csv/production/monthly_production.csv'
           quotchar: '""'
           columns:
           - column:
@@ -33,8 +33,8 @@ databaseChangeLog:
               header: Volume
               name: volume
   - changeSet:
-      id: production-monthly-YY-MONTH-load-production
-      author: <Author>
+      id: production-monthly-23-june-load-production
+      author: Jeff Schwartz
       changes:
       - sql:
           dbms: 'postgresql'

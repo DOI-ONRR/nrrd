@@ -31,7 +31,15 @@ DECLARE
         commodity_id, 
         volume, 
         e.commodity;
+
+    v_from_date period.period_date%TYPE;
 BEGIN
+    SELECT MIN(period_date)
+    INTO v_from_date
+    FROM monthly_production_elt;
+
+    CALL delete_production('Monthly', v_from_date);
+
     FOR production_rec IN monthly_production LOOP
         INSERT INTO production (
             location_id,
