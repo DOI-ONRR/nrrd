@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: production-monthly-YY-MONTH-truncate
+      author: <Author>
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            TRUNCATE TABLE monthly_production_elt
+  - changeSet:
+      id: production-monthly-YY-MONTH-load-csv
+      author: <Author>
+      changes:
+      - loadData:
+          tableName: monthly_production_elt
+          file: '../static/csv/production/monthly-production.csv'
+          quotchar: '""'
+          columns:
+          - column:
+              header: Month
+              name: month
+  - changeSet:
+      id: production-monthly-YY-MONTH-load-production
+      author: <Author>
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            CALL load_production_monthly();
