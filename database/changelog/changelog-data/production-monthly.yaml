@@ -17,8 +17,21 @@ databaseChangeLog:
           quotchar: '""'
           columns:
           - column:
-              header: Month
-              name: month
+              header: Production Date
+              name: period_date
+              type: STRING
+          - column:
+              header: Land Class
+              name: land_class
+          - column:
+              header: Land Category
+              name: land_category
+          - column:
+              header: Commodity
+              name: commodity
+          - column:
+              header: Volume
+              name: volume
   - changeSet:
       id: production-monthly-YY-MONTH-load-production
       author: <Author>
