@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: production-refactor-procedures
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/procedures/load_production_monthly.sql
+          splitStatements: false
