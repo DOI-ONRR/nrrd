@@ -1,16 +1,12 @@
 databaseChangeLog:
   - changeSet:
-      id: production-monthly-23-june-truncate
+      id: production-monthly-23-june
       author: Jeff Schwartz
       changes:
       - sql:
           dbms: 'postgresql'
           sql: |
             TRUNCATE TABLE monthly_production_elt
-  - changeSet:
-      id: production-monthly-23-june-load-csv
-      author: Jeff Schwartz
-      changes:
       - loadData:
           tableName: monthly_production_elt
           file: '../static/csv/production/monthly_production.csv'
@@ -32,11 +28,12 @@ databaseChangeLog:
           - column:
               header: Volume
               name: volume
-  - changeSet:
-      id: production-monthly-23-june-load-production
-      author: Jeff Schwartz
-      changes:
       - sql:
           dbms: 'postgresql'
           sql: |
             CALL load_production_monthly();
+            REFRESH MATERIALIZED VIEW _mview_commodity_qtp;
+            REFRESH MATERIALIZED VIEW _mview_location_commodity_qtp;
+            REFRESH MATERIALIZED VIEW _mview_location_qtp;
+            REFRESH MATERIALIZED VIEW query_tool_production;
+            REFRESH MATERIALIZED VIEW total_production_summary;
