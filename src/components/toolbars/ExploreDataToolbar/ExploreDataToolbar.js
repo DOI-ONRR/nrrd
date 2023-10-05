@@ -206,7 +206,7 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
             selected={exploreMoreTabOpen}
             onChange={toggleExploreMoreToolbar}>
             <MoreVertIcon className={classes.toolbarIcon} />
-            <span>Explore more {dataType}</span>
+           <span>Explore more {dataType}</span>
           </FilterToggleInput>
         </BaseToolbar>
         {exploreDataTabOpen &&

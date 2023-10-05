@@ -29,7 +29,7 @@ export default ({ alt, ...rest }) => {
   return (
     <>
       {data.imageSharp &&
-        <Img fluid={data.imageSharp.fluid} alt={alt || 'Bureau of Safety and Environmental Enforcement'} {...rest} />
+        <Img fluid={data.imageSharp.fluid} alt={alt || 'Bureau of Safety and Environmental Enforcement (B S E E) logo'} {...rest} />
       }
     </>
   )
