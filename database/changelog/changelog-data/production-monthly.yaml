@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: production-monthly-23-july
-      author: Jeff Schwartz
+      id: production-monthly-yy-month
+      author: Author
       changes:
       - sql:
           dbms: 'postgresql'
