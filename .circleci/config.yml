@@ -1,71 +1,51 @@
 version: 2.1
+
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
+  node: circleci/node@5.1.0
+
 commands:
-  load-database:
-    description: "Building database"
+  install-cf-cli:
+    description: "Install cloud foundry cli"
     steps:
       - run:
-          name: "Begin database build"
+          name: Download cf cli package and install
           command: |
-            cd database
-            ls -l
+            wget -q -U "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+            echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+            sudo apt-get update
+            sudo apt-get install cf8-cli
+  install-liquibase:
+    description: Install liquibase
+    steps:
       - run:
-          name: "Docker compose"
+          name: Download liquibase and install
           command: |
-            cd database
-            sudo docker-compose up -d
+            wget -O- https://repo.liquibase.com/liquibase.asc | gpg --dearmor > liquibase-keyring.gpg && \
+            cat liquibase-keyring.gpg | sudo tee /usr/share/keyrings/liquibase-keyring.gpg > /dev/null && \
+            echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/liquibase-keyring.gpg] https://repo.liquibase.com stable main' | sudo tee /etc/apt/sources.list.d/liquibase.list
+            sudo apt-get update
+            sudo apt-get install liquibase
+  install-java:
+    description: Install Java
+    steps:
       - run:
-          name: "Update OS"
-          command: sudo apt-get update
-      - run:
-          name: "Install posgres client"
-          command: sudo apt-get install  --fix-missing  postgresql-client && cp database/.pgpass $HOME/.pgpass && chmod 0600 $HOME/.pgpass
-      - run:
-          name: "Restore Database schema"
+          name: Install Java 
           command: |
-             pg_restore --verbose --user=postgres --host=localhost --clean  --no-owner --no-acl --dbname=postgres --no-password ./database/backup/database_backup.pg || echo $?
+            sudo apt-get update
+            sudo apt-get install default-jre
+  install-postgres-client:
+    description: Install postgres client tools
+    steps:
       - run:
-          name: "Truncate reference data."
-          no_output_timeout: 30m
-          command: cd database && psql --host=localhost --user=postgres -c 'truncate period cascade; truncate location cascade; truncate commodity cascade;'
-      - run:
-          name: "Load Revenue"
-          no_output_timeout: 30m
-          command: cd database && bash ./src/ELT/monthly_revenue.load.sh
-      - run:
-          name: "Load Monthly Production"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_production.load.sql
-      - run:
-          name: "Load Fiscal Production"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_production.load.sql
-      - run:
-          name: "Load Calendar Production"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/calendar_year_production.load.sql
-      - run:
-          name: "Load Monthly Disbursement"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/monthly_disbursement.load.sql
-      - run:
-          name: "Load Fiscal Disbursement"
-          command: cd database && psql --host=localhost --user=postgres< ./src/ELT/fiscal_year_disbursement.load.sql
-      - run:
-          name: "Load Revenue By Company"
-          command: cd database && psql --host=localhost --user=postgres < ./src/ELT/revenue_by_company.elt.sql
-      - run:
-          name: "Update metadata"
-          command: cd database && psql --host=localhost --user=postgres < ./src/ELT/update_metadata.sql
-      - run:
-          name: "Refresh views"
-          command: cd database && bash ./src/scripts/refresh_materialized_views.sh
-      - run:
-          name: "Backup database"
+          name: Install postgres client tools
           command: |
-            pg_dump postgres://postgres:postgrespassword@localhost:5432/postgres -Fc -f /tmp/database_backup.pg || echo $?
+            sudo apt-get install --fix-missing  postgresql-client
   generate-downloads:
     description: "generate downloads"
     steps:
       - run:
-          name: "Install ssconvert"
+          name: "Install gnumeric"
           command: sudo apt-get install gnumeric
       - run:
           name: "Generate downloads"
@@ -73,7 +53,7 @@ commands:
               cd database
               npm install
               bash ./src/scripts/downloads.sh
-              node ./src/scripts/downloads.js
+              node ./src/scripts/downloads.js --host $HOST --port $PORT --username $USERNAME --password $PASSWORD --database $DB_NAME
       - run:
           name: "list generated downloads"
           command: |
@@ -96,8 +76,8 @@ commands:
           aws-access-key-id: NPS_AWS_ACCESS_KEY
           aws-region: NPS_AWS_REGION
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: /tmp/database_backup.pg
-          to: 's3://$NPS_BUCKET_NAME/backup/database_backup.pg'
+          from: /tmp/database_backup-${CF_SPACE}.pg
+          to: 's3://$NPS_BUCKET_NAME/backup/database_backup-${CF_SPACE}.pg'
       - run:
           name: "list bucket"
           command: |
@@ -126,7 +106,6 @@ jobs:
           path: ./test-results
       - store_artifacts:
           path: ./test-results
-
   unit_tests:
     docker:
       - image: circleci/node:12.13.0-browsers
@@ -188,112 +167,6 @@ jobs:
           command: node __audits__/lighthouse.audit.js
       - store_artifacts:
           path: ./__audits__/lighthouse/
-
-  sandbox-database:
-    machine:
-      image: ubuntu-2004:2023.02.1
-    steps:
-      - checkout
-      - run:
-          name: "Check for database changes"
-          command: |
-            CHANGES=`git diff --name-only dev | grep database\/ | wc -w` || echo $?
-            if [ "$CHANGES" = "0" ]; then
-              echo "Halting database build -  no database changes"
-              circleci-agent step halt
-            fi
-      - load-database
-      - run:
-          name: "Deploy to hasura-sandbox cloud.gov"
-          command: |
-            cd database
-            wget -q -U "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-            echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-            sudo apt-get update
-            sudo apt-get install cf8-cli
-            cf api https://api.fr.cloud.gov
-            echo "$CF_USERNAME"
-            cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o "$CF_ORG" -s "$CF_SPACE"
-            cf apps
-            cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
-            bash tunnel.sh hasura-sandbox-interface
-            source ./.tunnelrc
-            cat ./.tunnelrc
-            psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
-            pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
-            cf restage hasura-sandbox
-      - generate-downloads
-  dev-database:
-    machine:
-      image: ubuntu-2004:2023.02.1
-    steps:
-      - checkout
-      - run:
-          name: "Check for database changes"
-          command: |
-            CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
-            if [ "$CHANGES" = "0" ]; then
-              echo "Halting database build -  no database changes"
-              circleci-agent step halt
-            fi
-      - load-database
-      - run:
-          name: "Deploy to cloud.gov"
-          command: |
-            cd database
-            wget -q -U "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-            echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-            sudo apt-get update
-            sudo apt-get install cf8-cli
-            cf api https://api.fr.cloud.gov
-            echo "$CF_USERNAME"
-            cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o doi-onrr -s prod
-            cf apps
-            cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
-            bash tunnel.sh hasura-dev-interface
-            source ./.tunnelrc
-            cat ./.tunnelrc
-            psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
-            pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
-            cf restage hasura-dev
-      - generate-downloads
-  prod-database:
-    machine:
-      image: ubuntu-2004:2023.02.1
-    steps:
-      - checkout
-      - run:
-          name: "Check for database changes"
-          command: |
-            CHANGES=`git log -m --name-only | grep database\/ | wc -w` || echo $?
-            if [ "$CHANGES" = "0" ]; then
-              echo "Halting database build -  no database changes"
-              circleci-agent step halt
-            fi
-      - load-database
-      - run:
-          name: "Deploy to cloud.gov"
-          command: |
-            cd database
-            wget -q -U "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-            echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-            sudo apt-get update
-            sudo apt-get install cf8-cli
-            cf api https://api.fr.cloud.gov
-            echo "$CF_USERNAME"
-            cf auth "$CF_USERNAME" "$CF_PASSWORD"
-            cf target -o doi-onrr -s prod
-            cf apps
-            cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
-            bash tunnel.sh hasura-prod-interface
-            source ./.tunnelrc
-            cat ./.tunnelrc
-            psql --user=$Username --host=$Host --port=$Port --dbname=$Name -c 'drop owned by current_user cascade; create schema public;'
-            pg_restore --user=$Username --host=$Host --port=$Port --clean  --no-owner --no-acl --dbname=$Name --no-password /tmp/database_backup.pg || echo $?
-            cf restage hasura-dev
-      - generate-downloads
   nrrd-preview:
     docker:
       - image: cimg/node:12.13.1-browsers
@@ -437,6 +310,65 @@ jobs:
             cf target -o doi-onrr -s prod
             #bash ./swap.sh
             cf push nrrd -f ./manifest.yml
+  migrate-database:
+    machine: 
+      image: ubuntu-2004:current
+    steps:
+      - checkout
+      - install-cf-cli
+      - install-liquibase
+      - install-java
+      - install-postgres-client
+      - run:
+          name: Install cf connect-to-service plugin
+          command: cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
+      - run:
+          name: Login to cf cli
+          command: cf login -a api.fr.cloud.gov -u "$CF_USERNAME" -p "$CF_PASSWORD" -o doi-onrr -s $CF_SPACE
+      - run:
+          name: Tunnel to database service
+          command: |
+            cf connect-to-service -no-client $CF_DB_APP $CF_DB_SERVICE > output &
+            linecount=`cat output | wc -l | awk '{$1=$1};1'`
+            stepcount=0
+            while [ $linecount -lt 12 ] && [ $stepcount -lt 60 ];
+            do 
+                linecount=`cat output | wc -l | awk '{$1=$1};1'`
+                stepcount=$((stepcount+1))
+                sleep 1
+            done
+            echo $stepcount
+            if [ stepcount = 60 ]; then
+              circleci-agent step halt
+            fi
+      - run:
+          name: Set liquibase environment variables
+          command: |
+            echo export PORT=`cat output | grep Port: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export HOST=`cat output | grep Host: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export USERNAME=`cat output | grep Username: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export PASSWORD=`cat output | grep Password: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export DB_NAME=`cat output | grep Name: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+
+            source "$BASH_ENV"
+
+            echo export LIQUIBASE_COMMAND_USERNAME=$USERNAME >> "$BASH_ENV"
+            echo export LIQUIBASE_COMMAND_PASSWORD=$PASSWORD >> "$BASH_ENV"
+            echo export LIQUIBASE_COMMAND_URL=jdbc:postgresql://${HOST}:${PORT}/${DB_NAME} >> "$BASH_ENV"
+
+            source "$BASH_ENV"
+      - run:
+          name: Backup database
+          command: |
+            pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
+      - run:
+          name: Call liquibase to update database
+          command: |
+            cd database/changelog
+            liquibase update
+      - node/install
+      - generate-downloads
+
 workflows:
   audits:
     jobs:
@@ -459,13 +391,14 @@ workflows:
               ignore:
                 - master
                 - staging
+  
   preview:
     jobs:
-      - sandbox-database:
+      - migrate-database:
           context:
             - org-global
             - nrrd
-            - DEV
+            - PREVIEW
           filters:
             branches:
               ignore:
@@ -475,7 +408,7 @@ workflows:
           context:
             - nrrd
           requires:
-            - sandbox-database
+            - migrate-database
           filters:
             branches:
               ignore:
@@ -484,10 +417,11 @@ workflows:
 
   prod:
     jobs:
-      - prod-database:
+      - migrate-database:
           context:
             - org-global
             - nrrd
+            - PROD
           filters:
             branches:
               only: master
@@ -496,13 +430,13 @@ workflows:
             - org-global
             - nrrd
           requires:
-            - prod-database
+            - migrate-database
           filters:
             branches:
               only: master
   dev:
     jobs:
-      - dev-database:
+      - migrate-database:
           context:
             - org-global
             - nrrd
@@ -513,11 +447,9 @@ workflows:
           context:
             - org-global
             - nrrd
+            - DEV
           requires:
-            - dev-database
+            - migrate-database
           filters:
             branches:
               only: dev
-      # - end_to_end_tests:
-      #     requires:
-      #       - dev

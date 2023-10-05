@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: production-monthly-yy-month
+      author: Author
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            TRUNCATE TABLE monthly_production_elt
+      - loadData:
+          tableName: monthly_production_elt
+          file: '../static/csv/production/monthly_production.csv'
+          quotchar: '""'
+          columns:
+          - column:
+              header: Production Date
+              name: period_date
+              type: STRING
+          - column:
+              header: Land Class
+              name: land_class
+          - column:
+              header: Land Category
+              name: land_category
+          - column:
+              header: Commodity
+              name: commodity
+          - column:
+              header: Volume
+              name: volume
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            CALL load_production_monthly();
+            REFRESH MATERIALIZED VIEW _mview_commodity_qtp;
+            REFRESH MATERIALIZED VIEW _mview_location_commodity_qtp;
+            REFRESH MATERIALIZED VIEW _mview_location_qtp;
+            REFRESH MATERIALIZED VIEW query_tool_production;
+            REFRESH MATERIALIZED VIEW total_production_summary;
