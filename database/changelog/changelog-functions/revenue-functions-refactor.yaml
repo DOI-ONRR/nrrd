@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: refactor-revenue-functions
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/functions/format_negative_revenue.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/ignore_empty_revenue.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/insert_commodity_revenue.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/insert_fund_revenue.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/insert_period_revenue.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/populate_locations_revenue.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/sanitize_fips_code_revenue.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/sanitize_nulls_revenue.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/transform_commodity.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/transform_county_code_desc.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/transform_offshore_region_revenue.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/transform_product_code_desc.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/transform_revenue_type.sql
+          splitStatements: false

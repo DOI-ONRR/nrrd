@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: refactor-production-functions
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/functions/format_volume.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/ignore_empty_production.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/insert_commodity_production.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/insert_location_production.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/insert_period_production.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/sanitize_commodity_production.sql
+          splitStatements: false
