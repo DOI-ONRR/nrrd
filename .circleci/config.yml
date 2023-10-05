@@ -440,6 +440,7 @@ workflows:
           context:
             - org-global
             - nrrd
+            - DEV
           filters:
             branches:
               only: dev
