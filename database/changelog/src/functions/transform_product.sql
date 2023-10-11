@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION transform_product
+CREATE OR REPLACE FUNCTION transform_product()
     RETURNS TRIGGER
 AS $$
 BEGIN

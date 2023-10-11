@@ -44,7 +44,7 @@ BEGIN
 
     CALL delete_production('Fiscal Year', v_from_date);
 
-    FOR production_rec IN monthly_production LOOP
+    FOR production_rec IN fy_production LOOP
         INSERT INTO production (
             location_id,
             period_id,
