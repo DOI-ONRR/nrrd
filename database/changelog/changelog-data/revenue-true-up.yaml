@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-YY-MONTH
+      id: revenue-true-up-YYYY
       author: <Author>
       changes:
       - sql:
@@ -52,6 +52,7 @@ databaseChangeLog:
       - sql:
           dbms: 'postgresql'
           sql: |
+            CALL delete_revenue();
             CALL summarize_native_american_revenue();
             CALL load_revenue_monthly();
             CALL load_revenue_fiscal_year();
