@@ -310,7 +310,7 @@ jobs:
             cf target -o doi-onrr -s prod
             #bash ./swap.sh
             cf push nrrd -f ./manifest.yml
-  migrate-database:
+  apply-database-changes:
     machine: 
       image: ubuntu-2004:current
     steps:
@@ -338,7 +338,7 @@ jobs:
                 sleep 1
             done
             echo $stepcount
-            if [ stepcount = 60 ]; then
+            if [ $stepcount = 60 ]; then
               circleci-agent step halt
             fi
       - run:
@@ -365,7 +365,21 @@ jobs:
           name: Call liquibase to update database
           command: |
             cd database/changelog
-            liquibase update
+            liquibase update > liquibase.out &
+            runFound=1
+            errorFound=1
+            while [ $runFound = 1 ] && [ $errorFound = 1 ];
+            do 
+              grep Run: liquibase.out > /dev/null
+              runFound=$?
+              grep 'Unexpected error' liquibase.out > /dev/null
+              errorFound=$?
+              sleep 1
+            done
+            updatecount=`grep Run: liquibase.out | tr -s " " | cut -d ' ' -f2 | tr -d '\n'`
+            if [ $errorFound = 0 ] || [ $updatecount = 0 ]; then
+              circleci-agent step halt
+            fi
       - node/install
       - generate-downloads
 
@@ -394,7 +408,7 @@ workflows:
   
   preview:
     jobs:
-      - migrate-database:
+      - apply-database-changes:
           context:
             - org-global
             - nrrd
@@ -408,7 +422,7 @@ workflows:
           context:
             - nrrd
           requires:
-            - migrate-database
+            - apply-database-changes
           filters:
             branches:
               ignore:
@@ -417,7 +431,7 @@ workflows:
 
   prod:
     jobs:
-      - migrate-database:
+      - apply-database-changes:
           context:
             - org-global
             - nrrd
@@ -430,13 +444,13 @@ workflows:
             - org-global
             - nrrd
           requires:
-            - migrate-database
+            - apply-database-changes
           filters:
             branches:
               only: master
   dev:
     jobs:
-      - migrate-database:
+      - apply-database-changes:
           context:
             - org-global
             - nrrd
@@ -450,7 +464,7 @@ workflows:
             - nrrd
             - DEV
           requires:
-            - migrate-database
+            - apply-database-changes
           filters:
             branches:
               only: dev
