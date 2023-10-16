@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
   node: circleci/node@5.1.0
+  shellcheck: circleci/shellcheck@3.2.0
 
 commands:
   install-cf-cli:
@@ -363,24 +364,7 @@ jobs:
             pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
       - run:
           name: Call liquibase to update database
-          command: |
-            cd database/changelog
-            liquibase update > liquibase.out &
-            runfound=1
-            errorfound=1
-            while [ $runfound = 1 ] && [ $errorfound = 1 ];
-            do 
-              grep Run: liquibase.out > /dev/null
-              runfound=$?
-              grep "Unexpected error" liquibase.out > /dev/null
-              errorfound=$?
-              sleep 1
-            done
-            updatecount=`grep Run: liquibase.out | tr -s " " | cut -d ' ' -f2 | tr -d '\n'`
-            if [ $errorfound = 0 ] || [ $updatecount = 0 ]; then
-              echo "No changesets applied. Exiting job. errorfound ${errorfound}, updatecount ${updatecount}"
-              circleci-agent step halt
-            fi
+          command: bash liquibase.sh
       - node/install
       - generate-downloads
 
@@ -409,7 +393,10 @@ workflows:
   
   preview:
     jobs:
+      - shellcheck/check
       - apply-database-changes:
+          requires:
+            - shellcheck/check
           context:
             - org-global
             - nrrd
@@ -432,7 +419,10 @@ workflows:
 
   prod:
     jobs:
+      - shellcheck/check
       - apply-database-changes:
+          requires:
+            - shellcheck/check
           context:
             - org-global
             - nrrd
@@ -451,7 +441,10 @@ workflows:
               only: master
   dev:
     jobs:
+      - shellcheck/check
       - apply-database-changes:
+          requires:
+            - shellcheck/check
           context:
             - org-global
             - nrrd
