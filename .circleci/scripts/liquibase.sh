@@ -2,7 +2,7 @@
 
 set -o nounset
 set -o errexit
-set -o pipefail
+set -eox pipefail
 
 cd ~/project/database/changelog
 liquibase update > liquibase.out &
