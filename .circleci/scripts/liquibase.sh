@@ -2,16 +2,17 @@
 
 set -o nounset
 set -o errexit
-set -eox pipefail
+set -ox pipefail
 
 cd ~/project/database/changelog
 touch liquibase.out
 liquibase update > liquibase.out &
+cat liquibase.out
 runfound=1
 errorfound=1
 while [ $runfound = 1 ] && [ $errorfound = 1 ];
 do 
-    grep Run: liquibase.out > /dev/null
+    grep "Run:" liquibase.out > /dev/null
     runfound=$?
     grep "Unexpected error" liquibase.out > /dev/null
     errorfound=$?
