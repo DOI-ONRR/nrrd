@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: refactor-production-triggers
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/triggers/monthly_production_elt_format_volume_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_production_elt_ignore_null_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_production_elt_insert_commodity_ari.sql
+      - sqlFile:
+          path: src/triggers/monthly_production_elt_insert_location_ari.sql
+      - sqlFile:
+          path: src/triggers/monthly_production_elt_insert_period_ari.sql
+      - sqlFile:
+          path: src/triggers/monthly_production_elt_sanitize_commodity_bri.sql

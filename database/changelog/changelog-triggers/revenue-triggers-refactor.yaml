@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: refactor-revenue-triggers
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_format_negative_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_ignore_empty_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_insert_commodity_ari.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_insert_fund_ari.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_populate_location_ari.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_sanitize_fips_code_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_sanitize_nulls_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_transform_commodity_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_transform_county_code_desc_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_transform_offshore_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_transform_product_code_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_elt_transform_revenue_type_bri.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_etl_insert_period_ari.sql
