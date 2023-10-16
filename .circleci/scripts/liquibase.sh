@@ -6,7 +6,7 @@ set -ox pipefail
 
 cd ~/project/database/changelog
 touch liquibase.out
-liquibase update > liquibase.out &
+liquibase update > liquibase.out
 cat liquibase.out
 runfound=1
 errorfound=1
