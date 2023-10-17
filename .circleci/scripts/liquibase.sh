@@ -15,7 +15,7 @@ do
     sleep 1
 done
 updatecount=$(grep "Run:" liquibase.out | tr -s " " | cut -d ' ' -f2 | tr -d '\n')
-if [ "$errorfound" = 0 ] || [ "$updatecount" = 0 ]; then
+if [ "$errorfound" != 0 ] || [ "$updatecount" = 0 ]; then
     echo "No changesets applied. Exiting job. errorfound ${errorfound}, updatecount ${updatecount}"
     circleci-agent step halt
 fi
