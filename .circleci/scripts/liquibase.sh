@@ -5,20 +5,17 @@ set -o errexit
 set -ox pipefail
 
 cd ~/project/database/changelog
-touch liquibase.out
 liquibase update > liquibase.out
 cat liquibase.out
-runfound=1
-errorfound=1
-while [ $runfound = 1 ] && [ $errorfound = 1 ];
+runfound=0
+errorfound=0
+while [ $runfound = 0 ] && [ $errorfound = 0 ];
 do 
-    grep "Run:" liquibase.out > /dev/null
-    runfound=$?
-    grep "Unexpected error" liquibase.out > /dev/null
-    errorfound=$?
+    runfound=$(grep "Run:" liquibase.out || echo 0)
+    errorfound=$(grep "Unexpected error" liquibase.out || echo 0)
     sleep 1
 done
-updatecount=$(grep Run: liquibase.out | tr -s " " | cut -d ' ' -f2 | tr -d '\n')
+updatecount=$(grep "Run:" liquibase.out | tr -s " " | cut -d ' ' -f2 | tr -d '\n')
 if [ $errorfound = 0 ] || [ "$updatecount" = 0 ]; then
     echo "No changesets applied. Exiting job. errorfound ${errorfound}, updatecount ${updatecount}"
     circleci-agent step halt
