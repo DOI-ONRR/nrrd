@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: refactor-production-cy-triggers
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/triggers/calendar_year_production_elt_format_volume_bri.sql
+      - sqlFile:
+          path: src/triggers/calendar_year_production_elt_ignore_null_bri.sql
+      - sqlFile:
+          path: src/triggers/calendar_year_production_elt_insert_commodity_ari.sql
+      - sqlFile:
+          path: src/triggers/calendar_year_production_elt_insert_location_ari.sql
+      - sqlFile:
+          path: src/triggers/calendar_year_production_elt_insert_period_ari.sql
+      - sqlFile:
+          path: src/triggers/calendar_year_production_elt_transform_county_state_fips_bri.sql
+      - sqlFile:
+          path: src/triggers/calendar_year_production_elt_transform_offshore_region_bri.sql
+      - sqlFile:
+          path: src/triggers/calendar_year_production_elt_transform_product_bri.sql
