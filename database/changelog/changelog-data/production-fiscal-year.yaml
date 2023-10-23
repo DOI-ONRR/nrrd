@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: production-fiscal-year-23
+      author: Christine Thomas
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            TRUNCATE TABLE fiscal_year_production_elt
+      - loadData:
+          tableName: fiscal_year_production_elt
+          file: '../static/csv/production/fiscal_year_production.csv'
+          quotchar: '""'
+          columns:
+          - column:
+              header: Fiscal Year
+              name: fiscal_year
+          - column:
+              header: Land Category
+              name: land_category
+          - column:
+              header: Land Class
+              name: land_class
+          - column:
+              header: State
+              name: state
+          - column:
+              header: County
+              name: county
+          - column:
+              header: FIPS Code
+              name: fips_code
+          - column:
+              header: Offshore Region
+              name: offshore_region
+          - column:
+              header: Product
+              name: product
+          - column:
+              header: Volume
+              name: volume
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            CALL load_production_fiscal_year();
+            REFRESH MATERIALIZED VIEW _mview_commodity_qtp;
+            REFRESH MATERIALIZED VIEW _mview_location_commodity_qtp;
+            REFRESH MATERIALIZED VIEW _mview_location_qtp;
+            REFRESH MATERIALIZED VIEW query_tool_production;
