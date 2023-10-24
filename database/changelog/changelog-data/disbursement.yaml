@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: disbursement-YY-MONTH
-      author: <Author>
+      id: disbursement-FY-15
+      author: Lindsay Goldstein
       changes:
       - sql:
           dbms: 'postgresql'
@@ -9,7 +9,7 @@ databaseChangeLog:
             TRUNCATE TABLE monthly_disbursement_elt
       - loadData:
           tableName: monthly_disbursement_elt
-          file: '../static/csv/revenues/FILE-NAME.csv'
+          file: '../static/csv/disbursements/monthly_disbursements.csv'
           quotchar: '""'
           columns:
           - column:
