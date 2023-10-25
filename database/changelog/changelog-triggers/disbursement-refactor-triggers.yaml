@@ -2,6 +2,7 @@ databaseChangeLog:
   - changeSet:
       id: refactor-disbursement-triggers
       author: Jeff Schwartz
+      runOnChange: true
       changes:
       - sqlFile:
           path: src/triggers/monthly_disbursement_elt_format_negative_bri.sql
