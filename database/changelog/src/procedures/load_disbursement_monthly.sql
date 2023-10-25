@@ -1,4 +1,6 @@
-CREATE OR REPLACE PROCEDURE load_disbursement_monthly()
+DROP PROCEDURE IF EXISTS load_disbursement_monthly;
+
+CREATE PROCEDURE load_disbursement_monthly(p_fiscal_year period.fiscal_year%TYPE DEFAULT NULL)
 AS $$
 DECLARE
     monthly_disbursement CURSOR FOR
@@ -73,4 +75,8 @@ BEGIN
         )
         ON CONFLICT DO NOTHING;
     END LOOP;
+
+    IF p_fiscal_year IS NOT NULL THEN
+        CALL summarize_fy_disbursements(p_fiscal_year);
+    END IF;
 END $$ LANGUAGE PLPGSQL;
