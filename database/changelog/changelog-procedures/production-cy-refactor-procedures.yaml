@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: production-cy-refactor-procedures
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/procedures/load_production_calendar_year.sql
+          splitStatements: false
