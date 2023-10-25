@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: refactor-production-cy-functions
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/functions/ignore_empty_production_cy.sql
+          splitStatements: false
+      - sqlFile:
+          path: src/functions/insert_period_production_cy.sql
+          splitStatements: false

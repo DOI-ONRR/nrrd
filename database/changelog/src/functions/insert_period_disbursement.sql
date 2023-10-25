@@ -14,13 +14,13 @@ BEGIN
     )
     VALUES (
         'Monthly',
-        calendar_year,
-        EXTRACT(year FROM NEW.period_date + INTERVAL '3 months'),
-        EXTRACT(month FROM NEW.period_date),	
-        month,
-        TO_CHAR(NEW.period_date, 'Mon'),
-        EXTRACT(month FROM NEW.period_date + INTERVAL '3 months'),	
-        NEW.period_date
+        NEW.calendar_year,
+        EXTRACT(year FROM (TO_DATE(CONCAT('01 ', NEW.month, ' ', NEW.calendar_year), 'DD Month YYYY')) + INTERVAL '3 months'),
+        EXTRACT(month FROM (TO_DATE(CONCAT('01 ', NEW.month, ' ', NEW.calendar_year), 'DD Month YYYY'))),	
+        NEW.month,
+        TO_CHAR((TO_DATE(CONCAT('01 ', NEW.month, ' ', NEW.calendar_year), 'DD Month YYYY')), 'Mon'),
+        EXTRACT(month FROM (TO_DATE(CONCAT('01 ', NEW.month, ' ', NEW.calendar_year), 'DD Month YYYY')) + INTERVAL '3 months'),	
+        (TO_DATE(CONCAT('01 ', NEW.month, ' ', NEW.calendar_year), 'DD Month YYYY'))
     )
     ON CONFLICT DO NOTHING;
 

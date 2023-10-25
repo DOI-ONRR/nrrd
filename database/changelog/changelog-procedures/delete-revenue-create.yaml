@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: delete-revenue-create
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/procedures/delete_revenue.sql
+          splitStatements: false

@@ -310,7 +310,7 @@ jobs:
             cf target -o doi-onrr -s prod
             #bash ./swap.sh
             cf push nrrd -f ./manifest.yml
-  migrate-database:
+  apply-database-changes:
     machine: 
       image: ubuntu-2004:current
     steps:
@@ -338,7 +338,7 @@ jobs:
                 sleep 1
             done
             echo $stepcount
-            if [ stepcount = 60 ]; then
+            if [ $stepcount = 60 ]; then
               circleci-agent step halt
             fi
       - run:
@@ -363,9 +363,7 @@ jobs:
             pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
       - run:
           name: Call liquibase to update database
-          command: |
-            cd database/changelog
-            liquibase update
+          command: bash ~/project/.circleci/scripts/liquibase.sh
       - node/install
       - generate-downloads
 
@@ -394,7 +392,7 @@ workflows:
   
   preview:
     jobs:
-      - migrate-database:
+      - apply-database-changes:
           context:
             - org-global
             - nrrd
@@ -408,7 +406,7 @@ workflows:
           context:
             - nrrd
           requires:
-            - migrate-database
+            - apply-database-changes
           filters:
             branches:
               ignore:
@@ -417,7 +415,7 @@ workflows:
 
   prod:
     jobs:
-      - migrate-database:
+      - apply-database-changes:
           context:
             - org-global
             - nrrd
@@ -430,13 +428,13 @@ workflows:
             - org-global
             - nrrd
           requires:
-            - migrate-database
+            - apply-database-changes
           filters:
             branches:
               only: master
   dev:
     jobs:
-      - migrate-database:
+      - apply-database-changes:
           context:
             - org-global
             - nrrd
@@ -450,7 +448,7 @@ workflows:
             - nrrd
             - DEV
           requires:
-            - migrate-database
+            - apply-database-changes
           filters:
             branches:
               only: dev

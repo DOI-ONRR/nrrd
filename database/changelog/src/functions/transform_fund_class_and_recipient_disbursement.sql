@@ -4,7 +4,15 @@ AS $$
 BEGIN
     IF NEW.fund_type != '' AND NEW.fund_class = '' THEN
         NEW.fund_class := 'Other funds';
+    END IF;
     
+    IF NEW.fund_type = 'U.S. TreasuryAI' 
+        OR NEW.fund_type = 'American Indian Tribes' 
+        OR NEW.fund_type = 'Native American Tribes & Allottees' THEN
+        
+        NEW.fund_class := 'Native American tribes and individuals';
+        NEW.recipient := 'Native American tribes and individuals';
+
     ELSIF NEW.fund_type = 'U.S. Treasury' OR NEW.fund_type = 'U.S. Treasury - GoMESA' THEN
         NEW.fund_class := 'U.S. Treasury';
         NEW.recipient := 'U.S. Treasury';
@@ -37,7 +45,7 @@ BEGIN
         NEW.fund_class := 'State and local governments';
         NEW.recipient := 'State';
     
-    ELSIF LOWER(NEW.fund_type) = '%gomesa%' AND county != '' THEN
+    ELSIF LOWER(NEW.fund_type) = '%gomesa%' AND NEW.county != '' THEN
         NEW.fund_class := 'State and local governments';
         NEW.recipient := 'County';
     
@@ -54,11 +62,11 @@ BEGIN
         NEW.recipient := 'Reclamation Fund';
     
     ELSIF NEW.fund_type NOT IN ('', 'Historic Preservation Fund', 'U.S. Treasury - GoMESA', 'U.S. Treasury', 'State', 'U.S. TreasuryAI', 'American Indian Tribes', 'Native American Tribes & Allottees', 'Native American tribes and individuals') 
-        AND NEW.fund_class = '' 
+        AND COALESCE(NEW.fund_class, 'Other funds') = 'Other funds' 
         AND NEW.recipient = '' THEN
         
         NEW.fund_class := 'Other funds';
-        NEW.recipient := fund_type;
+        NEW.recipient := NEW.fund_type;
     END IF;
 
     RETURN NEW;
