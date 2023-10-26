@@ -26,7 +26,6 @@ DECLARE
             AND p.period = 'Monthly'
 	        AND p.fiscal_year = p_fiscal_year
         GROUP BY r.location_id, 
-            r.period_id, 
             r.commodity_id, 
             r.fund_id;
 BEGIN
@@ -52,7 +51,6 @@ BEGIN
                 revenue_rec.unit_abbr,
                 revenue_rec.duplicate_no
             )
-            ON CONFLICT DO NOTHING;
         END LOOP;
     END LOOP;
 END $$ LANGUAGE PLPGSQL;
