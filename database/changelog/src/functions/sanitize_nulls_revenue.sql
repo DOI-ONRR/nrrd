@@ -12,8 +12,11 @@ BEGIN
     NEW.agency_state_region_code_desc := COALESCE(NEW.agency_state_region_code_desc,'');
     NEW.revenue_type := COALESCE(NEW.revenue_type,'');
     NEW.mineral_production_code_desc := COALESCE(NEW.mineral_production_code_desc,'');
-    NEW.commodity := COALESCE(NEW.commodity, 'Not tied to a commodity');
     NEW.product_code_desc := COALESCE(NEW.product_code_desc, '');
+
+    IF NEW.commodity = '' OR NEW.commodity IS NULL THEN
+      NEW.commodity := 'Not tied to a commodity';
+    END IF;
 
     RETURN NEW;
 END
