@@ -42,7 +42,14 @@ DECLARE
 	    AND COALESCE(e.fund_class, '') = f.fund_class
 	    AND COALESCE(e.recipient, '') = f.recipient
  	    AND COALESCE(e.disbursement_type, '') = f.disbursement_type
-	    AND COALESCE(e.commodity, 'Not tied to a commodity') = c.commodity
+        AND CASE e.commodity
+            WHEN NULL THEN
+                'Not tied to a commodity'
+            WHEN '' THEN
+                'Not tied to a commodity'
+            ELSE
+                e.commodity
+            END = c.commodity
 	    AND COALESCE(e.commodity, '') = c.product
 	    AND mineral_lease_type = ''
         AND p.period = 'Monthly'
