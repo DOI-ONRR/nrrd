@@ -23,12 +23,11 @@ DECLARE
         FROM revenue r,
             period p
         WHERE p.period_id = r.period_id
-            AND period = 'Monthly'
+            AND p.period = 'Monthly'
 	        AND p.fiscal_year = p_fiscal_year
-        GROUP BY location_id, 
-            period_id, 
-            commodity_id, 
-            fund_id;
+        GROUP BY r.location_id, 
+            r.commodity_id, 
+            r.fund_id;
 BEGIN
     FOR fy_period IN fy_periods LOOP
         FOR revenue_rec IN fiscal_year_revenue(fy_period.fiscal_year) LOOP
@@ -51,8 +50,7 @@ BEGIN
                 revenue_rec.unit,
                 revenue_rec.unit_abbr,
                 revenue_rec.duplicate_no
-            )
-            ON CONFLICT DO NOTHING;
+            );
         END LOOP;
     END LOOP;
 END $$ LANGUAGE PLPGSQL;

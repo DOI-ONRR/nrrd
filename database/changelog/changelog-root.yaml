@@ -7,3 +7,7 @@ databaseChangeLog:
         path: changelog-triggers
     - include:
         file: changelog-data/production-monthly.yaml
+    - include:
+        file: changelog-data/disbursement.yaml
+    - include:
+        file: changelog-data/revenue.yaml
