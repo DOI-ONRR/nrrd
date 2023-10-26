@@ -50,7 +50,7 @@ BEGIN
                 revenue_rec.unit,
                 revenue_rec.unit_abbr,
                 revenue_rec.duplicate_no
-            )
+            );
         END LOOP;
     END LOOP;
 END $$ LANGUAGE PLPGSQL;
