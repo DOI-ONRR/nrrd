@@ -10,6 +10,12 @@ DECLARE
                 SELECT 1
                 FROM revenue r
                 WHERE r.period_id = p.period_id
+            )
+            AND 12 = (
+                SELECT COUNT(*)
+                FROM period
+                WHERE period = 'Monthly'
+                  AND fiscal_year = p.fiscal_year
             );
 
     fiscal_year_revenue CURSOR (p_fiscal_year period.fiscal_year%TYPE) FOR
