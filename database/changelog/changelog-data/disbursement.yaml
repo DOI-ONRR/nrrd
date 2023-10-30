@@ -48,5 +48,5 @@ databaseChangeLog:
       - sql:
           dbms: 'postgresql'
           sql: |
-            CALL load_disbursement_monthly();
+            CALL load_disbursement_monthly(2015);
       

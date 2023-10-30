@@ -10,10 +10,9 @@ BEGIN
         OR NEW.fund_type = 'Native American Tribes & Allottees' THEN
         
         NEW.fund_type := 'Native American Tribes & Allottees';
-        NEW.fund_class := 'Native American tribes and individuals';
-        NEW.recipient := 'Native American tribes and individuals';
+    END IF;
     
-    ELSIF NEW.disbursement_type like '%8(g)%' THEN
+    IF NEW.disbursement_type like '%8(g)%' THEN
         NEW.fund_type := CONCAT(NEW.fund_type, ' 8(g)');
     
     ELSIF NEW.disbursement_type like '%GoMESA%' THEN

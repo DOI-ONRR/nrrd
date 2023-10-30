@@ -6,7 +6,14 @@ BEGIN
         NEW.fund_class := 'Other funds';
     END IF;
     
-    IF NEW.fund_type = 'U.S. Treasury' OR NEW.fund_type = 'U.S. Treasury - GoMESA' THEN
+    IF NEW.fund_type = 'U.S. TreasuryAI' 
+        OR NEW.fund_type = 'American Indian Tribes' 
+        OR NEW.fund_type = 'Native American Tribes & Allottees' THEN
+        
+        NEW.fund_class := 'Native American tribes and individuals';
+        NEW.recipient := 'Native American tribes and individuals';
+
+    ELSIF NEW.fund_type = 'U.S. Treasury' OR NEW.fund_type = 'U.S. Treasury - GoMESA' THEN
         NEW.fund_class := 'U.S. Treasury';
         NEW.recipient := 'U.S. Treasury';
     

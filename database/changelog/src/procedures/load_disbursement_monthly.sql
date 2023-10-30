@@ -1,4 +1,6 @@
-CREATE OR REPLACE PROCEDURE load_disbursement_monthly()
+DROP PROCEDURE IF EXISTS load_disbursement_monthly;
+
+CREATE PROCEDURE load_disbursement_monthly(p_fiscal_year period.fiscal_year%TYPE DEFAULT NULL)
 AS $$
 DECLARE
     monthly_disbursement CURSOR FOR
@@ -40,7 +42,14 @@ DECLARE
 	    AND COALESCE(e.fund_class, '') = f.fund_class
 	    AND COALESCE(e.recipient, '') = f.recipient
  	    AND COALESCE(e.disbursement_type, '') = f.disbursement_type
-	    AND COALESCE(e.commodity, 'Not tied to a commodity') = c.commodity
+        AND CASE e.commodity
+            WHEN NULL THEN
+                'Not tied to a commodity'
+            WHEN '' THEN
+                'Not tied to a commodity'
+            ELSE
+                e.commodity
+            END = c.commodity
 	    AND COALESCE(e.commodity, '') = c.product
 	    AND mineral_lease_type = ''
         AND p.period = 'Monthly'
@@ -73,4 +82,8 @@ BEGIN
         )
         ON CONFLICT DO NOTHING;
     END LOOP;
+
+    IF p_fiscal_year IS NOT NULL THEN
+        CALL summarize_fy_disbursements(p_fiscal_year);
+    END IF;
 END $$ LANGUAGE PLPGSQL;
