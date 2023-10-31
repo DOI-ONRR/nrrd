@@ -20,7 +20,7 @@ BEGIN
             NEW.commodity_order := 2;
         WHEN 'Oil & Gas' THEN
             NEW.commodity_order := 3;
-            NEW.commodity := 'Oil & Gas (Pre-production)'
+            NEW.commodity := 'Oil & Gas (Pre-production)';
         WHEN 'NGL' THEN
             NEW.commodity_order := 4;
         WHEN 'Coal' THEN
