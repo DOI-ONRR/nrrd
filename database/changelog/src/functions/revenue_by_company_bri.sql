@@ -9,7 +9,9 @@ BEGIN
     NEW.revenue_agency := SPLIT_PART(NEW.revenue_agency_type, ' - ', 1);
     NEW.revenue_type := SPLIT_PART(NEW.revenue_agency_type, ' - ', 2);
 
-    NEW.commodity_order =substr(commodity,1,5);
+    NEW.commodity := TRIM(NEW.commodity);
+
+    NEW.commodity_order := substr(commodity,1,5);
 
     CASE NEW.commodity
         WHEN 'Oil' THEN
@@ -18,6 +20,7 @@ BEGIN
             NEW.commodity_order := 2;
         WHEN 'Oil & Gas' THEN
             NEW.commodity_order := 3;
+            NEW.commodity := 'Oil & Gas (Pre-production)'
         WHEN 'NGL' THEN
             NEW.commodity_order := 4;
         WHEN 'Coal' THEN
