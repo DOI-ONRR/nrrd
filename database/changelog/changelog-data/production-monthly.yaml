@@ -1,8 +1,8 @@
 databaseChangeLog:
   - changeSet:
-      id: production-monthly-23-June
+      id: production-monthly-23-July
       author: Christine Thomas
-      changes:
+      changes: Adds July 2023 monthly data
       - sql:
           dbms: 'postgresql'
           sql: |
