@@ -67,6 +67,7 @@ databaseChangeLog:
             REFRESH MATERIALIZED VIEW _mview_fund_qtr;
             REFRESH MATERIALIZED VIEW _mview_fy_revenue_type;
             REFRESH MATERIALIZED VIEW _mview_fy_source;
+            REFRESH MATERIALIZED VIEW _mview_fy_commodity;
             REFRESH MATERIALIZED VIEW _mview_location_commodity_qtr;
             REFRESH MATERIALIZED VIEW _mview_location_qtr;
             REFRESH MATERIALIZED VIEW total_monthly_calendar_revenue;
