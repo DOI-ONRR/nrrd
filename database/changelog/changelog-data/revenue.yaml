@@ -2,7 +2,7 @@ databaseChangeLog:
   - changeSet:
       id: revenue-23-oct
       author: Christine Thomas
-      changes: Adds October 2023 monthly data
+      changes: 
       - sql:
           dbms: 'postgresql'
           sql: |
