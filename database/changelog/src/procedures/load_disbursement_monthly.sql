@@ -27,7 +27,11 @@ DECLARE
         AND COALESCE(e.land_category, '') = l.land_category
         AND COALESCE(e.state, '') = l.state
         AND COALESCE(e.county, '') = l.county
-        AND COALESCE(e.fips_code, '') = l.fips_code
+        AND CASE WHEN COALESCE(e.fips_code, '') = '' AND e.county = '' AND LENGTH(e.state) = 2 THEN
+            e.state
+        ELSE
+            COALESCE(e.fips_code, '')
+        END = l.fips_code
         AND l.offshore_region = ''
         AND e.fund_type = f.fund_type
      	AND e.category = f.revenue_type
