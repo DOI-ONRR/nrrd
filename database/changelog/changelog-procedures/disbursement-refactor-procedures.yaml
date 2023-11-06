@@ -2,6 +2,7 @@ databaseChangeLog:
   - changeSet:
       id: disbursement-refactor-procedures
       author: Jeff Schwartz
+      runOnChange: false
       changes:
       - sqlFile:
           path: src/procedures/load_disbursement_monthly.sql
