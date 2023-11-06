@@ -723,6 +723,7 @@ export default class D3StackedBarChart {
 
           rect.setAttribute('width', 10)
           rect.setAttribute('height', 10)
+          rect.setAttribute('aria-hidden', true)
 
           rect.style.backgroundColor = color(i)
           rect.style.border = `1px solid ${ color(i) }`

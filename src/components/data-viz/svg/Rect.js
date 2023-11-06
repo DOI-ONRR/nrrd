@@ -7,7 +7,8 @@ const Rect = ({
   x = 0,
   y = 0,
   styles,
-  title
+  title,
+  ariaHidden = true
 }) => {
   return (
     <svg width={width} height={height} style={styles} title={title}>
@@ -18,7 +19,8 @@ const Rect = ({
         height={height}
         x={x}
         y={y}
-        style={styles} />
+        style={styles}
+        aria-hidden={ariaHidden}/>
     </svg>
   )
 }
@@ -28,5 +30,6 @@ export default Rect
 Rect.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  title: PropTypes.string
+  title: PropTypes.string,
+  ariaHidden: PropTypes.bool
 }
