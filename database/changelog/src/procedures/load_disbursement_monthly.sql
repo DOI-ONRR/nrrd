@@ -27,7 +27,11 @@ DECLARE
         AND COALESCE(e.land_category, '') = l.land_category
         AND COALESCE(e.state, '') = l.state
         AND COALESCE(e.county, '') = l.county
-        AND COALESCE(e.fips_code, '') = l.fips_code
+        AND CASE WHEN COALESCE(e.fips_code, '') = '' AND e.county = '' AND LENGTH(e.state) = 2 THEN
+            e.state
+        ELSE
+            COALESCE(e.fips_code, '')
+        END = l.fips_code
         AND l.offshore_region = ''
         AND e.fund_type = f.fund_type
      	AND e.category = f.revenue_type
@@ -42,7 +46,14 @@ DECLARE
 	    AND COALESCE(e.fund_class, '') = f.fund_class
 	    AND COALESCE(e.recipient, '') = f.recipient
  	    AND COALESCE(e.disbursement_type, '') = f.disbursement_type
-	    AND COALESCE(e.commodity, 'Not tied to a commodity') = c.commodity
+        AND CASE e.commodity
+            WHEN NULL THEN
+                'Not tied to a commodity'
+            WHEN '' THEN
+                'Not tied to a commodity'
+            ELSE
+                e.commodity
+            END = c.commodity
 	    AND COALESCE(e.commodity, '') = c.product
 	    AND mineral_lease_type = ''
         AND p.period = 'Monthly'
