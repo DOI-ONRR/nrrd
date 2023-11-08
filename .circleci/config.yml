@@ -4,6 +4,9 @@ parameters:
   run_generate_downloads:
     type: boolean
     default: false
+  env_context:
+    type: string
+    default: PREVIEW
 
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
@@ -501,4 +504,8 @@ workflows:
   generate_downloads:
     when: << pipeline.parameters.run_generate_downloads >>
     jobs:
-      - generate-data-downloads
+      - generate-data-downloads:
+          context:
+            - org-global
+            - nrrd
+            - << pipeline.parameters.env_context >>
