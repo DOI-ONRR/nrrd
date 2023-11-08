@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: rbc-revenue-types
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE federal_revenue_by_company
+            SET revenue_type = TRIM(revenue_type);
