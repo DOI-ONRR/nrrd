@@ -10,7 +10,7 @@ set datestyle to SQL, MDY;
 \copy  (select  "Calendar Year", "Land Class", "Land Category", "State", "County", "FIPS Code", "Offshore Region", "Product", "Volume" from download_calendar_year_production )  to '/tmp/downloads/calendar_year_production.csv' csv header force quote  "FIPS Code"
 \copy  (select * from download_monthly_disbursements )  to '/tmp/downloads/monthly_disbursements.csv' csv header 
 \copy  (select "Fiscal Year", "Fund Type", "Source", "State", "County", "Disbursement"   from download_fiscal_year_disbursements )  to '/tmp/downloads/fiscal_year_disbursements.csv' csv header 
-\copy  (select "Calendar Year", "Corporate Name", "Revenue Agency Type", "Commodity", "Revenue"  from download_federal_revenue_by_company order by "Calendar Year" )  to '/tmp/downloads/federal_revenue_by_company.csv' csv header 
+\copy  (select "Calendar Year", "Corporate Name" as "Company Name", "Revenue Agency Type" as "Revenue Type", "Commodity", "Revenue"  from download_federal_revenue_by_company order by "Calendar Year" )  to '/tmp/downloads/federal_revenue_by_company.csv' csv header 
 
 EOF
 
