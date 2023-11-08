@@ -1,3 +1,5 @@
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'
+
 <Box component='footer' display="flex" alignItems="center" bgcolor="info.dark" pt={4} pb={4} style={{ position: 'relative', zIndex: 275, top: 6 }} displayPrint="none">
   <Container maxWidth="lg">
     <Grid container>
@@ -10,18 +12,18 @@
         <Box color="white">
           <h2>Built in the open</h2>
           <Box mr={4}>
-This site <Link href="https://github.com/DOI-ONRR/nrrd/releases" style={{ color: 'white' }}>{props.data.site.siteMetadata.version}</Link> is powered by <Link href="/downloads" style={{ color: 'white' }}>open data</Link> and <Link href='https://github.com/DOI-ONRR/nrrd' style={{ color: 'white' }}>source code</Link>. We welcome contributions
-and comments on <Link href='https://github.com/DOI-ONRR/nrrd/issues' style={{ color: 'white' }}>GitHub</Link>. We write about how we work on this
-site on <Link href='https://blog-nrrd.doi.gov' style={{ color: 'white' }}>our team's blog</Link>.
+This site <Link href="https://github.com/DOI-ONRR/nrrd/releases" <OpenInNewIcon style={{ fontSize: 12 }} /> style={{ color: 'white' }}>{props.data.site.siteMetadata.version}</Link> is powered by <Link href="/downloads" style={{ color: 'white' }}>open data</Link> and <Link href='https://github.com/DOI-ONRR/nrrd' style={{ color: 'white' }}>source code</Link>. We welcome contributions
+and comments on <Link href='https://github.com/DOI-ONRR/nrrd/issues' <OpenInNewIcon style={{ fontSize: 12 }} /> style={{ color: 'white' }}>GitHub</Link>. We write about how we work on this
+site on <Link href='https://blog-nrrd.doi.gov' <OpenInNewIcon style={{ fontSize: 12 }} /> style={{ color: 'white' }}>our team's blog</Link>.
           </Box>
           <Box color='white' fontSize={'caption.fontSize'} mt={4}>
             <Link href='/' style={{ color: 'white' }}>Home</Link>&nbsp;|&nbsp;
             <Link href='/about' style={{ color: 'white' }}>About</Link>&nbsp;|&nbsp;
-            <Link href='https://www.doi.gov/' style={{ color: 'white' }}>Department of the Interior</Link>&nbsp;|&nbsp;
-            <Link href='https://www.doi.gov/privacy' style={{ color: 'white' }}>Privacy Policy</Link>&nbsp;|&nbsp;
-            <Link href='https://www.doi.gov/foia' style={{ color: 'white' }}>FOIA</Link>&nbsp;|&nbsp;
-            <Link href='https://www.usa.gov/' style={{ color: 'white' }}>USA.gov</Link>&nbsp;|&nbsp;
-            <Link href='https://www.doioig.gov/' style={{ color: 'white' }}>Inspector General</Link>&nbsp;|&nbsp;
+            <Link href='https://www.doi.gov/' <OpenInNewIcon style={{ fontSize: 12 }} /> style={{ color: 'white' }}>Department of the Interior</Link>&nbsp;|&nbsp;
+            <Link href='https://www.doi.gov/privacy' <OpenInNewIcon style={{ fontSize: 12 }} /> style={{ color: 'white' }}>Privacy Policy</Link>&nbsp;|&nbsp;
+            <Link href='https://www.doi.gov/foia' <OpenInNewIcon style={{ fontSize: 12 }} /> style={{ color: 'white' }}>FOIA</Link>&nbsp;|&nbsp;
+            <Link href='https://www.usa.gov/' <OpenInNewIcon style={{ fontSize: 12 }} /> style={{ color: 'white' }}>USA.gov</Link>&nbsp;|&nbsp;
+            <Link href='https://www.doioig.gov/' <OpenInNewIcon style={{ fontSize: 12 }} /> style={{ color: 'white' }}>Inspector General</Link>&nbsp;|&nbsp;
             <Link href='/fact-sheet' style={{ color: 'white' }}>Monthly Fact Sheet</Link>&nbsp;|&nbsp;
             <Link href='/vdp' style={{ color: 'white' }}>Vulnerability Disclosure Policy</Link>&nbsp;|&nbsp;
             <Link href='/information-quality' style={{ color: 'white' }}>Information Quality</Link>&nbsp;|&nbsp;
