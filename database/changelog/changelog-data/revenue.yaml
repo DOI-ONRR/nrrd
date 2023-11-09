@@ -1,19 +1,15 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-YY-MONTH-truncate
-      author: <Author>
+      id: revenue-23-sept
+      author: Christine Thomas
       changes:
       - sql:
           dbms: 'postgresql'
           sql: |
             TRUNCATE TABLE monthly_revenue_elt
-  - changeSet:
-      id: revenue-YY-MONTH-load-csv
-      author: <Author>
-      changes:
       - loadData:
           tableName: monthly_revenue_elt
-          file: '../static/csv/revenue/FILE-NAME.csv'
+          file: '../static/csv/revenue/September 2023 Revenue for Portal_csv.csv'
           quotchar: '""'
           columns:
           - column:
@@ -53,10 +49,6 @@ databaseChangeLog:
           - column:
               header: Revenue
               name: revenue
-  - changeSet:
-      id: revenue-YY-MONTH-load-revenue
-      author: <Author>
-      changes:
       - sql:
           dbms: 'postgresql'
           sql: |
@@ -64,3 +56,22 @@ databaseChangeLog:
             CALL load_revenue_monthly();
             CALL load_revenue_fiscal_year();
             CALL load_revenue_calendar_year();
+            REFRESH MATERIALIZED VIEW _mview_commodity_qtr;
+            REFRESH MATERIALIZED VIEW _mview_cy_commodity;
+            REFRESH MATERIALIZED VIEW _mview_cy_revenue_type;
+            REFRESH MATERIALIZED VIEW _mview_cy_source;
+            REFRESH MATERIALIZED VIEW _mview_fund_commodity_qtr;
+            REFRESH MATERIALIZED VIEW _mview_fund_location_commodity_qtr;
+            REFRESH MATERIALIZED VIEW _mview_fund_location_qtr;
+            REFRESH MATERIALIZED VIEW _mview_fund_qtr;
+            REFRESH MATERIALIZED VIEW _mview_fy_revenue_type;
+            REFRESH MATERIALIZED VIEW _mview_fy_source;
+            REFRESH MATERIALIZED VIEW _mview_fy_commodity;
+            REFRESH MATERIALIZED VIEW _mview_location_commodity_qtr;
+            REFRESH MATERIALIZED VIEW _mview_location_qtr;
+            REFRESH MATERIALIZED VIEW total_monthly_calendar_revenue;
+            REFRESH MATERIALIZED VIEW total_monthly_fiscal_revenue;
+            REFRESH MATERIALIZED VIEW total_monthly_last_three_years_revenue;
+            REFRESH MATERIALIZED VIEW total_monthly_last_twelve_revenue;
+            REFRESH MATERIALIZED VIEW total_yearly_calendar_revenue;
+            REFRESH MATERIALIZED VIEW total_yearly_fiscal_revenue;

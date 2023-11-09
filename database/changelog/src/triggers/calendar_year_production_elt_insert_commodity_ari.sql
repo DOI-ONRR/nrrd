@@ -1,0 +1,1 @@
+DROP TRIGGER IF EXISTS calendar_year_production_elt_insert_commodity_ari ON calendar_year_production_elt;

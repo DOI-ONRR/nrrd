@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: production-fy-refactor-procedures
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/procedures/load_production_fiscal_year.sql
+          splitStatements: false

@@ -1,19 +1,15 @@
 databaseChangeLog:
   - changeSet:
-      id: disbursement-YY-MONTH-truncate
-      author: <Author>
+      id: disbursement-monthly-23-September
+      author: Lindsay Goldstein
       changes:
       - sql:
           dbms: 'postgresql'
           sql: |
             TRUNCATE TABLE monthly_disbursement_elt
-  - changeSet:
-      id: disbursement-YY-MONTH-load-csv
-      author: <Author>
-      changes:
       - loadData:
           tableName: monthly_disbursement_elt
-          file: '../static/csv/revenues/FILE-NAME.csv'
+          file: '../static/csv/disbursements/monthly_disbursements.csv'
           quotchar: '""'
           columns:
           - column:
@@ -49,11 +45,8 @@ databaseChangeLog:
           - column:
               header: Disbursement
               name: disbursement
-  - changeSet:
-      id: disbursement-YY-MONTH-load-disbursement
-      author: <Author>
-      changes:
       - sql:
           dbms: 'postgresql'
           sql: |
-            CALL load_disbursement_monthly();
+            CALL load_disbursement_monthly(2023);
+      

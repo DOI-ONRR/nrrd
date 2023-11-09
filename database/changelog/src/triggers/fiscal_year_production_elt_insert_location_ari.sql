@@ -1,0 +1,1 @@
+DROP TRIGGER IF EXISTS fiscal_year_production_elt_insert_location_ari ON fiscal_year_production_elt;
