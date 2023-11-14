@@ -57,6 +57,7 @@ Note: This data set uses RVPA to refer to Total Royalty Value.
 Although they appear similar, there are key differences:  
 <br />
 Accounting Year data represent all transactions that ONRR accepted into our Financial System during a given fiscal or calendar year. This dataset contains transactions for sales that took place in the current federal fiscal or calendar year, as well as adjusted or corrected transactions for sales that took place in previous fiscal years. Because revenues are generally disbursed in the same year they were reported and accepted into ONRR’s Financial System, Accounting Year data are most useful when analyzing dollars ONRR collected and disbursed in a given federal fiscal or calendar year. Because they include adjusted or corrected transactions for previous sales periods, Accounting Year data should not be used for trending purposes or for analyzing sales volumes.  
+
 <br /> 
 
 Sales Year data represent sales transactions that took place in a given federal fiscal or calendar year and do not include adjusted or corrected transactions for sales that took place in previous years. This data set provides a “snap shot” of reported sales of mineral commodities, and is most useful when trending sales volumes or when making comparisons to production volumes. Because ONRR processes royalty transactions daily, the Sales Year data constantly changes. For this reason, the Sales Year datasets are published with an as-of date.  
@@ -81,10 +82,6 @@ Below are the transaction codes included in the dataset.
       <td>ROYALTY DUE</td>
     </tr>
     <tr>
-      <td>06</td>
-      <td>ROYALTY IN KIND TRANSACTION</td>
-    </tr>
-    <tr>
       <td>08</td>
       <td>ROYALTY IN KIND (OTHER)</td>
     </tr>
@@ -104,6 +101,10 @@ Below are the transaction codes included in the dataset.
       <td>15</td>
       <td>PROCESSING ALLOWANCE</td>
     </tr>
+   <tr>
+      <td>39</td>
+      <td>NET PROFIT SHARE - UNPROFITABLE</td>
+    </tr> 
     <tr>
       <td>40</td>
       <td>NET PROFIT SHARE - PROFITABLE</td>
@@ -113,40 +114,12 @@ Below are the transaction codes included in the dataset.
       <td>OFFSHORE DEEP WATER ROYALTY RELIEF</td>
     </tr>
     <tr>
-      <td>43</td>
-      <td>EPA Sec 343 - Marginal Property Royalty Relief (RRR)</td>
-    </tr>
-    <tr>
       <td>44</td>
       <td>DWRRA - EPA Sec 344 - Shallow Water Deep Gas Roy Relief (SV)</td>
     </tr>
     <tr>
-      <td>45</td>
-      <td>EPA Sec 346 - Alaska Offshore Royalty Relief (SV)</td>
-    </tr>
-    <tr>
-      <td>46</td>
-      <td>EPA Sec 346 - Alaska Offshore Royalty Relief (RRR)</td>
-    </tr>
-    <tr>
-      <td>49</td>
-      <td>EPA Sec 343 - Marginal Property Royalty Relief (SV)</td>
-    </tr>
-    <tr>
-      <td>53</td>
-      <td>EFFLUENT INJECTION REIMBURSEMENT</td>
-    </tr>
-    <tr>
-      <td>54</td>
-      <td>GEOTHERMAL FIELD OPERATIONS REIMBURSEMENT</td>
-    </tr>
-    <tr>
       <td>55</td>
       <td>DWRRA - EPA Sec 345 - Deep Water Royalty Relief (SV)</td>
-    </tr>
-    <tr>
-      <td>75</td>
-      <td>Direct Use Fees</td>
     </tr>
     <tr>
       <td>RR</td>
@@ -155,7 +128,7 @@ Below are the transaction codes included in the dataset.
   </tbody>
 </table>
 
-### How are quality gravity bank adjustments calculated?
+### How are Quality Bank Adjustments calculated?
 
 Quality Gravity bank adjustments are made prior to any allowances taking place and included in the reporting. Gravity Bank Adjustments (TC 13) are used to report the difference in quality (gravity) between oil measured at the BLM or BSEE-approved point of royalty settlement and the oil delivered to the refiner at the delivery point. The dataset rolls up the TC 13 adjustments with the TC 01 (Royalty) reporting for oil. (link to reg: See e.g. 30 CFR 1206.119.)
 
