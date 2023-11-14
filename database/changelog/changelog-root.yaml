@@ -1,5 +1,7 @@
 databaseChangeLog:
     - includeAll:
+        path: changelog-tables
+    - includeAll:
         path: changelog-functions
     - includeAll:
         path: changelog-procedures
