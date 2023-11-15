@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: revenue-by-company-views
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sqlFile:
+          path: src/views/query_tool_revenue_by_company.sql
