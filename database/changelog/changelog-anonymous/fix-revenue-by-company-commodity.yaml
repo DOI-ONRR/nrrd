@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: fix-revenue-by-company-commodity
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE federal_revenue_by_company
+            SET commodity = TRIM(commodity);
+
+            UPDATE federal_revenue_by_company
+            SET commodity = 'Oil & gas (pre-production)'
+            WHERE commodity = 'Oil & gas';

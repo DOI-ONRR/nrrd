@@ -7,6 +7,10 @@ databaseChangeLog:
         path: changelog-procedures
     - includeAll:
         path: changelog-triggers
+    - includeAll:
+        path: changelog-views
+    - includeAll:
+        path: changelog-anonymous
     - include:
         file: changelog-data/production-monthly.yaml
     - include:

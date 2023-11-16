@@ -2,7 +2,7 @@ databaseChangeLog:
   - changeSet:
       id: refactor-disbursement-functions
       author: Jeff Schwartz
-      runOnChange: true
+      runOnChange: false
       changes:
       - sqlFile:
           path: src/functions/format_negative_disbursement.sql
