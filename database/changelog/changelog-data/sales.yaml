@@ -5,7 +5,7 @@ databaseChangeLog:
       changes:
       - loadData:
           tableName: sales
-          file: '../static/csv/sales/sales.csv'
+          file: '../static/csv/sales/federal-sales.csv'
           quotchar: '""'
           columns:
           - column:
