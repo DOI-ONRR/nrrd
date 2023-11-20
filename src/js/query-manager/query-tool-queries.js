@@ -26,20 +26,24 @@ import {
   SINGLE_STR,
   MULTI_STR,
   MULTI_INT,
-  /* not used
-   *  ALL_DISBURSEMENT_YEARS,
-   * ALL_REVENUE_YEARS,
-   * ALL_REVENUE_BY_COMPANY_YEARS,
-   * ALL_PRODUCTION_YEARS,
-   * ALL_PRODUCTION_MONTHLY_YEARS,
-   */
   DATA_TYPE,
   STATE_OFFSHORE_NAME,
   FISCAL_YEAR,
   CALENDAR_YEAR,
   LOCAL_RECIPIENT,
   PERIOD_MONTHLY,
-  MONTH_LONG
+  PERIOD_CALENDAR_YEAR,
+  MONTH_LONG,
+  FEDERAL_SALES,
+  STATE_OFFSHORE_REGION,
+  SALES_VOLUME,
+  GAS_VOLUME,
+  SALES_VALUE,
+  TRANSPORTATION_ALLOW,
+  PROCESSING_ALLOW,
+  RVPA,
+  RVLA,
+  EFFECTIVE_ROYALTY_RATE
 } from '../../constants'
 import gql from 'graphql-tag'
 
@@ -97,6 +101,12 @@ const VARIABLE_CONFIGS = {
     { [COMPANY_NAME]: MULTI_STR },
     { [CALENDAR_YEAR]: MULTI_INT }
   ],
+  [FEDERAL_SALES]: [
+    { [CALENDAR_YEAR]: MULTI_INT },
+    { [COMMODITY]: MULTI_STR },
+    { [LAND_TYPE]: MULTI_STR },
+    { [STATE_OFFSHORE_REGION]: MULTI_STR }
+  ],
   ALL_YEARS: {
     [REVENUE]: [
       { [G1]: SINGLE_STR },
@@ -130,6 +140,11 @@ const VARIABLE_CONFIGS = {
       { [COMMODITY]: MULTI_STR },
       { [REVENUE_TYPE]: MULTI_STR },
       { [COMPANY_NAME]: MULTI_STR }
+    ],
+    [FEDERAL_SALES]: [
+      { [COMMODITY]: MULTI_STR },
+      { [LAND_TYPE]: MULTI_STR },
+      { [STATE_OFFSHORE_REGION]: MULTI_STR }
     ]
   },
 }
@@ -143,7 +158,8 @@ const VIEWS = {
   [REVENUE]: 'query_tool_revenue_try',
   [PRODUCTION]: 'query_tool_production',
   [DISBURSEMENT]: 'query_tool_disbursement',
-  [REVENUE_BY_COMPANY]: 'query_tool_fed_revenue_by_company'
+  [REVENUE_BY_COMPANY]: 'query_tool_fed_revenue_by_company',
+  [FEDERAL_SALES]: 'federal_sales_v'
 }
 const REVENUE_QUERY = whereClause => (
   `results:${ VIEWS[REVENUE] }(
@@ -256,6 +272,26 @@ const REVENUE_BY_COMPANY_QUERY = whereClause => (
     }
   }`)
 
+const FEDERAL_SALES_QUERY = whereClause => (
+  `results:${ VIEWS[FEDERAL_SALES] }(
+    where: {
+      ${ whereClause }
+    }) {
+      ${ CALENDAR_YEAR }: ${ DB_COLS[CALENDAR_YEAR] }
+      ${ LAND_TYPE }: ${ DB_COLS[LAND_TYPE] }
+      ${ STATE_OFFSHORE_REGION }: ${ DB_COLS[STATE_OFFSHORE_REGION] }
+      ${ REVENUE_TYPE }: ${ DB_COLS[REVENUE_TYPE] }
+      ${ COMMODITY }: ${ DB_COLS[COMMODITY] }
+      ${ SALES_VOLUME }: ${ DB_COLS[SALES_VOLUME] }
+      ${ GAS_VOLUME }: ${ DB_COLS[GAS_VOLUME] }
+      ${ SALES_VALUE }: ${ DB_COLS[SALES_VALUE] }
+      ${ RVPA }: ${ DB_COLS[RVPA] }
+      ${ TRANSPORTATION_ALLOW }: ${ DB_COLS[TRANSPORTATION_ALLOW] }
+      ${ PROCESSING_ALLOW }: ${ DB_COLS[PROCESSING_ALLOW] }
+      ${ RVLA }: ${ DB_COLS[RVLA] }
+      ${ EFFECTIVE_ROYALTY_RATE }: ${ DB_COLS[EFFECTIVE_ROYALTY_RATE] }
+    }`)
+
 // STEP 3: Define the functions to return the proper query based of the state
 /**
  * Get the queries based on data type and/or the data filter options
@@ -290,6 +326,12 @@ const QUERIES = {
     gql`query GetDataTableRevenueByCompany
           (${ getDataFilterVariableList(state, variableConfig) })
           {${ REVENUE_BY_COMPANY_QUERY(getDataFilterWhereClauses(((state[PERIOD] === PERIOD_MONTHLY)
+    ? VARIABLE_CONFIGS[state[DATA_TYPE]]
+    : VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]]))) }}`,
+  [FEDERAL_SALES]: (state, variableConfig) =>
+    gql`query GetDataTableFederalSales
+          (${ getDataFilterVariableList(state, variableConfig) })
+          {${ FEDERAL_SALES_QUERY(getDataFilterWhereClauses(((state[PERIOD] === PERIOD_CALENDAR_YEAR)
     ? VARIABLE_CONFIGS[state[DATA_TYPE]]
     : VARIABLE_CONFIGS.ALL_YEARS[state[DATA_TYPE]]))) }}`,
   DATA_FILTERS: (state, variableConfig, options) => {

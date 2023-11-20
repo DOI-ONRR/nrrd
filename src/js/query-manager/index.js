@@ -3,8 +3,6 @@ import {
   LOCATION_AGGREGATION,
   COMMODITY_AGGREGATION,
   DATA_FILTER_KEY,
-  // not used   EXCLUDE_PROPS,
-  // not used DATA_TYPE,
   PRODUCTION,
   REVENUE,
   DISBURSEMENT,
@@ -13,6 +11,7 @@ import {
   QK_DISBURSEMENTS_COMMON,
   QK_REVENUE_COMMON,
   QK_PRODUCTION_COMMON,
+  QK_SALES_COMMON,
   FISCAL_YEAR,
   PERIOD_FISCAL_YEAR,
   CALENDAR_YEAR,
@@ -38,8 +37,18 @@ import {
   LOCAL_RECIPIENT,
   COMMODITY_ORDER,
   COMPANY_NAME,
-  MONTH_LONG
-  // not used MONTHLY
+  MONTH_LONG,
+  LAND_CLASS,
+  LAND_CATEGORY,
+  STATE_OFFSHORE_REGION,
+  SALES_VOLUME,
+  GAS_VOLUME,
+  SALES_VALUE,
+  RVPA,
+  TRANSPORTATION_ALLOW,
+  PROCESSING_ALLOW,
+  RVLA,
+  EFFECTIVE_ROYALTY_RATE
 } from '../../constants'
 
 import {
@@ -61,6 +70,12 @@ import {
   getQuery as getQueryProduction,
   getVariables as getVariablesProduction
 } from './production-queries'
+
+import {
+  getQuery as getQuerySales,
+  getVariables as getVariablesSales
+} from './sales-queries'
+
 /**
  * The query manager provides a standard approach for accessing a query and its variables. This allows us to use this
  * query manager in a HOC that can then be added to components. The query manager also provides helper methods to use for creating
@@ -107,8 +122,16 @@ export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
   [DISBURSEMENT]: 'disbursement',
   [G1]: 'g1',
   [G2]: 'g2',
-  [G3]: 'g3'
-
+  [G3]: 'g3',
+  [STATE_OFFSHORE_REGION]: 'state_offshore_region',
+  [SALES_VOLUME]: 'sales_volume',
+  [GAS_VOLUME]: 'gas_volume',
+  [SALES_VALUE]: 'sales_value',
+  [RVPA]: 'royalty_value_prior_to_allowance',
+  [TRANSPORTATION_ALLOW]: 'transportation_allowance',
+  [PROCESSING_ALLOW]: 'processing_allowance',
+  [RVLA]: 'royalty_value_less_allowance',
+  [EFFECTIVE_ROYALTY_RATE]: 'effective_royalty_rate'
 }
 
 /**
@@ -119,6 +142,7 @@ const QUERIES = {
   [QK_DISBURSEMENTS_COMMON]: (state, options) => getQueryDisbursement(state, options),
   [QK_REVENUE_COMMON]: (state, options) => getQueryRevenue(state, options),
   [QK_PRODUCTION_COMMON]: (state, options) => getQueryProduction(state, options),
+  [QK_SALES_COMMON]: (state, options) => getQuerySales(state, options),
 }
 
 /**
@@ -129,6 +153,7 @@ const VARIABLES = {
   [QK_DISBURSEMENTS_COMMON]: (state, options) => getVariablesDisbursement(state, options),
   [QK_REVENUE_COMMON]: (state, options) => getVariablesRevenue(state, options),
   [QK_PRODUCTION_COMMON]: (state, options) => getVariablesProduction(state, options),
+  [QK_SALES_COMMON]: (state, options) => getVariablesSales(state, options),
 }
 
 /**
@@ -323,22 +348,3 @@ export const getDataFilterVariableList = (state, config, options) => {
 
   return result
 }
-
-/*
-
-create view query_tool_revenue_try as
-select * from _mview_fund_qtr
-UNION
-select * from _mview_location_qtr
-UNION
-select * from _mview_commodity_qtr
-UNION
-select * from _mview_fund_location_qtr
-UNION
-select * from _mview_fund_commodity_qtr
-UNION
-select * from _mview_location_commodity_qtr
-UNION
-select * from _mview_fund_location_commodity_qtr
-
-*/

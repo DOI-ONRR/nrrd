@@ -9,6 +9,7 @@ import {
   REVENUE,
   REVENUE_TYPE,
   PRODUCTION,
+  FEDERAL_SALES,
   // COUNTIES,
   DISBURSEMENT,
   RECIPIENT,
@@ -126,6 +127,9 @@ const initialState = {
         [GROUP_BY]: COMPANY_NAME,
         [PERIOD]: 'Calendar Year',
         [CALENDAR_YEAR]: getLastFiveYears(REVENUE_BY_COMPANY, PERIOD_CALENDAR_YEAR),
+      },
+      [FEDERAL_SALES]: {
+        [DATA_TYPE]: FEDERAL_SALES
       }
     }
   },

@@ -123,7 +123,7 @@ const config = {
     {
       resolve: 'gatsby-source-graphql',
       options: {
-        typeName: 'hasura',
+        typeName: 'ONRR',
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({
