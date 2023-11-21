@@ -1,8 +1,10 @@
-CREATE OR REPLACE VIEW federal_sales_v AS
+DROP VIEW IF EXISTS federal_sales_v;
+
+CREATE VIEW federal_sales_v AS
 SELECT id,
   calendar_year,
-  'Calendar Year' as period,
-  land_class || ' ' || land_category as land_type,
+  'Calendar Year' period,
+  land_class || ' ' || land_category land_type,
   state_offshore_region,
   revenue_type,
   commodity,
