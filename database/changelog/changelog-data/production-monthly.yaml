@@ -1,8 +1,8 @@
 databaseChangeLog:
   - changeSet:
-      id: production-monthly-23-June
+      id: production-monthly-23-July
       author: Christine Thomas
-      changes:
+      changes: 
       - sql:
           dbms: 'postgresql'
           sql: |

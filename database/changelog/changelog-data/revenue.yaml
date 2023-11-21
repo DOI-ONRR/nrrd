@@ -1,15 +1,15 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-23-sept
+      id: revenue-23-oct
       author: Christine Thomas
-      changes:
+      changes: 
       - sql:
           dbms: 'postgresql'
           sql: |
             TRUNCATE TABLE monthly_revenue_elt
       - loadData:
           tableName: monthly_revenue_elt
-          file: '../static/csv/revenue/September 2023 Revenue for Portal_csv.csv'
+          file: '../static/csv/revenue/October 2023 Revenue for Portal_csv.csv'
           quotchar: '""'
           columns:
           - column:
