@@ -19,6 +19,7 @@ import {
   PERIOD_MONTHLY,
   MULTI_STR,
   MULTI_INT,
+  MULTI_NUMERIC,
   COMMODITY,
   REVENUE_TYPE,
   US_STATE,
@@ -38,8 +39,6 @@ import {
   COMMODITY_ORDER,
   COMPANY_NAME,
   MONTH_LONG,
-  LAND_CLASS,
-  LAND_CATEGORY,
   STATE_OFFSHORE_REGION,
   SALES_VOLUME,
   GAS_VOLUME,
@@ -167,6 +166,7 @@ export const getDataFilterWhereClauses = (config, excludeProps) => {
     switch (type) {
     case MULTI_INT:
     case MULTI_STR:
+    case MULTI_NUMERIC:
       return `{_in: $${ key }}`
     }
     return `{_eq: $${ key }}`
@@ -192,8 +192,6 @@ export const getDataFilterWhereClauses = (config, excludeProps) => {
  * @param {array} config
  */
 export const getDataFilterVariableValues = (state, config, options) => {
-//  console.debug('getDataFilterVariableValues: ', state, config, options)
-
   const results = {}
   config.forEach(prop => {
     const key = Object.keys(prop)[0]
@@ -227,7 +225,6 @@ export const getDataFilterVariableValues = (state, config, options) => {
     results[Object.keys(prop)[0]] = getDataFilterValue(Object.keys(prop)[0], state)
   })
 
-  //  console.debug('getDataFilterVariableValues RESULTS: ', results)
   return ({ variables: results })
 }
 
@@ -236,79 +233,61 @@ export const checkFundAggregation = (key, state, config, options) => {
     return false
   }
   if (FUND_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
-    // console.debug("AGG FUND dfk true :", key)
     return true
   }
   else if (FUND_AGGREGATION.includes(state.groupBy)) {
-    // console.debug("AGG FUND  true gb :", key, state.groupBy)
     return true
   }
   else if (FUND_AGGREGATION.includes(state.breakoutBy)) {
-    // console.debug("AGG FUND  true gb :", key, state.groupBy)
     return true
   }
 
   const keys = Object.keys(state)
   for (let ii = 0; ii < keys.length; ii++) {
     if (FUND_AGGREGATION.includes(keys[ii])) {
-      //   console.debug("AGG FUND true :", key, state[key])
       return true
     }
   }
-
-  //    console.debug("AGG FUND false :", key, state.groupBy, key)
-  //  console.debug("AGG FUND STATE :", key, state, config, options)
   return false
 }
 export const checkLocationAggregation = (key, state, config, options) => {
   if (LOCATION_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
-    // console.debug("LOC AGG dfk true :", key, state[key])
     return true
   }
   else if (LOCATION_AGGREGATION.includes(state.groupBy)) {
-    // console.debug("LOC AGG true gb :", key, state.groupBy)
     return true
   }
   else if (LOCATION_AGGREGATION.includes(state.breakoutBy)) {
-    // console.debug("LOC AGG true gb :", key, state.groupBy)
     return true
   }
 
   const keys = Object.keys(state)
   for (let ii = 0; ii < keys.length; ii++) {
     if (LOCATION_AGGREGATION.includes(keys[ii])) {
-      // console.debug("LOC AGG true :", key, state[key])
       return true
     }
   }
 
-  // console.debug("LOC AGG false :",key, state.groupBy, key)
   return false
 }
 export const checkCommodityAggregation = (key, state, config, options) => {
-  // console.debug(state.groupBySticky, " VS ", COMMODITY_AGGREGATION);
   if (COMMODITY_AGGREGATION.includes(options[DATA_FILTER_KEY])) {
-    // console.debug("COM AGG dfk true :", key, state[key])
     return true
   }
   else if (COMMODITY_AGGREGATION.includes(state.groupBy)) {
-    // console.debug("COM AGG true gb :", key, state.groupBy)
     return true
   }
   else if (COMMODITY_AGGREGATION.includes(state.breakoutBy)) {
-    // console.debug("COM AGG true gb :", key, state.groupBy)
     return true
   }
 
   const keys = Object.keys(state)
   for (let ii = 0; ii < keys.length; ii++) {
     if (COMMODITY_AGGREGATION.includes(keys[ii])) {
-      // console.debug("COM AGG true :", key, state[key])
       return true
     }
   }
 
-  // console.debug("COM AGG false :",key, state.groupBy, key)
   return false
 }
 

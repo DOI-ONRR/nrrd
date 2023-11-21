@@ -25,6 +25,7 @@ export const COUNTIES = 'counties'
 export const PRODUCT = 'product'
 export const COMMODITY = 'commodity'
 export const COMMODITY_ORDER = 'commodityOrder'
+export const COMMODITY_SALES = 'commoditySales'
 export const COMMODITIES = 'commodities'
 export const REVENUE_TYPE = 'revenueType'
 export const REVENUE_TYPES = 'revenueTypes'
@@ -167,6 +168,10 @@ export const DISPLAY_NAMES = {
     default: 'Commodity',
     plural: 'Commodities',
   },
+  [COMMODITY_SALES]: {
+    default: 'Commodity',
+    plural: 'Commodities',
+  },
   [PRODUCT]: {
     default: 'Product',
     plural: 'Products',
@@ -212,6 +217,10 @@ export const DISPLAY_NAMES = {
     plural: 'Recipients',
   },
   [STATE_OFFSHORE_NAME]: {
+    default: 'State/Offshore Region',
+    plural: 'States/Offshore Regions',
+  },
+  [STATE_OFFSHORE_REGION]: {
     default: 'State/Offshore Region',
     plural: 'States/Offshore Regions',
   },

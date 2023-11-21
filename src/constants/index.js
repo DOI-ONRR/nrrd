@@ -11,6 +11,7 @@ export const SINGLE_STR = 'String,'
 export const MULTI_STR = '[String!],'
 export const SINGLE_INT = 'Int,'
 export const MULTI_INT = '[Int!],'
+export const MULTI_NUMERIC = '[numeric!],'
 
 // Defines the available download types
 export const EXCEL = 'excel'

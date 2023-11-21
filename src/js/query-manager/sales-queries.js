@@ -7,6 +7,7 @@ const Sales = `results:
   federal_sales_v {
     id
     calendar_year
+    period
     land_type
     state_offshore_region
     revenue_type

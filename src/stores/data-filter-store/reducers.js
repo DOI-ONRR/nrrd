@@ -129,7 +129,9 @@ const initialState = {
         [CALENDAR_YEAR]: getLastFiveYears(REVENUE_BY_COMPANY, PERIOD_CALENDAR_YEAR),
       },
       [FEDERAL_SALES]: {
-        [DATA_TYPE]: FEDERAL_SALES
+        [DATA_TYPE]: FEDERAL_SALES,
+        [PERIOD]: 'Calendar Year',
+        [CALENDAR_YEAR]: getLastFiveYears(FEDERAL_SALES, PERIOD_CALENDAR_YEAR),
       }
     }
   },

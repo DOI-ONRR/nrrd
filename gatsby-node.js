@@ -123,7 +123,7 @@ const createYearsCache = ({ graphql, reporter }) => {
           federal_revenue_by_company_calendar_years: federal_revenue_by_company(distinct_on: calendar_year, order_by: {calendar_year: asc}) {
             calendar_year
           },
-          sales_calendar_years: sales(distinct_on: calendar_year, order_by: {calendar_year: asc}) {
+          sales_calendar_years: federal_sales_v(distinct_on: calendar_year, order_by: {calendar_year: asc}) {
             calendar_year
           }
         }

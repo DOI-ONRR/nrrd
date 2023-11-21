@@ -43,7 +43,8 @@ import {
   PROCESSING_ALLOW,
   RVPA,
   RVLA,
-  EFFECTIVE_ROYALTY_RATE
+  EFFECTIVE_ROYALTY_RATE,
+  MULTI_NUMERIC
 } from '../../constants'
 import gql from 'graphql-tag'
 
@@ -102,7 +103,7 @@ const VARIABLE_CONFIGS = {
     { [CALENDAR_YEAR]: MULTI_INT }
   ],
   [FEDERAL_SALES]: [
-    { [CALENDAR_YEAR]: MULTI_INT },
+    { [CALENDAR_YEAR]: MULTI_NUMERIC },
     { [COMMODITY]: MULTI_STR },
     { [LAND_TYPE]: MULTI_STR },
     { [STATE_OFFSHORE_REGION]: MULTI_STR }
@@ -149,7 +150,7 @@ const VARIABLE_CONFIGS = {
   },
 }
 const getVariableValues = (state, options) => getDataFilterVariableValues(state, VARIABLE_CONFIGS[state[DATA_TYPE]], options)
-// not used const getVariableConfig = state => VARIABLE_CONFIGS[state[DATA_TYPE]]
+
 export const getVariables = (state, options) => getVariableValues(state, options)
 
 // STEP 2: Define all the queries needed
@@ -278,6 +279,7 @@ const FEDERAL_SALES_QUERY = whereClause => (
       ${ whereClause }
     }) {
       ${ CALENDAR_YEAR }: ${ DB_COLS[CALENDAR_YEAR] }
+      ${ PERIOD }: ${ DB_COLS[PERIOD] }
       ${ LAND_TYPE }: ${ DB_COLS[LAND_TYPE] }
       ${ STATE_OFFSHORE_REGION }: ${ DB_COLS[STATE_OFFSHORE_REGION] }
       ${ REVENUE_TYPE }: ${ DB_COLS[REVENUE_TYPE] }
@@ -290,7 +292,17 @@ const FEDERAL_SALES_QUERY = whereClause => (
       ${ PROCESSING_ALLOW }: ${ DB_COLS[PROCESSING_ALLOW] }
       ${ RVLA }: ${ DB_COLS[RVLA] }
       ${ EFFECTIVE_ROYALTY_RATE }: ${ DB_COLS[EFFECTIVE_ROYALTY_RATE] }
-    }`)
+    }
+  counts:${ VIEWS[FEDERAL_SALES] }_aggregate (
+    where: {
+      ${ whereClause }
+    }) {
+    aggregate {
+      ${ COMMODITY }:count(columns: ${ DB_COLS[COMMODITY] }, distinct: true)
+      ${ LAND_TYPE }:count(columns: ${ DB_COLS[LAND_TYPE] }, distinct: true)
+      ${ STATE_OFFSHORE_REGION }:count(columns: ${ DB_COLS[STATE_OFFSHORE_REGION] }, distinct: true)
+    }
+  }`)
 
 // STEP 3: Define the functions to return the proper query based of the state
 /**
