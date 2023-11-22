@@ -10,9 +10,11 @@ import PeriodFilter from '../../inputs/data-filters/PeriodFilter'
 import FiscalYearFilter from '../../inputs/data-filters/FiscalYearFilter'
 import CalendarYearFilter from '../../inputs/data-filters/CalendarYearFilter'
 import CommodityFilter from '../../inputs/data-filters/CommodityFilter'
+import CommodityFilterSales from '../../inputs/data-filters/CommodityFilterSales'
 import CompanyNameFilter from '../../inputs/data-filters/CompanyNameFilter'
 import RevenueTypeFilter from '../../inputs/data-filters/RevenueTypeFilter'
 import StateOffshoreFilter from '../../inputs/data-filters/StateOffshoreFilter'
+import StateOffshoreRegionFilter from '../../inputs/data-filters/StateOffshoreRegionFilter'
 import LandTypeFilter from '../../inputs/data-filters/LandTypeFilter'
 import ProductFilter from '../../inputs/data-filters/ProductFilter'
 import RecipientFilter from '../../inputs/data-filters/RecipientFilter'
@@ -33,7 +35,8 @@ import {
   DOWNLOAD_DATA_TABLE,
   REVENUE_BY_COMPANY,
   PERIOD_MONTHLY,
-  PERIOD
+  PERIOD,
+  FEDERAL_SALES
 } from '../../../constants'
 
 import ClearAllFiltersBtn from '../../inputs/ClearAllFiltersBtn'
@@ -210,6 +213,9 @@ const QueryTableToolbar = ({ label, ...props }) => {
             {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
               <RevenueByCompanyFilterToolbar />
             }
+            {state[DATA_TYPE] === FEDERAL_SALES &&
+              <FederalSalesFilterToolbar />
+            }
             <ClearAllFiltersBtn style={{ margin: '8px' }}/>
           </Box>
         </BaseToolbar>
@@ -287,6 +293,16 @@ const RevenueByCompanyFilterToolbar = () => {
       <CompanyNameFilter queryKey={QK_QUERY_TOOL} style={{ width: '300px' }} label={'Search companies'}/>
       <CommodityFilter queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
       <RevenueTypeFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
+    </>
+  )
+}
+
+const FederalSalesFilterToolbar = () => {
+  return (
+    <>
+      <CommodityFilterSales queryKey={QK_QUERY_TOOL} showClearSelected={false} selectType='Multi' defaultSelectAll={true} />
+      <LandTypeFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
+      <StateOffshoreRegionFilter queryKey={QK_QUERY_TOOL} selectType='Multi' defaultSelectAll={true}/>
     </>
   )
 }

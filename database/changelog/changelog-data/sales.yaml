@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: sales-initial
+      author: Jeff Schwartz
+      changes:
+      - loadData:
+          tableName: sales
+          file: '../static/csv/sales/federal-sales.csv'
+          quotchar: '""'
+          columns:
+          - column:
+              header: Calendar Year
+              name: calendar_year
+          - column:
+              header: Land Category
+              name: land_category
+          - column:
+              header: Land Class
+              name: land_class
+          - column:
+              header: State/Offshore Region
+              name: state_offshore_region
+          - column:
+              header: Revenue Type
+              name: revenue_type
+          - column:
+              header: Commodity
+              name: commodity
+          - column:
+              header: Sales Volume
+              name: sales_volume
+          - column:
+              header:  Gas MMBtu Volume
+              name: gas_volume
+          - column:
+              header: Sales Value
+              name: sales_value
+          - column:
+              header: Royalty Value Prior to Allow
+              name: royalty_value_prior_to_allowance
+          - column:
+              header: Transportation Allow
+              name: transportation_allowance
+          - column:
+              header: Processing Allow
+              name: processing_allowance
+          - column:
+              header: Royalty Value Less Allow
+              name: royalty_value_less_allowance
+          - column:
+              header: Effective Royalty Rate
+              name: effective_royalty_rate

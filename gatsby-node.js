@@ -1,7 +1,6 @@
 const path = require('path')
 const fs = require('fs')
 const appRootDir = require('app-root-dir').get()
-const to = require('to-case')
 
 const { createFilePath } = require('gatsby-source-filesystem')
 
@@ -96,13 +95,7 @@ const createYearsCache = ({ graphql, reporter }) => {
   const DISBURSEMENT = 'Disbursements'
   const PRODUCTION = 'Production'
   const REVENUE_BY_COMPANY = 'Federal revenue by company'
-
-
-  /***** pulled from production part query below
-            production_calendar_years: period(distinct_on: calendar_year, where: {productions: {volume: {_is_null: false}, period: {period: {_eq: "Calendar Year"}}}}, order_by: {calendar_year: asc}) {
-            calendar_year
-          }
-  ****/
+  const FEDERAL_SALES = 'Federal Sales'
 
   return new Promise((resolve, reject) => {
     resolve(
@@ -129,6 +122,9 @@ const createYearsCache = ({ graphql, reporter }) => {
           }
           federal_revenue_by_company_calendar_years: federal_revenue_by_company(distinct_on: calendar_year, order_by: {calendar_year: asc}) {
             calendar_year
+          },
+          sales_calendar_years: federal_sales_v(distinct_on: calendar_year, order_by: {calendar_year: asc}) {
+            calendar_year
           }
         }
       }
@@ -144,6 +140,7 @@ const createYearsCache = ({ graphql, reporter }) => {
           result.data.onrr.disbursement_fiscal_years = result.data.onrr.disbursement_fiscal_years.map(y => y[Object.keys(y)[0]])
           result.data.onrr.disbursement_calendar_years = result.data.onrr.disbursement_calendar_years.map(y => y[Object.keys(y)[0]])
           result.data.onrr.federal_revenue_by_company_calendar_years = result.data.onrr.federal_revenue_by_company_calendar_years.map(y => y[Object.keys(y)[0]])
+          result.data.onrr.sales_calendar_years = result.data.onrr.sales_calendar_years.map(y => y[Object.keys(y)[0]])
           const allYears = {
             [REVENUE]: {
               [PERIOD_CALENDAR_YEAR]: result.data.onrr.revenue_calendar_years,
@@ -159,6 +156,9 @@ const createYearsCache = ({ graphql, reporter }) => {
             },
             [REVENUE_BY_COMPANY]: {
               [PERIOD_CALENDAR_YEAR]: result.data.onrr.federal_revenue_by_company_calendar_years
+            },
+            [FEDERAL_SALES]: {
+              [PERIOD_CALENDAR_YEAR]: result.data.onrr.sales_calendar_years
             }
           }
           fs.writeFileSync(
