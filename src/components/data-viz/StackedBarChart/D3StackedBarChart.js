@@ -732,6 +732,7 @@ export default class D3StackedBarChart {
           const svg = document.createElement('svg')
 
           svg.setAttribute('viewBox', '0 0 10 10')
+          svg.setAttribute('aria-hidden', true)
 
           svg.style.fill = color(i)
 

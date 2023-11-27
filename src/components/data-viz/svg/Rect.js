@@ -10,7 +10,7 @@ const Rect = ({
   title
 }) => {
   return (
-    <svg width={width} height={height} style={styles} title={title}>
+    <svg width={width} height={height} style={styles} title={title} aria-hidden="true">
       <title>{title}</title>
       <rect
         className="rect"
@@ -18,7 +18,7 @@ const Rect = ({
         height={height}
         x={x}
         y={y}
-        style={styles} />
+        style={styles}/>
     </svg>
   )
 }
