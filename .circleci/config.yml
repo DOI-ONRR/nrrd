@@ -1,5 +1,13 @@
 version: 2.1
 
+parameters:
+  run_generate_downloads:
+    type: boolean
+    default: false
+  env_context:
+    type: string
+    default: PREVIEW
+
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
   node: circleci/node@5.1.0
@@ -71,13 +79,17 @@ commands:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/downloads/
           to: 's3://$NPS_BUCKET_NAME/downloads/'
-      - aws-s3/copy:
-          arguments: |
-          aws-access-key-id: NPS_AWS_ACCESS_KEY
-          aws-region: NPS_AWS_REGION
-          aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-          from: /tmp/database_backup-${CF_SPACE}.pg
-          to: 's3://$NPS_BUCKET_NAME/backup/database_backup-${CF_SPACE}.pg'
+      - when:
+          condition:
+            not: << pipeline.parameters.run_generate_downloads >>
+          steps:
+            - aws-s3/copy:
+                arguments: |
+                aws-access-key-id: NPS_AWS_ACCESS_KEY
+                aws-region: NPS_AWS_REGION
+                aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
+                from: /tmp/database_backup-${CF_SPACE}.pg
+                to: 's3://$NPS_BUCKET_NAME/backup/database_backup-${CF_SPACE}.pg'
       - run:
           name: "list bucket"
           command: |
@@ -366,6 +378,47 @@ jobs:
           command: bash ~/project/.circleci/scripts/liquibase.sh
       - node/install
       - generate-downloads
+  generate-data-downloads:
+    machine: 
+      image: ubuntu-2004:current
+    steps:
+      - checkout
+      - install-cf-cli
+      - install-postgres-client
+      - run:
+          name: Install cf connect-to-service plugin
+          command: cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
+      - run:
+          name: Login to cf cli
+          command: cf login -a api.fr.cloud.gov -u "$CF_USERNAME" -p "$CF_PASSWORD" -o doi-onrr -s $CF_SPACE
+      - run:
+          name: Tunnel to database service
+          command: |
+            cf connect-to-service -no-client $CF_DB_APP $CF_DB_SERVICE > output &
+            linecount=`cat output | wc -l | awk '{$1=$1};1'`
+            stepcount=0
+            while [ $linecount -lt 12 ] && [ $stepcount -lt 60 ];
+            do 
+                linecount=`cat output | wc -l | awk '{$1=$1};1'`
+                stepcount=$((stepcount+1))
+                sleep 1
+            done
+            echo $stepcount
+            if [ $stepcount = 60 ]; then
+              circleci-agent step halt
+            fi
+      - run:
+          name: Set database environment variables
+          command: |
+            echo export PORT=`cat output | grep Port: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export HOST=`cat output | grep Host: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export USERNAME=`cat output | grep Username: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export PASSWORD=`cat output | grep Password: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+            echo export DB_NAME=`cat output | grep Name: | cut -d ' ' -f2 |  tr -d '\n'` >> "$BASH_ENV"
+
+            source "$BASH_ENV"
+      - node/install
+      - generate-downloads
 
 workflows:
   audits:
@@ -452,3 +505,11 @@ workflows:
           filters:
             branches:
               only: dev
+  generate_downloads:
+    when: << pipeline.parameters.run_generate_downloads >>
+    jobs:
+      - generate-data-downloads:
+          context:
+            - org-global
+            - nrrd
+            - << pipeline.parameters.env_context >>

@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: revenue-by-company-functions
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sqlFile:
+          path: src/functions/revenue_by_company_bri.sql
+          splitStatements: false

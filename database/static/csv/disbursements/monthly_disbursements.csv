@@ -1,382 +1,404 @@
 Month,Calendar Year,Fund Type,Treasury Fund,Land Category,Disbursement Type,State,County,Commodity,Category,Disbursement
-September,2023,BLM - Permit Processing and Improvement,,Onshore,,,,Coal,Rents & Bonuses,"36,135.00"
-September,2023,BLM - Permit Processing and Improvement,,Onshore,,,,Gilsonite,Rents & Bonuses,-559.25
-September,2023,BLM - Permit Processing and Improvement,,Onshore,,,,Oil & Gas,Rents & Bonuses,"340,367.46"
-September,2023,BLM - Permit Processing and Improvement,,Onshore,,,,Phosphate,Rents & Bonuses,"5,130.50"
-September,2023,BLM - Permit Processing and Improvement,,Onshore,,,,Potassium,Rents & Bonuses,"-32,138.50"
-September,2023,Bureau of Land Management,,Onshore,,,,Gas,Royalties,"10,002.44"
-September,2023,Bureau of Land Management,,Onshore,,,,Oil,Royalties,"29,373.13"
-September,2023,Bureau of Land Management,,Onshore,,,,Oil & Gas,Other Distributions,"6,188.17"
-September,2023,Bureau of Land Management,,Onshore,,,,Oil & Gas,Royalties,2.85
-September,2023,Bureau of Safety & Environmental Enforcement,,Offshore,,,,,Other Distributions,"1,692,573.71"
-September,2023,Fish & Wildlife,,Onshore,,,,Gas,Royalties,"12,959.70"
-September,2023,Fish & Wildlife,,Onshore,,,,Oil,Royalties,"51,844.03"
-September,2023,Fish & Wildlife,,Onshore,,,,Oil & Gas,Other Distributions,358.82
-September,2023,Forest Service,,Onshore,,,,Coal,Royalties,"32,654.02"
-September,2023,Forest Service,,Onshore,,,,Copper,Royalties,"96,566.75"
-September,2023,Forest Service,,Onshore,,,,Gas,Royalties,"2,788,050.40"
-September,2023,Forest Service,,Onshore,,,,Hardrock,Other Distributions,304.5
-September,2023,Forest Service,,Onshore,,,,Hardrock,Rents & Bonuses,122.24
-September,2023,Forest Service,,Onshore,,,,Lead/Zinc,Royalties,"361,729.46"
-September,2023,Forest Service,,Onshore,,,,Oil,Royalties,"14,741,143.49"
-September,2023,Forest Service,,Onshore,,,,Oil & Gas,Other Distributions,"-373,471.68"
-September,2023,Forest Service,,Onshore,,,,Oil & Gas,Rents & Bonuses,"13,856.73"
-September,2023,Forest Service,,Onshore,,,,Oil & Gas,Royalties,"13,220.70"
-September,2023,Historic Preservation Fund,,Offshore,,,,,Rents & Bonuses,"150,000,000.00"
-September,2023,Land & Water Conservation Fund,,Offshore,,,,,Rents & Bonuses,"870,461,692.65"
-September,2023,Land & Water Conservation Fund,,Offshore,GoMESA,,,,Rents & Bonuses,0
-September,2023,Land & Water Conservation Fund,,Offshore,GoMESA,,,Gas,Royalties,"517,416.63"
-September,2023,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil,Royalties,"-1,024,806.65"
-September,2023,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"13,691.97"
-September,2023,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Royalties,"493,698.05"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,,Other Distributions,"892,130.82"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Coal,Other Distributions,"-23,735.53"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Coal,Rents & Bonuses,"109,716.00"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Coal,Royalties,"3,513,973.01"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Gas,Other Distributions,-103.17
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Gas,Royalties,"10,647,463.13"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Mining-Unspecified,Royalties,"7,949.17"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Oil,Other Distributions,"-3,617.00"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Oil,Royalties,"78,307,751.61"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Other Distributions,"-3,689,127.52"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Rents & Bonuses,"138,093.27"
-September,2023,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Royalties,"245,300.75"
-September,2023,Reclamation Fund,,Onshore,,,,Coal,Other Distributions,"200,073.75"
-September,2023,Reclamation Fund,,Onshore,,,,Coal,Royalties,"16,183,330.32"
-September,2023,Reclamation Fund,,Onshore,,,,Gas,Other Distributions,28.35
-September,2023,Reclamation Fund,,Onshore,,,,Gas,Royalties,"39,000,090.69"
-September,2023,Reclamation Fund,,Onshore,,,,Gilsonite,Other Distributions,-390
-September,2023,Reclamation Fund,,Onshore,,,,Gilsonite,Royalties,"73,859.70"
-September,2023,Reclamation Fund,,Onshore,,,,Oil,Other Distributions,"12,916.51"
-September,2023,Reclamation Fund,,Onshore,,,,Oil,Royalties,"158,778,583.76"
-September,2023,Reclamation Fund,,Onshore,,,,Oil & Gas,Other Distributions,"5,843,652.11"
-September,2023,Reclamation Fund,,Onshore,,,,Oil & Gas,Royalties,"4,015,050.03"
-September,2023,Reclamation Fund,,Onshore,,,,Phosphate,Other Distributions,"14,132.00"
-September,2023,Reclamation Fund,,Onshore,,,,Phosphate,Royalties,"532,661.34"
-September,2023,Reclamation Fund,,Onshore,,,,Potassium,Other Distributions,"-5,755.77"
-September,2023,Reclamation Fund,,Onshore,,,,Potassium,Royalties,"180,470.11"
-September,2023,Reclamation Fund,,Onshore,,,,Sodium,Royalties,"1,196,290.99"
-September,2023,State,,Offshore,8(g),AK,,Oil,Royalties,"85,600.83"
-September,2023,State,,Offshore,8(g),AL,,Gas,Royalties,"105,186.77"
-September,2023,State,,Offshore,8(g),AL,,Oil,Royalties,721.96
-September,2023,State,,Offshore,8(g),AL,,Oil & Gas,Other Distributions,"-1,491.85"
-September,2023,State,,Offshore,8(g),AL,,Oil & Gas,Royalties,21.97
-September,2023,State,,Offshore,8(g),LA,,Gas,Royalties,"52,190.59"
-September,2023,State,,Offshore,8(g),LA,,Oil,Other Distributions,-119.47
-September,2023,State,,Offshore,8(g),LA,,Oil,Royalties,"139,795.42"
-September,2023,State,,Offshore,8(g),LA,,Oil & Gas,Other Distributions,"23,202.10"
-September,2023,State,,Offshore,8(g),MS,,Gas,Royalties,"2,602.07"
-September,2023,State,,Offshore,8(g),MS,,Oil & Gas,Other Distributions,"-2,602.07"
-September,2023,State,,Offshore,8(g),TX,,Gas,Royalties,"1,290.94"
-September,2023,State,,Offshore,8(g),TX,,Oil,Other Distributions,-16.47
-September,2023,State,,Offshore,8(g),TX,,Oil,Royalties,"3,295.10"
-September,2023,State,,Offshore,8(g),TX,,Oil & Gas,Other Distributions,0.54
-September,2023,State,,Offshore,8(g),TX,,Oil & Gas,Rents & Bonuses,"1,529,953.33"
-September,2023,State,,Onshore,Geothermal,CA,Lake County,,Sequestration,"-4,491.48"
-September,2023,State,,Onshore,Geothermal,CA,Lake County,Geothermal,Royalties,"78,797.83"
-September,2023,State,,Onshore,Geothermal,CA,Lassen County,,Sequestration,-62.03
-September,2023,State,,Onshore,Geothermal,CA,Lassen County,Geothermal,Royalties,"1,088.28"
-September,2023,State,,Onshore,Geothermal,CA,Sonoma County,,Sequestration,"-6,786.33"
-September,2023,State,,Onshore,Geothermal,CA,Sonoma County,Geothermal,Royalties,"119,058.34"
-September,2023,State,,Onshore,Geothermal,NM,Hidalgo Caounty,,Sequestration,-69.43
-September,2023,State,,Onshore,Geothermal,NM,Hidalgo Caounty,Geothermal,Rents & Bonuses,557
-September,2023,State,,Onshore,Geothermal,NM,Hidalgo Caounty,Geothermal,Royalties,661.09
-September,2023,State,,Onshore,Geothermal,NV,Churchill County,,Sequestration,"-9,970.76"
-September,2023,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Rents & Bonuses,"58,328.32"
-September,2023,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Royalties,"116,597.35"
-September,2023,State,,Onshore,Geothermal,NV,Elko County,,Sequestration,-202.76
-September,2023,State,,Onshore,Geothermal,NV,Elko County,Geothermal,Rents & Bonuses,"3,557.25"
-September,2023,State,,Onshore,Geothermal,NV,Esmeralda County,,Sequestration,-22.8
-September,2023,State,,Onshore,Geothermal,NV,Esmeralda County,Geothermal,Other Distributions,400
-September,2023,State,,Onshore,Geothermal,NV,Eureka County,,Sequestration,-139.31
-September,2023,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Rents & Bonuses,"2,302.50"
-September,2023,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Royalties,141.62
-September,2023,State,,Onshore,Geothermal,NV,Humboldt County,,Sequestration,-607.93
-September,2023,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Rents & Bonuses,"6,195.00"
-September,2023,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Royalties,"4,470.46"
-September,2023,State,,Onshore,Geothermal,NV,Lander County,,Sequestration,"-3,065.54"
-September,2023,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Rents & Bonuses,"4,571.59"
-September,2023,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Royalties,"49,209.74"
-September,2023,State,,Onshore,Geothermal,NV,Lyon County,,Sequestration,-15.81
-September,2023,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Rents & Bonuses,-98.71
-September,2023,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Royalties,376.09
-September,2023,State,,Onshore,Geothermal,NV,Mineral County,,Sequestration,-234.99
-September,2023,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Rents & Bonuses,344.76
-September,2023,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Royalties,"3,777.90"
-September,2023,State,,Onshore,Geothermal,NV,Pershing County,,Sequestration,-903.46
-September,2023,State,,Onshore,Geothermal,NV,Pershing County,Geothermal,Rents & Bonuses,"14,874.19"
-September,2023,State,,Onshore,Geothermal,NV,Pershing County,Geothermal,Royalties,975.9
-September,2023,State,,Onshore,Geothermal,NV,Washoe County,,Sequestration,-130.06
-September,2023,State,,Onshore,Geothermal,NV,Washoe County,Geothermal,Other Distributions,71.59
-September,2023,State,,Onshore,Geothermal,NV,Washoe County,Geothermal,Royalties,"2,210.18"
-September,2023,State,,Onshore,Geothermal,NV,White Pine County,,Sequestration,-271.42
-September,2023,State,,Onshore,Geothermal,NV,White Pine County,Geothermal,Rents & Bonuses,"4,761.75"
-September,2023,State,,Onshore,Geothermal,OR,Deschutes County,,Sequestration,-42.75
-September,2023,State,,Onshore,Geothermal,OR,Deschutes County,Geothermal,Rents & Bonuses,750
-September,2023,State,,Onshore,Geothermal,UT,Beaver County,,Sequestration,-566.61
-September,2023,State,,Onshore,Geothermal,UT,Beaver County,Geothermal,Royalties,"9,940.52"
-September,2023,State,,Onshore,Geothermal,UT,Iron County,,Sequestration,-16.32
-September,2023,State,,Onshore,Geothermal,UT,Iron County,Geothermal,Rents & Bonuses,286.25
-September,2023,State,,Onshore,Geothermal,UT,Millard County,,Sequestration,-35.17
-September,2023,State,,Onshore,Geothermal,UT,Millard County,Geothermal,Royalties,616.95
-September,2023,State,,Onshore,State,AK,,,Royalties,"-15,115.16"
-September,2023,State,,Onshore,State,AK,,,Sequestration,"-135,743.57"
-September,2023,State,,Onshore,State,AK,,Gas,Royalties,"548,071.63"
-September,2023,State,,Onshore,State,AK,,Oil,Other Distributions,"110,298.63"
-September,2023,State,,Onshore,State,AK,,Oil,Royalties,"1,732,390.33"
-September,2023,State,,Onshore,State,AK,,Oil & Gas,Other Distributions,"5,820.86"
-September,2023,State,,Onshore,State,AL,,,Royalties,-47.46
-September,2023,State,,Onshore,State,AL,,,Sequestration,-293.13
-September,2023,State,,Onshore,State,AL,,Gas,Royalties,"2,702.47"
-September,2023,State,,Onshore,State,AL,,Oil,Royalties,"2,386.17"
-September,2023,State,,Onshore,State,AL,,Oil & Gas,Other Distributions,5.15
-September,2023,State,,Onshore,State,AL,,Oil & Gas,Rents & Bonuses,80
-September,2023,State,,Onshore,State,AL,,Oil & Gas,Royalties,16.22
-September,2023,State,,Onshore,State,AR,,,Royalties,-496.94
-September,2023,State,,Onshore,State,AR,,,Sequestration,"-2,690.76"
-September,2023,State,,Onshore,State,AR,,Gas,Royalties,"45,554.97"
-September,2023,State,,Onshore,State,AR,,Hardrock,Other Distributions,81.36
-September,2023,State,,Onshore,State,AR,,Hardrock,Rents & Bonuses,32.64
-September,2023,State,,Onshore,State,AR,,Oil,Royalties,2.42
-September,2023,State,,Onshore,State,AR,,Oil & Gas,Other Distributions,"1,469.77"
-September,2023,State,,Onshore,State,AR,,Oil & Gas,Rents & Bonuses,562
-September,2023,State,,Onshore,State,CA,,,Other Distributions,8.81
-September,2023,State,,Onshore,State,CA,,,Royalties,"-66,437.25"
-September,2023,State,,Onshore,State,CA,,,Sequestration,"-185,559.74"
-September,2023,State,,Onshore,State,CA,,Gas,Royalties,"51,422.24"
-September,2023,State,,Onshore,State,CA,,Geothermal,Other Distributions,"1,669.44"
-September,2023,State,,Onshore,State,CA,,Geothermal,Rents & Bonuses,"2,240.00"
-September,2023,State,,Onshore,State,CA,,Geothermal,Royalties,"331,134.90"
-September,2023,State,,Onshore,State,CA,,Oil,Royalties,"2,662,267.60"
-September,2023,State,,Onshore,State,CA,,Oil & Gas,Other Distributions,"8,628.61"
-September,2023,State,,Onshore,State,CA,,Oil & Gas,Rents & Bonuses,70.5
-September,2023,State,,Onshore,State,CA,,Potassium,Royalties,"3,605.33"
-September,2023,State,,Onshore,State,CA,,Sodium,Royalties,"260,823.90"
-September,2023,State,,Onshore,State,CO,,,Other Distributions,"1,414.48"
-September,2023,State,,Onshore,State,CO,,,Royalties,"-181,780.12"
-September,2023,State,,Onshore,State,CO,,,Sequestration,"-507,836.25"
-September,2023,State,,Onshore,State,CO,,Coal,Other Distributions,"4,142.72"
-September,2023,State,,Onshore,State,CO,,Coal,Rents & Bonuses,"13,407.00"
-September,2023,State,,Onshore,State,CO,,Coal,Royalties,"1,130,027.96"
-September,2023,State,,Onshore,State,CO,,Gas,Royalties,"2,161,374.52"
-September,2023,State,,Onshore,State,CO,,Oil,Royalties,"1,489,262.22"
-September,2023,State,,Onshore,State,CO,,Oil & Gas,Other Distributions,"-291,078.84"
-September,2023,State,,Onshore,State,CO,,Oil & Gas,Rents & Bonuses,"64,446.22"
-September,2023,State,,Onshore,State,CO,,Oil & Gas,Royalties,"4,460,969.17"
-September,2023,State,,Onshore,State,CO,,Sodium,Royalties,"57,222.32"
-September,2023,State,,Onshore,State,ID,,,Other Distributions,5.12
-September,2023,State,,Onshore,State,ID,,,Royalties,"-13,481.24"
-September,2023,State,,Onshore,State,ID,,,Sequestration,"-37,653.41"
-September,2023,State,,Onshore,State,ID,,Phosphate,Other Distributions,"6,745.00"
-September,2023,State,,Onshore,State,ID,,Phosphate,Rents & Bonuses,"1,490.50"
-September,2023,State,,Onshore,State,ID,,Phosphate,Royalties,"665,826.71"
-September,2023,State,,Onshore,State,IL,,,Sequestration,-374.58
-September,2023,State,,Onshore,State,IL,,Oil,Royalties,"6,571.59"
-September,2023,State,,Onshore,State,KS,,,Royalties,-639.11
-September,2023,State,,Onshore,State,KS,,,Sequestration,"-1,785.05"
-September,2023,State,,Onshore,State,KS,,Gas,Royalties,"13,615.23"
-September,2023,State,,Onshore,State,KS,,Oil,Royalties,"17,982.33"
-September,2023,State,,Onshore,State,KS,,Oil & Gas,Other Distributions,138.18
-September,2023,State,,Onshore,State,KS,,Oil & Gas,Rents & Bonuses,220
-September,2023,State,,Onshore,State,KY,,,Sequestration,-40.46
-September,2023,State,,Onshore,State,KY,,Gas,Royalties,313.42
-September,2023,State,,Onshore,State,KY,,Oil,Royalties,362
-September,2023,State,,Onshore,State,KY,,Oil & Gas,Other Distributions,34.36
-September,2023,State,,Onshore,State,LA,,,Other Distributions,1.73
-September,2023,State,,Onshore,State,LA,,,Royalties,"-5,703.54"
-September,2023,State,,Onshore,State,LA,,,Sequestration,"-17,310.03"
-September,2023,State,,Onshore,State,LA,,Gas,Royalties,"280,058.75"
-September,2023,State,,Onshore,State,LA,,Oil,Royalties,"30,227.61"
-September,2023,State,,Onshore,State,LA,,Oil & Gas,Other Distributions,-687.23
-September,2023,State,,Onshore,State,LA,,Oil & Gas,Rents & Bonuses,-212.59
-September,2023,State,,Onshore,State,MI,,,Royalties,-85.9
-September,2023,State,,Onshore,State,MI,,,Sequestration,-506.54
-September,2023,State,,Onshore,State,MI,,Gas,Royalties,"2,426.81"
-September,2023,State,,Onshore,State,MI,,Oil,Royalties,"1,267.16"
-September,2023,State,,Onshore,State,MI,,Oil & Gas,Other Distributions,756.21
-September,2023,State,,Onshore,State,MI,,Oil & Gas,Rents & Bonuses,"4,522.50"
-September,2023,State,,Onshore,State,MO,,,Sequestration,"-8,707.61"
-September,2023,State,,Onshore,State,MO,,Copper,Royalties,"32,188.84"
-September,2023,State,,Onshore,State,MO,,Lead/Zinc,Royalties,"120,576.23"
-September,2023,State,,Onshore,State,MS,,,Royalties,-3.82
-September,2023,State,,Onshore,State,MS,,,Sequestration,"-2,092.35"
-September,2023,State,,Onshore,State,MS,,Gas,Royalties,156.39
-September,2023,State,,Onshore,State,MS,,Oil,Royalties,"36,080.89"
-September,2023,State,,Onshore,State,MS,,Oil & Gas,Other Distributions,275.25
-September,2023,State,,Onshore,State,MS,,Oil & Gas,Rents & Bonuses,-30
-September,2023,State,,Onshore,State,MS,,Oil & Gas,Royalties,229.18
-September,2023,State,,Onshore,State,MT,,,Other Distributions,67.29
-September,2023,State,,Onshore,State,MT,,,Royalties,"-28,384.37"
-September,2023,State,,Onshore,State,MT,,,Sequestration,"-79,281.39"
-September,2023,State,,Onshore,State,MT,,Coal,Rents & Bonuses,"2,724.00"
-September,2023,State,,Onshore,State,MT,,Coal,Royalties,"643,961.09"
-September,2023,State,,Onshore,State,MT,,Gas,Royalties,"56,626.78"
-September,2023,State,,Onshore,State,MT,,Oil,Royalties,"690,388.69"
-September,2023,State,,Onshore,State,MT,,Oil & Gas,Other Distributions,"20,115.29"
-September,2023,State,,Onshore,State,MT,,Oil & Gas,Rents & Bonuses,"5,395.75"
-September,2023,State,,Onshore,State,MT,,Oil & Gas,Royalties,6.99
-September,2023,State,,Onshore,State,ND,,,Other Distributions,0.52
-September,2023,State,,Onshore,State,ND,,,Royalties,"-144,908.14"
-September,2023,State,,Onshore,State,ND,,,Sequestration,"-618,847.74"
-September,2023,State,,Onshore,State,ND,,Coal,Royalties,"155,933.62"
-September,2023,State,,Onshore,State,ND,,Gas,Royalties,"698,017.35"
-September,2023,State,,Onshore,State,ND,,Oil,Royalties,"10,215,300.22"
-September,2023,State,,Onshore,State,ND,,Oil & Gas,Other Distributions,"-79,991.31"
-September,2023,State,,Onshore,State,ND,,Oil & Gas,Rents & Bonuses,240
-September,2023,State,,Onshore,State,ND,,Oil & Gas,Royalties,"12,385.56"
-September,2023,State,,Onshore,State,NE,,,Royalties,-26.95
-September,2023,State,,Onshore,State,NE,,,Sequestration,-75.26
-September,2023,State,,Onshore,State,NE,,Oil,Royalties,"1,347.27"
-September,2023,State,,Onshore,State,NM,,,Other Distributions,935.29
-September,2023,State,,Onshore,State,NM,,,Royalties,"-4,179,990.52"
-September,2023,State,,Onshore,State,NM,,,Sequestration,"-11,674,766.83"
-September,2023,State,,Onshore,State,NM,,Coal,Other Distributions,"92,730.97"
-September,2023,State,,Onshore,State,NM,,Gas,Other Distributions,35.72
-September,2023,State,,Onshore,State,NM,,Gas,Royalties,"35,144,008.78"
-September,2023,State,,Onshore,State,NM,,Geothermal,Rents & Bonuses,"1,434.00"
-September,2023,State,,Onshore,State,NM,,Geothermal,Royalties,"1,322.20"
-September,2023,State,,Onshore,State,NM,,Oil,Other Distributions,"16,151.71"
-September,2023,State,,Onshore,State,NM,,Oil,Royalties,"167,333,203.90"
-September,2023,State,,Onshore,State,NM,,Oil & Gas,Other Distributions,"5,904,605.31"
-September,2023,State,,Onshore,State,NM,,Oil & Gas,Rents & Bonuses,"18,867.26"
-September,2023,State,,Onshore,State,NM,,Oil & Gas,Royalties,"256,002.45"
-September,2023,State,,Onshore,State,NM,,Potassium,Rents & Bonuses,"-32,138.50"
-September,2023,State,,Onshore,State,NM,,Potassium,Royalties,"220,314.39"
-September,2023,State,,Onshore,State,NM,,Sodium,Royalties,"42,987.85"
-September,2023,State,,Onshore,State,NV,,,Other Distributions,25.88
-September,2023,State,,Onshore,State,NV,,,Royalties,"-13,472.11"
-September,2023,State,,Onshore,State,NV,,,Sequestration,"-37,629.07"
-September,2023,State,,Onshore,State,NV,,Geothermal,Other Distributions,943.24
-September,2023,State,,Onshore,State,NV,,Geothermal,Rents & Bonuses,"197,389.96"
-September,2023,State,,Onshore,State,NV,,Geothermal,Royalties,"354,352.08"
-September,2023,State,,Onshore,State,NV,,Oil,Royalties,"74,812.20"
-September,2023,State,,Onshore,State,NV,,Oil & Gas,Other Distributions,63.56
-September,2023,State,,Onshore,State,NV,,Oil & Gas,Rents & Bonuses,"46,044.25"
-September,2023,State,,Onshore,State,OH,,,Royalties,-0.5
-September,2023,State,,Onshore,State,OH,,,Sequestration,"-1,221.55"
-September,2023,State,,Onshore,State,OH,,Gas,Royalties,"16,380.62"
-September,2023,State,,Onshore,State,OH,,Oil,Royalties,"4,167.04"
-September,2023,State,,Onshore,State,OH,,Oil & Gas,Other Distributions,883.52
-September,2023,State,,Onshore,State,OK,,,Other Distributions,5.8
-September,2023,State,,Onshore,State,OK,,,Royalties,"-7,486.16"
-September,2023,State,,Onshore,State,OK,,,Sequestration,"-30,257.22"
-September,2023,State,,Onshore,State,OK,,Gas,Royalties,"226,950.96"
-September,2023,State,,Onshore,State,OK,,Hardrock,Other Distributions,20.14
-September,2023,State,,Onshore,State,OK,,Hardrock,Rents & Bonuses,8.12
-September,2023,State,,Onshore,State,OK,,Oil,Royalties,"305,354.89"
-September,2023,State,,Onshore,State,OK,,Oil & Gas,Other Distributions,"3,529.64"
-September,2023,State,,Onshore,State,OK,,Oil & Gas,Rents & Bonuses,"2,445.00"
-September,2023,State,,Onshore,State,OK,,Oil & Gas,Royalties,0.08
-September,2023,State,,Onshore,State,OR,,,Royalties,-30
-September,2023,State,,Onshore,State,OR,,,Sequestration,-83.79
-September,2023,State,,Onshore,State,OR,,Geothermal,Rents & Bonuses,"1,500.00"
-September,2023,State,,Onshore,State,PA,,,Sequestration,-31.46
-September,2023,State,,Onshore,State,PA,,Gas,Royalties,144.38
-September,2023,State,,Onshore,State,PA,,Oil,Royalties,336.2
-September,2023,State,,Onshore,State,PA,,Oil & Gas,Other Distributions,71.37
-September,2023,State,,Onshore,State,SD,,,Other Distributions,5.34
-September,2023,State,,Onshore,State,SD,,,Royalties,-441.97
-September,2023,State,,Onshore,State,SD,,,Sequestration,"-1,234.71"
-September,2023,State,,Onshore,State,SD,,Gas,Royalties,"1,115.45"
-September,2023,State,,Onshore,State,SD,,Oil,Royalties,"19,074.46"
-September,2023,State,,Onshore,State,SD,,Oil & Gas,Other Distributions,593.3
-September,2023,State,,Onshore,State,SD,,Oil & Gas,Rents & Bonuses,"1,280.00"
-September,2023,State,,Onshore,State,SD,,Oil & Gas,Royalties,35.14
-September,2023,State,,Onshore,State,TX,,,Royalties,-370.92
-September,2023,State,,Onshore,State,TX,,,Sequestration,"-16,118.62"
-September,2023,State,,Onshore,State,TX,,Gas,Royalties,"167,995.23"
-September,2023,State,,Onshore,State,TX,,Oil,Royalties,"15,631.69"
-September,2023,State,,Onshore,State,TX,,Oil & Gas,Other Distributions,"99,420.89"
-September,2023,State,,Onshore,State,TX,,Oil & Gas,Royalties,105.99
-September,2023,State,,Onshore,State,UT,,,Other Distributions,23.99
-September,2023,State,,Onshore,State,UT,,,Royalties,"-104,395.02"
-September,2023,State,,Onshore,State,UT,,,Sequestration,"-292,240.34"
-September,2023,State,,Onshore,State,UT,,Coal,Other Distributions,"153,218.69"
-September,2023,State,,Onshore,State,UT,,Coal,Rents & Bonuses,"1,080.00"
-September,2023,State,,Onshore,State,UT,,Coal,Royalties,"550,262.04"
-September,2023,State,,Onshore,State,UT,,Gas,Royalties,"1,808,837.97"
-September,2023,State,,Onshore,State,UT,,Geothermal,Rents & Bonuses,572.5
-September,2023,State,,Onshore,State,UT,,Geothermal,Royalties,"21,115.00"
-September,2023,State,,Onshore,State,UT,,Gilsonite,Other Distributions,-487.5
-September,2023,State,,Onshore,State,UT,,Gilsonite,Rents & Bonuses,-559.25
-September,2023,State,,Onshore,State,UT,,Gilsonite,Royalties,"92,324.65"
-September,2023,State,,Onshore,State,UT,,Oil,Royalties,"2,449,402.62"
-September,2023,State,,Onshore,State,UT,,Oil & Gas,Other Distributions,"111,518.37"
-September,2023,State,,Onshore,State,UT,,Oil & Gas,Rents & Bonuses,"29,045.84"
-September,2023,State,,Onshore,State,UT,,Oil & Gas,Royalties,"5,964.91"
-September,2023,State,,Onshore,State,UT,,Phosphate,Other Distributions,"10,920.00"
-September,2023,State,,Onshore,State,UT,,Phosphate,Rents & Bonuses,"3,640.00"
-September,2023,State,,Onshore,State,UT,,Potassium,Other Distributions,"-7,194.81"
-September,2023,State,,Onshore,State,UT,,Potassium,Royalties,"1,668.85"
-September,2023,State,,Onshore,State,UT,,Sodium,Royalties,64.69
-September,2023,State,,Onshore,State,VA,,,Sequestration,-79.91
-September,2023,State,,Onshore,State,VA,,Gas,Royalties,"1,400.78"
-September,2023,State,,Onshore,State,VA,,Oil & Gas,Other Distributions,1.05
-September,2023,State,,Onshore,State,WV,,,Sequestration,-190.31
-September,2023,State,,Onshore,State,WV,,Gas,Royalties,275.06
-September,2023,State,,Onshore,State,WV,,Oil & Gas,Other Distributions,"3,063.70"
-September,2023,State,,Onshore,State,WY,,,Other Distributions,"7,211.48"
-September,2023,State,,Onshore,State,WY,,,Royalties,"-926,428.14"
-September,2023,State,,Onshore,State,WY,,,Sequestration,"-2,587,924.86"
-September,2023,State,,Onshore,State,WY,,Coal,Rents & Bonuses,"18,924.00"
-September,2023,State,,Onshore,State,WY,,Coal,Royalties,"17,748,978.51"
-September,2023,State,,Onshore,State,WY,,Gas,Royalties,"8,534,562.50"
-September,2023,State,,Onshore,State,WY,,Oil,Royalties,"16,741,981.46"
-September,2023,State,,Onshore,State,WY,,Oil & Gas,Other Distributions,"1,683,553.52"
-September,2023,State,,Onshore,State,WY,,Oil & Gas,Rents & Bonuses,"174,374.69"
-September,2023,State,,Onshore,State,WY,,Oil & Gas,Royalties,"284,766.26"
-September,2023,State,,Onshore,State,WY,,Sodium,Royalties,"1,134,266.25"
-September,2023,U.S. Treasury,1060,Offshore,,,,,Other Distributions,"1,467.01"
-September,2023,U.S. Treasury,1099,Onshore,,,,,Other Distributions,"163,771.93"
-September,2023,U.S. Treasury,1099,Onshore,,,,,Royalties,326.92
-September,2023,U.S. Treasury,1435,Offshore,,,,Oil & Gas,Other Distributions,"157,530.30"
-September,2023,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"17,384.44"
-September,2023,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Royalties,"1,834.57"
-September,2023,U.S. Treasury,1435,Onshore,,,,Geothermal,Other Distributions,906.33
-September,2023,U.S. Treasury,1435,Onshore,,,,Oil & Gas,Other Distributions,"1,132,844.37"
-September,2023,U.S. Treasury,1811,Onshore,,,,Coal,Rents & Bonuses,"4,197.00"
-September,2023,U.S. Treasury,1811,Onshore,,,,Geothermal,Rents & Bonuses,"101,568.23"
-September,2023,U.S. Treasury,1811,Onshore,,,,Oil & Gas,Rents & Bonuses,"384,079.52"
-September,2023,U.S. Treasury,1820,Offshore,,,,,Rents & Bonuses,"-1,020,461,692.65"
-September,2023,U.S. Treasury,1820,Offshore,,,,Gas,Other Distributions,"1,781.35"
-September,2023,U.S. Treasury,1820,Offshore,,,,Gas,Royalties,"17,100,159.59"
-September,2023,U.S. Treasury,1820,Offshore,,,,Oil,Other Distributions,"877,475.23"
-September,2023,U.S. Treasury,1820,Offshore,,,,Oil,Royalties,"191,420,046.29"
-September,2023,U.S. Treasury,1820,Offshore,,,,Oil & Gas,Other Distributions,"4,229,245.95"
-September,2023,U.S. Treasury,1820,Offshore,,,,Oil & Gas,Rents & Bonuses,"118,886,557.67"
-September,2023,U.S. Treasury,1820,Offshore,,,,Wind,Rents & Bonuses,"165,462.00"
-September,2023,U.S. Treasury,1820,Offshore,GoMESA,,,Oil,Royalties,"17,693,860.19"
-September,2023,U.S. Treasury,1820,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"265,560.53"
-September,2023,U.S. Treasury,2020,Offshore,,,,Gas,Other Distributions,"16,303.85"
-September,2023,U.S. Treasury,2020,Offshore,,,,Gas,Royalties,"10,977,039.89"
-September,2023,U.S. Treasury,2020,Offshore,,,,Oil,Other Distributions,"-138,416.95"
-September,2023,U.S. Treasury,2020,Offshore,,,,Oil,Royalties,"365,232,350.12"
-September,2023,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Other Distributions,"5,661,619.57"
-September,2023,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Rents & Bonuses,"2,040,346.74"
-September,2023,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Royalties,59.38
-September,2023,U.S. Treasury,2020,Offshore,GoMESA,,,,Royalties,0
-September,2023,U.S. Treasury,2020,Offshore,GoMESA,,,Gas,Royalties,"2,069,673.63"
-September,2023,U.S. Treasury,2020,Offshore,GoMESA,,,Oil,Royalties,"66,676,219.44"
-September,2023,U.S. Treasury,2020,Offshore,GoMESA,,,Oil & Gas,Royalties,"1,972,957.93"
-September,2023,U.S. Treasury,2039,Onshore,,,,,Other Distributions,"-9,705.73"
-September,2023,U.S. Treasury,2039,Onshore,,,,,Royalties,"5,689,725.34"
-September,2023,U.S. Treasury,2039,Onshore,,,,Asphalt,Other Distributions,"5,047.49"
-September,2023,U.S. Treasury,2039,Onshore,,,,Clay,Royalties,161.94
-September,2023,U.S. Treasury,2039,Onshore,,,,Coal,Other Distributions,"82,449.66"
-September,2023,U.S. Treasury,2039,Onshore,,,,Coal,Royalties,"4,045,832.62"
-September,2023,U.S. Treasury,2039,Onshore,,,,Gas,Other Distributions,7.13
-September,2023,U.S. Treasury,2039,Onshore,,,,Gas,Royalties,"10,094,032.90"
-September,2023,U.S. Treasury,2039,Onshore,,,,Geothermal,Other Distributions,400
-September,2023,U.S. Treasury,2039,Onshore,,,,Geothermal,Royalties,"353,962.11"
-September,2023,U.S. Treasury,2039,Onshore,,,,Gilsonite,Other Distributions,-97.5
-September,2023,U.S. Treasury,2039,Onshore,,,,Gilsonite,Royalties,"18,464.92"
-September,2023,U.S. Treasury,2039,Onshore,,,,Oil,Other Distributions,"113,528.78"
-September,2023,U.S. Treasury,2039,Onshore,,,,Oil,Royalties,"28,817,384.38"
-September,2023,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Other Distributions,"798,123.20"
-September,2023,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Rents & Bonuses,-200
-September,2023,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Royalties,"1,006,795.64"
-September,2023,U.S. Treasury,2039,Onshore,,,,Phosphate,Other Distributions,"3,533.00"
-September,2023,U.S. Treasury,2039,Onshore,,,,Phosphate,Royalties,"133,165.34"
-September,2023,U.S. Treasury,2039,Onshore,,,,Potassium,Other Distributions,"-1,682.49"
-September,2023,U.S. Treasury,2039,Onshore,,,,Potassium,Royalties,"45,168.95"
-September,2023,U.S. Treasury,2039,Onshore,,,,Sodium,Royalties,"299,074.94"
+October,2023,BLM - Permit Processing and Improvement,,Onshore,,,,,Other Distributions,0
+October,2023,BLM - Permit Processing and Improvement,,Onshore,,,,Coal,Rents & Bonuses,"26,518.46"
+October,2023,BLM - Permit Processing and Improvement,,Onshore,,,,Gilsonite,Rents & Bonuses,-28.25
+October,2023,BLM - Permit Processing and Improvement,,Onshore,,,,Oil & Gas,Rents & Bonuses,"337,315.47"
+October,2023,BLM - Permit Processing and Improvement,,Onshore,,,,Oil Shale,Rents & Bonuses,160
+October,2023,BLM - Permit Processing and Improvement,,Onshore,,,,Phosphate,Rents & Bonuses,810
+October,2023,BLM-Nav Petrol Reserve-2,,Onshore,,,,Oil & Gas,Rents & Bonuses,"5,066.00"
+October,2023,Bureau of Land Management,,Onshore,,,,Gas,Royalties,"11,184.05"
+October,2023,Bureau of Land Management,,Onshore,,,,Oil,Royalties,"118,219.62"
+October,2023,Bureau of Land Management,,Onshore,,,,Oil & Gas,Other Distributions,"3,545.29"
+October,2023,Bureau of Land Management,,Onshore,,,,Oil & Gas,Rents & Bonuses,40
+October,2023,Bureau of Land Management,,Onshore,,,,Oil & Gas,Royalties,173.21
+October,2023,Bureau of Ocean Energy Management,,Offshore,,,,,Other Distributions,0
+October,2023,Bureau of Ocean Energy Management,,Offshore,,,,Oil & Gas,Rents & Bonuses,"5,233,537.05"
+October,2023,Bureau of Safety & Environmental Enforcement,,Offshore,,,,,Other Distributions,"6,397,685.95"
+October,2023,Bureau of Safety & Environmental Enforcement,,Offshore,,,,Oil & Gas,Rents & Bonuses,"2,242,974.13"
+October,2023,Fish & Wildlife,,Onshore,,,,Gas,Royalties,"13,836.34"
+October,2023,Fish & Wildlife,,Onshore,,,,Oil,Royalties,"134,301.10"
+October,2023,Fish & Wildlife,,Onshore,,,,Oil & Gas,Other Distributions,"1,008.93"
+October,2023,Fish & Wildlife,,Onshore,,,,Oil & Gas,Royalties,3.33
+October,2023,Forest Service,,Onshore,,,,Coal,Royalties,"35,380.56"
+October,2023,Forest Service,,Onshore,,,,Copper,Royalties,"112,067.47"
+October,2023,Forest Service,,Onshore,,,,Gas,Royalties,"3,720,790.79"
+October,2023,Forest Service,,Onshore,,,,Hardrock,Other Distributions,"2,950.44"
+October,2023,Forest Service,,Onshore,,,,Hardrock,Rents & Bonuses,-124.5
+October,2023,Forest Service,,Onshore,,,,Lead/Zinc,Royalties,"453,933.90"
+October,2023,Forest Service,,Onshore,,,,Oil,Royalties,"16,925,510.08"
+October,2023,Forest Service,,Onshore,,,,Oil & Gas,Other Distributions,"-271,083.13"
+October,2023,Forest Service,,Onshore,,,,Oil & Gas,Rents & Bonuses,"14,860,970.98"
+October,2023,Forest Service,,Onshore,,,,Oil & Gas,Royalties,"13,394.50"
+October,2023,Forest Service,,Onshore,,,,Quartz,Royalties,7.05
+October,2023,Land & Water Conservation Fund,,Offshore,GoMESA,,,Gas,Royalties,"474,107.96"
+October,2023,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil,Royalties,"17,793,169.17"
+October,2023,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"54,950.51"
+October,2023,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Royalties,"391,344.98"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,,Other Distributions,"1,089,238.75"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Coal,Other Distributions,"-2,639.21"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Coal,Rents & Bonuses,"72,617.28"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Coal,Royalties,"3,325,007.50"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Gas,Other Distributions,-125.98
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Gas,Royalties,"14,008,531.19"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Mining-Unspecified,Royalties,"3,483.04"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Oil,Other Distributions,"-3,749.60"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Oil,Royalties,"73,240,258.54"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Other Distributions,"4,548,245.96"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Rents & Bonuses,"382,094.92"
+October,2023,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Royalties,"418,888.24"
+October,2023,Reclamation Fund,,Onshore,,,,Coal,Other Distributions,"74,168.61"
+October,2023,Reclamation Fund,,Onshore,,,,Coal,Royalties,"18,433,514.42"
+October,2023,Reclamation Fund,,Onshore,,,,Gas,Other Distributions,-22.75
+October,2023,Reclamation Fund,,Onshore,,,,Gas,Royalties,"53,625,589.22"
+October,2023,Reclamation Fund,,Onshore,,,,Gilsonite,Other Distributions,-525.6
+October,2023,Reclamation Fund,,Onshore,,,,Gilsonite,Royalties,"49,120.04"
+October,2023,Reclamation Fund,,Onshore,,,,Oil,Other Distributions,"14,125.44"
+October,2023,Reclamation Fund,,Onshore,,,,Oil,Royalties,"178,512,849.67"
+October,2023,Reclamation Fund,,Onshore,,,,Oil & Gas,Other Distributions,"6,914,271.33"
+October,2023,Reclamation Fund,,Onshore,,,,Oil & Gas,Rents & Bonuses,"5,478,400.40"
+October,2023,Reclamation Fund,,Onshore,,,,Oil & Gas,Royalties,"1,393,986.27"
+October,2023,Reclamation Fund,,Onshore,,,,Phosphate,Other Distributions,"10,847.15"
+October,2023,Reclamation Fund,,Onshore,,,,Phosphate,Royalties,"787,743.19"
+October,2023,Reclamation Fund,,Onshore,,,,Potassium,Other Distributions,"7,342.78"
+October,2023,Reclamation Fund,,Onshore,,,,Potassium,Royalties,"352,028.30"
+October,2023,Reclamation Fund,,Onshore,,,,Sodium,Other Distributions,-494.05
+October,2023,Reclamation Fund,,Onshore,,,,Sodium,Royalties,"1,114,851.19"
+October,2023,State,,Offshore,8(g),AK,,Oil,Royalties,"67,636.15"
+October,2023,State,,Offshore,8(g),AK,,Oil & Gas,Rents & Bonuses,"7,539.48"
+October,2023,State,,Offshore,8(g),AL,,Gas,Royalties,"170,929.20"
+October,2023,State,,Offshore,8(g),AL,,Oil,Royalties,993.79
+October,2023,State,,Offshore,8(g),AL,,Oil & Gas,Other Distributions,"9,457.05"
+October,2023,State,,Offshore,8(g),AL,,Oil & Gas,Royalties,13.08
+October,2023,State,,Offshore,8(g),CA,,Gas,Royalties,3.34
+October,2023,State,,Offshore,8(g),CA,,Oil,Royalties,"1,839.68"
+October,2023,State,,Offshore,8(g),LA,,Gas,Royalties,"68,846.25"
+October,2023,State,,Offshore,8(g),LA,,Oil,Other Distributions,-632.83
+October,2023,State,,Offshore,8(g),LA,,Oil,Royalties,"256,853.23"
+October,2023,State,,Offshore,8(g),LA,,Oil & Gas,Other Distributions,"5,121.56"
+October,2023,State,,Offshore,8(g),LA,,Oil & Gas,Rents & Bonuses,"18,746.40"
+October,2023,State,,Offshore,8(g),MS,,Gas,Royalties,"2,407.65"
+October,2023,State,,Offshore,8(g),MS,,Oil & Gas,Other Distributions,"-1,238.19"
+October,2023,State,,Offshore,8(g),TX,,Gas,Royalties,"2,456.69"
+October,2023,State,,Offshore,8(g),TX,,Oil & Gas,Other Distributions,17.17
+October,2023,State,,Onshore,Geothermal,CA,Inyo County,,Sequestration,"4,536.92"
+October,2023,State,,Onshore,Geothermal,CA,Inyo County,Geothermal,Other Distributions,35.08
+October,2023,State,,Onshore,Geothermal,CA,Inyo County,Geothermal,Royalties,"9,495.95"
+October,2023,State,,Onshore,Geothermal,CA,Lake County,,Sequestration,"41,124.58"
+October,2023,State,,Onshore,Geothermal,CA,Lake County,Geothermal,Royalties,"75,111.24"
+October,2023,State,,Onshore,Geothermal,CA,Lassen County,,Sequestration,864.07
+October,2023,State,,Onshore,Geothermal,CA,Lassen County,Geothermal,Royalties,"1,213.27"
+October,2023,State,,Onshore,Geothermal,CA,Mono County,,Sequestration,"19,200.20"
+October,2023,State,,Onshore,Geothermal,CA,Siskiyou County,,Sequestration,45.6
+October,2023,State,,Onshore,Geothermal,CA,Sonoma County,,Sequestration,"62,537.76"
+October,2023,State,,Onshore,Geothermal,CA,Sonoma County,Geothermal,Royalties,"114,568.68"
+October,2023,State,,Onshore,Geothermal,CO,Gunnison County,,Sequestration,-85.79
+October,2023,State,,Onshore,Geothermal,CO,Gunnison County,Geothermal,Rents & Bonuses,"1,505.00"
+October,2023,State,,Onshore,Geothermal,ID,Washington County,,Sequestration,123.98
+October,2023,State,,Onshore,Geothermal,NM,Dona Ana County,,Sequestration,321.09
+October,2023,State,,Onshore,Geothermal,NM,Hidalgo Caounty,,Sequestration,332.9
+October,2023,State,,Onshore,Geothermal,NM,Hidalgo Caounty,Geothermal,Royalties,"1,745.05"
+October,2023,State,,Onshore,Geothermal,NM,Sierra County,,Sequestration,-9.12
+October,2023,State,,Onshore,Geothermal,NM,Sierra County,Geothermal,Rents & Bonuses,160
+October,2023,State,,Onshore,Geothermal,NV,Churchill County,,Sequestration,"66,193.48"
+October,2023,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Rents & Bonuses,"23,510.20"
+October,2023,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Royalties,"126,027.00"
+October,2023,State,,Onshore,Geothermal,NV,Elko County,,Sequestration,"1,892.48"
+October,2023,State,,Onshore,Geothermal,NV,Elko County,Geothermal,Rents & Bonuses,"6,057.00"
+October,2023,State,,Onshore,Geothermal,NV,Esmeralda County,,Sequestration,"2,367.72"
+October,2023,State,,Onshore,Geothermal,NV,Esmeralda County,Geothermal,Rents & Bonuses,"4,356.75"
+October,2023,State,,Onshore,Geothermal,NV,Eureka County,,Sequestration,"1,511.24"
+October,2023,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Rents & Bonuses,"8,677.00"
+October,2023,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Royalties,145.41
+October,2023,State,,Onshore,Geothermal,NV,Humboldt County,,Sequestration,"6,407.49"
+October,2023,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Rents & Bonuses,"7,130.25"
+October,2023,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Royalties,"4,497.40"
+October,2023,State,,Onshore,Geothermal,NV,Lander County,,Sequestration,"50,611.27"
+October,2023,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Rents & Bonuses,"25,378.78"
+October,2023,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Royalties,"54,770.62"
+October,2023,State,,Onshore,Geothermal,NV,Lyon County,,Sequestration,"2,631.63"
+October,2023,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Rents & Bonuses,"5,164.19"
+October,2023,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Royalties,429.83
+October,2023,State,,Onshore,Geothermal,NV,Mineral County,,Sequestration,"13,495.74"
+October,2023,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Rents & Bonuses,"23,813.01"
+October,2023,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Royalties,"4,584.70"
+October,2023,State,,Onshore,Geothermal,NV,Nye County,,Sequestration,"10,135.62"
+October,2023,State,,Onshore,Geothermal,NV,Nye County,Geothermal,Rents & Bonuses,"25,299.97"
+October,2023,State,,Onshore,Geothermal,NV,Pershing County,,Sequestration,"13,950.95"
+October,2023,State,,Onshore,Geothermal,NV,Pershing County,Geothermal,Rents & Bonuses,"34,584.29"
+October,2023,State,,Onshore,Geothermal,NV,Pershing County,Geothermal,Royalties,479.05
+October,2023,State,,Onshore,Geothermal,NV,Washoe County,,Sequestration,"4,080.05"
+October,2023,State,,Onshore,Geothermal,NV,Washoe County,Geothermal,Rents & Bonuses,960
+October,2023,State,,Onshore,Geothermal,NV,Washoe County,Geothermal,Royalties,"9,241.15"
+October,2023,State,,Onshore,Geothermal,NV,White Pine County,,Sequestration,"1,167.56"
+October,2023,State,,Onshore,Geothermal,NV,White Pine County,Geothermal,Rents & Bonuses,"4,623.00"
+October,2023,State,,Onshore,Geothermal,OR,Deschutes County,,Sequestration,"1,271.07"
+October,2023,State,,Onshore,Geothermal,OR,Deschutes County,Geothermal,Rents & Bonuses,"1,001.25"
+October,2023,State,,Onshore,Geothermal,UT,Beaver County,,Sequestration,"10,351.92"
+October,2023,State,,Onshore,Geothermal,UT,Beaver County,Geothermal,Royalties,"11,099.83"
+October,2023,State,,Onshore,Geothermal,UT,Iron County,,Sequestration,56.07
+October,2023,State,,Onshore,Geothermal,UT,Millard County,,Sequestration,"4,528.42"
+October,2023,State,,Onshore,Geothermal,UT,Millard County,Geothermal,Royalties,760.17
+October,2023,State,,Onshore,State,AK,,,Other Distributions,0
+October,2023,State,,Onshore,State,AK,,,Rents & Bonuses,0
+October,2023,State,,Onshore,State,AK,,,Royalties,"-15,252.74"
+October,2023,State,,Onshore,State,AK,,,Sequestration,"380,538.75"
+October,2023,State,,Onshore,State,AK,,Gas,Royalties,"792,096.77"
+October,2023,State,,Onshore,State,AK,,Oil,Other Distributions,"112,513.22"
+October,2023,State,,Onshore,State,AK,,Oil,Royalties,"1,817,078.88"
+October,2023,State,,Onshore,State,AK,,Oil & Gas,Other Distributions,"9,035.62"
+October,2023,State,,Onshore,State,AK,,Oil & Gas,Rents & Bonuses,"419,754.61"
+October,2023,State,,Onshore,State,AL,,,Royalties,-465.27
+October,2023,State,,Onshore,State,AL,,,Sequestration,"42,843.76"
+October,2023,State,,Onshore,State,AL,,Coal,Royalties,"20,454.01"
+October,2023,State,,Onshore,State,AL,,Gas,Royalties,"3,091.83"
+October,2023,State,,Onshore,State,AL,,Oil,Royalties,"2,865.76"
+October,2023,State,,Onshore,State,AL,,Oil & Gas,Other Distributions,-95.57
+October,2023,State,,Onshore,State,AL,,Oil & Gas,Rents & Bonuses,82
+October,2023,State,,Onshore,State,AL,,Oil & Gas,Royalties,20.84
+October,2023,State,,Onshore,State,AR,,,Royalties,-656.23
+October,2023,State,,Onshore,State,AR,,,Sequestration,"31,663.81"
+October,2023,State,,Onshore,State,AR,,Gas,Royalties,"55,874.68"
+October,2023,State,,Onshore,State,AR,,Hardrock,Other Distributions,120.99
+October,2023,State,,Onshore,State,AR,,Hardrock,Rents & Bonuses,-33.26
+October,2023,State,,Onshore,State,AR,,Oil & Gas,Other Distributions,743.61
+October,2023,State,,Onshore,State,AR,,Oil & Gas,Rents & Bonuses,"4,610.40"
+October,2023,State,,Onshore,State,AR,,Quartz,Royalties,1.86
+October,2023,State,,Onshore,State,AZ,,,Sequestration,4.47
+October,2023,State,,Onshore,State,CA,,,Other Distributions,585.66
+October,2023,State,,Onshore,State,CA,,,Royalties,"-82,349.27"
+October,2023,State,,Onshore,State,CA,,,Sequestration,"2,369,123.27"
+October,2023,State,,Onshore,State,CA,,Gas,Royalties,"68,596.45"
+October,2023,State,,Onshore,State,CA,,Geothermal,Other Distributions,70.23
+October,2023,State,,Onshore,State,CA,,Geothermal,Rents & Bonuses,"3,879.00"
+October,2023,State,,Onshore,State,CA,,Geothermal,Royalties,"464,828.67"
+October,2023,State,,Onshore,State,CA,,Oil,Royalties,"3,304,933.57"
+October,2023,State,,Onshore,State,CA,,Oil & Gas,Other Distributions,"12,309.09"
+October,2023,State,,Onshore,State,CA,,Oil & Gas,Rents & Bonuses,"1,555.00"
+October,2023,State,,Onshore,State,CA,,Potassium,Royalties,"1,056.63"
+October,2023,State,,Onshore,State,CA,,Sodium,Other Distributions,-948.5
+October,2023,State,,Onshore,State,CA,,Sodium,Royalties,"261,183.14"
+October,2023,State,,Onshore,State,CO,,,Other Distributions,377.88
+October,2023,State,,Onshore,State,CO,,,Royalties,"-154,712.90"
+October,2023,State,,Onshore,State,CO,,,Sequestration,"8,328,200.35"
+October,2023,State,,Onshore,State,CO,,Coal,Other Distributions,"6,267.05"
+October,2023,State,,Onshore,State,CO,,Coal,Rents & Bonuses,"9,022.47"
+October,2023,State,,Onshore,State,CO,,Coal,Royalties,"1,159,108.45"
+October,2023,State,,Onshore,State,CO,,Gas,Royalties,"4,307,153.95"
+October,2023,State,,Onshore,State,CO,,Geothermal,Rents & Bonuses,"3,010.00"
+October,2023,State,,Onshore,State,CO,,Oil,Royalties,"1,364,207.64"
+October,2023,State,,Onshore,State,CO,,Oil & Gas,Other Distributions,"-578,954.77"
+October,2023,State,,Onshore,State,CO,,Oil & Gas,Rents & Bonuses,"19,583.72"
+October,2023,State,,Onshore,State,CO,,Oil & Gas,Royalties,"1,393,993.65"
+October,2023,State,,Onshore,State,CO,,Sodium,Royalties,"52,963.80"
+October,2023,State,,Onshore,State,FL,,,Sequestration,53.99
+October,2023,State,,Onshore,State,ID,,,Royalties,"-19,980.96"
+October,2023,State,,Onshore,State,ID,,,Sequestration,"236,691.45"
+October,2023,State,,Onshore,State,ID,,Phosphate,Other Distributions,"13,889.57"
+October,2023,State,,Onshore,State,ID,,Phosphate,Rents & Bonuses,810
+October,2023,State,,Onshore,State,ID,,Phosphate,Royalties,"984,348.38"
+October,2023,State,,Onshore,State,IL,,,Sequestration,-476.43
+October,2023,State,,Onshore,State,IL,,Oil,Royalties,"8,358.36"
+October,2023,State,,Onshore,State,KS,,,Other Distributions,0.01
+October,2023,State,,Onshore,State,KS,,,Royalties,-718.12
+October,2023,State,,Onshore,State,KS,,,Sequestration,"35,623.63"
+October,2023,State,,Onshore,State,KS,,Gas,Royalties,"18,074.69"
+October,2023,State,,Onshore,State,KS,,Oil,Royalties,"17,847.44"
+October,2023,State,,Onshore,State,KS,,Oil & Gas,Other Distributions,14.09
+October,2023,State,,Onshore,State,KS,,Oil & Gas,Rents & Bonuses,-30
+October,2023,State,,Onshore,State,KY,,,Sequestration,-47.83
+October,2023,State,,Onshore,State,KY,,Gas,Royalties,"4,168.92"
+October,2023,State,,Onshore,State,KY,,Oil,Royalties,392.75
+October,2023,State,,Onshore,State,KY,,Oil & Gas,Other Distributions,"-3,722.54"
+October,2023,State,,Onshore,State,LA,,,Other Distributions,"9,051.87"
+October,2023,State,,Onshore,State,LA,,,Royalties,"-10,136.14"
+October,2023,State,,Onshore,State,LA,,,Sequestration,"601,262.68"
+October,2023,State,,Onshore,State,LA,,Gas,Royalties,"442,917.28"
+October,2023,State,,Onshore,State,LA,,Oil,Royalties,"51,259.39"
+October,2023,State,,Onshore,State,LA,,Oil & Gas,Other Distributions,"12,652.62"
+October,2023,State,,Onshore,State,LA,,Oil & Gas,Rents & Bonuses,"23,855.38"
+October,2023,State,,Onshore,State,MI,,,Other Distributions,0.35
+October,2023,State,,Onshore,State,MI,,,Royalties,-126.7
+October,2023,State,,Onshore,State,MI,,,Sequestration,"3,587.94"
+October,2023,State,,Onshore,State,MI,,Gas,Royalties,"6,104.26"
+October,2023,State,,Onshore,State,MI,,Oil,Royalties,991.97
+October,2023,State,,Onshore,State,MI,,Oil & Gas,Other Distributions,69.29
+October,2023,State,,Onshore,State,MI,,Oil & Gas,Rents & Bonuses,"5,308.75"
+October,2023,State,,Onshore,State,MN,,,Sequestration,144.26
+October,2023,State,,Onshore,State,MO,,,Sequestration,"-10,754.02"
+October,2023,State,,Onshore,State,MO,,Copper,Royalties,"37,355.74"
+October,2023,State,,Onshore,State,MO,,Lead/Zinc,Royalties,"151,311.27"
+October,2023,State,,Onshore,State,MS,,,Royalties,-42.96
+October,2023,State,,Onshore,State,MS,,,Sequestration,"-1,377.07"
+October,2023,State,,Onshore,State,MS,,Gas,Royalties,"1,046.63"
+October,2023,State,,Onshore,State,MS,,Oil,Royalties,"40,531.33"
+October,2023,State,,Onshore,State,MS,,Oil & Gas,Rents & Bonuses,506.26
+October,2023,State,,Onshore,State,MS,,Oil & Gas,Royalties,125.89
+October,2023,State,,Onshore,State,MT,,,Other Distributions,612.6
+October,2023,State,,Onshore,State,MT,,,Royalties,"-41,860.45"
+October,2023,State,,Onshore,State,MT,,,Sequestration,"1,940,587.87"
+October,2023,State,,Onshore,State,MT,,Coal,Royalties,"1,167,526.61"
+October,2023,State,,Onshore,State,MT,,Gas,Royalties,"68,473.23"
+October,2023,State,,Onshore,State,MT,,Oil,Royalties,"748,554.00"
+October,2023,State,,Onshore,State,MT,,Oil & Gas,Other Distributions,"37,897.04"
+October,2023,State,,Onshore,State,MT,,Oil & Gas,Rents & Bonuses,"162,293.88"
+October,2023,State,,Onshore,State,MT,,Oil & Gas,Royalties,77.54
+October,2023,State,,Onshore,State,ND,,,Other Distributions,4.79
+October,2023,State,,Onshore,State,ND,,,Royalties,"-153,338.37"
+October,2023,State,,Onshore,State,ND,,,Sequestration,"4,531,974.82"
+October,2023,State,,Onshore,State,ND,,Coal,Rents & Bonuses,240
+October,2023,State,,Onshore,State,ND,,Coal,Royalties,"81,074.85"
+October,2023,State,,Onshore,State,ND,,Gas,Royalties,"1,178,166.86"
+October,2023,State,,Onshore,State,ND,,Oil,Royalties,"9,582,961.33"
+October,2023,State,,Onshore,State,ND,,Oil & Gas,Other Distributions,"1,223,664.02"
+October,2023,State,,Onshore,State,ND,,Oil & Gas,Rents & Bonuses,240
+October,2023,State,,Onshore,State,ND,,Oil & Gas,Royalties,"11,038.07"
+October,2023,State,,Onshore,State,NE,,,Royalties,-30.55
+October,2023,State,,Onshore,State,NE,,,Sequestration,"1,114.42"
+October,2023,State,,Onshore,State,NE,,Oil,Royalties,"1,527.72"
+October,2023,State,,Onshore,State,NM,,,Other Distributions,"108,588.91"
+October,2023,State,,Onshore,State,NM,,,Royalties,"-4,954,955.17"
+October,2023,State,,Onshore,State,NM,,,Sequestration,"153,727,414.17"
+October,2023,State,,Onshore,State,NM,,Coal,Other Distributions,"86,443.75"
+October,2023,State,,Onshore,State,NM,,Gas,Other Distributions,-28.35
+October,2023,State,,Onshore,State,NM,,Gas,Royalties,"49,483,740.88"
+October,2023,State,,Onshore,State,NM,,Geothermal,Royalties,"3,490.12"
+October,2023,State,,Onshore,State,NM,,Oil,Other Distributions,"17,663.00"
+October,2023,State,,Onshore,State,NM,,Oil,Royalties,"191,116,909.28"
+October,2023,State,,Onshore,State,NM,,Oil & Gas,Other Distributions,"6,275,899.87"
+October,2023,State,,Onshore,State,NM,,Oil & Gas,Rents & Bonuses,"28,901.75"
+October,2023,State,,Onshore,State,NM,,Oil & Gas,Royalties,"226,413.12"
+October,2023,State,,Onshore,State,NM,,Potassium,Royalties,"432,806.98"
+October,2023,State,,Onshore,State,NM,,Sodium,Royalties,"75,518.39"
+October,2023,State,,Onshore,State,NV,,,Other Distributions,"2,540.56"
+October,2023,State,,Onshore,State,NV,,,Royalties,"-17,245.07"
+October,2023,State,,Onshore,State,NV,,,Sequestration,"405,334.36"
+October,2023,State,,Onshore,State,NV,,Geothermal,Rents & Bonuses,"339,108.87"
+October,2023,State,,Onshore,State,NV,,Geothermal,Royalties,"400,350.92"
+October,2023,State,,Onshore,State,NV,,Oil,Royalties,"90,222.93"
+October,2023,State,,Onshore,State,NV,,Oil & Gas,Other Distributions,170.31
+October,2023,State,,Onshore,State,NV,,Oil & Gas,Rents & Bonuses,"32,400.25"
+October,2023,State,,Onshore,State,OH,,,Sequestration,"-1,280.18"
+October,2023,State,,Onshore,State,OH,,Gas,Royalties,"17,744.18"
+October,2023,State,,Onshore,State,OH,,Oil,Royalties,"4,300.93"
+October,2023,State,,Onshore,State,OH,,Oil & Gas,Other Distributions,"1,572.85"
+October,2023,State,,Onshore,State,OH,,Oil & Gas,Rents & Bonuses,16.13
+October,2023,State,,Onshore,State,OK,,,Other Distributions,51.26
+October,2023,State,,Onshore,State,OK,,,Royalties,"-4,901.93"
+October,2023,State,,Onshore,State,OK,,,Sequestration,"235,785.09"
+October,2023,State,,Onshore,State,OK,,Gas,Royalties,"191,840.86"
+October,2023,State,,Onshore,State,OK,,Hardrock,Other Distributions,29.97
+October,2023,State,,Onshore,State,OK,,Hardrock,Rents & Bonuses,-8.24
+October,2023,State,,Onshore,State,OK,,Oil,Royalties,"222,494.33"
+October,2023,State,,Onshore,State,OK,,Oil & Gas,Other Distributions,"4,385.22"
+October,2023,State,,Onshore,State,OK,,Oil & Gas,Rents & Bonuses,542.98
+October,2023,State,,Onshore,State,OK,,Quartz,Royalties,0.49
+October,2023,State,,Onshore,State,OR,,,Royalties,-40.05
+October,2023,State,,Onshore,State,OR,,,Sequestration,"2,499.86"
+October,2023,State,,Onshore,State,OR,,Geothermal,Rents & Bonuses,"2,002.50"
+October,2023,State,,Onshore,State,PA,,,Sequestration,-21.75
+October,2023,State,,Onshore,State,PA,,Gas,Royalties,142.67
+October,2023,State,,Onshore,State,PA,,Oil & Gas,Other Distributions,238.85
+October,2023,State,,Onshore,State,SC,,,Sequestration,-47.45
+October,2023,State,,Onshore,State,SC,,Hardrock,Other Distributions,832.5
+October,2023,State,,Onshore,State,SC,,Hardrock,Rents & Bonuses,0
+October,2023,State,,Onshore,State,SD,,,Royalties,-887.86
+October,2023,State,,Onshore,State,SD,,,Sequestration,"21,482.87"
+October,2023,State,,Onshore,State,SD,,Gas,Royalties,"1,585.65"
+October,2023,State,,Onshore,State,SD,,Oil,Royalties,"41,516.34"
+October,2023,State,,Onshore,State,SD,,Oil & Gas,Other Distributions,64.97
+October,2023,State,,Onshore,State,SD,,Oil & Gas,Rents & Bonuses,"1,191.00"
+October,2023,State,,Onshore,State,SD,,Oil & Gas,Royalties,35.13
+October,2023,State,,Onshore,State,TX,,,Royalties,-470.33
+October,2023,State,,Onshore,State,TX,,,Sequestration,"16,639.78"
+October,2023,State,,Onshore,State,TX,,Gas,Royalties,"294,047.14"
+October,2023,State,,Onshore,State,TX,,Oil,Royalties,"18,377.10"
+October,2023,State,,Onshore,State,TX,,Oil & Gas,Other Distributions,"-30,793.21"
+October,2023,State,,Onshore,State,TX,,Oil & Gas,Rents & Bonuses,367.5
+October,2023,State,,Onshore,State,TX,,Oil & Gas,Royalties,113.85
+October,2023,State,,Onshore,State,UT,,,Other Distributions,350.32
+October,2023,State,,Onshore,State,UT,,,Royalties,"-126,983.08"
+October,2023,State,,Onshore,State,UT,,,Sequestration,"6,803,116.90"
+October,2023,State,,Onshore,State,UT,,Coal,Rents & Bonuses,30
+October,2023,State,,Onshore,State,UT,,Coal,Royalties,"916,298.01"
+October,2023,State,,Onshore,State,UT,,Gas,Royalties,"2,595,990.72"
+October,2023,State,,Onshore,State,UT,,Geothermal,Royalties,"23,720.06"
+October,2023,State,,Onshore,State,UT,,Gilsonite,Other Distributions,-657
+October,2023,State,,Onshore,State,UT,,Gilsonite,Rents & Bonuses,-28.25
+October,2023,State,,Onshore,State,UT,,Gilsonite,Royalties,"61,400.05"
+October,2023,State,,Onshore,State,UT,,Oil,Royalties,"2,591,118.16"
+October,2023,State,,Onshore,State,UT,,Oil & Gas,Other Distributions,"104,738.41"
+October,2023,State,,Onshore,State,UT,,Oil & Gas,Rents & Bonuses,"49,123.25"
+October,2023,State,,Onshore,State,UT,,Oil & Gas,Royalties,"5,990.69"
+October,2023,State,,Onshore,State,UT,,Oil Shale,Rents & Bonuses,160
+October,2023,State,,Onshore,State,UT,,Phosphate,Other Distributions,-330.63
+October,2023,State,,Onshore,State,UT,,Phosphate,Royalties,330.63
+October,2023,State,,Onshore,State,UT,,Potassium,Other Distributions,"9,178.53"
+October,2023,State,,Onshore,State,UT,,Potassium,Royalties,"6,172.34"
+October,2023,State,,Onshore,State,UT,,Sodium,Royalties,252.33
+October,2023,State,,Onshore,State,VA,,,Sequestration,-96.36
+October,2023,State,,Onshore,State,VA,,Gas,Royalties,"1,690.53"
+October,2023,State,,Onshore,State,WV,,,Sequestration,-661.69
+October,2023,State,,Onshore,State,WV,,Gas,Royalties,218.67
+October,2023,State,,Onshore,State,WV,,Oil & Gas,Other Distributions,"11,389.86"
+October,2023,State,,Onshore,State,WY,,,Other Distributions,"10,030.72"
+October,2023,State,,Onshore,State,WY,,,Royalties,"-1,134,544.53"
+October,2023,State,,Onshore,State,WY,,,Sequestration,"44,402,849.80"
+October,2023,State,,Onshore,State,WY,,Coal,Rents & Bonuses,"17,226.00"
+October,2023,State,,Onshore,State,WY,,Coal,Royalties,"19,697,431.60"
+October,2023,State,,Onshore,State,WY,,Gas,Royalties,"9,123,490.36"
+October,2023,State,,Onshore,State,WY,,Oil,Royalties,"16,803,982.38"
+October,2023,State,,Onshore,State,WY,,Oil & Gas,Other Distributions,"2,999,441.21"
+October,2023,State,,Onshore,State,WY,,Oil & Gas,Rents & Bonuses,"6,976,169.71"
+October,2023,State,,Onshore,State,WY,,Oil & Gas,Royalties,"105,506.63"
+October,2023,State,,Onshore,State,WY,,Sodium,Other Distributions,331.04
+October,2023,State,,Onshore,State,WY,,Sodium,Royalties,"1,003,647.80"
+October,2023,U.S. Treasury,1060,Offshore,,,,,Other Distributions,273.13
+October,2023,U.S. Treasury,1099,Onshore,,,,,Other Distributions,"526,910.01"
+October,2023,U.S. Treasury,1435,Offshore,,,,,Other Distributions,0
+October,2023,U.S. Treasury,1435,Offshore,,,,Oil & Gas,Other Distributions,"2,268,182.11"
+October,2023,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"33,206.65"
+October,2023,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Royalties,"1,805.34"
+October,2023,U.S. Treasury,1435,Onshore,,,,Coal,Other Distributions,303.15
+October,2023,U.S. Treasury,1435,Onshore,,,,Geothermal,Other Distributions,35.12
+October,2023,U.S. Treasury,1435,Onshore,,,,Oil & Gas,Other Distributions,"553,286.74"
+October,2023,U.S. Treasury,1435,Onshore,,,,Phosphate,Other Distributions,11.82
+October,2023,U.S. Treasury,1435,Onshore,,,,Sodium,Other Distributions,66.23
+October,2023,U.S. Treasury,1493,Offshore,,,,,Other Distributions,0
+October,2023,U.S. Treasury,1811,Onshore,,,,Clay,Rents & Bonuses,160
+October,2023,U.S. Treasury,1811,Onshore,,,,Geothermal,Rents & Bonuses,"174,000.18"
+October,2023,U.S. Treasury,1811,Onshore,,,,Oil & Gas,Rents & Bonuses,"1,447,498.62"
+October,2023,U.S. Treasury,1820,Offshore,,,,Oil & Gas,Rents & Bonuses,"3,287,593.47"
+October,2023,U.S. Treasury,1820,Offshore,,,,Wind,Rents & Bonuses,"310,004.00"
+October,2023,U.S. Treasury,1820,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"186,591.99"
+October,2023,U.S. Treasury,2020,Offshore,,,,Gas,Other Distributions,"4,013.10"
+October,2023,U.S. Treasury,2020,Offshore,,,,Gas,Royalties,"13,517,355.23"
+October,2023,U.S. Treasury,2020,Offshore,,,,Oil,Other Distributions,"-138,116.95"
+October,2023,U.S. Treasury,2020,Offshore,,,,Oil,Royalties,"405,998,348.85"
+October,2023,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Other Distributions,"3,870,021.89"
+October,2023,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Royalties,35.37
+October,2023,U.S. Treasury,2020,Offshore,GoMESA,,,Gas,Royalties,"1,896,439.28"
+October,2023,U.S. Treasury,2020,Offshore,GoMESA,,,Oil,Royalties,"71,172,681.82"
+October,2023,U.S. Treasury,2020,Offshore,GoMESA,,,Oil & Gas,Royalties,"1,563,574.69"
+October,2023,U.S. Treasury,2039,Onshore,,,,,Other Distributions,"-132,194.93"
+October,2023,U.S. Treasury,2039,Onshore,,,,,Royalties,"6,719,698.68"
+October,2023,U.S. Treasury,2039,Onshore,,,,Clay,Other Distributions,480
+October,2023,U.S. Treasury,2039,Onshore,,,,Clay,Royalties,140.08
+October,2023,U.S. Treasury,2039,Onshore,,,,Coal,Other Distributions,"18,239.01"
+October,2023,U.S. Treasury,2039,Onshore,,,,Coal,Royalties,"4,608,378.73"
+October,2023,U.S. Treasury,2039,Onshore,,,,Gas,Other Distributions,-5.72
+October,2023,U.S. Treasury,2039,Onshore,,,,Gas,Royalties,"15,764,370.28"
+October,2023,U.S. Treasury,2039,Onshore,,,,Geothermal,Royalties,"446,194.93"
+October,2023,U.S. Treasury,2039,Onshore,,,,Gilsonite,Other Distributions,-131.4
+October,2023,U.S. Treasury,2039,Onshore,,,,Gilsonite,Royalties,"12,280.01"
+October,2023,U.S. Treasury,2039,Onshore,,,,Oil,Other Distributions,"116,045.77"
+October,2023,U.S. Treasury,2039,Onshore,,,,Oil,Royalties,"49,796,478.83"
+October,2023,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Other Distributions,"311,287.10"
+October,2023,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Rents & Bonuses,118
+October,2023,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Royalties,"355,274.91"
+October,2023,U.S. Treasury,2039,Onshore,,,,Phosphate,Other Distributions,"2,699.97"
+October,2023,U.S. Treasury,2039,Onshore,,,,Phosphate,Royalties,"196,935.80"
+October,2023,U.S. Treasury,2039,Onshore,,,,Potassium,Other Distributions,"1,955.41"
+October,2023,U.S. Treasury,2039,Onshore,,,,Potassium,Royalties,"88,201.24"
+October,2023,U.S. Treasury,2039,Onshore,,,,Sodium,Other Distributions,-189.7
+October,2023,U.S. Treasury,2039,Onshore,,,,Sodium,Royalties,"278,721.05"
+October,2023,U.S. Treasury,24191,Onshore,,,,,Other Distributions,0
