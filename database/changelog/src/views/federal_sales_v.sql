@@ -16,4 +16,5 @@ SELECT id,
   processing_allowance,
   royalty_value_less_allowance,
   effective_royalty_rate
-FROM sales;
+FROM sales
+WHERE commodity != 'Not Tied to a Commodity';

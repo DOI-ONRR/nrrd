@@ -95,7 +95,7 @@ export const COAL = 'Coal'
 export const STATE = 'State'
 export const COUNTY_CAPITALIZED = 'County'
 export const USA = 'USA'
-export const SALES_YEAR = 'Sales Year'
+export const SALES_YEAR = 'salesYear'
 export const SALES_VALUE = 'salesValue'
 export const GAS_VOLUME = 'gasVolume'
 export const SALES_VOLUME = 'salesVolume'
@@ -239,5 +239,17 @@ export const DISPLAY_NAMES = {
   [LOCAL_RECIPIENT]: {
     default: 'Local recipient',
     plural: 'Local recipients'
+  },
+  [SALES_YEAR]: {
+    default: 'Sales Year',
+    plural: 'Sales Year'
+  },
+  [SALES_VALUE]: {
+    default: 'Sales Value',
+    plural: 'Salues Value'
+  },
+  [SALES_VOLUME]: {
+    default: 'Sales Volume',
+    plural: 'Salues Volume'
   }
 }

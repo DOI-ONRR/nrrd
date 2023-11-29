@@ -37,7 +37,8 @@ import {
   REVENUE_BY_COMPANY,
   COMPANY_NAME,
   // COMMODITY,
-  PERIOD_ALL_YEARS
+  PERIOD_ALL_YEARS,
+  COMMODITY
 } from '../../constants'
 
 const types = Object.freeze({
@@ -132,6 +133,7 @@ const initialState = {
         [DATA_TYPE]: FEDERAL_SALES,
         [PERIOD]: 'Calendar Year',
         [CALENDAR_YEAR]: getLastFiveYears(FEDERAL_SALES, PERIOD_CALENDAR_YEAR),
+        [GROUP_BY]: COMMODITY,
       }
     }
   },

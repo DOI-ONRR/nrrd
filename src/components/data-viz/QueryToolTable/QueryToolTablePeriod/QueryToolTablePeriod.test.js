@@ -18,7 +18,7 @@ import QueryToolTable from './QueryToolTable'
 
 // Mocks the initial state of the AppStatusContext
 jest.mock('../../../stores/data-filter-store/reducers', () => {
-  const dataFilterState = require('../../../../__mock_queries__/data-filter-states')
+  const dataFilterState = require('../../../../../__mock_queries__/data-filter-states')
   return ({
     get initialState () {
       return dataFilterState.QUERY_TOOL_TABLE_REVENUE
