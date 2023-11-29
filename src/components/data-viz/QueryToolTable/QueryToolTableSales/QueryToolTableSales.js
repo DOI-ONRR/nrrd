@@ -82,6 +82,7 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
   const { state: dataFilterContext } = useContext(DataFilterContext)
   const _tableHeight = 550
   const [tableData, setTableData] = useState()
+  const [defaultExpandedGroups, setdefaultExpandedGroups] = useState()
   const columns = [
     { name: 'commodity', title: 'Commodity' },
     { name: 'calendarYear', title: 'Sales Year' },
@@ -116,11 +117,11 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
   ]
   const totalSummaryItems = [
     { columnName: 'salesValue', type: 'sum', alignByColumn: true },
-    { columnName: 'salesVolume', type: 'sum', alignByColumn: true, showInGroupFooter: true },
+    { columnName: 'salesVolume', type: 'sum', alignByColumn: true },
     { columnName: 'royaltyValuePriorToAllowance', type: 'sum', alignByColumn: true },
     { columnName: 'transportationAllowance', type: 'sum', alignByColumn: true },
-    { columnName: 'processingAllowance', type: 'sum', alignByColumn: true, showInGroupFooter: false },
-    { columnName: 'royaltyValueLessAllowance', type: 'sum', alignByColumn: true, showInGroupFooter: false }
+    { columnName: 'processingAllowance', type: 'sum', alignByColumn: true },
+    { columnName: 'royaltyValueLessAllowance', type: 'sum', alignByColumn: true }
   ]
 
   const theme = useTheme()
@@ -144,11 +145,23 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
   )
 
   const SalesTableCell = ({ ...restProps }) => {
-    console.log(restProps)
+    let value = restProps.value
+    if (grouping.findIndex(item => item.columnName === restProps.column.name) !== -1) {
+      value = ' '
+    }
+    else {
+      value = formatData(restProps.column, restProps.value)
+    }
     return (
-      <Table.Cell {...restProps} classes={styles}>{formatData(restProps.column, restProps.value)}</Table.Cell>
+      <Table.Cell {...restProps} classes={styles}>
+        {value}
+      </Table.Cell>
     )
   }
+
+  const summaryHeaderCell = ({ row }) => (
+    <span>{row.value}</span>
+  )
 
   const summarize = srcArr => {
     return srcArr.reduce((accumulator, currentValue) => {
@@ -177,18 +190,31 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
     }, [])
   }
 
+  const getCommodities = srcArr => {
+    return srcArr.reduce((accumulator, currentValue) => {
+      const index = accumulator.findIndex(acc => acc === currentValue.commodity)
+      if (index === -1) {
+        accumulator.push(currentValue.commodity)
+      }
+      return accumulator
+    }, [])
+  }
+
   useEffect(() => {
     if (data) {
       setTableData(summarize(data.results))
+      setdefaultExpandedGroups(getCommodities(data.results))
     }
     else {
       setTableData()
+      setdefaultExpandedGroups([])
     }
   }, [dataFilterContext, data])
 
   useEffect(() => {
     if (loading && data) {
       setTableData()
+      setdefaultExpandedGroups([])
     }
   }, [loading])
 
@@ -233,6 +259,7 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
 
           <GroupingState
             grouping={grouping}
+            defaultExpandedGroups={defaultExpandedGroups}
           />
           <SummaryState
             groupItems={groupSummaryItems}
@@ -247,6 +274,7 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
           <TableHeaderRow />
           <TableGroupRow
             showColumnsWhenGrouped
+            contentComponent={summaryHeaderCell}
           />
           <TableSummaryRow
             itemComponent={SalesDataCell}
