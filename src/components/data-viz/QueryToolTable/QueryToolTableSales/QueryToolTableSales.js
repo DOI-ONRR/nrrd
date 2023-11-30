@@ -5,7 +5,8 @@ import {
   SummaryState,
   IntegratedSummary,
   IntegratedGrouping,
-  DataTypeProvider
+  DataTypeProvider,
+  IntegratedSorting
 } from '@devexpress/dx-react-grid'
 import {
   Grid as TableGrid,
@@ -83,15 +84,16 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
   const _tableHeight = 550
   const [tableData, setTableData] = useState()
   const [defaultExpandedGroups, setdefaultExpandedGroups] = useState()
+  const [columnExtensions, setColumnExtensions] = useState()
   const columns = [
     { name: 'commodity', title: 'Commodity' },
     { name: 'calendarYear', title: 'Sales Year' },
     { name: 'salesValue', title: 'Sales Value' },
     { name: 'salesVolume', title: 'Sales Volume' },
-    { name: 'royaltyValuePriorToAllowance', title: 'Royalty Value Prior to Allowance' },
+    { name: 'royaltyValuePriorToAllowance', title: 'Royalty Value Prior to Allowances' },
     { name: 'transportationAllowance', title: 'Transportation Allowance' },
     { name: 'processingAllowance', title: 'Processing Allowance' },
-    { name: 'royaltyValueLessAllowance', title: 'Royalty Value Less Allowance' }
+    { name: 'royaltyValueLessAllowance', title: 'Royalty Value Less Allowances' }
   ]
   const currencyColumns = [
     'salesValue',
@@ -137,7 +139,28 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
     return value
   }
 
-  const SalesDataCell = ({ value, style, ...restProps }) => (
+  const headerRowContent = ({ column }) => {
+    return (
+      <span>
+        {column.title}
+      </span>
+    )
+  }
+
+  const headerRowCell = ({ ...rest }) => {
+    const headStyles = makeStyles(() => ({
+      cell: {
+        whiteSpace: 'initial !important',
+        textAlign: 'center'
+      }
+    }))
+    return (
+      <Table.Cell {...rest} classes={headStyles(theme)}>
+      </Table.Cell>
+    )
+  }
+
+  const SalesSummaryCell = ({ value, style, ...restProps }) => (
     <div
       {...restProps}>
       {formatData(restProps.children.props.column, value)}
@@ -204,6 +227,32 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
     if (data) {
       setTableData(summarize(data.results))
       setdefaultExpandedGroups(getCommodities(data.results))
+      setColumnExtensions([
+        {
+          columnName: 'salesValue',
+          align: 'right'
+        },
+        {
+          columnName: 'salesVolume',
+          align: 'right'
+        },
+        {
+          columnName: 'royaltyValuePriorToAllowance',
+          align: 'right'
+        },
+        {
+          columnName: 'transportationAllowance',
+          align: 'right'
+        },
+        {
+          columnName: 'processingAllowance',
+          align: 'right'
+        },
+        {
+          columnName: 'royaltyValueLessAllowance',
+          align: 'right'
+        }
+      ])
     }
     else {
       setTableData()
@@ -270,14 +319,18 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
 
           <Table
             cellComponent={SalesTableCell}
+            columnExtensions={columnExtensions}
           />
-          <TableHeaderRow />
+          <TableHeaderRow
+            cellComponent={headerRowCell}
+            contentComponent={headerRowContent}
+          />
           <TableGroupRow
             showColumnsWhenGrouped
             contentComponent={summaryHeaderCell}
           />
           <TableSummaryRow
-            itemComponent={SalesDataCell}
+            itemComponent={SalesSummaryCell}
             groupRowComponent={SalesGroupRow}
             totalRowComponent={SalesTotalRow}
           />
