@@ -160,12 +160,48 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
     )
   }
 
-  const SalesSummaryCell = ({ value, style, ...restProps }) => (
-    <div
-      {...restProps}>
-      {formatData(restProps.children.props.column, value)}
-    </div>
-  )
+  const SalesSummaryCell = ({ value, style, ...restProps }) => {
+    return (
+      <div
+        {...restProps}>
+        {formatData(restProps.children.props.column, value)}
+      </div>
+    )
+  }
+
+  const GroupCellComponent = ({ column, ...props }) => {
+    if (column.name === 'calendarYear') {
+      const subTotalStyles = makeStyles(() => ({
+        cell: {
+          textAlign: 'right',
+          fontWeight: 'bold'
+        }
+      }))
+      return (
+        <Table.Cell classes={subTotalStyles()}>Subtotal:</Table.Cell>
+      )
+    }
+    return (
+      <Table.Cell {...props}></Table.Cell>
+    )
+  }
+
+  const TotalCellComponent = ({ column, ...props }) => {
+    if (column.name === 'calendarYear') {
+      const subTotalStyles = makeStyles(() => ({
+        cell: {
+          textAlign: 'right',
+          fontWeight: 'bold'
+        }
+      }))
+      return (
+        <Table.Cell classes={subTotalStyles()}>Total:</Table.Cell>
+      )
+    }
+    return (
+      <Table.Cell {...props}></Table.Cell>
+    )
+  }
 
   const SalesTableCell = ({ ...restProps }) => {
     let value = restProps.value
@@ -331,8 +367,10 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
           />
           <TableSummaryRow
             itemComponent={SalesSummaryCell}
+            groupCellComponent={GroupCellComponent}
             groupRowComponent={SalesGroupRow}
             totalRowComponent={SalesTotalRow}
+            totalCellComponent={TotalCellComponent}
           />
 
         </TableGrid>
