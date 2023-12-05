@@ -6,6 +6,7 @@ import {
   IntegratedSummary,
   IntegratedGrouping,
   DataTypeProvider,
+  SortingState,
   IntegratedSorting
 } from '@devexpress/dx-react-grid'
 import {
@@ -23,6 +24,7 @@ import useTheme from '@material-ui/styles/useTheme'
 
 import SalesGroupRow from '../Custom/CustomTableSummaryRowGroupRow'
 import SalesTotalRow from '../Custom/CustomTableSummaryRowTotalRow'
+import SalesHeaderSortLabel from './plugins/SalesHeaderSortLabel'
 
 import {
   withStyles,
@@ -137,14 +139,6 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
       return NumberFormatter({ value: value })
     }
     return value
-  }
-
-  const headerRowContent = ({ column }) => {
-    return (
-      <span>
-        {column.title}
-      </span>
-    )
   }
 
   const headerRowCell = ({ ...rest }) => {
@@ -342,6 +336,10 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
             for={percentageColumns}
           />
 
+          <SortingState
+            defaultSorting={[{ columnName: 'commodity', direction: 'asc' }]}
+          />
+
           <GroupingState
             grouping={grouping}
             defaultExpandedGroups={defaultExpandedGroups}
@@ -350,6 +348,7 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
             groupItems={groupSummaryItems}
             totalItems={totalSummaryItems}
           />
+          <IntegratedSorting />
           <IntegratedGrouping />
           <IntegratedSummary />
 
@@ -359,7 +358,8 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
           />
           <TableHeaderRow
             cellComponent={headerRowCell}
-            contentComponent={headerRowContent}
+            sortLabelComponent={SalesHeaderSortLabel}
+            showSortingControls
           />
           <TableGroupRow
             showColumnsWhenGrouped
