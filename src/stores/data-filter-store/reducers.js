@@ -134,6 +134,8 @@ const initialState = {
         [PERIOD]: 'Calendar Year',
         [CALENDAR_YEAR]: getLastFiveYears(FEDERAL_SALES, PERIOD_CALENDAR_YEAR),
         [GROUP_BY]: COMMODITY,
+        [GROUP_BY_STICKY]: CALENDAR_YEAR,
+        [BREAKOUT_BY]: undefined,
       }
     }
   },
