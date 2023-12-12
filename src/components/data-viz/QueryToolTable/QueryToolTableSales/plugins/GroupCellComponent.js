@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import makeStyles from '@material-ui/styles/makeStyles'
 import { Table } from '@devexpress/dx-react-grid-material-ui'
+import { DataFilterContext } from '../../../../../stores'
+import { FEDERAL_SALES } from '../../../../../constants'
 
 const GroupCellComponent = ({ column, ...props }) => {
-  if (column.name === 'calendarYear') {
+  const { state } = useContext(DataFilterContext)
+  const isBreakoutUsed = !!state.dataTypesCache[FEDERAL_SALES].breakoutBy
+  if ((!isBreakoutUsed && column.name === 'calendarYear') ||
+    (isBreakoutUsed && column.name === state.dataTypesCache[FEDERAL_SALES].breakoutBy)) {
     const subTotalStyles = makeStyles(() => ({
       cell: {
         textAlign: 'right',

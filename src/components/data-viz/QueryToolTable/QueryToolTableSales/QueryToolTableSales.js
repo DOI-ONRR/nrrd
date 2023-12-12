@@ -36,7 +36,6 @@ const QueryToolTableSales = withQueryManager(({ data, loading }) => {
   useEffect(() => {
     if (data) {
       setTableData(summarize(data.results, dataFilterCtx.dataTypesCache[FEDERAL_SALES].breakoutBy))
-      console.log(dataFilterCtx)
     }
     else {
       setTableData()
