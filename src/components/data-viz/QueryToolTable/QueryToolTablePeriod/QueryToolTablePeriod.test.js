@@ -6,7 +6,7 @@ import {
   render
 } from 'test-utils'
 
-import QueryToolTable from './QueryToolTable'
+import QueryToolTablePeriod from '../QueryToolTablePeriod'
 
 // Mocks the initial state of the AppStatusContext
 jest.mock('../../../../stores/data-filter-store/reducers', () => {
@@ -26,7 +26,7 @@ jest.mock('../../../../stores/data-filter-store/reducers', () => {
 
 describe('Data Table:', () => {
   test('Data Table rendered successfully', async () => {
-    render(<QueryToolTable />)
+    render(<QueryToolTablePeriod />)
     expect(true).toBeTruthy()
   })
 })
