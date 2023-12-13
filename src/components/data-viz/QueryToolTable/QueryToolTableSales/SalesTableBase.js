@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, Fragment } from 'react'
+import Skeleton from '@material-ui/lab/Skeleton'
+import { Box } from '@material-ui/core'
 import SalesGroupRow from '../Custom/CustomTableSummaryRowGroupRow'
 import SalesTotalRow from '../Custom/CustomTableSummaryRowTotalRow'
 import SalesHeaderSortLabel from './plugins/SalesHeaderSortLabel'
@@ -68,67 +70,74 @@ const SalesTableBase = ({ salesTableData }) => {
     else {
       setColumns(columns.toSpliced(2, 1))
     }
-  }, [dataFilterCtx])
+  }, [dataFilterCtx.dataTypesCache[FEDERAL_SALES].breakoutBy])
 
   return (
-    <Grid
-      rows={salesTableData}
-      columns={columns}>
+    <Fragment>
+      {expandedGroups?.length > 0
+        ? <Grid
+          rows={salesTableData}
+          columns={columns}>
 
-      <CurrencyTypeProvider
-        for={tableConfig.currencyColumns}
-      />
+          <CurrencyTypeProvider
+            for={tableConfig.currencyColumns}
+          />
 
-      <NumberTypeProvider
-        for={tableConfig.numberColumns}
-      />
+          <NumberTypeProvider
+            for={tableConfig.numberColumns}
+          />
 
-      <SortingState
-        defaultSorting={tableConfig.defaultSorting}
-      />
+          <SortingState
+            defaultSorting={tableConfig.defaultSorting}
+          />
 
-      <GroupingState
-        grouping={tableConfig.grouping}
-        expandedGroups={expandedGroups}
-      />
-      <SummaryState
-        groupItems={tableConfig.groupSummaryItems}
-        totalItems={tableConfig.totalSummaryItems}
-      />
-      <IntegratedSorting />
-      <IntegratedGrouping />
-      <IntegratedSummary />
+          <GroupingState
+            grouping={tableConfig.grouping}
+            defaultExpandedGroups={expandedGroups}
+          />
+          <SummaryState
+            groupItems={tableConfig.groupSummaryItems}
+            totalItems={tableConfig.totalSummaryItems}
+          />
+          <IntegratedSorting />
+          <IntegratedGrouping />
+          <IntegratedSummary />
 
-      <Table
-        cellComponent={SalesTableCell}
-        columnExtensions={tableConfig.columnExtensions}
-      />
-      <TableHeaderRow
-        contentComponent={ props =>
-          <SalesGroupByColumnHeader
-            groupByOptions={[]}
-            breakoutByOptions={tableConfig.breakoutOptions}
-            onAddColumn={addBreakoutByColumnHandler}
-            onRemoveColumn={removeBreakoutByColumnHandler}
-            {...props} />
-        }
-        cellComponent={HeaderRowCell}
-        sortLabelComponent={SalesHeaderSortLabel}
-        showSortingControls
-      />
-      <TableGroupRow
-        showColumnsWhenGrouped
-        contentComponent={SummaryHeaderCell}
-      />
-      <TableSummaryRow
-        itemComponent={SalesSummaryCell}
-        groupCellComponent={GroupCellComponent}
-        groupRowComponent={SalesGroupRow}
-        totalRowComponent={SalesTotalRow}
-        totalCellComponent={TotalCellComponent}
-      />
+          <Table
+            cellComponent={SalesTableCell}
+            columnExtensions={tableConfig.columnExtensions}
+          />
+          <TableHeaderRow
+            contentComponent={ props =>
+              <SalesGroupByColumnHeader
+                groupByOptions={[]}
+                breakoutByOptions={tableConfig.breakoutOptions}
+                onAddColumn={addBreakoutByColumnHandler}
+                onRemoveColumn={removeBreakoutByColumnHandler}
+                {...props} />
+            }
+            cellComponent={HeaderRowCell}
+            sortLabelComponent={SalesHeaderSortLabel}
+            showSortingControls
+          />
+          <TableGroupRow
+            showColumnsWhenGrouped
+            contentComponent={SummaryHeaderCell}
+          />
+          <TableSummaryRow
+            itemComponent={SalesSummaryCell}
+            groupCellComponent={GroupCellComponent}
+            groupRowComponent={SalesGroupRow}
+            totalRowComponent={SalesTotalRow}
+            totalCellComponent={TotalCellComponent}
+          />
 
-    </Grid>
+        </Grid>
+        : <Box zIndex="modal">
+          <Skeleton variant="rect" width={'100%'} height={500} animation={false}/>
+        </Box>
+      }
+    </Fragment>
   )
 }
 

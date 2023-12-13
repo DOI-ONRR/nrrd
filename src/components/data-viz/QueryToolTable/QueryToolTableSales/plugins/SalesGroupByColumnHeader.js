@@ -2,10 +2,7 @@ import React, { useContext } from 'react'
 
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
-import {
-  GroupBySelectInput,
-  BreakoutBySelectInput
-} from '../../../../inputs'
+import { BreakoutBySelectInput } from '../../../../inputs'
 import BaseButtonInput from '../../../../inputs/BaseButtonInput'
 import SalesHeaderSortLabel from './SalesHeaderSortLabel'
 import { DataFilterContext } from '../../../../../stores'
