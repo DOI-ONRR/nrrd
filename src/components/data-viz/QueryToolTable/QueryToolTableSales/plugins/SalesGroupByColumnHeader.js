@@ -67,17 +67,17 @@ const SalesGroupByColumnHeader = ({ onAddColumn, onRemoveColumn, groupByOptions,
   }
 
   return (
-    <>
+    <React.Fragment>
       {props.column.name === 'calendarYear' &&
         <SalesHeaderSortLabel {...props.children.props}><GroupByStickyColumnHeader /></SalesHeaderSortLabel>
       }
       {props.column.name === state[BREAKOUT_BY] &&
         <SalesHeaderSortLabel {...props.children.props}><BreakoutByColumnHeader /></SalesHeaderSortLabel>
       }
-      {props.column.name !== 'calendarYear' &&
+      {props.column.name !== 'calendarYear' && props.column.name !== state[BREAKOUT_BY] &&
         <>{props.children}</>
       }
-    </>
+    </React.Fragment>
   )
 }
 

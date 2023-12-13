@@ -55,9 +55,15 @@ const SalesTableBase = ({ salesTableData }) => {
   }, [salesTableData])
 
   useEffect(() => {
-    if (dataFilterCtx.dataTypesCache[FEDERAL_SALES].breakoutBy) {
-      const index = tableConfig.breakoutOptions.findIndex(option => option.value === dataFilterCtx.dataTypesCache[FEDERAL_SALES].breakoutBy)
-      setColumns(columns.toSpliced(2, 0, { name: dataFilterCtx.dataTypesCache[FEDERAL_SALES].breakoutBy, title: tableConfig.breakoutOptions[index].option, breakout: true }))
+    const breakoutBy = dataFilterCtx.dataTypesCache[FEDERAL_SALES].breakoutBy
+    if (breakoutBy) {
+      const index = tableConfig.breakoutOptions.findIndex(option => option.value === breakoutBy)
+      if (Object.hasOwnProperty.call(columns[2], 'breakout')) {
+        setColumns(columns.toSpliced(2, 1, { name: breakoutBy, title: tableConfig.breakoutOptions[index].option, breakout: true }))
+      }
+      else {
+        setColumns(columns.toSpliced(2, 0, { name: breakoutBy, title: tableConfig.breakoutOptions[index].option, breakout: true }))
+      }
     }
     else {
       setColumns(columns.toSpliced(2, 1))
