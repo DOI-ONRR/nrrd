@@ -13,32 +13,15 @@ import { BREAKOUT_BY } from '../../../../../constants'
 
 const SalesGroupByColumnHeader = ({ onAddColumn, onRemoveColumn, groupByOptions, breakoutByOptions, ...props }) => {
   const { state } = useContext(DataFilterContext)
-  const GroupByColumnHeader = () => {
-    return (
-      <Grid container alignItems="flex-start">
-        <Grid item xs={(onAddColumn) ? 7 : 12}>
-          <GroupBySelectInput data={groupByOptions} />
-        </Grid>
-        {onAddColumn &&
-          <Grid item xs={5}>
-            <BaseButtonInput onClick={onAddColumn} styleType={'link'} style={{ top: '-8px' }}>
-              + Add column
-            </BaseButtonInput>
-          </Grid>
-        }
-      </Grid>
-    )
-  }
-
   const GroupByStickyColumnHeader = () => {
     return (
       <Grid container alignItems="flex-start">
-        <Grid item xs={(onAddColumn) ? 9 : 12}>
-          <Box mt={2} textAlign={'end'}>
+        <Grid item xs={(onAddColumn && !state[BREAKOUT_BY]) ? 9 : 12}>
+          <Box mt={(onAddColumn && !state[BREAKOUT_BY]) ? 2 : 0} textAlign={'end'}>
             {props.column.title}
           </Box>
         </Grid>
-        {onAddColumn &&
+        {onAddColumn && !state[BREAKOUT_BY] &&
           <Grid item xs={3}>
             <BaseButtonInput onClick={onAddColumn} styleType={'link'} style={{ top: '-8px' }}>
               + Add column
