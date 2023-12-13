@@ -68,7 +68,16 @@ const SalesTableBase = ({ salesTableData }) => {
       }
     }
     else {
-      setColumns(columns.toSpliced(2, 1))
+      let breakoutColumnFound = false
+      for (const col of columns) {
+        breakoutColumnFound = Object.hasOwnProperty.call(col, 'breakout')
+        if (breakoutColumnFound) {
+          break
+        }
+      }
+      if (breakoutColumnFound) {
+        setColumns(columns.toSpliced(2, 1))
+      }
     }
   }, [dataFilterCtx.dataTypesCache[FEDERAL_SALES].breakoutBy])
 
