@@ -9,7 +9,7 @@ SELECT id,
   revenue_type,
   CASE commodity
   WHEN 'Gas (mcf)' THEN
-    'Gas (mmbtu)',
+    'Gas (mmbtu)'
   ELSE
     commodity
   END commodity,
