@@ -13,7 +13,6 @@ const Sales = `results:
     revenue_type
     commodity
     sales_volume
-    gas_volume
     sales_value
     royalty_value_prior_to_allowance
     transportation_allowance

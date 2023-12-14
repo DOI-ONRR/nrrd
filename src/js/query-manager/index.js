@@ -124,7 +124,6 @@ export const DATA_FILTER_KEY_TO_DB_COLUMNS = {
   [G3]: 'g3',
   [STATE_OFFSHORE_REGION]: 'state_offshore_region',
   [SALES_VOLUME]: 'sales_volume',
-  [GAS_VOLUME]: 'gas_volume',
   [SALES_VALUE]: 'sales_value',
   [RVPA]: 'royalty_value_prior_to_allowance',
   [TRANSPORTATION_ALLOW]: 'transportation_allowance',

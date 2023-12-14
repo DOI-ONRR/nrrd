@@ -28,7 +28,7 @@ const TotalCellComponent = ({ column, children, ...props }) => {
   let showNaForGas = true
   if (state.commodity) {
     const commodities = state.commodity.split(',')
-    showNaForGas = commodities.includes('Gas (mcf)') && commodities.length > 1
+    showNaForGas = commodities.includes('Gas (mmbtu)') && commodities.length > 1
   }
 
   return (

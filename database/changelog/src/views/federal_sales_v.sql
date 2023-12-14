@@ -7,9 +7,18 @@ SELECT id,
   land_class || ' ' || land_category land_type,
   state_offshore_region,
   revenue_type,
-  commodity,
-  sales_volume,
-  gas_volume,
+  CASE commodity
+  WHEN 'Gas (mcf)' THEN
+    'Gas (mmbtu)',
+  ELSE
+    commodity
+  END commodity,
+  CASE commodity
+  WHEN 'Gas (mcf)' THEN
+    gas_volume
+  ELSE
+    sales_volume
+  END sales_volume,
   sales_value,
   royalty_value_prior_to_allowance,
   transportation_allowance,

@@ -95,7 +95,7 @@ const SalesTableBase = ({ salesTableData }) => {
   useEffect(() => {
     if (dataFilterCtx.commodity) {
       const commodities = dataFilterCtx.commodity.split(',')
-      setShowNote(commodities.includes('Gas (mcf)') && commodities.length > 1)
+      setShowNote(commodities.includes('Gas (mmbtu)') && commodities.length > 1)
     }
   }, [dataFilterCtx.commodity])
 
