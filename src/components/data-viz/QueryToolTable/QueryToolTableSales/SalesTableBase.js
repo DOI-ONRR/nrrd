@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext, Fragment } from 'react'
 import Skeleton from '@material-ui/lab/Skeleton'
 import { Box } from '@material-ui/core'
+import makeStyles from '@material-ui/styles/makeStyles'
 import SalesGroupRow from '../Custom/CustomTableSummaryRowGroupRow'
 import SalesTotalRow from '../Custom/CustomTableSummaryRowTotalRow'
 import SalesHeaderSortLabel from './plugins/SalesHeaderSortLabel'
@@ -39,6 +40,7 @@ const SalesTableBase = ({ salesTableData }) => {
   const { updateDataFilter, state: dataFilterCtx } = useContext(DataFilterContext)
   const [expandedGroups, setExpandedGroups] = useState([])
   const [columns, setColumns] = useState(tableConfig.columns)
+  const [showNote, setShowNote] = useState(true)
 
   const addBreakoutByColumnHandler = () => {
     updateDataFilter({ [BREAKOUT_BY]: 'landType' })
@@ -46,6 +48,15 @@ const SalesTableBase = ({ salesTableData }) => {
   const removeBreakoutByColumnHandler = () => {
     updateDataFilter({ [BREAKOUT_BY]: undefined })
   }
+
+  const noteStyles = makeStyles(() => ({
+    root: {
+      marginLeft: '0.5em',
+      marginTop: '-0.5em'
+    }
+  }))
+
+  const noteClasses = noteStyles()
 
   useEffect(() => {
     if (salesTableData) {
@@ -81,67 +92,81 @@ const SalesTableBase = ({ salesTableData }) => {
     }
   }, [dataFilterCtx.dataTypesCache[FEDERAL_SALES].breakoutBy])
 
+  useEffect(() => {
+    if (dataFilterCtx.commodity) {
+      const commodities = dataFilterCtx.commodity.split(',')
+      setShowNote(commodities.includes('Gas (mcf)') && commodities.length > 1)
+    }
+  }, [dataFilterCtx.commodity])
+
+  console.log(dataFilterCtx)
   return (
     <Fragment>
       {expandedGroups?.length > 0
-        ? <Grid
-          rows={salesTableData}
-          columns={columns}>
+        ? <Fragment>
+          <Grid
+            rows={salesTableData}
+            columns={columns}>
 
-          <CurrencyTypeProvider
-            for={tableConfig.currencyColumns}
-          />
+            <CurrencyTypeProvider
+              for={tableConfig.currencyColumns}
+            />
 
-          <NumberTypeProvider
-            for={tableConfig.numberColumns}
-          />
+            <NumberTypeProvider
+              for={tableConfig.numberColumns}
+            />
 
-          <SortingState
-            defaultSorting={tableConfig.defaultSorting}
-          />
+            <SortingState
+              defaultSorting={tableConfig.defaultSorting}
+            />
 
-          <GroupingState
-            grouping={tableConfig.grouping}
-            defaultExpandedGroups={expandedGroups}
-          />
-          <SummaryState
-            groupItems={tableConfig.groupSummaryItems}
-            totalItems={tableConfig.totalSummaryItems}
-          />
-          <IntegratedSorting />
-          <IntegratedGrouping />
-          <IntegratedSummary />
+            <GroupingState
+              grouping={tableConfig.grouping}
+              defaultExpandedGroups={expandedGroups}
+            />
+            <SummaryState
+              groupItems={tableConfig.groupSummaryItems}
+              totalItems={tableConfig.totalSummaryItems}
+            />
+            <IntegratedSorting />
+            <IntegratedGrouping />
+            <IntegratedSummary />
 
-          <Table
-            cellComponent={SalesTableCell}
-            columnExtensions={tableConfig.columnExtensions}
-          />
-          <TableHeaderRow
-            contentComponent={ props =>
-              <SalesGroupByColumnHeader
-                groupByOptions={[]}
-                breakoutByOptions={tableConfig.breakoutOptions}
-                onAddColumn={addBreakoutByColumnHandler}
-                onRemoveColumn={removeBreakoutByColumnHandler}
-                {...props} />
-            }
-            cellComponent={HeaderRowCell}
-            sortLabelComponent={SalesHeaderSortLabel}
-            showSortingControls
-          />
-          <TableGroupRow
-            showColumnsWhenGrouped
-            contentComponent={SummaryHeaderCell}
-          />
-          <TableSummaryRow
-            itemComponent={SalesSummaryCell}
-            groupCellComponent={GroupCellComponent}
-            groupRowComponent={SalesGroupRow}
-            totalRowComponent={SalesTotalRow}
-            totalCellComponent={TotalCellComponent}
-          />
+            <Table
+              cellComponent={SalesTableCell}
+              columnExtensions={tableConfig.columnExtensions}
+            />
+            <TableHeaderRow
+              contentComponent={ props =>
+                <SalesGroupByColumnHeader
+                  groupByOptions={[]}
+                  breakoutByOptions={tableConfig.breakoutOptions}
+                  onAddColumn={addBreakoutByColumnHandler}
+                  onRemoveColumn={removeBreakoutByColumnHandler}
+                  {...props} />
+              }
+              cellComponent={HeaderRowCell}
+              sortLabelComponent={SalesHeaderSortLabel}
+              showSortingControls
+            />
+            <TableGroupRow
+              showColumnsWhenGrouped
+              contentComponent={SummaryHeaderCell}
+            />
+            <TableSummaryRow
+              itemComponent={SalesSummaryCell}
+              groupCellComponent={GroupCellComponent}
+              groupRowComponent={SalesGroupRow}
+              totalRowComponent={SalesTotalRow}
+              totalCellComponent={TotalCellComponent}
+            />
 
-        </Grid>
+          </Grid>
+          {showNote
+            ? <Box className={noteClasses.root}>*Sales Volume total not available when multiple commodities are selected</Box>
+            : null
+          }
+        </Fragment>
         : <Box zIndex="modal">
           <Skeleton variant="rect" width={'100%'} height={500} animation={false}/>
         </Box>
