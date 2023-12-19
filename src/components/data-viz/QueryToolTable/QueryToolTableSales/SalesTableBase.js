@@ -23,7 +23,8 @@ import {
   IntegratedSummary,
   IntegratedGrouping,
   SortingState,
-  IntegratedSorting
+  IntegratedSorting,
+  TableColumnResizing
 } from '@devexpress/dx-react-grid'
 
 import {
@@ -99,7 +100,6 @@ const SalesTableBase = ({ salesTableData }) => {
     }
   }, [dataFilterCtx.commodity])
 
-  console.log(dataFilterCtx)
   return (
     <Fragment>
       {expandedGroups?.length > 0
@@ -136,6 +136,8 @@ const SalesTableBase = ({ salesTableData }) => {
               cellComponent={SalesTableCell}
               columnExtensions={tableConfig.columnExtensions}
             />
+            <TableColumnResizing defaultColumnWidths={tableConfig.defaultColumnWidths}
+              resizingMode='nextColumn' />
             <TableHeaderRow
               contentComponent={ props =>
                 <SalesGroupByColumnHeader

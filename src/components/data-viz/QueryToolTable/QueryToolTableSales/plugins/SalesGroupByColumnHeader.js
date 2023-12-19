@@ -7,6 +7,7 @@ import BaseButtonInput from '../../../../inputs/BaseButtonInput'
 import SalesHeaderSortLabel from './SalesHeaderSortLabel'
 import { DataFilterContext } from '../../../../../stores'
 import { BREAKOUT_BY } from '../../../../../constants'
+import makeStyles from '@material-ui/styles/makeStyles'
 
 const SalesGroupByColumnHeader = ({ onAddColumn, onRemoveColumn, groupByOptions, breakoutByOptions, ...props }) => {
   const { state } = useContext(DataFilterContext)
@@ -30,14 +31,25 @@ const SalesGroupByColumnHeader = ({ onAddColumn, onRemoveColumn, groupByOptions,
   }
 
   const BreakoutByColumnHeader = () => {
+    const useStyles = makeStyles(() => ({
+      removeButtonContainer: {
+        textAlign: 'left',
+        height: '0.85em'
+      },
+      removeButton: {
+        top: '-1em',
+        marginLeft: '0.5em'
+      }
+    }))
+    const classes = useStyles()
     return (
-      <Grid container alignItems="flex-start">
-        <Grid item xs={(onRemoveColumn) ? 7 : 12}>
+      <Grid container alignItems="flex-start" spacing={0}>
+        <Grid item xs={12}>
           <BreakoutBySelectInput data={breakoutByOptions} />
         </Grid>
         {onRemoveColumn &&
-          <Grid item xs={5}>
-            <BaseButtonInput onClick={onRemoveColumn} styleType={'link'} style={{ top: '-8px' }}>
+          <Grid item xs={12} alignContent='left' className={classes.removeButtonContainer}>
+            <BaseButtonInput onClick={onRemoveColumn} styleType={'link'} className={classes.removeButton}>
               x Remove
             </BaseButtonInput>
           </Grid>

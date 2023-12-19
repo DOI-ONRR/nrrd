@@ -81,6 +81,48 @@ const tableConfig = {
       option: 'State/Offshore Region',
       value: 'stateOffshoreRegion'
     }
+  ],
+  defaultColumnWidths: [
+    {
+      columnName: 'commodity',
+      width: 150
+    },
+    {
+      columnName: 'calendarYear',
+      width: 250
+    },
+    {
+      columnName: 'landType',
+      width: 250
+    },
+    {
+      columnName: 'stateOffshoreRegion',
+      width: 250
+    },
+    {
+      columnName: 'salesValue',
+      width: 250
+    },
+    {
+      columnName: 'salesVolume',
+      width: 225
+    },
+    {
+      columnName: 'royaltyValuePriorToAllowance',
+      width: 250
+    },
+    {
+      columnName: 'transportationAllowance',
+      width: 250
+    },
+    {
+      columnName: 'processingAllowance',
+      width: 200
+    },
+    {
+      columnName: 'royaltyValueLessAllowance',
+      width: 250
+    }
   ]
 }
 

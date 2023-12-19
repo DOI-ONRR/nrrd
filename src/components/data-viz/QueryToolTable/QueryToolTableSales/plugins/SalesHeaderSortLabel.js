@@ -13,9 +13,14 @@ const SalesHeaderSortLabel = ({ onSort, children, align, direction, ...restProps
       marginBottom: '0.25em !important'
     }
   }))
+
   return (
-    <Grid container direction={(align === 'right') ? 'row-reverse' : 'row'} spacing={0} style={{ cursor: 'pointer' }}>
-      <Grid item>
+    <Grid
+      container
+      justifyContent='center'
+      spacing={0}
+      style={{ cursor: 'pointer' }}>
+      <Grid item xs={12} noWrap>
         <Grid container direction="column" alignItems="center" spacing={0}>
           <Grid item onClick={onSort}>
             <SortingUpIcon direction={direction} />
