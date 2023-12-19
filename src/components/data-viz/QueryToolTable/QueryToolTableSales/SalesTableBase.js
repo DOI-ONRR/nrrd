@@ -15,7 +15,8 @@ import SalesGroupByColumnHeader from './plugins/SalesGroupByColumnHeader'
 import { CurrencyTypeProvider, NumberTypeProvider } from './plugins/SalesDataTypeProviders'
 import { getCommodities } from './helpers/transformData'
 import { DataFilterContext } from '../../../../stores'
-import { BREAKOUT_BY, FEDERAL_SALES } from '../../../../constants'
+import { DownloadContext } from '../../../../stores/download-store'
+import { BREAKOUT_BY, FEDERAL_SALES, DOWNLOAD_DATA_TABLE } from '../../../../constants'
 
 import {
   GroupingState,
@@ -39,6 +40,7 @@ import tableConfig from './config/tableConfig'
 
 const SalesTableBase = ({ salesTableData }) => {
   const { updateDataFilter, state: dataFilterCtx } = useContext(DataFilterContext)
+  const { addDownloadData } = useContext(DownloadContext)
   const [expandedGroups, setExpandedGroups] = useState([])
   const [columns, setColumns] = useState(tableConfig.columns)
   const [showNote, setShowNote] = useState(true)
@@ -62,6 +64,13 @@ const SalesTableBase = ({ salesTableData }) => {
   useEffect(() => {
     if (salesTableData) {
       setExpandedGroups(getCommodities(salesTableData))
+      addDownloadData({
+        key: DOWNLOAD_DATA_TABLE,
+        data: {
+          cols: columns,
+          rows: salesTableData
+        }
+      })
     }
     else {
       setExpandedGroups([])
