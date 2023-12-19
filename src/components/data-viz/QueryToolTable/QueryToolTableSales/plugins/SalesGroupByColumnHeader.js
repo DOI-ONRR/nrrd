@@ -2,12 +2,18 @@ import React, { useContext } from 'react'
 
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
-import { BreakoutBySelectInput } from '../../../../inputs'
 import BaseButtonInput from '../../../../inputs/BaseButtonInput'
 import SalesHeaderSortLabel from './SalesHeaderSortLabel'
 import { DataFilterContext } from '../../../../../stores'
 import { BREAKOUT_BY } from '../../../../../constants'
 import makeStyles from '@material-ui/styles/makeStyles'
+import { flowRight as compose } from 'lodash'
+import withDataFilterContext from '../../../../inputs/withDataFilterContext'
+import BaseSelectInput from '../../../../inputs/BaseSelectInput/BaseSelectInput'
+
+const BreakoutBySelectInput = compose(
+  BaseComponent => props => (<BaseComponent label='Column 3' showClearSelected={false} {...props} />),
+  BaseComponent => withDataFilterContext(BaseComponent, BREAKOUT_BY))(BaseSelectInput)
 
 const SalesGroupByColumnHeader = ({ onAddColumn, onRemoveColumn, groupByOptions, breakoutByOptions, ...props }) => {
   const { state } = useContext(DataFilterContext)
