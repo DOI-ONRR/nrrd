@@ -86,7 +86,6 @@ const main = async () => {
   xlsxStats = fs.statSync('/tmp/downloads/all_production.xlsx')
   metaJson['all_production.xlsx'].size = xlsxStats.size
 
-  console.debug('MJ   ', metaJson)
   const data = JSON.stringify(metaJson)
   fs.writeFileSync('/tmp/downloads/downloads.json', data)
 }
