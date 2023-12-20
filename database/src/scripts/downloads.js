@@ -14,7 +14,8 @@ const metaJson = {}
 
 const metaData = (dataSet, extension, period) => {
   metaJson[dataSet + '.' + extension] = {}
-  const r = db.query('select min("Date") as min_period, max("Date") as max_period from download_' + dataSet).then(
+  const viewName = dataSet === 'federal_sales' ? `download_${ dataSet }_v` : `download_${ dataSet }`
+  const r = db.query(`select min("Date") as min_period, max("Date") as max_period from ${ viewName }`).then(
     res => {
 	    const minPeriod = new Date(res.rows[0].min_period)
 	    const maxPeriod = new Date(res.rows[0].max_period)
