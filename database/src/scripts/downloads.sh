@@ -117,8 +117,10 @@ ssconvert --merge-to /tmp/downloads/fiscal_year_disbursements.xlsx /tmp/Fiscal\ 
  rm .ssconvert
 
 cp  /tmp/downloads/federal_sales.csv /tmp/Federal\ Sales
+cp  ./static/csv/data_dictionary/federal_sales.csv /tmp/Data\ Dictionary
+cp  ./static/csv/data_dictionary/federal_sales_notes.csv /tmp/Notes
 echo "" > .ssconvert
-ssconvert --merge-to /tmp/downloads/federal_sales.xlsx /tmp/Federal\ Sales && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
+ssconvert --merge-to /tmp/downloads/federal_sales.xlsx /tmp/Federal\ Sales /tmp/Data\ Dictionary /tmp/Notes && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
  echo -n "Waiting for ssconvert to finish ..."      
  while ! grep "Convert" .ssconvert > /dev/null;
  do
