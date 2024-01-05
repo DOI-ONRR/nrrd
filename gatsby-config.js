@@ -10,6 +10,7 @@ const GOOGLE_ANALYTICS_ID = (activeEnv === 'prd') ? process.env.GOOGLE_ANALYTICS
 const GTM_ID = process.env.NRRD_GTM_ID
 const GTM_AUTH = process.env.NRRD_GTM_AUTH
 const GTM_PREVIEW = process.env.NRRD_GTM_PREVIEW
+console.log(`GTM_ID: ${ GTM_ID }, GTM_AUTH: ${ GTM_AUTH }, GTM_PREVIEW: ${ GTM_PREVIEW }`)
 // eslint-disable-next-line max-len
 const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
 
