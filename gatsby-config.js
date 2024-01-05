@@ -8,6 +8,8 @@ require('dotenv').config({
 
 const GOOGLE_ANALYTICS_ID = (activeEnv === 'prd') ? process.env.GOOGLE_ANALYTICS_ID : ''
 const GTM_ID = process.env.NRRD_GTM_ID
+const GTM_AUTH = process.env.NRRD_GTM_AUTH
+const GTM_PREVIEW = process.env.NRRD_GTM_PREVIEW
 // eslint-disable-next-line max-len
 const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
 
@@ -43,7 +45,9 @@ const config = {
     {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        id: GTM_ID
+        id: GTM_ID,
+        gtmAuth: GTM_AUTH,
+        gtmPreview: GTM_PREVIEW
       }
     },
     {
