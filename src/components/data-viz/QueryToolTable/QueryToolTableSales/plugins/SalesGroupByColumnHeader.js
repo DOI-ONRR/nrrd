@@ -20,13 +20,13 @@ const SalesGroupByColumnHeader = ({ onAddColumn, onRemoveColumn, groupByOptions,
   const GroupByStickyColumnHeader = () => {
     return (
       <Grid container alignItems="flex-start">
-        <Grid item xs={(onAddColumn && !state[BREAKOUT_BY]) ? 9 : 12}>
-          <Box mt={(onAddColumn && !state[BREAKOUT_BY]) ? 2 : 0} textAlign={'end'}>
+        <Grid item xs={12}>
+          <Box mt={(onAddColumn && !state[BREAKOUT_BY]) ? 2 : 0} textAlign={'center'}>
             {props.column.title}
           </Box>
         </Grid>
         {onAddColumn && !state[BREAKOUT_BY] &&
-          <Grid item xs={3}>
+          <Grid item xs={12}>
             <BaseButtonInput onClick={onAddColumn} styleType={'link'} style={{ top: '-8px' }}>
               + Add column
             </BaseButtonInput>
