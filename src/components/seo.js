@@ -21,7 +21,6 @@ function SEO ({ description, lang, meta, title, keywords }) {
             description
             keywords
             author
-            googleAnalyticsId
           }
         }
       }
