@@ -10,6 +10,7 @@ import makeStyles from '@material-ui/styles/makeStyles'
 import { flowRight as compose } from 'lodash'
 import withDataFilterContext from '../../../../inputs/withDataFilterContext'
 import BaseSelectInput from '../../../../inputs/BaseSelectInput/BaseSelectInput'
+import GlossaryTerm from '../../../../GlossaryTerm/GlossaryTerm'
 
 const BreakoutBySelectInput = compose(
   BaseComponent => props => (<BaseComponent label='Column 3' showClearSelected={false} {...props} />),
@@ -22,7 +23,7 @@ const SalesGroupByColumnHeader = ({ onAddColumn, onRemoveColumn, groupByOptions,
       <Grid container alignItems="flex-start">
         <Grid item xs={12}>
           <Box mt={(onAddColumn && !state[BREAKOUT_BY]) ? 2 : 0} textAlign={'center'}>
-            {props.column.title}
+            <GlossaryTerm termKey={props.column.title}>{props.column.title}</GlossaryTerm>
           </Box>
         </Grid>
         {onAddColumn && !state[BREAKOUT_BY] &&

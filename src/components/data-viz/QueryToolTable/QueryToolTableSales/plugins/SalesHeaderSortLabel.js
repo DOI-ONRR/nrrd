@@ -5,8 +5,9 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import makeStyles from '@material-ui/styles/makeStyles'
 import useTheme from '@material-ui/styles/useTheme'
+import GlossaryTerm from '../../../../GlossaryTerm/GlossaryTerm'
 
-const SalesHeaderSortLabel = ({ onSort, children, align, direction, ...restProps }) => {
+const SalesHeaderSortLabel = ({ onSort, children, align, direction, column, ...restProps }) => {
   const itemStyles = makeStyles(() => ({
     root: {
       marginTop: '0.25em !important',
@@ -26,7 +27,10 @@ const SalesHeaderSortLabel = ({ onSort, children, align, direction, ...restProps
             <SortingUpIcon direction={direction} />
           </Grid>
           <Grid item classes={itemStyles()}>
-            { children }
+            {column.name !== 'calendarYear'
+              ? <GlossaryTerm termKey={column.title}>{ children }</GlossaryTerm>
+              : children
+            }
           </Grid>
           <Grid item onClick={onSort}>
             <SortingDownIcon direction={direction} />

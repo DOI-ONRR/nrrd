@@ -4,10 +4,10 @@ const tableConfig = {
     { name: 'calendarYear', title: 'Sales Year' },
     { name: 'salesValue', title: 'Sales Value' },
     { name: 'salesVolume', title: 'Sales Volume' },
-    { name: 'royaltyValuePriorToAllowance', title: 'Royalty Value Prior to Allowances' },
-    { name: 'transportationAllowance', title: 'Transportation Allowance' },
-    { name: 'processingAllowance', title: 'Processing Allowance' },
-    { name: 'royaltyValueLessAllowance', title: 'Royalty Value Less Allowances' }
+    { name: 'royaltyValuePriorToAllowance', title: 'Royalty Value Prior to Allowances (RVPA)' },
+    { name: 'transportationAllowance', title: 'Transportation Allowance (TA)' },
+    { name: 'processingAllowance', title: 'Processing Allowance (PA)' },
+    { name: 'royaltyValueLessAllowance', title: 'Royalty Value Less Allowances (RVLA)' }
   ],
   groupSummaryItems: [
     { columnName: 'salesValue', type: 'sum', alignByColumn: true, showInGroupFooter: true },

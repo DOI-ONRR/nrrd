@@ -21,8 +21,7 @@ const useStyles = makeStyles(theme => (
     },
     term: {
       borderBottom: '1px dotted',
-      cursor: 'pointer',
-      whiteSpace: 'nowrap'
+      cursor: 'pointer'
     }
   }
 ))
