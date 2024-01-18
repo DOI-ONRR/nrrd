@@ -152,12 +152,14 @@ const SalesDataDiagram = () => {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Box>
+        <Box ml={'50px'} borderLeft={'3px solid #000000'} height={'1.5rem'}></Box>
       </Box>
+
       <Box position={'relative'}>
         <Box position={'absolute'} left={18}>
           <Box className={miscClasses.diagramCirle}></Box>
         </Box>
-        <Box className={miscClasses.lavendar} borderLeft={'3px solid #000000'} py={'0.5rem'} borderTop={'1.5rem solid white'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.lavendar} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <Box fontWeight={'bold'}>Calculate federal royalty value with adjustments for royalty relief and/or quality gravity bank</Box>
           <ExpansionPanel className={miscClasses.lavendar}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -195,12 +197,14 @@ const SalesDataDiagram = () => {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Box>
+        <Box ml={'50px'} borderLeft={'3px solid #000000'} height={'1.5rem'}></Box>
       </Box>
+
       <Box position={'relative'}>
         <Box position={'absolute'} left={18}>
           <Box className={miscClasses.diagramCirle}></Box>
         </Box>
-        <Box className={miscClasses.lavendar} borderLeft={'3px solid #000000'} py={'0.5rem'} borderTop={'1.5rem solid white'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.lavendar} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <Box fontWeight={'bold'}>Deduct regulatory allowances</Box>
           <ExpansionPanel className={miscClasses.lavendar}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -232,13 +236,14 @@ const SalesDataDiagram = () => {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Box>
+        <Box ml={'50px'} borderLeft={'3px solid #000000'} height={'1.5rem'}></Box>
       </Box>
 
       <Box position={'relative'}>
         <Box position={'absolute'}>
           <BarChartIcon fontSize='large' classes={clipboard()}/>
         </Box>
-        <Box className={miscClasses.minty} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'} borderTop={'1.5rem solid white'}>
+        <Box className={miscClasses.minty} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <div><b>ONRR aggregates sales data</b></div>
           <div>ONRR collects the royalty reporting data from payors across federal lands. ONRR aggregates it to develop this sales dataset,
             which is publicly available.
@@ -257,13 +262,14 @@ const SalesDataDiagram = () => {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Box>
+        <Box ml={'50px'} borderLeft={'3px solid #000000'} height={'1.5rem'}></Box>
       </Box>
 
       <Box position={'relative'}>
         <Box position={'absolute'}>
           <PieChartIcon fontSize='large' classes={clipboard()}/>
         </Box>
-        <Box className={miscClasses.slate} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'} borderTop={'1.5rem solid white'}>
+        <Box className={miscClasses.slate} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <div><b>Calculation of Effective Royalty Rate</b></div>
           <div>The Effective Royalty Rate (ERR) accounts for royalty relief, deductions, and other adjustments before the royalty value is divided by the sales value.
             The ERR is an equation defined by the Office of Inspector General (OIG). ONRR does not use the ERR in any of its processes.</div>
