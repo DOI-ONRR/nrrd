@@ -16,6 +16,9 @@ const reportsStyles = makeStyles(theme => ({
   lavendar: {
     backgroundColor: '#dcd2df'
   },
+  lavendarBorder: {
+    border: '3px solid #503b5e'
+  },
   diagramCirle: {
     width: '30px',
     height: '30px',
@@ -24,14 +27,20 @@ const reportsStyles = makeStyles(theme => ({
     lineHeight: '100px',
     verticalAlign: 'middle',
     padding: '30px',
-    border: '3px solid black',
+    border: '3px solid #503b5e',
     backgroundColor: '#ffffff'
   },
   minty: {
     backgroundColor: '#c2d0bd'
   },
+  mintyBorder: {
+    border: '3px solid #3a4730'
+  },
   slate: {
     backgroundColor: '#d3dfe6'
+  },
+  slateBorder: {
+    border: '3px solid #39474f'
   },
   primaryText: {
     color: theme.palette.text.secondary
@@ -48,7 +57,7 @@ const reportsStyles = makeStyles(theme => ({
   }
 }))
 
-const clipboard = makeStyles(() => ({
+const icon = makeStyles(() => ({
   root: {
     width: '100px',
     height: '100px',
@@ -57,7 +66,6 @@ const clipboard = makeStyles(() => ({
     lineHeight: '100px',
     verticalAlign: 'middle',
     padding: '30px',
-    border: '3px solid black',
     backgroundColor: '#ffffff'
   }
 }))
@@ -119,9 +127,9 @@ const SalesDataDiagram = () => {
     <>
       <Box mt={'1.5rem'} position={'relative'}>
         <Box position={'absolute'}>
-          <AssignmentIcon fontSize='large' classes={clipboard()}/>
+          <AssignmentIcon fontSize='large' classes={icon()} className={miscClasses.lavendarBorder}/>
         </Box>
-        <Box className={miscClasses.lavendar} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.lavendar} borderLeft={'3px solid #503b5e'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <div><b>Reporters submit royalty reporting</b></div>
           <div>Reporters use ONRR’s royalty reporting system, eCommerce, to report royalty revenues on Federal oil and gas, using the electronic Report of Sales and
         Royalty and Remittance Form (ONRR–2014).</div>
@@ -130,9 +138,10 @@ const SalesDataDiagram = () => {
               <Box className={miscClasses.primaryText}>Additional details for royalty reporting</Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Box>Royalty revenues are based on the amount and value of production removed or sold from the lease.  Federal royalty rates are lease-specific and generally
-              depend on the location of the oil or gas lease. The location of the lease also determines the applicable statutory requirements.
-              To determine the royalty value owed by a lessee, the following equation is used:</Box>
+              <Box>
+                Royalty revenues are based on the amount and value of production removed or sold from the lease.  Federal royalty rates are lease-specific and generally
+                depend on the location of the oil or gas lease. The location of the lease also determines the applicable statutory requirements.
+              </Box>
               <Box mt={'1rem'}>To determine the royalty value owed by a lessee, the following equation is used:</Box>
               <Box mt={'1rem'} className={miscClasses.formulaContainer}>
                 <Box className={miscClasses.formula}>
@@ -152,14 +161,14 @@ const SalesDataDiagram = () => {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Box>
-        <Box ml={'50px'} borderLeft={'3px solid #000000'} height={'1.5rem'}></Box>
+        <Box ml={'50px'} borderLeft={'3px solid #503b5e'} height={'1.5rem'}></Box>
       </Box>
 
       <Box position={'relative'}>
         <Box position={'absolute'} left={18}>
           <Box className={miscClasses.diagramCirle}></Box>
         </Box>
-        <Box className={miscClasses.lavendar} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.lavendar} borderLeft={'3px solid #503b5e'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <Box fontWeight={'bold'}>Calculate federal royalty value with adjustments for royalty relief and/or quality gravity bank</Box>
           <ExpansionPanel className={miscClasses.lavendar}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -197,14 +206,14 @@ const SalesDataDiagram = () => {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Box>
-        <Box ml={'50px'} borderLeft={'3px solid #000000'} height={'1.5rem'}></Box>
+        <Box ml={'50px'} borderLeft={'3px solid #503b5e'} height={'1.5rem'}></Box>
       </Box>
 
       <Box position={'relative'}>
         <Box position={'absolute'} left={18}>
           <Box className={miscClasses.diagramCirle}></Box>
         </Box>
-        <Box className={miscClasses.lavendar} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.lavendar} borderLeft={'3px solid #503b5e'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <Box fontWeight={'bold'}>Deduct regulatory allowances</Box>
           <ExpansionPanel className={miscClasses.lavendar}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -222,7 +231,7 @@ const SalesDataDiagram = () => {
               <Box mt={'1rem'} className={miscClasses.formulaContainer}>
                 <Box className={miscClasses.formula}>
                   <Typography>Royalty Value Less Allowance (RVLA) = </Typography>
-                  <Typography>Royalty Value Prior to Allowance – (Allowances * Royalty Rate)</Typography>
+                  <Typography>Royalty Value Prior to Allowance – [Allowances * Royalty Rate]</Typography>
                 </Box>
               </Box>
               <Box>
@@ -236,14 +245,14 @@ const SalesDataDiagram = () => {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Box>
-        <Box ml={'50px'} borderLeft={'3px solid #000000'} height={'1.5rem'}></Box>
+        <Box ml={'50px'} borderLeft={'3px solid #503b5e'} height={'1.5rem'}></Box>
       </Box>
 
       <Box position={'relative'}>
         <Box position={'absolute'}>
-          <BarChartIcon fontSize='large' classes={clipboard()}/>
+          <BarChartIcon fontSize='large' classes={icon()} className={miscClasses.mintyBorder}/>
         </Box>
-        <Box className={miscClasses.minty} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.minty} borderLeft={'3px solid #3a4730'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <div><b>ONRR aggregates sales data</b></div>
           <div>ONRR collects the royalty reporting data from payors across federal lands. ONRR aggregates it to develop this sales dataset,
             which is publicly available.
@@ -262,14 +271,14 @@ const SalesDataDiagram = () => {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Box>
-        <Box ml={'50px'} borderLeft={'3px solid #000000'} height={'1.5rem'}></Box>
+        <Box ml={'50px'} borderLeft={'3px solid #3a4730'} height={'1.5rem'}></Box>
       </Box>
 
       <Box position={'relative'}>
         <Box position={'absolute'}>
-          <PieChartIcon fontSize='large' classes={clipboard()}/>
+          <PieChartIcon fontSize='large' classes={icon()} className={miscClasses.slateBorder}/>
         </Box>
-        <Box className={miscClasses.slate} borderLeft={'3px solid #000000'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.slate} borderLeft={'3px solid #39474f'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <div><b>Calculation of Effective Royalty Rate</b></div>
           <div>The Effective Royalty Rate (ERR) accounts for royalty relief, deductions, and other adjustments before the royalty value is divided by the sales value.
             The ERR is an equation defined by the Office of Inspector General (OIG). ONRR does not use the ERR in any of its processes.</div>
