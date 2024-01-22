@@ -290,10 +290,14 @@ const SalesDataDiagram = () => {
               <Box>
               The office of Inspector General defined the following equation to calculate ERR:
               </Box>
-              <Box mt={'1rem'} className={miscClasses.formulaContainer}>
+              <Box mt={'1rem'} className={miscClasses.formulaContainer} display={'table'}>
                 <Box className={miscClasses.formula}>
-                  <Typography>Effective Royalty Rate = </Typography>
-                  <Typography>(Total Royalty Value - Deductions ± Gravity Bank Adjustments) ÷ Total Sales Value</Typography>
+                  <Box display={'table-cell'} px={'0.5rem'} style={{ verticalAlign: 'middle' }}>Effective Royalty Rate = </Box>
+                  <Box display={'table-cell'}>
+                    <Box borderBottom={'2px solid rgba(0, 0, 0, 0.1)'}
+                      p={'0.5rem'}>(Total Royalty Value - Deductions ± Gravity Bank Adjustments)</Box>
+                    <Box pt={'0.5rem'}>Total Sales Value</Box>
+                  </Box>
                 </Box>
               </Box>
               <Box mt={'1rem'}>
