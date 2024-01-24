@@ -6,7 +6,7 @@ require('dotenv').config({
   path: `.env.${ activeEnv }`
 })
 
-const GOOGLE_ANALYTICS_ID = (activeEnv === 'prd') ? process.env.GOOGLE_ANALYTICS_ID : ''
+const GTM_ID = process.env.NRRD_GTM_ID
 // eslint-disable-next-line max-len
 const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
 
@@ -19,8 +19,7 @@ const config = {
       // eslint-disable-next-line max-len
       'This site provides open data about natural resource management on federal lands and waters in the United States, including oil, gas, coal, and other extractive industries.',
     keywords: 'Oil and gas, Coal, Renewable energy, Nonenergy minerals, Natural resource policy, Natural resource data, Extractives industries, Federal revenues, Production, 8(g) offshore revenue, offshore production, abanonded mine lands fund, mining reclamation tax, onrr state disbursement data, Native American land ownership, coal extraction, Department of the Interior, DOI, BLM coal leases, gomesa, gomesa funding, energy resource revenue, ONRR, state royalty, us eiti, solar industry, geothermal',
-    googleAnalyticsId: GOOGLE_ANALYTICS_ID,
-    version: 'v6.8.11',
+    version: 'v6.8.12',
     author: '',
     dataRetrieval: {
       name: 'Data Specialists',
@@ -39,6 +38,12 @@ const config = {
   },
   plugins: [
     'gatsby-transformer-react-docgen',
+    {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: GTM_ID
+      }
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -123,7 +128,7 @@ const config = {
     {
       resolve: 'gatsby-source-graphql',
       options: {
-        typeName: 'hasura',
+        typeName: 'ONRR',
         fieldName: 'onrr',
         createLink: () => {
           return createHttpLink({

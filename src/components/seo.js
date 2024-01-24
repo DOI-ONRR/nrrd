@@ -21,7 +21,6 @@ function SEO ({ description, lang, meta, title, keywords }) {
             description
             keywords
             author
-            googleAnalyticsId
           }
         }
       }
@@ -81,9 +80,6 @@ function SEO ({ description, lang, meta, title, keywords }) {
           },
         ].concat(meta)}
       >
-
-        {/* Digital Analytics Program roll-up, see the data at https://analytics.usa.gov */}
-        <script src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOI&subagency=ONRR" id="_fed_an_ua_tag" async type="text/javascript"></script>
       </Helmet>
     </Fragment>
   )
