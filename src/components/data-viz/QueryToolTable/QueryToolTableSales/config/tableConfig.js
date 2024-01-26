@@ -2,24 +2,24 @@ const tableConfig = {
   columns: [
     { name: 'commodity', title: 'Commodity' },
     { name: 'calendarYear', title: 'Sales Year' },
-    { name: 'salesValue', title: 'Sales Value' },
     { name: 'salesVolume', title: 'Sales Volume' },
+    { name: 'salesValue', title: 'Sales Value' },
     { name: 'royaltyValuePriorToAllowance', title: 'Royalty Value Prior to Allowances (RVPA)' },
     { name: 'transportationAllowance', title: 'Transportation Allowance (TA)' },
     { name: 'processingAllowance', title: 'Processing Allowance (PA)' },
     { name: 'royaltyValueLessAllowance', title: 'Royalty Value Less Allowances (RVLA)' }
   ],
   groupSummaryItems: [
-    { columnName: 'salesValue', type: 'sum', alignByColumn: true, showInGroupFooter: true },
     { columnName: 'salesVolume', type: 'sum', alignByColumn: true, showInGroupFooter: true },
+    { columnName: 'salesValue', type: 'sum', alignByColumn: true, showInGroupFooter: true },
     { columnName: 'royaltyValuePriorToAllowance', type: 'sum', alignByColumn: true, showInGroupFooter: true },
     { columnName: 'transportationAllowance', type: 'sum', alignByColumn: true, showInGroupFooter: true },
     { columnName: 'processingAllowance', type: 'sum', alignByColumn: true, showInGroupFooter: true },
     { columnName: 'royaltyValueLessAllowance', type: 'sum', alignByColumn: true, showInGroupFooter: true }
   ],
   totalSummaryItems: [
-    { columnName: 'salesValue', type: 'sum', alignByColumn: true },
     { columnName: 'salesVolume', type: 'sum', alignByColumn: true },
+    { columnName: 'salesValue', type: 'sum', alignByColumn: true },
     { columnName: 'royaltyValuePriorToAllowance', type: 'sum', alignByColumn: true },
     { columnName: 'transportationAllowance', type: 'sum', alignByColumn: true },
     { columnName: 'processingAllowance', type: 'sum', alignByColumn: true },
