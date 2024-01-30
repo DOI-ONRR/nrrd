@@ -12,12 +12,15 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import BarChartIcon from '@material-ui/icons/BarChart'
 import PieChartIcon from '@material-ui/icons/PieChart'
 
+import GlossaryTerm from '../GlossaryTerm/GlossaryTerm'
+
 const reportsStyles = makeStyles(theme => ({
   lavendar: {
     backgroundColor: '#dcd2df'
   },
   lavendarBorder: {
-    border: '3px solid #503b5e'
+    border: '3px solid #503b5e',
+    color: '#503b5e'
   },
   diagramCirle: {
     width: '30px',
@@ -34,13 +37,15 @@ const reportsStyles = makeStyles(theme => ({
     backgroundColor: '#c2d0bd'
   },
   mintyBorder: {
-    border: '3px solid #3a4730'
+    border: '3px solid #3a4730',
+    color: '#3a4730'
   },
   slate: {
     backgroundColor: '#d3dfe6'
   },
   slateBorder: {
-    border: '3px solid #39474f'
+    border: '3px solid #39474f',
+    color: '#39474f'
   },
   primaryText: {
     color: theme.palette.text.secondary
@@ -127,13 +132,13 @@ const SalesDataDiagram = () => {
     <>
       <Box mt={'1.5rem'} position={'relative'}>
         <Box position={'absolute'}>
-          <AssignmentIcon fontSize='large' classes={icon()} className={miscClasses.lavendarBorder}/>
+          <AssignmentIcon fontSize='large' classes={icon()} className={miscClasses.mintyBorder}/>
         </Box>
-        <Box className={miscClasses.lavendar} borderLeft={'3px solid #503b5e'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.minty} borderLeft={'3px solid #503b5e'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <div><b>Reporters submit royalty reporting</b></div>
           <div>Reporters use ONRR’s royalty reporting system, eCommerce, to report royalty revenues on Federal oil and gas, using the electronic Report of Sales and
         Royalty and Remittance Form (ONRR–2014).</div>
-          <ExpansionPanel className={miscClasses.lavendar}>
+          <ExpansionPanel className={miscClasses.minty}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
               <Box className={miscClasses.primaryText}>Additional details for royalty reporting</Box>
             </ExpansionPanelSummary>
@@ -142,12 +147,61 @@ const SalesDataDiagram = () => {
                 Royalty revenues are based on the amount and value of production removed or sold from the lease.  Federal royalty rates are lease-specific and generally
                 depend on the location of the oil or gas lease. The location of the lease also determines the applicable statutory requirements.
               </Box>
-              <Box mt={'1rem'}>To determine the royalty value owed by a lessee, the following equation is used:</Box>
-              <Box mt={'1rem'} className={miscClasses.formulaContainer}>
-                <Box className={miscClasses.formula}>
-                  <Typography>Royalty Value = </Typography>
-                  <Typography>(Volume sold * Sales price * Royalty rate) - Deductions</Typography>
-                </Box>
+              <Box my={'1rem'}>To determine the royalty due, reporters follow the following substeps:</Box>
+              <Box fontWeight={'bold'}>A. Calculate federal royalty value with adjustments for royalty relief and/or quality gravity bank</Box>
+              <Box>
+                Revenues may be modified by various royalty relief programs, as well as quality bank and gravity bank adjustments. These modifications are made prior to
+                any allowances taking place and are included in the 2014 reporting. This calculation results in the Royalty Value Prior to Allowances (RVPA).
+              </Box>
+              <Box fontWeight={'bold'} mt={'1rem'}>B. Deduct regulatory allowances</Box>
+              <Box>
+              Allowances are deductions lessees can claim against royalty value for the transportation and processing costs of production; application of
+              these allowances decreases the royalty payment owed. Federal regulations allow for “reasonable, actual costs” to be deducted. This dataset
+              includes Transportation Allowances and Processing Allowances. This calculation results in the Royalty Value Less Allowances (RLVA).
+              </Box>
+              <Box mt={'1rem'}>
+                These steps result in the following equation:
+              </Box>
+              <Box my={'1rem'} py={'0.5rem'} className={miscClasses.formulaContainer} style={{ backgroundColor: '#ffffff', border: '2px solid #000000' }}>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Royalty Due = </td>
+                      <td>
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td style={{ paddingBottom: '0.25rem', fontSize: '1rem', textAlign: 'center' }}><GlossaryTerm>Royalty Value Prior to Allowances (RVPA)</GlossaryTerm></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <Box height={'0.5rem'}
+                                  borderTop={'2px solid #000'}
+                                  borderLeft={'2px solid #000'}
+                                  borderRight={'2px solid #000'}></Box>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style={{ padding: '0.5rem 0' }}>[Sales Volume * Unit Value * Royalty Rate]</td>
+                              <td>- Allowances</td>
+                            </tr>
+                            <tr>
+                              <td colSpan={2}>
+                                <Box height={'0.5rem'}
+                                  borderBottom={'2px solid #000'}
+                                  borderLeft={'2px solid #000'}
+                                  borderRight={'2px solid #000'}></Box>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td colSpan={2} style={{ paddingTop: '0.25rem', fontSize: '1rem', textAlign: 'center' }}><GlossaryTerm>Royalty Value Less Allowances (RVLA)</GlossaryTerm></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </Box>
               <Box>
                 <Typography>Citations:</Typography>
@@ -156,87 +210,10 @@ const SalesDataDiagram = () => {
                   <li><Link href='https://onrr.gov/document/2014.pdf'>ONRR 2014 Form</Link></li>
                   <li><Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook'>Minerals Revenue Reporter Handbook</Link></li>
                   <li><Link href='https://www.onrr.gov/references/valuation?tabs=valuation-regulations'>Valuation Regulations</Link></li>
-                </ul>
-              </Box>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-        </Box>
-        <Box ml={'50px'} borderLeft={'3px solid #503b5e'} height={'1.5rem'}></Box>
-      </Box>
-
-      <Box position={'relative'}>
-        <Box position={'absolute'} left={18}>
-          <Box className={miscClasses.diagramCirle}></Box>
-        </Box>
-        <Box className={miscClasses.lavendar} borderLeft={'3px solid #503b5e'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
-          <Box fontWeight={'bold'}>Calculate federal royalty value with adjustments for royalty relief and/or quality gravity bank</Box>
-          <ExpansionPanel className={miscClasses.lavendar}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Box className={miscClasses.primaryText}>Additional details for calculation</Box>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Box>Royalty revenues are based on the amount and value of production
-                removed or sold from the lease. Federal royalty rates are lease-specific
-                and generally depend on the location of the oil or gas lease. The
-                location of the lease also determines the applicable statutory
-                requirements.</Box>
-              <Box mt={'1rem'}>
-                Revenues may be modified by various royalty relief programs and
-                quality gravity bank adjustments are made prior to any allowances
-                taking place and included in the 2014 reporting.
-              </Box>
-              <Box mt={'1rem'}>
-                To determine the royalty value prior to allowance owed by a lessee, the following equation is used:
-              </Box>
-              <Box mt={'1rem'} className={miscClasses.formulaContainer}>
-                <Box className={miscClasses.formula}>
-                  <Typography>Royalty Value Prior to Allowance (RVPA) = </Typography>
-                  <Typography>Volume sold * Sales Value * Royalty Rate</Typography>
-                </Box>
-              </Box>
-              <Box>
-                <Typography>Citations:</Typography>
-                <ul style={{ margin: '0' }}>
                   <li><Link href='https://www.ecfr.gov/current/title-30/section-1210.56'>30 CFR § 1210.56</Link></li>
                   <li><Link href='https://onrr.gov/references/valuation'>Royalty valuation</Link></li>
                   <li><Link href='https://onrr.gov/document/RRM-Chapter.4.pdf'>Handbook discussion on quality bank adjustments (section 4.11)</Link></li>
                   <li><Link href='https://revenuedata.doi.gov/glossary'>Royalty Relief</Link></li>
-                </ul>
-              </Box>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
-        </Box>
-        <Box ml={'50px'} borderLeft={'3px solid #503b5e'} height={'1.5rem'}></Box>
-      </Box>
-
-      <Box position={'relative'}>
-        <Box position={'absolute'} left={18}>
-          <Box className={miscClasses.diagramCirle}></Box>
-        </Box>
-        <Box className={miscClasses.lavendar} borderLeft={'3px solid #503b5e'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
-          <Box fontWeight={'bold'}>Deduct regulatory allowances</Box>
-          <ExpansionPanel className={miscClasses.lavendar}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Box className={miscClasses.primaryText}>Additional details for allowances</Box>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-              <Box>
-                Allowances are deductions lessees can claim against royalty value for the transportation and processing costs of production;
-                application of these allowances decreases the royalty payment owed. Federal regulations allow for "reasonable, actual costs"
-                to be deducted. This dataset includes Transportation Allowances and Processing Allowances.
-              </Box>
-              <Box mt={'1rem'}>
-                To determine the royalty value less allowance (RVLA), the following equation is used:
-              </Box>
-              <Box mt={'1rem'} className={miscClasses.formulaContainer}>
-                <Box className={miscClasses.formula}>
-                  <Typography>Royalty Value Less Allowance (RVLA) = </Typography>
-                  <Typography>Royalty Value Prior to Allowance – [Allowances * Royalty Rate]</Typography>
-                </Box>
-              </Box>
-              <Box>
-                <Typography>Citations:</Typography>
-                <ul style={{ margin: '0' }}>
                   <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-C'>30 CFR § 1206 (subpart C for federal oil)</Link></li>
                   <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-D'>30 CFR § 1206 (subpart d for federal gas)</Link></li>
                   <li><Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references'>ONRR revenue reporting references</Link></li>
@@ -250,14 +227,14 @@ const SalesDataDiagram = () => {
 
       <Box position={'relative'}>
         <Box position={'absolute'}>
-          <BarChartIcon fontSize='large' classes={icon()} className={miscClasses.mintyBorder}/>
+          <BarChartIcon fontSize='large' classes={icon()} className={miscClasses.lavendarBorder}/>
         </Box>
-        <Box className={miscClasses.minty} borderLeft={'3px solid #3a4730'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.lavendar} borderLeft={'3px solid #3a4730'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <div><b>ONRR aggregates sales data</b></div>
           <div>ONRR collects the royalty reporting data from payors across federal lands. ONRR aggregates it to develop this sales dataset,
             which is publicly available.
           </div>
-          <ExpansionPanel className={miscClasses.minty}>
+          <ExpansionPanel className={miscClasses.lavendar}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
               <Box className={miscClasses.primaryText}>Citations for ONRR data processes</Box>
             </ExpansionPanelSummary>
