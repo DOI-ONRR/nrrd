@@ -134,7 +134,7 @@ const SalesDataDiagram = () => {
         <Box position={'absolute'}>
           <AssignmentIcon fontSize='large' classes={icon()} className={miscClasses.mintyBorder}/>
         </Box>
-        <Box className={miscClasses.minty} borderLeft={'3px solid #503b5e'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.minty} borderLeft={'3px solid #3a4730'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <div><b>Reporters submit royalty reporting</b></div>
           <div>Reporters use ONRR’s royalty reporting system, eCommerce, to report royalty revenues on Federal oil and gas, using the electronic Report of Sales and
         Royalty and Remittance Form (ONRR–2014).</div>
@@ -222,14 +222,14 @@ const SalesDataDiagram = () => {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Box>
-        <Box ml={'50px'} borderLeft={'3px solid #503b5e'} height={'1.5rem'}></Box>
+        <Box ml={'50px'} borderLeft={'3px solid #3a4730'} height={'1.5rem'}></Box>
       </Box>
 
       <Box position={'relative'}>
         <Box position={'absolute'}>
           <BarChartIcon fontSize='large' classes={icon()} className={miscClasses.lavendarBorder}/>
         </Box>
-        <Box className={miscClasses.lavendar} borderLeft={'3px solid #3a4730'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
+        <Box className={miscClasses.lavendar} borderLeft={'3px solid #503b5e'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <div><b>ONRR aggregates sales data</b></div>
           <div>ONRR collects the royalty reporting data from payors across federal lands. ONRR aggregates it to develop this sales dataset,
             which is publicly available.
@@ -248,7 +248,7 @@ const SalesDataDiagram = () => {
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Box>
-        <Box ml={'50px'} borderLeft={'3px solid #3a4730'} height={'1.5rem'}></Box>
+        <Box ml={'50px'} borderLeft={'3px solid #503b5e'} height={'1.5rem'}></Box>
       </Box>
 
       <Box position={'relative'}>
