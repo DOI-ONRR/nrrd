@@ -72,6 +72,7 @@ const tableConfig = {
       columnName: 'commodity'
     }
   ],
+  defaultExpandedGroups: ['Gas (MMBtu)', 'NGL (gal)', 'Oil (bbl)'],
   breakoutOptions: [
     {
       option: 'Land type',

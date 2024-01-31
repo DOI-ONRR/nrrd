@@ -13,7 +13,6 @@ import GroupCellComponent from './plugins/GroupCellComponent'
 import TotalCellComponent from './plugins/TotalCellComponent'
 import SalesGroupByColumnHeader from './plugins/SalesGroupByColumnHeader'
 import { CurrencyTypeProvider, NumberTypeProvider } from './plugins/SalesDataTypeProviders'
-import { getCommodities } from './helpers/transformData'
 import { DataFilterContext } from '../../../../stores'
 import { DownloadContext } from '../../../../stores/download-store'
 import { BREAKOUT_BY, FEDERAL_SALES, DOWNLOAD_DATA_TABLE } from '../../../../constants'
@@ -63,7 +62,7 @@ const SalesTableBase = ({ salesTableData }) => {
 
   useEffect(() => {
     if (salesTableData) {
-      setExpandedGroups(getCommodities(salesTableData))
+      setExpandedGroups(tableConfig.defaultExpandedGroups)
       addDownloadData({
         key: DOWNLOAD_DATA_TABLE,
         data: {
