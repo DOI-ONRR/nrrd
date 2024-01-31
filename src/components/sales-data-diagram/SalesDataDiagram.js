@@ -136,7 +136,7 @@ const SalesDataDiagram = () => {
         </Box>
         <Box className={miscClasses.minty} borderLeft={'3px solid #3a4730'} py={'0.5rem'} ml={'50px'} pl={'60px'}>
           <div><b>Reporters submit royalty reporting</b></div>
-          <div>Reporters use ONRR’s royalty reporting system, eCommerce, to report royalty revenues on Federal oil and gas, using the electronic Report of Sales and
+          <div>Reporters use ONRR’s royalty reporting system, eCommerce, to report royalty revenues on federal oil and gas, using the electronic Report of Sales and
         Royalty and Remittance Form (ONRR–2014).</div>
           <ExpansionPanel className={miscClasses.minty}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -147,8 +147,8 @@ const SalesDataDiagram = () => {
                 Royalty revenues are based on the amount and value of production removed or sold from the lease.  Federal royalty rates are lease-specific and generally
                 depend on the location of the oil or gas lease. The location of the lease also determines the applicable statutory requirements.
               </Box>
-              <Box my={'1rem'}>To determine the royalty due, reporters follow the following substeps:</Box>
-              <Box fontWeight={'bold'}>A. Calculate federal royalty value with adjustments for royalty relief and/or quality gravity bank</Box>
+              <Box my={'1rem'}>To determine the royalty due, reporters use the following steps:</Box>
+              <Box fontWeight={'bold'}>A. Calculate federal royalty value with adjustments for royalty relief, quality gravity bank, and/or gravity bank</Box>
               <Box>
                 Revenues may be modified by various royalty relief programs, as well as quality bank and gravity bank adjustments. These modifications are made prior to
                 any allowances taking place and are included in the 2014 reporting. This calculation results in the Royalty Value Prior to Allowances (RVPA).
@@ -160,7 +160,7 @@ const SalesDataDiagram = () => {
               includes Transportation Allowances and Processing Allowances. This calculation results in the Royalty Value Less Allowances (RLVA).
               </Box>
               <Box mt={'1rem'}>
-                These steps result in the following equation:
+                These steps result in the equation for royalty due:
               </Box>
               <Box my={'1rem'} py={'0.5rem'} className={miscClasses.formulaContainer} style={{ backgroundColor: '#ffffff', border: '2px solid #000000' }}>
                 <table>
@@ -207,15 +207,14 @@ const SalesDataDiagram = () => {
                 <Typography>Citations:</Typography>
                 <ul style={{ margin: '0' }}>
                   <li><Link href='https://www.ecfr.gov/current/title-30/part-1210/subpart-B'>ONRR Royalty Reports for Oil and Gas: 30 CFR Part 2010 Subpart B</Link></li>
-                  <li><Link href='https://onrr.gov/document/2014.pdf'>ONRR 2014 Form</Link></li>
+                  <li><Link href='https://www.onrr.gov/reporting/revenue?tabs=forms'>Form ONRR 2014</Link></li>
                   <li><Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook'>Minerals Revenue Reporter Handbook</Link></li>
                   <li><Link href='https://www.onrr.gov/references/valuation?tabs=valuation-regulations'>Valuation Regulations</Link></li>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/section-1210.56'>30 CFR § 1210.56</Link></li>
-                  <li><Link href='https://onrr.gov/references/valuation'>Royalty valuation</Link></li>
+                  <li><Link href='https://www.ecfr.gov/current/title-30/section-1210.56'>30 CFR Part 1210.56</Link></li>
+                  <li><Link href='https://onrr.gov/references/valuation'>Royalty Valuation</Link></li>
                   <li><Link href='https://onrr.gov/document/RRM-Chapter.4.pdf'>Handbook discussion on quality bank adjustments (section 4.11)</Link></li>
-                  <li><Link href='https://revenuedata.doi.gov/glossary'>Royalty Relief</Link></li>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-C'>30 CFR § 1206 (subpart C for federal oil)</Link></li>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-D'>30 CFR § 1206 (subpart d for federal gas)</Link></li>
+                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-C'>30 CFR Part 1206 (Subpart C for federal oil)</Link></li>
+                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-D'>30 CFR Part 1206 (Subpart D for federal gas)</Link></li>
                   <li><Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references'>ONRR revenue reporting references</Link></li>
                 </ul>
               </Box>
@@ -265,7 +264,7 @@ const SalesDataDiagram = () => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
-              The office of Inspector General defined the following equation to calculate ERR:
+              The Office of Inspector General defined the following equation to calculate ERR:
               </Box>
               <Box mt={'1rem'} className={miscClasses.formulaContainer} display={'table'}>
                 <Box className={miscClasses.formula}>
