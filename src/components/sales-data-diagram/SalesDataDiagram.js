@@ -204,7 +204,7 @@ const SalesDataDiagram = () => {
                 </table>
               </Box>
               <Box>
-                <Typography>Citations:</Typography>
+                <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
                   <li><Link href='https://www.ecfr.gov/current/title-30/part-1210/subpart-B'>ONRR Royalty Reports for Oil and Gas: 30 CFR Part 1210 Subpart B</Link></li>
                   <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-C'>30 CFR Part 1206 (Subpart C for federal oil)</Link></li>
@@ -234,11 +234,11 @@ const SalesDataDiagram = () => {
           </div>
           <ExpansionPanel className={miscClasses.lavendar}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Box className={miscClasses.primaryText}>Citations for ONRR data processes</Box>
+              <Box className={miscClasses.primaryText}>References for ONRR data processes</Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
-                <Typography>Citations:</Typography>
+                <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
                   <li><Link href='https://revenuedata.doi.gov/how-revenue-works/#how-our-data-fits-together'>How Revenue Works - How our data fits together</Link></li>
                 </ul>
@@ -276,7 +276,7 @@ const SalesDataDiagram = () => {
                 </Box>
               </Box>
               <Box mt={'1rem'}>
-                <Typography>Citations:</Typography>
+                <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
                   <li><Link href='https://www.doioig.gov/reports/inspection-evaluation/us-department-interior-does-not-analyze-effective-royalty-rates'>OIG Report, Appendix 1</Link></li>
                 </ul>
