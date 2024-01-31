@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { DataFilterContext, DownloadContext } from '../../../stores'
 
@@ -45,6 +45,8 @@ import {
   FilterTableIconImg,
   IconDownloadBaseImg
 } from '../../images'
+
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 import BaseToolbar from '../BaseToolbar'
 import Link from '../../Link'
@@ -122,7 +124,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
-  const [queryDataToolbarOpen, setQueryDataToolbarOpen] = React.useState(true)
+  const [queryDataToolbarOpen, setQueryDataToolbarOpen] = useState(true)
 
   const toggleQueryDataToolbar = event => {
     setDownloadToolbarOpen(false)
@@ -131,14 +133,17 @@ const QueryTableToolbar = ({ label, ...props }) => {
   }
 
   // eslint-disable-next-line no-unused-vars
-  const [dataFilterToolbarOpen, setDataFilterToolbarOpen] = React.useState(false)
+  const [dataFilterToolbarOpen, setDataFilterToolbarOpen] = useState(false)
 
-  const [downloadToolbarOpen, setDownloadToolbarOpen] = React.useState(false)
+  const [downloadToolbarOpen, setDownloadToolbarOpen] = useState(false)
 
   const toggleDownloadToolbar = event => {
     setDataFilterToolbarOpen(false)
     setQueryDataToolbarOpen(false)
     setDownloadToolbarOpen(!downloadToolbarOpen)
+    if (salesToolbarOpen) {
+      setSalesToolbarOpen(false)
+    }
   }
 
   const handleDownloadExcel = event => {
@@ -160,6 +165,17 @@ const QueryTableToolbar = ({ label, ...props }) => {
         state[DATA_TYPE],
         downloadDataContext.state[DOWNLOAD_DATA_TABLE].cols,
         downloadDataContext.state[DOWNLOAD_DATA_TABLE].rows)
+    }
+  }
+
+  const [salesToolbarOpen, setSalesToolbarOpen] = useState(false)
+
+  const toggleSalesToolbar = event => {
+    setDataFilterToolbarOpen(false)
+    setQueryDataToolbarOpen(false)
+    setSalesToolbarOpen(!salesToolbarOpen)
+    if (downloadToolbarOpen) {
+      setDownloadToolbarOpen(false)
     }
   }
 
@@ -185,6 +201,18 @@ const QueryTableToolbar = ({ label, ...props }) => {
           onChange={toggleDownloadToolbar}>
           <IconDownloadBaseImg className={ `${ classes.toolbarIcon }, ${ classes.exploreDataIcon }` } style={ { fill: classes.toolbarIcon.fill } }/> <span>Download</span>
         </BaseToggle>
+        {state[DATA_TYPE] === FEDERAL_SALES &&
+          <BaseToggle
+            data={['Download']}
+            value='open'
+            aria-label="open download toolbar"
+            selected={salesToolbarOpen}
+            defaultSelected={salesToolbarOpen}
+            onChange={toggleSalesToolbar}>
+            <MoreVertIcon className={ `${ classes.toolbarIcon }, ${ classes.exploreDataIcon }` } style={ { fill: classes.toolbarIcon.fill, marginRight: 0 } } />
+            <span>Learn more about Federal Sales</span>
+          </BaseToggle>
+        }
       </BaseToolbar>
       { queryDataToolbarOpen &&
         <BaseToolbar isSecondary={true}>
@@ -244,9 +272,22 @@ const QueryTableToolbar = ({ label, ...props }) => {
           {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
             <Link href={'/downloads/federal-revenue-by-company/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
           }
-          {state[DATA_TYPE] === FEDERAL_SALES &&
-            <Link href={'/downloads/federal-sales/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
-          }
+        </Box>
+      </BaseToolbar>
+      }
+      { salesToolbarOpen &&
+      <BaseToolbar isSecondary={true}>
+        <Box width={'25%'} mr={'2rem'} py={'1rem'}>
+          The Federal Sales data set is limited to sales for Oil, Gas, and NGLs on federal onshore and federal offshore land.
+        </Box>
+        <Box mr={'2rem'}>
+          <Link href={'/downloads/federal-sales/'} linkType='default' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
+        </Box>
+        <Box mr={'2rem'}>
+          <Link href={'/downloads/federal-sales/#About-the-data'} linkType='default' data-dataType={state[DATA_TYPE]}>About the data</Link>
+        </Box>
+        <Box>
+          <Link href={'/downloads/federal-sales/#Data-dictionary'} linkType='default' data-dataType={state[DATA_TYPE]}>Data dictionary</Link>
         </Box>
       </BaseToolbar>
       }
