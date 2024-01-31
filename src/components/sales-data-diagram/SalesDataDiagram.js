@@ -148,7 +148,7 @@ const SalesDataDiagram = () => {
                 depend on the location of the oil or gas lease. The location of the lease also determines the applicable statutory requirements.
               </Box>
               <Box my={'1rem'}>To determine the royalty due, reporters use the following steps:</Box>
-              <Box fontWeight={'bold'}>A. Calculate federal royalty value with adjustments for royalty relief, quality gravity bank, and/or gravity bank</Box>
+              <Box fontWeight={'bold'}>A. Calculate federal royalty value with adjustments for royalty relief, quality bank, and/or gravity bank</Box>
               <Box>
                 Revenues may be modified by various royalty relief programs, as well as quality bank and gravity bank adjustments. These modifications are made prior to
                 any allowances taking place and are included in the 2014 reporting. This calculation results in the Royalty Value Prior to Allowances (RVPA).
