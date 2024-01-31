@@ -211,7 +211,7 @@ const SalesDataDiagram = () => {
                   <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-D'>30 CFR Part 1206 (Subpart D for federal gas)</Link></li>
                   <li><Link href='https://www.onrr.gov/references/valuation?tabs=valuation-regulations'>Valuation Regulations</Link></li>
                   <li><Link href='https://onrr.gov/references/valuation'>How Valuation Works</Link></li>
-                  <li><Link href='https://www.onrr.gov/reporting/revenue?tabs=forms'>Form ONRR 2014</Link></li>
+                  <li><Link href='https://www.onrr.gov/reporting/revenue?tabs=forms'>Form ONRR-2014</Link></li>
                   <li><Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook'>Minerals Revenue Reporter Handbook</Link></li>
                   <li><Link href='https://onrr.gov/document/RRM-Chapter.4.pdf'>Handbook discussion on quality bank adjustments, section 4.11 (PDF)</Link></li>
                   <li><Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references'>ONRR revenue reporting references</Link></li>
