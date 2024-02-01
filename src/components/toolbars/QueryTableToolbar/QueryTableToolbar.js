@@ -130,6 +130,9 @@ const QueryTableToolbar = ({ label, ...props }) => {
     setDownloadToolbarOpen(false)
     setDataFilterToolbarOpen(false)
     setQueryDataToolbarOpen(!queryDataToolbarOpen)
+    if (salesToolbarOpen) {
+      setSalesToolbarOpen(false)
+    }
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -272,16 +275,19 @@ const QueryTableToolbar = ({ label, ...props }) => {
           {state[DATA_TYPE] === REVENUE_BY_COMPANY &&
             <Link href={'/downloads/federal-revenue-by-company/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
           }
+          {state[DATA_TYPE] === FEDERAL_SALES &&
+            <Link href={'/downloads/federal-sales/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
+          }
         </Box>
       </BaseToolbar>
       }
       { salesToolbarOpen &&
       <BaseToolbar isSecondary={true}>
         <Box width={'25%'} mr={'2rem'} py={'1rem'}>
-          The Federal Sales data set is limited to sales for Oil, Gas, and NGLs on federal onshore and federal offshore land.
+          The federal sales data set is limited to sales for Oil, Gas, and NGLs on federal lands (onshore) and federal waters (offshore).
         </Box>
         <Box mr={'2rem'}>
-          <Link href={'/downloads/federal-sales/'} linkType='default' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
+          <Link href={'/downloads/federal-sales/'} linkType='DownloadData' data-dataType={state[DATA_TYPE]}>Source file and documentation</Link>
         </Box>
         <Box mr={'2rem'}>
           <Link href={'/downloads/federal-sales/#About-the-data'} linkType='default' data-dataType={state[DATA_TYPE]}>About the data</Link>
