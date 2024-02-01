@@ -283,7 +283,7 @@ const QueryTableToolbar = ({ label, ...props }) => {
       }
       { salesToolbarOpen &&
       <BaseToolbar isSecondary={true}>
-        <Box width={'25%'} mr={'2rem'} py={'1rem'}>
+        <Box width={'33%'} mr={'2rem'} py={'1rem'}>
           The federal sales data set is limited to sales for Oil, Gas, and NGLs on federal lands (onshore) and federal waters (offshore).
         </Box>
         <Box mr={'2rem'}>
