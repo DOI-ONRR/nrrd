@@ -36,20 +36,20 @@ The data contains reported volumes for royalty and non-royalty bearing transacti
 Download federal sales data (as of November 6, 2023):
 
 <DownloadDataFile linkType="DownloadCsv"  dataSet="federal_sales.csv">
-  Calendar year sales data
+  Calendar year federal sales data
 </DownloadDataFile>
 
 <DownloadDataFile linkType="DownloadXls"  dataSet="federal_sales.xlsx">
-  Calendar year sales data, includes data dictionary and notes
+  Calendar year federal sales data, includes data dictionary and notes
 </DownloadDataFile>  
 
 <Link href='/query-data/?dataType=Federal%20Sales' linkType='FilterTable'>Filter and query data to customize the dataset</Link>
 
 ## Scope
 
-ONRR collects the data from the Sales and Royalty Remittance Report, Form ONRR-2014, which contains information on royalties due based on sales or use of the natural resource production. This dataset is pulled from Form ONRR-2014.  ONRR collects revenues on over 60 different products, but this dataset only includes data for oil, gas, and NGLs. ONRR aggregates the data to develop this sales dataset, which is publicly available.
+ONRR collects the data from the Sales and Royalty Remittance Report, Form ONRR-2014, which contains information on royalties due based on sales or use of the natural resource production. This dataset is pulled from Form ONRR-2014.  ONRR collects revenues on over 60 different products, but this dataset only includes data for oil, gas, and NGLs. ONRR aggregates the data to develop this federal sales dataset, which is publicly available.
 <br />
-The dataset includes federal sales data for U.S. federal onshore lands and offshore areas for oil, gas, and NGLs. It does not include Native American land, privately-owned lands or U.S. state lands. The data set includes all ONRR Form-2014 federal reported royalty transaction codes, royalty relief codes, and transaction code (TC) 13 Quality Bank and Gravity Bank Adjustments.
+The dataset includes federal sales data for U.S. federal onshore lands and offshore areas for oil, gas, and NGLs. It does not include Native American land, privately-owned lands or U.S. state lands. The dataset includes all ONRR Form-2014 federal reported royalty transaction codes, royalty relief codes, and transaction code (TC) 13 Quality Bank and Gravity Bank Adjustments.
 <br />
 
 ## Data publication
@@ -71,7 +71,7 @@ Although they appear similar, there are key differences: 
 <b>Accounting Year</b> data represent all transactions that ONRR accepted into our financial system during a given fiscal or calendar year. This dataset contains transactions for sales that took place in the current federal fiscal or calendar year, as well as adjusted or corrected transactions for sales that took place in previous federal fiscal or calendar years. Because revenues are generally disbursed in the same year they were reported and accepted into ONRR’s financial system, accounting year data are most useful when analyzing dollars ONRR collected and disbursed in a given federal fiscal or calendar year. Because they include adjusted or corrected transactions for previous sales periods, accounting year data should not be used for trending purposes or for analyzing sales volumes.
 <br /> 
 <br /> 
-<b>Sales Year</b> data represent sales transactions that took place in a given federal fiscal or calendar year and do not include adjusted or corrected transactions for sales that took place in previous years. This data set provides a “snap shot” of reported sales of mineral commodities, and is most useful when trending sales volumes or when making comparisons to production volumes. Because ONRR processes royalty transactions daily, the sales year data constantly changes. For this reason, ONRR publishes sales year datasets with an as-of date showing when the information was current.
+<b>Sales Year</b> data represent sales transactions that took place in a given federal fiscal or calendar year and do not include adjusted or corrected transactions for sales that took place in previous years. This dataset provides a “snap shot” of reported sales of mineral commodities, and is most useful when trending sales volumes or when making comparisons to production volumes. Because ONRR processes royalty transactions daily, the sales year data constantly changes. For this reason, ONRR publishes sales year datasets with an as-of date showing when the information was current.
 
 ### What are transaction codes (TC)? 
 
@@ -84,7 +84,7 @@ Below are the transaction codes included in the dataset.
 
 ### How are Quality Bank and Gravity Bank Adjustments calculated?
 
-Quality Bank and Gravity Bank Adjustments are made prior to any allowances taking place and included in the reporting. These adjustments (TC 13) are used to report the difference in quality (gravity) between oil measured at the BLM or BSEE-approved point of royalty settlement and the oil delivered to the refiner at the delivery point. The dataset rolls up the TC 13 adjustments with the TC 01 (Royalty) reporting for oil. (See [30 CFR 1206.119](https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206)).
+Quality Bank and Gravity Bank Adjustments are made prior to any allowances taking place and included in the reporting. These adjustments (TC 13) are used to report the difference in quality (gravity) between oil measured at the BLM or BSEE-approved point of royalty settlement and the oil delivered to the refiner at the delivery point. The dataset rolls up the TC 13 adjustments with the TC 01 (Royalty) reporting for oil. (See [30 CFR 1206.119](https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206).)
 
 ### What does “not tied to a commodity” mean?
 As a part of the COVID royalty relief program reporters were not required to tie their reporting to a specific product code. Due to this ONRR is unable to allocate the reported information to the various products. In this dataset, “not tied to a commodity” references transactions that are identified as COVID royalty relief.
@@ -142,11 +142,11 @@ Note: Sales year and accounting year are different from calendar year and fiscal
 **Transportation Allowances (TA):** Deductions in determining royalty value for the reasonable, actual costs incurred by the lessee, or a deduction accepted or established by ONRR for moving coal from the mine or lease to a remote point of sale or delivery, or moving oil or gas, gas, or geothermal byproducts to a point of sale or delivery off of the lease, unit area, or communitized area.
 <br />
 
-**Processing Allowances (PA):** A deduction from Royalty Value for the lessee's actual, reasonable costs of processing a gas stream.
+**Processing Allowances (PA):** Deductions from royalty value for the lessee's actual, reasonable costs of processing a gas stream.
 <br />
 
-**Royalty Value Less Allowances (RVLA):** Calculated by subtracting allowances (Transportation, Processing) from Royalty Value.
+**Royalty Value Less Allowances (RVLA):** Calculated by subtracting allowances (transportation, processing) from Royalty Value.
 <br />
 
-**Effective Royalty Rate:** The calculation of the effective royalty rate is recommended by <a href="https://www.doioig.gov/reports/inspection-evaluation/us-department-interior-does-not-analyze-effective-royalty-rates"> The Office of Inspector General (OIG) Report 2021-CR-042 June 2023</a>.
+**Effective Royalty Rate:** Calculation of the effective royalty rate is recommended by <a href="https://www.doioig.gov/reports/inspection-evaluation/us-department-interior-does-not-analyze-effective-royalty-rates"> The Office of Inspector General (OIG) Report 2021-CR-042 June 2023</a>.
 <br />
