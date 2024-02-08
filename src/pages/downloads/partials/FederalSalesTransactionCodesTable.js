@@ -21,7 +21,7 @@ const rows = [
   createData('39', 'Net Profit Share - Unprofitable'),
   createData('40', 'Net Profit Share - Profitable'),
   createData('41', 'Offshore Deep Water Royalty Relief'),
-  createData('44', 'DWRRA - EPA Sec 344 - Shallow Water Deep Gas Roy Relief (SV)'),
+  createData('44', 'DWRRA - EPA Sec 344 - Shallow Water Deep Gas Royalty Relief (SV)'),
   createData('55', 'DWRRA - EPA Sec 345 - Deep Water Royalty Relief (SV)'),
   createData('RR', 'Royalty Relief')
 ]

@@ -144,8 +144,8 @@ const SalesDataDiagram = () => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
-                Royalty revenues are based on the amount and value of production removed or sold from the lease.  Federal royalty rates are lease-specific and generally
-                depend on the location of the oil or gas lease. The location of the lease also determines the applicable statutory requirements.
+                Royalty revenues are based on the amount and value of production removed or sold from the lease.  Federal <GlossaryTerm>royalty rate</GlossaryTerm> is lease-specific and generally
+                depends on the location of the oil or gas lease. The location of the lease also determines the applicable statutory requirements.
               </Box>
               <Box my={'1rem'}>To determine the royalty due, reporters use the following steps:</Box>
               <Box fontWeight={'bold'}>A. Calculate federal royalty value with adjustments for royalty relief, quality bank, and/or gravity bank</Box>
