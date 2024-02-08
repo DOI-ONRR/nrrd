@@ -1,0 +1,86 @@
+databaseChangeLog:
+  - changeSet:
+      id: sales
+      author: Jeff Schwartz
+      changes:
+      - createTable:
+          tableName: sales
+          schemaName: public
+          columns:
+          - column: 
+              name: id
+              type: INTEGER
+              autoIncrement: true
+              constraints:
+                  primaryKey: true
+                  primaryKeyName: sales_pk
+          - column:
+              name: calendar_year 
+              type: NUMBER
+              constraints:
+                  nullable: false
+          - column:
+              name: land_class 
+              type: VARCHAR(30)
+              constraints:
+                  nullable: false
+          - column:
+              name: land_category 
+              type: VARCHAR(30)
+              constraints:
+                  nullable: false
+          - column:
+              name: state_offshore_region 
+              type: VARCHAR(50)
+              constraints:
+                  nullable: false
+          - column:
+              name: revenue_type
+              type: VARCHAR(20)
+              constraints:
+                  nullable: false
+          - column:
+              name: commodity 
+              type: VARCHAR(30)
+              constraints:
+                  nullable: false
+          - column:
+              name: sales_volume 
+              type: NUMBER
+              constraints:
+                  nullable: false
+          - column:
+              name: gas_volume 
+              type: NUMBER
+          - column:
+              name: sales_value 
+              type: NUMBER
+              constraints:
+                  nullable: false
+          - column:
+              name: royalty_value_prior_to_allowance 
+              type: NUMBER
+              constraints:
+                  nullable: false
+          - column:
+              name: transportation_allowance 
+              type: NUMBER
+          - column:
+              name: processing_allowance 
+              type: NUMBER
+          - column:
+              name: royalty_value_less_allowance 
+              type: NUMBER
+              constraints:
+                  nullable: false
+          - column:
+              name: effective_royalty_rate 
+              type: NUMBER
+              constraints:
+                  nullable: false
+          - column:
+              name: creation_date
+              type: DATETIME
+              defaultValueComputed: NOW()
+              constraints:
+                  nullable: false

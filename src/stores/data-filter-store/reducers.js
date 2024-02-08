@@ -4,18 +4,16 @@
  */
 
 import {
-  // not used  G1, G2, G3,
   ALL_YEARS,
   REVENUE,
   REVENUE_TYPE,
   PRODUCTION,
-  // COUNTIES,
+  FEDERAL_SALES,
   DISBURSEMENT,
   RECIPIENT,
   GROUP_BY,
   GROUP_BY_STICKY,
   BREAKOUT_BY,
-  // ADDITIONAL_COLUMNS,
   MONTHLY,
   PERIOD,
   FISCAL_YEAR,
@@ -28,15 +26,14 @@ import {
   HOME_DATA_FILTER_DEFAULT,
   OFFSHORE_REGIONS,
   YEAR,
-  // YEARLY,
   PRODUCT,
   QUERY_COUNTS,
   MAP_LEVEL,
   STATE,
   REVENUE_BY_COMPANY,
   COMPANY_NAME,
-  // COMMODITY,
-  PERIOD_ALL_YEARS
+  PERIOD_ALL_YEARS,
+  COMMODITY
 } from '../../constants'
 
 const types = Object.freeze({
@@ -74,7 +71,6 @@ const reducer = (state, action) => {
     }
 
     const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
-    //      console.debug("Clear filters", updatedDataTypesCache, " State ", state)
     return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
   }
   default:
@@ -126,6 +122,14 @@ const initialState = {
         [GROUP_BY]: COMPANY_NAME,
         [PERIOD]: 'Calendar Year',
         [CALENDAR_YEAR]: getLastFiveYears(REVENUE_BY_COMPANY, PERIOD_CALENDAR_YEAR),
+      },
+      [FEDERAL_SALES]: {
+        [DATA_TYPE]: FEDERAL_SALES,
+        [PERIOD]: 'Calendar Year',
+        [CALENDAR_YEAR]: getLastFiveYears(FEDERAL_SALES, PERIOD_CALENDAR_YEAR),
+        [GROUP_BY]: COMMODITY,
+        [GROUP_BY_STICKY]: CALENDAR_YEAR,
+        [BREAKOUT_BY]: undefined,
       }
     }
   },

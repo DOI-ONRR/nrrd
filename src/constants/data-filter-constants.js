@@ -25,6 +25,7 @@ export const COUNTIES = 'counties'
 export const PRODUCT = 'product'
 export const COMMODITY = 'commodity'
 export const COMMODITY_ORDER = 'commodityOrder'
+export const COMMODITY_SALES = 'commodity'
 export const COMMODITIES = 'commodities'
 export const REVENUE_TYPE = 'revenueType'
 export const REVENUE_TYPES = 'revenueTypes'
@@ -38,6 +39,7 @@ export const YEAR = 'year'
 export const RECIPIENT = 'recipient'
 export const SOURCE = 'source'
 export const STATE_OFFSHORE_NAME = 'stateOffshoreName'
+export const STATE_OFFSHORE_REGION = 'stateOffshoreRegion'
 export const MAP_LEVEL = 'mapLevel'
 export const LOCAL_RECIPIENT = 'localRecipient'
 export const COMPANY_NAME = 'companyName'
@@ -63,24 +65,7 @@ export const COMMODITY_OPTIONS = 'commodityOptions'
 export const REVENUE_TYPE_OPTIONS = 'revenueTypeOptions'
 export const FISCAL_YEAR_OPTIONS = 'fiscalYearOptions'
 
-// Application State Keys
-export const DATA_SETS_STATE_KEY = 'dataSets'
-export const SOURCE_DATA_STATE_KEY = 'SourceData'
-
-export const FISCAL_YEAR_KEY = 'FiscalYear'
-export const CALENDAR_YEAR_KEY = 'CalendarYear'
-
-// Offshore data keys for redux store
-export const OFFSHORE_REGION_DATA_TYPE = 'offshoreRegion'
-
-// Disbursements data keys for redux store
-export const DISBURSEMENTS_ALL_KEY = 'disbursementsAll'
-
-// Revenues data keys for redux store
-export const REVENUES_ALL_KEY = 'revenuesAll'
-
 // Production Volume data keys for redux store
-export const PRODUCTION_VOLUMES_OIL_KEY = 'productVolumesOil'
 export const PRODUCTION_VOLUMES_GAS_KEY = 'productVolumesGas'
 export const PRODUCTION_VOLUMES_COAL_KEY = 'productVolumesCoal'
 
@@ -96,7 +81,6 @@ export const FEDERAL = 'Federal'
 export const G1 = 'g1'
 export const G2 = 'g2'
 export const G3 = 'g3'
-// export const CALENDAR_YEAR = 'Calendar Year' // use PERIOD_CALENDAR_YEAR
 export const FISCAL_YEAR_LABEL = 'Fiscal Year'
 export const MONTHLY_CAPITALIZED = 'Monthly'
 export const YEARLY = 'Yearly'
@@ -104,15 +88,25 @@ export const REVENUE = 'Revenue'
 export const DISBURSEMENT = 'Disbursements'
 export const DISBURSEMENT_MONTHLY = 'Disbursements Monthly'
 export const PRODUCTION = 'Production'
+export const FEDERAL_SALES = 'Federal Sales'
 export const OIL = 'Oil'
 export const GAS = 'Gas'
 export const COAL = 'Coal'
 export const STATE = 'State'
 export const COUNTY_CAPITALIZED = 'County'
 export const USA = 'USA'
+export const SALES_YEAR = 'salesYear'
+export const SALES_VALUE = 'salesValue'
+export const GAS_VOLUME = 'gasVolume'
+export const SALES_VOLUME = 'salesVolume'
+export const RVPA = 'royaltyValuePriorToAllowance'
+export const RVLA = 'royaltyValueLessAllowance'
+export const TRANSPORTATION_ALLOW = 'transportationAllowance'
+export const PROCESSING_ALLOW = 'processingAllowance'
+export const EFFECTIVE_ROYALTY_RATE = 'effectiveRoyaltyRate'
 export const DATA_TYPES = [REVENUE, PRODUCTION, DISBURSEMENT]
 export const REVENUE_BY_COMPANY = 'Federal revenue by company'
-export const DATA_TYPES_PLUS = [REVENUE, REVENUE_BY_COMPANY, PRODUCTION, DISBURSEMENT]
+export const DATA_TYPES_PLUS = [REVENUE, REVENUE_BY_COMPANY, PRODUCTION, DISBURSEMENT, FEDERAL_SALES]
 
 export const FUND_AGGREGATION = [REVENUE_TYPE, PERIOD, FISCAL_YEAR, CALENDAR_YEAR]
 export const LOCATION_AGGREGATION = [LAND_TYPE, STATE_OFFSHORE_NAME, COUNTY]
@@ -174,6 +168,10 @@ export const DISPLAY_NAMES = {
     default: 'Commodity',
     plural: 'Commodities',
   },
+  [COMMODITY_SALES]: {
+    default: 'Commodity',
+    plural: 'Commodities',
+  },
   [PRODUCT]: {
     default: 'Product',
     plural: 'Products',
@@ -222,6 +220,10 @@ export const DISPLAY_NAMES = {
     default: 'State/Offshore Region',
     plural: 'States/Offshore Regions',
   },
+  [STATE_OFFSHORE_REGION]: {
+    default: 'State/Offshore Region',
+    plural: 'States/Offshore Regions',
+  },
   [PERIOD]: {
     default: 'Period',
     plural: 'Periods',
@@ -237,5 +239,17 @@ export const DISPLAY_NAMES = {
   [LOCAL_RECIPIENT]: {
     default: 'Local recipient',
     plural: 'Local recipients'
+  },
+  [SALES_YEAR]: {
+    default: 'Sales Year',
+    plural: 'Sales Year'
+  },
+  [SALES_VALUE]: {
+    default: 'Sales Value',
+    plural: 'Salues Value'
+  },
+  [SALES_VOLUME]: {
+    default: 'Sales Volume',
+    plural: 'Salues Volume'
   }
 }

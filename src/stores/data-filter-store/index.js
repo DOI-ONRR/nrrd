@@ -25,9 +25,6 @@ function DataFilterProvider ({ children, defaults, urlParams }) {
   const [state, dispatch] = useReducer(reducer, initialStateMerged)
   const actions = useActions(state, dispatch)
 
-  // Log new state
-  // useEffect(() => console.log('DataFilterProvider newState: ', state), [state])
-
   return (
     <DataFilterContext.Provider value={{ state, ...actions }}>
       {children}

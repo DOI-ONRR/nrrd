@@ -11,6 +11,7 @@ set datestyle to SQL, MDY;
 \copy  (select * from download_monthly_disbursements )  to '/tmp/downloads/monthly_disbursements.csv' csv header 
 \copy  (select "Fiscal Year", "Fund Type", "Source", "State", "County", "Disbursement"   from download_fiscal_year_disbursements )  to '/tmp/downloads/fiscal_year_disbursements.csv' csv header 
 \copy  (select "Calendar Year", "Corporate Name" as "Company Name", "Revenue Agency Type" as "Revenue Type", "Commodity", "Revenue"  from download_federal_revenue_by_company order by "Calendar Year" )  to '/tmp/downloads/federal_revenue_by_company.csv' csv header 
+\copy (select "Calendar Year", "Land Class", "Land Category", "State/Offshore Region", "Revenue Type", "Commodity", "Sales Volume", "Gas MMBtu Volume", "Sales Value", "Royalty Value Prior to Allowances (RVPA)", "Transportation Allowances (TA)", "Processing Allowances (PA)", "Royalty Value Less Allowances (RVLA)", "Effective Royalty Rate" from download_federal_sales_v) to '/tmp/downloads/federal_sales.csv' csv header 
 
 EOF
 
@@ -115,4 +116,17 @@ ssconvert --merge-to /tmp/downloads/fiscal_year_disbursements.xlsx /tmp/Fiscal\ 
  cat .ssconvert
  rm .ssconvert
 
-      
+cp  /tmp/downloads/federal_sales.csv /tmp/Federal\ Oil\ Gas\ and\ NGL\ Sales
+cp  ./static/csv/data_dictionary/federal_sales.csv /tmp/Data\ Dictionary
+cp  ./static/csv/data_dictionary/federal_sales_notes.csv /tmp/Notes
+echo "" > .ssconvert
+ssconvert --merge-to /tmp/downloads/federal_sales.xlsx /tmp/Federal\ Oil\ Gas\ and\ NGL\ Sales /tmp/Data\ Dictionary /tmp/Notes && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
+ echo -n "Waiting for ssconvert to finish ..."      
+ while ! grep "Convert" .ssconvert > /dev/null;
+ do
+     echo -n "."
+     sleep 1
+ done
+ 
+ cat .ssconvert
+ rm .ssconvert

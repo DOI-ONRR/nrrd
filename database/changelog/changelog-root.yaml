@@ -1,5 +1,7 @@
 databaseChangeLog:
     - includeAll:
+        path: changelog-tables
+    - includeAll:
         path: changelog-functions
     - includeAll:
         path: changelog-procedures
@@ -15,3 +17,5 @@ databaseChangeLog:
         file: changelog-data/disbursement.yaml
     - include:
         file: changelog-data/revenue.yaml
+    - include:
+        file: changelog-data/sales.yaml
