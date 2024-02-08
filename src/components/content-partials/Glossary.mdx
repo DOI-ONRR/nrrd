@@ -84,6 +84,7 @@ terms:
   definition: "The calendar year runs from January 1 through December 31. The two annual time periods for reporting data are calendar year and fiscal year."
   categories:
     - "Production and Commodities"
+    - "Federal Sales"
 - name: "Civil Penalties"
   definition: "ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws."
   categories:
@@ -142,6 +143,10 @@ terms:
     - 'USEITI'
   categories:
     - "Offices and Regulations"
+- name: "Effective Royalty Rate"
+  definition: "The Office of Inspector General (OIG) created the term and concept of effective royalty rate. The OIG defines the calculation of the effective royalty rate in Report 2021-CR-042 June 2023."
+  categories:
+    - "Federal Sales"
 - name: "Extractive Industry"
   definition: "Oil, gas, and mining industries that extract natural resources."
   categories:
@@ -261,6 +266,7 @@ terms:
     - "Revenue"
     - "Production and Commodities"
     - "Disbursement"
+    - "Federal Sales"
 - name: "Land Class"
   definition: "Distinguishes federal lands and waters from Native American lands within the ONRR datasets."
   tags:
@@ -269,6 +275,7 @@ terms:
     - "Revenue"
     - "Production and Commodities"
     - "Disbursement"
+    - "Federal Sales"
 - name: "Land Type"
   definition: "Combines land class and land category within this website's Query Data tool."
   tags:
@@ -277,6 +284,7 @@ terms:
     - "Revenue"
     - "Production and Commodities"
     - "Disbursement"
+    - "Federal Sales"
 - name: "Lease"
   definition: "Any contract, profit-sharing arrangement, joint venture, or agreement issued or approved by the United States under a mineral leasing law that authorizes exploration for, extraction of, or removal of natural resources for a specified period of time over a given area."
   categories:
@@ -356,6 +364,10 @@ terms:
   definition: "A temporary jurisdictional unit. It is used until production is proven in that location. BLM then creates a permanent unit with allocation schedules that may split that area between federal and other ownership. Payors then resubmit royalties based on the new unit allocations. These royalties are retroactive to the first production."
   categories:
     - "Production and Commodities"
+- name: "MMBtu"
+  definition: "Stands for Million British Thermal Units. One British Thermal Unit (Btu) is the amount of heat required to raise the temperature of one pound of water by one degree Fahrenheit. MMBtu is the globally used energy value measurement."
+  categories:
+    - "Federal Sales"
 - name: "Multi-Stakeholder Group (MSG)"
   definition: "A cross-sector body comprised of members and alternates from government, industry, and civil society organizations. The Secretary of the Interior commissioned it to guide and monitor EITI implementation."
   categories:
@@ -373,10 +385,11 @@ terms:
   - "Native American tribes and individuals"
   categories:
   - ""
-- name: "Natural Gas Liquids (NGL)"
+- name: "Natural Gas Liquids (NGLs)"
   definition: "Natural gas liquids, such as ethane, propane, and butane, are byproducts of wet natural gas. These liquid hydrocarbons are separated from the gas stream close to the well or at a processing plant."
   categories:
     - "Production and Commodities"
+    - "Federal Sales"
 - name: "North American Industry Classification System (NAICS)"
   definition: "The standard used by federal agencies in classifying business establishments for the purpose of collecting, analyzing, and publishing statistical data related to the U.S. economy."
   categories:
@@ -388,6 +401,7 @@ terms:
     - "Not Tied to a Commodity"
   categories:
     - "Revenue"
+    - "Federal Sales"
 - name: "Not Tied to a Lease"
   definition: "This term indicates Federal revenue data that did not include either a location or a commodity."
   tags:
@@ -479,6 +493,10 @@ terms:
     - 'Private'
   categories:
     - "Land and Ownership"
+- name: "Processing Allowances (PA)"
+  definition: "Deductions from royalty value for the lessee's actual, reasonable costs of processing a gas stream."
+  categories: 
+   - "Federal Sales"
 - name: "Production"
   definition: "We use the term “production” as a catch-all term for mining, drilling, energy generation, and other forms of natural resource extraction. There is no distinction between “extraction” and “production” in ONRR or EIA datasets."
   categories:
@@ -523,6 +541,34 @@ terms:
     - 'royalties'
   categories:
     - "Revenue"
+    - "Federal Sales"
+- name: "Royalty Rate"
+  definition: "The rate used to calculate royalty due on Federal or Indian production. This rate is always specified in the lease terms."
+  tags:
+    - 'royalties'
+    - 'royalty'
+  categories:
+    - "Federal Sales"  
+- name: "Royalty Value Less Allowances (RVLA)"
+  definition: "Calculated by subtracting allowances (transportation, processing) from royalty value." 
+  categories: 
+    - "Federal Sales"
+- name: "Royalty Value Prior to Allowances (RVPA)"
+  definition: "Calculated by multiplying sales value by royalty rate."
+  categories:
+    - "Federal Sales"
+- name: "Sales Value"
+  definition: "The value of a commodity when sales volume is multiplied by price."
+  categories: 
+    - "Federal Sales"
+- name: "Sales Volume"
+  definition: "The volume of the mineral/resource sold."
+  categories: 
+    - "Federal Sales"
+- name: "Sales Year"
+  definition: "Sales transactions that took place in a given federal fiscal or calendar year. It does not include adjusted or corrected transactions for sales from previous years. Because ONRR processes royalty transactions daily, the sales year data constantly changes. For this reason, ONRR publishes sales year datasets with an as-of date showing when the information was current."
+  categories:
+    - "Federal Sales"
 - name: "Sequestration"
   definition: "Represents statutory spending limits that are withheld from certain government programs. Some program funds are returned in the following fiscal year."
   categories:
@@ -557,7 +603,11 @@ terms:
 - name: "Tax Expenditures"
   definition: "Revenue losses attributed to provisions of federal tax laws. These tax laws allow a special exclusion, exemption, or deduction from gross income. They also may provide a special credit, a preferential rate of tax, or a deferral of tax liability."
   categories:
-    - "Revenue"
+   - "Revenue"
+- name: "Transportation Allowances (TA)"
+  definition: "Deductions in determining royalty value for the reasonable, actual costs incurred by the lessee, or a deduction accepted or established by ONRR for moving coal from the mine or lease to a remote point of sale or delivery, or moving oil or gas, gas, or geothermal byproducts to a point of sale or delivery off of the lease, unit area, or communitized area."
+  categories:
+    - "Federal Sales"
 - name: "Tickets/Pounds"
   definition: "Some minerals, such as quartz crystal, are sold in small quantities in gift shops and tourist attractions. In some cases, tourists can buy admission tickets to dig for their own minerals. ONRR may collect royalties on the admission tickets, not on the weight of minerals collected. Some minerals are sold by quality rather than by weight. The unit “tickets/pounds” shows quantities measured in both tickets sold and weight sold combined."
   tags:
@@ -567,20 +617,24 @@ terms:
 - name: "Ton"
   definition: "In the U.S., one ton is 2,000 pounds. In some countries this is referred to as a short ton."
   tags:
-  - "(tons)"
+    - "(tons)"
   categories:
     - "Units and Measurements"
 - name: "Tons - Equivalent"
   definition: "Purge liquor is recovered from solution mining of Trona ore. The volume is first measured in liquid units. It is then converted to an equivalent tonnage when recovering royalty-bearing minerals from solution Trona mining."
   tags:
-  - "(tons - equivalent)"
-  - "equivalent tons"
+    - "(tons - equivalent)"
+    - "equivalent tons"
   categories:
     - "Units and Measurements"
 - name: "Trust Land"
   definition: "Land for which the federal government holds title to the land but holds it for the beneficial interests of an Indian tribe or an individual of Indian or Alaska Native ancestry."
-  categories:
-    - "Land and Ownership"
+  categories: 
+    - "Federal Sales"
+- name: "Unit Value"
+  definition: "The per-unit price that you apply to the royalty-bearing volume."
+  categories: 
+    - "Federal Sales"
 - name: "Unorganized Land"
   definition: "In Alaska, over half of land is not contained in any of its 19 organized boroughs. This land (collectively called the Unorganized Borough) is divided into 10 census areas for statistical purposes."
   categories:

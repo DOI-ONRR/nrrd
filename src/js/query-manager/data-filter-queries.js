@@ -2,7 +2,9 @@
 import {
   COMMODITY,
   STATE_OFFSHORE_NAME,
+  STATE_OFFSHORE_REGION,
   COMMODITY_ORDER,
+  COMMODITY_SALES,
   PERIOD,
   CALENDAR_YEAR,
   COMPANY_NAME,
@@ -41,6 +43,17 @@ const DATA_FILTER_QUERIES = {
       },
       distinct_on: ${ DB_COLS[COMMODITY_ORDER] },
       order_by: {${ DB_COLS[COMMODITY_ORDER] }: asc}
+      ) {
+        option: ${ DB_COLS[COMMODITY] }
+      }`),
+  [COMMODITY_SALES]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+        commodity: {_is_null: false, _neq: "Not Tied to a Commodity"}
+      },
+      distinct_on: ${ DB_COLS[COMMODITY] },
+      order_by: {${ DB_COLS[COMMODITY] }: asc}
       ) {
         option: ${ DB_COLS[COMMODITY] }
       }`),
@@ -93,6 +106,16 @@ const DATA_FILTER_QUERIES = {
       order_by: {location_order: asc}
       ) {
         option: ${ DB_COLS[STATE_OFFSHORE_NAME] }
+      }`),
+  [STATE_OFFSHORE_REGION]: (view, whereClause) => (
+    `options:${ view }(
+      where: {
+        ${ whereClause }
+      },
+      distinct_on: state_offshore_region,
+      order_by: {state_offshore_region: asc}
+      ) {
+        option: ${ DB_COLS[STATE_OFFSHORE_REGION] }
       }`),
   [LAND_TYPE]: (view, whereClause) => (
     `options:${ view }(
