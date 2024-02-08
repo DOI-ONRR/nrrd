@@ -75,9 +75,9 @@ const revenueTypeDescriptions = [
   'Companies bid on and lease lands and waters from the federal government.  They pay a bonus when they win a lease.',
   'Leaseholders pay rent until the land or water starts producing resources.',
   // eslint-disable-next-line max-len
-  'The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.',
+  'This category includes revenues that are not included in the royalty, rent, or bonus categories. Other revenues contain minimum royalties, estimated royalties, settlement agreements, and interest.',
   'ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws.',
-  'This includes other fees leaseholders pay such as permit fees and AML fees.'
+  'The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.'
 ]
 
 const RevenueNationalSummary = props => {

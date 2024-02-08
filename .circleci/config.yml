@@ -458,7 +458,6 @@ workflows:
       - nrrd-preview:
           context:
             - nrrd
-            - PREVIEW
             - org-global
           requires:
             - apply-database-changes
