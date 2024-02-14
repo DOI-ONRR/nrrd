@@ -149,7 +149,7 @@ const RevenueSummaryTrends = props => {
             <Typography variant="caption">
               <Box>{dataSet}</Box>
               <Box>
-                {(total === 0) ? utils.formatToDollarInt(total) : utils.formatToSigFig_Dollar(Math.floor(total), 3)}
+                {utils.formatToDollarInt(total)}
               </Box>
             </Typography>
           </Grid>
