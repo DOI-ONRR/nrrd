@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: fix-golden-valley-location
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE LOCATION
+            SET location_name = 'North Dakota, Golden Valley',
+              county = 'Golden Valley'
+            WHERE location_id = 87753;
