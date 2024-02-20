@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: fix-golden-valley-location-mt
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE LOCATION
+            SET location_name = 'Montana, Golden Valley',
+              county = 'Golden Valley'
+            WHERE location_id = 87714;
