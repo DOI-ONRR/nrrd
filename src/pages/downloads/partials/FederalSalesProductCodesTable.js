@@ -66,10 +66,10 @@ const FederalSalesProductCodesTable = () => {
       <Table className={classes.table} >
         <TableHead>
           <TableRow>
-            <HeaderTableCell>Transaction Code</HeaderTableCell>
+            <HeaderTableCell>Product Code</HeaderTableCell>
             <HeaderTableCell>Description</HeaderTableCell>
             <HeaderTableCell>Commodity</HeaderTableCell>
-            <HeaderTableCell>Unit</HeaderTableCell>
+            <HeaderTableCell>Unit of Measure</HeaderTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
