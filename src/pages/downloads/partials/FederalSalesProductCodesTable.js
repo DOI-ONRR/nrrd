@@ -7,8 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 
-function createData (code, description, commodity, unit of measure) {
-  return { code, description, commodity, unit of measure }
+function createData (code, description, commodity, unit) {
+  return { code, description, commodity, unit }
 }
 
 const rows = [
@@ -69,7 +69,7 @@ const FederalSalesProductCodesTable = () => {
             <HeaderTableCell>Transaction Code</HeaderTableCell>
             <HeaderTableCell>Description</HeaderTableCell>
             <HeaderTableCell>Commodity</HeaderTableCell>
-            <HeaderTableCell>Unit of Measure</HeaderTableCell>
+            <HeaderTableCell>Unit</HeaderTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
