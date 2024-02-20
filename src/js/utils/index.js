@@ -226,7 +226,7 @@ const utils = {
     }).replace('-and-', '-')
   },
 
-  formatToDollarInt: value => {
+  formatToDollarIntCompact: value => {
     return new Intl.NumberFormat('en-US',
       {
         style: 'currency',
@@ -237,6 +237,14 @@ const utils = {
       }).format(Math.round(value))
       .replace('M', ' million')
       .replace('B', ' billion')
+  },
+
+  formatToDollarInt: value => {
+    return currencyFormatter.format(value, {
+      symbol: '$',
+      precision: 0,
+      format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
+    })
   },
 
   formatToCommaInt: value => {
@@ -315,7 +323,7 @@ const utils = {
     precision = precision || 0
     return parseFloat(number).toFixed(precision)
   },
-  formatToSigFig_Dollar (value, precision) {
+  formatToSigFig_DollarCompact (value) {
     return new Intl.NumberFormat('en-US',
       {
         style: 'currency',
@@ -326,6 +334,20 @@ const utils = {
       }).format(value)
       .replace('M', ' million')
       .replace('B', ' billion')
+  },
+  formatToSigFig_Dollar (value, precision) {
+    // add 2 to d3 format so as not to lose precision
+    console.debug(value, precision)
+    const num = d3.format(`.${ precision + 2 }s`)(value)
+    console.debug(num)
+    let suffix = num.substring(num.length - 1)
+    if (suffix === 0) {
+      suffix = ''
+    }
+
+    const dollarNum = formatToDollarFloat(num, precision - 1)
+    const r = getMetricLongUnit(dollarNum + suffix)
+    return r
   },
 
   bytesToSize (bytes) {

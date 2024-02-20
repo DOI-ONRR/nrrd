@@ -137,7 +137,7 @@ const RevenueTrends = props => {
 				  <TableRow key={`tableRow${ index }`}>
 				    <TableCell component="th" scope="row">
                       <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
-                        {utils.formatToSigFig_Dollar(trend.current, 3)}
+                        {utils.formatToSigFig_DollarCompact(trend.current)}
 				      </Box>
 				      {/* <Box fontWeight={trend.className === 'strong' ? 'bold' : 'regular'}>
                         {trend.fund}
