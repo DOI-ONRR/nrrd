@@ -40,7 +40,7 @@ Download federal sales data (as of November 6, 2023):
 </DownloadDataFile>
 
 <DownloadDataFile linkType="DownloadXls"  dataSet="federal_sales.xlsx">
-  Calendar year federal sales data, includes data dictionary and notes
+  Calendar year federal sales data, data dictionary and notes
 </DownloadDataFile>  
 
 <Link href='/query-data/?dataType=Federal%20Sales' linkType='FilterTable'>Filter and query data to customize the dataset</Link>
@@ -81,6 +81,15 @@ Below are the transaction codes included in the dataset.
 <br />
 
 <FederalSalesTransactionCodesTable />
+
+### What are production codes? 
+
+Production codes define the product or commodity on Form ONRR-2014. This dataset does not include all production codes reported on all Form ONRR-2014s. This dataset only includes production codes related to the product and byproducts of oil, gas, and NGLs.
+<br />
+Below are the production codes included in the dataset.
+<br />
+
+<FederalSalesProductionCodesTable />
 
 ### How are Quality Bank and Gravity Bank Adjustments calculated?
 
