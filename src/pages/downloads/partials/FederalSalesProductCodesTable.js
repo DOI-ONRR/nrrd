@@ -7,8 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 
-function createData (code, description, commodity, unitofmeasure) {
-  return { code, description, commodity, unitofmeasure }
+function createData (code, description, commodity, unit of measure) {
+  return { code, description, commodity, unit of measure }
 }
 
 const rows = [
@@ -59,7 +59,7 @@ const DataTableCell = withStyles(() => ({
   },
 }))(TableCell)
 
-const FederalSalesProductionCodesTable = () => {
+const FederalSalesProductCodesTable = () => {
   const classes = tableStyles()
   return (
     <TableContainer>
@@ -85,4 +85,4 @@ const FederalSalesProductionCodesTable = () => {
   )
 }
 
-export default FederalSalesProductionCodesTable
+export default FederalSalesProductCodesTable
