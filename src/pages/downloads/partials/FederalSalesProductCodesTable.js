@@ -77,6 +77,8 @@ const FederalSalesProductCodesTable = () => {
             <TableRow key={row.code}>
               <DataTableCell component={'th'} scope='row'>{row.code}</DataTableCell>
               <DataTableCell>{row.description}</DataTableCell>
+              <DataTableCell>{row.commodity}</DataTableCell>
+              <DataTableCell>{row.unit}</DataTableCell>
             </TableRow>
           ))}
         </TableBody>
