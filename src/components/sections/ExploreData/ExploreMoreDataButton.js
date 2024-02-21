@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: 250,
     maxWidth: 305,
     padding: 4,
-    fontSize: theme.typography.h3.fontSize,
+    fontSize: theme.typography.h4.fontSize,
     '&:hover': {
       background: theme.palette.links.hover,
     }
@@ -107,7 +107,7 @@ const ExploreMoreDataButton = props => {
       <Button
         variant="contained"
         color="secondary"
-        size="large"
+        size="small"
         disableRipple
         className={classes.exploreMoreButton}
         classes={{
