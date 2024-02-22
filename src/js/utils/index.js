@@ -226,6 +226,19 @@ const utils = {
     }).replace('-and-', '-')
   },
 
+  formatToDollarIntCompact: value => {
+    return new Intl.NumberFormat('en-US',
+      {
+        style: 'currency',
+        currency: 'USD',
+        currencySign: 'accounting',
+        notation: 'compact',
+        maximumFractionDigits: value > 999 ? 2 : 0,
+      }).format(Math.round(value))
+      .replace('M', ' million')
+      .replace('B', ' billion')
+  },
+
   formatToDollarInt: value => {
     return currencyFormatter.format(value, {
       symbol: '$',
@@ -309,6 +322,18 @@ const utils = {
   round (number, precision) {
     precision = precision || 0
     return parseFloat(number).toFixed(precision)
+  },
+  formatToSigFig_DollarCompact (value) {
+    return new Intl.NumberFormat('en-US',
+      {
+        style: 'currency',
+        currency: 'USD',
+        currencySign: 'accounting',
+        notation: 'compact',
+        maximumFractionDigits: value > 999 ? 2 : 0
+      }).format(value)
+      .replace('M', ' million')
+      .replace('B', ' billion')
   },
   formatToSigFig_Dollar (value, precision) {
     // add 2 to d3 format so as not to lose precision

@@ -188,14 +188,13 @@ const RevenueSummaryTopCommodities = props => {
                               <TableCell align="right">
                                 <Typography style={{ fontSize: '.8rem' }}>
                                   {
-                                    utils.formatToSigFig_Dollar(
+                                    utils.formatToSigFig_DollarCompact(
                                       Math.floor(
                                         // eslint-disable-next-line standard/computed-property-even-spacing
                                         row.data[
                                           row.data.findIndex(x => x[0] === parseInt(year))
                                         ][1]
-                                      ),
-                                      3
+                                      )
                                     )}
                                 </Typography>
                               </TableCell>
