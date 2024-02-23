@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-true-up-YYYY
-      author: <Author>
+      id: revenue-true-up-2024
+      author: Christine Thomas
       changes:
       - sql:
           dbms: 'postgresql'
@@ -9,7 +9,7 @@ databaseChangeLog:
             TRUNCATE TABLE monthly_revenue_elt
       - loadData:
           tableName: monthly_revenue_elt
-          file: '../static/csv/revenue/FILE-NAME.csv'
+          file: '../static/csv/revenue/Jan 2005-Jan 2023 Revenues for NRRD_CSV.csv'
           quotchar: '""'
           columns:
           - column:
