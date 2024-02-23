@@ -216,7 +216,7 @@ const SalesDataDiagram = () => {
                   <li><Link href='https://www.onrr.gov/reporting/revenue?tabs=forms'>Form ONRR-2014 <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
                   <li><Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook'>Minerals Revenue Reporter Handbook <OpenInNewIcon style={{ fontSize: 20 }} /> </Link></li>
                   <li><Link href='https://onrr.gov/document/RRM-Chapter.4.pdf'>Handbook discussion on quality bank adjustments, section 4.11 (PDF) <OpenInNewIcon style={{ fontSize: 20 }} /> </Link></li>
-                  <li><Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references'>ONRR revenue reporting references <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
+                  <li><Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references'>ONRR revenue reporting references <OpenInNewIcon style={{ fontSize: 20 }} /> </Link></li>
                 </ul>
               </Box>
             </ExpansionPanelDetails>
@@ -280,7 +280,7 @@ const SalesDataDiagram = () => {
               <Box mt={'1rem'}>
                 <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
-                  <li><Link href='https://www.doioig.gov/reports/inspection-evaluation/us-department-interior-does-not-analyze-effective-royalty-rates'>OIG Report, Appendix 1</Link></li>
+                  <li><Link href='https://www.doioig.gov/reports/inspection-evaluation/us-department-interior-does-not-analyze-effective-royalty-rates'>OIG Report, Appendix 1 <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
                 </ul>
               </Box>
             </ExpansionPanelDetails>
