@@ -14,6 +14,8 @@ import PieChartIcon from '@material-ui/icons/PieChart'
 
 import GlossaryTerm from '../GlossaryTerm/GlossaryTerm'
 
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'
+
 const reportsStyles = makeStyles(theme => ({
   lavendar: {
     backgroundColor: '#dcd2df'
@@ -206,15 +208,15 @@ const SalesDataDiagram = () => {
               <Box>
                 <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/part-1210/subpart-B'>ONRR Royalty Reports for Oil and Gas: 30 CFR Part 1210 Subpart B</Link></li>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-C'>30 CFR Part 1206 (Subpart C for federal oil)</Link></li>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-D'>30 CFR Part 1206 (Subpart D for federal gas)</Link></li>
-                  <li><Link href='https://www.onrr.gov/references/valuation?tabs=valuation-regulations'>Valuation Regulations</Link></li>
-                  <li><Link href='https://onrr.gov/references/valuation'>How Valuation Works</Link></li>
-                  <li><Link href='https://www.onrr.gov/reporting/revenue?tabs=forms'>Form ONRR-2014</Link></li>
-                  <li><Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook'>Minerals Revenue Reporter Handbook</Link></li>
-                  <li><Link href='https://onrr.gov/document/RRM-Chapter.4.pdf'>Handbook discussion on quality bank adjustments, section 4.11 (PDF)</Link></li>
-                  <li><Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references'>ONRR revenue reporting references</Link></li>
+                  <li><Link href='https://www.ecfr.gov/current/title-30/part-1210/subpart-B'>ONRR Royalty Reports for Oil and Gas: 30 CFR Part 1210 Subpart B <OpenInNewIcon style={{ fontSize: 20 }} /> </Link></li>
+                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-C'>30 CFR Part 1206 (Subpart C for federal oil) <OpenInNewIcon style={{ fontSize: 20 }} /> </Link></li>
+                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-D'>30 CFR Part 1206 (Subpart D for federal gas) <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
+                  <li><Link href='https://www.onrr.gov/references/valuation?tabs=valuation-regulations'>Valuation Regulations <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
+                  <li><Link href='https://onrr.gov/references/valuation'>How Valuation Works <OpenInNewIcon style={{ fontSize: 20 }} /> </Link></li>
+                  <li><Link href='https://www.onrr.gov/reporting/revenue?tabs=forms'>Form ONRR-2014 <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
+                  <li><Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook'>Minerals Revenue Reporter Handbook <OpenInNewIcon style={{ fontSize: 20 }} /> </Link></li>
+                  <li><Link href='https://onrr.gov/document/RRM-Chapter.4.pdf'>Handbook discussion on quality bank adjustments, section 4.11 (PDF) <OpenInNewIcon style={{ fontSize: 20 }} /> </Link></li>
+                  <li><Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references'>ONRR revenue reporting references <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
                 </ul>
               </Box>
             </ExpansionPanelDetails>
