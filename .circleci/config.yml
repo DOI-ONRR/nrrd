@@ -375,7 +375,7 @@ jobs:
             pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
       - run:
           name: Call liquibase to update database
-          no_output_timeout: 30m
+          no_output_timeout: 60m
           command: bash ~/project/.circleci/scripts/liquibase.sh
       - node/install
       - generate-downloads
