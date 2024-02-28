@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, Fragment } from 'react'
 import Skeleton from '@material-ui/lab/Skeleton'
 import { Box } from '@material-ui/core'
 import makeStyles from '@material-ui/styles/makeStyles'
+import SalesTable from './plugins/SalesTable'
 import SalesGroupRow from '../Custom/CustomTableSummaryRowGroupRow'
 import SalesTotalRow from '../Custom/CustomTableSummaryRowTotalRow'
 import SalesHeaderSortLabel from './plugins/SalesHeaderSortLabel'
@@ -53,7 +54,8 @@ const SalesTableBase = ({ salesTableData }) => {
 
   const noteStyles = makeStyles(() => ({
     root: {
-      marginLeft: '0.5em'
+      marginLeft: '0.5em',
+      marginTop: '0.5em'
     }
   }))
 
@@ -140,6 +142,7 @@ const SalesTableBase = ({ salesTableData }) => {
             <IntegratedSummary />
 
             <Table
+              tableComponent={SalesTable}
               cellComponent={SalesTableCell}
               columnExtensions={tableConfig.columnExtensions}
             />
