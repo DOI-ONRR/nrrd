@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: revenue-transform-pointe-coupee
+      author: Jeff Schwartz
+      changes:
+      - sqlFile:
+          path: src/functions/transform_county_code_desc.sql
+          splitStatements: false
