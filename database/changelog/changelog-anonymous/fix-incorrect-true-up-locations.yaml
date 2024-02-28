@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: fix-incorrect-true-up-locations
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE LOCATION
+            SET location_name = 'Louisiana, East Baton Rouge',
+              county = 'East Baton Rouge'
+            WHERE location_id = 87580;
+
+            UPDATE LOCATION
+            SET location_name = 'Louisiana, St. Charles',
+              county = 'St. Charles'
+            WHERE location_id = 87600;
+
+            UPDATE LOCATION
+            SET location_name = 'Alabama, St. Clair',
+              county = 'St. Clair'
+            WHERE location_id = 87357;
