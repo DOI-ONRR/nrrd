@@ -31,7 +31,7 @@ BEGIN
     END IF;
 
     IF NEW.county != '' THEN
-        NEW.fips_code := LPAD(fips_code, 5, '0');
+        NEW.fips_code := LPAD(NEW.fips_code, 5, '0');
     END IF;
 
     RETURN NEW;
