@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: fix-fy23-prod-locations
+      id: fix-fy23-prod-reference-data
       author: Jeff Schwartz
       changes:
       - sql:
@@ -40,3 +40,7 @@ databaseChangeLog:
             SET location_name = 'Utah, Sanpete',
               county = 'Sanpete'
             WHERE location_id = 88012;
+
+            UPDATE commodity
+            SET product = 'Geothermal - direct use, millions of gallons (mgal)'
+            where commodity_id = 15428;
