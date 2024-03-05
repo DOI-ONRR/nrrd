@@ -11,20 +11,22 @@ BEGIN
         NEW.offshore_region := 'Gulf of Mexico';
     END IF;
 
-    DECLARE
-        v_fips_code county_lookup.fips_code%TYPE;
-    BEGIN
-        SELECT fips_code
-        INTO v_fips_code
-        FROM county_lookup
-        WHERE county = NEW.county
-            AND state = NEW.state;
+    IF NEW.fips_code IS NULL THEN
+        DECLARE
+            v_fips_code county_lookup.fips_code%TYPE;
+        BEGIN
+            SELECT fips_code
+            INTO v_fips_code
+            FROM county_lookup
+            WHERE county = NEW.county
+                AND state = NEW.state;
 
-        NEW.fips_code := v_fips_code;
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            RAISE NOTICE 'No record in county_lookup. No problem.';
-    END;
+            NEW.fips_code := v_fips_code;
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+                RAISE NOTICE 'No record in county_lookup. No problem.';
+        END;
+    END IF;
 
     IF NEW.county = 'Santa Barbar' THEN
         NEW.county := 'Santa Barbara';

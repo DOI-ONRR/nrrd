@@ -35,3 +35,8 @@ databaseChangeLog:
             SET location_name = 'Louisiana, St. Mary',
               county = 'St. Mary'
             WHERE location_id = 87602;
+
+            UPDATE LOCATION
+            SET location_name = 'Utah, Sanpete',
+              county = 'Sanpete'
+            WHERE location_id = 88012;
