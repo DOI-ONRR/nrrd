@@ -153,13 +153,13 @@ const SalesDataDiagram = () => {
               <Box fontWeight={'bold'}>A. Calculate federal royalty value with adjustments for royalty relief and/or quality and gravity bank adjustments</Box>
               <Box>
                 Revenues may be modified by various royalty relief programs, as well as <GlossaryTerm>quality and gravity bank adjustments</GlossaryTerm>. These modifications are made prior to
-                any allowances taking place and are included in the 2014 reporting. This calculation results in the Royalty Value Prior to Allowances (RVPA).
+                any allowances taking place and are included in the 2014 reporting. This calculation results in the <GlossaryTerm>Royalty Value Prior to Allowances (RVPA)</GlossaryTerm>.
               </Box>
               <Box fontWeight={'bold'} mt={'1rem'}>B. Deduct regulatory allowances</Box>
               <Box>
               Allowances are deductions lessees can claim against royalty value for the transportation and processing costs of production; application of
               these allowances decreases the royalty payment owed. Federal regulations allow for “reasonable, actual costs” to be deducted. This dataset
-              includes Transportation Allowances and Processing Allowances. This calculation results in the Royalty Value Less Allowances (RVLA).
+              includes Transportation Allowances and Processing Allowances. This calculation results in the <GlossaryTerm>Royalty Value Less Allowances (RVLA)</GlossaryTerm>.
               </Box>
               <Box mt={'1rem'}>
                 These steps result in the equation for royalty due:
@@ -173,7 +173,7 @@ const SalesDataDiagram = () => {
                         <table>
                           <tbody>
                             <tr>
-                              <td style={{ paddingBottom: '0.25rem', fontSize: '1rem', textAlign: 'center' }}><GlossaryTerm>Royalty Value Prior to Allowances (RVPA)</GlossaryTerm></td>
+                              <td style={{ paddingBottom: '0.25rem', fontSize: '1rem', textAlign: 'center' }}>Royalty Value Prior to Allowances (RVPA)</td>
                             </tr>
                             <tr>
                               <td>
@@ -196,7 +196,7 @@ const SalesDataDiagram = () => {
                               </td>
                             </tr>
                             <tr>
-                              <td colSpan={2} style={{ paddingTop: '0.25rem', fontSize: '1rem', textAlign: 'center' }}><GlossaryTerm>Royalty Value Less Allowances (RVLA)</GlossaryTerm></td>
+                              <td colSpan={2} style={{ paddingTop: '0.25rem', fontSize: '1rem', textAlign: 'center' }}>Royalty Value Less Allowances (RVLA)</td>
                             </tr>
                           </tbody>
                         </table>
