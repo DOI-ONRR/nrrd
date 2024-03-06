@@ -14,6 +14,7 @@ import BarChartIcon from '@material-ui/icons/BarChart'
 import PieChartIcon from '@material-ui/icons/PieChart'
 
 import GlossaryTerm from '../GlossaryTerm/GlossaryTerm'
+import SalesProcessDiagramFormulaImg from '../images/SalesProcessDiagramFormulaImg'
 
 const reportsStyles = makeStyles(theme => ({
   lavendar: {
@@ -175,10 +176,7 @@ const SalesDataDiagram = () => {
                 These steps result in the equation for royalty due:
               </Box>
               <Box my={'1rem'} py={'0.5rem'} className={miscClasses.formulaContainer} style={{ backgroundColor: '#ffffff', border: '2px solid #000000' }}>
-                <img src='/images/process-diagram-step1-equation.png' style={{ width: '100%' }} alt='Royalty due equals open parenthesis sales volume multiplied by
-                unit value multiplied by royalty rate close parenthesis subtract allowances. The Royalty Value Prior to allowances (RVPA) includes sales volume
-                multiplied by unit value multiplied by royalty rate. Royalty Value Less Allowances (RVLA) includes open parenthesis sales volume multiplied by unit
-                value multiplied by royalty rate close parenthesis subtract allowances.'/>
+                <SalesProcessDiagramFormulaImg/>
               </Box>
               <Box>
                 <Typography>References:</Typography>
