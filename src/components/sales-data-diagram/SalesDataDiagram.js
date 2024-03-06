@@ -159,7 +159,7 @@ const SalesDataDiagram = () => {
               <Box>
               Allowances are deductions lessees can claim against royalty value for the transportation and processing costs of production; application of
               these allowances decreases the royalty payment owed. Federal regulations allow for “reasonable, actual costs” to be deducted. This dataset
-              includes Transportation Allowances and Processing Allowances. This calculation results in the Royalty Value Less Allowances (RLVA).
+              includes Transportation Allowances and Processing Allowances. This calculation results in the Royalty Value Less Allowances (RVLA).
               </Box>
               <Box mt={'1rem'}>
                 These steps result in the equation for royalty due:
