@@ -133,10 +133,57 @@ const ExpansionPanelDetails = withStyles({
   },
 })(MuiExpansionPanelDetails)
 
+const formulaStyles = makeStyles(() => ({
+  leftToRight: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: '0.5rem'
+  },
+  topToBottom: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: 'max-content'
+  },
+  firstRow: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginBottom: '0.5rem'
+  },
+  lastRow: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: '0.5rem'
+  },
+  rvpa: {
+    borderBottom: '2px solid black',
+    paddingBottom: '0.25rem',
+    textAlign: 'center',
+    fontSize: '1rem'
+  },
+  rvpaBorder: {
+    height: '0.5rem',
+    borderLeft: '2px solid black',
+    borderRight: '2px solid black'
+  },
+  rvla: {
+    borderTop: '2px solid black',
+    paddingTop: '0.25rem',
+    textAlign: 'center',
+    fontSize: '1rem'
+  },
+  rvlaBorder: {
+    height: '0.5rem',
+    borderLeft: '2px solid black',
+    borderRight: '2px solid black'
+  }
+}))
+
 const SalesDataDiagram = () => {
   const theme = useTheme()
   const miscClasses = reportsStyles(theme)
   const linkClasses = linkStyles()
+  const formulaClasses = formulaStyles()
   return (
     <>
       <Box mt={'1.5rem'} position={'relative'}>
@@ -172,45 +219,27 @@ const SalesDataDiagram = () => {
                 These steps result in the equation for royalty due:
               </Box>
               <Box my={'1rem'} py={'0.5rem'} className={miscClasses.formulaContainer} style={{ backgroundColor: '#ffffff', border: '2px solid #000000' }}>
-                <table aria-label='formula diagram table'>
-                  <tbody>
-                    <tr>
-                      <td>Royalty Due = </td>
-                      <td>
-                        <table aria-label='inner formula diagram table'>
-                          <tbody>
-                            <tr>
-                              <td style={{ paddingBottom: '0.25rem', fontSize: '1rem', textAlign: 'center' }}><GlossaryTerm>Royalty Value Prior to Allowances (RVPA)</GlossaryTerm></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <Box height={'0.5rem'}
-                                  borderTop={'2px solid #000'}
-                                  borderLeft={'2px solid #000'}
-                                  borderRight={'2px solid #000'}></Box>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style={{ padding: '0.5rem 0' }}>[Sales Volume * Unit Value * Royalty Rate]</td>
-                              <td>- Allowances</td>
-                            </tr>
-                            <tr>
-                              <td colSpan={2}>
-                                <Box height={'0.5rem'}
-                                  borderBottom={'2px solid #000'}
-                                  borderLeft={'2px solid #000'}
-                                  borderRight={'2px solid #000'}></Box>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td colSpan={2} style={{ paddingTop: '0.25rem', fontSize: '1rem', textAlign: 'center' }}><GlossaryTerm>Royalty Value Less Allowances (RVLA)</GlossaryTerm></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div className={formulaClasses.leftToRight}>
+                  <span>Royalty Due</span>
+                  <span>=</span>
+                  <span className={formulaClasses.topToBottom}>
+                    <span className={formulaClasses.leftToRight}>
+                      <span className={formulaClasses.topToBottom}>
+                        <span className={formulaClasses.firstRow}>
+                          <span className={formulaClasses.rvpa}><GlossaryTerm>Royalty Value Prior to Allowances (RVPA)</GlossaryTerm></span>
+                          <span className={formulaClasses.rvpaBorder}></span>
+                        </span>
+                        <span>[Sales Volume * Unit Value * Royalty Rate]</span>
+                      </span>
+                      <span style={{ alignSelf: 'flex-end' }}>-</span>
+                      <span style={{ alignSelf: 'flex-end' }}>Allowances</span>
+                    </span>
+                    <span className={formulaClasses.lastRow}>
+                      <span className={formulaClasses.rvlaBorder}></span>
+                      <span className={formulaClasses.rvla}><GlossaryTerm>Royalty Value Less Allowances (RVLA)</GlossaryTerm></span>
+                    </span>
+                  </span>
+                </div>
               </Box>
               <Box>
                 <Typography>References:</Typography>
