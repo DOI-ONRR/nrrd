@@ -30,7 +30,7 @@ This dataset contains federal sales data from the Form ONRR-2014 for:
  - <GlossaryTerm>natural gas liquids (NGLs)</GlossaryTerm>  
 
 
-The data contains reported volumes for royalty and non-royalty bearing transactions by calendar year. This federal sales data represents sales transactions that took place within a given calendar year. The dataset is for calendar years 2013-2022.  
+This dataset contains reported volumes for royalty and non-royalty bearing transactions by calendar year. Federal sales data represents sales transactions that took place within a given calendar year. This dataset is for calendar years 2013-2022.  
  <br />  
 
 Download federal sales data (as of November 6, 2023):
@@ -51,8 +51,8 @@ ONRR collects the data from the Sales and Royalty Remittance Report, Form ONRR-2
 <br />
 ONRR collects revenues on over 60 different products, but this dataset only includes data for:
 
-- oil, gas, and NGLs on U.S. federal onshore lands, and 
-- oil, gas, and NGLs on U.S. federal offshore areas.
+- oil, gas, and NGLs on U.S. federal onshore lands
+- oil, gas, and NGLs on U.S. federal offshore areas
 
 It does not include Native American land, privately-owned lands, or U.S. state lands. The dataset includes all ONRR Form-2014 federal reported royalty transaction codes, royalty relief codes, and transaction code (TC) 13 Quality Bank and Gravity Bank Adjustments.
 <br />
@@ -67,7 +67,7 @@ The federal sales dataset is updated annually.
 
 ### What are the steps to develop federal sales data?
 
-Review the step-by-step diagram to learn about how the federal sales data is developed. Click on the arrows to expand the steps and learn more about the process.
+Review the step-by-step diagram to learn about how the federal sales data is developed. Use the arrows to expand the steps and learn more about the process.
 
 <SalesDataDiagram />
 
@@ -75,7 +75,7 @@ Review the step-by-step diagram to learn about how the federal sales data is dev
 
 The federal sales dataset is sales year data reported on a calendar year basis. Although sales year and accounting year appear similar, there are key differences:  
 <br />
-<b>Sales year</b> data includes sales transactions records for a specific year* without adjustments for previous years. This data provides a snapshot of reported sales. It is useful for analyzing sales trends and comparing them to production volumes. The data changes, so ONRR publishes them with an as-of date. The federal fales dataset is sales year data reported on a calendar year basis.
+<b>Sales year</b> data includes sales transactions records for a specific year* without adjustments for previous years. This data provides a snapshot of reported sales. It is useful for analyzing sales trends and comparing them to production volumes. The data changes, so ONRR publishes them with an as-of date. The federal sales dataset is sales year data reported on a calendar year basis.
 <br /> 
 <br /> 
 <b>Accounting year</b> data includes sales transaction records accepted by ONRR within a specific year* with adjustments for previous years. The data shows the money ONRR collected and disbursed from the current year and any adjustments or corrections for previous years. It does not provide accurate trend analyses of sales values or volumes over time.
@@ -86,25 +86,23 @@ The federal sales dataset is sales year data reported on a calendar year basis. 
 
 ### What are transaction codes (TC)? 
 
-Transaction codes are used transactions on Form ONRR-2014 and organized by function. This dataset does not include all the transaction codes. Other datasets on the site that come from Form ONRR-2014 include all the transaction codes. There are several reasons why some transaction codes are excluded for this data set. The reasons include not specific to royalty collection, being used to only provide estimates, not relating to oil and gas products, not having royalties reported, or relating to minimum payments. 
-<br />
-Below are the transaction codes included in the dataset.
-<br />
+Transaction codes are used transactions on Form ONRR-2014 and organized by function. This dataset does not include all the transaction codes. Other datasets on the site that come from Form ONRR-2014 include all the transaction codes. There are several reasons why some transaction codes are excluded for this dataset. The reasons include not specific to royalty collection, being used to only provide estimates, not relating to oil and gas products, not having royalties reported, or relating to minimum payments. 
+
+#### Federal sales dataset transaction codes
 
 <FederalSalesTransactionCodesTable />
 
 ### What are product codes? 
 
 Product codes define the product or commodity on Form ONRR-2014. This dataset does not include all product codes reported on all Form ONRR-2014s. This dataset only includes product codes related to the product and byproducts of oil, gas, and NGLs.
-<br />
-Below are the product codes included in the dataset.
-<br />
+
+#### Federal sales dataset product codes
 
 <FederalSalesProductCodesTable />
 
 ### How are quality and gravity bank adjustments calculated?
 
-Quality and gravity bank adjustments are made prior to any allowances taking place and included in the reporting. These adjustments (TC 13) are used to report the difference in quality (gravity) between oil measured at the BLM or BSEE-approved point of royalty settlement and the oil delivered to the refiner at the delivery point. The dataset rolls up the TC 13 adjustments with the TC 01 (Royalty) reporting for oil. (See [30 CFR 1206.119 <OpenInNewIcon style={{ fontSize: 20 }} />](https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206).)
+Quality and gravity bank adjustments are made prior to any allowances taking place and are included in the reporting. These adjustments (TC 13) are used to report the difference in quality (gravity) between oil measured at the BLM or BSEE-approved point of royalty settlement and the oil delivered to the refiner at the delivery point. The dataset rolls up the TC 13 adjustments with the TC 01 (Royalty) reporting for oil. (See [30 CFR 1206.119 <OpenInNewIcon style={{ fontSize: 20 }} />](https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206).)
 
 ### What does “not tied to a commodity” mean?
 As a part of the COVID royalty relief program reporters were not required to tie their reporting to a specific product code. Due to this ONRR is unable to allocate the reported information to the various products. In this dataset, “not tied to a commodity” references transactions that are identified as COVID royalty relief.
@@ -118,10 +116,7 @@ Under [30 CFR 203.80 <OpenInNewIcon style={{ fontSize: 20 }} />](https://www.ecf
 
 ### Fields and definitions
 
-**Calendar Year:** The year in which the data is reported for the period between January 1 and December 31 for a given year. This dataset is sales year data reported on a calendar year basis. 
-
-Note: Sales year and accounting year are different from calendar year and fiscal year. Refer to above definitions of sales year and accounting year. 
-
+**Calendar Year:** The period between January 1 and December 31 for a given year. This dataset is sales year data reported on a calendar year basis. 
 <br />
 
 **Land Class:** This field distinguishes federal lands and waters from Native American lands. All data in this dataset is federal.
@@ -147,7 +142,7 @@ Note: Sales year and accounting year are different from calendar year and fiscal
 **Commodity:** The Department of the Interior collects revenues on over 60 different products, but there are only oil, gas, NGLs, and "not tied to a commodity" in this dataset. “Not tied to a commodity” references COVID royalty relief data. 
 <br />
 
-**Sales Volume:** The volume of the product sold or removed from the lease or agreement and is attributable to the lease or to the lease-agreement combination, sales type code, product code, and sales month reported. The unit of measurement is located under the commodity column. The sales volume (or quantity, if geothermal) reported corresponds to the portion of the total production from the lease or from the lease-agreement combination. This is an industry reported value on the Form ONRR-2014. 
+**Sales Volume:** The volume of the product sold or removed from the lease or agreement and is attributable to the lease or to the lease-agreement combination, sales type code, product code, and sales month reported. The unit of measurement is located under the commodity column. The sales volume reported corresponds to the portion of the total production from the lease or from the lease-agreement combination. This is an industry reported value on the Form ONRR-2014. 
 <br />
 
 **Gas MMBtu Volume:** Volume measured in Million British Thermal Units (MMBtu). One British Thermal Unit (Btu) is the amount of heat required to raise the temperature of one pound of water by one degree Fahrenheit. MMBtu is the globally used energy value measurement. 
