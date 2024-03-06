@@ -66,7 +66,10 @@ const reportsStyles = makeStyles(theme => ({
 const linkStyles = makeStyles(() => ({
   underlineHover: {
     color: '#0A314D',
-    textDecoration: 'underline'
+    textDecoration: 'underline',
+    '&:hover': {
+      textDecoration: 'none'
+    }
   }
 }))
 
@@ -133,57 +136,10 @@ const ExpansionPanelDetails = withStyles({
   },
 })(MuiExpansionPanelDetails)
 
-const formulaStyles = makeStyles(() => ({
-  leftToRight: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: '0.5rem'
-  },
-  topToBottom: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 'max-content'
-  },
-  firstRow: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: '0.5rem'
-  },
-  lastRow: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginTop: '0.5rem'
-  },
-  rvpa: {
-    borderBottom: '2px solid black',
-    paddingBottom: '0.25rem',
-    textAlign: 'center',
-    fontSize: '1rem'
-  },
-  rvpaBorder: {
-    height: '0.5rem',
-    borderLeft: '2px solid black',
-    borderRight: '2px solid black'
-  },
-  rvla: {
-    borderTop: '2px solid black',
-    paddingTop: '0.25rem',
-    textAlign: 'center',
-    fontSize: '1rem'
-  },
-  rvlaBorder: {
-    height: '0.5rem',
-    borderLeft: '2px solid black',
-    borderRight: '2px solid black'
-  }
-}))
-
 const SalesDataDiagram = () => {
   const theme = useTheme()
   const miscClasses = reportsStyles(theme)
   const linkClasses = linkStyles()
-  const formulaClasses = formulaStyles()
   return (
     <>
       <Box mt={'1.5rem'} position={'relative'}>
@@ -196,7 +152,7 @@ const SalesDataDiagram = () => {
         Royalty and Remittance Form (ONRR–2014).</div>
           <ExpansionPanel className={miscClasses.minty}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Box className={miscClasses.primaryText}>Additional details for royalty reporting</Box>
+              <Box className={miscClasses.primaryText}><span className={linkClasses.underlineHover}>Additional details for royalty reporting</span></Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
@@ -219,27 +175,10 @@ const SalesDataDiagram = () => {
                 These steps result in the equation for royalty due:
               </Box>
               <Box my={'1rem'} py={'0.5rem'} className={miscClasses.formulaContainer} style={{ backgroundColor: '#ffffff', border: '2px solid #000000' }}>
-                <div className={formulaClasses.leftToRight}>
-                  <span>Royalty Due</span>
-                  <span>=</span>
-                  <span className={formulaClasses.topToBottom}>
-                    <span className={formulaClasses.leftToRight}>
-                      <span className={formulaClasses.topToBottom}>
-                        <span className={formulaClasses.firstRow}>
-                          <span className={formulaClasses.rvpa}><GlossaryTerm>Royalty Value Prior to Allowances (RVPA)</GlossaryTerm></span>
-                          <span className={formulaClasses.rvpaBorder}></span>
-                        </span>
-                        <span>[Sales Volume * Unit Value * Royalty Rate]</span>
-                      </span>
-                      <span style={{ alignSelf: 'flex-end' }}>-</span>
-                      <span style={{ alignSelf: 'flex-end' }}>Allowances</span>
-                    </span>
-                    <span className={formulaClasses.lastRow}>
-                      <span className={formulaClasses.rvlaBorder}></span>
-                      <span className={formulaClasses.rvla}><GlossaryTerm>Royalty Value Less Allowances (RVLA)</GlossaryTerm></span>
-                    </span>
-                  </span>
-                </div>
+                <img src='/images/process-diagram-step1-equation.png' style={{ width: '100%' }} alt='Royalty due equals open parenthesis sales volume multiplied by
+                unit value multiplied by royalty rate close parenthesis subtract allowances. The Royalty Value Prior to allowances (RVPA) includes sales volume
+                multiplied by unit value multiplied by royalty rate. Royalty Value Less Allowances (RVLA) includes open parenthesis sales volume multiplied by unit
+                value multiplied by royalty rate close parenthesis subtract allowances.'/>
               </Box>
               <Box>
                 <Typography>References:</Typography>
@@ -272,7 +211,7 @@ const SalesDataDiagram = () => {
           </div>
           <ExpansionPanel className={miscClasses.lavendar}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Box className={miscClasses.primaryText}>References for ONRR data processes</Box>
+              <Box className={miscClasses.primaryText}><span className={linkClasses.underlineHover}>References for ONRR data processes</span></Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
@@ -297,7 +236,7 @@ const SalesDataDiagram = () => {
             The ERR is an equation defined by the Office of Inspector General (OIG). ONRR does not use the ERR in any of its processes.</div>
           <ExpansionPanel className={miscClasses.slate}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Box className={miscClasses.primaryText}>Additional details for Effective Royalty Rate</Box>
+              <Box className={miscClasses.primaryText}><span className={linkClasses.underlineHover}>Additional details for Effective Royalty Rate</span></Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
