@@ -152,7 +152,7 @@ const SalesDataDiagram = () => {
           <div>Reporters use ONRR’s royalty reporting system, eCommerce, to report royalty revenues on federal oil and gas, using the electronic Report of Sales and
         Royalty and Remittance Form (ONRR–2014).</div>
           <ExpansionPanel className={miscClasses.minty}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={miscClasses.primaryText} />}>
               <Box className={miscClasses.primaryText}><span className={linkClasses.underlineHover}>Additional details for royalty reporting</span></Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
@@ -208,7 +208,7 @@ const SalesDataDiagram = () => {
             which is publicly available.
           </div>
           <ExpansionPanel className={miscClasses.lavendar}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={miscClasses.primaryText}/>}>
               <Box className={miscClasses.primaryText}><span className={linkClasses.underlineHover}>References for ONRR data processes</span></Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
@@ -233,7 +233,7 @@ const SalesDataDiagram = () => {
           <div>The Effective Royalty Rate (ERR) accounts for royalty relief, deductions, and other adjustments before the royalty value is divided by the sales value.
             The ERR is an equation defined by the Office of Inspector General (OIG). ONRR does not use the ERR in any of its processes.</div>
           <ExpansionPanel className={miscClasses.slate}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={miscClasses.primaryText}/>}>
               <Box className={miscClasses.primaryText}><span className={linkClasses.underlineHover}>Additional details for Effective Royalty Rate</span></Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
