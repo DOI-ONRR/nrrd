@@ -1,9 +1,8 @@
 import React from 'react'
 import salesDiagramPng from '../../images/process-diagram-step1-equation.png'
 
-const altText = `Royalty due equals open parenthesis sales volume multiplied by unit value multiplied by royalty rate close parenthesis subtract allowances.
-The Royalty Value Prior to allowances (RVPA) includes sales volume multiplied by unit value multiplied by royalty rate. Royalty Value Less Allowances
-(RVLA) includes open parenthesis sales volume multiplied by unit value multiplied by royalty rate close parenthesis subtract allowances.`
+const altText = `Royalty Value Prior to Allowances or RVPA equals sales volume multiplied by unit value multiplied by royalty rate. The Royalty due equals the RVPA 
+minus allowances. The royalty due is equivalent to the Royalty Value Less Allowances or RVLA.`
 
 export default ({ alt, ...rest }) =>
   <img src={salesDiagramPng}
