@@ -19,11 +19,10 @@ import { toTitleCase } from '../../../js/utils'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
     position: 'absolute',
     bottom: 15,
-    width: '100%',
+    left: '50%',
+    transform: 'translateX(-50%)',
     zIndex: 500,
   },
   exploreButtonRoot: {
