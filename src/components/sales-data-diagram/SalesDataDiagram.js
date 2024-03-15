@@ -1,6 +1,7 @@
 import React from 'react'
-import { Box, Link } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import { makeStyles, withStyles, useTheme } from '@material-ui/styles'
+import Link from '../Link/Link'
 
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel'
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
@@ -13,6 +14,7 @@ import BarChartIcon from '@material-ui/icons/BarChart'
 import PieChartIcon from '@material-ui/icons/PieChart'
 
 import GlossaryTerm from '../GlossaryTerm/GlossaryTerm'
+import SalesProcessDiagramFormulaImg from '../images/SalesProcessDiagramFormulaImg'
 
 const reportsStyles = makeStyles(theme => ({
   lavendar: {
@@ -48,7 +50,7 @@ const reportsStyles = makeStyles(theme => ({
     color: '#39474f'
   },
   primaryText: {
-    color: theme.palette.text.secondary
+    color: '#0A314D'
   },
   formulaContainer: {
     display: 'flex',
@@ -59,6 +61,16 @@ const reportsStyles = makeStyles(theme => ({
     border: '2px solid #000',
     backgroundColor: theme.palette.background.default,
     textAlign: 'center'
+  }
+}))
+
+const linkStyles = makeStyles(() => ({
+  underlineHover: {
+    color: '#0A314D',
+    textDecoration: 'underline',
+    '&:hover': {
+      textDecoration: 'none'
+    }
   }
 }))
 
@@ -128,6 +140,7 @@ const ExpansionPanelDetails = withStyles({
 const SalesDataDiagram = () => {
   const theme = useTheme()
   const miscClasses = reportsStyles(theme)
+  const linkClasses = linkStyles()
   return (
     <>
       <Box mt={'1.5rem'} position={'relative'}>
@@ -139,8 +152,8 @@ const SalesDataDiagram = () => {
           <div>Reporters use ONRR’s royalty reporting system, eCommerce, to report royalty revenues on federal oil and gas, using the electronic Report of Sales and
         Royalty and Remittance Form (ONRR–2014).</div>
           <ExpansionPanel className={miscClasses.minty}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Box className={miscClasses.primaryText}>Additional details for royalty reporting</Box>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={miscClasses.primaryText} />}>
+              <Box className={miscClasses.primaryText}><span className={linkClasses.underlineHover}>Additional details for royalty reporting</span></Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
@@ -163,58 +176,20 @@ const SalesDataDiagram = () => {
                 These steps result in the equation for royalty due:
               </Box>
               <Box my={'1rem'} py={'0.5rem'} className={miscClasses.formulaContainer} style={{ backgroundColor: '#ffffff', border: '2px solid #000000' }}>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Royalty Due = </td>
-                      <td>
-                        <table>
-                          <tbody>
-                            <tr>
-                              <td style={{ paddingBottom: '0.25rem', fontSize: '1rem', textAlign: 'center' }}><GlossaryTerm>Royalty Value Prior to Allowances (RVPA)</GlossaryTerm></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <Box height={'0.5rem'}
-                                  borderTop={'2px solid #000'}
-                                  borderLeft={'2px solid #000'}
-                                  borderRight={'2px solid #000'}></Box>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style={{ padding: '0.5rem 0' }}>[Sales Volume * Unit Value * Royalty Rate]</td>
-                              <td>- Allowances</td>
-                            </tr>
-                            <tr>
-                              <td colSpan={2}>
-                                <Box height={'0.5rem'}
-                                  borderBottom={'2px solid #000'}
-                                  borderLeft={'2px solid #000'}
-                                  borderRight={'2px solid #000'}></Box>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td colSpan={2} style={{ paddingTop: '0.25rem', fontSize: '1rem', textAlign: 'center' }}><GlossaryTerm>Royalty Value Less Allowances (RVLA)</GlossaryTerm></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <SalesProcessDiagramFormulaImg/>
               </Box>
               <Box>
                 <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/part-1210/subpart-B'>ONRR Royalty Reports for Oil and Gas: 30 CFR Part 1210 Subpart B</Link></li>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-C'>30 CFR Part 1206 (Subpart C for federal oil)</Link></li>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-D'>30 CFR Part 1206 (Subpart D for federal gas)</Link></li>
-                  <li><Link href='https://www.onrr.gov/references/valuation?tabs=valuation-regulations'>Valuation Regulations</Link></li>
-                  <li><Link href='https://onrr.gov/references/valuation'>How Valuation Works</Link></li>
-                  <li><Link href='https://www.onrr.gov/reporting/revenue?tabs=forms'>Form ONRR-2014</Link></li>
-                  <li><Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook'>Minerals Revenue Reporter Handbook</Link></li>
-                  <li><Link href='https://onrr.gov/document/RRM-Chapter.4.pdf'>Handbook discussion on quality bank adjustments, section 4.11 (PDF)</Link></li>
-                  <li><Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references'>ONRR revenue reporting references</Link></li>
+                  <li><Link href='https://www.ecfr.gov/current/title-30/part-1210/subpart-B' className={linkClasses.underlineHover}>ONRR Royalty Reports for Oil and Gas: 30 CFR Part 1210 Subpart B</Link></li>
+                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-C' className={linkClasses.underlineHover}>30 CFR Part 1206 (Subpart C for federal oil)</Link></li>
+                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-D' className={linkClasses.underlineHover}>30 CFR Part 1206 (Subpart D for federal gas)</Link></li>
+                  <li><Link href='https://www.onrr.gov/references/valuation?tabs=valuation-regulations' className={linkClasses.underlineHover}>Valuation Regulations</Link></li>
+                  <li><Link href='https://onrr.gov/references/valuation' className={linkClasses.underlineHover}>How Valuation Works</Link></li>
+                  <li><Link href='https://www.onrr.gov/reporting/revenue?tabs=forms' className={linkClasses.underlineHover}>Form ONRR-2014</Link></li>
+                  <li><Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook' className={linkClasses.underlineHover}>Minerals Revenue Reporter Handbook</Link></li>
+                  <li><Link href='https://onrr.gov/document/RRM-Chapter.4.pdf' className={linkClasses.underlineHover}>Handbook discussion on quality bank adjustments, section 4.11 (PDF)</Link></li>
+                  <li><Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references' className={linkClasses.underlineHover}>ONRR revenue reporting references</Link></li>
                 </ul>
               </Box>
             </ExpansionPanelDetails>
@@ -233,14 +208,14 @@ const SalesDataDiagram = () => {
             which is publicly available.
           </div>
           <ExpansionPanel className={miscClasses.lavendar}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Box className={miscClasses.primaryText}>References for ONRR data processes</Box>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={miscClasses.primaryText}/>}>
+              <Box className={miscClasses.primaryText}><span className={linkClasses.underlineHover}>References for ONRR data processes</span></Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
                 <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
-                  <li><Link href='https://revenuedata.doi.gov/how-revenue-works/#how-our-data-fits-together'>How Revenue Works - How our data fits together</Link></li>
+                  <li><Link href='https://revenuedata.doi.gov/how-revenue-works/#how-our-data-fits-together' className={linkClasses.underlineHover}>How Revenue Works - How our data fits together</Link></li>
                 </ul>
               </Box>
             </ExpansionPanelDetails>
@@ -258,8 +233,8 @@ const SalesDataDiagram = () => {
           <div>The Effective Royalty Rate (ERR) accounts for royalty relief, deductions, and other adjustments before the royalty value is divided by the sales value.
             The ERR is an equation defined by the Office of Inspector General (OIG). ONRR does not use the ERR in any of its processes.</div>
           <ExpansionPanel className={miscClasses.slate}>
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Box className={miscClasses.primaryText}>Additional details for Effective Royalty Rate</Box>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon className={miscClasses.primaryText}/>}>
+              <Box className={miscClasses.primaryText}><span className={linkClasses.underlineHover}>Additional details for Effective Royalty Rate</span></Box>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
@@ -278,7 +253,7 @@ const SalesDataDiagram = () => {
               <Box mt={'1rem'}>
                 <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
-                  <li><Link href='https://www.doioig.gov/reports/inspection-evaluation/us-department-interior-does-not-analyze-effective-royalty-rates'>OIG Report, Appendix 1</Link></li>
+                  <li><Link href='https://www.doioig.gov/reports/inspection-evaluation/us-department-interior-does-not-analyze-effective-royalty-rates' className={linkClasses.underlineHover}>OIG Report, Appendix 1</Link></li>
                 </ul>
               </Box>
             </ExpansionPanelDetails>
