@@ -118,7 +118,7 @@ const DisbursementSources = props => {
     else if (chartData.DisbursementSourceSummary.length === 1) {
 	  const source = chartData.DisbursementSourceSummary[0].source
       return (
-        <Box className={classes.boxSection} ref={ref}> >
+        <Box className={classes.boxSection} ref={ref}>
           <Box component="h4" fontWeight="bold">Disbursements by source</Box>
           <Box fontSize="subtitle2.fontSize">
           All of  disbursements were from {source.toLowerCase()} production.</Box>

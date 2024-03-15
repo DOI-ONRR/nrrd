@@ -27,7 +27,7 @@ export const getMetricLongUnit = str => {
 }
 
 export const formatToDollarInt = value => {
-  return currencyFormatter.format(value, {
+  return currencyFormatter.format(Math.round(Math.round(value * 1000) / 1000), {
     symbol: '$',
     precision: 0,
     format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
