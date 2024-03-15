@@ -16,6 +16,8 @@ import PieChartIcon from '@material-ui/icons/PieChart'
 import GlossaryTerm from '../GlossaryTerm/GlossaryTerm'
 import SalesProcessDiagramFormulaImg from '../images/SalesProcessDiagramFormulaImg'
 
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'
+
 const reportsStyles = makeStyles(theme => ({
   lavendar: {
     backgroundColor: '#dcd2df'
@@ -161,16 +163,16 @@ const SalesDataDiagram = () => {
                 depends on the location of the oil or gas lease. The location of the lease also determines the applicable statutory requirements.
               </Box>
               <Box my={'1rem'}>To determine the royalty due, reporters use the following steps:</Box>
-              <Box fontWeight={'bold'}>A. Calculate federal royalty value with adjustments for royalty relief, quality bank, and/or gravity bank</Box>
+              <Box fontWeight={'bold'}>A. Calculate federal royalty value with adjustments for royalty relief and/or quality and gravity bank adjustments</Box>
               <Box>
-                Revenues may be modified by various royalty relief programs, as well as quality bank and gravity bank adjustments. These modifications are made prior to
-                any allowances taking place and are included in the 2014 reporting. This calculation results in the Royalty Value Prior to Allowances (RVPA).
+                Revenues may be modified by various royalty relief programs, as well as <GlossaryTerm>quality and gravity bank adjustments</GlossaryTerm>. These modifications are made prior to
+                any allowances taking place and are included in the 2014 reporting. This calculation results in the <GlossaryTerm>Royalty Value Prior to Allowances (RVPA)</GlossaryTerm>.
               </Box>
               <Box fontWeight={'bold'} mt={'1rem'}>B. Deduct regulatory allowances</Box>
               <Box>
               Allowances are deductions lessees can claim against royalty value for the transportation and processing costs of production; application of
               these allowances decreases the royalty payment owed. Federal regulations allow for “reasonable, actual costs” to be deducted. This dataset
-              includes Transportation Allowances and Processing Allowances. This calculation results in the Royalty Value Less Allowances (RLVA).
+              includes Transportation Allowances and Processing Allowances. This calculation results in the <GlossaryTerm>Royalty Value Less Allowances (RVLA)</GlossaryTerm>.
               </Box>
               <Box mt={'1rem'}>
                 These steps result in the equation for royalty due:
