@@ -54,8 +54,7 @@ const SalesTableBase = ({ salesTableData }) => {
 
   const noteStyles = makeStyles(() => ({
     root: {
-      marginLeft: '0.5em',
-      marginTop: '0.5em'
+      marginLeft: '0.5em'
     }
   }))
 

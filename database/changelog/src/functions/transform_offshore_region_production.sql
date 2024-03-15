@@ -9,17 +9,17 @@ BEGIN
             NEW.county := '';
             NEW.state := '';
         WHEN 'Offshore Pacific' THEN
-            NEW.agency_state_region_code_desc := 'Pacific';
+            NEW.offshore_region := 'Pacific';
             NEW.fips_code := 'POR';
             NEW.county := '';
             NEW.state := '';
         WHEN 'Offshore Atlantic' THEN
-            NEW.agency_state_region_code_desc := 'Atlantic';
+            NEW.offshore_region := 'Atlantic';
             NEW.fips_code := 'AOR';
             NEW.county := '';
             NEW.state := '';
         WHEN 'Offshore Gulf' THEN
-            NEW.agency_state_region_code_desc := 'Gulf of Mexico';
+            NEW.offshore_region := 'Gulf of Mexico';
             NEW.fips_code := 'GMR';
             NEW.county := '';
             NEW.state := '';
