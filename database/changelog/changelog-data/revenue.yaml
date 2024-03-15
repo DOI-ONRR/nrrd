@@ -1,8 +1,61 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-24-feb
+      id: revenue-24-jan-feb
       author: Christine Thomas
       changes: 
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            TRUNCATE TABLE monthly_revenue_elt
+      - loadData:
+          tableName: monthly_revenue_elt
+          file: '../static/csv/revenue/February 2024 Revenue for Portal_csv.csv'
+          quotchar: '""'
+          columns:
+          - column:
+              header: Accept Date
+              name: accept_date
+              type: STRING
+          - column:
+              header: Land Class Code
+              name: land_class_code
+          - column:
+              header: Land Category Code Desc
+              name: land_category_code_desc
+          - column:
+              header: State
+              name: state
+          - column:
+              header: County Code Desc
+              name: county_code_desc
+          - column:
+              header: FIPS Code
+              name: fips_code
+          - column:
+              header: Agency State Region Code Desc
+              name: agency_state_region_code_desc
+          - column:
+              header: Revenue Type
+              name: revenue_type
+          - column:
+              header: Mineral Production Code Desc
+              name: mineral_production_code_desc
+          - column:
+              header: Commodity
+              name: commodity
+          - column:
+              header: Product Code Desc
+              name: product_code_desc
+          - column:
+              header: Revenue
+              name: revenue
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            CALL summarize_native_american_revenue();
+            CALL load_revenue_monthly();
+            CALL load_revenue_fiscal_year();
+            CALL load_revenue_calendar_year();
       - sql:
           dbms: 'postgresql'
           sql: |

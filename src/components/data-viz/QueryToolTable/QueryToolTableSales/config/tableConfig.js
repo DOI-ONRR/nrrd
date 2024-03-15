@@ -5,8 +5,8 @@ const tableConfig = {
     { name: 'salesVolume', title: 'Sales Volume' },
     { name: 'salesValue', title: 'Sales Value' },
     { name: 'royaltyValuePriorToAllowance', title: 'Royalty Value Prior to Allowances (RVPA)' },
-    { name: 'transportationAllowance', title: 'Transportation Allowance (TA)' },
-    { name: 'processingAllowance', title: 'Processing Allowance (PA)' },
+    { name: 'transportationAllowance', title: 'Transportation Allowances (TA)' },
+    { name: 'processingAllowance', title: 'Processing Allowances (PA)' },
     { name: 'royaltyValueLessAllowance', title: 'Royalty Value Less Allowances (RVLA)' }
   ],
   groupSummaryItems: [
