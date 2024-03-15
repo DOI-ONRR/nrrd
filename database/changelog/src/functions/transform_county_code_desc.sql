@@ -18,5 +18,41 @@ BEGIN
         NEW.county_code_desc := 'Golden Valley';
     END IF;
 
+    IF NEW.county_code_desc = 'E Baton Rouge' THEN
+        NEW.county_code_desc := 'East Baton Rouge';
+    END IF;
+
+    IF NEW.county_code_desc = 'Grand Trvse' THEN
+        NEW.county_code_desc := 'Grand Traverse';
+    END IF;
+
+    IF NEW.county_code_desc = 'Jeffer Davis' THEN
+        NEW.county_code_desc := 'Jefferson Davis';
+    END IF;
+
+    IF NEW.county_code_desc = 'San Augustin' THEN
+        NEW.county_code_desc := 'San Augustine';
+    END IF;
+
+    IF NEW.county_code_desc = 'San Pete' THEN
+        NEW.county_code_desc := 'Sanpete';
+    END IF;
+
+    IF NEW.county_code_desc = 'St Charles' THEN
+        NEW.county_code_desc := 'St. Charles';
+    END IF;
+
+    IF NEW.county_code_desc = 'St Clair' THEN
+        NEW.county_code_desc := 'St. Clair';
+    END IF;
+
+    IF NEW.county_code_desc = 'St Martin' THEN
+        NEW.county_code_desc := 'St. Martin';
+    END IF;
+
+    IF NEW.county_code_desc = 'St Mary' THEN
+        NEW.county_code_desc := 'St. Mary';
+    END IF;
+
     RETURN NEW;
 END $$ LANGUAGE PLPGSQL;

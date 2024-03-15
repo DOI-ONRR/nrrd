@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: fix-fy23-prod-reference-data
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE LOCATION
+            SET location_name = 'Louisiana, East Baton Rouge',
+              county = 'East Baton Rouge'
+            WHERE location_id = 87580;
+
+            UPDATE LOCATION
+            SET location_name = 'Michigan, Grand Traverse',
+              county = 'Grand Traverse'
+            WHERE location_id = 87619;
+
+            UPDATE LOCATION
+            SET location_name = 'Mississippi, Jefferson Davis',
+              county = 'Jefferson Davis'
+            WHERE location_id = 87670;
+
+            UPDATE LOCATION
+            SET location_name = 'Texas, San Augustine',
+              county = 'San Augustine'
+            WHERE location_id = 87978;
+
+            UPDATE LOCATION
+            SET location_name = 'Louisiana, St. Martin',
+              county = 'St. Martin'
+            WHERE location_id = 87601;
+
+            UPDATE LOCATION
+            SET location_name = 'Louisiana, St. Mary',
+              county = 'St. Mary'
+            WHERE location_id = 87602;
+
+            UPDATE LOCATION
+            SET location_name = 'Utah, Sanpete',
+              county = 'Sanpete'
+            WHERE location_id = 88012;
+
+            UPDATE commodity
+            SET product = 'Geothermal - direct use, millions of gallons (mgal)'
+            where commodity_id = 15428;

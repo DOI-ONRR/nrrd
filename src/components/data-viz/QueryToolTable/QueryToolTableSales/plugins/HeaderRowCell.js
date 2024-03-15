@@ -7,10 +7,16 @@ const HeaderRowCell = ({ children, ...rest }) => {
     cell: {
       whiteSpace: 'initial !important',
       textAlign: 'center'
+    },
+    shorter: {
+      lineHeight: 1.4
     }
   }))
+  const useShorter = children[0].props.params.column.name === 'royaltyValuePriorToAllowance' ||
+    children[0].props.params.column.name === 'royaltyValueLessAllowance'
+
   return (
-    <Table.Cell {...rest} classes={headStyles()}>
+    <Table.Cell {...rest} classes={headStyles()} className={(useShorter ? headStyles().shorter : null)}>
       {children}
     </Table.Cell>
   )
