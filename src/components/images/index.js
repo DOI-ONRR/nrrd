@@ -88,9 +88,9 @@ import WarningIcon from '@material-ui/icons/Warning'
 
 export const WarningIconImg = props => <WarningIcon {...props} />
 
-export const FilterTableIconImg = props => <FilterTableIconSvg {...props} style={{ fill: 'currentColor' }} />
+export const FilterTableIconImg = props => <FilterTableIconSvg {...props} style={{ fill: 'currentColor' }} aria-hidden='true' />
 
-export const HowWorksLinkIconImg = props => <HowWorksLinkIconSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} />
+export const HowWorksLinkIconImg = props => <HowWorksLinkIconSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} aria-hidden='true' />
 export const HowMainIconOilImg = props => <HowMainIconOilSvg {...props} />
 export const HowMainIconHardrockImg = props => <HowMainIconHardrockSvg {...props} />
 export const HowMainIconWindImg = props => <HowMainIconWindSvg {...props} />
@@ -114,10 +114,10 @@ export const IconHardrockImg = props => <IconHardrockSvg {...props} />
 export const IconGeothermalImg = props => <IconGeothermalSvg {...props} />
 export const IconRenewablesImg = props => <IconRenewablesSvg {...props} />
 export const IconArchiveImg = props => <IconArchiveSvg style={{ verticalAlign: 'middle' }} {...props}/>
-export const IconDownloadBaseImg = props => <IconDownloadBaseSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
-export const IconDownloadXlsImg = props => <IconDownloadXlsSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
-export const IconDownloadCsvImg = props => <IconDownloadCsvSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
-export const IconDownloadDataImg = props => <IconDownloadDataSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props}/>
+export const IconDownloadBaseImg = props => <IconDownloadBaseSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} aria-hidden='true'/>
+export const IconDownloadXlsImg = props => <IconDownloadXlsSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} aria-hidden='true'/>
+export const IconDownloadCsvImg = props => <IconDownloadCsvSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} aria-hidden='true'/>
+export const IconDownloadDataImg = props => <IconDownloadDataSvg style={{ verticalAlign: 'middle', fill: 'currentColor' }} {...props} aria-hidden='true'/>
 export const IconQuestionCircleImg = props => <IconQuestionCircleSvg style={{ width: '16px', height: '16px', marginLeft: '1.6px', fill: 'currentColor' }} {...props}/>
 export const IconUsMapImg = props => <IconUsMapSvg {...props} style={{ position: 'relative', top: 10, fill: 'currentColor' }} />
 export const IconExploreDataImg = props => <IconExploreDataSvg style={{ fill: 'currentColor' }} {...props} />

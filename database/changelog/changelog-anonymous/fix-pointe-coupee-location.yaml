@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: fix-pointe-coupee-location
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE LOCATION
+            SET location_name = 'Louisiana, Pointe Coupee',
+              county = 'Pointe Coupee'
+            WHERE location_id = 87594;
