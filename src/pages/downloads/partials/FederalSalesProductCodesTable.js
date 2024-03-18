@@ -63,7 +63,7 @@ const FederalSalesProductCodesTable = () => {
   const classes = tableStyles()
   return (
     <TableContainer>
-      <Table className={classes.table} >
+      <Table className={classes.table} aria-label='Federal Sales Product Codes'>
         <TableHead>
           <TableRow>
             <HeaderTableCell>Product Code</HeaderTableCell>
