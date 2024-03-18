@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: fix-st-charles-mo
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE LOCATION
+            SET location_name = 'Missouri, St. Charles',
+              county = 'St. Charles'
+            WHERE location_id = 87650;
