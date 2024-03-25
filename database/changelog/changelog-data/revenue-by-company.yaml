@@ -5,7 +5,7 @@ databaseChangeLog:
       changes:
       - loadData:
           tableName: monthly_revenue_elt
-          file: '../static/csv/revenue/federal_revenue_by_company_CY2013-CY2023.csv'
+          file: '../static/csv/federal_revenue_by_company_CY2013-CY2023.csv'
           quotchar: '""'
           columns:
           - column:
