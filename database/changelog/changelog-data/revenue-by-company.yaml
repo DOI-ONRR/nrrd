@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Christine Thomas
       changes:
       - loadData:
-          tableName: monthly_revenue_elt
+          tableName: federal_revenue_by_company
           file: '../static/csv/federal_revenue_by_company_CY2013-CY2023.csv'
           quotchar: '""'
           columns:
