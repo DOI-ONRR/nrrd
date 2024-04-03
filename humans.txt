@@ -28,6 +28,7 @@
     Shawn Allen -- Designer Developer -- 18F
     Isabelle Brantley -- Content -- Independent Administrator/Deloitte
     Daniel Coleman -- Content Strategist -- Department of the Interior, OFfice of Natural Resources Revenue
+    Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Nicole Fenton -- Content Designer -- 18F
     Brian Hedberg -- Developer -- 18F
     Michelle Hertzfeld --  Product Manager and UX -- 18F
