@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: sales-initial
-      author: Jeff Schwartz
+      id: sales-mar-2024
+      author: Lindsay Goldstein
       changes:
       - loadData:
           tableName: sales
