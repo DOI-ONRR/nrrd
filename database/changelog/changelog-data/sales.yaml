@@ -3,6 +3,10 @@ databaseChangeLog:
       id: sales-mar-2024
       author: Lindsay Goldstein
       changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            TRUNCATE TABLE sales
       - loadData:
           tableName: sales
           file: '../static/csv/sales/federal-sales.csv'
