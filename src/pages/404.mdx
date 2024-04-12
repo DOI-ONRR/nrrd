@@ -1,18 +1,27 @@
 ---
-title: '404: Not found'
+title: 'Page not found'
 includeToc: false
 tags:
 - No page found
 ---
 
-<Container maxWidth={false}>
-  <Container maxWidth="lg">
-    <Box m={0} p={'1.25em 1.875em'} textAlign="center">
-    <h1>Page Not Found.</h1>
-    <p align="center">You might be using an incorrect or old URL. </br> Check your URL for any capitalization - our URLs are all lower-case.</p>
-      <Rig404Img />
-    <p>If you're not able to find what you are looking for, email <a href="mailto:nrrd@onrr.gov">nrrd@onrr.gov</a> with the correct URL. We'll direct you to the information you need.</p>
-   <p align="center"><a title="" href="/" target="_self">Go to homepage</a></p>
-    </Box>
-  </Container>
-</Container>
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+
+const NotFoundPage = () => {
+  return (
+    <Container maxWidth={false}>
+      <Container maxWidth="lg">
+        <Box m={0} p={'1.25em 1.875em'} textAlign="center">
+          <h1>Page Not Found.</h1>
+          <p>You might be using an incorrect or old URL. <br /> Check your URL for any capitalization - our URLs are all lowercase.</p>
+          <Rig404Img />
+          <p>If you're not able to find what you are looking for, email <a href="mailto:nrrd@onrr.gov">nrrd@onrr.gov</a> with the correct URL. We'll direct you to the information you need.</p>
+          <p><a title="" href="/" target="_self">Go to homepage</a></p>
+        </Box>
+      </Container>
+    </Container>
+  );
+};
+
+export default NotFoundPage;
