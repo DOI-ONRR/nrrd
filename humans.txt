@@ -7,8 +7,7 @@
 
     Nathan Brannberg -- Product Owner -- Department of the Interior, Office of Natural Resources Revenue
     Erin Elzi -- Digital Services Specialist -- Department of the Interior, Office of Natural Resources Revenue
-    Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
-    Lindsay Goldstein -- Program Analyst -- Department of the Interior, Office of Natural Resources Revenue
+    Lindsay Goldstein -- Digital Services Specialist -- Department of the Interior, Office of Natural Resources Revenue
     Alexandra McNally -- Digital Services Specialist -- Department of the Interior, Office of Natural Resources Revenue
     Jeff Schwartz -- Developer -- Department of the Interior, Office of Natural Resources Revenue
     Christine Thomas -- Program Analyst (Content Strategist) -- Department of the Interior, Office of Natural Resources Revenue
@@ -29,6 +28,7 @@
     Shawn Allen -- Designer Developer -- 18F
     Isabelle Brantley -- Content -- Independent Administrator/Deloitte
     Daniel Coleman -- Content Strategist -- Department of the Interior, OFfice of Natural Resources Revenue
+    Maroya Faied -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Nicole Fenton -- Content Designer -- 18F
     Brian Hedberg -- Developer -- 18F
     Michelle Hertzfeld --  Product Manager and UX -- 18F
