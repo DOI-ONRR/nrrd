@@ -11,7 +11,7 @@ BEGIN
 
     NEW.commodity := TRIM(NEW.commodity);
 
-    NEW.commodity_order := substr(commodity,1,5);
+    NEW.commodity_order := substr(NEW.commodity,1,5);
 
     CASE NEW.commodity
         WHEN 'Oil' THEN

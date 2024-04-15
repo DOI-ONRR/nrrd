@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: sales-drop-null-constraint
+      author: Jeff Schwartz
+      changes:
+      - dropNotNullConstraint:
+          columnName: effective_royalty_rate
+          tableName: sales

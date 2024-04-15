@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-kalamazoo-location
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            INSERT INTO location (location_name, 
+            fips_code, 
+            state, 
+            state_name, 
+            county, 
+            land_class, 
+            land_category, 
+            land_type, 
+            region_type, 
+            district_type, 
+            location_order)
+            VALUES ('Michigan, Kalamazoo', 
+            '26077', 
+            'MI', 
+            'Michigan', 
+            'Kalamazoo', 
+            'Federal', 
+            'Onshore', 
+            'Federal onshore', 
+            'County', 
+            'County', 
+            'MI2Ka');
