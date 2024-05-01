@@ -208,6 +208,10 @@ jobs:
           command: |
             ls -lart static/downloads
       - run:
+          name: Overwrite robots.txt
+          command: |
+            cp ./static/robots-dev.txt ./static/robots.txt
+      - run:
           name: Build gatsby
           command: export GATSBY_HASURA_URI=https://hasura-sandbox.app.cloud.gov/v1/graphql &&  export CIRCLE_STAGE='nrrd-preview' && npm run build
       - aws-s3/sync:
@@ -242,7 +246,6 @@ jobs:
           name: "list generated downloads"
           command: |
             ls -lart static/downloads
-           # rm static/downloads/downloads.json
       - aws-s3/sync:
           arguments: |
           aws-access-key-id: NPS_AWS_ACCESS_KEY
@@ -255,6 +258,10 @@ jobs:
           command: |
             ls -lart static/downloads
             cat static/downloads/downloads.json
+      - run:
+          name: Overwrite robots.txt
+          command: |
+            cp ./static/robots-dev.txt ./static/robots.txt
       - run:
           name: Build gatsby
           command: export GATSBY_HASURA_URI=https://hasura-dev.app.cloud.gov/v1/graphql && npm run build
