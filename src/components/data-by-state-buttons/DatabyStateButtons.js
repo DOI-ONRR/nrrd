@@ -51,10 +51,10 @@ const DatabyStateButtons = () => {
       <Table className={classes.table} aria-label='Data by State links'>
         <TableHead>
           <TableRow>
-            <HeaderTableCell> </HeaderTableCell>
-            <HeaderTableCell> </HeaderTableCell>
-            <HeaderTableCell> </HeaderTableCell>
-            <HeaderTableCell> </HeaderTableCell>
+            <HeaderTableCell>state1</HeaderTableCell>
+            <HeaderTableCell>state2</HeaderTableCell>
+            <HeaderTableCell>state3</HeaderTableCell>
+            <HeaderTableCell>state4</HeaderTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
