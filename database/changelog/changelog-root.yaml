@@ -16,6 +16,8 @@ databaseChangeLog:
     - include:
         file: changelog-data/production-fiscal-year.yaml
     - include:
+        file: changelog-data/production-calendar-year.yaml
+    - include:
         file: changelog-data/disbursement.yaml
     - include:
         file: changelog-data/revenue-true-up.yaml
