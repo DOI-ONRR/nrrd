@@ -11,6 +11,8 @@ BEGIN
             NEW.product := 'Geothermal - Direct Use (Hundreds of Gallons)';
         WHEN NEW.product = 'Geothermal - Direct Use, Millions of Gallons' THEN
             NEW.product := 'Geothermal - Direct Use (Millions of Gallons)';
+        WHEN NEW.product = 'Geothermal - Direct Use, Millions of Gallons (cgal)' THEN
+            NEW.product := 'Geothermal - Direct Use, Millions of Gallons (mgal)';
         WHEN NEW.product = 'Geothermal - Direct Utilization, Millions of BTUs' THEN
             NEW.product := 'Geothermal - Direct Use (Millions of BTUs)';
         WHEN NEW.product = 'Geothermal - Electrical Generation, Kilowatt Hours' THEN

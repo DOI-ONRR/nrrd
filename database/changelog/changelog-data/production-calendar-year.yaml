@@ -6,7 +6,7 @@ databaseChangeLog:
       - sql:
           dbms: 'postgresql'
           sql: |
-            TRUNCATE TABLE fiscal_year_production_elt
+            TRUNCATE TABLE calendar_year_production_elt
       - loadData:
           tableName: calendar_year_production_elt
           file: '../static/csv/production/calendar_year_production.csv'
