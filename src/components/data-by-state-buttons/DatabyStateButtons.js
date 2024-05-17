@@ -40,6 +40,7 @@ const HeaderTableCell = withStyles(() => ({
 
 const DataTableCell = withStyles(() => ({
   body: {
+    backgroundColor: 'rgba(60, 61, 62, 0)',
     padding: '0.5rem'
   },
 }))(TableCell)
@@ -71,5 +72,86 @@ const DatabyStateButtons = () => {
     </TableContainer>
   )
 }
+
+
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+</head>
+<body>
+
+<div class="row">
+  <div class="column" style="background-color:#fff;">
+    <li><a href="https://revenuedata.doi.gov/explore/states/AL/">Alabama</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/AK/">Alaska</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/AZ/">Arizona</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/AR/">Arkansas</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/CA/">California</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/CO/">Colorado</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/FL/">Florida</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/ID/">Idaho</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/IL/">Illinois</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/IN/">Indiana</a></li>
+  </div>
+  <div class="column" style="background-color:#fff;">
+    <li><a href="https://revenuedata.doi.gov/explore/states/KS/">Kansas</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/LA/">Louisiana</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/MD/">Maryland</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/MI/">Michigan</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/MN/">Minnesota</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/MS/">Mississippi</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/MO/">Missouri</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/MT/">Montana</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/NE/">Nebraska</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/NV/">Nevada</a></li>
+  </div>
+  <div class="column" style="background-color:#fff;">
+    <li><a href="https://revenuedata.doi.gov/explore/states/NM/">New Mexico</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/NY/">New York</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/NC/">North Carolina</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/ND/">North Dakota</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/OH/">Ohio</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/OK/">Oklahoma</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/OR/">Oregon</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/PA/">Pennsylvania</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/SC/">South Carolina</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/SD/">South Dakota</a></li>
+  </div>
+  <div class="column" style="background-color:#fff;">
+    <li><a href="https://revenuedata.doi.gov/explore/states/TX/">Texas</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/UT/">Utah</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/VA/">Virginia</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/WA/">Washington</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/WI/">Wisconsin</a></li>
+    <li><a href="https://revenuedata.doi.gov/explore/states/WY/">Wyoming</a></li>
+
+  </div>
+</div>
+
+</body>
+</html>
+
+
 
 export default DatabyStateButtons
