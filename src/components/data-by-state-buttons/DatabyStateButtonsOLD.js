@@ -45,7 +45,7 @@ const DataTableCell = withStyles(() => ({
   },
 }))(TableCell)
 
-const DatabyStateButtons = () => {
+const DatabyStateButtonsx = () => {
   const classes = tableStyles()
   return (
     <TableContainer>
@@ -73,4 +73,4 @@ const DatabyStateButtons = () => {
   )
 }
 
-export default DatabyStateButtons
+export default DatabyStateButtonsx
