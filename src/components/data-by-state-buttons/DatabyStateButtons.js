@@ -1,170 +1,76 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
-import Button from '@mui/material/Button'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@mui/material/Button';
 
+const stateData = [
+  { name: "Alabama", href: "https://revenuedata.doi.gov/explore/states/AL/" },
+  { name: "Alaska", href: "https://revenuedata.doi.gov/explore/states/AK/" },   
+  { name: "Arkansas", href: "https://revenuedata.doi.gov/explore/states/AR/" },
+  { name: "California", href: "https://revenuedata.doi.gov/explore/states/CA/" },
+  { name: "Colorado", href: "https://revenuedata.doi.gov/explore/states/CO/" },
+  { name: "Florida", href: "https://revenuedata.doi.gov/explore/states/FL/"},
+  { name: "Idaho", href: "https://revenuedata.doi.gov/explore/states/ID/" }, 
+  { name: "Illinois", href: "https://revenuedata.doi.gov/explore/states/IL/" },
+  { name: "Indiana", href: "https://revenuedata.doi.gov/explore/states/IN/" },
+  { name: "Kansas", href: "https://revenuedata.doi.gov/explore/states/KS/" },
+  { name: "Louisiana", href: "https://revenuedata.doi.gov/explore/states/LA/" },
+  { name: "Maryland", href: "https://revenuedata.doi.gov/explore/states/MD/" },
+  { name: "Michigan", href: "https://revenuedata.doi.gov/explore/states/MI/" },
+  { name: "Minnesota", href: "https://revenuedata.doi.gov/explore/states/MN/" },
+  { name: "Mississippi", href: "https://revenuedata.doi.gov/explore/states/MS/" },
+  { name: "Missouri", href: "https://revenuedata.doi.gov/explore/states/MO/" },
+  { name: "Montana", href: "https://revenuedata.doi.gov/explore/states/MT/" },
+  { name: "Nebraska", href: "https://revenuedata.doi.gov/explore/states/NE/" },
+  { name: "Nevada", href: "https://revenuedata.doi.gov/explore/states/NV/" },
+  { name: "New Mexico", href: "https://revenuedata.doi.gov/explore/states/NM/" },
+  { name: "New York", href: "https://revenuedata.doi.gov/explore/states/NY/" },
+  { name: "North Carolina", href: "https://revenuedata.doi.gov/explore/states/NC/" },
+  { name: "North Dakota", href: "https://revenuedata.doi.gov/explore/states/ND/" },
+  { name: "Ohio", href: "https://revenuedata.doi.gov/explore/states/OH/" },
+  { name: "Oklahoma", href: "https://revenuedata.doi.gov/explore/states/OK/" },
+  { name: "Oregon", href: "https://revenuedata.doi.gov/explore/states/OR/" },
+  { name: "Pennsylvania", href: "https://revenuedata.doi.gov/explore/states/PA/" },
+  { name: "South Carolina", href: "https://revenuedata.doi.gov/explore/states/SC/" },
+  { name: "South Dakota", href: "https://revenuedata.doi.gov/explore/states/SD/" },
+  { name: "Texas", href: "https://revenuedata.doi.gov/explore/states/TX/" },
+  { name: "Utah", href: "https://revenuedata.doi.gov/explore/states/UT/" },
+  { name: "Virginia", href: "https://revenuedata.doi.gov/explore/states/VA/" },
+  { name: "Washington", href: "https://revenuedata.doi.gov/explore/states/WA/" },
+  { name: "West Virginia", href: "https://revenuedata.doi.gov/explore/states/WV/" },
+  { name: "Wisconsin", href: "https://revenuedata.doi.gov/explore/states/WI/" },
+  { name: "Wyoming", href: "https://revenuedata.doi.gov/explore/states/WY/" }
+];
 
+const useStyles = makeStyles((theme) =>({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: theme.spacing(2),
+  },
+  button: {
+    minWidth: '200px',
+  },
+}));
 
-// const rows = [
-//   createData(<a href="https://revenuedata.doi.gov/explore/states/AL/">Alabama</a>, <a href="https://revenuedata.doi.gov/explore/states/KS/">Kansas</a>, <a href="https://revenuedata.doi.gov/explore/states/NM/">New Mexico</a>, <a href="https://revenuedata.doi.gov/explore/states/TX/">Texas</a>),
-//   createData(<a href="https://revenuedata.doi.gov/explore/states/AK/">Alaska</a>, <a href="https://revenuedata.doi.gov/explore/states/LA/">Louisiana</a>, <a href="https://revenuedata.doi.gov/explore/states/NY/">New York</a>, <a href="https://revenuedata.doi.gov/explore/states/UT/">Utah</a>),
-//   createData(<a href="https://revenuedata.doi.gov/explore/states/AZ/">Arizona</a>, <a href="https://revenuedata.doi.gov/explore/states/MD/">Maryland</a>, <a href="https://revenuedata.doi.gov/explore/states/NC/">North Carolina</a>, <a href="https://revenuedata.doi.gov/explore/states/VA/">Virginia</a>),
-//   createData(<a href="https://revenuedata.doi.gov/explore/states/AR/">Arkansas</a>, <a href="https://revenuedata.doi.gov/explore/states/MI/">Michigan</a>, <a href="https://revenuedata.doi.gov/explore/states/ND/">North Dakota</a>, <a href="https://revenuedata.doi.gov/explore/states/WA/">Washington</a>),
-//   createData(<a href="https://revenuedata.doi.gov/explore/states/CA/">California</a>, <a href="https://revenuedata.doi.gov/explore/states/MN/">Minnesota</a>, <a href="https://revenuedata.doi.gov/explore/states/OH/">Ohio</a>, <a href="https://revenuedata.doi.gov/explore/states/WV/">West Virginia</a>),
-//   createData(<a href="https://revenuedata.doi.gov/explore/states/CO/">Colorado</a>, <a href="https://revenuedata.doi.gov/explore/states/MS/">Mississippi</a>, <a href="https://revenuedata.doi.gov/explore/states/OK/">Oklahoma</a>, <a href="https://revenuedata.doi.gov/explore/states/WI/">Wisconsin</a>),
-//   createData(<a href="https://revenuedata.doi.gov/explore/states/FL/">Florida</a>, <a href="https://revenuedata.doi.gov/explore/states/MO/">Missouri</a>, <a href="https://revenuedata.doi.gov/explore/states/OR/">Oregon</a>, <a href="https://revenuedata.doi.gov/explore/states/WY/">Wyoming</a>),
-//   createData(<a href="https://revenuedata.doi.gov/explore/states/ID/">Idaho</a>, <a href="https://revenuedata.doi.gov/explore/states/MT/">Montana</a>, <a href="https://revenuedata.doi.gov/explore/states/PA/">Pennsylvania</a>, ),
-//   createData(<a href="https://revenuedata.doi.gov/explore/states/IL/">Illinois</a>, <a href="https://revenuedata.doi.gov/explore/states/NE/">Nebraska</a>, <a href="https://revenuedata.doi.gov/explore/states/SC/">South Carolina</a>, ),
-//   createData(<a href="https://revenuedata.doi.gov/explore/states/IN/">Indiana</a>, <a href="https://revenuedata.doi.gov/explore/states/NV/">Nevada</a>, <a href="https://revenuedata.doi.gov/explore/states/SD/">South Dakota</a>, ),
-
-// const stateData = [
-//   [
-//       {
-//           state: "Alabama",
-//           href: "https://revenuedata.doi.gov/explore/states/AL/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Alaska"
-//         href: "https://revenuedata.doi.gov/explore/states/AK/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Arkansas"
-//         href: "https://revenuedata.doi.gov/explore/states/AR/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "California"
-//         href: "https://revenuedata.doi.gov/explore/states/CA/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Colorado"
-//         href: "https://revenuedata.doi.gov/explore/states/CO/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Florida"
-//         href: "https://revenuedata.doi.gov/explore/states/FL/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Idaho"
-//         href: "https://revenuedata.doi.gov/explore/states/ID/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Illinois"
-//         href: "https://revenuedata.doi.gov/explore/states/IL/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Indiana"
-//         href: "https://revenuedata.doi.gov/explore/states/IN/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Kansas"
-//         href: "https://revenuedata.doi.gov/explore/states/KS/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Louisiana"
-//         href: "https://revenuedata.doi.gov/explore/states/LA/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Maryland"
-//         href: "https://revenuedata.doi.gov/explore/states/MD/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Michigan-EndC1"
-//         href: "https://revenuedata.doi.gov/explore/states/MI/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Minnesota"
-//         href: "https://revenuedata.doi.gov/explore/states/MN/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Mississippi"
-//         href: "https://revenuedata.doi.gov/explore/states/MS/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Missouri"
-//         href: "https://revenuedata.doi.gov/explore/states/MO/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Montana"
-//         href: "https://revenuedata.doi.gov/explore/states/MT/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Nebraska"
-//         href: "https://revenuedata.doi.gov/explore/states/NE/"
-//       }
-//   ],
-//   [
-//       {
-//         state: "Nevada"
-//         href: "https://revenuedata.doi.gov/explore/states/NV/"
-//       }
-//   ]
-// ];
-
-
-// function FormRow(stateDataRow) {
-//     return (
-//         <React.Fragment>
-//             for (const state in stateDataRow) {
-//                 <Grid item xs={4}>
-//                    <a href={state.href}>{state.name}</a>
-//                 </Grid>
-//             }
-//         </React.Fragment>
-//     );
-//   }
+const DatabyStateButtons = ({stateData})> =>{
+  const classes = useStyles ();
 
   return (
     <div className={classes.root}>
-      <div sx={{display:"flex"}}>
-
-        <Button>Hello</Button>
-        <Button>Hello</Button>
-        <Button>Hello</Button>
-        <Button>Hello</Button>
-      </div>
-        {/* <Grid container spacing={1}>
-            for (const row in stateData) {
-                <Grid container item xs={12} spacing={3}>
-                    <FormRow  stateDataRow={row}/>
-                </Grid>
-            }
-        </Grid> */}
+      {stateData.map((state,index) => (
+        <Button
+          key={index}
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          href={state.href}
+          >
+            {state.name}
+          </Button>
+      ))}
     </div>
   );
+};
 
-export default DatabyStateButtons
+export default DatabyStateButtons;
