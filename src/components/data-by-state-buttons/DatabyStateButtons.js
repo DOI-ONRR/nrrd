@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) =>({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    flexDirection: 'column',
     justifyContent: 'space-evenly',
     gap: theme.spacing(2),
   },

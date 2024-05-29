@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) =>({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    flexDirection: 'column',
     justifyContent: 'space-between',
     gap: theme.spacing(20),
   },
