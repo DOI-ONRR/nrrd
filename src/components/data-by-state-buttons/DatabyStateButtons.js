@@ -39,10 +39,6 @@ const stateData = [
   { name: "West Virginia", href: "https://revenuedata.doi.gov/explore/states/WV/" },
   { name: "Wisconsin", href: "https://revenuedata.doi.gov/explore/states/WI/" },
   { name: "Wyoming", href: "https://revenuedata.doi.gov/explore/states/WY/" },
-  { name: "Alaska Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/alaska/" },
-  { name: "Atlantic Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/atlantic/"},
-  { name: "Gulf Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/gulf/"},
-  { name: "Pacific Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/pacific/"}
 ];
 
 const useStyles = makeStyles((theme) =>({
@@ -50,7 +46,7 @@ const useStyles = makeStyles((theme) =>({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    gap: theme.spacing(2),
+    gap: theme.spacing(10),
   },
   button: {
     minWidth: '200px',
