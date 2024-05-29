@@ -38,7 +38,11 @@ const stateData = [
   { name: "Washington", href: "https://revenuedata.doi.gov/explore/states/WA/" },
   { name: "West Virginia", href: "https://revenuedata.doi.gov/explore/states/WV/" },
   { name: "Wisconsin", href: "https://revenuedata.doi.gov/explore/states/WI/" },
-  { name: "Wyoming", href: "https://revenuedata.doi.gov/explore/states/WY/" }
+  { name: "Wyoming", href: "https://revenuedata.doi.gov/explore/states/WY/" },
+  { name: "Alaska Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/alaska/" },
+  { name: "Atlantic Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/atlantic/"},
+  { name: "Gulf Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/gulf/"},
+  { name: "Pacific Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/pacific/"}
 ];
 
 const useStyles = makeStyles((theme) =>({
@@ -58,16 +62,16 @@ const DatabyStateButtons = ({stateData})> =>{
 
   return (
     <div className={classes.root}>
-      {stateData.map((state,index) => (
+      {stateData.map((state, index) => (
         <Button
           key={index}
           className={classes.button}
           variant="contained"
           color="primary"
           href={state.href}
-          >
-            {state.name}
-          </Button>
+        >
+          {state.name}
+        </Button>
       ))}
     </div>
   );

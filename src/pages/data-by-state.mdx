@@ -1,18 +1,93 @@
 ---
-title: Data by State
+title: Data by State and Offshore Region
 layout: content
 includeToc: true
-permalink: /data-by-state/
+permalink: /data-by-state-offshore-region/
 ---
 
-import OpenInNewIcon from '@material-ui/icons/OpenInNew'
+import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 
-# Data by State
+<Container maxWidth="lg">
+  <Typography variant="h2" component="h1">
+    {props.pageContext.frontmatter.title}
+  </Typography>
 
-Select a state to learn more about energy and minerals produced on federal land in that location. Each state page includes direct links to [Explore Data](https://revenuedata.doi.gov/explore) or  [Query Data](https://revenuedata.doi.gov/query), with those tools filtered for the selected state.
+  <Box component="p">
+    Select a state or offshore region to learn more about energy and minerals produced on federal land in that location. Each page includes direct links to <Link href="https://revenuedata.doi.gov/explore">Explore Data</Link> or <Link href="https://revenuedata.doi.gov/query">Query Data</Link>, with those tools filtered for the selected state or offshore region.
+    
+  </Box>
 
+  <Box component="h2">
+    Data by State
+  </Box>
 
-Some states are excluded from this list, because it only includes states for which ONRR has data.
+  <Box component="p">
+    Some states are excluded from this list, because it only includes states for which ONRR has data.
+  </Box>
 
+  <Box mt={3}>
+    <Grid container spacing={1}>
+      <Grid item xs={6}>
+        <Link href="https://revenuedata.doi.gov/explore/states/AK/">Alaska</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/AL/">Alabama</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/AZ/">Arizona</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/CA/">California</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/CO/">Colorado</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/FL/">Florida</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/ID/">Idaho</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/IL/">Illinois</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/IN/">Indiana</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/KS/">Kansas</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/KY/">Kentucky</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/LA/">Louisiana</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/MD/">Maryland</Link>
+      </Grid>
+      <Grid item xs={6}>
+        <Link href="https://revenuedata.doi.gov/explore/states/MI/">Michigan</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/MN/">Minnesota</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/MO/">Missouri</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/MS/">Mississippi</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/MT/">Montana</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/NC/">North Carolina</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/ND/">North Dakota</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/NE/">Nebraska</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/NM/">New Mexico</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/NV/">Nevada</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/NY/">New York</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/OH/">Ohio</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/OK/">Oklahoma</Link>
+      </Grid>
+      <Grid item xs={6}>
+        <Link href="https://revenuedata.doi.gov/explore/states/OR/">Oregon</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/PA/">Pennsylvania</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/SC/">South Carolina</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/SD/">South Dakota</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/Texas/">Texas</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/UT/">Utah</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/VA/">Virigina</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/WA/">Washington</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/WI/">Wisconsin</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/WV/">West Virginia</Link>
+        <Link href="https://revenuedata.doi.gov/explore/states/WY/">Wyoming</Link>
+      </Grid>
+    </Grid>
+  </Box>
+
+  </Box component="h2">
+  Data by Offshore Region
+  </Box>
+
+  <Box mt={1}>
+    <Grid container spacing={1}>
+      <Grid item xs={6}>
+        <Link href="https://revenuedata.doi.gov/explore/offshore-regions/alaska/">Alaska Offshore Region</Link>
+        <Link href="https://revenuedata.doi.gov/explore/offshore-regions/atlantic/">Atlantic Offshore Region</Link>
+        <Link href="https://revenuedata.doi.gov/explore/offshore-regions/gulf/">Gulf Offshore Region</Link>
+        <Link href="https://revenuedata.doi.gov/explore/offshore-regions/pacific/">Pacific Offshore Region</Link>
+      </Grid>
+    </Grid>
+  </Box>
+
+</Container>
 
 <DatabyStateButtons />
