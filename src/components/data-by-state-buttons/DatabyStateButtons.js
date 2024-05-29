@@ -45,7 +45,8 @@ const useStyles = makeStyles((theme) =>({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
+    rowgap: '10px',
     gap: theme.spacing(2),
   },
   button: {
