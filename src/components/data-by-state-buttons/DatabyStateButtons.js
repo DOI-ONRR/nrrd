@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) =>({
   },
 }));
 
-const DatabyStateButtons = ({stateData}) => {
+const DatabyStateButtons = () => {
   const classes = useStyles ();
 
   return (
