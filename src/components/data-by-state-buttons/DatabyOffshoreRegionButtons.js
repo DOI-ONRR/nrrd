@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) =>({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     gap: theme.spacing(20),
   },
   button: {
