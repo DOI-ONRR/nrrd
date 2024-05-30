@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) =>({
   },
   button: {
     minWidth: '200px',
+    '&:hover': {
+      textDecoration: 'underline',
+      backgroundColor: 'transparent',
+    },
   },
 }));
 
