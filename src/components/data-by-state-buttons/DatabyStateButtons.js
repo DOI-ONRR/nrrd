@@ -46,12 +46,11 @@ const useStyles = makeStyles((theme) =>({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    borderRadius: '16px',
-    borderBottomColor: 'transparent',
     gap: theme.spacing(2),
   },
   button: {
     minWidth: '200px',
+    marginBottom: theme.spacing(2),
   },
 }));
 
