@@ -34,7 +34,7 @@ const ExploreDisbursements = props => {
             href="/data-by-state"
             linkType="Location"
             mt={0}>
-            Disbursements by State and Offshore Region
+            Data by State and Offshore Region
           </Link>
         </>
       }
