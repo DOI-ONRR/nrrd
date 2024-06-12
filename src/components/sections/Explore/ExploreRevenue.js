@@ -23,12 +23,20 @@ const ExploreRevenue = props => {
         </>
       }
       contentCenter={
-        <Link
-          href="/how-revenue-works#understanding-federal-revenues"
-          linkType="HowWorks"
-          mt={0}>
-          How revenue works
-        </Link>
+        <>
+          <Link
+            href="/how-revenue-works#understanding-federal-revenues"
+            linkType="HowWorks"
+            mt={0}>
+            How revenue works
+          </Link>
+          <Link
+            href="/data-by-state"
+            linkType="Location"
+            mt={0}>
+            Revenue by State and Offshore Region
+          </Link>
+        </>
       }
       contentRight={
         <Link

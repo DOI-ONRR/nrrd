@@ -23,12 +23,21 @@ const ExploreProduction = props => {
         </>
       }
       contentCenter={
-        <Link
-          href="/how-revenue-works#the-production-process"
-          linkType="HowWorks"
-          mt={0}>
-          How production works
-        </Link>
+        <>
+          <Link
+            href="/how-revenue-works#the-production-process"
+            linkType="HowWorks"
+            mt={0}>
+            How production works
+          </Link>
+          <Link
+            href="/data-by-state"
+            linkType="Location"
+            mt={0}>
+            Production by State and Offshore Region
+          </Link>
+
+        </>
       }
       contentRight={
         <Link
