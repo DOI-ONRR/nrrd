@@ -104,7 +104,7 @@ const SectionHeader = props => {
             </Box>
             <Box component="span" className={classes.titleLink}>
               <LocationLink
-                linkTitle={`${ dataTypeLabel } by location`}
+                linkTitle={`Explore ${ dataTypeLabel }`}
                 linkUrl={`/explore?dataType=${ dataTypeLabel }`}
               />
             </Box>
@@ -123,7 +123,7 @@ const SectionHeader = props => {
             </Box>
             <Box component="span" className={classes.titleLink}>
               <LocationLink
-                linkTitle={`${ dataTypeLabel } by location`}
+                linkTitle={`Explore ${ dataTypeLabel }`}
                 linkUrl={`/explore?dataType=${ dataTypeLabel }`}
               />
             </Box>
