@@ -1,15 +1,15 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import { Button } from '@material-ui/core'
 
 const stateData = [
-  { name: "Alaska Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/alaska/" },
-  { name: "Atlantic Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/atlantic/"},
-  { name: "Gulf Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/gulf/"},
-  { name: "Pacific Offshore Region", href: "https://revenuedata.doi.gov/explore/offshore-regions/pacific/"}
-];
+  { name: 'Alaska Offshore Region', href: 'https://revenuedata.doi.gov/explore/offshore-regions/alaska/' },
+  { name: 'Atlantic Offshore Region', href: 'https://revenuedata.doi.gov/explore/offshore-regions/atlantic/' },
+  { name: 'Gulf Offshore Region', href: 'https://revenuedata.doi.gov/explore/offshore-regions/gulf/' },
+  { name: 'Pacific Offshore Region', href: 'https://revenuedata.doi.gov/explore/offshore-regions/pacific/' }
+]
 
-const useStyles = makeStyles((theme) =>({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) =>({
       backgroundColor: 'transparent',
     },
   },
-}));
+}))
 
 const DatabyOffshoreRegionButtons = () => {
-  const classes = useStyles ();
+  const classes = useStyles ()
 
   return (
     <div className={classes.root}>
@@ -42,7 +42,7 @@ const DatabyOffshoreRegionButtons = () => {
         </Button>
       ))}
     </div>
-  );
+  )
 }
 
 export default DatabyOffshoreRegionButtons
