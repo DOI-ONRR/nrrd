@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     minWidth: '200px',
+    padding: '24px',
     '&:hover': {
       textDecoration: 'underline',
       backgroundColor: 'transparent',
@@ -27,7 +28,6 @@ const useStyles = makeStyles(theme => ({
 
 const DatabyOffshoreRegionButtons = () => {
   const classes = useStyles ()
-
   return (
     <div className={classes.root}>
       {stateData.map((state, index) => (
