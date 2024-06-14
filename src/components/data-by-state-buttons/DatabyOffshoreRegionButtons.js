@@ -18,7 +18,8 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     minWidth: '200px',
-    padding: '24px',
+    marginBottom: theme.spacing(2),
+    margin: theme.spacing(3),
     '&:hover': {
       textDecoration: 'underline',
       backgroundColor: 'transparent',
