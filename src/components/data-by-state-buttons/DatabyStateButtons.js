@@ -62,8 +62,8 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const DatabyStateButtons = () => { const classes = useStyles ()
-
+const DatabyStateButtons = () => { 
+  const classes = useStyles ()
   return (
     <div className={classes.root}>
       {stateData.map((state, index) => (
