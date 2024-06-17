@@ -4,12 +4,12 @@ import { Button } from '@material-ui/core'
 
 const stateData = [
   { name: 'Alabama', href: 'https://revenuedata.doi.gov/explore/states/AL/' },
-  { name: 'Alaska', href: 'https://revenuedata.doi.gov/explore/states/AK/' },   
+  { name: 'Alaska', href: 'https://revenuedata.doi.gov/explore/states/AK/' },
   { name: 'Arkansas', href: 'https://revenuedata.doi.gov/explore/states/AR/' },
   { name: 'California', href: 'https://revenuedata.doi.gov/explore/states/CA/' },
   { name: 'Colorado', href: 'https://revenuedata.doi.gov/explore/states/CO/' },
   { name: 'Florida', href: 'https://revenuedata.doi.gov/explore/states/FL/' },
-  { name: 'Idaho', href: 'https://revenuedata.doi.gov/explore/states/ID/' }, 
+  { name: 'Idaho', href: 'https://revenuedata.doi.gov/explore/states/ID/' },
   { name: 'Illinois', href: 'https://revenuedata.doi.gov/explore/states/IL/' },
   { name: 'Indiana', href: 'https://revenuedata.doi.gov/explore/states/IN/' },
   { name: 'Kansas', href: 'https://revenuedata.doi.gov/explore/states/KS/' },
@@ -62,8 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const DatabyStateButtons = () => {
-  const classes = useStyles ();
+const DatabyStateButtons = () => { const classes = useStyles ()
 
   return (
     <div className={classes.root}>
@@ -79,7 +78,7 @@ const DatabyStateButtons = () => {
         </Button>
       ))}
     </div>
-  );
+  )
 }
 
 export default DatabyStateButtons
