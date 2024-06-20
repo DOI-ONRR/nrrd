@@ -13,7 +13,6 @@ import {
 
 // not used import StackedBarChart from '../../data-viz/StackedBarChart/StackedBarChart'
 import StackedBarChart2 from '../../data-viz/StackedBarChart/StackedBarChart2'
-// import SectionHeader from '../../sections/SectionHeader'
 import HomeDataFilters from '../../../components/toolbars/HomeDataFilters'
 import Link from '../../../components/Link'
 import ComparisonTable from '../ComparisonTable'
@@ -283,11 +282,6 @@ const TotalDisbursements = props => {
   // console.debug("Comparison yOrderBy ", yOrderBy)
   return (
     <>
-	  {/* <SectionHeader
-        title="Total disbursements"
-        linkLabel="disbursements"
-        showLinks
-	  /> */}
 	  <Grid container spacing={4}>
         <Grid item xs={12}>
           <HomeDataFilters
