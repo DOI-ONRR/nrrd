@@ -31,10 +31,10 @@ const ExploreRevenue = props => {
             How revenue works
           </Link>
           <Link
-            href="/data-by-state"
+            href="/data-by-state-offshore-region"
             linkType="Location"
             mt={0}>
-            Data by State and Offshore Region
+            Data by state and offshore fegion
           </Link>
         </>
       }
