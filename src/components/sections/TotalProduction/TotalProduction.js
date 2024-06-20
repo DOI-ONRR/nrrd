@@ -288,11 +288,6 @@ const TotalProduction = props => {
   if (chartData.length > 0) {
     return (
       <>
-        {/* <SectionHeader
-          title="Total production"
-          linkLabel="production"
-          showLinks
-        /> */}
         <Grid container spacing={4}>
           <Grid item xs={12}>
             <HomeDataFilters
