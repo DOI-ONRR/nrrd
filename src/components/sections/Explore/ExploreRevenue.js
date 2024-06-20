@@ -34,7 +34,7 @@ const ExploreRevenue = props => {
             href="/data-by-state-offshore-region"
             linkType="Location"
             mt={0}>
-            Data by state and offshore fegion
+            Data by state and offshore region
           </Link>
         </>
       }
