@@ -5,7 +5,7 @@ import Link from '../../Link'
 const ExploreRevenue = props => {
   return (
     <Explore
-      title="revenue"
+      title="and learn about revenue"
       contentLeft={
         <>
           <Link
@@ -23,12 +23,20 @@ const ExploreRevenue = props => {
         </>
       }
       contentCenter={
-        <Link
-          href="/how-revenue-works#understanding-federal-revenues"
-          linkType="HowWorks"
-          mt={0}>
-          How revenue works
-        </Link>
+        <>
+          <Link
+            href="/how-revenue-works#understanding-federal-revenues"
+            linkType="HowWorks"
+            mt={0}>
+            How revenue works
+          </Link>
+          <Link
+            href="/data-by-state-offshore-region"
+            linkType="Location"
+            mt={0}>
+            Data by state and offshore region
+          </Link>
+        </>
       }
       contentRight={
         <Link

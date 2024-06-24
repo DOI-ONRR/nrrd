@@ -5,7 +5,7 @@ import Link from '../../../components/Link'
 const ExploreDisbursements = props => {
   return (
     <Explore
-      title="disbursements"
+      title="and learn about disbursements"
 	    contentLeft={
         <>
           <Link
@@ -23,12 +23,20 @@ const ExploreDisbursements = props => {
 		    </>
 		  }
 		  contentCenter={
-			  <Link
-          href="/how-revenue-works#understanding-federal-disbursements"
-          linkType="HowWorks"
-          mt={0}>
-          How disbursements work
-			  </Link>
+			  <>
+          <Link
+            href="/how-revenue-works#understanding-federal-disbursements"
+            linkType="HowWorks"
+            mt={0}>
+            How disbursements work
+			    </Link>
+          <Link
+            href="/data-by-state-offshore-region"
+            linkType="Location"
+            mt={0}>
+            Data by state and offshore region
+          </Link>
+        </>
       }
 
       contentRight={

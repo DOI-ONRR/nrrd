@@ -92,7 +92,7 @@ const SectionHeader = props => {
     <>
       <Box color="secondary.main" mb={2} borderBottom={2} pb={1} className={classes.titleBar}>
         <Box component="h3" m={0} color="primary.dark">{title}</Box>
-        {(showLinks && !matchesSmDown) &&
+        {/* {(showLinks && !matchesSmDown) &&
           <Box className={classes.linkWrap}>
             <Box component="span" className={classes.titleLink}>
               <Link
@@ -104,14 +104,14 @@ const SectionHeader = props => {
             </Box>
             <Box component="span" className={classes.titleLink}>
               <LocationLink
-                linkTitle={`${ dataTypeLabel } by location`}
+                linkTitle={`Explore ${ dataTypeLabel } data`}
                 linkUrl={`/explore?dataType=${ dataTypeLabel }`}
               />
             </Box>
           </Box>
-        }
+        } */}
       </Box>
-      {(showLinks && matchesSmDown) &&
+      {/* {(showLinks && matchesSmDown) &&
           <Box className={classes.linkWrap}>
             <Box component="span" className={classes.titleLink}>
               <Link
@@ -123,12 +123,12 @@ const SectionHeader = props => {
             </Box>
             <Box component="span" className={classes.titleLink}>
               <LocationLink
-                linkTitle={`${ dataTypeLabel } by location`}
+                linkTitle={`Explore ${ dataTypeLabel } data`}
                 linkUrl={`/explore?dataType=${ dataTypeLabel }`}
               />
             </Box>
           </Box>
-      }
+      } */}
     </>
   )
 }

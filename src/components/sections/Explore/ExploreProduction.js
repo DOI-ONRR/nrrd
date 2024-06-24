@@ -5,7 +5,7 @@ import Link from '../../../components/Link'
 const ExploreProduction = props => {
   return (
     <Explore
-      title="production"
+      title="and learn about production"
       contentLeft={
         <>
           <Link
@@ -23,12 +23,21 @@ const ExploreProduction = props => {
         </>
       }
       contentCenter={
-        <Link
-          href="/how-revenue-works#the-production-process"
-          linkType="HowWorks"
-          mt={0}>
-          How production works
-        </Link>
+        <>
+          <Link
+            href="/how-revenue-works#the-production-process"
+            linkType="HowWorks"
+            mt={0}>
+            How production works
+          </Link>
+          <Link
+            href="/data-by-state"
+            linkType="Location"
+            mt={0}>
+            Data by state and offshore region
+          </Link>
+
+        </>
       }
       contentRight={
         <Link

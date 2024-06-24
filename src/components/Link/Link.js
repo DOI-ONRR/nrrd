@@ -115,7 +115,7 @@ const LinkTypeComponents = {
   HowWorks: props => <IconLink icon={<HowWorksLinkIconImg data-testid='how works icon' />} pl={0} {...props} />,
   FilterTable: props => <IconLink icon={<FilterTableIconImg data-testid='filter table icon' />} linkType={LinkTypeComponents.FilterTable} pl={0} {...props} />,
   ExploreData: props => <IconLink icon={<IconExploreDataImg data-testid='explore data icon' />} linkType={LinkTypeComponents.ExploreData} {...props} />,
-  Location: props => <IconLink icon={<IconUsMapImg data-testid='us map icon' />} {...props} />
+  Location: props => <IconLink icon={<IconUsMapImg data-testid='us map icon' />} pl={0} {...props} />
 }
 
 const regexXlsx = RegExp('.xlsx$')
