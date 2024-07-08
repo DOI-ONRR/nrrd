@@ -169,14 +169,6 @@ const RevenueCountyMap = props => {
 	          disableMapControls={true}
           />
 	      </Box>
-        <QueryLink
-          groupBy={DFC.COUNTY}
-          landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-          linkType="FilterTable"
-          breakoutBy={DFC.REVENUE_TYPE}
-          {...props}>
-          Query revenue by county
-        </QueryLink>
       </>
     )
   }
