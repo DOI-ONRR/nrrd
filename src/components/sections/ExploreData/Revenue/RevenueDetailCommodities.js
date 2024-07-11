@@ -111,14 +111,6 @@ const RevenueDetailCommodities = props => {
                   }
                   labelFormat={d => formatToDollarInt(d)}
                   legendFormat={d => formatToDollarInt(d)} />
-                <QueryLink
-                  groupBy={isCounty ? DFC.COUNTY : DFC.COMMODITY}
-                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-                  linkType="FilterTable"
-                  breakoutBy={DFC.COMMODITY}
-                  {...props}>
-                Query revenue by commodity
-                </QueryLink>
 		      </Box>
 		    </Box>
           )

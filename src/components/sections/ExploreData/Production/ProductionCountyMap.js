@@ -198,14 +198,6 @@ const ProductionCountyMap = props => {
          }
        </Box>
         }
-        <QueryLink
-          groupBy={DFC.COUNTY}
-          landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-          linkType="FilterTable"
-          breakoutBy={DFC.PRODUCTION}
-          {...props}>
-          Query production by county
-        </QueryLink>
       </>
     )
   }

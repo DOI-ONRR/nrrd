@@ -273,7 +273,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: 15,
   },
   cardContentContainer: {
-    display: (isIE || (isEdge && !isChromium)) ? 'block' : 'grid',
+    display: 'block',
     minHeight: 1500,
     '& > div': {
       margin: 0,
