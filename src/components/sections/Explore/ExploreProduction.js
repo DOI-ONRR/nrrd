@@ -31,7 +31,7 @@ const ExploreProduction = props => {
             How production works
           </Link>
           <Link
-            href="/data-by-state"
+            href="/data-by-state-offshore-region"
             linkType="Location"
             mt={0}>
             Data by state and offshore region
