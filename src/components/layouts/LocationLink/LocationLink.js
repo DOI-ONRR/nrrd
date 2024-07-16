@@ -8,7 +8,7 @@ const LocationLink = props => {
   return (
     <Link
       href={linkUrl}
-      linkType="Location"
+      linkType="ExploreData"
       mt={0}>
       {linkTitle}
     </Link>
