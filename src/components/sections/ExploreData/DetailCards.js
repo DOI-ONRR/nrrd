@@ -8,12 +8,6 @@ import { DataFilterContext } from '../../../stores/data-filter-store'
 
 import CardTitle from './CardTitle'
 
-import {
-  isIE,
-  isEdge,
-  isChromium
-} from 'react-device-detect'
-
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -273,7 +267,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: 15,
   },
   cardContentContainer: {
-    display: (isIE || (isEdge && !isChromium)) ? 'block' : 'grid',
+    display: 'block',
     minHeight: 1500,
     '& > div': {
       margin: 0,

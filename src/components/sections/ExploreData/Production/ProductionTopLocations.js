@@ -4,8 +4,6 @@ import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 import * as d3 from 'd3'
 
-import QueryLink from '../../../../components/QueryLink'
-
 // utility functions
 import { formatToCommaInt } from '../../../../js/utils'
 
@@ -261,17 +259,6 @@ const ProductionTopLocations = ({ title, ...props }) => {
 		    showLabels={!!props.horizontal}
 		    />
 		    </Box>
-		    {props.showQueryLink &&
-		     <Box>
-		       <QueryLink
-			   groupBy={(state === DFC.NATIONWIDE_FEDERAL_FIPS) ? DFC.LAND_TYPE : DFC.COUNTY}
-			   linkType="FilterTable"
-			   landType={(state === DFC.NATIVE_AMERICAN_FIPS) ? DFC.NATIVE_AMERICAN : 'Federal Offshore,Federal Onshore,Mixed Exploratory'}
-			 {...props}>
-			 Query production by location
-		       </QueryLink>
-		     </Box>
-		    }
 		    </Box>
           </div>
         )

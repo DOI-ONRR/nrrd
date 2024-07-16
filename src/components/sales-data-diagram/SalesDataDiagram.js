@@ -159,20 +159,23 @@ const SalesDataDiagram = () => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Box>
-                Royalty revenues are based on the amount and value of production removed or sold from the lease.  Federal <GlossaryTerm>royalty rate</GlossaryTerm> is lease-specific and generally
-                depends on the location of the oil or gas lease. The location of the lease also determines the applicable statutory requirements.
+                Royalty revenues are based on the amount and value of production removed or sold from the lease.
+                Federal <GlossaryTerm>royalty rate</GlossaryTerm> is lease-specific and generally depends on the
+                location of the oil or gas lease. The location of the lease also determines the applicable statutory requirements.
               </Box>
               <Box my={'1rem'}>To determine the royalty due, reporters use the following steps:</Box>
               <Box fontWeight={'bold'}>A. Calculate federal royalty value with adjustments for royalty relief and/or quality and gravity bank adjustments</Box>
               <Box>
-                Revenues may be modified by various royalty relief programs, as well as <GlossaryTerm>quality and gravity bank adjustments</GlossaryTerm>. These modifications are made prior to
-                any allowances taking place and are included in the 2014 reporting. This calculation results in the <GlossaryTerm>Royalty Value Prior to Allowances (RVPA)</GlossaryTerm>.
+                Revenues may be modified by various royalty relief programs, as well as <GlossaryTerm>quality and gravity bank adjustments</GlossaryTerm>.
+                These modifications are made prior to any allowances taking place and are included in the 2014 reporting. This calculation results in
+                the <GlossaryTerm>Royalty Value Prior to Allowances (RVPA)</GlossaryTerm>.
               </Box>
               <Box fontWeight={'bold'} mt={'1rem'}>B. Deduct regulatory allowances</Box>
               <Box>
               Allowances are deductions lessees can claim against royalty value for the transportation and processing costs of production; application of
               these allowances decreases the royalty payment owed. Federal regulations allow for “reasonable, actual costs” to be deducted. This dataset
-              includes Transportation Allowances and Processing Allowances. This calculation results in the <GlossaryTerm>Royalty Value Less Allowances (RVLA)</GlossaryTerm>.
+              includes Transportation Allowances and Processing Allowances. This calculation results in the <GlossaryTerm>Royalty Value Less Allowances
+              (RVLA)</GlossaryTerm>.
               </Box>
               <Box mt={'1rem'}>
                 These steps result in the equation for royalty due:
@@ -183,15 +186,51 @@ const SalesDataDiagram = () => {
               <Box>
                 <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/part-1210/subpart-B' className={linkClasses.underlineHover}>ONRR Royalty Reports for Oil and Gas: 30 CFR Part 1210 Subpart B <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-C' className={linkClasses.underlineHover}>30 CFR Part 1206 (Subpart C for federal oil) <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
-                  <li><Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-D' className={linkClasses.underlineHover}>30 CFR Part 1206 (Subpart D for federal gas) <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
-                  <li><Link href='https://www.onrr.gov/references/valuation?tabs=valuation-regulations' className={linkClasses.underlineHover}>Valuation Regulations <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
-                  <li><Link href='https://onrr.gov/references/valuation' className={linkClasses.underlineHover}>How Valuation Works <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
-                  <li><Link href='https://www.onrr.gov/reporting/revenue?tabs=forms' className={linkClasses.underlineHover}>Form ONRR-2014 <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
-                  <li><Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook' className={linkClasses.underlineHover}>Minerals Revenue Reporter Handbook <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
-                  <li><Link href='https://onrr.gov/document/RRM-Chapter.4.pdf' className={linkClasses.underlineHover}>Handbook discussion on quality bank adjustments, section 4.11 (PDF) <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
-                  <li><Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references' className={linkClasses.underlineHover}>ONRR revenue reporting references <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
+                  <li>
+                    <Link href='https://www.ecfr.gov/current/title-30/part-1210/subpart-B' className={linkClasses.underlineHover}>
+                      ONRR Royalty Reports for Oil and Gas: 30 CFR Part 1210 Subpart B <OpenInNewIcon style={{ fontSize: 20 }} />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-C' className={linkClasses.underlineHover}>
+                      30 CFR Part 1206 (Subpart C for federal oil) <OpenInNewIcon style={{ fontSize: 20 }} />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='https://www.ecfr.gov/current/title-30/chapter-XII/subchapter-A/part-1206/subpart-D' className={linkClasses.underlineHover}>
+                      30 CFR Part 1206 (Subpart D for federal gas) <OpenInNewIcon style={{ fontSize: 20 }} />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='https://www.onrr.gov/references/valuation?tabs=valuation-regulations' className={linkClasses.underlineHover}>
+                      Valuation Regulations <OpenInNewIcon style={{ fontSize: 20 }} />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='https://onrr.gov/references/valuation' className={linkClasses.underlineHover}>
+                      How Valuation Works <OpenInNewIcon style={{ fontSize: 20 }} />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='https://www.onrr.gov/reporting/revenue?tabs=forms' className={linkClasses.underlineHover}>
+                      Form ONRR-2014 <OpenInNewIcon style={{ fontSize: 20 }} />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook' className={linkClasses.underlineHover}>
+                      Minerals Revenue Reporter Handbook <OpenInNewIcon style={{ fontSize: 20 }} />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='https://onrr.gov/document/RRM-Chapter.4.pdf' className={linkClasses.underlineHover}>
+                      Handbook discussion on quality bank adjustments, section 4.11 (PDF) <OpenInNewIcon style={{ fontSize: 20 }} />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references' className={linkClasses.underlineHover}>
+                      ONRR revenue reporting references <OpenInNewIcon style={{ fontSize: 20 }} />
+                    </Link>
+                  </li>
                 </ul>
               </Box>
             </ExpansionPanelDetails>
@@ -217,7 +256,11 @@ const SalesDataDiagram = () => {
               <Box>
                 <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
-                  <li><Link href='https://revenuedata.doi.gov/how-revenue-works/#how-our-data-fits-together' className={linkClasses.underlineHover}>How Revenue Works - How our data fits together </Link></li>
+                  <li>
+                    <Link href='https://revenuedata.doi.gov/how-revenue-works/#how-our-data-fits-together' className={linkClasses.underlineHover}>
+                      How Revenue Works - How our data fits together
+                    </Link>
+                  </li>
                 </ul>
               </Box>
             </ExpansionPanelDetails>
@@ -255,7 +298,12 @@ const SalesDataDiagram = () => {
               <Box mt={'1rem'}>
                 <Typography>References:</Typography>
                 <ul style={{ margin: '0' }}>
-                  <li><Link href='https://www.doioig.gov/reports/inspection-evaluation/us-department-interior-does-not-analyze-effective-royalty-rates' className={linkClasses.underlineHover}>OIG Report, Appendix 1 <OpenInNewIcon style={{ fontSize: 20 }} /></Link></li>
+                  <li>
+                    <Link href='https://www.doioig.gov/reports/inspection-evaluation/us-department-interior-does-not-analyze-effective-royalty-rates'
+                      className={linkClasses.underlineHover}>
+                      OIG Report, Appendix 1 <OpenInNewIcon style={{ fontSize: 20 }} />
+                    </Link>
+                  </li>
                 </ul>
               </Box>
             </ExpansionPanelDetails>
