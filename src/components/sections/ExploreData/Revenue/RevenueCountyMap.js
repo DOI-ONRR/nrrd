@@ -13,7 +13,6 @@ import {
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
-import QueryLink from '../../../../components/QueryLink'
 
 import mapCounties from '../counties.json'
 import { makeStyles } from '@material-ui/core/styles'

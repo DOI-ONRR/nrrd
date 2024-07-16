@@ -10,7 +10,6 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { useInView } from 'react-intersection-observer'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
-import QueryLink from '../../../../components/QueryLink'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { makeStyles } from '@material-ui/core/styles'

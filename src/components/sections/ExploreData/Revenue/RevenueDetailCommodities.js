@@ -8,7 +8,6 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
-import QueryLink from '../../../../components/QueryLink'
 import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 

@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
-import QueryLink from '../../../../components/QueryLink'
 import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 

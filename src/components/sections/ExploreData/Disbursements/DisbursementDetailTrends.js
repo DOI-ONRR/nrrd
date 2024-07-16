@@ -17,7 +17,6 @@ import {
 
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
-import QueryLink from '../../../../components/QueryLink'
 
 const useStyles = makeStyles(theme => ({
   boxTopSection: {

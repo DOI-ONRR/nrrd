@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
-import QueryLink from '../../../../components/QueryLink'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'

@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 // utility functions
 import utils from '../../../../js/utils'
 import { ExploreDataContext } from '../../../../stores/explore-data-store'
-import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { useInView } from 'react-intersection-observer'
