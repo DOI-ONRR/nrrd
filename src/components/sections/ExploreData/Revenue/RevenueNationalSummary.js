@@ -77,6 +77,7 @@ const revenueTypeDescriptions = [
   // eslint-disable-next-line max-len
   'This category includes revenues that are not included in the royalty, rent, or bonus categories. Other revenues contain minimum royalties, estimated royalties, settlement agreements, and interest.',
   'ONRR issues civil penalties when companies fail to comply with, or knowingly or willfully violate, regulations or laws.',
+  // eslint-disable-next-line max-len
   'The Department of the Interior inspects offshore oil and gas drilling rigs at least once a year. Inspection fees help recover some of the costs associated with these inspections.'
 ]
 

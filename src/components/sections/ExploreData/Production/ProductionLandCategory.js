@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 // utility functions
 import utils from '../../../../js/utils'
 import { ExploreDataContext } from '../../../../stores/explore-data-store'
-import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { useInView } from 'react-intersection-observer'
@@ -175,22 +174,6 @@ const ProductionLandCategory = ({ title, ...props }) => {
                 }
               />
             </Box>
-            {(isNativeAmerican || isNationwideFederal || locationType === DFC.OFFSHORE_CAPITALIZED) &&
-            <QueryLink
-              groupBy={(props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? DFC.DATA_TYPE : DFC.STATE_OFFSHORE_NAME}
-              linkType="FilterTable" {...props}
-              landType={(props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) ? DFC.NATIVE_AMERICAN : 'Federal Offshore,Federal Onshore,Mixed Exploratory'}>
-                Query production over time
-            </QueryLink>
-            }
-
-            {(isCounty || isState) &&
-            <QueryLink
-              groupBy={DFC.COUNTY}
-              linkType="FilterTable" {...props}>
-                Query production over time
-            </QueryLink>
-            }
           </Box>
 	  </div>
       )

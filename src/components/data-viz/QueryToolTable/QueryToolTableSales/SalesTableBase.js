@@ -174,7 +174,8 @@ const SalesTableBase = ({ salesTableData }) => {
 
           </Grid>
           {showNote
-            ? <Box className={noteClasses.root}>*Sales Volume total not available when multiple commodities are selected because commodities have different units of measurement</Box>
+            ? <Box className={noteClasses.root}>
+              *Sales Volume total not available when multiple commodities are selected because commodities have different units of measurement</Box>
             : null
           }
         </Fragment>

@@ -8,7 +8,6 @@ import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
-import QueryLink from '../../../../components/QueryLink'
 import { useInView } from 'react-intersection-observer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
@@ -111,14 +110,6 @@ const RevenueDetailCommodities = props => {
                   }
                   labelFormat={d => formatToDollarInt(d)}
                   legendFormat={d => formatToDollarInt(d)} />
-                <QueryLink
-                  groupBy={isCounty ? DFC.COUNTY : DFC.COMMODITY}
-                  landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-                  linkType="FilterTable"
-                  breakoutBy={DFC.COMMODITY}
-                  {...props}>
-                Query revenue by commodity
-                </QueryLink>
 		      </Box>
 		    </Box>
           )

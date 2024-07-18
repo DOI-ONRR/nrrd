@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
-import QueryLink from '../../../../components/QueryLink'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
@@ -104,13 +103,6 @@ const DisbursementSources = props => {
                   return r
                 }
               } />
-            <QueryLink
-              groupBy={DFC.SOURCE}
-              linkType="FilterTable"
-              recipient="Historic Preservation Fund,Land and Water Conservation Fund,Other,Reclamation,State and local governments,U.S. Treasury"
-              {...props}>
-              Query disbursements by source
-            </QueryLink>
           </Box>
         </Box>
       )

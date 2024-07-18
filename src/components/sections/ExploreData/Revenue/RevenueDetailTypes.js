@@ -10,7 +10,6 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 import { useInView } from 'react-intersection-observer'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
-import QueryLink from '../../../../components/QueryLink'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -116,25 +115,6 @@ const RevenueDetailTypes = props => {
                   }
                   labelFormat={d => formatToDollarInt(d)}
                   legendFormat={d => formatToDollarInt(d)} />
-                {!isCounty &&
-		<QueryLink
-		    groupBy={DFC.REVENUE_TYPE}
-		    landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-		    linkType="FilterTable"
-		  {...props}>
-		  Query revenue by type
-		</QueryLink>
-                }
-                {isCounty &&
-		<QueryLink
-		    groupBy={DFC.COUNTY}
-		    landType="Federal - not tied to a lease,Federal Offshore,Federal Onshore"
-		    linkType="FilterTable"
-		    breakoutBy={DFC.REVENUE_TYPE}
-		  {...props}>
-		  Query revenue by type
-		</QueryLink>
-                }
 	      </Box>
 	    </Box>
 	    )
