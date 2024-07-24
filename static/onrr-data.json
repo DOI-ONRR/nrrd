@@ -37,7 +37,7 @@
 		},
 		{
 			"@type": "dcat:Distribution",
-			"description": "Landing page for statistics.",
+			"description": "Landing page for disbursements data",
 			"accessURL": "https://revenuedata.doi.gov/downloads/disbursements/",
 			"mediaType": "text/html",
 			"title": "ONRR Disbursements Landing Page"
