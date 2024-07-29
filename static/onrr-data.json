@@ -1,9 +1,9 @@
 {
 	"@type": "dcat:Catalog",
 	"@id": "https://www.revenuedata.doi.gov/onrr-data.json",
-	"@context": "https://datainventory.doi.gov/schema/doi-dcat-us/schema/catalog.jsonld",
-	"conformsTo": "https://datainventory.doi.gov/schema/doi-dcat-us/schema",
-	"describedBy": "https://datainventory.doi.gov/schema/doi-dcat-us/schema/catalog.json",
+	"@context": "https://project-open-data.cio.gov/v1.1/schema/catalog.jsonld",
+	"conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
+	"describedBy": "https://project-open-data.cio.gov/v1.1/schema/catalog.json",
 	"dataset": [
 		{
 	"@type": "dcat:Dataset",
@@ -14,7 +14,7 @@
 	],
 	"contactPoint": {
 		"@type": "vcard:Contact",
-		"fn": "Open Data, Design and Development Team",
+		"fn": "Open Data, Design, and Development Team",
 		"hasEmail": "mailto:NRRD@onrr.gov"
 	},
 	"creator": [
