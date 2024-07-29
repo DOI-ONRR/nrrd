@@ -14,7 +14,7 @@
 	],
 	"contactPoint": {
 		"@type": "vcard:Contact",
-		"fn": "Open Data, Design and Development Team",
+		"fn": "Open Data, Design, and Development Team",
 		"hasEmail": "mailto:NRRD@onrr.gov"
 	},
 	"creator": [
