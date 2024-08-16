@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core'
 const stateData = [
   { name: 'Alabama', href: 'https://revenuedata.doi.gov/explore/states/AL/' },
   { name: 'Alaska', href: 'https://revenuedata.doi.gov/explore/states/AK/' },
+  { name: 'Arizona', href: 'https://revenuedata.doi.gov/explore/states/AZ/' },
   { name: 'Arkansas', href: 'https://revenuedata.doi.gov/explore/states/AR/' },
   { name: 'California', href: 'https://revenuedata.doi.gov/explore/states/CA/' },
   { name: 'Colorado', href: 'https://revenuedata.doi.gov/explore/states/CO/' },
