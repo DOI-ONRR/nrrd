@@ -7,6 +7,7 @@
 	"dataset": [
 		{
 	"@type": "dcat:Dataset",
+	"@id": "http://datainventory.doi.gov/id/dataset/4b89f4ac7d2bf03fa13a431b904cc689",
 	"accessLevel": "public",
 	"accrualPeriodicity": "R/P1Y",
 	"bureauCode": [
@@ -43,6 +44,7 @@
 			"title": "ONRR Disbursements Landing Page"
 		}
 	],
+	"identifier": "ngp:e6327650-f740-4934-a7c2-bdce7ed9e975”,
 	"issued": "2015-12-15",
 	"keyword": [
 		"economy", 
