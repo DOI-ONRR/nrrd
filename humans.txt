@@ -6,7 +6,7 @@
 ## TEAM MEMBERS
 
     Nathan Brannberg -- Product Owner -- Department of the Interior, Office of Natural Resources Revenue
-    Lindsay Goldstein -- Digital Services Specialist -- Department of the Interior, Office of Natural Resources Revenue
+    Lindsay Goldstein -- Product Manager -- Department of the Interior, Office of Natural Resources Revenue
     Alexandra McNally -- Digital Services Specialist -- Department of the Interior, Office of Natural Resources Revenue
     Jeff Schwartz -- Developer -- Department of the Interior, Office of Natural Resources Revenue
     Christine Thomas -- Program Analyst (Content Strategist) -- Department of the Interior, Office of Natural Resources Revenue
