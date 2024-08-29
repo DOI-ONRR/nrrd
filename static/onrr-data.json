@@ -77,10 +77,8 @@
 },
 "title": "Fiscal year disbursements of U.S. natural resources revenue",
 "usageNotes": "No restrictions on use."
-}
-]
-"dataset": [
-    {
+},
+{
         "@type": "dcat:Dataset",
         "accessLevel": "public",
         "accrualPeriodicity": "R/P1Y",
@@ -119,7 +117,7 @@
                 "title": "ONRR Historical Disbursements Landing Page"
             }
         ],
-        "identifier": "ngp:cb59ab48-ca3a-4ab1-8765-e1d489a64942”,
+        "identifier": "ngp:cb59ab48-ca3a-4ab1-8765-e1d489a64942",
             "issued": "2015-12-15",
         "keyword": [
             "economy",
@@ -154,8 +152,4 @@
         "usageNotes": "No restrictions on use."
     }
 ]
-
-
-
-
 }
