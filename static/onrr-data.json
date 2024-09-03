@@ -80,6 +80,7 @@
 },
 {
         "@type": "dcat:Dataset",
+        "@id": "http://datainventory.doi.gov/id/dataset/765163f2b455884e4bdf01386860d0dd",
         "accessLevel": "public",
         "accrualPeriodicity": "R/P1Y",
         "bureauCode": [
@@ -87,7 +88,6 @@
         ],
         "contactPoint": {
             "@type": "vcard:Contact",
- "@id": "http://datainventory.doi.gov/id/dataset/d70a5819ef5dedcee0290728eb5183bd",
             "fn": "Open Data, Design and Development Team",
             "hasEmail": "mailto:NRRD@onrr.gov"
         },
