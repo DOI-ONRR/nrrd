@@ -150,6 +150,80 @@
         },
         "title": "Historical fiscal year disbursements of U.S. natural resources revenue",
         "usageNotes": "No restrictions on use."
-    }
-]
+    },
+    { 
+
+           "@type": "dcat:Dataset", 
+           "@id": "http://datainventory.doi.gov/id/dataset/d93181cf90182f5da200c383b4c811eb", 
+           "accessLevel": "public", 
+           "accrualPeriodicity": "R/P1Y", 
+           "bureauCode": [ 
+               "010:84" 
+            ], 
+           "contactPoint": {
+               "@type": "vcard:Contact", 
+               "fn": "Open Data, Design and Development Team", 
+               "hasEmail": "mailto:NRRD@onrr.gov" 
+            }, 
+            "creator": [ 
+               { 
+                    "@type": "org:Organization", 
+                    "name": "Information and Data Management" 
+                } 
+            ], 
+            "describedBy": "https://revenuedata.doi.gov/downloads/production/#Data-dictionary", 
+            "describedByType": "text/html", 
+            "description": "This dataset includes commodity production volumes of natural resources by calendar year. Natural resources are extracted from federal lands, federal waters, and Native American lands. Federal production volumes are available by state, county, and offshore area. Location data is withheld for Native American data. The dataset is tracked and managed by the Department of the Interior’s Office of Natural Resources Revenue. It contains production data from calendar years 2003-present.", 
+            "distribution": [ 
+                { 
+                    "@type": "dcat:Distribution", 
+                    "description": "Calendar year production of U.S. natural resources revenue as a CSV file", 
+                    "downloadURL": "https://revenuedata.doi.gov/downloads/calendar_year_production.csv", 
+                    "format": "CSV", 
+                    "mediaType": "text/csv", 
+                    "title": "Calendar year production of U.S. natural resources revenue" 
+                }, 
+                { 
+                    "@type": "dcat:Distribution", 
+                    "description": "Landing page for calendar year production data", 
+                    "accessURL": "https://revenuedata.doi.gov/downloads/production/", 
+                    "mediaType": "text/html", 
+                    "title": "ONRR Calendar Year Production Landing Page" 
+                } 
+            ], 
+            "identifier": "ngp:b5eb007f-f47a-4e45-ba66-39adbf064ae9”,
+            "issued": "2015-12-18", 
+            "keyword": [ 
+                "economy", 
+                "environment", 
+                "geoscientificInformation", 
+                "location", 
+                "native lands", 
+                "federal lands", 
+                "offshore waters", 
+                "outer continental shelf"
+            ], 
+            "landingPage": "https://revenuedata.doi.gov/downloads/production/", 
+            "language": [ 
+                "en-US" 
+            ], 
+            "liability": "Neither the U.S. Government, the Department of the Interior, nor ONRR, nor any of their employees, contractors, or subcontractors, make any warranty, express or implied, nor assume any legal liability or responsibility for the accuracy, completeness, or usefulness of any information, apparatus, product, or process disclosed, nor represent that its use would not infringe on privately owned rights.", 
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/", 
+            "modified": "2023-11-09", 
+            "publisher": { 
+                "@type": "org:Organization", 
+                "name": "Office of Natural Resources Revenue", 
+                "subOrganizationOf": { 
+                    "@type": "org:Organization", 
+                    "name": "Department of the Interior", 
+                    "subOrganizationOf": { 
+                        "@type": "org:Organization", 
+                        "name": "U.S. Government" 
+                    } 
+                } 
+            }, 
+            "title": "Calendar year production of U.S. natural resources revenue", 
+            "usageNotes": "No restrictions on use." 
+        }  
+    ]
 }
