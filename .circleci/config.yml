@@ -331,7 +331,7 @@ jobs:
             cf push nrrd -f ./manifest.yml
   apply-database-changes:
     machine: 
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
     steps:
       - checkout
       - install-cf-cli
