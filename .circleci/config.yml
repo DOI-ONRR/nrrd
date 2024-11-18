@@ -330,8 +330,8 @@ jobs:
             #bash ./swap.sh
             cf push nrrd -f ./manifest.yml
   apply-database-changes:
-    machine: 
-      image: ubuntu-2004:current
+    docker:
+      - image: cimg/base:current
     steps:
       - checkout
       - install-cf-cli
