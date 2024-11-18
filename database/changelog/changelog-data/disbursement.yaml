@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: disbursement-monthly-24-September
+      id: disbursement-monthly-25-October
       author: Lindsay Goldstein
       changes:
       - sql:
@@ -48,5 +48,5 @@ databaseChangeLog:
       - sql:
           dbms: 'postgresql'
           sql: |
-            CALL load_disbursement_monthly(2024);
+            CALL load_disbursement_monthly(2025);
       
