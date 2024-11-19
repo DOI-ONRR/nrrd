@@ -120,7 +120,7 @@ jobs:
           path: ./test-results
   unit_tests:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: cimg/node:16.20-browsers
     steps:
       - checkout
       - restore_cache:
@@ -141,7 +141,7 @@ jobs:
           path: ./coverage
   end_to_end_tests:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: cimg/node:16.20-browsers
     steps:
       - checkout
       - restore_cache:
@@ -162,7 +162,7 @@ jobs:
           path: ./__tests__/__image_snapshots__/
   lighthouse:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: cimg/node:16.20-browsers
     steps:
       - checkout
       - restore_cache:
@@ -181,7 +181,7 @@ jobs:
           path: ./__audits__/lighthouse/
   nrrd-preview:
     docker:
-      - image: cimg/node:12.13.1-browsers
+      - image: cimg/node:16.20-browsers
     resource_class: xlarge
     steps:
       - checkout
@@ -279,8 +279,7 @@ jobs:
             cf push dev-nrrd -f ./manifest.yml
   prod:
     docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: cimg/node:12.13-browsers
+      - image: cimg/node:16.20-browsers
     resource_class: xlarge
     steps:
       - checkout
