@@ -229,7 +229,7 @@ jobs:
             bash ./.circleci/cleanup-previews.sh
   dev:
     docker:
-      - image: cimg/node:12.13-browsers
+      - image: cimg/node:18.20.4-browsers
     resource_class: xlarge
     steps:
       - checkout
@@ -388,7 +388,7 @@ jobs:
       - generate-downloads
   generate-data-downloads:
     machine: 
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
     steps:
       - checkout
       - install-cf-cli
@@ -429,7 +429,7 @@ jobs:
       - generate-downloads
 
 workflows:
-  audits:
+  audits-workflow:
     jobs:
       - unit_tests:
           filters:
@@ -451,7 +451,7 @@ workflows:
                 - master
                 - staging
   
-  preview:
+  preview-workflow:
     jobs:
       - apply-database-changes:
           context:
@@ -475,7 +475,7 @@ workflows:
                 - master
                 - dev
 
-  prod:
+  prod-workflow:
     jobs:
       - apply-database-changes:
           context:
@@ -494,7 +494,7 @@ workflows:
           filters:
             branches:
               only: master
-  dev:
+  dev-workflow:
     jobs:
       - apply-database-changes:
           context:
