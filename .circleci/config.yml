@@ -98,7 +98,7 @@ commands:
 jobs:
   lint:
     docker:
-      - image: circleci/node:12.4
+      - image: cimg/node:12.4
     working_directory: ~/repo
     steps:
       - checkout
@@ -120,7 +120,7 @@ jobs:
           path: ./test-results
   unit_tests:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: cimg/node:12.13-browsers
     steps:
       - checkout
       - restore_cache:
@@ -141,7 +141,7 @@ jobs:
           path: ./coverage
   end_to_end_tests:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: cimg/node:12.13-browsers
     steps:
       - checkout
       - restore_cache:
@@ -162,7 +162,7 @@ jobs:
           path: ./__tests__/__image_snapshots__/
   lighthouse:
     docker:
-      - image: circleci/node:12.13.0-browsers
+      - image: cimg/node:12.13-browsers
     steps:
       - checkout
       - restore_cache:
@@ -181,7 +181,7 @@ jobs:
           path: ./__audits__/lighthouse/
   nrrd-preview:
     docker:
-      - image: cimg/node:12.13.1-browsers
+      - image: cimg/node:16.20-browsers
     resource_class: xlarge
     steps:
       - checkout
@@ -229,7 +229,7 @@ jobs:
             bash ./.circleci/cleanup-previews.sh
   dev:
     docker:
-      - image: cimg/node:12.13-browsers
+      - image: cimg/node:16.20-browsers
     resource_class: xlarge
     steps:
       - checkout
@@ -279,8 +279,7 @@ jobs:
             cf push dev-nrrd -f ./manifest.yml
   prod:
     docker:
-      # This image has the latest cf-cli as well as zero downtime plugins, if needed.
-      - image: cimg/node:12.13-browsers
+      - image: cimg/node:16.20-browsers
     resource_class: xlarge
     steps:
       - checkout
@@ -330,7 +329,7 @@ jobs:
             #bash ./swap.sh
             cf push nrrd -f ./manifest.yml
   apply-database-changes:
-    machine:
+    machine: 
       image: ubuntu-2204:current
     steps:
       - checkout
@@ -388,7 +387,7 @@ jobs:
       - generate-downloads
   generate-data-downloads:
     machine: 
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
     steps:
       - checkout
       - install-cf-cli
@@ -429,7 +428,7 @@ jobs:
       - generate-downloads
 
 workflows:
-  audits:
+  audits-workflow:
     jobs:
       - unit_tests:
           filters:
@@ -451,7 +450,7 @@ workflows:
                 - master
                 - staging
   
-  preview:
+  preview-workflow:
     jobs:
       - apply-database-changes:
           context:
@@ -475,7 +474,7 @@ workflows:
                 - master
                 - dev
 
-  prod:
+  prod-workflow:
     jobs:
       - apply-database-changes:
           context:
@@ -494,7 +493,7 @@ workflows:
           filters:
             branches:
               only: master
-  dev:
+  dev-workflow:
     jobs:
       - apply-database-changes:
           context:
