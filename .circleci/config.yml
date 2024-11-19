@@ -229,7 +229,7 @@ jobs:
             bash ./.circleci/cleanup-previews.sh
   dev:
     docker:
-      - image: cimg/node:18.20.4-browsers
+      - image: cimg/node:16.20-browsers
     resource_class: xlarge
     steps:
       - checkout
