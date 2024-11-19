@@ -87,9 +87,4 @@ BEGIN
         ON CONFLICT DO NOTHING;
     END LOOP;
 
-    COMMIT;
-
-    IF p_fiscal_year IS NOT NULL THEN
-        CALL summarize_fy_disbursements(p_fiscal_year);
-    END IF;
 END $$ LANGUAGE PLPGSQL;
