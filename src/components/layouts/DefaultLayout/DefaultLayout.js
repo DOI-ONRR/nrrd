@@ -90,7 +90,10 @@ const useStyles = makeStyles(theme => (
         marginTop: 60
       },
       top: isIE ? 140 : 0,
-      position: isIE ? 'relative' : 'inherit'
+      position: isIE ? 'relative' : 'inherit',
+      '@media print': {
+        marginTop: 0
+      },
     },
     mainColumn: {
       paddingTop: theme.spacing(3),
