@@ -14,10 +14,10 @@ databaseChangeLog:
                   value: North Slope Borough
               - column:
                   name: created_by
-                  valueDate: schwartj
+                  value: schwartj
               - column:
                   name: last_updated_by
-                  valueDate: schwartj
+                  value: schwartj
         - insert:
             tableName: fips_counties_exceptions
             columns:
@@ -29,10 +29,10 @@ databaseChangeLog:
                   value: Mobile
               - column:
                   name: created_by
-                  valueDate: schwartj
+                  value: schwartj
               - column:
                   name: last_updated_by
-                  valueDate: schwartj
+                  value: schwartj
         - insert:
             tableName: fips_counties_exceptions
             columns:
@@ -44,7 +44,7 @@ databaseChangeLog:
                   value: Kenai Peninsula Borough
               - column:
                   name: created_by
-                  valueDate: schwartj
+                  value: schwartj
               - column:
                   name: last_updated_by
-                  valueDate: schwartj
+                  value: schwartj
