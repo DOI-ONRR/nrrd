@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: production-monthly-24-july
+      id: production-monthly-24-august
       author: Christine Thomas
       changes: 
       - sql:
