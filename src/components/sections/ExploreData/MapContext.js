@@ -246,7 +246,7 @@ const MapContext = props => {
   const data = useStaticQuery(graphql`
     query StateLinksQuery {
       onrr {
-        locations: location(where: {region_type: {_in: ["State", "Offshore", "County"]}, fips_code: {_neq: ""}}, distinct_on: fips_code) {
+        locations: explore_data_locations_v {
           fips_code
           location_name
           state
