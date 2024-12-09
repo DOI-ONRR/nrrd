@@ -11,7 +11,7 @@ databaseChangeLog:
                   value: 02185
               - column:
                   name: title
-                  value: North Slope Borough
+                  value: North Slope
               - column:
                   name: created_by
                   value: schwartj
@@ -41,7 +41,7 @@ databaseChangeLog:
                   value: 02122
               - column:
                   name: title
-                  value: Kenai Peninsula Borough
+                  value: Kenai Peninsula
               - column:
                   name: created_by
                   value: schwartj
