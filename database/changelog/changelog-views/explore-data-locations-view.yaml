@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: explore-data-locations-view
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sqlFile:
+          path: src/views/explore_data_locations_v.sql

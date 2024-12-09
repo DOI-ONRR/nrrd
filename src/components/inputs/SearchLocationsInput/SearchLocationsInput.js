@@ -187,7 +187,7 @@ const SearchLocationsInput = props => {
           county
         }
 
-        county_locations: location(
+        county_locations: explore_data_locations_v(
           where: {
             fips_code: {_neq: ""},
             region_type: {_eq: "County"}

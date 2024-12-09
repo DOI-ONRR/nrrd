@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-fips-counties-exceptions-initial
+      author: Jeff Schwartz
+      changes:
+        - insert:
+            tableName: fips_counties_exceptions
+            columns:
+              - column:
+                  name: fips_code
+                  value: 02185
+              - column:
+                  name: title
+                  value: North Slope
+              - column:
+                  name: created_by
+                  value: schwartj
+              - column:
+                  name: last_updated_by
+                  value: schwartj
+        - insert:
+            tableName: fips_counties_exceptions
+            columns:
+              - column:
+                  name: fips_code
+                  value: 01097
+              - column:
+                  name: title
+                  value: Mobile
+              - column:
+                  name: created_by
+                  value: schwartj
+              - column:
+                  name: last_updated_by
+                  value: schwartj
+        - insert:
+            tableName: fips_counties_exceptions
+            columns:
+              - column:
+                  name: fips_code
+                  value: 02122
+              - column:
+                  name: title
+                  value: Kenai Peninsula
+              - column:
+                  name: created_by
+                  value: schwartj
+              - column:
+                  name: last_updated_by
+                  value: schwartj
