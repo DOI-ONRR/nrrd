@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-fips-counties-exceptions
+      author: Jeff Schwartz
+      changes:
+      - createTable:
+          tableName: fips_counties_exceptions
+          schemaName: public
+          columns:
+          - column: 
+              name: id
+              type: UUID
+              defaultValueComputed: gen_random_uuid()
+              constraints:
+                primaryKey: true
+                primaryKeyName: fips_counties_exceptions_pk
+          - column:
+              name: fips_code 
+              type: VARCHAR(20)
+              constraints:
+                  nullable: false
+          - column:
+              name: title
+              type: VARCHAR(100)
+              constraints:
+                  nullable: false
+          - column:
+              name: created_by
+              type: VARCHAR(30)
+              constraints:
+                  nullable: false
+          - column:
+              name: creation_date
+              type: TIMESTAMP
+              defaultValueComputed: CURRENT_TIMESTAMP
+          - column:
+              name: last_updated_by
+              type: VARCHAR(30)
+              constraints:
+                  nullable: false
+          - column:
+              name: last_update_date
+              type: TIMESTAMP
+              defaultValueComputed: CURRENT_TIMESTAMP
