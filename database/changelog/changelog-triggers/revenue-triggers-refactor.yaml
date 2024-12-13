@@ -30,3 +30,5 @@ databaseChangeLog:
           path: src/triggers/monthly_revenue_elt_transform_revenue_type_bri.sql
       - sqlFile:
           path: src/triggers/monthly_revenue_etl_insert_period_ari.sql
+      - sqlFile:
+          path: src/triggers/monthly_revenue_etl_insert_location_ari.sql
