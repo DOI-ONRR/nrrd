@@ -14,7 +14,7 @@ BEGIN
         COALESCE(NEW.land_class_code, ''),
         COALESCE(NEW.land_category_code_desc, ''),
         COALESCE(NEW.state, ''),
-        COALESCE(NEW.county, ''),
+        COALESCE(NEW.county_code_desc, ''),
         COALESCE(NEW.fips_code, ''),
         COALESCE(NEW.agency_state_region_code_desc, '')
     )
