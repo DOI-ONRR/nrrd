@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: fix-mn-st-louis-location
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE LOCATION
+            SET location_name = 'Minnesota, St. Louis',
+              county = 'St. Louis'
+            WHERE fips_code = '27137';

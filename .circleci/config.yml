@@ -54,7 +54,8 @@ commands:
     steps:
       - run:
           name: "Install gnumeric"
-          command: sudo apt-get install gnumeric
+          command: |
+            sudo apt-get install --no-install-recommends gnumeric
       - run:
           name: "Generate downloads"
           command: |

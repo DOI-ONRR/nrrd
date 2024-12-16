@@ -20,6 +20,9 @@ databaseChangeLog:
           path: src/functions/insert_period_revenue.sql
           splitStatements: false
       - sqlFile:
+          path: src/functions/insert_location_revenue.sql
+          splitStatements: false
+      - sqlFile:
           path: src/functions/populate_locations_revenue.sql
           splitStatements: false
       - sqlFile:
