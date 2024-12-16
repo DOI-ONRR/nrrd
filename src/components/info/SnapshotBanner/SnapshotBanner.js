@@ -41,13 +41,15 @@ const SnapshotBanner = () => {
   return (
     <Box className={classes.root} displayPrint="block">
       <Grid container>
+        <Grid item xs={12}>
+          <Box style={{ fontSize: '1rem' }}>
+            U.S. Department of the Interior, Natural Resources Revenue Data
+          </Box>
+        </Grid>
         <Grid item xs={8}>
           <Box>
             <Grid container alignItems="center">
               <Box component='span'>
-                <Box style={{ fontSize: '1rem' }}>
-                  U.S. Department of the Interior, Natural Resources Revenue Data
-                </Box>
                 <Box style={{ fontSize: '2.25rem', fontWeight: '600', marginTop: '0.5rem' }}>
                   Monthly Fact Sheet
                 </Box>
