@@ -57,7 +57,7 @@ const RevenueFactSheet = () => {
           <Grid item xs={4}>
             <Box pr={'10px'}>
               <RevenueLastTwelveMonths
-                title='Revenue by commodity (October 2024)'
+                title='Revenue by commodity'
                 yGroupBy={COMMODITY}
                 chartHeight={130}
                 skeletonHeight={293}
@@ -69,7 +69,7 @@ const RevenueFactSheet = () => {
           <Grid item xs={4}>
             <Box pr={'10px'} pl={'10px'}>
               <RevenueLastTwelveMonths
-                title='Revenue by source (October 2024)'
+                title='Revenue by source'
                 yGroupBy={SOURCE}
                 chartHeight={130}
                 skeletonHeight={293}
@@ -81,7 +81,7 @@ const RevenueFactSheet = () => {
           <Grid item xs={4}>
             <Box pl={'10px'}>
               <RevenueLastTwelveMonths
-                title='Revenue by revenue type (October 2024)'
+                title='Revenue by revenue type'
                 yGroupBy={'revenue_type'}
                 chartHeight={130}
                 skeletonHeight={293}

@@ -11,6 +11,7 @@ import withStyles from '@material-ui/styles/withStyles'
 
 import withQueryManager from '../../withQueryManager'
 import { QK_REVENUE_COMMON, SOURCE, COMMODITY, DISPLAY_NAMES } from '../../../constants'
+import { max } from 'lodash'
 
 /**
  * This displays data related to the Revenue for the last 12 months
@@ -57,6 +58,16 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
     })
   }
 
+  const maxEntry = data?.results.reduce((max, current) => {
+    if (
+      current.year > max.year ||
+        (current.year === max.year && current.month > max.month)
+    ) {
+      return current
+    }
+    return max
+  }, data?.results[0])
+
   const legendHeaders = (headers, row) => {
     const dStr = headers[1].replace(/\b0/g, '')
     const date = new Date(dStr)
@@ -71,7 +82,7 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
     <ChartContainer>
       {data
         ? <StackedBarChart
-          title={title}
+          title={`${ title } (${ maxEntry.month_long } ${ maxEntry.year })`}
           units={'dollars'}
           data={data.results}
           xAxis={'period_date'}

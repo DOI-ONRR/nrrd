@@ -59,7 +59,7 @@ const ProductionFactSheet = () => {
           <Grid item xs={4}>
             <Box pr={'10px'}>
               <ProductionLastTwelveMonths
-                title='Oil volume by source (July 2024)'
+                title='Oil volume by source'
                 filterByProduct='Oil (bbl)'
                 units='bbl'
                 yGroupBy={SOURCE}
@@ -73,7 +73,7 @@ const ProductionFactSheet = () => {
           <Grid item xs={4}>
             <Box pl={'10px'} pr={'10px'}>
               <ProductionLastTwelveMonths
-                title='Gas volume by source (July 2024)'
+                title='Gas volume by source'
                 filterByProduct='Gas (mcf)'
                 units='mcf'
                 yGroupBy={SOURCE}
@@ -87,7 +87,7 @@ const ProductionFactSheet = () => {
           <Grid item xs={4}>
             <Box pl={'10px'}>
               <ProductionLastTwelveMonths
-                title='Coal volume by source (July 2024)'
+                title='Coal volume by source'
                 filterByProduct='Coal (tons)'
                 units='tons' yGroupBy={SOURCE}
                 chartHeight={120}
