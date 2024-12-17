@@ -24,7 +24,7 @@ const CompactContainer = withStyles((theme, additionalStyles) =>
     root: {
       borderBottom: `2px solid ${ theme.palette.grey[700] }`,
       color: theme.palette.grey[800],
-      fontSize: '1rem',
+      fontSize: '0.875rem',
       fontWeight: theme.typography.h4.fontWeight,
       marginBottom: theme.spacing(0),
       marginTop: 0,

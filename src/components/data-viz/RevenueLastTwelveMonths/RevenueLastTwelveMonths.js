@@ -10,7 +10,7 @@ import createStyles from '@material-ui/styles/createStyles'
 import withStyles from '@material-ui/styles/withStyles'
 
 import withQueryManager from '../../withQueryManager'
-import { QK_REVENUE_COMMON, SOURCE, DISPLAY_NAMES } from '../../../constants'
+import { QK_REVENUE_COMMON, SOURCE, COMMODITY, DISPLAY_NAMES } from '../../../constants'
 
 /**
  * This displays data related to the Revenue for the last 12 months
@@ -22,11 +22,22 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
     })
   )(Box)
 
-  // TODO get rid of hardcoded order by
-  // const yOrderByTest = [...new Set(data?.results.map(item => item.recipient))]
-  const yOrderBy = (yGroupBy === SOURCE)
-    ? ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
-    : ['Other revenues', 'Inspection fees', 'Civil penalties', 'Rents', 'Bonus', 'Royalties']
+  let yOrderBy
+  switch (yGroupBy) {
+  case SOURCE:
+    yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
+    break
+  case COMMODITY:
+    yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
+    break
+  default:
+    yOrderBy = ['Other revenues', 'Inspection fees', 'Civil penalties', 'Rents', 'Bonus', 'Royalties']
+    break
+  }
+
+  if (yGroupBy === COMMODITY && data) {
+    data.results = Object.values(groupByCommodity(data.results))
+  }
 
   const xGroups = data?.results.reduce((g, row, i) => {
     const r = g
@@ -100,3 +111,32 @@ RevenueLastTwelveMonths.defaultProps = {
 }
 
 export default withQueryManager(RevenueLastTwelveMonths, QK_REVENUE_COMMON)
+
+function groupByCommodity (data) {
+  return data.reduce((acc, item) => {
+    const commodity = ['Not tied to a commodity', 'Oil', 'Gas', 'Coal'].includes(item.commodity) ? item.commodity : 'Other commodities'
+
+    // Create a unique key for grouping based on source, revenue_type, month, year, commodity, and recipient
+    const key = `${ item.source }-${ item.revenue_type }-${ item.month }-${ item.year }-${ commodity }-${ item.recipient }`
+
+    // If the key doesn't exist in accumulator, create a new entry
+    if (!acc[key]) {
+      acc[key] = {
+        source: item.source,
+        revenue_type: item.revenue_type,
+        month: item.month,
+        year: item.year,
+        commodity: commodity,
+        sum: 0,
+        recipient: item.recipient,
+        month_long: item.month_long,
+        period_date: item.period_date
+      }
+    }
+
+    // Add the sum for this item to the grouped entry
+    acc[key].sum += item.sum
+
+    return acc
+  }, {})
+}
