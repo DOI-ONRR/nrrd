@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Box, Grid, Paper } from '@material-ui/core'
 import { RevenueLastTwelveMonths } from '../data-viz/RevenueLastTwelveMonths'
-import { SOURCE } from '../../constants'
+import { SOURCE, COMMODITY } from '../../constants'
 
 const useStyles = makeStyles({
   root: {
@@ -57,7 +57,19 @@ const RevenueFactSheet = () => {
           <Grid item xs={4}>
             <Box pr={'10px'}>
               <RevenueLastTwelveMonths
-                title='Revenue by source'
+                title='Revenue by commodity (October 2024)'
+                yGroupBy={COMMODITY}
+                chartHeight={130}
+                skeletonHeight={293}
+                disableInteraction={true}
+                svgTitle='Bar chart displaying the amount of revenue collected on a monthly basis by commodity, refer to the data table following the
+                chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).' />
+            </Box>
+          </Grid>
+          <Grid item xs={4}>
+            <Box pr={'10px'} pl={'10px'}>
+              <RevenueLastTwelveMonths
+                title='Revenue by source (October 2024)'
                 yGroupBy={SOURCE}
                 chartHeight={130}
                 skeletonHeight={293}
@@ -67,26 +79,14 @@ const RevenueFactSheet = () => {
             </Box>
           </Grid>
           <Grid item xs={4}>
-            <Box pl={'10px'} pr={'10px'}>
+            <Box pl={'10px'}>
               <RevenueLastTwelveMonths
-                title='Revenue by revenue type'
+                title='Revenue by revenue type (October 2024)'
                 yGroupBy={'revenue_type'}
                 chartHeight={130}
                 skeletonHeight={293}
                 disableInteraction={true}
                 svgTitle='Bar chart displaying the amount of revenue collected on a monthly basis by revenue type, refer to the data table following the
-                chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).' />
-            </Box>
-          </Grid>
-          <Grid item xs={4}>
-            <Box pl={'10px'}>
-              <RevenueLastTwelveMonths
-                title='Revenue by commodity'
-                yGroupBy={'commodity'}
-                chartHeight={130}
-                skeletonHeight={293}
-                disableInteraction={true}
-                svgTitle='Bar chart displaying the amount of revenue collected on a monthly basis by commodity, refer to the data table following the
                 chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).' />
             </Box>
           </Grid>
