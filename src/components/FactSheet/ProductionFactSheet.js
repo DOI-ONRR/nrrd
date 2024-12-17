@@ -47,7 +47,7 @@ const ProductionFactSheet = () => {
         <Box className={classes.introText}>
           <Box
             component='span'>
-            The volume of energy produced on federal and Native American property.
+            The volume of natural resources produced on property owned by the federal government and Native Americans.
           </Box>
           <Box
             component='span'
@@ -57,7 +57,7 @@ const ProductionFactSheet = () => {
         </Box>
         <Grid container>
           <Grid item xs={4}>
-            <Box pl={'10px'} pr={'10px'}>
+            <Box pr={'10px'}>
               <ProductionLastTwelveMonths
                 title='Oil (bbl)'
                 filterByProduct='Oil (bbl)'
@@ -85,7 +85,7 @@ const ProductionFactSheet = () => {
             </Box>
           </Grid>
           <Grid item xs={4}>
-            <Box pl={'10px'} pr={'10px'}>
+            <Box pl={'10px'}>
               <ProductionLastTwelveMonths
                 title='Coal (tons)'
                 filterByProduct='Coal (tons)'

@@ -15,29 +15,7 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
       <ProductionFactSheet />
     </Grid>
     <Grid item xs={12}>
-      <Box color="secondary.main" borderBottom={3}>
-        <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Revenue</Typography>
-      </Box>
-      <Box mb={0}>
-        <Typography color="textPrimary" component='span' style={{fontSize: '1rem', lineHeight: '0.9rem'}}>
-          The amount of money collected from energy and minerals on property owned by the federal government and Native Americans.
-          <Typography style={{fontStyle: 'italic', fontSize: '1rem', lineHeight: '0.9em', display: 'inline'}}>
-            {' '}Negative numbers often indicate adjustments because this is accounting data, not sales data.
-          </Typography>
-        </Typography>
-      </Box>
-    </Grid>
-    <Grid item xs={6}>
-      <Box pl={'20px'} pr={'20px'}>
-        <RevenueLastTwelveMonths title='Revenue by source' yGroupBy={SOURCE} chartHeight={130} skeletonHeight={293} disableInteraction={true} 
-          svgTitle='Bar chart displaying the amount of revenue collected on a monthly basis by source, refer to the data table following the chart for detailed data for each bar.[Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).' />
-      </Box>
-    </Grid>
-    <Grid item xs={6}>
-      <Box pl={'20px'} pr={'20px'}>
-        <RevenueLastTwelveMonths title='Revenue by revenue type' yGroupBy={'revenue_type'} chartHeight={130} skeletonHeight={293} disableInteraction={true} 
-          svgTitle='Bar chart displaying the amount of revenue collected on a monthly basis by revenue type, refer to the data table following the chart for detailed data for each bar.  [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_revenue.csv/).' />
-      </Box>
+      <RevenueFactSheet />
     </Grid>
     <Grid item xs={12}>
       <Box color="secondary.main" borderBottom={3}>

@@ -6,7 +6,6 @@ import useTheme from '@material-ui/styles/useTheme'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 
-import Link from '../../Link'
 import PrintIcon from '@material-ui/icons/Print'
 import IconButton from '@material-ui/core/IconButton'
 import { Button } from '@material-ui/core'
