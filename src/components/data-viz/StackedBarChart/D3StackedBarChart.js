@@ -385,7 +385,6 @@ export default class D3StackedBarChart {
         .data((d, i) => {
           const yd = self.yGroupData(d)
           const r = stack([yd])
-          console.log('stacked yo: ', r)
           return r
         })
         .enter().append('g')
@@ -393,7 +392,6 @@ export default class D3StackedBarChart {
           return `stacked-bar-chart-${ i }`
         })
         .style('fill', (d, i) => {
-          console.log('color fill d, i: ', d, i)
           return color(i)
         })
         .append('rect')
@@ -814,8 +812,6 @@ export default class D3StackedBarChart {
   _onSelect = (element, data) => {
     if (this.options.disableInteraction) return
     try {
-      console.debug('_onSelect this:', this)
-      // console.log('_onSelect: ', element)
       const selectedElement = d3.select(this.node).selectAll('.bars .active')
       const bars = d3.select(this.node).selectAll('.bars .bar')
       const ticks = d3.select(this.node).selectAll('.x-axis .tick')
@@ -963,7 +959,6 @@ export default class D3StackedBarChart {
 
   onHover (d) {
     if (this.options.disableInteraction) return
-    // console.debug('D3StackedBarChart onHover: ', d)
     return d
   }
 
@@ -1051,7 +1046,6 @@ export default class D3StackedBarChart {
             acc[d.key] = d.value
             return acc
           }, {})
-        // console.debug("else", r)
       }
     }
   }
@@ -1086,8 +1080,6 @@ export default class D3StackedBarChart {
       const r = d3.nest()
         .key(k => k[this.xAxis])
         .entries(this.data)
-
-      // console.debug("RRRR: ", r)
       return r
     }
     catch (err) {
@@ -1099,7 +1091,6 @@ export default class D3StackedBarChart {
     try {
       if (this.options.yGroupBy) {
         const data = xValue ? this.data.filter(r => r[this.xAxis] === xValue) : this.data
-        // console.debug(data)
         const r = d3.nest()
         //            .key(k => k[this.xAxis])
           .key(k => k[this.options.yGroupBy])
@@ -1109,8 +1100,6 @@ export default class D3StackedBarChart {
             acc[d.key] = d.value
             return acc
           }, {})
-
-        // console.debug("yGroupData: ",r)
         return r
       }
       else {
@@ -1154,7 +1143,6 @@ export default class D3StackedBarChart {
         })
         .entries(data)
         .map(d => {
-          // console.log('map d', d)
           d.values.forEach(v => groupTotals.push(v.value.total))
         })
 

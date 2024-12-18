@@ -4,8 +4,6 @@ includeToc: false
 permalink: /fact-sheet/
 ---
 
-import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
-
 <Container id="fact-sheet" style={{ width: '960px'}}>
   <Grid container>
     <Grid item xs={12}>
@@ -18,21 +16,7 @@ import { RECIPIENT, SOURCE, REVENUE_TYPE } from '../constants'
       <RevenueFactSheet />
     </Grid>
     <Grid item xs={12}>
-      <Box color="secondary.main" borderBottom={3}>
-        <Typography color="textPrimary" style={{fontSize: '1.375rem', lineHeight: '2rem', fontWeight: '600'}}>Disbursements</Typography>
-      </Box>
-    </Grid>
-    <Grid item xs={6}>
-      <Box mb={2}>
-        <Typography style={{fontSize: '1rem', lineHeight: '1.1rem'}}>The amount of money paid to federal and local governments and Native Americans.</Typography>
-      </Box>
-      <Typography style={{fontStyle: 'italic', fontSize: '1rem', lineHeight: '1.1rem'}}>This number is delayed from revenue because disbursements are made after the money comes in.</Typography>
-    </Grid>
-    <Grid item xs={6}>
-      <Box pl={'20px'} pr={'20px'}>
-        <DisbursementsLastTwelveMonths title='Disbursements by recipient' chartHeight={130} skeletonHeight={347} yGroupBy={RECIPIENT} disableInteraction={true} 
-         svgTitle='Bar chart displaying the amount of disbursements collected on a monthly basis by recipient, refer to the data table following the chart for detailed data for each bar. [Details available in the Source Data (.csv)](https://revenuedata.doi.gov/downloads/monthly_disbursements.csv/).' />
-      </Box>
+      <DisbursementsFactSheet />
     </Grid>
   </Grid>
 </Container>
