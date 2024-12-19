@@ -9,7 +9,7 @@ const DisbursementsPieChart = ({ data }) => {
     d3.select(svgRef.current).selectAll('*').remove()
 
     const width = 960
-    const height = 450
+    const height = 400
     const radius = Math.min(width, height) / 2 - 50
     const labelRadius = radius + 30 // For labels outside the chart
 
@@ -52,7 +52,6 @@ const DisbursementsPieChart = ({ data }) => {
         const labelWidth = `$${ (d.data.totalDisbursements / 1e6).toFixed(1) } million`.length * 6 // Estimate label width
 
         // Place label outside if it doesn't fit inside
-        console.log('sliceWidth, labelWidth, label', sliceWidth, labelWidth, `$${ (d.data.totalDisbursements / 1e6).toFixed(1) } million`)
         return sliceWidth < labelWidth ? `translate(${ labelArc.centroid(d) })` : `translate(${ sliceCenter })`
       })
       .attr('text-anchor', d => {
@@ -75,8 +74,13 @@ const DisbursementsPieChart = ({ data }) => {
 
     // Add connecting lines for outside labels
     arcs.append('line')
-      .attr('x1', d => arc.centroid(d)[0])
-      .attr('y1', d => arc.centroid(d)[1])
+      .attr('x1', d => {
+        // Calculate the outer edge of the slice
+        return d3.arc().innerRadius(radius).outerRadius(radius).centroid(d)[0]
+      })
+      .attr('y1', d => {
+        return d3.arc().innerRadius(radius).outerRadius(radius).centroid(d)[1]
+      })
       .attr('x2', d => {
         const sliceAngle = d.endAngle - d.startAngle
         const sliceWidth = radius * sliceAngle
@@ -105,7 +109,7 @@ const DisbursementsPieChart = ({ data }) => {
     // Add legend
     const legend = svg
       .append('g')
-      .attr('transform', `translate(${ radius + 50 }, -${ radius })`)
+      .attr('transform', `translate(${ radius + 50 }, -${ radius - 50 })`)
 
     // Add column headers
     legend.append('text')
@@ -116,12 +120,12 @@ const DisbursementsPieChart = ({ data }) => {
       .text('Recipients')
 
     legend.append('text')
-      .attr('x', 300)
+      .attr('x', 350)
       .attr('y', -20)
       .attr('font-size', '14px')
       .attr('font-weight', 'bold')
       .attr('text-anchor', 'end')
-      .text('Fiscal Year')
+      .text('Fiscal Year 2025')
 
     const legendItems = legend
       .selectAll('.legend-item')
@@ -149,7 +153,7 @@ const DisbursementsPieChart = ({ data }) => {
     // Add total amounts (column 2)
     legendItems
       .append('text')
-      .attr('x', 300) // Position in the second column
+      .attr('x', 350) // Position in the second column
       .attr('y', 12) // Vertically align with color box
       .attr('font-size', '12px')
       .attr('text-anchor', 'end') // Align amounts to the right
@@ -163,7 +167,7 @@ const DisbursementsPieChart = ({ data }) => {
       .text('Total:')
 
     legend.append('text')
-      .attr('x', 300)
+      .attr('x', 350)
       .attr('y', data.length * 20 + 20)
       .attr('font-size', '14px')
       .attr('font-weight', 'bold')

@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 /**
  * This banner is used for the Monthly Snapshot on the fact sheet page
  */
-const SnapshotBanner = () => {
+const FactSheetBanner = () => {
   const theme = useTheme()
   const classes = useStyles(theme)
 
@@ -59,8 +59,8 @@ const SnapshotBanner = () => {
         <Grid item xs={4} style={{ textAlign: 'right' }}>
           <Grid container>
             <Grid item xs={12}>
-              <Button variant="contained" className={classes.printButton} m={1}>
-                <IconButton size="small" color='inherit' aria-label="print" component="span" onClick={() => window.print()} style={{ marginRight: '5px' }}>
+              <Button variant="contained" className={classes.printButton} m={1} onClick={() => window.print()}>
+                <IconButton size="small" color='inherit' aria-label="print" component="span" style={{ marginRight: '5px' }}>
                   <PrintIcon />
                 </IconButton>
                 Print Fact Sheet
@@ -78,16 +78,4 @@ const SnapshotBanner = () => {
   )
 }
 
-export default SnapshotBanner
-
-/*
-ArchiveBanner.Preview = {
-  group: 'Informational',
-  demos: [
-    {
-      title: 'Example',
-      code: '<ArchiveBanner />',
-    }
-  ]
-}
-*/
+export default FactSheetBanner
