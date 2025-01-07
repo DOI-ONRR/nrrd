@@ -22,8 +22,8 @@ const DefaultContainer = withStyles((theme, additionalStyles) =>
 const CompactContainer = withStyles((theme, additionalStyles) =>
   createStyles({
     root: {
-      borderBottom: `2px solid ${ theme.palette.grey[700] }`,
-      color: theme.palette.grey[800],
+      borderBottom: `2px solid ${ theme.palette.text.primary }`,
+      color: theme.palette.text.primary,
       fontSize: '0.875rem',
       fontWeight: theme.typography.h4.fontWeight,
       marginBottom: theme.spacing(0),

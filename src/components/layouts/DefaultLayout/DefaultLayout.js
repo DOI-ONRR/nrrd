@@ -92,7 +92,7 @@ const useStyles = makeStyles(theme => (
       top: isIE ? 140 : 0,
       position: isIE ? 'relative' : 'inherit',
       '@media print': {
-        marginTop: 0
+        marginTop: 0,
       },
     },
     mainColumn: {
@@ -125,7 +125,6 @@ const DefaultLayout = ({ includeToc, children }) => {
       }
     }
   `)
-  // console.log(data)
   return (
     <>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>
