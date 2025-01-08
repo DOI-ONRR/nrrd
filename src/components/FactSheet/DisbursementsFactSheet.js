@@ -3,7 +3,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { gql } from '@apollo/client'
 import { useQuery } from '@apollo/react-hooks'
-import { Box, Grid, Paper } from '@material-ui/core'
+import { Box, Paper } from '@material-ui/core'
 import DisbursementsPieChart from './DisbursementsPieChart'
 
 const GET_FY_DISBURSEMENTS_BY_RECIPIENT = gql`
@@ -11,6 +11,10 @@ const GET_FY_DISBURSEMENTS_BY_RECIPIENT = gql`
     disbursements: fiscal_year_disbursements_by_recipient_v {
       totalDisbursements: total
       recipient: grouped_recipients
+    }
+    max_fy: max_fy_period_v {
+      fy: fiscal_year
+      month: month_long
     }
   }
 `
@@ -82,10 +86,10 @@ const DisbursementsFactSheet = () => {
         </Box>
         <Box
           className={classes.chartHeader}>
-          Disbursement by recipient for Fiscal Year 2025 (cumulative total through October 2024)
+          Disbursement by recipient for Fiscal Year {data.max_fy[0]?.fy} (cumulative total through {data.max_fy[0]?.month} {data.max_fy[0]?.fy})
         </Box>
         <Box>
-          <DisbursementsPieChart data={data.disbursements} />
+          <DisbursementsPieChart data={data.disbursements} fy={data.max_fy[0]?.fy}/>
         </Box>
       </Paper>
     </Box>

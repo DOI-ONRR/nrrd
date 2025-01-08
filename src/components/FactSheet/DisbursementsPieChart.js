@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 
-const DisbursementsPieChart = ({ data }) => {
+const DisbursementsPieChart = ({ data, fy }) => {
   const svgRef = useRef()
 
   useEffect(() => {
@@ -125,7 +125,7 @@ const DisbursementsPieChart = ({ data }) => {
       .attr('font-size', '14px')
       .attr('font-weight', 'bold')
       .attr('text-anchor', 'end')
-      .text('Fiscal Year 2025')
+      .text(`Fiscal Year ${ fy }`)
 
     const legendItems = legend
       .selectAll('.legend-item')
