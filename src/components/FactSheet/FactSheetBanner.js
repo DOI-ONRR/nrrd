@@ -19,7 +19,10 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1rem',
     lineHeight: '1rem',
     color: 'white',
-    textAlign: 'end'
+    textAlign: 'end',
+    '@media print': {
+      display: 'none'
+    }
   },
   dataPublished: {
     fontSize: '1rem',

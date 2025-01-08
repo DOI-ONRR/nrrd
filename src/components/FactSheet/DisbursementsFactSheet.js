@@ -24,6 +24,9 @@ const useStyles = makeStyles({
   root: {
     margin: '1rem 0 2rem 0',
     position: 'relative',
+    '@media print': {
+      marginBottom: 0
+    }
   },
   label: {
     position: 'absolute',
@@ -33,9 +36,24 @@ const useStyles = makeStyles({
     paddingRight: '0.25rem',
     fontWeight: '600',
     fontSize: '1.25rem',
+    '@media print': {
+      display: 'none'
+    }
+  },
+  printLabel: {
+    display: 'none',
+    '@media print': {
+      display: 'inline',
+      fontWeight: 'bold',
+      marginRight: '0.25rem'
+    }
   },
   outline: {
     padding: '1rem 1rem 1.5rem 1rem',
+    '@media print': {
+      padding: 0,
+      border: 'none'
+    }
   },
   disbursementsDiffer: {
     marginLeft: '0.25rem',
@@ -44,12 +62,10 @@ const useStyles = makeStyles({
   introText: {
     fontSize: '1rem',
     marginBottom: '1rem',
-  },
-  chartHeader: {
-    fontWeight: 'bold',
-    fontSize: '1rem',
-    borderBottom: '2px solid #000',
-    marginBottom: '1.5rem',
+    '@media print': {
+      marginBottom: '0',
+      lineHeight: '1.2'
+    }
   },
 })
 
@@ -77,6 +93,7 @@ const DisbursementsFactSheet = () => {
         <Box className={classes.introText}>
           <Box
             component='span'>
+            <span className={classes.printLabel}>Disbursements -</span>
             The amount of money paid to federal and local governments and Native Americans. Federal fiscal year runs from October through September.
           </Box>
           <Box

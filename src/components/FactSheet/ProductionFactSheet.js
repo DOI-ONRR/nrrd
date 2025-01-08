@@ -10,6 +10,9 @@ const useStyles = makeStyles({
   root: {
     margin: '1rem 0 2rem 0',
     position: 'relative',
+    '@media print': {
+      marginBottom: 0
+    }
   },
   label: {
     position: 'absolute',
@@ -19,9 +22,24 @@ const useStyles = makeStyles({
     paddingRight: '0.25rem',
     fontWeight: '600',
     fontSize: '1.25rem',
+    '@media print': {
+      display: 'none'
+    }
+  },
+  printLabel: {
+    display: 'none',
+    '@media print': {
+      display: 'inline',
+      fontWeight: 'bold',
+      marginRight: '0.25rem'
+    }
   },
   outline: {
     padding: '1rem 1rem 1.5rem 1rem',
+    '@media print': {
+      padding: 0,
+      border: 'none'
+    }
   },
   productionNumbers: {
     marginLeft: '0.25rem',
@@ -30,6 +48,10 @@ const useStyles = makeStyles({
   introText: {
     fontSize: '1rem',
     marginBottom: '1rem',
+    '@media print': {
+      marginBottom: '0',
+      lineHeight: '1.2'
+    }
   },
 })
 
@@ -47,6 +69,7 @@ const ProductionFactSheet = () => {
         <Box className={classes.introText}>
           <Box
             component='span'>
+            <span className={classes.printLabel}>Production -</span>
             The volume of natural resources produced on property owned by the federal government and Native Americans.
           </Box>
           <Box

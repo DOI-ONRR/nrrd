@@ -6,14 +6,19 @@ import { OnrrLogoImg } from '../images'
 const useStyles = makeStyles({
   root: {
     marginBottom: '2rem',
-    fontSize: '1rem'
+    fontSize: '1rem',
+  },
+  print: {
+    '@media print': {
+      display: 'none'
+    }
   }
 })
 
 const FactSheetFooter = () => {
   const classes = useStyles()
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} className={classes.print}>
       <Grid item xs={'auto'}>
         <OnrrLogoImg width='50px'/>
       </Grid>
