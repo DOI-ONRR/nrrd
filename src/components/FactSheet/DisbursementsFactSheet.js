@@ -14,6 +14,7 @@ const GET_FY_DISBURSEMENTS_BY_RECIPIENT = gql`
     }
     max_fy: max_fy_period_v {
       fy: fiscal_year
+      cy: calendar_year
       month: month_long
     }
   }
@@ -86,7 +87,7 @@ const DisbursementsFactSheet = () => {
         </Box>
         <Box
           className={classes.chartHeader}>
-          Disbursement by recipient for Fiscal Year {data.max_fy[0]?.fy} (cumulative total through {data.max_fy[0]?.month} {data.max_fy[0]?.fy})
+          Disbursement by recipient for Fiscal Year {data.max_fy[0]?.fy} (cumulative total through {data.max_fy[0]?.month} {data.max_fy[0]?.cy})
         </Box>
         <Box>
           <DisbursementsPieChart data={data.disbursements} fy={data.max_fy[0]?.fy}/>

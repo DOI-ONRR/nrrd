@@ -6,5 +6,19 @@ SELECT fiscal_year,
   calendar_year
 FROM period p
 WHERE period = 'Monthly'
-  AND fiscal_year = (SELECT MAX(fiscal_year) FROM period WHERE period = 'Fiscal Year')
-  AND fiscal_month = (SELECT MAX(fiscal_month) FROM period WHERE fiscal_year = p.fiscal_year);
+  AND fiscal_year = (
+    SELECT MAX(fiscal_year)
+    FROM period 
+    WHERE period = 'Monthly')
+  AND fiscal_month = (
+    SELECT MAX(fiscal_month) 
+    FROM period p2 
+    WHERE fiscal_year = p.fiscal_year 
+      AND EXISTS (
+        SELECT 1 
+        FROM disbursement 
+        WHERE period_id = p2.period_id))
+  AND EXISTS (
+    SELECT 1 
+    FROM disbursement 
+    WHERE period_id = p.period_id);
