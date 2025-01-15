@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: fiscal-year-disbursements-by-recipient
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sqlFile:
+          path: src/views/fiscal_year_disbursements_by_recipient_v.sql

@@ -46,6 +46,16 @@ const ProductionLastTwelveMonths = ({ title, disableInteraction, filterByProduct
     })
   }
 
+  const maxEntry = data?.results.reduce((max, current) => {
+    if (
+      current.year > max.year ||
+        (current.year === max.year && current.month > max.month)
+    ) {
+      return current
+    }
+    return max
+  }, data?.results[0])
+
   const legendHeaders = (headers, row) => {
     const dStr = headers[1].replace(/\b0/g, '')
     const date = new Date(dStr)
@@ -59,7 +69,7 @@ const ProductionLastTwelveMonths = ({ title, disableInteraction, filterByProduct
     <ChartContainer>
       {data
         ? <StackedBarChart
-          title={title}
+          title={`${ title } (${ maxEntry.month_long } ${ maxEntry.year })`}
           units={units}
           data={data.results.filter(row => row.product === filterByProduct)}
           xAxis={'period_date'}

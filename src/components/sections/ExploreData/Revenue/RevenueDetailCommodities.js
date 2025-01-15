@@ -58,7 +58,6 @@ const RevenueDetailCommodities = props => {
   const xAxis = 'commodity'
   const yAxis = 'total'
 
-  const isCounty = state && state.length === 5
   const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
