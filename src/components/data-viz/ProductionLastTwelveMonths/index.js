@@ -1,1 +1,1 @@
-export default from './ProductionLastTwelveMonths'
+export { default as ProductionLastTwelveMonths } from './ProductionLastTwelveMonths'

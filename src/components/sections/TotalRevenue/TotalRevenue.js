@@ -143,22 +143,6 @@ const TOTAL_REVENUE_QUERY = gql`
 	}
     }
 `
-/*
-
-   create or replace view total_revenue_summary as
-   select * from _mview_cy_commodity
-   union
-   select * from _mview_cy_revenue_type
-   union
-   select * from _mview_cy_source
-   union
-   select * from _mview_fy_commodity
-   union
-   select * from _mview_fy_revenue_type
-   union
-   select * from _mview_fy_source
- */
-// TotalRevenue component
 const TotalRevenue = props => {
   const theme = useTheme()
   const { state: filterState } = useContext(DataFilterContext)

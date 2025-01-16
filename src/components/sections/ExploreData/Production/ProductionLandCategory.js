@@ -86,11 +86,6 @@ const ProductionLandCategory = ({ title, ...props }) => {
   let locationType
   const state = props.fipsCode || ''
 
-  const isCounty = state && state.length === 5
-  const isNativeAmerican = state && state === DFC.NATIVE_AMERICAN_FIPS
-  const isNationwideFederal = state && state === DFC.NATIONWIDE_FEDERAL_FIPS
-  const isState = state && state.length === 2 && !isNativeAmerican && !isNationwideFederal
-
   switch (props.regionType) {
   case DFC.STATE:
     locationType = DFC.STATE
