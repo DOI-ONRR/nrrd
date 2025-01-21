@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: fk-revenue-period
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_revenue_period
+              baseTableName: revenue
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: revenue
+            baseColumnNames: period_id
+            referencedTableName: period
+            referencedColumnNames: period_id
+            constraintName: fk_revenue_period
+  - changeSet:
+      id: fk-revenue-fund
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_revenue_fund
+              baseTableName: revenue
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: revenue
+            baseColumnNames: fund_id
+            referencedTableName: fund
+            referencedColumnNames: fund_id
+            constraintName: fk_revenue_fund
+  - changeSet:
+      id: fk-revenue-commodity
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_revenue_commodity
+              baseTableName: revenue
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: revenue
+            baseColumnNames: commodity_id
+            referencedTableName: commodity
+            referencedColumnNames: commodity_id
+            constraintName: fk_revenue_commodity
+  - changeSet:
+      id: fk-revenue-location
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_revenue_location
+              baseTableName: revenue
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: revenue
+            baseColumnNames: location_id
+            referencedTableName: location
+            referencedColumnNames: location_id
+            constraintName: fk_revenue_location

@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: fk-production-period
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_production_period
+              baseTableName: production
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: production
+            baseColumnNames: period_id
+            referencedTableName: period
+            referencedColumnNames: period_id
+            constraintName: fk_production_period
+  - changeSet:
+      id: fk-production-location
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_production_location
+              baseTableName: production
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: production
+            baseColumnNames: location_id
+            referencedTableName: location
+            referencedColumnNames: location_id
+            constraintName: fk_production_location
+  - changeSet:
+      id: fk-production-commodity
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_production_commodity
+              baseTableName: production
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: production
+            baseColumnNames: commodity_id
+            referencedTableName: commodity
+            referencedColumnNames: commodity_id
+            constraintName: fk_production_commodity

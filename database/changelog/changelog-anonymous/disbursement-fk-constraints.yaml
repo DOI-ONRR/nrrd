@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: fk-disbursement-period
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_disbursement_period
+              baseTableName: disbursement
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: disbursement
+            baseColumnNames: period_id
+            referencedTableName: period
+            referencedColumnNames: period_id
+            constraintName: fk_disbursement_period
+  - changeSet:
+      id: fk-disbursement-fund
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_disbursement_fund
+              baseTableName: disbursement
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: disbursement
+            baseColumnNames: fund_id
+            referencedTableName: fund
+            referencedColumnNames: fund_id
+            constraintName: fk_disbursement_fund
+  - changeSet:
+      id: fk-disbursement-commodity
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_disbursement_commodity
+              baseTableName: disbursement
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: disbursement
+            baseColumnNames: commodity_id
+            referencedTableName: commodity
+            referencedColumnNames: commodity_id
+            constraintName: fk_disbursement_commodity
+  - changeSet:
+      id: fk-disbursement-location
+      author: Jeff Schwartz
+      preConditions:
+        - not:
+            foreignKeyExists:
+              foreignKeyName: fk_disbursement_location
+              baseTableName: disbursement
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: disbursement
+            baseColumnNames: location_id
+            referencedTableName: location
+            referencedColumnNames: location_id
+            constraintName: fk_disbursement_location
