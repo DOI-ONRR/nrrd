@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_production_period
               baseTableName: production
       changes:
@@ -19,7 +19,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_production_location
               baseTableName: production
       changes:
@@ -34,7 +34,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_production_commodity
               baseTableName: production
       changes:

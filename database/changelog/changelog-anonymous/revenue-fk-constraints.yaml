@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_revenue_period
               baseTableName: revenue
       changes:
@@ -19,7 +19,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_revenue_fund
               baseTableName: revenue
       changes:
@@ -34,7 +34,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_revenue_commodity
               baseTableName: revenue
       changes:
@@ -49,7 +49,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_revenue_location
               baseTableName: revenue
       changes:

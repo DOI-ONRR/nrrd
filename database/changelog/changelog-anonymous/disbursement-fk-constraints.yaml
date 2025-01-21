@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_disbursement_period
               baseTableName: disbursement
       changes:
@@ -19,7 +19,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_disbursement_fund
               baseTableName: disbursement
       changes:
@@ -34,7 +34,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_disbursement_commodity
               baseTableName: disbursement
       changes:
@@ -49,7 +49,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       preConditions:
         - not:
-            foreignKeyExists:
+            foreignKeyConstraintExists:
               foreignKeyName: fk_disbursement_location
               baseTableName: disbursement
       changes:
