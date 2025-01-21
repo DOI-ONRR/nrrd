@@ -2,11 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: fk-production-period
       author: Jeff Schwartz
-      preConditions:
-        - not:
-            foreignKeyConstraintExists:
-              foreignKeyName: fk_production_period
-              baseTableName: production
       changes:
         - addForeignKeyConstraint:
             baseTableName: production
@@ -17,11 +12,6 @@ databaseChangeLog:
   - changeSet:
       id: fk-production-location
       author: Jeff Schwartz
-      preConditions:
-        - not:
-            foreignKeyConstraintExists:
-              foreignKeyName: fk_production_location
-              baseTableName: production
       changes:
         - addForeignKeyConstraint:
             baseTableName: production
@@ -32,11 +22,6 @@ databaseChangeLog:
   - changeSet:
       id: fk-production-commodity
       author: Jeff Schwartz
-      preConditions:
-        - not:
-            foreignKeyConstraintExists:
-              foreignKeyName: fk_production_commodity
-              baseTableName: production
       changes:
         - addForeignKeyConstraint:
             baseTableName: production

@@ -2,13 +2,8 @@ databaseChangeLog:
   - changeSet:
       id: add-fund-pk
       author: Jeff Schwartz
-      preConditions:
-        - not:
-            primaryKeyExists:
-              tableName: fund
-              columnNames: commodity_id
       changes:
         - addPrimaryKey:
-            tableName: commodity
-            columnNames: commodity_id
-            constraintName: commodity_pk
+            tableName: fund
+            columnNames: fund_id
+            constraintName: fund_pk
