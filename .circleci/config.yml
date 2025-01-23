@@ -330,6 +330,7 @@ jobs:
             #bash ./swap.sh
             cf push nrrd -f ./manifest.yml
   apply-database-changes:
+    resource_class: xlarge
     machine: 
       image: ubuntu-2204:current
     steps:
