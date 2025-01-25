@@ -330,7 +330,6 @@ jobs:
             #bash ./swap.sh
             cf push nrrd -f ./manifest.yml
   apply-database-changes:
-    resource_class: xlarge
     machine: 
       image: ubuntu-2204:current
     steps:
@@ -383,7 +382,7 @@ jobs:
             pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
       - run:
           name: Call liquibase to update database
-          no_output_timeout: 60m
+          no_output_timeout: 3h
           command: bash ~/project/.circleci/scripts/liquibase.sh
       - node/install
       - generate-downloads
