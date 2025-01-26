@@ -379,7 +379,10 @@ jobs:
       - run:
           name: Backup database
           command: |
-            pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
+            mkdir -p /tmp/artifacts
+            pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/artifacts/database_backup-${CF_SPACE}.pg || echo $?
+      - store_artifacts:
+          path: /tmp/artifacts/database_backup-${CF_SPACE}.pg
       - run:
           name: Call liquibase to update database
           no_output_timeout: 3h
