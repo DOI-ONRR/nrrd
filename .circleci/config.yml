@@ -366,12 +366,12 @@ jobs:
           name: Backup database
           command: |
             mkdir -p /tmp/artifacts
-            pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/artifacts/database_backup-${CF_SPACE}.pg || echo $?
+            pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/artifacts/database_backup.pg || echo $?
       - store_artifacts:
-          path: /tmp/artifacts/database_backup-${CF_SPACE}.pg
+          path: /tmp/artifacts/database_backup.pg
       - run:
           name: Call liquibase to update database
-          no_output_timeout: 3h
+          no_output_timeout: 60m
           command: bash ~/project/.circleci/scripts/liquibase.sh
       - node/install
       - generate-downloads
