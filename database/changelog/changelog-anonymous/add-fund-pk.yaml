@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: add-fund-pk
-      author: Jeff Schwartz
-      changes:
-        - addPrimaryKey:
-            tableName: fund
-            columnNames: fund_id
-            constraintName: fund_pk

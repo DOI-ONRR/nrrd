@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: add-period-pk
-      author: Jeff Schwartz
-      changes:
-        - addPrimaryKey:
-            tableName: period
-            columnNames: period_id
-            constraintName: period_pk

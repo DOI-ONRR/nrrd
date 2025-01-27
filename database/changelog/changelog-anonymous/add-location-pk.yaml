@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: add-location-pk
-      author: Jeff Schwartz
-      changes:
-        - addPrimaryKey:
-            tableName: location
-            columnNames: location_id
-            constraintName: location_pk

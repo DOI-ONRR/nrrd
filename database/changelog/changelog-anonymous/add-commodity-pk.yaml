@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: add-commodity-pk
-      author: Jeff Schwartz
-      changes:
-        - addPrimaryKey:
-            tableName: commodity
-            columnNames: commodity_id
-            constraintName: commodity_pk
