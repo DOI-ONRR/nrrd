@@ -155,7 +155,7 @@ export const getVariables = (state, options) => getVariableValues(state, options
 // STEP 2: Define all the queries needed
 
 const VIEWS = {
-  [REVENUE]: 'query_tool_revenue_try',
+  [REVENUE]: 'mv_query_tool_revenue',
   [PRODUCTION]: 'query_tool_production',
   [DISBURSEMENT]: 'query_tool_disbursement',
   [REVENUE_BY_COMPANY]: 'query_tool_fed_revenue_by_company',
@@ -175,9 +175,6 @@ const REVENUE_QUERY = whereClause => (
     ${ FISCAL_YEAR }: ${ DB_COLS[FISCAL_YEAR] }
     ${ REVENUE }: ${ DB_COLS[REVENUE] }
     ${ MONTH_LONG }: ${ DB_COLS[MONTH_LONG] }
-    ${ G1 }: ${ DB_COLS[G1] }
-    ${ G2 }: ${ DB_COLS[G2] }
-    ${ G3 }: ${ DB_COLS[G3] }
   }
   counts:${ VIEWS[REVENUE] }_aggregate (
     where: {
