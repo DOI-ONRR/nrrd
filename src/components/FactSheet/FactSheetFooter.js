@@ -25,7 +25,7 @@ const FactSheetFooter = () => {
       <Grid item xs>
         <Box className={classes.root}>
           This Open Data, Design, and Development (ODDD) team is part of the Department of Interior's (DOI) Office of Natural Resources Revenue (ONRR).
-          Visit <Link href='https://www.revenuedata.doi.gov'>revenuedata.doi.gov</Link> to access interactive charts and query data.
+          Visit <Link href='https://revenuedata.doi.gov'>revenuedata.doi.gov</Link> to access interactive charts and query data.
         </Box>
       </Grid>
     </Grid>

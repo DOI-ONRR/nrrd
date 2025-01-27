@@ -6,7 +6,7 @@ DECLARE
             period_id,
             commodity_id,
             fund_id,
-            SUM(TO_NUMBER(revenue, 'L999G999G999G999D999999999')) revenue,
+            SUM(revenue) revenue,
             'dollars' unit,
             '$' unit_abbr,
             COUNT(*) duplicate_no
@@ -17,12 +17,17 @@ DECLARE
             AND county_code_desc = county
             AND e.fips_code=l.fips_code
             AND agency_state_region_code_desc =  offshore_region
-        JOIN fund f ON e.revenue_type = f.revenue_type
-            AND land_category_code_desc = source
-            AND recipient = '' 
-            AND fund_type = '' 
-            AND fund_class = ''  
-            AND disbursement_type = ''
+        JOIN (
+            SELECT revenue_type, 
+                source, 
+                fund_id 
+            FROM fund 
+            WHERE recipient = '' 
+                AND fund_type = '' 
+                AND fund_class = '' 
+                AND disbursement_type = ''
+            ) f ON e.revenue_type = f.revenue_type 
+            AND e.land_category_code_desc = f.source
         JOIN commodity c ON e.commodity = c.commodity
             AND e.mineral_production_code_desc = c.mineral_lease_type 
             AND product_code_desc = product
