@@ -62,9 +62,6 @@ import getDataFilterQuery from './data-filter-queries'
 // This is a simple data filter variable config that specifies which variables are used by the query and the type
 const VARIABLE_CONFIGS = {
   [REVENUE]: [
-    { [G1]: SINGLE_STR },
-    { [G2]: SINGLE_STR },
-    { [G3]: SINGLE_STR },
     { [LAND_TYPE]: MULTI_STR },
     { [COUNTY]: MULTI_STR },
     { [COMMODITY]: MULTI_STR },
@@ -109,9 +106,6 @@ const VARIABLE_CONFIGS = {
   ],
   ALL_YEARS: {
     [REVENUE]: [
-      { [G1]: SINGLE_STR },
-      { [G2]: SINGLE_STR },
-      { [G3]: SINGLE_STR },
       { [LAND_TYPE]: MULTI_STR },
       { [COUNTY]: MULTI_STR },
       { [COMMODITY]: MULTI_STR },
