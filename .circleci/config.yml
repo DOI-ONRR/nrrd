@@ -68,9 +68,6 @@ commands:
           command: |
             ls /tmp/downloads/*
       - store_artifacts:
-          path: /tmp/database_backup.pg
-          destination: database_backup.pg
-      - store_artifacts:
           path: /tmp/downloads
           destination: downloads
       - aws-s3/sync:
@@ -80,17 +77,6 @@ commands:
           aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
           from: /tmp/downloads/
           to: 's3://$NPS_BUCKET_NAME/downloads/'
-      - when:
-          condition:
-            not: << pipeline.parameters.run_generate_downloads >>
-          steps:
-            - aws-s3/copy:
-                arguments: |
-                aws-access-key-id: NPS_AWS_ACCESS_KEY
-                aws-region: NPS_AWS_REGION
-                aws-secret-access-key: NPS_AWS_SECRET_ACCESS_KEY
-                from: /tmp/database_backup-${CF_SPACE}.pg
-                to: 's3://$NPS_BUCKET_NAME/backup/database_backup-${CF_SPACE}.pg'
       - run:
           name: "list bucket"
           command: |
@@ -379,7 +365,10 @@ jobs:
       - run:
           name: Backup database
           command: |
-            pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/database_backup-${CF_SPACE}.pg || echo $?
+            mkdir -p /tmp/artifacts
+            pg_dump postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME} -Fc -f /tmp/artifacts/database_backup.pg || echo $?
+      - store_artifacts:
+          path: /tmp/artifacts/database_backup.pg
       - run:
           name: Call liquibase to update database
           no_output_timeout: 60m
