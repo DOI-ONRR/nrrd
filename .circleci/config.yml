@@ -457,7 +457,9 @@ workflows:
             - nrrd
             - org-global
           requires:
-            - apply-database-changes
+            - apply-database-changes:
+              - success
+              - failed
           filters:
             branches:
               ignore:
