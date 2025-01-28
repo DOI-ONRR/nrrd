@@ -49,16 +49,14 @@ const DisbursementsLastTwelveMonths = ({ title, yGroupBy, data, disableInteracti
 
   const xLabels = (x, i) => {
     return x.map(v => {
-      const dStr = v.replace(/\b0/g, '')
-      const d = new Date(dStr)
+      const d = new Date(v)
       const m = d.toLocaleDateString('default', { month: 'short' })
       return m
     })
   }
 
   const legendHeaders = (headers, row) => {
-    const dStr = headers[1].replace(/\b0/g, '')
-    const date = new Date(dStr)
+    const date = new Date(headers[1])
     const month = date.toLocaleString('default', { month: 'short' })
     const year = headers[1].substring(0, 4)
     const headerArr = [headers[0], `${ month } ${ year }`]
