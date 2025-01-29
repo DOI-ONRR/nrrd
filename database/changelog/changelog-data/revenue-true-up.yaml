@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-true-up-2024
+      id: revenue-true-up-2025
       author: Christine Thomas
       changes:
       - sql:
@@ -9,7 +9,7 @@ databaseChangeLog:
             TRUNCATE TABLE monthly_revenue_elt
       - loadData:
           tableName: monthly_revenue_elt
-          file: '../static/csv/revenue/Jan 2005-Dec 2023 Revenues for NRRD_CSV.csv'
+          file: '../static/csv/revenue/Jan 2005-Dec 2024 Revenues for NRRD_CSV.csv'
           quotchar: '""'
           columns:
           - column:

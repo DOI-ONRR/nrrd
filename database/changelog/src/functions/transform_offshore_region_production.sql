@@ -19,7 +19,7 @@ BEGIN
             NEW.county := '';
             NEW.state := '';
         WHEN 'Offshore Gulf' THEN
-            NEW.offshore_region := 'Gulf of Mexico';
+            NEW.offshore_region := 'Gulf';
             NEW.fips_code := 'GMR';
             NEW.county := '';
             NEW.state := '';
