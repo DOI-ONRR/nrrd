@@ -7,7 +7,7 @@ databaseChangeLog:
           dbms: 'postgresql'
           sql: |
             UPDATE sales
-            SET state_offshore_region = 'Gulf'
+            SET state_offshore_region = 'Offshore Gulf'
             WHERE state_offshore_region = 'Gulf of Mexico';
 
             UPDATE sales
