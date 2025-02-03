@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-sales-offshore
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE sales
+            SET state_offshore_region = 'Offshore Gulf'
+            WHERE state_offshore_region = 'Gulf of Mexico';
+
+            UPDATE sales
+            SET state_offshore_region = 'Offshore Alaska'
+            WHERE state_offshore_region = 'Alaska OCS';
+
+            UPDATE sales
+            SET state_offshore_region = 'Offshore Pacific'
+            WHERE state_offshore_region = 'Pacific';

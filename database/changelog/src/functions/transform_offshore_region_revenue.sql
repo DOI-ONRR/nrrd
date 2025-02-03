@@ -13,7 +13,7 @@ BEGIN
             NEW.agency_state_region_code_desc := 'Atlantic';
             NEW.fips_code := 'AOR';
         WHEN 'GULF OF MEXICO' THEN
-            NEW.agency_state_region_code_desc := 'Gulf of Mexico';
+            NEW.agency_state_region_code_desc := 'Gulf';
             NEW.fips_code := 'GMR';
         WHEN 'NEW MEXICO', 'EAST STATES' THEN
             NEW.agency_state_region_code_desc := '';
