@@ -7,12 +7,12 @@ Federal,"Federal lands are owned by or under the jurisdiction of the federal gov
 Native American,"Includes Tribal lands held in trust by the federal government for a tribeâ€™s use, and allotments held in trust by the federal government for individual Native American use."
 Land Category,This field distinguishes between onshore and offshore revenue.
 Onshore,Situated or occurring on land.
-Offshore,"Submerged lands located farther than three miles off a stateâ€™s coastline, or three marine leagues into the Gulf of Mexico off of Texas and Western Florida."
+Offshore,"Submerged lands located farther than three miles off a stateâ€™s coastline, or three marine leagues into the Offshore Gulf off of Texas and Western Florida."
 Not Tied to a Lease,Some revenues - such as civil penalties - are not tied to either onshore or offshore.
 State,Contains the name of the state
 County Code,"Contains county, parish, and borough names"
 FIPS Code,"Federal Information Processing Standards (FIPS), now known as Federal Information Processing Series, are numeric codes assigned by the National Institute of Standards and Technology (NIST). Typically, FIPS codes deal with US states and counties. US states are identified by a 2-digit number, while US counties are identified by a 3-digit number."
-Offshore Region," BOEM separates offshore areas into four regions: Gulf of Mexico, Atlantic, Pacific, and Alaska. For more information on offshore regions, including spatial boundaries, see BOEM's maps and GIS data."
+Offshore Region," BOEM separates offshore areas into four regions: Gulf, Atlantic, Pacific, and Alaska. For more information on offshore regions, including spatial boundaries, see BOEM's maps and GIS data."
 Revenue Type,Revenues from U.S. natural resources fall into one of several types.
 Royalties,A natural resource lease holder pays royalties after the lease starts producing a commodity in paying quantities. The amount is based on a percentage of the revenue from the commodity sold. The exact percentage is set in the original lease document that went along with the lease sale.
 Bonus,The amount paid by the highest successful bidder for a natural resource lease. The winning bid.

@@ -7,11 +7,11 @@ Native American,"Includes Tribal lands held in trust by the federal government f
 Mixed Exploratory,Is a temporary jurisdictional unit that is used until production is proven on that location.
 Land Category,This field distinguishes between onshore and offshore prouction.
 Onshore,Situated or occurring on land.
-Offshore,"Submerged lands located farther than three miles off a state’s coastline, or three marine leagues into the Gulf of Mexico off of Texas and Western Florida."
+Offshore,"Submerged lands located farther than three miles off a state’s coastline, or three marine leagues into the Offshore Gulf off of Texas and Western Florida."
 State,The state where the production occurred
 County,The county where the production occurred
 FIPS Code,"Federal Information Processing Standard (FIPS) code is a five-digit code which uniquely identifies counties and county equivalents in the U.S., certain U.S. possessions, and certain freely associated states. The first two digits are the FIPS state code and the last three are the county code within the state or possession."
-Offshore Region,"BOEM separates offshore areas into four regions: Gulf of Mexico, Atlantic, Pacific, and Alaska. For more information on offshore regions, including spatial boundaries, see BOEM's maps and GIS data."
+Offshore Region,"BOEM separates offshore areas into four regions: Gulf, Atlantic, Pacific, and Alaska. For more information on offshore regions, including spatial boundaries, see BOEM's maps and GIS data."
 Product,Products are listed individually but may also fall into like categories.
 Borate Products (tons),"Include Borax-Anhydrous, Borax-Decahydrate, Borax-Pentahydrate, and Boric Acid"
 Brine Products,Include Brine Barrels (converted to tons equivalent) and Magnesium Chloride Brine
