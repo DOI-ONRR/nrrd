@@ -418,7 +418,7 @@ export default class d3Map {
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        const r = { id: 'GMR', properties: { region: 'GMR', name: 'Gulf of Mexico' } }
+        const r = { id: 'GMR', properties: { region: 'GMR', name: 'Gulf Offshore' } }
         onClick(r, i)
       })
       .on('mouseover', function (d, i) {
@@ -432,7 +432,7 @@ export default class d3Map {
       })
 
       .append('title')
-      .text(d => `Gulf of Mexico Offshore Region  ${ format(data.get('GMR')) }`).transition().duration(3000)
+      .text(d => `Gulf Offshore Region  ${ format(data.get('GMR')) }`).transition().duration(3000)
 
     const AOR = d3.set(['NOA', 'MDA', 'SOA', 'FLS'])
     g.append('path')
