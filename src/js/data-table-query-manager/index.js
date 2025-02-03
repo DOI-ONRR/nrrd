@@ -76,9 +76,6 @@ const VARIABLES = {
       [COUNTY]: (state[COUNTY] === ZERO_OPTIONS || !state[COUNTY]) ? undefined : state[COUNTY].split(','),
       [COMMODITY]: (state[COMMODITY] === ZERO_OPTIONS || !state[COMMODITY]) ? undefined : state[COMMODITY].split(','),
       [REVENUE_TYPE]: (state[REVENUE_TYPE] === ZERO_OPTIONS || !state[REVENUE_TYPE]) ? undefined : state[REVENUE_TYPE].split(','),
-      [G1]: state[G1],
-      [G2]: state[G2],
-      [G3]: state[G3],
       [PERIOD]: (state[PERIOD] === ZERO_OPTIONS) ? undefined : state[PERIOD],
     }
   }),
@@ -117,10 +114,7 @@ const VARIABLE_LIST_REVENUE = ''.concat(
   '$county: [String!],',
   '$commodity: [String!],',
   '$revenueType: [String!],',
-  '$period: String,',
-  '$g1: String,',
-  '$g2: String,',
-  '$g3: String,'
+  '$period: String,'
 
 )
 const VARIABLE_LIST_PRODUCTION = ''.concat(
