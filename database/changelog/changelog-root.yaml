@@ -10,6 +10,8 @@ databaseChangeLog:
     - includeAll:
         path: changelog-views
     - includeAll:
+        path: changelog-mviews
+    - includeAll:
         path: changelog-anonymous
     - include:
         file: changelog-data/production-monthly.yaml
