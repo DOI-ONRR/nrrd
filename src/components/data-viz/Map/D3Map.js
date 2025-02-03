@@ -432,7 +432,7 @@ export default class d3Map {
       })
 
       .append('title')
-      .text(d => `Gulf of Mexico Offshore Region  ${ format(data.get('GMR')) }`).transition().duration(3000)
+      .text(d => `Gulf Offshore Region  ${ format(data.get('GMR')) }`).transition().duration(3000)
 
     const AOR = d3.set(['NOA', 'MDA', 'SOA', 'FLS'])
     g.append('path')
