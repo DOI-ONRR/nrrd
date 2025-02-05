@@ -60,11 +60,6 @@
     "Alaskan Pipeline" by U.S. Geological Survey.
     Available: https://www.flickr.com/photos/usgeologicalsurvey/16204180932
 
-# THANKS
-
-    Many helpful instructions and blog posts on the interwebz!
-    The 18F team who helped pioneer user-centered design and development in government
-    Based on work done by the 18F NotAlone.gov team: https://github.com/18F/notalone
 
 # TECHNOLOGY COLOPHON
 
