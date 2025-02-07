@@ -99,7 +99,7 @@ const BaseSelectInput = ({
   data, onChange, selectType, defaultSelected, selected, defaultSelectAll, helperText, label, variant, showClearSelected, theme, disabled, ...props
 }) => {
   if (data && data.length > 0 && !data[0].option) {
-    data = data.map(item => ({ option: item }))
+    data = data.map(item => ({ option: item.option }))
   }
   else if (!data) {
     return (

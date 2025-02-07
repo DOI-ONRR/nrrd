@@ -39,7 +39,7 @@ const ProductionLastTwelveMonths = ({ title, disableInteraction, filterByProduct
 
   const xLabels = (x, i) => {
     return x.map(v => {
-      const d = new Date(v)
+      const d = new Date(`${ v }T00:00:00`)
       const m = d.toLocaleDateString('default', { month: 'short' })
       return m
     })
@@ -56,7 +56,7 @@ const ProductionLastTwelveMonths = ({ title, disableInteraction, filterByProduct
   }, data?.results[0])
 
   const legendHeaders = (headers, row) => {
-    const date = new Date(headers[1])
+    const date = new Date(`${ headers[1] }T00:00:00`)
     const month = date.toLocaleString('default', { month: 'short' })
     const year = headers[1].substring(0, 4)
     const headerArr = [headers[0], `${ month } ${ year }`]

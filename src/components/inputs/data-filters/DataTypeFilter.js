@@ -18,7 +18,7 @@ const DataTypeFilter = ({ useDataTypesPlus, ...rest }) => {
       BaseComponent => withDataFilterContext(BaseComponent, dataFilterKey))(baseInput)
   }
   const EnhancedFilter = createDataFilterContextInput(BaseSelectInput, DATA_TYPE)
-  return (<EnhancedFilter data={useDataTypesPlus ? DATA_TYPES_PLUS : DATA_TYPES} showClearSelected={false} {...rest} />)
+  return (<EnhancedFilter data={useDataTypesPlus ? DATA_TYPES_PLUS.map(item => ({ option: item })) : DATA_TYPES.map(item => ({ option: item }))} showClearSelected={false} {...rest} />)
 }
 
 export default DataTypeFilter
