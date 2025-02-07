@@ -102,10 +102,11 @@ const DATA_FILTER_QUERIES = {
       where: {
         ${ whereClause }
       },
-      distinct_on: location_order,
-      order_by: {location_order: asc}
+      distinct_on: ${ DB_COLS[STATE_OFFSHORE_NAME] },
+      order_by: {${ DB_COLS[STATE_OFFSHORE_NAME] }: asc}
       ) {
         option: ${ DB_COLS[STATE_OFFSHORE_NAME] }
+        optionOrder: location_order
       }`),
   [STATE_OFFSHORE_REGION]: (view, whereClause) => (
     `options:${ view }(
