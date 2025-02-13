@@ -1,3 +1,5 @@
+DROP MATERIALIZED VIEW IF EXISTS mv_query_tool_revenue;
+
 CREATE MATERIALIZED VIEW mv_query_tool_revenue AS
 SELECT r.revenue,
   f.revenue_type,
