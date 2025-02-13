@@ -2,7 +2,7 @@
 unique_id: GMR
 title: Gulf of America Offshore Region
 includeToc: false
-description: Gulf Offshore Region
+description: Gulf of America Offshore Region
 tags:
 - offshore
 - Gulf of America
@@ -46,12 +46,12 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
       </Grid>
       <Grid item xs={6}>
         <Link
-          href={`/query-data?dataType=${ DFC.REVENUE }&stateOffshoreName=${ 'Offshore Gulf' }`}
+          href={`/query-data?dataType=${ DFC.REVENUE }&stateOffshoreName=${ 'Gulf of America' }`}
           linkType="FilterTable">
           Query revenue data in {props.pageContext.frontmatter.title}
         </Link>
         <Link
-          href={`/query-data?dataType=${ DFC.PRODUCTION }&stateOffshoreName=${ 'Offshore Gulf' }`}
+          href={`/query-data?dataType=${ DFC.PRODUCTION }&stateOffshoreName=${ 'Gulf of America' }`}
           linkType="FilterTable">
           Query production data in {props.pageContext.frontmatter.title}
         </Link>
