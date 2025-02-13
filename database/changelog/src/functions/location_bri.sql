@@ -154,7 +154,7 @@ BEGIN
 
     IF LOWER(NEW.offshore_region) LIKE '%gulf%' AND NEW.state='' AND NEW.county = '' THEN
         NEW.fips_code := 'GMR';
-        NEW.location_name := 'Gulf';
+        NEW.location_name := 'Gulf of America';
         NEW.location_order := '1-GMR';
         NEW.offshore_region := 'Gulf';
         NEW.region_type := 'Offshore';

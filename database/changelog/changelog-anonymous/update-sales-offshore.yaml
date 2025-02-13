@@ -2,13 +2,14 @@ databaseChangeLog:
   - changeSet:
       id: update-sales-offshore
       author: Jeff Schwartz
+      runOnChange: true
       changes:
       - sql:
           dbms: 'postgresql'
           sql: |
             UPDATE sales
-            SET state_offshore_region = 'Offshore Gulf'
-            WHERE state_offshore_region = 'Gulf of Mexico';
+            SET state_offshore_region = 'Gulf of America'
+            WHERE state_offshore_region = 'Gulf Offshore';
 
             UPDATE sales
             SET state_offshore_region = 'Offshore Alaska'

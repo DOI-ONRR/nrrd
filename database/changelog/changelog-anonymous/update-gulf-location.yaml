@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-gulf-location
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            update LOCATION
+            set location_name = 'Gulf of America',
+              offshore_region = 'Gulf of America'
+            where location_id = 87322;

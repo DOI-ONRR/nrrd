@@ -1,3 +1,5 @@
+DROP MATERIALIZED VIEW IF EXISTS mv_query_tool_revenue;
+
 CREATE MATERIALIZED VIEW mv_query_tool_revenue AS
 SELECT r.revenue,
   f.revenue_type,
@@ -5,9 +7,9 @@ SELECT r.revenue,
   l.land_type,
   l.county,
   CASE
-    WHEN state IS NOT NULL THEN state
-    WHEN offshore_region IS NOT NULL THEN offshore_region
-    ELSE NULL
+    WHEN l.region_type::text = 'County'::text THEN l.state_name
+    WHEN l.region_type::text = 'Offshore'::text THEN concat('Offshore ', l.location_name)::character varying
+    ELSE l.location_name
   END state_offshore_name,
   CASE
     WHEN l.county::text <> ''::text THEN CONCAT(l.state_name, ', ', l.county, ' ', l.district_type)

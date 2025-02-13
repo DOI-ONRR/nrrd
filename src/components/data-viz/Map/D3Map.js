@@ -418,7 +418,7 @@ export default class d3Map {
       .attr('stroke', '#CACBCC')
       .attr('vector-effect', 'non-scaling-stroke')
       .on('click', (d, i) => {
-        const r = { id: 'GMR', properties: { region: 'GMR', name: 'Gulf Offshore' } }
+        const r = { id: 'GMR', properties: { region: 'GMR', name: 'Gulf of America' } }
         onClick(r, i)
       })
       .on('mouseover', function (d, i) {
