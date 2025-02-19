@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: alter-revenue-add-date-columns
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            ALTER TABLE revenue
+            ADD COLUMN creation_date TIMESTAMP WITH TIME ZONE,
+            ADD COLUMN last_update_date TIMESTAMP WITH TIME ZONE;
+
+            UPDATE revenue
+            SET creation_date = transaction_timestamp(),
+              last_update_date = transaction_timestamp();
+            
+            ALTER TABLE revenue
+            ALTER COLUMN creation_date SET NOT NULL,
+            ALTER COLUMN last_update_date SET NOT NULL;
+
+            ALTER TABLE revenue
+            ALTER COLUMN creation_date SET DEFAULT transaction_timestamp(),
+            ALTER COLUMN last_update_date SET DEFAULT transaction_timestamp();
