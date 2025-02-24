@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: disbursement-monthly-25-December
+      id: disbursement-monthly-25-January
       author: Lindsay Goldstein
       changes:
       - sql:
