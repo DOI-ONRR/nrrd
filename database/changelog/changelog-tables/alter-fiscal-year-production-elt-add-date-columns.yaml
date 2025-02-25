@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: alter-fiscal-year-production-elt-add-date-columns
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            ALTER TABLE fiscal_year_production_elt
+            ADD COLUMN creation_date TIMESTAMP WITH TIME ZONE;
+
+            UPDATE fiscal_year_production_elt
+            SET creation_date = transaction_timestamp();
+            
+            ALTER TABLE fiscal_year_production_elt
+            ALTER COLUMN creation_date SET NOT NULL;
+
+            ALTER TABLE fiscal_year_production_elt
+            ALTER COLUMN creation_date SET DEFAULT transaction_timestamp();

@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: alter-monthly-production-elt-add-date-columns
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            ALTER TABLE monthly_production_elt
+            ADD COLUMN creation_date TIMESTAMP WITH TIME ZONE;
+
+            UPDATE monthly_production_elt
+            SET creation_date = transaction_timestamp();
+            
+            ALTER TABLE monthly_production_elt
+            ALTER COLUMN creation_date SET NOT NULL;
+
+            ALTER TABLE monthly_production_elt
+            ALTER COLUMN creation_date SET DEFAULT transaction_timestamp();

@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: set-last-update-date
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sqlFile:
+          path: src/functions/set_last_update_date.sql
+          splitStatements: false

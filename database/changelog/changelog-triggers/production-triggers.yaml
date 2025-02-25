@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: production-triggers
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sqlFile:
+          path: src/triggers/production_last_update_date_bru.sql

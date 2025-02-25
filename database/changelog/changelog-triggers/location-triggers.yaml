@@ -6,3 +6,5 @@ databaseChangeLog:
       changes:
       - sqlFile:
           path: src/triggers/location_bri.sql
+      - sqlFile:
+          path: src/triggers/location_last_update_date_bru.sql
