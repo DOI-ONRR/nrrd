@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-24-december
+      id: revenue-25-january
       author: Christine Thomas
       changes: 
       - sql:
@@ -9,7 +9,7 @@ databaseChangeLog:
             TRUNCATE TABLE monthly_revenue_elt
       - loadData:
           tableName: monthly_revenue_elt
-          file: '../static/csv/revenue/December 2024 Revenue for Portal_csv.csv'
+          file: '../static/csv/revenue/January 2025 Revenue for Portal_csv.csv'
           quotchar: '""'
           columns:
           - column:
@@ -75,3 +75,4 @@ databaseChangeLog:
             REFRESH MATERIALIZED VIEW total_monthly_last_twelve_revenue;
             REFRESH MATERIALIZED VIEW total_yearly_calendar_revenue;
             REFRESH MATERIALIZED VIEW total_yearly_fiscal_revenue;
+            REFRESH MATERIALIZED VIEW mv_query_tool_revenue;
