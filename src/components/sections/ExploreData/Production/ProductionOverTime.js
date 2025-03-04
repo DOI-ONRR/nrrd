@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 // import { graphql } from 'gatsby'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
 // utility functions
 import utils from '../../../../js/utils'

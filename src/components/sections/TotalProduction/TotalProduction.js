@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
 
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'

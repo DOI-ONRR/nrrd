@@ -1,4 +1,4 @@
-FROM cimg/node:14.15.5-browsers
+FROM cimg/node:18.20.7
 EXPOSE 8000
 WORKDIR /app
 COPY ./package.json .

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../../stores/app-status-store'

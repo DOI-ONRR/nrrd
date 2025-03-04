@@ -1,5 +1,5 @@
 const fetch = require('isomorphic-fetch')
-const { createHttpLink } = require('apollo-link-http')
+const { HttpLink } = require("@apollo/client");
 
 const activeEnv = (process.env.CIRCLE_BRANCH === 'master') ? 'prd' : 'dev'
 require('dotenv').config({
@@ -132,7 +132,7 @@ const config = {
         typeName: 'ONRR',
         fieldName: 'onrr',
         createLink: () => {
-          return createHttpLink({
+          return new HttpLink({
             uri: process.env.GATSBY_HASURA_URI,
             headers: {},
             fetch,

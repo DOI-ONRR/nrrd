@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import DFQM from '../../js/data-filter-query-manager/index'
 
 import { DataFilterContext } from '../../stores/data-filter-store'

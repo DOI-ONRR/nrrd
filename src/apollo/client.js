@@ -1,6 +1,6 @@
 
 import fetch from 'isomorphic-fetch'
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost'
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 
 export const client = new ApolloClient({
   cache: new InMemoryCache(),

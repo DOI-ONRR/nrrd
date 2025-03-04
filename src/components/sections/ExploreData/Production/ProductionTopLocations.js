@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 import * as d3 from 'd3'

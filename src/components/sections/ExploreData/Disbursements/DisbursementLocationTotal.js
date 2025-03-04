@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
 
 import utils from '../../../../js/utils'
