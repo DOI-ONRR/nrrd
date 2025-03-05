@@ -1,6 +1,5 @@
 import React from 'react'
-import fetch from 'isomorphic-fetch'
-import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { Provider as UrqlProvider, client as UrqlClient } from 'urql'
 import 'typeface-lato'
 
 import { MDXProvider } from '@mdx-js/react'
@@ -50,25 +49,11 @@ const mdxComponents = {
   Hidden
 }
 
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: process.env.GATSBY_HASURA_URI,
-    headers: {},
-    fetch,
-    resolvers: {}
-  }),
-  connectToDevTools: true,
-});
-
-console.log("🚀 Apollo Client initializing in gatsby-ssr.js");
-
 export const wrapRootElement = ({ element }) => {
-  console.log("✅ Apollo Provider wrapping the root element in gatsby-ssr.js");
   return (
   <ErrorBoundary>
     <ThemeProvider theme={theme}>
-      <ApolloProvider client={client}>
+      <UrqlProvider value={UrqlClient}>
         <AppStatusProvider>
           <DownloadProvider>
             <MDXProvider components={ mdxComponents }>
@@ -76,7 +61,7 @@ export const wrapRootElement = ({ element }) => {
             </MDXProvider>
           </DownloadProvider>
         </AppStatusProvider>
-      </ApolloProvider>
+      </UrqlProvider>
     </ThemeProvider>
   </ErrorBoundary>
 )}

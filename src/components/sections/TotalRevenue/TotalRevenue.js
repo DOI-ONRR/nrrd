@@ -1,6 +1,5 @@
 import React, { useContext, useRef } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 
 import {
   Box,
@@ -168,13 +167,18 @@ const TotalRevenue = props => {
     QUERY = TOTAL_REVENUE_QUERY
   }
 
-  const { loading, error, data } = useQuery(QUERY, { variables: VARIABLES })
+  const [result, reexecuteQuery] = useQuery({
+    query: QUERY,
+    variables: VARIABLES,
+  });
+
+  const { fetching, error, data } = result;
 
   const handleBarHover = d => {
     revenueComparison.current.setSelectedItem(d[2])
   }
 
-  if (loading) {
+  if (fetching) {
     return 'Loading...'
   }
 

@@ -1,11 +1,11 @@
 import { setConfig } from 'react-hot-loader'
-import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink, ApolloLink } from "@apollo/client";
 import React from 'react'
 import 'typeface-lato'
 
 import { MDXProvider } from '@mdx-js/react'
 import * as CustomComponents from './.cache/components'
 import CodeBlock from './src/components/pattern-library/CodeBlock/CodeBlock.js'
+import { Provider as UrqlProvider, client as UrqlClient} from './urqlClient';
 
 import {
   Box,
@@ -28,28 +28,6 @@ import {
 import ErrorBoundary from './src/components/ErrorBoundary'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './src/js/mui/theme'
-
-const debugLink = new ApolloLink((operation, forward) => {
-  console.log("📡 Apollo is executing query:", operation.operationName);
-  console.log("🔗 Apollo request:", operation);
-  return forward(operation).map(response => {
-    console.log("📡 Apollo received response:", response);
-    return response;
-  });
-});
-
-const client = new ApolloClient({
-  link: ApolloLink.from([
-    debugLink, // Add debugging before sending the request
-    new HttpLink({
-      uri: 'https://hasura-sandbox.app.cloud.gov/v1/graphql',
-      fetchOptions: { mode: 'no-cors' }, // Ensure fetch works
-    }),
-  ]),
-  cache: new InMemoryCache(),
-});
-
-console.log("🚀 Apollo Client initialized in gatsby-browser.js");
 
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
@@ -92,11 +70,10 @@ const mdxComponents = {
 }
 
 export const wrapRootElement = ({ element }) => {
-  console.log("✅ wrapRootElement is running in gatsby-browser.js");
   return (
     <ErrorBoundary>
       <ThemeProvider theme={theme}>
-        <ApolloProvider client={client}>
+        <UrqlProvider value={UrqlClient}>
           <AppStatusProvider>
             <DownloadProvider>
               <MDXProvider components={ mdxComponents }>
@@ -104,7 +81,7 @@ export const wrapRootElement = ({ element }) => {
               </MDXProvider>
             </DownloadProvider>
           </AppStatusProvider>
-        </ApolloProvider>
+        </UrqlProvider>
       </ThemeProvider>
     </ErrorBoundary>
   )

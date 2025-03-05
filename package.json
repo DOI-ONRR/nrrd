@@ -89,6 +89,7 @@
     "typescript": "^2.8.0",
     "url-parse": "^1.5.10",
     "url-search-params-polyfill": "^7.0.0",
+    "urql": "^4.2.2",
     "use-query-params": "^1.1.4"
   },
   "devDependencies": {

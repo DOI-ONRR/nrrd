@@ -1,6 +1,5 @@
 import React, { useContext, useState, useRef } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
@@ -103,7 +102,11 @@ const TotalProduction = props => {
     productionComparison.current.setSelectedItem(d[2])
   }
 
-  const { loading, error, data } = useQuery(TOTAL_PRODUCTION_QUERY)
+  const [result, reexecuteQuery] = useQuery({
+    query: TOTAL_PRODUCTION_QUERY,
+  })
+
+  const { fetching, error, data } = result
 
   let chartData
   let comparisonData
@@ -144,7 +147,7 @@ const TotalProduction = props => {
     break
   }
 
-  if (loading) {
+  if (fetching) {
     return 'Loading...'
   }
 
