@@ -168,7 +168,7 @@ jobs:
           path: ./__audits__/lighthouse/
   nrrd-preview:
     docker:
-      - image: cimg/node:16.20-browsers
+      - image: cimg/node:18.20.7
     resource_class: xlarge
     steps:
       - checkout
@@ -216,7 +216,7 @@ jobs:
             bash ./.circleci/cleanup-previews.sh
   dev:
     docker:
-      - image: cimg/node:16.20-browsers
+      - image: cimg/node:18.20.7
     resource_class: xlarge
     steps:
       - checkout
@@ -266,7 +266,7 @@ jobs:
             cf push dev-nrrd -f ./manifest.yml
   prod:
     docker:
-      - image: cimg/node:16.20-browsers
+      - image: cimg/node:18.20.7
     resource_class: xlarge
     steps:
       - checkout
