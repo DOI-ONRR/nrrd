@@ -167,7 +167,7 @@ const TotalRevenue = props => {
     QUERY = TOTAL_REVENUE_QUERY
   }
 
-  const [result, reexecuteQuery] = useQuery({
+  const [result, _reexecuteQuery] = useQuery({
     query: QUERY,
     variables: VARIABLES,
   });

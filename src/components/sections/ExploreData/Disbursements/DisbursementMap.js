@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 import * as d3 from 'd3'
 import utils from '../../../../js/utils'
 
@@ -32,17 +31,21 @@ export default props => {
     period
   } = filterState
 
-  const { loading, error, data } = useQuery(DISBURSEMENT_QUERY, {
+  const [result, _reexecuteQuery] = useQuery({
+    query: DISBURSEMENT_QUERY,
     variables: {
       year: year,
       period: period || filterState.explore_data_filter_default.period,
       location: mapLevel || filterState.explore_data_filter_default.mapLevel
-    }
-  })
+    },
+  });
+
+  const { data, fetching, error } = result;
+
   const dataSet = 'FY ' + year
   let mapData = [[]]
 
-  if (loading) {}
+  if (fetching) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
     mapData = d3.nest()

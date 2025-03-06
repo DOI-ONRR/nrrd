@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { useQuery } from '@apollo/client'
+import { useQuery } from 'urql'
 import DFQM from '../../js/data-filter-query-manager/index'
 
 import { DataFilterContext } from '../../stores/data-filter-store'
@@ -7,7 +7,14 @@ import { AppStatusContext } from '../../stores/app-status-store'
 
 const withDataFilterQuery = (BaseComponent, dataFilterKey) => ({ ...props }) => {
   const { state } = useContext(DataFilterContext)
-  const { loading, error, data } = useQuery(DFQM.getQuery(dataFilterKey, state), DFQM.getVariables(state))
+  
+  const [result, _reexecuteQuery] = useQuery({
+    query: DFQM.getQuery(dataFilterKey, state), 
+    variables: DFQM.getVariables(state),
+  });
+
+  const { data, fetching, error } = result;
+
   const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
 
   useEffect(() => {
@@ -19,11 +26,11 @@ const withDataFilterQuery = (BaseComponent, dataFilterKey) => ({ ...props }) => 
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: 'Loading...' })
     return () => {
-      if (loading) {
+      if (fetching) {
         updateLoadingStatus({ status: false, message: 'Loading...' })
       }
     }
-  }, [loading])
+  }, [fetching])
 
   return (
     <>

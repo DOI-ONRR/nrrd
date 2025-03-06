@@ -102,7 +102,7 @@ const TotalProduction = props => {
     productionComparison.current.setSelectedItem(d[2])
   }
 
-  const [result, reexecuteQuery] = useQuery({
+  const [result, _reexecuteQuery] = useQuery({
     query: TOTAL_PRODUCTION_QUERY,
   })
 

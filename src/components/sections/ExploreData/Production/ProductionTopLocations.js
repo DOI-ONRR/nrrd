@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 import PropTypes from 'prop-types'
 import * as d3 from 'd3'
 
@@ -20,7 +19,7 @@ import {
 import { CircleChart } from '../../../data-viz/CircleChart'
 import { useInView } from 'react-intersection-observer'
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query ProductionTopLocations($year: Int!, $location: String!, $commodity: String!, $state: String!, $period: String!) {
     state_production_summary: production_summary(
       where: {
@@ -74,57 +73,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-/*
- * const useStyles = makeStyles(theme => ({
- *   root: {
- *     maxWidth: '100%',
- *     width: '100%',
- *     margin: theme.spacing(1),
- *     '@media (max-width: 768px)': {
- *       maxWidth: '100%',
- *       margin: 0,
- *     }
- *   },
- *   progressContainer: {
- *     maxWidth: '25%',
- *     display: 'flex',
- *     '& > *': {
- *       marginTop: theme.spacing(3),
- *       marginRight: 'auto',
- *       marginLeft: 'auto',
- *     }
- *   },
- *   circularProgressRoot: {
- *     color: theme.palette.primary.dark,
- *   },
- *   chartHorizontal: {
- *     '& .chart-container': {
- *       display: 'flex',
- *       '@media (max-width: 426px)': {
- *         display: 'block',
- *         margin: 0,
- *       },
- *       '& .chart': {
- *         marginRight: theme.spacing(2),
- *         width: '70%',
- *         '@media (max-width: 426px)': {
- *           marginRight: 0,
- *         },
- *       },
- *     },
- *   },
- *   chartVertical: {
- *     '& .chart-container': {
- *       display: 'block',
- *       margin: 0,
- *     },
- *     '& .chart': {
- *       margin: 0,
- *       width: '100%',
- *     },
- *   }
- * }))
- *  */
 const ProductionTopLocations = ({ title, ...props }) => {
   // console.log('ProudctionTopLocations props: ', props)
   const classes = useStyles()
@@ -161,15 +109,23 @@ const ProductionTopLocations = ({ title, ...props }) => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY,
-    {
-      variables: { year, location: locationType, commodity, state, period },
-      skip: inView === false && (props.fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
-                                 props.regionType === DFC.COUNTY_CAPITALIZED ||
-                                 props.regionType === DFC.OFFSHORE_CAPITALIZED)
-    })
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
+    variables: { 
+      year, 
+      location: locationType, 
+      commodity, 
+      state, 
+      period 
+    },
+    pause: inView === false && (props.fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
+                                props.regionType === DFC.COUNTY_CAPITALIZED ||
+                                props.regionType === DFC.OFFSHORE_CAPITALIZED),
+  });
 
-  if (loading) {
+  const { data, fetching, error } = result;
+
+  if (fetching) {
     return (
       <div className={classes.progressContainer}>
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />

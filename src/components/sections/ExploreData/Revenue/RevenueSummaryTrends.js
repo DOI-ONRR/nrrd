@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 import * as d3 from 'd3'
 
 import {
@@ -17,7 +16,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
 import utils from '../../../../js/utils'
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query RevenueSummaryTrend($state: String!, $period: String!, $commodities: [String!]) {
     revenue_summary(
       where: { location: { _eq: $state }, period: {_eq: $period}, commodity: {_in: $commodities} },
@@ -56,9 +55,16 @@ const RevenueSummaryTrends = props => {
     commodityText = 'revenue from the selected commodities'
   }
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: period, commodities: commodities }
-  })
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
+    variables: { 
+      state: state, 
+      period: period, 
+      commodities: commodities
+    },
+  });
+
+  const { data, fetching, error } = result;
 
   const location = {
     county: props.county,
@@ -78,7 +84,7 @@ const RevenueSummaryTrends = props => {
   let row
   let total = 0
 
-  if (loading) {
+  if (fetching) {
     return (
       <Grid container>
         <Typography style={{ fontSize: '.8rem' }}>

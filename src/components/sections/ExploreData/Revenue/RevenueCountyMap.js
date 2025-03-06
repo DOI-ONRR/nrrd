@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
+import { useQuery, gql } from 'urql'
 import gql from 'graphql-tag'
 
 import Map from '../../../data-viz/Map'
@@ -128,14 +128,24 @@ const RevenueCountyMap = props => {
 			      fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
 			      props.regionType === 'County' || props.regionType === 'Offshore' || !inView
   const location = STATE_FIPS_MAP[fipsCode] + '%'
-  const { loading, error, data } = useQuery(REVENUE_QUERY, {
-    variables: { location: location, year: year, commodities: commodities, period: period },
-    skip: skipQuery
-  })
+  
+  const [result, _reexecuteQuery] = useQuery({
+    query: REVENUE_QUERY,
+    variables: { 
+      location: location, 
+      year: year, 
+      commodities: commodities, 
+      period: period
+    },
+    pause: skipQuery,
+  });
+
+  const { data, fetching, error } = result;
+
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
 
-  if (loading) {}
+  if (fetching) {}
   if (error) return `Error! ${ error.message }`
   if (data) {
     /* mapData = data.revenue_summary.map((item, i) => [

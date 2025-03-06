@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 
 import {
   isEdge,
@@ -156,14 +155,23 @@ const ProductionCountyMap = props => {
 			      fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
 			      props.regionType === 'County' || props.regionType === 'Offshore' || !inView
 
-  const { loading, error, data } = useQuery(PRODUCTION_QUERY, {
-    variables: { year: year, product: product, state: fipsCode, period: period },
-    skip: skipQuery
-  })
+  const [result, _reexecuteQuery] = useQuery({
+    query: PRODUCTION_QUERY,
+    variables: { 
+      year: year, 
+      product: product, 
+      state: fipsCode, 
+      period: period 
+    },
+    pause: skipQuery,
+  });
+
+  const { data, fetching, error } = result;
+
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
 
-  if (loading) {}
+  if (fetching) {}
   if (error) return `Error! ${ error.message }`
   if (data && data.production_summary.length > 0) {
     const clone = JSON.parse(JSON.stringify(mapCounties))

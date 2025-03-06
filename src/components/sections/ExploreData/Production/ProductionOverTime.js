@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 // import { graphql } from 'gatsby'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 // utility functions
 import utils from '../../../../js/utils'
 import { ExploreDataContext } from '../../../../stores/explore-data-store'
@@ -25,7 +24,7 @@ import {
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query FiscalProductionSummary($product: String!, $period: String!) {
     production_summary(
       where: { product: {_eq: $product}, period: {_eq: $period } }
@@ -98,16 +97,23 @@ const ProductionOverTime = props => {
     threshold: 0,
     triggerOnce: true
   })
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { product: product, period: period },
-    skip: inView === false
-  })
+
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
+    variables: {
+      product: product, 
+      period: period
+    },
+    pause: inView === false,
+  });
+
+  const { data, fetching, error } = result;
 
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
-  if (loading) {
+  if (fetching) {
     return (
       <div className={classes.progressContainer}>
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />

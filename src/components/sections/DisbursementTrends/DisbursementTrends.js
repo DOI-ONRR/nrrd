@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 
 import utils from '../../../js/utils'
 // not used import PercentDifference from '../../utils/PercentDifference'
@@ -30,7 +29,7 @@ import Link from '../../../components/Link'
 * summarizes data for graphical representation
 */
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query DisbursementTrendsQuery {
       disbursement_trends(order_by: {fiscal_year: desc, current_month: desc}) {
         fiscalYear:fiscal_year
@@ -64,9 +63,13 @@ const DisbursementTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   let year
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY)
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
+  });
 
-  if (loading) return null
+  const { data, fetching, error } = result;
+
+  if (fetching) return null
   if (error) return `Error! ${ error }`
   if (
     data &&

@@ -1,8 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-// import { graphql } from 'gatsby'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 
 import QueryLink from '../../../../components/QueryLink'
 
@@ -23,7 +21,7 @@ import {
   useTheme
 } from '@material-ui/core'
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
     query NationwideDisbursemtSummary($year: Int!) {
 	fiscal_disbursement_recipient_summary( where: {year: {_eq: $year}}) {
 	    total
@@ -99,12 +97,15 @@ const DisbursementTopRecipients = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
     variables: { year },
-    skip: inView === false
-  })
+    pause: inView === false,
+  });
 
-  if (loading) {
+  const { data, fetching, error } = result;
+  
+  if (fetching) {
     return (
       <div className={classes.progressContainer} ref={ref} >
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />

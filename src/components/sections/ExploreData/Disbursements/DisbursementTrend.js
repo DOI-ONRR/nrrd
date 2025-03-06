@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 
 import Sparkline from '../../../data-viz/Sparkline'
 
@@ -16,7 +15,7 @@ import {
   Typography
 } from '@material-ui/core'
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   # summary card queries
   query FiscalDisbursement($year: Int!, $period: String!, $state: [String!]) {
      fiscalDisbursementSummary: disbursement_summary(
@@ -40,11 +39,18 @@ const DisbursementTrend = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: props.fipsCode, year: year, period: DFC.FISCAL_YEAR_LABEL }
-  })
 
-  if (loading) {
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
+    variables: { 
+      state: props.fipsCode, 
+      year: year, 
+      period: DFC.FISCAL_YEAR_LABEL },
+  });
+
+  const { data, fetching, error } = result;
+
+  if (fetching) {
     return 'Loading ... '
   }
   if (error) return `Error! ${ error.message }`

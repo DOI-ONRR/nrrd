@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 import * as d3 from 'd3'
 import { useInView } from 'react-intersection-observer'
 import utils from '../../../../js/utils'
@@ -23,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query RevenueDetailTrends($state: String!, $period: String!, $year: Int!, $commodities: [String!] ) {
     revenue_summary(
 
@@ -76,14 +75,20 @@ const RevenueDetailTrends = props => {
     threshold: 0,
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: period, year: year, commodities: commodities },
-    skip: inView === false,
-    triggerOnce: true
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
+    variables: { 
+      state: state, 
+      period: period, 
+      year: year, 
+      commodities: commodities 
+    },
+    pause: inView === false,
+  });
 
-  })
+  const { data, fetching, error } = result;
 
-  if (loading) return ''
+  if (fetching) return ''
 
   if (error) return `Error! ${ error.message }`
 

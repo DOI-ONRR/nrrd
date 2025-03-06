@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 import * as d3 from 'd3'
 import {
   Box,
@@ -16,7 +15,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 // not used summary cards import { useInView } from 'react-intersection-observer'
 import utils from '../../../../js/utils'
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query ProductionSummaryTrend($state: String!, $product: String!, $period: String!) {
     production_summary(
       where: { location: { _eq: $state }, product: {_eq: $product}, period: {_eq: $period }}
@@ -51,9 +50,16 @@ const ProductionSummaryTrends = props => {
   const key = `${ dataSet }_${ product }_${ state }`
   const minYear = periodAllYears[0]
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, product: product, period: period }
-  })
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
+    variables: {
+      state: state, 
+      product: product, 
+      period: period 
+    },
+  });
+
+  const { data, fetching, error } = result;
 
   const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
   const location = {
@@ -73,7 +79,7 @@ const ProductionSummaryTrends = props => {
   let highlightIndex = 0
   let total = 0
 
-  if (loading) {
+  if (fetching) {
     return (
       <Grid container >
         <Typography style={{ fontSize: '.8rem' }}>

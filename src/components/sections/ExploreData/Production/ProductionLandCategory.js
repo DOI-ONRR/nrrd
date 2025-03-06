@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 import PropTypes from 'prop-types'
 
 // utility functions
@@ -23,7 +22,7 @@ import LineChart from '../../../data-viz/LineChart/LineChart'
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query ProductionLandCategory($state: String!, $location: String!, $commodity: String!, $period: String!) {
     production_summary(
       where: {
@@ -101,18 +100,26 @@ const ProductionLandCategory = ({ title, ...props }) => {
     break
   }
 
-  // console.log('ProductionLandCategory useQuery vars: ', state, locationType, commodity, period)
   const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state, location: locationType, commodity, period },
-    skip: inView === false
-  })
-  if (loading) {
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
+    variables: { 
+      state, 
+      location: locationType, 
+      commodity, 
+      period 
+    },
+    pause: inView === false,
+  });
+
+  const { data, fetching, error } = result;
+
+  if (fetching) {
     return (
       <div className={classes.progressContainer}>
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />

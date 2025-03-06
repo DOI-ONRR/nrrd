@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { useQuery } from '@apollo/client'
+import { useQuery } from 'urql'
 import QueryManager from '../js/query-manager'
 
 import { DataFilterContext } from '../stores/data-filter-store'
@@ -8,11 +8,17 @@ import { AppStatusContext } from '../stores/app-status-store'
 const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) => {
   options = options || {}
   const { state, updateQueryDataFilterCounts } = useContext(DataFilterContext)
-  const { loading, error, data } = useQuery(QueryManager.getQuery(queryKey, state, options || {}), QueryManager.getVariables(queryKey, state, options || {}))
+  const [result, _reexecuteQuery] = useQuery({
+    query: QueryManager.getQuery(queryKey, state, options || {}),
+    variables: QueryManager.getVariables(queryKey, state, options || {})
+  });
+
+  const { data, fetching, error } = result;
+
   const { showErrorMessage } = useContext(AppStatusContext)
 
   useEffect(() => {
-    if (data && data.counts && !loading) {
+    if (data && data.counts && !fetching) {
       updateQueryDataFilterCounts({
         counts: data.counts.aggregate
       })

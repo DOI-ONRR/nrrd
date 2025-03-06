@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 import * as d3 from 'd3'
 import Map from '../../../data-viz/Map'
 import utils from '../../../../js/utils'
@@ -8,7 +7,7 @@ import utils from '../../../../js/utils'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query FiscalProduction($year: Int!, $commodity: String!, $period: String!) {
     production_summary(where: {location: {_nin: ["Nationwide Federal", ""]}, year: { _eq: $year }, product: {_eq: $commodity}, period: { _eq: $period} }) {
       year
@@ -27,14 +26,22 @@ export default props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year, commodity, period }
-  })
+
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
+    variables: { 
+      year, 
+      commodity, 
+      period
+    },
+  });
+
+  const { data, fetching, error } = result;
 
   let mapData = [[]]
   let unit = ''
 
-  if (loading) {}
+  if (fetching) {}
   if (error) return `Error! ${ error.message }`
   if (data && data.production_summary.length > 0) {
     mapData = data.production_summary.map((item, i) => [

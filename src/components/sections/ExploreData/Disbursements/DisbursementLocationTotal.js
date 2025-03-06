@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 
 import utils from '../../../../js/utils'
 import * as d3 from 'd3'
@@ -30,12 +29,15 @@ const DisbursementLocationTotal = props => {
     threshold: 0,
   })
 
-  const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
+  const [result, _reexecuteQuery] = useQuery({
+    query: LOCATION_TOTAL_QUERY,
     variables: { location: ['NF', 'NA'], year: year, period },
-    skip: inView === false,
-  })
+    pause: inView === false,
+  });
 
-  if (loading) return ''
+  const { data, fetching, error } = result;
+
+  if (fetching) return ''
   if (error) return `Error loading revenue data table ${ error.message }`
   let nationwideSummary = []
   let nativeSummary = []

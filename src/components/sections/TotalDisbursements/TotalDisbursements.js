@@ -98,7 +98,7 @@ const TotalDisbursements = props => {
   const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } by ${ period.toLowerCase() } (dollars)`
   const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
 
-  const [result, reexecuteQuery] = useQuery({
+  const [result, _reexecuteQuery] = useQuery({
     query: TOTAL_DISBURSEMENTS_QUERY,
   })
 

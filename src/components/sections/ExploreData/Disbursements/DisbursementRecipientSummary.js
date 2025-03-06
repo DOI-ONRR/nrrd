@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
@@ -39,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   # summary card queries
   query FiscalRevenue($year: Int!, $period: String!, $state: [String!]) {
     cardFiscalDisbursementSummary: disbursement_summary(
@@ -107,12 +106,16 @@ const DisbursementRecipientSummary = props => {
     threshold: 0,
     triggerOnce: true
   })
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
+  
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
     variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL },
-    skip: inView === false
-  })
+    pause: inView === false,
+  });
 
-  if (loading) {
+  const { data, fetching, error } = result;
+
+  if (fetching) {
     return ''
   }
   if (error) return `Error! ${ error.message }`

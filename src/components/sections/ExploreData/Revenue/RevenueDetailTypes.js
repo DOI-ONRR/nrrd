@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
+import { useQuery, gql } from 'urql'
 import * as d3 from 'd3'
 
 import { formatToDollarInt } from '../../../../js/utils'
@@ -29,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query RevenueTypes($state: String!, $year: Int!, $period: String!, $commodities: [String!]) {
     revenue_type_summary(
       where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period}, commodity: {_in: $commodities} },
@@ -59,17 +58,26 @@ const RevenueDetailTypes = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: period, commodities: commodities },
-    skip: inView === false
-  })
+  const [result, _reexecuteQuery] = useQuery({
+    query: QUERY,
+    variables: { 
+      state: state, 
+      year: year, 
+      period: period, 
+      commodities: commodities 
+    },
+    pause: inView === false,
+  });
+
+  const { data, fetching, error } = result;
+
   const dataKey = dataSet + '-' + props.name
   let chartData
 
   const xAxis = 'revenue_type'
   const yAxis = 'total'
 
-  if (loading) {
+  if (fetching) {
     return (<div className={classes.progressContainer} ref={ref}>
       <CircularProgress classes={{ root: classes.circularProgressRoot }} />
     </div>)
