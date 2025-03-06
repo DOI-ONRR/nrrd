@@ -1,6 +1,6 @@
 import React from 'react'
-import { Provider as UrqlProvider, client as UrqlClient } from 'urql'
 import 'typeface-lato'
+import { ApolloProvider, client } from './apolloClient.js'
 
 import { MDXProvider } from '@mdx-js/react'
 import * as CustomComponents from './.cache/components'
@@ -53,7 +53,7 @@ export const wrapRootElement = ({ element }) => {
   return (
   <ErrorBoundary>
     <ThemeProvider theme={theme}>
-      <UrqlProvider value={UrqlClient}>
+      <ApolloProvider client={client}>
         <AppStatusProvider>
           <DownloadProvider>
             <MDXProvider components={ mdxComponents }>
@@ -61,7 +61,7 @@ export const wrapRootElement = ({ element }) => {
             </MDXProvider>
           </DownloadProvider>
         </AppStatusProvider>
-      </UrqlProvider>
+      </ApolloProvider>
     </ThemeProvider>
   </ErrorBoundary>
 )}
