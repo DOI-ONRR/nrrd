@@ -12,6 +12,7 @@ const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ p
 
 const config = {
   pathPrefix: PATH_PREFIX,
+  trailingSlash: 'always',
   siteMetadata: {
     isShutdown: process.env.isShutdown,
     title: 'Natural Resources Revenue Data',
@@ -66,14 +67,6 @@ const config = {
       resolve: 'gatsby-plugin-layout',
       options: {
         component: `${ __dirname }/src/components/layouts/PageLayoutManager`
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-material-ui',
-      options: {
-        // stylesProvider: {
-        //   injectFirst: true,
-        // }
       }
     },
     'gatsby-plugin-mdx',

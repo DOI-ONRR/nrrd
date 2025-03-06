@@ -15,39 +15,37 @@ import theme from '../../../js/mui/theme'
 import * as ALL_COMPONENTS from '../../../../.cache/components'
 
 const ComponentDisplay = ({ children }) => {
-  const results = useStaticQuery(graphql`
-    query {
-      allComponentMetadata(sort: {fields: displayName, order: ASC}) {
-        nodes {
-          displayName
-          description {
-            text
-          }
-          childrenComponentProp {
-            name
-            docblock
-            required
-            parentType {
-              name
-            }
-            type {
-              value
-            }
-            defaultValue {
-              value
-              computed
-            }
-          }
-          parent {
-            ... on File {
-              relativePath
-              absolutePath
-            }
-          }
+  const results = useStaticQuery(graphql`{
+  allComponentMetadata(sort: {displayName: ASC}) {
+    nodes {
+      displayName
+      description {
+        text
+      }
+      childrenComponentProp {
+        name
+        docblock
+        required
+        parentType {
+          name
+        }
+        type {
+          value
+        }
+        defaultValue {
+          value
+          computed
+        }
+      }
+      parent {
+        ... on File {
+          relativePath
+          absolutePath
         }
       }
     }
-  `)
+  }
+}`)
 
   const groups = [...(new Set(Object.keys(ALL_COMPONENTS).map(c => ALL_COMPONENTS[c]?.Preview?.group).filter(g => g !== undefined)))]
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
