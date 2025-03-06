@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { makeStyles } from '@material-ui/styles'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 import { Box, Paper } from '@material-ui/core'
 import DisbursementsPieChart from './DisbursementsPieChart'
 
@@ -70,13 +70,9 @@ const useStyles = makeStyles({
 
 const DisbursementsFactSheet = () => {
   const classes = useStyles()
-  const [result, _reexecuteQuery] = useQuery({
-    query: GET_FY_DISBURSEMENTS_BY_RECIPIENT,
-  });
+  const { loading, error, data } = useQuery(GET_FY_DISBURSEMENTS_BY_RECIPIENT);
 
-  const { fetching, error, data } = result;
-
-  if (fetching) {
+  if (loading) {
     return <p>Loading...</p>
   }
 
