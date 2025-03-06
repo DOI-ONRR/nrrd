@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { useQuery, gql } from 'urql'
-import gql from 'graphql-tag'
 
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
