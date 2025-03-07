@@ -2,7 +2,7 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 
 import QueryLink from '../../../../components/QueryLink'
 
@@ -61,16 +61,13 @@ const RevenueByCompany = props => {
     triggerOnce: true
   })
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: NATIONAL_REVENUE_SUMMARY_QUERY,
+  const { data, loading, error } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
     variables: { 
       year: year, 
       commodities: commodities 
     },
-    pause: period !== 'Calendar Year' || inView === false,
+    skip: period !== 'Calendar Year' || inView === false,
   });
-
-  const { data, fetching, error } = result;
 
   let groupData
   let groupTotal
@@ -95,7 +92,7 @@ const RevenueByCompany = props => {
     theme.palette.explore[100]
   ]
 
-  if (fetching) {
+  if (loading) {
     return (
       <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={1340}>
         <CircularProgress />

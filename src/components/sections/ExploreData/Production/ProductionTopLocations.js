@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 import PropTypes from 'prop-types'
 import * as d3 from 'd3'
 
@@ -109,8 +109,7 @@ const ProductionTopLocations = ({ title, ...props }) => {
     triggerOnce: true
   })
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { 
       year, 
       location: locationType, 
@@ -118,14 +117,12 @@ const ProductionTopLocations = ({ title, ...props }) => {
       state, 
       period 
     },
-    pause: inView === false && (props.fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
+    skip: inView === false && (props.fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
                                 props.regionType === DFC.COUNTY_CAPITALIZED ||
                                 props.regionType === DFC.OFFSHORE_CAPITALIZED),
   });
 
-  const { data, fetching, error } = result;
-
-  if (fetching) {
+  if (loading) {
     return (
       <div className={classes.progressContainer}>
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />

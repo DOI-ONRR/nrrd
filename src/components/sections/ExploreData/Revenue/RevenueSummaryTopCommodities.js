@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 import * as d3 from 'd3'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -64,15 +64,12 @@ const RevenueSummaryTopCommodities = props => {
 
   const state = props.fipsCode
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { 
       state: state, 
       period: period 
     },
   });
-
-  const { data, fetching, error } = result;
 
   // let sparkData = []
   // let fiscalData
@@ -81,7 +78,7 @@ const RevenueSummaryTopCommodities = props => {
   let topCommodities = []
   let currentCommodities = []
   const dataKey = period + '-' + year + '-' + state
-  if (fetching) {}
+  if (loading) {}
 
   if (error) return `Error! ${ error.message }`
 

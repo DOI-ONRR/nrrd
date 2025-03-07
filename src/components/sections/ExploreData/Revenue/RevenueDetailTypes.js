@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 import * as d3 from 'd3'
 
 import { formatToDollarInt } from '../../../../js/utils'
@@ -58,18 +58,15 @@ const RevenueDetailTypes = props => {
     triggerOnce: true
   })
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { 
       state: state, 
       year: year, 
       period: period, 
       commodities: commodities 
     },
-    pause: inView === false,
+    skip: inView === false,
   });
-
-  const { data, fetching, error } = result;
 
   const dataKey = dataSet + '-' + props.name
   let chartData
@@ -77,7 +74,7 @@ const RevenueDetailTypes = props => {
   const xAxis = 'revenue_type'
   const yAxis = 'total'
 
-  if (fetching) {
+  if (loading) {
     return (<div className={classes.progressContainer} ref={ref}>
       <CircularProgress classes={{ root: classes.circularProgressRoot }} />
     </div>)

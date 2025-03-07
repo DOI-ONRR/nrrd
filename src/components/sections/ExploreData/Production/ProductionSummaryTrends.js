@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 import * as d3 from 'd3'
 import {
   Box,
@@ -50,16 +50,13 @@ const ProductionSummaryTrends = props => {
   const key = `${ dataSet }_${ product }_${ state }`
   const minYear = periodAllYears[0]
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: {
       state: state, 
       product: product, 
       period: period 
     },
   });
-
-  const { data, fetching, error } = result;
 
   const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
   const location = {
@@ -79,7 +76,7 @@ const ProductionSummaryTrends = props => {
   let highlightIndex = 0
   let total = 0
 
-  if (fetching) {
+  if (loading) {
     return (
       <Grid container >
         <Typography style={{ fontSize: '.8rem' }}>

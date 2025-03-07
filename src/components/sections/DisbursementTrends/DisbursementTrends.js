@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 
 import utils from '../../../js/utils'
 // not used import PercentDifference from '../../utils/PercentDifference'
@@ -63,13 +63,9 @@ const DisbursementTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   let year
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
-  });
+  const { data, loading, error } = useQuery(QUERY);
 
-  const { data, fetching, error } = result;
-
-  if (fetching) return null
+  if (loading) return null
   if (error) return `Error! ${ error }`
   if (
     data &&

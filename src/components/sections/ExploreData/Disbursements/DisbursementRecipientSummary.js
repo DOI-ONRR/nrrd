@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 
 import Sparkline from '../../../data-viz/Sparkline'
 import LocationName from '../LocationName'
@@ -107,15 +107,12 @@ const DisbursementRecipientSummary = props => {
     triggerOnce: true
   })
   
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL },
-    pause: inView === false,
+    skip: inView === false,
   });
 
-  const { data, fetching, error } = result;
-
-  if (fetching) {
+  if (loading) {
     return ''
   }
   if (error) return `Error! ${ error.message }`

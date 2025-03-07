@@ -1,6 +1,5 @@
 import React from 'react'
 import 'typeface-lato'
-import { ApolloProvider, client } from './apolloClient.js'
 
 import { MDXProvider } from '@mdx-js/react'
 import * as CustomComponents from './.cache/components'
@@ -53,15 +52,13 @@ export const wrapRootElement = ({ element }) => {
   return (
   <ErrorBoundary>
     <ThemeProvider theme={theme}>
-      <ApolloProvider client={client}>
-        <AppStatusProvider>
-          <DownloadProvider>
-            <MDXProvider components={ mdxComponents }>
-              {element}
-            </MDXProvider>
-          </DownloadProvider>
-        </AppStatusProvider>
-      </ApolloProvider>
+      <AppStatusProvider>
+        <DownloadProvider>
+          <MDXProvider components={ mdxComponents }>
+            {element}
+          </MDXProvider>
+        </DownloadProvider>
+      </AppStatusProvider>
     </ThemeProvider>
   </ErrorBoundary>
 )}

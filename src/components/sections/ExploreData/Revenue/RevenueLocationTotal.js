@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 
 import utils from '../../../../js/utils'
 import * as d3 from 'd3'
@@ -31,8 +31,7 @@ const RevenueLocationTotal = props => {
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: LOCATION_TOTAL_QUERY,
+  const { data, loading, error } = useQuery(LOCATION_TOTAL_QUERY, {
     variables: { 
       location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], 
       year: year, 
@@ -40,9 +39,7 @@ const RevenueLocationTotal = props => {
     },
   });
 
-  const { data, fetching, error } = result;
-
-  if (fetching) return ''
+  if (loading) return ''
   if (error) return `Error loading revenue data table ${ error.message }`
   let nationwideSummary = []
   let nativeSummary = []

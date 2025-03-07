@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
@@ -102,11 +102,7 @@ const TotalProduction = props => {
     productionComparison.current.setSelectedItem(d[2])
   }
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: TOTAL_PRODUCTION_QUERY,
-  })
-
-  const { fetching, error, data } = result
+  const { loading, error, data } = useQuery(TOTAL_PRODUCTION_QUERY)
 
   let chartData
   let comparisonData
@@ -132,8 +128,6 @@ const TotalProduction = props => {
   let svgTitle = 'Bar chart displaying the amount of gas produced, refer to the data table following the chart for detailed data for each bar. ' +
     '[Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
 
-  console.log(`commodity: ${ commodity }`)
-
   switch (commodity) {
   case 'Oil':
     svgTitle = 'Bar chart displaying the amount of oil produced, refer to the data table following the chart for detailed data for each bar. ' +
@@ -147,7 +141,7 @@ const TotalProduction = props => {
     break
   }
 
-  if (fetching) {
+  if (loading) {
     return 'Loading...'
   }
 

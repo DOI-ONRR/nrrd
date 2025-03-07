@@ -169,6 +169,7 @@ const TotalRevenue = props => {
 
   const { loading, error, data } = useQuery(QUERY, {
     variables: VARIABLES,
+    fetchPolicy: "network-only",
   });
 
   const handleBarHover = d => {

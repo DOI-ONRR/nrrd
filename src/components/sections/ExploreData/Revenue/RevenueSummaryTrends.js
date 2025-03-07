@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 import * as d3 from 'd3'
 
 import {
@@ -55,16 +55,13 @@ const RevenueSummaryTrends = props => {
     commodityText = 'revenue from the selected commodities'
   }
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { 
       state: state, 
       period: period, 
       commodities: commodities
     },
   });
-
-  const { data, fetching, error } = result;
 
   const location = {
     county: props.county,
@@ -84,7 +81,7 @@ const RevenueSummaryTrends = props => {
   let row
   let total = 0
 
-  if (fetching) {
+  if (loading) {
     return (
       <Grid container>
         <Typography style={{ fontSize: '.8rem' }}>

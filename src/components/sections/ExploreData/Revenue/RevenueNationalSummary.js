@@ -2,7 +2,7 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -96,17 +96,14 @@ const RevenueNationalSummary = props => {
     triggerOnce: true
   })
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: NATIONAL_REVENUE_SUMMARY_QUERY,
+  const { data, loading, error } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
     variables: { 
       year: year, 
       period: period, 
       commodities: commodities 
     },
-    pause: inView === false,
+    skip: inView === false,
   });
-
-  const { data, fetching, error } = result;
 
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 
@@ -126,7 +123,7 @@ const RevenueNationalSummary = props => {
     theme.palette.explore[100]
   ]
 
-  if (fetching) {
+  if (loading) {
     return (
 	    <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={2022}>
         <CircularProgress />

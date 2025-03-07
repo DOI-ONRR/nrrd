@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 
 import Sparkline from '../../../data-viz/Sparkline'
 
@@ -40,17 +40,14 @@ const DisbursementTrend = props => {
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { 
       state: props.fipsCode, 
       year: year, 
       period: DFC.FISCAL_YEAR_LABEL },
   });
 
-  const { data, fetching, error } = result;
-
-  if (fetching) {
+  if (loading) {
     return 'Loading ... '
   }
   if (error) return `Error! ${ error.message }`

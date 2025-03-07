@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 import * as d3 from 'd3'
 import Map from '../../../data-viz/Map'
 import utils from '../../../../js/utils'
@@ -27,8 +27,7 @@ export default props => {
   const year = filterState[DFC.YEAR]
   const dataSet = 'FY ' + year
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { 
       year, 
       commodity, 
@@ -36,12 +35,10 @@ export default props => {
     },
   });
 
-  const { data, fetching, error } = result;
-
   let mapData = [[]]
   let unit = ''
 
-  if (fetching) {}
+  if (loading) {}
   if (error) return `Error! ${ error.message }`
   if (data && data.production_summary.length > 0) {
     mapData = data.production_summary.map((item, i) => [

@@ -5,7 +5,6 @@ import 'typeface-lato'
 import { MDXProvider } from '@mdx-js/react'
 import * as CustomComponents from './.cache/components'
 import CodeBlock from './src/components/pattern-library/CodeBlock/CodeBlock.js'
-import { Provider as UrqlProvider, client as UrqlClient} from './urqlClient';
 
 import {
   Box,
@@ -73,15 +72,13 @@ export const wrapRootElement = ({ element }) => {
   return (
     <ErrorBoundary>
       <ThemeProvider theme={theme}>
-        <UrqlProvider value={UrqlClient}>
-          <AppStatusProvider>
-            <DownloadProvider>
-              <MDXProvider components={ mdxComponents }>
-                {element}
-              </MDXProvider>
-            </DownloadProvider>
-          </AppStatusProvider>
-        </UrqlProvider>
+        <AppStatusProvider>
+          <DownloadProvider>
+            <MDXProvider components={ mdxComponents }>
+              {element}
+            </MDXProvider>
+          </DownloadProvider>
+        </AppStatusProvider>
       </ThemeProvider>
     </ErrorBoundary>
   )

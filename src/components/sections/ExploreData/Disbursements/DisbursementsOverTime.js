@@ -2,7 +2,7 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 // import { graphql } from 'gatsby'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 // utility functions
 import utils from '../../../../js/utils'
 import { ExploreDataContext } from '../../../../stores/explore-data-store'
@@ -95,18 +95,15 @@ const DisbursementsOverTime = props => {
     triggerOnce: true
   })
 
-  const [result, reexecuteQuery] = useQuery({
-    query: QUERY,
-    pause: inView === false,
+  const { data, loading, error } = useQuery(QUERY, {
+    skip: inView === false,
   });
-
-  const { data, fetching, error } = result;
 
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
-  if (fetching) {
+  if (loading) {
     return (
       <div className={classes.progressContainer} ref={ref} >
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />

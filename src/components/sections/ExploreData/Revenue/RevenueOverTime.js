@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 // import { graphql } from 'gatsby'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 // utility functions
 import utils from '../../../../js/utils'
 import { ExploreDataContext } from '../../../../stores/explore-data-store'
@@ -83,22 +83,19 @@ const RevenueOverTime = props => {
     triggerOnce: true
   })
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { 
       period: period, 
       commodities: commodities 
     },
-    pause: inView === false,
+    skip: inView === false,
   });
-
-  const { data, fetching, error } = result;
 
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })
 
-  if (fetching) {
+  if (loading) {
     return (
       <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={300}>
         <CircularProgress />

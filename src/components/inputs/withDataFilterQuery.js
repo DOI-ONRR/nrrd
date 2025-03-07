@@ -23,7 +23,7 @@ const withDataFilterQuery = (BaseComponent, dataFilterKey) => ({ ...props }) => 
   useEffect(() => {
     updateLoadingStatus({ status: loading, message: 'Loading...' })
     return () => {
-      if (fetching) {
+      if (loading) {
         updateLoadingStatus({ status: false, message: 'Loading...' })
       }
     }

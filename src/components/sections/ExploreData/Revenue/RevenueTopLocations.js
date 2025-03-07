@@ -1,6 +1,6 @@
 
 import React, { useContext } from 'react'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 import PropTypes from 'prop-types'
 
 // utility functions
@@ -103,20 +103,17 @@ const RevenueTopLocations = props => {
 	    triggerOnce: true
   })
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { 
       year, 
       locations, 
       period, 
       commodities 
     },
-    pause: inView === false,
+    skip: inView === false,
   });
 
-  const { data, fetching, error } = result;
-
-  if (fetching) {
+  if (loading) {
     return (
       <Box display="flex" justifyContent="center" id={utils.formatToSlug(title)} ref={ref} height={1010}>
         <CircularProgress />

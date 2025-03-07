@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react'
 
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 import { DataFilterContext } from '../../../stores/data-filter-store'
@@ -98,17 +98,13 @@ const TotalDisbursements = props => {
   const chartTitle = props.chartTitle || `${ DFC.DISBURSEMENT } by ${ period.toLowerCase() } (dollars)`
   const periodAbbr = (period === DFC.PERIOD_FISCAL_YEAR) ? 'FY' : 'CY'
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: TOTAL_DISBURSEMENTS_QUERY,
-  })
-
-  const { fetching, error, data } = result
+  const { loading, error, data } = useQuery(TOTAL_DISBURSEMENTS_QUERY)
 
   const handleBarHover = d => {
     disbursementsComparison.current.setSelectedItem(d[2])
   }
 
-  if (fetching) {
+  if (loading) {
     return 'Loading...'
   }
   let chartData

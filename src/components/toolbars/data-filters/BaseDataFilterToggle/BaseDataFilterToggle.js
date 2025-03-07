@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery } from 'urql'
+import { useQuery } from '@apollo/client'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../../stores/app-status-store'
@@ -21,12 +21,9 @@ import {
 const BaseDataFilterToggle = ({ dataFilterKey, helperText, loadingMessage }) => {
   const { state, updateDataFilter } = useContext(DataFilterContext)
   
-  const [result, _reexecuteQuery] = useQuery({
-    query: DFQM.getQuery(dataFilterKey, state),
+  const { data, loading, error } = useQuery(DFQM.getQuery(dataFilterKey, state), {
     variables: DFQM.getVariables(state, dataFilterKey),
   });
-
-  const { data, fetching, error } = result;
 
   const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
 
@@ -37,8 +34,8 @@ const BaseDataFilterToggle = ({ dataFilterKey, helperText, loadingMessage }) => 
   }, [error])
 
   useEffect(() => {
-    updateLoadingStatus({ status: fetching, message: loadingMessage })
-  }, [fetching])
+    updateLoadingStatus({ status: loading, message: loadingMessage })
+  }, [loading])
 
   const handleChange = (event, value) => {
     updateDataFilter({ [dataFilterKey]: value })

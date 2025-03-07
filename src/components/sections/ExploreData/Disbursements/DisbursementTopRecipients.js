@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 
 import QueryLink from '../../../../components/QueryLink'
 
@@ -97,15 +97,12 @@ const DisbursementTopRecipients = props => {
     triggerOnce: true
   })
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { year },
-    pause: inView === false,
+    skip: inView === false,
   });
 
-  const { data, fetching, error } = result;
-  
-  if (fetching) {
+  if (loading) {
     return (
       <div className={classes.progressContainer} ref={ref} >
         <CircularProgress classes={{ root: classes.circularProgressRoot }} />

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 
-import { useQuery, gql } from 'urql'
+import { useQuery, gql } from '@apollo/client'
 
 import utils from '../../../../js/utils'
 import { useInView } from 'react-intersection-observer'
@@ -73,15 +73,12 @@ const DisbursementDetailTrends = props => {
     triggerOnce: true
   })
 
-  const [result, _reexecuteQuery] = useQuery({
-    query: QUERY,
+  const { data, loading, error } = useQuery(QUERY, {
     variables: { state: state, period: DFC.FISCAL_YEAR_LABEL, year: year },
-    pause: inView === false
+    skip: inView === false
   });
 
-  const { data, fetching, error } = result;
-
-  if (fetching) return 'Loading...'
+  if (loading) return 'Loading...'
 
   if (error) return `Error! ${ error.message }`
 
