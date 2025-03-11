@@ -33,16 +33,17 @@ export default props => {
 
   const { data, loading, error } = useQuery(DISBURSEMENT_QUERY, {
     variables: {
-      year: year,
+      year,
       period: period || filterState.explore_data_filter_default.period,
       location: mapLevel || filterState.explore_data_filter_default.mapLevel
     },
-  });
+  })
 
   const dataSet = 'FY ' + year
   let mapData = [[]]
 
-  if (loading) {}
+  if (loading) return 'Loading ...'
+
   if (error) return `Error! ${ error.message }`
   if (data) {
     mapData = d3.nest()

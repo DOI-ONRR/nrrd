@@ -1,68 +1,85 @@
 module.exports = {
-  extends: ["standard", "plugin:mdx/recommended"],
-  plugins: ["standard", "react", "react-hooks"],
+  extends: ['standard', 'plugin:mdx/recommended'],
+  plugins: ['standard', 'react', 'react-hooks', 'mdx'],
+  settings: {
+    'mdx/code-blocks': true,
+    'mdx/language-mapper': {
+      js: 'espree',
+    },
+  },
   rules: {
-    "mdx/code-blocks": true,
-    "mdx/language-mapper": {},
-    "no-var": "error", // optional, recommended when using es6+
-    "no-unused-vars": 1, // recommended
-    "no-tabs": ["error", { allowIndentationTabs: true }],
-    "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
-    "arrow-spacing": ["error", { before: true, after: true }], // recommended
-    "brace-style": ["error", "stroustrup"],
-    "indent": ["error", "tab", { "SwitchCase": 1 }],
-
-    indent: ["error", 2],
-    "comma-dangle": [
-      "error",
+    'no-var': 'error', // optional, recommended when using es6+
+    'no-unused-vars': 1, // recommended
+    'no-tabs': ['error', { allowIndentationTabs: true }],
+    'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
+    'arrow-spacing': ['error', { before: true, after: true }], // recommended
+    'brace-style': ['error', 'stroustrup'],
+    indent: ['error', 2, { SwitchCase: 1 }],
+    'comma-dangle': [
+      'error',
       {
-        objects: "only-multiline",
-        arrays: "only-multiline",
-        imports: "never",
-        exports: "never",
-        functions: "never",
+        objects: 'only-multiline',
+        arrays: 'only-multiline',
+        imports: 'never',
+        exports: 'never',
+        functions: 'never',
       },
     ],
 
     // options to emulate prettier setup
-    semi: ["error", "never"],
-    "max-len": ["warn", { code: 170 }],
-    "template-curly-spacing": ["error", "always"],
-    "arrow-parens": ["error", "as-needed"],
+    semi: ['error', 'never'],
+    'max-len': ['warn', { code: 170 }],
+    'template-curly-spacing': ['error', 'always'],
+    'arrow-parens': ['error', 'as-needed'],
 
     // standard.js
-    "space-before-function-paren": [
-      "error",
+    'space-before-function-paren': [
+      'error',
       {
-        named: "always",
-        anonymous: "always",
-        asyncArrow: "always",
+        named: 'always',
+        anonymous: 'always',
+        asyncArrow: 'always',
       },
     ],
 
     // standard plugin - options
-    "standard/object-curly-even-spacing": ["error", "either"],
-    "standard/array-bracket-even-spacing": ["error", "either"],
-    "standard/computed-property-even-spacing": ["error", "even"],
-    "standard/no-callback-literal": ["error", ["cb", "callback"]],
+    'standard/object-curly-even-spacing': ['error', 'either'],
+    'standard/array-bracket-even-spacing': ['error', 'either'],
+    'standard/computed-property-even-spacing': ['error', 'even'],
+    'standard/no-callback-literal': ['error', ['cb', 'callback']],
     // react plugin - options
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error",
+    'react/jsx-uses-react': 'error',
+    'react/jsx-uses-vars': 'error',
 
-    "import/no-webpack-loader-syntax": "off",
+    'import/no-webpack-loader-syntax': 'off',
 
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "off",
-
-    // "css-modules/no-unused-class": 1, currently using jss solution
-    // "at-rule-no-unknown": [true, {
-    //   "ignoreAtRules": [
-    //     "value"
-    //   ]
-    // }],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'off',
   },
-  parser: "babel-eslint",
+  parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 8, // optional, recommended 6+
+    ecmaVersion: 2021,
+    sourceType: 'module',
   },
+  overrides: [
+    {
+      files: ['*.mdx'],
+      extends: ['plugin:mdx/recommended'],
+      parser: 'eslint-mdx',
+      rules: {
+        'no-unused-expressions': 'off',
+        'no-undef': 'off',
+        'no-unused-vars': 'off',
+      },
+    },
+    {
+      files: ['*.mdx'],
+      parser: 'yaml-eslint-parser',
+      rules: {
+        'no-dupe-keys': 'error',
+        'no-multiple-empty-lines': ['error', { max: 1 }],
+        'mdx/no-unused-expressions': 'off',
+      },
+    },
+  ],
 }

@@ -13,7 +13,7 @@ export const destructuringSwap = (list, iA, iB) => {
 export const formatToDollarFloat = (value, precision) => {
   return currencyFormatter.format(value, {
     symbol: '$',
-    precision: precision,
+    precision,
     format: { pos: '%s%v', neg: '(%s%v)', zero: '%s%v' }
   })
 }
@@ -57,18 +57,18 @@ export const downloadWorkbook = (type, fileName, sheetName, cols, rows) => {
     worksheet.addRow(worksheetRow)
   })
   switch (type) {
-  case 'excel':
-    workbook.xlsx.writeBuffer({ base64: true }).then(result => {
+    case 'excel':
+      workbook.xlsx.writeBuffer({ base64: true }).then(result => {
       // eslint-disable-next-line no-undef
-      saveAs(new Blob([result], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), fileName)
-    })
-    break
-  case 'csv':
-    workbook.csv.writeBuffer().then(result => {
+        saveAs(new Blob([result], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), fileName)
+      })
+      break
+    case 'csv':
+      workbook.csv.writeBuffer().then(result => {
       // eslint-disable-next-line no-undef
-      saveAs(new Blob([result], { type: 'text/plain;charset=utf-8' }), `${ fileName }.csv`)
-    })
-    break
+        saveAs(new Blob([result], { type: 'text/plain;charset=utf-8' }), `${ fileName }.csv`)
+      })
+      break
   }
 }
 
@@ -272,7 +272,7 @@ const utils = {
   groupBy (data, group) {
     const groups = {}
 
-    data.map((item, index) => {
+    data.forEach(item => {
       let itemGroup = ''
 
       if (Array.isArray(group)) {
@@ -300,7 +300,7 @@ const utils = {
   sumBy (data, property) {
     let value = 0
 
-    data.map((item, index) => {
+    data.forEach(item => {
       const propertyValue = this.resolveByStringPath(property, item)
       if (!isNaN(propertyValue)) {
         value += propertyValue

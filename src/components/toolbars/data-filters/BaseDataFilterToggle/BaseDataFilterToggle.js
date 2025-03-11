@@ -20,10 +20,10 @@ import {
 
 const BaseDataFilterToggle = ({ dataFilterKey, helperText, loadingMessage }) => {
   const { state, updateDataFilter } = useContext(DataFilterContext)
-  
+
   const { data, loading, error } = useQuery(DFQM.getQuery(dataFilterKey, state), {
     variables: DFQM.getVariables(state, dataFilterKey),
-  });
+  })
 
   const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
 

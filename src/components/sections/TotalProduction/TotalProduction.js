@@ -129,16 +129,16 @@ const TotalProduction = props => {
     '[Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
 
   switch (commodity) {
-  case 'Oil':
-    svgTitle = 'Bar chart displaying the amount of oil produced, refer to the data table following the chart for detailed data for each bar. ' +
+    case 'Oil':
+      svgTitle = 'Bar chart displaying the amount of oil produced, refer to the data table following the chart for detailed data for each bar. ' +
       '[Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
-    break
-  case 'Coal':
-    svgTitle = 'Bar chart displaying the amount of coal produced, refer to the data table following the chart for detailed data for each bar. ' +
+      break
+    case 'Coal':
+      svgTitle = 'Bar chart displaying the amount of coal produced, refer to the data table following the chart for detailed data for each bar. ' +
       '[Details available in the Source Data (.csv)]( https://revenuedata.doi.gov/downloads/monthly_production.csv)'
-    break
-  default:
-    break
+      break
+    default:
+      break
   }
 
   if (loading) {
@@ -156,7 +156,7 @@ const TotalProduction = props => {
     })
     currentMonthNum = data.total_monthly_fiscal_production[data.total_monthly_fiscal_production.length - 1].currentMonth
 
-    data.total_monthly_fiscal_production.filter(item => {
+    data.total_monthly_fiscal_production.forEach(item => {
       if (item.year === (maxFiscalYear)) {
         if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
       }
@@ -175,7 +175,7 @@ const TotalProduction = props => {
         maxFiscalYear--
         maxCalendarYear--
         monthRange = []
-        data.total_monthly_fiscal_production.filter(item => {
+        data.total_monthly_fiscal_production.forEach(item => {
           if (item.year === (maxFiscalYear)) {
             if (monthRange.indexOf(item.monthLong) === -1) monthRange.push(item.monthLong)
           }
@@ -237,14 +237,13 @@ const TotalProduction = props => {
       if (period === DFC.PERIOD_FISCAL_YEAR) {
 	  maxYear = maxFiscalYear
         currentMonthNum = data.total_yearly_fiscal_production[data.total_yearly_fiscal_production.length - 1].month
-	  // console.debug("===============>DWE GET HERE", data)
-        data.total_yearly_fiscal_production.filter(item => {
+        data.total_yearly_fiscal_production.forEach(item => {
           if (item.year === (maxFiscalYear)) {
             if (monthRange.indexOf(item.month_long) === -1) monthRange.push(item.month_long)
           }
         })
         comparisonData = data.total_yearly_fiscal_production.filter(row => (row.product === product && row.year <= maxYear))
-	 // console.debug('COMPARISON DATA:', comparisonData, ' Data ', data )
+
         chartData = data.total_yearly_fiscal_production.filter(item => item.year >= maxFiscalYear - 10)
         xGroups['Fiscal Year'] = chartData.filter(row => row.product === product).map((row, i) => row.year)
       }
@@ -252,7 +251,7 @@ const TotalProduction = props => {
 	   maxYear = maxCalendarYear
         currentMonthNum = data.total_yearly_calendar_production[data.total_yearly_calendar_production.length - 1].month
         monthRange = []
-        data.total_yearly_calendar_production.filter(item => {
+        data.total_yearly_calendar_production.forEach(item => {
           if (item.year === (maxCalendarYear)) {
             if (monthRange.indexOf(item.month_long) === -1) monthRange.push(item.month_long)
           }
@@ -261,7 +260,7 @@ const TotalProduction = props => {
         chartData = data.total_yearly_calendar_production.filter(item => item.year >= maxCalendarYear - 10)
         xGroups['Calendar Year'] = chartData.filter(row => row.product === product).map((row, i) => row.year)
       }
-      // console.debug(chartData)
+
       xLabels = (x, i) => {
         return x.map(v => '\'' + v.toString().substr(2))
       }

@@ -65,11 +65,11 @@ const RevenueSummaryTopCommodities = props => {
   const state = props.fipsCode
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      state: state, 
-      period: period 
+    variables: {
+      state,
+      period
     },
-  });
+  })
 
   // let sparkData = []
   // let fiscalData
@@ -78,7 +78,7 @@ const RevenueSummaryTopCommodities = props => {
   let topCommodities = []
   let currentCommodities = []
   const dataKey = period + '-' + year + '-' + state
-  if (loading) {}
+  if (loading) return
 
   if (error) return `Error! ${ error.message }`
 
@@ -168,7 +168,7 @@ const RevenueSummaryTopCommodities = props => {
               >
                 <TableBody>
                   {
-                    currentCommodities.map((com, j) => {
+                    currentCommodities.forEach((com, j) => {
                       if (j < 3) {
                         return topCommodities.filter(f => f.commodity === com[0]).map((row, i) => {
                           return (

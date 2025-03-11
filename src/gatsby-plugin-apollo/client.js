@@ -1,5 +1,5 @@
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
-import fetch from 'isomorphic-fetch';
+import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
+import fetch from 'isomorphic-fetch'
 
 const client =
   new ApolloClient({
@@ -8,6 +8,6 @@ const client =
       fetch
     }),
     cache: new InMemoryCache(),
-  });
+  })
 
-export default client;
+export default client

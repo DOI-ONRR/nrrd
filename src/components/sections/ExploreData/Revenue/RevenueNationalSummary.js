@@ -1,4 +1,3 @@
-
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
@@ -97,13 +96,13 @@ const RevenueNationalSummary = props => {
   })
 
   const { data, loading, error } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { 
-      year: year, 
-      period: period, 
-      commodities: commodities 
+    variables: {
+      year,
+      period,
+      commodities
     },
     skip: inView === false,
-  });
+  })
 
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
 

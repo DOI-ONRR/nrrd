@@ -63,7 +63,7 @@ const DisbursementTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   let year
 
-  const { data, loading, error } = useQuery(QUERY);
+  const { data, loading, error } = useQuery(QUERY)
 
   if (loading) return null
   if (error) return `Error! ${ error }`

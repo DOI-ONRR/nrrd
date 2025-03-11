@@ -100,7 +100,7 @@ const DisbursementTopRecipients = props => {
   const { data, loading, error } = useQuery(QUERY, {
     variables: { year },
     skip: inView === false,
-  });
+  })
 
   if (loading) {
     return (

@@ -50,6 +50,7 @@ const ColorKeyDisplay = ({ keys, children }) => {
                       </Grid>
                     )
                   }
+                  return <></>
                 })}
               </Grid>
             )

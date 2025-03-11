@@ -61,6 +61,7 @@ const TypographyDisplay = ({ children }) => {
               </Grid>
             )
           }
+          return <></>
         })
       }
     </Grid>

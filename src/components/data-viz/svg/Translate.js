@@ -1,4 +1,3 @@
-
 import React from 'react'
 
 const Translate = ({ x = 0, y = 0, children }) => {

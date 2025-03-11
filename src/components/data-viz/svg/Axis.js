@@ -96,7 +96,7 @@ export const BottomAxis = ({ data, xScale, width, xGroups, xLabels, dimensions, 
       const padding = (xScale.bandwidth() * 0.2)
       let xPos = 0
 
-      Object.keys(xGroups).sort().map((name, index) => {
+      Object.keys(xGroups).sort().forEach(name => {
         const groupLineWidth = xPos + (groupItemWidth * xGroups[name].length) - (padding + dimensions.margin.right)
 
         groupLines.append('line')

@@ -7,7 +7,7 @@ import { types } from './reducers'
 
 export const useActions = (state, dispatch) => {
   const addDownloadData = payload => {
-    dispatch({ type: types.ADD_DOWNLOAD_DATA, payload: payload })
+    dispatch({ type: types.ADD_DOWNLOAD_DATA, payload })
   }
 
   return {

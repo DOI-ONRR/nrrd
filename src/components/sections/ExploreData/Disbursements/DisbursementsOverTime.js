@@ -1,4 +1,3 @@
-
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 // import { graphql } from 'gatsby'
@@ -97,7 +96,7 @@ const DisbursementsOverTime = props => {
 
   const { data, loading, error } = useQuery(QUERY, {
     skip: inView === false,
-  });
+  })
 
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })

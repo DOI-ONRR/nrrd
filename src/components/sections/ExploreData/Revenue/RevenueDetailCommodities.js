@@ -64,14 +64,14 @@ const RevenueDetailCommodities = props => {
   })
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      year: year, 
-      state: state, 
-      period: period, 
-      commodities 
+    variables: {
+      year,
+      state,
+      period,
+      commodities
     },
     skip: inView === false,
-  });
+  })
 
   let chartData
 

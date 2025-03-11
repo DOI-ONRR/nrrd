@@ -76,14 +76,14 @@ const RevenueDetailTrends = props => {
   })
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      state: state, 
-      period: period, 
-      year: year, 
-      commodities: commodities 
+    variables: {
+      state,
+      period,
+      year,
+      commodities
     },
     skip: inView === false,
-  });
+  })
 
   if (loading) return ''
 

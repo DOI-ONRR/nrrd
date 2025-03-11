@@ -83,6 +83,7 @@ const PaletteDisplay = ({ children }) => {
                         </Grid>
                       )
                     }
+                    return <></>
                   })}
                 </Grid>
               </Box>
@@ -111,6 +112,7 @@ const PaletteDisplay = ({ children }) => {
               </Box>
             )
           }
+          return <></>
         })
       }
     </>

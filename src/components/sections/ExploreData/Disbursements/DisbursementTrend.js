@@ -41,11 +41,12 @@ const DisbursementTrend = props => {
   const dataSet = 'FY ' + year
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      state: props.fipsCode, 
-      year: year, 
-      period: DFC.FISCAL_YEAR_LABEL },
-  });
+    variables: {
+      state: props.fipsCode,
+      year,
+      period: DFC.FISCAL_YEAR_LABEL
+    },
+  })
 
   if (loading) {
     return 'Loading ... '

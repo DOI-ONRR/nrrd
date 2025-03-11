@@ -100,11 +100,11 @@ const ProductionOverTime = props => {
 
   const { data, loading, error } = useQuery(QUERY, {
     variables: {
-      product: product, 
-      period: period
+      product,
+      period
     },
     skip: inView === false,
-  });
+  })
 
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })

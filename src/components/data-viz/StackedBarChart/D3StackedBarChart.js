@@ -298,7 +298,7 @@ export default class D3StackedBarChart {
         const padding = (self.xScale.bandwidth() * 0.2)
         let xPos = self.marginLeft
 
-        Object.keys(self.xGroups).sort().map((name, index) => {
+        Object.keys(self.xGroups).sort().forEach(name => {
           const groupLineWidth = xPos + (groupItemWidth * self.xGroups[name].length) - (padding + self.marginRight)
 
           groupLines.append('line')
@@ -549,8 +549,7 @@ export default class D3StackedBarChart {
 
   select (index) {
     try {
-      // console.debug("INdex: ", index, "I: ", this.selectedIndex)
-      d3.selectAll('.bar').filter((d, i, nodes) => {
+      d3.selectAll('.bar').forEach((_d, i, nodes) => {
         if (i === index) {
           const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
           if (selectedElement) {
@@ -824,7 +823,7 @@ export default class D3StackedBarChart {
           .attr('class', 'bar')
       }
 
-      bars.filter((d, i, nodes) => {
+      bars.forEach((_d, _i, nodes) => {
         nodes[this.currentIndex]
           .setAttribute('class', 'bar active')
           .setAttribute('selected', true)
@@ -930,7 +929,7 @@ export default class D3StackedBarChart {
 
         this.handleBarHover(this._xDomain[this.currentIndex] || this.xSelectedValue)
 
-        ticks.filter((d, i, nodes) => {
+        ticks.forEach((_d, _i, nodes) => {
           nodes[this.selectedIndex]
             .setAttribute('class', 'tick')
           nodes[this.currentIndex]
@@ -943,7 +942,7 @@ export default class D3StackedBarChart {
 
         this.handleBarHover(this.xSelectedValue)
 
-        ticks.filter((d, i, nodes) => {
+        ticks.forEach((_d, _i, nodes) => {
           nodes[this.currentIndex]
             .setAttribute('class', 'tick')
           nodes[this.selectedIndex]
@@ -1142,7 +1141,7 @@ export default class D3StackedBarChart {
           }
         })
         .entries(data)
-        .map(d => {
+        .forEach(d => {
           d.values.forEach(v => groupTotals.push(v.value.total))
         })
 
@@ -1290,7 +1289,7 @@ export default class D3StackedBarChart {
 
   getSelected () {
     const allGroupedData = []
-    d3.select(this.node).selectAll('.bar').filter((d, i, nodes) => {
+    d3.select(this.node).selectAll('.bar').forEach((d, i, nodes) => {
       if (nodes[i].className.baseVal.match(/active/)) {
         this.xSelectedValue = d
         this.ySelectedGroup = this.yGroupData(d)
@@ -1475,25 +1474,24 @@ export default class D3StackedBarChart {
       const padding = (self.xScale.bandwidth() * 0.2)
       let xPos = 0
 
-      Object.keys(self.groups).map((name, index) => {
+      Object.keys(self.groups).forEach(name => {
         const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
 
         groupLines.append('line')
-	  .attr('x1', xPos + padding)
-	  .attr('x2', groupLineWidth)
-	  .attr('stroke', '#a7bcc7')
-	  .attr('stroke-width', 1)
-	  .attr('transform', 'translate(' + [0, self._height - 4 - self.marginBottom / 2] + ')')
+          .attr('x1', xPos + padding)
+          .attr('x2', groupLineWidth)
+          .attr('stroke', '#a7bcc7')
+          .attr('stroke-width', 1)
+          .attr('transform', 'translate(' + [0, self._height - 4 - self.marginBottom / 2] + ')')
 
         groupLines.append('text')
-	  .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))
-	  .attr('y', self._height - 16)
-	  .attr('text-anchor', 'middle')
-	  .text(name)
+          .attr('x', ((xPos + padding) / 2) + (groupLineWidth / 2))
+          .attr('y', self._height - 16)
+          .attr('text-anchor', 'middle')
+          .text(name)
 
         xPos = groupLineWidth + padding
-      }
-				  )
+      })
     }
   }
 
@@ -1556,7 +1554,7 @@ export default class D3StackedBarChart {
     tr.selectAll('td')
       .data(function (row, i) {
         return columns.map(function (column, i) {
-          return { column: column, value: row[i] }
+          return { column, value: row[i] }
         })
       })
       .enter()

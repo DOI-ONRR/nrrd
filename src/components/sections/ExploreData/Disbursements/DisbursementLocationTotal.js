@@ -30,9 +30,9 @@ const DisbursementLocationTotal = props => {
   })
 
   const { data, loading, error } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { location: ['NF', 'NA'], year: year, period },
+    variables: { location: ['NF', 'NA'], year, period },
     skip: inView === false,
-  });
+  })
 
   if (loading) return ''
   if (error) return `Error loading revenue data table ${ error.message }`

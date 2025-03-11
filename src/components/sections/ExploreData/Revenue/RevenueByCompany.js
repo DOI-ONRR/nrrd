@@ -62,12 +62,12 @@ const RevenueByCompany = props => {
   })
 
   const { data, loading, error } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { 
-      year: year, 
-      commodities: commodities 
+    variables: {
+      year,
+      commodities
     },
     skip: period !== 'Calendar Year' || inView === false,
-  });
+  })
 
   let groupData
   let groupTotal

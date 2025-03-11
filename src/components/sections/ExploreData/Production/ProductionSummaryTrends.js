@@ -52,11 +52,11 @@ const ProductionSummaryTrends = props => {
 
   const { data, loading, error } = useQuery(QUERY, {
     variables: {
-      state: state, 
-      product: product, 
-      period: period 
+      state,
+      product,
+      period
     },
-  });
+  })
 
   const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS
   const location = {

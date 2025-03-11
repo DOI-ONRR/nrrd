@@ -56,12 +56,12 @@ const RevenueSummaryTrends = props => {
   }
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      state: state, 
-      period: period, 
-      commodities: commodities
+    variables: {
+      state,
+      period,
+      commodities
     },
-  });
+  })
 
   const location = {
     county: props.county,

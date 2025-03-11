@@ -212,25 +212,25 @@ const PatternLibraryLayout = ({ path, children }) => {
 
   const handleNavigate = value => {
     switch (value) {
-    case 'Guidelines':
-      navigate('/patterns', { replace: true })
-      break
-    case 'Color':
-      navigate('/patterns/visual-styles/color', { replace: true })
-      break
-    case 'Typography':
-      navigate('/patterns/visual-styles/typography', { replace: true })
-      break
-    case 'Iconography':
-      navigate('/patterns/visual-styles/iconography', { replace: true })
-      break
-    default:
-      if (groups.includes(value)) {
-        navigate(`/patterns/components/?type=${ value }`, { replace: true })
-      }
-      else if (componentNames.includes(value) && ALL_COMPONENTS[value]?.Preview?.group) {
-        navigate(`/patterns/components/?type=${ ALL_COMPONENTS[value].Preview.group }#${ value }`, { replace: true })
-      }
+      case 'Guidelines':
+        navigate('/patterns', { replace: true })
+        break
+      case 'Color':
+        navigate('/patterns/visual-styles/color', { replace: true })
+        break
+      case 'Typography':
+        navigate('/patterns/visual-styles/typography', { replace: true })
+        break
+      case 'Iconography':
+        navigate('/patterns/visual-styles/iconography', { replace: true })
+        break
+      default:
+        if (groups.includes(value)) {
+          navigate(`/patterns/components/?type=${ value }`, { replace: true })
+        }
+        else if (componentNames.includes(value) && ALL_COMPONENTS[value]?.Preview?.group) {
+          navigate(`/patterns/components/?type=${ ALL_COMPONENTS[value].Preview.group }#${ value }`, { replace: true })
+        }
     }
   }
 

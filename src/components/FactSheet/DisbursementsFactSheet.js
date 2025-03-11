@@ -70,7 +70,7 @@ const useStyles = makeStyles({
 
 const DisbursementsFactSheet = () => {
   const classes = useStyles()
-  const { loading, error, data } = useQuery(GET_FY_DISBURSEMENTS_BY_RECIPIENT);
+  const { loading, error, data } = useQuery(GET_FY_DISBURSEMENTS_BY_RECIPIENT)
 
   if (loading) {
     return <p>Loading...</p>

@@ -84,12 +84,12 @@ const RevenueOverTime = props => {
   })
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      period: period, 
-      commodities: commodities 
+    variables: {
+      period,
+      commodities
     },
     skip: inView === false,
-  });
+  })
 
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })

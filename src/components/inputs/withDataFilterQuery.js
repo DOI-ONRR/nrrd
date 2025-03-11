@@ -7,10 +7,10 @@ import { AppStatusContext } from '../../stores/app-status-store'
 
 const withDataFilterQuery = (BaseComponent, dataFilterKey) => ({ ...props }) => {
   const { state } = useContext(DataFilterContext)
-  
+
   const { data, loading, error } = useQuery(DFQM.getQuery(dataFilterKey, state), {
     variables: DFQM.getVariables(state),
-  });
+  })
 
   const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
 

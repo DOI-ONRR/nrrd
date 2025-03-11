@@ -10,7 +10,7 @@ const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) =>
   const { state, updateQueryDataFilterCounts } = useContext(DataFilterContext)
   const { data, loading, error } = useQuery(QueryManager.getQuery(queryKey, state, options || {}), {
     variables: QueryManager.getVariables(queryKey, state, options || {})
-  });
+  })
 
   const { showErrorMessage } = useContext(AppStatusContext)
 

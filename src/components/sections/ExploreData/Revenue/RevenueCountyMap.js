@@ -127,21 +127,21 @@ const RevenueCountyMap = props => {
 			      fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
 			      props.regionType === 'County' || props.regionType === 'Offshore' || !inView
   const location = STATE_FIPS_MAP[fipsCode] + '%'
-  
+
   const { data, loading, error } = useQuery(REVENUE_QUERY, {
-    variables: { 
-      location: location, 
-      year: year, 
-      commodities: commodities, 
-      period: period
+    variables: {
+      location,
+      year,
+      commodities,
+      period
     },
     skip: skipQuery,
-  });
+  })
 
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
 
-  if (loading) {}
+  if (loading) return 'Loading...'
   if (error) return `Error! ${ error.message }`
   if (data) {
     const clone = JSON.parse(JSON.stringify(mapCounties))

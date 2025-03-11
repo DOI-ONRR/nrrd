@@ -34,10 +34,10 @@ const useStyles = makeStyles(theme => ({
 
 const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, loadingMessage, noClearOption, disabled }) => {
   const { state } = useContext(DataFilterContext)
-  
+
   const { data, loading, error } = useQuery(DFQM.getQuery(dataFilterKey, state), {
     variables: DFQM.getVariables(state),
-  });
+  })
 
   const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
 

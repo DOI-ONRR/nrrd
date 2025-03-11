@@ -85,18 +85,18 @@ const ProductionTopLocations = ({ title, ...props }) => {
   const state = props.fipsCode || ''
 
   switch (props.regionType) {
-  case DFC.STATE:
-    locationType = DFC.COUNTY_CAPITALIZED
-    break
-  case DFC.COUNTY_CAPITALIZED:
-    locationType = ''
-    break
-  case DFC.OFFSHORE_CAPITALIZED:
-    locationType = ''
-    break
-  default:
-    locationType = props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS ? DFC.STATE : ''
-    break
+    case DFC.STATE:
+      locationType = DFC.COUNTY_CAPITALIZED
+      break
+    case DFC.COUNTY_CAPITALIZED:
+      locationType = ''
+      break
+    case DFC.OFFSHORE_CAPITALIZED:
+      locationType = ''
+      break
+    default:
+      locationType = props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS ? DFC.STATE : ''
+      break
   }
 
   const commodity = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY] : 'Oil (bbl)'
@@ -110,17 +110,17 @@ const ProductionTopLocations = ({ title, ...props }) => {
   })
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      year, 
-      location: locationType, 
-      commodity, 
-      state, 
-      period 
+    variables: {
+      year,
+      location: locationType,
+      commodity,
+      state,
+      period
     },
     skip: inView === false && (props.fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
                                 props.regionType === DFC.COUNTY_CAPITALIZED ||
                                 props.regionType === DFC.OFFSHORE_CAPITALIZED),
-  });
+  })
 
   if (loading) {
     return (

@@ -86,18 +86,18 @@ const ProductionLandCategory = ({ title, ...props }) => {
   const state = props.fipsCode || ''
 
   switch (props.regionType) {
-  case DFC.STATE:
-    locationType = DFC.STATE
-    break
-  case DFC.COUNTY_CAPITALIZED:
-    locationType = DFC.COUNTY_CAPITALIZED
-    break
-  case DFC.OFFSHORE_CAPITALIZED:
-    locationType = DFC.OFFSHORE_CAPITALIZED
-    break
-  default:
-    locationType = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS || props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) && props.state
-    break
+    case DFC.STATE:
+      locationType = DFC.STATE
+      break
+    case DFC.COUNTY_CAPITALIZED:
+      locationType = DFC.COUNTY_CAPITALIZED
+      break
+    case DFC.OFFSHORE_CAPITALIZED:
+      locationType = DFC.OFFSHORE_CAPITALIZED
+      break
+    default:
+      locationType = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS || props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) && props.state
+      break
   }
 
   const { ref, inView } = useInView({
@@ -107,14 +107,14 @@ const ProductionLandCategory = ({ title, ...props }) => {
   })
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      state, 
-      location: locationType, 
-      commodity, 
-      period 
+    variables: {
+      state,
+      location: locationType,
+      commodity,
+      period
     },
     skip: inView === false,
-  });
+  })
 
   if (loading) {
     return (

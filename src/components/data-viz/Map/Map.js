@@ -149,16 +149,15 @@ const Map = props => {
   const mapY = props.mapY
 
   const { mapData, ...options } = props
-  // console.debug("Map Data: ", mapData)
   let map
 
   // Ugly hack to get around not being able to merge AKR Alaska Offshore Region
   const planningAreas = ['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK']
   const AKR = mapData.filter((d, i) => {
-    // console.debug("WTH:",d, i)
     if (d[0] === 'AKR') {
       return d[1]
     }
+    return false
   })
 
   if (AKR && AKR.length > 0) {
@@ -170,8 +169,6 @@ const Map = props => {
 
   const createMap = () => {
     const us = mapJsonObject
-    // const offshore = mapJsonObject.offshore
-    // console.debug('OPTIONS: ', options)
     const data = observableData(mapData)
     data.title = mapTitle
     map = new D3Map(

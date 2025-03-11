@@ -27,16 +27,16 @@ export default props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
 
   const { data, loading, error } = useQuery(REVENUE_QUERY, {
-    variables: { 
-      year: year, 
-      commodities: commodities, 
-      period: period 
+    variables: {
+      year,
+      commodities,
+      period
     }
-  });
+  })
 
   let mapData = [[]]
 
-  if (loading) {}
+  if (loading) return 'Loading...'
   if (error) return `Error! ${ error.message }`
   if (data) {
     mapData = data.revenue_summary.map((item, i) => [

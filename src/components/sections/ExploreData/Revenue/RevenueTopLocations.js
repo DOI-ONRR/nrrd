@@ -1,4 +1,3 @@
-
 import React, { useContext } from 'react'
 import { useQuery, gql } from '@apollo/client'
 import PropTypes from 'prop-types'
@@ -104,14 +103,14 @@ const RevenueTopLocations = props => {
   })
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      year, 
-      locations, 
-      period, 
-      commodities 
+    variables: {
+      year,
+      locations,
+      period,
+      commodities
     },
     skip: inView === false,
-  });
+  })
 
   if (loading) {
     return (

@@ -11,7 +11,6 @@ import withStyles from '@material-ui/styles/withStyles'
 
 import withQueryManager from '../../withQueryManager'
 import { QK_REVENUE_COMMON, SOURCE, COMMODITY, DISPLAY_NAMES } from '../../../constants'
-import { max } from 'lodash'
 
 /**
  * This displays data related to the Revenue for the last 12 months
@@ -25,15 +24,15 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
 
   let yOrderBy
   switch (yGroupBy) {
-  case SOURCE:
-    yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
-    break
-  case COMMODITY:
-    yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
-    break
-  default:
-    yOrderBy = ['Other revenues', 'Inspection fees', 'Civil penalties', 'Rents', 'Bonus', 'Royalties']
-    break
+    case SOURCE:
+      yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
+      break
+    case COMMODITY:
+      yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
+      break
+    default:
+      yOrderBy = ['Other revenues', 'Inspection fees', 'Civil penalties', 'Rents', 'Bonus', 'Royalties']
+      break
   }
 
   if (yGroupBy === COMMODITY && data) {
@@ -135,7 +134,7 @@ function groupByCommodity (data) {
         revenue_type: item.revenue_type,
         month: item.month,
         year: item.year,
-        commodity: commodity,
+        commodity,
         sum: 0,
         recipient: item.recipient,
         month_long: item.month_long,

@@ -51,14 +51,6 @@ const GlossaryTerm = ({ children, termKey, ...rest }) => {
 
   const terms = results.mdx.frontmatter.terms
 
-  // const glossaryTermArr = children.split(' ')
-  // const foundTerms = terms.filter(term =>
-  // (term.tags && term.tags.findIndex(tag => tag.toLowerCase() === glossaryTermArr.find(item => item.toLowerCase() === tag.toLowerCase())) > -1))
-
-  // console.log('GlossaryTerm children: ', children)
-  // console.log('GlossaryTerm glossaryTermArr: ', glossaryTermArr)
-  // console.log('Glossary terms found yo: ', foundTerms)
-
   let glossaryTermKey = ''
   if (termKey) {
     glossaryTermKey = (typeof termKey !== 'string') ? termKey.toString() : termKey
@@ -74,18 +66,23 @@ const GlossaryTerm = ({ children, termKey, ...rest }) => {
 
   let foundGlossaryTermKey = false
   const termResults = terms.filter(term => {
-    if ((glossaryTermKey.toLowerCase() === term.name.toLowerCase()) ||
-         (term.tags && term.tags.findIndex(tag => tag.toLowerCase() === glossaryTermKey.toLowerCase()) > -1)) {
+    if (
+      glossaryTermKey.toLowerCase() === term.name.toLowerCase() ||
+      (term.tags && term.tags.some(tag => tag.toLowerCase() === glossaryTermKey.toLowerCase()))
+    ) {
       foundGlossaryTermKey = true
-      return term
+      return true
     }
-    // get term if unit term is found in glossary term key string
-    else if (unitTerm && !foundGlossaryTermKey) {
-      if ((unitTerm.toLowerCase() === term.name.toLowerCase()) ||
-           (term.tags && term.tags.findIndex(tag => tag.toLowerCase() === unitTerm.toLowerCase()) > -1)) {
-        return term
+    // Get term if unit term is found in glossary term key string
+    if (unitTerm && !foundGlossaryTermKey) {
+      if (
+        unitTerm.toLowerCase() === term.name.toLowerCase() ||
+        (term.tags && term.tags.some(tag => tag.toLowerCase() === unitTerm.toLowerCase()))
+      ) {
+        return true
       }
     }
+    return false
   })
 
   // console.log('termResults: ', termResults)

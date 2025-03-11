@@ -36,7 +36,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 
 // Create redirects from Redirect.mdx frontmatter
 const createRedirects = ({ graphql, reporter, createRedirect }) => {
-
   return new Promise((resolve, reject) => {
     resolve(
       graphql(`

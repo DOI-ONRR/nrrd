@@ -142,9 +142,10 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
   const cats = new Set()
   result.map(term => term.children.map(child => {
     const catArr = child.categories
-    catArr.map(item => {
+    catArr.forEach(item => {
       if (item !== '') cats.add(item)
     })
+    return cats
   }))
 
   const gcats = Array.from(cats)

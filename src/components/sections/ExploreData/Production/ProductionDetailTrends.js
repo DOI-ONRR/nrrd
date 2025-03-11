@@ -66,14 +66,14 @@ const ProductionDetailTrends = props => {
   })
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      state: state, 
-      product: product, 
-      period: period, 
-      year: year 
+    variables: {
+      state,
+      product,
+      period,
+      year
     },
     skip: inView === false,
-  });
+  })
 
   if (loading) return ''
 

@@ -32,12 +32,12 @@ const RevenueLocationTotal = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
 
   const { data, loading, error } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { 
-      location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], 
-      year: year, 
-      period 
+    variables: {
+      location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS],
+      year,
+      period
     },
-  });
+  })
 
   if (loading) return ''
   if (error) return `Error loading revenue data table ${ error.message }`

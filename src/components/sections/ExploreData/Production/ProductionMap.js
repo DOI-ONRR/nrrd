@@ -28,17 +28,17 @@ export default props => {
   const dataSet = 'FY ' + year
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { 
-      year, 
-      commodity, 
+    variables: {
+      year,
+      commodity,
       period
     },
-  });
+  })
 
   let mapData = [[]]
   let unit = ''
 
-  if (loading) {}
+  if (loading) return 'Loading...'
   if (error) return `Error! ${ error.message }`
   if (data && data.production_summary.length > 0) {
     mapData = data.production_summary.map((item, i) => [

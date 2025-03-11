@@ -137,18 +137,18 @@ const ProductionCountyMap = props => {
 
   let locationType
   switch (regionType) {
-  case DFC.STATE:
-    locationType = DFC.STATE
-    break
-  case DFC.COUNTY_CAPITALIZED:
-    locationType = DFC.COUNTY_CAPITALIZED
-    break
-  case DFC.OFFSHORE_CAPITALIZED:
-    locationType = DFC.OFFSHORE_CAPITALIZED
-    break
-  default:
-    locationType = DFC.COUNTY_CAPITALIZED
-    break
+    case DFC.STATE:
+      locationType = DFC.STATE
+      break
+    case DFC.COUNTY_CAPITALIZED:
+      locationType = DFC.COUNTY_CAPITALIZED
+      break
+    case DFC.OFFSHORE_CAPITALIZED:
+      locationType = DFC.OFFSHORE_CAPITALIZED
+      break
+    default:
+      locationType = DFC.COUNTY_CAPITALIZED
+      break
   }
 
   const skipQuery = fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS ||
@@ -156,19 +156,19 @@ const ProductionCountyMap = props => {
 			      props.regionType === 'County' || props.regionType === 'Offshore' || !inView
 
   const { data, loading, error } = useQuery(PRODUCTION_QUERY, {
-    variables: { 
-      year: year, 
-      product: product, 
-      state: fipsCode, 
-      period: period 
+    variables: {
+      year,
+      product,
+      state: fipsCode,
+      period
     },
     skip: skipQuery,
-  });
+  })
 
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
 
-  if (loading) {}
+  if (loading) return 'Loading...'
   if (error) return `Error! ${ error.message }`
   if (data && data.production_summary.length > 0) {
     const clone = JSON.parse(JSON.stringify(mapCounties))

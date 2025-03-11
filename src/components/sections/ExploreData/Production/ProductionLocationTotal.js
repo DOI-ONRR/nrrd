@@ -39,16 +39,16 @@ const ProductionLocationTotal = props => {
     threshold: 0,
     triggerOnce: true
   })
-  
+
   const { data, loading, error } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { 
-      location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], 
-      year: year, 
-      period: period, 
-      product: product 
+    variables: {
+      location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS],
+      year,
+      period,
+      product
     },
     skip: inView === false,
-  });
+  })
 
   if (loading) return ''
   if (error) return `Error loading revenue data table ${ error.message }`

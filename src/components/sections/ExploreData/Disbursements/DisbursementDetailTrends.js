@@ -74,9 +74,9 @@ const DisbursementDetailTrends = props => {
   })
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { state: state, period: DFC.FISCAL_YEAR_LABEL, year: year },
+    variables: { state, period: DFC.FISCAL_YEAR_LABEL, year },
     skip: inView === false
-  });
+  })
 
   if (loading) return 'Loading...'
 

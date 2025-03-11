@@ -46,35 +46,35 @@ const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
-  case types.UPDATE_DATA_FILTER: {
-    const dataType = payload.dataType || state.dataType
+    case types.UPDATE_DATA_FILTER: {
+      const dataType = payload.dataType || state.dataType
 
-    const dataTypeCache = Object.assign(((state.dataTypesCache && state.dataTypesCache[dataType]) || { ...initialState }), { ...payload })
+      const dataTypeCache = Object.assign(((state.dataTypesCache && state.dataTypesCache[dataType]) || { ...initialState }), { ...payload })
 
-    const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
+      const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
 
-    return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
-  }
-  case types.UPDATE_QUERY_DATA_FILTER_COUNTS: {
-    const currentQueryCounts = state[QUERY_COUNTS] || {}
-    return ({ ...state, [QUERY_COUNTS]: Object.assign(currentQueryCounts, payload.counts) })
-  }
-  case types.CLEAR_ALL_FILTERS: {
-    const dataType = state.dataType
-
-    const dataTypeCache = {
-      [DATA_TYPE]: state[DATA_TYPE],
-      [GROUP_BY]: state[GROUP_BY],
-      [PERIOD]: state[PERIOD],
-      [FISCAL_YEAR]: state[FISCAL_YEAR],
-      [CALENDAR_YEAR]: state[CALENDAR_YEAR]
+      return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
     }
+    case types.UPDATE_QUERY_DATA_FILTER_COUNTS: {
+      const currentQueryCounts = state[QUERY_COUNTS] || {}
+      return ({ ...state, [QUERY_COUNTS]: Object.assign(currentQueryCounts, payload.counts) })
+    }
+    case types.CLEAR_ALL_FILTERS: {
+      const dataType = state.dataType
 
-    const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
-    return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
-  }
-  default:
-    return state
+      const dataTypeCache = {
+        [DATA_TYPE]: state[DATA_TYPE],
+        [GROUP_BY]: state[GROUP_BY],
+        [PERIOD]: state[PERIOD],
+        [FISCAL_YEAR]: state[FISCAL_YEAR],
+        [CALENDAR_YEAR]: state[CALENDAR_YEAR]
+      }
+
+      const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
+      return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
+    }
+    default:
+      return state
   }
 }
 
