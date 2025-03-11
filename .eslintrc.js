@@ -70,7 +70,12 @@ module.exports = {
         'no-unused-expressions': 'off',
         'no-undef': 'off',
         'no-unused-vars': 'off',
+        'spaced-comment': 0, // resolves error with headers in partials
       },
+    },
+    {
+      files: ['*.mdx'],
+      processor: 'mdx/remark',
     },
     {
       files: ['*.mdx'],
@@ -79,6 +84,11 @@ module.exports = {
         'no-dupe-keys': 'error',
         'no-multiple-empty-lines': ['error', { max: 1 }],
         'mdx/no-unused-expressions': 'off',
+      },
+      settings: {
+        'mdx/language-mapper': {
+          yaml: 'yaml-eslint-parser',
+        },
       },
     },
   ],

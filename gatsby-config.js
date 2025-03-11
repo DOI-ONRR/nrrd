@@ -1,5 +1,5 @@
 const fetch = require('isomorphic-fetch')
-const { HttpLink } = require("@apollo/client");
+const { HttpLink } = require('@apollo/client')
 
 const activeEnv = (process.env.CIRCLE_BRANCH === 'master') ? 'prd' : 'dev'
 require('dotenv').config({
@@ -70,7 +70,13 @@ const config = {
       }
     },
     'gatsby-plugin-mdx',
-    'gatsby-plugin-apollo',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'content-partials',
+        path: `${ __dirname }/src/components/content-partials`,
+      },
+    },
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -84,10 +90,17 @@ const config = {
               enableCustomId: true,
             },
           },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+            },
+          },
         ],
         extensions: ['.mdx', '.md']
-      },
+      }
     },
+    'gatsby-plugin-apollo',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
