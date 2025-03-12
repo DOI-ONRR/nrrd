@@ -85,7 +85,7 @@ commands:
 jobs:
   lint:
     docker:
-      - image: cimg/node:12.4
+      - image: cimg/node:18.20.7
     working_directory: ~/repo
     steps:
       - checkout
@@ -93,7 +93,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm install --legacy-peer-deps
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -457,9 +457,7 @@ workflows:
             - nrrd
             - org-global
           requires:
-            - apply-database-changes:
-              - success
-              - failed
+            - apply-database-changes
           filters:
             branches:
               ignore:
