@@ -337,9 +337,7 @@ const utils = {
   },
   formatToSigFig_Dollar (value, precision) {
     // add 2 to d3 format so as not to lose precision
-    console.debug(value, precision)
     const num = d3.format(`.${ precision + 2 }s`)(value)
-    console.debug(num)
     let suffix = num.substring(num.length - 1)
     if (suffix === 0) {
       suffix = ''
