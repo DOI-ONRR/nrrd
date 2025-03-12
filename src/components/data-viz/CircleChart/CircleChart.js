@@ -78,7 +78,7 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
           }
           return returns
         }, 0)
-        const o = data[maxCircles]
+        const o = { ...data[maxCircles] }
         data = data.filter((row, i) => i < maxCircles)
         o[xAxis] = 'Other'
         o[yAxis] = other
