@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 
 const QUERY = gql`
   # summary card queries
-  query DisbursementSourceSummary($year: Int!, $period: String!, $state: [String!]) {
+  query DisbursementSourceSummary($year: Int!, $state: [String!]) {
 
 DisbursementSourceSummary: disbursement_source_summary(
       where: { fiscal_year: { _eq: $year }, state_or_area: { _in: $state } }
@@ -65,7 +65,10 @@ const DisbursementSources = props => {
   })
 
   const { data, loading, error } = useQuery(QUERY, {
-    variables: { state, year, period: DFC.FISCAL_YEAR_LABEL },
+    variables: { 
+      state, 
+      year
+    },
     skip: inView === false,
   })
 

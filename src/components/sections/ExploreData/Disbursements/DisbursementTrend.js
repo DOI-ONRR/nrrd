@@ -17,7 +17,7 @@ import {
 
 const QUERY = gql`
   # summary card queries
-  query FiscalDisbursement($year: Int!, $period: String!, $state: [String!]) {
+  query FiscalDisbursement($period: String!, $state: [String!]) {
      fiscalDisbursementSummary: disbursement_summary(
       where: { state_or_area: { _in: $state } }
       order_by: { fiscal_year: asc, state_or_area: asc }
@@ -43,7 +43,6 @@ const DisbursementTrend = props => {
   const { data, loading, error } = useQuery(QUERY, {
     variables: {
       state: props.fipsCode,
-      year,
       period: DFC.FISCAL_YEAR_LABEL
     },
   })
