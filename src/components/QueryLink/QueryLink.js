@@ -72,9 +72,12 @@ const QueryLink = ({ mt = 3, ...props }) => {
       [DFC.BREAKOUT_BY]: props.breakoutBy || undefined
     }
 
-    const queryArr = Object.keys(params).map(key => {
-      if (params[key] !== undefined) queryArr.push(`${ key }=${ encodeURIComponent(params[key]) }`)
-      return queryArr
+    const queryArr = []
+
+    Object.keys(params).forEach(key => {
+      if (params[key] !== undefined) {
+        queryArr.push(`${key}=${encodeURIComponent(params[key])}`)
+      }
     })
 
     const queryString = queryArr.join('&')
