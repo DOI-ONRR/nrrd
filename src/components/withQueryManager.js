@@ -8,8 +8,15 @@ import { AppStatusContext } from '../stores/app-status-store'
 const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) => {
   options = options || {}
   const { state, updateQueryDataFilterCounts } = useContext(DataFilterContext)
-  const { data, loading, error } = useQuery(QueryManager.getQuery(queryKey, state, options || {}), {
-    variables: QueryManager.getVariables(queryKey, state, options || {})
+  const query = QueryManager.getQuery(queryKey, state, options || {})
+  const rawVariables = QueryManager.getVariables(queryKey, state, options || {})
+  
+  // Remove properties with undefined values
+  const sanitizedVariables = Object.fromEntries(
+    Object.entries(rawVariables.variables).filter(([_, value]) => value !== undefined)
+  )
+  const { data, loading, error } = useQuery(query, {
+    variables: sanitizedVariables
   })
 
   const { showErrorMessage } = useContext(AppStatusContext)
