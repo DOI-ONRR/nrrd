@@ -193,7 +193,7 @@ export const getDataFilterVariableValues = (state, config, options) => {
     results[Object.keys(prop)[0]] = getDataFilterValue(Object.keys(prop)[0], state)
   })
 
-  return ({ variables: results })
+  return (results)
 }
 
 export const checkFundAggregation = (key, state, config, options) => {

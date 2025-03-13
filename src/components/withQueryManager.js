@@ -12,9 +12,13 @@ const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) =>
   const rawVariables = QueryManager.getVariables(queryKey, state, options || {})
   
   // Remove properties with undefined values
-  const sanitizedVariables = Object.fromEntries(
-    Object.entries(rawVariables.variables).filter(([_, value]) => value !== undefined)
-  )
+  let sanitizedVariables = {}
+  if (rawVariables) {
+    sanitizedVariables = Object.fromEntries(
+      Object.entries(rawVariables).filter(([_, value]) => value !== undefined)
+    )
+  }
+
   const { data, loading, error } = useQuery(query, {
     variables: sanitizedVariables
   })

@@ -36,7 +36,8 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
   }
 
   if (yGroupBy === COMMODITY && data) {
-    data.results = Object.values(groupByCommodity(data.results))
+    const newData = { ...data, results: Object.values(groupByCommodity(data.results)) }
+    data = newData
   }
 
   const xGroups = data?.results.reduce((g, row, i) => {
