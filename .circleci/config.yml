@@ -169,7 +169,7 @@ jobs:
   nrrd-preview:
     docker:
       - image: cimg/node:18.20.7
-    resource_class: xlarge
+    resource_class: medium
     steps:
       - checkout
       - restore_cache:
@@ -217,7 +217,7 @@ jobs:
   dev:
     docker:
       - image: cimg/node:18.20.7
-    resource_class: xlarge
+    resource_class: medium
     steps:
       - checkout
       - restore_cache:
@@ -267,7 +267,7 @@ jobs:
   prod:
     docker:
       - image: cimg/node:18.20.7
-    resource_class: xlarge
+    resource_class: medium
     steps:
       - checkout
       - restore_cache:
