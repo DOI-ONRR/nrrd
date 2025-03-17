@@ -549,7 +549,7 @@ export default class D3StackedBarChart {
 
   select (index) {
     try {
-      d3.selectAll('.bar').forEach((_d, i, nodes) => {
+      d3.selectAll('.bar').nodes().forEach((_d, i, nodes) => {
         if (i === index) {
           const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
           if (selectedElement) {
@@ -749,10 +749,6 @@ export default class D3StackedBarChart {
         .html(function (d, i) {
           return self._legendFormat(d[1])
         })
-      // tr.append('td')
-      //   .html(function (d, i) {
-      //     return self._legendFormat(d[2])
-      //   })
 
       const total = Object.keys(data).reduce((sum, key) => sum + data[key], 0)
 
@@ -1289,7 +1285,7 @@ export default class D3StackedBarChart {
 
   getSelected () {
     const allGroupedData = []
-    d3.select(this.node).selectAll('.bar').forEach((d, i, nodes) => {
+    d3.select(this.node).selectAll('.bar').nodes().forEach((d, i, nodes) => {
       if (nodes[i].className.baseVal.match(/active/)) {
         this.xSelectedValue = d
         this.ySelectedGroup = this.yGroupData(d)

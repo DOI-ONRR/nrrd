@@ -423,22 +423,16 @@ workflows:
       - unit_tests:
           filters:
             branches:
-              ignore:
-                - master
-                - staging
+              ignore: /.*/
       - lint:
           filters:
             branches:
-              ignore:
-                - master
-                - staging
+              ignore: /.*/
 
       - lighthouse:
           filters:
             branches:
-              ignore:
-                - master
-                - staging
+              ignore: /.*/
   
   preview-workflow:
     jobs:
