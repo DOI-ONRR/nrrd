@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link, navigate } from 'gatsby'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
-import { fade, makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { fade, makeStyles, createTheme, ThemeProvider } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -123,7 +123,7 @@ const overrides = {
   }
 }
 
-const theme = createMuiTheme({ palette, typography, overrides })
+const theme = createTheme({ palette, typography, overrides })
 const useStyles = makeStyles(() => ({
   grow: {
     flexGrow: 1,
@@ -212,25 +212,25 @@ const PatternLibraryLayout = ({ path, children }) => {
 
   const handleNavigate = value => {
     switch (value) {
-    case 'Guidelines':
-      navigate('/patterns', { replace: true })
-      break
-    case 'Color':
-      navigate('/patterns/visual-styles/color', { replace: true })
-      break
-    case 'Typography':
-      navigate('/patterns/visual-styles/typography', { replace: true })
-      break
-    case 'Iconography':
-      navigate('/patterns/visual-styles/iconography', { replace: true })
-      break
-    default:
-      if (groups.includes(value)) {
-        navigate(`/patterns/components/?type=${ value }`, { replace: true })
-      }
-      else if (componentNames.includes(value) && ALL_COMPONENTS[value]?.Preview?.group) {
-        navigate(`/patterns/components/?type=${ ALL_COMPONENTS[value].Preview.group }#${ value }`, { replace: true })
-      }
+      case 'Guidelines':
+        navigate('/patterns', { replace: true })
+        break
+      case 'Color':
+        navigate('/patterns/visual-styles/color', { replace: true })
+        break
+      case 'Typography':
+        navigate('/patterns/visual-styles/typography', { replace: true })
+        break
+      case 'Iconography':
+        navigate('/patterns/visual-styles/iconography', { replace: true })
+        break
+      default:
+        if (groups.includes(value)) {
+          navigate(`/patterns/components/?type=${ value }`, { replace: true })
+        }
+        else if (componentNames.includes(value) && ALL_COMPONENTS[value]?.Preview?.group) {
+          navigate(`/patterns/components/?type=${ ALL_COMPONENTS[value].Preview.group }#${ value }`, { replace: true })
+        }
     }
   }
 

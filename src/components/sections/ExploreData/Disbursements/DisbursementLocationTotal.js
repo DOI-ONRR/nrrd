@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import utils from '../../../../js/utils'
 import * as d3 from 'd3'
@@ -30,8 +29,8 @@ const DisbursementLocationTotal = props => {
     threshold: 0,
   })
 
-  const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { location: ['NF', 'NA'], year: year, period },
+  const { data, loading, error } = useQuery(LOCATION_TOTAL_QUERY, {
+    variables: { location: ['NF', 'NA'], year, period },
     skip: inView === false,
   })
 

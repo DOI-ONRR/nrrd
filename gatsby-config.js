@@ -1,5 +1,5 @@
 const fetch = require('isomorphic-fetch')
-const { createHttpLink } = require('apollo-link-http')
+const { HttpLink } = require('@apollo/client')
 
 const activeEnv = (process.env.CIRCLE_BRANCH === 'master') ? 'prd' : 'dev'
 require('dotenv').config({
@@ -12,6 +12,7 @@ const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ p
 
 const config = {
   pathPrefix: PATH_PREFIX,
+  trailingSlash: 'always',
   siteMetadata: {
     isShutdown: process.env.isShutdown,
     title: 'Natural Resources Revenue Data',
@@ -68,16 +69,14 @@ const config = {
         component: `${ __dirname }/src/components/layouts/PageLayoutManager`
       }
     },
+    'gatsby-plugin-mdx',
     {
-      resolve: 'gatsby-plugin-material-ui',
+      resolve: 'gatsby-source-filesystem',
       options: {
-        // stylesProvider: {
-        //   injectFirst: true,
-        // }
-      }
+        name: 'content-partials',
+        path: `${ __dirname }/src/components/content-partials`,
+      },
     },
-    'gatsby-theme-apollo',
-    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -93,8 +92,9 @@ const config = {
           },
         ],
         extensions: ['.mdx', '.md']
-      },
+      }
     },
+    'gatsby-plugin-apollo',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -116,6 +116,7 @@ const config = {
         path: `${ __dirname }/src/components`
       }
     },
+    'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-sharp',
@@ -131,7 +132,7 @@ const config = {
         typeName: 'ONRR',
         fieldName: 'onrr',
         createLink: () => {
-          return createHttpLink({
+          return new HttpLink({
             uri: process.env.GATSBY_HASURA_URI,
             headers: {},
             fetch,
@@ -152,7 +153,7 @@ const config = {
             title: node => node.frontmatter.title,
             tags: node => node.frontmatter.tag || node.frontmatter.tags,
             description: node => node.frontmatter.description,
-            path: node => node.fields.slug,
+            path: node => node.frontmatter.path,
             glossary: node => node.frontmatter.glossary
           }
         },

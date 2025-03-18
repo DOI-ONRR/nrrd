@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import utils from '../../../../js/utils'
 
@@ -26,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query ProductionDetailTrends($state: String!, $product: String!, $period: String!, $year: Int!) {
     production_summary(
       where: { location: { _eq: $state }, product: {_eq: $product}, period: {_eq: $period}  }
@@ -66,9 +65,14 @@ const ProductionDetailTrends = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, product: product, period: period, year: year },
-    skip: inView === false
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: {
+      state,
+      product,
+      period,
+      year
+    },
+    skip: inView === false,
   })
 
   if (loading) return ''

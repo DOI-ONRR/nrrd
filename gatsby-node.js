@@ -36,13 +36,14 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 
 // Create redirects from Redirect.mdx frontmatter
 const createRedirects = ({ graphql, reporter, createRedirect }) => {
-  console.info('creating redirects')
-
   return new Promise((resolve, reject) => {
     resolve(
       graphql(`
         query redirects {
-          allMdx(filter: {fileAbsolutePath: {regex: "/content-partials/Redirects/"}}) {
+          allMdx(filter: {
+            internal: {
+              contentFilePath: {regex: "/content-partials/Redirects/"}
+          }}) {
             nodes {
               frontmatter {
                 redirects {
@@ -184,7 +185,10 @@ const createComponentsCache = ({ graphql, reporter }) => {
 	    resolve(
 	      graphql(`
         {
-          allMdx(filter: {fileAbsolutePath: {regex: "/content-partials/"}}) {
+          allMdx(filter: {
+            internal: {
+              contentFilePath: {regex: "/content-partials/"}
+            }}) {
             edges {
               node {
                 parent {

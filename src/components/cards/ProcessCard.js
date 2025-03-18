@@ -112,9 +112,9 @@ ProcessCard.propTypes = {
   /** In mobile the card collapses and this allows it to be expanded on initial render */
   defaultExpanded: PropTypes.bool,
   /** The space around the outside of the process card */
-  padding: PropTypes.bool,
+  padding: PropTypes.number,
   /** The space arounf the outside of the content */
-  contentIndent: PropTypes.bool,
+  contentIndent: PropTypes.number,
   /** Specify if title should be centered */
   centerTitle: PropTypes.bool,
 }

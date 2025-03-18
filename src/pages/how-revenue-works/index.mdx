@@ -12,6 +12,10 @@ tags:
 - Audit
 ---
 
+import { Tabtastic, TabtasticTab } from '../../components/layouts/Tabtastic'
+
+<React.StrictMode>
+  { console.log(props) }
 <Box bgcolor='primary.main'>
 <Container maxWidth="lg">
 <Grid container spacing={2} alignItems='center'>
@@ -42,7 +46,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
 </Container>
 </Box>
 
-<!-- Begin content -->
+{/* Begin content */}
 <Container maxWidth="lg" component="section">
 <Grid container>
 <Grid item xs={12} sm={3}>
@@ -55,18 +59,18 @@ Learn about the process of natural resource extraction in the U.S. from land own
 ---
 <Grid container
   direction="row"
-  justify="center"
+  justifyContent="center"
   alignItems="stretch"
   spacing={0}>
   <Grid item xs={12} sm={3}>
     <ProcessCard name={'Ownership'} padding={0} contentIndent={0} centerTitle={true} >
       <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
-        <TabtasticTab label="Description">
+        <TabtasticTab label="Description" mdxType="TabtasticTab">
           <Box fontSize={16}>
             The data on this website is for energy and minerals on federal lands, <GlossaryTerm>Native American lands</GlossaryTerm>, and the <GlossaryTerm>Outer Continental Shelf</GlossaryTerm>. Private individuals, corporations, and state and local governments can also buy and own land. Whomever owns the land also owns the oil, gas, coal, and other minerals found below the surface.
           </Box>
         </TabtasticTab>
-        <TabtasticTab label="Types">
+        <TabtasticTab label="Types" mdxType="TabtasticTab">
           <Box fontSize={16}>
             Types of land ownership:
             <ul>
@@ -88,12 +92,12 @@ Learn about the process of natural resource extraction in the U.S. from land own
   <Grid item xs={12} sm={3}>
     <ProcessCard name={'Leasing'} padding={0} contentIndent={0} centerTitle={true}>
       <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
-        <TabtasticTab label="Description">
+        <TabtasticTab label="Description" mdxType="TabtasticTab">
           <Box fontSize={16}>
             The Bureau of Ocean Energy Management (BOEM) manages offshore leasing. The Bureau of Land Management (BLM) manages onshore leasing. BOEM and BLM award leases through a competitive bidding process. The Bureau of Indian Affairs (BIA), in consultation with BLM, manages leases on Native American lands.
           </Box>
         </TabtasticTab>
-        <TabtasticTab label="Types">
+        <TabtasticTab label="Types" mdxType="TabtasticTab">
           <Box fontSize={16}>
             Types of leases:<br />
             BOEM (federal offshore)
@@ -127,7 +131,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
   <Grid item xs={12} sm={4}>
     <ProcessCard name={'Production'} padding={0} contentIndent={0} centerTitle={true}>
       <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
-        <TabtasticTab label="Description">
+        <TabtasticTab label="Description" mdxType="TabtasticTab">
           <Box fontSize={16}>
             Once a piece of leased land starts producing a commodity, like oil, the producer generally sells it. Though, the producer may also use it on the lease or disposes of it. The proceeds of selling the commodity are subject to royalties, which result in revenue to the government.
             <br />
@@ -145,7 +149,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
             </ul>
           </Box>
         </TabtasticTab>
-        <TabtasticTab label="Data usage">
+        <TabtasticTab label="Data usage" mdxType="TabtasticTab">
           <Box fontSize={16}>
             Production data can be used to:
             <ul>
@@ -181,7 +185,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
   <Grid item xs={12} sm={6}>
     <ProcessCard name={'Revenue'} padding={0} contentIndent={0} centerTitle={true}>
       <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
-        <TabtasticTab label="Description">
+        <TabtasticTab label="Description" mdxType="TabtasticTab">
           <Box fontSize={16}>
             ONRR collects revenues for leases, sales, and production and then disburses them. ONRR reports revenue data in an accounting year, which is every sale that is accounted for in a given period regardless of when the sale took place. Company revenue includes revenues by revenue type and commodity by company. This dataset includes revenues for U.S. federal lands and offshore areas.
             <br />
@@ -189,7 +193,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
             <Link href='/query-data/?dataType=Federal revenue by company' linkType='FilterTable'>Query company revenue data</Link>
           </Box>
         </TabtasticTab>
-        <TabtasticTab label="Types">
+        <TabtasticTab label="Types" mdxType="TabtasticTab">
           <Box fontSize={16}>
             Other Types of Revenue:
             <ul>
@@ -202,7 +206,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
             </ul>
           </Box>
         </TabtasticTab>
-        <TabtasticTab label="Data usage">
+        <TabtasticTab label="Data usage" mdxType="TabtasticTab">
           <Box fontSize={16}>
             Revenue data can be used to:
             <ul>
@@ -243,14 +247,14 @@ Learn about the process of natural resource extraction in the U.S. from land own
   <Grid item xs={12} sm={6}>
     <ProcessCard name={'Disbursements'} padding={0} contentIndent={0} centerTitle={true}>
       <Tabtastic selectedTab={props.location.search} enableDataFilterContext={false} processCardTabStyle={true}>
-        <TabtasticTab label="Description">
+        <TabtasticTab label="Description" mdxType="TabtasticTab">
           <Box fontSize={16}>
             ONRR distributes the collected revenue. Disbursements are in accordance to federal laws and regulations. Federal agencies, funds, and local governments receive disbursements.
             <br />
             <Link href='/query-data/?dataType=Disbursements' linkType='FilterTable'>Query disbursements data</Link>
           </Box>
         </TabtasticTab>
-        <TabtasticTab label="Types">
+        <TabtasticTab label="Types" mdxType="TabtasticTab">
           <Box fontSize={16}>
             Types of Disbursement:
             <ul>
@@ -264,7 +268,7 @@ Learn about the process of natural resource extraction in the U.S. from land own
             </ul>
           </Box>
         </TabtasticTab>
-        <TabtasticTab label="Data usage">
+        <TabtasticTab label="Data usage" mdxType="TabtasticTab">
           <Box fontSize={16}>
             Disbursements data can be used to:
             <ul>
@@ -433,12 +437,12 @@ The Land and Water Conservation Fund receives disbursements from offshore oil an
 
 [Learn about the Land and Water Conservation Fund](/how-revenue-works/lwcf)
 
-<!--
+{/*
 #### National Parks and Public Land Legacy Restoration Fund
 To address priority deferred maintenance projects, the National Parks and Public Land Legacy Restoration Fund receives disbursements from federal energy development revenues for five years starting in <GlossaryTerm>Fiscal Year (FY)</GlossaryTerm> 2021.
 
 [Learn about the National Parks and Public Land Legacy Restoration Fund](/how-revenue-works/nppllrf)
--->
+*/}
 #### Historic Preservation Fund
 When <GlossaryTerm>authorized</GlossaryTerm>, the Historic Preservation Fund receives disbursements from offshore oil and gas revenue. This funds the conservation of cultural and historic sites.
 
@@ -481,3 +485,4 @@ Data about revenue from the extractive industries is subject to a number of cont
 </Grid>
 </Grid>
 </Container>
+</React.StrictMode>

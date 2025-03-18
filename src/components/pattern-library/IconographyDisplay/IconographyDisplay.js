@@ -20,7 +20,7 @@ const IconographyDisplay = ({ children }) => {
   }
 
   return (
-    <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
+    <Grid container direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2}>
       {
         Object.keys(Images).map(key => {
           const ImageComponent = Images[key]

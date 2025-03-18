@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
@@ -27,13 +26,17 @@ export default props => {
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : 'Fiscal Year'
 
-  const { loading, error, data } = useQuery(REVENUE_QUERY, {
-    variables: { year: year, commodities: commodities, period: period }
+  const { data, loading, error } = useQuery(REVENUE_QUERY, {
+    variables: {
+      year,
+      commodities,
+      period
+    }
   })
 
   let mapData = [[]]
 
-  if (loading) {}
+  if (loading) return 'Loading...'
   if (error) return `Error! ${ error.message }`
   if (data) {
     mapData = data.revenue_summary.map((item, i) => [

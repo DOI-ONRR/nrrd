@@ -1,1 +1,1 @@
-export default './ComponentDisplay'
+export { default as ComponentDisplay } from './ComponentDisplay'

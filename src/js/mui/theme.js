@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createTheme } from '@material-ui/core/styles'
 
 import palette from './palette'
 import typography from './typography'
@@ -15,7 +15,7 @@ import overrides from './overrides'
 // z-index
 // Globals/Overrides
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette,
   typography,
   overrides

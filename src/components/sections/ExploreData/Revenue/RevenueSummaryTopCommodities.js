@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 import * as d3 from 'd3'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -38,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query TopCommodities($state: String!, $period: String!) {
     revenue_summary(
       where: { location: { _eq: $state }, period: {_eq: $period} },
@@ -65,8 +64,11 @@ const RevenueSummaryTopCommodities = props => {
 
   const state = props.fipsCode
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: period }
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: {
+      state,
+      period
+    },
   })
 
   // let sparkData = []
@@ -76,7 +78,7 @@ const RevenueSummaryTopCommodities = props => {
   let topCommodities = []
   let currentCommodities = []
   const dataKey = period + '-' + year + '-' + state
-  if (loading) {}
+  if (loading) return
 
   if (error) return `Error! ${ error.message }`
 
@@ -166,7 +168,7 @@ const RevenueSummaryTopCommodities = props => {
               >
                 <TableBody>
                   {
-                    currentCommodities.map((com, j) => {
+                    currentCommodities.forEach((com, j) => {
                       if (j < 3) {
                         return topCommodities.filter(f => f.commodity === com[0]).map((row, i) => {
                           return (

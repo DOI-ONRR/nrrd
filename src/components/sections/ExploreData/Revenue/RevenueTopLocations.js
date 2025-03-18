@@ -1,7 +1,5 @@
-
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 import PropTypes from 'prop-types'
 
 // utility functions
@@ -25,7 +23,7 @@ import {
 
 import { CircleChart } from '../../../data-viz/CircleChart'
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
     query RevenueTopLocations($year: Int!, $locations: [String!], $period: String!,  $commodities: [String!]) {
 	revenue_summary(
 	    where: {location_type: {_in: $locations}, year: { _eq: $year }, location_name: {_neq: ""}, period: {_eq: $period}, commodity: {_in: $commodities}  },
@@ -104,9 +102,14 @@ const RevenueTopLocations = props => {
 	    triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year, locations, period, commodities },
-    skip: inView === false
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: {
+      year,
+      locations,
+      period,
+      commodities
+    },
+    skip: inView === false,
   })
 
   if (loading) {

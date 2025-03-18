@@ -460,7 +460,7 @@ const DataTableBase = ({ data, config }) => {
         if (column.name === MONTH_LONG) {
           width = 125
         }
-        return ({ columnName: column.name, width: width })
+        return ({ columnName: column.name, width })
       }))
       setHiddenColumnNames(colNames.filter(item =>
         (config.hideColumns?.includes(item.name) ||
@@ -535,7 +535,7 @@ const DataTableBase = ({ data, config }) => {
       }
       const sums = aggregateSum({
         data: pivotData,
-        groupByProps: groupByProps,
+        groupByProps,
         sumByProps: pivotColumnNames
       })
       if (sums.length > 0) {

@@ -1,4 +1,3 @@
-
 import {
   DATA_FILTER_KEY,
   EXCLUDE_PROPS,
@@ -8,16 +7,11 @@ import {
   REVENUE_BY_COMPANY,
   COMPANY_NAME,
   LAND_TYPE,
-  G1,
-  G2,
-  G3,
-  // not used   OFFSHORE_REGION,
   US_STATE,
   US_STATE_NAME,
   COUNTY,
   COUNTY_NAME,
   COMMODITY,
-  // not used COMMODITY_ORDER,
   PRODUCT,
   REVENUE_TYPE,
   PERIOD,

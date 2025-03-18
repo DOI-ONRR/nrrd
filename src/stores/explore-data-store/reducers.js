@@ -13,14 +13,14 @@ const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
-  case types.CARDS:
-    return ({ ...state, cards: payload.cards })
-  case types.MAP_ZOOM:
-    return ({ ...state, mapX: payload.mapZoom.mapX, mapY: payload.mapZoom.mapY, mapZoom: payload.mapZoom.mapZoom })
-  case types.MAP_ACTIVE:
-    return ({ ...state, mapActive: payload.mapActive })
-  default:
-    return state
+    case types.CARDS:
+      return ({ ...state, cards: payload.cards })
+    case types.MAP_ZOOM:
+      return ({ ...state, mapX: payload.mapZoom.mapX, mapY: payload.mapZoom.mapY, mapZoom: payload.mapZoom.mapZoom })
+    case types.MAP_ACTIVE:
+      return ({ ...state, mapActive: payload.mapActive })
+    default:
+      return state
   }
 }
 

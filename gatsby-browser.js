@@ -1,10 +1,32 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
-
 import { setConfig } from 'react-hot-loader'
+import React from 'react'
+import 'typeface-lato'
+
+import { MDXProvider } from '@mdx-js/react'
+import * as CustomComponents from './.cache/components'
+import CodeBlock from './src/components/pattern-library/CodeBlock/CodeBlock.js'
+
+import {
+  Box,
+  Container,
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+  Hidden
+} from '@material-ui/core'
+
+import {
+  AppStatusProvider,
+  DownloadProvider
+} from './src/stores'
+
+import ErrorBoundary from './src/components/ErrorBoundary'
+import { ThemeProvider } from '@material-ui/core/styles'
+import theme from './src/js/mui/theme'
 
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
@@ -23,10 +45,41 @@ export const onClientEntry = async () => {
   }
 }
 
-// You can delete this file if you're not using it
-export { wrapRootElement } from './wrap-root-element'
-
 // Remove hot loader warning in browser
 setConfig({
   showReactDomPatchNotification: false
 })
+
+const mdxComponents = {
+  pre: props => <div {...props} />,
+  p: props => <div {...props} />,
+  code: CodeBlock,
+  a: CustomComponents.Link,
+  ...CustomComponents,
+  Box,
+  Container,
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+  Hidden
+}
+
+export const wrapRootElement = ({ element }) => {
+  return (
+    <ErrorBoundary>
+      <ThemeProvider theme={theme}>
+        <AppStatusProvider>
+          <DownloadProvider>
+            <MDXProvider components={ mdxComponents }>
+              {element}
+            </MDXProvider>
+          </DownloadProvider>
+        </AppStatusProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
+  )
+}

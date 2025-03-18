@@ -1,9 +1,7 @@
-
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 // import { graphql } from 'gatsby'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 // utility functions
 import utils from '../../../../js/utils'
 import { ExploreDataContext } from '../../../../stores/explore-data-store'
@@ -23,7 +21,7 @@ import {
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query FiscalDisbursementSummary {
     disbursement_summary(
       order_by: { fiscal_year: asc }
@@ -95,9 +93,11 @@ const DisbursementsOverTime = props => {
     threshold: 0,
     triggerOnce: true
   })
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    skip: inView === false
+
+  const { data, loading, error } = useQuery(QUERY, {
+    skip: inView === false,
   })
+
   const handleDelete = props.handleDelete || ((e, fips) => {
     updateExploreDataCards({ ...pageState, cards: cards.filter(item => item.fipsCode !== fips) })
   })

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 // import { graphql } from 'gatsby'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 // utility functions
 import utils from '../../../../js/utils'
 import { ExploreDataContext } from '../../../../stores/explore-data-store'
@@ -25,7 +24,7 @@ import {
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
     query RevenueOverTime($period: String!, $commodities: [String!]) {
 	revenue_summary(where: {period: {_eq: $period}, commodity: {_in: $commodities}, location: {_neq: ""}}, order_by: {year: asc}) {
 	    year
@@ -84,9 +83,12 @@ const RevenueOverTime = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { period: period, commodities: commodities },
-    skip: inView === false
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: {
+      period,
+      commodities
+    },
+    skip: inView === false,
   })
 
   const handleDelete = props.handleDelete || ((e, fips) => {

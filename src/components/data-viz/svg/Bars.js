@@ -38,7 +38,7 @@ const Bars = ({
   // handle bar active states
   const handleBarSelection = (hover, index) => {
     if (hover === true) {
-      d3.selectAll('.bars .bar').filter((d, i, nodes) => {
+      d3.selectAll('.bars .bar').nodes().forEach((_d, i, nodes) => {
         if (i === index) {
           const selectedElement = d3.selectAll('.bars .active')
           selectedElement.attr('class', 'bar')
@@ -49,8 +49,7 @@ const Bars = ({
       })
     }
     else {
-      d3.selectAll('.bars .bar').filter((d, i, nodes) => {
-        // console.log('hover false nodes: ', nodes)
+      d3.selectAll('.bars .bar').nodes().forEach((_d, _i, nodes) => {
         const selectedElement = d3.selectAll('.bars .active')
         if (selectedElement) {
           selectedElement.attr('selected', false)
@@ -110,13 +109,11 @@ const Bars = ({
         onHover={onHover}
         showTooltips={showTooltips}
         isClickable={isClickable}
-        onHover={onHover}
         { ...rest }
       />
     ))
     : data.map((item, index) => {
       const domain = xDomain()
-      // console.log('data.map item, i: ', item, i)
       return (
         <g
           key={`bar__${ index }`}

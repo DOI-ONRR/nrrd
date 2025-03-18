@@ -84,14 +84,14 @@ const ComparisonTable = forwardRef((props, ref) => {
         const year = dateArr[0]
         const month = date.toLocaleDateString('en-US', { month: 'long' })
 
-        setSelectedItem({ ...selectedItem, year: year, month: month })
+        setSelectedItem({ ...selectedItem, year, month })
       }
       else {
         const currentSelectedYearData = data.filter(item => item.year === d)
         const currentSelectedYearDataMaxMonth = currentSelectedYearData[currentSelectedYearData.length - 1].month_long ||
            currentSelectedYearData[currentSelectedYearData.length - 1].monthLong
         const year = d
-        setSelectedItem({ ...selectedItem, year: year, month: currentSelectedYearDataMaxMonth })
+        setSelectedItem({ ...selectedItem, year, month: currentSelectedYearDataMaxMonth })
       }
     }
   }))
@@ -231,7 +231,8 @@ const ComparisonTable = forwardRef((props, ref) => {
               }
               <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">
-                  {month ? `${ month } ${ previousYear } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`
+                  {month
+                    ? `${ month } ${ previousYear } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`
                     : `${ previousYearText } ${ comparisonText } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`}
                 </Box>
               </TableCell>

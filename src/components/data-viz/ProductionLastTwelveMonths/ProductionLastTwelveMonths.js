@@ -56,9 +56,9 @@ const ProductionLastTwelveMonths = ({ title, disableInteraction, filterByProduct
   }, data?.results[0])
 
   const legendHeaders = (headers, row) => {
-    const date = new Date(`${ headers[1] }T00:00:00`)
+    const date = new Date(`${ headers[1].__data__ }T00:00:00`)
     const month = date.toLocaleString('default', { month: 'short' })
-    const year = headers[1].substring(0, 4)
+    const year = headers[1].__data__.substring(0, 4)
     const headerArr = [headers[0], `${ month } ${ year }`]
     return headerArr
   }

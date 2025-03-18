@@ -11,7 +11,6 @@ import withStyles from '@material-ui/styles/withStyles'
 
 import withQueryManager from '../../withQueryManager'
 import { QK_REVENUE_COMMON, SOURCE, COMMODITY, DISPLAY_NAMES } from '../../../constants'
-import { max } from 'lodash'
 
 /**
  * This displays data related to the Revenue for the last 12 months
@@ -25,19 +24,20 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
 
   let yOrderBy
   switch (yGroupBy) {
-  case SOURCE:
-    yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
-    break
-  case COMMODITY:
-    yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
-    break
-  default:
-    yOrderBy = ['Other revenues', 'Inspection fees', 'Civil penalties', 'Rents', 'Bonus', 'Royalties']
-    break
+    case SOURCE:
+      yOrderBy = ['Federal - not tied to a lease', 'Native American', 'Federal offshore', 'Federal onshore']
+      break
+    case COMMODITY:
+      yOrderBy = ['Not tied to a commodity', 'Other commodities', 'Coal', 'Gas', 'Oil']
+      break
+    default:
+      yOrderBy = ['Other revenues', 'Inspection fees', 'Civil penalties', 'Rents', 'Bonus', 'Royalties']
+      break
   }
 
   if (yGroupBy === COMMODITY && data) {
-    data.results = Object.values(groupByCommodity(data.results))
+    const newData = { ...data, results: Object.values(groupByCommodity(data.results)) }
+    data = newData
   }
 
   const xGroups = data?.results.reduce((g, row, i) => {
@@ -68,9 +68,9 @@ const RevenueLastTwelveMonths = ({ title, disableInteraction, yGroupBy, data, ch
   }, data?.results[0])
 
   const legendHeaders = (headers, row) => {
-    const date = new Date(`${ headers[1] }T00:00:00`)
+    const date = new Date(`${ headers[1].__data__ }T00:00:00`)
     const month = date.toLocaleString('default', { month: 'short' })
-    const year = headers[1].substring(0, 4)
+    const year = headers[1].__data__.substring(0, 4)
     const name = (yGroupBy === 'revenue_type') ? 'Revenue type' : DISPLAY_NAMES[headers[0]]?.default
     const headerArr = [name, `${ month } ${ year }`]
     return headerArr
@@ -135,7 +135,7 @@ function groupByCommodity (data) {
         revenue_type: item.revenue_type,
         month: item.month,
         year: item.year,
-        commodity: commodity,
+        commodity,
         sum: 0,
         recipient: item.recipient,
         month_long: item.month_long,
