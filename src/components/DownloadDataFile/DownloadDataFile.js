@@ -7,9 +7,7 @@ import utils from '../../js/utils'
 
 const DownloadDataFile = props => {
   console.debug('MetaData', metaData)
-  // console.debug('childrin', props.children)
-  // console.debug('UTILS: ', utils)
-  // console.debug('childrin', props)
+  console.log('props', props)
   const href = './../' + props.dataSet
   const minDate = metaData[props.dataSet].minDate
   const maxDate = metaData[props.dataSet].maxDate
@@ -19,7 +17,7 @@ const DownloadDataFile = props => {
   const suffix = (props.linkType === 'DownloadCsv') ? 'csv' : 'xlsx'
   return (<>
 	  <Link linkType={props.linkType} href={ href } >
-	    {props.children + ', ' + range + ' (' + suffix + ', ' + size + ')' }
+	    {props.children.props.children + ', ' + range + ' (' + suffix + ', ' + size + ')' }
 	  </Link>
   </>
   )
