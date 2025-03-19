@@ -56,7 +56,7 @@ const IconLink = ({ icon, children, pl = 0, mt = 2, style, ...rest }) => (
   <Box pl={pl} mt={mt} mb={2} style={style}>
     <BaseLink {...rest}>
       <Box mr={1} display='inline-block'>{icon}</Box>
-      <span>{children}</span>
+      <Box display='inline-block'>{children}</Box>
     </BaseLink>
   </Box>
 )

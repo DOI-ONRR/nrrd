@@ -10,7 +10,6 @@ export default class D3StackedBarChart {
       this.chartDiv = node.querySelector('#chart_div')
       this.legendDiv = node.querySelector('#legend_div')
       if (data && data.length > 0) {
-        // console.debug('data:', data)
         this.data = data
       }
       else {
@@ -549,16 +548,15 @@ export default class D3StackedBarChart {
 
   select (index) {
     try {
-      d3.selectAll('.bar').nodes().forEach((_d, i, nodes) => {
+      d3.selectAll('.bar').each(function(d, i) {
         if (i === index) {
-          const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
-          if (selectedElement) {
-            selectedElement.attr('selected', false)
-            selectedElement.attr('class', 'bar')
+          const selectedElement = d3.select('.bar.active');
+          if (!selectedElement.empty()) {
+            selectedElement.attr('selected', false).attr('class', 'bar');
           }
-          d3.select(nodes[i]).attr('class', 'bar active')
+          d3.select(this).attr('class', 'bar active');
         }
-      })
+      });
     }
     catch (err) {
       console.warn('Error: ', err)
@@ -692,7 +690,6 @@ export default class D3StackedBarChart {
       }
       else {
         dataArr = yOrderBy.map((key, i) => {
-          // return [key, undefined, data[key] || '-']
           return [key, data[key] || '-']
         })
       }
@@ -1285,7 +1282,7 @@ export default class D3StackedBarChart {
 
   getSelected () {
     const allGroupedData = []
-    d3.select(this.node).selectAll('.bar').nodes().forEach((d, i, nodes) => {
+    d3.select(this.node).selectAll('.bar').each((d, i, nodes) => {
       if (nodes[i].className.baseVal.match(/active/)) {
         this.xSelectedValue = d
         this.ySelectedGroup = this.yGroupData(d)
