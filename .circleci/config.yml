@@ -474,7 +474,7 @@ workflows:
             - apply-database-changes
           filters:
             branches:
-              only: master
+              ignore: /.*/
   dev-workflow:
     jobs:
       - apply-database-changes:
@@ -494,7 +494,7 @@ workflows:
             - apply-database-changes
           filters:
             branches:
-              only: dev
+              ignore: /.*/
   generate_downloads:
     when: << pipeline.parameters.run_generate_downloads >>
     jobs:
