@@ -287,7 +287,7 @@ const stackedBarChart = {
       const padding = (self.xScale.bandwidth() * 0.2)
       let xPos = 0
 
-      Object.keys(self.groups).map((name, index) => {
+      Object.keys(self.groups).forEach(name => {
         const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
 
         groupLines.append('line')

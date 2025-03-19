@@ -11,10 +11,10 @@ const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
-  case types.ADD_DOWNLOAD_DATA:
-    return ({ ...state, [payload.key]: payload.data })
-  default:
-    return state
+    case types.ADD_DOWNLOAD_DATA:
+      return ({ ...state, [payload.key]: payload.data })
+    default:
+      return state
   }
 }
 

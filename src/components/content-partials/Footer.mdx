@@ -5,16 +5,19 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew'
     <Grid container>
       <Grid item xs={12} sm={2}>
         <Box p={4} display={{ xs: 'none', sm: 'block' }}>
-          <DoiLogoImg></DoiLogoImg>
+          <DoiLogoImg />
         </Box>
       </Grid>
       <Grid item xs={12} sm={7}>
         <Box color="white">
           <h2>Built in the open</h2>
           <Box mr={4}>
-This site <Link href="https://github.com/DOI-ONRR/nrrd/releases" style={{ color: 'white' }}>{props.data.site.siteMetadata.version} <OpenInNewIcon style={{ fontSize: 12, fill: 'white' }} /></Link> is powered by <Link href="/downloads" style={{ color: 'white' }}>open data</Link> and <Link href='https://github.com/DOI-ONRR/nrrd' style={{ color: 'white' }}>source code <OpenInNewIcon style={{ fontSize: 12, fill: 'white' }} /></Link>. We welcome contributions
-and comments on <Link href='https://github.com/DOI-ONRR/nrrd/issues' style={{ color: 'white' }}>GitHub <OpenInNewIcon style={{ fontSize: 12, fill: 'white' }} /></Link>. We write about how we work on this
-site on <Link href='https://blog-nrrd.doi.gov' style={{ color: 'white' }}>our team's blog <OpenInNewIcon style={{ fontSize: 12, fill: 'white' }} /></Link>.
+            This site
+            <Link href="https://github.com/DOI-ONRR/nrrd/releases" style={{ color: 'white' }}>{props.data.site.siteMetadata.version} <OpenInNewIcon style={{ fontSize: 12, fill: 'white' }} /></Link> is powered by <Link href="/downloads" style={{ color: 'white' }}>open data</Link> and
+            <Link href='https://github.com/DOI-ONRR/nrrd' style={{ color: 'white' }}>source code <OpenInNewIcon style={{ fontSize: 12, fill: 'white' }} /></Link>.
+              We welcome contributions and comments on <Link href='https://github.com/DOI-ONRR/nrrd/issues' style={{ color: 'white' }}>GitHub
+              <OpenInNewIcon style={{ fontSize: 12, fill: 'white' }} /></Link>. We write about how we work on this
+              site on <Link href='https://blog-nrrd.doi.gov' style={{ color: 'white' }}>our team's blog <OpenInNewIcon style={{ fontSize: 12, fill: 'white' }} /></Link>.
           </Box>
           <Box color='white' fontSize={'caption.fontSize'} mt={4}>
             <Link href='/' style={{ color: 'white' }}>Home</Link>&nbsp;|&nbsp;
@@ -29,8 +32,6 @@ site on <Link href='https://blog-nrrd.doi.gov' style={{ color: 'white' }}>our te
             <Link href='/information-quality' style={{ color: 'white' }}>Information Quality</Link>&nbsp;|&nbsp;
             <Link href='/accessibility' style={{ color: 'white' }}>Accessibility</Link>&nbsp;|&nbsp;
             <Link href='/plain-language' style={{ color: 'white' }}>Plain Language</Link>
-            
-            
           </Box>
         </Box>
       </Grid>

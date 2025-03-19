@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 
 import { DataFilterContext } from '../../../../stores/data-filter-store'
 import { AppStatusContext } from '../../../../stores/app-status-store'
@@ -34,7 +34,10 @@ const useStyles = makeStyles(theme => ({
 
 const BaseDataFilterSelect = ({ dataFilterKey, selectType, helperText, label, loadingMessage, noClearOption, disabled }) => {
   const { state } = useContext(DataFilterContext)
-  const { loading, error, data } = useQuery(DFQM.getQuery(dataFilterKey, state), DFQM.getVariables(state))
+
+  const { data, loading, error } = useQuery(DFQM.getQuery(dataFilterKey, state), {
+    variables: DFQM.getVariables(state),
+  })
 
   const { updateLoadingStatus, showErrorMessage } = useContext(AppStatusContext)
 

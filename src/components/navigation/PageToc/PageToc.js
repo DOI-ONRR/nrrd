@@ -258,13 +258,15 @@ const PageToc = props => {
       <StickyWrapper bottomBoundary={props.bottomBoundary} top={80} innerZ="1000">
         <Paper className={classes.tocContainer}>
           <Hidden smDown>
-            {toc.displayTitle ? (
-              <h3 className={classes.displayTitle + ' state-page-nav-title'}>
-                {toc.displayTitle}
-              </h3>
-            ) : (
-              <div />
-            )}
+            {toc.displayTitle
+              ? (
+                <h3 className={classes.displayTitle + ' state-page-nav-title'}>
+                  {toc.displayTitle}
+                </h3>
+              )
+              : (
+                <div />
+              )}
           </Hidden>
           <Hidden smUp>
             <button
@@ -410,7 +412,7 @@ const elementArrayToTocArray = (elems, excludeClassNames, offset) => {
       elem[TOC_SUB_ATTRB] = undefined
     })
 
-    filteredElems.map((elem, index) => {
+    filteredElems.forEach((elem, index) => {
       const currentElemHierarchyIndex = elem.getAttribute(TOC_DISPLAY_AS_ATTRB)
         ? parseInt(elem.getAttribute(TOC_DISPLAY_AS_ATTRB))
         : parseInt(elem.tagName.slice(-1))

@@ -8,10 +8,8 @@ export default class D3PieChart {
     this._height = (node.children[0].clientHeight > 0) ? node.children[0].clientHeight : 400
     this._width = (node.children[0].clientWidth <= 0) ? 300 : node.children[0].clientWidth
     this.radius = Math.min(this._width, this._height) / 2
-    console.debug('data =========================================:', this.radius)
 
     this.color = d3.scaleOrdinal(d3.schemeCategory10)
-    //      .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
     this.xAxis = options.xAxis
     this.yAxis = options.yAxis
     const self = this
@@ -21,7 +19,6 @@ export default class D3PieChart {
 
     const pie = d3.pie()
       .value(function (d) {
-        console.debug('PIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE-----', d, d[self.yAxis])
         return d[self.yAxis]
       })
       .sort(null)
@@ -34,10 +31,6 @@ export default class D3PieChart {
       .attr('height', h)
       .attr('transform', 'translate(' + w / 2 + ',' + h / 2 + ')')
 
-    /*    svg.append('g')
-      .attr('class', 'arc')
-      .attr('transform', 'translate(' + this._width / 2 + ',' + this._height / 2 + ')')
-*/
     const pieData = pie(this.data)
     const g = svg.selectAll('arc')
       .data(pieData)
@@ -142,7 +135,7 @@ export default class D3PieChart {
       const padding = (self.xScale.bandwidth() * 0.2)
       let xPos = 0
 
-      Object.keys(self.groups).map((name, index) => {
+      Object.keys(self.groups).forEach(name => {
         const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
 
         groupLines.append('line')
@@ -285,15 +278,9 @@ export default class D3PieChart {
   select (index) {
     try {
       // console.debug("INdex: ", index, "I: ", this.selectedIndex)
-      d3.selectAll('.bar').filter((d, i, nodes) => {
+      d3.selectAll('.bar').forEach((_d, i, nodes) => {
         if (i === index) {
-          /*          this.xSelectedValue = d
-                      this.ySelectedGroup = this.yGroupData(d)
-                      this.selectedData(this.ySelectedGroup)
-                      this.selectedIndex = index
-          */
-
-          const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
+          const selectedElement = d3.selectAll('.active')
           if (selectedElement) {
             selectedElement.attr('selected', false)
             selectedElement.attr('class', 'bar')
@@ -398,7 +385,7 @@ export default class D3PieChart {
       tr.selectAll('td')
         .data(function (row, i) {
           return headers.map(function (column, i) {
-            return { column: column, value: row[i] }
+            return { column, value: row[i] }
           })
         })
         .enter()

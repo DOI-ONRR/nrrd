@@ -1,4 +1,3 @@
-
 /* eslint-disable no-tabs */
 /* eslint-disable no-unused-vars */
 import * as d3 from 'd3'
@@ -61,7 +60,7 @@ export default class d3Map {
     const xyz = window.localStorage.getItem('mapZoom') || ''
     if (xyz.length > 0) {
 	    const [x, y, z] = xyz.split(/,/)
-	    this.zoom({ x: x, y: y, k: z })
+	    this.zoom({ x, y, k: z })
     }
   }
 
@@ -204,35 +203,35 @@ export default class d3Map {
 
     // switch quick and dirty to let users change color beter to use d3.interpolateRGB??
     switch (colorScheme) {
-    case 'blue':
-      color = d3.scaleSequentialQuantile(
-        data.values, t =>
-          d3.interpolateBlues(t)
-      )
-      break
-    case 'green':
-      color = d3.scaleSequentialQuantile(
-        data.values, t =>
-          d3.interpolateGreens(t)
-      )
-      break
-    case 'red':
-      color = d3.scaleSequentialQuantile(
-        data.values, t =>
-          d3.interpolateReds(t)
-      )
-      break
-    case 'grey':
-      color = d3.scaleSequentialQuantile(
-        data.values, t =>
-          d3.interpolateGreys(t)
-      )
-      break
-    default:
-      color = d3.scaleSequentialQuantile(
-        data.values, t =>
-          d3.interpolateGreens(t)
-      )
+      case 'blue':
+        color = d3.scaleSequentialQuantile(
+          data.values, t =>
+            d3.interpolateBlues(t)
+        )
+        break
+      case 'green':
+        color = d3.scaleSequentialQuantile(
+          data.values, t =>
+            d3.interpolateGreens(t)
+        )
+        break
+      case 'red':
+        color = d3.scaleSequentialQuantile(
+          data.values, t =>
+            d3.interpolateReds(t)
+        )
+        break
+      case 'grey':
+        color = d3.scaleSequentialQuantile(
+          data.values, t =>
+            d3.interpolateGreys(t)
+        )
+        break
+      default:
+        color = d3.scaleSequentialQuantile(
+          data.values, t =>
+            d3.interpolateGreens(t)
+        )
     }
 
     if (minColor && maxColor) {
@@ -348,36 +347,6 @@ export default class d3Map {
       .datum(topojson.mesh(us, us.objects[mapFeatures], (a, b) => a !== b))
       .attr('fill', 'none')
       .attr('d', path)
-
-    //    const AKR = d3.set(['BFT', 'CHU', 'HOP', 'NOR', 'MAT', 'NAV', 'ALB', 'BOW', 'ALA', 'GEO', 'NAL', 'SHU', 'KOD', 'GOA', 'COK'])
-    /*    const AKR = d3.set([ 'NAV', 'ALB'])
-    let v=data.get('AKR')
-    console.debug('v                         :',v)
-    g.append('path')
-      .datum(topojson.merge(us, us.objects[mapFeatures].geometries.filter(function(d) {
-        return AKR.has(d.id) })))
-      .attr('fill', 'darkblue') // d => color(data.get('AKR')))
-*/
-
-    /* .attr('fill-opacity', 0.9)
-      .attr('d', path)
-      .attr('stroke', '#CACBCC')
-      .attr('vector-effect', 'non-scaling-stroke')
-      .on('click', (d, i) => {
-        onClick(d, i)
-      })
-      .on('mouseover', function (d, i) {
-        d3.select(this)
-          .style('fill-opacity', 0.7)
-	  .style('cursor', 'pointer')
-      })
-      .on('mouseout', (d, i) => {
-        _chart.selectAll('path')
-          .style('fill-opacity', 0.9)
-      })
-      .append('title')
-      .text(d => `Alaska Offshore Region  ${ format(data.get('AKR')) }`).transition().duration(3000)
-    */
 
     const POR = d3.set(['WAO', 'NOC', 'CEC', 'SOC'])
     g.append('path')

@@ -73,8 +73,11 @@ const QueryLink = ({ mt = 3, ...props }) => {
     }
 
     const queryArr = []
-    Object.keys(params).map(key => {
-      if (params[key] !== undefined) queryArr.push(`${ key }=${ encodeURIComponent(params[key]) }`)
+
+    Object.keys(params).forEach(key => {
+      if (params[key] !== undefined) {
+        queryArr.push(`${key}=${encodeURIComponent(params[key])}`)
+      }
     })
 
     const queryString = queryArr.join('&')

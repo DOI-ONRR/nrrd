@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import QueryManager from '../js/query-manager'
 
 import { DataFilterContext } from '../stores/data-filter-store'
@@ -8,7 +8,21 @@ import { AppStatusContext } from '../stores/app-status-store'
 const withQueryManager = (BaseComponent, queryKey, options) => ({ ...props }) => {
   options = options || {}
   const { state, updateQueryDataFilterCounts } = useContext(DataFilterContext)
-  const { loading, error, data } = useQuery(QueryManager.getQuery(queryKey, state, options), QueryManager.getVariables(queryKey, state, options))
+  const query = QueryManager.getQuery(queryKey, state, options || {})
+  const rawVariables = QueryManager.getVariables(queryKey, state, options || {})
+  
+  // Remove properties with undefined values
+  let sanitizedVariables = {}
+  if (rawVariables) {
+    sanitizedVariables = Object.fromEntries(
+      Object.entries(rawVariables).filter(([_, value]) => value !== undefined)
+    )
+  }
+
+  const { data, loading, error } = useQuery(query, {
+    variables: sanitizedVariables
+  })
+
   const { showErrorMessage } = useContext(AppStatusContext)
 
   useEffect(() => {

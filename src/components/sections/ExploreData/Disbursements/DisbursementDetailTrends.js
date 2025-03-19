@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import utils from '../../../../js/utils'
 import { useInView } from 'react-intersection-observer'
@@ -24,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query DisbursementDetailTrends($state: String!, $period: String!, $year: Int!) {
     disbursement_summary(
       where: { state_or_area: { _eq: $state } }
@@ -74,9 +73,9 @@ const DisbursementDetailTrends = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: DFC.FISCAL_YEAR_LABEL, year: year },
-    skip: inView === false,
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: { state, period: DFC.FISCAL_YEAR_LABEL, year },
+    skip: inView === false
   })
 
   if (loading) return 'Loading...'

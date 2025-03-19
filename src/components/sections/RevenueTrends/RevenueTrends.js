@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import utils from '../../../js/utils'
 import PercentDifference from '../../utils/PercentDifference'
@@ -30,7 +29,7 @@ import {
 * summarizes data for graphical representation
 */
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
     query RevenueTrendsQuery {
       revenue_trends(order_by: {fiscal_year: desc, current_month: desc}) {
         fiscalYear:fiscal_year
@@ -57,7 +56,8 @@ const RevenueTrends = props => {
   const { state: filterState } = useContext(DataFilterContext)
   const { monthly, period } = filterState
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY)
+  const { data, loading, error } = useQuery(QUERY)
+
   const revenueTrendsTitle = monthly === 'Monthly' ? 'Month over month comparison' : 'Year over year comparison'
   const periodAbbr = period === DFC.PERIOD_CALENDAR_YEAR ? 'CY' : 'FY'
 

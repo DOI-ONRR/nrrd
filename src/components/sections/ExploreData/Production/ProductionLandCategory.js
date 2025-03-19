@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 import PropTypes from 'prop-types'
 
 // utility functions
@@ -23,7 +22,7 @@ import LineChart from '../../../data-viz/LineChart/LineChart'
 
 const LINE_DASHES = ['1,0', '5,5', '10,10', '20,10,5,5,5,10']
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query ProductionLandCategory($state: String!, $location: String!, $commodity: String!, $period: String!) {
     production_summary(
       where: {
@@ -87,31 +86,36 @@ const ProductionLandCategory = ({ title, ...props }) => {
   const state = props.fipsCode || ''
 
   switch (props.regionType) {
-  case DFC.STATE:
-    locationType = DFC.STATE
-    break
-  case DFC.COUNTY_CAPITALIZED:
-    locationType = DFC.COUNTY_CAPITALIZED
-    break
-  case DFC.OFFSHORE_CAPITALIZED:
-    locationType = DFC.OFFSHORE_CAPITALIZED
-    break
-  default:
-    locationType = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS || props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) && props.state
-    break
+    case DFC.STATE:
+      locationType = DFC.STATE
+      break
+    case DFC.COUNTY_CAPITALIZED:
+      locationType = DFC.COUNTY_CAPITALIZED
+      break
+    case DFC.OFFSHORE_CAPITALIZED:
+      locationType = DFC.OFFSHORE_CAPITALIZED
+      break
+    default:
+      locationType = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_FIPS || props.fipsCode === DFC.NATIVE_AMERICAN_FIPS) && props.state
+      break
   }
 
-  // console.log('ProductionLandCategory useQuery vars: ', state, locationType, commodity, period)
   const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state, location: locationType, commodity, period },
-    skip: inView === false
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: {
+      state,
+      location: locationType,
+      commodity,
+      period
+    },
+    skip: inView === false,
   })
+
   if (loading) {
     return (
       <div className={classes.progressContainer}>

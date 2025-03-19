@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import utils from '../../../../js/utils'
 import * as d3 from 'd3'
@@ -32,8 +31,12 @@ const RevenueLocationTotal = props => {
   const year = filterState[DFC.YEAR]
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
 
-  const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], year: year, period }
+  const { data, loading, error } = useQuery(LOCATION_TOTAL_QUERY, {
+    variables: {
+      location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS],
+      year,
+      period
+    },
   })
 
   if (loading) return ''

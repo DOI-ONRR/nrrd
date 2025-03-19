@@ -57,7 +57,7 @@ const PaletteDisplay = ({ children }) => {
             return (
               <Box key={key} pl={2}>
                 <Typography variant={'h4'}>{`${ key }`}</Typography>
-                <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
+                <Grid container direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2}>
                   {Object.keys(theme.palette[key]).map(subKey => {
                     if (typeof theme.palette[key][subKey] === 'string') {
                       const hexColor = (theme.palette[key][subKey].charAt(0) === '#')
@@ -83,6 +83,7 @@ const PaletteDisplay = ({ children }) => {
                         </Grid>
                       )
                     }
+                    return <></>
                   })}
                 </Grid>
               </Box>
@@ -94,7 +95,7 @@ const PaletteDisplay = ({ children }) => {
             return (
               <Box key={key} pl={2}>
                 <Typography variant={'h4'}>{`${ key }`}</Typography>
-                <Grid container direction="row" justify="flex-start" alignItems="stretch">
+                <Grid container direction="row" justifyContent="flex-start" alignItems="stretch">
                   <Grid item xs={12} sm={4} md={3}>
                     <PatternLibraryCard
                       title={`${ key }`}
@@ -111,6 +112,7 @@ const PaletteDisplay = ({ children }) => {
               </Box>
             )
           }
+          return <></>
         })
       }
     </>

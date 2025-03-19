@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 import * as d3 from 'd3'
 
 import { formatToDollarInt } from '../../../../js/utils'
@@ -29,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query RevenueTypes($state: String!, $year: Int!, $period: String!, $commodities: [String!]) {
     revenue_type_summary(
       where: { year: { _eq: $year }, location: { _eq: $state }, period: { _eq: $period}, commodity: {_in: $commodities} },
@@ -51,7 +50,7 @@ const RevenueDetailTypes = props => {
   const period = (filterState[DFC.PERIOD]) ? filterState[DFC.PERIOD] : DFC.PERIOD_FISCAL_YEAR
   const dataSet = (period === DFC.PERIOD_FISCAL_YEAR) ? `FY ${ year }` : `CY ${ year }`
   const commodities = (filterState[DFC.COMMODITY]) ? filterState[DFC.COMMODITY].split(',') : undefined
-  const state = (props.fipsCode === DFC.NATIONWIDE_FEDERAL_ABBR || props.fipsCode === DFC.NATIVE_AMERICAN_ABBR) ? props.name : props.fipsCode
+  const state = props.fipsCode
 
   const { ref, inView } = useInView({
     /* Optional options */
@@ -59,10 +58,16 @@ const RevenueDetailTypes = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: period, commodities: commodities },
-    skip: inView === false
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: {
+      state,
+      year,
+      period,
+      commodities
+    },
+    skip: inView === false,
   })
+
   const dataKey = dataSet + '-' + props.name
   let chartData
 

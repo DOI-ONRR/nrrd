@@ -150,8 +150,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
           }
         })
         .entries(data)
-        .map(d => {
-          // console.log('map d', d)
+        .forEach(d => {
           d.values.forEach(v => groupTotals.push(v.value.total))
         })
 
@@ -378,7 +377,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
   useEffect(() => {
     const d = []
 
-    xDomain().map((item, i) => {
+    xDomain().forEach(item => {
       d.push(barData(item))
     })
 

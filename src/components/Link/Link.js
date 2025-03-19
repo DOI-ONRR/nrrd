@@ -56,7 +56,7 @@ const IconLink = ({ icon, children, pl = 0, mt = 2, style, ...rest }) => (
   <Box pl={pl} mt={mt} mb={2} style={style}>
     <BaseLink {...rest}>
       <Box mr={1} display='inline-block'>{icon}</Box>
-      <span>{children}</span>
+      <Box display='inline-block'>{children}</Box>
     </BaseLink>
   </Box>
 )
@@ -79,16 +79,16 @@ const BaseLink = ({ href, disableRouting, className = '', children, linkType, ta
   let classes
 
   switch (linkType) {
-  case LinkTypeComponents.Header:
-    classes = `${ styles.headerLink } ${ className } ${ (currentPathname === withPrefix(href)) && styles.headerLinkBold }`
-    break
-  case LinkTypeComponents.FilterTable:
-  case LinkTypeComponents.ExploreData:
-    classes = `${ styles.link } ${ styles.filterTableIcon } ${ className }`
-    break
-  default:
-    classes = `${ styles.link } ${ className }`
-    break
+    case LinkTypeComponents.Header:
+      classes = `${ styles.headerLink } ${ className } ${ (currentPathname === withPrefix(href)) && styles.headerLinkBold }`
+      break
+    case LinkTypeComponents.FilterTable:
+    case LinkTypeComponents.ExploreData:
+      classes = `${ styles.link } ${ styles.filterTableIcon } ${ className }`
+      break
+    default:
+      classes = `${ styles.link } ${ className }`
+      break
   }
 
   return (
@@ -118,9 +118,9 @@ const LinkTypeComponents = {
   Location: props => <IconLink icon={<IconUsMapImg data-testid='us map icon' />} pl={0} {...props} />
 }
 
-const regexXlsx = RegExp('.xlsx$')
-const regexCsv = RegExp('.csv$')
-const regexDownloadData = RegExp('^(.*)/downloads/[a-zA-Z0-9#]+')
+const regexXlsx = /.xlsx$/
+const regexCsv = /.csv$/
+const regexDownloadData = /^(.*)\/downloads\/[a-zA-Z0-9#]+/
 
 const getLinkComponent = ({ linkType, ...props }) => {
   if (linkType) {

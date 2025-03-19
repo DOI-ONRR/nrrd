@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import utils from '../../../../js/utils'
 import * as d3 from 'd3'
@@ -40,9 +39,15 @@ const ProductionLocationTotal = props => {
     threshold: 0,
     triggerOnce: true
   })
-  const { loading, error, data } = useQuery(LOCATION_TOTAL_QUERY, {
-    variables: { location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS], year: year, period: period, product: product },
-    skip: inView === false
+
+  const { data, loading, error } = useQuery(LOCATION_TOTAL_QUERY, {
+    variables: {
+      location: [DFC.NATIONWIDE_FEDERAL_FIPS, DFC.NATIVE_AMERICAN_FIPS],
+      year,
+      period,
+      product
+    },
+    skip: inView === false,
   })
 
   if (loading) return ''

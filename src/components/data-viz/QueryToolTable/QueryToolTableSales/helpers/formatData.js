@@ -3,10 +3,10 @@ import tableConfig from '../config/tableConfig'
 
 const formatData = (column, value) => {
   if (tableConfig.currencyColumns.findIndex(col => col === column.name) !== -1) {
-    return currencyFormatter({ value: value })
+    return currencyFormatter({ value })
   }
   else if (tableConfig.numberColumns.findIndex(col => col === column.name) !== -1) {
-    return numberFormatter({ value: value })
+    return numberFormatter({ value })
   }
   return value
 }

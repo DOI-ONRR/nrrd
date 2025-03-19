@@ -359,7 +359,7 @@ const MapContext = props => {
       }
     }
 
-    updateExploreDataCards({ ...pageState, cards: cards })
+    updateExploreDataCards({ ...pageState, cards })
   }
 
   const onClick = (d, fips) => {
@@ -421,6 +421,7 @@ const MapContext = props => {
             }
           }
         }
+        return false
       })
 
       const stateLinks = filteredLocations.map(item => {
@@ -456,11 +457,11 @@ const MapContext = props => {
 
   const mapChild = React.cloneElement(props.children[0],
     {
-      mapFeatures: mapFeatures, // use context instead
-      mapJsonObject: mapJsonObject, // use context instead
+      mapFeatures, // use context instead
+      mapJsonObject, // use context instead
       minColor: '#CDE3C3',
       maxColor: '#2F4D26',
-      onClick: onClick,
+      onClick,
       mapZoom: matchesXsDown ? { x: 50, y: 25, k: 0.75 } : undefined,
       width: size.width
     })

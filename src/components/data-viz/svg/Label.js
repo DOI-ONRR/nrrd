@@ -3,7 +3,7 @@ import React from 'react'
 const Label = ({ key, data, fill, fontSize, isClickable }) => {
   const styles = {
     default: {
-      fontSize: fontSize
+      fontSize
     },
     clickable: {
       cursor: 'pointer',
