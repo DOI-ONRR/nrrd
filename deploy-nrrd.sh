@@ -71,7 +71,7 @@ fi
 
 # Sync downloads from AWS
 echo "Syncing downloads..." > /dev/tty
-aws s3 sync public "s3://${AWS_BUCKET_NAME}/sites/${CIRCLE_BRANCH}/" &
+aws s3 sync "s3://${AWS_BUCKET_NAME}/downloads/" ./static/downloads &
 pid=$!
 show_spinner $pid
 wait $pid || { echo "AWS sync failed. Check the log file. Exiting..." > /dev/tty; exit 1; }
