@@ -4,7 +4,7 @@ import { render } from '@testing-library/react'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../src/js/mui/theme'
 
-import { MockedProvider } from '@apollo/react-testing'
+import { MockedProvider } from "@apollo/client/testing";
 import mediaQuery from 'css-mediaquery'
 
 import mocks from '../__mock_queries__/apollo-query-mocks'

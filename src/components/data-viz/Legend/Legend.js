@@ -1,5 +1,4 @@
 import React from 'react'
-// not used import * as d3 from 'd3'
 
 import PropTypes from 'prop-types'
 
@@ -65,7 +64,6 @@ const Legend = ({
   colorScale,
   ...rest
 }) => {
-  // console.log('Legend data: ', data)
   const theme = useTheme()
   const activeKey = (activeNode && activeNode.key) && activeNode.key
   const legendData = legendReverse ? data.reverse() : data
@@ -144,6 +142,6 @@ export default Legend
 
 // propTypes
 Legend.propTypes = {
-  data: PropTypes.func.isRequired,
+  data: PropTypes.array.isRequired,
   labels: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string])
 }

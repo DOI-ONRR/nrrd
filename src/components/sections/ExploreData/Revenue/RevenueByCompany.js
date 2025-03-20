@@ -2,8 +2,7 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import QueryLink from '../../../../components/QueryLink'
 
@@ -47,31 +46,6 @@ const NATIONAL_REVENUE_SUMMARY_QUERY = gql`
    }
   }
 `
-/* not used
- * const useStyles = makeStyles(theme => ({
- *   root: {
- *     maxWidth: '100%',
- *     width: '100%',
- *     margin: theme.spacing(1),
- *     '@media (max-width: 768px)': {
- *       maxWidth: '100%',
- *     },
- *   },
- *   progressContainer: {
- *     maxWidth: '25%',
- *     display: 'flex',
- *     '& > *': {
- *       marginTop: theme.spacing(3),
- *       marginRight: 'auto',
- *       marginLeft: 'auto',
- *     }
- *   },
- *   circularProgressRoot: {
- *     color: theme.palette.primary.dark,
- *   }
- * }))
- *
-*/
 const RevenueByCompany = props => {
   // not used const classes = useStyles()
   const theme = useTheme()
@@ -87,9 +61,12 @@ const RevenueByCompany = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year, commodities: commodities },
-    skip: period !== 'Calendar Year' || inView === false
+  const { data, loading, error } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+    variables: {
+      year,
+      commodities
+    },
+    skip: period !== 'Calendar Year' || inView === false,
   })
 
   let groupData

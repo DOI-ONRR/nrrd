@@ -85,7 +85,7 @@ commands:
 jobs:
   lint:
     docker:
-      - image: cimg/node:12.4
+      - image: cimg/node:18.20.7
     working_directory: ~/repo
     steps:
       - checkout
@@ -93,7 +93,7 @@ jobs:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm install --legacy-peer-deps
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -168,15 +168,15 @@ jobs:
           path: ./__audits__/lighthouse/
   nrrd-preview:
     docker:
-      - image: cimg/node:16.20-browsers
-    resource_class: xlarge
+      - image: cimg/node:18.20.7
+    resource_class: medium
     steps:
       - checkout
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm install --legacy-peer-deps
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -216,15 +216,15 @@ jobs:
             bash ./.circleci/cleanup-previews.sh
   dev:
     docker:
-      - image: cimg/node:16.20-browsers
-    resource_class: xlarge
+      - image: cimg/node:18.20.7
+    resource_class: medium
     steps:
       - checkout
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm install --legacy-peer-deps
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -266,15 +266,15 @@ jobs:
             cf push dev-nrrd -f ./manifest.yml
   prod:
     docker:
-      - image: cimg/node:16.20-browsers
-    resource_class: xlarge
+      - image: cimg/node:18.20.7
+    resource_class: medium
     steps:
       - checkout
       - restore_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
       - run:
           name: Install node dependencies
-          command: npm install
+          command: npm install --legacy-peer-deps
       - save_cache:
           key: v3-node-modules-{{ checksum "package-lock.json" }}
           paths:
@@ -423,22 +423,16 @@ workflows:
       - unit_tests:
           filters:
             branches:
-              ignore:
-                - master
-                - staging
+              ignore: /.*/
       - lint:
           filters:
             branches:
-              ignore:
-                - master
-                - staging
+              ignore: /.*/
 
       - lighthouse:
           filters:
             branches:
-              ignore:
-                - master
-                - staging
+              ignore: /.*/
   
   preview-workflow:
     jobs:
@@ -457,14 +451,10 @@ workflows:
             - nrrd
             - org-global
           requires:
-            - apply-database-changes:
-              - success
-              - failed
+            - apply-database-changes
           filters:
             branches:
-              ignore:
-                - master
-                - dev
+              ignore: /.*/
 
   prod-workflow:
     jobs:
@@ -484,7 +474,7 @@ workflows:
             - apply-database-changes
           filters:
             branches:
-              only: master
+              ignore: /.*/
   dev-workflow:
     jobs:
       - apply-database-changes:
@@ -504,7 +494,7 @@ workflows:
             - apply-database-changes
           filters:
             branches:
-              only: dev
+              ignore: /.*/
   generate_downloads:
     when: << pipeline.parameters.run_generate_downloads >>
     jobs:

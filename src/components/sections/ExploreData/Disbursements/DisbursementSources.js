@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
 
@@ -34,9 +33,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   # summary card queries
-  query DisbursementSourceSummary($year: Int!, $period: String!, $state: [String!]) {
+  query DisbursementSourceSummary($year: Int!, $state: [String!]) {
 
 DisbursementSourceSummary: disbursement_source_summary(
       where: { fiscal_year: { _eq: $year }, state_or_area: { _in: $state } }
@@ -65,9 +64,12 @@ const DisbursementSources = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL },
-    skip: inView === false
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: { 
+      state, 
+      year
+    },
+    skip: inView === false,
   })
 
   if (loading) {

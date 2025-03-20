@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import { CircleChart } from '../../../data-viz/CircleChart'
 import { useInView } from 'react-intersection-observer'
@@ -36,9 +35,8 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const APOLLO_QUERY = gql`
-  # summary card queries
-  query DisbursementRecipientSummary($year: Int!, $period: String!, $state: [String!]) {
+const QUERY = gql`
+  query DisbursementRecipientSummary($year: Int!, $state: [String!]) {
 
     DisbursementRecipientSummary: disbursement_recipient_summary(
       where: { 
@@ -73,9 +71,12 @@ const DisbursementRecipients = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, year: year, period: DFC.FISCAL_YEAR_LABEL },
-    skip: inView === false
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: {
+      year, 
+      state,
+    },
+    skip: inView === false,
   })
 
   if (loading) {
@@ -85,7 +86,7 @@ const DisbursementRecipients = props => {
       </Box>
     )
   }
-  if (error) return `Error! ${ error.message }`
+  if (error) return `Oops [DisbursementRecipients]! ${ error.message }`
 
   let chartData = []
 

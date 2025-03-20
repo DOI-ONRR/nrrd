@@ -427,7 +427,7 @@ const DetailCards = props => {
       }
     }
 
-    updateExploreDataCards({ ...pageState, cards: cards })
+    updateExploreDataCards({ ...pageState, cards })
   }
 
   const landStatsData = data.onrr.land_stats

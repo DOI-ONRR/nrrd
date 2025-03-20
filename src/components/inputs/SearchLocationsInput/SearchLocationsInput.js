@@ -61,40 +61,42 @@ const getRegionProperties = location => {
   let selectedObj
 
   switch (location.region_type) {
-  case DFC.STATE:
-    selectedObj = mapJson.objects.states.geometries.filter(obj => {
-      if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
-        return Object.assign(obj, { locData: location })
+    case DFC.STATE:
+      selectedObj = mapJson.objects.states.geometries.find(obj => {
+        return obj.id.toLowerCase() === location.fips_code.toLowerCase()
+      })
+      if (selectedObj) {
+        Object.assign(selectedObj, { locData: location })
       }
-    })
-    break
-  case DFC.COUNTY_CAPITALIZED:
-    selectedObj = mapJson.objects.counties.geometries.filter(obj => {
-      if (parseInt(obj.properties.FIPS) === parseInt(location.fips_code)) {
-        return Object.assign(obj, { locData: location })
+      break
+    case DFC.COUNTY_CAPITALIZED:
+      selectedObj = mapJson.objects.counties.geometries.filter(obj => {
+        return parseInt(obj.properties.FIPS) === parseInt(location.fips_code)
+      })
+      if (selectedObj) {
+        Object.assign(selectedObj, { locData: location })
       }
-    })
-    break
-  case DFC.OFFSHORE_CAPITALIZED:
+      break
+    case DFC.OFFSHORE_CAPITALIZED:
     // console.log('mapStatesOffshore: ', mapStatesOffshore)
-    if (offshoreRegions.includes(location.fips_code)) {
-      return { id: location.fips_code, properties: { region: location.fips_code, name: location.location_name } }
-    }
-    else {
-      selectedObj = mapStatesOffshore.objects['states-offshore-geo'].geometries.filter(obj => {
-        // console.log('offshore obj: ', obj)
-        if (obj.id.toLowerCase() === location.fips_code.toLowerCase()) {
-          return Object.assign(obj, { locData: location })
+      if (offshoreRegions.includes(location.fips_code)) {
+        return { id: location.fips_code, properties: { region: location.fips_code, name: location.location_name } }
+      }
+      else {
+        selectedObj = mapStatesOffshore.objects['states-offshore-geo'].geometries.filter(obj => {
+          return obj.id.toLowerCase() === location.fips_code.toLowerCase()
+        })
+        if (selectedObj) {
+          Object.assign(selectedObj, { locData: location })
         }
         else {
           console.warn(`Unable to find offshore id '${ location.fips_code }' in states-offshore-geo`)
         }
-      })
-    }
-    break
-  default:
-    console.warn('Unable to find state, county or offshore area')
-    break
+      }
+      break
+    default:
+      console.warn('Unable to find state, county or offshore area')
+      break
   }
 
   return selectedObj
@@ -247,18 +249,18 @@ const SearchLocationsInput = props => {
   const renderOptionLabel = item => {
     let optionLabel
     switch (item.region_type) {
-    case DFC.STATE:
-      optionLabel = item.state_name
-      break
-    case DFC.COUNTY_CAPITALIZED:
-      optionLabel = `${ item.county } ${ DFC.COUNTY_CAPITALIZED }, ${ item.state_name }`
-      break
-    case DFC.OFFSHORE_CAPITALIZED:
-      optionLabel = item.location_name.includes('Offshore') ? item.location_name : `${ item.location_name } ${ item.region_type }`
-      break
-    default:
-      optionLabel = item.location_name
-      break
+      case DFC.STATE:
+        optionLabel = item.state_name
+        break
+      case DFC.COUNTY_CAPITALIZED:
+        optionLabel = `${ item.county } ${ DFC.COUNTY_CAPITALIZED }, ${ item.state_name }`
+        break
+      case DFC.OFFSHORE_CAPITALIZED:
+        optionLabel = item.location_name.includes('Offshore') ? item.location_name : `${ item.location_name } ${ item.region_type }`
+        break
+      default:
+        optionLabel = item.location_name
+        break
     }
 
     return optionLabel

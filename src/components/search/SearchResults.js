@@ -76,7 +76,8 @@ export const SearchResults = () => {
                     else {
                       return <GlossaryResult item={item} queryString={queryString} index={index} />
                     }
-                  }) : <p><strong>We didn't find any search results for " {queryString} ".</strong></p>
+                  })
+                  : <p><strong>We didn't find any search results for " {queryString} ".</strong></p>
                 }
               </ul>
             </article>

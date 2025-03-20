@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    gap: theme.spacing(20),
   },
   button: {
     minWidth: '200px',

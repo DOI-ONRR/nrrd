@@ -1,5 +1,6 @@
 import React from 'react'
 import Container from '@material-ui/core/Container'
+import Link from './Link'
 
 class ErrorBoundary extends React.Component {
   constructor (props) {
@@ -22,8 +23,8 @@ class ErrorBoundary extends React.Component {
           <Container maxWidth="lg">
             <div>
               <h1>An error has occurred</h1>
-              <a href='/'><p>Please click here to return to the home page.</p></a>
-              <p>If you need additional help, please let us know at <a href="mailto:nrrd@onrr.gov">nrrd@onrr.gov</a>.</p>
+              <Link href='/'><p>Please click here to return to the home page.</p></Link>
+              <p>If you need additional help, please let us know at <Link href="mailto:nrrd@onrr.gov">nrrd@onrr.gov</Link>.</p>
             </div>
           </Container>
         </Container>

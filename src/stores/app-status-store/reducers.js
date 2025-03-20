@@ -24,12 +24,12 @@ const reducer = (state, action) => {
     }
     return ({ ...state })
   } */
-  case types.SHOW_ERROR_MESSAGE:
-    return ({ ...state, ...payload })
-  case types.DELETE_ERROR_MESSAGE:
-    return ({ ...state, ...payload })
-  default:
-    return state
+    case types.SHOW_ERROR_MESSAGE:
+      return ({ ...state, ...payload })
+    case types.DELETE_ERROR_MESSAGE:
+      return ({ ...state, ...payload })
+    default:
+      return state
   }
 }
 

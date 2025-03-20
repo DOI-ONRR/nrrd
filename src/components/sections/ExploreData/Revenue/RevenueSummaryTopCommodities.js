@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 import * as d3 from 'd3'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -38,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query TopCommodities($state: String!, $period: String!) {
     revenue_summary(
       where: { location: { _eq: $state }, period: {_eq: $period} },
@@ -57,7 +56,6 @@ const APOLLO_QUERY = gql`
 `
 
 const RevenueSummaryTopCommodities = props => {
-  // console.log('RevenueSummaryTopCommodities props: ', props)
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const year = filterState[DFC.YEAR]
@@ -65,40 +63,25 @@ const RevenueSummaryTopCommodities = props => {
 
   const state = props.fipsCode
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, period: period }
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: {
+      state,
+      period
+    },
   })
 
-  // let sparkData = []
-  // let fiscalData
   let periodData
   let distinctCommodities = 0
   let topCommodities = []
   let currentCommodities = []
   const dataKey = period + '-' + year + '-' + state
-  if (loading) {}
+  if (loading) return
 
   if (error) return `Error! ${ error.message }`
 
   if (data && data.revenue_summary.length > 0) {
     // console.debug('DWGH', data)
     periodData = data.period
-
-    // fiscalData = d3.nest()
-    //   .key(k => k.year)
-    //   .rollup(v => d3.sum(v, i => i.total))
-    //   .entries(data.revenue_summary)
-    //   .map(d => [parseInt(d.key), d.value])
-
-    // map sparkline data to period fiscal years, if there is no year we set the year and set the sum to 0
-    // sparkData = periodData.map((item, i) => {
-    //   const y = parseInt(item.period_date.substr(0, 4))
-    //   const total = fiscalData.find(x => x[0] === y)
-    //   return ([
-    //     y,
-    //     total ? total[1] : 0
-    //   ])
-    // })
 
     topCommodities = data.revenue_summary.filter(row => row.year === parseInt(year))
       .map(f => f.commodity)
@@ -117,7 +100,7 @@ const RevenueSummaryTopCommodities = props => {
         })
         return { commodity: com, data: d }
       })
-    // console.debug('WTH topCommodities', topCommodities)
+
     currentCommodities = d3.nest()
       .key(k => k.commodity)
       .rollup(v => d3.sum(v, i => i.total))
@@ -125,23 +108,7 @@ const RevenueSummaryTopCommodities = props => {
       .map(d => [d.key, d.value])
       .sort((a, b) => a[1] > b[1] ? -1 : 1)
 
-    // console.debug('WTH currentCommodities', currentCommodities)
     distinctCommodities = currentCommodities.length
-
-    /*
-    topCommodities = data.revenue_commodity_summary
-      .map((item, i) => item.commodity)
-      .map((com, i) => {
-        const r = data.commodity_sparkdata.filter(item => item.commodity === com)
-        const s = r.map((row, i) => [row.fiscal_year, row.total])
-        const d = periodData.map((row, i) => {
-          const t = s.find(x => x[0] === row.fiscal_year)
-          return (
-            [row.fiscal_year, t ? t[1] : 0]
-          )
-        })
-        return { commodity: com, data: d }
-        }) */
   }
   return (
     <>
@@ -166,43 +133,41 @@ const RevenueSummaryTopCommodities = props => {
               >
                 <TableBody>
                   {
-                    currentCommodities.map((com, j) => {
-                      if (j < 3) {
-                        return topCommodities.filter(f => f.commodity === com[0]).map((row, i) => {
-                          return (
-                            <TableRow key={j}>
-                              <TableCell component="th" scope="row">
-                                <Typography style={{ fontSize: '.8rem' }}>
-                                  {row.commodity}
-                                </Typography>
-                              </TableCell>
-                              <TableCell align="right">
-                                <Sparkline
-			                            key={dataKey}
-                                  data={row.data}
-                                  highlightIndex={row.data.findIndex(
-                                    x => x[0] === parseInt(year)
+                    currentCommodities.slice(0, 3).map((com, j) =>
+                      topCommodities.filter(f => f.commodity === com[0]).map((row, i) => {
+                        return (
+                          <TableRow key={j}>
+                            <TableCell component="th" scope="row">
+                              <Typography style={{ fontSize: '.8rem' }}>
+                                {row.commodity}
+                              </Typography>
+                            </TableCell>
+                            <TableCell align="right">
+                              <Sparkline
+                                key={dataKey}
+                                data={row.data}
+                                highlightIndex={row.data.findIndex(
+                                  x => x[0] === parseInt(year)
+                                )}
+                              />
+                            </TableCell>
+                            <TableCell align="right">
+                              <Typography style={{ fontSize: '.8rem' }}>
+                                {
+                                  utils.formatToSigFig_DollarCompact(
+                                    Math.floor(
+                                      // eslint-disable-next-line standard/computed-property-even-spacing
+                                      row.data[
+                                        row.data.findIndex(x => x[0] === parseInt(year))
+                                      ][1]
+                                    )
                                   )}
-                                />
-                              </TableCell>
-                              <TableCell align="right">
-                                <Typography style={{ fontSize: '.8rem' }}>
-                                  {
-                                    utils.formatToSigFig_DollarCompact(
-                                      Math.floor(
-                                        // eslint-disable-next-line standard/computed-property-even-spacing
-                                        row.data[
-                                          row.data.findIndex(x => x[0] === parseInt(year))
-                                        ][1]
-                                      )
-                                    )}
-                                </Typography>
-                              </TableCell>
-                            </TableRow>
-                          )
-                        })
-                      }
-                    })
+                              </Typography>
+                            </TableCell>
+                          </TableRow>
+                        )
+                      })
+                    )
                   }
                 </TableBody>
               </Table>

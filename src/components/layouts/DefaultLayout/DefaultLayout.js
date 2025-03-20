@@ -2,7 +2,7 @@
  * Default Layout component
  *
  */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
@@ -103,6 +103,7 @@ const useStyles = makeStyles(theme => (
 )
 
 const DefaultLayout = ({ includeToc, children }) => {
+  const [isClient, setIsClient] = useState(false);
   const theme = useTheme()
   const classes = useStyles(theme)
 
@@ -125,6 +126,15 @@ const DefaultLayout = ({ includeToc, children }) => {
       }
     }
   `)
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null
+  }
+  
   return (
     <>
       <a href="#main-content" className={classes.skipNav}>Skip to main content</a>

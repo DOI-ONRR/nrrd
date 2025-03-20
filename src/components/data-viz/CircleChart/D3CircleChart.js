@@ -21,7 +21,6 @@ export default class D3CircleChart {
       this.circleTooltip = options.circleTooltip
     }
 
-    // console.debug("data =========================================:", this.radius)
     this.minColor = options.minColor || 'lightblue'
     this.maxColor = options.maxColor || 'darkblue'
 
@@ -67,14 +66,14 @@ export default class D3CircleChart {
       const maxCircles = this.maxCircles
       const yAxis = this.yAxis
       const xAxis = this.xAxis
-      // console.debug('-------------------------------------------------------------',data)
       if (maxCircles + 1 < data.length) {
         const tmp = data
         const other = tmp.reduce((sum, row, i) => {
-          // console.debug("maxcircles: ",sum,row,i)
+          let returns = sum
           if (i + 1 >= maxCircles) {
-            return sum + row[yAxis] || 0
+            returns = sum + row[yAxis] || 0
           }
+          return returns
         }, 0)
         // console.debug(other)
         const o = data[maxCircles]
@@ -640,7 +639,7 @@ export default class D3CircleChart {
       const padding = (self.xScale.bandwidth() * 0.2)
       let xPos = 0
 
-      Object.keys(self.groups).map((name, index) => {
+      Object.keys(self.groups).forEach(name => {
         const groupLineWidth = xPos + (groupItemWidth * self.groups[name].length) - padding
 
         groupLines.append('line')
@@ -763,16 +762,9 @@ export default class D3CircleChart {
 
   select (index) {
     try {
-      // console.debug("INdex: ", index, "I: ", this.selectedIndex)
-      d3.selectAll('.bar').filter((d, i, nodes) => {
+      d3.selectAll('.bar').forEach((_d, i, nodes) => {
         if (i === index) {
-          /*          this.xSelectedValue = d
-                      this.ySelectedGroup = this.yGroupData(d)
-                      this.selectedData(this.ySelectedGroup)
-                      this.selectedIndex = index
-          */
-
-          const selectedElement = d3.selectAll('.active') // element.parentNode.querySelector('[selected=true]')
+          const selectedElement = d3.selectAll('.active')
           if (selectedElement) {
             selectedElement.attr('selected', false)
             selectedElement.attr('class', 'circle')
@@ -874,7 +866,7 @@ export default class D3CircleChart {
       tr.selectAll('td')
         .data(function (row, i) {
           return headers.map(function (column, i) {
-            return { column: column, value: row[i] }
+            return { column, value: row[i] }
           })
         })
         .enter()

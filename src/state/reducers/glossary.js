@@ -14,9 +14,9 @@ export default (state = initialState, action) => {
   const { type, payload } = action
 
   switch (type) {
-  case GLOSSARY_TERM_SELECTED:
-    return ({ ...state, glossaryTerm: payload, glossaryOpen: action.openGlossary })
-  default:
-    return state
+    case GLOSSARY_TERM_SELECTED:
+      return ({ ...state, glossaryTerm: payload, glossaryOpen: action.openGlossary })
+    default:
+      return state
   }
 }

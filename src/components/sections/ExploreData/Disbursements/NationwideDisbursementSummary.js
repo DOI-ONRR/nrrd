@@ -1,9 +1,10 @@
-
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import ReactMarkdown from 'react-markdown'
+import Link from '../../../Link'
+
+import { useQuery, gql } from '@apollo/client'
 
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -45,18 +46,16 @@ const NATIONWIDE_DISBURSEMENT_SUMMARY_QUERY = gql`
 `
 
 const disbursementTypeDescriptions = [
-  'The federal government’s basic operating fund pays for roughly two-thirds of all federal expenditures, including the military, national parks, and schools.',
-  'Funds disbursed to states fall under the jurisdiction of each state, and each state determines how the funds will be used.',
-  'Supports the establishment of critical infrastructure projects like dams and power plants.',
-  // eslint-disable-next-line max-len
-  'ONRR disburses 100% of revenue collected from resource extraction on Native American lands back to tribes, nations, and individuals.',
-  // eslint-disable-next-line max-len
-  'Provides matching grants to states and local governments to buy and develop public outdoor recreation areas across the 50 states. <a href="/how-revenue-works/lwcf" style="color: #1478a6">How this fund works</a>',
-  // eslint-disable-next-line max-len
-  'Helps preserve U.S. historical and archaeological sites and cultural heritage through grants to state and tribal historic preservation offices. <a href="/how-revenue-works/hpf" style="color: #1478a6">How this fund works</a>',
-  // eslint-disable-next-line max-len
-  'Some funds are directed back to federal agencies that administer these lands to help cover operational costs. The Ultra-Deepwater Research Program and the Mescal Settlement Agreement also receive $50 million each.',
-]
+  `The federal government’s basic operating fund pays for roughly two-thirds of all federal expenditures, including the military, national parks, and schools.`,
+  `Funds disbursed to states fall under the jurisdiction of each state, and each state determines how the funds will be used.`,
+  `Supports the establishment of critical infrastructure projects like dams and power plants.`,
+  `ONRR disburses 100% of revenue collected from resource extraction on Native American lands back to tribes, nations, and individuals.`,
+  `Provides matching grants to states and local governments to buy and develop public outdoor recreation areas across the 50 states. [How this fund works](/how-revenue-works/lwcf).`,
+  `Helps preserve U.S. historical and archaeological sites and cultural heritage through grants to state and tribal historic preservation offices. [How this fund works](/how-revenue-works/hpf).`,
+  `Some funds are directed back to federal agencies that administer these lands to help cover operational costs. The Ultra-Deepwater Research Program and the Mescal Settlement Agreement also receive $50 million each.`
+];
+
+const MarkdownLink = ({ href, children }) => <Link href={href} style={{ color: "#1478a6" }}>{children}</Link>;
 
 const NationwideDisbursementSummary = props => {
   const theme = useTheme()
@@ -70,9 +69,10 @@ const NationwideDisbursementSummary = props => {
     threshold: 0,
     triggerOnce: true
   })
-  const { loading, error, data } = useQuery(NATIONWIDE_DISBURSEMENT_SUMMARY_QUERY, {
+
+  const { data, loading, error } = useQuery(NATIONWIDE_DISBURSEMENT_SUMMARY_QUERY, {
     variables: { year },
-    skip: inView === false
+    skip: inView === false,
   })
 
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']
@@ -168,7 +168,11 @@ const NationwideDisbursementSummary = props => {
                         <Box key={i}>
                           <Box component="h4">{item[0]}</Box>
                           <Box component="p" pb={2} pr={{ xs: 0, md: 3 }}>
-                            <span dangerouslySetInnerHTML={createMarkup(disbursementTypeDescriptions[i])} />
+                            <ReactMarkdown
+                              components={{ a: MarkdownLink }}
+                            >
+                              {disbursementTypeDescriptions[i]}
+                            </ReactMarkdown>
                           </Box>
                         </Box>
                       </Grid>

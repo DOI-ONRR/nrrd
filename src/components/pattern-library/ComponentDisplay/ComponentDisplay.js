@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { useStaticQuery, graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -16,41 +15,37 @@ import theme from '../../../js/mui/theme'
 import * as ALL_COMPONENTS from '../../../../.cache/components'
 
 const ComponentDisplay = ({ children }) => {
-  const results = useStaticQuery(graphql`
-    query {
-      allComponentMetadata(sort: {fields: displayName, order: ASC}) {
-        nodes {
-          displayName
-          description {
-            childMdx {
-              body
-            }
-          }
-          childrenComponentProp {
-            name
-            docblock
-            required
-            parentType {
-              name
-            }
-            type {
-              value
-            }
-            defaultValue {
-              value
-              computed
-            }
-          }
-          parent {
-            ... on File {
-              relativePath
-              absolutePath
-            }
-          }
+  const results = useStaticQuery(graphql`{
+  allComponentMetadata(sort: {displayName: ASC}) {
+    nodes {
+      displayName
+      description {
+        text
+      }
+      childrenComponentProp {
+        name
+        docblock
+        required
+        parentType {
+          name
+        }
+        type {
+          value
+        }
+        defaultValue {
+          value
+          computed
+        }
+      }
+      parent {
+        ... on File {
+          relativePath
+          absolutePath
         }
       }
     }
-  `)
+  }
+}`)
 
   const groups = [...(new Set(Object.keys(ALL_COMPONENTS).map(c => ALL_COMPONENTS[c]?.Preview?.group).filter(g => g !== undefined)))]
   const url = (typeof window !== 'undefined') && new URL(window.location.href)
@@ -78,7 +73,7 @@ const ComponentDisplay = ({ children }) => {
   return (
     <>
       {(typeof window !== 'undefined') &&
-      <Grid container direction="row" justify="flex-start" alignItems="stretch" spacing={2}>
+      <Grid container direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2}>
         <Grid item xs={12}>
           <ToggleToolbar buttons={groups.map(g => ({ [g]: `/patterns/components/?type=${ g }` })) } sectionSelected={type} />
         </Grid>
@@ -103,7 +98,7 @@ const ComponentDisplay = ({ children }) => {
                       : <Box>No preview available</Box>
                     }
                     <Box m={2}><Divider /></Box>
-                    <MDXRenderer>{item.description.childMdx.body}</MDXRenderer>
+                    {item.description.text}
                   </Box>
                 </PatternLibraryCard>
               </Grid>

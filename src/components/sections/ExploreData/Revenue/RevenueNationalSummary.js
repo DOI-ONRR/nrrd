@@ -1,9 +1,7 @@
-
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import QueryLink from '../../../../components/QueryLink'
 import { DataFilterContext } from '../../../../stores/data-filter-store'
@@ -97,10 +95,13 @@ const RevenueNationalSummary = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
-    variables: { year: year, period: period, commodities: commodities },
+  const { data, loading, error } = useQuery(NATIONAL_REVENUE_SUMMARY_QUERY, {
+    variables: {
+      year,
+      period,
+      commodities
+    },
     skip: inView === false,
-    triggerOnce: true
   })
 
   const yOrderBy = ['Federal Onshore', 'Federal Offshore', 'Native American', 'Federal - Not tied to a lease']

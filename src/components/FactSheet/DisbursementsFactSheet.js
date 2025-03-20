@@ -1,8 +1,7 @@
 import React from 'react'
 
 import { makeStyles } from '@material-ui/styles'
-import { gql } from '@apollo/client'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery, gql } from '@apollo/client'
 import { Box, Paper } from '@material-ui/core'
 import DisbursementsPieChart from './DisbursementsPieChart'
 

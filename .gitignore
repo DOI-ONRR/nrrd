@@ -24,3 +24,5 @@ downloads/disbursements/~$disbursements.xlsx
 report.*.json
 .creds
 *~
+
+deploy-nrrd.log

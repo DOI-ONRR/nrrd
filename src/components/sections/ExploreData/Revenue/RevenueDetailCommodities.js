@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import { formatToDollarInt } from '../../../../js/utils'
 
@@ -28,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
     query RevenueCommodityQuery($year: Int!, $state: String!, $period: String!, $commodities: [String!]) {
 	# Revenue commodity summary
 	revenue_summary(
@@ -64,9 +63,14 @@ const RevenueDetailCommodities = props => {
     triggerOnce: true
   })
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { year: year, state: state, period: period, commodities },
-    skip: inView === false
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: {
+      year,
+      state,
+      period,
+      commodities
+    },
+    skip: inView === false,
   })
 
   let chartData

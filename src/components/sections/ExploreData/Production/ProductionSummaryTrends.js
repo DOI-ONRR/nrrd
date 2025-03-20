@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 import * as d3 from 'd3'
 import {
   Box,
@@ -16,7 +15,7 @@ import { DATA_FILTER_CONSTANTS as DFC } from '../../../../constants'
 // not used summary cards import { useInView } from 'react-intersection-observer'
 import utils from '../../../../js/utils'
 
-const APOLLO_QUERY = gql`
+const QUERY = gql`
   query ProductionSummaryTrend($state: String!, $product: String!, $period: String!) {
     production_summary(
       where: { location: { _eq: $state }, product: {_eq: $product}, period: {_eq: $period }}
@@ -51,8 +50,12 @@ const ProductionSummaryTrends = props => {
   const key = `${ dataSet }_${ product }_${ state }`
   const minYear = periodAllYears[0]
 
-  const { loading, error, data } = useQuery(APOLLO_QUERY, {
-    variables: { state: state, product: product, period: period }
+  const { data, loading, error } = useQuery(QUERY, {
+    variables: {
+      state,
+      product,
+      period
+    },
   })
 
   const nativeAmerican = props.fipsCode === DFC.NATIVE_AMERICAN_FIPS

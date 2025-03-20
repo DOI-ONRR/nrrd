@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
+import { useQuery, gql } from '@apollo/client'
 
 import Map from '../../../data-viz/Map'
 import * as d3 from 'd3'
@@ -128,21 +127,23 @@ const RevenueCountyMap = props => {
 			      fipsCode === DFC.NATIVE_AMERICAN_FIPS ||
 			      props.regionType === 'County' || props.regionType === 'Offshore' || !inView
   const location = STATE_FIPS_MAP[fipsCode] + '%'
-  const { loading, error, data } = useQuery(REVENUE_QUERY, {
-    variables: { location: location, year: year, commodities: commodities, period: period },
-    skip: skipQuery
+
+  const { data, loading, error } = useQuery(REVENUE_QUERY, {
+    variables: {
+      location,
+      year,
+      commodities,
+      period
+    },
+    skip: skipQuery,
   })
+
   const mapFeatures = 'counties-geo'
   let mapData = [[]]
 
-  if (loading) {}
+  if (loading) return 'Loading...'
   if (error) return `Error! ${ error.message }`
   if (data) {
-    /* mapData = data.revenue_summary.map((item, i) => [
-	   item.location,
-	   item.total
-	   ])
-	 */
     const clone = JSON.parse(JSON.stringify(mapCounties))
     const myReg = new RegExp('^' + STATE_FIPS_MAP[fipsCode] + '[0-9]{3}$')
     const tmp = clone.objects['counties-geo'].geometries.filter(obj => obj.id.match(myReg))

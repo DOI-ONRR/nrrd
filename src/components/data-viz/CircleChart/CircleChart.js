@@ -68,23 +68,21 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
 
   // roll up other dat
   const rollUpOther = data => {
-    // console.log('rollUpOther data: ', data)
     try {
       if (maxCircles + 1 < data.length) {
         const tmp = data
         const other = tmp.reduce((sum, row, i) => {
-          // console.debug("maxcircles: ",sum,row,i)
+          let returns = sum
           if (i + 1 >= maxCircles) {
-            return sum + row[yAxis] || 0
+            returns = sum + row[yAxis] || 0
           }
+          return returns
         }, 0)
-        // console.debug(other)
-        const o = data[maxCircles]
+        const o = { ...data[maxCircles] }
         data = data.filter((row, i) => i < maxCircles)
         o[xAxis] = 'Other'
         o[yAxis] = other
         data.push(o)
-        // console.debug('OTHER :', o)
       }
 
       return data
