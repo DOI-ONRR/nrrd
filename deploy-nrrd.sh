@@ -28,7 +28,7 @@ pid=$!
 show_spinner $pid
 wait $pid
 if [ $? -ne 0 ]; then
-  echo -n "Enter a temporary authentication code: " > /dev/tty
+  echo -n "Enter a temporary authentication code ( Get one at https://login.fr.cloud.gov/passcode ): " > /dev/tty
   read -s sso_passcode < /dev/tty
   echo > /dev/tty
   echo "Logging in to cf..." > /dev/tty
@@ -36,6 +36,12 @@ if [ $? -ne 0 ]; then
   pid=$!
   show_spinner $pid
   wait $pid || { echo "cf login failed. Check the log file. Exiting..." > /dev/tty; exit 1; }
+else
+  echo "Targeting cf space..." > /dev/tty
+  cf target -s $space &
+  pid=$!
+  show_spinner $pid
+  wait $pid || { echo "cf target failed. Check the log file. Exiting..." > /dev/tty; exit 1; }
 fi
 
 # Validate space and set branch
@@ -49,12 +55,6 @@ else
   echo "Unknown space: $space"
   exit 1
 fi
-
-echo "Targeting cf space..." > /dev/tty
-cf target -s $space &
-pid=$!
-show_spinner $pid
-wait $pid || { echo "cf target failed. Check the log file. Exiting..." > /dev/tty; exit 1; }
 
 export CIRCLE_BRANCH="${circle_branch}"
 export CIRCLE_STAGE="${space}"
