@@ -11,6 +11,8 @@ import {
   Paper
 } from '@material-ui/core'
 
+import Link from '../Link'
+
 import { createStyles, withStyles, useTheme, makeStyles } from '@material-ui/core/styles'
 
 import {
@@ -235,7 +237,10 @@ const GlossaryTerms = ({ title = 'Glossary', location, ...rest }) => {
         </Box>
       </StickyWrapper>
       <Container maxWidth="lg">
-        <Box dangerouslySetInnerHTML={ disclaimer() } pt={3}></Box>
+        <Box pt={3}>
+        <p>The definitions in this glossary are simplified. Some definitions are specific to the agency in their usage. None of the definitions takes precedence over laws, legislation, regulations, contracts, or specific interpretations or rulings.</p>
+        <p>This glossary defines many commonly used terms and acronyms but isn't a full list. To request changes to terms on this list, or to suggest new terms be added, email <Link href='mailto: nrrd@onrr.gov'>nrrd@onrr.gov</Link>.</p>
+        </Box>
         <GlossaryCategoryContainer>
           { (category === 'ONRR') &&
         <>

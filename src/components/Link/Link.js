@@ -22,6 +22,9 @@ const useStyles = makeStyles(theme => ({
     },
     '& svg': {
       fill: theme.palette.text.secondary,
+    },
+    '& div': {
+      textDecoration: 'inherit',
     }
   },
   headerLink: {
