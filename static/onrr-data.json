@@ -732,6 +732,150 @@
             },
             "title": "Monthly production of U.S. natural resources revenue",
             "usageNotes": "No restrictions on use."
-        }   
+        },
+        {
+            "@type": "dcat:Dataset",
+           "@id": "http://datainventory.doi.gov/id/dataset/9633076755efad1e125c45aeb618bd6a",
+            "accessLevel": "public",
+            "accrualPeriodicity": "R/P1M",
+            "bureauCode": [
+                "010:84"
+            ],
+            "contactPoint": {
+                "@type": "vcard:Contact",
+                "fn": "Open Data, Design and Development Team",
+                "hasEmail": "mailto:NRRD@onrr.gov"
+            },
+            "creator": [
+                {
+                    "@type": "org:Organization",
+                    "name": "Information and Data Management"
+                }
+            ],
+            "describedBy": "https://revenuedata.doi.gov/downloads/revenue/#Data-dictionary",
+            "describedByType": "text/html",
+            "description": "This dataset includes revenue from natural resources by month. Natural resources are extracted from federal lands, federal waters, and Native American lands. The data is further broken down by location, lease type, revenue type (e.g., bonuses, rents, and royalties), and commodity/product information. It does not include privately-owned lands or U.S. state lands. Federal revenue data is available by location. Native American data is only available at the national level to protect private and personally identifiable information. The dataset is tracked and managed by the Department of the Interior’s Office of Natural Resources Revenue. It contains revenue data from january 2003-present.",
+            "distribution": [
+                {
+                    "@type": "dcat:Distribution",
+                    "description": "Monthly revenue of U.S. natural resources as a CSV file",
+                    "downloadURL": "https://revenuedata.doi.gov/downloads/monthly_revenue.csv",
+                    "format": "CSV",
+                    "mediaType": "text/csv",
+                    "title": "Monthly revenue of U.S. natural resources"
+                },
+                {
+                    "@type": "dcat:Distribution",
+                    "description": "Landing page for monthly revenue data",
+                    "accessURL": "https://revenuedata.doi.gov/downloads/revenue/",
+                    "mediaType": "text/html",
+                    "title": "ONRR monthly revenue data landing page"
+                }
+            ],
+            "identifier": "ngp:f9a6ae27-119a-45be-b3c4-db62bfb7919d",
+            "issued": "2015-12-18",
+            "keyword": [
+                "economy",
+                "environment",
+                "geoscientificInformation",
+                "location",
+                "federal lands",
+                "offshore waters",
+                "outer continental shelf"
+            ],
+            "landingPage": "https://revenuedata.doi.gov/downloads/revenue/",
+            "language": [
+                "en-US"
+            ],
+            "liability": "Neither the U.S. Government, the Department of the Interior, nor ONRR, nor any of their employees, contractors, or subcontractors, make any warranty, express or implied, nor assume any legal liability or responsibility for the accuracy, completeness, or usefulness of any information, apparatus, product, or process disclosed, nor represent that its use would not infringe on privately owned rights.",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "modified": "2023-11-09",
+            "publisher": {
+                "@type": "org:Organization",
+                "name": "Office of Natural Resources Revenue",
+                "subOrganizationOf": {
+                    "@type": "org:Organization",
+                    "name": "Department of the Interior",
+                    "subOrganizationOf": {
+                        "@type": "org:Organization",
+                        "name": "U.S. Government"
+                    }
+                }
+            },
+            "title": "Monthly revenue of U.S. natural resources",
+            "usageNotes": "No restrictions on use."
+        },
+        {
+            "@type": "dcat:Dataset",
+           "@id": "http://datainventory.doi.gov/id/dataset/640f0c68ec821c1fb8351a6d9f89eb0a",
+            "accessLevel": "public",
+            "accrualPeriodicity": "R/P1M",
+            "bureauCode": [
+                "010:84"
+            ],
+            "contactPoint": {
+                "@type": "vcard:Contact",
+                "fn": "Open Data, Design and Development Team",
+                "hasEmail": "mailto:NRRD@onrr.gov"
+            },
+            "creator": [
+                {
+                    "@type": "org:Organization",
+                    "name": "Information and Data Management"
+                }
+            ],
+            "describedBy": "https://revenuedata.doi.gov/downloads/disbursements-by-month/#Data-dictionary",
+            "describedByType": "text/html",
+            "description": "This dataset includes monthly natural resource revenue disbursements for U.S. federal lands, federal offshore areas, and Native American lands. It does not include privately owned lands or U.S. state lands. The disbursements go to the U.S. General Treasury Fund, states and local governments, Native American tribes and individuals, Land and Water Conservation Fund, Historic Preservation Fund, Reclamation Fund, and several smaller funds within federal agencies. The dataset is tracked and managed by the Department of the Interior’s Office of Natural Resources Revenue. It contains monthly disbursement information to funds for October 2014-present.",
+            "distribution": [
+                {
+                    "@type": "dcat:Distribution",
+                    "description": "Monthly disbursements of U.S. natural resources revenue as a CSV file",
+                    "downloadURL": "https://revenuedata.doi.gov/downloads/monthly_disbursements.csv",
+                    "format": "CSV",
+                    "mediaType": "text/csv",
+                    "title": "Monthly disbursements of U.S. natural resources revenue"
+                },
+                {
+                    "@type": "dcat:Distribution",
+                    "description": "Landing page for monthly disbursements data",
+                    "accessURL": "https://revenuedata.doi.gov/downloads/disbursements-by-month/",
+                    "mediaType": "text/html",
+                    "title": "ONRR monthly disbursements data landing page"
+                }
+            ],
+            "identifier": "ngp:87e1d5bc-c684-4401-b965-2089f28ab73f",
+            "issued": "2015-12-15",
+            "keyword": [
+                "economy",
+                "environment",
+                "geoscientificInformation",
+                "location",
+                "federal lands",
+                "offshore waters",
+                "outer continental shelf"
+            ],
+            "landingPage": "https://revenuedata.doi.gov/downloads/disbursements-by-month/",
+            "language": [
+                "en-US"
+            ],
+            "liability": "Neither the U.S. Government, the Department of the Interior, nor ONRR, nor any of their employees, contractors, or subcontractors, make any warranty, express or implied, nor assume any legal liability or responsibility for the accuracy, completeness, or usefulness of any information, apparatus, product, or process disclosed, nor represent that its use would not infringe on privately owned rights.",
+            "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+            "modified": "2023-11-09",
+            "publisher": {
+                "@type": "org:Organization",
+                "name": "Office of Natural Resources Revenue",
+                "subOrganizationOf": {
+                    "@type": "org:Organization",
+                    "name": "Department of the Interior",
+                    "subOrganizationOf": {
+                        "@type": "org:Organization",
+                        "name": "U.S. Government"
+                    }
+                }
+            },
+            "title": "Monthly disbursements of U.S. natural resources revenue",
+            "usageNotes": "No restrictions on use."
+        }       
     ]
 }
