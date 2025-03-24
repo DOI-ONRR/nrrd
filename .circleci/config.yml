@@ -454,7 +454,9 @@ workflows:
             - apply-database-changes
           filters:
             branches:
-              ignore: /.*/
+              ignore:
+                - master
+                - dev
 
   prod-workflow:
     jobs:
