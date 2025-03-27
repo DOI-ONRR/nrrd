@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-fund-gomesa
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE fund
+            SET source = 'OCS Gulf',
+              fund_type = REPLACE(fund_type, 'GoMESA', 'OCS Gulf'),
+              disbursement_type = 'OCS Gulf'
+            WHERE disbursement_type = 'GoMESA';
