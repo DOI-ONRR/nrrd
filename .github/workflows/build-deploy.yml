@@ -12,7 +12,6 @@ on:
 
 jobs:
   apply_database_updates:
-    needs: build
     uses: doi-onrr/oddd-actions/.github/workflows/apply-database-changes.yml@v1
     with:
       cf-space: dev
