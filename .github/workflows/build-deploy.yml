@@ -28,7 +28,8 @@ jobs:
               - 'database/changelog/**'
   
   apply_database_updates:
-    if: ${{ needs.check_database_changelog.outputs.changelog == 'true' }}
+    # needs: check_database_changelog
+    # if: ${{ needs.check_database_changelog.outputs.changelog == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
