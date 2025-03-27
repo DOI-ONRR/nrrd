@@ -11,47 +11,11 @@ on:
       - master
 
 jobs:
-  check_database_changelog:
-    runs-on: ubuntu-latest
-    outputs:
-      changelog: ${{ steps.filter.outputs.changelog }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Check if files changed
-        uses: dorny/paths-filter@v3
-        id: filter
-        with: 
-          filters: |
-            changelog:
-              - 'database/changelog/**'
-  
   apply_database_updates:
-    # needs: check_database_changelog
-    # if: ${{ needs.check_database_changelog.outputs.changelog == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install CF CLI
-        uses: doi-onrr/oddd-actions/.github/actions/cf-install@v1
-
-      - name: Log in to Cloud Foundry
-        uses: doi-onrr/oddd-actions/.github/actions/cf-login@v1
-
-      - name: Tunnel to database
-        id: db-tunnel
-        uses: doi-onrr/oddd-actions/.github/actions/cf-db-tunnel@v1
-
-      - name: Check connection variables
-        shell: bash
-        run: |
-          echo ${{ steps.db-tunnel.outputs.host }}
-
+    needs: build
+    uses: doi-onrr/oddd-actions/.github/workflows/apply-database-changes.yml@v1
     with:
       cf-space: dev
-      cf-app-name: hasura-sandbox
-      cf-service-name: nrrd-psql
+      cf-app: hasura-sandbox
+      cf-service: nrrd-psql
     secrets: inherit
