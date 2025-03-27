@@ -16,7 +16,11 @@ jobs:
     outputs:
       changelog: ${{ steps.filter.outputs.changelog }}
     steps:
-      - uses: dorny/paths-filter@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Check if files changed
+        uses: dorny/paths-filter@v3
         id: filter
         with: 
           filters: |
@@ -24,7 +28,6 @@ jobs:
               - 'database/changelog/**'
   
   apply_database_updates:
-    needs: check_database_changelog
     if: ${{ needs.check_database_changelog.outputs.changelog == 'true' }}
     runs-on: ubuntu-latest
     steps:
