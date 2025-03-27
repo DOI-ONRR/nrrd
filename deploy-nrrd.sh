@@ -110,7 +110,7 @@ mv ./public/~partytown ./public/_partytown
 # Deploying
 echo "Deploying..." > /dev/tty
 
-if ["$is_preview" = "n"]; then
+if [ "$is_preview" = "n" ]; then
   cf push $app -f manifest.yml &
 else 
   aws s3 sync public "s3://${AWS_BUCKET_NAME}/sites/${CIRCLE_BRANCH}/" &
