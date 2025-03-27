@@ -49,3 +49,9 @@ jobs:
         shell: bash
         run: |
           echo ${{ steps.db-tunnel.outputs.host }}
+
+    with:
+      cf-space: dev
+      cf-app-name: hasura-sandbox
+      cf-service-name: nrrd-psql
+    secrets: inherit
