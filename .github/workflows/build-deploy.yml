@@ -15,6 +15,6 @@ jobs:
     uses: doi-onrr/oddd-actions/.github/workflows/apply-database-changes.yml@v1
     with:
       cf-space: dev
-      cf-app: hasura-sandbox
-      cf-service: nrrd-psql
+      cf-app-name: hasura-sandbox
+      cf-service-name: nrrd-psql
     secrets: inherit
