@@ -12,7 +12,7 @@ on:
 
 jobs:
   apply_database_updates:
-    uses: .github/workflows/apply-database-changes.yml@v1
+    uses: ./.github/workflows/apply-database-changes.yml@v1
     with:
       cf-space: dev
       cf-app-name: hasura-sandbox
