@@ -1,0 +1,71 @@
+name: Apply database changes
+
+on:
+  workflow_call:
+    inputs:
+      cf-space:
+        type: string
+        default: dev
+      cf-app-name:
+        type: string
+        required: true
+      cf-service-name:
+        type: string
+        required: true
+
+    secrets:
+      CF_USERNAME:
+        required: true
+
+      CF_PASSWORD:
+        required: true
+    
+jobs:
+  check_database_changelog:
+    runs-on: ubuntu-latest
+    outputs:
+      changelog: ${{ steps.filter.outputs.changelog }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Check if files changed
+        uses: dorny/paths-filter@v3
+        id: filter
+        with: 
+          filters: |
+            changelog:
+              - 'database/changelog/**'
+  apply_database_updates:
+    # needs: check_database_changelog
+    # if: ${{ needs.check_database_changelog.outputs.changelog == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install CF CLI
+        uses: doi-onrr/oddd-actions/.github/actions/cf-install@v1
+
+      - name: Log in to Cloud Foundry
+        uses: doi-onrr/oddd-actions/.github/actions/cf-login@v1
+        with: 
+          cf-space: ${{ inputs.cf-space }}
+        env:
+          CF_USERNAME: ${{ secrets.CF_USERNAME }}
+          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+
+      - name: Tunnel to database
+        id: db-tunnel
+        uses: .github/actions/cf-db-tunnel@v1
+        with:
+          cf-app-name: ${{ inputs.cf-app-name }}
+          cf-service-name: ${{ inputs.cf-service-name }}
+
+      - name: Apply Liquibase updates
+        uses: liquibase-github-actions/update@v4.31.1
+        with:
+          changelogFile: ./database/changelog/changelog-root.yaml
+          url: jdbc:postgresql://${{ steps.db-tunnel.outputs.host }}:${{ steps.db-tunnel.outputs.port }}/${{ steps.db-tunnel.outputs.dbname }}
+          username: ${{ steps.db-tunnel.outputs.username }}
+          password: ${{ steps.db-tunnel.outputs.passord }}
