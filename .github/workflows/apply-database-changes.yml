@@ -98,6 +98,6 @@ jobs:
         uses: liquibase-github-actions/update@v4.31.1
         with:
           changelogFile: ./database/changelog/changelog-root.yaml
-          url: jdbc:postgresql://${{ steps.db-tunnel.outputs.host }}:${{ steps.db-tunnel.outputs.port }}/${{ steps.db-tunnel.outputs.dbname }}
-          username: ${{ steps.db-tunnel.outputs.username }}
-          password: ${{ steps.db-tunnel.outputs.passord }}
+          url: jdbc:postgresql://${{ steps.tunnel.outputs.host }}:${{ steps.tunnel.outputs.port }}/${{ steps.tunnel.outputs.dbname }}
+          username: ${{ steps.tunnel.outputs.username }}
+          password: ${{ steps.tunnel.outputs.passord }}
