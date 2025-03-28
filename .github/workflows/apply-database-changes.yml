@@ -57,7 +57,7 @@ jobs:
 
       - name: Tunnel to database
         id: db-tunnel
-        uses: ./.github/actions/cf-db-tunnel@
+        uses: ./.github/actions/cf-db-tunnel
         with:
           cf-app-name: ${{ inputs.cf-app-name }}
           cf-service-name: ${{ inputs.cf-service-name }}
