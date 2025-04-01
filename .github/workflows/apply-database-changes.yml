@@ -90,7 +90,7 @@ jobs:
 
           # Run Liquibase
           docker run --rm --network=host \
-            -v "${PWD}:/liquibase/changelog" \
+            -v "${PWD}/database:/liquibase/changelog"
             liquibase/liquibase:4.31.1 \
             --changelog-file=./database/changelog/changelog-root.yaml \
             --url=jdbc:postgresql://${host}:${port}/${dbname} \
