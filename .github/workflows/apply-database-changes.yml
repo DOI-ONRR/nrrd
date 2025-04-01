@@ -57,14 +57,14 @@ jobs:
         run: |
           cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
       
-      - name: Open the tunnel and capture tunnel info
-        id: tunnel
+      - name: Open tunnel and apply Liquibase updates
         shell: bash
         run: |
-          # Start the tunnel in the background and write output to a log file
+          # Start the tunnel in the background
           cf connect-to-service --no-client ${{ inputs.cf-app-name }} ${{ inputs.cf-service-name }} > tunnel.log 2>&1 &
-          
-          # Wait for the tunnel to open by checking for the "Port:" line in tunnel.log
+          TUNNEL_PID=$!
+
+          # Wait for tunnel to open
           timeout=30
           while [ $timeout -gt 0 ]; do
             if grep -q "^Port:" tunnel.log; then
@@ -75,11 +75,12 @@ jobs:
           done
 
           if [ $timeout -le 0 ]; then
-            echo "Tunnel did not open within the expected time." >&2
+            echo "Tunnel did not open in time."
+            kill $TUNNEL_PID
             exit 1
           fi
 
-          # Now that the tunnel is open, capture the complete output from the log file
+          # Extract connection details
           output=$(cat tunnel.log)
           host=$(echo "$output" | grep "^Host:" | awk '{print $2}' | xargs)
           port=$(echo "$output" | grep "^Port:" | awk '{print $2}' | xargs)
@@ -87,17 +88,15 @@ jobs:
           password=$(echo "$output" | grep "^Password:" | awk '{print $2}' | xargs)
           dbname=$(echo "$output" | grep "^Name:" | awk '{print $2}' | xargs)
 
-          # Export the values as outputs for later steps
-          echo "host=${host}" >> $GITHUB_OUTPUT
-          echo "port=${port}" >> $GITHUB_OUTPUT
-          echo "username=${username}" >> $GITHUB_OUTPUT
-          echo "password=${password}" >> $GITHUB_OUTPUT
-          echo "dbname=${dbname}" >> $GITHUB_OUTPUT
+          # Run Liquibase
+          docker run --rm \
+            -v "${PWD}:/liquibase/changelog" \
+            liquibase/liquibase:4.31.1 \
+            --changelog-file=./database/changelog/changelog-root.yaml \
+            --url=jdbc:postgresql://${host}:${port}/${dbname} \
+            --username=${username} \
+            --password=${password} \
+            update
 
-      - name: Apply Liquibase updates
-        uses: liquibase-github-actions/update@v4.31.1
-        with:
-          changelogFile: ./database/changelog/changelog-root.yaml
-          url: jdbc:postgresql://${{ steps.tunnel.outputs.host }}:${{ steps.tunnel.outputs.port }}/${{ steps.tunnel.outputs.dbname }}
-          username: ${{ steps.tunnel.outputs.username }}
-          password: ${{ steps.tunnel.outputs.password }}
+          # Cleanup
+          kill $TUNNEL_PID
