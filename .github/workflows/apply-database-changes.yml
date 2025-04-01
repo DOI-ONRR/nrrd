@@ -89,11 +89,11 @@ jobs:
           dbname=$(echo "$output" | grep "^Name:" | awk '{print $2}' | xargs)
 
           # Run Liquibase
-          docker run --rm \
+          docker run --rm --network=host \
             -v "${PWD}:/liquibase/changelog" \
             liquibase/liquibase:4.31.1 \
             --changelog-file=./database/changelog/changelog-root.yaml \
-            --url=jdbc:postgresql://host.docker.internal:${port}/${dbname} \
+            --url=jdbc:postgresql://${host}:${port}/${dbname} \
             --username=${username} \
             --password=${password} \
             update
