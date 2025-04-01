@@ -100,4 +100,4 @@ jobs:
           changelogFile: ./database/changelog/changelog-root.yaml
           url: jdbc:postgresql://${{ steps.tunnel.outputs.host }}:${{ steps.tunnel.outputs.port }}/${{ steps.tunnel.outputs.dbname }}
           username: ${{ steps.tunnel.outputs.username }}
-          password: ${{ steps.tunnel.outputs.passord }}
+          password: ${{ steps.tunnel.outputs.password }}
