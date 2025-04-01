@@ -60,3 +60,6 @@ jobs:
       - name: Open tunnel and apply Liquibase updates
         run: .github/scripts/apply-liquibase-via-cf-tunnel.sh
         shell: bash
+        env:
+          CF_APP_NAME: ${{ inputs.cf-app-name }}
+          CF_SERVICE_NAME: ${{ inputs.cf-service-name }}

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Start the tunnel in the background
-cf connect-to-service --no-client "${{ inputs.cf-app-name }}" "${{ inputs.cf-service-name }}" > tunnel.log 2>&1 &
+cf connect-to-service --no-client "$CF_APP_NAME" "$CF_SERVICE_NAME" > tunnel.log 2>&1 &
 TUNNEL_PID=$!
 
 # Wait for tunnel to open
