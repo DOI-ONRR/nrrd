@@ -11,16 +11,42 @@ on:
       - master
 
 jobs:
+  set-vars:
+    runs-on: ubuntu-latest
+    outputs:
+      cf_db_space: ${{ steps.set-vars.outputs.cf_db_space }}
+      cf_db_app_name: ${{ steps.set-vars.outputs.cf_db_app_name }}
+      cf_db_service_name: ${{ steps.set-vars.outputs.cf_db_service_name }}
+    steps:
+      - name: Set Cloud Foundry variables for connecting to the db
+        id: set-vars
+        run: |
+          branch="${GITHUB_REF##*/}"
+          if [ "$branch" = "master" ]; then
+            echo "cf_db_space=prod" >> $GITHUB_OUTPUT
+            echo "cf_db_app_name=nrrd" >> $GITHUB_OUTPUT
+            echo "cf_db_service_name=nrrd-a-psql" >> $GITHUB_OUTPUT
+          elif [ "$branch" = "dev" ]; then
+            echo "cf_db_space=prod" >> $GITHUB_OUTPUT
+            echo "cf_db_app_name=hasura-dev" >> $GITHUB_OUTPUT
+            echo "cf_db_service_name=nrrd-b-psql" >> $GITHUB_OUTPUT
+          else
+            echo "cf_db_space=dev" >> $GITHUB_OUTPUT
+            echo "cf_db_app_name=hasura-sandbox" >> $GITHUB_OUTPUT
+            echo "cf_db_service_name=nrrd-psql" >> $GITHUB_OUTPUT
+          fi
+  
   apply_database_updates:
+    needs: set-vars
     uses: ./.github/workflows/apply-database-changes.yml
     with:
-      cf-space: dev
-      cf-app-name: hasura-sandbox
-      cf-service-name: nrrd-psql
+      cf-space: ${{ needs.set-vars.outputs.cf_db_space }}
+      cf-app-name: ${{ needs.set-vars.outputs.cf_db_app_name }}
+      cf-service-name: ${{ needs.set-vars.outputs.cf_db_service_name }}
     secrets: inherit
 
   generate_downloads:
-    needs: apply_database_updates
+    needs: [set-vars, apply_database_updates]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -32,7 +58,7 @@ jobs:
       - name: Log in to Cloud Foundry
         shell: bash
         run: |
-          cf login -u ${{ secrets.CF_USERNAME }} -p ${{ secrets.CF_PASSWORD }} -a api.fr.cloud.gov -o doi-onrr -s ${{ inputs.cf-space }}
+          cf login -u ${{ secrets.CF_USERNAME }} -p ${{ secrets.CF_PASSWORD }} -a api.fr.cloud.gov -o doi-onrr -s ${{ needs.set-vars.outputs.cf_db_space }}
 
       - name: Install connect-to-service CF plugin
         shell: bash
@@ -52,12 +78,12 @@ jobs:
         run: npm install
         working-directory: ./database
 
-      - name: Open tunnel and apply Liquibase updates
-        run: .github/scripts/apply-liquibase-via-cf-tunnel.sh
+      - name: Open tunnel and apply generate downloads
+        run: .github/scripts/generate-downloads-via-cf-tunnel.sh
         shell: bash
         env:
-          CF_APP_NAME: ${{ inputs.cf-app-name }}
-          CF_SERVICE_NAME: ${{ inputs.cf-service-name }}
+          CF_APP_NAME: ${{ needs.set-vars.outputs.cf_db_app_name }}
+          CF_SERVICE_NAME: ${{ needs.set-vars.outputs.cf_db_service_name }}
 
       - name: Upload download files
         uses: actions/upload-artifact@v4
