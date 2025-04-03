@@ -57,9 +57,28 @@ jobs:
         run: |
           cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
       
+      - name: Install gnumeric
+        run: |
+          sudo apt-get install --no-install-recommends -y gnumeric
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies in database directory
+        run: npm install
+        working-directory: ./database
+
       - name: Open tunnel and apply Liquibase updates
         run: .github/scripts/apply-liquibase-via-cf-tunnel.sh
         shell: bash
         env:
           CF_APP_NAME: ${{ inputs.cf-app-name }}
           CF_SERVICE_NAME: ${{ inputs.cf-service-name }}
+
+      - name: Upload download files
+        uses: actions/upload-artifact@v4
+        with:
+          name: downloads
+          path: /tmp/downloads
