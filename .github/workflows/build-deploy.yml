@@ -153,7 +153,7 @@ jobs:
       - name: Sync local folder to S3
         run: |
           branch="${GITHUB_REF##*/}"
-          aws s3 sync ./public s3://${{ secrets.AWS_BUCKET_NAME }}/sites/${{ branch }} --delete
+          aws s3 sync ./public s3://${{ secrets.AWS_BUCKET_NAME }}/sites/$branch --delete
 
   # dev:
   #   needs: build
