@@ -36,7 +36,7 @@ jobs:
             echo "cf_db_service_name=nrrd-psql" >> $GITHUB_OUTPUT
           fi
   
-  apply_database_updates:
+  apply-database-updates:
     needs: set-vars
     uses: ./.github/workflows/apply-database-changes.yml
     with:
@@ -45,7 +45,7 @@ jobs:
       cf-service-name: ${{ needs.set-vars.outputs.cf_db_service_name }}
     secrets: inherit
 
-  generate_downloads:
+  generate-downloads:
     needs: [set-vars, apply_database_updates]
     runs-on: ubuntu-latest
     steps:
@@ -78,7 +78,7 @@ jobs:
         run: npm install
         working-directory: .github/scripts/generate-downloads-json
 
-      - name: Open tunnel and apply generate downloads
+      - name: Open tunnel and generate downloads
         run: .github/scripts/generate-downloads-via-cf-tunnel.sh
         shell: bash
         env:
@@ -91,48 +91,69 @@ jobs:
           name: downloads
           path: /tmp/downloads
 
-  # build:
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     GTM_ID: ${{ secrets.GTM_ID }}
-  #   outputs:
-  #     build-dir: ${{ steps.set-output.outputs.build-dir }}
+  build:
+    needs: generate-downloads
+    runs-on: ubuntu-latest
+    env:
+      GTM_ID: ${{ secrets.GTM_ID }}
 
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v4
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download downloads artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: downloads
+        path: downloads
     
-  #   - name: Setup node
-  #     uses: actions/setup-node@v4
-  #     with:
-  #       node-version: 20
-  #       cache: 'npm'
+    - name: Setup node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
     
-  #   - name: Install dependencies
-  #     run: npm ci
+    - name: Install dependencies
+      run: npm ci
     
-  #   - name: Build application
-  #     run: npm run build --if-present
+    - name: Build application
+      run: npm run build --if-present
 
-  #   - name: Rename ~partytown directory
-  #     run: |
-  #       if [ -d public/~partytown ]; then
-  #         mv public/~partytown public/_partytown
-  #       fi
+    - name: Rename ~partytown directory
+      run: |
+        if [ -d public/~partytown ]; then
+          mv public/~partytown public/_partytown
+        fi
 
-  #   - name: Upload build artifacts
-  #     uses: actions/upload-artifact@v4
-  #     with:
-  #       name: public
-  #       path: public
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: public
+        path: public
 
-  # preview:
-  #   needs: build
-  #   if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-  #   uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
-  #   with:
-  #     manifest: manifest.dev.yml
-  #   secrets: inherit
+  deploy-preview:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+    
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: public
+          path: public
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Sync local folder to S3
+        run: |
+          branch="${GITHUB_REF##*/}"
+          aws s3 sync ./public s3://${{ secrets.AWS_BUCKET_NAME }}/sites/${{ branch }} --delete
 
   # dev:
   #   needs: build
