@@ -1,4 +1,20 @@
-mkdir -p /tmp/downloads
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Load tunnel and DB env vars
+source .github/scripts/cf-tunnel-to-db.sh
+
+# generate downloads
+wait_for_ssconvert() {
+    echo -n "Waiting for ssconvert to finish $1..."      
+    while ! grep "Convert" .ssconvert > /dev/null;
+    do
+        echo -n "."
+        sleep 1
+    done
+    cat .ssconvert
+    rm .ssconvert
+}
 
 psql postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DBNAME}  <<EOF
 set datestyle to SQL, MDY;
@@ -21,112 +37,56 @@ cp  /tmp/downloads/calendar_year_revenue.csv /tmp/Calendar\ Year\ Revenue
 cp   .github/data/revenue_dictionary.csv /tmp/Data\ Dictionary
 
 echo "" > .ssconvert
+ssconvert --merge-to /tmp/downloads/all_revenue.xlsx /tmp/Monthly\ Revenue /tmp/Fiscal\ Year\ Revenue /tmp/Calendar\ Year\ Revenue  && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
+wait_for_ssconvert "revenue"
 
-ssconvert --merge-to /tmp/downloads/all_revenue.xlsx /tmp/Monthly\ Revenue /tmp/Fiscal\ Year\ Revenue /tmp/Calendar\ Year\ Revenue  /tmp/Data\ Dictionary && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
-echo -n "Waiting for ssconvert to finish revenue..."      
-while ! grep "Convert" .ssconvert > /dev/null;
-do
-    echo -n "."
-    sleep 1
-done
-
-
- cat .ssconvert
- rm .ssconvert
- echo "" > .ssconvert
 cp  /tmp/downloads/federal_revenue_by_company.csv /tmp/Federal\ Revenue\ By\ Company
 cp  .github/data/corporate_cross_walk.csv /tmp/Corporate\ Crosswalk
 cp  .github/data/revenue_by_company_dictionary.csv /tmp/Data\ Dictionary
- 
- ssconvert  --merge-to /tmp/downloads/federal_revenue_by_company.xlsx  /tmp/Federal\ Revenue\ By\ Company /tmp/Corporate\ Crosswalk /tmp/Data\ Dictionary  && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
- echo -n "Waiting for ssconvert to finish ..."      
- while ! grep "Convert" .ssconvert > /dev/null;
- do
-     echo -n "."
-     sleep 1
- done
 
+echo "" > .ssconvert
+ssconvert  --merge-to /tmp/downloads/federal_revenue_by_company.xlsx  /tmp/Federal\ Revenue\ By\ Company /tmp/Corporate\ Crosswalk /tmp/Data\ Dictionary  && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
+wait_for_ssconvert "federal revenue by company"
 
-cat .ssconvert
-rm .ssconvert
- 
 cp  /tmp/downloads/fiscal_year_production.csv /tmp/Fiscal\ Year\ Production
 cp  /tmp/downloads/calendar_year_production.csv /tmp/Calendar\ Year\ Production
 cp   .github/data/production_by_year_dictionary.csv /tmp/Data\ Dictionary
- cat .ssconvert
- rm .ssconvert
- echo "" > .ssconvert
- ssconvert --merge-to /tmp/downloads/all_production.xlsx /tmp/Fiscal\ Year\ Production /tmp/Calendar\ Year\ Production /tmp/Data\ Dictionary  && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
- echo -n "Waiting for ssconvert to finish ..."      
- while ! grep "Convert" .ssconvert > /dev/null;
- do
-     echo -n "."
-     sleep 1
- done
 
- 
- cat .ssconvert
-rm .ssconvert
+echo "" > .ssconvert
+ssconvert --merge-to /tmp/downloads/all_production.xlsx /tmp/Fiscal\ Year\ Production /tmp/Calendar\ Year\ Production /tmp/Data\ Dictionary  && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
+wait_for_ssconvert "production"
 
 cp  /tmp/downloads/monthly_production.csv /tmp/Monthly\ Production
 cp   .github/data/production_by_month_dictionary.csv /tmp/Data\ Dictionary
- cat .ssconvert
- rm .ssconvert
- echo "" > .ssconvert
- ssconvert --merge-to /tmp/downloads/monthly_production.xlsx /tmp/Monthly\ Production /tmp/Data\ Dictionary  && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
- echo -n "Waiting for ssconvert to finish ..."      
- while ! grep "Convert" .ssconvert > /dev/null;
- do
-     echo -n "."
-     sleep 1
- done
 
- 
-  cat .ssconvert
-  rm .ssconvert
-
-
+echo "" > .ssconvert
+ssconvert --merge-to /tmp/downloads/monthly_production.xlsx /tmp/Monthly\ Production /tmp/Data\ Dictionary  && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
+wait_for_ssconvert "monthly production"
 
 cp  /tmp/downloads/monthly_disbursements.csv /tmp/Monthly\ Disbursements
 cp   .github/data/disbursement_by_month_dictionary.csv /tmp/Data\ Dictionary
- echo "" > .ssconvert
- ssconvert --merge-to /tmp/downloads/monthly_disbursements.xlsx /tmp/Monthly\ Disbursements /tmp/Data\ Dictionary && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
- echo -n "Waiting for ssconvert to finish ..."      
- while ! grep "Convert" .ssconvert > /dev/null;
- do
-     echo -n "."
-     sleep 1
- done
- 
- cat .ssconvert
- rm .ssconvert
 
- 
+echo "" > .ssconvert
+ssconvert --merge-to /tmp/downloads/monthly_disbursements.xlsx /tmp/Monthly\ Disbursements /tmp/Data\ Dictionary && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
+wait_for_ssconvert "monthly disbursements"
+
 cp  /tmp/downloads/fiscal_year_disbursements.csv /tmp/Fiscal\ Year\ Disbursements
 cp   .github/data/disbursement_by_year_dictionary.csv /tmp/Data\ Dictionary
+
 echo "" > .ssconvert
 ssconvert --merge-to /tmp/downloads/fiscal_year_disbursements.xlsx /tmp/Fiscal\ Year\ Disbursements /tmp/Data\ Dictionary && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
- echo -n "Waiting for ssconvert to finish ..."      
- while ! grep "Convert" .ssconvert > /dev/null;
- do
-     echo -n "."
-     sleep 1
- done
- 
- cat .ssconvert
- rm .ssconvert
+wait_for_ssconvert "fiscal year disbursements"
 
 cp  /tmp/downloads/federal_sales.csv /tmp/Federal\ Oil\ Gas\ and\ NGL\ Sales
 cp   .github/data/federal_sales.csv /tmp/Data\ Dictionary
 cp   .github/data/federal_sales_notes.csv /tmp/Notes
+
 echo "" > .ssconvert
 ssconvert --merge-to /tmp/downloads/federal_sales.xlsx /tmp/Federal\ Oil\ Gas\ and\ NGL\ Sales /tmp/Data\ Dictionary /tmp/Notes && echo "Convert successful" >> .ssconvert || echo "Convert failed" >> .ssconvert &
- echo -n "Waiting for ssconvert to finish ..."      
- while ! grep "Convert" .ssconvert > /dev/null;
- do
-     echo -n "."
-     sleep 1
- done
- 
- cat .ssconvert
- rm .ssconvert
+wait_for_ssconvert "federal sales"
+
+# generate downloads.json
+node .github/scripts/generate-downloads-json/index.js
+
+# Cleanup
+kill $TUNNEL_PID

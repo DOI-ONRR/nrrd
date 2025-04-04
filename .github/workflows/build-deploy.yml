@@ -87,7 +87,7 @@ jobs:
         working-directory: .github/scripts/generate-downloads-json
 
       - name: Open tunnel and generate downloads
-        run: .github/scripts/generate-downloads-via-cf-tunnel.sh
+        run: .github/scripts/generate-downloads.sh
         shell: bash
         env:
           CF_APP_NAME: ${{ needs.set-vars.outputs.cf_db_app_name }}
@@ -166,19 +166,19 @@ jobs:
           branch="${GITHUB_REF##*/}"
           aws s3 sync ./public s3://${{ secrets.AWS_BUCKET_NAME }}/sites/$branch --delete
 
-  # dev:
-  #   needs: build
-  #   if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
-  #   uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
-  #   with:
-  #     manifest: manifest.dev.yml
-  #   secrets: inherit
+  dev:
+    needs: build
+    if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+    uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
+    with:
+      manifest: manifest.dev.yml
+    secrets: inherit
 
-  # prod:
-  #   needs: build
-  #   if: github.ref == 'refs/heads/master'
-  #   uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
-  #   with:
-  #     cf-space: prod
-  #     manifest: manifest.master.yml
-  #   secrets: inherit
+  prod:
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
+    with:
+      cf-space: prod
+      manifest: manifest.master.yml
+    secrets: inherit
