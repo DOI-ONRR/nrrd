@@ -166,15 +166,15 @@ jobs:
           branch="${GITHUB_REF##*/}"
           aws s3 sync ./public s3://${{ secrets.AWS_BUCKET_NAME }}/sites/$branch --delete
 
-  dev:
+  deploy-dev:
     needs: build
-    if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+    if: github.ref == 'refs/heads/dev'
     uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
     with:
       manifest: manifest.dev.yml
     secrets: inherit
 
-  prod:
+  deploy-prod:
     needs: build
     if: github.ref == 'refs/heads/master'
     uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
