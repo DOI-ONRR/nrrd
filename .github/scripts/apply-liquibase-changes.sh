@@ -15,11 +15,5 @@ docker run --rm --network=host \
   --password=${PASSWORD} \
   update
 
-# generate downloads
-bash .github/scripts/generate-downloads.sh
-
-# generate downloads.json
-node .github/scripts/generate-downloads.js
-
 # Cleanup
 kill $TUNNEL_PID

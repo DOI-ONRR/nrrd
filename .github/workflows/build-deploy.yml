@@ -126,6 +126,11 @@ jobs:
     
     - name: Install dependencies
       run: npm ci --legacy-peer-deps
+
+    - name: Overwrite robots.txt
+      if: github.ref != 'refs/heads/master'
+      run: |
+        cp ./static/robots-dev.txt ./static/robots.txt
     
     - name: Build application
       run: npm run build --if-present

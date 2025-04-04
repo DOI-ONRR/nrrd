@@ -1,6 +1,6 @@
 ---
 applications:
-- name: nrrd
+- name: dev-nrrd
   path: public
   buildpacks:
    - staticfile_buildpack
