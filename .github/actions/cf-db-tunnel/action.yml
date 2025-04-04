@@ -1,0 +1,69 @@
+name: Tunnel to database via CF
+description: Open a database tunnel via Cloud Foundry CLI
+inputs:
+  cf-app-name:
+    description: Application name
+    required: true
+  cf-service-name:
+    description: Service name
+    required: true
+outputs:
+  host:
+    description: Tunnel host
+    value: ${{ steps.tunnel.outputs.host }}
+  port:
+    description: Tunnel port
+    value: ${{ steps.tunnel.outputs.port }}
+  username:
+    description: Tunnel username
+    value: ${{ steps.tunnel.outputs.username }}
+  password:
+    description: Tunnel password
+    value: ${{ steps.tunnel.outputs.password }}
+  dbname:
+    description: Tunnel database name
+    value: ${{ steps.tunnel.outputs.dbname }}
+runs:
+  using: "composite"
+  steps:
+    - name: Install connect-to-service CF plugin
+      shell: bash
+      run: |
+        cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
+    
+    - name: Open the tunnel and capture tunnel info
+      id: tunnel
+      shell: bash
+      run: |
+        # Start the tunnel in the background and write output to a log file
+        cf connect-to-service --no-client ${{ inputs.cf-app-name }} ${{ inputs.cf-service-name }} > tunnel.log 2>&1 &
+        
+        # Wait for the tunnel to open by checking for the "Port:" line in tunnel.log
+        timeout=30
+        while [ $timeout -gt 0 ]; do
+          if grep -q "^Port:" tunnel.log; then
+            break
+          fi
+          sleep 1
+          timeout=$((timeout - 1))
+        done
+
+        if [ $timeout -le 0 ]; then
+          echo "Tunnel did not open within the expected time." >&2
+          exit 1
+        fi
+
+        # Now that the tunnel is open, capture the complete output from the log file
+        output=$(cat tunnel.log)
+        host=$(echo "$output" | grep "^Host:" | awk '{print $2}' | xargs)
+        port=$(echo "$output" | grep "^Port:" | awk '{print $2}' | xargs)
+        username=$(echo "$output" | grep "^Username:" | awk '{print $2}' | xargs)
+        password=$(echo "$output" | grep "^Password:" | awk '{print $2}' | xargs)
+        dbname=$(echo "$output" | grep "^Name:" | awk '{print $2}' | xargs)
+
+        # Export the values as outputs for later steps
+        echo "host=${host}" >> $GITHUB_OUTPUT
+        echo "port=${port}" >> $GITHUB_OUTPUT
+        echo "username=${username}" >> $GITHUB_OUTPUT
+        echo "password=${password}" >> $GITHUB_OUTPUT
+        echo "dbname=${dbname}" >> $GITHUB_OUTPUT

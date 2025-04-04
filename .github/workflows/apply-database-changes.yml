@@ -1,0 +1,80 @@
+name: Apply database changes
+
+on:
+  workflow_call:
+    inputs:
+      cf-space:
+        type: string
+        default: dev
+      cf-app-name:
+        type: string
+        required: true
+      cf-service-name:
+        type: string
+        required: true
+
+    secrets:
+      CF_USERNAME:
+        required: true
+
+      CF_PASSWORD:
+        required: true
+    
+jobs:
+  check_database_changelog:
+    runs-on: ubuntu-latest
+    outputs:
+      changelog: ${{ steps.filter.outputs.changelog }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Check if files changed
+        uses: dorny/paths-filter@v3
+        id: filter
+        with: 
+          filters: |
+            changelog:
+              - 'database/changelog/**'
+  apply_database_updates:
+    needs: check_database_changelog
+    if: ${{ needs.check_database_changelog.outputs.changelog == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install CF CLI
+        uses: doi-onrr/oddd-actions/.github/actions/cf-install@v1
+
+      - name: Log in to Cloud Foundry
+        shell: bash
+        run: |
+          cf login -u ${{ secrets.CF_USERNAME }} -p ${{ secrets.CF_PASSWORD }} -a api.fr.cloud.gov -o doi-onrr -s ${{ inputs.cf-space }}
+
+      - name: Install connect-to-service CF plugin
+        shell: bash
+        run: |
+          cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies in database directory
+        run: npm install
+        working-directory: ./database
+
+      - name: Open tunnel and apply Liquibase updates
+        run: .github/scripts/apply-liquibase-changes.sh
+        shell: bash
+        env:
+          CF_APP_NAME: ${{ inputs.cf-app-name }}
+          CF_SERVICE_NAME: ${{ inputs.cf-service-name }}
+
+      - name: Upload download files
+        uses: actions/upload-artifact@v4
+        with:
+          name: downloads
+          path: /tmp/downloads

@@ -1,0 +1,184 @@
+name: Build and deploy
+
+on:
+  push:
+    branches-ignore:
+      - master
+  
+  pull_request:
+    branches:
+      - dev
+      - master
+
+jobs:
+  set-vars:
+    runs-on: ubuntu-latest
+    outputs:
+      cf_db_space: ${{ steps.set-vars.outputs.cf_db_space }}
+      cf_db_app_name: ${{ steps.set-vars.outputs.cf_db_app_name }}
+      cf_db_service_name: ${{ steps.set-vars.outputs.cf_db_service_name }}
+      gatsby_hasura_uri: ${{ steps.set-vars.outputs.gatsby_hasura_uri }}
+      stage: ${{ steps.set-vars.outputs.stage }}
+    steps:
+      - name: Set Cloud Foundry variables for connecting to the db
+        id: set-vars
+        run: |
+          branch="${GITHUB_REF##*/}"
+          if [ "$branch" = "master" ]; then
+            echo "cf_db_space=prod" >> $GITHUB_OUTPUT
+            echo "cf_db_app_name=nrrd" >> $GITHUB_OUTPUT
+            echo "cf_db_service_name=nrrd-a-psql" >> $GITHUB_OUTPUT
+            echo "gatsby_hasura_uri=https://hasura-prod.app.cloud.gov/v1/graphql" >> $GITHUB_OUTPUT
+            echo "stage=" >> $GITHUB_OUTPUT
+          elif [ "$branch" = "dev" ]; then
+            echo "cf_db_space=prod" >> $GITHUB_OUTPUT
+            echo "cf_db_app_name=hasura-dev" >> $GITHUB_OUTPUT
+            echo "cf_db_service_name=nrrd-b-psql" >> $GITHUB_OUTPUT
+            echo "gatsby_hasura_uri=https://hasura-dev.app.cloud.gov/v1/graphql" >> $GITHUB_OUTPUT
+            echo "stage=" >> $GITHUB_OUTPUT
+          else
+            echo "cf_db_space=dev" >> $GITHUB_OUTPUT
+            echo "cf_db_app_name=hasura-sandbox" >> $GITHUB_OUTPUT
+            echo "cf_db_service_name=nrrd-psql" >> $GITHUB_OUTPUT
+            echo "gatsby_hasura_uri=https://hasura-sandbox.app.cloud.gov/v1/graphql" >> $GITHUB_OUTPUT
+            echo "stage=nrrd-preview" >> $GITHUB_OUTPUT
+          fi
+  
+  apply-database-updates:
+    needs: set-vars
+    uses: ./.github/workflows/apply-database-changes.yml
+    with:
+      cf-space: ${{ needs.set-vars.outputs.cf_db_space }}
+      cf-app-name: ${{ needs.set-vars.outputs.cf_db_app_name }}
+      cf-service-name: ${{ needs.set-vars.outputs.cf_db_service_name }}
+    secrets: inherit
+
+  generate-downloads:
+    needs: [set-vars, apply-database-updates]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install CF CLI
+        uses: doi-onrr/oddd-actions/.github/actions/cf-install@v1
+
+      - name: Log in to Cloud Foundry
+        shell: bash
+        run: |
+          cf login -u ${{ secrets.CF_USERNAME }} -p ${{ secrets.CF_PASSWORD }} -a api.fr.cloud.gov -o doi-onrr -s ${{ needs.set-vars.outputs.cf_db_space }}
+
+      - name: Install connect-to-service CF plugin
+        shell: bash
+        run: |
+          cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/1.1.0/cf-service-connect-linux-amd64
+      
+      - name: Install gnumeric
+        run: |
+          sudo apt-get install --no-install-recommends -y gnumeric
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies in database directory
+        run: npm install
+        working-directory: .github/scripts/generate-downloads-json
+
+      - name: Open tunnel and generate downloads
+        run: .github/scripts/generate-downloads.sh
+        shell: bash
+        env:
+          CF_APP_NAME: ${{ needs.set-vars.outputs.cf_db_app_name }}
+          CF_SERVICE_NAME: ${{ needs.set-vars.outputs.cf_db_service_name }}
+
+      - name: Upload download files
+        uses: actions/upload-artifact@v4
+        with:
+          name: downloads
+          path: /tmp/downloads
+
+  build:
+    needs: [set-vars, generate-downloads]
+    runs-on: ubuntu-latest
+    env:
+      GTM_ID: ${{ secrets.GTM_ID }}
+      GATSBY_HASURA_URI: ${{ needs.set-vars.outputs.gatsby_hasura_uri }}
+      STAGE: ${{ needs.set-vars.outputs.stage }}
+      BRANCH: ${{ github.ref_name }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download downloads artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: downloads
+        path: static/downloads
+    
+    - name: Setup node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci --legacy-peer-deps
+    
+    - name: Build application
+      run: npm run build --if-present
+
+    - name: Rename ~partytown directory
+      run: |
+        if [ -d public/~partytown ]; then
+          mv public/~partytown public/_partytown
+        fi
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: public
+        path: public
+
+  deploy-preview:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+    
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: public
+          path: public
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Sync local folder to S3
+        run: |
+          branch="${GITHUB_REF##*/}"
+          aws s3 sync ./public s3://${{ secrets.AWS_BUCKET_NAME }}/sites/$branch --delete
+
+  deploy-dev:
+    needs: build
+    if: github.ref == 'refs/heads/dev'
+    uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
+    with:
+      manifest: manifest.dev.yml
+    secrets: inherit
+
+  deploy-prod:
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
+    with:
+      cf-space: prod
+      manifest: manifest.master.yml
+    secrets: inherit

@@ -1,7 +1,8 @@
 ---
 applications:
-- name: nrrd-preview
-  path: ./public
+- name: nrrd
+  path: public
   buildpacks:
    - staticfile_buildpack
-  memory: 10M
+  memory: 100M
+  instances: 2
