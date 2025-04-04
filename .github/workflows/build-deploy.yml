@@ -46,7 +46,7 @@ jobs:
     secrets: inherit
 
   generate-downloads:
-    needs: [set-vars, apply_database_updates]
+    needs: [set-vars, apply-database-updates]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
