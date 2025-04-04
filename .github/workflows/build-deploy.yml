@@ -76,7 +76,7 @@ jobs:
 
       - name: Install dependencies in database directory
         run: npm install
-        working-directory: ./database
+        working-directory: .github/scripts/generate-downloads-json
 
       - name: Open tunnel and apply generate downloads
         run: .github/scripts/generate-downloads-via-cf-tunnel.sh

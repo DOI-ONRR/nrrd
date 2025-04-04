@@ -46,7 +46,7 @@ fi
 bash .github/scripts/generate-downloads.sh
 
 # generate downloads.json
-node .github/scripts/generate-downloads-json.js
+node .github/scripts/generate-downloads-json/index.js
 
 # Cleanup
 kill $TUNNEL_PID
