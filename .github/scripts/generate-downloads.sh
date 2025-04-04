@@ -16,6 +16,8 @@ wait_for_ssconvert() {
     rm .ssconvert
 }
 
+mkdir -p /tmp/downloads
+
 psql postgres://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DBNAME}  <<EOF
 set datestyle to SQL, MDY;
 \copy  (select "Date", "Land Class", "Land Category", "State", "County", "FIPS Code", "Offshore Region", "Revenue Type", "Mineral Lease Type", "Commodity", "Product", "Revenue" from download_monthly_revenue )  to '/tmp/downloads/monthly_revenue.csv' csv header force quote "FIPS Code"
