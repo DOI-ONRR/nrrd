@@ -17,6 +17,8 @@ jobs:
       cf_db_space: ${{ steps.set-vars.outputs.cf_db_space }}
       cf_db_app_name: ${{ steps.set-vars.outputs.cf_db_app_name }}
       cf_db_service_name: ${{ steps.set-vars.outputs.cf_db_service_name }}
+      gatsby_hasura_uri: ${{ steps.set-vars.outputs.gatsby_hasura_uri }}
+      stage: ${{ steps.set-vars.outputs.stage }}
     steps:
       - name: Set Cloud Foundry variables for connecting to the db
         id: set-vars
@@ -26,14 +28,20 @@ jobs:
             echo "cf_db_space=prod" >> $GITHUB_OUTPUT
             echo "cf_db_app_name=nrrd" >> $GITHUB_OUTPUT
             echo "cf_db_service_name=nrrd-a-psql" >> $GITHUB_OUTPUT
+            echo "gatsby_hasura_uri=https://hasura-prod.app.cloud.gov/v1/graphql" >> $GITHUB_OUTPUT
+            echo "stage=" >> $GITHUB_OUTPUT
           elif [ "$branch" = "dev" ]; then
             echo "cf_db_space=prod" >> $GITHUB_OUTPUT
             echo "cf_db_app_name=hasura-dev" >> $GITHUB_OUTPUT
             echo "cf_db_service_name=nrrd-b-psql" >> $GITHUB_OUTPUT
+            echo "gatsby_hasura_uri=https://hasura-dev.app.cloud.gov/v1/graphql" >> $GITHUB_OUTPUT
+            echo "stage=" >> $GITHUB_OUTPUT
           else
             echo "cf_db_space=dev" >> $GITHUB_OUTPUT
             echo "cf_db_app_name=hasura-sandbox" >> $GITHUB_OUTPUT
             echo "cf_db_service_name=nrrd-psql" >> $GITHUB_OUTPUT
+            echo "gatsby_hasura_uri=https://hasura-sandbox.app.cloud.gov/v1/graphql" >> $GITHUB_OUTPUT
+            echo "stage=nrrd-preview" >> $GITHUB_OUTPUT
           fi
   
   apply-database-updates:
@@ -92,10 +100,13 @@ jobs:
           path: /tmp/downloads
 
   build:
-    needs: generate-downloads
+    needs: [set-vars, generate-downloads]
     runs-on: ubuntu-latest
     env:
       GTM_ID: ${{ secrets.GTM_ID }}
+      GATSBY_HASURA_URI: ${{ needs.set-vars.outputs.gatsby_hasura_uri }}
+      STAGE: ${{ needs.set-vars.outputs.stage }}
+      BRANCH: ${{ github.ref_name }}
 
     steps:
     - name: Checkout code
@@ -105,7 +116,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: downloads
-        path: downloads
+        path: static/downloads
     
     - name: Setup node
       uses: actions/setup-node@v4
