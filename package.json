@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "author": "Mojo Nichols <mojo.nichols>",
   "dependencies": {
-    "@apollo/client": "^3.13.1",
+    "@apollo/client": "^3.13.6",
     "@devexpress/dx-react-core": "^2.6.2",
     "@devexpress/dx-react-grid": "^2.6.2",
     "@devexpress/dx-react-grid-material-ui": "^2.6.2",
@@ -94,9 +94,9 @@
     "use-query-params": "^1.1.4"
   },
   "devDependencies": {
-    "@babel/helper-create-regexp-features-plugin": "^7.10.4",
+    "@babel/helper-create-regexp-features-plugin": "^7.27.0",
     "@babel/plugin-proposal-export-default-from": "^7.8.3",
-    "@babel/types": "^7.21.2",
+    "@babel/types": "^7.27.0",
     "@testing-library/dom": "^7.26.5",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
@@ -113,7 +113,7 @@
     "eslint-plugin-mdx": "^2.3.4",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^7.2.1",
-    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-standard": "^4.1.0",
     "gatsby-remark-images": "^7.14.0",
