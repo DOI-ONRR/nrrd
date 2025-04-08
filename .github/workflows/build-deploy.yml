@@ -128,7 +128,7 @@ jobs:
       run: npm ci --legacy-peer-deps
 
     - name: Overwrite robots.txt
-      if: !(github.event_name == 'pull_request' && github.base_ref == 'master')
+      if: ${{ !(github.event_name == 'pull_request' && github.base_ref == 'master') }}
       run: |
         cp ./static/robots-dev.txt ./static/robots.txt
     
