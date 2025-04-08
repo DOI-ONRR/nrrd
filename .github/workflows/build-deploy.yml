@@ -150,7 +150,7 @@ jobs:
   deploy-preview:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
+    if: github.event_name == 'push' && github.ref != 'refs/heads/master' && github.ref != 'refs/heads/dev'
     
     steps:
       - name: Download build artifacts
@@ -173,7 +173,7 @@ jobs:
 
   deploy-dev:
     needs: build
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/dev' || (github.event_name == 'pull_request' && github.base_ref == 'dev')
     uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
     with:
       manifest: manifest.dev.yml
@@ -181,7 +181,7 @@ jobs:
 
   deploy-prod:
     needs: build
-    if: github.ref == 'refs/heads/master'
+    if: github.event_name == 'pull_request' && github.base_ref == 'master'
     uses: doi-onrr/oddd-actions/.github/workflows/cf-deploy.yml@v1
     with:
       cf-space: prod
