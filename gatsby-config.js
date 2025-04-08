@@ -6,7 +6,7 @@ require('dotenv').config({
   path: `.env.${ activeEnv }`
 })
 
-const GTM_ID = process.env.NRRD_GTM_ID
+const GTM_ID = process.env.GTM_ID
 // eslint-disable-next-line max-len
 const PATH_PREFIX = (process.env.STAGE === 'nrrd-preview') ? `/sites/${ process.env.BRANCH }` : undefined
 
