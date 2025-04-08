@@ -8,7 +8,7 @@ require('dotenv').config({
 
 const GTM_ID = process.env.NRRD_GTM_ID
 // eslint-disable-next-line max-len
-const PATH_PREFIX = (process.env.CIRCLE_STAGE === 'nrrd-preview') ? `/sites/${ process.env.CIRCLE_BRANCH }` : undefined
+const PATH_PREFIX = (process.env.STAGE === 'nrrd-preview') ? `/sites/${ process.env.BRANCH }` : undefined
 
 const config = {
   pathPrefix: PATH_PREFIX,
