@@ -19,6 +19,20 @@ on:
 
       CF_PASSWORD:
         required: true
+  workflow_dispatch:
+    inputs:
+      cf-space:
+        description: CF space
+        required: true
+        default: prod
+      cf-app-name:
+        description: CF app name
+        required: true
+        default: hasura-dev
+      cf-service-name:
+        description: CF service name
+        required: true
+        default: nrrd-b-psql
     
 jobs:
   check_database_changelog:
@@ -62,9 +76,9 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies in database directory
+      - name: Install dependencies in generate-downloads-json directory
         run: npm install
-        working-directory: ./database
+        working-directory: .github/scripts/generate-downloads-json
 
       - name: Open tunnel and apply Liquibase updates
         run: .github/scripts/apply-liquibase-changes.sh
@@ -72,9 +86,3 @@ jobs:
         env:
           CF_APP_NAME: ${{ inputs.cf-app-name }}
           CF_SERVICE_NAME: ${{ inputs.cf-service-name }}
-
-      - name: Upload download files
-        uses: actions/upload-artifact@v4
-        with:
-          name: downloads
-          path: /tmp/downloads
