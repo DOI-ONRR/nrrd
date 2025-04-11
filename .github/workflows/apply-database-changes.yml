@@ -86,9 +86,3 @@ jobs:
         env:
           CF_APP_NAME: ${{ inputs.cf-app-name }}
           CF_SERVICE_NAME: ${{ inputs.cf-service-name }}
-
-      - name: Upload download files
-        uses: actions/upload-artifact@v4
-        with:
-          name: downloads
-          path: /tmp/downloads
