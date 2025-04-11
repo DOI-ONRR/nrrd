@@ -62,9 +62,9 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies in database directory
+      - name: Install dependencies in generate-downloads-json directory
         run: npm install
-        working-directory: ./database
+        working-directory: .github/scripts/generate-downloads-json
 
       - name: Open tunnel and apply Liquibase updates
         run: .github/scripts/apply-liquibase-changes.sh
