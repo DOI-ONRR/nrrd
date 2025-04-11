@@ -19,6 +19,7 @@ on:
 
       CF_PASSWORD:
         required: true
+  workflow_dispatch:
     
 jobs:
   check_database_changelog:
