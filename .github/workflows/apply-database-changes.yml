@@ -20,6 +20,19 @@ on:
       CF_PASSWORD:
         required: true
   workflow_dispatch:
+    inputs:
+      cf-space:
+        description: CF space
+        required: true
+        default: prod
+      cf-app-name:
+        description: CF app name
+        required: true
+        default: hasura-dev
+      cf-service-name:
+        description: CF service name
+        required: true
+        default: nrrd-b-psql
     
 jobs:
   check_database_changelog:
