@@ -1,3 +1,0 @@
-{
-  "reject": ["react*", "@devexpress/*", "d3*", "eslint*"]
-}

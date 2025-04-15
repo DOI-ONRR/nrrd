@@ -15,8 +15,10 @@ BEGIN
     IF NEW.disbursement_type like '%8(g)%' THEN
         NEW.fund_type := CONCAT(NEW.fund_type, ' 8(g)');
     
-    ELSIF NEW.disbursement_type like '%GoMESA%' THEN
-        NEW.fund_type := CONCAT(NEW.fund_type,' - GoMESA');
+    ELSIF NEW.disbursement_type like '%GoMESA%'
+        OR NEW.disbursement_type = 'OCS Gulf' THEN
+        NEW.fund_type := CONCAT(NEW.fund_type,' - OCS Gulf');
+        NEW.disbursement_type = 'OCS Gulf';
     END IF;
 
     RETURN NEW;
