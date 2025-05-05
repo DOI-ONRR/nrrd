@@ -15,6 +15,9 @@ BEGIN
         WHEN 'GULF OF MEXICO' THEN
             NEW.agency_state_region_code_desc := 'Gulf of America';
             NEW.fips_code := 'GMR';
+        WHEN 'GULF OF AMERICA' THEN
+            NEW.agency_state_region_code_desc := 'Gulf of America';
+            NEW.fips_code := 'GMR';
         WHEN 'NEW MEXICO', 'EAST STATES' THEN
             NEW.agency_state_region_code_desc := '';
         ELSE
