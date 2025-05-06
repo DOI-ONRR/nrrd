@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-25-march
+      id: revenue-25-april
       author: Christine Thomas
       changes: 
       - sql:
@@ -9,7 +9,7 @@ databaseChangeLog:
             TRUNCATE TABLE monthly_revenue_elt
       - loadData:
           tableName: monthly_revenue_elt
-          file: '../static/csv/revenue/March 2025 Revenue for Portal_csv.csv'
+          file: '../static/csv/revenue/April 2025 Revenue for Portal_csv.csv'
           quotchar: '""'
           columns:
           - column:
