@@ -6,12 +6,16 @@ on:
       - master
   
   pull_request:
+    types: [closed]
     branches:
       - dev
       - master
 
 jobs:
   set-vars:
+    if: |
+      github.event_name == 'push' || 
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     outputs:
       cf_db_space: ${{ steps.set-vars.outputs.cf_db_space }}
@@ -45,6 +49,9 @@ jobs:
           fi
   
   apply-database-updates:
+    if: |
+      github.event_name == 'push' || 
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     needs: set-vars
     uses: ./.github/workflows/apply-database-changes.yml
     with:
@@ -54,6 +61,9 @@ jobs:
     secrets: inherit
 
   generate-downloads:
+    if: |
+      github.event_name == 'push' || 
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     needs: [set-vars, apply-database-updates]
     runs-on: ubuntu-latest
     steps:
@@ -100,6 +110,9 @@ jobs:
           path: /tmp/downloads
 
   build:
+    if: |
+      github.event_name == 'push' || 
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     needs: [set-vars, generate-downloads]
     runs-on: ubuntu-latest
     env:
