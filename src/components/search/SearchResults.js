@@ -70,7 +70,10 @@ export const SearchResults = () => {
               <ul>
                 {results.length > 0
                   ? results.map((item, index) => {
-                    if (item.path !== '/glossary/') {
+                    if (!item.path) {
+                      return <li key={ index }>{ item.title }</li>
+                    }
+                    else if (item.path !== '/glossary/') {
                       return <li key={ index }><Link href={ item.path } linkType="default">{ item.title }</Link></li>
                     }
                     else {
