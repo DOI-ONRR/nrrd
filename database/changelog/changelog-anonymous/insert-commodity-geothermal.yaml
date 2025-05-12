@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-commodity-geothermal
+      author: Jeff Schwartz
+      changes:
+        - insert:
+            tableName: fips_counties_exceptions
+            columns:
+              - column:
+                  name: commodity
+                  value: Geothermal - direct use, millions of pounds (mlb)
+              - column:
+                  name: product
+                  value: Geothermal - direct use, millions of pounds (mlb)
+              - column:
+                  name: commodity_order
+                  value: Geoth
