@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Jeff Schwartz
       changes:
         - insert:
-            tableName: fips_counties_exceptions
+            tableName: commodity
             columns:
               - column:
                   name: commodity
