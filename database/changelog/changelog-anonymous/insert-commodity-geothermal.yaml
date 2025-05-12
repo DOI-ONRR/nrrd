@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: commodity
-                  value: Geothermal - direct use, millions of pounds (mlb)
+                  value: Geothermal - direct use, millions of pounds
               - column:
                   name: product
                   value: Geothermal - direct use, millions of pounds (mlb)
