@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-commodity-geothermal-comma
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE commodity
+            SET product = REPLACE(product, ',', ' -'),
+              commodity = REPLACE(commodity, ',', ' -')
+            WHERE POSITION(',' in product) > 0
+              OR POSITION(',' in commodity) > 0;

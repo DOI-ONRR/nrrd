@@ -8,10 +8,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: commodity
-                  value: Geothermal - direct use, millions of pounds
+                  value: Geothermal - direct use - millions of pounds
               - column:
                   name: product
-                  value: Geothermal - direct use, millions of pounds (mlb)
+                  value: Geothermal - direct use - millions of pounds (mlb)
               - column:
                   name: commodity_order
                   value: Geoth
