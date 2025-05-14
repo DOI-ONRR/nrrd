@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: production-calendar-year-24
-      author: Christine Thomas clt
+      author: Christine Thomas
       changes:
       - sql:
           dbms: 'postgresql'
