@@ -18,7 +18,7 @@ BEGIN
             NEW.fips_code := 'AOR';
             NEW.county := '';
             NEW.state := '';
-        WHEN 'Offshore Gulf' THEN
+        WHEN 'Offshore Gulf of America' THEN
             NEW.offshore_region := 'Gulf of America';
             NEW.fips_code := 'GMR';
             NEW.county := '';
