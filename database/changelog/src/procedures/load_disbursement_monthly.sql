@@ -38,8 +38,8 @@ DECLARE
 	    AND CASE 
             WHEN e.disbursement_type = '8(g)' THEN 
                 '8(g) offshore' 
-            WHEN e.disbursement_type LIKE '%GoMESA%' OR e.disbursement_type LIKE '%GOMESA%' THEN 
-                'GOMESA offshore'
+            WHEN e.disbursement_type = 'OCS Gulf' THEN 
+                e.disbursement_type
  	        ELSE 
                 COALESCE(e.land_category, '') 
             END = f.source
