@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: disbursement-monthly-25-April
+      id: disbursement-monthly-25-March-April
       author: Christine Thomas
       changes:
       - sql:
