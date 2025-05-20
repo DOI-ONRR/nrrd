@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: disbursements-march-25-cleanup
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            DELETE FROM disbursement
+            WHERE period_id IN (4472591, 2327540);
+
+            DELETE FROM databasechangelog
+            WHERE id = 'disbursement-monthly-25-March';

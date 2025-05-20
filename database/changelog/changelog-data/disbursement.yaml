@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: disbursement-monthly-25-March
-      author: Lindsay Goldstein
+      id: disbursement-monthly-25-March-April
+      author: Christine Thomas
       changes:
       - sql:
           dbms: 'postgresql'
