@@ -49,4 +49,4 @@ jobs:
       - name: Check links in built site
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --exclude-mail --no-progress ./public/**/*.html
+          args: --verbose --config .lychee.toml './public/**/*.html'
