@@ -36,6 +36,7 @@ jobs:
         path: public
   
   link-check:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
