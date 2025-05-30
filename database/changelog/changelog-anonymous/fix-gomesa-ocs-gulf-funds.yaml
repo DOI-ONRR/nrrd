@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: fix-gomesa-ocs-gulf-funds
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE fund
+            SET source = 'OCS Gulf',
+              fund_type = REPLACE(fund_type, 'GoMESA', 'OCS Gulf'),
+              recipient = REPLACE(recipient, ' - GoMesa', '')
+            WHERE source = 'GOMESA offshore';
