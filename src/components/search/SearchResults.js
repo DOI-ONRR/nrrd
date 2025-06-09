@@ -80,7 +80,7 @@ export const SearchResults = () => {
                       return <GlossaryResult item={item} queryString={queryString} index={index} />
                     }
                   })
-                  : <p><strong>We didn't find any search results for " {queryString} ".</strong></p>
+                  : <p><strong>We didn't find any search results for " {queryString} ". To improve your search results: check your spelling, enter fewer search terms, and try more general search terms.</strong></p>
                 }
               </ul>
             </article>
