@@ -35,13 +35,13 @@ const PercentDifference = ({ currentAmount, previousAmount }) => {
   const percentChange = (currentAmount < previousAmount ? -1 : 1) * (Math.abs(currentAmount - previousAmount) / Math.abs(previousAmount)) * 100
   let icon
   if (percentChange > 0) {
-    icon = <ArrowUpwardIcon className={classes.trendIconUp} />
+    icon = <ArrowUpwardIcon className={classes.trendIconUp} alt="Arrow pointing up indicating an increase." />
   }
   else if (percentChange < 0) {
-    icon = <ArrowDownwardIcon className={classes.trendIconDown} />
+    icon = <ArrowDownwardIcon className={classes.trendIconDown} alt="Arrow pointing down indicating a decrease." />
   }
   else if (percentChange === 0) {
-    icon = <ArrowForwardIcon className={classes.trendIconDown} />
+    icon = <ArrowForwardIcon className={classes.trendIconDown} alt="Arrow pointing right indicating no change." />
   }
 
   return (
