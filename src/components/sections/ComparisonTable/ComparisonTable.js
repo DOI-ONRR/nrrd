@@ -68,8 +68,8 @@ const ComparisonTable = forwardRef((props, ref) => {
   })
 
   // eslint-disable-next-line max-len
-  const yearlyComparisonText = `Compares data for the selected ${ period.toLowerCase() } to the previous ${ period.toLowerCase() }. For the current ${ period.toLowerCase() }, we compare the months for which we have data with the same months in the previous ${ period.toLowerCase() }.`
-  const monthlyComparisonText = 'Compares data for the selected month to the same month in the previous year.'
+  const yearlyComparisonText = `Compares data for the selected ${ period.toLowerCase() } to the previous ${ period.toLowerCase() }. For the current ${ period.toLowerCase() }, we compare the months for which we have data with the same months in the previous ${ period.toLowerCase() }. To select a year, click or hover over a bar in the graph. Your selection changes the content displayed in the table.`
+  const monthlyComparisonText = 'Compares data for the selected month to the same month in the previous year. To select a month, click or hover over a bar in the graph. Your selection changes the content displayed in the table.'
 
   useEffect(() => {
     // //console.debug('ComparisonTable selectedItem: ', selectedItem)
