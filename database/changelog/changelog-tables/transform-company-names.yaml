@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-transform-company-names-table
+      author: Jeff Schwartz
+      changes:
+        - createTable:
+            tableName: transform_company_names
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: original_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: new_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 002-load-transform-company-names-data
+      author: Jeff Schwartz
+      changes:
+        - loadData:
+            tableName: transform_company_names
+            file: '../static/csv/transform-company-names.csv'
+            separator: ","
+            encoding: UTF-8
+            quotchar: '"'
+            columns:
+              - column:
+                  name: original_name
+                  index: 0
+              - column:
+                  name: new_name
+                  index: 1
