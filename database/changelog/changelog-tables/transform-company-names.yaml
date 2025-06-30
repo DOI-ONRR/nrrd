@@ -1,5 +1,13 @@
 databaseChangeLog:
   - changeSet:
+      id: 000-create-uuid-ossp-extension
+      author: Jeff Schwartz
+      changes:
+        - sql:
+            splitStatements: false
+            sql: CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+  - changeSet:
       id: 001-create-transform-company-names-table
       author: Jeff Schwartz
       changes:
