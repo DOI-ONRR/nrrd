@@ -49,3 +49,24 @@ databaseChangeLog:
               - column:
                   name: new_name
                   index: 1
+
+  - changeSet:
+    id: 003-update-federal-revenue-company-names
+    author: Jeff Schwartz
+    changes:
+      - sql:
+          splitStatements: false
+          stripComments: false
+          sql: |
+            DO $$
+            DECLARE
+                rec RECORD;
+            BEGIN
+                FOR rec IN SELECT original_name, new_name FROM transform_company_names
+                LOOP
+                    UPDATE federal_revenue_by_company
+                    SET corporate_name = rec.new_name
+                    WHERE corporate_name = rec.original_name;
+                END LOOP;
+            END;
+            $$;
