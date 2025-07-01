@@ -60,13 +60,41 @@ databaseChangeLog:
             sql: |
               DO $$
               DECLARE
-                  rec RECORD;
+                  comp_name_rec RECORD;
+                  revenue_rec RECORD;
               BEGIN
-                  FOR rec IN SELECT original_name, new_name FROM transform_company_names
+                  FOR comp_name_rec IN SELECT original_name, new_name FROM transform_company_names ORDER BY original_name
                   LOOP
-                      UPDATE federal_revenue_by_company
-                      SET corporate_name = rec.new_name
-                      WHERE corporate_name = rec.original_name;
+                      FOR revenue_rec IN SELECT * FROM federal_revenue_by_company WHERE corporate_name = comp_name_rec.original_name ORDER BY calendar_year
+                      LOOP
+                          BEGIN
+                              UPDATE federal_revenue_by_company
+                              SET corporate_name = comp_name_rec.new_name,
+                                last_update_date = now()
+                              WHERE calendar_year = revenue_rec.calendar_year
+                                AND corporate_name = comp_name_rec.original_name
+                                AND revenue_agency_type = revenue_rec.revenue_agency_type
+                                AND commodity = revenue_rec.commodity;
+                          EXCEPTION
+                              WHEN unique_violation THEN
+                                  UPDATE federal_revenue_by_company
+                                  SET revenue = revenue + revenue_rec.revenue,
+                                    raw_revenue = TO_CHAR(revenue + revenue_rec.revenue, 'L999G999G999G999D99'),
+                                    last_update_date = now()
+                                  WHERE calendar_year = revenue_rec.calendar_year
+                                    AND corporate_name = comp_name_rec.new_name
+                                    AND revenue_agency_type = revenue_rec.revenue_agency_type
+                                    AND commodity = revenue_rec.commodity;
+
+                                  DELETE FROM federal_revenue_by_company
+                                  WHERE calendar_year = revenue_rec.calendar_year
+                                    AND corporate_name = revenue_rec.corporate_name
+                                    AND revenue_agency_type = revenue_rec.revenue_agency_type
+                                    AND commodity = revenue_rec.commodity;
+                              WHEN OTHERS THEN
+                                  RAISE NOTICE 'Error: %', SQLERRM;
+                          END;
+                      END LOOP;
                   END LOOP;
               END;
               $$;
