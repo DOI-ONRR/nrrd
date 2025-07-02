@@ -23,6 +23,9 @@ jobs:
           cd .github/site-crawl
           npm ci
 
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+          
       - name: Run crawler
         run: |
           cd .github/site-crawl
