@@ -1,0 +1,16 @@
+{
+  "name": "site-crawl",
+  "version": "1.0.0",
+  "description": "Crawler script using Playwright to fetch URLs from the sitemap, render pages, and extract all discovered links for validation and analysis in CI.",
+  "author": "Jeff Schwartz (jeffrey.schwartz@onrr.gov)",
+  "type": "module",
+  "scripts": {
+    "start": "node crawl-site.js",
+    "export-links": "node export-links.js"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0",
+    "xml2js": "^0.6.2",
+    "node-fetch": "^3.3.2"
+  }
+}
