@@ -20,24 +20,24 @@ jobs:
 
       - name: Install crawler dependencies
         run: |
-          cd .github/link-checker
+          cd .github/site-crawl
           npm ci
 
       - name: Run crawler
         run: |
-          cd .github/link-checker
+          cd .github/site-crawl
           npm start
 
       - name: Export URLs for Lychee
         run: |
-          cd .github/link-checker
+          cd .github/site-crawl
           npm run export-links
 
       - name: Upload found-links.json artifact
         uses: actions/upload-artifact@v4
         with:
           name: found-links
-          path: .github/link-checker/found-links.json
+          path: .github/site-crawl/found-links.json
 
       - name: Run Lychee link checker
         uses: lycheeverse/lychee-action@v1.10.0
@@ -46,12 +46,12 @@ jobs:
             --verbose
             --no-progress
             --max-concurrency 10
-            .github/link-checker/all-urls.txt
+            .github/site-crawl/all-urls.txt
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: link-check-results
           path: |
-            .github/link-checker/found-links.json
-            .github/link-checker/all-urls.txt
+            .github/site-crawl/found-links.json
+            .github/site-crawl/all-urls.txt
