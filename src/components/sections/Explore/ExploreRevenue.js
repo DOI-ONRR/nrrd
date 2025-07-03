@@ -20,31 +20,29 @@ const ExploreRevenue = props => {
             mt={0}>
             Query revenue data
           </Link>
-        </>
-      }
-      contentCenter={
-        <>
           <Link
             href="/how-revenue-works#understanding-federal-revenues"
             linkType="HowWorks"
             mt={0}>
             How revenue works
           </Link>
+        </>
+      }
+      contentRight={
+        <>
           <Link
             href="/data-by-state-offshore-region"
             linkType="Location"
             mt={0}>
             Data by state and offshore region
           </Link>
+          <Link
+            href="/downloads/#Revenue"
+            linkType="DownloadData"
+            mt={0}>
+            Downloads and documentation
+          </Link>
         </>
-      }
-      contentRight={
-        <Link
-          href="/downloads/#Revenue"
-          linkType="DownloadData"
-          mt={0}>
-          Downloads and documentation
-        </Link>
       }
     />
   )
