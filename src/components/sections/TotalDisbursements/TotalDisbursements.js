@@ -289,7 +289,7 @@ const TotalDisbursements = props => {
 		  maxFiscalYear={maxFiscalYear}
 		  maxCalendarYear={maxCalendarYear} />
         </Grid>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={12}>
           <StackedBarChart2
             key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
             title={chartTitle}
@@ -315,23 +315,29 @@ const TotalDisbursements = props => {
               }
             }
             svgTitle={svgTitle}
+            hideLegend={true}
           />
+        </Grid>
+        <Grid item xs={12} md={12}>
+          <ComparisonTable
+            key={`tdct__${ monthly }${ period }${ breakoutBy }`}
+            ref={disbursementsComparison}
+            data={comparisonData}
+            yGroupBy={yGroupBy}
+            yOrderBy={yOrderBy}
+            monthRange={monthRange}
+          />
+        </Grid>
+        <Grid item 
+          xs={12} 
+          md={12}
+          style={{ paddingBottom: 0, paddingTop: 0 }}>
           <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
             { (monthly === DFC.MONTHLY_CAPITALIZED)
-		  ? <Link href='/downloads/disbursements-by-month/'>Source file</Link>
-		  : <Link href='/downloads/disbursements/'>Source file</Link>
+              ? <Link href='/downloads/disbursements-by-month/'>Source file</Link>
+              : <Link href='/downloads/disbursements/'>Source file</Link>
             }
           </Box>
-        </Grid>
-        <Grid item xs={12} md={5}>
-          <ComparisonTable
-		  key={`tdct__${ monthly }${ period }${ breakoutBy }`}
-		  ref={disbursementsComparison}
-		  data={comparisonData}
-		  yGroupBy={yGroupBy}
-		  yOrderBy={yOrderBy}
-		  monthRange={monthRange}
-          />
         </Grid>
 	  </Grid>
     </>
