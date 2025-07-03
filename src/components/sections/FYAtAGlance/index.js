@@ -1,1 +1,1 @@
-export default from './FyAtAGlance'
+export default from './FYAtAGlance'
