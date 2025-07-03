@@ -188,7 +188,6 @@ const TotalProduction = props => {
       }
       else if (period === DFC.PERIOD_CALENDAR_YEAR) {
         const maxDate = data.total_monthly_calendar_production.filter(row => row.month === 12).pop()
-        console.debug('DWGH _------------')
 
         comparisonData = data.total_monthly_calendar_production.filter(row => row.product === product)
         chartData = data.total_monthly_calendar_production.filter(row => row.product === product && row.year === maxDate.year)
@@ -199,12 +198,10 @@ const TotalProduction = props => {
 
 	  const minDate = new Date(maxDate.replace(/-/g, '/') + ' 00:00:00')
 	  minDate.setFullYear(minDate.getFullYear() - 1)
-	      // console.debug("MD------", minDate)
         chartData = data.total_monthly_last_twelve_production.filter(row => row.product === product && new Date(row.period_date) >= minDate)
       }
 
       xGroups = chartData.filter(row => row.product === product).reduce((g, row, i) => {
-        // console.log('xGroup g, row: ', g, row)
         const r = g
         const year = row.period_date.substring(0, 4)
         const months = g[year] || []
@@ -224,7 +221,6 @@ const TotalProduction = props => {
       }
 
       legendHeaders = (headers, row) => {
-        // console.log('legendHeaders: ', headers, row)
         const dateArr = formatDate(headers[1])
         const year = dateArr[0]
         const date = new Date(dateArr[0], dateArr[1], dateArr[2])
@@ -290,7 +286,7 @@ const TotalProduction = props => {
               maxFiscalYear={maxFiscalYear}
               maxCalendarYear={maxCalendarYear} />
           </Grid>
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={12}>
             <StackedBarChart2
               key={`tpsbc__${ monthly }${ period }${ product }${ dataType }`}
 	            title={[commodity, ' ', <GlossaryTerm termKey={unitAbbrev}>{unitAbbrev}</GlossaryTerm>]}
@@ -316,12 +312,13 @@ const TotalProduction = props => {
               legendHeaders={legendHeaders}
               handleBarHover={d => handleBarHover(d)}
               svgTitle={svgTitle}
+              hideLegend={true}
             />
-            <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
-              <Link href='/downloads/production-by-month/'>Source file</Link>
-            </Box>
           </Grid>
-          <Grid item xs={12} md={5}>
+          <Grid item 
+            xs={12} 
+            md={12}
+            style={{ paddingBottom: 0 }}>
             <ComparisonTable
               key={`ct__${ monthly }${ period }${ product }`}
               ref={productionComparison}
@@ -330,6 +327,12 @@ const TotalProduction = props => {
               yOrderBy={yOrderBy}
               monthRange={monthRange}
             />
+          </Grid>
+          <Grid item xs={12} md={12}
+            style={{ paddingBottom: 0, paddingTop: 0 }}>
+            <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize" m={0}>
+              <Link href='/downloads/production-by-month/'>Source file</Link>
+            </Box>
           </Grid>
         </Grid>
       </>
