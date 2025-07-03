@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: fy-production-summary-views
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sqlFile:
+          path: src/views/curr_fy_production_summary_v.sql
+      - sqlFile:
+          path: src/views/prev_fy_production_summary_v.sql
+  
+  - changeSet:
+      id: max-fy-month-by-dataset
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sqlFile:
+          path: src/views/max_fy_month_by_dataset_v.sql
