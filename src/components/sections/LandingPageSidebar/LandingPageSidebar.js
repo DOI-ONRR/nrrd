@@ -19,8 +19,9 @@ const atAGlanceQuery = gql`
       volume
     }
 
-    max_fy_month_by_dataset_v {
-      fiscal_month
+    datasetPeriodInfo: max_fy_month_by_dataset_v {
+      fiscalYear: fiscal_year
+      fiscalMonth: fiscal_month
       dataset
     }
   }
@@ -39,7 +40,8 @@ export default function LandingPageSidebar() {
 
       <FYProductionSummary 
         currentFYData={ data.productionCurrFy }
-        prevFYData={ data.productionPrevFy }/>
+        prevFYData={ data.productionPrevFy }
+        fyPeriodData={data.datasetPeriodInfo.find((p) => p.dataset === 'production')}/>
 
       <LPMonthlyFactSheet />
 

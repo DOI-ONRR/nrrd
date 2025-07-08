@@ -6,18 +6,23 @@ import oilIconUrl from '../../../images/icons/icon-oil.svg';
 import gasIconUrl from '../../../images/icons/icon-gas.svg';
 import coalIconUrl from '../../../images/icons/icon-coal.svg';
 import PercentDifference from '../../utils/PercentDifference';
-import { getFiscalYear } from '../../utils/nrrdUtils'
+import { getFiscalYear, getFiscalMonthShortName } from '../../utils/nrrdUtils'
 
 const useStyles = makeStyles({
   h3: {
     marginTop: '0.5rem',
-    marginBottom: '1rem',
+    marginBottom: '0rem',
     textAlign: 'center'
+  },
+  fyProgress: {
+    textAlign: 'center',
+    marginBottom: '1rem',
+    display: 'block'
   }
 })
 
 
-export default function FYProductionSummary({ currentFYData, prevFYData }) {
+export default function FYProductionSummary({ currentFYData, prevFYData, fyPeriodData }) {
   const classes = useStyles()
 
   const currentOil = currentFYData.find((i) => i.commodity === 'Oil');
@@ -28,10 +33,18 @@ export default function FYProductionSummary({ currentFYData, prevFYData }) {
   const previousGas = prevFYData.find((i) => i.commodity === 'Gas');
   const previousCoal = prevFYData.find((i) => i.commodity === 'Coal');
 
+  let fyProgressText = `FY ${ fyPeriodData.fiscalYear }`
+  if (fyPeriodData.fiscalMonth < 12) {
+    fyProgressText += ` so far (Oct - ${ getFiscalMonthShortName(fyPeriodData.fiscalMonth) })`
+  }
+
   return (
     <Box bgcolor="primary.main" mb={2} pt={0.5} pb={2} pl={3} pr={3} borderRadius={10}>
       <Typography variant="h3" className={classes.h3}>
         Production
+      </Typography>
+      <Typography variant='inherit' className={classes.fyProgress} >
+        { fyProgressText }
       </Typography>
       <Grid container spacing={1}>
         <Grid item>
