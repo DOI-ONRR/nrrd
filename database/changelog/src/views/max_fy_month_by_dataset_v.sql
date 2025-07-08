@@ -1,5 +1,6 @@
 CREATE OR REPLACE VIEW max_fy_month_by_dataset_v AS
 SELECT MAX(fiscal_month) fiscal_month,
+  fiscal_year,
   'production' dataset
 FROM period p
 WHERE EXISTS (
@@ -16,9 +17,11 @@ WHERE EXISTS (
       WHERE period_id = p2.period_id
     )
   )
-GROUP BY dataset
+GROUP BY fiscal_year,
+  dataset
 UNION
 SELECT MAX(fiscal_month) fiscal_month,
+  fiscal_year,
   'revenue' dataset
 FROM period p
 WHERE EXISTS (
@@ -35,9 +38,11 @@ WHERE EXISTS (
       WHERE period_id = p2.period_id
     )
   )
-GROUP BY dataset
+GROUP BY fiscal_year,
+  dataset
 UNION
 SELECT MAX(fiscal_month) fiscal_month,
+  fiscal_year,
   'disbursements' dataset
 FROM period p
 WHERE EXISTS (
@@ -54,4 +59,5 @@ WHERE EXISTS (
       WHERE period_id = p2.period_id
     )
   )
-GROUP BY dataset;
+GROUP BY fiscal_year,
+  dataset;
