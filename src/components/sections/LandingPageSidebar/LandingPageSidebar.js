@@ -1,9 +1,12 @@
 import React from 'react';
 import FyAtAGlance from '../FYAtAGlance'
 import { FYProductionSummary } from '../FYProductionSummary';
+import { FYRevenueSummary } from '../FYRevenueSummary';
+import { FYDisbursementsSummary } from '../FYDisbursementsSummary'
 import { LPMonthlyFactSheet } from '../LPMonthlyFactsheet'
 import { WhatsNew } from '../WhatsNew';
 import { gql, useQuery } from '@apollo/client';
+import { Grid } from '@material-ui/core';
 
 const atAGlanceQuery = gql`
   query FYDataAtAGlance {
@@ -24,6 +27,16 @@ const atAGlanceQuery = gql`
       fiscalMonth: fiscal_month
       dataset
     }
+
+    fyRevenue: fy_revenue_summary_v {
+      fy
+      revenue
+    }
+
+    fyDisbursements: fy_disbursement_summary_v {
+      fy
+      disbursement
+    }
   }
 `
 
@@ -33,7 +46,6 @@ export default function LandingPageSidebar() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  console.log(data)
   return(
     <>
       <FyAtAGlance />
@@ -42,6 +54,19 @@ export default function LandingPageSidebar() {
         currentFYData={ data.productionCurrFy }
         prevFYData={ data.productionPrevFy }
         fyPeriodData={data.datasetPeriodInfo.find((p) => p.dataset === 'production')}/>
+
+      <Grid container spacing={1}>
+        <Grid item xs={12} md={6}>
+          <FYRevenueSummary
+            revenueData={data.fyRevenue}
+            fyPeriodData={data.datasetPeriodInfo.find((p) => p.dataset === 'revenue')}/>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <FYDisbursementsSummary
+            disbursementsData={data.fyDisbursements}
+            fyPeriodData={data.datasetPeriodInfo.find((p) => p.dataset === 'disbursements')}/>
+        </Grid>
+      </Grid>
 
       <LPMonthlyFactSheet />
 
