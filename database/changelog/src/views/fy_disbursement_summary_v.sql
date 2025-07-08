@@ -10,7 +10,7 @@ WHERE pe.period_id = d.period_id
     FROM period pe2
     WHERE exists (
       SELECT 1
-      FROM revenue
+      FROM disbursement
       WHERE period_id = pe2.period_id
     )
   )
@@ -27,7 +27,7 @@ WHERE pe.period_id = d.period_id
     FROM period pe2
     WHERE exists (
       SELECT 1
-      FROM revenue
+      FROM disbursement
       WHERE period_id = pe2.period_id
     )
   )
@@ -39,7 +39,7 @@ WHERE pe.period_id = d.period_id
       FROM period pe3
       WHERE exists (
         SELECT 1
-        FROM production
+        FROM disbursement
         WHERE period_id = pe2.period_id
       )
     )

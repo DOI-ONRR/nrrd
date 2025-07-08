@@ -55,7 +55,7 @@ export default function LandingPageSidebar() {
         prevFYData={ data.productionPrevFy }
         fyPeriodData={data.datasetPeriodInfo.find((p) => p.dataset === 'production')}/>
 
-      <Grid container spacing={1}>
+      <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <FYRevenueSummary
             revenueData={data.fyRevenue}

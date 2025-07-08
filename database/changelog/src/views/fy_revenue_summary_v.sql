@@ -39,7 +39,7 @@ WHERE pe.period_id = r.period_id
       FROM period pe3
       WHERE exists (
         SELECT 1
-        FROM production
+        FROM revenue
         WHERE period_id = pe2.period_id
       )
     )
