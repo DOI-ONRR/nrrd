@@ -1,4 +1,6 @@
-CREATE OR REPLACE VIEW max_fy_month_by_dataset_v AS
+DROP VIEW IF EXISTS max_fy_month_by_dataset_v;
+
+CREATE VIEW max_fy_month_by_dataset_v AS
 SELECT MAX(fiscal_month) fiscal_month,
   fiscal_year,
   'production' dataset
