@@ -42,7 +42,6 @@ databaseChangeLog:
             separator: ","
             encoding: UTF-8
             quotchar: '"'
-            headerLine: false
             columns:
               - column:
                   name: original_name
