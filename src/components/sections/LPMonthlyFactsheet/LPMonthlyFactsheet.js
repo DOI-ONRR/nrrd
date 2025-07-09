@@ -15,7 +15,7 @@ export default function LPMonthlyFactSheet() {
   return (
     <Box mb={2} pt={0.5} pb={2} pl={3} pr={3} borderRadius={10} border={'1px solid #3C3D3E'}>
       <Typography variant="h3" className={classes.h3}>
-        <Link href='/fact-sheet'>Monthly Fact Sheet</Link>
+        <Link href='/fact-sheet'>Monthly fact sheet</Link>
       </Typography>
       <Typography variant='inherit'>
         Fact sheet summarizing disbursements, revenue, and production data by month on federal and Native American lands.
