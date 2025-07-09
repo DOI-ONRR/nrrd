@@ -13,12 +13,12 @@ export default function LPMonthlyFactSheet() {
   const classes = useStyles();
 
   return (
-    <Box bgcolor="primary.main" mb={2} pt={0.5} pb={2} pl={3} pr={3} borderRadius={10}>
+    <Box mb={2} pt={0.5} pb={2} pl={3} pr={3} borderRadius={10} border={'1px solid #3C3D3E'}>
       <Typography variant="h3" className={classes.h3}>
-        Monthly Fact Sheet
+        <Link href='/fact-sheet'>Monthly Fact Sheet</Link>
       </Typography>
       <Typography variant='inherit'>
-        <Link href='/fact-sheet'>Fact sheet</Link> summarizing disbursements, revenue, and production data by month on federal and Native American lands.
+        Fact sheet summarizing disbursements, revenue, and production data by month on federal and Native American lands.
       </Typography>
     </Box>
   )

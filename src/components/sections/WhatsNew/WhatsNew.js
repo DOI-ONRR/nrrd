@@ -1,8 +1,18 @@
 import React from 'react';
-import { Box, Typography, Link, List, ListItem, ListItemText } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography';
+import { FYProductionSummary } from '../FYProductionSummary';
+import { FYRevenueSummary } from '../FYRevenueSummary';
+import { FYDisbursementsSummary } from '../FYDisbursementsSummary'
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles({
+  h2: {
+    marginTop: '0.5rem',
+    marginBottom: '1rem',
+    textAlign: 'center'
+  },
   h3: {
     marginTop: '0.5rem',
     marginBottom: '1rem'
@@ -27,48 +37,30 @@ const useStyles = makeStyles({
   }
 })
 
-export default function WhatsNew() {
+export default function WhatsNew({data}) {
   const classes = useStyles();
-
   return (
-    <Box bgcolor="primary.main" mb={4} pt={0.5} pb={2} pl={3} pr={3} borderRadius={10}>
-      <Typography variant='h3' className={classes.h3}>
+    <Box mb={2} paddingX={2} borderRadius={10} border={'1px solid #3C3D3E'}>
+      <Typography variant="h2" className={classes.h2}>
         What's new
       </Typography>
+      <FYProductionSummary 
+        currentFYData={ data.productionCurrFy }
+        prevFYData={ data.productionPrevFy }
+        fyPeriodData={data.datasetPeriodInfo.find((p) => p.dataset === 'production')}/>
 
-      <Typography variant="inherit">
-        Updated geographical references to reflect the new name Gulf of America for the area formerly called Gulf of Mexico, following Executive Order 14172.
-      </Typography>
-
-      <Typography variant="inherit" className={classes.changes}>
-        June 13, 2025 changes:
-      </Typography>
-
-      <List className={classes.changeList}>
-        <ListItem>
-          <ListItemText
-            primary={
-              <>
-                Added <Link href="downloads/disbursements-by-month/" linkType="default">monthly disbursements data</Link>
-              </>
-            }
-          />
-        </ListItem>
-
-        <ListItem>  
-            <ListItemText 
-              primary= {
-                <>
-                Updated <Link href="fact-sheet/" linkType="default">monthly fact sheet</Link>
-                </>
-              } 
-            />
-        </ListItem>
-      </List>
-
-      <Typography variant='inherit'>
-        Review our <Link href="https://github.com/ONRR/nrrd/releases">full release details</Link>.
-      </Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <FYRevenueSummary
+            revenueData={data.fyRevenue}
+            fyPeriodData={data.datasetPeriodInfo.find((p) => p.dataset === 'revenue')}/>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <FYDisbursementsSummary
+            disbursementsData={data.fyDisbursements}
+            fyPeriodData={data.datasetPeriodInfo.find((p) => p.dataset === 'disbursements')}/>
+        </Grid>
+      </Grid>
     </Box>
   )
 }
