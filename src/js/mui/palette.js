@@ -12,7 +12,7 @@ module.exports = Object.freeze({
   },
   toolbarBackground: {
     dark: '#062135',
-    main: '#0a314d',
+    main: '#000051',
   },
   common: {
     black: '#000000',
@@ -20,7 +20,7 @@ module.exports = Object.freeze({
   },
   header: {
     primary: '#062135',
-    secondary: '#0A314D'
+    secondary: '#000051'
   },
   chart: {
     primary: '#222222',
