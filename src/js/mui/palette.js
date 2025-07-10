@@ -5,7 +5,10 @@ module.exports = Object.freeze({
   background: { default: '#ffffff' },
   primary: { main: '#f0f6fa' },
   secondary: { main: '#cde3c3' },
-  info: { main: '#d3dfe6' },
+  info: { 
+    main: '#d3dfe6',
+    dark: '#262431'
+  },
   text: {
     primary: '#000000',
     secondary: '#1478a6'
