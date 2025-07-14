@@ -16,14 +16,9 @@ export default function WindowAdapter({ children }) {
   }, []);
 
   const updateUrl = (search, replace) => {
-  let pathname = window.location.pathname;
-  if (!pathname.endsWith('/')) {
-    pathname += '/';
-  }
-
-  const newUrl = search
-    ? `${pathname}${search.startsWith('?') ? search : '?' + search}`
-    : pathname;
+    const newUrl = search
+      ? `${search.startsWith('?') ? search : '?' + search}`
+      : '';
 
     if (replace) {
       navigate(newUrl, { replace: true });
