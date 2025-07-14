@@ -83,7 +83,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
   }
 
   const viewBoxWidth = 800
-  const viewBoxHeight = 200
+  const viewBoxHeight = 225
 
   // Dimensions
   const dimensions = {
@@ -398,7 +398,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
   return (
     <>
       {title && <ChartTitle compact={options.compact}>{title}</ChartTitle>}
-      <svg width="100%" height="275" viewBox={`0 0 ${ viewBoxWidth } ${ viewBoxHeight }`} pointerEvents="none">
+      <svg width="100%" height="100%" viewBox={`0 0 ${ viewBoxWidth } ${ viewBoxHeight }`} pointerEvents="none">
         <title>{svgTitle}</title>
         <Translate>
           <MaxExtent
