@@ -1,0 +1,60 @@
+name: Check Links
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 0' # runs weekly on Sunday at 3am UTC
+
+jobs:
+  crawl-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install crawler dependencies
+        run: |
+          cd .github/site-crawl
+          npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+          
+      - name: Run crawler
+        run: |
+          cd .github/site-crawl
+          npm start
+
+      - name: Export URLs for Lychee
+        run: |
+          cd .github/site-crawl
+          npm run export-links
+
+      - name: Upload found-links.json artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: found-links
+          path: .github/site-crawl/found-links.json
+
+      - name: Run Lychee link checker
+        uses: lycheeverse/lychee-action@v1.10.0
+        with:
+          args: >
+            --verbose
+            --no-progress
+            --max-concurrency 10
+            .github/site-crawl/all-urls.txt
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-check-results
+          path: |
+            .github/site-crawl/found-links.json
+            .github/site-crawl/all-urls.txt
