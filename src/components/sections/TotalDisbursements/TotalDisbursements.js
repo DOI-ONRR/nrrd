@@ -289,7 +289,7 @@ const TotalDisbursements = props => {
 		  maxFiscalYear={maxFiscalYear}
 		  maxCalendarYear={maxCalendarYear} />
         </Grid>
-        <Grid item xs={12} md={12}>
+        <Grid item xs={12} md={12} style={{ width:'100%', height:300 }}>
           <StackedBarChart2
             key={`tdsbc__${ monthly }${ period }${ breakoutBy }${ dataType }`}
             title={chartTitle}

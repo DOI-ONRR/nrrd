@@ -398,7 +398,11 @@ const StackedBarChart2 = ({ data, ...options }) => {
   return (
     <>
       {title && <ChartTitle compact={options.compact}>{title}</ChartTitle>}
-      <svg width="100%" height="100%" viewBox={`0 0 ${ viewBoxWidth } ${ viewBoxHeight }`} pointerEvents="none">
+      <svg width="100%" 
+        height="100%"
+        viewBox={`0 0 ${ viewBoxWidth } ${ viewBoxHeight }`}
+        preserveAspectRatio="xMidYMid meet"
+        pointerEvents="none">
         <title>{svgTitle}</title>
         <Translate>
           <MaxExtent

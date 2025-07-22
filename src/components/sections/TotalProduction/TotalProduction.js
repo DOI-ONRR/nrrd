@@ -286,7 +286,7 @@ const TotalProduction = props => {
               maxFiscalYear={maxFiscalYear}
               maxCalendarYear={maxCalendarYear} />
           </Grid>
-          <Grid item xs={12} md={12}>
+          <Grid item xs={12} md={12} style={{ width:'100%', height:300 }}>
             <StackedBarChart2
               key={`tpsbc__${ monthly }${ period }${ product }${ dataType }`}
 	            title={[commodity, ' ', <GlossaryTerm termKey={unitAbbrev}>{unitAbbrev}</GlossaryTerm>]}
