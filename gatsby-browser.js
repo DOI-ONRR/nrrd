@@ -28,6 +28,9 @@ import ErrorBoundary from './src/components/ErrorBoundary'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './src/js/mui/theme'
 
+import { QueryParamProvider } from 'use-query-params'
+import { WindowAdapter } from './src/js/utils/WindowAdapter'
+
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
     'This application has been updated. ' +
@@ -74,9 +77,11 @@ export const wrapRootElement = ({ element }) => {
       <ThemeProvider theme={theme}>
         <AppStatusProvider>
           <DownloadProvider>
-            <MDXProvider components={ mdxComponents }>
-              {element}
-            </MDXProvider>
+            <QueryParamProvider adapter={WindowAdapter}>
+              <MDXProvider components={ mdxComponents }>
+                {element}
+              </MDXProvider>
+            </QueryParamProvider>
           </DownloadProvider>
         </AppStatusProvider>
       </ThemeProvider>
