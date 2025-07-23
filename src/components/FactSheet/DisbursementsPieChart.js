@@ -49,7 +49,7 @@ const DisbursementsPieChart = ({ data, fy }) => {
         const sliceAngle = d.endAngle - d.startAngle // Slice angle
         const sliceWidth = radius * sliceAngle // Arc length (approx)
 
-        const labelWidth = `$${ (d.data.totalDisbursements / 1e6).toFixed(1) } million`.length * 6 // Estimate label width
+        const labelWidth = `$${ formatCurrency(d.data.totalDisbursements / 1e6) } million`.length * 6 // Estimate label width
 
         // Place label outside if it doesn't fit inside
         return sliceWidth < labelWidth ? `translate(${ labelArc.centroid(d) })` : `translate(${ sliceCenter })`
@@ -57,7 +57,7 @@ const DisbursementsPieChart = ({ data, fy }) => {
       .attr('text-anchor', d => {
         const sliceAngle = d.endAngle - d.startAngle
         const sliceWidth = radius * sliceAngle
-        const labelWidth = `$${ (d.data.totalDisbursements / 1e6).toFixed(1) } million`.length * 6
+        const labelWidth = `$${ formatCurrency(d.data.totalDisbursements / 1e6) } million`.length * 6
 
         // Adjust anchor for outside labels
         return sliceWidth < labelWidth && (d.endAngle + d.startAngle) / 2 > Math.PI ? 'end' : 'middle'
@@ -67,10 +67,10 @@ const DisbursementsPieChart = ({ data, fy }) => {
         // Use black for outside labels, white for inside labels
         const sliceAngle = d.endAngle - d.startAngle // Slice angle
         const sliceWidth = radius * sliceAngle // Arc length (approx)
-        const labelWidth = `$${ (d.data.totalDisbursements / 1e6).toFixed(1) } million`.length * 6 // Estimate label width
+        const labelWidth = `$${ formatCurrency(d.data.totalDisbursements / 1e6) } million`.length * 6 // Estimate label width
         return sliceWidth < labelWidth ? 'black' : 'white'
       })
-      .text(d => `$${ (d.data.totalDisbursements / 1e6).toFixed(1) } million`)
+      .text(d => `$${ formatCurrency(d.data.totalDisbursements / 1e6) } million`)
 
     // Add connecting lines for outside labels
     arcs.append('line')
@@ -84,7 +84,7 @@ const DisbursementsPieChart = ({ data, fy }) => {
       .attr('x2', d => {
         const sliceAngle = d.endAngle - d.startAngle
         const sliceWidth = radius * sliceAngle
-        const labelWidth = `$${ (d.data.totalDisbursements / 1e6).toFixed(1) } million`.length * 6
+        const labelWidth = `$${ formatCurrency(d.data.totalDisbursements / 1e6) } million`.length * 6
 
         // Use outer label arc if label is outside
         return sliceWidth < labelWidth ? labelArc.centroid(d)[0] : arc.centroid(d)[0]
@@ -92,7 +92,7 @@ const DisbursementsPieChart = ({ data, fy }) => {
       .attr('y2', d => {
         const sliceAngle = d.endAngle - d.startAngle
         const sliceWidth = radius * sliceAngle
-        const labelWidth = `$${ (d.data.totalDisbursements / 1e6).toFixed(1) } million`.length * 6
+        const labelWidth = `$${ formatCurrency(d.data.totalDisbursements / 1e6) } million`.length * 6
 
         return sliceWidth < labelWidth ? labelArc.centroid(d)[1] : arc.centroid(d)[1]
       })
@@ -100,7 +100,7 @@ const DisbursementsPieChart = ({ data, fy }) => {
       .attr('stroke-width', d => {
         const sliceAngle = d.endAngle - d.startAngle
         const sliceWidth = radius * sliceAngle
-        const labelWidth = `$${ (d.data.totalDisbursements / 1e6).toFixed(1) } million`.length * 6
+        const labelWidth = `$${ formatCurrency(d.data.totalDisbursements / 1e6) } million`.length * 6
 
         return sliceWidth < labelWidth ? 1 : 0 // Hide line if label is inside
       })
