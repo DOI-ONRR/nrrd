@@ -19,7 +19,7 @@ import { Tabtastic, TabtasticTab } from '../components/layouts/Tabtastic'
       width: "100%",
       padding: "0 0 10px",
     }}>
-  <Container maxWidth={false}>
+  <Container maxWidth="xl">
     <Grid container spacing={0}>
       <Grid item xs={12} md={12}>
         <Typography variant="h2" component="h1">About natural resources revenue data</Typography>
@@ -40,7 +40,7 @@ import { Tabtastic, TabtasticTab } from '../components/layouts/Tabtastic'
     </Grid>
   </Container>
   </Box>
-  <Container maxWidth={false}>
+  <Container maxWidth="xl">
     <Box mb={2}>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={8}>
@@ -112,8 +112,8 @@ import { Tabtastic, TabtasticTab } from '../components/layouts/Tabtastic'
 
   </Container>
   <Hidden mdUp>
-    <Container maxWidth={false} component="section" style={{ backgroundColor: '#f0f6fa' }}>
-      <Container maxWidth="lg">
+    <Container maxWidth="xl" component="section" style={{ backgroundColor: '#f0f6fa' }}>
+      <Container maxWidth="xl">
         <Box pt={4} pb={4}>
           <WhatsNew />
         </Box>
