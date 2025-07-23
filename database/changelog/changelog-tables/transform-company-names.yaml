@@ -1,0 +1,100 @@
+databaseChangeLog:
+  - changeSet:
+      id: 000-create-uuid-ossp-extension
+      author: Jeff Schwartz
+      changes:
+        - sql:
+            splitStatements: false
+            sql: CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+  - changeSet:
+      id: 001-create-transform-company-names-table
+      author: Jeff Schwartz
+      changes:
+        - createTable:
+            tableName: transform_company_names
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: original_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: new_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 002-load-transform-company-names-data
+      author: Jeff Schwartz
+      changes:
+        - loadData:
+            tableName: transform_company_names
+            file: '../static/csv/transform-company-names.csv'
+            separator: ","
+            encoding: UTF-8
+            quotchar: '"'
+            columns:
+              - column:
+                  name: original_name
+                  index: 0
+              - column:
+                  name: new_name
+                  index: 1
+
+  - changeSet:
+      id: 003-update-federal-revenue-company-names
+      author: Jeff Schwartz
+      changes:
+        - sql:
+            splitStatements: false
+            stripComments: false
+            sql: |
+              DO $$
+              DECLARE
+                  comp_name_rec RECORD;
+                  revenue_rec RECORD;
+              BEGIN
+                  FOR comp_name_rec IN SELECT original_name, new_name FROM transform_company_names ORDER BY original_name
+                  LOOP
+                      FOR revenue_rec IN SELECT * FROM federal_revenue_by_company WHERE corporate_name = comp_name_rec.original_name ORDER BY calendar_year
+                      LOOP
+                          BEGIN
+                              UPDATE federal_revenue_by_company
+                              SET corporate_name = comp_name_rec.new_name,
+                                last_update_date = now()
+                              WHERE calendar_year = revenue_rec.calendar_year
+                                AND corporate_name = comp_name_rec.original_name
+                                AND revenue_agency_type = revenue_rec.revenue_agency_type
+                                AND commodity = revenue_rec.commodity;
+                          EXCEPTION
+                              WHEN unique_violation THEN
+                                  UPDATE federal_revenue_by_company
+                                  SET revenue = revenue + revenue_rec.revenue,
+                                    raw_revenue = TO_CHAR(revenue + revenue_rec.revenue, 'L999G999G999G999D99'),
+                                    last_update_date = now()
+                                  WHERE calendar_year = revenue_rec.calendar_year
+                                    AND corporate_name = comp_name_rec.new_name
+                                    AND revenue_agency_type = revenue_rec.revenue_agency_type
+                                    AND commodity = revenue_rec.commodity;
+
+                                  DELETE FROM federal_revenue_by_company
+                                  WHERE calendar_year = revenue_rec.calendar_year
+                                    AND corporate_name = revenue_rec.corporate_name
+                                    AND revenue_agency_type = revenue_rec.revenue_agency_type
+                                    AND commodity = revenue_rec.commodity;
+                              WHEN OTHERS THEN
+                                  RAISE NOTICE 'Error: %', SQLERRM;
+                          END;
+                      END LOOP;
+                  END LOOP;
+              END;
+              $$;
