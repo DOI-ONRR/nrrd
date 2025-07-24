@@ -91,7 +91,7 @@
     "typescript": "^2.8.0",
     "url-parse": "^1.5.10",
     "url-search-params-polyfill": "^7.0.0",
-    "use-query-params": "^1.1.4"
+    "use-query-params": "^2.2.1"
   },
   "devDependencies": {
     "@babel/helper-create-regexp-features-plugin": "^7.27.0",
