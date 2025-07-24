@@ -36,12 +36,8 @@ export default function ReleaseDetails() {
         Latest release details
       </Typography>
 
-      <Typography variant="inherit">
-        Updated geographical references to reflect the new name Gulf of America for the area formerly called Gulf of Mexico, following Executive Order 14172.
-      </Typography>
-
       <Typography variant="inherit" className={classes.changes}>
-        June 13, 2025 changes:
+        July 24, 2025 changes:
       </Typography>
 
       <List className={classes.changeList}>
@@ -49,20 +45,10 @@ export default function ReleaseDetails() {
           <ListItemText
             primary={
               <>
-                Added <Link href="downloads/disbursements-by-month/" linkType="default">monthly disbursements data</Link>
+                Introduced a new info panel that highlights the latest monthly data, providing quick and easy access to the most up-to-date information.
               </>
             }
           />
-        </ListItem>
-
-        <ListItem>  
-            <ListItemText 
-              primary= {
-                <>
-                Updated <Link href="fact-sheet/" linkType="default">monthly fact sheet</Link>
-                </>
-              } 
-            />
         </ListItem>
       </List>
 
