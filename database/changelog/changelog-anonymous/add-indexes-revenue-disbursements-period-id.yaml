@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 000-create-idx-revenue-period-id
+      author: Jeff Schwartz
+      changes:
+        - createIndex:
+            tableName: revenue
+            indexName: idx_revenue_period_id
+            columns:
+              - column:
+                  name: period_id
+  - changeSet:
+      id: 001-create-idx-disbursement-period-id
+      author: Jeff Schwartz
+      changes:
+        - createIndex:
+            tableName: disbursement
+            indexName: idx_disbursement_period_id
+            columns:
+              - column:
+                  name: period_id  

@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
   sectionControlsContainer: {
     '& > div:first-child': {
-      marginTop: 4,
+      marginTop: 5,
       marginBottom: 20,
     },
     '& > div:nth-child(2)': {
@@ -50,9 +50,7 @@ const HomeDataFilters = props => {
 
   const { state: filterState, updateDataFilter } = useContext(DataFilterContext)
   const { monthly, dataType, product } = filterState
-  console.debug('FilterState ---------------------------------------------------------------------->', filterState)
-  // console.debug(filterState)
-  // not used const maxCalendarYear = calendarYear
+
   let maxFiscalYear = ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR][ALL_YEARS[dataType][DFC.PERIOD_FISCAL_YEAR].length - 1]
   const maxCalendarYear = ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR][ALL_YEARS[dataType][DFC.PERIOD_CALENDAR_YEAR].length - 1]
   // not used const maxCalendarYear = calendarYear
@@ -98,7 +96,6 @@ const HomeDataFilters = props => {
       updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
     }
     else {
-      // console.debug("==========================================================>", "Do we update", monthly, filterState)
       updateDataFilter({ ...filterState, [DFC.PERIOD]: DFC.PERIOD_FISCAL_YEAR })
     }
   }, [monthly])

@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
     borderBottom: '2px solid #cde3c3',
     marginBottom: '1em',
     paddingBottom: '.41667rem',
-  }
+    marginTop: '0 !important'
+  },
 }))
 
 /**
@@ -31,7 +32,8 @@ const Explore = props => {
   return (
     <Box component="section" className={classes.root}>
       <Box className={classes.contentHeader}>
-        <Typography variant="h3" className={classes.h3Bar}>
+        <Typography variant="h3" 
+        className={`${classes.h3Bar}`}>
           Explore {props.title}
         </Typography>
         <Typography variant="body1">
@@ -39,13 +41,10 @@ const Explore = props => {
         </Typography>
       </Box>
       <Grid container spacing={0}>
-        <Grid item md={4} className={classes.exploreContent}>
+        <Grid item md={6} className={classes.exploreContent}>
           {props.contentLeft}
         </Grid>
-        <Grid item md={4} className={classes.exploreContent}>
-          {props.contentCenter}
-        </Grid>
-        <Grid item md={4} className={classes.exploreContent}>
+        <Grid item md={6} className={classes.exploreContent}>
           {props.contentRight}
         </Grid>
         <Grid item md={12}>

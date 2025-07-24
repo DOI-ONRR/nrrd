@@ -443,7 +443,7 @@ const TotalRevenue = props => {
   return (
     <>
       <Grid container spacing={4}>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={12} style={{ width:'100%', height:300 }}>
           <StackedBarChart2
             key={`trsbc__${ monthly }${ period }${ breakoutBy }`}
             data={chartData}
@@ -461,12 +461,13 @@ const TotalRevenue = props => {
             secondaryColor={theme.palette.explore[100]}
             handleBarHover={d => handleBarHover(d)}
             svgTitle={svgTitle}
+            hideLegend={true}
           />
-          <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize">
-		        <Link href='/downloads/revenue/'>Source file</Link>
-          </Box>
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item 
+          xs={12} 
+          md={12}
+          style={{ paddingBottom: 0 }}>
           <ComparisonTable
             key={`trct__${ monthly }${ period }${ breakoutBy }`}
             ref={revenueComparison}
@@ -475,6 +476,12 @@ const TotalRevenue = props => {
             yOrderBy={yOrderBy}
             monthRange={monthRange}
           />
+        </Grid>
+        <Grid item xs={12} md={12}
+          style={{ paddingBottom: 0, paddingTop: 0 }}>
+          <Box fontStyle="italic" textAlign="left" fontSize="h6.fontSize" m={0}>
+            <Link href='/downloads/revenue/'>Source file</Link>
+          </Box>
         </Grid>
       </Grid>
     </>

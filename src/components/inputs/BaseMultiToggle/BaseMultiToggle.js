@@ -22,6 +22,7 @@ const DefaultButton = withStyles(theme =>
   createStyles({
     root: {
       color: theme.palette.grey[900],
+      padding: '6px 11px',
       '&.Mui-selected': {
         color: theme.palette.common.white,
         backgroundColor: theme.palette.links.default,
@@ -101,7 +102,11 @@ const BaseMultiToggle = ({ onChange, data, defaultSelected, label, legend, helpe
         {
           data &&
            data.map((item, i) =>
-             <DefaultButton value={item.value} aria-label={item.option} key={`toogleButton__${ i }`} disabled={disabled}>
+             <DefaultButton 
+               value={item.value} 
+               aria-label={item.option} 
+               key={`toogleButton__${ i }`} 
+               disabled={disabled}>
                {item.option}
              </DefaultButton>
            )}
