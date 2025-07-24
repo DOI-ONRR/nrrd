@@ -19,15 +19,15 @@ import { Tabtastic, TabtasticTab } from '../components/layouts/Tabtastic'
       width: "100%",
       padding: "0 0 10px",
     }}>
-  <Container maxWidth="lg">
+  <Container maxWidth="xl">
     <Grid container spacing={0}>
-      <Grid item xs={12} md={7}>
+      <Grid item xs={12} md={12}>
         <Typography variant="h2" component="h1">About natural resources revenue data</Typography>
         
         <Box
           component="p"
           pt={0}
-          pb={6}
+          pb={2}
           pr={{ xs: 0, md: 3 }}
           style={{
             fontWeight: 'normal',
@@ -37,21 +37,32 @@ import { Tabtastic, TabtasticTab } from '../components/layouts/Tabtastic'
             The payments these companies make include <GlossaryTerm>bonuses</GlossaryTerm>, <GlossaryTerm>rents</GlossaryTerm>, and <GlossaryTerm>royalties</GlossaryTerm>. <Link href="http://www.onrr.gov/">The Office of Natural Resources Revenue (ONRR)</Link> collects these payments and distributes them. The payments go to federal and local governments and Native Americans.
         </Box>
       </Grid>
-      <Grid item xs={12} md={5}>
-        <Hidden smDown>
-        <Box bgcolor="primary.main" mt={4} mb={4} pt={0.5} pb={2} pl={3} pr={3} borderRadius={10}>
-          <WhatsNew />
-        </Box>
-        </Hidden>
-      </Grid>
     </Grid>
   </Container>
   </Box>
-  <Container maxWidth="lg">
+  <Container maxWidth="xl">
     <Box mb={2}>
-      <Grid container spacing={0}>
-        <Grid item xs={12} lg={12}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} lg={8}>
           <Tabtastic selectedTab={props.location.search}>
+            <TabtasticTab label="Production" mdxType="TabtasticTab">
+              <Grid container spacing={4}>
+                <Grid item xs={12}>
+                  <Typography variant="h2">
+                    Production
+                  </Typography>
+                  <Typography variant="body1">
+                    The volume of natural resources produced on property owned by the federal government and Native Americans.
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} lg={12}>
+                  <TotalProduction />
+                </Grid>
+                <Grid item xs={12}>
+                  <ExploreProduction />
+                </Grid>
+              </Grid>
+            </TabtasticTab>
             <TabtasticTab label="Revenue" mdxType="TabtasticTab">
               <Grid container m={0} spacing={4}>
                 <Grid item xs={12}>
@@ -91,49 +102,18 @@ import { Tabtastic, TabtasticTab } from '../components/layouts/Tabtastic'
                 </Grid>
               </Grid>
             </TabtasticTab>
-            <TabtasticTab label="Production" mdxType="TabtasticTab">
-              <Grid container spacing={4}>
-                <Grid item xs={12}>
-                  <Typography variant="h2">
-                    Production
-                  </Typography>
-                  <Typography variant="body1">
-                    The volume of natural resources produced on property owned by the federal government and Native Americans.
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} lg={12}>
-                  <TotalProduction />
-                </Grid>
-                <Grid item xs={12}>
-                  <ExploreProduction />
-                </Grid>
-              </Grid>
-            </TabtasticTab>
-            <TabtasticTab label="Fact Sheets" mdxType="TabtasticTab">
-              <Grid container spacing={4}>
-                <Grid item xs={12}>
-                  <Typography variant="h2">
-                  Fact Sheet
-                  </Typography>
-                  <Typography variant="h3">
-                  Monthly Fact Sheet
-                  </Typography>
-                  <Typography variant="body1">
-                    Below is a fact sheet summarizing disbursements, revenue, and production data by month on federal and Native American lands.
-                  </Typography>
-                  <Link href="fact-sheet/" target="_blank">Most recent monthly fact sheet</Link>
-                </Grid>
-              </Grid>
-            </TabtasticTab>
           </Tabtastic>
+        </Grid>
+        <Grid item xs={12} lg={4}>
+          <LandingPageSidebar />
         </Grid>
       </Grid>
     </Box>
 
   </Container>
   <Hidden mdUp>
-    <Container maxWidth={false} component="section" style={{ backgroundColor: '#f0f6fa' }}>
-      <Container maxWidth="lg">
+    <Container maxWidth="xl" component="section" style={{ backgroundColor: '#f0f6fa' }}>
+      <Container maxWidth="xl">
         <Box pt={4} pb={4}>
           <WhatsNew />
         </Box>

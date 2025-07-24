@@ -20,32 +20,30 @@ const ExploreDisbursements = props => {
             mt={0}>
             Query disbursements data
 			    </Link>
-		    </>
-		  }
-		  contentCenter={
-			  <>
           <Link
             href="/how-revenue-works#understanding-federal-disbursements"
             linkType="HowWorks"
             mt={0}>
             How disbursements work
 			    </Link>
+		    </>
+		  }
+		  contentRight={
+        <>
           <Link
             href="/data-by-state-offshore-region"
             linkType="Location"
             mt={0}>
             Data by state and offshore region
           </Link>
-        </>
-      }
-
-      contentRight={
-        <Link
+          <Link
           href="/downloads/#Disbursements"
           linkType="DownloadData"
           mt={0}>
           Downloads and documentation
         </Link>
+        </>
+        
       }
     />
   )

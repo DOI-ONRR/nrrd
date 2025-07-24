@@ -20,6 +20,9 @@ import PercentDifference from '../../utils/PercentDifference'
 import { DataFilterContext } from '../../../stores/data-filter-store'
 import { DATA_FILTER_CONSTANTS as DFC } from '../../../constants'
 import ChartTitle from '../../data-viz/ChartTitle'
+import GlossaryTerm from '../../GlossaryTerm/GlossaryTerm'
+import Rect from '../../../components/data-viz/svg/Rect'
+import * as d3 from 'd3'
 
 const useStyles = makeStyles(theme => ({
   comparisonTable: {
@@ -28,10 +31,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   comparisonTableContent: {
-    height: '210px',
-    [theme.breakpoints.down('sm')]: {
-      height: 'auto'
-    }
+    marginBottom: '1em'
   },
   tableCellRoot: {
     fontSize: '1rem',
@@ -55,7 +55,7 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   const classes = useStyles()
   const theme = useTheme()
-  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const matchesSmDown = true;//useMediaQuery(theme.breakpoints.down('sm'))
 
   // //console.debug('ComparisonTable props: ', props)
 
@@ -110,6 +110,7 @@ const ComparisonTable = forwardRef((props, ref) => {
   // Text output
   const month = (monthly === DFC.MONTHLY_CAPITALIZED && selectedItem.month) && selectedItem.month.substring(0, 3)
   const previousYearText = `${ periodAbbr } ${ previousYear }`
+  const currentYearText = `${ periodAbbr } ${ currentYear }`
   const changeText = 'Change'
 
   // grouped data
@@ -160,13 +161,10 @@ const ComparisonTable = forwardRef((props, ref) => {
 
     return newObj
   })
-  // //console.debug('comparisonData :', comparisonData)
+
   comparisonData.sort((a, b) => yOrderBy.indexOf(a.previous[yGroupBy]) - yOrderBy.indexOf(b.previous[yGroupBy]))
 
   const cData = comparisonData.slice().sort((a, b) => yOrderBy.indexOf(a.key) - yOrderBy.indexOf(b.key))
-
-  // console.log('comparisonData: ', comparisonData)
-  // console.log('cData: ', cData)
 
   // get previous/current year totals
   const previousYearTotals = comparisonData.map(item => item.previous.sum)
@@ -212,8 +210,31 @@ const ComparisonTable = forwardRef((props, ref) => {
       return utils.formatToDollarInt(sum)
     }
   }
-  // //console.debug("Comparison CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCdata ", cData)
-  // //console.debug("Comparison "+currentYearTotal+" && "+previousYearTotal+" && "+currentYearTotal +"!== 0 && " + previousYearTotal +" !== 0")
+
+  const primaryColor = '#37253c'
+  const secondaryColor = '#c4d99b'
+
+  // color Scale
+  const color = (flipColorRange = false, scaleLinear = false) => {
+    let color
+
+    if (scaleLinear) {
+      color = d3.scaleLinear()
+        .domain([0, yOrderBy.length > 0 ? yOrderBy.length - 1 : 0 || 4])
+        .range(flipColorRange ? [secondaryColor, primaryColor] : [primaryColor, secondaryColor])
+    }
+    else {
+      const colorDomain = flipColorRange
+        ? [yOrderBy.length > 0 ? yOrderBy.length - 1 : 0 || 4, 0]
+        : [0, yOrderBy.length > 0 ? yOrderBy.length - 1 : 0 || 4]
+      color = d3.scaleSequential(d3.interpolateViridis)
+        .domain(colorDomain)
+    }
+    return color
+  }
+
+  const colorScale = color(true)
+
   return (
     <Box ref={ref}>
       {comparisonTitle && <ChartTitle compact={false}>{comparisonTitle}</ChartTitle>}
@@ -232,24 +253,44 @@ const ComparisonTable = forwardRef((props, ref) => {
               <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">
                   {month
+                    ? `${ month } ${ currentYear } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`
+                    : `${ currentYearText } ${ comparisonText } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`}
+                </Box>
+              </TableCell>
+              <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
+                <Box fontWeight="bold">
+                  {month
                     ? `${ month } ${ previousYear } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`
                     : `${ previousYearText } ${ comparisonText } ${ (dataType === DFC.PRODUCTION) ? unitText : '' }`}
                 </Box>
               </TableCell>
               <TableCell component="th" align="right" classes={{ root: classes.tableCellRoot, head: classes.tableCellHead }}>
                 <Box fontWeight="bold">{changeText}</Box>
-                {/* <Box fontSize="14px">{changeAdditionalText}</Box> */}
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             { cData && cData.map((item, index) => (
               <TableRow key={`tr__${ index }`}>
-                {matchesSmDown &&
-                  <TableCell classes={{ root: classes.tableCellRoot }}>
-                    <Box fontSize="16px">{item.key || ''}</Box>
-                  </TableCell>
-                }
+                <TableCell classes={{ root: classes.tableCellRoot }}>
+                  <Rect
+                    width={20}
+                    height={20}
+                    title={item.key}
+                    styles={{ fill: colorScale(index), marginTop: 0, marginRight: '1rem' }}
+                  />
+                  <GlossaryTerm
+                    termKey={item.key}
+                    isInTable={true}
+                    style={{ whiteSpace: 'inherit' }}>
+                    { item.key }
+                  </GlossaryTerm>
+                </TableCell>
+                <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
+                  <Box>
+                    {(item.current && item.current.sum !== 0) ? formatSum(item.current.sum) : '-' }
+                  </Box>
+                </TableCell>
                 <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
                   <Box>
                     {(item.previous && item.previous.sum !== 0) ? formatSum(item.previous.sum) : '-' }
@@ -275,6 +316,11 @@ const ComparisonTable = forwardRef((props, ref) => {
               }
               <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
                 <Box fontWeight="bold">
+                  {currentYearTotal !== 0 ? formatSum(currentYearTotal) : '-'}
+                </Box>
+              </TableCell>
+              <TableCell align="right" classes={{ root: classes.tableCellRoot }}>
+                <Box fontWeight="bold">
                   {previousYearTotal !== 0 ? formatSum(previousYearTotal) : '-'}
                 </Box>
               </TableCell>
@@ -297,6 +343,8 @@ const ComparisonTable = forwardRef((props, ref) => {
 
   )
 })
+
+ComparisonTable.displayName = 'ComparisonTable'
 
 export default ComparisonTable
 

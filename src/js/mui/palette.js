@@ -5,14 +5,17 @@ module.exports = Object.freeze({
   background: { default: '#ffffff' },
   primary: { main: '#f0f6fa' },
   secondary: { main: '#cde3c3' },
-  info: { main: '#d3dfe6' },
+  info: { 
+    main: '#d3dfe6',
+    dark: '#262431'
+  },
   text: {
     primary: '#000000',
     secondary: '#1478a6'
   },
   toolbarBackground: {
     dark: '#062135',
-    main: '#0a314d',
+    main: '#000051',
   },
   common: {
     black: '#000000',
@@ -20,7 +23,7 @@ module.exports = Object.freeze({
   },
   header: {
     primary: '#062135',
-    secondary: '#0A314D'
+    secondary: '#000051'
   },
   chart: {
     primary: '#222222',

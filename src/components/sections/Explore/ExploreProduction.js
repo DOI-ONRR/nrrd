@@ -20,32 +20,29 @@ const ExploreProduction = props => {
             mt={0}>
             Query production data
           </Link>
-        </>
-      }
-      contentCenter={
-        <>
           <Link
             href="/how-revenue-works#the-production-process"
             linkType="HowWorks"
             mt={0}>
             How production works
           </Link>
+        </>
+      }
+      contentRight={
+        <>
           <Link
             href="/data-by-state-offshore-region"
             linkType="Location"
             mt={0}>
             Data by state and offshore region
           </Link>
-
+          <Link
+            href="/downloads/#Production"
+            linkType="DownloadData"
+            mt={0}>
+            Downloads and documentation
+          </Link>
         </>
-      }
-      contentRight={
-        <Link
-          href="/downloads/#Production"
-          linkType="DownloadData"
-          mt={0}>
-          Downloads and documentation
-        </Link>
       }
     />
   )

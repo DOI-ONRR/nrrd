@@ -176,15 +176,15 @@ const initialState = {
     }
   },
   [HOME_DATA_FILTER_DEFAULT]: {
-    [DATA_TYPE]: REVENUE,
+    [DATA_TYPE]: PRODUCTION,
     [PERIOD]: PERIOD_FISCAL_YEAR,
-    [FISCAL_YEAR]: getLatestYear(REVENUE, PERIOD_FISCAL_YEAR).toString(),
-    [CALENDAR_YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR).toString(),
-    [YEAR]: getLatestYear(REVENUE, PERIOD_CALENDAR_YEAR),
+    [FISCAL_YEAR]: getLatestYear(PRODUCTION, PERIOD_FISCAL_YEAR).toString(),
+    [CALENDAR_YEAR]: getLatestYear(PRODUCTION, PERIOD_CALENDAR_YEAR).toString(),
+    [YEAR]: getLatestYear(PRODUCTION, PERIOD_CALENDAR_YEAR),
     [MONTHLY]: 'Yearly',
     [BREAKOUT_BY]: 'source',
     [PRODUCT]: 'Oil (bbl)',
-    [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_FISCAL_YEAR),
+    [PERIOD_ALL_YEARS]: getAllYears(PRODUCTION, PERIOD_FISCAL_YEAR),
 
     dataTypesCache: {
 	  [REVENUE]: {

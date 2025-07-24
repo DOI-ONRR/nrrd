@@ -43,6 +43,8 @@ const StackedBarChart2 = ({ data, ...options }) => {
     legendHeaders: []
   })
 
+  const hideLegend = options.hideLegend || false
+
   const [collapsed, setCollapsed] = useState(collapsedLegend || false)
   const title = options.title || ''
   const buttonValue = collapsed ? 'Show details' : 'Hide details'
@@ -81,7 +83,7 @@ const StackedBarChart2 = ({ data, ...options }) => {
   }
 
   const viewBoxWidth = 800
-  const viewBoxHeight = 200
+  const viewBoxHeight = 225
 
   // Dimensions
   const dimensions = {
@@ -396,7 +398,11 @@ const StackedBarChart2 = ({ data, ...options }) => {
   return (
     <>
       {title && <ChartTitle compact={options.compact}>{title}</ChartTitle>}
-      <svg width="100%" height="200" viewBox={`0 0 ${ viewBoxWidth } ${ viewBoxHeight }`} pointerEvents="none">
+      <svg width="100%" 
+        height="100%"
+        viewBox={`0 0 ${ viewBoxWidth } ${ viewBoxHeight }`}
+        preserveAspectRatio="xMidYMid meet"
+        pointerEvents="none">
         <title>{svgTitle}</title>
         <Translate>
           <MaxExtent
@@ -446,23 +452,35 @@ const StackedBarChart2 = ({ data, ...options }) => {
             {...bottomAxis.size} />
         </Translate>
       </svg>
-      { collapsibleLegend && <LegendButton variant='text' onClick={ () => setCollapsed(!collapsed) }>{buttonValue}</LegendButton> }
-      <Collapse in={!collapsed}>
-        <Legend
-          data={dataset.legendData}
-          activeNode={activeNode}
-          legendHeaders={legendHeaders(legendHeader)}
-          legendFormat={legendFormat}
-          legendReverse={false}
-          legendTotal={true}
-          xAxis={xAxis}
-          yAxis={yAxis}
-          xDomain={xDomain}
-          colorScale={legendColorScale}
-          yOrderBy={yOrderBy}
-          yGroupBy={yGroupBy}
-        />
-      </Collapse>
+      { !hideLegend && (
+        <>
+          {collapsibleLegend && (
+            <LegendButton
+              variant='text'
+              onClick={() => setCollapsed(!collapsed)}
+            >
+              {buttonValue}
+            </LegendButton>
+          )}
+
+          <Collapse in={!collapsed}>
+            <Legend
+              data={dataset.legendData}
+              activeNode={activeNode}
+              legendHeaders={legendHeaders(legendHeader)}
+              legendFormat={legendFormat}
+              legendReverse={false}
+              legendTotal={true}
+              xAxis={xAxis}
+              yAxis={yAxis}
+              xDomain={xDomain}
+              colorScale={legendColorScale}
+              yOrderBy={yOrderBy}
+              yGroupBy={yGroupBy}
+            />
+          </Collapse>
+        </>
+      )}
     </>
   )
 }
