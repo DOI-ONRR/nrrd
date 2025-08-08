@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: revenue-25-july
-      author: Christine Thomas
+      author: Christine L  Thomas 
       changes: 
       - sql:
           dbms: 'postgresql'
