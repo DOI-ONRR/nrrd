@@ -37,7 +37,7 @@ export default function ReleaseDetails() {
       </Typography>
 
       <Typography variant="inherit" className={classes.changes}>
-        July 24, 2025 changes:
+        August 13, 2025 changes:
       </Typography>
 
       <List className={classes.changeList}>
@@ -45,7 +45,7 @@ export default function ReleaseDetails() {
           <ListItemText
             primary={
               <>
-                Introduced a new info panel that highlights the latest monthly data, providing quick and easy access to the most up-to-date information.
+                Updated the overall state revenue-sharing caps on <Link href="/how-revenue-works/gomesa/">Gulf of America Outer Continental Shelf Disbursements</Link>.
               </>
             }
           />
