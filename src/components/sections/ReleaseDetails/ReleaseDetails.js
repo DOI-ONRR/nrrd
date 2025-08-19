@@ -45,15 +45,39 @@ export default function ReleaseDetails() {
           <ListItemText
             primary={
               <>
-              
-            - Added <Link href="downloads/disbursements-by-month/" linkType="default">monthly disbursements data</Link>
-            - Added <Link href="/downloads/production-by-month/" linkType="default">monthly production data</Link>
-            - Added <Link href="downloads/revenue/" linkType="default">monthly revenue data</Link>
-            - Added <Link href="downloads/production-by-disposition/" linkType="default">monthly production disposition data</Link>
+              Added <Link href="downloads/disbursements-by-month/" linkType="default">monthly disbursements data</Link>
               </>
             }
           />
         </ListItem>
+        <ListItem>
+        <ListItemText
+          primary={
+            <Link href="/downloads/production-by-month/" linkType="default">
+              Added monthly production data
+            </Link>
+          }
+        />
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary={
+            <Link href="downloads/revenue/" linkType="default">
+              Added monthly revenue data
+            </Link>
+          }
+        />
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary={
+            <Link href="downloads/production-by-disposition/" linkType="default">
+              Added monthly production disposition data
+            </Link>
+          }
+        />
+      </ListItem>
+            
       </List>
 
       <Typography variant='inherit'>
