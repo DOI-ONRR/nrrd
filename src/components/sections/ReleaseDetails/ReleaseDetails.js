@@ -37,7 +37,7 @@ export default function ReleaseDetails() {
       </Typography>
 
       <Typography variant="inherit" className={classes.changes}>
-        August 12, 2025 changes:
+        August 20, 2025 changes:
       </Typography>
 
       <List className={classes.changeList}>
@@ -45,11 +45,40 @@ export default function ReleaseDetails() {
           <ListItemText
             primary={
               <>
-                Updated the overall state revenue-sharing caps on <Link href="/how-revenue-works/gomesa/">Gulf of America Outer Continental Shelf Disbursements</Link>.
+              Added <Link href="downloads/disbursements-by-month/" linkType="default">monthly disbursements data</Link>
               </>
             }
           />
         </ListItem>
+        <ListItem>
+        <ListItemText
+          primary={
+            <>
+            Added <Link href="/downloads/production-by-month/" linkType="default">monthly production data  </Link>
+            </>
+          }
+        />
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary={
+            <>
+           Added <Link href="downloads/revenue/" linkType="default">monthly revenue data</Link>
+            </>
+          }
+        />
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary={
+            <>
+            Added <Link href="downloads/production-by-disposition/" linkType="default"> monthly production disposition data
+            </Link>
+            </>
+          }
+        />
+      </ListItem>
+            
       </List>
 
       <Typography variant='inherit'>
