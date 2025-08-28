@@ -43,7 +43,7 @@ jobs:
           path: .github/site-crawl/found-links.json
 
       - name: Run Lychee link checker
-        uses: lycheeverse/lychee-action@v1.10.0
+        uses: lycheeverse/lychee-action@v2.0.2
         with:
           args: >
             --verbose
