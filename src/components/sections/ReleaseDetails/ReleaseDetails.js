@@ -62,17 +62,14 @@ export default function ReleaseDetails() {
         <ListItem>
           <ListItemText
             primary={<>
-              Added <Link href="downloads/production-by-disposition/" linkType="default"> monthly production disposition data
-              </Link>
+              Added <Link href="downloads/production-by-disposition/" linkType="default"> monthly production disposition data</Link>
             </>} />
         </ListItem>
-
-      </ListItem>
+        </ListItem>
       <ListItem>
         <ListItemText
           primary={<>
-            Added <Link href="how-revenue-works/coal-excise-tax/" linkType="default"> coal excise tax
-            </Link>
+            Added <Link href="how-revenue-works/coal-excise-tax/" linkType="default"> coal excise tax</Link>
           </>} />
       </ListItem>
 
