@@ -67,7 +67,6 @@ export default function ReleaseDetails() {
             </>} />
         </ListItem>
 
-
       </ListItem>
       <ListItem>
         <ListItemText
@@ -77,7 +76,8 @@ export default function ReleaseDetails() {
           </>} />
       </ListItem>
 
-    </List><Typography variant='inherit'>
+    </List>
+    <Typography variant='inherit'>
         Review our <Link href="https://github.com/ONRR/nrrd/releases">full release details</Link>.
       </Typography></>
     </Box>
