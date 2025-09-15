@@ -79,7 +79,7 @@ export default function ReleaseDetails() {
             <ListItemText
               primary={
                 <>
-                  Added <Link href="how-revenue-works/coal-excise-tax/">coal excise tax</Link>
+                  Added <Link href="how-revenue-works/coal-excise-tax/">FY 24 coal excise tax</Link>
                 </>
               }
             />
