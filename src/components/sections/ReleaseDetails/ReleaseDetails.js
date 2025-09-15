@@ -31,7 +31,7 @@ export default function ReleaseDetails() {
   const classes = useStyles();
 
   return (
-    <Box mb={4} pt={0.5} pb={2} pl={3} pr={3} borderRadius={10} border={'1px solid #3C3D3E'}>
+    <><Box mb={4} pt={0.5} pb={2} pl={3} pr={3} borderRadius={10} border={'1px solid #3C3D3E'}>
       <Typography variant='h3' className={classes.h3}>
         Latest release details
       </Typography>
@@ -43,60 +43,43 @@ export default function ReleaseDetails() {
       <List className={classes.changeList}>
         <ListItem>
           <ListItemText
-            primary={
-              <>
+            primary={<>
               Added <Link href="downloads/disbursements-by-month/" linkType="default">monthly disbursements data</Link>
-              </>
-            }
-          />
+            </>} />
         </ListItem>
         <ListItem>
-        <ListItemText
-          primary={
-            <>
-            Added <Link href="/downloads/production-by-month/" linkType="default">monthly production data  </Link>
-            </>
-          }
-        />
+          <ListItemText
+            primary={<>
+              Added <Link href="/downloads/production-by-month/" linkType="default">monthly production data  </Link>
+            </>} />
+        </ListItem>
+        <ListItem>
+          <ListItemText
+            primary={<>
+              Added <Link href="downloads/revenue/" linkType="default">monthly revenue data</Link>
+            </>} />
+        </ListItem>
+        <ListItem>
+          <ListItemText
+            primary={<>
+              Added <Link href="downloads/production-by-disposition/" linkType="default"> monthly production disposition data
+              </Link>
+            </>} />
+        </ListItem>
+
+
       </ListItem>
       <ListItem>
         <ListItemText
-          primary={
-            <>
-           Added <Link href="downloads/revenue/" linkType="default">monthly revenue data</Link>
-            </>
-          }
-        />
-      </ListItem>
-      <ListItem>
-        <ListItemText
-          primary={
-            <>
-            Added <Link href="downloads/production-by-disposition/" linkType="default"> monthly production disposition data
-            </Link>
-            </>
-          }
-        />
-      </ListItem>
-            
-  
-      </ListItem>
-      <ListItem>
-        <ListItemText
-          primary={
-            <>
+          primary={<>
             Added <Link href="how-revenue-works/coal-excise-tax/" linkType="default"> coal excise tax
             </Link>
-            </>
-          }
-        />
+          </>} />
       </ListItem>
-            
-      </List>
 
-      <Typography variant='inherit'>
+    </List><Typography variant='inherit'>
         Review our <Link href="https://github.com/ONRR/nrrd/releases">full release details</Link>.
-      </Typography>
+      </Typography></>
     </Box>
   )
 }
