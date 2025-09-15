@@ -79,6 +79,19 @@ export default function ReleaseDetails() {
         />
       </ListItem>
             
+  
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary={
+            <>
+            Added <Link href="how-revenue-works/coal-excise-tax/" linkType="default"> coal excise tax
+            </Link>
+            </>
+          }
+        />
+      </ListItem>
+            
       </List>
 
       <Typography variant='inherit'>
