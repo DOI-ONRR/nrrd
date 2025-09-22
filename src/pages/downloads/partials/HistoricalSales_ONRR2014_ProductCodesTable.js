@@ -59,7 +59,7 @@ const DataTableCell = withStyles(() => ({
   },
 }))(TableCell)
 
-const FederalSalesProductCodesTable = () => {
+const HistoricalSales_ONRR2014_ProductCodesTable = () => {
   const classes = tableStyles()
   return (
     <TableContainer>
@@ -87,4 +87,4 @@ const FederalSalesProductCodesTable = () => {
   )
 }
 
-export default FederalSalesProductCodesTable
+export default HistoricalSales_ONRR2014_ProductCodesTable
