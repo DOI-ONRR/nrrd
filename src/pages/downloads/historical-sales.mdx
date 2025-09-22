@@ -25,30 +25,28 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew'
 # Historical sales data for oil, gas, and solids
 
 These datasets contain historical sales data reported on Form ONRR-2014 and Form ONRR-4430.
-
+<br />
 The data is divided into 2 separate downloadable datasets:
   1.	Historical Form ONRR-2014 sales data from 1984 – 2025, including oil, gas, and solids products
   2.	Historical Form ONRR-4430 sales data from 2001 – 2025, containing only solid products from leases associated with a mine 
-
-<br />  
-
+ 
 Download historical Form ONRR-2014 sales data:
 
-<DownloadDataFile linkType="DownloadCsv"  dataSet="federal_sales.csv">
+<DownloadDataFile linkType="DownloadCsv"  dataSet="historical_sales_ONRR2014.csv">
   Historical From ONRR-2014 sales data 1984-2025
 </DownloadDataFile>
 
-<DownloadDataFile linkType="DownloadXls"  dataSet="federal_sales.xlsx">
+<DownloadDataFile linkType="DownloadXls"  dataSet="historical_sales_ONRR2014.xlsx">
   Historical From ONRR-2014 sales data 1984-2025
 </DownloadDataFile>  
 
 Download historical Form ONRR-4430 sales data:
 
-<DownloadDataFile linkType="DownloadCsv"  dataSet="federal_sales.csv">
+<DownloadDataFile linkType="DownloadCsv"  dataSet="historical_sales_ONRR4430.csv">
   Historical From ONRR-4430 sales data 2001-2025
 </DownloadDataFile>
 
-<DownloadDataFile linkType="DownloadXls"  dataSet="federal_sales.xlsx">
+<DownloadDataFile linkType="DownloadXls"  dataSet="historical_sales_ONRR4430.xlsx">
   Historical From ONRR-4430 sales data 2001-2025
 </DownloadDataFile>  
 
@@ -95,7 +93,7 @@ In both datasets, some data is replaced with the word “SENSITIVE” in the Uni
 
 ### What are product codes? 
 
-Product codes define the product and commodity on Form ONRR-2014 and Form ONRR-4430. See product code tables below for the full list of products.
+Product codes define the product and commodity on Form ONRR-2014 and Form ONRR-4430. See <Link href='/downloads/historical-sales/#product-code-tables' linkType='default'>product code tables</Link> below for the full list of products.
 
 ## Data dictionary
 
@@ -126,15 +124,13 @@ Product codes define the product and commodity on Form ONRR-2014 and Form ONRR-4
 
 * **Public and Acquired:** A combination of both public and acquired lands, as defined above.
 
-<br />
-
 **Not Tied to Commodity:** Some royalties do not directly result from the production of a commodity. These are reflected in the dataset with product code 0, 00, and “blank”. For example, estimated royalty payments, interest on leases, and minimum rent payments are all monies related to a lease but not tied to a commodity.
 <br />
 
 **Commodity:** The Department of the Interior collects sales data on over 60 different commodities. Most sales come from oil, gas, and coal, but many other commodity categories are also included in these datasets.
 <br />
 
-**Product:** Products are listed individually but may also fall into like categories. See product code tables for the full list of products.
+**Product:** Products are listed individually but may also fall into like categories. See <Link href='/downloads/historical-sales/#product-code-tables' linkType='default'>product code tables</Link> for the full list of products.
 <br />
 
 **Sales Volume:** A reported field on the Form ONRR-2014. Sales Volume is the quantity and quality of production as measured at the approved royalty measurement point. It is then sold. The Bureau of Land Management or Bureau of Safety and Environmental Enforcement approve measuring points.
@@ -147,10 +143,13 @@ Product codes define the product and commodity on Form ONRR-2014 and Form ONRR-4
 <br />
 
 **Royalty Value Less Allowances (RVLA):** Calculated by subtracting allowances (transportation, processing) from royalty value.
-<br />
 
 ## Product code tables
 
 ### From ONRR-2014 product codes
 
+<HistoricalSales_ONRR2014_ProductCodesTable />
+
 ### Form ONRR-4430 product codes
+
+<HistoricalSales_ONRR4430_ProductCodesTable />
