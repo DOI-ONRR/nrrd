@@ -33,7 +33,7 @@ const rows = [
   createData('20', 'Other Liquid Hydrocarbons', 'Oil', 'bbl'),
   createData('22', 'Helium', 'Helium', 'bbl'),
   createData('25', 'Hot Water', 'Hot Water', 'bbl'),
-  createData('27', 'Hot Springs', 'Geothermal', 'tonsbbl'),
+  createData('27', 'Hot Springs', 'Geothermal', 'bbl'),
   createData('30', 'Water', 'Water', 'bbl'),
   createData('31', 'Geothermal - Electrical Generation, Kilowatt Hours', 'Geothermal', 'kWh'),
   createData('32', 'Geothermal - Electrical Generation, Thousands of Pounds', 'Geothermal', 'thousands of pounds'),
