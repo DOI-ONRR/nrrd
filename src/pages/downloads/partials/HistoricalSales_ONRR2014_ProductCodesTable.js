@@ -12,8 +12,8 @@ function createData (code, description, commodity, unit) {
 }
 
 const rows = [
-  createData('0', 'Not tied to a commodity', 'Other', 'none'),
-  createData('00', 'Not tied to a commodity', 'Other', 'none'),
+  createData('0', 'Not Tied to a Commodity', 'Other', 'none'),
+  createData('00', 'Not Tied to a Commodity', 'Other', 'none'),
   createData('01', 'Oil', 'Oil', 'bbl'),
   createData('02', 'Condensate', 'Oil', 'bbl'),
   createData('03', 'Processed (Residue) Gas', 'Gas', 'mcf'),
@@ -37,9 +37,9 @@ const rows = [
   createData('30', 'Water', 'Water', 'bbl'),
   createData('31', 'Geothermal - Electrical Generation, Kilowatt Hours', 'Geothermal', 'kWh'),
   createData('32', 'Geothermal - Electrical Generation, Thousands of Pounds', 'Geothermal', 'thousands of pounds'),
-  createData('33', 'Geothermal - Electrical Generation, Millions of BTUs', 'Geothermal', 'MMBtu'),
+  createData('33', 'Geothermal - Electrical Generation, Millions of BTUs', 'Geothermal', 'mmbtu'),
   createData('34', 'Geothermal - Electrical Generation, Other', 'Geothermal', 'other'),
-  createData('35', 'Geothermal - Direct Utilization, Millions of BTUs', 'Geothermal', 'MMBtu'),
+  createData('35', 'Geothermal - Direct Utilization, Millions of BTUs', 'Geothermal', 'mmbtu'),
   createData('36', 'Geothermal - Direct Utilization, Hundreds of Gallons', 'Geothermal', 'hundreds of gallons'),
   createData('37', 'Geothermal - Direct Utilization, Other', 'Geothermal', 'other'),
   createData('38', 'Geothermal - Commercially Demineralized H2O', 'Geothermal', 'hundreds of gallons'),
