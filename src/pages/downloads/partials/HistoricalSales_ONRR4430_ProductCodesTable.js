@@ -55,7 +55,7 @@ const rows = [
   createData('PP', 'Purge Liquor', 'Sodium', 'tons (equivalent)'),
   createData('QB', 'Quartz Crystal', 'Quartz', 'tickets/pounds'),
   createData('SA', 'Salt', 'Sodium', 'tons'),
-  createData('SB', 'Sodium Bi-Carbonate', 'Sodium', 'tons'),
+  createData('SB', 'Sodium Bicarbonate', 'Sodium', 'tons'),
   createData('SF', 'Sand/Gravel', 'Sand & Gravel', 'tons'),
   createData('SG', 'Sand/Gravel-Cubic Yards', 'Sand & Gravel', 'cubic yards'),
   createData('SJ', 'Soda Ash', 'Soda Ash', 'tons'),
