@@ -9,7 +9,7 @@
     "export-links": "node export-links.js"
   },
   "dependencies": {
-    "playwright": "^1.44.0",
+    "playwright": "^1.55.1",
     "xml2js": "^0.6.2",
     "node-fetch": "^3.3.2"
   }
