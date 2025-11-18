@@ -21,6 +21,22 @@ const useStyles = makeStyles({
   }
 })
 
+function formatBigNumber(value, precision = 1) {
+  const str = millify(value, { precision });
+
+  const map = {
+    K: " thousand",
+    M: " million",
+    B: " billion",
+    T: " trillion",
+  };
+
+  const unit = str.slice(-1);            // last character
+  const numberPart = str.slice(0, -1);   // everything except last character
+
+  return map[unit] ? numberPart + map[unit] : str;
+}
+
 
 export default function FYProductionSummary({ currentFYData, prevFYData, fyPeriodData }) {
   const classes = useStyles()
@@ -54,7 +70,7 @@ export default function FYProductionSummary({ currentFYData, prevFYData, fyPerio
           </Grid>
           <Grid item>
             <Typography component="strong" variant='inherit'>
-              Oil: { millify(currentOil.volume, { precision: 1 }).replace('M', ' million')} { currentOil.unit_abbr }
+              Oil: { formatBigNumber(currentOil.volume) } { currentOil.unit_abbr }
             </Typography>
           </Grid>
           <Grid item style={{ marginLeft: "auto" }}>
@@ -71,7 +87,7 @@ export default function FYProductionSummary({ currentFYData, prevFYData, fyPerio
           </Grid>
           <Grid item>
             <Typography component="strong" variant='inherit'>
-              Gas: { millify(currentGas.volume, { precision: 1 }).replace('B', ' billion')} { currentGas.unit_abbr }
+              Gas: { formatBigNumber(currentGas.volume) } { currentGas.unit_abbr }
             </Typography>
           </Grid>
           <Grid item style={{ marginLeft: "auto" }}>
@@ -88,7 +104,7 @@ export default function FYProductionSummary({ currentFYData, prevFYData, fyPerio
           </Grid>
           <Grid item>
             <Typography component="strong" variant='inherit'>
-              Coal: { millify(currentCoal.volume, { precision: 1 }).replace('M', ' million')} { currentCoal.unit_abbr }
+              Coal: { formatBigNumber(currentCoal.volume) } { currentCoal.unit_abbr }
             </Typography>
           </Grid>
           <Grid item style={{ marginLeft: "auto" }}>
