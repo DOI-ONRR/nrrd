@@ -49,11 +49,26 @@ const reducer = (state, action) => {
     case types.UPDATE_DATA_FILTER: {
       const dataType = payload.dataType || state.dataType
 
-      const dataTypeCache = Object.assign(((state.dataTypesCache && state.dataTypesCache[dataType]) || { ...initialState }), { ...payload })
+      const prevCacheForType =
+        (state.dataTypesCache && state.dataTypesCache[dataType]) || { ...initialState }
 
-      const updatedDataTypesCache = Object.assign((state.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
+      const dataTypeCache = {
+        ...prevCacheForType,
+        ...payload,
+      }
 
-      return ({ [QUERY_COUNTS]: state[QUERY_COUNTS], dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
+      const updatedDataTypesCache = {
+        ...(state.dataTypesCache || {}),
+        [dataType]: { ...dataTypeCache },
+      }
+
+      const amendedState = {
+        [QUERY_COUNTS]: state[QUERY_COUNTS],
+        dataTypesCache: { ...updatedDataTypesCache },
+        ...dataTypeCache,
+      }
+
+      return amendedState
     }
     case types.UPDATE_QUERY_DATA_FILTER_COUNTS: {
       const currentQueryCounts = state[QUERY_COUNTS] || {}
@@ -84,7 +99,6 @@ const getLastFiveYears = (dataType, period) => (ALL_YEARS[dataType][period].leng
 
 const getLatestYear = (dataType, period) => ALL_YEARS[dataType][period].slice(ALL_YEARS[dataType][period].length - 1)[0]
 const getAllYears = dataType => {
-//  console.debug('ALL_YEARS: ', ALL_YEARS, ' Data Type : ', dataType)
   return ALL_YEARS[dataType]
 }
 
@@ -198,6 +212,7 @@ const initialState = {
         [MONTHLY]: 'Yearly',
         [BREAKOUT_BY]: 'source',
 	      [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_FISCAL_YEAR),
+        [PRODUCT]: 'Oil (bbl)',
 
 	  },
 	  [PRODUCTION]: {
