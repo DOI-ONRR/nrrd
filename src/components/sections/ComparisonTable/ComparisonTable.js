@@ -173,8 +173,11 @@ const ComparisonTable = forwardRef((props, ref) => {
   const currentYearTotal = currentYearTotals.reduce((acc, item) => acc + item)
 
   // unit text, grab unit from string looking for parens
-  const regExp = /\(([^)]+)\)/
-  const unitText = product.match(regExp)[0]
+  let unitText
+  if (dataType === DFC.PRODUCTION) {
+    const regExp = /\(([^)]+)\)/
+    unitText = product.match(regExp)[0]
+  }
 
   // Comparison Text
   let comparisonText
