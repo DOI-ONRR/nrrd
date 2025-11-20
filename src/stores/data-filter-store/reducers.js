@@ -212,7 +212,6 @@ const initialState = {
         [MONTHLY]: 'Yearly',
         [BREAKOUT_BY]: 'source',
 	      [PERIOD_ALL_YEARS]: getAllYears(REVENUE, PERIOD_FISCAL_YEAR),
-        [PRODUCT]: 'Oil (bbl)',
 
 	  },
 	  [PRODUCTION]: {
