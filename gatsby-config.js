@@ -183,7 +183,6 @@ const config = {
       }
     },
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-use-query-params',
     'gatsby-plugin-meta-redirect' // make sure to put last in the array
   ]
 }
