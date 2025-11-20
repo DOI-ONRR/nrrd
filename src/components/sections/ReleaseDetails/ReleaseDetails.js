@@ -36,9 +36,18 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          September 16, 2025 changes:
+          November 21, 2025 changes:
         </Typography>
         <List className={classes.changeList}>
+          <ListItem>
+            <ListItemText
+              primary={
+                <>
+                  Added <Link href="downloads/disbursements/">FY25 disbursements data</Link>
+                </>
+              }
+            />
+          </ListItem>
           <ListItem>
             <ListItemText
               primary={
@@ -52,7 +61,7 @@ export default function ReleaseDetails() {
             <ListItemText
               primary={
                 <>
-                  Added <Link href="/downloads/production-by-month/">monthly production data</Link>
+                  Added <Link href="downloads/revenue/">FY25 revenue data</Link>
                 </>
               }
             />
@@ -66,20 +75,22 @@ export default function ReleaseDetails() {
               }
             />
           </ListItem>
+         
+          <ListItem>
+            <ListItemText
+              primary={
+                <>
+                  Added <Link href="/downloads/production-by-month/">monthly production data</Link>
+                </>
+              }
+            />
+          </ListItem>
+         
           <ListItem>
             <ListItemText
               primary={
                 <>
                   Added <Link href="downloads/production-by-disposition/">monthly production disposition data</Link>
-                </>
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="how-revenue-works/coal-excise-tax/">FY 24 coal excise tax</Link>
                 </>
               }
             />
