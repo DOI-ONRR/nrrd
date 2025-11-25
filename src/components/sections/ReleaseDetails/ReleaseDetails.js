@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Link, List, ListItem, ListItemText } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'
 
 const useStyles = makeStyles({
   h3: {
