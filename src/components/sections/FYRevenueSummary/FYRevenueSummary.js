@@ -3,7 +3,7 @@ import { Box, Typography, Grid, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import millify from 'millify'
 import PercentDifference from '../../utils/PercentDifference';
-import { getFiscalYear, getFiscalMonthShortName } from '../../utils/nrrdUtils'
+import { getFiscalMonthShortName } from '../../utils/nrrdUtils'
 
 const useStyles = makeStyles({
   h3: {
@@ -55,7 +55,7 @@ export default function FYRevenueSummary({ revenueData, fyPeriodData }) {
             <Typography variant='inherit' className={classes.center}>
               <PercentDifference 
                 currentAmount={currRevenue} 
-                previousAmount={prevRevenue} /> from FY{ (getFiscalYear() - 1) % 100 }
+                previousAmount={prevRevenue} /> from FY{ (fyPeriodData.fiscalYear - 1) % 100 }
             </Typography>
           </Grid>
         </Grid>
