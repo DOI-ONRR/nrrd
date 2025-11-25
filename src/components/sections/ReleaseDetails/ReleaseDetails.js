@@ -99,7 +99,13 @@ export default function ReleaseDetails() {
         </List>
         <Typography variant="inherit">
           Review our{' '}
-          [full release details <OpenInNewIcon style={{ fontSize: 20 }} />](https://github.com/DOI-ONRR/nrrd/releases).
+          <a 
+            href="https://github.com/DOI-ONRR/nrrd/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            full release details <OpenInNewIcon style={{ fontSize: 20 }} />
+          </a>.
         </Typography>
       </Box>
     </>
