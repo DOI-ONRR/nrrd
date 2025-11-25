@@ -98,7 +98,7 @@ export default function ReleaseDetails() {
         </List>
         <Typography variant="inherit">
           Review our{' '}
-          <Link href="https://github.com/ONRR/nrrd/releases">full release details</Link>.
+          [full release details <OpenInNewIcon style={{ fontSize: 20 }} />](https://github.com/DOI-ONRR/nrrd/releases).
         </Typography>
       </Box>
     </>
