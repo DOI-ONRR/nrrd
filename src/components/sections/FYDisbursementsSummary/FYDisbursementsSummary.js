@@ -28,7 +28,8 @@ export default function FYDisbursementsSummary({ disbursementsData, fyPeriodData
 
   let fyProgressText = `FY ${ fyPeriodData.fiscalYear }`
   if (fyPeriodData.fiscalMonth < 12) {
-    fyProgressText += ` so far (Oct - ${ getFiscalMonthShortName(fyPeriodData.fiscalMonth) })`
+    const fyMonthRange = fyPeriodData.fiscalMonth === 1 ? 'Oct' : `Oct - ${ getFiscalMonthShortName(fyPeriodData.fiscalMonth) }`
+    fyProgressText += ` so far (${ fyMonthRange })`
   }
 
   const currRevenue = disbursementsData.find((r) => r.fy === 'current').disbursement;
