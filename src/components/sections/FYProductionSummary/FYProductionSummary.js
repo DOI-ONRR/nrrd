@@ -6,7 +6,7 @@ import oilIconUrl from '../../../images/icons/icon-oil.svg';
 import gasIconUrl from '../../../images/icons/icon-gas.svg';
 import coalIconUrl from '../../../images/icons/icon-coal.svg';
 import PercentDifference from '../../utils/PercentDifference';
-import { getFiscalYear, getFiscalMonthShortName } from '../../utils/nrrdUtils'
+import { getFiscalMonthShortName } from '../../utils/nrrdUtils'
 
 const useStyles = makeStyles({
   h3: {
@@ -51,7 +51,8 @@ export default function FYProductionSummary({ currentFYData, prevFYData, fyPerio
 
   let fyProgressText = `FY ${ fyPeriodData.fiscalYear }`
   if (fyPeriodData.fiscalMonth < 12) {
-    fyProgressText += ` so far (Oct - ${ getFiscalMonthShortName(fyPeriodData.fiscalMonth) })`
+      const fyMonthRange = fyPeriodData.fiscalMonth === 1 ? 'Oct' : `Oct - ${ getFiscalMonthShortName(fyPeriodData.fiscalMonth) }`
+      fyProgressText += ` so far (${ fyMonthRange })`
   }
 
   return (
@@ -77,7 +78,7 @@ export default function FYProductionSummary({ currentFYData, prevFYData, fyPerio
             <Typography variant='inherit'>
               <PercentDifference 
                 currentAmount={currentOil.volume} 
-                previousAmount={previousOil.volume} /> from FY{ (getFiscalYear() - 1) % 100 }
+                previousAmount={previousOil.volume} /> from FY{ (fyPeriodData.fiscalYear - 1) % 100 }
             </Typography>
           </Grid>
         </Grid>
@@ -94,7 +95,7 @@ export default function FYProductionSummary({ currentFYData, prevFYData, fyPerio
             <Typography variant='inherit'>
               <PercentDifference 
                 currentAmount={currentGas.volume} 
-                previousAmount={previousGas.volume} /> from FY{ (getFiscalYear() - 1) % 100 }
+                previousAmount={previousGas.volume} /> from FY{ (fyPeriodData.fiscalYear - 1) % 100 }
             </Typography>
           </Grid>
         </Grid>
@@ -111,7 +112,7 @@ export default function FYProductionSummary({ currentFYData, prevFYData, fyPerio
             <Typography variant='inherit'>
               <PercentDifference 
                 currentAmount={currentCoal.volume} 
-                previousAmount={previousCoal.volume} /> from FY{ (getFiscalYear() - 1) % 100 }
+                previousAmount={previousCoal.volume} /> from FY{ (fyPeriodData.fiscalYear - 1) % 100 }
             </Typography>
           </Grid>
         </Grid>
