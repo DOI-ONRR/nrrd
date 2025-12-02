@@ -44,15 +44,6 @@ export default function ReleaseDetails() {
             <ListItemText
               primary={
                 <>
-                  Added <Link href="downloads/disbursements/">FY25 disbursements data</Link>
-                </>
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
                   Added <Link href="downloads/disbursements-by-month/">monthly disbursements data</Link>
                 </>
               }
@@ -62,36 +53,7 @@ export default function ReleaseDetails() {
             <ListItemText
               primary={
                 <>
-                  Added <Link href="downloads/revenue/">FY25 revenue data</Link>
-                </>
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
                   Added <Link href="downloads/revenue/">monthly revenue data</Link>
-                </>
-              }
-            />
-          </ListItem>
-         
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="/downloads/production-by-month/">monthly production data</Link>
-                </>
-              }
-            />
-          </ListItem>
-         
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="downloads/production-by-disposition/">monthly production disposition data</Link>
                 </>
               }
             />
