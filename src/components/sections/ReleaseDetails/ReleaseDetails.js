@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Link, List, ListItem, ListItemText } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'
 
 const useStyles = makeStyles({
   h3: {
@@ -36,18 +37,9 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          November 24, 2025 changes:
+          December 4, 2025 changes:
         </Typography>
         <List className={classes.changeList}>
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="downloads/disbursements/">FY25 disbursements data</Link>
-                </>
-              }
-            />
-          </ListItem>
           <ListItem>
             <ListItemText
               primary={
@@ -61,36 +53,7 @@ export default function ReleaseDetails() {
             <ListItemText
               primary={
                 <>
-                  Added <Link href="downloads/revenue/">FY25 revenue data</Link>
-                </>
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
                   Added <Link href="downloads/revenue/">monthly revenue data</Link>
-                </>
-              }
-            />
-          </ListItem>
-         
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="/downloads/production-by-month/">monthly production data</Link>
-                </>
-              }
-            />
-          </ListItem>
-         
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="downloads/production-by-disposition/">monthly production disposition data</Link>
                 </>
               }
             />
