@@ -93,10 +93,10 @@ const HomeDataFilters = props => {
 
   useEffect(() => {
     if (monthly === DFC.MONTHLY_CAPITALIZED) {
-      updateDataFilter({ ...filterState, [DFC.PERIOD]: 'Most recent 12 months' })
+      updateDataFilter({ [DFC.PERIOD]: 'Most recent 12 months' })
     }
     else {
-      updateDataFilter({ ...filterState, [DFC.PERIOD]: DFC.PERIOD_FISCAL_YEAR })
+      updateDataFilter({ [DFC.PERIOD]: DFC.PERIOD_FISCAL_YEAR })
     }
   }, [monthly])
 
@@ -114,7 +114,6 @@ const HomeDataFilters = props => {
         dataFilterKey={DFC.PERIOD}
         data={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD] : MENU_OPTIONS.monthlyPeriod}
         defaultSelected={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].value : MENU_OPTIONS.monthlyPeriod[0].value}
-        selected={(monthly === DFC.YEARLY) ? MENU_OPTIONS[DFC.PERIOD][0].value : MENU_OPTIONS.monthlyPeriod[0].value}
         label="Period"
         selectType="Single"
         showClearSelected={false}
@@ -126,7 +125,6 @@ const HomeDataFilters = props => {
           dataFilterKey={DFC.BREAKOUT_BY}
           data={(dataType === DFC.REVENUE) ? MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE] : MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT]}
           defaultSelected={(dataType === DFC.REVENUE) ? MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE][0].value : MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT][0].value}
-          selected={(dataType === DFC.REVENUE) ? MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.REVENUE][0].value : MENU_OPTIONS[DFC.BREAKOUT_BY][DFC.DISBURSEMENT][0].value}
           label="Breakout"
           selectType="Single"
           showClearSelected={false} />

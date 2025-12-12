@@ -37,7 +37,7 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          December 4, 2025 changes:
+          December 12, 2025 changes:
         </Typography>
         <List className={classes.changeList}>
           <ListItem>
@@ -58,10 +58,29 @@ export default function ReleaseDetails() {
               }
             />
           </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={
+                <>
+                  Added <Link href="/downloads/production-by-month/">monthly production data</Link>
+                </>
+              }
+            />
+          </ListItem>
+
+          <ListItem>
+            <ListItemText
+              primary={
+                <>
+                  Added <Link href="downloads/production-by-disposition/">monthly production disposition data</Link>
+                </>
+              }
+            />
+          </ListItem>
         </List>
         <Typography variant="inherit">
           Review our{' '}
-          <Link href="https://github.com/ONRR/nrrd/releases">full release details</Link>.
+          <Link href="https://github.com/ONRR/nrrd/releases">full release details <OpenInNewIcon fontSize="inherit" style={{ verticalAlign: 'middle' }} /> </Link>.
         </Typography>
       </Box>
     </>
