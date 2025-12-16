@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Link, List, ListItem, ListItemText } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'
 
 const useStyles = makeStyles({
   h3: {
@@ -36,7 +37,7 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          September 16, 2025 changes:
+          December 12, 2025 changes:
         </Typography>
         <List className={classes.changeList}>
           <ListItem>
@@ -44,15 +45,6 @@ export default function ReleaseDetails() {
               primary={
                 <>
                   Added <Link href="downloads/disbursements-by-month/">monthly disbursements data</Link>
-                </>
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="/downloads/production-by-month/">monthly production data</Link>
                 </>
               }
             />
@@ -70,16 +62,17 @@ export default function ReleaseDetails() {
             <ListItemText
               primary={
                 <>
-                  Added <Link href="downloads/production-by-disposition/">monthly production disposition data</Link>
+                  Added <Link href="/downloads/production-by-month/">monthly production data</Link>
                 </>
               }
             />
           </ListItem>
+
           <ListItem>
             <ListItemText
               primary={
                 <>
-                  Added <Link href="how-revenue-works/coal-excise-tax/">FY 24 coal excise tax</Link>
+                  Added <Link href="downloads/production-by-disposition/">monthly production disposition data</Link>
                 </>
               }
             />
@@ -87,7 +80,7 @@ export default function ReleaseDetails() {
         </List>
         <Typography variant="inherit">
           Review our{' '}
-          <Link href="https://github.com/ONRR/nrrd/releases">full release details</Link>.
+          <Link href="https://github.com/ONRR/nrrd/releases">full release details <OpenInNewIcon fontSize="inherit" style={{ verticalAlign: 'middle' }} /> </Link>.
         </Typography>
       </Box>
     </>

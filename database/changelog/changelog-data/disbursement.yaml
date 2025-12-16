@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: disbursement-monthly-25-August
-      author: Christine Thomas
+      id: disbursement-monthly-26-November
+      author: Lindsay Goldstein
       changes:
       - sql:
           dbms: 'postgresql'
@@ -48,6 +48,6 @@ databaseChangeLog:
       - sql:
           dbms: 'postgresql'
           sql: |
-            CALL load_disbursement_monthly(2025);
+            CALL load_disbursement_monthly(2026);
             CALL summarize_fy_disbursements(2025);
       

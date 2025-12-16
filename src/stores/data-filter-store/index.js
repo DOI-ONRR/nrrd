@@ -9,17 +9,29 @@ import {
 const DataFilterContext = React.createContext(initialState)
 
 function DataFilterProvider ({ children, defaults, urlParams }) {
-  let initialStateMerged = (initialState[defaults] || {})
+  let initialStateMerged = { ...(initialState[defaults] || {}) }
   // only update the initial state with url params if data type is available
   if (urlParams && urlParams[DATA_TYPE]) {
     const dataType = urlParams[DATA_TYPE]
     const payload = urlParams
 
-    const dataTypeCache = Object.assign(((initialStateMerged.dataTypesCache && initialStateMerged.dataTypesCache[dataType]) || { ...initialStateMerged }), { ...payload })
+    const prevCache = initialStateMerged.dataTypesCache || {}
+    const prevForType = prevCache[dataType] || { ...initialStateMerged }
 
-    const updatedDataTypesCache = Object.assign((initialStateMerged.dataTypesCache || {}), { [dataType]: { ...dataTypeCache } })
+    const dataTypeCache = {
+      ...prevForType,
+      ...payload,
+    }
 
-    initialStateMerged = ({ dataTypesCache: { ...updatedDataTypesCache }, ...dataTypeCache })
+    const updatedDataTypesCache = {
+      ...prevCache,
+      [dataType]: dataTypeCache,
+    }
+
+    initialStateMerged = {
+      ...dataTypeCache,
+      dataTypesCache: updatedDataTypesCache,
+    }
   }
 
   const [state, dispatch] = useReducer(reducer, initialStateMerged)

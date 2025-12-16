@@ -40,7 +40,7 @@ WHERE pe.period_id = d.period_id
       WHERE exists (
         SELECT 1
         FROM disbursement
-        WHERE period_id = pe2.period_id
+        WHERE period_id = pe3.period_id
       )
     )
   )

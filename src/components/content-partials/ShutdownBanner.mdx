@@ -1,11 +1,16 @@
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'
+
 <Box
   display="flex"
   justifyContent="center"
   alignItems="center"
   bgcolor="#fef1d2"
   height="40px"
-  mt={1}
-  mb={1}>
+  padding="1.5em"
+  mt="1em"
+  mb="1em">
   <WarningIconImg />
-  <Box fontSize="caption.fontSize" m={{ sm: 0.5, md: 1 }}>Due to the government shutdown, we are not able to update this site. We will resume work on the site when the shutdown ends.</Box>
+  <Box fontSize="caption.fontSize" m={{ sm: 0.5, md: 1 }}>
+    Due to the current lapse of federal appropriations: this website may not be up to date; transactions submitted via this website might not be processed until appropriations are enacted; and we may not be able to respond to inquiries until appropriations are enacted. For more information, please visit The Department of the Interior shutdown page at: <Link href='https://www.doi.gov/shutdown' target="_blank">https://www.doi.gov/shutdown<OpenInNewIcon style={{ fontSize: 12 }} /></Link>
+  </Box>
 </Box>
