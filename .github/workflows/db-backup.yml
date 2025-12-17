@@ -1,0 +1,70 @@
+name: Database Backup
+
+on:
+  workflow_call:
+    inputs:
+      db-service:
+        description: "cloud.gov database service name"
+        required: false
+        type: string
+        default: nrrd-a-psql
+      cf-space:
+        description: "cloud.gov space"
+        required: false
+        type: string
+        default: prod
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 0' # runs weekly on Sunday at 3am UTC
+
+jobs:
+  db-backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install PostgreSQL 13 client (pg_dump)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-13
+
+      - name: Verify pg_dump version
+        run: pg_dump --version
+      
+      - name: Install CF CLI
+        uses: doi-onrr/oddd-actions/.github/actions/cf-install@v1
+
+      - name: Install cg-manage-rds
+        run: |
+          curl -L -o cg-manage-rds.zip \
+            https://github.com/cloud-gov/manage-rds/releases/download/v0.2.10/cg-manage-rds.ubuntu-latest.x64.zip
+
+          unzip cg-manage-rds.zip -d /usr/local/bin
+          chmod +x /usr/local/bin/cg-manage-rds
+
+      - name: Log in to Cloud Foundry
+        shell: bash
+        run: |
+          cf login -u ${{ secrets.CF_USERNAME }} -p ${{ secrets.CF_PASSWORD }} -a api.fr.cloud.gov -o doi-onrr -s ${{ inputs.cf-space }}
+
+      - name: Backup database
+        working-directory: ${{ github.workspace }}
+        run: |
+          cg-manage-rds export -o "-F p --no-owner --no-acl" -f backup.sql ${{ inputs.db-service }}
+
+      - name: Verify backup file
+        run: ls -lh backup.sql
+
+      - name: Compress backup
+        run: |
+          gzip -9 backup.sql
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: db-backup-${{ inputs.cf-space }}-${{ inputs.db-service }}
+          path: |
+            backup.sql.gz
+          retention-days: 14
