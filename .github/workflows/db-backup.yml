@@ -1,7 +1,7 @@
 name: Database Backup
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       db-service:
         description: "cloud.gov database service name"
@@ -13,7 +13,6 @@ on:
         required: false
         type: string
         default: prod
-  workflow_dispatch:
   schedule:
     - cron: '0 3 * * 0' # runs weekly on Sunday at 3am UTC
 
@@ -25,10 +24,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install PostgreSQL 13 client (pg_dump)
+      - name: Install PostgreSQL client
         run: |
           sudo apt-get update
-          sudo apt-get install -y postgresql-client-13
+          sudo apt-get install -y postgresql-client
 
       - name: Verify pg_dump version
         run: pg_dump --version
