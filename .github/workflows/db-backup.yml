@@ -35,13 +35,13 @@ jobs:
       - name: Install CF CLI
         uses: doi-onrr/oddd-actions/.github/actions/cf-install@v1
 
-      - name: Install cg-manage-rds
+      - name: Install cg-manage-rds (pipx)
         run: |
-          curl -L -o cg-manage-rds.zip \
-            https://github.com/cloud-gov/manage-rds/releases/download/v0.2.10/cg-manage-rds.ubuntu-latest.x64.zip
-
-          unzip cg-manage-rds.zip -d /usr/local/bin
-          chmod +x /usr/local/bin/cg-manage-rds
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip pipx
+          pipx ensurepath
+          pipx install git+https://github.com/cloud-gov/cg-manage-rds.git
+          cg-manage-rds --help
 
       - name: Log in to Cloud Foundry
         shell: bash
