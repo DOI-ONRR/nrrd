@@ -14,7 +14,7 @@ on:
         type: string
         default: prod
   schedule:
-    - cron: '0 3 * * 0' # runs weekly on Sunday at 3am UTC
+    - cron: '0 3 * * 0,4' # runs on Sunday and Thursday at 3am UTC
 
 jobs:
   db-backup:
