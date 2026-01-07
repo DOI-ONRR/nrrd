@@ -31,7 +31,6 @@ export default function GatsbyQueryParamAdapter({ children }) {
   }, []);
 
   const updateUrl = useCallback((search, replace) => {
-    console.log('updateUrl')
     if (typeof window === "undefined") return;
 
     const searchString = search
@@ -40,10 +39,24 @@ export default function GatsbyQueryParamAdapter({ children }) {
         : `?${search}`
       : "";
 
+    // Gatsby's `navigate()` automatically applies `pathPrefix` in prefixed builds.
+    // `window.location.pathname` already includes the prefix, so we must strip it
+    // to avoid ending up with a doubled prefix like:
+    //   /sites/<branch>/sites/<branch>/explore
+    const pathPrefix =
+      typeof __PATH_PREFIX__ !== "undefined" ? __PATH_PREFIX__ : "";
+
+    const stripPrefix = (pathname) => {
+      if (!pathPrefix) return pathname;
+      return pathname.startsWith(pathPrefix)
+        ? pathname.slice(pathPrefix.length) || "/"
+        : pathname;
+    };
+
+    const pathname = stripPrefix(window.location.pathname);
+
     // 👈 IMPORTANT: keep the current pathname, just change the query
-    const newUrl = `${window.location.pathname}${searchString}${
-      window.location.hash || ""
-    }`;
+    const newUrl = `${pathname}${searchString}${window.location.hash || ""}`;
 
     navigate(newUrl, { replace });
   }, []);
