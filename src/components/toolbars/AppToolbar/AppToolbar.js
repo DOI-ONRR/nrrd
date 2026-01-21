@@ -19,7 +19,7 @@ import MobileMenu from '../../navigation/MobileMenu'
 import Link from '../../Link'
 import { SearchSite } from '../../inputs/SearchSite'
 
-import { NrrdLogoImg } from '../../images'
+import { NrrdLogoImg, OnrrLogoImg } from '../../images'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -105,6 +105,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.header.secondary,
     justifyContent: 'space-between',
     minHeight: 80
+  },
+  onrrLogo: {
+    height: 45,
+    width: 'auto',
+    marginTop: 5,
   }
 }))
 
@@ -129,7 +134,10 @@ const AppToolbar = props => {
             </div>
           </Hidden>
           <Hidden mdDown>
-            <div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <Link href="https://www.onrr.gov" target="_blank" rel="noopener noreferrer" aria-label="Link to ONRR website">
+                <OnrrLogoImg className={classes.onrrLogo} />
+              </Link>
               <SearchSite />
             </div>
           </Hidden>
