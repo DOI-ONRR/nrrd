@@ -27,7 +27,7 @@
     "d3-interpolate": "^1.4.0",
     "dotenv": "^8.2.0",
     "elasticlunr": "^0.9.5",
-    "eslint": "^7.32.0",
+    "eslint": "^9.26.0",
     "etl": "^0.6.12",
     "exceljs": "^3.8.0",
     "file-saver": "^2.0.2",
