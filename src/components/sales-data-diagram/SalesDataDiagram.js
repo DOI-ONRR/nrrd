@@ -203,32 +203,32 @@ const SalesDataDiagram = () => {
                   </li>
                   <li>
                     <Link href='https://www.onrr.gov/references/valuation?tabs=valuation-regulations' className={linkClasses.underlineHover}>
-                      Valuation Regulations <OpenInNewIcon style={{ fontSize: 20 }} />
+                      Valuation Regulations 
                     </Link>
                   </li>
                   <li>
                     <Link href='https://onrr.gov/references/valuation' className={linkClasses.underlineHover}>
-                      How Valuation Works <OpenInNewIcon style={{ fontSize: 20 }} />
+                      How Valuation Works 
                     </Link>
                   </li>
                   <li>
                     <Link href='https://www.onrr.gov/reporting/revenue?tabs=forms' className={linkClasses.underlineHover}>
-                      Form ONRR-2014 <OpenInNewIcon style={{ fontSize: 20 }} />
+                      Form ONRR-2014 
                     </Link>
                   </li>
                   <li>
                     <Link href='https://www.onrr.gov/references/handbooks/minerals-revenue-reporter-handbook' className={linkClasses.underlineHover}>
-                      Minerals Revenue Reporter Handbook <OpenInNewIcon style={{ fontSize: 20 }} />
+                      Minerals Revenue Reporter Handbook 
                     </Link>
                   </li>
                   <li>
                     <Link href='https://onrr.gov/document/RRM-Chapter.4.pdf' className={linkClasses.underlineHover}>
-                      Handbook discussion on quality bank adjustments, section 4.11 (PDF) <OpenInNewIcon style={{ fontSize: 20 }} />
+                      Handbook discussion on quality bank adjustments, section 4.11 (PDF) 
                     </Link>
                   </li>
                   <li>
                     <Link href='https://www.onrr.gov/references/reference-lists?tabs=revenue-reporting-references' className={linkClasses.underlineHover}>
-                      ONRR revenue reporting references <OpenInNewIcon style={{ fontSize: 20 }} />
+                      ONRR revenue reporting references 
                     </Link>
                   </li>
                 </ul>
