@@ -42,6 +42,11 @@ WHERE pe.period_id = d.period_id
         FROM disbursement
         WHERE period_id = pe3.period_id
       )
+        AND exists (
+          SELECT 1
+          FROM disbursement
+          WHERE period_id = pe2.period_id
+        )
     )
   )
 GROUP BY fy;

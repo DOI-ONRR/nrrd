@@ -28,6 +28,11 @@ WHERE pe.period_id = p.period_id
         WHERE period_id = pe3.period_id
       )
     )
+      AND EXISTS (
+        SELECT 1
+        FROM production
+        WHERE period_id = pe2.period_id
+      )
   )
   AND c.commodity_id = p.commodity_id
 GROUP BY c.commodity,
