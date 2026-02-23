@@ -16,6 +16,10 @@ on:
   schedule:
     - cron: '0 3 * * 0,4' # runs on Sunday and Thursday at 3am UTC
 
+env:
+  DB_SERVICE: ${{ inputs.db-service || 'nrrd-a-psql' }}
+  CF_SPACE: ${{ inputs.cf-space || 'prod' }}
+
 jobs:
   db-backup:
     runs-on: ubuntu-latest
@@ -46,12 +50,12 @@ jobs:
       - name: Log in to Cloud Foundry
         shell: bash
         run: |
-          cf login -u ${{ secrets.CF_USERNAME }} -p ${{ secrets.CF_PASSWORD }} -a api.fr.cloud.gov -o doi-onrr -s ${{ inputs.cf-space }}
+          cf login -u ${{ secrets.CF_USERNAME }} -p ${{ secrets.CF_PASSWORD }} -a api.fr.cloud.gov -o doi-onrr -s "$CF_SPACE"
 
       - name: Backup database
         working-directory: ${{ github.workspace }}
         run: |
-          cg-manage-rds export -o "-F p --no-owner --no-acl" -f backup.sql ${{ inputs.db-service }}
+          cg-manage-rds export -o "-F p --no-owner --no-acl" -f backup.sql "$DB_SERVICE" 2>&1 | cat
 
       - name: Verify backup file
         run: ls -lh backup.sql
@@ -63,7 +67,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: db-backup-${{ inputs.cf-space }}-${{ inputs.db-service }}
+          name: db-backup-${{ env.CF_SPACE }}-${{ env.DB_SERVICE }}
           path: |
             backup.sql.gz
           retention-days: 14
