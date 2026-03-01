@@ -59,7 +59,7 @@
     "jaeger-client": "^3.19.0",
     "jest-image-snapshot": "^4.2.0",
     "lazy.js": "^0.5.1",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.23",
     "millify": "^6.1.0",
     "ogr2ogr": "^2.0.0",
     "pg": "^7.18.2",
