@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-26-january
-      author: Christine Thomas 
+      id: revenue-26-february
+      author: Lindsay Goldstein
       changes: 
       - sql:
           dbms: 'postgresql'
