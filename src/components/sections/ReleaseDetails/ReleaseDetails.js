@@ -37,42 +37,14 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          March 17, 2026 changes:
+          March 27, 2026 changes:
         </Typography>
         <List className={classes.changeList}>
           <ListItem>
             <ListItemText
               primary={
                 <>
-                  Added <Link href="downloads/disbursements-by-month/">monthly disbursements data</Link>
-                </>
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="downloads/revenue/">monthly revenue data</Link>
-                </>
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="/downloads/production-by-month/">monthly production data</Link>
-                </>
-              }
-            />
-          </ListItem>
-
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="downloads/production-by-disposition/">monthly production disposition data</Link>
+                  Added <Link href="how-revenue-works/ocs-disbursements/">FY 2026 Gulf of America Outer Contintental Shelf disbursements</Link>
                 </>
               }
             />
