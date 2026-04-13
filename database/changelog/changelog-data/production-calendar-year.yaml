@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: production-calendar-year-25
+      id: production-calendar-year-24
       author: Lindsay Goldstein
       changes:
       - sql:
