@@ -69,9 +69,6 @@ export default function ReleaseDetails() {
             />
           </ListItem>
         </List>
-
-
-        </List>
         <Typography variant="inherit">
           Review our{' '}
           <Link href="https://github.com/ONRR/nrrd/releases">full release details <OpenInNewIcon fontSize="inherit" style={{ verticalAlign: 'middle' }} /> </Link>.
