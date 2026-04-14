@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Link, List, ListItem, ListItemText } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew'
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 
 const useStyles = makeStyles({
   h3: {
@@ -44,7 +44,7 @@ export default function ReleaseDetails() {
             <ListItemText
               primary={
                 <>
-                  Added <Link href="downloads/revenue/">monthly revenue data</Link>
+                  Added <Link href="/downloads/revenue/">monthly revenue data</Link>
                 </>
               }
             />
@@ -63,7 +63,7 @@ export default function ReleaseDetails() {
             <ListItemText
               primary={
                 <>
-                  Added <Link href="downloads/production-by-disposition/">monthly production disposition data</Link>
+                  Added <Link href="/downloads/production-by-disposition/">monthly production disposition data</Link>
                 </>
               }
             />
