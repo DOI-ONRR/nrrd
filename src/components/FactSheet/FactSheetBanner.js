@@ -71,7 +71,7 @@ const FactSheetBanner = () => {
             </Grid>
             <Grid item xs={12}>
               <Box className={classes.dataPublished}>
-                Data published March 2026
+                Data published April 2026
               </Box>
             </Grid>
           </Grid>
