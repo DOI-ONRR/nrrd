@@ -26,7 +26,7 @@ DECLARE
                     COALESCE(SPLIT_PART(e.product,' - ', 1), '')
 	            ELSE e.product 
             END = c.commodity
-     AND COALESCE(e.product, '') = c.product
+     AND COALESCE(LOWER(e.product), '') = LOWER(c.product)
         AND c.mineral_lease_type = ''
         AND p.period = 'Fiscal Year'
         AND p.period_date = TO_DATE(concat('01', '/01/', e.fiscal_year), 'MM/DD/YYYY')
