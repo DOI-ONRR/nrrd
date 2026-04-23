@@ -27,7 +27,6 @@ DECLARE
 	            ELSE e.product 
             END = c.commodity
      AND COALESCE(LOWER(e.product), '') = LOWER(c.product)
-        AND c.mineral_lease_type = ''
         AND p.period = 'Fiscal Year'
         AND p.period_date = TO_DATE(concat('01', '/01/', e.fiscal_year), 'MM/DD/YYYY')
     GROUP BY location_id, 
