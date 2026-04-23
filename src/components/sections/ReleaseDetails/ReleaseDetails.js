@@ -44,7 +44,7 @@ export default function ReleaseDetails() {
             <ListItemText
               primary={
                 <>
-                  Added <Link href="/downloads/disbursements/">monthly disbursements data</Link>
+                  Added <Link href="/downloads/disbursements-by-month/">monthly disbursements data</Link>
                 </>
               }
             />
