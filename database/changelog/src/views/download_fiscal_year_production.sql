@@ -12,7 +12,7 @@ SELECT DISTINCT period.period_date AS "Date",
     ELSE ''::character varying
   END AS "FIPS Code",
   location.offshore_region AS "Offshore Region",
-  commodity.product AS "Product",
+  UPPER(left(commodity.product, 1)) || LOWER(SUBSTRING(commodity.product FROM 2)) AS "Product",
   production.volume AS "Volume"
 FROM production
   JOIN period USING (period_id)
