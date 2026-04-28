@@ -35,5 +35,4 @@ SELECT location.location_name,
 FROM production
   JOIN period USING (period_id)
   JOIN location USING (location_id)
-  JOIN commodity USING (commodity_id)
-WHERE location.land_class::text <> 'Mixed Exploratory'::text;
+  JOIN commodity USING (commodity_id);
