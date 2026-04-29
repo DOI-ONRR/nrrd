@@ -20,6 +20,7 @@ DECLARE
         AND COALESCE(e.fips_code, '') = l.fips_code
         AND COALESCE(e.offshore_region, '') = l.offshore_region
         AND COALESCE(LOWER(e.product), '') = LOWER(c.product)
+        AND c.mineral_lease_type = ''
         AND p.period = 'Fiscal Year'
         AND p.period_date = TO_DATE(concat('01', '/01/', e.fiscal_year), 'MM/DD/YYYY')
     GROUP BY location_id, 
