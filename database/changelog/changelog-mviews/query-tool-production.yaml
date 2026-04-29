@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: uery-tool-production
+      id: query-tool-production
       author: Jeff Schwartz
       runOnChange: true
       changes:
