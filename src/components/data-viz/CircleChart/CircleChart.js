@@ -73,8 +73,8 @@ const CircleChart = ({ data, legendHeaders, legendPosition = 'bottom', showLabel
         const tmp = data
         const other = tmp.reduce((sum, row, i) => {
           let returns = sum
-          if (i + 1 >= maxCircles) {
-            returns = sum + row[yAxis] || 0
+          if (i >= maxCircles) {
+            returns = sum + (row[yAxis] || 0)
           }
           return returns
         }, 0)

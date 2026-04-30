@@ -3,8 +3,8 @@ CREATE OR REPLACE FUNCTION transform_product()
 AS $$
 BEGIN
     CASE 
-        WHEN NEW.product LIKE '%Dioxide%' THEN
-            NEW.product := REPLACE(NEW.product, 'Dioxide', 'dioxide');
+        WHEN LOWER(NEW.product) = 'carbon dioxide' THEN
+            NEW.product := 'Carbon dioxide (ton)';
         WHEN NEW.product = 'Sand/Gravel-Cubic Yards (cyd)' THEN
             NEW.product='Sand/Gravel (Cubic Yards)';
         WHEN NEW.product = 'Geothermal - Direct Utilization, Hundreds of Gallons' THEN
