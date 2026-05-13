@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-commodity-geothermal-millions-pounds
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            UPDATE commodity
+            SET product = 'Geothermal - Direct Use, Millions of Pounds'
+            WHERE product = 'Geothermal - direct use, millions of pounds'
