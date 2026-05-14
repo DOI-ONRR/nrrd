@@ -9,4 +9,8 @@ databaseChangeLog:
           sql: |
             UPDATE commodity
             SET product = 'Geothermal - Direct Use, Millions of Pounds'
-            WHERE product = 'Geothermal - direct use, millions of pounds'
+            WHERE product = 'Geothermal - direct use, millions of pounds';
+
+            UPDATE commodity
+            SET mineral_lease_type = 'Geothermal'
+            WHERE product = 'Geothermal - Direct Use, Millions of Pounds';
