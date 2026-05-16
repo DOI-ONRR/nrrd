@@ -44,6 +44,33 @@ export default function ReleaseDetails() {
             <ListItemText
               primary={
                 <>
+                  Added <Link href="/downloads/production-by-disposition/">monthly disbursements data</Link>
+                </>
+              }
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={
+                <>
+                  Added <Link href="/downloads/revenue/">monthly revenue data</Link>
+                </>
+              }
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={
+                <>
+                  Added <Link href="/downloads/production-by-disposition/">monthly production data</Link>
+                </>
+              }
+            />
+          </ListItem>
+        <ListItem>
+            <ListItemText
+              primary={
+                <>
                   Added <Link href="/downloads/production-by-disposition/">historical production disposition data</Link>
                 </>
               }
