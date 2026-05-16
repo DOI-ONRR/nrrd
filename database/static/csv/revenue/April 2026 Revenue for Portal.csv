@@ -1,0 +1,2045 @@
+Accept Date,Land Class Code,Land Category Code Desc,State,County Code Desc,FIPS Code,Agency State Region Code Desc,Revenue Type,Mineral Production Code Desc,Commodity,Product Code Desc,Revenue
+4/1/2026,Federal,Offshore,,,,ALASKA OCS,Rents,Oil & Gas,Oil & Gas,,21504.00
+4/1/2026,Federal,Offshore,,,,ALASKA OCS,Royalties,Oil & Gas,Oil,Oil,341616.09
+4/1/2026,Federal,Offshore,,,,ATLANTIC OCS,Other Revenues,Wind,Wind,,3265760.91
+4/1/2026,Federal,Offshore,,,,ATLANTIC OCS,Rents,Wind,Wind,,1066834.00
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Bonus,Oil & Gas,Oil & Gas,,172800504.00
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,Gas,Flared Gas Well Gas,0.71
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,Gas,Flash Gas,0.00
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,502.12
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,251.27
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,3403.10
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,NGL,Gas Plant Products,73.75
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,Oil,Condensate,31905.57
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,Oil,Drip or Scrubber Condensate,502.00
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,Oil,Inlet Scrubber,0.00
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,Oil,Oil,607230.70
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Other Revenues,Oil & Gas,Oil & Gas,,24361706.93
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Rents,Oil & Gas,Oil & Gas,,12386661.70
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,356.27
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Gas,Flash Gas,325295.47
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,163889.13
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,25117074.27
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Gas,Unprocessed Gas,1958063.86
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,NGL,Gas Plant Products,6017699.47
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Oil,Condensate,7812823.33
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,299964.28
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Oil,Inlet Scrubber,296261.59
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Oil,Oil,671872219.55
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Oil,Oil Lost,16794.17
+4/1/2026,Federal,Offshore,,,,GULF OF AMERICA,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,3162.68
+4/1/2026,Federal,Offshore,,,,PACIFIC OCS,Rents,Oil & Gas,Oil & Gas,,180.00
+4/1/2026,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,60.18
+4/1/2026,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Gas,Unprocessed Gas,65226.72
+4/1/2026,Federal,Offshore,,,,PACIFIC OCS,Royalties,Oil & Gas,Oil,Oil,13857795.84
+4/1/2026,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Other Revenues,Oil & Gas,Oil,Condensate,19875.11
+4/1/2026,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Other Revenues,Oil & Gas,Oil,Inlet Scrubber,-153108.06
+4/1/2026,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Other Revenues,Oil & Gas,Oil,Oil,295389.63
+4/1/2026,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Other Revenues,Oil & Gas,Oil & Gas,,1354.24
+4/1/2026,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,1419.57
+4/1/2026,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Oil,Condensate,-65945.43
+4/1/2026,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Oil,Inlet Scrubber,602891.48
+4/1/2026,Federal,Onshore,AK,Harrison Bay,02185,ALASKA,Royalties,Oil & Gas,Oil,Oil,5870780.20
+4/1/2026,Federal,Onshore,AK,Kenai (Post),02122,ALASKA,Other Revenues,Oil & Gas,Oil & Gas,,15351.93
+4/1/2026,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,190366.92
+4/1/2026,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Oil,Condensate,40.26
+4/1/2026,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Oil,Oil,458.97
+4/1/2026,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,4.98
+4/1/2026,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,803.37
+4/1/2026,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,6.12
+4/1/2026,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,0.40
+4/1/2026,Federal,Onshore,AL,Baldwin,01003,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,18.92
+4/1/2026,Federal,Onshore,AL,Escambia,01053,EAST STATES,Royalties,Oil & Gas,Oil,Oil,7682.05
+4/1/2026,Federal,Onshore,AL,Jefferson,01073,EAST STATES,Royalties,Coal,Coal,Coal,0.00
+4/1/2026,Federal,Onshore,AL,Lamar,01075,EAST STATES,Royalties,Oil & Gas,Oil,Oil,159.00
+4/1/2026,Federal,Onshore,AL,Mobile,01097,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,26.78
+4/1/2026,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3741.69
+4/1/2026,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,28.52
+4/1/2026,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Oil,Oil,666.49
+4/1/2026,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,7.93
+4/1/2026,Federal,Onshore,AL,Mobile,01097,EAST STATES,Royalties,Oil & Gas,Sulfur,Sulfur,428.10
+4/1/2026,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,11.77
+4/1/2026,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Coal,Coal,Coal,177265.17
+4/1/2026,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,2022.78
+4/1/2026,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,36.61
+4/1/2026,Federal,Onshore,AL,Tuscaloosa,01125,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,5299.13
+4/1/2026,Federal,Onshore,AL,Walker,01127,EAST STATES,Royalties,Coal,Coal,Coal,0.00
+4/1/2026,Federal,Onshore,AR,Cleburne,05023,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,3511.66
+4/1/2026,Federal,Onshore,AR,Columbia,05027,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,0.00
+4/1/2026,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,3.26
+4/1/2026,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6.42
+4/1/2026,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,36.95
+4/1/2026,Federal,Onshore,AR,Columbia,05027,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,10.17
+4/1/2026,Federal,Onshore,AR,Conway,05029,EAST STATES,Rents,Oil & Gas,Oil & Gas,,210.00
+4/1/2026,Federal,Onshore,AR,Conway,05029,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,37645.12
+4/1/2026,Federal,Onshore,AR,Crawford,05033,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,9.52
+4/1/2026,Federal,Onshore,AR,Crawford,05033,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,7681.43
+4/1/2026,Federal,Onshore,AR,Faulkner,05045,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,699.18
+4/1/2026,Federal,Onshore,AR,Franklin,05047,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,25.23
+4/1/2026,Federal,Onshore,AR,Franklin,05047,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,2277.00
+4/1/2026,Federal,Onshore,AR,Johnson,05071,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,1445.68
+4/1/2026,Federal,Onshore,AR,Johnson,05071,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,8400.19
+4/1/2026,Federal,Onshore,AR,Logan,05083,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,673.78
+4/1/2026,Federal,Onshore,AR,Logan,05083,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,746.00
+4/1/2026,Federal,Onshore,AR,Logan,05083,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,181233.62
+4/1/2026,Federal,Onshore,AR,Montgomery,05097,EAST STATES,Other Revenues,Hardrock,Hardrock,,-3.00
+4/1/2026,Federal,Onshore,AR,Montgomery,05097,EAST STATES,Royalties,Hardrock,Quartz,Quartz Crystal,3.00
+4/1/2026,Federal,Onshore,AR,Pope,05115,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,0.45
+4/1/2026,Federal,Onshore,AR,Pope,05115,EAST STATES,Rents,Oil & Gas,Oil & Gas,,1263.00
+4/1/2026,Federal,Onshore,AR,Pope,05115,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,261.22
+4/1/2026,Federal,Onshore,AR,Scott,05127,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,81.79
+4/1/2026,Federal,Onshore,AR,Scott,05127,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,17.15
+4/1/2026,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,1578.66
+4/1/2026,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Rents,Oil & Gas,Oil & Gas,,160.00
+4/1/2026,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Royalties,Oil & Gas,Gas,Coal Bed Methane,1180.65
+4/1/2026,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,12.41
+4/1/2026,Federal,Onshore,AR,Sebastian,05131,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,82389.00
+4/1/2026,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Rents,Oil & Gas,Oil & Gas,,340.00
+4/1/2026,Federal,Onshore,AR,Van Buren,05141,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,11807.21
+4/1/2026,Federal,Onshore,AR,White,05145,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,4212.11
+4/1/2026,Federal,Onshore,AR,Yell,05149,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,28.74
+4/1/2026,Federal,Onshore,AR,Yell,05149,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,349.00
+4/1/2026,Federal,Onshore,AR,Yell,05149,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,10183.52
+4/1/2026,Federal,Onshore,AZ,Maricopa,04013,ARIZONA,Royalties,Sodium,Sodium,Salt,0.00
+4/1/2026,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,2.54
+4/1/2026,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,-19.86
+4/1/2026,Federal,Onshore,CA,Fresno,06019,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,2808.51
+4/1/2026,Federal,Onshore,CA,Glenn,06021,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,276.93
+4/1/2026,Federal,Onshore,CA,Glenn,06021,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,3.62
+4/1/2026,Federal,Onshore,CA,Imperial,06025,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",1681.91
+4/1/2026,Federal,Onshore,CA,Inyo,06027,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",1510.93
+4/1/2026,Federal,Onshore,CA,Inyo,06027,CALIFORNIA,Royalties,Geothermal,Geothermal,Geothermal - sulfur,159.04
+4/1/2026,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,33181.73
+4/1/2026,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Rents,Oil & Gas,Oil & Gas,,784.04
+4/1/2026,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,516.06
+4/1/2026,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,96813.98
+4/1/2026,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,11414.97
+4/1/2026,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,204313.57
+4/1/2026,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Oil,Condensate,2112.61
+4/1/2026,Federal,Onshore,CA,Kern,06029,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,5316197.77
+4/1/2026,Federal,Onshore,CA,Kings,06031,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,18849.76
+4/1/2026,Federal,Onshore,CA,Lake,06033,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds",220599.00
+4/1/2026,Federal,Onshore,CA,Lassen,06035,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Millions of BTUs",7846.55
+4/1/2026,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,270.00
+4/1/2026,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,2496.20
+4/1/2026,Federal,Onshore,CA,Los Angeles,06037,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,51874.90
+4/1/2026,Federal,Onshore,CA,Mono,06051,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",142302.31
+4/1/2026,Federal,Onshore,CA,Monterey,06053,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,1567.27
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Other Revenues,Sodium,Sodium,,-1000.00
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Phosphate,Potassium Sulphate-Standard,0.00
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Soda Ash,Soda Ash,4400.56
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Anhydrous Sodium Sulfate,19285.50
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Anhydrous,0.00
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Decahydrate,0.00
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Borax-Pentahydrate,75204.84
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Boric Acid,5643.01
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Salt,12672.73
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Potassium,Sodium,Sodium Bi-Carbonate,0.00
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Phosphate,Potassium Sulphate-Standard,0.00
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Soda Ash,Soda Ash,2434.19
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Anhydrous Sodium Sulfate,4943.77
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Anhydrous,0.00
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Decahydrate,0.00
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Borax-Pentahydrate,18864.95
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Boric Acid,1425.64
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Calcium Chloride,0.00
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Salt,4723.27
+4/1/2026,Federal,Onshore,CA,San Bernardino,06071,CALIFORNIA,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,0.00
+4/1/2026,Federal,Onshore,CA,San Joaquin,06077,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,12.10
+4/1/2026,Federal,Onshore,CA,San Luis Obispo,06079,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,153.41
+4/1/2026,Federal,Onshore,CA,San Luis Obispo,06079,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,6354.64
+4/1/2026,Federal,Onshore,CA,Santa Barbara,06083,CALIFORNIA,Other Revenues,Oil & Gas,Oil & Gas,,600.04
+4/1/2026,Federal,Onshore,CA,Santa Barbara,06083,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,24062.83
+4/1/2026,Federal,Onshore,CA,Solano,06095,CALIFORNIA,Royalties,Oil & Gas,Gas,Unprocessed Gas,127.11
+4/1/2026,Federal,Onshore,CA,Sonoma,06097,CALIFORNIA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds",331628.40
+4/1/2026,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,70.56
+4/1/2026,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2839.56
+4/1/2026,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,NGL,Gas Plant Products,6944.48
+4/1/2026,Federal,Onshore,CA,Ventura,06111,CALIFORNIA,Royalties,Oil & Gas,Oil,Oil,211808.62
+4/1/2026,Federal,Onshore,CO,Adams,08001,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-53091.68
+4/1/2026,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,41.98
+4/1/2026,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,7348.71
+4/1/2026,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,85.20
+4/1/2026,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,7804.52
+4/1/2026,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Oil,Condensate,523.86
+4/1/2026,Federal,Onshore,CO,Adams,08001,COLORADO,Royalties,Oil & Gas,Oil,Oil,55106.50
+4/1/2026,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-15061.37
+4/1/2026,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,43.63
+4/1/2026,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,4061.16
+4/1/2026,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,3893.75
+4/1/2026,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Oil,Condensate,460.27
+4/1/2026,Federal,Onshore,CO,Arapahoe,08005,COLORADO,Royalties,Oil & Gas,Oil,Oil,33479.28
+4/1/2026,Federal,Onshore,CO,Archuleta,08007,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,1681.88
+4/1/2026,Federal,Onshore,CO,Archuleta,08007,COLORADO,Rents,Oil & Gas,Oil & Gas,,3888.00
+4/1/2026,Federal,Onshore,CO,Archuleta,08007,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,36761.29
+4/1/2026,Federal,Onshore,CO,Baca,08009,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,622.00
+4/1/2026,Federal,Onshore,CO,Baca,08009,COLORADO,Rents,Oil & Gas,Oil & Gas,,1146.00
+4/1/2026,Federal,Onshore,CO,Bent,08011,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,80.00
+4/1/2026,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2.53
+4/1/2026,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,162.57
+4/1/2026,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,124.56
+4/1/2026,Federal,Onshore,CO,Broomfield,08014,COLORADO,Royalties,Oil & Gas,Oil,Oil,238.75
+4/1/2026,Federal,Onshore,CO,Cheyenne,08017,COLORADO,Royalties,Oil & Gas,Oil,Oil,315.03
+4/1/2026,Federal,Onshore,CO,Delta,08029,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,5502.15
+4/1/2026,Federal,Onshore,CO,Delta,08029,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,199461.59
+4/1/2026,Federal,Onshore,CO,Dolores,08033,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,9881.60
+4/1/2026,Federal,Onshore,CO,Dolores,08033,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),472393.37
+4/1/2026,Federal,Onshore,CO,Dolores,08033,COLORADO,Royalties,Oil & Gas,Oil,Oil,219.32
+4/1/2026,Federal,Onshore,CO,Douglas,08035,COLORADO,Rents,Oil & Gas,Oil & Gas,,66.00
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Bonus,Oil & Gas,Oil & Gas,,102900.00
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-2116200.53
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Rents,Oil & Gas,Oil & Gas,,21218.73
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),878.69
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,430.10
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,193790.53
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3556003.87
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,4636.64
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,376769.08
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Condensate,170712.91
+4/1/2026,Federal,Onshore,CO,Garfield,08045,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,8890.33
+4/1/2026,Federal,Onshore,CO,Gunnison,08051,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,4966.76
+4/1/2026,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Coal,Coal,Coal,1282412.11
+4/1/2026,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,59.64
+4/1/2026,Federal,Onshore,CO,Gunnison,08051,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,199455.94
+4/1/2026,Federal,Onshore,CO,Huerfano,08055,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),13023.82
+4/1/2026,Federal,Onshore,CO,Jackson,08057,COLORADO,Bonus,Oil & Gas,Oil & Gas,,4320.00
+4/1/2026,Federal,Onshore,CO,Jackson,08057,COLORADO,Rents,Oil & Gas,Oil & Gas,,1480.00
+4/1/2026,Federal,Onshore,CO,Jackson,08057,COLORADO,Royalties,Oil & Gas,Oil,Oil,7924.98
+4/1/2026,Federal,Onshore,CO,Kiowa,08061,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,400.00
+4/1/2026,Federal,Onshore,CO,Kiowa,08061,COLORADO,Royalties,Oil & Gas,Oil,Oil,3059.82
+4/1/2026,Federal,Onshore,CO,La Plata,08067,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,11773.95
+4/1/2026,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Coal,Coal,Coal,23325.70
+4/1/2026,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,177572.31
+4/1/2026,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1262.20
+4/1/2026,Federal,Onshore,CO,La Plata,08067,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,70.90
+4/1/2026,Federal,Onshore,CO,Larimer,08069,COLORADO,Royalties,Oil & Gas,Oil,Oil,484.65
+4/1/2026,Federal,Onshore,CO,Las Animas,08071,COLORADO,Rents,Oil & Gas,Oil & Gas,,25084.00
+4/1/2026,Federal,Onshore,CO,Las Animas,08071,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,47885.95
+4/1/2026,Federal,Onshore,CO,Mesa,08077,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-138981.34
+4/1/2026,Federal,Onshore,CO,Mesa,08077,COLORADO,Rents,Oil & Gas,Oil & Gas,,5020.77
+4/1/2026,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,34235.10
+4/1/2026,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,467212.07
+4/1/2026,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1512.55
+4/1/2026,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,16450.09
+4/1/2026,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Condensate,16746.71
+4/1/2026,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,32.69
+4/1/2026,Federal,Onshore,CO,Mesa,08077,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,7902.80
+4/1/2026,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Coal,Coal,,2735.31
+4/1/2026,Federal,Onshore,CO,Moffat,08081,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-95667.05
+4/1/2026,Federal,Onshore,CO,Moffat,08081,COLORADO,Rents,Coal,Coal,,15873.00
+4/1/2026,Federal,Onshore,CO,Moffat,08081,COLORADO,Rents,Oil & Gas,Oil & Gas,,2735.80
+4/1/2026,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Coal,Coal,Coal,751378.49
+4/1/2026,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,99536.82
+4/1/2026,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,96271.59
+4/1/2026,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,12990.42
+4/1/2026,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Oil,Condensate,15320.10
+4/1/2026,Federal,Onshore,CO,Moffat,08081,COLORADO,Royalties,Oil & Gas,Oil,Oil,40826.19
+4/1/2026,Federal,Onshore,CO,Montezuma,08083,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,113941.98
+4/1/2026,Federal,Onshore,CO,Montezuma,08083,COLORADO,Rents,Oil & Gas,Oil & Gas,,52.50
+4/1/2026,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),2315354.56
+4/1/2026,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,636.19
+4/1/2026,Federal,Onshore,CO,Montezuma,08083,COLORADO,Royalties,Oil & Gas,Oil,Oil,27114.11
+4/1/2026,Federal,Onshore,CO,Pitkin,08097,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,12661.96
+4/1/2026,Federal,Onshore,CO,Prowers,08099,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,8.87
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Coal,Coal,,0.14
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,-2138930.12
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Rents,Oil & Gas,Oil & Gas,,19742.93
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Coal,Coal,Coal,251826.39
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),314.17
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,67.01
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,169392.21
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3398849.27
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,22050.57
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,359935.90
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Condensate,308790.81
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,20286.23
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Oil & Gas,Oil,Oil,931760.76
+4/1/2026,Federal,Onshore,CO,Rio Blanco,08103,COLORADO,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,122959.32
+4/1/2026,Federal,Onshore,CO,Routt,08107,COLORADO,Bonus,Oil & Gas,Oil & Gas,,67182.00
+4/1/2026,Federal,Onshore,CO,Routt,08107,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,364.00
+4/1/2026,Federal,Onshore,CO,Routt,08107,COLORADO,Rents,Coal,Coal,,720.00
+4/1/2026,Federal,Onshore,CO,Routt,08107,COLORADO,Rents,Oil & Gas,Oil & Gas,,18181.00
+4/1/2026,Federal,Onshore,CO,Routt,08107,COLORADO,Royalties,Coal,Coal,Coal,0.00
+4/1/2026,Federal,Onshore,CO,Routt,08107,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,670.95
+4/1/2026,Federal,Onshore,CO,Routt,08107,COLORADO,Royalties,Oil & Gas,Oil,Oil,11598.85
+4/1/2026,Federal,Onshore,CO,San Juan,08111,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,0.51
+4/1/2026,Federal,Onshore,CO,San Juan,08111,COLORADO,Royalties,Oil & Gas,Gas,Coal Bed Methane,431.99
+4/1/2026,Federal,Onshore,CO,Washington,08121,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,114.08
+4/1/2026,Federal,Onshore,CO,Washington,08121,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,116.82
+4/1/2026,Federal,Onshore,CO,Washington,08121,COLORADO,Royalties,Oil & Gas,Oil,Oil,874.93
+4/1/2026,Federal,Onshore,CO,Weld,08123,COLORADO,Other Revenues,Oil & Gas,Oil & Gas,,361330.50
+4/1/2026,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,14976.97
+4/1/2026,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,515740.22
+4/1/2026,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,3431.86
+4/1/2026,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,NGL,Gas Plant Products,308928.13
+4/1/2026,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Condensate,7718.43
+4/1/2026,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,14499.44
+4/1/2026,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Inlet Scrubber,6817.51
+4/1/2026,Federal,Onshore,CO,Weld,08123,COLORADO,Royalties,Oil & Gas,Oil,Oil,2552730.90
+4/1/2026,Federal,Onshore,CO,Yuma,08125,COLORADO,Royalties,Oil & Gas,Gas,Unprocessed Gas,18592.21
+4/1/2026,Federal,Onshore,FL,Hardee,12049,EAST STATES,Other Revenues,Phosphate,Phosphate,,1204.00
+4/1/2026,Federal,Onshore,FL,Hardee,12049,EAST STATES,Rents,Phosphate,Phosphate,,602.00
+4/1/2026,Federal,Onshore,FL,Polk,12105,EAST STATES,Other Revenues,Phosphate,Phosphate,,644.00
+4/1/2026,Federal,Onshore,FL,Polk,12105,EAST STATES,Rents,Phosphate,Phosphate,,322.00
+4/1/2026,Federal,Onshore,ID,Bannock,16005,IDAHO,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,0.00
+4/1/2026,Federal,Onshore,ID,Bingham,16011,IDAHO,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,0.00
+4/1/2026,Federal,Onshore,ID,Caribou,16029,IDAHO,Other Revenues,Phosphate,Phosphate,,10893.00
+4/1/2026,Federal,Onshore,ID,Caribou,16029,IDAHO,Rents,Phosphate,Phosphate,,1462.00
+4/1/2026,Federal,Onshore,ID,Caribou,16029,IDAHO,Royalties,Phosphate,Phosphate,Ferro Phosphorous Slag,0.00
+4/1/2026,Federal,Onshore,ID,Caribou,16029,IDAHO,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,426058.78
+4/1/2026,Federal,Onshore,ID,Clark,16033,IDAHO,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,0.00
+4/1/2026,Federal,Onshore,ID,Owyhee,16073,IDAHO,Bonus,Geothermal,Geothermal,,-56400.00
+4/1/2026,Federal,Onshore,ID,Owyhee,16073,IDAHO,Rents,Geothermal,Geothermal,,-7520.00
+4/1/2026,Federal,Onshore,IL,Clinton,17027,EAST STATES,Royalties,Oil & Gas,Oil,Oil,7103.66
+4/1/2026,Federal,Onshore,IL,Franklin,17055,EAST STATES,Royalties,Oil & Gas,Oil,Oil,5593.97
+4/1/2026,Federal,Onshore,KS,Comanche,20033,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,90.78
+4/1/2026,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-400.32
+4/1/2026,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,320.00
+4/1/2026,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,70.14
+4/1/2026,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,7445.93
+4/1/2026,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,148.33
+4/1/2026,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,2281.57
+4/1/2026,Federal,Onshore,KS,Finney,20055,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,22918.20
+4/1/2026,Federal,Onshore,KS,Gove,20063,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,230.17
+4/1/2026,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,9.53
+4/1/2026,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,733.89
+4/1/2026,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,0.28
+4/1/2026,Federal,Onshore,KS,Grant,20067,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,187.23
+4/1/2026,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,3.42
+4/1/2026,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,17.30
+4/1/2026,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1166.52
+4/1/2026,Federal,Onshore,KS,Hamilton,20075,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,1.02
+4/1/2026,Federal,Onshore,KS,Haskell,20081,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,0.49
+4/1/2026,Federal,Onshore,KS,Haskell,20081,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2288.41
+4/1/2026,Federal,Onshore,KS,Haskell,20081,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,964.38
+4/1/2026,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,173.77
+4/1/2026,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,20349.89
+4/1/2026,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,82.69
+4/1/2026,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,5286.34
+4/1/2026,Federal,Onshore,KS,Kearny,20093,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,2100.10
+4/1/2026,Federal,Onshore,KS,Lane,20101,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,3500.92
+4/1/2026,Federal,Onshore,KS,Meade,20119,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1.58
+4/1/2026,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,18590.24
+4/1/2026,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,45.84
+4/1/2026,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,139.67
+4/1/2026,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,29042.70
+4/1/2026,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,103.64
+4/1/2026,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,12211.38
+4/1/2026,Federal,Onshore,KS,Morton,20129,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,27948.35
+4/1/2026,Federal,Onshore,KS,Seward,20175,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,610.44
+4/1/2026,Federal,Onshore,KS,Seward,20175,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,597.00
+4/1/2026,Federal,Onshore,KS,Seward,20175,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,113.30
+4/1/2026,Federal,Onshore,KS,Stanton,20187,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,10.38
+4/1/2026,Federal,Onshore,KS,Stanton,20187,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,308.93
+4/1/2026,Federal,Onshore,KS,Stanton,20187,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,27.87
+4/1/2026,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-31.60
+4/1/2026,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,40.16
+4/1/2026,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,68.66
+4/1/2026,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3124.16
+4/1/2026,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,174.39
+4/1/2026,Federal,Onshore,KS,Stevens,20189,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,888.66
+4/1/2026,Federal,Onshore,KS,Trego,20195,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,2201.47
+4/1/2026,Federal,Onshore,KY,Clay,21051,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,68.59
+4/1/2026,Federal,Onshore,KY,Clay,21051,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,1015.93
+4/1/2026,Federal,Onshore,KY,Clay,21051,EAST STATES,Royalties,Oil & Gas,Oil,Oil,883.29
+4/1/2026,Federal,Onshore,KY,Lawrence,21127,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,13.80
+4/1/2026,Federal,Onshore,KY,Leslie,21131,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,249.57
+4/1/2026,Federal,Onshore,KY,Leslie,21131,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,2743.21
+4/1/2026,Federal,Onshore,KY,Leslie,21131,EAST STATES,Royalties,Oil & Gas,Oil,Oil,970.71
+4/1/2026,Federal,Onshore,KY,Letcher,21133,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,42.95
+4/1/2026,Federal,Onshore,KY,Mccreary,21147,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,1781.66
+4/1/2026,Federal,Onshore,KY,Mccreary,21147,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,30.29
+4/1/2026,Federal,Onshore,KY,Meade,21163,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,34809.11
+4/1/2026,Federal,Onshore,KY,Owsley,21189,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,362.75
+4/1/2026,Federal,Onshore,KY,Pike,21195,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,71.17
+4/1/2026,Federal,Onshore,KY,Whitley,21235,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,570.92
+4/1/2026,Federal,Onshore,KY,Whitley,21235,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,413.23
+4/1/2026,Federal,Onshore,LA,Bienville,22013,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,16.86
+4/1/2026,Federal,Onshore,LA,Bienville,22013,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,19890.39
+4/1/2026,Federal,Onshore,LA,Bossier,22015,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,6402.27
+4/1/2026,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,716.20
+4/1/2026,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,108520.00
+4/1/2026,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,838924.02
+4/1/2026,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,53870.84
+4/1/2026,Federal,Onshore,LA,Bossier,22015,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,53841.56
+4/1/2026,Federal,Onshore,LA,Caddo,22017,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,-12731.39
+4/1/2026,Federal,Onshore,LA,Caddo,22017,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,85643.12
+4/1/2026,Federal,Onshore,LA,Caddo,22017,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,437609.66
+4/1/2026,Federal,Onshore,LA,Caddo,22017,EAST STATES,Royalties,Oil & Gas,Oil,Oil,1673.38
+4/1/2026,Federal,Onshore,LA,Cameron,22023,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,4768.88
+4/1/2026,Federal,Onshore,LA,Cameron,22023,EAST STATES,Royalties,Oil & Gas,Oil,Oil,4069.29
+4/1/2026,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,-3949.92
+4/1/2026,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,110.41
+4/1/2026,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2100.97
+4/1/2026,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,1037.76
+4/1/2026,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,111.80
+4/1/2026,Federal,Onshore,LA,Claiborne,22027,EAST STATES,Royalties,Oil & Gas,Oil,Oil,2576.76
+4/1/2026,Federal,Onshore,LA,De Soto,22031,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,158.25
+4/1/2026,Federal,Onshore,LA,De Soto,22031,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,427760.71
+4/1/2026,Federal,Onshore,LA,Jefferson,22051,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,0.09
+4/1/2026,Federal,Onshore,LA,Jefferson,22051,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,379.01
+4/1/2026,Federal,Onshore,LA,Jefferson,22051,EAST STATES,Royalties,Oil & Gas,Oil,Oil,2376.08
+4/1/2026,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Rents,Oil & Gas,Oil & Gas,,1704.00
+4/1/2026,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,-626.12
+4/1/2026,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,569.25
+4/1/2026,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,-284.35
+4/1/2026,Federal,Onshore,LA,Plaquemines,22075,EAST STATES,Royalties,Oil & Gas,Oil,Oil,22420.06
+4/1/2026,Federal,Onshore,LA,Rapides,22079,EAST STATES,Royalties,Oil & Gas,Oil,Oil,4039.21
+4/1/2026,Federal,Onshore,LA,Red River,22081,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,74.16
+4/1/2026,Federal,Onshore,LA,Red River,22081,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,87979.59
+4/1/2026,Federal,Onshore,LA,S Pass,22721,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1.12
+4/1/2026,Federal,Onshore,LA,S Pass,22721,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,0.42
+4/1/2026,Federal,Onshore,LA,S Pass,22721,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,-0.01
+4/1/2026,Federal,Onshore,LA,S Pass,22721,EAST STATES,Royalties,Oil & Gas,Oil,Oil,43.40
+4/1/2026,Federal,Onshore,LA,Sabine,22085,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,10.36
+4/1/2026,Federal,Onshore,LA,Sabine,22085,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,4899.99
+4/1/2026,Federal,Onshore,LA,St. Martin,22099,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,21.11
+4/1/2026,Federal,Onshore,LA,St. Martin,22099,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,186.73
+4/1/2026,Federal,Onshore,LA,St. Martin,22099,EAST STATES,Royalties,Oil & Gas,Oil,Oil,5706.38
+4/1/2026,Federal,Onshore,LA,Vernon,22115,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,436.00
+4/1/2026,Federal,Onshore,LA,W Delta,22719,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,-1.42
+4/1/2026,Federal,Onshore,LA,W Delta,22719,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,0.00
+4/1/2026,Federal,Onshore,LA,W Delta,22719,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,-0.33
+4/1/2026,Federal,Onshore,LA,W Delta,22719,EAST STATES,Royalties,Oil & Gas,Oil,Oil,-5.50
+4/1/2026,Federal,Onshore,LA,Webster,22119,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,-1299.05
+4/1/2026,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,12.17
+4/1/2026,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2915.76
+4/1/2026,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,195.52
+4/1/2026,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,54.50
+4/1/2026,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,10.91
+4/1/2026,Federal,Onshore,LA,Webster,22119,EAST STATES,Royalties,Oil & Gas,Oil,Oil,5355.68
+4/1/2026,Federal,Onshore,MD,Garrett,24023,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,6508.63
+4/1/2026,Federal,Onshore,MI,Alcona,26001,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,90.05
+4/1/2026,Federal,Onshore,MI,Allegan,26005,EAST STATES,Royalties,Oil & Gas,Oil,Oil,277.99
+4/1/2026,Federal,Onshore,MI,Clare,26035,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,72.70
+4/1/2026,Federal,Onshore,MI,Crawford,26039,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,2207.45
+4/1/2026,Federal,Onshore,MI,Jackson,26075,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,22.09
+4/1/2026,Federal,Onshore,MI,Jackson,26075,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,14.71
+4/1/2026,Federal,Onshore,MI,Jackson,26075,EAST STATES,Royalties,Oil & Gas,Oil,Oil,401.01
+4/1/2026,Federal,Onshore,MI,Montmorency,26119,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,-525.00
+4/1/2026,Federal,Onshore,MI,Montmorency,26119,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,9465.86
+4/1/2026,Federal,Onshore,MI,Montmorency,26119,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,10807.95
+4/1/2026,Federal,Onshore,MI,Newaygo,26123,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,205.12
+4/1/2026,Federal,Onshore,MI,Oscoda,26135,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,371.75
+4/1/2026,Federal,Onshore,MI,Oscoda,26135,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3500.76
+4/1/2026,Federal,Onshore,MI,Oscoda,26135,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,215.98
+4/1/2026,Federal,Onshore,MI,Oscoda,26135,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,387.89
+4/1/2026,Federal,Onshore,MI,Oscoda,26135,EAST STATES,Royalties,Oil & Gas,Oil,Oil,1552.15
+4/1/2026,Federal,Onshore,MI,Otsego,26137,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,275.79
+4/1/2026,Federal,Onshore,MO,Crawford,29055,EAST STATES,Other Revenues,Hardrock,Hardrock,,-354.00
+4/1/2026,Federal,Onshore,MO,Crawford,29055,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,0.00
+4/1/2026,Federal,Onshore,MO,Crawford,29055,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,8.71
+4/1/2026,Federal,Onshore,MO,Crawford,29055,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,96.42
+4/1/2026,Federal,Onshore,MO,Dent,29065,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,0.00
+4/1/2026,Federal,Onshore,MO,Dent,29065,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,0.00
+4/1/2026,Federal,Onshore,MO,Dent,29065,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,0.00
+4/1/2026,Federal,Onshore,MO,Iron,29093,EAST STATES,Other Revenues,Hardrock,Hardrock,,-17387.31
+4/1/2026,Federal,Onshore,MO,Iron,29093,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,12485.82
+4/1/2026,Federal,Onshore,MO,Iron,29093,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,100182.00
+4/1/2026,Federal,Onshore,MO,Iron,29093,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,44522.94
+4/1/2026,Federal,Onshore,MO,Madison,29123,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,0.00
+4/1/2026,Federal,Onshore,MO,Madison,29123,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,0.00
+4/1/2026,Federal,Onshore,MO,Madison,29123,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,0.00
+4/1/2026,Federal,Onshore,MO,Reynolds,29179,EAST STATES,Other Revenues,Hardrock,Hardrock,,-36682.56
+4/1/2026,Federal,Onshore,MO,Reynolds,29179,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,58356.47
+4/1/2026,Federal,Onshore,MO,Reynolds,29179,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,139245.65
+4/1/2026,Federal,Onshore,MO,Reynolds,29179,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,103184.05
+4/1/2026,Federal,Onshore,MO,Shannon,29203,EAST STATES,Other Revenues,Hardrock,Hardrock,,-1680.00
+4/1/2026,Federal,Onshore,MO,Shannon,29203,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,119650.09
+4/1/2026,Federal,Onshore,MO,Shannon,29203,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,25686.75
+4/1/2026,Federal,Onshore,MO,Shannon,29203,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,0.00
+4/1/2026,Federal,Onshore,MO,Washington,29221,EAST STATES,Royalties,Hardrock,Copper,Copper Concentrate,0.00
+4/1/2026,Federal,Onshore,MO,Washington,29221,EAST STATES,Royalties,Hardrock,Lead,Lead Concentrate,0.00
+4/1/2026,Federal,Onshore,MO,Washington,29221,EAST STATES,Royalties,Hardrock,Zinc,Zinc Concentrate,0.00
+4/1/2026,Federal,Onshore,MS,Adams,28001,EAST STATES,Royalties,Oil & Gas,Oil,Oil,2469.71
+4/1/2026,Federal,Onshore,MS,Amite,28005,EAST STATES,Rents,Oil & Gas,Oil & Gas,,120.00
+4/1/2026,Federal,Onshore,MS,Covington,28031,EAST STATES,Royalties,Oil & Gas,Oil,Oil,90.98
+4/1/2026,Federal,Onshore,MS,Forrest,28035,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,1049.58
+4/1/2026,Federal,Onshore,MS,Forrest,28035,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,812.01
+4/1/2026,Federal,Onshore,MS,Franklin,28037,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,164.00
+4/1/2026,Federal,Onshore,MS,Franklin,28037,EAST STATES,Rents,Oil & Gas,Oil & Gas,,72.00
+4/1/2026,Federal,Onshore,MS,Franklin,28037,EAST STATES,Royalties,Oil & Gas,Oil,Oil,18303.59
+4/1/2026,Federal,Onshore,MS,Jefferson Davis,28065,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,18.61
+4/1/2026,Federal,Onshore,MS,Jefferson Davis,28065,EAST STATES,Royalties,Oil & Gas,Oil,Oil,0.12
+4/1/2026,Federal,Onshore,MS,Lamar,28073,EAST STATES,Royalties,Oil & Gas,Oil,Oil,8813.85
+4/1/2026,Federal,Onshore,MS,Lowndes,28087,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1341.97
+4/1/2026,Federal,Onshore,MS,Pearl River,28109,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,652.70
+4/1/2026,Federal,Onshore,MS,Pearl River,28109,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,179.12
+4/1/2026,Federal,Onshore,MS,Perry,28111,EAST STATES,Royalties,Oil & Gas,Oil,Oil,30089.19
+4/1/2026,Federal,Onshore,MS,Smith,28129,EAST STATES,Rents,Oil & Gas,Oil & Gas,,454.00
+4/1/2026,Federal,Onshore,MS,Smith,28129,EAST STATES,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,1687.82
+4/1/2026,Federal,Onshore,MS,Smith,28129,EAST STATES,Royalties,Oil & Gas,Oil,Condensate,51064.58
+4/1/2026,Federal,Onshore,MS,Wayne,28153,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,710.00
+4/1/2026,Federal,Onshore,MS,Wayne,28153,EAST STATES,Royalties,Oil & Gas,Oil,Oil,959.21
+4/1/2026,Federal,Onshore,MS,Wilkinson,28157,EAST STATES,Royalties,Oil & Gas,Oil,Oil,2305.91
+4/1/2026,Federal,Onshore,MT,Big Horn,30003,MONTANA,Rents,Coal,Coal,,4875.00
+4/1/2026,Federal,Onshore,MT,Big Horn,30003,MONTANA,Royalties,Coal,Coal,Coal,497793.23
+4/1/2026,Federal,Onshore,MT,Blaine,30005,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,31000.90
+4/1/2026,Federal,Onshore,MT,Blaine,30005,MONTANA,Rents,Oil & Gas,Oil & Gas,,4111.59
+4/1/2026,Federal,Onshore,MT,Blaine,30005,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,6.11
+4/1/2026,Federal,Onshore,MT,Blaine,30005,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,198.73
+4/1/2026,Federal,Onshore,MT,Blaine,30005,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,10540.73
+4/1/2026,Federal,Onshore,MT,Blaine,30005,MONTANA,Royalties,Oil & Gas,Oil,Oil,21741.69
+4/1/2026,Federal,Onshore,MT,Carbon,30009,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,8642.73
+4/1/2026,Federal,Onshore,MT,Carbon,30009,MONTANA,Rents,Oil & Gas,Oil & Gas,,557.00
+4/1/2026,Federal,Onshore,MT,Carbon,30009,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,1778.07
+4/1/2026,Federal,Onshore,MT,Carbon,30009,MONTANA,Royalties,Oil & Gas,Oil,Oil,103233.07
+4/1/2026,Federal,Onshore,MT,Carbon,30009,MONTANA,Royalties,Oil & Gas,Sulfur,Sulfur,1266.11
+4/1/2026,Federal,Onshore,MT,Carter,30011,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,307.00
+4/1/2026,Federal,Onshore,MT,Carter,30011,MONTANA,Royalties,Oil & Gas,Oil,Oil,3984.58
+4/1/2026,Federal,Onshore,MT,Chouteau,30015,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,9405.37
+4/1/2026,Federal,Onshore,MT,Chouteau,30015,MONTANA,Rents,Oil & Gas,Oil & Gas,,262.91
+4/1/2026,Federal,Onshore,MT,Chouteau,30015,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,908.27
+4/1/2026,Federal,Onshore,MT,Dawson,30021,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,101.84
+4/1/2026,Federal,Onshore,MT,Dawson,30021,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,189.47
+4/1/2026,Federal,Onshore,MT,Dawson,30021,MONTANA,Royalties,Oil & Gas,Oil,Oil,52255.58
+4/1/2026,Federal,Onshore,MT,Fallon,30025,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,67608.53
+4/1/2026,Federal,Onshore,MT,Fallon,30025,MONTANA,Rents,Oil & Gas,Oil & Gas,,240.25
+4/1/2026,Federal,Onshore,MT,Fallon,30025,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,-406.84
+4/1/2026,Federal,Onshore,MT,Fallon,30025,MONTANA,Royalties,Oil & Gas,Oil,Oil,342043.34
+4/1/2026,Federal,Onshore,MT,Fergus,30027,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,4475.60
+4/1/2026,Federal,Onshore,MT,Fergus,30027,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,79.43
+4/1/2026,Federal,Onshore,MT,Garfield,30033,MONTANA,Royalties,Oil & Gas,Oil,Oil,1748.05
+4/1/2026,Federal,Onshore,MT,Glacier,30035,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,550.31
+4/1/2026,Federal,Onshore,MT,Glacier,30035,MONTANA,Rents,Oil & Gas,Oil & Gas,,120.00
+4/1/2026,Federal,Onshore,MT,Glacier,30035,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,438.34
+4/1/2026,Federal,Onshore,MT,Glacier,30035,MONTANA,Royalties,Oil & Gas,Oil,Oil,150.46
+4/1/2026,Federal,Onshore,MT,Hill,30041,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,3741.84
+4/1/2026,Federal,Onshore,MT,Hill,30041,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,977.51
+4/1/2026,Federal,Onshore,MT,Liberty,30051,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,1715.80
+4/1/2026,Federal,Onshore,MT,Liberty,30051,MONTANA,Rents,Oil & Gas,Oil & Gas,,480.00
+4/1/2026,Federal,Onshore,MT,Liberty,30051,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,1256.13
+4/1/2026,Federal,Onshore,MT,Liberty,30051,MONTANA,Royalties,Oil & Gas,Oil,Oil,1218.43
+4/1/2026,Federal,Onshore,MT,Petroleum,30069,MONTANA,Rents,Oil & Gas,Oil & Gas,,135.00
+4/1/2026,Federal,Onshore,MT,Petroleum,30069,MONTANA,Royalties,Oil & Gas,Oil,Oil,5815.92
+4/1/2026,Federal,Onshore,MT,Phillips,30071,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,2942.66
+4/1/2026,Federal,Onshore,MT,Phillips,30071,MONTANA,Rents,Oil & Gas,Oil & Gas,,1393.93
+4/1/2026,Federal,Onshore,MT,Phillips,30071,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,63982.32
+4/1/2026,Federal,Onshore,MT,Pondera,30073,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,480.00
+4/1/2026,Federal,Onshore,MT,Powder River,30075,MONTANA,Royalties,Oil & Gas,Oil,Oil,255708.34
+4/1/2026,Federal,Onshore,MT,Prairie,30079,MONTANA,Royalties,Oil & Gas,Oil,Oil,14800.54
+4/1/2026,Federal,Onshore,MT,Richland,30083,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,9697.32
+4/1/2026,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,287.92
+4/1/2026,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,189.23
+4/1/2026,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,5338.29
+4/1/2026,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,3.31
+4/1/2026,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,11956.38
+4/1/2026,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,2.96
+4/1/2026,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,633.95
+4/1/2026,Federal,Onshore,MT,Richland,30083,MONTANA,Royalties,Oil & Gas,Oil,Oil,297487.81
+4/1/2026,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,3363.12
+4/1/2026,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,9.68
+4/1/2026,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,280.24
+4/1/2026,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,5620.96
+4/1/2026,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,7459.17
+4/1/2026,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,0.82
+4/1/2026,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,1004.60
+4/1/2026,Federal,Onshore,MT,Roosevelt,30085,MONTANA,Royalties,Oil & Gas,Oil,Oil,162782.40
+4/1/2026,Federal,Onshore,MT,Rosebud,30087,MONTANA,Rents,Coal,Coal,,3819.00
+4/1/2026,Federal,Onshore,MT,Rosebud,30087,MONTANA,Royalties,Coal,Coal,Coal,360378.91
+4/1/2026,Federal,Onshore,MT,Rosebud,30087,MONTANA,Royalties,Oil & Gas,Oil,Oil,5135.53
+4/1/2026,Federal,Onshore,MT,Sheridan,30091,MONTANA,Royalties,Oil & Gas,Oil,Oil,12273.89
+4/1/2026,Federal,Onshore,MT,Stillwater,30095,MONTANA,Royalties,Oil & Gas,Oil,Oil,2946.87
+4/1/2026,Federal,Onshore,MT,Toole,30101,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,6597.50
+4/1/2026,Federal,Onshore,MT,Toole,30101,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,40.85
+4/1/2026,Federal,Onshore,MT,Toole,30101,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,189.85
+4/1/2026,Federal,Onshore,MT,Toole,30101,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,1621.55
+4/1/2026,Federal,Onshore,MT,Toole,30101,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,76.08
+4/1/2026,Federal,Onshore,MT,Toole,30101,MONTANA,Royalties,Oil & Gas,Oil,Oil,15963.76
+4/1/2026,Federal,Onshore,MT,Treasure,30103,MONTANA,Royalties,Coal,Coal,Coal,127430.44
+4/1/2026,Federal,Onshore,MT,Valley,30105,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,2868.20
+4/1/2026,Federal,Onshore,MT,Valley,30105,MONTANA,Rents,Oil & Gas,Oil & Gas,,201.08
+4/1/2026,Federal,Onshore,MT,Valley,30105,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,3118.59
+4/1/2026,Federal,Onshore,MT,Wibaux,30109,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,1176.95
+4/1/2026,Federal,Onshore,MT,Wibaux,30109,MONTANA,Royalties,Oil & Gas,Oil,Oil,52868.68
+4/1/2026,Federal,Onshore,NC,Clay,37043,EAST STATES,Other Revenues,Hardrock,Hardrock,,474.00
+4/1/2026,Federal,Onshore,ND,Billings,38007,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,-60313.01
+4/1/2026,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,317.00
+4/1/2026,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,622.93
+4/1/2026,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,34196.70
+4/1/2026,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,20510.77
+4/1/2026,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,1211.31
+4/1/2026,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,1647.65
+4/1/2026,Federal,Onshore,ND,Billings,38007,MONTANA,Royalties,Oil & Gas,Oil,Oil,546790.53
+4/1/2026,Federal,Onshore,ND,Bottineau,38009,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,160.00
+4/1/2026,Federal,Onshore,ND,Bottineau,38009,MONTANA,Royalties,Oil & Gas,Oil,Oil,21893.28
+4/1/2026,Federal,Onshore,ND,Bowman,38011,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,291.11
+4/1/2026,Federal,Onshore,ND,Bowman,38011,MONTANA,Rents,Oil & Gas,Oil & Gas,,10.00
+4/1/2026,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,1124.31
+4/1/2026,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1.65
+4/1/2026,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,43.38
+4/1/2026,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,2666.51
+4/1/2026,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,20.17
+4/1/2026,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,1.82
+4/1/2026,Federal,Onshore,ND,Bowman,38011,MONTANA,Royalties,Oil & Gas,Oil,Oil,429840.40
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,550.00
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,13.23
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,232.45
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,142.70
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1642.87
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,207.21
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,1968.00
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Oil,Condensate,164.30
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,6.94
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,285.81
+4/1/2026,Federal,Onshore,ND,Burke,38013,MONTANA,Royalties,Oil & Gas,Oil,Oil,64051.31
+4/1/2026,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,64.84
+4/1/2026,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2.10
+4/1/2026,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1014.13
+4/1/2026,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,38.09
+4/1/2026,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,854.88
+4/1/2026,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,10.91
+4/1/2026,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,8.01
+4/1/2026,Federal,Onshore,ND,Divide,38023,MONTANA,Royalties,Oil & Gas,Oil,Oil,199746.21
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,73342.57
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Rents,Oil & Gas,Oil & Gas,,0.00
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,0.50
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,3106.65
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,18365.68
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,489681.23
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,2804.54
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,-31820.32
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,-35438.88
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,59201.15
+4/1/2026,Federal,Onshore,ND,Dunn,38025,MONTANA,Royalties,Oil & Gas,Oil,Oil,4117051.50
+4/1/2026,Federal,Onshore,ND,Golden Valley,38033,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,-43915.41
+4/1/2026,Federal,Onshore,ND,Golden Valley,38033,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,392.76
+4/1/2026,Federal,Onshore,ND,Golden Valley,38033,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,200.78
+4/1/2026,Federal,Onshore,ND,Golden Valley,38033,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3149.43
+4/1/2026,Federal,Onshore,ND,Golden Valley,38033,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,2540.68
+4/1/2026,Federal,Onshore,ND,Golden Valley,38033,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,0.19
+4/1/2026,Federal,Onshore,ND,Golden Valley,38033,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,73.60
+4/1/2026,Federal,Onshore,ND,Golden Valley,38033,MONTANA,Royalties,Oil & Gas,Oil,Oil,101177.73
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Bonus,Oil & Gas,Oil & Gas,,-80000.00
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,429176.29
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Rents,Oil & Gas,Oil & Gas,,-9300.00
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,132.23
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,66107.67
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,73599.29
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3719958.21
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,-238.50
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,1671666.07
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Oil,Condensate,653.05
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,-2833.30
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,141429.62
+4/1/2026,Federal,Onshore,ND,Mckenzie,38053,MONTANA,Royalties,Oil & Gas,Oil,Oil,16769515.02
+4/1/2026,Federal,Onshore,ND,Mclean,38055,MONTANA,Rents,Coal,Coal,,120.00
+4/1/2026,Federal,Onshore,ND,Mclean,38055,MONTANA,Royalties,Coal,Coal,Coal,0.00
+4/1/2026,Federal,Onshore,ND,Mercer,38057,MONTANA,Other Revenues,Coal,Coal,,0.37
+4/1/2026,Federal,Onshore,ND,Mercer,38057,MONTANA,Royalties,Coal,Coal,Coal,158526.73
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,284166.92
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,277.67
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,20691.19
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,33061.00
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,-105621.74
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,2352.64
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,3.39
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,-317408.01
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Oil,Condensate,129.67
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,7181.34
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,30422.75
+4/1/2026,Federal,Onshore,ND,Mountrail,38061,MONTANA,Royalties,Oil & Gas,Oil,Oil,4250670.21
+4/1/2026,Federal,Onshore,ND,Oliver,38065,MONTANA,Other Revenues,Coal,Coal,,0.09
+4/1/2026,Federal,Onshore,ND,Oliver,38065,MONTANA,Rents,Coal,Coal,,960.00
+4/1/2026,Federal,Onshore,ND,Oliver,38065,MONTANA,Royalties,Coal,Coal,Coal,48170.46
+4/1/2026,Federal,Onshore,ND,Renville,38075,MONTANA,Royalties,Oil & Gas,Oil,Oil,12410.16
+4/1/2026,Federal,Onshore,ND,Slope,38087,MONTANA,Royalties,Oil & Gas,Oil,Oil,32638.53
+4/1/2026,Federal,Onshore,ND,Stark,38089,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,5.92
+4/1/2026,Federal,Onshore,ND,Stark,38089,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,716.47
+4/1/2026,Federal,Onshore,ND,Stark,38089,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,574.27
+4/1/2026,Federal,Onshore,ND,Stark,38089,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,51.78
+4/1/2026,Federal,Onshore,ND,Stark,38089,MONTANA,Royalties,Oil & Gas,Oil,Oil,8133.64
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,-25938.35
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Coal,Coal,Leonardite,6930.89
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,3703.42
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,7528.79
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,167234.56
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,38.96
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,NGL,Gas Plant Products,75055.64
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Oil,Condensate,249.65
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,802.29
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Oil,Inlet Scrubber,9551.00
+4/1/2026,Federal,Onshore,ND,Williams,38105,MONTANA,Royalties,Oil & Gas,Oil,Oil,1170583.68
+4/1/2026,Federal,Onshore,NE,Cheyenne,31033,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,9559.42
+4/1/2026,Federal,Onshore,NE,Cheyenne,31033,WYOMING,Royalties,Oil & Gas,Oil,Oil,16080.36
+4/1/2026,Federal,Onshore,NE,Dundy,31057,WYOMING,Royalties,Oil & Gas,Oil,Oil,246.18
+4/1/2026,Federal,Onshore,NE,Hitchcock,31087,WYOMING,Royalties,Oil & Gas,Oil,Oil,2172.70
+4/1/2026,Federal,Onshore,NE,Kimball,31105,WYOMING,Royalties,Oil & Gas,Oil,Oil,603.50
+4/1/2026,Federal,Onshore,NE,Red Willow,31145,WYOMING,Royalties,Oil & Gas,Oil,Oil,26.83
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Flared Oil Well Gas,0.00
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,0.00
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,0.00
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,0.00
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,12889.91
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,1698.00
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,15995.19
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,137666.81
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,6310.72
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,39345.83
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,15.90
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,2681.96
+4/1/2026,Federal,Onshore,NM,Chaves,35005,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,816182.73
+4/1/2026,Federal,Onshore,NM,Colfax,35007,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,580.11
+4/1/2026,Federal,Onshore,NM,Dona Ana,35013,NEW MEXICO,Other Revenues,Geothermal,Geothermal,"Geothermal - Direct Use, Millions of Gallons",-20936.91
+4/1/2026,Federal,Onshore,NM,Dona Ana,35013,NEW MEXICO,Rents,Geothermal,Geothermal,,5748.00
+4/1/2026,Federal,Onshore,NM,Dona Ana,35013,NEW MEXICO,Royalties,Geothermal,Geothermal,"Geothermal - Direct Use, Millions of Gallons",-65445.92
+4/1/2026,Federal,Onshore,NM,Dona Ana,35013,NEW MEXICO,Royalties,Geothermal,Geothermal,"Geothermal - Direct Use, Millions of Pounds",-2999.38
+4/1/2026,Federal,Onshore,NM,Dona Ana,35013,NEW MEXICO,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Hundreds of Gallons",85034.07
+4/1/2026,Federal,Onshore,NM,Dona Ana,35013,NEW MEXICO,Royalties,Geothermal,Geothermal,,0.00
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Flared Gas Well Gas,0.00
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Flared Oil Well Gas,0.00
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,0.00
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,0.00
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,0.00
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Vented Gas Well Gas,0.00
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,26361171.17
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,13341.50
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,2624.70
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,17639.97
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,85612.64
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,-2492.72
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1892176.66
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,17030958.37
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,132154.15
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,187.89
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,3926.62
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,26720928.50
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,59548181.82
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,698185.00
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,121363.67
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,139840267.22
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,45233.99
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Langbeinite,1291040.06
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Magnesium Chloride Brine,291.40
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Granular,176470.34
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Standard,133832.30
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Potassium,Potash,0.00
+4/1/2026,Federal,Onshore,NM,Eddy,35015,NEW MEXICO,Royalties,Potassium,Sodium,Salt,151924.12
+4/1/2026,Federal,Onshore,NM,Harding,35021,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,779.48
+4/1/2026,Federal,Onshore,NM,Harding,35021,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),117066.02
+4/1/2026,Federal,Onshore,NM,Hidalgo,35023,NEW MEXICO,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",25185.87
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Flared Oil Well Gas,0.00
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,0.00
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,0.00
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,0.00
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Oil,Condensate,10180.05
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,44716896.19
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,15513.98
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,50481.38
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,45502.81
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,-36979.44
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,881610.47
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,10304000.16
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,220938.30
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,19.39
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,2777.69
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,18714484.08
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,3607609.60
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,491686.49
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,58962.49
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,197710489.13
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,57669.92
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Langbeinite,23790.78
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Granular,0.00
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Muriate Of Potash-Standard,0.00
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Potassium,Potash,0.00
+4/1/2026,Federal,Onshore,NM,Lea,35025,NEW MEXICO,Royalties,Potassium,Sodium,Salt,128.90
+4/1/2026,Federal,Onshore,NM,Mckinley,35031,NEW MEXICO,Other Revenues,Coal,Coal,,430.58
+4/1/2026,Federal,Onshore,NM,Mckinley,35031,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,7.39
+4/1/2026,Federal,Onshore,NM,Mckinley,35031,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1135.44
+4/1/2026,Federal,Onshore,NM,Quay,35037,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,3307.50
+4/1/2026,Federal,Onshore,NM,Quay,35037,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),15129.16
+4/1/2026,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,245691.41
+4/1/2026,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,1577.00
+4/1/2026,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,602788.36
+4/1/2026,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,159530.43
+4/1/2026,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3284913.86
+4/1/2026,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,172848.32
+4/1/2026,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,1030442.11
+4/1/2026,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,115130.26
+4/1/2026,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,631.81
+4/1/2026,Federal,Onshore,NM,Rio Arriba,35039,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,861985.85
+4/1/2026,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Pipeline Fuel/Loss,0.00
+4/1/2026,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,0.00
+4/1/2026,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,3387.00
+4/1/2026,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,1680.00
+4/1/2026,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,3995.98
+4/1/2026,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,562.59
+4/1/2026,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,50368.10
+4/1/2026,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,7.22
+4/1/2026,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,126593.69
+4/1/2026,Federal,Onshore,NM,Roosevelt,35041,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil Lost,620.44
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Other Revenues,Coal,Coal,,242481.34
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Other Revenues,Oil & Gas,NGL,Gas Plant Products,-107.19
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,2024664.65
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Rents,Oil & Gas,Oil & Gas,,-791.07
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,1323051.87
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,178046.38
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2334544.17
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,833376.01
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,1545309.60
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,115245.20
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,104.87
+4/1/2026,Federal,Onshore,NM,San Juan,35045,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,3184266.34
+4/1/2026,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,142246.19
+4/1/2026,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,11817.07
+4/1/2026,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,116043.99
+4/1/2026,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,5600.55
+4/1/2026,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,60649.54
+4/1/2026,Federal,Onshore,NM,Sandoval,35043,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,672921.97
+4/1/2026,Federal,Onshore,NM,Union,35059,NEW MEXICO,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),72311.77
+4/1/2026,Federal,Onshore,NV,Churchill,32001,NEVADA,Other Revenues,Geothermal,Geothermal,,83.62
+4/1/2026,Federal,Onshore,NV,Churchill,32001,NEVADA,Rents,Geothermal,Geothermal,,461.65
+4/1/2026,Federal,Onshore,NV,Churchill,32001,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Direct Utilization, Hundreds of Gallons",406.26
+4/1/2026,Federal,Onshore,NV,Churchill,32001,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",193257.85
+4/1/2026,Federal,Onshore,NV,Elko,32007,NEVADA,Rents,Oil & Gas,Oil & Gas,,46947.80
+4/1/2026,Federal,Onshore,NV,Esmeralda,32009,NEVADA,Bonus,Geothermal,Geothermal,,33180.00
+4/1/2026,Federal,Onshore,NV,Esmeralda,32009,NEVADA,Rents,Geothermal,Geothermal,,25112.00
+4/1/2026,Federal,Onshore,NV,Esmeralda,32009,NEVADA,Royalties,Potassium,Potassium,Potash,0.00
+4/1/2026,Federal,Onshore,NV,Eureka,32011,NEVADA,Rents,Oil & Gas,Oil & Gas,,7006.20
+4/1/2026,Federal,Onshore,NV,Eureka,32011,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",29.32
+4/1/2026,Federal,Onshore,NV,Eureka,32011,NEVADA,Royalties,Oil & Gas,Oil,Oil,46306.18
+4/1/2026,Federal,Onshore,NV,Humboldt,32013,NEVADA,Bonus,Geothermal,Geothermal,,385888.00
+4/1/2026,Federal,Onshore,NV,Humboldt,32013,NEVADA,Rents,Geothermal,Geothermal,,41087.91
+4/1/2026,Federal,Onshore,NV,Humboldt,32013,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",15111.27
+4/1/2026,Federal,Onshore,NV,Lander,32015,NEVADA,Rents,Geothermal,Geothermal,,-170.00
+4/1/2026,Federal,Onshore,NV,Lander,32015,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",232813.02
+4/1/2026,Federal,Onshore,NV,Lyon,32019,NEVADA,Rents,Geothermal,Geothermal,,-1156.70
+4/1/2026,Federal,Onshore,NV,Lyon,32019,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",4406.98
+4/1/2026,Federal,Onshore,NV,Mineral,32021,NEVADA,Rents,Geothermal,Geothermal,,-220.96
+4/1/2026,Federal,Onshore,NV,Mineral,32021,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",49452.37
+4/1/2026,Federal,Onshore,NV,Nye,32023,NEVADA,Rents,Geothermal,Geothermal,,1160.00
+4/1/2026,Federal,Onshore,NV,Nye,32023,NEVADA,Rents,Oil & Gas,Oil & Gas,,7302.00
+4/1/2026,Federal,Onshore,NV,Nye,32023,NEVADA,Royalties,Oil & Gas,Oil,Oil,117464.17
+4/1/2026,Federal,Onshore,NV,Pershing,32027,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",1659.03
+4/1/2026,Federal,Onshore,NV,Washoe,32031,NEVADA,Rents,Geothermal,Geothermal,,2400.00
+4/1/2026,Federal,Onshore,NV,Washoe,32031,NEVADA,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",23734.42
+4/1/2026,Federal,Onshore,NY,Chautauqua,36013,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,753.78
+4/1/2026,Federal,Onshore,NY,Chautauqua,36013,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,107.94
+4/1/2026,Federal,Onshore,OH,Athens,39009,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,153.38
+4/1/2026,Federal,Onshore,OH,Hocking,39073,EAST STATES,Royalties,Oil & Gas,Oil,Oil,460.24
+4/1/2026,Federal,Onshore,OH,Mahoning,39099,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,2820.39
+4/1/2026,Federal,Onshore,OH,Mahoning,39099,EAST STATES,Royalties,Oil & Gas,Oil,Oil,1780.29
+4/1/2026,Federal,Onshore,OH,Monroe,39111,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,804.93
+4/1/2026,Federal,Onshore,OH,Monroe,39111,EAST STATES,Rents,Oil & Gas,Oil & Gas,,80.00
+4/1/2026,Federal,Onshore,OH,Monroe,39111,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,72397.77
+4/1/2026,Federal,Onshore,OH,Noble,39121,EAST STATES,Rents,Oil & Gas,Oil & Gas,,612.00
+4/1/2026,Federal,Onshore,OH,Perry,39127,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,110.00
+4/1/2026,Federal,Onshore,OH,Portage,39133,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,6774.55
+4/1/2026,Federal,Onshore,OH,Portage,39133,EAST STATES,Royalties,Oil & Gas,Oil,Oil,3081.99
+4/1/2026,Federal,Onshore,OH,Stark,39151,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,560.79
+4/1/2026,Federal,Onshore,OH,Trumbull,39155,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,1432.02
+4/1/2026,Federal,Onshore,OH,Washington,39167,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,3901.51
+4/1/2026,Federal,Onshore,OH,Washington,39167,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,8159.39
+4/1/2026,Federal,Onshore,OH,Washington,39167,EAST STATES,Royalties,Oil & Gas,Oil,Oil,166.35
+4/1/2026,Federal,Onshore,OK,Alfalfa,40003,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,82257.02
+4/1/2026,Federal,Onshore,OK,Alfalfa,40003,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,0.40
+4/1/2026,Federal,Onshore,OK,Alfalfa,40003,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,15849.75
+4/1/2026,Federal,Onshore,OK,Alfalfa,40003,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,4631.40
+4/1/2026,Federal,Onshore,OK,Alfalfa,40003,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,3.68
+4/1/2026,Federal,Onshore,OK,Alfalfa,40003,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,10004.39
+4/1/2026,Federal,Onshore,OK,Atoka,40005,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,0.51
+4/1/2026,Federal,Onshore,OK,Atoka,40005,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,181.11
+4/1/2026,Federal,Onshore,OK,Atoka,40005,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,15.97
+4/1/2026,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,33.72
+4/1/2026,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,224.17
+4/1/2026,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1511.55
+4/1/2026,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,150.84
+4/1/2026,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,373.72
+4/1/2026,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,108.35
+4/1/2026,Federal,Onshore,OK,Beaver,40007,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,1693.01
+4/1/2026,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-346.39
+4/1/2026,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,371.00
+4/1/2026,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,4151.20
+4/1/2026,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,4013.90
+4/1/2026,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,295.88
+4/1/2026,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,2.95
+4/1/2026,Federal,Onshore,OK,Beckham,40009,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,42.69
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,8709.80
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,0.09
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,609.84
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,38629.19
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1720.84
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,39.24
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,0.11
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,2617.52
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,724.39
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,0.55
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,586.98
+4/1/2026,Federal,Onshore,OK,Blaine,40011,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,0.56
+4/1/2026,Federal,Onshore,OK,Caddo,40015,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,0.03
+4/1/2026,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,5177.35
+4/1/2026,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,926.39
+4/1/2026,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,14365.48
+4/1/2026,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,2741.81
+4/1/2026,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,4851.21
+4/1/2026,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,2688.29
+4/1/2026,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,6999.40
+4/1/2026,Federal,Onshore,OK,Canadian,40017,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,0.21
+4/1/2026,Federal,Onshore,OK,Cherokee,40021,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,0.05
+4/1/2026,Federal,Onshore,OK,Cleveland,40027,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,57.04
+4/1/2026,Federal,Onshore,OK,Cleveland,40027,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,311.16
+4/1/2026,Federal,Onshore,OK,Cleveland,40027,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,102.13
+4/1/2026,Federal,Onshore,OK,Cleveland,40027,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,27.19
+4/1/2026,Federal,Onshore,OK,Cleveland,40027,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,673.56
+4/1/2026,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,16.38
+4/1/2026,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,53.89
+4/1/2026,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,38840.34
+4/1/2026,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,11332.26
+4/1/2026,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,13579.60
+4/1/2026,Federal,Onshore,OK,Coal,40029,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,403.19
+4/1/2026,Federal,Onshore,OK,Comanche,40031,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,2706.64
+4/1/2026,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,346.84
+4/1/2026,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,3974.04
+4/1/2026,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,71362.67
+4/1/2026,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1121.76
+4/1/2026,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,16304.00
+4/1/2026,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,7653.46
+4/1/2026,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,556.40
+4/1/2026,Federal,Onshore,OK,Custer,40039,NEW MEXICO,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,0.67
+4/1/2026,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-6302.30
+4/1/2026,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1658.57
+4/1/2026,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,35221.65
+4/1/2026,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1857.19
+4/1/2026,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,0.54
+4/1/2026,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,10263.54
+4/1/2026,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,1212.31
+4/1/2026,Federal,Onshore,OK,Dewey,40043,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,35342.00
+4/1/2026,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,403.26
+4/1/2026,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,10284.66
+4/1/2026,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,79551.89
+4/1/2026,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,102.08
+4/1/2026,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,29936.80
+4/1/2026,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,36416.94
+4/1/2026,Federal,Onshore,OK,Ellis,40045,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,155353.07
+4/1/2026,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-12.57
+4/1/2026,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,-24.73
+4/1/2026,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,4.38
+4/1/2026,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,-206.81
+4/1/2026,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,34.45
+4/1/2026,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,58.79
+4/1/2026,Federal,Onshore,OK,Garfield,40047,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,148.25
+4/1/2026,Federal,Onshore,OK,Garvin,40049,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,0.00
+4/1/2026,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,2315.06
+4/1/2026,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,590.67
+4/1/2026,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,8330.24
+4/1/2026,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,67.56
+4/1/2026,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,2655.19
+4/1/2026,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,1245.20
+4/1/2026,Federal,Onshore,OK,Grady,40051,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,5154.32
+4/1/2026,Federal,Onshore,OK,Greer,40055,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-7.50
+4/1/2026,Federal,Onshore,OK,Greer,40055,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1.18
+4/1/2026,Federal,Onshore,OK,Greer,40055,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,64.80
+4/1/2026,Federal,Onshore,OK,Greer,40055,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,24.08
+4/1/2026,Federal,Onshore,OK,Greer,40055,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,3.37
+4/1/2026,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-9.95
+4/1/2026,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,30.23
+4/1/2026,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,303.20
+4/1/2026,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,191.04
+4/1/2026,Federal,Onshore,OK,Harper,40059,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,72.32
+4/1/2026,Federal,Onshore,OK,Haskell,40061,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,198.35
+4/1/2026,Federal,Onshore,OK,Haskell,40061,NEW MEXICO,Royalties,Coal,Coal,Coal,0.00
+4/1/2026,Federal,Onshore,OK,Haskell,40061,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,4524.61
+4/1/2026,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,12731.86
+4/1/2026,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,536.34
+4/1/2026,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,8358.12
+4/1/2026,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,7783.56
+4/1/2026,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,6505.39
+4/1/2026,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,22.26
+4/1/2026,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,14.53
+4/1/2026,Federal,Onshore,OK,Kingfisher,40073,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,28775.94
+4/1/2026,Federal,Onshore,OK,Latimer,40077,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,22.02
+4/1/2026,Federal,Onshore,OK,Latimer,40077,NEW MEXICO,Royalties,Coal,Coal,Coal,0.00
+4/1/2026,Federal,Onshore,OK,Latimer,40077,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,55.18
+4/1/2026,Federal,Onshore,OK,Latimer,40077,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,5637.00
+4/1/2026,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,44.10
+4/1/2026,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Royalties,Coal,Coal,Coal,0.00
+4/1/2026,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Royalties,Oil & Gas,Gas,Coal Bed Methane,11.04
+4/1/2026,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,12.15
+4/1/2026,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,37.62
+4/1/2026,Federal,Onshore,OK,Le Flore,40079,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,860.02
+4/1/2026,Federal,Onshore,OK,Major,40093,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,721.52
+4/1/2026,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1105.21
+4/1/2026,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,24444.06
+4/1/2026,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,3680.06
+4/1/2026,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,5203.68
+4/1/2026,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,954.19
+4/1/2026,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,194.03
+4/1/2026,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,329.25
+4/1/2026,Federal,Onshore,OK,Major,40093,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,23246.70
+4/1/2026,Federal,Onshore,OK,Mcclain,40087,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,1191.48
+4/1/2026,Federal,Onshore,OK,Mcclain,40087,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,102.51
+4/1/2026,Federal,Onshore,OK,Mcclain,40087,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1409.02
+4/1/2026,Federal,Onshore,OK,Mcclain,40087,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,322.89
+4/1/2026,Federal,Onshore,OK,Mcclain,40087,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,464.59
+4/1/2026,Federal,Onshore,OK,Mcclain,40087,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,2489.15
+4/1/2026,Federal,Onshore,OK,Mcintosh,40091,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,39.75
+4/1/2026,Federal,Onshore,OK,Oklahoma,40109,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1.72
+4/1/2026,Federal,Onshore,OK,Pittsburg,40121,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,532.97
+4/1/2026,Federal,Onshore,OK,Pittsburg,40121,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,19.12
+4/1/2026,Federal,Onshore,OK,Pittsburg,40121,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,54.72
+4/1/2026,Federal,Onshore,OK,Pittsburg,40121,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,98563.50
+4/1/2026,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,29232.74
+4/1/2026,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,106.56
+4/1/2026,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,92.66
+4/1/2026,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,17605.90
+4/1/2026,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,154876.23
+4/1/2026,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,6346.40
+4/1/2026,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,64299.03
+4/1/2026,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,20547.39
+4/1/2026,Federal,Onshore,OK,Roger Mills,40129,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,300376.04
+4/1/2026,Federal,Onshore,OK,Sequoyah,40135,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,4.68
+4/1/2026,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-39.08
+4/1/2026,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,53.22
+4/1/2026,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2048.15
+4/1/2026,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,17.12
+4/1/2026,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,295.67
+4/1/2026,Federal,Onshore,OK,Texas,40139,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,19.41
+4/1/2026,Federal,Onshore,OK,Tillman,40141,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,2143.09
+4/1/2026,Federal,Onshore,OK,Washita,40149,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,25.77
+4/1/2026,Federal,Onshore,OK,Washita,40149,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,91.40
+4/1/2026,Federal,Onshore,OK,Washita,40149,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2330.23
+4/1/2026,Federal,Onshore,OK,Washita,40149,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,558.37
+4/1/2026,Federal,Onshore,OK,Washita,40149,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,93.64
+4/1/2026,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,7163.86
+4/1/2026,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1639.91
+4/1/2026,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,29726.36
+4/1/2026,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1210.17
+4/1/2026,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,5881.40
+4/1/2026,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,1565.40
+4/1/2026,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,150.83
+4/1/2026,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,86.19
+4/1/2026,Federal,Onshore,OK,Woods,40151,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,25167.51
+4/1/2026,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-199.56
+4/1/2026,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,219.12
+4/1/2026,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3880.39
+4/1/2026,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,226.35
+4/1/2026,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,351.24
+4/1/2026,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,47.06
+4/1/2026,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,32.99
+4/1/2026,Federal,Onshore,OK,Woodward,40153,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,57.86
+4/1/2026,Federal,Onshore,OR,Deschutes,41017,OREGON,Rents,Geothermal,Geothermal,,9600.00
+4/1/2026,Federal,Onshore,PA,Armstrong,42005,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,37.39
+4/1/2026,Federal,Onshore,PA,Bradford,42015,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,750.24
+4/1/2026,Federal,Onshore,PA,Forest,42053,EAST STATES,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,170.03
+4/1/2026,Federal,Onshore,PA,Forest,42053,EAST STATES,Royalties,Oil & Gas,NGL,Gas Plant Products,23.38
+4/1/2026,Federal,Onshore,PA,Westmoreland,42129,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,94.67
+4/1/2026,Federal,Onshore,SD,Douglas,46043,MONTANA,Royalties,Oil & Gas,Oil,Oil,164.06
+4/1/2026,Federal,Onshore,SD,Fall River,46047,MONTANA,Other Revenues,Oil & Gas,Oil & Gas,,560.00
+4/1/2026,Federal,Onshore,SD,Fall River,46047,MONTANA,Royalties,Oil & Gas,Oil,Oil,16411.11
+4/1/2026,Federal,Onshore,SD,Harding,46063,MONTANA,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,66.05
+4/1/2026,Federal,Onshore,SD,Harding,46063,MONTANA,Royalties,Oil & Gas,Gas,Unprocessed Gas,5285.22
+4/1/2026,Federal,Onshore,SD,Harding,46063,MONTANA,Royalties,Oil & Gas,Oil,Oil,72241.74
+4/1/2026,Federal,Onshore,TX,Brazoria,48039,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,1321.87
+4/1/2026,Federal,Onshore,TX,Brazos,48041,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1.90
+4/1/2026,Federal,Onshore,TX,Brazos,48041,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,4.58
+4/1/2026,Federal,Onshore,TX,Brazos,48041,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,80.07
+4/1/2026,Federal,Onshore,TX,Brazos,48041,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,26.00
+4/1/2026,Federal,Onshore,TX,Brazos,48041,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,1162.87
+4/1/2026,Federal,Onshore,TX,Burleson,48051,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,13.20
+4/1/2026,Federal,Onshore,TX,Burleson,48051,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,145.29
+4/1/2026,Federal,Onshore,TX,Burleson,48051,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,522.40
+4/1/2026,Federal,Onshore,TX,Burleson,48051,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,2782.04
+4/1/2026,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,83.65
+4/1/2026,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3676.96
+4/1/2026,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,388.25
+4/1/2026,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,3082.86
+4/1/2026,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,17175.73
+4/1/2026,Federal,Onshore,TX,De Witt,48123,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,3736.63
+4/1/2026,Federal,Onshore,TX,Denton,48121,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,5640.00
+4/1/2026,Federal,Onshore,TX,Denton,48121,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,22095.09
+4/1/2026,Federal,Onshore,TX,Fayette,48149,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,74.68
+4/1/2026,Federal,Onshore,TX,Fayette,48149,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,101.13
+4/1/2026,Federal,Onshore,TX,Fayette,48149,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,3489.18
+4/1/2026,Federal,Onshore,TX,Freestone,48161,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,306.58
+4/1/2026,Federal,Onshore,TX,Freestone,48161,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,1.37
+4/1/2026,Federal,Onshore,TX,Galveston,48167,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,69.56
+4/1/2026,Federal,Onshore,TX,Galveston,48167,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,95.64
+4/1/2026,Federal,Onshore,TX,Galveston,48167,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,10.80
+4/1/2026,Federal,Onshore,TX,Galveston,48167,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,23432.46
+4/1/2026,Federal,Onshore,TX,Gray,48179,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,247.65
+4/1/2026,Federal,Onshore,TX,Grayson,48181,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,101.93
+4/1/2026,Federal,Onshore,TX,Grayson,48181,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,86.87
+4/1/2026,Federal,Onshore,TX,Grayson,48181,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,1739.64
+4/1/2026,Federal,Onshore,TX,Harrison,48203,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,8.00
+4/1/2026,Federal,Onshore,TX,Hemphill,48211,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,100.45
+4/1/2026,Federal,Onshore,TX,Hemphill,48211,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1149.90
+4/1/2026,Federal,Onshore,TX,Hemphill,48211,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,75.44
+4/1/2026,Federal,Onshore,TX,Hemphill,48211,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,672.88
+4/1/2026,Federal,Onshore,TX,Hidalgo,48215,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,355.86
+4/1/2026,Federal,Onshore,TX,Hidalgo,48215,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,38.26
+4/1/2026,Federal,Onshore,TX,Hidalgo,48215,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,21.89
+4/1/2026,Federal,Onshore,TX,Houston,48225,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,235.00
+4/1/2026,Federal,Onshore,TX,Houston,48225,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,2290.89
+4/1/2026,Federal,Onshore,TX,Johnson,48251,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,361.00
+4/1/2026,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,6210.00
+4/1/2026,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,350.25
+4/1/2026,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2291.26
+4/1/2026,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,2088.87
+4/1/2026,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,1044.93
+4/1/2026,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,1085.61
+4/1/2026,Federal,Onshore,TX,Karnes,48255,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,14171.58
+4/1/2026,Federal,Onshore,TX,Lee,48287,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,438.05
+4/1/2026,Federal,Onshore,TX,Lee,48287,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,291.42
+4/1/2026,Federal,Onshore,TX,Lee,48287,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,644.13
+4/1/2026,Federal,Onshore,TX,Live Oak,48297,NEW MEXICO,Other Revenues,Oil & Gas,Oil,Oil,-1.95
+4/1/2026,Federal,Onshore,TX,Live Oak,48297,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,220.39
+4/1/2026,Federal,Onshore,TX,Live Oak,48297,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,66.64
+4/1/2026,Federal,Onshore,TX,Live Oak,48297,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,2177.93
+4/1/2026,Federal,Onshore,TX,Mcmullen,48311,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,0.12
+4/1/2026,Federal,Onshore,TX,Mcmullen,48311,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,10.82
+4/1/2026,Federal,Onshore,TX,Mcmullen,48311,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,3.57
+4/1/2026,Federal,Onshore,TX,Mcmullen,48311,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,0.09
+4/1/2026,Federal,Onshore,TX,Mcmullen,48311,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,1017.18
+4/1/2026,Federal,Onshore,TX,Montgomery,48339,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,624.69
+4/1/2026,Federal,Onshore,TX,Montgomery,48339,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,4495.46
+4/1/2026,Federal,Onshore,TX,Montgomery,48339,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,162.27
+4/1/2026,Federal,Onshore,TX,Pecos,48371,NEW MEXICO,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,0.68
+4/1/2026,Federal,Onshore,TX,Pecos,48371,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,25.11
+4/1/2026,Federal,Onshore,TX,Pecos,48371,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,50.14
+4/1/2026,Federal,Onshore,TX,Pecos,48371,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,240.36
+4/1/2026,Federal,Onshore,TX,Pecos,48371,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,1580.86
+4/1/2026,Federal,Onshore,TX,Sabine,48403,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,4051.00
+4/1/2026,Federal,Onshore,TX,Sabine,48403,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,12228.40
+4/1/2026,Federal,Onshore,TX,San Augustine,48405,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,-555.04
+4/1/2026,Federal,Onshore,TX,San Augustine,48405,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,1342084.65
+4/1/2026,Federal,Onshore,TX,San Jacinto,48407,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,9777.71
+4/1/2026,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,713300.11
+4/1/2026,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2505.00
+4/1/2026,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,16.07
+4/1/2026,Federal,Onshore,TX,Shelby,48419,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,2593619.53
+4/1/2026,Federal,Onshore,TX,Starr,48427,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,0.74
+4/1/2026,Federal,Onshore,TX,Starr,48427,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,58116.36
+4/1/2026,Federal,Onshore,TX,Tarrant,48439,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,7548.55
+4/1/2026,Federal,Onshore,TX,Tarrant,48439,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,47683.99
+4/1/2026,Federal,Onshore,TX,Tarrant,48439,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,4199.00
+4/1/2026,Federal,Onshore,TX,Walker,48471,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,83.14
+4/1/2026,Federal,Onshore,TX,Walker,48471,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,598.53
+4/1/2026,Federal,Onshore,TX,Washington,48477,NEW MEXICO,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,13.56
+4/1/2026,Federal,Onshore,TX,Washington,48477,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,77.38
+4/1/2026,Federal,Onshore,TX,Washington,48477,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2180.82
+4/1/2026,Federal,Onshore,TX,Washington,48477,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,2409.91
+4/1/2026,Federal,Onshore,TX,Washington,48477,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,4160.57
+4/1/2026,Federal,Onshore,TX,Wheeler,48483,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,3.05
+4/1/2026,Federal,Onshore,TX,Wheeler,48483,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,41.23
+4/1/2026,Federal,Onshore,TX,Wheeler,48483,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,6084.28
+4/1/2026,Federal,Onshore,TX,Wheeler,48483,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,11.38
+4/1/2026,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,3787.00
+4/1/2026,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2559.10
+4/1/2026,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,55144.41
+4/1/2026,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,27814.72
+4/1/2026,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,NGL,Gas Plant Products,19693.03
+4/1/2026,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,Oil,Condensate,6115.74
+4/1/2026,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,Oil,Inlet Scrubber,3104.57
+4/1/2026,Federal,Onshore,TX,Wise,48497,NEW MEXICO,Royalties,Oil & Gas,Oil,Oil,6403.41
+4/1/2026,Federal,Onshore,TX,Zapata,48505,NEW MEXICO,Other Revenues,Oil & Gas,Oil & Gas,,624.52
+4/1/2026,Federal,Onshore,TX,Zapata,48505,NEW MEXICO,Royalties,Oil & Gas,Gas,Unprocessed Gas,2208.02
+4/1/2026,Federal,Onshore,UT,Beaver,49001,UTAH,Bonus,Geothermal,Geothermal,,1465.18
+4/1/2026,Federal,Onshore,UT,Beaver,49001,UTAH,Rents,Geothermal,Geothermal,,58016.60
+4/1/2026,Federal,Onshore,UT,Beaver,49001,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",32081.32
+4/1/2026,Federal,Onshore,UT,Beaver,49001,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Thousands of Pounds",33122.90
+4/1/2026,Federal,Onshore,UT,Carbon,49007,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,5679.69
+4/1/2026,Federal,Onshore,UT,Carbon,49007,UTAH,Rents,Oil & Gas,Oil & Gas,,640.00
+4/1/2026,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Coal,Coal,Coal,0.00
+4/1/2026,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Coal,Coal,Coal Waste (Sub-Econ),0.00
+4/1/2026,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),10876.47
+4/1/2026,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Oil & Gas,Gas,Coal Bed Methane,1097662.37
+4/1/2026,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,-743643.75
+4/1/2026,Federal,Onshore,UT,Carbon,49007,UTAH,Royalties,Oil & Gas,Oil,Oil,27152.93
+4/1/2026,Federal,Onshore,UT,Daggett,49009,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,-12050.00
+4/1/2026,Federal,Onshore,UT,Daggett,49009,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,22225.50
+4/1/2026,Federal,Onshore,UT,Duchesne,49013,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,9953.78
+4/1/2026,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,6301.23
+4/1/2026,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,24300.76
+4/1/2026,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,533.08
+4/1/2026,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,NGL,Gas Plant Products,22923.30
+4/1/2026,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Oil,Condensate,2850.94
+4/1/2026,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,9421.98
+4/1/2026,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Oil,Inlet Scrubber,344.92
+4/1/2026,Federal,Onshore,UT,Duchesne,49013,UTAH,Royalties,Oil & Gas,Oil,Oil,3768181.44
+4/1/2026,Federal,Onshore,UT,Emery,49015,UTAH,Other Revenues,Coal,Coal,,-722.68
+4/1/2026,Federal,Onshore,UT,Emery,49015,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,322.84
+4/1/2026,Federal,Onshore,UT,Emery,49015,UTAH,Rents,Coal,Coal,,2730.00
+4/1/2026,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Coal,Coal,Coal,2305.98
+4/1/2026,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Coal,Coal,Coal Waste (Sub-Econ),0.00
+4/1/2026,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),2694.45
+4/1/2026,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Oil & Gas,Gas,Coal Bed Methane,118447.55
+4/1/2026,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1563.93
+4/1/2026,Federal,Onshore,UT,Emery,49015,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,-68694.62
+4/1/2026,Federal,Onshore,UT,Garfield,49017,UTAH,Royalties,Oil & Gas,Oil,Oil,46352.06
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,6825.89
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Other Revenues,Potassium,Potassium,,23616.00
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Rents,Oil & Gas,Oil & Gas,,14381.99
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Rents,Potassium,Potassium,,7872.00
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,69.16
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,765.19
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,12436.27
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,3160.53
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,NGL,Gas Plant Products,695.70
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,339.24
+4/1/2026,Federal,Onshore,UT,Grand,49019,UTAH,Royalties,Oil & Gas,Oil,Oil,62352.14
+4/1/2026,Federal,Onshore,UT,Iron,49021,UTAH,Rents,Geothermal,Geothermal,,4515.00
+4/1/2026,Federal,Onshore,UT,Juab,49023,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,160.00
+4/1/2026,Federal,Onshore,UT,Millard,49027,UTAH,Bonus,Geothermal,Geothermal,,1890.82
+4/1/2026,Federal,Onshore,UT,Millard,49027,UTAH,Rents,Geothermal,Geothermal,,8959.40
+4/1/2026,Federal,Onshore,UT,Millard,49027,UTAH,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",5182.38
+4/1/2026,Federal,Onshore,UT,San Juan,49037,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,1524.67
+4/1/2026,Federal,Onshore,UT,San Juan,49037,UTAH,Rents,Oil & Gas,Oil & Gas,,985.68
+4/1/2026,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,0.26
+4/1/2026,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,15.13
+4/1/2026,Federal,Onshore,UT,San Juan,49037,UTAH,Royalties,Oil & Gas,Oil,Oil,205131.37
+4/1/2026,Federal,Onshore,UT,Sanpete,49039,UTAH,Royalties,Coal,Coal,Coal,133398.45
+4/1/2026,Federal,Onshore,UT,Sanpete,49039,UTAH,Royalties,Oil & Gas,Oil,Oil,43314.56
+4/1/2026,Federal,Onshore,UT,Sevier,49041,UTAH,Royalties,Coal,Coal,Coal,121689.15
+4/1/2026,Federal,Onshore,UT,Sevier,49041,UTAH,Royalties,Oil & Gas,Oil,Oil,836415.19
+4/1/2026,Federal,Onshore,UT,Summit,49043,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,1.02
+4/1/2026,Federal,Onshore,UT,Summit,49043,UTAH,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,-0.03
+4/1/2026,Federal,Onshore,UT,Summit,49043,UTAH,Royalties,Oil & Gas,NGL,Gas Plant Products,-0.02
+4/1/2026,Federal,Onshore,UT,Summit,49043,UTAH,Royalties,Oil & Gas,Oil,Oil,22028.24
+4/1/2026,Federal,Onshore,UT,Tooele,49045,UTAH,Other Revenues,Potassium,Potassium,,-43191.30
+4/1/2026,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Potassium,Magnesium Chloride Brine,1384.52
+4/1/2026,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Potassium,Manure Salts,0.00
+4/1/2026,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Potassium,Potash,41487.47
+4/1/2026,Federal,Onshore,UT,Tooele,49045,UTAH,Royalties,Potassium,Sodium,Salt,319.31
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Other Revenues,Gilsonite,Gilsonite,,271.88
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,-636396.47
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Rents,Oil & Gas,Oil & Gas,,1597.50
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Gilsonite,Gilsonite,Gilsonite,120068.47
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,22.62
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,731.01
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,187930.50
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,5013749.49
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,546702.75
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,NGL,Gas Plant Products,304179.18
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Oil,Condensate,821797.30
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,70064.29
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Oil,Inlet Scrubber,63.23
+4/1/2026,Federal,Onshore,UT,Uintah,49047,UTAH,Royalties,Oil & Gas,Oil,Oil,3295342.80
+4/1/2026,Federal,Onshore,UT,Utah,49049,UTAH,Other Revenues,Oil & Gas,Oil & Gas,,3102.43
+4/1/2026,Federal,Onshore,UT,Utah,49049,UTAH,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,0.45
+4/1/2026,Federal,Onshore,UT,Utah,49049,UTAH,Royalties,Oil & Gas,Gas,Unprocessed Gas,18910.82
+4/1/2026,Federal,Onshore,UT,Utah,49049,UTAH,Royalties,Oil & Gas,Oil,Oil,7860.50
+4/1/2026,Federal,Onshore,UT,Utah,49049,UTAH,Royalties,Phosphate,Phosphate,Phosphate Raw Ore,450.55
+4/1/2026,Federal,Onshore,VA,Dickenson,51051,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,6059.86
+4/1/2026,Federal,Onshore,VA,Dickenson,51051,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,23351.71
+4/1/2026,Federal,Onshore,VA,Giles,51071,EAST STATES,Other Revenues,Hardrock,Hardrock,,11.04
+4/1/2026,Federal,Onshore,VA,Giles,51071,EAST STATES,Rents,Hardrock,Hardrock,,355.00
+4/1/2026,Federal,Onshore,VA,Wise,51195,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,217.80
+4/1/2026,Federal,Onshore,VA,Wise,51195,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,517.51
+4/1/2026,Federal,Onshore,WV,Braxton,54007,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,939.83
+4/1/2026,Federal,Onshore,WV,Lewis,54041,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,2807.30
+4/1/2026,Federal,Onshore,WV,Mingo,54059,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,3850.24
+4/1/2026,Federal,Onshore,WV,Pendleton,54071,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,439.28
+4/1/2026,Federal,Onshore,WV,Randolph,54083,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,1633.79
+4/1/2026,Federal,Onshore,WV,Randolph,54083,EAST STATES,Royalties,Oil & Gas,Gas,Unprocessed Gas,617.07
+4/1/2026,Federal,Onshore,WV,Wyoming,54109,EAST STATES,Other Revenues,Oil & Gas,Oil & Gas,,227.43
+4/1/2026,Federal,Onshore,WY,Albany,56001,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,45.00
+4/1/2026,Federal,Onshore,WY,Albany,56001,WYOMING,Royalties,Oil & Gas,Oil,Oil,18980.49
+4/1/2026,Federal,Onshore,WY,Big Horn,56003,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,614.93
+4/1/2026,Federal,Onshore,WY,Big Horn,56003,WYOMING,Rents,Oil & Gas,Oil & Gas,,1880.66
+4/1/2026,Federal,Onshore,WY,Big Horn,56003,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1824.72
+4/1/2026,Federal,Onshore,WY,Big Horn,56003,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,5285.22
+4/1/2026,Federal,Onshore,WY,Big Horn,56003,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,1882.22
+4/1/2026,Federal,Onshore,WY,Big Horn,56003,WYOMING,Royalties,Oil & Gas,Oil,Oil,184179.20
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Other Revenues,Coal,Coal,,791.95
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,230412.51
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Rents,Coal,Coal,,40800.00
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Rents,Oil & Gas,Oil & Gas,,35120.00
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Coal,Coal,Coal,15573672.53
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,136924.37
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,5355.28
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,37321.75
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,-5361.39
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,150345.47
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2413213.14
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,10278.05
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,26.61
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,262.36
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,1210418.66
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Oil,Condensate,10401.74
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,61044.28
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,31425.90
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Oil,Oil,10655265.45
+4/1/2026,Federal,Onshore,WY,Campbell,56005,WYOMING,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,266.70
+4/1/2026,Federal,Onshore,WY,Carbon,56007,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,16443.91
+4/1/2026,Federal,Onshore,WY,Carbon,56007,WYOMING,Rents,Oil & Gas,Oil & Gas,,88.00
+4/1/2026,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,47844.60
+4/1/2026,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,79198.78
+4/1/2026,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1354470.05
+4/1/2026,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,33875.76
+4/1/2026,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,178012.76
+4/1/2026,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Oil,Condensate,11083.06
+4/1/2026,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,6105.96
+4/1/2026,Federal,Onshore,WY,Carbon,56007,WYOMING,Royalties,Oil & Gas,Oil,Oil,1093652.22
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,733970.89
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Rents,Oil & Gas,Oil & Gas,,1329.50
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Coal,Coal,Coal,75.08
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,630.02
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,5822.22
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,25894.09
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Gas Lost - Flared or Vented,-5890.50
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,125267.90
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1356997.79
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,2721.21
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,18.01
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,300.70
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,869747.77
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Oil,Condensate,22089.46
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,187067.26
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,66918.03
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Oil,Oil,22004742.52
+4/1/2026,Federal,Onshore,WY,Converse,56009,WYOMING,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,1723.03
+4/1/2026,Federal,Onshore,WY,Crook,56011,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,904.00
+4/1/2026,Federal,Onshore,WY,Crook,56011,WYOMING,Rents,Oil & Gas,Oil & Gas,,40.50
+4/1/2026,Federal,Onshore,WY,Crook,56011,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,261.99
+4/1/2026,Federal,Onshore,WY,Crook,56011,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,383.75
+4/1/2026,Federal,Onshore,WY,Crook,56011,WYOMING,Royalties,Oil & Gas,Oil,Oil,309000.17
+4/1/2026,Federal,Onshore,WY,Fremont,56013,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,57523.35
+4/1/2026,Federal,Onshore,WY,Fremont,56013,WYOMING,Rents,Oil & Gas,Oil & Gas,,3436.50
+4/1/2026,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,7253.60
+4/1/2026,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,916678.29
+4/1/2026,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,131899.53
+4/1/2026,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,20166.53
+4/1/2026,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Oil,Condensate,54035.40
+4/1/2026,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Oil,Oil,701864.87
+4/1/2026,Federal,Onshore,WY,Fremont,56013,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,83020.59
+4/1/2026,Federal,Onshore,WY,Goshen,56015,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,3.17
+4/1/2026,Federal,Onshore,WY,Goshen,56015,WYOMING,Royalties,Oil & Gas,Oil,Oil,852.81
+4/1/2026,Federal,Onshore,WY,Hot Springs,56017,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,248.06
+4/1/2026,Federal,Onshore,WY,Hot Springs,56017,WYOMING,Rents,Oil & Gas,Oil & Gas,,713.00
+4/1/2026,Federal,Onshore,WY,Hot Springs,56017,WYOMING,Royalties,Oil & Gas,Oil,Oil,489999.21
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,631128.84
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Rents,Oil & Gas,Oil & Gas,,18568.00
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,366910.92
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,29909.10
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,3594.72
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,348577.58
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,4285.45
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,6.40
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,155409.56
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Oil,Condensate,1873.82
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,174.00
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,49.93
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Oil,Oil,3686482.47
+4/1/2026,Federal,Onshore,WY,Johnson,56019,WYOMING,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,1.64
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,7845.66
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Rents,Oil & Gas,Oil & Gas,,1.55
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,1934.23
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,978.52
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1600.35
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,356.81
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,0.17
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,-268.02
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,753.87
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,124.37
+4/1/2026,Federal,Onshore,WY,Laramie,56021,WYOMING,Royalties,Oil & Gas,Oil,Oil,57610.33
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Other Revenues,Oil & Gas,NGL,Gas Plant Products,4215.01
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,-105766.34
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Rents,Oil & Gas,Oil & Gas,,540.40
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-62977.84
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,392643.66
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,174227.60
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,-6661.09
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Oil,Condensate,14048.08
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,23821.57
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Oil,Oil,21303.12
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,57656.89
+4/1/2026,Federal,Onshore,WY,Lincoln,56023,WYOMING,Royalties,Sodium,Sodium,Salt,0.00
+4/1/2026,Federal,Onshore,WY,Natrona,56025,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,51499.50
+4/1/2026,Federal,Onshore,WY,Natrona,56025,WYOMING,Rents,Oil & Gas,Oil & Gas,,8494.00
+4/1/2026,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,5883.12
+4/1/2026,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,262952.04
+4/1/2026,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,-31766.66
+4/1/2026,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,8378.22
+4/1/2026,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Oil,Condensate,30702.09
+4/1/2026,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Oil,Oil,2091342.67
+4/1/2026,Federal,Onshore,WY,Natrona,56025,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,6821.63
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,3319.11
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Rents,Oil & Gas,Oil & Gas,,1184.00
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,675.77
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1592.37
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,13201.98
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,172.98
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,29974.12
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Oil,Condensate,2483.03
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,5633.55
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,4289.41
+4/1/2026,Federal,Onshore,WY,Niobrara,56027,WYOMING,Royalties,Oil & Gas,Oil,Oil,719899.62
+4/1/2026,Federal,Onshore,WY,Park,56029,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,60472.19
+4/1/2026,Federal,Onshore,WY,Park,56029,WYOMING,Rents,Oil & Gas,Oil & Gas,,7249.59
+4/1/2026,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,5471.33
+4/1/2026,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,32700.50
+4/1/2026,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,10917.06
+4/1/2026,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,Oil,Condensate,1401.96
+4/1/2026,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,Oil,Oil,1373655.28
+4/1/2026,Federal,Onshore,WY,Park,56029,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,12567.51
+4/1/2026,Federal,Onshore,WY,Sheridan,56033,WYOMING,Rents,Oil & Gas,Oil & Gas,,3202.00
+4/1/2026,Federal,Onshore,WY,Sheridan,56033,WYOMING,Royalties,Oil & Gas,Oil,Oil,155.28
+4/1/2026,Federal,Onshore,WY,Sublette,56035,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,-9327998.08
+4/1/2026,Federal,Onshore,WY,Sublette,56035,WYOMING,Rents,Oil & Gas,Oil & Gas,,3935.10
+4/1/2026,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Carbon Dioxide,Carbon Dioxide Gas (CO2),-11699.32
+4/1/2026,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Gas,Coal Bed Methane,110.67
+4/1/2026,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,421046.65
+4/1/2026,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,14389306.21
+4/1/2026,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,370937.80
+4/1/2026,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,1247087.38
+4/1/2026,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Oil,Condensate,485759.52
+4/1/2026,Federal,Onshore,WY,Sublette,56035,WYOMING,Royalties,Oil & Gas,Oil,Oil,1005422.01
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Bonus,Sodium,Sodium,,1775000.00
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Other Revenues,Oil & Gas,NGL,Gas Plant Products,-96.39
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,-531242.72
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Rents,Oil & Gas,Oil & Gas,,31033.00
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Rents,Sodium,Sodium,,280.74
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Coal,Coal,Coal,103009.95
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,51948.12
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1048844.91
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,1987960.36
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,86909.35
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Oil,Condensate,162007.45
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,1755.95
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,6587.93
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Oil & Gas,Oil,Oil,779250.65
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Mine Water,Mine Water,0.00
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Soda Ash,Soda Ash,1317457.85
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Caustic,0.00
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Purge Liquor,3348.70
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Bi-Carbonate,39007.75
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Bisulfite,0.00
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Decahydrate,0.00
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sodium Sesquicarbonate,0.00
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Sulfide,0.00
+4/1/2026,Federal,Onshore,WY,Sweetwater,56037,WYOMING,Royalties,Sodium,Sodium,Trona Ore,122149.33
+4/1/2026,Federal,Onshore,WY,Uinta,56041,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,-42717.13
+4/1/2026,Federal,Onshore,WY,Uinta,56041,WYOMING,Rents,Oil & Gas,Oil & Gas,,938.00
+4/1/2026,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-19990.43
+4/1/2026,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,140945.26
+4/1/2026,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,120957.45
+4/1/2026,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,22080.82
+4/1/2026,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Oil,Condensate,14757.54
+4/1/2026,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,13536.25
+4/1/2026,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Oil,Oil,78122.92
+4/1/2026,Federal,Onshore,WY,Uinta,56041,WYOMING,Royalties,Oil & Gas,Sulfur,Sulfur,58417.74
+4/1/2026,Federal,Onshore,WY,Washakie,56043,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,741.69
+4/1/2026,Federal,Onshore,WY,Washakie,56043,WYOMING,Rents,Oil & Gas,Oil & Gas,,419.00
+4/1/2026,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,5787.27
+4/1/2026,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,684.76
+4/1/2026,Federal,Onshore,WY,Washakie,56043,WYOMING,Royalties,Oil & Gas,Oil,Oil,151757.91
+4/1/2026,Federal,Onshore,WY,Weston,56045,WYOMING,Other Revenues,Oil & Gas,Oil & Gas,,2842.59
+4/1/2026,Federal,Onshore,WY,Weston,56045,WYOMING,Rents,Oil & Gas,Oil & Gas,,3073.33
+4/1/2026,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2229.51
+4/1/2026,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2780.52
+4/1/2026,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Gas,Unprocessed Gas,134.29
+4/1/2026,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,NGL,Gas Plant Products,3041.90
+4/1/2026,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,5.46
+4/1/2026,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Oil,Inlet Scrubber,83.95
+4/1/2026,Federal,Onshore,WY,Weston,56045,WYOMING,Royalties,Oil & Gas,Oil,Oil,171547.19
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Helium,Helium,115436.92
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,5317.29
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Copper,Copper,,22537.89
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Copper,Copper,,119128.78
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,25.06
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,725.25
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,11381.51
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,716713.84
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,39755.33
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-3583.17
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-321928.34
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,64.86
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-1670.84
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,170803.14
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,1975779.56
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,13.27
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,265.75
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,6624.12
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,949358.94
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,17.92
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,14139.03
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,39.71
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Coal,Coal,,15755.51
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,1565.58
+4/1/2026,Indian,Onshore,,,,,Royalties,Coal,Coal,Coal,5947.57
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Asphaltic Crude,8918.48
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Asphaltic Crude,12347.53
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,4.94
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,81.26
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,179.50
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-57.52
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,1162.98
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,1456.24
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,1630.80
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,2519.85
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,39861.53
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-485.05
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,2404.72
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,1210.81
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-673.62
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-93.55
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,1133.50
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,548.24
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-214.84
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,0.00
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,830.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1101.17
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,314.14
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,10719.49
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,-147.46
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,991.39
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,15283.88
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,5214.35
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,75206.84
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,20089.92
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,3.24
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,1.36
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,0.27
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1.34
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6.13
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,31.72
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,1.85
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,1051.95
+4/1/2026,Indian,Onshore,,,,,Royalties,Coal,Coal,Coal,0.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,2901.42
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,47012.46
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,14115.71
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,0.10
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,143.52
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,61.22
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,19.47
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,334.16
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,14.98
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3.86
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,5.91
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,651.07
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-725300.70
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-521549.69
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,50031.77
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,5120.70
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,4.37
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,16930.75
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,4697.28
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,44373.91
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1691.06
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,803561.59
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,35582.46
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,1365709.17
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,643368.47
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,0.67
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,-221893.38
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,19950.61
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,1542.02
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,7.91
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,-304.81
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,40440.51
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,5386.36
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,15287160.36
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,2388855.43
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,48897.44
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-89818.57
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,21244.95
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,9199.52
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,5411.73
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,13.29
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,3283.53
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,7743.01
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,51237.21
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1297.73
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1256770.36
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,32394.54
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,2035934.92
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,699536.33
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,72.66
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,1.07
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,-24276.76
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,9923.22
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,192361.15
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,26.45
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,1725.94
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,289.30
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,6037.31
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,251.18
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,9449045.02
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,1720505.14
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,114874.26
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-98336.46
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,4861.52
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,50.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,1.19
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,15.94
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,5625.92
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,38.40
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,681.40
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,-6715.60
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,15617.30
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,12592.25
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,157558.43
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,0.19
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,-1063.60
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,15244.10
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,-1685.82
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,-255.57
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,7777.59
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,6700.08
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,65899.06
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,924761.80
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-2043.55
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,1.13
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,8.51
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,716.26
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,6428.12
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,913.20
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,21.81
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,411.14
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,61054.23
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,14724.51
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-215078.81
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,8050.16
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,6235.54
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Gas Well Gas,24.35
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,-9472.42
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,431.63
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,612.99
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,1630.85
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,14520.47
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,40028.66
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,478604.33
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,294926.69
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,4.92
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,6719.65
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,25668.23
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,0.12
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,26.88
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,19.82
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,85.55
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,704.21
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,2538.27
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,1248437.15
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,1287673.81
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-5436.98
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,1412.11
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,1119.88
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,281.37
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6883.30
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,8586.28
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,22441.86
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,0.05
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,1697.52
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,184753.38
+4/1/2026,Indian,Onshore,,,,,Royalties,Mining-Unspecified,Humate,Humate,0.00
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-4996.12
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-7162.25
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,46759.81
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,401.44
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,231.18
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,2938.71
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2692.90
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,41347.99
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,237.37
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,691141.67
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,3145.87
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,24403.90
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,81046.05
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,20586.36
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,45113.90
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-626.04
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,245.74
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,70683.11
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,1819.46
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,3194.13
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,NGL,Gas Plant Products,1.02
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,1212249.47
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,1116.93
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,5546.24
+4/1/2026,Indian,Onshore,,,,,Royalties,Coal,Coal,Coal,2815232.97
+4/1/2026,Indian,Onshore,,,,,Royalties,Coal,Humate,Humate,0.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,9653.62
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,947.60
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,15687.75
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,4.43
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,182816.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,100.09
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,10132.52
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,8386.44
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,278313.49
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,7.13
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,6810.82
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,2009394.67
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,5821.28
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Gypsum,Gypsum,,526398.63
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,176953.35
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,14068.92
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-68.44
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,4929.42
+4/1/2026,Indian,Onshore,,,,,Royalties,Gypsum,Gypsum,Gypsum,72003.85
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,5145.65
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,584.09
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,58854.30
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6216.88
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,13875.39
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,65998.71
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,5588.88
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,485858.53
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,43370.73
+4/1/2026,Indian,Onshore,,,,,Royalties,Geothermal,Geothermal,"Geothermal - Electrical Generation, Kilowatt Hours",243.63
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,58.52
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,0.70
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,0.52
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-94742.14
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,10137.49
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,9126.28
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,15489.05
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,25869.43
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,1238445.64
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,3286.98
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,36.23
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,15.24
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,31976.43
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,565.04
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,286207.60
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,5481.00
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-4.39
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,30.68
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,3.72
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-111022.01
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-98.09
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,14401.46
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,770.79
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,8.73
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,12673.77
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,107.69
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,377245.48
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,129.77
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,29122.88
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,251.90
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,10748.27
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,0.01
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,139935.95
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,914.16
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-334228.65
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-94895.73
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,1695.18
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,148.83
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,232.08
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,3588.25
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,2229115.86
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,395326.50
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,394.80
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,54888.43
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,51539.96
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,569.86
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,42.94
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,223851.68
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,69313.79
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,-3.44
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sour Crude,-1275.46
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-1023.81
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,147.22
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,22.80
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,99.48
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,400.55
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,58.18
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,0.62
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,30277.60
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,4268.80
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,737.47
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,7296.47
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,903.87
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-772.42
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,113.36
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1614.56
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,1677.67
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,772.42
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,1383.75
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,18.28
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,35.09
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,397.74
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-63.29
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,974.07
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,2615.65
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,1040.89
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,49.13
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,2557.86
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,1890.34
+4/1/2026,Indian,Onshore,,,,,Royalties,Sand & Gravel,Sand & Gravel,Sand/Gravel-Cubic Yards,105.00
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-2526.76
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,437.55
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,65.33
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,1092.55
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,170.56
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,57533.17
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,6987.86
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,1182.50
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,3234.36
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,600.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,496.83
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,151209.08
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,38992.32
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Gas Well Gas,8.49
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,1389.43
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,2752.60
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,1.24
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,2476.77
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-25696.89
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,2705.76
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,3347.77
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,39156.38
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,40701.02
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,10644.33
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,1384.24
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,16.73
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,18.39
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,22325.45
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,-0.53
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-2.45
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-6910.15
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,126.96
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,317.30
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,18.46
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,158.23
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,5439.22
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,6.71
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,67307.23
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,2257.06
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,1543.50
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,12.06
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,3.60
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,21255.77
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,1288.61
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sour Crude,-22.87
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-20009.19
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-275.00
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,1754.35
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,280.56
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,2259.37
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,165828.48
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,961.15
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,8.29
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,2261.99
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,1196.32
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,327.86
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,33790.57
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,183.11
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,-8.43
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,0.39
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-48.76
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,140.01
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,7.03
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,657.24
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,1376.00
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,-21.93
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,98.35
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,0.16
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,200.00
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,919.80
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,11.49
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,4434.04
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,130.43
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,364.67
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,19018.32
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,914.67
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,29.86
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,4457.43
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sour Crude,-45.10
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,60.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,669.28
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,332.04
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,1566.47
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,89.86
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,-1156.04
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,-2735.55
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,32309.03
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,10.08
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,-7049.22
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,32379.68
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,135.01
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-171401.95
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,141.41
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,378972.95
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,939.87
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,10.09
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Other Liquid Hydrocarbons,26.74
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,65645.90
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-9038.27
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,330.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,14396.46
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,273.40
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,29.14
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,11666.24
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,8594.07
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-437.57
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,351.57
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,56.50
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,3968.22
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,237.33
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,118.82
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,10.59
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,0.95
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,8.49
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,67.18
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,3076.40
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,148.46
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1379.41
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,672.56
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,686.68
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,4116.92
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,59.71
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,60.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,101.34
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Coal Bed Methane,75.09
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,112.41
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,2123.80
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,1232.33
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,176.34
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,231.34
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,497.94
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,3070.94
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,-4.50
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,-11.21
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,801.95
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,63.40
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,155.74
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,221.79
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,3858.95
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,359.35
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,469.43
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,103.56
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,423.76
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,2291.66
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,138.28
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,2944.73
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,8838.47
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,1517.77
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,15021.41
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,25.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,7381.15
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,32647.51
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,19.64
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,172.48
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,55.32
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,836.38
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,173.43
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,2266.95
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,6878.40
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,310.44
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,1634.42
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,225.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,139.53
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,51743.25
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,0.11
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-337.15
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,6.39
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,20.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,14.77
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,149.10
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,305.10
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,60.14
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,11436.94
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Limestone,Limestone,,7593.40
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Limestone,Limestone,,1265.57
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-135.54
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,33.57
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,36.72
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,35.52
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,6785.53
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Processed (Residue) Gas,-38.73
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,-57.59
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,NGL,Gas Plant Products,-35.53
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sour Crude,-221.72
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,-71.69
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,-472.44
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,152.50
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,90.15
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1624.11
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,3447.32
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,2385.05
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,97.55
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sour Crude,13791.90
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,15918.60
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,5424.66
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,491.30
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,48290.63
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,561.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,27189.58
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,52.92
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,1188.27
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,64.61
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,-2670.56
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,64177.07
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,211135.78
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,1188.89
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,7418.21
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,51621.91
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,95291.70
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,126077.17
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,488600.79
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,41939.39
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,297114.61
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,572.72
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,28668.04
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,118853.05
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Black Wax Crude,59791.50
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Black Wax Crude,808557.50
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,-2411.72
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,23078.90
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,24470.26
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,45074.42
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,-90.42
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Inlet Scrubber,5344.56
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Yellow Wax Crude,939351.50
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Yellow Wax Crude,4222784.86
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil,Sweet Crude,0.00
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,-3467.22
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,23516.66
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,36810.93
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,3268854.95
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,45265.31
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,380625.23
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,3318.89
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,12660.69
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Flared Oil Well Gas,3.46
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,0.11
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Pipeline Fuel/Loss,4093.94
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,10190.05
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,69384.72
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,205736.35
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,249931.88
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,254.04
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Vented Oil Well Gas,401.40
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,2697.48
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,14521.12
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Black Wax Crude,89056.13
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Black Wax Crude,776194.40
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,22276.01
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,3778.94
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,767.19
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,3110.56
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Yellow Wax Crude,304916.26
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Yellow Wax Crude,1333787.84
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,1008.03
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,NGL,Gas Plant Products,281.80
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Yellow Wax Crude,4859.34
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Sand & Gravel,Sand & Gravel,,-4846.57
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Oil & Gas,,819.67
+4/1/2026,Indian,Onshore,,,,,Rents,Oil & Gas,Oil & Gas,,4945.00
+4/1/2026,Indian,Onshore,,,,,Rents,Sand & Gravel,Sand & Gravel,,320.00
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Processed (Residue) Gas,10116.99
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Asphaltic Crude,25832.64
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Asphaltic Crude,364038.69
+4/1/2026,Indian,Onshore,,,,,Royalties,Sand & Gravel,Sand & Gravel,Sand/Gravel,78516.00
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,0.00
+4/1/2026,Indian,Onshore,,,,,Other Revenues,Oil & Gas,Gas,Unprocessed Gas,0.00
+4/1/2026,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,677100.85
+4/1/2026,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Gas,Unprocessed Gas,96370.58
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,100804.18
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Gas,Unprocessed Gas,92919.03
+4/1/2026,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Oil,Condensate,10870.60
+4/1/2026,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Oil,Condensate,3748.11
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,2503.52
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Condensate,2750.14
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,0.65
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Drip or Scrubber Condensate,0.79
+4/1/2026,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Oil,Oil,165624.49
+4/1/2026,Federal,Onshore,AK,Kenai (Pre),02122,ALASKA,Royalties,Oil & Gas,Oil,Oil,53781.24
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,52969.52
+4/1/2026,Indian,Onshore,,,,,Royalties,Oil & Gas,Oil,Sweet Crude,50270.42
+4/1/2026,Federal,Not Tied to a Lease,,,,,Civil Penalties,,,,302495.30
+4/1/2026,Federal,Not Tied to a Lease,,,,,Other Revenues,,,,3459.12
+4/1/2026,Federal,Offshore,,,,,Inspection Fees,,,,1056000.00
