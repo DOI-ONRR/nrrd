@@ -29,3 +29,5 @@ databaseChangeLog:
         file: changelog-data/revenue-by-company.yaml        
     - include:
         file: changelog-data/sales.yaml
+    - include:
+        file: changelog-data/commodity-alias-seed.yaml
