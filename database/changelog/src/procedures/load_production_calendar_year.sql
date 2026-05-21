@@ -4,36 +4,29 @@ DECLARE
     cy_production CURSOR FOR
     SELECT location_id,
         period_id,
-        commodity_id,
+        a.commodity_id,
         TO_NUMBER(volume, 'L999G999G999G999D99') volume,
         COALESCE(SUBSTR(SPLIT_PART(SPLIT_PART(e.product, ' (', 2), ')', 1), 1, 20), '') unit,
         COALESCE(SUBSTR(SPLIT_PART(SPLIT_PART(e.product, ' (', 2), ')', 1), 1, 5), '') unit_abbr,
         COUNT(*) duplicate_no
     FROM calendar_year_production_elt e,
         location l,
-        commodity c,
+        commodity_alias a,
         period p
-    WHERE COALESCE(e.land_class, '') = l.land_class 
+    WHERE COALESCE(e.land_class, '') = l.land_class
         AND COALESCE(e.land_category, '') = l.land_category
         AND COALESCE(e.state, '') = l.state
         AND COALESCE(e.county, '') = l.county
         AND COALESCE(e.fips_code, '') = l.fips_code
         AND COALESCE(e.offshore_region, '') = l.offshore_region
-        AND CASE 
-                WHEN e.product LIKE '%(%' THEN 
-                    COALESCE(SPLIT_PART(e.product,' (', 1), '')
-	            WHEN e.product LIKE '%-%' THEN 
-                    COALESCE(SPLIT_PART(e.product,' - ', 1), '')
-	            ELSE e.product 
-            END = c.commodity
-     AND COALESCE(e.product, '') = c.product
-        AND c.mineral_lease_type = ''
+        AND a.source = 'production_calendar_year'
+        AND COALESCE(e.product, '') = COALESCE(a.alias_product, '')
         AND p.period = 'Calendar Year'
         AND p.period_date = TO_DATE(concat('01', '/01/', e.calendar_year), 'MM/DD/YYYY')
-    GROUP BY location_id, 
-        period_id, 
-        commodity_id, 
-        volume, 
+    GROUP BY location_id,
+        period_id,
+        a.commodity_id,
+        volume,
         e.product;
 
     v_from_date period.period_date%TYPE;
