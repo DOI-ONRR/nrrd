@@ -20,7 +20,7 @@ DECLARE
         AND COALESCE(e.fips_code, '') = l.fips_code
         AND COALESCE(e.offshore_region, '') = l.offshore_region
         AND a.source = 'production_calendar_year'
-        AND COALESCE(e.product, '') = COALESCE(a.alias_product, '')
+        AND LOWER(COALESCE(e.product, '')) = LOWER(COALESCE(a.alias_product, ''))
         AND p.period = 'Calendar Year'
         AND p.period_date = TO_DATE(concat('01', '/01/', e.calendar_year), 'MM/DD/YYYY')
     GROUP BY location_id,
