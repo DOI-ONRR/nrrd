@@ -1,11 +1,11 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-by-company-2024
-      author: Christine Thomas
+      id: revenue-by-company-2025
+      author: Lindsay Goldstein
       changes:
       - loadData:
           tableName: federal_revenue_by_company
-          file: '../static/csv/federal_revenue_by_company_CY2024.csv'
+          file: '../static/csv/federal_revenue_by_company_CY2025.csv'
           quotchar: '""'
           columns:
           - column:
