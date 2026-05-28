@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: seed-commodity-alias
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            -- revenue_monthly: one alias per commodity row (mirrors the current three-column join)
+            INSERT INTO commodity_alias (source, alias_mineral_lease_type, alias_commodity, alias_product, commodity_id)
+            SELECT 'revenue_monthly',
+                   mineral_lease_type,
+                   commodity,
+                   product,
+                   commodity_id
+            FROM commodity
+            ON CONFLICT DO NOTHING;
+
+            -- production_calendar_year: alias_product = c.product, restricted to mineral_lease_type=''
+            INSERT INTO commodity_alias (source, alias_product, commodity_id)
+            SELECT 'production_calendar_year',
+                   product,
+                   commodity_id
+            FROM commodity
+            WHERE mineral_lease_type = ''
+            ON CONFLICT DO NOTHING;
+
+            -- production_fiscal_year: same shape as calendar year
+            INSERT INTO commodity_alias (source, alias_product, commodity_id)
+            SELECT 'production_fiscal_year',
+                   product,
+                   commodity_id
+            FROM commodity
+            WHERE mineral_lease_type = ''
+            ON CONFLICT DO NOTHING;
+
+            -- production_monthly: 'Oil Prod Vol (bbl)' derived from commodity='Oil', product='Oil (bbl)'
+            INSERT INTO commodity_alias (source, alias_commodity, commodity_id)
+            SELECT 'production_monthly',
+                   commodity || ' Prod Vol (' || SPLIT_PART(SPLIT_PART(product, ' (', 2), ')', 1) || ')',
+                   commodity_id
+            FROM commodity
+            WHERE mineral_lease_type = ''
+              AND product LIKE '% (%'
+              AND product LIKE commodity || ' %'
+            ON CONFLICT DO NOTHING;
+
+            -- disbursement_monthly: alias_commodity = c.commodity, restricted to rows where commodity = product
+            INSERT INTO commodity_alias (source, alias_commodity, commodity_id)
+            SELECT 'disbursement_monthly',
+                   commodity,
+                   commodity_id
+            FROM commodity
+            WHERE mineral_lease_type = ''
+              AND commodity = product
+            ON CONFLICT DO NOTHING;
+
+            -- disbursement_monthly: empty/null source commodity maps to 'Not tied to a commodity'
+            INSERT INTO commodity_alias (source, alias_commodity, commodity_id)
+            SELECT 'disbursement_monthly',
+                   '',
+                   commodity_id
+            FROM commodity
+            WHERE commodity = 'Not tied to a commodity'
+            ON CONFLICT DO NOTHING;
