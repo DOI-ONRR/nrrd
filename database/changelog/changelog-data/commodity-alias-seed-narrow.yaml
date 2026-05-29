@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: narrow-commodity-alias-seed-cy-fy
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            -- The initial seed populated alias_product = c.product for every commodity
+            -- row with mineral_lease_type='', producing 143 aliases per CY/FY source.
+            -- Two of those rows could never have been matched by the prior CY/FY
+            -- loaders (which require derive(product) = commodity):
+            --   * commodity 'Not tied to a commodity' / product ''
+            --   * commodity 'Oil & gas (pre-production)' / product 'Oil & gas (pre-production)'
+            -- Drop them so the alias table behavior exactly mirrors prior loader matching.
+            DELETE FROM commodity_alias a
+            USING commodity c
+            WHERE a.commodity_id = c.commodity_id
+              AND a.source IN ('production_calendar_year', 'production_fiscal_year')
+              AND c.mineral_lease_type = ''
+              AND CASE
+                    WHEN c.product LIKE '%(%' THEN COALESCE(SPLIT_PART(c.product, ' (', 1), '')
+                    WHEN c.product LIKE '%-%' THEN COALESCE(SPLIT_PART(c.product, ' - ', 1), '')
+                    ELSE c.product
+                  END <> c.commodity;
